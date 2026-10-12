@@ -205,10 +205,10 @@ export const CURSOS = [
     "hola": "你好！",
     "letras": [],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 30 20\" aria-hidden=\"true\" shape-rendering=\"crispEdges\"><rect width=\"30\" height=\"20\" fill=\"#de2910\"/><g fill=\"#ffde00\"><path d=\"M5 2h1v2h2v1h-1v1h1v1h-2v-1h-1v1h-2v-1h1v-1h-1v-1h2z\"/><rect x=\"10\" y=\"1\" width=\"1\" height=\"1\"/><rect x=\"9\" y=\"2\" width=\"3\" height=\"1\"/><rect x=\"12\" y=\"3\" width=\"1\" height=\"1\"/><rect x=\"11\" y=\"4\" width=\"3\" height=\"1\"/><rect x=\"12\" y=\"6\" width=\"1\" height=\"1\"/><rect x=\"11\" y=\"7\" width=\"3\" height=\"1\"/><rect x=\"10\" y=\"9\" width=\"1\" height=\"1\"/><rect x=\"9\" y=\"10\" width=\"3\" height=\"1\"/></g></svg>",
+    "sprite": "propio",
     "proximamente": true,
     "lecciones": 0,
-    "audio": false,
-    "sprite": "propio"
+    "audio": false
   },
   {
     "id": "pt",
