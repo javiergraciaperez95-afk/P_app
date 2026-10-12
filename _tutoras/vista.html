@@ -1,0 +1,37 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Tutoras</title>
+<style>
+  body { margin: 0; font: 14px system-ui; display: grid; grid-template-columns: 1fr 1fr; }
+  section { padding: 12px; }
+  .claro { background: #f3efe6; color: #222; }
+  .oscuro { background: #1b1d2a; color: #eee; }
+  .fila { display: flex; align-items: flex-end; gap: 6px; margin-bottom: 8px; }
+  .fila b { width: 70px; font-size: 11px; }
+  canvas { image-rendering: pixelated; }
+</style>
+<body>
+<script type="module">
+  const apps = (new URLSearchParams(location.search).get('apps') || 'Japanese,French,Norwegian,Turkish').split(',');
+  const q = new URLSearchParams(location.search);
+  const caras = (q.get('caras') || 'normal,pensando,contenta,apurada,sorprendida,confundida').split(',');
+  if (q.get('tema')) document.body.style.gridTemplateColumns = '1fr';
+  const escala = Number(new URLSearchParams(location.search).get('escala') || 2);
+  for (const tema of q.get('tema') ? [q.get('tema')] : ['claro', 'oscuro']) {
+    const s = document.body.appendChild(Object.assign(document.createElement('section'), { className: tema }));
+    if (caras.length === 1) s.style.cssText = 'display:flex;flex-wrap:wrap;gap:4px';
+    for (const app of apps) {
+      const { rejilla } = await import(`../${app}/js/tutor-sprite.js?${Date.now()}`);
+      const fila = s.appendChild(Object.assign(document.createElement('div'), { className: 'fila' }));
+      fila.appendChild(document.createElement('b')).textContent = app;
+      for (const cara of caras) {
+        const g = rejilla(cara, cara === 'pensando' ? 1 : 0);
+        const c = fila.appendChild(document.createElement('canvas'));
+        c.width = g[0].length; c.height = g.length;
+        c.style.width = c.width * escala + 'px'; c.style.height = c.height * escala + 'px';
+        const ctx = c.getContext('2d');
+        g.forEach((f, y) => f.forEach((col, x) => { if (col) { ctx.fillStyle = col; ctx.fillRect(x, y, 1, 1); } }));
+      }
+    }
+  }
+</script>

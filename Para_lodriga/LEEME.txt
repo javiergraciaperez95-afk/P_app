@@ -1,0 +1,59 @@
+PARA DEJAR SUPABASE LISTO PARA LA APP ÚNICA «IDIOMAS»
+=====================================================
+Escrito el 12 de octubre de 2026. Son tres cosas; la primera es la única obligatoria.
+
+
+1. EJECUTAR EL SQL  (obligatorio, 1 minuto)
+-------------------------------------------
+Archivo: supabase-app-unica.sql (en esta misma carpeta).
+
+  Supabase → el proyecto → SQL Editor → New query → pegar TODO el archivo → Run.
+
+Crea las tablas de progreso que faltaban (portugués, vietnamita y chino; las
+otras 18 ya existían y no cambian) y un almacén público llamado «audios».
+Se puede ejecutar más de una vez sin miedo: no borra nada.
+
+Sin este paso, quien inicie sesión en los cursos de portugués o vietnamita
+verá el aviso «la tabla de este curso todavía no existe».
+
+
+2. PERMITIR EL ENLACE DE LOS CORREOS HACIA LA APP  (para la APK)
+---------------------------------------------------------------
+Cuando alguien confirma su cuenta o pide cambiar la contraseña, Supabase le
+manda un correo con un enlace. Para que ese enlace abra la app instalada:
+
+  Supabase → Authentication → URL Configuration → Redirect URLs → Add URL
+
+  y añadir exactamente:   idiomasapp://auth
+
+Si no se añade, el enlace del correo lleva a la dirección web de siempre y la
+app del móvil no se entera. No rompe nada, pero el cambio de contraseña desde
+el móvil no funcionará.
+
+
+3. SUBIR LOS AUDIOS A INTERNET  (opcional, cuando se quiera aligerar la APK)
+----------------------------------------------------------------------------
+Ahora mismo los audios van DENTRO de la app. Funciona, pero la APK pesa más
+de 100 MB. Para que la app los descargue por lección:
+
+  a) Supabase → Storage → audios → Upload folder.
+     Hay que subir, de cada curso, el CONTENIDO de su carpeta de audios dentro
+     de una carpeta con el código del curso. Es decir:
+
+        Idiomas/cursos/es/audio/*   →   audios/es/
+        Idiomas/cursos/fr/audio/*   →   audios/fr/
+        ...
+
+     Lo más cómodo: copiar cada carpeta «audio» a otro sitio, renombrarla con
+     el código del curso (es, fr, de…) y arrastrarla al almacén.
+
+  b) En Idiomas/js/config.js, poner la dirección en AUDIOS_EN_LINEA:
+
+        https://TU-PROYECTO.supabase.co/storage/v1/object/public/audios
+
+  c) Volver a generar la APK. Con esa dirección puesta, los audios ya no hace
+     falta meterlos dentro (hay que decírselo a Claude para que los excluya).
+
+Límites del plan gratuito de Supabase: 1 GB de almacén. Hoy los audios ocupan
+bastante menos; el curso entero de los 21 idiomas no cabrá, y entonces habrá
+que pasar a otro alojamiento (la app solo necesita que se cambie esa dirección).

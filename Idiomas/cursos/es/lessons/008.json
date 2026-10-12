@@ -1,0 +1,169 @@
+{
+  "capitulo": 2,
+  "titulo_es": "El y la",
+  "titulo": { "en": "El and la" },
+  "intro": { "en": "Every Spanish noun is masculine or feminine, singular or plural. The article has to match, and the ending is only a clue." },
+  "palabras": {
+    "el": { "en": "the (masculine)", "pron": "el", "cat": "article" },
+    "la": { "en": "the (feminine)", "pron": "la", "cat": "article" },
+    "los": { "en": "the (masculine plural)", "pron": "los", "cat": "article" },
+    "las": { "en": "the (feminine plural)", "pron": "las", "cat": "article" },
+    "un": { "en": "a, an (masculine)", "pron": "un", "cat": "article" },
+    "una": { "en": "a, an (feminine)", "pron": "U-na", "cat": "article" },
+    "unos": { "en": "some (masculine)", "pron": "U-nos", "cat": "article" },
+    "unas": { "en": "some (feminine)", "pron": "U-nas", "cat": "article" },
+    "el libro": { "en": "the book", "pron": "el LI-bro", "genero": "m" },
+    "la mesa": { "en": "the table", "pron": "la ME-sa", "genero": "f" },
+    "el mapa": { "en": "the map", "pron": "el MA-pa", "genero": "m", "nota": "It ends in -a, but it is masculine: el mapa, un mapa." },
+    "la mano": { "en": "the hand", "pron": "la MA-no", "genero": "f", "nota": "It ends in -o, but it is feminine: la mano, una mano." },
+    "el problema": { "en": "the problem", "pron": "el pro-BLE-ma", "genero": "m", "nota": "Words ending in -ma that come from Greek are often masculine: el problema, el mapa." },
+    "grande": { "en": "big", "pron": "GRAN-de", "cat": "adjective", "nota": "Grande does not change for gender. The plural is grandes." },
+    "pequeña": { "en": "small (feminine)", "pron": "pe-KE-nya", "cat": "adjective" },
+    "pequeño": { "en": "small (masculine)", "pron": "pe-KE-nyo", "cat": "adjective" }
+  },
+  "bloques": [
+    {
+      "tipo": "explicacion",
+      "titulo": "The article matches the noun",
+      "texto": "Masculine singular **el** and **un**. Feminine singular **la** and **una**. Plural **los**, **las**, **unos**, **unas**.\n\nWords in **-o** are often masculine and words in **-a** are often feminine: el libro, la mesa. Learn the exceptions with the word, not with a second rule later: **el mapa**, **el problema**, **la mano**.\n\nA plural noun adds **-s** after a vowel and **-es** after a consonant: libros, problemas. The adjective follows the same gender and number: la mesa es grande, las mesas son grandes."
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Four articles",
+      "columnas": ["", "Masculine", "Feminine"],
+      "filas": [
+        ["the, one", "el libro", "la mesa"],
+        ["the, more than one", "los libros", "las mesas"],
+        ["a / some", "un libro, unos libros", "una mesa, unas mesas"],
+        ["watch these", "el mapa, el problema", "la mano"]
+      ]
+    },
+    {
+      "tipo": "dialogo",
+      "titulo": "On the table",
+      "frases": [
+        {
+          "quien": "Lucía",
+          "es": "¿Es un libro?",
+          "en": "Is it a book?",
+          "analisis": [
+            ["¿Es", "verb"],
+            ["un libro", "object"]
+          ]
+        },
+        {
+          "quien": "Pablo",
+          "es": "Sí, es el libro de Ana.",
+          "en": "Yes, it is Ana's book.",
+          "analisis": [
+            ["es", "verb"],
+            ["el libro", "object"],
+            ["de Ana", "of Ana"]
+          ]
+        },
+        {
+          "quien": "Lucía",
+          "es": "¿Y la mesa?",
+          "en": "And the table?",
+          "analisis": [
+            ["la mesa", "object"]
+          ]
+        },
+        {
+          "quien": "Pablo",
+          "es": "La mesa es grande.",
+          "en": "The table is big.",
+          "analisis": [
+            ["La mesa", "subject"],
+            ["es", "verb"],
+            ["grande", "adjective"]
+          ]
+        },
+        {
+          "quien": "Lucía",
+          "es": "Los libros son grandes. El mapa es pequeño.",
+          "en": "The books are big. The map is small.",
+          "analisis": [
+            ["Los libros", "subject"],
+            ["son", "verb"],
+            ["grandes", "adjective"],
+            ["El mapa", "subject"]
+          ]
+        },
+        {
+          "quien": "Pablo",
+          "es": "La mano es pequeña, pero el problema es grande.",
+          "en": "The hand is small, but the problem is big.",
+          "analisis": [
+            ["La mano", "subject"],
+            ["es", "verb"],
+            ["pequeña", "adjective"],
+            ["el problema", "subject"],
+            ["grande", "adjective"]
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "vocabulario",
+      "palabras": ["el", "la", "los", "las", "un", "una", "unos", "unas", "el libro", "la mesa", "el mapa", "la mano", "el problema", "grande", "pequeña", "pequeño"]
+    },
+    {
+      "tipo": "huecos",
+      "id": "a1-art-mapa",
+      "pregunta": { "en": "Complete: it is the map." },
+      "frase": "Es ___ mapa.",
+      "audio": true,
+      "opciones": {
+        "el": { "en": "Mapa is masculine, even though it ends in -a." },
+        "la": { "en": "La would be feminine. Mapa is masculine." },
+        "una": { "en": "Una is feminine. Mapa takes el or un." }
+      },
+      "correcta": "el"
+    },
+    {
+      "tipo": "huecos",
+      "id": "a1-art-mano",
+      "pregunta": { "en": "Complete: it is the hand." },
+      "frase": "Es ___ mano.",
+      "audio": true,
+      "opciones": {
+        "la": { "en": "Mano is feminine, even though it ends in -o." },
+        "el": { "en": "El is masculine. Mano is feminine." },
+        "los": { "en": "Los is plural." }
+      },
+      "correcta": "la"
+    },
+    {
+      "tipo": "test",
+      "id": "a1-art-plural",
+      "pregunta": { "en": "Which phrase means the books?" },
+      "opciones": {
+        "los libros": { "en": "Libro is masculine, and the plural article is los." },
+        "las libros": { "en": "Las is feminine. Libro is masculine." },
+        "los libro": { "en": "The noun has to be plural too: libros." }
+      },
+      "correcta": "los libros"
+    },
+    {
+      "tipo": "ordenar",
+      "id": "a1-art-mesa",
+      "frase": "La mesa es grande",
+      "traduccion": { "en": "The table is big." }
+    },
+    {
+      "tipo": "escribir",
+      "id": "a1-art-problema",
+      "pregunta": { "en": "Write: The problem is big." },
+      "respuestas": ["El problema es grande"],
+      "explicacion": { "en": "Problema is masculine: el problema. Grande does not add -a." }
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": {"en": "Your turn: write and speak"},
+      "texto": {
+        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Look around the room and write a list of ten things you can see, each with el or la, and then in the plural.\n\n**Speak (about 30 seconds).** Point at ten objects around you and name each one aloud with its article."
+      }
+    }
+  ]
+}

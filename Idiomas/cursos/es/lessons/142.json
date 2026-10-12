@@ -1,0 +1,148 @@
+{
+  "capitulo": 13,
+  "titulo_es": "Se habla español",
+  "titulo": {"en": "Spanish is spoken"},
+  "intro": {"en": "Se with a third-person verb, for when it does not matter who does the action."},
+  "palabras": {
+    "se habla": {"en": "is spoken, people speak", "pron": "se A-bla", "cat": "verb"},
+    "se venden": {"en": "are sold, for sale", "pron": "se BEN-den", "cat": "verb"},
+    "se alquila": {"en": "for rent", "pron": "se al-KI-la", "cat": "verb"},
+    "se puede": {"en": "one can, you can", "pron": "se PWE-de", "cat": "verb"},
+    "no se puede": {"en": "you can't, it is not allowed", "pron": "no se PWE-de", "cat": "verb"},
+    "se dice que": {"en": "people say that", "pron": "se DI-the ke", "cat": "expression"},
+    "se come bien": {"en": "the food is good, you eat well", "pron": "se KO-me byen", "cat": "expression"},
+    "cómo se va": {"en": "how do you get (to a place)", "pron": "KO-mo se ba", "cat": "expression"},
+    "se necesita": {"en": "is needed, wanted", "pron": "se ne-the-SI-ta", "cat": "verb"},
+    "prohibido": {"en": "forbidden", "pron": "proi-BI-do", "cat": "adjective"},
+    "aparcar": {"en": "to park", "pron": "a-par-KAR", "cat": "verb"},
+    "la entrada": {"en": "the ticket; the entrance", "pron": "la en-TRA-da", "genero": "f"}
+  },
+  "bloques": [
+    {
+      "tipo": "explicacion",
+      "titulo": {"en": "Nobody in particular"},
+      "texto": {
+        "en": "Spanish hides the person behind **se** and a verb in the third person.\n\nWith a noun, the verb agrees with it.\n\n- **Se habla** español. **Se venden** pisos. **Se necesitan** camareros.\n\nWith no noun, or with an infinitive or que, the verb is singular.\n\n- Aquí **se come** muy bien.\n- ¿**Se puede** aparcar aquí?\n- **Se dice que** va a llover.\n- ¿Cómo **se va** al centro? ¿Cómo **se dice** esto?\n\nOther ways to leave the person out: the ellos form with no subject (**dicen** que es bueno, **llaman** a la puerta), and a general tú in conversation (si **comes** bien, **vives** mejor)."
+      }
+    },
+    {
+      "tipo": "tabla",
+      "titulo": {"en": "Signs you will see"},
+      "columnas": ["Sign", "Meaning"],
+      "filas": [
+        ["Se alquila piso", "Flat for rent"],
+        ["Se venden coches", "Cars for sale"],
+        ["Se habla inglés", "English spoken"],
+        ["Se necesita camarero", "Waiter wanted"],
+        ["No se puede fumar", "No smoking"],
+        ["Se ruega silencio", "Silence, please"]
+      ]
+    },
+    {
+      "tipo": "dialogo",
+      "titulo": {"en": "Parking"},
+      "frases": [
+        {
+          "quien": "Lucía",
+          "es": "¿Se puede aparcar en esta calle?",
+          "en": "Can you park in this street?",
+          "analisis": [["¿Se puede", "verb"], ["aparcar", "infinitive"], ["en esta calle", "place"]]
+        },
+        {
+          "quien": "Pablo",
+          "es": "No, está prohibido. Pero allí se alquilan plazas.",
+          "en": "No, it's forbidden. But they rent out spaces over there.",
+          "analisis": [["está prohibido", "verb"], ["allí", "place"], ["se alquilan", "verb"], ["plazas", "subject"]]
+        },
+        {
+          "quien": "Lucía",
+          "es": "¿Cómo se va al mercado?",
+          "en": "How do you get to the market?",
+          "analisis": [["¿Cómo", "question"], ["se va", "verb"], ["al mercado", "place"]]
+        },
+        {
+          "quien": "Pablo",
+          "es": "Todo recto. Se dice que allí se come muy bien.",
+          "en": "Straight on. They say the food there is very good.",
+          "analisis": [
+            ["Todo recto", "direction"],
+            ["Se dice que", "people say"],
+            ["allí", "place"],
+            ["se come", "verb"],
+            ["muy bien", "how"]
+          ]
+        },
+        {
+          "quien": "Lucía",
+          "es": "Y se venden entradas para el concierto, ¿no?",
+          "en": "And they sell tickets for the concert, don't they?",
+          "analisis": [["se venden", "verb"], ["entradas", "subject"], ["para el concierto", "for what"]]
+        }
+      ]
+    },
+    {"tipo": "vocabulario"},
+    {
+      "tipo": "huecos",
+      "id": "se-impersonal-1",
+      "pregunta": {"en": "Complete the sign: flats for sale."},
+      "frase": "Se ___ pisos.",
+      "audio": true,
+      "opciones": {
+        "venden": {"en": "The verb agrees with pisos."},
+        "vende": {"en": "Pisos is plural."},
+        "vendo": {"en": "Vendo is I sell."}
+      },
+      "correcta": "venden"
+    },
+    {
+      "tipo": "huecos",
+      "id": "se-impersonal-2",
+      "pregunta": {"en": "Complete: you can't smoke here."},
+      "frase": "Aquí no se ___ fumar.",
+      "audio": true,
+      "opciones": {
+        "puede": {"en": "With an infinitive the verb stays singular."},
+        "pueden": {"en": "The infinitive keeps the verb singular."},
+        "puedo": {"en": "Puedo is I can."}
+      },
+      "correcta": "puede"
+    },
+    {
+      "tipo": "test",
+      "id": "se-impersonal-3",
+      "pregunta": {"en": "«Se dice que va a llover.» Who says it?"},
+      "opciones": {
+        "People in general": {"en": "Se hides the speaker."},
+        "The person you are talking to": {"en": "That would be dices que."},
+        "The speaker alone": {"en": "That would be digo que."}
+      },
+      "correcta": "People in general"
+    },
+    {
+      "tipo": "traduccion",
+      "id": "se-impersonal-4",
+      "frase": "Se necesita camarero.",
+      "opciones": [
+        {"texto": {"en": "Waiter wanted."}, "correcta": true},
+        {
+          "texto": {"en": "The waiter needs something."},
+          "explicacion": {"en": "That would be el camarero necesita algo."}
+        },
+        {"texto": {"en": "A waiter needs himself."}, "explicacion": {"en": "Se is impersonal here, not reflexive."}}
+      ]
+    },
+    {
+      "tipo": "ordenar",
+      "id": "se-impersonal-5",
+      "frase": "¿Cómo se va al centro?",
+      "traduccion": {"en": "How do you get to the centre?"}
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": {"en": "Your turn: write and speak"},
+      "texto": {
+        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Describe the customs of your country in an impersonal way: what people eat, when they eat, how they greet each other.\n\n**Speak (about 2 minutes).** Explain aloud to a foreigner how things are done in your country: Aquí se cena tarde, se dice…"
+      }
+    }
+  ]
+}

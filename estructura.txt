@@ -1,0 +1,128 @@
+ESTRUCTURA DEL PROYECTO
+=======================
+Escrito el 12 de octubre de 2026. Si se mueve o se añade una carpeta, se apunta aquí.
+
+
+LO QUE HAY EN ESTA CARPETA
+--------------------------
+Idiomas/                 LA APP. Todo lo nuevo se hace aquí.
+Abrir Idiomas.cmd        Doble clic para abrir la app en el ordenador.
+Idiomas-prueba.apk       La app para Android (se genera desde _apk).
+estructura.txt           Este archivo.
+
+_herramientas/           Programas que preparan contenido (no van dentro de la app).
+_audio/                  Programas y voces para generar los audios.
+_tutoras/                Los dibujos de las tutoras y su generador.
+_apk/                    El proyecto de Android.
+Para_lodriga/            El SQL y los pasos de Supabase.
+Muestras de voz/         Pruebas de voces.
+_copias/                 Copias de seguridad hechas a mano.
+
+_antiguas/               Las 21 apps ANTIGUAS, una por idioma, y su lanzador
+                         («Abrir todas.cmd»). Ya no se usan: su contenido está
+                         copiado en Idiomas/cursos/. Dentro están:
+                         Spanish, English, French, German, Italian, Portuguese,
+                         Dutch, Danish, Norwegian, Swedish, Polish, Romanian,
+                         Greek, Russian, Turkish, Indonesian, Japanese, Korean,
+                         Thai, Vietnamese y Chinese.
+
+.gitignore               Lo que NO se sube a GitHub (ver abajo).
+
+
+LA APP: Idiomas/
+----------------
+index.html               La página.
+css/                     El aspecto.
+assets/                  Iconos e imágenes.
+manifest.webmanifest, sw.js   Para que se pueda instalar y funcione sin conexión.
+LEEME.txt                Explicación más detallada de la app.
+
+js/                      EL PROGRAMA (común a todos los idiomas)
+   app.js                Arranque y pantallas. Al abrir, lleva a «Elige el idioma».
+   cursos.js             La lista de cursos (se genera sola; no se edita a mano).
+   curso.js              Qué curso está elegido.
+   lessons.js            Carga las lecciones del curso.
+   exercises.js          Los tipos de ejercicio.
+   progress.js, srs.js   Progreso y repaso espaciado.
+   sync.js, config.js    Cuenta y Supabase.
+   tutor.js, tutor-sprite.js, tutora-base.js   La tutora.
+   sonidos.js            Audios y efectos.
+   i18n.js, i18n/        Idioma de la interfaz (inglés, vietnamita, chino, español).
+   movil.js              Lo propio de Android (botón atrás…).
+   creditos.js           A quién se agradecen las voces.
+   juego/                El modo juego.
+   vistas/               Una pantalla por archivo: cursos (elegir idioma),
+                         lecciones, leccion, practica, repaso, frases,
+                         cuaderno, perfil.
+
+cursos/                  EL CONTENIDO: una carpeta por idioma
+   <código>/
+      lessons/           001.json, 002.json… y capitulos.json
+      audio/             Los audios y su índice
+      phrases/           Frases útiles
+      juegos/            Modo juego (solo español)
+      tutora.js          El dibujo de la tutora
+
+
+LOS CURSOS (en el orden en que salen en la app)
+-----------------------------------------------
+Código  Idioma       Lecciones  Audios   Estado
+en      Inglés           3      sí       muestra
+es      Español        293      sí       completo hasta B2
+fr      Francés          3      sí       muestra
+de      Alemán           3      sí       muestra
+ja      Japonés          3      no       muestra
+it      Italiano         3      sí       muestra
+ko      Coreano          3      no       muestra
+zh      Chino            0      no       «Próximamente» (solo la tutora)
+pt      Portugués        6      sí       muestra
+ru      Ruso             3      sí       muestra
+tr      Turco            3      no       muestra
+nl      Neerlandés       3      sí       muestra
+sv      Sueco            3      sí       muestra
+el      Griego           3      sí       muestra
+pl      Polaco           3      sí       muestra
+no      Noruego          3      sí       muestra
+vi      Vietnamita     263      sí       A1 a B2 (B1 y B2 pendientes de revisar)
+id      Indonesio        3      no       muestra
+da      Danés           69      sí       A1, A2 y medio B1
+ro      Rumano           3      sí       muestra
+th      Tailandés        3      no       muestra
+
+
+HERRAMIENTAS
+------------
+_herramientas/montar_cursos.py   Copia el contenido de _antiguas/ a
+                                 Idiomas/cursos/ y genera js/cursos.js.
+                                 OJO: machaca lo que haya en cursos/<código>
+                                 (menos español). No usar con vietnamita.
+_herramientas/vi_b1b2/           Borradores de las lecciones 144-263 de
+                                 vietnamita (fuente/NNN.txt) y compilar.py,
+                                 que los convierte en cursos/vi/lessons/.
+_herramientas/vi_silabas.json    Tabla de pronunciación del vietnamita.
+_audio/generar.py                Audios del curso de español.
+_audio/generar_apps.py           Audios de los demás cursos (py generar_apps.py vi).
+_tutoras/generar.py              Genera las tutoras de las apps antiguas desde
+                                 _tutoras/disenos/ (las de la app nueva las
+                                 pone montar_cursos.py).
+_apk/generar-apk.cmd             Genera Idiomas-prueba.apk.
+
+
+CÓMO SE HACE CADA COSA
+----------------------
+Abrir la app          Doble clic en «Abrir Idiomas.cmd».
+Cambiar una lección   Se edita su .json en Idiomas/cursos/<código>/lessons/.
+                      (Vietnamita 144-263: se edita el borrador y se compila.)
+Añadir audios         Se ejecuta _audio/generar_apps.py con el código del curso.
+Generar la APK        _apk/generar-apk.cmd
+
+
+COPIA EN GITHUB
+---------------
+Repositorio (privado): github.com/javiergraciaperez95-afk/Learning_language_app
+Se sube todo menos lo que pesa demasiado o se puede volver a generar:
+   Idiomas-prueba.apk          (se genera con _apk/generar-apk.cmd)
+   _audio/piper, _audio/voces  (el programa de voz y las voces, 2 GB)
+   _apk/node_modules, _apk/www y lo compilado de _apk/android
+   _antiguas/Chinese/Otros archivos
+   _antiguas/<app>/audio       (ya están en Idiomas/cursos/)

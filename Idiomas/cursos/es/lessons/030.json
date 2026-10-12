@@ -1,0 +1,145 @@
+{
+  "capitulo": 4,
+  "titulo_es": "Quiero, puedo, prefiero",
+  "titulo": {"en": "I want, I can, I prefer"},
+  "intro": {"en": "Many common verbs change a vowel in the stem. The pattern is always the same four persons."},
+  "palabras": {
+    "quiero": {"en": "I want", "pron": "KYE-ro", "cat": "verb"},
+    "quieres": {"en": "you want", "pron": "KYE-res", "cat": "verb"},
+    "queremos": {"en": "we want", "pron": "ke-RE-mos", "cat": "verb", "nota": "Nosotros and vosotros keep the original vowel."},
+    "puedo": {"en": "I can", "pron": "PWE-do", "cat": "verb"},
+    "puedes": {"en": "you can", "pron": "PWE-des", "cat": "verb"},
+    "podemos": {"en": "we can", "pron": "po-DE-mos", "cat": "verb"},
+    "prefiero": {"en": "I prefer", "pron": "pre-FYE-ro", "cat": "verb"},
+    "pido": {"en": "I ask for, I order", "pron": "PI-do", "cat": "verb", "nota": "Pedir: e becomes i."},
+    "duermo": {"en": "I sleep", "pron": "DWER-mo", "cat": "verb"},
+    "vuelvo": {"en": "I come back", "pron": "BWEL-bo", "cat": "verb"},
+    "empieza": {"en": "it starts", "pron": "em-PYE-tha", "cat": "verb"},
+    "cierra": {"en": "it closes", "pron": "THYE-rra", "cat": "verb"},
+    "el cine": {"en": "the cinema", "pron": "el THI-ne", "genero": "m"},
+    "esta noche": {"en": "tonight", "pron": "ES-ta NO-che", "cat": "expression"}
+  },
+  "bloques": [
+    {
+      "tipo": "explicacion",
+      "titulo": {"en": "The vowel changes under stress"},
+      "texto": {
+        "en": "When the stress falls on the stem, the vowel changes.\n\n- **e → ie**: querer, preferir, empezar, cerrar, entender, pensar → qu**ie**ro\n- **o → ue**: poder, dormir, volver, costar, encontrar → p**ue**do\n- **e → i**: pedir, repetir, servir → p**i**do\n\nIt happens in yo, tú, él and ellos. In **nosotros** and **vosotros** the stress moves to the ending, so the vowel stays: queremos, podemos, pedimos.\n\n**Jugar** changes u to ue: juego, juegas.\n\n**Querer** and **poder** take an infinitive directly: quiero ir, ¿puedes venir?"
+      }
+    },
+    {
+      "tipo": "tabla",
+      "titulo": {"en": "Three patterns"},
+      "columnas": ["Person", "querer", "poder", "pedir"],
+      "filas": [
+        ["yo", "quiero", "puedo", "pido"],
+        ["tú", "quieres", "puedes", "pides"],
+        ["él / ella / usted", "quiere", "puede", "pide"],
+        ["nosotros", "queremos", "podemos", "pedimos"],
+        ["vosotros", "queréis", "podéis", "pedís"],
+        ["ellos / ustedes", "quieren", "pueden", "piden"]
+      ]
+    },
+    {
+      "tipo": "dialogo",
+      "titulo": {"en": "The cinema"},
+      "frases": [
+        {
+          "quien": "Lucía",
+          "es": "¿Quieres ir al cine esta noche?",
+          "en": "Do you want to go to the cinema tonight?",
+          "analisis": [["¿Quieres", "verb"], ["ir al cine", "object"], ["esta noche", "time"]]
+        },
+        {
+          "quien": "Pablo",
+          "es": "No puedo. Vuelvo tarde del trabajo.",
+          "en": "I can't. I get back late from work.",
+          "analisis": [["No", "negation"], ["puedo", "verb"], ["Vuelvo", "verb"], ["tarde", "time"], ["del trabajo", "place"]]
+        },
+        {
+          "quien": "Lucía",
+          "es": "¿Y mañana? La película empieza a las ocho.",
+          "en": "And tomorrow? The film starts at eight.",
+          "analisis": [["La película", "subject"], ["empieza", "verb"], ["a las ocho", "time"]]
+        },
+        {
+          "quien": "Pablo",
+          "es": "Prefiero el sábado. Los sábados duermo más.",
+          "en": "I prefer Saturday. On Saturdays I sleep more.",
+          "analisis": [
+            ["Prefiero", "verb"],
+            ["el sábado", "object"],
+            ["Los sábados", "time"],
+            ["duermo", "verb"],
+            ["más", "how much"]
+          ]
+        },
+        {
+          "quien": "Lucía",
+          "es": "Vale. Podemos ir el sábado.",
+          "en": "OK. We can go on Saturday.",
+          "analisis": [["Podemos", "verb"], ["ir", "infinitive"], ["el sábado", "time"]]
+        }
+      ]
+    },
+    {"tipo": "vocabulario"},
+    {
+      "tipo": "huecos",
+      "id": "querer-poder-1",
+      "pregunta": {"en": "Complete: we want to go to the cinema."},
+      "frase": "Nosotros ___ ir al cine.",
+      "audio": true,
+      "opciones": {
+        "queremos": {"en": "In nosotros the stress is on the ending, so the e stays."},
+        "quieremos": {"en": "The vowel only changes when the stress falls on it."},
+        "quieren": {"en": "Quieren is for ellos or ustedes."}
+      },
+      "correcta": "queremos"
+    },
+    {
+      "tipo": "huecos",
+      "id": "querer-poder-2",
+      "pregunta": {"en": "Complete: I can't today."},
+      "frase": "Hoy no ___.",
+      "audio": true,
+      "opciones": {
+        "puedo": {"en": "Poder: o becomes ue in yo."},
+        "podo": {"en": "The o changes to ue under stress."},
+        "puede": {"en": "Puede is for él, ella or usted."}
+      },
+      "correcta": "puedo"
+    },
+    {
+      "tipo": "huecos",
+      "id": "querer-poder-3",
+      "pregunta": {"en": "Complete: the shop closes at nine."},
+      "frase": "La tienda ___ a las nueve.",
+      "audio": true,
+      "opciones": {
+        "cierra": {"en": "Cerrar: e becomes ie."},
+        "cerra": {"en": "The e changes to ie under stress."},
+        "cierran": {"en": "Cierran is plural."}
+      },
+      "correcta": "cierra"
+    },
+    {
+      "tipo": "escribir",
+      "id": "querer-poder-4",
+      "pregunta": {"en": "Translate: «Can you come?» (to a friend)"},
+      "respuestas": ["¿Puedes venir?"]
+    },
+    {
+      "tipo": "ordenar",
+      "id": "querer-poder-5",
+      "frase": "La película empieza a las ocho",
+      "traduccion": {"en": "The film starts at eight."}
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": {"en": "Your turn: write and speak"},
+      "texto": {
+        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Write what you want to do, can do and prefer to do this weekend.\n\n**Speak (about 30 seconds).** Say aloud three things you want, three you can do and three you prefer, giving a short reason with porque."
+      }
+    }
+  ]
+}
