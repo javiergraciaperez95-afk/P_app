@@ -1,0 +1,22 @@
+COLECCIÓN DE 13 DOCUMENTOS EN JSON
+
+Contenido
+- Un archivo JSON por cada uno de los 13 TXT originales.
+- indice.json: listado de archivos, título detectado, número de páginas y observaciones.
+
+Estructura de cada JSON
+- source_file: nombre original del TXT.
+- document_title_detected: título identificable a partir del propio texto.
+- level: nivel cuando se identifica en el material.
+- page_count: número de bloques/páginas detectados.
+- notes: advertencias sobre nombres que no coinciden con el contenido, solapamientos o fragmentos.
+- pages: páginas en el orden de aparición; cada una contiene order, image y text.
+
+Criterio de conversión
+Se ha normalizado el formato, los saltos de línea exteriores y la estructura JSON. El texto OCR de cada página se conserva, sin una corrección editorial manual línea por línea; por tanto pueden quedar errores del reconocimiento original.
+
+Observaciones importantes
+- Prisma Comienza Nivel A1.txt contiene texto de Teach Yourself Beginner's Spanish (imágenes 007–202).
+- Rápido Curso Intensivo de Español.txt contiene texto de PRISMA Comienza A1.
+- El archivo Prisma Comienza Nivel A1.txt parece solaparse con Teach Yourself Beginner's Spanish(1).txt. Se mantienen ambos archivos para respetar los 13 originales.
+- El libro dañado(1).txt parece ser un fragmento (páginas identificadas como 0130–0158).

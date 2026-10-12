@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es" data-tema="oscuro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>English · Lecciones de inglés</title>
+  <meta name="description" content="Curso interactivo de inglés para hispanohablantes, con tutora en pixel art.">
+  <meta name="theme-color" content="#14111c">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <script>
+    // Aplica el tema antes de pintar la página, para que no parpadee.
+    try {
+      const t = (JSON.parse(localStorage.getItem('ingles-ajustes')) || {}).tema || 'auto';
+      const oscuro = t === 'oscuro' || (t === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.dataset.tema = oscuro ? 'oscuro' : 'claro';
+    } catch (e) { /* tema por defecto */ }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@700&family=Tiny5&display=swap">
+  <link rel="stylesheet" href="css/styles.css?v=__VERSION__&h=3">
+  <!-- Al publicar, __VERSION__ se cambia por el código de la versión (ver .github/workflows/static.yml),
+       así el navegador descarga siempre los archivos nuevos en lugar de usar los antiguos guardados. -->
+  <script type="importmap">
+    {
+      "imports": {
+        "./js/ajustes.js": "./js/ajustes.js?v=__VERSION__",
+        "./js/app.js": "./js/app.js?v=__VERSION__",
+        "./js/comunes.js": "./js/comunes.js?v=__VERSION__",
+        "./js/config.js": "./js/config.js?v=__VERSION__",
+        "./js/dom.js": "./js/dom.js?v=__VERSION__",
+        "./js/exercises.js": "./js/exercises.js?v=__VERSION__",
+        "./js/iconos.js": "./js/iconos.js?v=__VERSION__",
+        "./js/lessons.js": "./js/lessons.js?v=__VERSION__",
+        "./js/progress.js": "./js/progress.js?v=__VERSION__",
+        "./js/sonidos.js": "./js/sonidos.js?v=__VERSION__",
+        "./js/srs.js": "./js/srs.js?v=__VERSION__",
+        "./js/sync.js": "./js/sync.js?v=__VERSION__",
+        "./js/tutor-sprite.js": "./js/tutor-sprite.js?v=__VERSION__",
+        "./js/tutor.js": "./js/tutor.js?v=__VERSION__",
+        "./js/vistas/cuaderno.js": "./js/vistas/cuaderno.js?v=__VERSION__",
+        "./js/vistas/frases.js": "./js/vistas/frases.js?v=__VERSION__",
+        "./js/vistas/leccion.js": "./js/vistas/leccion.js?v=__VERSION__",
+        "./js/vistas/lecciones.js": "./js/vistas/lecciones.js?v=__VERSION__",
+        "./js/vistas/perfil.js": "./js/vistas/perfil.js?v=__VERSION__",
+        "./js/vistas/practica.js": "./js/vistas/practica.js?v=__VERSION__",
+        "./js/vistas/repaso.js": "./js/vistas/repaso.js?v=__VERSION__"
+      }
+    }
+  </script>
+  <script type="module" src="js/app.js?v=__VERSION__"></script>
+</head>
+<body>
+  <a class="saltar" href="#app">Saltar al contenido</a>
+
+  <header class="cabecera">
+    <a href="#/lecciones" class="marca"><span class="marca-titulo"><span lang="en">English</span> <svg class="bandera" width="21" height="14" viewBox="0 0 60 30" aria-hidden="true"><clipPath id="uk-campo"><path d="M0 0h60v30H0z"/></clipPath><clipPath id="uk-diag"><path d="M30 15h30v15zv15H0zH0V0h30z"/></clipPath><g clip-path="url(#uk-campo)"><path d="M0 0v30h60V0z" fill="#012169"/><path d="m0 0 60 30m0-30L0 30" stroke="#fff" stroke-width="6"/><path d="m0 0 60 30m0-30L0 30" stroke="#C8102E" stroke-width="4" clip-path="url(#uk-diag)"/><path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/><path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/></g></svg></span> <small>lecciones de inglés</small></a>
+    <span class="cabecera-botones">
+      <button type="button" id="btn-sonido" class="btn btn-icono" aria-pressed="true" aria-label="Sonido">♪</button>
+      <button type="button" id="btn-tema" class="btn btn-icono" aria-label="Cambiar a modo oscuro">☾</button>
+    </span>
+  </header>
+
+  <nav id="menu" class="menu" aria-label="Secciones"></nav>
+
+  <main id="app" tabindex="-1">
+    <p class="cargando">Cargando…</p>
+  </main>
+
+  <aside id="tutora" class="tutora" aria-label="Tutora">
+    <div class="tutora-dialogo">
+      <p class="tutora-nombre">Tutora</p>
+      <p class="tutora-texto" aria-hidden="true"></p>
+      <p class="solo-lector" aria-live="polite"></p>
+      <div class="tutora-botones">
+        <button type="button" class="boton boton-mini tutora-siguiente" hidden>Siguiente ▶</button>
+        <button type="button" class="boton boton-mini tutora-ocultar" aria-expanded="true">Ocultar ▼</button>
+      </div>
+    </div>
+    <button type="button" class="tutora-retrato" aria-label="Tocar a la tutora" title="Tócame">
+      <canvas class="tutora-canvas" width="48" height="62" role="img" aria-label="Tutora"></canvas>
+    </button>
+  </aside>
+
+  <div id="ficha-palabra" class="ficha-palabra" role="dialog" aria-label="Ficha de la palabra" hidden></div>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asistente de tokens</title>
+<style>
+  :root{--bg:#f6f3ea;--ink:#222;--muted:#6b6b6b;--ok:#1f7a45;--warn:#9a6a00;--err:#b3261e;--card:#fff;--line:#d8d2c0;--accent:#2f8f4e}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121815;--ink:#e8eee9;--muted:#9aa59e;--ok:#5fd08a;--warn:#e7b84a;--err:#ff8a80;--card:#1b2420;--line:#2c3a33;--accent:#46c46f}}
+  :root[data-theme="dark"]{--bg:#121815;--ink:#e8eee9;--muted:#9aa59e;--ok:#5fd08a;--warn:#e7b84a;--err:#ff8a80;--card:#1b2420;--line:#2c3a33;--accent:#46c46f}
+  *{box-sizing:border-box}
+  body{margin:0;padding:16px;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,'Noto Sans SC','Microsoft YaHei',sans-serif}
+  main{max-width:1100px;margin:0 auto}
+  h1{font-size:20px;margin:0 0 6px} h2{font-size:15px;margin:18px 0 6px}
+  p{margin:0 0 10px}
+  code{background:var(--card);padding:1px 5px;border:1px solid var(--line)}
+  .cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+  @media (max-width:800px){.cols{grid-template-columns:1fr}}
+  label{display:block;font-weight:600;margin:12px 0 4px}
+  input[type=text],textarea{width:100%;padding:10px;font:17px/1.7 'Noto Sans SC','Microsoft YaHei',monospace;background:var(--card);color:var(--ink);border:1px solid var(--line)}
+  textarea{min-height:260px;resize:vertical}
+  .opt{display:flex;gap:8px;align-items:center;margin-top:8px;font-size:14px}
+  pre{background:var(--card);border:1px solid var(--line);padding:10px;overflow:auto;font-size:13px;min-height:200px;margin:0;white-space:pre}
+  button{font:600 14px system-ui;padding:9px 14px;background:var(--accent);color:#fff;border:0;cursor:pointer;margin:8px 8px 0 0}
+  .msgs{list-style:none;padding:0;margin:8px 0 0;font-size:14px}
+  .msgs li{margin:0 0 6px;padding-left:10px;border-left:4px solid var(--warn)}
+  .msgs li.e{border-color:var(--err)} .msgs li.ok{border-color:var(--ok)}
+  .roles{font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+<h1>Asistente de tokens</h1>
+<p>Escribe las frases con las palabras <b>separadas por espacios</b> y, si quieres, el rol detrás de una barra: <code>我/sub 叫/verb 王小明/obj。</code>. La puntuación se separa sola. Copia el resultado en tu JSON y completa lo que falte (<code>es</code>, <code>pattern</code>, <code>points</code> y lo que se marque abajo).</p>
+<p class="roles">Roles: <b>sub</b> sujeto · <b>verb</b> verbo · <b>obj</b> objeto · <b>adv</b> circunstancial · <b>attr</b> modificador · <b>comp</b> complemento · <b>par</b> partícula · <b>con</b> conector.
+También puedes forzar pinyin y traducción: <code>一/attr/yí</code> o <code>家/obj/jiā/familia</code>. Si llevan espacios, usa <code>_</code>: <code>很久/comp/hěn_jiǔ/mucho_tiempo</code>.</p>
+
+<div class="cols">
+  <section>
+    <label for="title">Título (opcional)</label>
+    <input type="text" id="title" placeholder="我/attr 的/par 家/obj/jiā/familia">
+    <label for="src">Texto: una frase por línea · línea en blanco = nuevo párrafo · <code>男:</code> o <code>女:</code> al principio para diálogos</label>
+    <textarea id="src" spellcheck="false" placeholder="我/sub 叫/verb 王小明/obj ，我/sub 是/verb 学生/obj 。
+我/attr 家/sub/jiā/familia 有/verb 四/attr 个/attr/ge 人/obj 。
+
+爸爸/sub 是/verb 医生/obj 。"></textarea>
+    <label class="opt"><input type="checkbox" id="perLine"> Un párrafo por línea (útil en diálogos)</label>
+    <label class="opt"><input type="checkbox" id="compact" checked> Formato compacto (una línea por frase, más fácil de editar)</label>
+    <ul class="msgs" id="msgs"></ul>
+  </section>
+  <section>
+    <label>Resultado (pégalo en el JSON, sustituyendo esas partes)</label>
+    <pre id="out"></pre>
+    <button id="copy">Copiar resultado</button>
+    <span id="copied"></span>
+  </section>
+</div>
+</main>
+<script type="module">
+import {ROLES} from '../js/checks.js';
+const $=id=>document.getElementById(id);
+const PUNCT=new Set([...'，。！？：；、“”‘’《》（）…—·「」,.!?;:']);
+const ZH_PUNCT={',':'，','.':'。','!':'！','?':'？',';':'；',':':'：'};
+let dict={};
+try{dict=(await (await fetch('../data/dictionary.json',{cache:'no-store'})).json()).entries||{};}
+catch{$('msgs').innerHTML='<li class="e">No se pudo leer el diccionario: abre esta página con el servidor local (tools/servir.cmd).</li>';}
+
+/* Una línea → {speaker, tokens}. Cada token: {zh, role, py?, es?} o {p}. */
+function parseLine(line,issues,where){
+  let speaker=null;
+  const m=line.match(/^\s*(男|女)\s*[:：]\s*/);
+  if(m){speaker=m[1];line=line.slice(m[0].length);}
+  const tokens=[];
+  for(const chunk of line.trim().split(/\s+/).filter(Boolean)){
+    let word='';
+    const flush=()=>{if(word){tokens.push(wordToken(word,issues,where));word='';}};
+    for(const ch of chunk){
+      // La puntuación china siempre separa. La occidental (,.!?) solo si la palabra no lleva "/",
+      // para no romper una traducción escrita detrás de la barra.
+      const ascii=ch in ZH_PUNCT;
+      const parts=word.split('/');
+      const afterRole=parts.length===2&&ROLES.includes(parts[1]); // "走/verb!" → el ! es puntuación
+      if(PUNCT.has(ch)&&(!ascii||!word.includes('/')||afterRole)){
+        flush();
+        const p=ZH_PUNCT[ch]||ch;
+        const last=tokens[tokens.length-1];
+        if(last&&last.p&&(p==='…'||p==='—')&&last.p.endsWith(p))last.p+=p; // …… y —— van juntos
+        else tokens.push({p});
+      }else word+=ch;
+    }
+    flush();
+  }
+  return {speaker,tokens};
+}
+function wordToken(raw,issues,where){
+  const [zh,role='',pyRaw,...esParts]=raw.split('/');
+  const py=pyRaw?.replace(/_/g,' ');            // "hěn_jiǔ" → "hěn jiǔ"
+  const es=esParts.join('/').replace(/_/g,' ');  // "mi_familia" → "mi familia"
+  const t={zh};
+  if(py)t.py=py;
+  if(es)t.es=es;
+  else if(!dict[zh]&&!py)Object.assign(t,{py:'',es:''});
+  else if(!dict[zh]&&py)t.es='';
+  if(!dict[zh]&&!(py&&es))issues.missing.add(zh);
+  if(!role)issues.noRole.push(`${where}: «${zh}»`);
+  else if(!ROLES.includes(role))issues.badRole.push(`${where}: «${zh}» tiene el rol "${role}"`);
+  t.role=role;
+  if((zh==='一'||zh==='不')&&!py)issues.tone.add(where);
+  return t;
+}
+
+const J=v=>JSON.stringify(v);
+/* Formato compacto: "我/sub 是/verb 家/obj/jiā/familia 。" (espacios internos → _) */
+const u=s=>String(s).replace(/ /g,'_');
+const compactLine=tokens=>tokens.map(t=>t.p!==undefined?t.p
+  :[t.zh,t.role||'',...('py' in t||'es' in t?[u(t.py||''),...('es' in t?[u(t.es)]:[])]:[])].join('/').replace(/\/+$/,'')).join(' ');
+const tokLine=t=>t.p!==undefined?`{ "p": ${J(t.p)} }`
+  :`{ ${['zh','py','es','role'].filter(k=>k in t).map(k=>`"${k}": ${J(t[k])}`).join(', ')} }`;
+const tokBlock=(tokens,ind)=>tokens.map(t=>ind+tokLine(t)).join(',\n');
+
+function run(){
+  const issues={missing:new Set(),noRole:[],badRole:[],tone:new Set()};
+  let out='';
+  const title=$('title').value.trim();
+  if(title){
+    const {tokens}=parseLine(title,issues,'título');
+    out+=$('compact').checked?`"titleTokens": ${J(compactLine(tokens))},\n`:`"titleTokens": [\n${tokBlock(tokens,'  ')}\n],\n`;
+  }
+  const paras=[];let cur=[];
+  const sentences=[];
+  const lines=$('src').value.split(/\r?\n/);
+  for(const line of lines){
+    if(!line.trim()){if(cur.length){paras.push(cur);cur=[];}continue;}
+    const n=sentences.length+1;
+    const s=parseLine(line,issues,`frase ${n}`);
+    if(!s.tokens.length)continue;
+    sentences.push({n,...s});
+    if($('perLine').checked){paras.push([n]);}else cur.push(n);
+  }
+  if(cur.length)paras.push(cur);
+  if(sentences.length){
+    out+=`"paragraphs": ${J(paras).replace(/,/g,', ')},\n"sentences": [\n`;
+    const tokOut=s=>$('compact').checked?`    "tokens": ${J(compactLine(s.tokens))},\n`:`    "tokens": [\n${tokBlock(s.tokens,'      ')}\n    ],\n`;
+    out+=sentences.map(s=>`  {\n    "n": ${s.n},\n${s.speaker?`    "speaker": ${J(s.speaker)},\n`:''}${tokOut(s)}    "es": "",\n    "pattern": "",\n    "points": ["", "", ""]\n  }`).join(',\n');
+    out+='\n]';
+  }
+  $('out').textContent=out||'(escribe algo a la izquierda)';
+
+  const msgs=[];
+  if(issues.missing.size)msgs.push(`<li class="e"><b>No están en el diccionario</b> (rellena "py" y "es" en el token): ${[...issues.missing].join('、')}</li>`);
+  if(issues.noRole.length)msgs.push(`<li class="e"><b>Sin rol</b> (añade /sub, /verb…): ${issues.noRole.join(' · ')}</li>`);
+  if(issues.badRole.length)msgs.push(`<li class="e"><b>Rol no válido</b>: ${issues.badRole.join(' · ')}</li>`);
+  if(issues.tone.size)msgs.push(`<li><b>一 / 不</b> en ${[...issues.tone].join(', ')}: su tono cambia según la sílaba siguiente; ponle el pinyin real (<code>一/attr/yí</code>, <code>不/adv/bú</code>).</li>`);
+  if(sentences.length&&!msgs.length)msgs.push('<li class="ok">Todo correcto. Solo te falta escribir "es", "pattern" y "points".</li>');
+  $('msgs').innerHTML=msgs.join('');
+}
+for(const id of ['title','src','perLine','compact'])$(id).addEventListener('input',run);
+$('copy').addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText($('out').textContent);$('copied').textContent='Copiado.';}
+  catch{$('copied').textContent='No se pudo copiar: selecciónalo a mano.';}
+  setTimeout(()=>$('copied').textContent='',2000);
+});
+run();
+</script>
+</body>
+</html>

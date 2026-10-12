@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HSK 6 · 阅读小屋</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#0c1914; --bg2:#10211a; --line:#140d08;
+  --paper:#f5edd4; --paper2:#eadfbd; --ink:#2a2018; --muted:#7a6a52; --hl:#ffe58a;
+  --green:#2f8f4e; --green2:#46c46f; --gold:#f3c94b; --red:#d9483f;
+  --dlg:#10261e; --dlg2:#1a3a2d; --dlg-ink:#eaf6e6; --dlg-muted:#9fc4ae;
+  --pf:'Press Start 2P',monospace;
+  --sans:'Noto Sans','Noto Sans SC',system-ui,sans-serif;
+  --cjk:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+  --px:0 -3px 0 0 var(--line),0 3px 0 0 var(--line),-3px 0 0 0 var(--line),3px 0 0 0 var(--line);
+  --px4:0 -4px 0 0 var(--line),0 4px 0 0 var(--line),-4px 0 0 0 var(--line),4px 0 0 0 var(--line);
+  --s:3;
+  --c-sub:#e2574c; --c-verb:#2f9e55; --c-obj:#3b7dd8; --c-adv:#d99a1e;
+  --c-attr:#8e5bd0; --c-comp:#1fa6a0; --c-par:#8a8a8a; --c-con:#d9569a;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--paper:#1b2a23;--paper2:#243830;--ink:#f0ead2;--muted:#a9b79f;--hl:#5a4d12;}
+}
+:root[data-theme="dark"]{--paper:#1b2a23;--paper2:#243830;--ink:#f0ead2;--muted:#a9b79f;--hl:#5a4d12;}
+@media (min-width:700px) and (min-height:720px){:root{--s:4}}
+
+*,*::before,*::after{box-sizing:inherit}
+html,body{height:100%;margin:0}
+body{
+  background-color:var(--bg);
+  background-image:
+    linear-gradient(45deg,var(--bg2) 25%,transparent 25%,transparent 75%,var(--bg2) 75%),
+    linear-gradient(45deg,var(--bg2) 25%,transparent 25%,transparent 75%,var(--bg2) 75%);
+  background-size:16px 16px; background-position:0 0,8px 8px;
+  color:var(--ink); font-family:var(--sans); overflow:hidden;
+  -webkit-text-size-adjust:100%;
+}
+button{font:inherit;color:inherit}
+
+.app{
+  height:100%; max-width:980px; margin:0 auto;
+  display:grid; grid-template-rows:auto minmax(0,1fr) auto; gap:18px;
+  padding:10px 14px 14px;
+}
+
+/* ---------- Cabecera ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:34px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.badge{font:9px/1 var(--pf);background:var(--gold);color:#2a2018;padding:6px 7px;box-shadow:var(--px);flex:none}
+.brand h1{margin:0;font:700 17px/1.2 var(--cjk);color:var(--dlg-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hud{display:flex;align-items:center;gap:8px;flex:none}
+.score{font:8px/1 var(--pf);color:var(--dlg-ink);background:var(--dlg);padding:8px 9px;box-shadow:var(--px);white-space:nowrap}
+.score .ok{color:var(--green2)} .score .no{color:#ff8d84}
+.reset{font:8px/1 var(--pf);background:var(--paper);color:var(--ink);border:0;padding:8px 9px;cursor:pointer;box-shadow:var(--px)}
+.reset:hover{background:var(--gold);color:#2a2018}
+
+/* ---------- Panel de lectura ---------- */
+.reading{
+  position:relative; min-height:0; display:flex; flex-direction:column;
+  background:var(--paper); box-shadow:var(--px4), inset 0 0 0 3px var(--paper2);
+}
+.tab{
+  position:absolute; top:-17px; left:16px; z-index:2;
+  font:8px/1 var(--pf); background:var(--green); color:#fff; padding:7px 9px;
+  box-shadow:var(--px);
+}
+.scroll{
+  flex:1; min-height:0; overflow-y:auto; padding:26px 22px 34px 20px;
+  scrollbar-gutter:stable;
+}
+.scroll::-webkit-scrollbar,.dlg-body::-webkit-scrollbar{width:16px}
+.scroll::-webkit-scrollbar-track{background:var(--paper2);border-left:3px solid var(--line)}
+.scroll::-webkit-scrollbar-thumb{background:var(--green);border:3px solid var(--line);box-shadow:inset 3px 3px 0 rgba(255,255,255,.3),inset -3px -3px 0 rgba(0,0,0,.25)}
+.scroll::-webkit-scrollbar-thumb:hover{background:var(--green2)}
+.dlg-body::-webkit-scrollbar-track{background:#0b1b14;border-left:3px solid var(--line)}
+.dlg-body::-webkit-scrollbar-thumb{background:var(--green);border:3px solid var(--line)}
+@supports not selector(::-webkit-scrollbar){
+  .scroll{scrollbar-color:var(--green) var(--paper2)}
+  .dlg-body{scrollbar-color:var(--green) #0b1b14}
+}
+
+.title{margin:0;text-align:center;font:700 clamp(24px,6vw,32px)/1.3 var(--cjk);letter-spacing:.06em}
+.subtitle{margin:2px 0 18px;text-align:center;color:var(--muted);font-size:13px}
+.para{
+  margin:0 0 1.1em; font:400 clamp(18px,4.8vw,22px)/2.45 var(--cjk);
+  text-align:left; max-width:34em; margin-inline:auto; margin-bottom:1.1em;
+}
+.sent{transition:opacity .15s}
+.rune{
+  font:8px/1 var(--pf); width:24px; height:24px; margin:0 7px 0 3px; padding:0;
+  vertical-align:middle; position:relative; top:-2px;
+  background:var(--green); color:#fff; border:0; cursor:pointer;
+  box-shadow:0 -2px 0 0 var(--line),0 2px 0 0 var(--line),-2px 0 0 0 var(--line),2px 0 0 0 var(--line),
+             inset -3px -3px 0 rgba(0,0,0,.28),inset 3px 3px 0 rgba(255,255,255,.3);
+}
+.rune:hover{background:var(--green2)}
+.rune:active{top:0}
+.sent.sel .rune{background:var(--gold);color:#2a2018}
+.w{cursor:pointer;padding:3px 1px;border-radius:0}
+.w:hover,.w.on{background:var(--hl);box-shadow:inset 0 -3px 0 var(--green)}
+.p{padding:0 1px}
+.has-sel .sent:not(.sel){opacity:.5}
+.sent.sel .w{background:color-mix(in srgb,var(--c) 24%,transparent);box-shadow:inset 0 -4px 0 var(--c)}
+.sent.sel .w:hover{background:color-mix(in srgb,var(--c) 45%,transparent)}
+.r-sub{--c:var(--c-sub)} .r-verb{--c:var(--c-verb)} .r-obj{--c:var(--c-obj)} .r-adv{--c:var(--c-adv)}
+.r-attr{--c:var(--c-attr)} .r-comp{--c:var(--c-comp)} .r-par{--c:var(--c-par)} .r-con{--c:var(--c-con)}
+.sent.flash{animation:flash 1.6s steps(8) 1}
+@keyframes flash{0%,50%,100%{background:transparent}25%,75%{background:var(--hl)}}
+
+/* ---------- Preguntas ---------- */
+.quiz{max-width:34em;margin:34px auto 0}
+.quiz h3{margin:0 0 6px;font:700 20px/1.3 var(--cjk)}
+.quiz .lead{margin:0 0 16px;color:var(--muted);font-size:13px}
+.q{margin:0 0 22px;padding:14px;background:var(--paper2);box-shadow:var(--px)}
+.qh{display:flex;gap:10px;align-items:flex-start}
+.qn{font:8px/1 var(--pf);background:var(--ink);color:var(--paper);padding:8px 7px;flex:none;margin-top:5px}
+.qs{font:600 18px/1.65 var(--cjk)}
+.qtr{margin:8px 0 0 0;font:600 12px var(--sans);background:transparent;border:0;color:var(--green);cursor:pointer;padding:4px 0;text-decoration:underline;text-underline-offset:3px}
+.opts{display:grid;gap:10px;margin-top:8px}
+.opt{
+  display:flex;gap:12px;align-items:flex-start;text-align:left;
+  font:500 17px/1.55 var(--cjk);color:var(--ink);background:var(--paper);
+  border:0;padding:11px 13px;cursor:pointer;box-shadow:var(--px);
+}
+.opt b{font:8px/1 var(--pf);color:var(--green);padding-top:8px;flex:none}
+.opt:hover:not(:disabled){background:var(--hl)}
+.opt:disabled{cursor:default;color:var(--ink)}
+.opt.ok{background:color-mix(in srgb,var(--green) 38%,var(--paper))}
+.opt.bad{background:color-mix(in srgb,var(--red) 36%,var(--paper));text-decoration:line-through;text-decoration-thickness:2px}
+.q.locked .opt:not(.ok){opacity:.55}
+.endnote{height:10px}
+
+/* ---------- Escenario inferior: diálogo + chica ---------- */
+.stage{display:grid;grid-template-columns:minmax(0,1fr) calc(var(--s)*40px);align-items:end;gap:12px}
+.dlg{
+  position:relative; height:max(calc(var(--s)*52px),27vh); min-height:150px;
+  background:var(--dlg); color:var(--dlg-ink);
+  box-shadow:var(--px4), inset 0 0 0 3px var(--dlg2);
+}
+.nameplate{
+  position:absolute; top:-17px; left:16px; z-index:2;
+  font:8px/1 var(--pf); background:var(--gold); color:#2a2018; padding:7px 9px;
+  box-shadow:var(--px);
+}
+.nameplate span{font-family:var(--cjk);font-weight:700;font-size:11px;margin-left:4px}
+.dlg-body{height:100%;overflow-y:auto;padding:22px 14px 14px 16px;font-size:14.5px;line-height:1.55;cursor:default}
+.dlg-body>*:first-child{margin-top:0}
+.tw{font-weight:500;font-size:15px;line-height:1.55}
+.tw.typing::after{content:"▮";margin-left:3px;color:var(--gold);animation:blink 0.5s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.wcard{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.hz{font:700 32px/1.1 var(--cjk)}
+.pyw{font:600 18px var(--sans);color:var(--gold)}
+.trans{font-size:17px;margin:6px 0 0;font-weight:500}
+.hint{margin:10px 0 0;font-size:12px;color:var(--dlg-muted)}
+.chip{display:inline-block;font:7px/1.4 var(--pf);background:var(--green);color:#fff;padding:5px 7px;margin:0 6px 8px 0}
+.chip.role{background:var(--c,var(--green))}
+.chip.good{background:var(--green2);color:#08210f}
+.chip.bad{background:var(--red)}
+.pyl{color:var(--gold);font-weight:600;font-size:14px;margin:0 0 6px}
+.legend{display:flex;flex-wrap:wrap;gap:2px 10px;margin:8px 0}
+.lg{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--dlg-ink)}
+.lg i{width:11px;height:11px;background:var(--c);display:inline-block}
+.pat{margin:6px 0 4px;padding:8px 10px;background:rgba(0,0,0,.28);box-shadow:inset 3px 0 0 var(--gold);font-size:14px}
+.pat small{display:block;font:7px/1 var(--pf);color:var(--dlg-muted);margin-bottom:6px}
+.pts{margin:8px 0 0;padding:0;list-style:none}
+.pts li{margin:0 0 8px;padding-left:16px;position:relative;font-size:14px;animation:in .25s steps(3) both}
+.pts li::before{content:"";position:absolute;left:2px;top:.55em;width:7px;height:7px;background:var(--green2)}
+.pts li:nth-child(2){animation-delay:.12s}.pts li:nth-child(3){animation-delay:.24s}
+.pts li:nth-child(4){animation-delay:.36s}.pts li:nth-child(5){animation-delay:.48s}.pts li:nth-child(6){animation-delay:.6s}
+@keyframes in{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
+.why{margin:8px 0 0;font-size:14.5px;animation:in .3s steps(3) .1s both}
+.why b{color:var(--gold)}
+.ev{margin-top:10px;font:600 12px var(--sans);background:var(--gold);color:#2a2018;border:0;padding:8px 10px;cursor:pointer;box-shadow:var(--px)}
+.ev:hover{background:#ffe27a}
+.qtx p{margin:0 0 6px;font-size:14px}
+.qtx p b{color:var(--gold);margin-right:6px}
+.guide{margin:10px 0 0;padding:0;list-style:none;font-size:13.5px}
+.guide li{margin:0 0 6px;display:flex;gap:8px;align-items:flex-start;animation:in .25s steps(3) both}
+.guide li:nth-child(2){animation-delay:.15s}.guide li:nth-child(3){animation-delay:.3s}
+.guide i{font:normal 7px/1.4 var(--pf);background:var(--green);color:#fff;padding:4px 5px;flex:none;margin-top:2px}
+
+.girl{
+  position:relative; width:calc(var(--s)*40px); height:calc(var(--s)*56px);
+  overflow:hidden; cursor:pointer; align-self:end;
+  -webkit-tap-highlight-color:transparent;
+}
+#girl{
+  display:block; width:calc(var(--s)*48px); height:calc(var(--s)*56px);
+  margin-left:calc(var(--s)*-4px); image-rendering:pixelated; image-rendering:crisp-edges;
+}
+
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+@media (max-width:520px){
+  .app{padding:8px 10px 10px;gap:16px}
+  .scroll{padding:24px 14px 30px 12px}
+  .dlg-body{font-size:13.5px;padding:20px 10px 12px 12px}
+  .tw{font-size:14px}
+  .hz{font-size:28px}
+  .brand h1{font-size:15px}
+  .rune{width:26px;height:26px}
+  .stage{gap:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  .pts li,.guide li,.why{animation:none}
+  .tw.typing::after{animation:none}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand"><span class="badge">HSK6</span><h1>阅读理解 · 读书小屋</h1></div>
+    <div class="hud">
+      <div class="score" id="score"></div>
+      <button class="reset" id="reset" title="Reiniciar">↺</button>
+    </div>
+  </header>
+
+  <main class="reading">
+    <div class="tab">TEXTO</div>
+    <div class="scroll" id="scroll">
+      <div id="reading"></div>
+    </div>
+  </main>
+
+  <section class="stage">
+    <div class="dlg" id="dlg">
+      <div class="nameplate">TUTORA<span>绿老师</span></div>
+      <div class="dlg-body" id="dlgBody"></div>
+    </div>
+    <div class="girl" id="girlBtn" role="button" aria-label="Tutora (pulsa para que hable)">
+      <canvas id="girl" width="48" height="56"></canvas>
+    </div>
+  </section>
+</div>
+
+<script>
+/* =====================================================
+   DATOS: texto inventado (nivel HSK 6) con palabras segmentadas
+   token = [hanzi, pinyin, español, rol]  ·  [signo] = puntuación
+   ===================================================== */
+const ROLE={
+  sub:['Sujeto','主语'], verb:['Verbo / predicado','谓语'], obj:['Objeto / núcleo','宾语'],
+  adv:['Circunstancial','状语'], attr:['Modificador','定语'], comp:['Complemento','补语'],
+  par:['Partícula / palabra gramatical','助词'], con:['Conector','连词']
+};
+const DE='(partícula estructural: une el modificador con el nombre)';
+
+const S=[
+/* 0 · título */
+{tok:[['《'],['最后','zuìhòu','último, final','attr'],['一','yì','un, una','attr'],['家','jiā','(clasificador de tiendas)','attr'],['旧','jiù','viejo, antiguo','attr'],['书店','shūdiàn','librería','obj'],['》']],
+ es:'La última librería antigua'},
+
+/* 1 */
+{tok:[['在','zài','en','adv'],['这','zhè','este, esta','attr'],['座','zuò','(clasificador de ciudades y edificios grandes)','attr'],['飞速','fēisù','a toda velocidad','attr'],['发展','fāzhǎn','desarrollarse, desarrollo','attr'],['的','de',DE,'par'],['城市','chéngshì','ciudad','adv'],['里','lǐ','dentro, en el interior','adv'],['，'],['有','yǒu','haber, existir','verb'],['一','yì','un, una','attr'],['家','jiā','(clasificador de tiendas y empresas)','attr'],['几乎','jīhū','casi','attr'],['被','bèi','(marca de pasiva: «ser + participio»)','par'],['人','rén','la gente, alguien (agente de la pasiva)','attr'],['遗忘','yíwàng','olvidar','attr'],['的','de',DE,'par'],['旧','jiù','viejo, antiguo','attr'],['书店','shūdiàn','librería','obj'],['。']],
+ es:'En esta ciudad que se desarrolla a toda velocidad hay una vieja librería casi olvidada por la gente.',
+ pat:'<b>在</b> + lugar + <b>里</b> (marco de lugar) · <b>有</b> + [modificador largo + <b>的</b>] + <b>旧书店</b>',
+ pts:[
+  '<b>在……里</b>: marco locativo, «en (el interior de)…». Abre la frase y da el escenario.',
+  '<b>飞速发展的城市</b>: el equivalente a una oración de relativo. En chino el modificador va <b>antes</b> del nombre y se une con <b>的</b>: «la ciudad que se desarrolla a toda velocidad».',
+  '<b>有</b> es existencial: «hay». Primero el lugar, y lo que existe va <b>al final</b> (旧书店). No hay sujeto explícito.',
+  '<b>几乎被人遗忘的</b>: pasiva con <b>被 + agente + verbo</b>. <b>几乎</b> («casi») se coloca antes de 被. Todo el bloque modifica a 旧书店.',
+  'Clasificadores: <b>座</b> para ciudades/edificios grandes y <b>家</b> para tiendas y empresas.'
+ ]},
+
+/* 2 */
+{tok:[['店主','diànzhǔ','dueño de la tienda','sub'],['是','shì','ser','verb'],['一','yí','un, una','attr'],['位','wèi','(clasificador respetuoso de personas)','attr'],['年过六旬','niánguò liùxún','tener más de sesenta años (registro formal)','attr'],['的','de',DE,'par'],['老人','lǎorén','anciano','obj'],['，'],['他','tā','él','sub'],['从不','cóngbù','nunca, jamás','adv'],['打折','dǎzhé','hacer descuento','verb'],['，'],['也','yě','también; con negación: tampoco','adv'],['不','bù','no','adv'],['做','zuò','hacer','verb'],['任何','rènhé','cualquier; en negativa: ninguno','attr'],['宣传','xuānchuán','publicidad, promocionar','obj'],['。']],
+ es:'El dueño es un anciano de más de sesenta años; nunca hace descuentos ni hace ninguna publicidad.',
+ pat:'<b>店主 + 是 + [年过六旬的] 老人</b> ； <b>他 + 从不 + V</b>，<b>也不 + V + 任何 + N</b>',
+ pts:[
+  '<b>是</b> une dos nombres (A = B): 店主 = 老人. Todo lo que va entre 一位 y 老人 es un modificador.',
+  '<b>年过六旬</b>: expresión de cuatro caracteres, muy de lengua escrita. 旬 = periodo de diez años, así que 六旬 = «sesenta años» y 过 = «haber pasado».',
+  '<b>从不</b> = «nunca» (por costumbre), más fuerte que un simple 不.',
+  '<b>也不 + V</b>: «tampoco». Ojo: 也 aquí no es «también», va con negación.',
+  '<b>任何 + N</b> = «cualquier»; dentro de una frase negativa significa «ninguno»: 不做任何宣传 = «no hace ninguna publicidad».'
+ ]},
+
+/* 3 */
+{tok:[['然而','rán’ér','sin embargo','con'],['，'],['每逢','měiféng','cada vez que llega, siempre que','adv'],['周末','zhōumò','fin de semana','adv'],['，'],['总','zǒng','siempre','adv'],['有','yǒu','haber','verb'],['一些','yìxiē','algunos, unos cuantos','attr'],['年轻人','niánqīngrén','jóvenes','obj'],['专程','zhuānchéng','expresamente, haciendo el viaje a propósito','adv'],['赶来','gǎnlái','acudir, venir deprisa','verb'],['，'],['只','zhǐ','solo','adv'],['为','wèi','para (finalidad)','par'],['在','zài','en','adv'],['书架','shūjià','estantería','adv'],['之间','zhījiān','entre','adv'],['安静','ānjìng','tranquilo, en silencio','adv'],['地','de','(partícula: convierte un adjetivo en adverbio)','par'],['待上','dāishang','quedarse, permanecer (un rato)','verb'],['一下午','yí xiàwǔ','toda una tarde','comp'],['。']],
+ es:'Sin embargo, cada fin de semana siempre hay algunos jóvenes que vienen expresamente solo para pasar una tarde en silencio entre las estanterías.',
+ pat:'<b>然而</b>，<b>每逢周末</b>，<b>总有</b> + 年轻人 + <b>专程赶来</b>，<b>只为</b> + [在……之间 <b>安静地</b> 待上一下午]',
+ pts:[
+  '<b>然而</b>: conector adversativo formal («sin embargo»). Es más escrito que 但是 y típico de HSK 6.',
+  '<b>每逢 + momento</b>: «siempre que llega…». Con <b>总</b> refuerza la idea de repetición.',
+  '<b>有 + N + V</b>: «hay unos jóvenes que acuden». Los jóvenes (年轻人) son a la vez objeto de 有 y sujeto de 赶来.',
+  '<b>专程 + V</b>: «hacer el viaje expresamente para». <b>赶来</b> = verbo + complemento direccional 来.',
+  '<b>只为……</b> = «solo para…», introduce la finalidad. <b>安静地</b>: adjetivo + 地 = adverbio, va delante del verbo.',
+  '<b>待上一下午</b>: verbo + 上 + duración. Aquí 上 suaviza y da idea de «pasar un rato»; 一下午 es un complemento de duración.'
+ ]},
+
+/* 4 */
+{tok:[['一','yí','un, una','attr'],['位','wèi','(clasificador respetuoso de personas)','attr'],['常客','chángkè','cliente habitual','sub'],['坦言','tǎnyán','confesar con franqueza','verb'],['，'],['在','zài','en','adv'],['信息','xìnxī','información','adv'],['过剩','guòshèng','excesivo, exceso','adv'],['的','de',DE,'par'],['时代','shídài','época, era','adv'],['，'],['翻动','fāndòng','pasar (hojas), voltear','attr'],['纸页','zhǐyè','páginas de papel','attr'],['的','de',DE,'par'],['沙沙声','shāshā shēng','crujido, susurro','sub'],['反而','fǎn’ér','al contrario, en cambio','adv'],['让','ràng','hacer que (causativo)','verb'],['他','tā','él','attr'],['的','de',DE,'par'],['思绪','sīxù','pensamientos, ideas','obj'],['沉淀','chéndiàn','asentarse, sedimentar','verb'],['下来','xiàlai','(complemento direccional: pasar a un estado estable)','comp'],['。']],
+ es:'Un cliente habitual confesó que, en una era de exceso de información, el crujir de las páginas al pasarlas, por el contrario, hace que sus pensamientos se asienten.',
+ pat:'<b>常客 + 坦言</b>，[<b>在……的时代</b>]，<b>[翻动纸页的沙沙声] + 反而 + 让 + 他的思绪 + 沉淀下来</b>',
+ pts:[
+  '<b>坦言</b> = «confesar con franqueza». Tras la coma viene lo dicho en estilo directo, sin 说 ni 道.',
+  '<b>在……的时代</b>: marco temporal «en una era de…». Dentro, <b>信息过剩</b> es sujeto + predicado que modifica a 时代 con 的.',
+  '<b>翻动纸页的沙沙声</b>: sujeto largo. [翻动纸页] (pasar páginas) + 的 + 沙沙声 (crujido): «el crujir de pasar las páginas».',
+  '<b>反而</b>: «al contrario». Marca un resultado opuesto a lo esperado (en una era de ruido, lo analógico calma).',
+  '<b>让 + O + V</b>: estructura causativa. <b>他的思绪</b> es objeto de 让 y a la vez sujeto de 沉淀: «hace que sus pensamientos se asienten».',
+  '<b>下来</b> como complemento figurado: de «bajar» pasa a «quedar en reposo, calmarse».'
+ ]},
+
+/* 5 */
+{tok:[['如今','rújīn','hoy en día','adv'],['，'],['书店','shūdiàn','librería','attr'],['的','de',DE,'par'],['租金','zūjīn','alquiler (precio)','sub'],['一涨再涨','yì zhǎng zài zhǎng','subir y subir, subir sin parar','verb'],['，'],['老人','lǎorén','anciano','sub'],['不得不','bùdébù','no tener más remedio que','adv'],['考虑','kǎolǜ','considerar, plantearse','verb'],['是否','shìfǒu','si (o no)','par'],['要','yào','ir a, tener que','adv'],['搬走','bānzǒu','mudarse, irse de aquí','obj'],['。']],
+ es:'Hoy en día, el alquiler de la librería sube y sube, y el anciano no tiene más remedio que plantearse si mudarse.',
+ pat:'<b>如今</b>，<b>租金 + 一涨再涨</b>，<b>老人 + 不得不 + 考虑 + 是否要搬走</b>',
+ pts:[
+  '<b>如今</b>: «hoy en día», marco temporal formal (en lengua hablada: 现在).',
+  '<b>一A再A</b>: «A una y otra vez». 一涨再涨 = subir sin parar. Misma lógica: 一拖再拖 (aplazar y aplazar).',
+  '<b>不得不</b>: doble negación = obligación, «no tener más remedio que».',
+  '<b>是否</b>: «si (o no)», registro escrito (en oral: 是不是 / 要不要). Introduce una subordinada que funciona como objeto de 考虑.',
+  '<b>搬走</b>: verbo + complemento resultativo 走 («irse»); 要 aquí indica intención o necesidad.'
+ ]},
+
+/* 6 */
+{tok:[['没想到','méi xiǎngdào','inesperadamente, quién iba a pensar','con'],['，'],['消息','xiāoxi','noticia','sub'],['传开','chuánkāi','difundirse','verb'],['后','hòu','después de','par'],['，'],['附近','fùjìn','cercano, de los alrededores','attr'],['的','de',DE,'par'],['居民','jūmín','vecinos, residentes','sub'],['自发','zìfā','espontáneamente, por iniciativa propia','adv'],['组织','zǔzhī','organizar(se)','verb'],['起来','qǐlai','(complemento: reunirse, ponerse en marcha)','comp'],['，'],['决定','juédìng','decidir','verb'],['共同','gòngtóng','conjuntamente','adv'],['分担','fēndān','compartir (cargas o gastos)','verb'],['这','zhè','este, esta','attr'],['笔','bǐ','(clasificador de sumas de dinero)','attr'],['费用','fèiyòng','gasto, coste','obj'],['。']],
+ es:'Inesperadamente, tras difundirse la noticia, los vecinos de los alrededores se organizaron espontáneamente y decidieron compartir juntos este gasto.',
+ pat:'<b>没想到</b>，[<b>V + 后</b>]，<b>居民 + 自发 + 组织起来</b>，<b>决定 + 共同分担 + 这笔费用</b>',
+ pts:[
+  '<b>没想到</b>: «quién iba a pensar / inesperadamente». Se coloca al inicio para marcar sorpresa.',
+  '<b>V + 后</b>: subordinada temporal «después de que…». 消息传开后 = «una vez difundida la noticia». 传开 = 传 + complemento 开 (extenderse).',
+  '<b>自发</b> + verbo: «por iniciativa propia». <b>组织起来</b>: 起来 aquí indica que algo se pone en marcha (agruparse).',
+  '<b>决定 + V + O</b>: el verbo de decisión rige otro verbo: «decidieron compartir…». <b>共同</b> = «conjuntamente», va antes del verbo.',
+  '<b>这笔费用</b>: 笔 es el clasificador de sumas de dinero y gastos.'
+ ]},
+
+/* 7 */
+{tok:[['老人','lǎorén','anciano','sub'],['听说','tīngshuō','enterarse (de oídas)','verb'],['后','hòu','después de','par'],['沉默','chénmò','callar, guardar silencio','verb'],['了','le','(partícula de acción completada)','par'],['很久','hěn jiǔ','mucho tiempo','comp'],['，'],['最后','zuìhòu','al final','adv'],['只','zhǐ','solo','adv'],['说','shuō','decir','verb'],['了','le','(partícula de acción completada)','par'],['一句','yí jù','una frase','attr'],['：'],['“'],['书','shū','libro','sub'],['不','bù','no','adv'],['是','shì','ser','verb'],['商品','shāngpǐn','mercancía, producto','obj'],['，'],['是','shì','ser','verb'],['一','yì','un, una','attr'],['盏','zhǎn','(clasificador de lámparas y luces)','attr'],['灯','dēng','lámpara, luz','obj'],['”'],['。']],
+ es:'Al enterarse, el anciano guardó silencio durante mucho tiempo y al final solo dijo una frase: «Los libros no son mercancía, son una lámpara».',
+ pat:'<b>老人 + 听说后 + 沉默了很久</b>，<b>最后 + 只说了一句</b>：“<b>书不是 A，是 B</b>”',
+ pts:[
+  '<b>听说后</b>: V + 后 = «después de…». Marca la secuencia: primero se entera, luego calla.',
+  '<b>沉默了很久</b>: verbo + <b>了</b> (acción cumplida) + <b>很久</b> (complemento de duración, «mucho tiempo»).',
+  '<b>只说了一句</b>: 只 + V + 了 + número + clasificador. 句 es el clasificador de frases: «dijo solo una frase».',
+  '<b>不是 A，是 B</b>: contraste «no es A, sino B». Aquí es una metáfora: 商品 (valor comercial) frente a 灯 (algo que ilumina).',
+  '<b>一盏灯</b>: 盏 es el clasificador de lámparas y luces.'
+ ]}
+];
+const PARAS=[[1,2,3],[4,5],[6,7]];
+
+const QS=[
+{ q:'关于这家书店的店主，可以知道什么？', es:'¿Qué se puede saber sobre el dueño de esta librería?', ans:1,
+  o:[['经常打折促销','A menudo hace descuentos y promociones'],['不愿意做宣传','No quiere hacer publicidad'],['年纪还不到六十岁','Aún no ha cumplido los sesenta años'],['在网上卖书','Vende libros por internet']],
+  why:[
+   ['El texto dice <b>从不打折</b>: «nunca hace descuentos». Es justo lo contrario de lo que afirma esta opción.',2],
+   ['Correcto. <b>不做任何宣传</b> = «no hace ninguna publicidad». La opción lo parafrasea como 不愿意做宣传. En HSK 6 las respuestas casi nunca copian el texto: lo <b>parafrasean</b>.',2],
+   ['<b>年过六旬</b> significa que ya ha pasado de los sesenta (六旬 = diez años × 6). «Aún no ha cumplido sesenta» es falso.',2],
+   ['Trampa de información no mencionada: el texto no habla de vender por internet. Si no aparece, no puedes deducirlo.',null]]},
+{ q:'常客为什么喜欢来这家书店？', es:'¿Por qué le gusta al cliente habitual venir a esta librería?', ans:1,
+  o:[['这里的书特别便宜','Los libros de aquí son muy baratos'],['翻书的声音让他心情平静','El sonido de pasar páginas le calma la mente'],['可以免费上网','Se puede usar internet gratis'],['店主会向他推荐新书','El dueño le recomienda libros nuevos']],
+  why:[
+   ['El texto nunca dice que los libros sean baratos; solo cuenta que el dueño <b>no hace descuentos</b>. Es una asociación inventada.',2],
+   ['Correcto. Para él, el <b>crujir de las páginas</b> (翻动纸页的沙沙声) hace que sus pensamientos se asienten (<b>思绪沉淀下来</b>) → mente en calma, 心情平静.',4],
+   ['No aparece nada de internet gratis. Además, el cliente presenta la <b>sobrecarga de información</b> (信息过剩) como algo negativo.',4],
+   ['El texto no menciona recomendaciones del dueño. El motivo lo da el propio cliente: el sonido del papel.',4]]},
+{ q:'居民们组织起来是为了什么？', es:'¿Para qué se organizan los vecinos?', ans:0,
+  o:[['帮助书店支付费用','Ayudar a la librería a pagar los gastos'],['劝老人搬到别处','Convencer al anciano de que se mude a otro sitio'],['抗议租金上涨','Protestar por la subida del alquiler'],['买下整家书店','Comprar toda la librería']],
+  why:[
+   ['Correcto. <b>共同分担这笔费用</b> = «compartir juntos este gasto», es decir, ayudar a pagar.',6],
+   ['Al revés: quien duda si mudarse es el anciano (考虑是否要搬走). Los vecinos actúan justamente para que no tenga que irse.',6],
+   ['No protestan: <b>pasan a la acción</b> repartiéndose el coste. 抗议 no aparece en el texto.',6],
+   ['Comprar el local sería otra cosa. El texto solo dice que reparten <b>这笔费用</b> (esa suma), la de la subida del alquiler.',6]]},
+{ q:'老人说“书不是商品，是一盏灯”，是想表达什么？', es:'Cuando el anciano dice «los libros no son mercancía, son una lámpara», ¿qué quiere expresar?', ans:1,
+  o:[['书店需要更多照明','La librería necesita más iluminación'],['书的价值不能只用金钱衡量','El valor de los libros no se mide solo con dinero'],['他打算马上关闭书店','Piensa cerrar la librería de inmediato'],['他不喜欢居民的帮助','No le gusta la ayuda de los vecinos']],
+  why:[
+   ['Es una <b>metáfora</b>, no una frase literal: 灯 representa guía y luz. En HSK 6 cuidado con tomar al pie de la letra el lenguaje figurado.',7],
+   ['Correcto. <b>商品</b> es algo que se compra y se vende; <b>灯</b> es algo que ilumina. Contrapone valor comercial y valor espiritual.',7],
+   ['El texto no dice que cierre. Solo que se planteaba mudarse y que guardó silencio. Su frase es una reflexión, no una decisión.',7],
+   ['Nada indica rechazo. Ante la noticia calla mucho rato y luego habla de lo que significan los libros para él: no hay hostilidad.',7]]}
+];
+
+/* =====================================================
+   SPRITE PIXEL ART (48×56) · dibujado por código
+   Rubia de pelo largo peinado hacia atrás, ojos verdes,
+   túnica negra con forro verde, corbata a rayas
+   ===================================================== */
+const W=48,H=56;
+const C={
+  o:'#24160f', skin:'#fde6d6', skinS:'#f1bda7', blush:'#f59fa0',
+  hair:'#f3da8c', hairL:'#fff3bf', hairS:'#dcb25f', hairD:'#a97c34',
+  eyeG:'#37c08a', eyeD:'#14523f', white:'#ffffff',
+  robe:'#1d2220', robeL:'#34403b', lin:'#1f7a45', linL:'#3bbd6d',
+  vest:'#7b847f', vestD:'#5c6561', shirt:'#f4f6f5', shirtS:'#c4cfca',
+  tie:'#2a8f4e', tieL:'#c6efcf', ring:'#d5dae0',
+  mouth:'#b9474f', mouthD:'#7c2432', tongue:'#f08a8f',
+  drop:'#8fdcff', star:'#fff6a8'
+};
+let g;
+const clear=()=>{g=Array.from({length:H},()=>Array(W).fill(null))};
+const R=(x,y,w,h,c)=>{for(let j=y;j<y+h;j++)for(let i=x;i<x+w;i++)if(i>=0&&i<W&&j>=0&&j<H)g[j][i]=c};
+const P=(x,y,c)=>R(x,y,1,1,c);
+function outline(){
+  const add=[];
+  for(let y=0;y<H;y++)for(let x=0;x<W;x++){
+    if(g[y][x])continue;
+    if((y>0&&g[y-1][x])||(y<H-1&&g[y+1][x])||(x>0&&g[y][x-1])||(x<W-1&&g[y][x+1]))add.push([x,y]);
+  }
+  add.forEach(([x,y])=>g[y][x]=C.o);
+}
+function build(s){
+  const dy=s.bob, sw=s.sway;
+  clear();
+  /* pelo trasero */
+  R(14,3+dy,20,2,C.hair);R(12,5+dy,24,3,C.hair);R(10,8+dy,28,28,C.hair);
+  R(10,8+dy,1,28,C.hairS);R(37,8+dy,1,28,C.hairS);
+  /* túnica */
+  R(10,31,28,2,C.robe);R(8,33,32,23,C.robe);
+  R(9,34,2,3,C.robeL);R(37,34,2,3,C.robeL);
+  R(10,41,1,15,C.robeL);R(37,41,1,15,C.robeL);R(12,47,1,9,C.robeL);R(35,47,1,9,C.robeL);
+  /* forro verde */
+  R(14,33,4,23,C.lin);R(30,33,4,23,C.lin);R(14,33,1,23,C.linL);R(33,33,1,23,C.linL);
+  /* chaleco gris */
+  R(18,32,12,24,C.vest);R(18,32,1,24,C.vestD);R(29,32,1,24,C.vestD);R(18,50,12,1,C.vestD);
+  /* cuello y camisa */
+  R(21,27,6,6,C.skinS);
+  for(let r=0;r<6;r++){R(18+r,32+r,12-2*r,1,C.shirt);P(17+r,32+r,C.lin);P(30-r,32+r,C.lin);}
+  R(18,30,4,3,C.shirt);R(26,30,4,3,C.shirt);P(21,32,C.shirtS);P(26,32,C.shirtS);
+  /* corbata */
+  R(22,33,4,2,C.tie);R(22,35,4,9,C.tie);R(22,37,4,1,C.tieL);R(22,40,4,1,C.tieL);R(23,44,2,1,C.tie);
+  /* cara */
+  R(18,10+dy,12,1,C.skin);R(16,11+dy,16,13,C.skin);R(17,24+dy,14,1,C.skin);
+  R(18,25+dy,12,1,C.skin);R(19,26+dy,10,1,C.skin);R(21,27+dy,6,1,C.skin);
+  R(18,10+dy,12,2,C.skinS);
+  /* flequillo peinado hacia atrás */
+  R(16,5+dy,16,2,C.hair);R(14,7+dy,20,3,C.hair);
+  R(14,10+dy,4,1,C.hair);R(30,10+dy,4,1,C.hair);R(16,11+dy,2,3,C.hair);R(30,11+dy,2,3,C.hair);
+  R(17,3+dy,6,1,C.hairL);
+  R(19,5+dy,1,4,C.hairS);R(22,6+dy,1,4,C.hairL);R(25,6+dy,1,4,C.hairL);R(28,5+dy,1,4,C.hairS);
+  R(16,7+dy,1,2,C.hairL);R(31,7+dy,1,2,C.hairL);
+  /* mechones laterales (se mecen) */
+  R(11,10+dy,5,22,C.hair);R(32,10+dy,5,22,C.hair);
+  R(11,12+dy,1,20,C.hairS);R(36,12+dy,1,20,C.hairS);
+  R(13,12+dy,1,12,C.hairL);R(34,12+dy,1,12,C.hairL);
+  R(11+sw,32,5,12,C.hair);R(32+sw,32,5,12,C.hair);
+  R(11+sw,32,1,12,C.hairS);R(36+sw,32,1,12,C.hairS);
+  R(13+sw,34,1,7,C.hairL);R(34+sw,34,1,7,C.hairL);
+  R(12+sw,44,3,2,C.hair);R(13+sw,46,1,1,C.hair);R(33+sw,44,3,2,C.hair);R(34+sw,46,1,1,C.hair);
+  /* aros */
+  R(14,21+dy,2,1,C.ring);R(14,22+dy,1,3,C.ring);R(14,25+dy,2,1,C.ring);
+  R(32,21+dy,2,1,C.ring);R(33,22+dy,1,3,C.ring);R(32,25+dy,2,1,C.ring);
+  /* ojos */
+  const eye=(x,left)=>{
+    const lash=left?x-1:x+4;
+    if(s.eyes==='blink'){R(x,18+dy,4,1,C.o);P(lash,18+dy,C.o);}
+    else if(s.eyes==='happy'){P(x,19+dy,C.o);R(x+1,18+dy,2,1,C.o);P(x+3,19+dy,C.o);}
+    else if(s.eyes==='wide'){
+      R(x,16+dy,4,1,C.o);P(lash,16+dy,C.o);
+      R(x,17+dy,4,3,C.white);R(x+1,17+dy,2,3,C.eyeG);P(x+1,17+dy,C.white);R(x+1,19+dy,2,1,C.eyeD);
+    } else {
+      R(x,17+dy,4,1,C.o);P(lash,17+dy,C.o);
+      R(x,18+dy,4,2,C.white);R(x+1,18+dy,2,2,C.eyeG);P(x+1,18+dy,C.white);P(x+2,19+dy,C.eyeD);
+      R(x,20+dy,4,1,C.skinS);
+    }
+  };
+  eye(19,true);eye(26,false);
+  /* cejas */
+  if(s.brow==='smug'){R(18,14+dy,2,1,C.hairD);R(20,15+dy,3,1,C.hairD);R(28,14+dy,2,1,C.hairD);R(25,15+dy,3,1,C.hairD);}
+  else if(s.brow==='worry'){R(18,15+dy,2,1,C.hairD);R(20,14+dy,3,1,C.hairD);R(28,15+dy,2,1,C.hairD);R(25,14+dy,3,1,C.hairD);}
+  else {R(18,14+dy,5,1,C.hairD);R(25,14+dy,5,1,C.hairD);}
+  /* nariz y mejillas */
+  P(24,21+dy,C.skinS);
+  R(17,22+dy,3,1,C.blush);R(28,22+dy,3,1,C.blush);
+  /* boca */
+  if(s.mouth==='open'){R(22,25+dy,4,2,C.mouthD);P(23,26+dy,C.tongue);P(24,26+dy,C.tongue);}
+  else if(s.mouth==='smile'){R(21,25+dy,5,1,C.mouth);P(20,24+dy,C.mouth);P(26,24+dy,C.mouth);}
+  else if(s.mouth==='flat'){R(22,25+dy,3,1,C.mouth);}
+  else {R(21,25+dy,5,1,C.mouth);P(26,24+dy,C.mouth);}
+
+  outline();
+
+  /* efectos (sin contorno) */
+  if(s.fx==='sparkle'){
+    const star=(x,y,big)=>{P(x,y,C.star);if(big){P(x-1,y,C.star);P(x+1,y,C.star);P(x,y-1,C.star);P(x,y+1,C.star);}};
+    star(7,12,s.star);star(41,9,!s.star);star(42,27,s.star);star(6,30,!s.star);
+  }
+  if(s.fx==='sweat'){
+    P(36,9+dy,C.drop);R(35,10+dy,3,2,C.drop);P(36,12+dy,C.drop);P(35,11+dy,C.white);
+  }
+}
+
+const girl=(()=>{
+  const cv=document.getElementById('girl'),ctx=cv.getContext('2d');
+  let mood='idle',talking=false,last='',moodTO,talkTO;
+  const t0=performance.now();
+  const MOODS={
+    idle :{eyes:'open',brow:'smug',mouth:'smirk'},
+    think:{eyes:'open',brow:'flat',mouth:'smirk'},
+    happy:{eyes:'happy',brow:'flat',mouth:'smile',fx:'sparkle'},
+    oops :{eyes:'wide',brow:'worry',mouth:'flat',fx:'sweat'}
+  };
+  function state(){
+    const t=performance.now()-t0;
+    const m=MOODS[mood];
+    const s={bob:Math.floor(t/650)%2,sway:Math.floor(t/1000)%2,star:Math.floor(t/380)%2,...m};
+    if((t%3300)<150&&(s.eyes==='open'||s.eyes==='wide'))s.eyes='blink';
+    if(talking&&Math.floor(t/130)%2)s.mouth='open';
+    return s;
+  }
+  function paint(s){
+    build(s);
+    ctx.clearRect(0,0,W,H);
+    for(let y=0;y<H;y++)for(let x=0;x<W;x++){const c=g[y][x];if(c){ctx.fillStyle=c;ctx.fillRect(x,y,1,1);}}
+  }
+  function tick(){const s=state();const k=JSON.stringify(s);if(k!==last){last=k;paint(s);}}
+  setInterval(tick,80);tick();
+  return{
+    mood(m,hold=0){mood=m;clearTimeout(moodTO);if(hold)moodTO=setTimeout(()=>{mood='idle'},hold);},
+    talk(ms){talking=true;clearTimeout(talkTO);talkTO=setTimeout(()=>{talking=false},ms);},
+    talkOn(v){clearTimeout(talkTO);talking=v;}
+  };
+})();
+
+/* =====================================================
+   LÓGICA
+   ===================================================== */
+const $=s=>document.querySelector(s);
+const dlgBody=$('#dlgBody'),readingEl=$('#reading'),scrollEl=$('#scroll');
+const st={sel:null,done:[],tries:[],first:0,errs:0};
+let lastWord=null,tok=0,skipNow=false;
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+
+function tokHTML(si){
+  return S[si].tok.map((t,ti)=>t.length===1
+    ?`<span class="p">${t[0]}</span>`
+    :`<span class="w r-${t[3]}" data-s="${si}" data-t="${ti}">${t[0]}</span>`).join('');
+}
+function renderReading(){
+  let h=`<h2 class="title">${tokHTML(0)}</h2><p class="subtitle">La última librería antigua</p>`;
+  PARAS.forEach(p=>{
+    h+='<p class="para">'+p.map(n=>`<span class="sent" data-s="${n}"><button class="rune" data-s="${n}" aria-label="Analizar la frase ${n}">${n}</button>${tokHTML(n)}</span>`).join('')+'</p>';
+  });
+  h+=`<section class="quiz"><h3>题目 · Preguntas</h3><p class="lead">Elige la respuesta correcta. Si fallas, te explico por qué.</p>`;
+  QS.forEach((Q,qi)=>{
+    h+=`<div class="q" data-q="${qi}"><div class="qh"><span class="qn">Q${qi+1}</span><span class="qs">${Q.q}</span></div>
+    <button class="qtr" data-q="${qi}">✦ traducir pregunta y opciones</button>
+    <div class="opts">${Q.o.map((o,oi)=>`<button class="opt" data-q="${qi}" data-o="${oi}"><b>${'ABCD'[oi]}</b><span>${o[0]}</span></button>`).join('')}</div></div>`;
+  });
+  h+='</section><div class="endnote"></div>';
+  readingEl.innerHTML=h;
+}
+function updateScore(){
+  $('#score').innerHTML=`<span class="ok">✓ ${st.first}/${QS.length}</span> &nbsp;<span class="no">✗ ${st.errs}</span>`;
+}
+
+/* ---------- Diálogo ---------- */
+function say(html,{type=true,mood='think',hold=0,keepWord=false}={}){
+  const my=++tok;skipNow=false;
+  if(!keepWord)lastWord=null;
+  dlgBody.innerHTML=html;dlgBody.scrollTop=0;
+  girl.mood(mood,hold);
+  const tws=[...dlgBody.querySelectorAll('.tw')];
+  if(!type||!tws.length){girl.talkOn(true);setTimeout(()=>{if(my===tok)girl.talkOn(false)},keepWord?450:900);return;}
+  const texts=tws.map(e=>{const t=e.textContent;e.textContent='';e.classList.add('typing');return t});
+  girl.talkOn(true);
+  (async()=>{
+    for(let i=0;i<tws.length;i++){
+      for(let c=1;c<=texts[i].length;c++){
+        if(my!==tok)return;
+        if(skipNow){tws.forEach((e,k)=>{e.textContent=texts[k];e.classList.remove('typing')});girl.talkOn(false);return;}
+        tws[i].textContent=texts[i].slice(0,c);
+        await sleep(13);
+      }
+      tws[i].classList.remove('typing');
+    }
+    if(my===tok)girl.talkOn(false);
+  })();
+}
+dlgBody.addEventListener('click',e=>{
+  skipNow=true;
+  const ev=e.target.closest('.ev');
+  if(ev){
+    const el=readingEl.querySelector(`.sent[data-s="${ev.dataset.s}"]`);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash');}
+  }
+});
+
+function intro(){
+  say(`<div class="tw">Hmph. Soy tu tutora. Tener a la mejor alumna de la clase para ti solita es todo un privilegio, ¿no crees?</div>
+  <ul class="guide">
+   <li><i>PALABRA</i><span>Pasa el ratón (o toca) sobre una palabra: traducción y pinyin.</span></li>
+   <li><i>SELLO</i><span>Pulsa el sello numerado de una frase y te desmenuzo su gramática y sintaxis.</span></li>
+   <li><i>ERROR</i><span>Si fallas una pregunta, te explico por qué esa opción no vale.</span></li>
+  </ul>`,{mood:'idle'});
+}
+
+/* ---------- Palabras ---------- */
+function showWord(el){
+  const si=+el.dataset.s,ti=+el.dataset.t,key=si+'-'+ti;
+  if(lastWord===key)return;
+  lastWord=key;
+  document.querySelectorAll('.w.on').forEach(x=>x.classList.remove('on'));
+  el.classList.add('on');
+  const t=S[si].tok[ti];
+  const role=(st.sel===si)?`<span class="chip role r-${t[3]}">${ROLE[t[3]][0]} · ${ROLE[t[3]][1]}</span>`:'';
+  const hint=si===0?'':`<p class="hint">Frase ${si} · pulsa el sello ${si} para analizarla entera.</p>`;
+  say(`<div class="wcard"><span class="hz">${t[0]}</span><span class="pyw">${t[1]}</span></div>
+       <p class="trans">${t[2]}</p>${role}${hint}`,{type:false,mood:'think',keepWord:true});
+}
+readingEl.addEventListener('mouseover',e=>{
+  if(!window.matchMedia('(hover:hover)').matches)return;
+  const w=e.target.closest('.w');if(w)showWord(w);
+});
+readingEl.addEventListener('mouseleave',()=>{document.querySelectorAll('.w.on').forEach(x=>x.classList.remove('on'));});
+readingEl.addEventListener('click',e=>{
+  const w=e.target.closest('.w');
+  if(w){lastWord=null;showWord(w);return;}
+  const r=e.target.closest('.rune');
+  if(r){toggleSentence(+r.dataset.s);return;}
+  const tr=e.target.closest('.qtr');
+  if(tr){translateQ(+tr.dataset.q);return;}
+  const o=e.target.closest('.opt');
+  if(o&&!o.disabled){answer(+o.dataset.q,+o.dataset.o);}
+});
+
+/* ---------- Frases: análisis ---------- */
+function pinyinOf(n){
+  const P={'，':',','。':'.','：':':'};
+  const s=S[n].tok.map(t=>t.length===1?(P[t[0]]||''):t[1]).filter(Boolean).join(' ').replace(/ ([,.:])/g,'$1');
+  return s.charAt(0).toUpperCase()+s.slice(1);
+}
+function clearSel(){
+  document.querySelectorAll('.sent.sel').forEach(x=>x.classList.remove('sel'));
+  readingEl.classList.remove('has-sel');st.sel=null;
+}
+function toggleSentence(n){
+  if(st.sel===n){clearSel();say(`<div class="tw">Selección anulada. Elige otra frase cuando quieras.</div>`,{mood:'idle'});return;}
+  clearSel();st.sel=n;
+  readingEl.querySelector(`.sent[data-s="${n}"]`).classList.add('sel');
+  readingEl.classList.add('has-sel');
+  const d=S[n];
+  const roles=[...new Set(d.tok.filter(t=>t.length>1).map(t=>t[3]))];
+  const legend=roles.map(r=>`<span class="lg r-${r}"><i></i>${ROLE[r][0]} ${ROLE[r][1]}</span>`).join('');
+  say(`<span class="chip">FRASE ${n}</span>
+    <div class="pyl">${pinyinOf(n)}</div>
+    <div class="tw">${d.es}</div>
+    <div class="legend">${legend}</div>
+    <div class="pat"><small>ESTRUCTURA</small>${d.pat}</div>
+    <ul class="pts">${d.pts.map(p=>`<li>${p}</li>`).join('')}</ul>`,{mood:'think'});
+}
+
+/* ---------- Preguntas ---------- */
+function translateQ(qi){
+  const Q=QS[qi];
+  say(`<span class="chip">PREGUNTA ${qi+1}</span>
+   <div class="tw">${Q.es}</div>
+   <div class="qtx" style="margin-top:8px">${Q.o.map((o,i)=>`<p><b>${'ABCD'[i]}</b>${o[1]}</p>`).join('')}</div>`,{mood:'think'});
+}
+function answer(qi,oi){
+  const Q=QS[qi],qEl=readingEl.querySelector(`.q[data-q="${qi}"]`);
+  const btn=qEl.querySelector(`.opt[data-o="${oi}"]`);
+  const [why,ev]=Q.why[oi];
+  const evBtn=ev?`<button class="ev" data-s="${ev}">Ver la frase ${ev} en el texto ↑</button>`:'';
+  if(oi===Q.ans){
+    btn.classList.add('ok');qEl.classList.add('locked');
+    qEl.querySelectorAll('.opt').forEach(b=>b.disabled=true);
+    st.done[qi]=true;if(!st.tries[qi])st.first++;
+    updateScore();
+    const all=QS.every((_,i)=>st.done[i]);
+    const end=all?`<p class="why"><span class="chip good">FIN</span> Resultado a la primera: <b>${st.first}/${QS.length}</b>. ${st.first===QS.length?'Impecable. Como era de esperar.':st.first>=QS.length-1?'Muy bien. Casi perfecto.':'Repasa las trampas de las opciones falladas y verás cómo sube.'}</p>`:'';
+    say(`<span class="chip good">CORRECTO · ${'ABCD'[oi]}</span>
+      <div class="tw">${pick(['Obvio. Con una tutora como yo, no podía ser de otra forma.','Bien. Para eso me tienes.','Correcto. No esperaba menos.'])}</div>
+      <p class="why">${why}</p>${evBtn}${end}`,{mood:'happy',hold:all?0:7000});
+  }else{
+    btn.classList.add('bad');btn.disabled=true;
+    st.tries[qi]=(st.tries[qi]||0)+1;st.errs++;updateScore();
+    say(`<span class="chip bad">INCORRECTO · ${'ABCD'[oi]}</span>
+      <div class="tw">${pick(['Hmph, no tan rápido.','Casi… pero no. Escucha.','Error clásico de examen. Atiende.'])}</div>
+      <p class="why">${why}</p>${evBtn}`,{mood:'oops',hold:7000});
+  }
+}
+
+/* ---------- Tutora: toque ---------- */
+$('#girlBtn').addEventListener('click',()=>{
+  say(`<div class="tw">${pick([
+    'Hmph… ¿me necesitabas? Pasa el cursor por las palabras y no me distraigas.',
+    'Si te atascas con una frase, pulsa su sello numerado. Yo me encargo.',
+    'No me mires así. Mejor lee: el HSK 6 no se aprueba solo.',
+    '¿Cansado ya? Una pregunta más y descansas. Quizá.'])}</div>`,{mood:'happy',hold:2500});
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&st.sel){clearSel();}});
+$('#reset').addEventListener('click',()=>{
+  st.sel=null;st.done=[];st.tries=[];st.first=0;st.errs=0;lastWord=null;
+  renderReading();updateScore();scrollEl.scrollTop=0;intro();
+});
+
+renderReading();updateScore();intro();
+</script>
+</body>
+</html>

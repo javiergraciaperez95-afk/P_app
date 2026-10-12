@@ -1,0 +1,136 @@
+{
+  "capitulo": 9,
+  "titulo_es": "Por teléfono",
+  "titulo": {"en": "On the phone"},
+  "intro": {"en": "Set phrases for answering, asking for someone and leaving a message."},
+  "palabras": {
+    "diga": {
+      "en": "hello (answering the phone, Spain)",
+      "pron": "DI-ga",
+      "cat": "interjection",
+      "nota": "Also ¿Dígame? or ¿Sí? In Latin America you hear ¿Aló? and ¿Bueno?"
+    },
+    "de parte de quién": {"en": "who's calling", "pron": "de PAR-te de kyen", "cat": "expression"},
+    "soy yo": {"en": "speaking, it's me", "pron": "soi yo", "cat": "expression"},
+    "un momento": {"en": "one moment", "pron": "un mo-MEN-to", "cat": "expression"},
+    "ahora se pone": {"en": "he/she is just coming to the phone", "pron": "a-O-ra se PO-ne", "cat": "expression"},
+    "no está": {"en": "he/she isn't here", "pron": "no es-TA", "cat": "expression"},
+    "dejar un recado": {"en": "to leave a message", "pron": "de-HAR un re-KA-do", "cat": "expression"},
+    "más tarde": {"en": "later", "pron": "mas TAR-de", "cat": "expression"},
+    "se ha equivocado": {"en": "you have the wrong number", "pron": "se a e-ki-bo-KA-do", "cat": "expression"},
+    "está comunicando": {"en": "it's engaged", "pron": "es-TA ko-mu-ni-KAN-do", "cat": "expression"},
+    "colgar": {"en": "to hang up", "pron": "kol-GAR", "cat": "verb"},
+    "la llamada": {"en": "the call", "pron": "la ya-MA-da", "genero": "f"}
+  },
+  "bloques": [
+    {
+      "tipo": "explicacion",
+      "titulo": {"en": "Phone phrases"},
+      "texto": {
+        "en": "You answer with **¿Diga?**, **¿Dígame?** or **¿Sí?**\n\nYou ask for someone: **¿Está** Ana? **¿Puedo hablar con** Ana? More formal: **¿Me pone con** el señor Ruiz?\n\nThey check who you are: **¿De parte de quién?** You say **Soy** Pablo, or **De parte de** Pablo. Spanish uses **ser** here. Not estoy, and not este es.\n\nIf it is you they want: **Soy yo.**\n\nIf the person is out: **No está. ¿Quiere dejar un recado?** You can answer **Le llamo más tarde.**\n\nA wrong number: **Se ha equivocado.** An engaged line: **Está comunicando.**"
+      }
+    },
+    {
+      "tipo": "dialogo",
+      "titulo": {"en": "A call"},
+      "frases": [
+        {"quien": "Madre", "es": "¿Diga?", "en": "Hello?", "analisis": [["¿Diga?", "phone greeting"]]},
+        {
+          "quien": "Pablo",
+          "es": "Hola, ¿está Lucía?",
+          "en": "Hello, is Lucía there?",
+          "analisis": [["¿está", "verb"], ["Lucía", "subject"]]
+        },
+        {
+          "quien": "Madre",
+          "es": "¿De parte de quién?",
+          "en": "Who's calling?",
+          "analisis": [["¿De parte de quién?", "question"]]
+        },
+        {
+          "quien": "Pablo",
+          "es": "Soy Pablo, un amigo de la universidad.",
+          "en": "It's Pablo, a friend from university.",
+          "analisis": [["Soy", "verb"], ["Pablo", "who"], ["un amigo de la universidad", "description"]]
+        },
+        {
+          "quien": "Madre",
+          "es": "Lo siento, no está. ¿Quieres dejar un recado?",
+          "en": "I'm sorry, she isn't here. Do you want to leave a message?",
+          "analisis": [["Lo siento", "apology"], ["no está", "verb"], ["¿Quieres", "verb"], ["dejar un recado", "object"]]
+        },
+        {
+          "quien": "Pablo",
+          "es": "No, gracias. La llamo más tarde.",
+          "en": "No, thanks. I'll call her later.",
+          "analisis": [["La", "her"], ["llamo", "verb"], ["más tarde", "time"]]
+        }
+      ]
+    },
+    {"tipo": "vocabulario"},
+    {
+      "tipo": "test",
+      "id": "telefono-1",
+      "pregunta": {"en": "You answer the phone in Spain. What do you say?"},
+      "opciones": {
+        "¿Diga?": {"en": "The standard way to answer."},
+        "¿Quién eres?": {"en": "That is abrupt: who are you?"},
+        "¿De parte de quién?": {"en": "That comes later, to ask who is calling."}
+      },
+      "correcta": "¿Diga?"
+    },
+    {
+      "tipo": "huecos",
+      "id": "telefono-2",
+      "pregunta": {"en": "Complete: who's calling?"},
+      "frase": "¿De ___ de quién?",
+      "audio": true,
+      "opciones": {
+        "parte": {"en": "De parte de quién is the set phrase."},
+        "lado": {"en": "Lado is side."},
+        "llamada": {"en": "Llamada is the call itself."}
+      },
+      "correcta": "parte"
+    },
+    {
+      "tipo": "test",
+      "id": "telefono-3",
+      "pregunta": {"en": "On the phone, how do you say «It's Pablo»?"},
+      "opciones": {
+        "Soy Pablo": {"en": "Spanish identifies the caller with ser."},
+        "Estoy Pablo": {"en": "Identity takes ser, never estar."},
+        "Este es Pablo": {"en": "That introduces a third person, not yourself."}
+      },
+      "correcta": "Soy Pablo"
+    },
+    {
+      "tipo": "traduccion",
+      "id": "telefono-4",
+      "frase": "Se ha equivocado.",
+      "opciones": [
+        {"texto": {"en": "You have the wrong number."}, "correcta": true},
+        {"texto": {"en": "He has hung up."}, "explicacion": {"en": "That is ha colgado."}},
+        {"texto": {"en": "It's engaged."}, "explicacion": {"en": "That is está comunicando."}}
+      ]
+    },
+    {
+      "tipo": "escribir",
+      "id": "telefono-5",
+      "pregunta": {"en": "Translate: «Is Ana there?»"},
+      "respuestas": ["¿Está Ana?"]
+    },
+    {
+      "tipo": "ordenar",
+      "id": "telefono-6",
+      "frase": "¿Quieres dejar un recado?",
+      "traduccion": {"en": "Do you want to leave a message?"}
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": {"en": "Your turn: write and speak"},
+      "texto": {
+        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write a phone conversation in which you ask for someone who is not there and leave a message.\n\n**Speak (about 1 minute).** Practise aloud answering the phone, asking who is calling and taking a message."
+      }
+    }
+  ]
+}

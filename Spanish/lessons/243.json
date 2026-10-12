@@ -1,0 +1,174 @@
+{
+  "capitulo": 21,
+  "titulo_es": "No se retire",
+  "titulo": {"en": "Please hold"},
+  "intro": {"en": "Formal phone calls: switchboards, extensions, customer service and everything that goes wrong on the line."},
+  "palabras": {
+    "poner con": {"en": "to put through to", "pron": "po-NER kon", "cat": "expression", "nota": "¿Me pone con el señor Ruiz?"},
+    "pasar con": {"en": "to put through to", "pron": "pa-SAR kon", "cat": "expression"},
+    "la extensión": {"en": "the extension", "pron": "la eks-ten-SYON", "genero": "f"},
+    "no se retire": {"en": "please hold", "pron": "no se re-TI-re", "cat": "expression"},
+    "atender": {"en": "to attend to, to deal with", "pron": "a-ten-DER", "cat": "verb", "nota": "E becomes ie: atiendo."},
+    "atención al cliente": {"en": "customer service", "pron": "a-ten-THYON al KLYEN-te", "genero": "f"},
+    "la centralita": {"en": "the switchboard", "pron": "la then-tra-LI-ta", "genero": "f"},
+    "comunicar": {
+      "en": "to be engaged (a phone line)",
+      "pron": "ko-mu-ni-KAR",
+      "cat": "verb",
+      "nota": "Está comunicando: the line is busy."
+    },
+    "cortarse": {"en": "to get cut off", "pron": "kor-TAR-se", "cat": "verb"},
+    "la cobertura": {"en": "coverage, signal", "pron": "la ko-ber-TU-ra", "genero": "f"},
+    "la llamada perdida": {"en": "the missed call", "pron": "la ya-MA-da per-DI-da", "genero": "f"},
+    "devolver la llamada": {"en": "to call back", "pron": "de-bol-BER la ya-MA-da", "cat": "expression"},
+    "el buzón de voz": {"en": "voicemail", "pron": "el bu-THON de both", "genero": "m"},
+    "la tarifa": {"en": "the rate, the tariff", "pron": "la ta-RI-fa", "genero": "f"},
+    "dar de alta": {"en": "to register, to activate", "pron": "dar de AL-ta", "cat": "expression"},
+    "dar de baja": {"en": "to cancel, to deactivate", "pron": "dar de BA-ha", "cat": "expression"},
+    "la avería": {"en": "the fault, the breakdown", "pron": "la a-be-RI-a", "genero": "f"},
+    "colgar": {"en": "to hang up", "pron": "kol-GAR", "cat": "verb", "nota": "O becomes ue: cuelgo."}
+  },
+  "bloques": [
+    {
+      "tipo": "explicacion",
+      "titulo": {"en": "The language of the switchboard"},
+      "texto": {
+        "en": "A company answers with its name: **Seguros Atlas, buenos días, ¿dígame?**\n\n**Asking for someone.** **¿Me pone con** el señor Ruiz, por favor? **¿Me pasa con** la extensión 204? **Quisiera hablar con** el departamento de ventas.\n\n**The answers.**\n\n- **¿De parte de quién?**\n- **No se retire, por favor.** **Un momento, ahora le paso.**\n- **Ahora le pongo con** él.\n- **En este momento no le puede atender.**\n- **Está comunicando.** (the line is busy)\n- **¿Desea dejarle algún recado?**\n\n**Leaving a message.** **¿Puedo dejar un recado?** **Dígale que me devuelva la llamada**, por favor. A reported order takes the subjunctive: dígale que me **llame**.\n\n**Problems.** **Se ha cortado.** **No hay cobertura.** **Te oigo fatal.** **Me ha saltado el buzón de voz.** **Tengo tres llamadas perdidas tuyas.**\n\n**With the phone company.** You call **atención al cliente** to **dar de alta** a line, to **dar de baja** a service, to change **la tarifa** or to report **una avería**.\n\nRemember **le**: on the phone you speak about and to people formally. Ahora **le** paso; no **le** puede atender; ¿desea dejar**le** un recado?"
+      }
+    },
+    {
+      "tipo": "dialogo",
+      "titulo": {"en": "Calling an insurance company"},
+      "frases": [
+        {
+          "quien": "Recepcionista",
+          "es": "Seguros Atlas, buenos días, ¿dígame?",
+          "en": "Atlas Insurance, good morning, how can I help?",
+          "analisis": [["Seguros Atlas", "company"], ["buenos días", "greeting"], ["¿dígame", "answering the phone"]]
+        },
+        {
+          "quien": "Cliente",
+          "es": "Buenos días. ¿Me pone con el departamento de averías, por favor?",
+          "en": "Good morning. Could you put me through to the faults department, please?",
+          "analisis": [["¿Me pone con", "request"], ["el departamento de averías", "who"]]
+        },
+        {
+          "quien": "Recepcionista",
+          "es": "No se retire. Lo siento, está comunicando. ¿Desea dejar algún recado?",
+          "en": "Please hold. I'm sorry, the line is busy. Would you like to leave a message?",
+          "analisis": [
+            ["No se retire", "command (usted)"],
+            ["está comunicando", "verb"],
+            ["¿Desea dejar", "verb"],
+            ["algún recado", "object"]
+          ]
+        },
+        {
+          "quien": "Cliente",
+          "es": "Sí. Dígales que me devuelvan la llamada lo antes posible. Llevo tres días sin línea.",
+          "en": "Yes. Tell them to call me back as soon as possible. I've been without a line for three days.",
+          "analisis": [
+            ["Dígales que", "reported order"],
+            ["me devuelvan la llamada", "verb (subjunctive)"],
+            ["lo antes posible", "time"],
+            ["Llevo tres días", "duration"],
+            ["sin línea", "state"]
+          ]
+        },
+        {
+          "quien": "Recepcionista",
+          "es": "¿De parte de quién?",
+          "en": "Who's calling?",
+          "analisis": [["¿De parte de quién", "question"]]
+        },
+        {
+          "quien": "Cliente",
+          "es": "De Marcos Gil. Y si no lo arreglan esta semana, quiero dar de baja el servicio.",
+          "en": "Marcos Gil. And if they don't fix it this week, I want to cancel the service.",
+          "analisis": [
+            ["De Marcos Gil", "who"],
+            ["si no lo arreglan", "condition"],
+            ["esta semana", "time"],
+            ["quiero dar de baja", "verb"],
+            ["el servicio", "object"]
+          ]
+        }
+      ]
+    },
+    {"tipo": "vocabulario"},
+    {
+      "tipo": "huecos",
+      "id": "telefono-b2-1",
+      "pregunta": {"en": "Complete: tell him to call me."},
+      "frase": "Dígale que me ___.",
+      "audio": true,
+      "opciones": {
+        "llame": {"en": "A reported order takes the subjunctive."},
+        "llama": {"en": "A reported order takes the subjunctive."},
+        "llamará": {"en": "A reported order takes the subjunctive."}
+      },
+      "correcta": "llame"
+    },
+    {
+      "tipo": "test",
+      "id": "telefono-b2-2",
+      "pregunta": {"en": "Está comunicando means…"},
+      "opciones": {
+        "The line is busy": {"en": "Comunicar, of a phone line: to be engaged."},
+        "He is talking to the press": {"en": "On the phone it means the line is busy."},
+        "The call got cut off": {"en": "That is se ha cortado."}
+      },
+      "correcta": "The line is busy"
+    },
+    {
+      "tipo": "test",
+      "id": "telefono-b2-3",
+      "pregunta": {"en": "You want to cancel your internet contract. You want to…"},
+      "opciones": {
+        "dar de baja el servicio": {"en": "Dar de baja: to cancel."},
+        "dar de alta el servicio": {"en": "Dar de alta is to activate."},
+        "devolver la llamada": {"en": "That is to call back."}
+      },
+      "correcta": "dar de baja el servicio"
+    },
+    {
+      "tipo": "traduccion",
+      "id": "telefono-b2-4",
+      "frase": "No se retire, por favor.",
+      "opciones": [
+        {"texto": {"en": "Please hold."}, "correcta": true},
+        {
+          "texto": {"en": "Don't retire, please."},
+          "explicacion": {"en": "On the phone, no se retire means don't hang up."}
+        },
+        {"texto": {"en": "Please don't leave the room."}, "explicacion": {"en": "It is a phone formula."}}
+      ]
+    },
+    {
+      "tipo": "huecos",
+      "id": "telefono-b2-5",
+      "pregunta": {"en": "Complete: could you put me through to extension 12?"},
+      "frase": "¿Me ___ con la extensión 12?",
+      "audio": true,
+      "opciones": {
+        "pone": {"en": "Poner con: to put through to."},
+        "da": {"en": "The verb is poner or pasar."},
+        "llama": {"en": "The verb is poner or pasar."}
+      },
+      "correcta": "pone"
+    },
+    {
+      "tipo": "ordenar",
+      "id": "telefono-b2-6",
+      "frase": "En este momento no le puede atender",
+      "traduccion": {"en": "He can't attend to you at the moment."}
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": {"en": "Your turn: write and speak"},
+      "texto": {
+        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (150–180 words).** Write the script of a call to customer service to report a fault and ask for it to be fixed.\n\n**Speak (about 3 minutes).** Make that call aloud: ask for the right department, explain the problem, leave a message and insist."
+      }
+    }
+  ]
+}

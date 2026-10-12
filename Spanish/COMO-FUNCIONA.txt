@@ -1,0 +1,224 @@
+ESPAÑOL · CÓMO ESTÁ ORGANIZADA LA APP Y CÓMO FUNCIONA
+======================================================
+Escrito el 11 de octubre de 2026. Para el detalle fino del formato de las
+lecciones y de los juegos, ver notes/formato.md.
+
+
+1. QUÉ ES
+---------
+Una web para aprender español desde cero hasta B2, explicada en inglés
+(con vietnamita y chino parciales). Es una web "estática": solo archivos
+HTML, CSS y JavaScript. No hay servidor propio ni hay que compilar nada.
+Todo lo que se ve (la tutora, los efectos, los sonidos, la música) se
+genera por código; no hay archivos de imagen ni de audio para eso.
+
+Para abrirla en tu ordenador: doble clic en start-server.cmd y se abre en
+el navegador. (No vale abrir index.html directamente con doble clic: el
+navegador bloquea la carga de las lecciones.)
+
+
+2. LAS CARPETAS
+---------------
+index.html        La única página. Carga el CSS y el JavaScript.
+css/styles.css    Todo el aspecto visual, en un solo archivo.
+js/               El programa (ver punto 3).
+lessons/          Las lecciones: 001.json … 293.json, y capitulos.json.
+juegos/           El "modo juego" de las lecciones que lo tienen:
+                  001.json … 007.json, e index.json (la lista de cuáles).
+notes/formato.md  El manual del formato de lecciones y juegos.
+supabase/         El SQL de la tabla de esta app en Supabase.
+server/           El mini servidor local que usa start-server.cmd.
+assets/           Recursos sueltos (iconos, etc.).
+TXTs y Jsons para hacer lecciones/
+                  Material de referencia. La app no lo usa.
+COMO-FUNCIONA.txt Este archivo.
+
+
+3. EL PROGRAMA (carpeta js/)
+----------------------------
+app.js           El arranque: menú, cabecera y qué pantalla toca según
+                 la dirección (#/lecciones, #/leccion/007, #/repaso…).
+lessons.js       Lee y revisa los archivos de lessons/. Si a una lección
+                 le falta algo, avisa en pantalla en vez de romperse.
+exercises.js     Los cinco tipos de ejercicio: test, traducción, huecos,
+                 escribir y ordenar.
+progress.js      El progreso de la persona: lecciones, ejercicios,
+                 cuaderno y actividad. Se guarda en el navegador.
+srs.js           El repaso espaciado: decide cuándo vuelve cada tarjeta.
+sync.js          Cuentas y copia del progreso en la nube (Supabase).
+config.js        La dirección y la clave pública de Supabase.
+i18n.js + i18n/  Los textos de la interfaz: en.js (inglés, completo),
+                 vi.js (vietnamita) y zh.js (chino, parcial).
+tutor.js         La tutora del recuadro de abajo: qué dice y cuándo.
+tutor-sprite.js  El dibujo de la tutora, píxel a píxel, y sus caras.
+sonidos.js       Efectos de sonido, música de fondo y la voz española
+                 (la voz es la que tenga instalada el dispositivo).
+ajustes.js       Preferencias: idioma, tema claro/oscuro, sonido.
+comunes.js, dom.js, iconos.js
+                 Piezas pequeñas que usan las demás.
+
+vistas/          Una pantalla por archivo:
+  lecciones.js   La lista de lecciones por capítulos.
+  leccion.js     Una lección en "vista de libro".
+  practica.js    Repetir ejercicios fallados.
+  frases.js      Frases útiles.
+  cuaderno.js    Las palabras guardadas y el diccionario.
+  repaso.js      El repaso de tarjetas.
+  perfil.js      Cuenta, ajustes y estadísticas.
+
+juego/           El modo juego:
+  motor.js       Lleva la partida: pasos, tutora en escena, bocadillo,
+                 racha, música, Atrás/Siguiente y dónde te quedaste.
+  escenas.js, escenas-b.js, escenas-c.js
+                 Los minijuegos (ver punto 6).
+  efectos.js     Chispas, confeti y palabras que flotan.
+
+
+4. CÓMO ES UNA LECCIÓN
+----------------------
+Cada lección es un archivo lessons/NNN.json. El número es a la vez el
+orden del curso y la clave con la que se guarda el progreso, así que no
+se deben renumerar.
+
+Dentro lleva: capítulo, título, las palabras nuevas y una lista de
+"bloques" que se pintan en orden: explicación, diálogo, tabla,
+vocabulario, imagen y los cinco tipos de ejercicio. Todas terminan con
+una tarea libre de escribir y hablar que la app avisa que no puede
+corregir.
+
+Hay 293 lecciones en 26 capítulos: A1 (capítulos 1–5), A2 (6–10),
+B1 (11–18) y B2 (19–26). capitulos.json da nombre a cada capítulo.
+
+Idiomas: el español va siempre. Las traducciones van junto a cada texto
+como "en", "vi" y "zh". Si falta una, sale la inglesa.
+
+
+5. LAS DOS FORMAS DE HACER UNA LECCIÓN
+--------------------------------------
+Vista de libro   La lección entera en una página, de arriba abajo.
+                 La tienen todas las lecciones.
+
+Modo juego       La misma lección troceada en pasos cortos, uno por
+                 pantalla. Hoy lo tienen las lecciones 1 a 7.
+                 Si una lección tiene juego, se abre así; arriba hay un
+                 botón para pasar al libro (y se recuerda la elección).
+
+Los ejercicios son los mismos en las dos: lo que se acierta en una
+cuenta en la otra.
+
+
+6. EL MODO JUEGO
+----------------
+El juego de una lección es un guion en juegos/NNN.json: una lista de
+pasos. Cada paso dice de qué tipo es, qué dice la tutora y los datos de
+ese minijuego. El guion no repite el contenido de la lección: cuando
+necesita un diálogo o un ejercicio, lo señala por su posición.
+
+Para añadir juego a una lección: escribir su guion y apuntar su número
+en juegos/index.json. No hace falta tocar el programa si se usan
+minijuegos que ya existen.
+
+Las reglas que cumplen todos los pasos:
+ - Una sola cosa por pantalla, y sin tener que desplazarla (cabe en un
+   móvil pequeño).
+ - No se avanza sin acertar algo que exige haber leído o escuchado.
+ - Lo que se falla vuelve más tarde. No hay castigo, pero pensar sale
+   más barato que tocar al azar.
+ - Antes de preguntar algo nuevo, se explica; y se explica jugando, no
+   con un texto.
+ - Variedad: no se repite el mismo minijuego dos veces seguidas.
+
+Minijuegos que existen (el nombre es el "tipo" que se pone en el guion):
+
+ Para explicar
+   explica     palanca, deslizador o teclado de sonidos: se prueban las
+               posiciones y luego hay misiones sin pistas
+   paseo       la tutora va a cada situación y dice lo que toca
+   detector    ¿está bien dicho? Sí / No
+   reloj       arrastrar el sol por el día (saludos)
+
+ Con la tutora en una escena
+   mensajera   lleva cada frase a quien la diría
+   pizarra     escribe la letra que falta
+   rayuela     salta por las casillas de los números
+   parada      sube al autobús correcto
+   clasifica   lleva cada cosa a su cartel
+   aduana      control de pasaportes
+
+ Palabras y frases
+   cartas, globos, letras, parejas, bingo, telefono, velas
+   maquina     ruedas para construir frases
+   mando       frases de supervivencia para la clase
+   presentate  la persona escribe su nombre
+   elige, elige-pieza, rellena
+
+ Diálogos y lectura
+   descifra, conversa, rol
+   lectura     texto sin audio ni traducción, con preguntas
+
+ Cierre
+   reto        un ejercicio de la lección (cuenta para el progreso)
+   mision      la tarea de papel y boli
+   fin         estrellas y resumen
+
+Cada unidad tiene al menos un juego propio: en la 1, la mensajera; en la
+2, el control de pasaportes.
+
+
+7. QUÉ SE GUARDA Y DÓNDE
+------------------------
+En el navegador de cada dispositivo:
+ - el progreso (lecciones, ejercicios, cuaderno, actividad);
+ - por qué paso va cada juego;
+ - los ajustes (idioma, tema, sonido, música, libro o juego).
+
+En la nube, si la persona tiene cuenta: el progreso (con el cuaderno).
+Al iniciar sesión se juntan los datos del dispositivo con los de la nube.
+El paso por el que va cada juego todavía NO se sube a la nube.
+
+Sin cuenta la app funciona igual; solo que el progreso vive en ese
+navegador.
+
+
+8. EL CUADERNO Y EL REPASO
+--------------------------
+Al terminar una lección, sus palabras pasan solas al cuaderno. Desde ahí
+entran en el repaso de tarjetas, que las vuelve a enseñar cada vez más
+espaciadas según lo bien que se sepan. También se pueden guardar
+palabras a mano con la estrella.
+
+
+9. LAS CUENTAS Y LAS OTRAS APPS
+-------------------------------
+Las cuentas las lleva Supabase, y todas las apps de idiomas usan el mismo
+proyecto: quien se registra en una tiene cuenta en todas. Cada app guarda
+su progreso en una tabla propia (la de esta es "espanol_progreso"), así
+que cada una solo ve lo suyo. El SQL de todas juntas está un nivel más
+arriba, en supabase-todas.sql.
+
+
+10. CÓMO SE PUBLICA
+-------------------
+Al subir los cambios, una tarea automática (.github/workflows/static.yml)
+publica la web y cambia la marca __VERSION__ de index.html por un número
+nuevo, para que los navegadores no se queden con archivos viejos.
+Por eso, cada archivo nuevo de js/ hay que apuntarlo también en la lista
+"importmap" de index.html.
+
+
+11. ESTADO ACTUAL
+-----------------
+Hecho
+ - 293 lecciones en vista de libro, en inglés.
+ - Modo juego en las lecciones 1 a 7.
+ - Cuentas, cuaderno automático y repaso.
+ - Selector de idioma (inglés, vietnamita, chino).
+
+Pendiente
+ - Modo juego de la lección 8 en adelante.
+ - Traducciones: el vietnamita cubre la interfaz y parte de las
+   lecciones; el chino, parte de la interfaz y la lección 1. Los juegos
+   de las lecciones 2 a 7 están solo en inglés.
+ - Nada de esto lo ha revisado un hablante nativo ni se ha probado aún
+   con alumnos reales.
+ - Usar esta app como modelo para las otras veinte.

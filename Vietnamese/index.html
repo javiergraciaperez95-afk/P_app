@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tiếng Việt · Libro interactivo</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Crect x='3' y='0' width='2' height='1' fill='%23f29bb4'/%3E%3Crect x='2' y='1' width='4' height='2' fill='%23f29bb4'/%3E%3Crect x='3' y='1' width='2' height='2' fill='%23ffd3df'/%3E%3Crect x='0' y='2' width='2' height='2' fill='%23d9708f'/%3E%3Crect x='6' y='2' width='2' height='2' fill='%23d9708f'/%3E%3Crect x='1' y='3' width='6' height='2' fill='%23f29bb4'/%3E%3Crect x='3' y='5' width='2' height='1' fill='%235a8a5c'/%3E%3Crect x='0' y='6' width='8' height='2' fill='%2382ad7e'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#c8445a">
+  <meta name="referrer" content="no-referrer">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&family=Tiny5&display=swap">
+  <link rel="stylesheet" href="css/estilo.css">
+  <script>
+    // Tema claro/oscuro antes de pintar, para que no parpadee
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('vietlibro.tema'); } catch (e) {}
+      if (t !== 'claro' && t !== 'oscuro') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'oscuro' : 'claro';
+      document.documentElement.setAttribute('data-tema', t);
+    })();
+  </script>
+</head>
+<body>
+  <a class="saltar" href="#principal">Saltar al contenido</a>
+
+  <header class="cabecera">
+    <a href="#/" class="marca"><span class="marca-titulo"><span lang="vi">Tiếng Việt</span> <svg class="bandera" width="21" height="14" viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#da251d"/><polygon fill="#ff0" points="15,4 16.76,9.43 22.37,9.43 17.82,12.79 19.56,18.21 15,14.86 10.44,18.21 12.18,12.79 7.63,9.43 13.24,9.43"/></svg></span> <small>libro interactivo</small></a>
+    <span class="cabecera-botones">
+    <button type="button" id="btn-sonido" class="btn btn-icono" aria-pressed="true" aria-label="Sonido">♪</button>
+    <button type="button" id="btn-tema" class="btn btn-icono" aria-label="Cambiar a modo oscuro">☾</button>
+    </span>
+  </header>
+
+  <nav class="menu" aria-label="Secciones">
+    <a href="#/" data-seccion="lecciones">Lecciones</a>
+    <a href="#/frases" data-seccion="frases">Frases</a>
+    <a href="#/cuaderno" data-seccion="cuaderno">Cuaderno</a>
+    <a href="#/repaso" data-seccion="repaso">Repaso <span class="menu-num" id="menu-repaso-num" hidden></span></a>
+    <a href="#/perfil" data-seccion="perfil"><span id="menu-avatar"></span>Perfil</a>
+  </nav>
+
+  <main id="principal" tabindex="-1"></main>
+
+  <aside class="tutora" aria-label="Tutora">
+    <div class="tutora-dentro">
+      <div class="tutora-caja caja">
+        <p class="tutora-nombre" id="tutora-nombre">Cô Mai</p>
+        <button type="button" class="tutora-plegar" id="tutora-plegar" aria-label="Ocultar el cuadro de la tutora" title="Ocultar (pulsa a la tutora para volver a verlo)">▾</button>
+        <div class="tutora-texto" id="tutora-texto" aria-hidden="true"></div>
+        <p class="sr-only" id="tutora-lector" aria-live="polite"></p>
+        <button type="button" class="btn btn-peq tutora-seguir" id="tutora-seguir" hidden>Seguir ▶</button>
+      </div>
+      <button type="button" class="tutora-boton" id="tutora-boton" aria-label="Tocar a la tutora">
+        <canvas id="tutora-canvas" width="56" height="64" aria-hidden="true"></canvas>
+      </button>
+      <p class="tutora-bocadillo" id="tutora-bocadillo" aria-live="polite" hidden></p>
+    </div>
+  </aside>
+
+  <div id="globo" class="globo" role="group" aria-label="Detalle de la palabra" hidden></div>
+
+  <script>
+    if (location.protocol === 'file:') {
+      document.getElementById('principal').innerHTML =
+        '<section class="caja errores"><h1>Abre la web con el servidor local</h1>' +
+        '<p>Así, abriendo el archivo directamente, el navegador no deja cargar las lecciones.</p>' +
+        '<p>Haz doble clic en <strong>iniciar.cmd</strong> (en esta misma carpeta) y se abrirá sola.</p></section>';
+    }
+  </script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

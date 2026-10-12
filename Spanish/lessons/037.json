@@ -1,0 +1,131 @@
+{
+  "capitulo": 4,
+  "titulo_es": "En el restaurante",
+  "titulo": {"en": "At the restaurant"},
+  "intro": {"en": "Ordering a meal: starter, main course, drinks and the bill."},
+  "palabras": {
+    "la carta": {"en": "the menu", "pron": "la KAR-ta", "genero": "f"},
+    "el menú del día": {
+      "en": "the set lunch menu",
+      "pron": "el me-NU del DI-a",
+      "genero": "m",
+      "nota": "A fixed-price lunch: a first course, a second and dessert."
+    },
+    "de primero": {"en": "as a starter", "pron": "de pri-ME-ro", "cat": "expression"},
+    "de segundo": {"en": "as a main course", "pron": "de se-GUN-do", "cat": "expression"},
+    "de postre": {"en": "for dessert", "pron": "de POS-tre", "cat": "expression"},
+    "para beber": {"en": "to drink", "pron": "PA-ra be-BER", "cat": "expression"},
+    "la cuenta": {"en": "the bill", "pron": "la KWEN-ta", "genero": "f"},
+    "la sopa": {"en": "the soup", "pron": "la SO-pa", "genero": "f"},
+    "la ensalada": {"en": "the salad", "pron": "la en-sa-LA-da", "genero": "f"},
+    "el pollo": {"en": "the chicken", "pron": "el PO-yo", "genero": "m"},
+    "el pescado": {"en": "the fish", "pron": "el pes-KA-do", "genero": "m"},
+    "la carne": {"en": "the meat", "pron": "la KAR-ne", "genero": "f"},
+    "para mí": {"en": "for me", "pron": "PA-ra mi", "cat": "expression"},
+    "algo más": {"en": "anything else", "pron": "AL-go mas", "cat": "expression"}
+  },
+  "bloques": [
+    {
+      "tipo": "explicacion",
+      "titulo": {"en": "How a meal goes"},
+      "texto": {
+        "en": "The waiter asks: **¿Qué van a tomar?** Then **¿Y de segundo?**, **¿Para beber?**, **¿Algo más?**\n\nYou answer with the course and the dish: **De primero**, la sopa. **Para mí**, el pescado.\n\nTo ask for something, a present-tense question with por favor is polite enough: **¿Nos trae** la carta, por favor? **¿Me trae** otra agua?\n\n**Tomar** is the general verb for having food or drink: ¿Qué tomas?\n\nThe meals are **el desayuno**, **la comida** and **la cena**, with the verbs desayunar, comer and cenar. In Spain la comida is around two and la cena around nine."
+      }
+    },
+    {
+      "tipo": "dialogo",
+      "titulo": {"en": "Lunch"},
+      "frases": [
+        {
+          "quien": "Camarero",
+          "es": "Buenas tardes. ¿Qué van a tomar?",
+          "en": "Good afternoon. What are you going to have?",
+          "analisis": [["Buenas tardes", "greeting"], ["¿Qué", "question"], ["van a tomar", "verb"]]
+        },
+        {
+          "quien": "Lucía",
+          "es": "De primero, la ensalada. Y de segundo, el pescado.",
+          "en": "As a starter, the salad. And as a main course, the fish.",
+          "analisis": [["De primero", "course"], ["la ensalada", "object"], ["de segundo", "course"], ["el pescado", "object"]]
+        },
+        {
+          "quien": "Pablo",
+          "es": "Para mí, la sopa y el pollo.",
+          "en": "For me, the soup and the chicken.",
+          "analisis": [["Para mí", "for whom"], ["la sopa y el pollo", "object"]]
+        },
+        {"quien": "Camarero", "es": "¿Y para beber?", "en": "And to drink?", "analisis": [["para beber", "purpose"]]},
+        {
+          "quien": "Pablo",
+          "es": "Agua, por favor.",
+          "en": "Water, please.",
+          "analisis": [["Agua", "object"], ["por favor", "politeness"]]
+        },
+        {
+          "quien": "Lucía",
+          "es": "¿Nos trae la cuenta, por favor?",
+          "en": "Could you bring us the bill, please?",
+          "analisis": [["¿Nos trae", "verb (usted)"], ["la cuenta", "object"], ["por favor", "politeness"]],
+          "nota": "A plain present question with por favor is a normal polite request in Spain."
+        }
+      ]
+    },
+    {"tipo": "vocabulario"},
+    {
+      "tipo": "huecos",
+      "id": "restaurante-1",
+      "pregunta": {"en": "Complete: as a starter, the soup."},
+      "frase": "___ primero, la sopa.",
+      "audio": true,
+      "opciones": {
+        "De": {"en": "Courses take de: de primero, de segundo, de postre."},
+        "En": {"en": "The set phrase is de primero."},
+        "Para": {"en": "Para goes with the person: para mí."}
+      },
+      "correcta": "De"
+    },
+    {
+      "tipo": "test",
+      "id": "restaurante-2",
+      "pregunta": {"en": "You have finished eating. What do you ask for?"},
+      "opciones": {
+        "La cuenta, por favor": {"en": "La cuenta is the bill."},
+        "La carta, por favor": {"en": "La carta is the menu, for the start of the meal."},
+        "La cena, por favor": {"en": "La cena is dinner."}
+      },
+      "correcta": "La cuenta, por favor"
+    },
+    {
+      "tipo": "traduccion",
+      "id": "restaurante-3",
+      "frase": "¿Qué van a tomar?",
+      "opciones": [
+        {"texto": {"en": "What are you going to have?"}, "correcta": true},
+        {
+          "texto": {"en": "What are you going to take away?"},
+          "explicacion": {"en": "Tomar here means to have food or drink."}
+        },
+        {"texto": {"en": "Where are you going to sit?"}, "explicacion": {"en": "Tomar is to have, not to sit."}}
+      ]
+    },
+    {
+      "tipo": "escribir",
+      "id": "restaurante-4",
+      "pregunta": {"en": "Translate: «For me, the fish.»"},
+      "respuestas": ["Para mí, el pescado", "Para mí el pescado"]
+    },
+    {
+      "tipo": "ordenar",
+      "id": "restaurante-5",
+      "frase": "¿Nos trae la cuenta, por favor?",
+      "traduccion": {"en": "Could you bring us the bill, please?"}
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": {"en": "Your turn: write and speak"},
+      "texto": {
+        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Write a dialogue in a restaurant: asking for a table, ordering two courses and a drink, and paying.\n\n**Speak (about 30 seconds).** Play the customer aloud: book a table, order, ask for something that is missing and ask for the bill."
+      }
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comprobar biblioteca</title>
+<style>
+  :root{--bg:#f6f3ea;--ink:#222;--muted:#6b6b6b;--ok:#1f7a45;--warn:#9a6a00;--err:#b3261e;--card:#fff}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121815;--ink:#e8eee9;--muted:#9aa59e;--ok:#5fd08a;--warn:#e7b84a;--err:#ff8a80;--card:#1b2420}}
+  :root[data-theme="dark"]{--bg:#121815;--ink:#e8eee9;--muted:#9aa59e;--ok:#5fd08a;--warn:#e7b84a;--err:#ff8a80;--card:#1b2420}
+  body{margin:0;padding:16px;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,'Noto Sans SC',sans-serif}
+  main{max-width:900px;margin:0 auto}
+  h1{font-size:20px} h2{font-size:16px;margin:24px 0 8px}
+  .f{background:var(--card);padding:10px 12px;margin:0 0 8px;border-left:4px solid var(--ok)}
+  .f.w{border-color:var(--warn)} .f.e{border-color:var(--err)}
+  .f ul{margin:6px 0 0;padding-left:20px}
+  li.err{color:var(--err)} li.warn{color:var(--warn)}
+  pre{background:var(--card);padding:10px;overflow:auto;font-size:12.5px}
+  .sum{font-weight:600}
+</style>
+</head>
+<body>
+<main>
+<h1>Comprobar biblioteca</h1>
+<p>Revisa el diccionario y <b>todos</b> los ejercicios de todas las carpetas (<code>data/hsk1/lectura/</code> … <code>data/hsk6/escucha/</code>), igual que hace la web. Es lo mismo que <code>node tools/validate.js</code>, pero sin instalar nada. Recarga la página después de cada cambio.</p>
+<p class="sum" id="sum">Comprobando…</p>
+<div id="out"></div>
+</main>
+<script type="module">
+import {setBase,loadLibrary,loadExercise,loadWriting,LEVELS,SKILLS,WRITING,folderOf} from '../js/data.js';
+import {validateDictionary,duplicateKeys} from '../js/checks.js';
+setBase('../');
+const out=document.getElementById('out'),sum=document.getElementById('sum');
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+let nErr=0,nWarn=0,nEx=0;
+function show(name,{errors,warnings}){
+  nErr+=errors.length;nWarn+=warnings.length;
+  const cls=errors.length?'e':warnings.length?'w':'';
+  out.insertAdjacentHTML('beforeend',`<div class="f ${cls}"><b>${errors.length?'✗':warnings.length?'!':'✓'} ${esc(name)}</b>${
+    errors.length||warnings.length?`<ul>${errors.map(m=>`<li class="err">ERROR · ${esc(m)}</li>`).join('')}${warnings.map(m=>`<li class="warn">aviso · ${esc(m)}</li>`).join('')}</ul>`:''}</div>`);
+}
+
+try{
+  const r=await fetch('../data/dictionary.json',{cache:'no-store'});
+  const dictRaw=(await r.text()).replace(/^\uFEFF/,'');
+  const dictData=JSON.parse(dictRaw);
+  const dres=validateDictionary(dictData);
+  duplicateKeys(dictRaw).forEach(k=>dres.errors.push(`clave repetida en el diccionario: «${k}»`));
+  show(`data/dictionary.json (${Object.keys(dictData.entries||{}).length} palabras)`,dres);
+  const dict=dictData.entries||{};
+
+  for(const level of LEVELS)for(const skill of [...SKILLS,WRITING]){
+    const folder=folderOf(level,skill);
+    const library=await loadLibrary(level,skill);
+    if(skill===WRITING&&!library.length)continue;
+    out.insertAdjacentHTML('beforeend',`<h2>${folder} · ${library.length} ejercicio(s)</h2>`);
+    for(const entry of library){
+      nEx++;
+      try{show(folder+entry.file,skill===WRITING?await loadWriting(entry):await loadExercise(entry,dict));}
+      catch(e){show(folder+entry.file,{errors:[e.message],warnings:[]});}
+    }
+  }
+  sum.textContent=`${nEx} ejercicio(s) · ${nErr} error(es) · ${nWarn} aviso(s)`;
+  sum.style.color=nErr?'var(--err)':nWarn?'var(--warn)':'var(--ok)';
+}catch(e){
+  sum.textContent='No se pudo completar la comprobación: '+e.message;
+  sum.style.color='var(--err)';
+}
+</script>
+</body>
+</html>

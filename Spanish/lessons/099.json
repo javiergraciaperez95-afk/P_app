@@ -1,0 +1,141 @@
+{
+  "capitulo": 9,
+  "titulo_es": "Mi trabajo",
+  "titulo": {"en": "My job"},
+  "intro": {"en": "Talking about your work and getting through a short interview."},
+  "palabras": {
+    "el jefe": {"en": "the boss (male)", "pron": "el HE-fe", "genero": "m", "nota": "Feminine: la jefa."},
+    "el compañero": {"en": "the colleague", "pron": "el kom-pa-NYE-ro", "genero": "m"},
+    "el sueldo": {"en": "the salary", "pron": "el SWEL-do", "genero": "m"},
+    "el horario": {"en": "the working hours, the timetable", "pron": "el o-RA-ryo", "genero": "m"},
+    "la reunión": {"en": "the meeting", "pron": "la reu-NYON", "genero": "f"},
+    "la entrevista": {"en": "the interview", "pron": "la en-tre-BIS-ta", "genero": "f"},
+    "el currículum": {"en": "the CV", "pron": "el ku-RRI-ku-lum", "genero": "m"},
+    "la experiencia": {"en": "the experience", "pron": "la eks-pe-RYEN-thya", "genero": "f"},
+    "a tiempo parcial": {"en": "part-time", "pron": "a TYEM-po par-THYAL", "cat": "expression"},
+    "a jornada completa": {"en": "full-time", "pron": "a hor-NA-da kom-PLE-ta", "cat": "expression"},
+    "ganar": {"en": "to earn", "pron": "ga-NAR", "cat": "verb"},
+    "estoy en paro": {"en": "I am unemployed", "pron": "es-TOI en PA-ro", "cat": "expression"},
+    "el puesto": {"en": "the position", "pron": "el PWES-to", "genero": "m"},
+    "contratar": {"en": "to hire", "pron": "kon-tra-TAR", "cat": "verb"}
+  },
+  "bloques": [
+    {
+      "tipo": "explicacion",
+      "titulo": {"en": "Work talk"},
+      "texto": {
+        "en": "What you do: **soy** ingeniera. **Trabajo de** camarero (often a job for now). **Trabajo en** una empresa de transporte.\n\nYour conditions: tengo un **horario** de nueve a cinco. Trabajo **a tiempo parcial** / **a jornada completa**. **Gano** poco.\n\nHow long: **llevo** tres años en esta empresa.\n\nLooking for work: **estoy en paro**. **Busco trabajo.** He mandado el **currículum**. Tengo una **entrevista**.\n\nAn interviewer uses usted: **¿Qué experiencia tiene?** **¿Por qué quiere este puesto?** **¿Cuándo puede empezar?**"
+      }
+    },
+    {
+      "tipo": "dialogo",
+      "titulo": {"en": "An interview"},
+      "frases": [
+        {
+          "quien": "Jefa",
+          "es": "¿Qué experiencia tiene?",
+          "en": "What experience do you have?",
+          "analisis": [["¿Qué experiencia", "question"], ["tiene", "verb"]]
+        },
+        {
+          "quien": "Pablo",
+          "es": "Trabajé tres años de camarero y ahora llevo un año en una oficina.",
+          "en": "I worked as a waiter for three years and I've now been in an office for a year.",
+          "analisis": [
+            ["Trabajé", "verb"],
+            ["tres años", "time"],
+            ["de camarero", "job"],
+            ["ahora", "time"],
+            ["llevo", "verb"],
+            ["un año", "time"],
+            ["en una oficina", "place"]
+          ]
+        },
+        {
+          "quien": "Jefa",
+          "es": "¿Por qué quiere cambiar de trabajo?",
+          "en": "Why do you want to change jobs?",
+          "analisis": [["¿Por qué", "question"], ["quiere", "verb"], ["cambiar de trabajo", "object"]]
+        },
+        {
+          "quien": "Pablo",
+          "es": "Porque busco un puesto a jornada completa.",
+          "en": "Because I'm looking for a full-time position.",
+          "analisis": [["Porque", "connector"], ["busco", "verb"], ["un puesto", "object"], ["a jornada completa", "type"]]
+        },
+        {
+          "quien": "Jefa",
+          "es": "El horario es de nueve a seis. ¿Cuándo puede empezar?",
+          "en": "The hours are nine to six. When can you start?",
+          "analisis": [
+            ["El horario", "subject"],
+            ["es", "verb"],
+            ["de nueve a seis", "time"],
+            ["¿Cuándo", "question"],
+            ["puede empezar", "verb"]
+          ]
+        },
+        {
+          "quien": "Pablo",
+          "es": "El lunes. ¿Puedo preguntar cuál es el sueldo?",
+          "en": "On Monday. May I ask what the salary is?",
+          "analisis": [["El lunes", "time"], ["¿Puedo preguntar", "verb"], ["cuál es", "question"], ["el sueldo", "subject"]]
+        }
+      ]
+    },
+    {"tipo": "vocabulario"},
+    {
+      "tipo": "huecos",
+      "id": "mi-trabajo-1",
+      "pregunta": {"en": "Complete: I worked as a waiter."},
+      "frase": "Trabajé ___ camarero.",
+      "audio": true,
+      "opciones": {
+        "de": {"en": "Trabajar de plus the job."},
+        "en": {"en": "En goes with the place."},
+        "un": {"en": "No article before the job."}
+      },
+      "correcta": "de"
+    },
+    {
+      "tipo": "traduccion",
+      "id": "mi-trabajo-2",
+      "frase": "Estoy en paro.",
+      "opciones": [
+        {"texto": {"en": "I'm unemployed."}, "correcta": true},
+        {"texto": {"en": "I'm on a break."}, "explicacion": {"en": "A break is un descanso."}},
+        {"texto": {"en": "I'm on strike."}, "explicacion": {"en": "That is estoy en huelga."}}
+      ]
+    },
+    {
+      "tipo": "test",
+      "id": "mi-trabajo-3",
+      "pregunta": {"en": "Which phrase means full-time?"},
+      "opciones": {
+        "a jornada completa": {"en": "The whole working day."},
+        "a tiempo parcial": {"en": "That is part-time."},
+        "de nueve a seis": {"en": "That is a timetable, nine to six."}
+      },
+      "correcta": "a jornada completa"
+    },
+    {
+      "tipo": "escribir",
+      "id": "mi-trabajo-4",
+      "pregunta": {"en": "Translate: «I'm looking for a job.»"},
+      "respuestas": ["Busco trabajo", "Estoy buscando trabajo"]
+    },
+    {
+      "tipo": "ordenar",
+      "id": "mi-trabajo-5",
+      "frase": "Tengo una reunión con mi jefa",
+      "traduccion": {"en": "I have a meeting with my boss."}
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": {"en": "Your turn: write and speak"},
+      "texto": {
+        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Describe your job or your studies: what you do, your timetable, what you like and what you do not.\n\n**Speak (about 1 minute).** Explain aloud what a normal working day is like for you."
+      }
+    }
+  ]
+}

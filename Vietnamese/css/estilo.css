@@ -1,0 +1,794 @@
+/* ============================================================
+   Libro interactivo de vietnamita · estilo pixel art
+   ============================================================ */
+
+:root {
+  --px: 3px;                 /* grosor del "píxel" de los bordes */
+  --fondo: #efe6d2;
+  --fondo-trama: #e8dcc3;
+  --papel: #fffaf0;
+  --papel-2: #f4ead6;
+  --tinta: #2b1d1a;
+  --suave: #6d5b50;
+  --borde: #2b1d1a;
+  --sombra: #b9a383;
+  --acento: #c8445a;
+  --acento-tinta: #ffffff;
+  --lila: #6f5fae;
+  --ok: #2c7f45;
+  --ok-fondo: #dcf1df;
+  --mal: #b3362c;
+  --mal-fondo: #fbe0dc;
+  --resalte: #fff0a0;
+  --foco: #c8445a;
+  --f-texto: "Be Vietnam Pro", "Segoe UI", system-ui, sans-serif;
+  --f-pixel: "Tiny5", "Be Vietnam Pro", "Segoe UI", monospace; /* Tiny5: pixel y con la «C» bien distinta de la «O» */
+  --alto-tutora: 230px;      /* hueco que deja el contenido para la tutora */
+  color-scheme: light;
+}
+
+:root[data-tema="oscuro"] {
+  --fondo: #17121c;
+  --fondo-trama: #1c1623;
+  --papel: #2a2232;
+  --papel-2: #342a3e;
+  --tinta: #f2e8da;
+  --suave: #b9aab5;
+  --borde: #6c5a7c;
+  --sombra: #070509;
+  --acento: #ee6f86;
+  --acento-tinta: #1b0f14;
+  --lila: #b0a0ea;
+  --ok: #74d290;
+  --ok-fondo: #1f3a2a;
+  --mal: #ff8d7d;
+  --mal-fondo: #45211f;
+  --resalte: #5b4b1b;
+  --foco: #ffb3c1;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Lo oculto se oculta siempre, aunque su clase le dé otro «display» (p. ej. .btn) */
+[hidden] { display: none !important; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--f-texto);
+  font-size: 17px;
+  line-height: 1.55;
+  font-variant-ligatures: none; /* las fuentes pixel no llevan bien la ligadura «fi» */
+  font-synthesis-weight: none;  /* sin «negrita falsa»: emborrona la fuente pixel */
+  color: var(--tinta);
+  background-color: var(--fondo);
+  background-image: repeating-conic-gradient(var(--fondo-trama) 0 25%, transparent 0 50%);
+  background-size: 8px 8px;
+}
+
+h1, h2, h3 { line-height: 1.25; margin: 0 0 .5em; }
+h1 { font-size: 1.7rem; }
+h2 { font-size: 1.2rem; font-family: var(--f-pixel); font-weight: 700; }
+p { margin: 0 0 .7em; }
+a { color: inherit; }
+strong { font-weight: 700; }
+
+:focus-visible { outline: 3px dashed var(--foco); outline-offset: 3px; }
+
+/* Un archivo oculto se ve enfocado en el botón que lo abre */
+.sr-only:focus-visible + label { outline: 3px dashed var(--foco); outline-offset: 3px; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.saltar {
+  position: absolute; left: 8px; top: -60px; z-index: 50;
+  background: var(--tinta); color: var(--papel); padding: 8px 12px;
+}
+.saltar:focus { top: 8px; }
+
+[lang="vi"] { font-family: var(--f-texto); }
+
+/* ---------- Caja pixel: bordes escalonados + sombra dura ---------- */
+.caja {
+  background: var(--papel);
+  margin: calc(var(--px) * 2) calc(var(--px) * 2) calc(var(--px) * 4);
+  padding: 16px 18px;
+  box-shadow:
+    0 calc(var(--px) * -1) 0 0 var(--borde),
+    0 var(--px) 0 0 var(--borde),
+    calc(var(--px) * -1) 0 0 0 var(--borde),
+    var(--px) 0 0 0 var(--borde),
+    var(--px) calc(var(--px) * 2) 0 0 var(--sombra),
+    calc(var(--px) * 2) var(--px) 0 0 var(--sombra);
+}
+
+/* ---------- Botones ---------- */
+.btn {
+  --b: 2px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  font: inherit; font-family: var(--f-pixel); font-weight: 500; font-size: .95rem;
+  color: var(--tinta); background: var(--papel-2);
+  border: 0; padding: 8px 14px; margin: var(--b);
+  cursor: pointer; text-decoration: none; line-height: 1.3;
+  box-shadow:
+    0 calc(var(--b) * -1) 0 0 var(--borde),
+    0 var(--b) 0 0 var(--borde),
+    calc(var(--b) * -1) 0 0 0 var(--borde),
+    var(--b) 0 0 0 var(--borde),
+    var(--b) calc(var(--b) * 2) 0 0 var(--sombra),
+    calc(var(--b) * 2) var(--b) 0 0 var(--sombra);
+}
+.btn:hover { background: var(--resalte); }
+.btn:active { transform: translate(var(--b), var(--b)); }
+.btn[aria-disabled="true"] { cursor: default; transform: none; }
+.btn-peq { font-size: .85rem; padding: 4px 10px; }
+.btn-icono { width: 40px; height: 40px; padding: 0; font-size: 1.2rem; }
+.btn-acento { background: var(--acento); color: var(--acento-tinta); }
+.btn-acento:hover { background: var(--acento); filter: brightness(1.08); }
+
+/* ---------- Cabecera y contenido ---------- */
+.cabecera {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  max-width: 820px; margin: 0 auto; padding: 12px 16px;
+}
+.cabecera-botones { display: flex; gap: 8px; }
+#btn-sonido[aria-pressed="false"] { color: var(--suave); text-decoration: line-through; }
+.marca {
+  display: flex; flex-direction: column; line-height: 1.15;
+  font-family: var(--f-pixel); font-weight: 700; font-size: 1.3rem; text-decoration: none;
+}
+.marca-titulo { white-space: nowrap; }
+.marca [lang="vi"] { font-family: var(--f-texto); font-weight: 700; }
+.marca .bandera { width: 1.05em; height: .7em; vertical-align: .05em; }
+.marca small { white-space: nowrap; font-size: .8rem; color: var(--suave); font-weight: 500; letter-spacing: .04em; }
+
+main {
+  max-width: 820px; margin: 0 auto;
+  padding: 4px 16px var(--alto-tutora);
+}
+main:focus { outline: none; }
+
+.cargando { font-family: var(--f-pixel); color: var(--suave); padding: 24px 0; }
+
+/* ---------- Pantalla inicial ---------- */
+.portada-titulo { font-family: var(--f-pixel); }
+.resumen { color: var(--suave); }
+
+.barra {
+  height: 14px; background: var(--papel-2); margin: 8px 2px 12px;
+  box-shadow: 0 0 0 2px var(--borde);
+}
+.barra > span { display: block; height: 100%; background: var(--ok); }
+
+.lista-lecciones { list-style: none; margin: 16px 0; padding: 0; display: grid; gap: 6px; }
+.tarjeta {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 2px 14px;
+  text-decoration: none; color: inherit;
+}
+.tarjeta:hover { background: var(--papel-2); }
+.tarjeta .num {
+  grid-row: span 2; font-family: var(--f-pixel); font-weight: 700;
+  background: var(--tinta); color: var(--papel); padding: 6px 8px;
+}
+.tarjeta .vi { font-size: 1.25rem; font-weight: 700; }
+.tarjeta .es { color: var(--suave); grid-column: 2; }
+.tarjeta .estados { grid-row: 1 / span 2; grid-column: 3; display: grid; justify-items: end; gap: 2px; }
+.tarjeta .estado { font-family: var(--f-pixel); font-size: .9rem; text-align: right; color: var(--suave); }
+.continuar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px;
+  text-decoration: none; color: inherit; background: var(--ok-fondo);
+}
+.continuar:hover { filter: brightness(1.03); }
+.continuar-etiqueta { font-family: var(--f-pixel); font-weight: 700; color: var(--ok); font-size: 1.1rem; }
+.continuar .vi { font-size: 1.2rem; font-weight: 700; }
+.estado-hecha, .tarjeta .estado-hecha { color: var(--ok); }
+.estado-error, .tarjeta .estado-error { color: var(--mal); }
+
+/* ---------- Errores y avisos ---------- */
+.errores { background: var(--mal-fondo); }
+.errores h1, .errores h2 { color: var(--mal); }
+.errores ul { margin: 0; padding-left: 1.2em; }
+.errores li { margin-bottom: .6em; }
+.extracto {
+  background: var(--papel); color: var(--tinta); padding: 8px 10px; margin: 6px 0;
+  overflow-x: auto; font-size: .85rem; line-height: 1.4;
+  box-shadow: 0 0 0 2px var(--borde);
+}
+.pista { font-size: .9rem; color: var(--suave); }
+.avisos summary { cursor: pointer; font-family: var(--f-pixel); }
+.avisos ul { margin: .8em 0 0; padding-left: 1.2em; font-size: .92rem; }
+
+/* ---------- Lección ---------- */
+.migas { margin: 4px 0 8px; }
+.leccion-cabecera .leccion-num { font-family: var(--f-pixel); color: var(--acento); margin: 0; }
+.leccion-cabecera h1 { font-size: 2rem; margin: 0; }
+.leccion-cabecera .leccion-es { color: var(--suave); margin: 0; }
+
+.bloque { margin-top: 18px; }
+.bloque-cabecera { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.bloque-cabecera h2 { margin: 0; }
+
+.explicacion { background: var(--papel-2); }
+
+/* Frases en vietnamita */
+.vi { font-size: 1.3rem; line-height: 1.9; margin: 0; }
+.es { color: var(--suave); margin: 0; font-size: .95rem; }
+
+.frases { list-style: none; margin: 0; padding: 0; }
+.frase {
+  display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; align-items: start;
+  padding: 10px 0; border-bottom: 2px dashed var(--papel-2);
+}
+.frase:last-child { border-bottom: 0; }
+.quien { font-family: var(--f-pixel); font-size: .85rem; color: var(--lila); font-weight: 700; }
+.dialogo:not(.con-trad) .frase .es { display: none; }
+
+/* Análisis sintáctico: fichas por función */
+.analisis { list-style: none; margin: 6px 0 2px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.funcion {
+  display: grid; padding: 2px 8px; background: var(--papel-2);
+  border-bottom: 3px solid var(--c, var(--suave));
+}
+.funcion-palabra { font-weight: 700; color: var(--tinta); font-size: 1rem; }
+.funcion-nombre { font-size: .78rem; color: var(--suave); line-height: 1.3; }
+.funcion-sujeto { --c: #3f7fc4; }
+.funcion-verbo { --c: var(--acento); }
+.funcion-complemento { --c: #3c9a5f; }
+.funcion-otro { --c: var(--lila); }
+
+.sello {
+  width: 36px; height: 36px; margin: 6px 3px 3px;
+  border: 0; cursor: pointer;
+  font-family: var(--f-pixel); font-weight: 700; font-size: 1.15rem;
+  background: var(--acento); color: var(--acento-tinta);
+  box-shadow:
+    0 -2px 0 0 var(--borde), 0 2px 0 0 var(--borde),
+    -2px 0 0 0 var(--borde), 2px 0 0 0 var(--borde),
+    2px 4px 0 0 var(--sombra), 4px 2px 0 0 var(--sombra);
+}
+.sello:hover { filter: brightness(1.1); }
+.sello:active { transform: translate(2px, 2px); }
+
+/* Palabras con globo */
+.palabra {
+  font: inherit; color: inherit; background: none; border: 0; margin: 0; padding: 0 1px;
+  line-height: inherit; cursor: help;
+  border-bottom: 2px dotted var(--suave);
+}
+.palabra:hover, .palabra[aria-describedby] { background: var(--resalte); }
+
+.globo {
+  position: fixed; z-index: 40; max-width: 260px;
+  background: var(--papel); color: var(--tinta); padding: 8px 12px;
+  display: grid; gap: 2px;
+  box-shadow:
+    0 -3px 0 0 var(--borde), 0 3px 0 0 var(--borde),
+    -3px 0 0 0 var(--borde), 3px 0 0 0 var(--borde),
+    3px 6px 0 0 var(--sombra), 6px 3px 0 0 var(--sombra);
+}
+.globo[hidden] { display: none; }
+.globo-vi { font-weight: 700; font-size: 1.15rem; }
+/* Las pronunciaciones llevan flechas de tono (↘ ↗ ↓): fuente normal, que sí las tiene */
+.globo-pron { color: var(--lila); font-size: .9rem; font-weight: 600; }
+.globo-es { font-size: .95rem; }
+.globo-nota { font-size: .85rem; color: var(--suave); }
+
+/* Vocabulario */
+.vocab-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.vocab-item {
+  width: calc(100% - 4px); height: calc(100% - 4px);
+  display: grid; justify-content: start; justify-items: start; gap: 0; text-align: left;
+  font-family: var(--f-texto);
+}
+.vocab-vi { font-size: 1.15rem; font-weight: 700; }
+.vocab-pron { font-size: .85rem; color: var(--lila); font-weight: 600; }
+.vocab-es { font-size: .92rem; color: var(--suave); }
+
+/* Ejercicios */
+.ejercicio { border-top: 0; }
+.etiqueta { font-family: var(--f-pixel); color: var(--acento); margin-bottom: .3em; }
+.ejercicio.resuelto .etiqueta::after { content: " · ✓ resuelto"; color: var(--ok); }
+.pregunta { font-weight: 600; }
+.frase-ejercicio { margin: 4px 0; }
+.opciones { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 12px; }
+.opcion { justify-content: flex-start; text-align: left; font-family: var(--f-texto); font-size: 1rem; padding: 10px 14px; }
+.opcion[lang="vi"] { font-size: 1.15rem; }
+.opcion.ok { background: var(--ok-fondo); color: var(--ok); font-weight: 700; }
+.opcion.ok::before { content: "✓"; }
+.opcion.mal { background: var(--mal-fondo); color: var(--mal); text-decoration: line-through; }
+.hueco {
+  display: inline-block; min-width: 3em; text-align: center;
+  border-bottom: 3px solid var(--acento); color: var(--suave);
+}
+.hueco.lleno { color: var(--ok); font-weight: 700; }
+
+/* Pie de lección */
+.leccion-pie p { margin-bottom: .3em; }
+.pie-botones { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+
+/* ---------- Tutora (abajo, fija) ---------- */
+.tutora {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+  pointer-events: none; padding: 0 12px 6px;
+}
+.tutora-dentro { position: relative; max-width: 820px; margin: 0 auto; }
+.tutora-caja {
+  pointer-events: auto; position: relative;
+  margin: 0 184px 6px 6px; min-height: 120px; padding: 10px 14px 12px;
+}
+.tutora-nombre {
+  position: absolute; top: -14px; left: 10px; margin: 0; padding: 0 8px;
+  font-family: var(--f-pixel); font-weight: 700; font-size: .9rem;
+  background: var(--acento); color: var(--acento-tinta);
+  box-shadow: 0 0 0 2px var(--borde);
+}
+.tutora-texto {
+  white-space: pre-line; max-height: 7.2em; overflow-y: auto; overflow-x: hidden; overflow-wrap: anywhere;
+  padding-top: 6px; padding-right: 4px; cursor: pointer; min-height: 3em;
+}
+.tutora-seguir { position: absolute; right: 8px; bottom: -14px; }
+.tutora-boton {
+  position: absolute; right: 0; bottom: 0;
+  padding: 0; margin: 0; border: 0; background: none; cursor: pointer;
+  pointer-events: auto; line-height: 0;
+}
+#tutora-canvas {
+  display: block; width: 168px; height: 192px;
+  image-rendering: pixelated; image-rendering: crisp-edges;
+}
+.tutora-boton.salta { animation: saltito .35s steps(4); }
+@keyframes saltito {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+.tutora-bocadillo {
+  position: absolute; right: 24px; bottom: 200px; margin: 0;
+  max-width: 220px; padding: 6px 10px; pointer-events: none; white-space: pre-line;
+  font-size: .9rem; background: var(--papel); color: var(--tinta);
+  box-shadow:
+    0 -2px 0 0 var(--borde), 0 2px 0 0 var(--borde),
+    -2px 0 0 0 var(--borde), 2px 0 0 0 var(--borde),
+    2px 4px 0 0 var(--sombra), 4px 2px 0 0 var(--sombra);
+}
+.tutora-bocadillo[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) { .tutora-boton.salta { animation: none; } }
+
+/* ---------- Menú de secciones ---------- */
+/* Pestañas de libro: apoyadas sobre una línea que separa el menú del contenido */
+.menu {
+  max-width: 820px; margin: 0 auto 18px; padding: 0 16px;
+  display: flex; flex-wrap: wrap; align-items: flex-end; gap: 6px;
+  background: linear-gradient(var(--borde), var(--borde)) bottom / calc(100% - 32px) 3px no-repeat;
+}
+.menu a {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--f-pixel); font-weight: 500; text-decoration: none;
+  padding: 6px 12px; margin: 2px 2px 3px; background: var(--papel-2);
+  box-shadow: 0 -2px 0 0 var(--borde), -2px 0 0 0 var(--borde), 2px 0 0 0 var(--borde);
+}
+.menu a:hover { background: var(--resalte); }
+.menu a[aria-current="page"] { background: var(--acento); color: var(--acento-tinta); }
+.menu-num {
+  font-size: .78rem; min-width: 1.5em; padding: 0 4px; text-align: center;
+  background: var(--ok); color: var(--papel); box-shadow: 0 0 0 2px var(--borde);
+}
+.menu-num[hidden] { display: none; }
+
+/* ---------- Estrellas (guardar en el cuaderno) ---------- */
+.estrella {
+  font: inherit; font-size: 1.25rem; line-height: 1; cursor: pointer;
+  background: none; border: 0; padding: 4px 6px; color: var(--suave);
+}
+.estrella[aria-pressed="true"] { color: #e0a412; }
+.estrella:hover { background: var(--resalte); }
+.estrella-texto {
+  font-family: var(--f-pixel); font-size: .9rem; justify-self: start; margin-top: 4px;
+  padding: 4px 8px; background: var(--papel-2); color: var(--tinta);
+  box-shadow: 0 0 0 2px var(--borde);
+}
+.estrella-texto[aria-pressed="true"] { color: var(--tinta); background: #ffe08a; }
+:root[data-tema="oscuro"] .estrella-texto[aria-pressed="true"] { background: #6b5214; }
+.vocab-celda { position: relative; }
+.vocab-celda .vocab-acciones { position: absolute; top: 4px; right: 6px; z-index: 1; }
+.vocab-celda .vocab-item { padding-right: 76px; height: auto; }
+.vocab-acciones { display: inline-flex; align-items: center; gap: 2px; }
+
+/* ---------- Altavoz (voz del navegador) ---------- */
+.altavoz {
+  display: inline-grid; place-items: center; vertical-align: middle;
+  width: 32px; height: 30px; padding: 0; margin: 0 4px; border: 0; cursor: pointer;
+  color: var(--lila); background: var(--papel-2);
+  box-shadow: 0 0 0 2px var(--borde);
+}
+.altavoz:hover { background: var(--resalte); }
+.altavoz:active { transform: translate(1px, 1px); }
+.frase-botones { display: grid; gap: 8px; justify-items: center; align-content: start; }
+.frase-botones .altavoz { margin: 0; }
+.frase-ejercicio .altavoz { margin: 0 8px 0 0; }
+.tr-vi .altavoz { width: 40px; height: 36px; }
+.globo-fila { display: flex; align-items: center; gap: 4px; }
+.globo-botones { display: flex; flex-wrap: wrap; gap: 6px; }
+.globo-como { cursor: pointer; }
+
+/* ---------- Práctica de pronunciación y escucha ---------- */
+.practica-lineas { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.practica-lineas li { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.practica-lineas .altavoz { margin: 0 4px 0 0; }
+.silaba {
+  display: inline-grid; justify-items: center; min-width: 56px; padding: 4px 10px; margin: 2px;
+  font: inherit; font-size: 1.25rem; font-weight: 600; cursor: pointer;
+  color: var(--tinta); background: var(--papel-2); border: 0;
+  box-shadow: 0 0 0 2px var(--borde), 2px 3px 0 1px var(--sombra);
+}
+.silaba small { font-size: .75rem; font-weight: 400; color: var(--suave); }
+.silaba:hover { background: var(--resalte); }
+.silaba:active { transform: translate(1px, 1px); }
+.escucha-audio { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+.escucha-audio .altavoz { width: 48px; height: 42px; margin: 0; }
+
+/* ---------- Cómo se pronuncia ---------- */
+.pron-detalle { margin: 4px 2px 0; font-size: .9rem; }
+.pron-detalle summary { cursor: pointer; font-family: var(--f-pixel); color: var(--lila); padding: 2px 0; }
+.pron-detalle ul { margin: 2px 0 6px; padding-left: 1.1em; }
+.pron-detalle li { margin-bottom: 2px; }
+.pron-titulo { font-family: var(--f-pixel); font-weight: 700; margin: 6px 0 0; color: var(--acento); }
+.pron-letras { font-weight: 700; background: var(--papel-2); padding: 0 4px; }
+.pron-flecha { color: var(--lila); font-weight: 700; }
+
+/* ---------- Cuaderno ---------- */
+.contadores { display: flex; flex-wrap: wrap; gap: 6px 16px; font-family: var(--f-pixel); font-weight: 700; font-size: 1.15rem; margin: 4px 0 10px; }
+.contadores small { font-weight: 500; font-size: .8rem; color: var(--suave); }
+.c-nuevas { color: #3f7fc4; }
+.c-aprendiendo { color: var(--mal); }
+.c-repaso { color: var(--ok); }
+.repaso-contadores[data-actual="c-nuevas"] .c-nuevas,
+.repaso-contadores[data-actual="c-aprendiendo"] .c-aprendiendo,
+.repaso-contadores[data-actual="c-repaso"] .c-repaso { text-decoration: underline; text-decoration-thickness: 3px; }
+.cuaderno-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.cuaderno-item { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 4px 14px; padding: 10px 12px; }
+.cuaderno-palabra { display: grid; }
+.cuaderno-ejemplo { font-size: .85rem; color: var(--suave); margin-top: 2px; }
+.cuaderno-buscar { margin: 0 6px 8px; }
+.cuaderno-buscar[hidden] { display: none; }
+.cuaderno-estado { display: grid; justify-items: end; text-align: right; gap: 2px; }
+.chip { font-family: var(--f-pixel); font-size: .8rem; padding: 1px 8px; box-shadow: 0 0 0 2px var(--borde); }
+.chip-nueva { background: #d7e6f7; color: #24548a; }
+.chip-aprendiendo { background: var(--mal-fondo); color: var(--mal); }
+.chip-joven { background: var(--ok-fondo); color: var(--ok); }
+.chip-madura { background: var(--ok); color: var(--papel); }
+:root[data-tema="oscuro"] .chip-nueva { background: #1f3550; color: #9cc6f2; }
+
+/* ---------- Repaso ---------- */
+.tarjeta-repaso { text-align: center; padding: 28px 18px; min-height: 180px; display: grid; align-content: center; }
+.tr-vi { font-size: 2.4rem; font-weight: 700; margin: 0; line-height: 1.5; }
+.tr-linea { border: 0; height: 3px; background: var(--papel-2); margin: 14px 0; }
+.tr-pron { color: var(--lila); font-size: 1.1rem; font-weight: 600; margin: 0; }
+.tr-es { font-size: 1.35rem; font-weight: 600; margin: 4px 0; }
+.tr-nota { color: var(--suave); }
+.tr-botones { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 12px; }
+.tr-mostrar { font-size: 1.05rem; padding: 12px 22px; }
+.tr-resp { display: grid; justify-items: center; gap: 0; min-width: 104px; padding: 8px 12px; }
+.tr-intervalo { font-family: var(--f-texto); font-size: .8rem; color: var(--suave); }
+.r-otra { background: var(--mal-fondo); }
+.r-dificil { background: #f6e7c8; }
+.r-bien { background: var(--ok-fondo); }
+.r-facil { background: #d7e6f7; }
+:root[data-tema="oscuro"] .r-dificil { background: #4a3b1d; }
+:root[data-tema="oscuro"] .r-facil { background: #1f3550; }
+kbd {
+  font-family: var(--f-pixel); font-size: .72rem; padding: 0 4px; margin-left: 4px;
+  background: var(--papel); color: var(--suave); box-shadow: 0 0 0 1px var(--borde);
+}
+.tr-resp kbd { margin: 2px 0 0; }
+.repaso-fin { text-align: center; }
+.repaso-fin-botones { justify-content: center; }
+.repaso-cabecera { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.repaso-cabecera h1 { margin: 0; }
+.tr-ejemplo { margin: 12px auto 4px; padding: 8px 12px; max-width: 560px; background: var(--papel-2); text-align: left; }
+.tr-ejemplo-vi { font-size: 1.15rem; margin: 0; }
+.tr-ejemplo-es { color: var(--suave); margin: 2px 0 0; font-size: .95rem; }
+.tr-ejemplo .altavoz { margin: 0 8px 0 0; }
+
+/* ---------- Perfil ---------- */
+.perfil-cabecera { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
+.perfil-datos { flex: 1; min-width: 200px; }
+.campo {
+  width: 100%; font: inherit; font-size: 1.1rem; padding: 8px 10px; margin: 4px 0 8px;
+  color: var(--tinta); background: var(--papel-2); border: 0;
+  box-shadow: 0 0 0 2px var(--borde);
+}
+.avatar { display: inline-grid; place-items: center; object-fit: cover; image-rendering: auto; box-shadow: 0 0 0 3px var(--borde); }
+.avatar-grande { width: 120px; height: 120px; font-size: 3rem; }
+.avatar-mini { width: 22px; height: 22px; font-size: .75rem; box-shadow: 0 0 0 2px var(--borde); }
+.avatar-vacio { background: var(--lila); color: var(--papel); font-family: var(--f-pixel); font-weight: 700; }
+.perfil-cifras { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+.perfil-cifras li { display: grid; padding: 8px 10px; background: var(--papel-2); }
+.perfil-cifras strong { font-family: var(--f-pixel); font-size: 1.5rem; color: var(--acento); }
+.perfil-cifras span { font-size: .85rem; color: var(--suave); }
+
+/* ---------- Cuenta en la nube ---------- */
+.cuenta h3 { font-family: var(--f-pixel); font-size: 1rem; margin: 12px 0 6px; }
+.pestanas { display: flex; flex-wrap: wrap; gap: 6px; }
+.pestanas .btn[aria-pressed="true"] { background: var(--acento); color: var(--acento-tinta); }
+.form-cuenta { max-width: 420px; }
+.aviso-cuenta { padding: 8px 10px; margin: 8px 0; box-shadow: 0 0 0 2px var(--borde); }
+.aviso-ok { background: var(--ok-fondo); color: var(--ok); }
+.aviso-error { background: var(--mal-fondo); color: var(--mal); }
+.nube-estado { font-family: var(--f-pixel); }
+.nube-ok { color: var(--ok); }
+.nube-error { color: var(--mal); }
+.nube-sincronizando { color: var(--lila); }
+
+/* ============================================================
+   Lección: rediseño para leer mejor
+   ============================================================ */
+main, .cabecera, .menu, .tutora-dentro { max-width: 880px; }
+
+/* Títulos de apartado en letra normal (la pixel se reserva para etiquetas) */
+.leccion h2 {
+  font-family: var(--f-texto); font-weight: 700; font-size: 1.22rem; letter-spacing: 0;
+  display: flex; align-items: center; gap: 10px;
+}
+.leccion .bloque > h2::before,
+.leccion .bloque-cabecera h2::before {
+  content: ""; flex: none; width: 10px; height: 22px; background: var(--c-bloque, var(--suave));
+  box-shadow: 0 0 0 2px var(--borde);
+}
+.leccion .bloque { margin-top: 22px; padding: 20px 22px; }
+.explicacion { --c-bloque: #e0a412; }
+.dialogo { --c-bloque: #3f7fc4; }
+.vocabulario { --c-bloque: #3c9a5f; }
+.practica { --c-bloque: var(--lila); }
+.leccion .bloque-cabecera { margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px dashed var(--papel-2); }
+
+/* Cabecera de la lección */
+.leccion-cabecera { padding: 22px 24px; }
+.leccion-cabecera h1 { font-size: 2.1rem; line-height: 1.25; margin: 4px 0; }
+.leccion-cabecera .leccion-es { font-size: 1.05rem; }
+
+/* Índice */
+.indice h2 { font-size: 1rem; margin-bottom: 10px; }
+.indice ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.indice-enlace {
+  font: inherit; font-size: .92rem; cursor: pointer; text-align: left;
+  padding: 5px 10px 5px 8px; color: var(--tinta); background: var(--papel-2); border: 0;
+  border-left: 6px solid var(--c-bloque, var(--suave));
+  box-shadow: 0 0 0 2px var(--borde);
+}
+.indice-enlace:hover { background: var(--resalte); }
+.indice-explicacion { --c-bloque: #e0a412; }
+.indice-dialogo { --c-bloque: #3f7fc4; }
+.indice-vocabulario { --c-bloque: #3c9a5f; }
+.indice-practica { --c-bloque: var(--lila); }
+.indice-ejercicios { --c-bloque: var(--acento); font-weight: 700; }
+.leccion .bloque, .separador { scroll-margin-top: 12px; }
+
+/* Explicaciones: líneas cómodas y aire entre párrafos */
+.explicacion p { font-size: 1.04rem; line-height: 1.7; margin-bottom: .85em; max-width: 68ch; }
+.explicacion p:last-child { margin-bottom: 0; }
+.explicacion strong { color: var(--acento); }
+:root[data-tema="claro"] .explicacion strong { color: #a3304a; }
+
+/* Frases: botones en fila, persona arriba, traducción siempre visible */
+.frase { grid-template-columns: auto 1fr; gap: 6px 16px; padding: 14px 0; align-items: start; }
+.frase-botones { display: flex; gap: 6px; align-items: center; padding-top: 4px; }
+.frase-botones .sello { width: 32px; height: 30px; margin: 0; font-size: 1rem; }
+.frase-botones .altavoz { width: 34px; height: 30px; }
+.quien {
+  display: inline-block; font-family: var(--f-texto); font-size: .8rem; font-weight: 700;
+  padding: 0 8px; margin-bottom: 2px; color: var(--papel); background: var(--lila);
+}
+.frase .vi { font-size: 1.35rem; line-height: 1.6; }
+.frase .es { display: block; font-size: 1rem; margin-top: 2px; }
+.dialogo:not(.con-trad) .frase .es { display: block; }
+.dialogo:not(.con-trad) .frase .analisis { display: none; }
+.frase .analisis { margin-top: 8px; }
+.funcion { padding: 3px 9px; }
+.funcion-nombre { font-size: .8rem; }
+
+/* Vocabulario: la tarjeta entera es la celda (incluye «Cómo se pronuncia») */
+.vocab-lista { gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.leccion .vocab-celda {
+  display: flex; flex-direction: column; background: var(--papel-2);
+  box-shadow: 0 0 0 2px var(--borde), 3px 4px 0 1px var(--sombra);
+}
+.leccion .vocab-celda .vocab-item {
+  width: 100%; margin: 0; box-shadow: none; background: transparent; padding: 10px 84px 8px 12px; gap: 2px;
+}
+.leccion .vocab-celda .vocab-item:hover { background: var(--resalte); }
+.leccion .vocab-celda .vocab-acciones { top: 8px; right: 6px; }
+.vocab-celda .pron-detalle { margin: 0; padding: 4px 12px 8px; border-top: 2px dashed var(--papel); font-size: .88rem; }
+.vocab-celda .pron-detalle[open] { background: var(--papel); }
+.vocab-vi { font-size: 1.2rem; }
+.vocab-es { font-size: .95rem; color: var(--tinta); opacity: .8; }
+
+/* Práctica de sílabas */
+.practica-lineas { gap: 10px; }
+.practica-lineas li { padding: 6px 0; border-bottom: 2px dashed var(--papel-2); }
+.practica-lineas li:last-child { border-bottom: 0; }
+
+/* Separador antes de cada tanda de ejercicios */
+.separador {
+  font-family: var(--f-pixel) !important; font-size: 1.3rem !important; color: var(--acento);
+  margin: 34px 4px 4px; padding-bottom: 6px; border-bottom: 3px solid var(--acento);
+}
+.separador small { font-family: var(--f-texto); font-size: .85rem; color: var(--suave); font-weight: 600; }
+
+/* Ejercicios */
+.leccion .ejercicio { margin-top: 14px; border-left: 0; }
+.ejercicio .etiqueta { font-size: .85rem; margin-bottom: 4px; }
+.ejercicio .pregunta { font-size: 1.12rem; line-height: 1.5; }
+.ejercicio .frase-ejercicio { font-size: 1.35rem; }
+.ejercicio.resuelto { background: color-mix(in srgb, var(--ok-fondo) 45%, var(--papel)); }
+.opcion { padding: 12px 16px; line-height: 1.4; }
+.leccion .opciones { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.leccion .etiqueta, .vocab-celda .pron-detalle summary {
+  font-family: var(--f-texto); font-weight: 700; font-size: .8rem; letter-spacing: .04em; text-transform: uppercase;
+}
+.frase .es { font-size: 1.02rem; color: var(--tinta); opacity: .75; }
+.dialogo.con-trad .frase .es { opacity: 1; }
+
+/* Lista de lecciones por capítulos */
+.capitulos-barra { display: flex; justify-content: flex-end; margin: 4px 0 2px; }
+.capitulo { margin: 0 0 6px; }
+.capitulo-cabecera {
+  list-style: none; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 2px 14px; align-items: center;
+}
+.capitulo-cabecera::-webkit-details-marker { display: none; }
+.capitulo-cabecera:hover { background: var(--papel-2); }
+.capitulo-titulo { font-family: var(--f-pixel); font-size: 1.25rem; font-weight: 700; }
+.capitulo-titulo::before { content: "▶ "; color: var(--acento); }
+.capitulo[open] .capitulo-titulo::before { content: "▼ "; }
+.capitulo-temas { grid-column: 1; color: var(--suave); font-size: .92rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.capitulo-progreso { grid-row: 1 / span 2; grid-column: 2; font-family: var(--f-pixel); font-size: 1.1rem; color: var(--suave); }
+.capitulo .lista-lecciones { margin: 4px 0 14px 18px; gap: 2px; }
+.capitulo .tarjeta { padding: 10px 14px; }
+.capitulo .tarjeta .vi { font-size: 1.12rem; }
+
+/* Frases útiles: secciones y grupos plegables */
+.frases-seccion { font-family: var(--f-pixel); font-size: 1.3rem; margin: 18px 6px 8px; }
+.frases-todo { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 6px 6px; }
+.frases-grupo-cuerpo { margin: 4px 0 16px; }
+.frases-leccion { margin: 2px 6px 10px; color: var(--suave); font-size: .95rem; }
+
+/* ============================================================
+   Aprovechar el ancho
+   ============================================================ */
+main, .cabecera, .menu, .tutora-dentro { max-width: 1120px; }
+.portada { max-width: 880px; margin: 0 auto; }
+
+/* Explicaciones: fichas en rejilla, viñetas y párrafos */
+.explicacion p { max-width: 80ch; }
+.fichas {
+  display: grid; gap: 10px; margin: 6px 0 12px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+.ficha {
+  display: grid; gap: 4px; align-content: start;
+  padding: 10px 14px; background: var(--papel);
+  box-shadow: 0 0 0 2px var(--borde), 3px 3px 0 1px var(--sombra);
+}
+.ficha dt { margin: 0; font-size: 1.15rem; line-height: 1.35; }
+.ficha dt strong { color: var(--acento); }
+:root[data-tema="claro"] .ficha dt strong { color: #a3304a; }
+.ficha dd { margin: 0; line-height: 1.55; }
+.vinetas { margin: 4px 0 12px; padding: 0; list-style: none; display: grid; gap: 6px; }
+.vinetas li { padding: 6px 10px 6px 30px; position: relative; background: var(--papel); }
+.vinetas li::before { content: "▸"; position: absolute; left: 10px; color: var(--acento); }
+.explicacion > p:last-child, .explicacion > .fichas:last-child, .explicacion > .vinetas:last-child { margin-bottom: 0; }
+
+/* Frases: botones | vietnamita | traducción, y el análisis debajo */
+.leccion .frase {
+  grid-template-columns: auto minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 4px 18px; align-items: center; padding: 10px 0;
+}
+.frase-vi { min-width: 0; }
+.frase > .es { margin: 0; font-size: 1.02rem; }
+.frase-analisis { grid-column: 2 / -1; }
+.frase-analisis .analisis { margin: 2px 0 0; }
+.dialogo:not(.con-trad) .frase-analisis { display: none; }
+
+/* Práctica de sílabas: filas en rejilla, varias por línea */
+.leccion .practica-lineas {
+  display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+.leccion .practica-lineas li {
+  padding: 8px 10px; border: 0; background: var(--papel-2);
+  box-shadow: 0 0 0 2px var(--borde);
+  flex-wrap: wrap; gap: 4px;
+}
+.leccion .practica-lineas li:last-child { border: 0; }
+.leccion .practica-lineas li.ancha { grid-column: 1 / -1; }
+.silaba { min-width: 48px; padding: 3px 8px; font-size: 1.15rem; }
+
+/* Ejercicios en rejilla */
+.ejercicios-rejilla {
+  display: grid; gap: 4px 14px; align-items: start;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+}
+.ejercicios-rejilla .ejercicio { margin-top: 10px; height: calc(100% - 22px); }
+.ejercicios-rejilla .opciones { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+
+/* Vocabulario: tarjetas algo más estrechas para que quepan más */
+.vocab-lista { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); align-items: start; }
+
+@media (max-width: 760px) {
+  .leccion .frase { grid-template-columns: auto minmax(0, 1fr); }
+  .frase > .es, .frase-analisis { grid-column: 2; }
+  .ejercicios-rejilla { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .leccion .frase { grid-template-columns: 1fr; }
+  .frase > .es, .frase-analisis { grid-column: 1; }
+  .frase-vi { order: 1; } .frase > .es { order: 3; } .frase-analisis { order: 4; }
+  .ejercicios-rejilla .opciones { grid-template-columns: 1fr; }
+  .fichas { grid-template-columns: 1fr; }
+  .leccion .practica-lineas { grid-template-columns: 1fr; }
+}
+
+/* ---------- Tutora plegada ---------- */
+.tutora-plegar {
+  position: absolute; top: -14px; right: 10px; width: 28px; height: 22px; padding: 0;
+  font: inherit; font-size: .9rem; line-height: 1; cursor: pointer; border: 0;
+  background: var(--papel-2); color: var(--tinta); box-shadow: 0 0 0 2px var(--borde);
+}
+.tutora-plegar:hover { background: var(--resalte); }
+body.tutora-plegada { --alto-tutora: 120px; }
+body.tutora-plegada .tutora-caja { display: none; }
+body.tutora-plegada #tutora-canvas { width: 84px; height: 96px; }
+body.tutora-plegada .tutora-bocadillo { bottom: 104px; }
+.tutora-boton.con-aviso::after {
+  content: "!"; position: absolute; top: -6px; left: -6px; padding: 0 7px;
+  font-family: var(--f-pixel); font-weight: 700; background: var(--acento); color: var(--acento-tinta);
+  box-shadow: 0 0 0 2px var(--borde);
+}
+
+/* ---------- Móvil ---------- */
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  :root { --alto-tutora: 190px; }
+  h1 { font-size: 1.45rem; }
+  .leccion-cabecera h1 { font-size: 1.6rem; }
+  .caja { padding: 12px 12px; }
+  .vi { font-size: 1.2rem; }
+  .tutora { padding: 0 8px 4px; }
+  .tutora-caja { margin-right: 118px; min-height: 104px; font-size: .95rem; }
+  #tutora-canvas { width: 112px; height: 128px; }
+  .tutora-boton { right: -4px; }
+  .tutora-bocadillo { bottom: 134px; right: 8px; max-width: 180px; }
+  .opciones { grid-template-columns: 1fr; }
+  .menu { gap: 2px; padding: 0 12px; background-size: calc(100% - 24px) 3px; }
+  .menu a { padding: 5px 7px; font-size: .85rem; gap: 4px; }
+  .menu .avatar-mini { width: 18px; height: 18px; }
+  .tr-vi { font-size: 2rem; }
+  /* Los 4 botones en una fila, para que no queden debajo de la tutora */
+  .tr-botones { gap: 4px; flex-wrap: nowrap; }
+  .tr-resp { min-width: 0; flex: 1 1 0; padding: 6px 2px; font-size: .82rem; }
+  .tr-resp kbd { display: none; }
+  .tarjeta-repaso { padding: 18px 12px; min-height: 0; }
+  .cuaderno-item { grid-template-columns: 1fr auto; }
+  .cuaderno-estado { grid-column: 1; justify-items: start; text-align: left; }
+  .cuaderno-item .vocab-acciones { grid-row: 1 / span 2; grid-column: 2; }
+  .tarjeta { grid-template-columns: auto 1fr; }
+  .tarjeta .estados { grid-row: auto; grid-column: 2; justify-items: start; }
+  .leccion .bloque { padding: 14px 12px; }
+  .leccion-cabecera h1 { font-size: 1.6rem; }
+  .leccion .opciones { grid-template-columns: 1fr; }
+  .frase { grid-template-columns: 1fr; gap: 4px; }
+  .frase-botones { order: 2; }
+  .frase .vi { font-size: 1.22rem; }
+  .indice-enlace { font-size: .85rem; }
+  .capitulo .lista-lecciones { margin-left: 6px; }
+  .capitulo-temas { white-space: normal; }
+  body.tutora-plegada { --alto-tutora: 110px; }
+  body.tutora-plegada #tutora-canvas { width: 70px; height: 80px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn:active, .sello:active { transform: none; }
+}
