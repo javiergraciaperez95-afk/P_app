@@ -64,7 +64,7 @@ function alCambiarSesion(evento, sesion) {
   // Llegada desde el enlace de «he olvidado mi contraseña».
   if (evento === 'PASSWORD_RECOVERY') {
     nube.recuperando = true;
-    setTimeout(() => { location.hash = '#/perfil'; avisar(nube.estado); }, 0);
+    setTimeout(() => { location.hash = curso.id ? '#/perfil' : '#/entrar'; avisar(nube.estado); }, 0);
   }
   const antes = usuario?.id;
   usuario = sesion?.user ?? null;
@@ -92,6 +92,8 @@ export async function iniciarNube() {
 /** Baja los datos de la nube, los junta con los locales y sube el resultado. */
 export async function sincronizar() {
   if (!usuario) return;
+  // Sin curso elegido (pantalla de entrada) hay sesión, pero todavía no hay progreso que guardar.
+  if (!SUPABASE_TABLA) { avisar('sin-curso'); return; }
   avisar('sincronizando');
   try {
     const c = await obtenerCliente();
@@ -120,7 +122,7 @@ async function subir() {
 }
 
 function programarSubida() {
-  if (!usuario) return;
+  if (!usuario || !SUPABASE_TABLA) return;
   clearTimeout(temporizador);
   temporizador = setTimeout(async () => {
     avisar('sincronizando');
@@ -207,7 +209,7 @@ export async function cambiarContrasena(nueva) {
 
 /** Borra la copia de la nube (los datos de este navegador se quedan). */
 export async function borrarDatosNube() {
-  if (!usuario) return;
+  if (!usuario || !SUPABASE_TABLA) return;
   const c = await obtenerCliente();
   clearTimeout(temporizador);
   const { error } = await c.from(SUPABASE_TABLA).delete().eq('user_id', usuario.id);

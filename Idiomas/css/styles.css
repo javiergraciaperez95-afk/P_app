@@ -2223,12 +2223,31 @@ body.en-inicio main { max-width: 1040px; }
   .sobre-fila canvas:nth-child(n + 21) { display: none; }
 }
 
-/* Enlace a «Sobre Paglot» en la cabecera: con texto si hay sitio; en pantallas estrechas, un «?» (y dentro de un curso se esconde) */
-.cabecera .btn-sobre { width: auto; min-width: 40px; padding: 0 10px; font-family: var(--fuente-texto); font-weight: 700; font-size: .95rem; white-space: nowrap; }
-.btn-sobre-icono { display: none; font-family: var(--h-pixel); font-size: 1.2rem; }
+/* ===== Navegación de la cabecera: Inicio · Entrar · Sobre Paglot ===== */
+.cabecera-nav { display: flex; gap: 8px; margin-left: auto; }
+.cabecera .cabecera-nav .btn { width: auto; padding: 0 12px; font-family: var(--fuente-texto); font-weight: 700; font-size: .95rem; white-space: nowrap; }
+.cabecera .cabecera-nav .btn[aria-current="page"] { background: var(--h-resalte); }
+/* Dentro de un curso solo sale si sobra sitio (ahí están el menú del curso y el botón de cambiar de idioma) */
+@media (max-width: 1000px) {
+  body:not(.en-inicio):not(.sin-curso) .cabecera-nav { display: none; }
+}
+/* En pantallas estrechas pasa a una segunda fila, debajo de la marca y los botones */
 @media (max-width: 760px) {
-  .cabecera .btn-sobre { width: 40px; padding: 0; }
-  .btn-sobre-texto { display: none; }
-  .btn-sobre-icono { display: inline; }
-  body:not(.en-inicio):not(.sin-curso) .btn-sobre { display: none; }
+  .cabecera { flex-wrap: wrap; }
+  .cabecera-nav { order: 3; width: 100%; justify-content: center; margin: 6px 0 2px; }
+  .cabecera .cabecera-nav .btn { flex: 1; max-width: 160px; padding: 0 6px; height: 36px; font-size: .9rem; }
+}
+
+/* ===== Pantalla de entrada ===== */
+.entrar { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+.entrar .sobre-cabecera { padding-top: 64px; margin-bottom: 4px; }
+.entrar .caja { margin-bottom: 0; }
+.entrar-pie { text-align: center; }
+.entrar-aviso { display: flex; align-items: center; gap: 10px; }
+.entrar-aviso .sobre-actriz { flex: none; align-self: flex-end; }
+.entrar-aviso p { margin: 0 0 8px; }
+.entrar-aviso .botonera { justify-content: flex-end; }
+@media (max-width: 460px) {
+  .entrar-aviso { flex-direction: column; text-align: center; }
+  .entrar-aviso .sobre-actriz { align-self: center; }
 }

@@ -743,4 +743,14 @@ export default {
   'sobre.contacto.texto': '有想法、发现了错误，或者想学的语言还没有？我们很乐意收到你的来信。',
   'sobre.fin.titulo': '开始吧？',
   'sobre.toca': ['喂，好痒！', '老师在这儿！', '你叫我吗？'],
+
+  // ----- Pantalla de entrada (#/entrar) -----
+  'entrar.titulo': '登录',
+  'entrar.lema': '有了账号，你的进度会跟着你到任何设备。',
+  'entrar.tutora': '¡Hola! 要用你的账号登录吗？',
+  'entrar.sinCuenta': '不登录，直接使用',
+  'entrar.aviso': '等一下！不登录的话，你的进度只保存在这台设备上：换手机或清除浏览器数据后，它就没有了。',
+  'entrar.avisoSi': '知道了，先不登录',
+  'entrar.avisoNo': '还是注册一个账号吧',
+  'nube.estado.sin-curso': '已登录。选择一种语言，你的进度就会保存到云端。',
 };

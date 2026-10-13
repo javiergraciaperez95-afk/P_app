@@ -742,4 +742,14 @@ export default {
   'sobre.contacto.texto': 'An idea, a mistake, a language you miss? We love hearing from you.',
   'sobre.fin.titulo': 'Shall we start?',
   'sobre.toca': ['Hey, that tickles!', 'Here I am!', 'Did you call me?'],
+
+  // ----- Pantalla de entrada (#/entrar) -----
+  'entrar.titulo': 'Log in',
+  'entrar.lema': 'With an account, your progress follows you to any device.',
+  'entrar.tutora': '¡Hola! Logging in with your account?',
+  'entrar.sinCuenta': 'Continue without an account',
+  'entrar.aviso': 'Wait! Without an account, your progress stays only on this device: if you change phones or clear your browser data, it is lost.',
+  'entrar.avisoSi': 'Got it, continue without one',
+  'entrar.avisoNo': 'I’d rather create an account',
+  'nube.estado.sin-curso': 'Logged in. Choose a language and your progress will be saved in the cloud.',
 };

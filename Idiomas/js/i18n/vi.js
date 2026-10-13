@@ -746,4 +746,14 @@ export default {
   'sobre.contacto.texto': 'Một ý tưởng, một lỗi sai, một ngôn ngữ em mong có? Chúng tôi rất thích đọc thư của em.',
   'sobre.fin.titulo': 'Mình bắt đầu nhé?',
   'sobre.toca': ['Ê, nhột đấy!', 'Cô đây!', 'Em gọi cô à?'],
+
+  // ----- Pantalla de entrada (#/entrar) -----
+  'entrar.titulo': 'Đăng nhập',
+  'entrar.lema': 'Có tài khoản, tiến độ của em sẽ theo em sang mọi thiết bị.',
+  'entrar.tutora': '¡Hola! Em đăng nhập bằng tài khoản nhé?',
+  'entrar.sinCuenta': 'Tiếp tục không cần tài khoản',
+  'entrar.aviso': 'Khoan đã! Không có tài khoản thì tiến độ của em chỉ nằm trên thiết bị này: nếu em đổi điện thoại hoặc xóa dữ liệu trình duyệt, nó sẽ mất.',
+  'entrar.avisoSi': 'Em hiểu rồi, cứ tiếp tục',
+  'entrar.avisoNo': 'Thôi, em tạo tài khoản',
+  'nube.estado.sin-curso': 'Đã đăng nhập. Chọn một ngôn ngữ và tiến độ của em sẽ được lưu trên đám mây.',
 };

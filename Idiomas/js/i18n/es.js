@@ -715,4 +715,14 @@ export default {
   'sobre.contacto.texto': '¿Una idea, un error, un idioma que echas de menos? Nos encanta leerte.',
   'sobre.fin.titulo': '¿Empezamos?',
   'sobre.toca': ['¡Eh, que hago cosquillas!', '¡Aquí estoy!', '¿Me llamabas?'],
+
+  // ----- Pantalla de entrada (#/entrar) -----
+  'entrar.titulo': 'Entrar',
+  'entrar.lema': 'Con una cuenta, tu progreso te sigue a cualquier dispositivo.',
+  'entrar.tutora': '¡Hola! ¿Entras con tu cuenta?',
+  'entrar.sinCuenta': 'Seguir sin cuenta',
+  'entrar.aviso': '¡Espera! Sin cuenta, tu progreso se queda solo en este dispositivo: si cambias de móvil o borras los datos del navegador, se pierde.',
+  'entrar.avisoSi': 'Entendido, sigo sin cuenta',
+  'entrar.avisoNo': 'Mejor creo una cuenta',
+  'nube.estado.sin-curso': 'Sesión iniciada. Elige un idioma y tu progreso se guardará en la nube.',
 };

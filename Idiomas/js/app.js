@@ -1,5 +1,5 @@
 // Arranque y navegación.
-// Rutas: #/inicio · #/lecciones · #/leccion/001 · #/practica · #/frases · #/cuaderno · #/repaso · #/perfil · #/idiomas · #/creditos · #/legal · #/sobre
+// Rutas: #/inicio · #/lecciones · #/leccion/001 · #/practica · #/frases · #/cuaderno · #/repaso · #/perfil · #/idiomas · #/creditos · #/legal · #/sobre · #/entrar
 // Sin curso elegido solo existen la pantalla de inicio, la de elegir idioma, los créditos, el aviso legal y «Sobre Paglot».
 
 import { el, poner } from './dom.js';
@@ -8,7 +8,7 @@ import { descubrirLecciones, cargarCapitulos, cargarFrases } from './lessons.js'
 import { ajuste, aplicarTema, temaActual, cambiarAjuste } from './ajustes.js';
 import { t, tr, aplicarIdioma, IDIOMAS, idioma, cambiarIdioma } from './i18n.js';
 import { sonar, prepararVoces } from './sonidos.js';
-import { iniciarNube } from './sync.js';
+import { iniciarNube, usuarioActual, alCambiarNube } from './sync.js';
 import { tarjetas, alCambiar } from './progress.js';
 import { tocaRepasar, esNueva } from './srs.js';
 import { decir } from './tutor.js';
@@ -23,6 +23,7 @@ import { pintarElegirCurso, pintarCreditos } from './vistas/cursos.js';
 import { pintarInicio } from './vistas/inicio.js';
 import { pintarLegal, pintarAvisoDeDatos } from './vistas/legal.js';
 import { pintarSobre } from './vistas/sobre.js';
+import { pintarEntrar } from './vistas/entrar.js';
 import { curso, hayCurso } from './curso.js';
 import './movil.js';
 
@@ -37,6 +38,9 @@ const SECCIONES = [
   { ruta: 'repaso', icono: 'repaso' },
   { ruta: 'perfil', icono: 'perfil' },
 ];
+
+// Las pantallas generales de la app (no de un curso): llevan la marca de la app y no tienen menú de curso ni tutora.
+const PORTADAS = ['inicio', 'sobre', 'entrar'];
 
 const contenido = { resultados: [], capitulos: [], errorCapitulos: null, frases: null };
 let limpiarVista = null;
@@ -98,11 +102,24 @@ function pintarMarca() {
   document.getElementById('marca-bandera').innerHTML = deCurso ? curso.bandera : ''; // dibujo fijo de js/cursos.js
   document.getElementById('marca-subtitulo').textContent = deCurso ? t('html.subtitulo') : '';
   document.getElementById('marca').title = t('inicio.titulo');
+  pintarNavegacion();
   const boton = document.getElementById('btn-curso');
   boton.setAttribute('aria-label', t('cursos.cambiar'));
   boton.title = t('cursos.cambiar');
   boton.hidden = !hayCurso;
 }
+
+/** Los enlaces de la cabecera (Inicio · Entrar · Sobre Paglot): marca el de la pantalla abierta. */
+function pintarNavegacion() {
+  const aqui = location.hash.slice(2).split('/')[0] || (hayCurso ? 'lecciones' : 'inicio');
+  for (const a of document.querySelectorAll('#cabecera-nav a')) {
+    if (a.dataset.nav === aqui) a.setAttribute('aria-current', 'page');
+    else a.removeAttribute('aria-current');
+  }
+  // Con la sesión iniciada, «Entrar» pasa a llamarse «Cuenta».
+  document.getElementById('nav-entrar').textContent = t(usuarioActual() ? 'cuenta.titulo' : 'entrar.titulo');
+}
+alCambiarNube(pintarNavegacion);
 
 // Selector de idioma de la cabecera (lo que no esté traducido sale en inglés).
 // Es un botón que despliega una lista propia (la del navegador no se puede vestir como el resto de la app).
@@ -204,8 +221,8 @@ async function navegar({ cambioDeIdioma = false } = {}) {
   const [ruta, parametro] = hash.split('/');
   const seccion = ruta || 'lecciones';
   rutaActual = seccion === 'leccion' ? 'lecciones' : seccion;
-  document.body.classList.toggle('en-inicio', seccion === 'inicio' || seccion === 'sobre');
-  document.body.classList.toggle('sin-tutora', ['inicio', 'sobre', 'idiomas', 'creditos', 'legal'].includes(seccion));
+  document.body.classList.toggle('en-inicio', PORTADAS.includes(seccion));
+  document.body.classList.toggle('sin-tutora', [...PORTADAS, 'idiomas', 'creditos', 'legal'].includes(seccion));
   pintarMarca();
   marcarMenu(rutaActual);
   pintarAvisoRepaso();
@@ -255,6 +272,9 @@ async function navegar({ cambioDeIdioma = false } = {}) {
   } else if (seccion === 'sobre') {
     document.title = t('sobre.titulo');
     limpiarVista = pintarSobre(app);
+  } else if (seccion === 'entrar') {
+    titulo(t('entrar.titulo'));
+    limpiarVista = pintarEntrar(app);
   } else {
     pintarNoEncontrada(t('app.noExiste'));
   }
@@ -286,8 +306,8 @@ function avisoArchivoLocal() {
 function pintarSinCurso({ cambioDeIdioma = false } = {}) {
   limpiarVista?.();
   limpiarVista = null;
-  const vista = { '#/creditos': 'creditos', '#/idiomas': 'idiomas', '#/legal': 'legal', '#/sobre': 'sobre' }[location.hash] ?? 'inicio';
-  document.body.classList.toggle('en-inicio', vista === 'inicio' || vista === 'sobre');
+  const vista = { '#/creditos': 'creditos', '#/idiomas': 'idiomas', '#/legal': 'legal', '#/sobre': 'sobre', '#/entrar': 'entrar' }[location.hash] ?? 'inicio';
+  document.body.classList.toggle('en-inicio', PORTADAS.includes(vista));
   pintarMarca();
   if (vista === 'creditos') {
     titulo(t('creditos.titulo'));
@@ -298,6 +318,9 @@ function pintarSinCurso({ cambioDeIdioma = false } = {}) {
   } else if (vista === 'sobre') {
     document.title = t('sobre.titulo');
     limpiarVista = pintarSobre(app);
+  } else if (vista === 'entrar') {
+    titulo(t('entrar.titulo'));
+    limpiarVista = pintarEntrar(app);
   } else if (vista === 'idiomas') {
     titulo(t('cursos.titulo'));
     pintarElegirCurso(app);
@@ -341,6 +364,7 @@ async function iniciar() {
     window.addEventListener('hashchange', () => pintarSinCurso());
     pintarSinCurso();
     quitarArranque();
+    iniciarNube(); // para saber si ya hay una sesión iniciada
     return;
   }
 

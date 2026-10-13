@@ -191,7 +191,9 @@ function formularioNuevaContrasena(titulo) {
     }, { principal: false }));
 }
 
-function seccionCuenta() {
+/** La cuenta: entrar, crear o recuperar; o los datos de la sesión. «pestana» elige con qué formulario se abre. */
+export function seccionCuenta(pestana) {
+  if (pestana) pestanaCuenta = pestana;
   const seccion = el('section', { class: 'caja', id: 'cuenta' });
 
   function textoEstado() {

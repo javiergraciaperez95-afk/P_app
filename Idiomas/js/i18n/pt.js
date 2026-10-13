@@ -745,4 +745,14 @@ export default {
   'sobre.contacto.texto': 'Uma ideia, um erro, um idioma que faz falta? Adoramos ler você.',
   'sobre.fin.titulo': 'Vamos começar?',
   'sobre.toca': ['Ei, isso faz cócegas!', 'Estou aqui!', 'Você me chamou?'],
+
+  // ----- Pantalla de entrada (#/entrar) -----
+  'entrar.titulo': 'Entrar',
+  'entrar.lema': 'Com uma conta, o seu progresso acompanha você em qualquer aparelho.',
+  'entrar.tutora': '¡Hola! Vai entrar com a sua conta?',
+  'entrar.sinCuenta': 'Continuar sem conta',
+  'entrar.aviso': 'Espere! Sem conta, o seu progresso fica só neste aparelho: se você trocar de celular ou apagar os dados do navegador, ele se perde.',
+  'entrar.avisoSi': 'Entendi, continuo sem conta',
+  'entrar.avisoNo': 'Melhor criar uma conta',
+  'nube.estado.sin-curso': 'Sessão iniciada. Escolha um idioma e o seu progresso ficará salvo na nuvem.',
 };

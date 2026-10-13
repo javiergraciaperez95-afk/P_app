@@ -27,7 +27,7 @@
     } catch (e) { /* tema por defecto */ }
   </script>
   <link rel="stylesheet" href="css/fuentes.css?v=__VERSION__">
-  <link rel="stylesheet" href="css/styles.css?v=__VERSION__&h=11">
+  <link rel="stylesheet" href="css/styles.css?v=__VERSION__&h=12">
   <!-- Al publicar, __VERSION__ se cambia por el código de la versión (ver .github/workflows/static.yml),
        así el navegador descarga siempre los archivos nuevos en lugar de usar los antiguos guardados. -->
   <script type="importmap">
@@ -65,6 +65,7 @@
         "./js/tutora-base.js": "./js/tutora-base.js?v=__VERSION__",
         "./js/vistas/cuaderno.js": "./js/vistas/cuaderno.js?v=__VERSION__",
         "./js/vistas/cursos.js": "./js/vistas/cursos.js?v=__VERSION__",
+        "./js/vistas/entrar.js": "./js/vistas/entrar.js?v=__VERSION__",
         "./js/vistas/frases.js": "./js/vistas/frases.js?v=__VERSION__",
         "./js/vistas/inicio.js": "./js/vistas/inicio.js?v=__VERSION__",
         "./js/vistas/leccion.js": "./js/vistas/leccion.js?v=__VERSION__",
@@ -94,8 +95,12 @@
       <img class="marca-logo" src="assets/favicon.svg" alt="" width="32" height="32">
       <span class="marca-textos"><span class="marca-titulo"><span id="marca-nombre"></span> <span id="marca-bandera"></span></span> <small id="marca-subtitulo"></small></span>
     </a>
+    <nav id="cabecera-nav" class="cabecera-nav">
+      <a class="btn" href="#/inicio" data-nav="inicio" data-t="inicio.titulo">Home</a>
+      <a class="btn" href="#/entrar" data-nav="entrar" id="nav-entrar">Log in</a>
+      <a class="btn" href="#/sobre" data-nav="sobre" data-t="sobre.titulo">About</a>
+    </nav>
     <span class="cabecera-botones">
-      <a id="btn-sobre" class="btn btn-sobre" href="#/sobre" data-t-aria="sobre.titulo" data-t-title="sobre.titulo"><span class="btn-sobre-texto" data-t="sobre.titulo">About</span><span class="btn-sobre-icono" aria-hidden="true">?</span></a>
       <a id="btn-curso" class="btn btn-icono btn-curso" href="#/idiomas" hidden>⇄</a>
       <span class="idioma-menu">
         <button type="button" id="sel-idioma" class="btn sel-idioma" aria-haspopup="menu" aria-expanded="false" aria-label="Language" data-t-aria="idioma.selector"></button>
