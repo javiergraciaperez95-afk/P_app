@@ -2256,14 +2256,17 @@ body.en-inicio main { max-width: 1040px; }
 .arranque { opacity: 0; animation: asomar .15s .5s forwards; }
 @keyframes asomar { to { opacity: 1; } }
 
-/* Entrada en pantallas anchas: la tutora y el título a la izquierda, la cuenta a la derecha; cabe todo sin desplazar */
-.entrar #cuenta > .aprox { display: none; } /* ya lo dice el lema de la pantalla */
-.entrar #cuenta .campo { margin-bottom: 8px; }
-@media (min-width: 900px) {
-  .entrar { max-width: 980px; display: grid; grid-template-columns: 1fr minmax(400px, 480px); grid-template-rows: auto auto 1fr; gap: 14px 44px; align-items: start; }
-  .entrar > .sobre-cabecera { grid-column: 1; grid-row: 1; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding-top: 70px; margin: 0; }
-  .entrar > .sobre-cabecera .sobre-cabecera-texto { padding-bottom: 0; }
-  .entrar > div:not([class]) { grid-column: 2; grid-row: 1 / span 3; }
-  .entrar > .entrar-pie { grid-column: 1; grid-row: 2; }
-  .entrar > .entrar-aviso { grid-column: 1; grid-row: 3; }
-}
+/* Entrada: todo centrado en una columna y recogido, para que quepa sin desplazar en un ordenador */
+.entrar { max-width: 540px; gap: 12px; }
+.entrar .sobre-cabecera { padding-top: 46px; margin-bottom: 0; gap: 14px; }
+.entrar .sobre-guia { width: 96px; height: 128px; }
+.entrar .sobre-cabecera-texto { padding-bottom: 10px; }
+.entrar .sobre-cabecera h1 { font-size: 2.4rem; margin-bottom: 4px; }
+.entrar .sobre-lema { font-size: 1.02rem; }
+.entrar #cuenta { padding: 14px 16px; }
+.entrar #cuenta > h2 { display: none; }       /* el título de la pantalla ya lo dice */
+.entrar #cuenta > .aprox { display: none; }   /* ya lo dice el lema */
+.entrar #cuenta .estado-nube { margin-bottom: 6px; font-size: .95rem; }
+.entrar #cuenta .pestanas { margin: 6px 0 10px; }
+.entrar #cuenta .campo { margin-bottom: 6px; }
+.entrar .mensaje-formulario:empty { display: none; }
