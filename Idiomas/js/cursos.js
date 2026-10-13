@@ -241,7 +241,7 @@ export const CURSOS = [
       "ç"
     ],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 30 20\" aria-hidden=\"true\"><rect width=\"12\" height=\"20\" fill=\"#046a38\"/><rect x=\"12\" width=\"18\" height=\"20\" fill=\"#da291c\"/><circle cx=\"12\" cy=\"10\" r=\"4.2\" fill=\"#ffe900\"/><circle cx=\"12\" cy=\"10\" r=\"2.6\" fill=\"none\" stroke=\"#046a38\" stroke-width=\"0.8\"/></svg>",
-    "lecciones": 6,
+    "lecciones": 31,
     "audio": false
   },
   {
