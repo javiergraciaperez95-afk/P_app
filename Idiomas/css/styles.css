@@ -2251,3 +2251,7 @@ body.en-inicio main { max-width: 1040px; }
   .entrar-aviso { flex-direction: column; text-align: center; }
   .entrar-aviso .sobre-actriz { align-self: center; }
 }
+
+/* El logotipo de espera solo llega a verse si la carga tarda: aparece pasado medio segundo */
+.arranque { opacity: 0; animation: asomar .15s .5s forwards; }
+@keyframes asomar { to { opacity: 1; } }

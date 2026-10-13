@@ -211,7 +211,25 @@ function titulo(texto) {
   document.title = [texto, hayCurso && curso.nativo, t('app.nombre')].filter(Boolean).join(' · ');
 }
 
+// Las lecciones del curso se cargan aparte, una sola vez: las pantallas generales (inicio, entrar, sobre…)
+// no las necesitan y se pintan al momento, sin esperar.
+let cargaDelCurso = null;
+let cursoCargado = false;
+function cargarCurso() {
+  cargaDelCurso ??= (async () => {
+    // Se espera a saber si el dispositivo tiene voz (segundo y medio como mucho): de eso depende qué ejercicios hay.
+    const [resultados, { capitulos, error }] = await Promise.all([descubrirLecciones(), cargarCapitulos(), prepararVoces()]);
+    Object.assign(contenido, { resultados, capitulos, errorCapitulos: error ?? null, sinConexion: Boolean(resultados.sinConexion) });
+    ponerDiccionarioGlobal(resultados);
+    cursoCargado = true;
+  })();
+  return cargaDelCurso;
+}
+
+let pase = 0; // para descartar una navegación si, mientras esperaba, se ha pedido otra
+
 async function navegar({ cambioDeIdioma = false } = {}) {
+  const estePase = ++pase;
   cerrarFicha();
   limpiarVista?.();
   limpiarVista = null;
@@ -226,6 +244,13 @@ async function navegar({ cambioDeIdioma = false } = {}) {
   pintarMarca();
   marcarMenu(rutaActual);
   pintarAvisoRepaso();
+
+  // Las pantallas del curso necesitan sus lecciones: si aún están llegando, se espera con el logotipo.
+  if (!cursoCargado && ![...PORTADAS, 'idiomas', 'creditos', 'legal'].includes(seccion)) {
+    poner(app, el('div', { class: 'arranque' }, el('img', { class: 'arranque-logo', src: 'assets/logo.svg', alt: t('html.cargando'), width: 128, height: 128 })));
+    await cargarCurso();
+    if (estePase !== pase) return;
+  }
 
   if (seccion === 'leccion') {
     const i = contenido.resultados.findIndex(r => r.id === parametro);
@@ -377,12 +402,6 @@ async function iniciar() {
     return;
   }
 
-  // Antes de pintar se espera a saber si el dispositivo tiene voz (segundo y medio como mucho):
-  // de eso depende qué ejercicios hay.
-  const [resultados, { capitulos, error }] = await Promise.all([descubrirLecciones(), cargarCapitulos(), prepararVoces()]);
-  Object.assign(contenido, { resultados, capitulos, errorCapitulos: error ?? null, sinConexion: Boolean(resultados.sinConexion) });
-  ponerDiccionarioGlobal(resultados);
-
   window.addEventListener('hashchange', () => navegar());
   // Cuando llegan datos de la nube, se repinta la pantalla (salvo en mitad de un repaso).
   window.addEventListener('datos-sincronizados', () => {
@@ -398,7 +417,11 @@ async function iniciar() {
   // Un clic en cualquier enlace del menú hace un pequeño sonido.
   menu.addEventListener('click', e => { if (e.target.closest('a')) sonar('pagina'); });
 
-  await navegar();
+  // La primera pantalla se pinta ya; las lecciones del curso se van cargando mientras tanto.
+  const primera = navegar();
+  if (document.body.classList.contains('en-inicio')) quitarArranque();
+  cargarCurso();
+  await primera;
   quitarArranque();
   iniciarNube();
 }
