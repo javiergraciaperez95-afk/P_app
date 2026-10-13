@@ -230,6 +230,11 @@ function cargarCurso() {
   return cargaDelCurso;
 }
 
+/** Las pantallas que no dependen ni de la voz ni del progreso: repintarlas a media visita las reiniciaría (la bienvenida, los precios…). */
+function enPantallaGeneral() {
+  return [...PORTADAS, 'idiomas', 'creditos', 'legal', 'bienvenida'].includes(location.hash.slice(2).split('/')[0]);
+}
+
 let pase = 0; // para descartar una navegación si, mientras esperaba, se ha pedido otra
 let bienvenidaOfrecida = false; // la bienvenida se ofrece sola una vez por sesión (y nunca más cuando se ha visto)
 
@@ -431,12 +436,12 @@ async function iniciar() {
   window.addEventListener('hashchange', () => navegar());
   // Cuando llegan datos de la nube, se repinta la pantalla (salvo en mitad de un repaso).
   window.addEventListener('datos-sincronizados', () => {
-    if (!location.hash.startsWith('#/repaso')) navegar();
+    if (!location.hash.startsWith('#/repaso') && !enPantallaGeneral()) navegar();
   });
   // Si la voz aparece o desaparece (se instala una, se va la conexión), se repinta la pantalla en el mismo sitio:
   // cambian los ejercicios de oído. En un repaso o en un juego no se interrumpe.
   window.addEventListener('voz-cambiada', () => {
-    if (location.hash.startsWith('#/repaso') || document.querySelector('.juego')) return;
+    if (location.hash.startsWith('#/repaso') || document.querySelector('.juego') || enPantallaGeneral()) return;
     const y = window.scrollY;
     navegar().then(() => window.scrollTo(0, y));
   });

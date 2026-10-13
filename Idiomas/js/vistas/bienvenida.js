@@ -72,7 +72,7 @@ function elegirEjemplo(resultados) {
 const color = variable => getComputedStyle(document.documentElement).getPropertyValue(variable).trim() || '#888';
 
 /** Fondo: motas cuadradas que suben despacio y parpadean. Devuelve la función que lo para. */
-function fondoVivo(lienzo, quieto) {
+export function fondoVivo(lienzo, quieto) {
   const ctx = lienzo.getContext('2d');
   let motas = [];
   let ultimo = 0;
@@ -126,7 +126,7 @@ function fondoVivo(lienzo, quieto) {
 }
 
 /** Primer plano: el fundido de cuadros entre pasos y el confeti. */
-function efectos(lienzo, quieto) {
+export function efectos(lienzo, quieto) {
   const ctx = lienzo.getContext('2d');
   let confeti = [];
   let cortina = null; // { orden, columnas, hasta, tapando, inicio, dura, alAcabar }

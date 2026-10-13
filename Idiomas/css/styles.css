@@ -2494,33 +2494,121 @@ body.en-bienvenida .aviso-datos { display: none; }
   .perdida-busca { padding-top: 50px; margin-bottom: 8px; }
 }
 
-/* ===== Precios ===== */
-.precios { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
-.precios .sobre-cabecera { padding-top: 46px; gap: 14px; text-align: center; }
-.precios .sobre-guia { width: 96px; height: 128px; }
-.precios .sobre-cabecera h1 { font-size: 2.4rem; margin-bottom: 4px; }
-.precios .sobre-lema { font-size: 1.05rem; }
-.precios h2 { text-align: center; font-size: 1.4rem; }
-.planes { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px; align-items: stretch; }
-.plan { display: flex; flex-direction: column; margin-bottom: 0; padding: 18px 16px; }
-.plan h2 { text-align: left; margin: 0 0 4px; font-size: 1.35rem; }
-.plan-completo { box-shadow: 0 -4px 0 0 var(--marca-oro), 0 4px 0 0 var(--marca-oro), -4px 0 0 0 var(--marca-oro), 4px 0 0 0 var(--marca-oro), 4px 8px 0 0 var(--sombra), 8px 4px 0 0 var(--sombra); }
-.plan-completo h2 { color: var(--marca-oro); }
-.plan-precio { margin: 0; font-size: 2.4rem; font-weight: 700; line-height: 1.1; }
-.plan-precio.cambia { animation: brotar .25s steps(4); }
-.plan-por { margin: 0 0 10px; color: var(--texto-suave); }
-.plan ul { list-style: none; margin: 8px 0 14px; padding: 0; flex: 1; }
-.plan li { position: relative; padding-left: 1.5em; margin-bottom: 6px; }
-.plan li::before { content: "✔"; position: absolute; left: 0; color: var(--verde); }
-.plan .filtros { margin: 0 0 10px; }
-.plan .boton-principal { align-self: flex-start; }
-.precios-nota { margin: 0; text-align: center; font-size: .9rem; color: var(--texto-suave); text-wrap: balance; }
-.promesas { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px; }
-.promesas li { margin-bottom: calc(var(--px) * 4); padding: 12px 14px 12px 2.6em; position: relative; }
-.promesas li::before { content: "♥"; position: absolute; left: .9em; color: var(--rojo-claro); }
-.precios-extras { text-align: center; color: var(--texto-suave); }
-.precios-extras p { max-width: 36em; margin: 0 auto; text-wrap: balance; }
-@media (max-width: 700px) {
-  .planes, .promesas { grid-template-columns: 1fr; }
-  .plan { margin-bottom: calc(var(--px) * 5); }
+/* ===== Precios: un tablero a pantalla completa, sin desplazar =====
+   La pantalla empieza debajo de la cabecera (lo pone js/vistas/precios.js) y, si el contenido no cabe, se encoge. */
+body.en-precios { overflow: hidden; }
+.px {
+  position: fixed; left: 0; right: 0; bottom: 0; top: 68px; z-index: 20;
+  display: flex; justify-content: center; align-items: center; /* centrado también de arriba abajo cuando sobra sitio */
+  padding: 8px calc(12px + var(--borde-der)) calc(8px + var(--borde-abajo)) calc(12px + var(--borde-izq));
+  background-color: var(--fondo);
+  background-image: radial-gradient(var(--fondo-punto) 1.5px, transparent 1.6px);
+  background-size: 16px 16px;
+  overflow: hidden;
+}
+.px-contenido { position: relative; z-index: 1; width: min(760px, 100%); display: flex; flex-direction: column; gap: 10px; transform-origin: center; }
+
+/* Arriba: la tutora y lo que dice */
+.px-arriba { display: flex; align-items: flex-end; gap: 8px; }
+.px-tutora { --k: 2; flex: none; width: calc(48px * var(--k)); height: calc(64px * var(--k)); padding: 0; border: 0; background: none; cursor: pointer; overflow: hidden; -webkit-tap-highlight-color: transparent; }
+.px-tutora .sobre-salto { display: block; width: calc(48px * var(--k)); height: calc(64px * var(--k)); }
+.px-tutora-dibujo { display: block; width: 100%; height: 100%; image-rendering: pixelated; image-rendering: crisp-edges; }
+.px-globo { flex: 1; min-width: 0; min-height: 5.6em; margin-bottom: calc(var(--px) * 2); padding: 10px 14px; display: flex; flex-direction: column; }
+.px-texto { margin: 0; line-height: 1.4; }
+
+/* El tablero */
+.px-tablero { margin-bottom: calc(var(--px) * 2); padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+.px-interruptor { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.px-lado {
+  border: 0; padding: 12px 8px; cursor: pointer;
+  font-family: var(--fuente-pixel); font-weight: 700; font-size: 1.15rem; line-height: 1.15;
+  color: var(--texto-suave); background: var(--fondo); box-shadow: inset 0 0 0 3px var(--texto-suave);
+}
+.px-lado:hover { color: var(--texto); }
+.px-lado[aria-pressed="true"] { color: var(--fondo); background: var(--texto); box-shadow: inset 0 0 0 3px var(--linea); }
+.px-lado-oro[aria-pressed="true"] { color: #1a1424; background: var(--marca-oro); }
+.px-lado-oro[aria-pressed="false"] { animation: llamar 1.2s steps(4) infinite; color: var(--marca-oro); box-shadow: inset 0 0 0 3px var(--marca-oro); }
+
+.px-fila-precio { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; }
+.px-precio { margin: 0; min-width: 3.9em; font-size: clamp(2.1rem, 9vw, 3rem); font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.px-tablero[data-plan="completo"] .px-precio { color: var(--marca-oro); }
+.px-llega { animation: brotar .25s steps(4); }
+.px-junto { flex: 1; min-width: 6.5em; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+.px-por { margin: 0; color: var(--texto-suave); line-height: 1.2; }
+.px-ahorro { padding: 0 6px; font-size: .82rem; font-weight: 700; color: var(--fondo); background: var(--verde); animation: brotar .25s steps(4); }
+.px-formas { margin: 0; }
+.px-tablero[data-plan="gratis"] .px-formas { visibility: hidden; }
+
+/* Medidores: diez cuadros que se llenan uno tras otro */
+.px-medidores { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.px-medidores li { display: grid; grid-template-columns: minmax(0, 1fr) auto 2.4em; align-items: center; gap: 10px; }
+.px-que { line-height: 1.2; }
+.px-barra { display: flex; gap: 3px; }
+.px-barra i {
+  width: 16px; height: 16px; background: var(--fondo); box-shadow: inset 0 0 0 2px var(--texto-suave);
+  transition: background-color 0s, box-shadow 0s; transition-delay: calc(var(--i) * 38ms);
+}
+.px-barra i.lleno { background: var(--verde); box-shadow: inset 0 0 0 2px var(--linea); }
+.px-tablero[data-plan="completo"] .px-barra i.lleno { background: var(--marca-oro); }
+.px-valor { font-weight: 700; font-size: 1.2rem; text-align: right; }
+.px-tablero[data-plan="completo"] .px-valor { color: var(--marca-oro); font-size: 1.7rem; line-height: 1; animation: brotar .3s steps(4) .4s backwards; }
+
+.px-incluye { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.px-incluye li { position: relative; padding: 1px 8px 1px 1.7em; font-size: .9rem; background: var(--panel-2); }
+.px-incluye li::before { content: "\2714"; position: absolute; left: .5em; color: var(--verde); }
+.px-incluye .px-ayuda { display: none; }
+.px-tablero[data-plan="completo"] .px-ayuda { display: block; color: #1a1424; background: var(--marca-oro); animation: brotar .3s steps(4); }
+.px-tablero[data-plan="completo"] .px-ayuda::before { content: "\2665"; color: var(--rojo); }
+.px-accion { display: flex; justify-content: flex-end; }
+.px-accion .boton { margin-bottom: 0; }
+
+/* La cinta de promesas */
+.px-cinta {
+  display: flex; align-items: center; gap: 10px; width: 100%; min-height: 3.2em; padding: 6px 12px; border: 0; cursor: pointer; overflow: hidden;
+  font: inherit; font-size: .93rem; line-height: 1.3; text-align: left; color: var(--texto); background: var(--panel-2);
+  box-shadow: inset 0 0 0 2px var(--texto-suave);
+}
+.px-cinta-corazon { flex: none; color: var(--rojo-claro); animation: latir .8s steps(2) infinite; }
+.px-entra { animation: subir .3s steps(5); }
+@keyframes subir { from { transform: translateY(1.6em); opacity: 0; } }
+
+/* El público, solo si sobra pantalla a los lados */
+.px-publico { position: absolute; bottom: 0; z-index: 1; display: none; border-bottom: 4px solid var(--linea); }
+.px-publico canvas { width: 96px; height: 120px; margin: 0 -6px; image-rendering: pixelated; image-rendering: crisp-edges; }
+.px-publico-izq { right: calc(50% + 410px); }
+.px-publico-der { left: calc(50% + 410px); }
+.px[data-plan="completo"] .px-publico canvas { animation: paso .3s infinite; }
+.px[data-plan="completo"] .px-publico canvas:nth-child(2) { animation-delay: -.15s; }
+@media (min-width: 1200px) and (min-height: 560px) { .px-publico { display: flex; } }
+
+/* Tamaños */
+@media (min-width: 760px) and (min-height: 880px) { .px-tutora { --k: 3; } .px-contenido { gap: 14px; } .px-tablero { gap: 14px; padding: 16px; } }
+@media (max-height: 780px), (max-width: 560px) { .px-tutora { height: 96px; } }   /* solo el busto */
+@media (max-width: 560px) {
+  .px-contenido { gap: 6px; }
+  .px-tutora { height: 70px; }
+  .px-globo { min-height: 6.2em; padding: 6px 10px; } /* sitio fijo para cuatro líneas: así el tablero no baila mientras escribe */
+  .px-texto, .px-que { font-size: .9rem; }
+  .px-tablero { padding: 10px; gap: 8px; }
+  .px-lado { padding: 9px 4px; font-size: 1rem; }
+  .px-medidores li { gap: 8px; grid-template-columns: minmax(0, 1fr) auto 2em; }
+  .px-barra { gap: 2px; }
+  .px-barra i { width: 11px; height: 11px; }
+  .px-incluye { gap: 4px; }
+  .px-incluye li { font-size: .8rem; }
+  .px-cinta { min-height: 3.4em; font-size: .85rem; }
+  /* en el móvil cada línea cuenta: lo que no se usa en el plan gratis no ocupa sitio, y todo va un punto más pequeño */
+  .px-tablero[data-plan="gratis"] .px-formas { display: none; }
+  .px-globo { min-height: 5.6em; }
+  .px-texto { font-size: .86rem; line-height: 1.35; }
+  .px-que { font-size: .84rem; }
+  .px-precio { font-size: 2rem; }
+  .px-lado { padding: 7px 4px; }
+  .px-incluye li { font-size: .76rem; padding: 0 6px 0 1.6em; }
+  .px-formas .boton-mini { min-height: 32px; padding: 2px 8px; }
+  .px-accion .boton { min-height: 40px; padding: 6px 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .px-lado-oro[aria-pressed="false"], .px-llega, .px-ahorro, .px-valor, .px-ayuda, .px-cinta-corazon, .px-entra, .px-publico canvas { animation: none !important; }
+  .px-barra i { transition-delay: 0s; }
 }
