@@ -756,4 +756,5 @@ export default {
   'entrar.avisoSi': 'Em hiểu rồi, cứ tiếp tục',
   'entrar.avisoNo': 'Thôi, em tạo tài khoản',
   'nube.estado.sin-curso': 'Đã đăng nhập. Chọn một ngôn ngữ và tiến độ của em sẽ được lưu trên đám mây.',
+  'sobre.gracias': 'Cảm ơn Phuong, vì đã cho anh một lý do để làm việc chăm chỉ cho ứng dụng này.',
 };

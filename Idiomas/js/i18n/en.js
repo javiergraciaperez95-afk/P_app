@@ -752,4 +752,5 @@ export default {
   'entrar.avisoSi': 'Got it, continue without one',
   'entrar.avisoNo': 'I’d rather create an account',
   'nube.estado.sin-curso': 'Logged in. Choose a language and your progress will be saved in the cloud.',
+  'sobre.gracias': 'Thank you to Phuong, for giving me a reason to work hard on this app.',
 };

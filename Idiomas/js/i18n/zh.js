@@ -753,4 +753,5 @@ export default {
   'entrar.avisoSi': '知道了，先不登录',
   'entrar.avisoNo': '还是注册一个账号吧',
   'nube.estado.sin-curso': '已登录。选择一种语言，你的进度就会保存到云端。',
+  'sobre.gracias': '感谢 Phuong，给了我为这款应用努力工作的理由。',
 };

@@ -725,4 +725,5 @@ export default {
   'entrar.avisoSi': 'Entendido, sigo sin cuenta',
   'entrar.avisoNo': 'Mejor creo una cuenta',
   'nube.estado.sin-curso': 'Sesión iniciada. Elige un idioma y tu progreso se guardará en la nube.',
+  'sobre.gracias': 'Gracias a Phuong, por darme un motivo para trabajar duro en esta aplicación.',
 };

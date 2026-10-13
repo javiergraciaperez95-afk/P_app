@@ -264,6 +264,8 @@ export function pintarSobre(contenedor) {
           el('a', { class: 'boton', href: '#/inicio', onclick: () => sonar('pagina') }, t('inicio.titulo'))),
         el('div', { class: 'sobre-desfile', 'aria-hidden': 'true' }, fila)),
 
+      el('p', { class: 'sobre-gracias' }, el('span', { 'aria-hidden': 'true' }, '♥ '), t('sobre.gracias')),
+
       el('footer', { class: 'inicio-pie' },
         el('p', {}, el('a', { href: '#/legal' }, t('legal.titulo')), ' · ', el('a', { href: '#/creditos' }, t('creditos.titulo'))))));
 
