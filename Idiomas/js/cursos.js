@@ -21,7 +21,7 @@ export const CURSOS = [
     "hola": "Hello!",
     "letras": [],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 60 30\" aria-hidden=\"true\"><clipPath id=\"uk-campo\"><path d=\"M0 0h60v30H0z\"/></clipPath><clipPath id=\"uk-diag\"><path d=\"M30 15h30v15zv15H0zH0V0h30z\"/></clipPath><g clip-path=\"url(#uk-campo)\"><path d=\"M0 0v30h60V0z\" fill=\"#012169\"/><path d=\"m0 0 60 30m0-30L0 30\" stroke=\"#fff\" stroke-width=\"6\"/><path d=\"m0 0 60 30m0-30L0 30\" stroke=\"#C8102E\" stroke-width=\"4\" clip-path=\"url(#uk-diag)\"/><path d=\"M30 0v30M0 15h60\" stroke=\"#fff\" stroke-width=\"10\"/><path d=\"M30 0v30M0 15h60\" stroke=\"#C8102E\" stroke-width=\"6\"/></g></svg>",
-    "lecciones": 3,
+    "lecciones": 31,
     "audio": false
   },
   {

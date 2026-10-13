@@ -1,0 +1,42 @@
+CURSOS A1 — PLAN Y REGLAS
+=========================
+Encargo del 13-10-2026: nivel A1 completo y sólido, solo lecciones (sin juegos), de:
+inglés (en), francés (fr), japonés (ja), italiano (it), alemán (de), coreano (ko),
+portugués (pt) y ruso (ru). Uno detrás de otro, en ese orden: primero buscar en internet
+el temario oficial del nivel, luego escribir capítulos y lecciones, comprobar y pasar al siguiente.
+
+CÓMO SE ESCRIBE
+- Un archivo por capítulo en _herramientas/cursos/<id>/NN.txt (formato: ver compilar.py).
+- capitulos.txt con los títulos. Se compila con: py -X utf8 _herramientas/cursos/compilar.py <id>
+- Las lecciones de muestra que había (3 por curso) se sustituyen.
+- Explicaciones y traducciones en español. Sin audios grabados: la voz es la del dispositivo.
+
+ESTRUCTURA DE CADA CURSO
+- 10 capítulos de 3 lecciones + 1 examen final = 31 lecciones (más las de escritura en ja, ko, ru).
+- Cada lección: 1-2 explicaciones (con tabla si hay conjugación), 12-18 palabras con pronunciación
+  aproximada para hispanohablantes, un diálogo o texto de 6-8 frases con análisis, y 8 ejercicios
+  variados (test, traducción, huecos, escucha, ordenar).
+- Capítulos (se adaptan a cada idioma según su temario oficial):
+  1 saludos y presentarse · 2 origen, idiomas, profesión · 3 números, edad, familia ·
+  4 casa y cosas · 5 rutina y la hora · 6 comida y restaurante · 7 compras y ropa ·
+  8 ciudad y transporte · 9 tiempo libre, tiempo y fechas · 10 pasado básico, salud y viajes.
+
+REGLAS DE CALIDAD
+- Toda palabra de un diálogo o ejercicio tiene ficha (W) en esa lección o en una anterior;
+  las formas conjugadas que aparezcan también. El compilador avisa («sin ficha»).
+- Nombres propios: se declaran con N.
+- En japonés y coreano las frases se escriben con espacios entre palabras y partículas
+  (la app parte por espacios).
+- Ejercicios: 3 o 4 opciones, una sola correcta, sin distractores ambiguos.
+- Solo se usa en los ejercicios lo ya enseñado.
+- Al acabar un curso: compilar con 0 avisos, cargarlo en el navegador (motor de la app) y commit.
+
+ESTADO
+en  HECHO (31 lecciones, 557 palabras, 267 ejercicios; cargado en la app sin avisos)
+fr  pendiente
+ja  pendiente
+it  pendiente
+de  pendiente
+ko  pendiente
+pt  pendiente
+ru  pendiente

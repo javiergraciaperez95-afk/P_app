@@ -262,8 +262,12 @@ def main():
             'prefijo': prefijo, 'tabla': tabla, 'nativo': nativo, 'nombre': {'en': en, 'es': es, 'vi': vi, 'zh': zh},
             'hola': hola, 'letras': letras.split(), 'bandera': bandera(carpeta),
         }
+        # Los cursos que ya se escriben aquí (_herramientas/cursos/<id>) no se vuelven a traer de la app antigua.
+        propio = (RAIZ / '_herramientas' / 'cursos' / cid).is_dir() or cid == 'vi'
         if not solo or cid in solo:
-            if formato == 'comun':
+            if propio:
+                n = len(list((CURSOS / cid / 'lessons').glob('[0-9]*.json')))
+            elif formato == 'comun':
                 n = montar_comun(cid, carpeta)
             elif formato == 'portugues':
                 n = montar_portugues(cid, carpeta)
