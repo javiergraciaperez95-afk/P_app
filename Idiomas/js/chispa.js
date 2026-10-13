@@ -34,7 +34,8 @@ document.addEventListener('pointerover', e => {
   if (pieza === rozada) return; // moverse por dentro de la misma pieza no cuenta
   rozada = pieza;
   if (!pieza) return;
-  animar(pieza, 'rozado');
+  // Las tutoras no se mueven al pasar por encima (queda raro): solo suenan. Al pulsarlas sí reaccionan.
+  if (!pieza.matches('.inicio-figura, .sobre-actriz')) animar(pieza, 'rozado');
   sonar('roce');
 });
 
