@@ -638,7 +638,7 @@ export default {
   'rev.sinCategorias': 'O arquivo não tem «categorias».',
 
   // ----- Elegir idioma y créditos -----
-  'app.nombre': 'Idiomas',
+  'app.nombre': 'Pixiglot',
   'cursos.titulo': 'Escolha o idioma para estudar!',
   'cursos.texto': 'Cada idioma tem a sua tutora, as suas lições e o seu próprio progresso. Você pode trocar quando quiser.',
   'cursos.lecciones': n => (n.n === 1 ? '1 lição' : `${n.n} lições`),
@@ -653,4 +653,27 @@ export default {
   'creditos.otros': 'Obrigada também a',
   'creditos.ia': 'A voz que lê as lições é a do seu próprio aparelho ou navegador: é uma voz de computador, não uma pessoa, e soa diferente em cada aparelho.',
   'creditos.volver': 'Voltar',
+
+  // ----- Pantalla de inicio (portada) -----
+  'inicio.titulo': 'Início',
+  'inicio.lema': 'Aprenda idiomas com a sua tutora de pixels',
+  'inicio.texto': 'Lições curtas, diálogos de verdade e uma tutora que explica cada frase. No seu ritmo, onde você estiver.',
+  'inicio.empezar': 'Começar ▶',
+  'inicio.continuar': 'Continuar com {curso} ▶',
+  'inicio.otroIdioma': 'Escolher outro idioma',
+  'inicio.dato.idiomas': 'idiomas',
+  'inicio.dato.lecciones': 'lições',
+  'inicio.dato.tutoras': 'tutoras',
+  'inicio.comoTitulo': 'É assim que se aprende aqui',
+  'inicio.f1.titulo': 'Lições como capítulos',
+  'inicio.f1.texto': 'Cada lição traz uma explicação, um diálogo, o vocabulário e exercícios. Você começa do zero e avança passo a passo.',
+  'inicio.f2.titulo': 'Uma tutora que explica',
+  'inicio.f2.texto': 'Toque numa palavra para ver o que significa, ou aperte «?» e a sua tutora explica a frase inteira.',
+  'inicio.f3.titulo': 'O que você erra, volta',
+  'inicio.f3.texto': 'Salve palavras com a estrela e revise na hora certa: quanto melhor você souber, mais tarde elas voltam.',
+  'inicio.f4.titulo': 'Ouvido e conversa',
+  'inicio.f4.texto': 'Ouça cada frase em voz alta, treine o ouvido e pratique frases úteis para conversas de verdade.',
+  'inicio.idiomasTitulo': 'Escolha entre {n} idiomas',
+  'inicio.idiomasTexto': 'Cada idioma tem a sua própria tutora e o seu próprio progresso. Você pode estudar vários ao mesmo tempo.',
+  'inicio.pie': 'Feito com pixels e paciência.',
 };

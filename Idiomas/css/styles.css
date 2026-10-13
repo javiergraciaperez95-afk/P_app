@@ -1935,3 +1935,150 @@ body.sin-tutora main { padding-bottom: calc(32px + var(--borde-abajo)); }
   .cabecera .sel-idioma { max-width: 84px; }
   .marca { font-size: 1.15rem; }
 }
+
+
+/* ===== Marca: el logotipo de la cabecera ===== */
+.marca { flex-direction: row; align-items: center; gap: 10px; }
+.marca-logo { flex: none; width: 32px; height: 32px; }
+.marca-textos { display: flex; flex-direction: column; min-width: 0; }
+@media (max-width: 600px) {
+  /* dentro de un curso, en pantallas estrechas el sitio es para el nombre del idioma */
+  body:not(.en-inicio):not(.sin-curso) .marca-logo { display: none; }
+}
+
+/* ===== Pantalla de arranque: el logotipo mientras carga la app ===== */
+body.arrancando .cabecera,
+body.arrancando .menu,
+body.arrancando .tutora { visibility: hidden; }
+.arranque {
+  min-height: 62vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  text-align: center;
+}
+.arranque-logo, .inicio-logo { width: 128px; height: 128px; animation: flotar 1.4s infinite; }
+.arranque-nombre { font-family: var(--fuente-pixel); font-weight: 700; font-size: 2.6rem; line-height: 1; margin: 6px 0 10px; }
+.arranque-nombre span, .inicio-nombre-oro { color: var(--marca-oro); }
+/* sube y baja a saltos, como un personaje de videojuego en reposo */
+@keyframes flotar {
+  0%, 49.9% { transform: translateY(0); }
+  50%, 100% { transform: translateY(-4px); }
+}
+
+/* ===== Pantalla de inicio (portada) ===== */
+:root { --marca-oro: #f4c84a; --globo: #fff4dc; --globo-tinta: #1a1424; }
+:root[data-tema="claro"] { --marca-oro: #c77a00; }
+
+body.en-inicio .menu,
+body.en-inicio #btn-curso { display: none; } /* en la portada ya hay un botón para cambiar de idioma */
+body.en-inicio main { max-width: 1040px; }
+
+.inicio { display: flex; flex-direction: column; gap: 48px; }
+.inicio-portada { text-align: center; padding-top: 10px; }
+.inicio-nombre {
+  font-size: clamp(3.2rem, 13vw, 5.2rem);
+  line-height: 1;
+  margin: 2px 0 12px;
+  text-shadow: 4px 4px 0 var(--sombra);
+}
+:root[data-tema="claro"] .inicio-nombre { text-shadow: 4px 4px 0 var(--fondo-punto); }
+.inicio-lema { font-size: clamp(1.25rem, 4.4vw, 1.7rem); font-weight: 700; line-height: 1.25; margin: 0 0 8px; }
+.inicio-texto { max-width: 34em; margin: 0 auto 20px; color: var(--texto-suave); }
+.inicio-botones { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 8px; margin: 0; }
+.inicio-botones .boton-grande { font-size: 1.25rem; padding: 14px 26px; }
+
+/* El grupo de tutoras: de pie sobre una línea, saludando por turnos */
+.inicio-escena {
+  display: flex; justify-content: center; align-items: flex-end;
+  width: fit-content; max-width: 100%;
+  margin: 6px auto 0; padding: 62px 14px 0;
+  border-bottom: 4px solid var(--linea);
+}
+.inicio-figura { position: relative; flex: none; margin: 0 -11px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.inicio-tutora { display: block; width: 144px; height: 192px; image-rendering: pixelated; image-rendering: crisp-edges; }
+.inicio-globo {
+  position: absolute; left: 50%; bottom: calc(100% - 22px); z-index: 2;
+  transform: translateX(-50%) scale(0); transform-origin: 50% 100%;
+  transition: transform .12s steps(3);
+  padding: 5px 11px;
+  white-space: nowrap; font-weight: 700; font-size: 1.05rem; line-height: 1.3;
+  color: var(--globo-tinta); background: var(--globo);
+  box-shadow: 0 -3px 0 0 var(--globo-tinta), 0 3px 0 0 var(--globo-tinta), -3px 0 0 0 var(--globo-tinta), 3px 0 0 0 var(--globo-tinta);
+  pointer-events: none;
+}
+/* la cola del bocadillo, hecha con cuadraditos */
+.inicio-globo::before, .inicio-globo::after { content: ""; position: absolute; left: 50%; background: var(--globo); }
+.inicio-globo::before { top: 100%; width: 12px; height: 6px; margin-left: -9px; box-shadow: -3px 0 0 0 var(--globo-tinta), 3px 0 0 0 var(--globo-tinta); }
+.inicio-globo::after { top: calc(100% + 6px); width: 6px; height: 3px; margin-left: -9px; box-shadow: -3px 0 0 0 var(--globo-tinta), 3px 0 0 0 var(--globo-tinta), 0 3px 0 0 var(--globo-tinta), 6px -3px 0 0 var(--globo-tinta); }
+.inicio-figura.habla .inicio-globo { transform: translateX(-50%) scale(1); }
+
+.inicio-datos {
+  list-style: none; margin: 18px 0 0; padding: 0;
+  display: flex; justify-content: center; gap: 8px 34px;
+  font-family: var(--fuente-pixel); color: var(--texto-suave); line-height: 1.2;
+}
+.inicio-datos li { display: flex; flex-direction: column; align-items: center; }
+.inicio-datos strong { font-size: 2rem; color: var(--marca-oro); }
+:root:lang(vi) .inicio-datos, :root:lang(zh) .inicio-datos { font-family: var(--fuente-texto); }
+
+.inicio-seccion h2 { text-align: center; font-size: 1.6rem; margin-bottom: 16px; }
+.inicio-seccion h2:has(+ .inicio-seccion-texto) { margin-bottom: 6px; }
+.inicio-seccion-texto { text-align: center; max-width: 34em; margin: 0 auto 18px; color: var(--texto-suave); }
+
+.inicio-ventajas { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 6px; }
+.inicio-ventajas .caja { padding: 16px 14px; }
+.inicio-icono { display: block; width: 36px; height: 36px; color: var(--marca-oro); }
+.inicio-ventajas h3 { color: var(--texto); font-size: 1.1rem; margin: 10px 0 6px; }
+.inicio-ventajas p { margin: 0; font-size: .95rem; line-height: 1.5; color: var(--texto-suave); }
+
+.inicio-idiomas { list-style: none; margin: 0; padding: 0 4px; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px 10px; }
+.inicio-idioma {
+  display: flex; align-items: center; gap: 8px; width: 100%;
+  min-height: 44px; padding: 6px 10px; border: 0; cursor: pointer; text-align: left;
+  font: inherit; font-weight: 700; font-size: 1rem; line-height: 1.2; color: var(--texto); background: var(--panel);
+  box-shadow: 0 -2px 0 0 var(--linea), 0 2px 0 0 var(--linea), -2px 0 0 0 var(--linea), 2px 0 0 0 var(--linea),
+    2px 4px 0 0 var(--sombra), 4px 2px 0 0 var(--sombra);
+}
+.inicio-idioma:hover:not(:disabled) { background: var(--panel-hover); }
+.inicio-idioma:active:not(:disabled) { transform: translate(2px, 2px); }
+.inicio-idioma.actual { background: var(--oro); color: var(--fondo); }
+.inicio-idioma:disabled { cursor: default; opacity: .5; }
+.inicio-idioma .curso-bandera { display: inline-flex; }
+.inicio-idioma .curso-bandera .bandera { width: 1.5em; height: 1em; vertical-align: 0; }
+
+.inicio-pie { text-align: center; padding-top: 20px; border-top: 3px dashed var(--texto-suave); color: var(--texto-suave); font-size: .92rem; }
+.inicio-pie p { margin: 0 0 4px; }
+.inicio-pie strong { color: var(--texto); font-family: var(--fuente-pixel); }
+.inicio-pie-logo { width: 32px; height: 32px; }
+
+/* Menos sitio: menos tutoras (las de los lados se esconden) y las ventajas en dos columnas o en una */
+@media (max-width: 1000px) {
+  .inicio-figura[data-lejos="3"] { display: none; }
+}
+@media (max-width: 900px) {
+  .inicio-ventajas { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .inicio { gap: 40px; }
+  .inicio-tutora { width: 96px; height: 128px; }
+  .inicio-figura { margin: 0 -7px; }
+  .inicio-escena { padding-top: 54px; }
+  .inicio-globo { bottom: calc(100% - 14px); font-size: 1rem; }
+  .arranque-logo, .inicio-logo { width: 96px; height: 96px; }
+}
+@media (max-width: 460px) {
+  .inicio-figura[data-lejos="2"] { display: none; }
+  .inicio-ventajas { grid-template-columns: 1fr; }
+  .inicio-botones .boton { width: calc(100% - var(--px) * 3); }
+  .inicio-datos { gap: 8px 22px; }
+  .inicio-idiomas { grid-template-columns: 1fr 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .arranque-logo, .inicio-logo { animation: none; }
+  .inicio-globo { transition: none; }
+}
+
+/* Que el lema y los textos de la portada no dejen una palabra suelta en la última línea */
+.inicio-lema, .inicio-texto, .inicio-seccion-texto, .inicio-seccion h2 { text-wrap: balance; }
+
+/* En chino la fuente pixel no tiene letras: los títulos usan la del texto en vez de una con remates */
+:root:lang(zh) { --fuente-pixel: "Pixelify Sans", system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }

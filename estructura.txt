@@ -37,12 +37,12 @@ LA APP: Idiomas/
 ----------------
 index.html               La página.
 css/                     El aspecto.
-assets/                  Iconos e imágenes.
+assets/                  Iconos y logotipo (se generan: ver _herramientas/logo/).
 manifest.webmanifest, sw.js   Para que se pueda instalar y funcione sin conexión.
 LEEME.txt                Explicación más detallada de la app.
 
 js/                      EL PROGRAMA (común a todos los idiomas)
-   app.js                Arranque y pantallas. Al abrir, lleva a «Elige el idioma».
+   app.js                Arranque y pantallas. Al abrir, lleva a la pantalla de inicio.
    cursos.js             La lista de cursos (se genera sola; no se edita a mano).
    curso.js              Qué curso está elegido.
    lessons.js            Carga las lecciones del curso.
@@ -55,7 +55,7 @@ js/                      EL PROGRAMA (común a todos los idiomas)
    movil.js              Lo propio de Android (botón atrás…).
    creditos.js           A quién se agradecen las voces.
    juego/                El modo juego.
-   vistas/               Una pantalla por archivo: cursos (elegir idioma),
+   vistas/               Una pantalla por archivo: inicio (la portada), cursos (elegir idioma),
                          lecciones, leccion, practica, repaso, frases,
                          cuaderno, perfil.
 
@@ -99,6 +99,8 @@ _herramientas/montar_cursos.py   Copia el contenido de _antiguas/ a
                                  Idiomas/cursos/ y genera js/cursos.js.
                                  OJO: machaca lo que haya en cursos/<código>
                                  (menos español). No usar con vietnamita.
+_herramientas/logo/generar.py    Dibuja el logotipo de Pixiglot (el nombre de la app)
+                                 y saca todos los iconos de la web y de la APK.
 _herramientas/cursos/            Los cursos A1 escritos en formato corto:
                                  <código>/NN.txt (un archivo por capítulo) y
                                  capitulos.txt. compilar.py los convierte en

@@ -1,4 +1,4 @@
-// Pantalla de inicio: «¡Elige el idioma a estudiar!», con la tutora de cada curso, y la pantalla de créditos.
+// Pantalla «¡Elige el idioma a estudiar!», con la tutora de cada curso, y la pantalla de créditos.
 
 import { el, poner } from '../dom.js';
 import { t, tr, idioma } from '../i18n.js';
@@ -52,6 +52,8 @@ export function pintarElegirCurso(contenedor) {
       el('p', { class: 'elegir-curso-texto' }, t('cursos.texto')),
       el('ul', { class: 'cursos-lista' }, CURSOS.map(tarjeta)),
       el('p', { class: 'elegir-curso-pie' },
+        el('a', { class: 'boton boton-mini', href: '#/inicio' }, t('inicio.titulo')),
+        ' ',
         hayCurso && el('a', { class: 'boton boton-mini', href: '#/lecciones' }, t('cursos.volver', { curso: curso.nativo })),
         ' ',
         el('a', { class: 'boton boton-mini', href: '#/creditos' }, t('creditos.titulo')))));
@@ -77,5 +79,5 @@ export function pintarCreditos(contenedor) {
       el('ul', { class: 'creditos-lista' }, OTROS.map(o =>
         el('li', { class: 'caja' }, el('strong', {}, o.nombre), ` (${tr(o.que)}) · `, enlace(o.autor, o.url), ` · ${o.licencia}`))),
       el('p', {}, t('creditos.ia')),
-      el('p', {}, el('a', { class: 'boton boton-mini', href: hayCurso ? '#/lecciones' : '#/' }, t('creditos.volver')))));
+      el('p', {}, el('a', { class: 'boton boton-mini', href: hayCurso ? '#/lecciones' : '#/inicio' }, t('creditos.volver')))));
 }

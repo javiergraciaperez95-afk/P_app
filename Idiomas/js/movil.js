@@ -52,10 +52,10 @@ export function salirDelJuego() {
 
 // --- Solo instalada ---------------------------------------------------------------------------
 
-/** Pantalla principal: la lista de lecciones o, sin curso elegido, la de elegir idioma. */
+/** Pantallas principales: el inicio, la lista de lecciones y la de elegir idioma (sin curso elegido, todo menos los créditos). */
 function enPrincipal() {
   const hash = location.hash;
-  return hayCurso ? (hash === '' || hash === '#/' || hash === '#/lecciones' || hash === '#/idiomas') : hash !== '#/creditos';
+  return hayCurso ? ['', '#/', '#/inicio', '#/lecciones', '#/idiomas'].includes(hash) : hash !== '#/creditos';
 }
 
 if (piezas?.App) {

@@ -639,7 +639,7 @@ export default {
   'juego.salir.no': 'Chơi tiếp',
 
   // ----- Elegir idioma y créditos -----
-  'app.nombre': 'Ngoại ngữ',
+  'app.nombre': 'Pixiglot',
   'cursos.titulo': 'Chọn ngôn ngữ em muốn học!',
   'cursos.texto': 'Mỗi ngôn ngữ có cô giáo riêng, bài học riêng và tiến độ riêng. Em có thể đổi bất cứ lúc nào.',
   'cursos.lecciones': '{n} bài học',
@@ -654,4 +654,27 @@ export default {
   'creditos.otros': 'Cũng xin cảm ơn',
   'creditos.ia': 'Giọng đọc bài học là giọng của chính thiết bị hoặc trình duyệt của em: đó là giọng máy tính, không phải người thật, và trên mỗi thiết bị nghe một khác.',
   'creditos.volver': 'Quay lại',
+
+  // ----- Pantalla de inicio (portada) -----
+  'inicio.titulo': 'Trang chủ',
+  'inicio.lema': 'Học ngoại ngữ cùng cô giáo pixel',
+  'inicio.texto': 'Bài học ngắn, hội thoại thực tế và một cô giáo giải thích từng câu cho em. Học theo nhịp của riêng em, ở bất cứ đâu.',
+  'inicio.empezar': 'Bắt đầu ▶',
+  'inicio.continuar': 'Học tiếp {curso} ▶',
+  'inicio.otroIdioma': 'Chọn ngôn ngữ khác',
+  'inicio.dato.idiomas': 'ngôn ngữ',
+  'inicio.dato.lecciones': 'bài học',
+  'inicio.dato.tutoras': 'cô giáo',
+  'inicio.comoTitulo': 'Học ở đây như thế nào',
+  'inicio.f1.titulo': 'Bài học như những chương sách',
+  'inicio.f1.texto': 'Mỗi bài có phần giải thích, hội thoại, từ vựng và bài tập. Em bắt đầu từ con số không và tiến từng bước.',
+  'inicio.f2.titulo': 'Cô giáo giải thích tận tình',
+  'inicio.f2.texto': 'Chạm vào một từ để xem nghĩa, hoặc bấm «?» để cô giáo giải thích cả câu.',
+  'inicio.f3.titulo': 'Sai chỗ nào, ôn lại chỗ đó',
+  'inicio.f3.texto': 'Lưu từ bằng ngôi sao và ôn lại đúng lúc: em càng nhớ rõ, từ càng lâu mới quay lại.',
+  'inicio.f4.titulo': 'Luyện nghe và hội thoại',
+  'inicio.f4.texto': 'Nghe từng câu được đọc to, luyện tai và tập những mẫu câu hữu ích cho hội thoại thực tế.',
+  'inicio.idiomasTitulo': 'Chọn trong {n} ngôn ngữ',
+  'inicio.idiomasTexto': 'Mỗi ngôn ngữ có cô giáo riêng và tiến độ riêng. Em có thể học nhiều ngôn ngữ cùng lúc.',
+  'inicio.pie': 'Làm bằng pixel và sự kiên nhẫn.',
 };

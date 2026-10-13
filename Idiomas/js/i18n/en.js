@@ -632,7 +632,7 @@ export default {
   'rev.sinCategorias': 'The file has no «categorias».',
 
   // Elegir idioma y créditos
-  'app.nombre': 'Languages',
+  'app.nombre': 'Pixiglot',
   'cursos.titulo': 'Choose the language to study!',
   'cursos.texto': 'Each language has its own tutor, its own lessons and its own progress. You can switch whenever you like.',
   'cursos.lecciones': n => (n.n === 1 ? '1 lesson' : `${n.n} lessons`),
@@ -650,4 +650,27 @@ export default {
   'juego.salir.pregunta': 'Leave the lesson? Your progress is saved: you will pick up where you left off.',
   'juego.salir.si': 'Leave',
   'juego.salir.no': 'Keep playing',
+
+  // ----- Pantalla de inicio (portada) -----
+  'inicio.titulo': 'Home',
+  'inicio.lema': 'Learn languages with your pixel tutor',
+  'inicio.texto': 'Short lessons, real dialogues and a tutor who explains every sentence. At your own pace, wherever you are.',
+  'inicio.empezar': 'Get started ▶',
+  'inicio.continuar': 'Continue with {curso} ▶',
+  'inicio.otroIdioma': 'Choose another language',
+  'inicio.dato.idiomas': 'languages',
+  'inicio.dato.lecciones': 'lessons',
+  'inicio.dato.tutoras': 'tutors',
+  'inicio.comoTitulo': 'How you learn here',
+  'inicio.f1.titulo': 'Lessons like chapters',
+  'inicio.f1.texto': 'Each lesson has an explanation, a dialogue, vocabulary and exercises. You start from zero and move forward step by step.',
+  'inicio.f2.titulo': 'A tutor who explains',
+  'inicio.f2.texto': 'Tap a word to see what it means, or press «?» and your tutor explains the whole sentence.',
+  'inicio.f3.titulo': 'What you miss comes back',
+  'inicio.f3.texto': 'Save words with the star and review them right on time: the better you know them, the later they return.',
+  'inicio.f4.titulo': 'Listening and conversation',
+  'inicio.f4.texto': 'Hear every sentence aloud, train your ear and practise useful phrases for real conversations.',
+  'inicio.idiomasTitulo': 'Choose from {n} languages',
+  'inicio.idiomasTexto': 'Each language has its own tutor and its own progress. You can study several at once.',
+  'inicio.pie': 'Made with pixels and patience.',
 };

@@ -636,7 +636,7 @@ export default {
   'rev.sinCategorias': '文件里没有«categorias»。',
 
   // ----- Elegir idioma y créditos -----
-  'app.nombre': '语言',
+  'app.nombre': 'Pixiglot',
   'cursos.titulo': '选择要学习的语言！',
   'cursos.texto': '每种语言都有自己的老师、自己的课程和自己的进度。你随时可以更换。',
   'cursos.lecciones': '{n} 课',
@@ -651,4 +651,27 @@ export default {
   'creditos.otros': '同样感谢',
   'creditos.ia': '朗读课程的声音来自你自己的设备或浏览器：那是电脑合成的声音，不是真人，在每台设备上听起来都不一样。',
   'creditos.volver': '返回',
+
+  // ----- Pantalla de inicio (portada) -----
+  'inicio.titulo': '首页',
+  'inicio.lema': '跟着像素老师学外语',
+  'inicio.texto': '短小的课程、真实的对话，还有一位把每句话都讲明白的老师。按自己的节奏学，随时随地。',
+  'inicio.empezar': '开始 ▶',
+  'inicio.continuar': '继续学{curso} ▶',
+  'inicio.otroIdioma': '选择其他语言',
+  'inicio.dato.idiomas': '种语言',
+  'inicio.dato.lecciones': '节课',
+  'inicio.dato.tutoras': '位老师',
+  'inicio.comoTitulo': '在这里这样学',
+  'inicio.f1.titulo': '像章节一样的课程',
+  'inicio.f1.texto': '每一课都有讲解、对话、词汇和练习。从零开始，一步一步往前走。',
+  'inicio.f2.titulo': '会讲解的老师',
+  'inicio.f2.texto': '点一个词就能看到它的意思；按«?»，老师会把整句话讲给你听。',
+  'inicio.f3.titulo': '错过的会再回来',
+  'inicio.f3.texto': '用星星把单词存下来，在最合适的时候复习：记得越牢，它回来得越晚。',
+  'inicio.f4.titulo': '听力和会话',
+  'inicio.f4.texto': '每句话都能听朗读，练耳朵，还能练习真实对话里用得上的句子。',
+  'inicio.idiomasTitulo': '{n} 种语言任你选',
+  'inicio.idiomasTexto': '每种语言都有自己的老师和自己的进度。可以同时学好几种。',
+  'inicio.pie': '用像素和耐心做成。',
 };

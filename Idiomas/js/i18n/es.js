@@ -433,7 +433,7 @@ export default {
   'reinicio.vaciarCuaderno': 'Vaciar también el cuaderno',
 
   // Elegir idioma y créditos
-  'app.nombre': 'Idiomas',
+  'app.nombre': 'Pixiglot',
   'cursos.titulo': '¡Elige el idioma a estudiar!',
   'cursos.texto': 'Cada idioma tiene su tutora, sus lecciones y su propio progreso. Puedes cambiar cuando quieras.',
   'cursos.lecciones': n => (n.n === 1 ? '1 lección' : `${n.n} lecciones`),
@@ -623,4 +623,27 @@ export default {
   'rev.sinHueco': '{donde}: la frase no tiene hueco. Escríbelo con guiones bajos: ___',
   'rev.faltaPreguntaOFrase': 'falta la «pregunta» o la «frase».',
   'rev.sinCategorias': 'El archivo no tiene «categorias».',
+
+  // ----- Pantalla de inicio (portada) -----
+  'inicio.titulo': 'Inicio',
+  'inicio.lema': 'Aprende idiomas con tu tutora de píxeles',
+  'inicio.texto': 'Lecciones cortas, diálogos de verdad y una tutora que te explica cada frase. A tu ritmo, estés donde estés.',
+  'inicio.empezar': 'Empezar ▶',
+  'inicio.continuar': 'Seguir con {curso} ▶',
+  'inicio.otroIdioma': 'Elegir otro idioma',
+  'inicio.dato.idiomas': 'idiomas',
+  'inicio.dato.lecciones': 'lecciones',
+  'inicio.dato.tutoras': 'tutoras',
+  'inicio.comoTitulo': 'Así se aprende aquí',
+  'inicio.f1.titulo': 'Lecciones como capítulos',
+  'inicio.f1.texto': 'Cada lección trae su explicación, un diálogo, el vocabulario y ejercicios. Empiezas de cero y avanzas paso a paso.',
+  'inicio.f2.titulo': 'Una tutora que explica',
+  'inicio.f2.texto': 'Toca una palabra para ver qué significa, o pulsa «?» y tu tutora te explica la frase entera.',
+  'inicio.f3.titulo': 'Lo que fallas, vuelve',
+  'inicio.f3.texto': 'Guarda palabras con la estrella y repásalas justo cuando toca: cuanto mejor las sabes, más tarde vuelven.',
+  'inicio.f4.titulo': 'Oído y conversación',
+  'inicio.f4.texto': 'Escucha cada frase en voz alta, entrena el oído y practica frases útiles para conversaciones de verdad.',
+  'inicio.idiomasTitulo': 'Elige entre {n} idiomas',
+  'inicio.idiomasTexto': 'Cada idioma tiene su propia tutora y su propio progreso. Puedes estudiar varios a la vez.',
+  'inicio.pie': 'Hecho con píxeles y paciencia.',
 };

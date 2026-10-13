@@ -3,8 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Idiomas</title>
-  <meta name="description" content="Language courses with a pixel-art tutor · Cursos de idiomas con una tutora en pixel art.">
+  <title>Pixiglot</title>
+  <meta name="description" content="Pixiglot: learn languages with your pixel tutor · Aprende idiomas con tu tutora de píxeles.">
+  <meta name="application-name" content="Pixiglot">
+  <meta name="apple-mobile-web-app-title" content="Pixiglot">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Pixiglot">
+  <meta property="og:description" content="Learn languages with your pixel tutor · Aprende idiomas con tu tutora de píxeles.">
+  <meta property="og:image" content="assets/icono-512.png">
   <meta name="theme-color" content="#14111c">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
@@ -21,7 +27,7 @@
     } catch (e) { /* tema por defecto */ }
   </script>
   <link rel="stylesheet" href="css/fuentes.css?v=__VERSION__">
-  <link rel="stylesheet" href="css/styles.css?v=__VERSION__&h=3">
+  <link rel="stylesheet" href="css/styles.css?v=__VERSION__&h=4">
   <!-- Al publicar, __VERSION__ se cambia por el código de la versión (ver .github/workflows/static.yml),
        así el navegador descarga siempre los archivos nuevos en lugar de usar los antiguos guardados. -->
   <script type="importmap">
@@ -60,6 +66,7 @@
         "./js/vistas/cuaderno.js": "./js/vistas/cuaderno.js?v=__VERSION__",
         "./js/vistas/cursos.js": "./js/vistas/cursos.js?v=__VERSION__",
         "./js/vistas/frases.js": "./js/vistas/frases.js?v=__VERSION__",
+        "./js/vistas/inicio.js": "./js/vistas/inicio.js?v=__VERSION__",
         "./js/vistas/leccion.js": "./js/vistas/leccion.js?v=__VERSION__",
         "./js/vistas/lecciones.js": "./js/vistas/lecciones.js?v=__VERSION__",
         "./js/vistas/perfil.js": "./js/vistas/perfil.js?v=__VERSION__",
@@ -76,11 +83,15 @@
     }
   </script>
 </head>
-<body>
+<!-- «arrancando»: mientras carga la app solo se ve el logotipo; la clase se quita al pintar la primera pantalla (js/app.js). -->
+<body class="arrancando">
   <a class="saltar" href="#app" data-t="html.saltar">Skip to content</a>
 
   <header class="cabecera">
-    <a href="#/lecciones" class="marca"><span class="marca-titulo"><span id="marca-nombre"></span> <span id="marca-bandera"></span></span> <small id="marca-subtitulo"></small></a>
+    <a href="#/inicio" id="marca" class="marca">
+      <img class="marca-logo" src="assets/favicon.svg" alt="" width="32" height="32">
+      <span class="marca-textos"><span class="marca-titulo"><span id="marca-nombre"></span> <span id="marca-bandera"></span></span> <small id="marca-subtitulo"></small></span>
+    </a>
     <span class="cabecera-botones">
       <a id="btn-curso" class="btn btn-icono btn-curso" href="#/idiomas" hidden>⇄</a>
       <select id="sel-idioma" class="btn sel-idioma" aria-label="Language" data-t-aria="idioma.selector"></select>
@@ -92,7 +103,11 @@
   <nav id="menu" class="menu" data-t-aria="html.secciones"></nav>
 
   <main id="app" tabindex="-1">
-    <p class="cargando" data-t="html.cargando">Loading…</p>
+    <div class="arranque">
+      <img class="arranque-logo" src="assets/logo.svg" alt="" width="128" height="128">
+      <p class="arranque-nombre">Pixi<span>glot</span></p>
+      <p class="cargando" data-t="html.cargando">Loading…</p>
+    </div>
   </main>
 
   <aside id="tutora" class="tutora" data-t-aria="tutora.nombre">
