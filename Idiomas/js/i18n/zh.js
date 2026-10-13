@@ -676,7 +676,7 @@ export default {
   'inicio.pie': '用像素和耐心做成。',
 
   // ----- Aviso de almacenamiento, aviso legal y privacidad -----
-  'aviso.texto': 'Paglot 不使用广告或跟踪类 Cookie。它只在你的设备上保存运行所必需的内容：你的进度、你的设置，以及（如果你注册了账号）你的登录状态。',
+  'aviso.texto': '没有广告或跟踪类 Cookie：只在你的设备上保存运行所必需的内容。',
   'aviso.ok': '知道了',
   'aviso.mas': '了解更多',
   'legal.titulo': '法律声明与隐私',

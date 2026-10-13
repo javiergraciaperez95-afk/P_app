@@ -679,7 +679,7 @@ export default {
   'inicio.pie': 'Làm bằng pixel và sự kiên nhẫn.',
 
   // ----- Aviso de almacenamiento, aviso legal y privacidad -----
-  'aviso.texto': 'Paglot không dùng cookie quảng cáo hay theo dõi. Ứng dụng chỉ lưu trên thiết bị của em những gì cần để hoạt động: tiến độ, cài đặt và, nếu em tạo tài khoản, phiên đăng nhập.',
+  'aviso.texto': 'Không có cookie quảng cáo hay theo dõi: chỉ lưu trên thiết bị những gì cần để ứng dụng hoạt động.',
   'aviso.ok': 'Đã hiểu',
   'aviso.mas': 'Xem thêm',
   'legal.titulo': 'Thông tin pháp lý và quyền riêng tư',

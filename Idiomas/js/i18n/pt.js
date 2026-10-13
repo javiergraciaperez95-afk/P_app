@@ -678,7 +678,7 @@ export default {
   'inicio.pie': 'Feito com pixels e paciência.',
 
   // ----- Aviso de almacenamiento, aviso legal y privacidad -----
-  'aviso.texto': 'O Paglot não usa cookies de publicidade nem de rastreamento. Só guarda no seu aparelho o necessário para funcionar: o seu progresso, as suas configurações e, se você criar uma conta, a sua sessão.',
+  'aviso.texto': 'Sem cookies de publicidade nem de rastreamento: só fica no seu aparelho o necessário para funcionar.',
   'aviso.ok': 'Entendi',
   'aviso.mas': 'Mais informações',
   'legal.titulo': 'Aviso legal e privacidade',

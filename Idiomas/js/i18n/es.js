@@ -648,7 +648,7 @@ export default {
   'inicio.pie': 'Hecho con píxeles y paciencia.',
 
   // ----- Aviso de almacenamiento, aviso legal y privacidad -----
-  'aviso.texto': 'Paglot no usa cookies de publicidad ni de seguimiento. Solo guarda en tu dispositivo lo necesario para funcionar: tu progreso, tus ajustes y, si creas una cuenta, tu sesión.',
+  'aviso.texto': 'Sin cookies de publicidad ni de seguimiento: solo se guarda en tu dispositivo lo necesario para funcionar.',
   'aviso.ok': 'Entendido',
   'aviso.mas': 'Más información',
   'legal.titulo': 'Aviso legal y privacidad',

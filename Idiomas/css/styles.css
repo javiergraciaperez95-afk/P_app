@@ -2110,10 +2110,12 @@ body.en-inicio main { max-width: 1040px; }
 .legal-titular em { color: var(--texto-suave); }
 .legal a { overflow-wrap: anywhere; }
 
+/* Pequeño y en la esquina de abajo a la izquierda: que se lea, pero que tape lo mínimo */
 .aviso-datos {
-  position: fixed; z-index: 150; left: 50%; bottom: calc(12px + var(--borde-abajo));
-  width: min(560px, calc(100% - 28px)); margin: 0; transform: translateX(-50%);
-  padding: 12px 14px; font-size: .95rem;
+  position: fixed; z-index: 150; left: calc(10px + var(--borde-izq)); bottom: calc(12px + var(--borde-abajo));
+  width: min(290px, calc(100% - 28px)); margin: 0;
+  padding: 8px 10px; font-size: .8rem; line-height: 1.35;
 }
-.aviso-datos p { margin: 0 0 8px; }
-.aviso-datos-botones { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 2px 6px; }
+.aviso-datos p { margin: 0 0 4px; }
+.aviso-datos-botones { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0 2px; }
+.aviso-datos .boton-mini { min-height: 28px; padding: 2px 8px; font-size: .75rem; margin-bottom: var(--px); }

@@ -675,7 +675,7 @@ export default {
   'inicio.pie': 'Made with pixels and patience.',
 
   // ----- Aviso de almacenamiento, aviso legal y privacidad -----
-  'aviso.texto': 'Paglot doesn’t use advertising or tracking cookies. It only stores on your device what it needs to work: your progress, your settings and, if you create an account, your session.',
+  'aviso.texto': 'No advertising or tracking cookies: only what the app needs to work is stored on your device.',
   'aviso.ok': 'Got it',
   'aviso.mas': 'More information',
   'legal.titulo': 'Legal notice and privacy',
