@@ -2222,3 +2222,13 @@ body.en-inicio main { max-width: 1040px; }
   .sobre-fila { flex-wrap: wrap; justify-content: center; width: auto; }
   .sobre-fila canvas:nth-child(n + 21) { display: none; }
 }
+
+/* Enlace a «Sobre Paglot» en la cabecera: con texto si hay sitio; en pantallas estrechas, un «?» (y dentro de un curso se esconde) */
+.cabecera .btn-sobre { width: auto; min-width: 40px; padding: 0 10px; font-family: var(--fuente-texto); font-weight: 700; font-size: .95rem; white-space: nowrap; }
+.btn-sobre-icono { display: none; font-family: var(--h-pixel); font-size: 1.2rem; }
+@media (max-width: 760px) {
+  .cabecera .btn-sobre { width: 40px; padding: 0; }
+  .btn-sobre-texto { display: none; }
+  .btn-sobre-icono { display: inline; }
+  body:not(.en-inicio):not(.sin-curso) .btn-sobre { display: none; }
+}
