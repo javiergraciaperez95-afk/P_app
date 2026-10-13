@@ -29,7 +29,7 @@ export function pintarEntrar(contenedor) {
       a.sprite.expresion = a.expresion;
       apagar.push(() => a.sprite.parar?.());
     }).catch(() => { nodo.hidden = true; });
-    nodo.addEventListener('click', () => { sonar('clic'); a.sprite?.reaccionar('cosquillas', 900); });
+    nodo.addEventListener('click', () => { sonar('saludo'); a.sprite?.reaccionar('cosquillas', 900); });
     return a;
   }
 

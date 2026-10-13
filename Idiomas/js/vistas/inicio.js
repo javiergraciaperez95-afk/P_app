@@ -70,7 +70,7 @@ export function pintarInicio(contenedor) {
       dato.sprite = dibujo.crearSprite(canvas);
       sprites.push(dato.sprite);
     }).catch(() => { figura.hidden = true; });
-    figura.addEventListener('click', () => { sonar('clic'); saludar(dato); });
+    figura.addEventListener('click', () => { sonar('saludo'); saludar(dato); });
     return dato;
   });
 

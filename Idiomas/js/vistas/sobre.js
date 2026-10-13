@@ -68,7 +68,7 @@ export function pintarSobre(contenedor) {
     }).catch(() => { nodo.hidden = true; });
     nodo.addEventListener('click', e => {
       e.stopPropagation();
-      sonar('clic');
+      sonar('saludo');
       a.reaccionar('cosquillas', 900);
       a.alTocar?.();
     });

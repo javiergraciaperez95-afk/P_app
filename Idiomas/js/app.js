@@ -26,6 +26,7 @@ import { pintarSobre } from './vistas/sobre.js';
 import { pintarEntrar } from './vistas/entrar.js';
 import { curso, hayCurso } from './curso.js';
 import './movil.js';
+import './chispa.js';
 
 const app = document.getElementById('app');
 const menu = document.getElementById('menu');
@@ -150,7 +151,7 @@ function cerrarIdiomas({ foco = false } = {}) {
 
 pintarSelectorIdioma();
 selectorIdioma.addEventListener('click', () => {
-  sonar('clic');
+  sonar(listaIdiomas.hidden ? 'abrir' : 'cerrar');
   if (listaIdiomas.hidden) abrirIdiomas();
   else cerrarIdiomas();
 });
@@ -169,12 +170,12 @@ listaIdiomas.addEventListener('keydown', e => {
 
 document.getElementById('btn-tema').addEventListener('click', () => {
   cambiarAjuste('tema', temaActual() === 'oscuro' ? 'claro' : 'oscuro');
-  sonar('clic');
+  sonar('interruptor');
 });
 document.getElementById('btn-sonido').addEventListener('click', () => {
   const on = !ajuste('efectos');
   cambiarAjuste('efectos', on);
-  if (on) sonar('clic');
+  if (on) sonar('interruptor');
 });
 window.addEventListener('tema-cambiado', pintarBotonTema);
 window.addEventListener('efectos-cambiado', pintarBotonSonido);

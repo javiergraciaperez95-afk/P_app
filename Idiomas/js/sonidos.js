@@ -38,13 +38,38 @@ function notaEn(ctx, salida, frecuencia, t0, duracion, forma, volumen) {
   osc.stop(t0 + duracion + 0.02);
 }
 
+// «Bip, bop, bup»: el clic no suena siempre igual; va cambiando de nota y a veces lleva una segunda notita.
+const NOTAS_CLIC = [523, 587, 659, 784, 880, 988];
+let ultimoClic = -1;
+function clic(ctx) {
+  let i = Math.floor(Math.random() * NOTAS_CLIC.length);
+  if (i === ultimoClic) i = (i + 1) % NOTAS_CLIC.length;
+  ultimoClic = i;
+  nota(ctx, NOTAS_CLIC[i], 0, 0.05, 'square', 0.03);
+  if (Math.random() < 0.4) nota(ctx, NOTAS_CLIC[i] * 1.5, 0.045, 0.05, 'square', 0.022);
+}
+
+// Pasar de pantalla: dos notas que suben, con el punto de partida cambiando.
+const NOTAS_PAGINA = [392, 440, 494];
+function pagina(ctx) {
+  const f = NOTAS_PAGINA[Math.floor(Math.random() * NOTAS_PAGINA.length)];
+  nota(ctx, f, 0, 0.045, 'triangle', 0.06);
+  nota(ctx, f * 1.5, 0.045, 0.06, 'triangle', 0.05);
+}
+
 const EFECTOS = {
-  clic: ctx => nota(ctx, 660, 0, 0.05, 'square', 0.03),
+  clic,
+  // Al pasar el ratón por encima: casi no se oye (una nota aguda, cortísima y muy bajita).
+  roce: ctx => nota(ctx, 1320 + Math.random() * 240, 0, 0.03, 'sine', 0.007),
+  abrir: ctx => { nota(ctx, 523, 0, 0.04, 'square', 0.025); nota(ctx, 784, 0.04, 0.06, 'square', 0.025); },
+  cerrar: ctx => { nota(ctx, 784, 0, 0.04, 'square', 0.025); nota(ctx, 523, 0.04, 0.06, 'square', 0.025); },
+  interruptor: ctx => { nota(ctx, 330, 0, 0.03, 'square', 0.03); nota(ctx, 990, 0.035, 0.07, 'triangle', 0.05); },
+  saludo: ctx => [659, 880, 1175].forEach((f, i) => nota(ctx, f, i * 0.05, 0.07, 'triangle', 0.045)),
   bien: ctx => [523, 659, 784, 1047].forEach((f, i) => nota(ctx, f, i * 0.07, 0.12)),
   mal: ctx => { nota(ctx, 330, 0, 0.12, 'triangle', 0.08); nota(ctx, 262, 0.12, 0.2, 'triangle', 0.08); },
   guardar: ctx => { nota(ctx, 880, 0, 0.06); nota(ctx, 1320, 0.06, 0.1); },
   quitar: ctx => { nota(ctx, 660, 0, 0.06); nota(ctx, 440, 0.06, 0.1); },
-  pagina: ctx => nota(ctx, 440, 0, 0.04, 'triangle', 0.06),
+  pagina,
   voltear: ctx => { nota(ctx, 392, 0, 0.05, 'triangle', 0.07); nota(ctx, 587, 0.05, 0.07, 'triangle', 0.07); },
   risa: ctx => [880, 1046, 880, 1175].forEach((f, i) => nota(ctx, f, i * 0.07, 0.06, 'triangle', 0.07)),
   fin: ctx => [523, 659, 784, 659, 784, 1047].forEach((f, i) => nota(ctx, f, i * 0.1, 0.16)),
@@ -110,10 +135,18 @@ export function ponerMusica(encender) {
   return true;
 }
 
+let ultimoSonido = -Infinity;
+
 export function sonar(nombre) {
+  if (nombre !== 'roce') ultimoSonido = performance.now();
   if (!ajuste('efectos')) return;
   const ctx = contexto();
   if (ctx && EFECTOS[nombre]) EFECTOS[nombre](ctx);
+}
+
+/** Milisegundos desde el último efecto (sin contar el roce). Sirve para no poner dos sonidos al mismo toque. */
+export function sonoHace() {
+  return performance.now() - ultimoSonido;
 }
 
 /** Pitido corto de la voz de la tutora (como en los juegos retro). */

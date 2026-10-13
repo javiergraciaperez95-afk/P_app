@@ -2280,3 +2280,18 @@ body.en-inicio main { max-width: 1040px; }
   .entrar .sobre-cabecera { flex-direction: row; flex-wrap: wrap; align-items: flex-end; }
   .entrar .sobre-cabecera-texto { order: 3; width: 100%; }
 }
+
+/* ===== Detalles que llaman la atención (js/chispa.js) =====
+   Se anima «scale», no «transform»: así no pisa a las piezas que ya se mueven con transform. */
+.rozado { animation: rozar .16s steps(3); }
+.pulsado { animation: pulsar .22s steps(5); }
+@keyframes rozar { 50% { scale: 1.05; } }
+@keyframes pulsar { 0% { scale: 1; } 30% { scale: .9; } 65% { scale: 1.08; } 100% { scale: 1; } }
+/* chispas de píxeles donde se pulsa */
+.chispa {
+  position: fixed; z-index: 500; width: 6px; height: 6px; margin: -3px 0 0 -3px; pointer-events: none;
+  animation: chispear .38s steps(6) forwards;
+}
+@keyframes chispear {
+  to { transform: translate(var(--dx), var(--dy)); opacity: 0; }
+}
