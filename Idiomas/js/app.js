@@ -1,5 +1,5 @@
 // Arranque y navegación.
-// Rutas: #/inicio · #/lecciones · #/leccion/001 · #/practica · #/frases · #/cuaderno · #/repaso · #/perfil · #/idiomas · #/creditos · #/legal · #/sobre · #/entrar
+// Rutas: #/inicio · #/lecciones · #/leccion/001 · #/practica · #/frases · #/cuaderno · #/repaso · #/perfil · #/idiomas · #/creditos · #/legal · #/sobre · #/entrar · #/bienvenida
 // Sin curso elegido solo existen la pantalla de inicio, la de elegir idioma, los créditos, el aviso legal y «Sobre Paglot».
 
 import { el, poner } from './dom.js';
@@ -9,7 +9,7 @@ import { ajuste, aplicarTema, temaActual, cambiarAjuste } from './ajustes.js';
 import { t, tr, aplicarIdioma, IDIOMAS, idioma, cambiarIdioma } from './i18n.js';
 import { sonar, prepararVoces } from './sonidos.js';
 import { iniciarNube, usuarioActual, alCambiarNube } from './sync.js';
-import { tarjetas, alCambiar } from './progress.js';
+import { tarjetas, alCambiar, hayProgreso } from './progress.js';
 import { tocaRepasar, esNueva } from './srs.js';
 import { decir } from './tutor.js';
 import { pintarLecciones } from './vistas/lecciones.js';
@@ -24,6 +24,8 @@ import { pintarInicio } from './vistas/inicio.js';
 import { pintarLegal, pintarAvisoDeDatos } from './vistas/legal.js';
 import { pintarSobre } from './vistas/sobre.js';
 import { pintarEntrar } from './vistas/entrar.js';
+import { pintarBienvenida, bienvenidaVista } from './vistas/bienvenida.js';
+import { pintarPerdida } from './vistas/perdida.js';
 import { curso, hayCurso } from './curso.js';
 import './movil.js';
 import './chispa.js';
@@ -200,12 +202,12 @@ alCambiar(pintarAvisoRepaso);
 window.addEventListener('datos-sincronizados', pintarAvisoRepaso);
 setInterval(pintarAvisoRepaso, 60 * 1000); // las tarjetas también vencen con el paso del tiempo
 
+/** Una dirección que no existe o una lección que no se abre: la página perdida, con su propia tutora. */
 function pintarNoEncontrada(texto) {
-  poner(app, el('section', { class: 'caja' },
-    el('h1', {}, t('app.noEncontradaTitulo')),
-    el('p', {}, texto),
-    el('a', { class: 'boton', href: '#/lecciones' }, t('comun.volverLecciones'))));
-  decir(t('app.noEncontradaTutora'), 'confundida');
+  titulo(t('perdida.titulo'));
+  document.body.classList.add('sin-tutora', 'en-inicio'); // como una pantalla general: sin el menú del curso
+  pintarMarca();
+  limpiarVista = pintarPerdida(app, texto);
 }
 
 function titulo(texto) {
@@ -228,6 +230,7 @@ function cargarCurso() {
 }
 
 let pase = 0; // para descartar una navegación si, mientras esperaba, se ha pedido otra
+let bienvenidaOfrecida = false; // la bienvenida se ofrece sola una vez por sesión (y nunca más cuando se ha visto)
 
 async function navegar({ cambioDeIdioma = false } = {}) {
   const estePase = ++pase;
@@ -238,10 +241,17 @@ async function navegar({ cambioDeIdioma = false } = {}) {
   // Solo cuentan las rutas del tipo «#/algo»; cualquier otra cosa lleva a Lecciones.
   const hash = location.hash.startsWith('#/') ? location.hash.slice(2) : '';
   const [ruta, parametro] = hash.split('/');
-  const seccion = ruta || 'lecciones';
+  let seccion = ruta || 'lecciones';
+  // La primera vez que alguien sin progreso llega a sus lecciones, antes pasa por la bienvenida.
+  if (seccion === 'lecciones' && !bienvenidaOfrecida && !bienvenidaVista() && !hayProgreso()) {
+    history.replaceState(null, '', '#/bienvenida');
+    seccion = 'bienvenida';
+  }
+  if (seccion === 'bienvenida') bienvenidaOfrecida = true;
+  document.body.classList.toggle('en-bienvenida', seccion === 'bienvenida');
   rutaActual = seccion === 'leccion' ? 'lecciones' : seccion;
   document.body.classList.toggle('en-inicio', PORTADAS.includes(seccion));
-  document.body.classList.toggle('sin-tutora', [...PORTADAS, 'idiomas', 'creditos', 'legal'].includes(seccion));
+  document.body.classList.toggle('sin-tutora', [...PORTADAS, 'idiomas', 'creditos', 'legal', 'bienvenida'].includes(seccion));
   pintarMarca();
   marcarMenu(rutaActual);
   pintarAvisoRepaso();
@@ -301,8 +311,11 @@ async function navegar({ cambioDeIdioma = false } = {}) {
   } else if (seccion === 'entrar') {
     titulo(t('entrar.titulo'));
     limpiarVista = pintarEntrar(app);
+  } else if (seccion === 'bienvenida') {
+    titulo(t('bienvenida.titulo'));
+    limpiarVista = pintarBienvenida(app, contenido);
   } else {
-    pintarNoEncontrada(t('app.noExiste'));
+    pintarNoEncontrada('');
   }
 
   // Al cambiar de idioma no se mueve la página ni el foco: solo cambian los textos.
@@ -332,7 +345,9 @@ function avisoArchivoLocal() {
 function pintarSinCurso({ cambioDeIdioma = false } = {}) {
   limpiarVista?.();
   limpiarVista = null;
-  const vista = { '#/creditos': 'creditos', '#/idiomas': 'idiomas', '#/legal': 'legal', '#/sobre': 'sobre', '#/entrar': 'entrar' }[location.hash] ?? 'inicio';
+  const vista = { '#/creditos': 'creditos', '#/idiomas': 'idiomas', '#/legal': 'legal', '#/sobre': 'sobre', '#/entrar': 'entrar', '#/inicio': 'inicio' }[location.hash]
+    // Lo que no es una ruta («#/algo») no es una página perdida: son, por ejemplo, los datos que traen los enlaces de los correos.
+    ?? (location.hash.length > 2 && location.hash.startsWith('#/') ? 'perdida' : 'inicio');
   document.body.classList.toggle('en-inicio', PORTADAS.includes(vista));
   pintarMarca();
   if (vista === 'creditos') {
@@ -350,6 +365,9 @@ function pintarSinCurso({ cambioDeIdioma = false } = {}) {
   } else if (vista === 'idiomas') {
     titulo(t('cursos.titulo'));
     pintarElegirCurso(app);
+  } else if (vista === 'perdida') {
+    titulo(t('perdida.titulo'));
+    limpiarVista = pintarPerdida(app);
   } else {
     document.title = t('app.nombre');
     limpiarVista = pintarInicio(app);

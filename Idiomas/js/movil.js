@@ -64,6 +64,8 @@ if (piezas?.App) {
     if (cerrarPregunta) { cerrarPregunta(false); return; }
     if (enJuego()) {
       if (await salirDelJuego()) location.hash = '#/lecciones';
+    } else if (location.hash === '#/bienvenida') {
+      location.hash = '#/lecciones'; // «atrás» en la bienvenida la salta
     } else if (enPrincipal()) {
       piezas.App.exitApp();
     } else {
