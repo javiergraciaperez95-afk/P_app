@@ -135,7 +135,7 @@ export const CURSOS = [
     "hola": "こんにちは！",
     "letras": [],
     "bandera": "<svg class=\"bandera\" width=\"30\" height=\"20\" viewBox=\"0 0 900 600\" aria-hidden=\"true\"><rect width=\"900\" height=\"600\" fill=\"#2b1d1a\"/><rect x=\"16\" y=\"16\" width=\"868\" height=\"568\" fill=\"#fff\"/><circle cx=\"450\" cy=\"300\" r=\"180\" fill=\"#BC002D\"/></svg>",
-    "lecciones": 63,
+    "lecciones": 125,
     "audio": false
   },
   {
@@ -163,7 +163,7 @@ export const CURSOS = [
       "ù"
     ],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 30 20\" aria-hidden=\"true\"><rect width=\"10\" height=\"20\" fill=\"#009246\"/><rect x=\"10\" width=\"10\" height=\"20\" fill=\"#fff\"/><rect x=\"20\" width=\"10\" height=\"20\" fill=\"#CE2B37\"/></svg>",
-    "lecciones": 62,
+    "lecciones": 124,
     "audio": false
   },
   {
@@ -184,7 +184,7 @@ export const CURSOS = [
     "hola": "안녕하세요!",
     "letras": [],
     "bandera": "<svg class=\"bandera\" width=\"30\" height=\"20\" viewBox=\"0 0 900 600\" aria-hidden=\"true\"><rect width=\"900\" height=\"600\" fill=\"#2b1d1a\"/><rect x=\"12\" y=\"12\" width=\"876\" height=\"576\" fill=\"#fff\"/><g transform=\"translate(450 300)\"><path fill=\"#CD2E3A\" d=\"M0-150a150 150 0 0 1 0 300 75 75 0 0 1 0-150 75 75 0 0 0 0-150\"/><path fill=\"#0047A0\" d=\"M0 150a150 150 0 0 1 0-300 75 75 0 0 1 0 150 75 75 0 0 0 0 150\"/></g><g fill=\"#14111c\"><g transform=\"translate(200 140) rotate(-32)\"><rect x=\"-62\" y=\"-24\" width=\"124\" height=\"14\"/><rect x=\"-62\" y=\"-5\" width=\"124\" height=\"14\"/><rect x=\"-62\" y=\"14\" width=\"124\" height=\"14\"/></g><g transform=\"translate(700 140) rotate(32)\"><rect x=\"-62\" y=\"-24\" width=\"50\" height=\"14\"/><rect x=\"12\" y=\"-24\" width=\"50\" height=\"14\"/><rect x=\"-62\" y=\"-5\" width=\"124\" height=\"14\"/><rect x=\"-62\" y=\"14\" width=\"50\" height=\"14\"/><rect x=\"12\" y=\"14\" width=\"50\" height=\"14\"/></g><g transform=\"translate(200 460) rotate(32)\"><rect x=\"-62\" y=\"-24\" width=\"124\" height=\"14\"/><rect x=\"-62\" y=\"-5\" width=\"50\" height=\"14\"/><rect x=\"12\" y=\"-5\" width=\"50\" height=\"14\"/><rect x=\"-62\" y=\"14\" width=\"124\" height=\"14\"/></g><g transform=\"translate(700 460) rotate(-32)\"><rect x=\"-62\" y=\"-24\" width=\"50\" height=\"14\"/><rect x=\"12\" y=\"-24\" width=\"50\" height=\"14\"/><rect x=\"-62\" y=\"-5\" width=\"50\" height=\"14\"/><rect x=\"12\" y=\"-5\" width=\"50\" height=\"14\"/><rect x=\"-62\" y=\"14\" width=\"50\" height=\"14\"/><rect x=\"12\" y=\"14\" width=\"50\" height=\"14\"/></g></g></svg>",
-    "lecciones": 63,
+    "lecciones": 125,
     "audio": false
   },
   {
@@ -241,7 +241,7 @@ export const CURSOS = [
       "ç"
     ],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 30 20\" aria-hidden=\"true\"><rect width=\"12\" height=\"20\" fill=\"#046a38\"/><rect x=\"12\" width=\"18\" height=\"20\" fill=\"#da291c\"/><circle cx=\"12\" cy=\"10\" r=\"4.2\" fill=\"#ffe900\"/><circle cx=\"12\" cy=\"10\" r=\"2.6\" fill=\"none\" stroke=\"#046a38\" stroke-width=\"0.8\"/></svg>",
-    "lecciones": 62,
+    "lecciones": 124,
     "audio": false
   },
   {
