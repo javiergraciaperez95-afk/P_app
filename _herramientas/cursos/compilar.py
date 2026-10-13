@@ -39,6 +39,9 @@ ejercicios sin una única opción buena y palabras repetidas.
 Coreano: la pronunciación se calcula sola si no se escribe, y las palabras con partícula pegada
 (학교에, 저는…) reciben una ficha oculta automática si la palabra base ya tiene ficha (ver coreano.py).
 Con «-v» detrás del curso se listan esas fichas automáticas.
+
+Con «--sin-lista» detrás del curso no se actualiza js/cursos.js (para cuando se escriben varios cursos
+a la vez: la lista la pone al día la compilación final, sin esa opción).
 """
 import json, re, sys, time
 from pathlib import Path
@@ -363,13 +366,15 @@ def main():
         avisos.append(f'capítulos sin título en capitulos.txt: {sorted(faltan)}')
     escribir(destino / 'capitulos.json', json.dumps(caps, ensure_ascii=False, indent=1) + '\n')
 
-    # Número de lecciones del curso en js/cursos.js
-    cursos = RAIZ / 'Idiomas' / 'js' / 'cursos.js'
-    t = cursos.read_text(encoding='utf-8')
-    j = t.index('"lecciones":', t.index(f'"id": "{curso}"'))
-    t2 = t[:j] + re.sub(r'"lecciones": \d+', f'"lecciones": {len(lecciones)}', t[j:], count=1)
-    if t2 != t:
-        escribir(cursos, t2)
+    # Número de lecciones del curso en js/cursos.js. Con «--sin-lista» no se toca: es un archivo común a todos
+    # los cursos y, si se escriben varios a la vez, solo debe actualizarlo quien haga la compilación final.
+    if '--sin-lista' not in sys.argv:
+        cursos = RAIZ / 'Idiomas' / 'js' / 'cursos.js'
+        t = cursos.read_text(encoding='utf-8')
+        j = t.index('"lecciones":', t.index(f'"id": "{curso}"'))
+        t2 = t[:j] + re.sub(r'"lecciones": \d+', f'"lecciones": {len(lecciones)}', t[j:], count=1)
+        if t2 != t:
+            escribir(cursos, t2)
 
     if '-v' in sys.argv:
         for a in automaticas:
