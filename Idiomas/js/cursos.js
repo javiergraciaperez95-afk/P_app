@@ -21,7 +21,7 @@ export const CURSOS = [
     "hola": "Hello!",
     "letras": [],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 60 30\" aria-hidden=\"true\"><clipPath id=\"uk-campo\"><path d=\"M0 0h60v30H0z\"/></clipPath><clipPath id=\"uk-diag\"><path d=\"M30 15h30v15zv15H0zH0V0h30z\"/></clipPath><g clip-path=\"url(#uk-campo)\"><path d=\"M0 0v30h60V0z\" fill=\"#012169\"/><path d=\"m0 0 60 30m0-30L0 30\" stroke=\"#fff\" stroke-width=\"6\"/><path d=\"m0 0 60 30m0-30L0 30\" stroke=\"#C8102E\" stroke-width=\"4\" clip-path=\"url(#uk-diag)\"/><path d=\"M30 0v30M0 15h60\" stroke=\"#fff\" stroke-width=\"10\"/><path d=\"M30 0v30M0 15h60\" stroke=\"#C8102E\" stroke-width=\"6\"/></g></svg>",
-    "lecciones": 68,
+    "lecciones": 130,
     "audio": false
   },
   {
@@ -88,7 +88,7 @@ export const CURSOS = [
       "œ"
     ],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 30 20\" aria-hidden=\"true\"><rect width=\"10\" height=\"20\" fill=\"#0055A4\"/><rect x=\"10\" width=\"10\" height=\"20\" fill=\"#fff\"/><rect x=\"20\" width=\"10\" height=\"20\" fill=\"#EF4135\"/></svg>",
-    "lecciones": 31,
+    "lecciones": 93,
     "audio": false
   },
   {
@@ -114,7 +114,7 @@ export const CURSOS = [
       "ß"
     ],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 5 3\" aria-hidden=\"true\"><rect width=\"5\" height=\"1\" fill=\"#000\"/><rect y=\"1\" width=\"5\" height=\"1\" fill=\"#DD0000\"/><rect y=\"2\" width=\"5\" height=\"1\" fill=\"#FFCE00\"/></svg>",
-    "lecciones": 32,
+    "lecciones": 94,
     "audio": false
   },
   {
@@ -494,7 +494,7 @@ export const CURSOS = [
       "å"
     ],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 37 28\" aria-hidden=\"true\"><rect width=\"37\" height=\"28\" fill=\"#c8102e\"/><rect x=\"12\" width=\"4\" height=\"28\" fill=\"#fff\"/><rect y=\"12\" width=\"37\" height=\"4\" fill=\"#fff\"/></svg>",
-    "lecciones": 69,
+    "lecciones": 87,
     "audio": false
   },
   {

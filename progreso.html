@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Progreso de los cursos</title>
+<style>
+  :root {
+    --fondo: #f4f1ea; --tarjeta: #ffffff; --texto: #23212b; --suave: #6f6b7a; --borde: #e3ded2;
+    --hecho: #2e9e6b; --sinrevisar: #d2443a; --opus: #e0a21b; --opusia: #3b82c4; --falta: #d9d4c8; --falta-texto: #8b8697;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fondo: #17161c; --tarjeta: #211f29; --texto: #f0edf5; --suave: #a29db0; --borde: #33303f;
+      --hecho: #3fbf85; --sinrevisar: #ef6359; --opus: #f0b93a; --opusia: #5aa2e6; --falta: #2f2c3a; --falta-texto: #7d788c;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fondo); color: var(--texto); font: 16px/1.45 "Segoe UI", system-ui, sans-serif; }
+  main { max-width: 980px; margin: 0 auto; padding: 28px 16px 48px; }
+  h1 { margin: 0 0 4px; font-size: 1.7rem; }
+  .sub { margin: 0 0 22px; color: var(--suave); }
+
+  .resumen { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .dato { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 14px; padding: 14px 16px; }
+  .dato b { display: block; font-size: 1.8rem; line-height: 1.1; }
+  .dato span { color: var(--suave); font-size: .9rem; }
+
+  .barra-total { height: 16px; border-radius: 99px; overflow: hidden; display: flex; background: var(--falta); margin-bottom: 20px; }
+  .barra-total i { display: block; height: 100%; transition: width .6s ease; }
+
+  .filtros { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .filtros button { border: 1px solid var(--borde); background: var(--tarjeta); color: var(--texto); padding: 7px 14px; border-radius: 99px; font: inherit; font-size: .9rem; cursor: pointer; }
+  .filtros button[aria-pressed="true"] { background: var(--texto); color: var(--fondo); border-color: var(--texto); }
+
+  .tabla { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 16px; overflow: hidden; }
+  .fila { display: grid; grid-template-columns: minmax(150px, 1.5fr) repeat(4, 1fr) minmax(90px, .9fr); gap: 8px; align-items: center; padding: 10px 14px; border-top: 1px solid var(--borde); }
+  .fila:first-child { border-top: 0; }
+  .cabecera { font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--suave); font-weight: 600; }
+  .cabecera div:not(:first-child) { text-align: center; }
+  .idioma { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .codigo { flex: none; width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; font-weight: 700; font-size: .85rem; text-transform: uppercase; background: var(--falta); color: var(--texto); }
+  .idioma strong { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .idioma small { color: var(--suave); }
+  .nivel { height: 38px; border-radius: 10px; display: grid; place-items: center; font-weight: 700; font-size: .85rem; color: #fff; cursor: default; position: relative; }
+  .nivel.hecho { background: var(--hecho); }
+  .nivel.sinrevisar { background: var(--sinrevisar); }
+  .nivel.opus { background: var(--opus); color: #2a2000; }
+  .nivel.opusia { background: var(--opusia); }
+  .nivel.medias { background: repeating-linear-gradient(45deg, var(--falta), var(--falta) 8px, var(--sinrevisar) 8px, var(--sinrevisar) 16px); }
+  .nivel.falta { background: var(--falta); color: var(--falta-texto); font-weight: 500; }
+  .avance { display: flex; flex-direction: column; gap: 4px; font-size: .85rem; color: var(--suave); text-align: right; }
+  .avance .mini { height: 6px; border-radius: 99px; background: var(--falta); overflow: hidden; }
+  .avance .mini i { display: block; height: 100%; background: var(--hecho); }
+
+  .leyenda { display: flex; flex-wrap: wrap; gap: 10px 16px; margin: 0 0 20px; color: var(--suave); font-size: .9rem; }
+  .leyenda span { display: inline-flex; align-items: center; gap: 7px; }
+  .leyenda i { width: 16px; height: 16px; border-radius: 5px; display: inline-block; }
+  .nota { margin-top: 14px; color: var(--suave); font-size: .85rem; }
+
+  @media (max-width: 640px) {
+    .fila { grid-template-columns: 1fr repeat(4, 44px); }
+    .fila > :last-child { display: none; }
+    .idioma small { display: none; }
+    .codigo { width: 32px; height: 32px; }
+    .nivel { height: 32px; font-size: .75rem; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Progreso de los cursos</h1>
+  <p class="sub">21 idiomas · niveles A1 a B2 · actualizado el <span id="fecha"></span></p>
+
+  <div class="leyenda">
+    <span><i style="background:var(--hecho)"></i> Hecho: revisado por ti, por Opus y por otra IA</span>
+    <span><i style="background:var(--opusia)"></i> Revisado por Opus y por otra IA</span>
+    <span><i style="background:var(--opus)"></i> Revisado por Opus</span>
+    <span><i style="background:var(--sinrevisar)"></i> Hecho, sin revisión</span>
+    <span><i style="background:repeating-linear-gradient(45deg, var(--falta), var(--falta) 4px, var(--sinrevisar) 4px, var(--sinrevisar) 8px)"></i> A medias</span>
+    <span><i style="background:var(--falta)"></i> Por hacer</span>
+  </div>
+
+  <div class="resumen" id="resumen"></div>
+  <div class="barra-total" id="barra" title="Niveles de los 21 idiomas"></div>
+
+  <div class="filtros" id="filtros"></div>
+  <div class="tabla" id="tabla"></div>
+
+  <p class="nota">Para actualizar esta página, cambia la lista CURSOS al principio del script: cada nivel es «hecho», «opusia», «opus», «sinrevisar», «medias» o «falta».</p>
+</main>
+
+<script>
+// ---- DATOS: es lo único que hay que tocar para actualizar la página ----
+const ACTUALIZADO = '13-10-2026';
+const NIVELES = ['A1', 'A2', 'B1', 'B2'];
+// estados: 'hecho' (revisado por el usuario + Opus + otra IA) · 'opusia' (Opus + otra IA) · 'opus' (solo Opus)
+//          'sinrevisar' (escrito, sin revisión) · 'medias' (a medio escribir) · 'falta'
+const CURSOS = [
+  { codigo: 'es', nombre: 'Español',    lecciones: 293, niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'sinrevisar'] },
+  { codigo: 'vi', nombre: 'Vietnamita', lecciones: 263, niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'sinrevisar'] },
+  { codigo: 'da', nombre: 'Danés',      lecciones: 87,  niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'falta'] },
+  { codigo: 'en', nombre: 'Inglés',     lecciones: 130, niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'sinrevisar'] },
+  { codigo: 'fr', nombre: 'Francés',    lecciones: 93,  niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'falta'] },
+  { codigo: 'de', nombre: 'Alemán',     lecciones: 94,  niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'falta'] },
+  { codigo: 'ja', nombre: 'Japonés',    lecciones: 32,  niveles: ['sinrevisar', 'falta', 'falta', 'falta'] },
+  { codigo: 'it', nombre: 'Italiano',   lecciones: 31,  niveles: ['sinrevisar', 'falta', 'falta', 'falta'] },
+  { codigo: 'ko', nombre: 'Coreano',    lecciones: 32,  niveles: ['sinrevisar', 'falta', 'falta', 'falta'] },
+  { codigo: 'pt', nombre: 'Portugués',  lecciones: 31,  niveles: ['sinrevisar', 'falta', 'falta', 'falta'] },
+  { codigo: 'ru', nombre: 'Ruso',       lecciones: 31,  niveles: ['sinrevisar', 'falta', 'falta', 'falta'] },
+  { codigo: 'zh', nombre: 'Chino',      lecciones: 0,   niveles: ['falta', 'falta', 'falta', 'falta'] },
+  { codigo: 'tr', nombre: 'Turco',      lecciones: 3,   niveles: ['falta', 'falta', 'falta', 'falta'] },
+  { codigo: 'nl', nombre: 'Neerlandés', lecciones: 3,   niveles: ['falta', 'falta', 'falta', 'falta'] },
+  { codigo: 'sv', nombre: 'Sueco',      lecciones: 3,   niveles: ['falta', 'falta', 'falta', 'falta'] },
+  { codigo: 'el', nombre: 'Griego',     lecciones: 3,   niveles: ['falta', 'falta', 'falta', 'falta'] },
+  { codigo: 'pl', nombre: 'Polaco',     lecciones: 3,   niveles: ['falta', 'falta', 'falta', 'falta'] },
+  { codigo: 'no', nombre: 'Noruego',    lecciones: 3,   niveles: ['falta', 'falta', 'falta', 'falta'] },
+  { codigo: 'id', nombre: 'Indonesio',  lecciones: 3,   niveles: ['falta', 'falta', 'falta', 'falta'] },
+  { codigo: 'ro', nombre: 'Rumano',     lecciones: 3,   niveles: ['falta', 'falta', 'falta', 'falta'] },
+  { codigo: 'th', nombre: 'Tailandés',  lecciones: 3,   niveles: ['falta', 'falta', 'falta', 'falta'] },
+];
+// -------------------------------------------------------------------------
+
+const TEXTO = { hecho: 'Hecho (revisado por ti, Opus y otra IA)', opusia: 'Revisado por Opus y otra IA', opus: 'Revisado por Opus', sinrevisar: 'Hecho, sin revisión', medias: 'A medias', falta: 'Por hacer' };
+const SIGNO = { hecho: '✓', opusia: '2', opus: '1', sinrevisar: '0', medias: '½', falta: '–' };
+const ESCRITO = { hecho: 1, opusia: 1, opus: 1, sinrevisar: 1, medias: 0.5, falta: 0 };
+const FILTROS = [
+  ['todos', 'Todos', () => true],
+  ['empezados', 'Con algo hecho', c => c.niveles.some(n => n !== 'falta')],
+  ['revisar', 'Con algo por revisar', c => c.niveles.some(n => ['sinrevisar', 'opus', 'opusia'].includes(n))],
+  ['vacios', 'Sin empezar', c => c.niveles.every(n => n === 'falta')],
+];
+let filtro = 'todos';
+
+const el = (etiqueta, clase, texto) => {
+  const e = document.createElement(etiqueta);
+  if (clase) e.className = clase;
+  if (texto !== undefined) e.textContent = texto;
+  return e;
+};
+
+function pintarResumen() {
+  const todos = CURSOS.flatMap(c => c.niveles);
+  const cuenta = estado => todos.filter(n => n === estado).length;
+  const datos = [
+    [CURSOS.length, 'idiomas'],
+    [cuenta('hecho'), `niveles hechos del todo, de ${todos.length}`],
+    [cuenta('opusia'), 'revisados por Opus y otra IA'],
+    [cuenta('opus'), 'revisados por Opus'],
+    [cuenta('sinrevisar'), 'hechos, sin revisión'],
+    [cuenta('falta'), 'por hacer'],
+    [CURSOS.reduce((s, c) => s + c.lecciones, 0), 'lecciones en total'],
+  ];
+  const caja = document.getElementById('resumen');
+  for (const [n, texto] of datos) {
+    const d = el('div', 'dato');
+    d.append(el('b', '', n), el('span', '', texto));
+    caja.append(d);
+  }
+  const barra = document.getElementById('barra');
+  for (const estado of ['hecho', 'opusia', 'opus', 'sinrevisar']) {
+    const i = el('i');
+    i.style.background = `var(--${estado})`;
+    i.style.width = (cuenta(estado) / todos.length * 100) + '%';
+    i.title = `${TEXTO[estado]}: ${cuenta(estado)}`;
+    barra.append(i);
+  }
+}
+
+function pintarFiltros() {
+  const caja = document.getElementById('filtros');
+  caja.replaceChildren();
+  for (const [id, texto] of FILTROS) {
+    const b = el('button', '', texto);
+    b.type = 'button';
+    b.setAttribute('aria-pressed', String(id === filtro));
+    b.onclick = () => { filtro = id; pintarFiltros(); pintarTabla(); };
+    caja.append(b);
+  }
+}
+
+function pintarTabla() {
+  const tabla = document.getElementById('tabla');
+  tabla.replaceChildren();
+  const cab = el('div', 'fila cabecera');
+  cab.append(el('div', '', 'Idioma'), ...NIVELES.map(n => el('div', '', n)), el('div', '', 'Escrito'));
+  cab.lastChild.style.textAlign = 'right';
+  tabla.append(cab);
+
+  const pasa = FILTROS.find(f => f[0] === filtro)[2];
+  for (const c of CURSOS.filter(pasa)) {
+    const fila = el('div', 'fila');
+    const idioma = el('div', 'idioma');
+    const texto = el('div');
+    texto.append(el('strong', '', c.nombre), el('small', '', c.lecciones ? `${c.lecciones} lecciones` : 'sin lecciones'));
+    idioma.append(el('div', 'codigo', c.codigo), texto);
+    fila.append(idioma);
+
+    c.niveles.forEach((estado, i) => {
+      const celda = el('div', 'nivel ' + estado, SIGNO[estado]);
+      celda.title = `${c.nombre} ${NIVELES[i]}: ${TEXTO[estado]}`;
+      fila.append(celda);
+    });
+
+    const pct = Math.round(c.niveles.reduce((s, n) => s + ESCRITO[n], 0) / NIVELES.length * 100);
+    const avance = el('div', 'avance');
+    const mini = el('div', 'mini');
+    const relleno = el('i');
+    relleno.style.width = pct + '%';
+    mini.append(relleno);
+    avance.append(el('span', '', pct + ' %'), mini);
+    fila.append(avance);
+    tabla.append(fila);
+  }
+}
+
+document.getElementById('fecha').textContent = ACTUALIZADO;
+pintarResumen();
+pintarFiltros();
+pintarTabla();
+</script>
+</body>
+</html>
