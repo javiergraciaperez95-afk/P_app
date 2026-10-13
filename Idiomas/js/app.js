@@ -110,6 +110,10 @@ document.getElementById('btn-tema').addEventListener('click', () => {
   cambiarAjuste('tema', temaActual() === 'oscuro' ? 'claro' : 'oscuro');
   sonar('clic');
 });
+// Herramienta de pruebas: qué idiomas puede leer en voz alta este dispositivo. Quitar antes de publicar.
+document.getElementById('btn-prueba-voces').addEventListener('click', () => {
+  import('./prueba-voces.js').then(m => m.probarVoces());
+});
 document.getElementById('btn-sonido').addEventListener('click', () => {
   const on = !ajuste('efectos');
   cambiarAjuste('efectos', on);
