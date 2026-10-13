@@ -51,12 +51,14 @@ class Fallo(Exception):
 
 def escribir(ruta, texto):
     """Guarda un archivo. En Windows a veces otro programa lo tiene cogido un instante: se reintenta."""
-    for intento in range(8):
+    for intento in range(40):
         try:
+            if ruta.exists() and ruta.read_bytes() == texto.encode('utf-8'):
+                return  # ya está igual: no se toca
             ruta.write_text(texto, encoding='utf-8', newline='\n')
             return
         except OSError:
-            if intento == 7:
+            if intento == 39:
                 raise
             time.sleep(0.4)
 
@@ -306,8 +308,10 @@ def main():
         avisos += av
 
     destino.mkdir(exist_ok=True)
+    # Sobran las lecciones antiguas con un número mayor que la última de ahora (las demás se sobrescriben).
     for viejo in destino.glob('[0-9]*.json'):
-        viejo.unlink()
+        if int(viejo.stem) > len(lecciones):
+            viejo.unlink()
     for i, (_, leccion, _) in enumerate(lecciones, 1):
         escribir(destino / f'{i:03d}.json', json.dumps(leccion, ensure_ascii=False, indent=1) + '\n')
 
