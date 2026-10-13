@@ -1,4 +1,4 @@
-"""Dibuja el logotipo de Pixiglot (un bocadillo de cómic con cara, en pixel art) y saca todos los iconos.
+"""Dibuja el logotipo de Holaglot (un bocadillo de cómic con cara, en pixel art) y saca todos los iconos.
 
 Uso:  py -X utf8 _herramientas/logo/generar.py            escribe los iconos de la web y de la APK
       py -X utf8 _herramientas/logo/generar.py prueba.png  solo una lámina de prueba para mirar el dibujo
@@ -126,7 +126,8 @@ def logo_16():
 
 # Letras del nombre, en píxeles (7 de alto más 2 de rabo para la g).
 LETRAS = {
-    'P': ['XXXX.', 'X...X', 'X...X', 'XXXX.', 'X....', 'X....', 'X....', '.....', '.....'],
+    'H': ['X...X', 'X...X', 'X...X', 'XXXXX', 'X...X', 'X...X', 'X...X', '.....', '.....'],
+    'a': ['.....', '.....', '.XXX.', '....X', '.XXXX', 'X...X', '.XXXX', '.....', '.....'],
     'i': ['X', '.', 'X', 'X', 'X', 'X', 'X', '.', '.'],
     'x': ['.....', '.....', 'X...X', '.X.X.', '..X..', '.X.X.', 'X...X', '.....', '.....'],
     'g': ['.....', '.....', '.XXXX', 'X...X', 'X...X', 'X...X', '.XXXX', '....X', '.XXX.'],
@@ -142,8 +143,8 @@ def negrita(letra):
             for f in letra]
 
 
-def nombre_en_pixeles(texto='Pixiglot', oro_desde=4):
-    """El nombre como rejilla: «Pixi» en claro (W) y «glot» en oro (G)."""
+def nombre_en_pixeles(texto='Holaglot', oro_desde=4):
+    """El nombre como rejilla: «Hola» en claro (W) y «glot» en oro (G)."""
     filas = [''] * 9
     for i, letra in enumerate(texto):
         color = 'G' if i >= oro_desde else 'W'

@@ -639,7 +639,7 @@ export default {
   'juego.salir.no': 'Chơi tiếp',
 
   // ----- Elegir idioma y créditos -----
-  'app.nombre': 'Pixiglot',
+  'app.nombre': 'Holaglot',
   'cursos.titulo': 'Chọn ngôn ngữ em muốn học!',
   'cursos.texto': 'Mỗi ngôn ngữ có cô giáo riêng, bài học riêng và tiến độ riêng. Em có thể đổi bất cứ lúc nào.',
   'cursos.lecciones': '{n} bài học',

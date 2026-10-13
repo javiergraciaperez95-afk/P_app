@@ -638,7 +638,7 @@ export default {
   'rev.sinCategorias': 'O arquivo não tem «categorias».',
 
   // ----- Elegir idioma y créditos -----
-  'app.nombre': 'Pixiglot',
+  'app.nombre': 'Holaglot',
   'cursos.titulo': 'Escolha o idioma para estudar!',
   'cursos.texto': 'Cada idioma tem a sua tutora, as suas lições e o seu próprio progresso. Você pode trocar quando quiser.',
   'cursos.lecciones': n => (n.n === 1 ? '1 lição' : `${n.n} lições`),

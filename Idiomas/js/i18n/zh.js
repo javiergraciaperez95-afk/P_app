@@ -636,7 +636,7 @@ export default {
   'rev.sinCategorias': '文件里没有«categorias»。',
 
   // ----- Elegir idioma y créditos -----
-  'app.nombre': 'Pixiglot',
+  'app.nombre': 'Holaglot',
   'cursos.titulo': '选择要学习的语言！',
   'cursos.texto': '每种语言都有自己的老师、自己的课程和自己的进度。你随时可以更换。',
   'cursos.lecciones': '{n} 课',

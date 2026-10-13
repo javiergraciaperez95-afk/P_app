@@ -1,9 +1,9 @@
 @echo off
-rem Doble clic: abre la app unica Idiomas (todos los cursos) en Edge. Empieza en la pantalla de elegir idioma.
+rem Doble clic: abre la app unica Idiomas (todos los cursos) en Edge. Empieza en la pantalla de inicio.
 rem Usa siempre el puerto 8100: el progreso guardado en el navegador va ligado a el.
 rem Hace falta un servidor local (si no, el navegador no carga las lecciones).
 rem Esta ventana es ese servidor. Cierrala para pararlo.
-title Idiomas
+title Holaglot
 cd /d "%~dp0"
 powershell -NoProfile -ExecutionPolicy Bypass -Command "$t = Get-Content -LiteralPath '%~f0' -Raw; $i = $t.IndexOf('#' + 'SERVIDOR'); if ($i -lt 0) { throw 'Marcador no encontrado' }; Invoke-Expression $t.Substring($i)"
 exit /b
@@ -32,7 +32,7 @@ if (-not $edge) {
   exit 1
 }
 
-$urls = $apps | ForEach-Object { "http://localhost:$($_.Puerto)/" }
+$urls = $apps | ForEach-Object { "http://localhost:$($_.Puerto)/#/inicio" }
 
 function Abrir-Edge {
   Start-Process -FilePath $edge -ArgumentList (@('--new-window') + $urls)
@@ -92,7 +92,7 @@ try {
 
 Write-Host ''
 Write-Host '  ============================================' -ForegroundColor DarkCyan
-Write-Host '   Idiomas (app unica)' -ForegroundColor Cyan
+Write-Host '   Holaglot' -ForegroundColor Cyan
 foreach ($a in $apps) { Write-Host ("   {0,-11} http://localhost:{1}/" -f $a.Nombre, $a.Puerto) -ForegroundColor Yellow }
 Write-Host '   Para pararlo, cierra esta ventana.' -ForegroundColor Cyan
 Write-Host '  ============================================' -ForegroundColor DarkCyan
