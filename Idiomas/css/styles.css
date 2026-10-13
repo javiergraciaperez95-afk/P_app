@@ -2493,3 +2493,34 @@ body.en-bienvenida .aviso-datos { display: none; }
   .perdida h1 { font-size: 1.4rem; }
   .perdida-busca { padding-top: 50px; margin-bottom: 8px; }
 }
+
+/* ===== Precios ===== */
+.precios { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+.precios .sobre-cabecera { padding-top: 46px; gap: 14px; text-align: center; }
+.precios .sobre-guia { width: 96px; height: 128px; }
+.precios .sobre-cabecera h1 { font-size: 2.4rem; margin-bottom: 4px; }
+.precios .sobre-lema { font-size: 1.05rem; }
+.precios h2 { text-align: center; font-size: 1.4rem; }
+.planes { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px; align-items: stretch; }
+.plan { display: flex; flex-direction: column; margin-bottom: 0; padding: 18px 16px; }
+.plan h2 { text-align: left; margin: 0 0 4px; font-size: 1.35rem; }
+.plan-completo { box-shadow: 0 -4px 0 0 var(--marca-oro), 0 4px 0 0 var(--marca-oro), -4px 0 0 0 var(--marca-oro), 4px 0 0 0 var(--marca-oro), 4px 8px 0 0 var(--sombra), 8px 4px 0 0 var(--sombra); }
+.plan-completo h2 { color: var(--marca-oro); }
+.plan-precio { margin: 0; font-size: 2.4rem; font-weight: 700; line-height: 1.1; }
+.plan-precio.cambia { animation: brotar .25s steps(4); }
+.plan-por { margin: 0 0 10px; color: var(--texto-suave); }
+.plan ul { list-style: none; margin: 8px 0 14px; padding: 0; flex: 1; }
+.plan li { position: relative; padding-left: 1.5em; margin-bottom: 6px; }
+.plan li::before { content: "✔"; position: absolute; left: 0; color: var(--verde); }
+.plan .filtros { margin: 0 0 10px; }
+.plan .boton-principal { align-self: flex-start; }
+.precios-nota { margin: 0; text-align: center; font-size: .9rem; color: var(--texto-suave); text-wrap: balance; }
+.promesas { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px; }
+.promesas li { margin-bottom: calc(var(--px) * 4); padding: 12px 14px 12px 2.6em; position: relative; }
+.promesas li::before { content: "♥"; position: absolute; left: .9em; color: var(--rojo-claro); }
+.precios-extras { text-align: center; color: var(--texto-suave); }
+.precios-extras p { max-width: 36em; margin: 0 auto; text-wrap: balance; }
+@media (max-width: 700px) {
+  .planes, .promesas { grid-template-columns: 1fr; }
+  .plan { margin-bottom: calc(var(--px) * 5); }
+}

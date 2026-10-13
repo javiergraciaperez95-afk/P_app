@@ -1,5 +1,5 @@
 // Arranque y navegación.
-// Rutas: #/inicio · #/lecciones · #/leccion/001 · #/practica · #/frases · #/cuaderno · #/repaso · #/perfil · #/idiomas · #/creditos · #/legal · #/sobre · #/entrar · #/bienvenida
+// Rutas: #/inicio · #/lecciones · #/leccion/001 · #/practica · #/frases · #/cuaderno · #/repaso · #/perfil · #/idiomas · #/creditos · #/legal · #/sobre · #/entrar · #/precios · #/bienvenida
 // Sin curso elegido solo existen la pantalla de inicio, la de elegir idioma, los créditos, el aviso legal y «Sobre Paglot».
 
 import { el, poner } from './dom.js';
@@ -24,6 +24,7 @@ import { pintarInicio } from './vistas/inicio.js';
 import { pintarLegal, pintarAvisoDeDatos } from './vistas/legal.js';
 import { pintarSobre } from './vistas/sobre.js';
 import { pintarEntrar } from './vistas/entrar.js';
+import { pintarPrecios } from './vistas/precios.js';
 import { pintarBienvenida, bienvenidaVista } from './vistas/bienvenida.js';
 import { pintarPerdida } from './vistas/perdida.js';
 import { curso, hayCurso } from './curso.js';
@@ -43,7 +44,7 @@ const SECCIONES = [
 ];
 
 // Las pantallas generales de la app (no de un curso): llevan la marca de la app y no tienen menú de curso ni tutora.
-const PORTADAS = ['inicio', 'sobre', 'entrar'];
+const PORTADAS = ['inicio', 'sobre', 'entrar', 'precios'];
 
 const contenido = { resultados: [], capitulos: [], errorCapitulos: null, frases: null };
 let limpiarVista = null;
@@ -311,6 +312,9 @@ async function navegar({ cambioDeIdioma = false } = {}) {
   } else if (seccion === 'entrar') {
     titulo(t('entrar.titulo'));
     limpiarVista = pintarEntrar(app);
+  } else if (seccion === 'precios') {
+    titulo(t('precios.titulo'));
+    limpiarVista = pintarPrecios(app);
   } else if (seccion === 'bienvenida') {
     titulo(t('bienvenida.titulo'));
     limpiarVista = pintarBienvenida(app, contenido);
@@ -345,7 +349,7 @@ function avisoArchivoLocal() {
 function pintarSinCurso({ cambioDeIdioma = false } = {}) {
   limpiarVista?.();
   limpiarVista = null;
-  const vista = { '#/creditos': 'creditos', '#/idiomas': 'idiomas', '#/legal': 'legal', '#/sobre': 'sobre', '#/entrar': 'entrar', '#/inicio': 'inicio' }[location.hash]
+  const vista = { '#/creditos': 'creditos', '#/idiomas': 'idiomas', '#/legal': 'legal', '#/sobre': 'sobre', '#/entrar': 'entrar', '#/precios': 'precios', '#/inicio': 'inicio' }[location.hash]
     // Lo que no es una ruta («#/algo») no es una página perdida: son, por ejemplo, los datos que traen los enlaces de los correos.
     ?? (location.hash.length > 2 && location.hash.startsWith('#/') ? 'perdida' : 'inicio');
   document.body.classList.toggle('en-inicio', PORTADAS.includes(vista));
@@ -362,6 +366,9 @@ function pintarSinCurso({ cambioDeIdioma = false } = {}) {
   } else if (vista === 'entrar') {
     titulo(t('entrar.titulo'));
     limpiarVista = pintarEntrar(app);
+  } else if (vista === 'precios') {
+    titulo(t('precios.titulo'));
+    limpiarVista = pintarPrecios(app);
   } else if (vista === 'idiomas') {
     titulo(t('cursos.titulo'));
     pintarElegirCurso(app);
