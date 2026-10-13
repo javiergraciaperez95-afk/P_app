@@ -1,6 +1,6 @@
 // Pantalla «Perfil»: nombre, progreso, cuenta, ajustes y reinicio.
 
-import { el, poner } from '../dom.js';
+import { el, poner, enLinea } from '../dom.js';
 import { t, locale, IDIOMAS, idioma, cambiarIdioma } from '../i18n.js';
 import {
   nombre, cambiarNombre, resumenLeccion, tarjetas, racha, actividad, reiniciarProgreso,
@@ -330,6 +330,7 @@ function seccionAjustes() {
   const velocidad = el('input', { id: 'velocidad-voz', type: 'range', min: '0.5', max: '1.2', step: '0.1', value: String(ajuste('velocidadVoz')) });
   velocidad.addEventListener('change', () => cambiarAjuste('velocidadVoz', Number(velocidad.value)));
 
+  const enOrdenadorSinEdge = !window.Capacitor?.isNativePlatform?.() && !/Edg\/|Android|iPhone|iPad/.test(navigator.userAgent);
   // La voz es la del dispositivo. Si no hay, se dice aquí y se ofrece la explicación de cómo instalarla.
   const estadoVoz = el('p', { class: 'aprox' }, t('ajustes.buscandoVoz'));
   const pintarVoz = () => {
@@ -355,6 +356,8 @@ function seccionAjustes() {
     interruptor('ajuste-voz-tutora', t('ajustes.pitidos'), 'vozTutora'),
     el('h3', {}, t('ajustes.voz')),
     estadoVoz,
+    // En un ordenador con otro navegador, Edge es la forma más fácil de tener voz en todos los idiomas.
+    enOrdenadorSinEdge && el('p', { class: 'aprox sin-voz' }, enLinea(t('ajustes.mejorEdge'))),
     el('button', { type: 'button', class: 'boton boton-mini sin-voz', onclick: () => { decir(ayudaVoz(), 'apurada'); abrirInstalacionDeVoces(); } }, t('ajustes.comoInstalarVoz')),
     el('div', { class: 'campo con-voz' }, el('label', { for: 'velocidad-voz' }, t('ajustes.velocidad')), velocidad),
     el('button', {

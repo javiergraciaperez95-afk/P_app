@@ -549,6 +549,7 @@ export default {
   'ajustes.vozEncontrada': '✔ {L} voice found: {voz}',
   'ajustes.sinVoz': 'This device has no {L} voice, so the app works without audio: everything is read. If you install a voice, the audio shows up by itself.',
   'ajustes.comoInstalarVoz': 'How do I install a voice?',
+  'ajustes.mejorEdge': 'Tip: in the **Microsoft Edge** browser this app has a voice for every language, with nothing to install.',
   'ajustes.velocidad': 'Voice speed',
   'ajustes.probarVoz': '🔊 Test the voice',
 

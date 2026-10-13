@@ -472,6 +472,7 @@ export default {
   'ajustes.vozEncontrada': '✔ Đã tìm thấy giọng đọc {L}: {voz}',
   'ajustes.sinVoz': 'Thiết bị này chưa có giọng đọc {L}, nên ứng dụng chạy không có âm thanh: mọi thứ đều để đọc. Nếu bạn cài giọng đọc, âm thanh sẽ tự xuất hiện.',
   'ajustes.comoInstalarVoz': 'Cài giọng đọc thế nào?',
+  'ajustes.mejorEdge': 'Mẹo: trên trình duyệt **Microsoft Edge**, ứng dụng này có giọng đọc cho mọi ngôn ngữ mà không cần cài gì thêm.',
   'ajustes.velocidad': 'Tốc độ đọc',
   'ajustes.probarVoz': '🔊 Thử giọng đọc',
 
