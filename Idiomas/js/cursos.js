@@ -262,7 +262,7 @@ export const CURSOS = [
     "hola": "Привет!",
     "letras": [],
     "bandera": "<svg class=\"bandera\" width=\"30\" height=\"20\" viewBox=\"0 0 900 600\" aria-hidden=\"true\"><rect width=\"900\" height=\"200\" fill=\"#fff\"/><rect y=\"200\" width=\"900\" height=\"200\" fill=\"#0039A6\"/><rect y=\"400\" width=\"900\" height=\"200\" fill=\"#D52B1E\"/></svg>",
-    "lecciones": 3,
+    "lecciones": 31,
     "audio": false
   },
   {
