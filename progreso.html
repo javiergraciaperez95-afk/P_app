@@ -29,6 +29,14 @@
   .barra-total { height: 16px; border-radius: 99px; overflow: hidden; display: flex; background: var(--falta); margin-bottom: 20px; }
   .barra-total i { display: block; height: 100%; transition: width .6s ease; }
 
+  .barras { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 16px; padding: 14px 16px; margin-bottom: 20px; display: grid; gap: 12px; }
+  .barras .linea { display: grid; grid-template-columns: minmax(150px, 1.4fr) 4fr auto; gap: 12px; align-items: center; }
+  .barras .linea > span { font-size: .9rem; }
+  .barras .linea > b { font-size: .9rem; min-width: 96px; text-align: right; font-variant-numeric: tabular-nums; }
+  .barras .pista { height: 14px; border-radius: 99px; background: var(--falta); overflow: hidden; }
+  .barras .pista i { display: block; height: 100%; border-radius: 99px; transition: width .6s ease; }
+  @media (max-width: 640px) { .barras .linea { grid-template-columns: 1fr auto; } .barras .pista { grid-column: 1 / -1; grid-row: 2; } }
+
   .filtros { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
   .filtros button { border: 1px solid var(--borde); background: var(--tarjeta); color: var(--texto); padding: 7px 14px; border-radius: 99px; font: inherit; font-size: .9rem; cursor: pointer; }
   .filtros button[aria-pressed="true"] { background: var(--texto); color: var(--fondo); border-color: var(--texto); }
@@ -84,6 +92,8 @@
   <div class="resumen" id="resumen"></div>
   <div class="barra-total" id="barra" title="Niveles de los 21 idiomas"></div>
 
+  <div class="barras" id="barras"></div>
+
   <div class="filtros" id="filtros"></div>
   <div class="tabla" id="tabla"></div>
 
@@ -99,14 +109,14 @@ const NIVELES = ['A1', 'A2', 'B1', 'B2'];
 const CURSOS = [
   { codigo: 'es', nombre: 'Español',    lecciones: 293, niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'sinrevisar'] },
   { codigo: 'vi', nombre: 'Vietnamita', lecciones: 263, niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'sinrevisar'] },
-  { codigo: 'da', nombre: 'Danés',      lecciones: 87,  niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'falta'] },
+  { codigo: 'da', nombre: 'Danés',      lecciones: 111, niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'sinrevisar'] },
   { codigo: 'en', nombre: 'Inglés',     lecciones: 130, niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'sinrevisar'] },
-  { codigo: 'fr', nombre: 'Francés',    lecciones: 93,  niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'falta'] },
-  { codigo: 'de', nombre: 'Alemán',     lecciones: 94,  niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'falta'] },
-  { codigo: 'ja', nombre: 'Japonés',    lecciones: 32,  niveles: ['sinrevisar', 'falta', 'falta', 'falta'] },
-  { codigo: 'it', nombre: 'Italiano',   lecciones: 31,  niveles: ['sinrevisar', 'falta', 'falta', 'falta'] },
-  { codigo: 'ko', nombre: 'Coreano',    lecciones: 32,  niveles: ['sinrevisar', 'falta', 'falta', 'falta'] },
-  { codigo: 'pt', nombre: 'Portugués',  lecciones: 31,  niveles: ['sinrevisar', 'falta', 'falta', 'falta'] },
+  { codigo: 'fr', nombre: 'Francés',    lecciones: 124, niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'sinrevisar'] },
+  { codigo: 'de', nombre: 'Alemán',     lecciones: 125, niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'sinrevisar'] },
+  { codigo: 'ja', nombre: 'Japonés',    lecciones: 63,  niveles: ['sinrevisar', 'sinrevisar', 'falta', 'falta'] },
+  { codigo: 'it', nombre: 'Italiano',   lecciones: 62,  niveles: ['sinrevisar', 'sinrevisar', 'falta', 'falta'] },
+  { codigo: 'ko', nombre: 'Coreano',    lecciones: 63,  niveles: ['sinrevisar', 'sinrevisar', 'falta', 'falta'] },
+  { codigo: 'pt', nombre: 'Portugués',  lecciones: 62,  niveles: ['sinrevisar', 'sinrevisar', 'falta', 'falta'] },
   { codigo: 'ru', nombre: 'Ruso',       lecciones: 31,  niveles: ['sinrevisar', 'falta', 'falta', 'falta'] },
   { codigo: 'zh', nombre: 'Chino',      lecciones: 0,   niveles: ['falta', 'falta', 'falta', 'falta'] },
   { codigo: 'tr', nombre: 'Turco',      lecciones: 3,   niveles: ['falta', 'falta', 'falta', 'falta'] },
@@ -167,6 +177,29 @@ function pintarResumen() {
   }
 }
 
+// Cada barra cuenta los niveles que han llegado al menos hasta ese paso.
+function pintarBarras() {
+  const todos = CURSOS.flatMap(c => c.niveles);
+  const pasos = [
+    ['Escrito', 'sinrevisar', ['sinrevisar', 'opus', 'opusia', 'hecho']],
+    ['Revisado por Opus', 'opus', ['opus', 'opusia', 'hecho']],
+    ['Opus + otra IA', 'opusia', ['opusia', 'hecho']],
+    ['Opus + otra IA + tú', 'hecho', ['hecho']],
+  ];
+  const caja = document.getElementById('barras');
+  for (const [texto, color, estados] of pasos) {
+    const n = todos.filter(e => estados.includes(e)).length;
+    const linea = el('div', 'linea');
+    const pista = el('div', 'pista');
+    const i = el('i');
+    i.style.background = `var(--${color})`;
+    i.style.width = (n / todos.length * 100) + '%';
+    pista.append(i);
+    linea.append(el('span', '', texto), pista, el('b', '', `${n} de ${todos.length} · ${Math.round(n / todos.length * 100)} %`));
+    caja.append(linea);
+  }
+}
+
 function pintarFiltros() {
   const caja = document.getElementById('filtros');
   caja.replaceChildren();
@@ -216,6 +249,7 @@ function pintarTabla() {
 
 document.getElementById('fecha').textContent = ACTUALIZADO;
 pintarResumen();
+pintarBarras();
 pintarFiltros();
 pintarTabla();
 </script>
