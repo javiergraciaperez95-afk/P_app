@@ -56,7 +56,9 @@ export function pintarElegirCurso(contenedor) {
         ' ',
         hayCurso && el('a', { class: 'boton boton-mini', href: '#/lecciones' }, t('cursos.volver', { curso: curso.nativo })),
         ' ',
-        el('a', { class: 'boton boton-mini', href: '#/creditos' }, t('creditos.titulo')))));
+        el('a', { class: 'boton boton-mini', href: '#/creditos' }, t('creditos.titulo')),
+        ' ',
+        el('a', { class: 'boton boton-mini', href: '#/legal' }, t('legal.titulo')))));
 }
 
 export function pintarCreditos(contenedor) {

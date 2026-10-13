@@ -1,6 +1,6 @@
 // Arranque y navegación.
-// Rutas: #/inicio · #/lecciones · #/leccion/001 · #/practica · #/frases · #/cuaderno · #/repaso · #/perfil · #/idiomas · #/creditos
-// Sin curso elegido solo existen la pantalla de inicio, la de elegir idioma y los créditos.
+// Rutas: #/inicio · #/lecciones · #/leccion/001 · #/practica · #/frases · #/cuaderno · #/repaso · #/perfil · #/idiomas · #/creditos · #/legal
+// Sin curso elegido solo existen la pantalla de inicio, la de elegir idioma, los créditos y el aviso legal.
 
 import { el, poner } from './dom.js';
 import { icono } from './iconos.js';
@@ -21,6 +21,7 @@ import { pintarPerfil } from './vistas/perfil.js';
 import { pintarPractica } from './vistas/practica.js';
 import { pintarElegirCurso, pintarCreditos } from './vistas/cursos.js';
 import { pintarInicio } from './vistas/inicio.js';
+import { pintarLegal, pintarAvisoDeDatos } from './vistas/legal.js';
 import { curso, hayCurso } from './curso.js';
 import './movil.js';
 
@@ -163,6 +164,7 @@ window.addEventListener('efectos-cambiado', pintarBotonSonido);
 // Al cambiar de idioma se repinta todo: cabecera, menú y la pantalla abierta.
 window.addEventListener('idioma-cambiado', () => {
   pintarSelectorIdioma();
+  pintarAvisoDeDatos();
   pintarMarca();
   pintarBotonTema();
   pintarBotonSonido();
@@ -202,7 +204,7 @@ async function navegar({ cambioDeIdioma = false } = {}) {
   const seccion = ruta || 'lecciones';
   rutaActual = seccion === 'leccion' ? 'lecciones' : seccion;
   document.body.classList.toggle('en-inicio', seccion === 'inicio');
-  document.body.classList.toggle('sin-tutora', seccion === 'inicio' || seccion === 'idiomas' || seccion === 'creditos');
+  document.body.classList.toggle('sin-tutora', ['inicio', 'idiomas', 'creditos', 'legal'].includes(seccion));
   pintarMarca();
   marcarMenu(rutaActual);
   pintarAvisoRepaso();
@@ -246,6 +248,9 @@ async function navegar({ cambioDeIdioma = false } = {}) {
   } else if (seccion === 'creditos') {
     titulo(t('creditos.titulo'));
     pintarCreditos(app);
+  } else if (seccion === 'legal') {
+    titulo(t('legal.titulo'));
+    pintarLegal(app);
   } else {
     pintarNoEncontrada(t('app.noExiste'));
   }
@@ -277,12 +282,15 @@ function avisoArchivoLocal() {
 function pintarSinCurso({ cambioDeIdioma = false } = {}) {
   limpiarVista?.();
   limpiarVista = null;
-  const vista = { '#/creditos': 'creditos', '#/idiomas': 'idiomas' }[location.hash] ?? 'inicio';
+  const vista = { '#/creditos': 'creditos', '#/idiomas': 'idiomas', '#/legal': 'legal' }[location.hash] ?? 'inicio';
   document.body.classList.toggle('en-inicio', vista === 'inicio');
   pintarMarca();
   if (vista === 'creditos') {
     titulo(t('creditos.titulo'));
     pintarCreditos(app);
+  } else if (vista === 'legal') {
+    titulo(t('legal.titulo'));
+    pintarLegal(app);
   } else if (vista === 'idiomas') {
     titulo(t('cursos.titulo'));
     pintarElegirCurso(app);
@@ -310,6 +318,7 @@ function empezarPorInicio() {
 /** Quita la pantalla de arranque (el logotipo que se ve mientras carga la app). */
 function quitarArranque() {
   document.body.classList.remove('arrancando');
+  pintarAvisoDeDatos();
 }
 
 async function iniciar() {

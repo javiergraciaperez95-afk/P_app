@@ -2101,3 +2101,19 @@ body.en-inicio main { max-width: 1040px; }
 
 /* En chino la fuente pixel no tiene letras: los títulos usan la del texto en vez de una con remates */
 :root:lang(zh) { --fuente-pixel: "Pixelify Sans", system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
+
+/* ===== Aviso legal y aviso de almacenamiento («cookies») ===== */
+.legal h2 { font-size: 1.2rem; }
+.legal .caja p:last-child, .legal .caja ul:last-child { margin-bottom: 0; }
+.legal-resumen { font-weight: 700; }
+.legal-titular { list-style: none; margin: 0; padding: 0; }
+.legal-titular em { color: var(--texto-suave); }
+.legal a { overflow-wrap: anywhere; }
+
+.aviso-datos {
+  position: fixed; z-index: 150; left: 50%; bottom: calc(12px + var(--borde-abajo));
+  width: min(560px, calc(100% - 28px)); margin: 0; transform: translateX(-50%);
+  padding: 12px 14px; font-size: .95rem;
+}
+.aviso-datos p { margin: 0 0 8px; }
+.aviso-datos-botones { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 2px 6px; }

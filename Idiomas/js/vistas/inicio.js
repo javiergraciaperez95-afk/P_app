@@ -154,7 +154,7 @@ export function pintarInicio(contenedor) {
       el('footer', { class: 'inicio-pie' },
         logo('inicio-pie-logo', 32),
         el('p', {}, el('strong', {}, t('app.nombre')), ' · ', t('inicio.pie')),
-        el('p', {}, el('a', { href: '#/creditos' }, t('creditos.titulo'))))));
+        el('p', {}, el('a', { href: '#/legal' }, t('legal.titulo')), ' · ', el('a', { href: '#/creditos' }, t('creditos.titulo'))))));
 
   return () => {
     encendida = false;
