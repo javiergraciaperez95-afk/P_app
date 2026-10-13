@@ -135,7 +135,7 @@ export const CURSOS = [
     "hola": "こんにちは！",
     "letras": [],
     "bandera": "<svg class=\"bandera\" width=\"30\" height=\"20\" viewBox=\"0 0 900 600\" aria-hidden=\"true\"><rect width=\"900\" height=\"600\" fill=\"#2b1d1a\"/><rect x=\"16\" y=\"16\" width=\"868\" height=\"568\" fill=\"#fff\"/><circle cx=\"450\" cy=\"300\" r=\"180\" fill=\"#BC002D\"/></svg>",
-    "lecciones": 3,
+    "lecciones": 32,
     "audio": false
   },
   {
