@@ -8,8 +8,8 @@ call npx cap sync android || goto :fin
 cd android
 rem «clean» para que la APK no arrastre restos de la compilacion anterior (si no, pesa de mas).
 call gradlew.bat clean assembleDebug || goto :fin
-copy /y "app\build\outputs\apk\debug\app-debug.apk" "..\..\Idiomas-prueba.apk"
+copy /y "app\build\outputs\apk\debug\app-debug.apk" "..\..\Paglot-prueba.apk"
 echo.
-echo Lista: Idiomas-prueba.apk
+echo Lista: Paglot-prueba.apk
 :fin
 pause
