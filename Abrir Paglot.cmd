@@ -3,7 +3,7 @@ rem Doble clic: abre la app unica Idiomas (todos los cursos) en Edge. Empieza en
 rem Usa siempre el puerto 8100: el progreso guardado en el navegador va ligado a el.
 rem Hace falta un servidor local (si no, el navegador no carga las lecciones).
 rem Esta ventana es ese servidor. Cierrala para pararlo.
-title Holaglot
+title Paglot
 cd /d "%~dp0"
 powershell -NoProfile -ExecutionPolicy Bypass -Command "$t = Get-Content -LiteralPath '%~f0' -Raw; $i = $t.IndexOf('#' + 'SERVIDOR'); if ($i -lt 0) { throw 'Marcador no encontrado' }; Invoke-Expression $t.Substring($i)"
 exit /b
@@ -92,7 +92,7 @@ try {
 
 Write-Host ''
 Write-Host '  ============================================' -ForegroundColor DarkCyan
-Write-Host '   Holaglot' -ForegroundColor Cyan
+Write-Host '   Paglot' -ForegroundColor Cyan
 foreach ($a in $apps) { Write-Host ("   {0,-11} http://localhost:{1}/" -f $a.Nombre, $a.Puerto) -ForegroundColor Yellow }
 Write-Host '   Para pararlo, cierra esta ventana.' -ForegroundColor Cyan
 Write-Host '  ============================================' -ForegroundColor DarkCyan

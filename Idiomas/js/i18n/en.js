@@ -632,7 +632,7 @@ export default {
   'rev.sinCategorias': 'The file has no «categorias».',
 
   // Elegir idioma y créditos
-  'app.nombre': 'Holaglot',
+  'app.nombre': 'Paglot',
   'cursos.titulo': 'Choose the language to study!',
   'cursos.texto': 'Each language has its own tutor, its own lessons and its own progress. You can switch whenever you like.',
   'cursos.lecciones': n => (n.n === 1 ? '1 lesson' : `${n.n} lessons`),

@@ -123,7 +123,7 @@ export function pintarInicio(contenedor) {
       el('section', { class: 'inicio-portada' },
         logo('inicio-logo', 128),
         el('h1', { class: 'inicio-nombre', 'aria-label': t('app.nombre') },
-          el('span', { 'aria-hidden': 'true' }, 'Hola'), el('span', { class: 'inicio-nombre-oro', 'aria-hidden': 'true' }, 'glot')),
+          el('span', { 'aria-hidden': 'true' }, 'Pa'), el('span', { class: 'inicio-nombre-oro', 'aria-hidden': 'true' }, 'glot')),
         el('p', { class: 'inicio-lema' }, t('inicio.lema')),
         el('p', { class: 'inicio-texto' }, t('inicio.texto')),
         el('p', { class: 'inicio-botones' },

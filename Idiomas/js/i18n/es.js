@@ -433,7 +433,7 @@ export default {
   'reinicio.vaciarCuaderno': 'Vaciar también el cuaderno',
 
   // Elegir idioma y créditos
-  'app.nombre': 'Holaglot',
+  'app.nombre': 'Paglot',
   'cursos.titulo': '¡Elige el idioma a estudiar!',
   'cursos.texto': 'Cada idioma tiene su tutora, sus lecciones y su propio progreso. Puedes cambiar cuando quieras.',
   'cursos.lecciones': n => (n.n === 1 ? '1 lección' : `${n.n} lecciones`),
