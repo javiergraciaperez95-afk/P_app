@@ -793,7 +793,7 @@ export default {
   'precios.gratis.para': 'Para sempre',
   'precios.gratis.l1': 'Todos os idiomas e todos os níveis',
   'precios.gratis.l2': '{n} lições novas por dia',
-  'precios.gratis.l3': 'Revisão, prática e caderno sem limite',
+  'precios.gratis.l3': 'Revisão sem limite',
   'precios.gratis.l4': 'Conta e progresso na nuvem',
   'precios.gratis.l5': 'Sem publicidade',
   'precios.completo.titulo': 'Paglot completo',
@@ -817,4 +817,8 @@ export default {
   'precios.p4': 'Se um dia fecharmos, quem pagou «para sempre» vai receber uma cópia para continuar usando o app sem nós.',
   'precios.extras.titulo': 'E os mimos',
   'precios.extras.texto': 'Mais adiante haverá roupas para as tutoras e jogos para passar o tempo. Não ensinam nada e não são necessários para aprender: são mimos, e como mimos serão cobrados.',
+  'precios.gratis.l6': '{p} rodada de prática por dia',
+  'precios.gratis.l7': 'Até {m} palavras salvas à mão no caderno',
+  'precios.completo.l4': 'Prática sem limite',
+  'precios.completo.l5': 'Caderno sem limite',
 };

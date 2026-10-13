@@ -794,7 +794,7 @@ export default {
   'precios.gratis.para': 'Mãi mãi',
   'precios.gratis.l1': 'Tất cả ngôn ngữ và tất cả trình độ',
   'precios.gratis.l2': '{n} bài học mới mỗi ngày',
-  'precios.gratis.l3': 'Ôn tập, luyện tập và sổ tay không giới hạn',
+  'precios.gratis.l3': 'Ôn tập không giới hạn',
   'precios.gratis.l4': 'Tài khoản và tiến độ trên đám mây',
   'precios.gratis.l5': 'Không quảng cáo',
   'precios.completo.titulo': 'Paglot đầy đủ',
@@ -818,4 +818,8 @@ export default {
   'precios.p4': 'Nếu một ngày chúng tôi ngừng hoạt động, ai đã mua gói «trọn đời» sẽ nhận được một bản sao để tiếp tục dùng ứng dụng mà không cần chúng tôi.',
   'precios.extras.titulo': 'Và những món cho vui',
   'precios.extras.texto': 'Sau này sẽ có trang phục cho các cô giáo và trò chơi giải trí. Chúng không dạy gì và không cần để học: chỉ để cho vui, và sẽ được tính tiền như đồ cho vui.',
+  'precios.gratis.l6': '{p} lượt luyện tập mỗi ngày',
+  'precios.gratis.l7': 'Tối đa {m} từ tự lưu vào sổ tay',
+  'precios.completo.l4': 'Luyện tập không giới hạn',
+  'precios.completo.l5': 'Sổ tay không giới hạn',
 };

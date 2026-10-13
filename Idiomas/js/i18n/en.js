@@ -790,7 +790,7 @@ export default {
   'precios.gratis.para': 'Forever',
   'precios.gratis.l1': 'Every language and every level',
   'precios.gratis.l2': '{n} new lessons a day',
-  'precios.gratis.l3': 'Unlimited review, practice and notebook',
+  'precios.gratis.l3': 'Unlimited review',
   'precios.gratis.l4': 'Account and progress in the cloud',
   'precios.gratis.l5': 'No ads',
   'precios.completo.titulo': 'Full Paglot',
@@ -814,4 +814,8 @@ export default {
   'precios.p4': 'If we ever close down, everyone who paid for «lifetime» will get a copy to keep using the app without us.',
   'precios.extras.titulo': 'And the treats',
   'precios.extras.texto': 'Later there will be outfits for the tutors and games to pass the time. They teach nothing and you don’t need them to learn: they are treats, and they will be priced as treats.',
+  'precios.gratis.l6': '{p} practice round a day',
+  'precios.gratis.l7': 'Up to {m} words saved by hand in the notebook',
+  'precios.completo.l4': 'Unlimited practice',
+  'precios.completo.l5': 'Unlimited notebook',
 };

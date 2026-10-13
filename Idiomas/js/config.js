@@ -22,6 +22,11 @@ export const LEGAL_ACTUALIZADO = '13-10-2026';
 // ----- Precios (pantalla #/precios). Todavía no se cobra nada ni se aplica el límite: es el plan. -----
 // Lecciones nuevas que se pueden empezar cada día en el plan gratis.
 export const LECCIONES_GRATIS_AL_DIA = 3;
+// Rondas de «Práctica» al día en el plan gratis.
+export const PRACTICAS_GRATIS_AL_DIA = 1;
+// Palabras que se pueden guardar a mano (con la estrella) en el plan gratis. Las de las lecciones terminadas no cuentan.
+export const CUADERNO_GRATIS = 50;
+// El repaso no se limita nunca: es lo que hace que lo estudiado se quede.
 // Precio en euros según el país (orientativo: el de verdad se pone en la tienda, en la moneda de cada país).
 // Un país que no esté en ninguna lista paga el escalón «medio».
 export const PRECIOS = {

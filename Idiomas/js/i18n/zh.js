@@ -791,7 +791,7 @@ export default {
   'precios.gratis.para': '永久',
   'precios.gratis.l1': '所有语言、所有级别',
   'precios.gratis.l2': '每天 {n} 节新课',
-  'precios.gratis.l3': '复习、练习和笔记本不限量',
+  'precios.gratis.l3': '复习不限量',
   'precios.gratis.l4': '账号和云端进度',
   'precios.gratis.l5': '没有广告',
   'precios.completo.titulo': 'Paglot 完整版',
@@ -815,4 +815,8 @@ export default {
   'precios.p4': '如果有一天我们停止运营，购买了“永久”的用户会收到一份副本，可以不依赖我们继续使用应用。',
   'precios.extras.titulo': '还有小玩意儿',
   'precios.extras.texto': '以后会有老师的服装和消磨时间的小游戏。它们不教任何东西，学习也用不着：只是小玩意儿，也会按小玩意儿来定价。',
+  'precios.gratis.l6': '每天 {p} 轮练习',
+  'precios.gratis.l7': '笔记本里最多手动保存 {m} 个词',
+  'precios.completo.l4': '练习不限量',
+  'precios.completo.l5': '笔记本不限量',
 };

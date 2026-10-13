@@ -8,7 +8,7 @@ import { CURSOS } from '../cursos.js';
 import { curso, hayCurso } from '../curso.js';
 import { dibujoDe } from '../tutor-sprite.js';
 import { sonar } from '../sonidos.js';
-import { PRECIOS, LECCIONES_GRATIS_AL_DIA } from '../config.js';
+import { PRECIOS, LECCIONES_GRATIS_AL_DIA, PRACTICAS_GRATIS_AL_DIA, CUADERNO_GRATIS } from '../config.js';
 
 // Si el navegador no dice el país, se supone por el idioma.
 const PAIS_POR_IDIOMA = { vi: 'VN', id: 'ID', pt: 'BR', es: 'ES', en: 'US', zh: 'CN', ja: 'JP', ko: 'KR', de: 'DE', fr: 'FR', it: 'IT', tr: 'TR', th: 'TH', ru: 'RU', pl: 'PL' };
@@ -64,7 +64,7 @@ export function pintarPrecios(contenedor) {
   }
   pintarPlan();
 
-  const lista = claves => el('ul', {}, claves.map(c => el('li', {}, t(`precios.${c}`, { n: LECCIONES_GRATIS_AL_DIA }))));
+  const lista = claves => el('ul', {}, claves.map(c => el('li', {}, t(`precios.${c}`, { n: LECCIONES_GRATIS_AL_DIA, p: PRACTICAS_GRATIS_AL_DIA, m: CUADERNO_GRATIS }))));
 
   poner(contenedor,
     el('article', { class: 'precios' },
@@ -79,14 +79,14 @@ export function pintarPrecios(contenedor) {
           el('h2', {}, t('precios.gratis.titulo')),
           el('p', { class: 'plan-precio' }, euros(0)),
           el('p', { class: 'plan-por' }, t('precios.gratis.para')),
-          lista(['gratis.l1', 'gratis.l2', 'gratis.l3', 'gratis.l4', 'gratis.l5']),
+          lista(['gratis.l1', 'gratis.l2', 'gratis.l3', 'gratis.l6', 'gratis.l7', 'gratis.l4', 'gratis.l5']),
           el('a', { class: 'boton', href: hayCurso ? '#/lecciones' : '#/idiomas', onclick: () => sonar('pagina') },
             hayCurso ? t('inicio.continuar', { curso: curso.nativo }) : t('inicio.empezar'))),
         el('section', { class: 'plan plan-completo caja' },
           el('h2', {}, t('precios.completo.titulo')),
           precio, por,
           el('div', { class: 'filtros', role: 'group', 'aria-label': t('precios.elegir') }, botones),
-          lista(['completo.l1', 'completo.l2', 'completo.l3']),
+          lista(['completo.l1', 'completo.l2', 'completo.l4', 'completo.l5', 'completo.l3']),
           el('button', {
             type: 'button', class: 'boton boton-principal',
             onclick: () => { decir(t('precios.prontoTutora')); tutora.scrollIntoView({ block: 'center', behavior: 'smooth' }); },
