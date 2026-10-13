@@ -7,7 +7,7 @@ import { crearEjercicio } from '../exercises.js';
 import { decir } from '../tutor.js';
 import { resumenLeccion, marcarTerminada, marcarAbierta } from '../progress.js';
 import { botonEscuchar, botonGuardar, analisisDesplegable, textoAnalisis, apuntarPalabrasDeLeccion } from '../comunes.js';
-import { sonar, pronunciarSeguido, callar, ayudaVoz } from '../sonidos.js';
+import { sonar, pronunciarSeguido, callar, ayudaVoz, hayVoz } from '../sonidos.js';
 import { cargarJuego, pintarJuego } from '../juego/motor.js';
 import { LANG } from '../curso.js';
 
@@ -246,7 +246,7 @@ function bloqueDialogo(b, leccion) {
   });
 
   // Modo «solo escuchar»: se oculta el texto en español (comprensión auditiva pura).
-  const soloOir = el('button', { type: 'button', class: 'boton boton-mini', 'aria-pressed': 'false' }, t('dialogo.soloEscuchar'));
+  const soloOir = el('button', { type: 'button', class: 'boton boton-mini con-voz', 'aria-pressed': 'false' }, t('dialogo.soloEscuchar'));
   soloOir.addEventListener('click', () => {
     const activo = seccion.classList.toggle('ocultar-espanol');
     soloOir.setAttribute('aria-pressed', String(activo));
@@ -257,7 +257,7 @@ function bloqueDialogo(b, leccion) {
   // Escuchar el diálogo entero; cada personaje con un tono de voz distinto.
   const tonos = new Map();
   const textoEscuchar = t(b.esTexto ? 'dialogo.escucharTexto' : 'dialogo.escucharDialogo');
-  const escuchar = el('button', { type: 'button', class: 'boton boton-principal boton-mini' }, `▶ ${textoEscuchar}`);
+  const escuchar = el('button', { type: 'button', class: 'boton boton-principal boton-mini con-voz' }, `▶ ${textoEscuchar}`);
   let sonando = false;
   const items = [...lista.children];
   const parar = () => {
@@ -440,6 +440,7 @@ function pintarLibro(contenedor, resultado, siguiente, alJuego) {
     if (b.tipo === 'vocabulario') return bloqueVocabulario(b, leccion);
     if (b.tipo === 'tabla') return bloqueTabla(b);
     if (b.tipo === 'imagen') return bloqueImagen(b);
+    if (b.soloOido && !hayVoz()) return null; // ejercicio de oído y el dispositivo no tiene voz
     numero += 1;
     return crearEjercicio(b, leccion.id, numero, actualizar);
   });

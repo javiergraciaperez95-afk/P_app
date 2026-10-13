@@ -31,7 +31,7 @@ function tarjetaFrase(f, origen) {
 
 /** Botón que lee todas las frases de un grupo seguidas. */
 function botonEscucharTodas(frases) {
-  const boton = el('button', { type: 'button', class: 'boton boton-mini boton-principal' }, t('frases.escucharTodas'));
+  const boton = el('button', { type: 'button', class: 'boton boton-mini boton-principal con-voz' }, t('frases.escucharTodas'));
   let sonando = false;
   boton.addEventListener('click', () => {
     if (sonando) { callar(); sonando = false; boton.textContent = t('frases.escucharTodas'); return; }

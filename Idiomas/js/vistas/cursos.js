@@ -68,8 +68,8 @@ export function pintarCreditos(contenedor) {
     el('section', { class: 'creditos' },
       el('h1', {}, t('creditos.titulo')),
       el('p', { class: 'caja' }, t('creditos.gracias')),
-      el('h2', {}, t('creditos.voces')),
-      el('ul', { class: 'creditos-lista' }, porCurso.map(({ c, voces }) =>
+      porCurso.length > 0 && el('h2', {}, t('creditos.voces')),
+      porCurso.length > 0 && el('ul', { class: 'creditos-lista' }, porCurso.map(({ c, voces }) =>
         el('li', { class: 'caja' },
           el('strong', {}, nombreEn(c, i), ' ', bandera(c)),
           el('ul', {}, voces.map(v => el('li', {}, enlace(v.autor, v.url), ` · ${t('creditos.voz', { voz: v.voz })} · ${v.licencia}`)))))),

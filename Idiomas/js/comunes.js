@@ -22,11 +22,11 @@ export function apuntarPalabrasDeLeccion(leccion, palabras = leccion.palabras) {
   return nuevas;
 }
 
-/** Botón 🔊 que lee el texto en español. */
+/** Botón 🔊 que lee el texto con la voz del dispositivo. Solo se ve si hay voz (clase «con-voz»). */
 export function botonEscuchar(texto) {
   return el('button', {
     type: 'button',
-    class: 'boton-icono',
+    class: 'boton-icono con-voz',
     'aria-label': t('comun.escucharTexto', { texto }),
     title: t('comun.escuchar'),
     onclick: () => {

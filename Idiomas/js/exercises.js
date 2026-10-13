@@ -7,7 +7,7 @@ import { el, enLinea, barajar, alAzar, poner } from './dom.js';
 import { t, tr } from './i18n.js';
 import { decir } from './tutor.js';
 import { registrarRespuesta, estadoEjercicio } from './progress.js';
-import { sonar, pronunciar, ayudaVoz } from './sonidos.js';
+import { sonar, pronunciar, ayudaVoz, hayVoz } from './sonidos.js';
 import { LANG, curso } from './curso.js';
 
 // Letras que no tienen los teclados ingleses ni vietnamitas.
@@ -69,12 +69,13 @@ export function crearEjercicio(bloque, idLeccion, numero, alResponder) {
 
   /** Cabecera, pregunta y zonas de respuesta comunes. */
   function estructura(...contenido) {
-    const pregunta = tr(bloque.pregunta) || (['traduccion', 'huecos', 'ordenar'].includes(bloque.tipo) ? t(`ej.pregunta.${bloque.tipo}`) : '');
+    let pregunta = tr(bloque.pregunta) || (['traduccion', 'huecos', 'ordenar'].includes(bloque.tipo) ? t(`ej.pregunta.${bloque.tipo}`) : '');
+    if (bloque.audio && !hayVoz()) pregunta = sinOido(pregunta);
     const feedback = el('div', { class: 'feedback', hidden: true, tabindex: '-1', 'aria-live': 'polite' });
     const pie = el('div', { class: 'ejercicio-pie' });
-    const oido = bloque.audio ? controlesAudio(bloque.audio) : null;
+    const oido = bloque.audio ? controlesAudio(bloque.audio, bloque.audioRevela) : null;
     poner(seccion,
-      el('span', { class: 'etiqueta-bloque' }, `${t('ej.ejercicio', { n: numero })} · ${bloque.audio ? `🔊 ${t('ej.escucha')} · ` : ''}${t(`ej.tipo.${bloque.tipo}`)}`),
+      el('span', { class: 'etiqueta-bloque' }, `${t('ej.ejercicio', { n: numero })} · `, bloque.audio && el('span', { class: 'con-voz' }, `🔊 ${t('ej.escucha')} · `), t(`ej.tipo.${bloque.tipo}`)),
       el('p', { class: 'ejercicio-pregunta', id: `ej-${numero}` }, enLinea(pregunta)),
       oido,
       ...contenido,
@@ -248,17 +249,29 @@ export function crearEjercicio(bloque, idLeccion, numero, alResponder) {
   return seccion;
 }
 
-/** Botones de escuchar (normal y despacio) y, por si no hay voz, ver el texto. */
-function controlesAudio(texto) {
+/** Sin voz, un ejercicio de escucha se hace leyendo: se le quita a la pregunta lo de «escucha». */
+function sinOido(pregunta) {
+  const p = pregunta
+    .replace(/^(Escucha|Listen|Nghe)\s*[.:]\s*/i, '')
+    .replace(/¿Qué has oído\?/i, '¿Qué significa?')
+    .replace(/What did you hear\?/i, 'What does it mean?');
+  return p.charAt(0).toLocaleUpperCase() + p.slice(1);
+}
+
+/**
+ * Botones de escuchar (normal y despacio) y de ver el texto. Sin voz en el dispositivo, los botones no se ven
+ * y el texto sale escrito: el ejercicio pasa a ser de lectura. Si el texto es la solución (revela), no sale nada.
+ */
+function controlesAudio(texto, revela = false) {
   const escuchar = lento => () => {
     if (!pronunciar(texto, { lento })) decir(ayudaVoz(), 'apurada');
   };
-  const oculto = el('p', { class: 'audio-texto', lang: LANG, hidden: true }, texto);
-  const ver = el('button', { type: 'button', class: 'boton boton-mini' }, t('ej.verTexto'));
+  const oculto = el('p', { class: revela ? 'audio-texto' : 'audio-texto sin-voz-visible', lang: LANG, hidden: true }, texto);
+  const ver = el('button', { type: 'button', class: 'boton boton-mini con-voz' }, t('ej.verTexto'));
   ver.addEventListener('click', () => { oculto.hidden = false; ver.remove(); });
   return el('div', { class: 'controles-audio' },
-    el('button', { type: 'button', class: 'boton boton-principal boton-escuchar', onclick: escuchar(false) }, `🔊 ${t('comun.escuchar')}`),
-    el('button', { type: 'button', class: 'boton', onclick: escuchar(true) }, t('ej.despacio')),
+    el('button', { type: 'button', class: 'boton boton-principal boton-escuchar con-voz', onclick: escuchar(false) }, `🔊 ${t('comun.escuchar')}`),
+    el('button', { type: 'button', class: 'boton con-voz', onclick: escuchar(true) }, t('ej.despacio')),
     ver,
     oculto);
 }

@@ -5,6 +5,7 @@
 import { t } from './i18n.js';
 import { curso, ruta } from './curso.js';
 import { LANG } from './curso.js';
+import { hayVoz } from './sonidos.js';
 
 const CARPETA = ruta('lessons/');
 const HUECOS_PERMITIDOS = 3; // se para tras 3 archivos seguidos que no existen
@@ -345,7 +346,11 @@ export function revisarLeccion(id, json) {
       intro: traducible(json.intro) ? json.intro : null,
       palabras,
       bloques,
-      idsEjercicios: bloques.filter(b => b.id).map(b => b.id),
+      // Los ejercicios que cuentan: sin voz en el dispositivo, los que solo son de oído no existen.
+      get idsEjercicios() {
+        const voz = hayVoz();
+        return bloques.filter(b => b.id && (voz || !b.soloOido)).map(b => b.id);
+      },
     },
   };
 }
@@ -522,14 +527,26 @@ function revisarBloque(bloque, i, palabras, avisos) {
   };
 }
 
+/** Para comparar lo que se oye con una respuesta: sin mayúsculas, signos ni espacios de más. */
+const soloLetras = texto => String(texto ?? '').toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+
 function marcarId(bloque, ejercicio) {
-  // «audio»: texto en español que se escucha (ejercicios de comprensión oral).
-  if (textoValido(bloque.audio)) ejercicio.audio = bloque.audio.trim();
-  else if (bloque.audio === true && textoValido(bloque.frase)) {
+  // «audio»: texto en el idioma del curso que se escucha (ejercicios de comprensión oral).
+  if (textoValido(bloque.audio)) {
+    ejercicio.audio = bloque.audio.trim();
+    // Sin voz en el dispositivo, el texto se enseña escrito y el ejercicio pasa a ser de lectura.
+    // Pero si lo que se oye es justo la respuesta (un dictado, ordenar la frase, «elige lo que oyes»),
+    // escrito no tiene sentido: ese ejercicio solo existe cuando hay voz.
+    const oido = soloLetras(ejercicio.audio);
+    const buena = soloLetras(ejercicio.opciones?.find(o => o.correcta)?.texto);
+    if (['escribir', 'ordenar'].includes(ejercicio.tipo) || buena === oido) ejercicio.soloOido = true;
+    else if (buena && ejercicio.frase && oido.includes(buena)) ejercicio.audioRevela = true;
+  } else if (bloque.audio === true && textoValido(bloque.frase)) {
     // En los huecos se oye la frase completa, con la respuesta correcta en su sitio.
     // Las pistas entre paréntesis, como «(our)», no se leen.
     const relleno = ejercicio.opciones?.find(o => o.correcta)?.texto ?? ' ';
     ejercicio.audio = bloque.frase.replace(/\s*\([^)]*\)/g, '').replace(/_{2,}/g, relleno).replace(/\s+/g, ' ').trim();
+    ejercicio.audioRevela = true; // lo que se oye es la solución: sin voz no se puede enseñar escrito
   }
   if (textoValido(bloque.id) || typeof bloque.id === 'number') ejercicio.idFijo = String(bloque.id);
   return ejercicio;

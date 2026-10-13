@@ -1,12 +1,10 @@
 // Sonidos 8-bit generados en el momento (sin archivos de audio)
-// y pronunciación: primero con los audios grabados (carpeta audio/), y si un texto no tiene audio,
-// con la voz española del navegador, si existe.
+// y pronunciación con la voz del propio dispositivo o navegador. No hay audios grabados:
+// si el dispositivo no tiene voz para el idioma del curso, la app queda en modo de solo lectura.
 
 import { ajuste } from './ajustes.js';
 import { t } from './i18n.js';
-import { clave } from './curso.js';
-import { curso, ruta } from './curso.js';
-import { AUDIOS_EN_LINEA } from './config.js';
+import { curso } from './curso.js';
 
 let audio = null;
 
@@ -126,182 +124,172 @@ export function pitidoVoz() {
 }
 
 // ---------------------------------------------------------------------------
-// Voz española (speechSynthesis)
+// Voz del dispositivo (speechSynthesis)
 // ---------------------------------------------------------------------------
-
-// --- Audios grabados -------------------------------------------------------
-// Se generan con _audio/generar.py. Cada texto tiene un archivo cuyo nombre sale del propio texto (clave),
-// así que la app no necesita una lista de frases: solo saber qué archivos existen (audio/indice.json).
-
-const grabados = { f: new Set(), m: new Set() };
-// Los audios van dentro de la app o, si config.js lo dice, se bajan de internet y se guardan en el dispositivo.
-const EN_LINEA = Boolean(AUDIOS_EN_LINEA) && 'caches' in window;
-const CARPETA_AUDIO = EN_LINEA ? `${AUDIOS_EN_LINEA.replace(/\/+$/, '')}/${curso.id}/` : ruta('audio/');
-const almacen = EN_LINEA ? caches.open(`audios-${curso.id}`) : null;
-
-/** Pide un archivo de audio en línea: primero a internet (y guarda copia); sin conexión, la copia guardada. */
-async function bajar(url, { preferirCopia = false } = {}) {
-  const copias = await almacen;
-  if (preferirCopia) {
-    const guardada = await copias.match(url);
-    if (guardada) return guardada;
-  }
-  try {
-    const respuesta = await fetch(url);
-    if (respuesta.ok) { await copias.put(url, respuesta.clone()); return respuesta; }
-  } catch { /* sin conexión */ }
-  return (await copias.match(url)) ?? null;
-}
-
-const indiceListo = (EN_LINEA ? bajar(`${CARPETA_AUDIO}indice.json`) : fetch(`${CARPETA_AUDIO}indice.json`))
-  .then(r => (r?.ok ? r.json() : null))
-  .then(i => { if (i) { grabados.f = new Set(i.f); grabados.m = new Set(i.m); } })
-  .catch(() => {});
-
-/** Lo que se le da al reproductor: la dirección tal cual o, en línea, la copia guardada en el dispositivo. */
-async function fuente(url) {
-  if (!EN_LINEA) return url;
-  const respuesta = await bajar(url, { preferirCopia: true });
-  if (!respuesta) throw new Error('sin audio');
-  return URL.createObjectURL(await respuesta.blob());
-}
-
-/**
- * Descarga por adelantado los audios de unas lecciones (solo si están en línea), para que suenen al momento
- * y sigan funcionando sin conexión. Se llama al abrir una lección, con esa y las siguientes.
- */
-export async function precargarAudios(lecciones) {
-  if (!EN_LINEA) return;
-  await indiceListo;
-  const urls = new Set();
-  const apuntar = (texto, tono) => { const u = typeof texto === 'string' && grabacion(texto, tono); if (u) urls.add(u); };
-  for (const leccion of lecciones) {
-    for (const p of leccion.palabras?.values?.() ?? []) apuntar(p.es);
-    for (const b of leccion.bloques ?? []) {
-      apuntar(b.audio);
-      for (const f of b.frases ?? []) { apuntar(f.es); apuntar(f.es, 0.75); }
-    }
-  }
-  const pendientes = [...urls];
-  const obrero = async () => { for (let u; (u = pendientes.pop());) await bajar(u, { preferirCopia: true }).catch(() => {}); };
-  await Promise.all([obrero(), obrero(), obrero(), obrero()]);
-}
-
-/** Nombre del archivo de un texto: la misma cuenta que hace _audio/generar.py. */
-function huella(texto) {
-  const datos = new TextEncoder().encode(texto.normalize('NFC').trim().replace(/\s+/g, ' '));
-  return [0x811c9dc5, 0x01000193].map(semilla => {
-    let h = semilla;
-    for (const b of datos) h = Math.imul(h ^ b, 0x01000193) >>> 0;
-    return h.toString(16).padStart(8, '0');
-  }).join('');
-}
-
-/** Dirección del audio de un texto, o null si no está grabado. Los tonos graves usan la segunda voz. */
-function grabacion(texto, tono = 1) {
-  const c = huella(texto);
-  if (tono < 0.95 && grabados.m.has(c)) return `${CARPETA_AUDIO}${c}-m.mp3`;
-  return grabados.f.has(c) ? `${CARPETA_AUDIO}${c}.mp3` : null;
-}
-
-let sonando = null; // { audio, cola, alAcabar }
-
-function pararGrabacion() {
-  if (!sonando) return;
-  const { audio, alAcabar } = sonando;
-  sonando = null;
-  audio.onended = audio.onerror = null;
-  audio.pause();
-  alAcabar?.();
-}
-
-/** Reproduce una lista de { url, lento, alEmpezar } una detrás de otra. */
-function reproducir(cola, alAcabar) {
-  pararGrabacion();
-  const audio = new Audio();
-  sonando = { audio, alAcabar };
-  const siguiente = () => {
-    if (!sonando || sonando.audio !== audio) return;
-    const paso = cola.shift();
-    if (!paso) { sonando = null; alAcabar?.(); return; }
-    fuente(paso.url).then(src => {
-      if (!sonando || sonando.audio !== audio) return;
-      if (audio.src.startsWith('blob:')) URL.revokeObjectURL(audio.src);
-      audio.src = src;
-      audio.playbackRate = ajuste('velocidadVoz') * (paso.lento ? 0.6 : 1);
-      paso.alEmpezar?.();
-      return audio.play();
-    }).catch(siguiente);
-  };
-  audio.onended = audio.onerror = siguiente;
-  siguiente();
-}
-
-/** Apunta los textos sin audio, para saber cuáles faltan por grabar. */
-function apuntarFalta(texto) {
-  try {
-    const lista = JSON.parse(localStorage.getItem(clave('audio-faltan')) || '[]');
-    if (!lista.includes(texto) && lista.length < 300) localStorage.setItem(clave('audio-faltan'), JSON.stringify([...lista, texto]));
-  } catch { /* sin almacenamiento */ }
-}
-
-// --- Voz del navegador (reserva) --------------------------------------------
+// La app pregunta qué voces hay y se queda con la mejor del idioma del curso. El resultado se apunta en
+// <html data-voz="si|no">; con eso el css enseña u oculta lo que lleva la clase «con-voz» (botones de escuchar)
+// o «sin-voz» (el texto que los sustituye). La persona no ve ninguna comprobación.
 
 const voces = window.speechSynthesis;
+const IDIOMA = curso.voz.toLowerCase();            // «vi-vn»
+const BASE = IDIOMA.split('-')[0];                 // «vi»
+// El noruego aparece como «nb» o como «no» según el navegador.
+const BASES = BASE === 'nb' || BASE === 'no' ? ['nb', 'no'] : [BASE];
 
-/** Prefiere el español de España; si no hay, cualquier voz en español. */
-function vozEspanola() {
-  if (!voces) return null;
-  const todas = voces.getVoices();
-  return todas.find(v => v.lang === curso.voz)
-    ?? todas.find(v => (v.lang ?? '').replace('_', '-').toLowerCase() === curso.voz.toLowerCase())
-    ?? todas.find(v => v.lang?.toLowerCase().startsWith(curso.voz.slice(0, 2).toLowerCase()))
-    ?? null;
+let fallida = false;       // la voz ha dado error al usarla: se da por perdida hasta que se vuelva a abrir la app
+let nativa = null;         // dentro de la APK: lo que responde el teléfono (true/false); en el navegador, null
+let lista = false;         // ya se sabe si hay voz o no
+let sinEmpezar = 0;        // veces seguidas que una lectura no ha llegado a sonar
+
+const etiqueta = v => (v.lang ?? '').replace('_', '-').toLowerCase();
+
+/** Las voces del idioma del curso, de mejor a peor. Sin conexión no cuentan las que la necesitan. */
+function candidatas() {
+  if (!voces) return [];
+  const puntos = v => (etiqueta(v) === IDIOMA ? 8 : 0)
+    + (/natural|neural/i.test(v.name) ? 4 : /google|siri|premium|enhanced/i.test(v.name) ? 2 : 0)
+    + (v.localService === false ? 0 : 1);
+  return voces.getVoices()
+    .filter(v => BASES.includes(etiqueta(v).split('-')[0]))
+    .filter(v => v.localService !== false || navigator.onLine !== false)
+    .sort((a, b) => puntos(b) - puntos(a));
 }
 
-// Algunos navegadores cargan la lista de voces más tarde.
+function vozDelCurso() {
+  if (fallida || nativa === false) return null;
+  // Dentro de la APK manda lo que dice el teléfono, aunque su lista de idiomas no nombre este tal cual.
+  return candidatas()[0] ?? (nativa ? { name: 'Android', lang: curso.voz, localService: true } : null);
+}
+
+/** true si ahora mismo se puede leer en voz alta el idioma del curso. */
+export function hayVoz() {
+  return Boolean(vozDelCurso());
+}
+
+/** Vuelve a mirar si hay voz y lo apunta en la página. Avisa con «voz-cambiada» si ha cambiado. */
+function revisarVoz() {
+  const antes = document.documentElement.dataset.voz;
+  const hay = hayVoz();
+  if (!hay && !lista) return; // todavía cargando la lista: mejor no decir que no
+  const ahora = hay ? 'si' : 'no';
+  if (ahora === antes) return;
+  document.documentElement.dataset.voz = ahora;
+  if (!hay) voces?.cancel();
+  window.dispatchEvent(new Event('voz-cambiada'));
+}
+
+/** Dentro de la APK el teléfono dice sin rodeos si puede leer este idioma. */
+function preguntarAlTelefono() {
+  if (!voces?.idiomaDisponible) return Promise.resolve();
+  return voces.idiomaDisponible(curso.voz).then(ok => { nativa = Boolean(ok); }, () => {});
+}
+
+let preparada = null;
+
+/** Mira qué voces hay. Algunos navegadores cargan la lista más tarde. Devuelve una promesa. */
 export function prepararVoces() {
-  return indiceListo.then(() => new Promise(resolver => {
-    if (!voces) return resolver(null);
-    if (voces.getVoices().length) return resolver(vozEspanola());
-    voces.addEventListener('voiceschanged', () => resolver(vozEspanola()), { once: true });
-    setTimeout(() => resolver(vozEspanola()), 1500);
-  }));
+  preparada ??= new Promise(resolver => {
+    const acabar = () => { lista = true; revisarVoz(); resolver(vozDelCurso()); };
+    if (!voces) { acabar(); return; }
+    voces.addEventListener('voiceschanged', revisarVoz);
+    preguntarAlTelefono().then(() => {
+      revisarVoz();
+      if (hayVoz() || nativa === false) { acabar(); return; }
+      voces.addEventListener('voiceschanged', acabar, { once: true });
+      setTimeout(acabar, 1500);
+    });
+  });
+  return preparada;
 }
 
-export function hayVozEspanola() {
-  return grabados.f.size > 0 || Boolean(vozEspanola());
+// Si se instala una voz, se va la conexión o se vuelve a la app, se mira otra vez.
+window.addEventListener('online', revisarVoz);
+window.addEventListener('offline', revisarVoz);
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden && lista) preguntarAlTelefono().then(revisarVoz);
+});
+
+export function nombreVoz() {
+  const voz = vozDelCurso();
+  return voz ? `${voz.name} (${voz.lang})` : null;
 }
 
-export function nombreVozEspanola() {
-  const voz = vozEspanola();
-  if (voz) return `${voz.name} (${voz.lang})`;
-  return grabados.f.size ? 'audio' : null;
+/** La voz no ha funcionado: se oculta el audio hasta que se vuelva a abrir la app. */
+function darPorPerdida() {
+  fallida = true;
+  revisarVoz();
 }
 
-function frase(texto, voz, { lento = false, tono = 1 } = {}) {
-  const f = new SpeechSynthesisUtterance(texto);
-  f.voice = voz;
-  f.lang = voz.lang;
-  f.rate = ajuste('velocidadVoz') * (lento ? 0.6 : 1);
-  f.pitch = tono;
-  return f;
+// Las voces de Google que trae Chrome en el ordenador se cortan si una lectura pasa de unos 14 segundos,
+// así que con ellas los textos largos se leen por trozos.
+const seCorta = voz => voz.localService === false && /^google/i.test(voz.name);
+const LARGO = 160;
+
+function trocear(texto) {
+  if (texto.length <= LARGO) return [texto];
+  const trozos = [];
+  const partir = (parte, cortes) => {
+    if (parte.length <= LARGO || !cortes.length) { trozos.push(parte); return; }
+    let actual = '';
+    for (const pieza of parte.split(cortes[0])) {
+      if (actual && (actual + pieza).length > LARGO) { partir(actual.trim(), cortes.slice(1)); actual = ''; }
+      actual += pieza;
+    }
+    if (actual.trim()) partir(actual.trim(), cortes.slice(1));
+  };
+  // Primero por frases, luego por comas y, si aun así es largo, por palabras.
+  partir(texto, [/(?<=[.!?…。！？;:])\s*/u, /(?<=[,，、])\s*/u, /(?<=\s)/u]);
+  return trozos.filter(Boolean);
 }
 
-/** Lee un texto en español. Devuelve false si no hay voz española. */
-export function pronunciar(texto, opciones = {}) {
-  const url = grabacion(texto, opciones.tono);
-  if (url) {
-    voces?.cancel();
-    reproducir([{ url, lento: opciones.lento }]);
-    return true;
-  }
-  apuntarFalta(texto);
-  pararGrabacion();
-  const voz = vozEspanola();
-  if (!voz) return false;
+let turno = 0; // cambia con cada lectura nueva, para no hacer caso a lo que quede de la anterior
+
+/**
+ * Pone en cola las lecturas de una lista de { texto, tono, lento }.
+ * alEmpezar(i) avisa de cuál suena; alAcabar() cuando termina la última.
+ */
+function leer(lecturas, voz, { alEmpezar, alAcabar } = {}) {
   voces.cancel();
-  voces.speak(frase(texto, voz, opciones));
+  turno += 1;
+  const mio = turno;
+  let haSonado = false;
+  const error = e => {
+    if (mio !== turno || ['interrupted', 'canceled'].includes(e?.error)) return;
+    turno += 1;
+    alAcabar?.();
+    if (e?.error !== 'not-allowed') darPorPerdida();
+  };
+  lecturas.forEach((l, i) => {
+    const trozos = seCorta(voz) ? trocear(l.texto) : [l.texto];
+    trozos.forEach((trozo, k) => {
+      const f = new SpeechSynthesisUtterance(trozo);
+      f.voice = voz;
+      f.lang = voz.lang;
+      f.rate = ajuste('velocidadVoz') * (l.lento ? 0.6 : 1);
+      f.pitch = l.tono ?? 1;
+      f.onstart = () => { haSonado = true; sinEmpezar = 0; if (k === 0 && mio === turno) alEmpezar?.(i); };
+      f.onerror = error;
+      if (i === lecturas.length - 1 && k === trozos.length - 1) f.onend = () => { if (mio === turno) alAcabar?.(); };
+      voces.speak(f);
+    });
+  });
+  // Si no llega a sonar dos veces seguidas, la voz no funciona aunque el dispositivo diga que la tiene.
+  setTimeout(() => {
+    if (mio !== turno || haSonado) return;
+    sinEmpezar += 1;
+    if (sinEmpezar < 2) return;
+    turno += 1;
+    voces.cancel();
+    alAcabar?.();
+    darPorPerdida();
+  }, 6000);
+}
+
+/** Lee un texto en el idioma del curso. Devuelve false si no hay voz. */
+export function pronunciar(texto, opciones = {}) {
+  const voz = vozDelCurso();
+  if (!voz) return false;
+  leer([{ texto, ...opciones }], voz);
   return true;
 }
 
@@ -309,33 +297,26 @@ export function pronunciar(texto, opciones = {}) {
  * Lee varias frases seguidas (un diálogo). Cada una: { texto, tono }.
  * alEmpezar(i) avisa de qué frase suena; alAcabar() cuando termina o se para.
  */
-export function pronunciarSeguido(lista, { alEmpezar, alAcabar } = {}) {
-  const urls = lista.map(l => grabacion(l.texto, l.tono ?? 1));
-  if (urls.length && urls.every(Boolean)) {
-    voces?.cancel();
-    reproducir(urls.map((url, i) => ({ url, alEmpezar: () => alEmpezar?.(i) })), alAcabar);
-    return true;
-  }
-  lista.forEach((l, i) => { if (!urls[i]) apuntarFalta(l.texto); });
-  pararGrabacion();
-  const voz = vozEspanola();
-  if (!voz) return false;
-  voces.cancel();
-  lista.forEach((l, i) => {
-    const f = frase(l.texto, voz, { tono: l.tono ?? 1 });
-    f.onstart = () => alEmpezar?.(i);
-    if (i === lista.length - 1) f.onend = () => alAcabar?.();
-    voces.speak(f);
-  });
+export function pronunciarSeguido(frases, avisos = {}) {
+  const voz = vozDelCurso();
+  if (!voz || !frases.length) return false;
+  leer(frases, voz, avisos);
   return true;
 }
 
 export function callar() {
-  pararGrabacion();
+  turno += 1;
   voces?.cancel();
 }
 
-/** Páginas de ayuda de la tutora cuando no hay voz española instalada. */
+/** Dentro de la APK, abre la pantalla del teléfono donde se instalan las voces. Devuelve false en el navegador. */
+export function abrirInstalacionDeVoces() {
+  if (!voces?.instalarVoces) return false;
+  voces.instalarVoces();
+  return true;
+}
+
+/** Lo que explica la tutora cuando el dispositivo no tiene voz para el idioma del curso. */
 export function ayudaVoz() {
   return t('voz.ayuda');
 }

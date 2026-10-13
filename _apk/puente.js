@@ -1,6 +1,7 @@
 // Solo dentro de la APK. Dentro de una app Android el navegador interno no trae la voz que usa la web
 // (speechSynthesis), así que aquí se sustituye por la voz del propio teléfono, con la misma forma de uso.
-// Solo se usa de reserva: lo normal es que la app reproduzca los audios grabados de cada curso.
+// La app no lleva audios grabados: esta es la única voz. Si el teléfono no tiene voz para el idioma del curso,
+// la app lo nota (idiomaDisponible) y queda en modo de solo lectura.
 // La app web no se entera: sigue llamando a speechSynthesis como siempre.
 (() => {
   const voz = window.Capacitor?.Plugins?.TextToSpeech;
@@ -13,8 +14,8 @@
   const oyentes = new Set();
 
   window.SpeechSynthesisUtterance = function (texto) {
-    this.text = texto; this.lang = 'es-ES'; this.rate = 1; this.pitch = 1; this.voice = null;
-    this.onstart = null; this.onend = null;
+    this.text = texto; this.lang = 'es-ES'; this.rate = 1; this.pitch = 1; this.volume = 1; this.voice = null;
+    this.onstart = null; this.onend = null; this.onerror = null;
   };
 
   async function siguiente() {
@@ -23,13 +24,30 @@
     const mio = turno;
     hablando = true;
     f.onstart?.();
+    let fallo = false;
     try {
-      await voz.speak({ text: f.text, lang: f.lang || 'es-ES', rate: f.rate || 1, pitch: f.pitch || 1, volume: 1 });
-    } catch { /* sin voz o interrumpida */ }
-    if (mio !== turno) return;
+      await voz.speak({ text: f.text, lang: f.lang || 'es-ES', rate: f.rate || 1, pitch: f.pitch || 1, volume: f.volume ?? 1 });
+    } catch { fallo = true; }
+    if (mio !== turno) return; // se canceló mientras sonaba
     hablando = false;
+    if (fallo) {
+      // El teléfono no ha podido leerlo: se avisa a la app y se deja lo que quedara en cola.
+      cola = [];
+      f.onerror?.({ error: 'synthesis-failed' });
+      return;
+    }
     f.onend?.();
     siguiente();
+  }
+
+  const avisar = () => oyentes.forEach(fn => { try { fn(); } catch { /* cada oyente, lo suyo */ } });
+
+  /** Pregunta al teléfono qué idiomas sabe leer y prepara una «voz» por cada uno. */
+  function cargarVoces() {
+    return voz.getSupportedLanguages().then(({ languages }) => {
+      voces = languages.map(l => ({ name: 'Android', lang: l.replace('_', '-'), localService: true }));
+      avisar();
+    }).catch(() => {});
   }
 
   const sintesis = {
@@ -39,14 +57,14 @@
     get speaking() { return hablando; },
     addEventListener(tipo, fn) { if (tipo === 'voiceschanged') oyentes.add(fn); },
     removeEventListener(tipo, fn) { oyentes.delete(fn); },
+    /** ¿Puede el teléfono leer este idioma ahora mismo (voz instalada)? Lo usa js/sonidos.js. */
+    idiomaDisponible: idioma => cargarVoces()
+      .then(() => voz.isLanguageSupported({ lang: idioma }))
+      .then(r => Boolean(r?.supported)),
+    /** Abre la pantalla del teléfono donde se instalan las voces. */
+    instalarVoces: () => voz.openInstall().catch(() => {}),
   };
   Object.defineProperty(window, 'speechSynthesis', { value: sintesis, configurable: true });
 
-  // ¿Qué idiomas sabe leer la voz del teléfono?
-  voz.getSupportedLanguages().then(({ languages }) => {
-    // Una «voz» por cada idioma que el teléfono sabe leer; la app elige la del curso.
-    voces = languages.map(l => ({ name: 'Android', lang: l.replace('_', '-') }));
-    oyentes.forEach(fn => fn());
-    oyentes.clear();
-  }).catch(() => {});
+  cargarVoces();
 })();

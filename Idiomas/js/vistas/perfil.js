@@ -8,7 +8,7 @@ import {
 } from '../progress.js';
 import { etapa } from '../srs.js';
 import { ajuste, cambiarAjuste } from '../ajustes.js';
-import { prepararVoces, nombreVozEspanola, pronunciar, sonar, ayudaVoz } from '../sonidos.js';
+import { prepararVoces, nombreVoz, pronunciar, sonar, ayudaVoz, abrirInstalacionDeVoces } from '../sonidos.js';
 import {
   nubeConfigurada, nube, usuarioActual, entrar, crearCuenta, salir, sincronizar, alCambiarNube,
   recuperarContrasena, cambiarContrasena, borrarDatosNube,
@@ -330,11 +330,18 @@ function seccionAjustes() {
   const velocidad = el('input', { id: 'velocidad-voz', type: 'range', min: '0.5', max: '1.2', step: '0.1', value: String(ajuste('velocidadVoz')) });
   velocidad.addEventListener('change', () => cambiarAjuste('velocidadVoz', Number(velocidad.value)));
 
+  // La voz es la del dispositivo. Si no hay, se dice aquí y se ofrece la explicación de cómo instalarla.
   const estadoVoz = el('p', { class: 'aprox' }, t('ajustes.buscandoVoz'));
-  prepararVoces().then(() => {
-    const voz = nombreVozEspanola();
+  const pintarVoz = () => {
+    const voz = nombreVoz();
     estadoVoz.textContent = voz ? t('ajustes.vozEncontrada', { voz }) : t('ajustes.sinVoz');
-  });
+  };
+  const alCambiarVoz = () => {
+    if (estadoVoz.isConnected) pintarVoz();
+    else window.removeEventListener('voz-cambiada', alCambiarVoz);
+  };
+  prepararVoces().then(pintarVoz);
+  window.addEventListener('voz-cambiada', alCambiarVoz);
 
   return el('section', { class: 'caja' },
     el('h2', {}, t('ajustes.titulo')),
@@ -348,11 +355,12 @@ function seccionAjustes() {
     interruptor('ajuste-voz-tutora', t('ajustes.pitidos'), 'vozTutora'),
     el('h3', {}, t('ajustes.voz')),
     estadoVoz,
-    el('div', { class: 'campo' }, el('label', { for: 'velocidad-voz' }, t('ajustes.velocidad')), velocidad),
+    el('button', { type: 'button', class: 'boton boton-mini sin-voz', onclick: () => { decir(ayudaVoz(), 'apurada'); abrirInstalacionDeVoces(); } }, t('ajustes.comoInstalarVoz')),
+    el('div', { class: 'campo con-voz' }, el('label', { for: 'velocidad-voz' }, t('ajustes.velocidad')), velocidad),
     el('button', {
       type: 'button',
-      class: 'boton',
-      onclick: () => { if (!pronunciar('¡Hola! ¿Qué tal estás?')) decir(ayudaVoz(), 'apurada'); },
+      class: 'boton con-voz',
+      onclick: () => pronunciar(curso.hola || curso.nativo),
     }, t('ajustes.probarVoz')));
 }
 

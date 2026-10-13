@@ -7,7 +7,7 @@ import { icono } from './iconos.js';
 import { descubrirLecciones, cargarCapitulos, cargarFrases } from './lessons.js';
 import { ajuste, aplicarTema, temaActual, cambiarAjuste } from './ajustes.js';
 import { t, tr, aplicarIdioma, IDIOMAS, idioma, cambiarIdioma } from './i18n.js';
-import { sonar, prepararVoces, precargarAudios } from './sonidos.js';
+import { sonar, prepararVoces } from './sonidos.js';
 import { iniciarNube } from './sync.js';
 import { tarjetas, alCambiar } from './progress.js';
 import { tocaRepasar, esNueva } from './srs.js';
@@ -172,8 +172,6 @@ async function navegar({ cambioDeIdioma = false } = {}) {
       const siguiente = contenido.resultados.slice(i + 1).find(r => !r.error)?.id ?? null;
       titulo(resultado.leccion.titulo_es || tr(resultado.leccion.titulo));
       limpiarVista = pintarLeccion(app, resultado, siguiente);
-      // Si los audios están en línea, se bajan ya los de esta lección y las dos siguientes.
-      precargarAudios(contenido.resultados.slice(i, i + 3).map(r => r.leccion).filter(Boolean));
     }
   } else if (seccion === 'lecciones') {
     titulo(t('menu.lecciones'));
@@ -268,14 +266,15 @@ async function iniciar() {
 
   empezarPorElegirIdioma();
   pintarMenu();
-  prepararVoces();
 
   if (location.protocol === 'file:') {
     avisoArchivoLocal();
     return;
   }
 
-  const [resultados, { capitulos, error }] = await Promise.all([descubrirLecciones(), cargarCapitulos()]);
+  // Antes de pintar se espera a saber si el dispositivo tiene voz (segundo y medio como mucho):
+  // de eso depende qué ejercicios hay.
+  const [resultados, { capitulos, error }] = await Promise.all([descubrirLecciones(), cargarCapitulos(), prepararVoces()]);
   Object.assign(contenido, { resultados, capitulos, errorCapitulos: error ?? null, sinConexion: Boolean(resultados.sinConexion) });
   ponerDiccionarioGlobal(resultados);
 
@@ -283,6 +282,13 @@ async function iniciar() {
   // Cuando llegan datos de la nube, se repinta la pantalla (salvo en mitad de un repaso).
   window.addEventListener('datos-sincronizados', () => {
     if (!location.hash.startsWith('#/repaso')) navegar();
+  });
+  // Si la voz aparece o desaparece (se instala una, se va la conexión), se repinta la pantalla en el mismo sitio:
+  // cambian los ejercicios de oído. En un repaso o en un juego no se interrumpe.
+  window.addEventListener('voz-cambiada', () => {
+    if (location.hash.startsWith('#/repaso') || document.querySelector('.juego')) return;
+    const y = window.scrollY;
+    navegar().then(() => window.scrollTo(0, y));
   });
   // Un clic en cualquier enlace del menú hace un pequeño sonido.
   menu.addEventListener('click', e => { if (e.target.closest('a')) sonar('pagina'); });

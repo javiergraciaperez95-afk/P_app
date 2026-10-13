@@ -1126,6 +1126,14 @@ input[type="range"] { width: min(100%, 300px); accent-color: var(--rojo); }
 .controles-audio { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin: 8px 0; }
 .boton-escuchar { font-size: 1.1rem; }
 .audio-texto { width: 100%; margin: 4px 0 0; color: var(--espanol); font-size: 1.15rem; }
+
+/* Voz del dispositivo (js/sonidos.js apunta en <html data-voz> si la hay).
+   «con-voz»: solo se ve si hay voz. «sin-voz»: solo si se sabe que no la hay.
+   Sin voz, el texto de los ejercicios de escucha sale escrito y pasan a ser de lectura. */
+html:not([data-voz="si"]) .con-voz { display: none !important; }
+html:not([data-voz="no"]) .sin-voz { display: none !important; }
+html[data-voz="no"] .audio-texto.sin-voz-visible[hidden] { display: block !important; }
+.controles-audio:empty { display: none; }
 .frase.sonando { background: var(--panel-2); box-shadow: inset var(--px) 0 0 var(--oro); }
 .ficha-palabra .ficha-consejo { font-style: italic; }
 

@@ -22,14 +22,14 @@ cursos/<código>/                 Un curso por carpeta: es, en, fr, de, it, pt,
    lessons/     Las lecciones (001.json…) y capitulos.json.
    juegos/      El modo juego (hoy solo lo tiene español, lecciones 1 a 7).
    phrases/     Las frases útiles.
-   audio/       Los audios grabados y su índice.
    tutora.js    El diseño de la tutora de ese curso.
 
 js/cursos.js    La lista de cursos: nombre, bandera, voz, tabla de Supabase…
                 Se genera con _herramientas/montar_cursos.py; no se edita a mano.
 js/curso.js     Sabe qué curso está elegido. Cambiar de curso recarga la app.
 js/creditos.js  A quién se agradecen las voces. Si se cambia una voz, se apunta aquí.
-js/config.js    Supabase y dónde están los audios (dentro de la app o en internet).
+js/config.js    Supabase.
+js/sonidos.js   Efectos de sonido y la voz que lee las lecciones (la del dispositivo).
 
 
 CÓMO FUNCIONA
@@ -38,6 +38,13 @@ Cada vez que se abre la app sale «¡Elige el idioma a estudiar!», con la tutor
 de cada curso y el de la última vez marcado. Al elegir uno, la app queda en ese
 curso; se cambia con el botón ⇄ de arriba. Cada curso guarda su progreso por separado, en el
 dispositivo y en su propia tabla de Supabase; la cuenta es la misma para todos.
+
+LA VOZ. La app no lleva audios grabados: lee con la voz del propio dispositivo o
+navegador. Al abrir un curso mira, sin que se note, si hay voz para ese idioma.
+Si la hay, salen los botones de escuchar. Si no, no salen y la app funciona como
+de solo lectura: los ejercicios de escucha se hacen leyendo y los dictados no
+aparecen ni cuentan. En Perfil se explica cómo instalar una voz. Qué voz hay en
+cada sitio y por qué se decidió así: notas_voces.txt, en la carpeta de arriba.
 
 La interfaz está en inglés, vietnamita, chino y español (selector de arriba).
 Lo que no esté traducido sale en inglés. Las explicaciones de cada curso están
@@ -60,8 +67,9 @@ _tutoras/disenos/                El dibujo de cada tutora.
 _herramientas/vi_b1b2/           Las lecciones 144-263 de vietnamita (B1 y B2):
                                  fuente/NNN.txt se escribe a mano y compilar.py
                                  las convierte en cursos/vi/lessons/NNN.json.
-_audio/generar.py                Genera los audios del curso de español.
-_audio/generar_apps.py           Genera los audios de los demás cursos.
+_audio/                          Generadores de audios grabados. YA NO SE USAN:
+                                 la app lee con la voz del dispositivo. Los audios
+                                 que se hicieron están en _audio/grabados/.
 _apk/                            El proyecto de Android (Capacitor).
 Para_lodriga/                    El SQL y los pasos de Supabase.
 _antiguas/                       Las 21 apps de antes y «Abrir todas.cmd».
@@ -71,6 +79,6 @@ LO QUE FALTA
 ------------
 - Chino: su app es un entrenador de exámenes HSK, no un curso por lecciones,
   y no se ha pasado. En la pantalla de idiomas sale como «Próximamente».
-- Audios de turco, indonesio, japonés, coreano y tailandés.
+- Probar la voz en móviles de verdad (sobre todo Samsung).
 - El modo juego del curso de español desde la lección 8, y en los demás cursos.
 - Traducir al español los textos del modo juego.

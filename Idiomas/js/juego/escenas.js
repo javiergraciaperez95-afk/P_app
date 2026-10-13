@@ -9,7 +9,7 @@
 
 import { el, poner, enLinea, barajar } from '../dom.js';
 import { t, tr } from '../i18n.js';
-import { sonar, pronunciar, ayudaVoz } from '../sonidos.js';
+import { sonar, pronunciar } from '../sonidos.js';
 import { crearEjercicio } from '../exercises.js';
 import { apuntarPalabrasDeLeccion } from '../comunes.js';
 import { estadoEjercicio, resumenLeccion, marcarTerminada } from '../progress.js';
@@ -27,14 +27,9 @@ export function relojes() {
   };
 }
 
-/** Lee en español. La primera vez que no hay voz, la tutora explica cómo instalarla. */
-let avisoVozDado = false;
-export function oir(texto, decir) {
-  if (pronunciar(texto)) return;
-  if (!avisoVozDado) {
-    avisoVozDado = true;
-    decir([].concat(ayudaVoz())[0], 'apurada');
-  }
+/** Lee con la voz del dispositivo. Si no hay voz no pasa nada: el texto ya sale escrito (ver botonOir). */
+export function oir(texto) {
+  pronunciar(texto);
 }
 
 /**
@@ -71,8 +66,11 @@ export function unicos(lista, clave = x => x) {
   return lista.filter(x => !vistos.has(clave(x)) && vistos.add(clave(x)));
 }
 
-export function botonOir(texto, decir) {
-  return el('button', { type: 'button', class: 'boton boton-mini', onclick: () => oir(texto, decir) }, `🔊 ${t('comun.escuchar')}`);
+/** Botón de escuchar y, para cuando el dispositivo no tiene voz, el mismo texto escrito. */
+export function botonOir(texto) {
+  return el('div', { class: 'juego-oir' },
+    el('button', { type: 'button', class: 'boton boton-mini con-voz', onclick: () => oir(texto) }, `🔊 ${t('comun.escuchar')}`),
+    el('p', { class: 'audio-texto sin-voz', lang: LANG }, texto));
 }
 
 

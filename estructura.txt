@@ -9,10 +9,13 @@ Idiomas/                 LA APP. Todo lo nuevo se hace aquí.
 Abrir Idiomas.cmd        Doble clic para abrir la app en el ordenador.
 Idiomas-prueba.apk       La app para Android (se genera desde _apk).
 estructura.txt           Este archivo.
-notas_voces.txt          Qué voz usa cada idioma para generar sus audios.
+notas_voces.txt          Cómo lee la app en voz alta (la voz del dispositivo) y notas
+                         de voces por si algún día se graban audios.
 
 _herramientas/           Programas que preparan contenido (no van dentro de la app).
-_audio/                  Programas y voces para generar los audios.
+_audio/                  Programas y voces para generar audios grabados. Ya no se
+                         usan: la app lee con la voz del dispositivo. Los audios
+                         que se hicieron están en _audio/grabados/.
 _tutoras/                Los dibujos de las tutoras y su generador.
 _apk/                    El proyecto de Android.
 Para_lodriga/            El SQL y los pasos de Supabase.
@@ -47,7 +50,7 @@ js/                      EL PROGRAMA (común a todos los idiomas)
    progress.js, srs.js   Progreso y repaso espaciado.
    sync.js, config.js    Cuenta y Supabase.
    tutor.js, tutor-sprite.js, tutora-base.js   La tutora.
-   sonidos.js            Audios y efectos.
+   sonidos.js            Efectos de sonido y la voz que lee (la del dispositivo).
    i18n.js, i18n/        Idioma de la interfaz (inglés, vietnamita, chino, español).
    movil.js              Lo propio de Android (botón atrás…).
    creditos.js           A quién se agradecen las voces.
@@ -59,7 +62,6 @@ js/                      EL PROGRAMA (común a todos los idiomas)
 cursos/                  EL CONTENIDO: una carpeta por idioma
    <código>/
       lessons/           001.json, 002.json… y capitulos.json
-      audio/             Los audios y su índice
       phrases/           Frases útiles
       juegos/            Modo juego (solo español)
       tutora.js          El dibujo de la tutora
@@ -67,28 +69,28 @@ cursos/                  EL CONTENIDO: una carpeta por idioma
 
 LOS CURSOS (en el orden en que salen en la app)
 -----------------------------------------------
-Código  Idioma       Lecciones  Audios   Estado
-en      Inglés           3      sí       muestra
-es      Español        293      sí       completo hasta B2
-fr      Francés          3      sí       muestra
-de      Alemán           3      sí       muestra
-ja      Japonés          3      no       muestra
-it      Italiano         3      sí       muestra
-ko      Coreano          3      no       muestra
-zh      Chino            0      no       «Próximamente» (solo la tutora)
-pt      Portugués        6      sí       muestra
-ru      Ruso             3      sí       muestra
-tr      Turco            3      no       muestra
-nl      Neerlandés       3      sí       muestra
-sv      Sueco            3      sí       muestra
-el      Griego           3      sí       muestra
-pl      Polaco           3      sí       muestra
-no      Noruego          3      sí       muestra
-vi      Vietnamita     263      sí       A1 a B2 (B1 y B2 pendientes de revisar)
-id      Indonesio        3      no       muestra
-da      Danés           69      sí       A1, A2 y medio B1
-ro      Rumano           3      sí       muestra
-th      Tailandés        3      no       muestra
+Código  Idioma       Lecciones  Estado
+en      Inglés           3      muestra
+es      Español        293      completo hasta B2
+fr      Francés          3      muestra
+de      Alemán           3      muestra
+ja      Japonés          3      muestra
+it      Italiano         3      muestra
+ko      Coreano          3      muestra
+zh      Chino            0      «Próximamente» (solo la tutora)
+pt      Portugués        6      muestra
+ru      Ruso             3      muestra
+tr      Turco            3      muestra
+nl      Neerlandés       3      muestra
+sv      Sueco            3      muestra
+el      Griego           3      muestra
+pl      Polaco           3      muestra
+no      Noruego          3      muestra
+vi      Vietnamita     263      A1 a B2 (B1 y B2 pendientes de revisar)
+id      Indonesio        3      muestra
+da      Danés           69      A1, A2 y medio B1
+ro      Rumano           3      muestra
+th      Tailandés        3      muestra
 
 
 HERRAMIENTAS
@@ -101,8 +103,7 @@ _herramientas/vi_b1b2/           Borradores de las lecciones 144-263 de
                                  vietnamita (fuente/NNN.txt) y compilar.py,
                                  que los convierte en cursos/vi/lessons/.
 _herramientas/vi_silabas.json    Tabla de pronunciación del vietnamita.
-_audio/generar.py                Audios del curso de español.
-_audio/generar_apps.py           Audios de los demás cursos (py generar_apps.py vi).
+_audio/generar.py, generar_apps.py   Generaban los audios grabados. Ya no se usan.
 _tutoras/generar.py              Genera las tutoras de las apps antiguas desde
                                  _tutoras/disenos/ (las de la app nueva las
                                  pone montar_cursos.py).
@@ -114,7 +115,6 @@ CÓMO SE HACE CADA COSA
 Abrir la app          Doble clic en «Abrir Idiomas.cmd».
 Cambiar una lección   Se edita su .json en Idiomas/cursos/<código>/lessons/.
                       (Vietnamita 144-263: se edita el borrador y se compila.)
-Añadir audios         Se ejecuta _audio/generar_apps.py con el código del curso.
 Generar la APK        _apk/generar-apk.cmd
 
 
@@ -123,7 +123,9 @@ COPIA EN GITHUB
 Repositorio (privado): github.com/javiergraciaperez95-afk/Learning_language_app
 Se sube todo menos lo que pesa demasiado o se puede volver a generar:
    Idiomas-prueba.apk          (se genera con _apk/generar-apk.cmd)
-   _audio/piper, _audio/voces  (el programa de voz y las voces, 2 GB)
+   _audio/piper, voces, kokoro (programas de voz y voces, más de 2 GB)
+   _audio/grabados             (los audios que se generaron; ya no van en la app)
+   Prueba Opus                 (muestras de prueba)
    _apk/node_modules, _apk/www y lo compilado de _apk/android
    _antiguas/Chinese/Otros archivos
-   _antiguas/<app>/audio       (ya están en Idiomas/cursos/)
+   _antiguas/<app>/audio

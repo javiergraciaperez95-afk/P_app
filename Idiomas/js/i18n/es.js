@@ -415,7 +415,8 @@ export default {
   'ajustes.voz': 'Voz de {L}',
   'ajustes.buscandoVoz': 'Buscando una voz de {L}…',
   'ajustes.vozEncontrada': '✔ Voz de {L} encontrada: {voz}',
-  'ajustes.sinVoz': '⚠ No hay ninguna voz de {L} instalada en este dispositivo.',
+  'ajustes.sinVoz': 'Este dispositivo no tiene voz de {L}, así que la app funciona sin audio: todo se lee. Si instalas una voz, el audio aparece solo.',
+  'ajustes.comoInstalarVoz': '¿Cómo instalo una voz?',
   'ajustes.velocidad': 'Velocidad de la voz',
   'ajustes.probarVoz': '🔊 Probar la voz',
 
@@ -441,11 +442,11 @@ export default {
   'cursos.volver': 'Volver a {curso}',
   'cursos.cambiar': 'Cambiar de idioma a estudiar',
   'creditos.titulo': 'Créditos y agradecimientos',
-  'creditos.gracias': 'Las voces de esta app existen porque estas personas e instituciones grabaron, prepararon y regalaron su trabajo. Gracias de verdad: sin vosotros aquí no se oiría ni una palabra.',
+  'creditos.gracias': 'Esta app existe gracias a piezas que otras personas hicieron y regalaron. Gracias de verdad.',
   'creditos.voces': 'Voces',
   'creditos.voz': 'voz «{voz}»',
   'creditos.otros': 'Gracias también a',
-  'creditos.ia': 'El audio lo genera una voz de ordenador a partir de esas grabaciones; no es una persona leyendo.',
+  'creditos.ia': 'La voz que lee las lecciones es la de tu propio dispositivo o navegador: es una voz de ordenador, no una persona, y suena distinta en cada aparato.',
   'creditos.volver': 'Volver',
 
   'juego.salir.pregunta': '¿Salir de la lección? Tu avance queda guardado: seguirás donde lo dejaste.',

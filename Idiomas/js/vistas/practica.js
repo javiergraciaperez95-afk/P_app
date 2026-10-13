@@ -7,7 +7,7 @@ import { t } from '../i18n.js';
 import { crearEjercicio } from '../exercises.js';
 import { ejerciciosFallados } from '../progress.js';
 import { decir } from '../tutor.js';
-import { sonar } from '../sonidos.js';
+import { sonar, hayVoz } from '../sonidos.js';
 import { LANG } from '../curso.js';
 
 const TANDA = 10;
@@ -55,7 +55,7 @@ export function pintarPractica(app, { resultados }) {
   const fallos = () => {
     const fallados = new Set(ejerciciosFallados().map(f => `${f.idLeccion}|${f.idEjercicio}`));
     tanda(
-      barajar(todos.filter(x => fallados.has(`${x.leccion.id}|${x.bloque.id}`))).slice(0, 15),
+      barajar(todos.filter(x => fallados.has(`${x.leccion.id}|${x.bloque.id}`) && (hayVoz() || !x.bloque.soloOido))).slice(0, 15),
       t('practica.fallosTitulo'),
       t('practica.sinFallos'));
   };
@@ -66,7 +66,7 @@ export function pintarPractica(app, { resultados }) {
       el('h1', {}, t('menu.practica')),
       el('p', {}, t('practica.intro'))),
     el('div', { class: 'botonera' },
-      el('button', { type: 'button', class: 'boton boton-principal', onclick: oido }, t('practica.botonOido', { n: TANDA })),
+      el('button', { type: 'button', class: 'boton boton-principal con-voz', onclick: oido }, t('practica.botonOido', { n: TANDA })),
       el('button', { type: 'button', class: 'boton', onclick: fallos }, t('practica.botonFallos', { n: nFallos }))),
     zona);
 

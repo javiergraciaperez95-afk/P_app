@@ -22,7 +22,7 @@ export const CURSOS = [
     "letras": [],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 60 30\" aria-hidden=\"true\"><clipPath id=\"uk-campo\"><path d=\"M0 0h60v30H0z\"/></clipPath><clipPath id=\"uk-diag\"><path d=\"M30 15h30v15zv15H0zH0V0h30z\"/></clipPath><g clip-path=\"url(#uk-campo)\"><path d=\"M0 0v30h60V0z\" fill=\"#012169\"/><path d=\"m0 0 60 30m0-30L0 30\" stroke=\"#fff\" stroke-width=\"6\"/><path d=\"m0 0 60 30m0-30L0 30\" stroke=\"#C8102E\" stroke-width=\"4\" clip-path=\"url(#uk-diag)\"/><path d=\"M30 0v30M0 15h60\" stroke=\"#fff\" stroke-width=\"10\"/><path d=\"M30 0v30M0 15h60\" stroke=\"#C8102E\" stroke-width=\"6\"/></g></svg>",
     "lecciones": 3,
-    "audio": true
+    "audio": false
   },
   {
     "id": "es",
@@ -54,7 +54,7 @@ export const CURSOS = [
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 30 20\" aria-hidden=\"true\"><rect width=\"30\" height=\"20\" fill=\"#c60b1e\"/><rect y=\"5\" width=\"30\" height=\"10\" fill=\"#ffc400\"/></svg>",
     "sprite": "propio",
     "lecciones": 293,
-    "audio": true
+    "audio": false
   },
   {
     "id": "fr",
@@ -89,7 +89,7 @@ export const CURSOS = [
     ],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 30 20\" aria-hidden=\"true\"><rect width=\"10\" height=\"20\" fill=\"#0055A4\"/><rect x=\"10\" width=\"10\" height=\"20\" fill=\"#fff\"/><rect x=\"20\" width=\"10\" height=\"20\" fill=\"#EF4135\"/></svg>",
     "lecciones": 3,
-    "audio": true
+    "audio": false
   },
   {
     "id": "de",
@@ -115,7 +115,7 @@ export const CURSOS = [
     ],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 5 3\" aria-hidden=\"true\"><rect width=\"5\" height=\"1\" fill=\"#000\"/><rect y=\"1\" width=\"5\" height=\"1\" fill=\"#DD0000\"/><rect y=\"2\" width=\"5\" height=\"1\" fill=\"#FFCE00\"/></svg>",
     "lecciones": 3,
-    "audio": true
+    "audio": false
   },
   {
     "id": "ja",
@@ -164,7 +164,7 @@ export const CURSOS = [
     ],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 30 20\" aria-hidden=\"true\"><rect width=\"10\" height=\"20\" fill=\"#009246\"/><rect x=\"10\" width=\"10\" height=\"20\" fill=\"#fff\"/><rect x=\"20\" width=\"10\" height=\"20\" fill=\"#CE2B37\"/></svg>",
     "lecciones": 3,
-    "audio": true
+    "audio": false
   },
   {
     "id": "ko",
@@ -242,7 +242,7 @@ export const CURSOS = [
     ],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 30 20\" aria-hidden=\"true\"><rect width=\"12\" height=\"20\" fill=\"#046a38\"/><rect x=\"12\" width=\"18\" height=\"20\" fill=\"#da291c\"/><circle cx=\"12\" cy=\"10\" r=\"4.2\" fill=\"#ffe900\"/><circle cx=\"12\" cy=\"10\" r=\"2.6\" fill=\"none\" stroke=\"#046a38\" stroke-width=\"0.8\"/></svg>",
     "lecciones": 6,
-    "audio": true
+    "audio": false
   },
   {
     "id": "ru",
@@ -263,7 +263,7 @@ export const CURSOS = [
     "letras": [],
     "bandera": "<svg class=\"bandera\" width=\"30\" height=\"20\" viewBox=\"0 0 900 600\" aria-hidden=\"true\"><rect width=\"900\" height=\"200\" fill=\"#fff\"/><rect y=\"200\" width=\"900\" height=\"200\" fill=\"#0039A6\"/><rect y=\"400\" width=\"900\" height=\"200\" fill=\"#D52B1E\"/></svg>",
     "lecciones": 3,
-    "audio": true
+    "audio": false
   },
   {
     "id": "tr",
@@ -318,7 +318,7 @@ export const CURSOS = [
     ],
     "bandera": "<svg class=\"bandera\" width=\"30\" height=\"20\" viewBox=\"0 0 900 600\" aria-hidden=\"true\"><rect width=\"900\" height=\"200\" fill=\"#AE1C28\"/><rect y=\"200\" width=\"900\" height=\"200\" fill=\"#fff\"/><rect y=\"400\" width=\"900\" height=\"200\" fill=\"#21468B\"/></svg>",
     "lecciones": 3,
-    "audio": true
+    "audio": false
   },
   {
     "id": "sv",
@@ -343,7 +343,7 @@ export const CURSOS = [
     ],
     "bandera": "<svg class=\"bandera\" width=\"16\" height=\"10\" viewBox=\"0 0 16 10\" aria-hidden=\"true\"><rect width=\"16\" height=\"10\" fill=\"#006AA7\"/><rect x=\"5\" width=\"2\" height=\"10\" fill=\"#FECC00\"/><rect y=\"4\" width=\"16\" height=\"2\" fill=\"#FECC00\"/></svg>",
     "lecciones": 3,
-    "audio": true
+    "audio": false
   },
   {
     "id": "el",
@@ -364,7 +364,7 @@ export const CURSOS = [
     "letras": [],
     "bandera": "<svg class=\"bandera\" width=\"27\" height=\"18\" viewBox=\"0 0 27 18\" aria-hidden=\"true\"><rect width=\"27\" height=\"18\" fill=\"#0D5EAF\"/><rect y=\"2\" width=\"27\" height=\"2\" fill=\"#fff\"/><rect y=\"6\" width=\"27\" height=\"2\" fill=\"#fff\"/><rect y=\"10\" width=\"27\" height=\"2\" fill=\"#fff\"/><rect y=\"14\" width=\"27\" height=\"2\" fill=\"#fff\"/><rect width=\"10\" height=\"10\" fill=\"#0D5EAF\"/><rect x=\"4\" width=\"2\" height=\"10\" fill=\"#fff\"/><rect y=\"4\" width=\"10\" height=\"2\" fill=\"#fff\"/></svg>",
     "lecciones": 3,
-    "audio": true
+    "audio": false
   },
   {
     "id": "pl",
@@ -395,7 +395,7 @@ export const CURSOS = [
     ],
     "bandera": "<svg class=\"bandera\" width=\"16\" height=\"10\" viewBox=\"0 0 8 5\" aria-hidden=\"true\"><rect width=\"8\" height=\"5\" fill=\"#14111c\"/><rect x=\"0.15\" y=\"0.15\" width=\"7.7\" height=\"2.35\" fill=\"#fff\"/><rect x=\"0.15\" y=\"2.5\" width=\"7.7\" height=\"2.35\" fill=\"#DC143C\"/></svg>",
     "lecciones": 3,
-    "audio": true
+    "audio": false
   },
   {
     "id": "no",
@@ -420,7 +420,7 @@ export const CURSOS = [
     ],
     "bandera": "<svg class=\"bandera\" width=\"22\" height=\"16\" viewBox=\"0 0 22 16\" aria-hidden=\"true\"><rect width=\"22\" height=\"16\" fill=\"#BA0C2F\"/><rect x=\"6\" width=\"4\" height=\"16\" fill=\"#fff\"/><rect y=\"6\" width=\"22\" height=\"4\" fill=\"#fff\"/><rect x=\"7\" width=\"2\" height=\"16\" fill=\"#00205B\"/><rect y=\"7\" width=\"22\" height=\"2\" fill=\"#00205B\"/></svg>",
     "lecciones": 3,
-    "audio": true
+    "audio": false
   },
   {
     "id": "vi",
@@ -449,7 +449,7 @@ export const CURSOS = [
     ],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 30 20\" aria-hidden=\"true\"><rect width=\"30\" height=\"20\" fill=\"#da251d\"/><polygon fill=\"#ff0\" points=\"15,4 16.76,9.43 22.37,9.43 17.82,12.79 19.56,18.21 15,14.86 10.44,18.21 12.18,12.79 7.63,9.43 13.24,9.43\"/></svg>",
     "lecciones": 263,
-    "audio": true
+    "audio": false
   },
   {
     "id": "id",
@@ -495,7 +495,7 @@ export const CURSOS = [
     ],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 37 28\" aria-hidden=\"true\"><rect width=\"37\" height=\"28\" fill=\"#c8102e\"/><rect x=\"12\" width=\"4\" height=\"28\" fill=\"#fff\"/><rect y=\"12\" width=\"37\" height=\"4\" fill=\"#fff\"/></svg>",
     "lecciones": 69,
-    "audio": true
+    "audio": false
   },
   {
     "id": "ro",
@@ -522,7 +522,7 @@ export const CURSOS = [
     ],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 3 2\" aria-hidden=\"true\"><rect width=\"1\" height=\"2\" fill=\"#002B7F\"/><rect x=\"1\" width=\"1\" height=\"2\" fill=\"#FCD116\"/><rect x=\"2\" width=\"1\" height=\"2\" fill=\"#CE1126\"/></svg>",
     "lecciones": 3,
-    "audio": true
+    "audio": false
   },
   {
     "id": "th",

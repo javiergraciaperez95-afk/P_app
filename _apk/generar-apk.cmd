@@ -6,7 +6,8 @@ cd /d "%~dp0"
 call node copiar.mjs || goto :fin
 call npx cap sync android || goto :fin
 cd android
-call gradlew.bat assembleDebug || goto :fin
+rem «clean» para que la APK no arrastre restos de la compilacion anterior (si no, pesa de mas).
+call gradlew.bat clean assembleDebug || goto :fin
 copy /y "app\build\outputs\apk\debug\app-debug.apk" "..\..\Idiomas-prueba.apk"
 echo.
 echo Lista: Idiomas-prueba.apk
