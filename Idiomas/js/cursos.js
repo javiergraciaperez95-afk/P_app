@@ -163,7 +163,7 @@ export const CURSOS = [
       "ù"
     ],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 30 20\" aria-hidden=\"true\"><rect width=\"10\" height=\"20\" fill=\"#009246\"/><rect x=\"10\" width=\"10\" height=\"20\" fill=\"#fff\"/><rect x=\"20\" width=\"10\" height=\"20\" fill=\"#CE2B37\"/></svg>",
-    "lecciones": 3,
+    "lecciones": 31,
     "audio": false
   },
   {
