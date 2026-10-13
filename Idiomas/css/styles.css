@@ -2270,3 +2270,13 @@ body.en-inicio main { max-width: 1040px; }
 .entrar #cuenta .pestanas { margin: 6px 0 10px; }
 .entrar #cuenta .campo { margin-bottom: 6px; }
 .entrar .mensaje-formulario:empty { display: none; }
+
+/* Entrada: una tutora a cada lado del título, todo un poco más arriba y la parte de arriba de la tarjeta centrada */
+.entrar { margin-top: -14px; }
+.entrar .sobre-cabecera { padding-top: 40px; text-align: center; }
+.entrar #cuenta .estado-nube { text-align: center; }
+.entrar #cuenta .pestanas { justify-content: center; }
+@media (max-width: 700px) {
+  .entrar .sobre-cabecera { flex-direction: row; flex-wrap: wrap; align-items: flex-end; }
+  .entrar .sobre-cabecera-texto { order: 3; width: 100%; }
+}

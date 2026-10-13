@@ -18,12 +18,12 @@ export function pintarEntrar(contenedor) {
   const anfitriona = hayCurso ? curso : CURSOS.filter(c => !c.proximamente)[Math.floor(Math.random() * CURSOS.filter(c => !c.proximamente).length)];
 
   /** Una tutora viva con su bocadillo (los estilos son los de «Sobre Paglot»). */
-  function tutora(clase) {
+  function tutora(clase, c = anfitriona) {
     const canvas = el('canvas', { class: 'sobre-tutora', width: 48, height: 64 });
     const globo = el('span', { class: 'inicio-globo' });
     const nodo = el('div', { class: `sobre-actriz ${clase}`, 'aria-hidden': 'true' }, globo, el('span', { class: 'sobre-salto' }, canvas));
     const a = { nodo, globo, sprite: null, expresion: 'normal' };
-    dibujoDe(anfitriona).then(dibujo => {
+    dibujoDe(c).then(dibujo => {
       if (!encendida) return;
       a.sprite = dibujo.crearSprite(canvas);
       a.sprite.expresion = a.expresion;
@@ -35,6 +35,8 @@ export function pintarEntrar(contenedor) {
 
   // Arriba: la tutora recibe y dice para qué sirve la cuenta.
   const recibe = tutora('sobre-guia');
+  const otras = CURSOS.filter(c => !c.proximamente && c.id !== anfitriona.id);
+  const acompana = tutora('sobre-guia', otras[Math.floor(Math.random() * otras.length)]); // la segunda, al otro lado del título
   const saludo = setTimeout(() => {
     recibe.globo.textContent = t('entrar.tutora');
     recibe.nodo.classList.add('habla');
@@ -96,7 +98,8 @@ export function pintarEntrar(contenedor) {
         recibe.nodo,
         el('div', { class: 'sobre-cabecera-texto' },
           el('h1', {}, t('entrar.titulo')),
-          el('p', { class: 'sobre-lema' }, t('entrar.lema')))),
+          el('p', { class: 'sobre-lema' }, t('entrar.lema'))),
+        acompana.nodo),
       hueco,
       pie,
       aviso));
