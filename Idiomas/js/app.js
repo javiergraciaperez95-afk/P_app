@@ -1,6 +1,6 @@
 // Arranque y navegación.
-// Rutas: #/inicio · #/lecciones · #/leccion/001 · #/practica · #/frases · #/cuaderno · #/repaso · #/perfil · #/idiomas · #/creditos · #/legal
-// Sin curso elegido solo existen la pantalla de inicio, la de elegir idioma, los créditos y el aviso legal.
+// Rutas: #/inicio · #/lecciones · #/leccion/001 · #/practica · #/frases · #/cuaderno · #/repaso · #/perfil · #/idiomas · #/creditos · #/legal · #/sobre
+// Sin curso elegido solo existen la pantalla de inicio, la de elegir idioma, los créditos, el aviso legal y «Sobre Paglot».
 
 import { el, poner } from './dom.js';
 import { icono } from './iconos.js';
@@ -22,6 +22,7 @@ import { pintarPractica } from './vistas/practica.js';
 import { pintarElegirCurso, pintarCreditos } from './vistas/cursos.js';
 import { pintarInicio } from './vistas/inicio.js';
 import { pintarLegal, pintarAvisoDeDatos } from './vistas/legal.js';
+import { pintarSobre } from './vistas/sobre.js';
 import { curso, hayCurso } from './curso.js';
 import './movil.js';
 
@@ -203,8 +204,8 @@ async function navegar({ cambioDeIdioma = false } = {}) {
   const [ruta, parametro] = hash.split('/');
   const seccion = ruta || 'lecciones';
   rutaActual = seccion === 'leccion' ? 'lecciones' : seccion;
-  document.body.classList.toggle('en-inicio', seccion === 'inicio');
-  document.body.classList.toggle('sin-tutora', ['inicio', 'idiomas', 'creditos', 'legal'].includes(seccion));
+  document.body.classList.toggle('en-inicio', seccion === 'inicio' || seccion === 'sobre');
+  document.body.classList.toggle('sin-tutora', ['inicio', 'sobre', 'idiomas', 'creditos', 'legal'].includes(seccion));
   pintarMarca();
   marcarMenu(rutaActual);
   pintarAvisoRepaso();
@@ -251,6 +252,9 @@ async function navegar({ cambioDeIdioma = false } = {}) {
   } else if (seccion === 'legal') {
     titulo(t('legal.titulo'));
     pintarLegal(app);
+  } else if (seccion === 'sobre') {
+    document.title = t('sobre.titulo');
+    limpiarVista = pintarSobre(app);
   } else {
     pintarNoEncontrada(t('app.noExiste'));
   }
@@ -282,8 +286,8 @@ function avisoArchivoLocal() {
 function pintarSinCurso({ cambioDeIdioma = false } = {}) {
   limpiarVista?.();
   limpiarVista = null;
-  const vista = { '#/creditos': 'creditos', '#/idiomas': 'idiomas', '#/legal': 'legal' }[location.hash] ?? 'inicio';
-  document.body.classList.toggle('en-inicio', vista === 'inicio');
+  const vista = { '#/creditos': 'creditos', '#/idiomas': 'idiomas', '#/legal': 'legal', '#/sobre': 'sobre' }[location.hash] ?? 'inicio';
+  document.body.classList.toggle('en-inicio', vista === 'inicio' || vista === 'sobre');
   pintarMarca();
   if (vista === 'creditos') {
     titulo(t('creditos.titulo'));
@@ -291,6 +295,9 @@ function pintarSinCurso({ cambioDeIdioma = false } = {}) {
   } else if (vista === 'legal') {
     titulo(t('legal.titulo'));
     pintarLegal(app);
+  } else if (vista === 'sobre') {
+    document.title = t('sobre.titulo');
+    limpiarVista = pintarSobre(app);
   } else if (vista === 'idiomas') {
     titulo(t('cursos.titulo'));
     pintarElegirCurso(app);

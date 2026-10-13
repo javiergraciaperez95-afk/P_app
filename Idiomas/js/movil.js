@@ -55,7 +55,7 @@ export function salirDelJuego() {
 /** Pantallas principales: el inicio, la lista de lecciones y la de elegir idioma (sin curso elegido, todo menos los créditos). */
 function enPrincipal() {
   const hash = location.hash;
-  return hayCurso ? ['', '#/', '#/inicio', '#/lecciones', '#/idiomas'].includes(hash) : !['#/creditos', '#/legal'].includes(hash);
+  return hayCurso ? ['', '#/', '#/inicio', '#/lecciones', '#/idiomas'].includes(hash) : !['#/creditos', '#/legal', '#/sobre'].includes(hash);
 }
 
 if (piezas?.App) {

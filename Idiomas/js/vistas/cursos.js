@@ -54,6 +54,8 @@ export function pintarElegirCurso(contenedor) {
       el('p', { class: 'elegir-curso-pie' },
         el('a', { class: 'boton boton-mini', href: '#/inicio' }, t('inicio.titulo')),
         ' ',
+        el('a', { class: 'boton boton-mini', href: '#/sobre' }, t('sobre.titulo')),
+        ' ',
         hayCurso && el('a', { class: 'boton boton-mini', href: '#/lecciones' }, t('cursos.volver', { curso: curso.nativo })),
         ' ',
         el('a', { class: 'boton boton-mini', href: '#/creditos' }, t('creditos.titulo')),
