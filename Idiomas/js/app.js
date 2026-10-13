@@ -103,12 +103,49 @@ function pintarMarca() {
 }
 
 // Selector de idioma de la cabecera (lo que no esté traducido sale en inglés).
+// Es un botón que despliega una lista propia (la del navegador no se puede vestir como el resto de la app).
 const selectorIdioma = document.getElementById('sel-idioma');
-poner(selectorIdioma, IDIOMAS.map(i => el('option', { value: i.clave, lang: i.clave }, i.nombre)));
-selectorIdioma.value = idioma();
-selectorIdioma.addEventListener('change', () => {
+const listaIdiomas = document.getElementById('lista-idiomas');
+
+function pintarSelectorIdioma() {
+  const actual = IDIOMAS.find(i => i.clave === idioma());
+  poner(selectorIdioma, el('span', { lang: actual.clave }, actual.nombre), el('span', { class: 'sel-idioma-flecha', 'aria-hidden': 'true' }, '▾'));
+  poner(listaIdiomas, IDIOMAS.map(i => el('button', {
+    type: 'button', class: 'idioma-opcion', role: 'menuitemradio', lang: i.clave, 'aria-checked': String(i.clave === actual.clave),
+    onclick: () => { sonar('clic'); cerrarIdiomas(); cambiarIdioma(i.clave); },
+  }, el('span', { class: 'idioma-marca', 'aria-hidden': 'true' }, i.clave === actual.clave ? '✔' : ''), i.nombre)));
+}
+
+function abrirIdiomas() {
+  listaIdiomas.hidden = false;
+  selectorIdioma.setAttribute('aria-expanded', 'true');
+  (listaIdiomas.querySelector('[aria-checked="true"]') ?? listaIdiomas.firstElementChild)?.focus();
+}
+
+function cerrarIdiomas({ foco = false } = {}) {
+  if (listaIdiomas.hidden) return;
+  listaIdiomas.hidden = true;
+  selectorIdioma.setAttribute('aria-expanded', 'false');
+  if (foco) selectorIdioma.focus();
+}
+
+pintarSelectorIdioma();
+selectorIdioma.addEventListener('click', () => {
   sonar('clic');
-  cambiarIdioma(selectorIdioma.value);
+  if (listaIdiomas.hidden) abrirIdiomas();
+  else cerrarIdiomas();
+});
+// Se cierra al tocar fuera o con Escape; las flechas mueven por la lista.
+document.addEventListener('click', e => { if (!e.target.closest('.idioma-menu')) cerrarIdiomas(); });
+listaIdiomas.addEventListener('keydown', e => {
+  const opciones = [...listaIdiomas.children];
+  const i = opciones.indexOf(document.activeElement);
+  if (e.key === 'Escape') cerrarIdiomas({ foco: true });
+  else if (e.key === 'ArrowDown') opciones[(i + 1) % opciones.length].focus();
+  else if (e.key === 'ArrowUp') opciones[(i - 1 + opciones.length) % opciones.length].focus();
+  else if (e.key === 'Tab') cerrarIdiomas();
+  else return;
+  if (e.key !== 'Tab') e.preventDefault();
 });
 
 document.getElementById('btn-tema').addEventListener('click', () => {
@@ -125,7 +162,7 @@ window.addEventListener('efectos-cambiado', pintarBotonSonido);
 
 // Al cambiar de idioma se repinta todo: cabecera, menú y la pantalla abierta.
 window.addEventListener('idioma-cambiado', () => {
-  selectorIdioma.value = idioma();
+  pintarSelectorIdioma();
   pintarMarca();
   pintarBotonTema();
   pintarBotonSonido();

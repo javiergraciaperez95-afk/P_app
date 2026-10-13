@@ -27,7 +27,7 @@
     } catch (e) { /* tema por defecto */ }
   </script>
   <link rel="stylesheet" href="css/fuentes.css?v=__VERSION__">
-  <link rel="stylesheet" href="css/styles.css?v=__VERSION__&h=4">
+  <link rel="stylesheet" href="css/styles.css?v=__VERSION__&h=5">
   <!-- Al publicar, __VERSION__ se cambia por el código de la versión (ver .github/workflows/static.yml),
        así el navegador descarga siempre los archivos nuevos en lugar de usar los antiguos guardados. -->
   <script type="importmap">
@@ -94,7 +94,10 @@
     </a>
     <span class="cabecera-botones">
       <a id="btn-curso" class="btn btn-icono btn-curso" href="#/idiomas" hidden>⇄</a>
-      <select id="sel-idioma" class="btn sel-idioma" aria-label="Language" data-t-aria="idioma.selector"></select>
+      <span class="idioma-menu">
+        <button type="button" id="sel-idioma" class="btn sel-idioma" aria-haspopup="menu" aria-expanded="false" aria-label="Language" data-t-aria="idioma.selector"></button>
+        <span id="lista-idiomas" class="idioma-lista" role="menu" hidden></span>
+      </span>
       <button type="button" id="btn-sonido" class="btn btn-icono" aria-pressed="true" aria-label="Mute sounds">♪</button>
       <button type="button" id="btn-tema" class="btn btn-icono" aria-label="Switch to dark mode">☾</button>
     </span>

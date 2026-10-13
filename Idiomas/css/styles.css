@@ -288,8 +288,27 @@ hr { border: 0; border-top: 3px dashed var(--texto-suave); margin: 14px 0; }
     var(--b) calc(var(--b) * 2) 0 0 var(--h-sombra),
     calc(var(--b) * 2) var(--b) 0 0 var(--h-sombra);
 }
-.cabecera .sel-idioma { width: auto; max-width: 124px; padding: 0 6px; font-family: var(--fuente-texto); font-size: .95rem; }
-.sel-idioma option { color: #15121d; background: #fffaf0; }
+.cabecera .sel-idioma { width: auto; max-width: 132px; padding: 0 8px; font-family: var(--fuente-texto); font-weight: 700; font-size: .95rem; }
+.sel-idioma > span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sel-idioma-flecha { flex: none; font-size: .8rem; }
+.sel-idioma[aria-expanded="true"] { background: var(--h-resalte); }
+/* La lista de idiomas que despliega el botón: un panel con el mismo borde escalonado */
+.idioma-menu { position: relative; display: inline-flex; }
+.idioma-lista {
+  position: absolute; top: calc(100% + 8px); right: 2px; z-index: 60;
+  display: flex; flex-direction: column; min-width: 168px; padding: 4px;
+  background: var(--h-papel-2);
+  box-shadow: 0 -2px 0 0 var(--h-borde), 0 2px 0 0 var(--h-borde), -2px 0 0 0 var(--h-borde), 2px 0 0 0 var(--h-borde),
+    2px 6px 0 0 var(--h-sombra), 6px 2px 0 0 var(--h-sombra), 4px 4px 0 0 var(--h-sombra);
+}
+.idioma-opcion {
+  display: flex; align-items: center; gap: 8px; min-height: 42px; padding: 6px 12px 6px 8px; border: 0;
+  font-family: var(--fuente-texto); font-weight: 700; font-size: 1rem; text-align: left; white-space: nowrap;
+  color: var(--h-tinta); background: transparent; cursor: pointer;
+}
+.idioma-opcion:hover, .idioma-opcion:focus-visible { background: var(--h-resalte); outline: none; }
+.idioma-opcion[aria-checked="true"] { color: var(--marca-oro); }
+.idioma-marca { flex: none; width: 1.1em; font-size: .85rem; }
 .cabecera .btn:hover { background: var(--h-resalte); }
 .cabecera .btn:active { transform: translate(var(--b), var(--b)); }
 #btn-sonido[aria-pressed="false"] { color: var(--h-suave); text-decoration: line-through; }
@@ -1932,7 +1951,7 @@ body.sin-tutora main { padding-bottom: calc(32px + var(--borde-abajo)); }
 @media (max-width: 600px) {
   .cabecera { gap: 6px; }
   .cabecera-botones { gap: 5px; }
-  .cabecera .sel-idioma { max-width: 84px; }
+  .cabecera .sel-idioma { max-width: 96px; }
   .marca { font-size: 1.15rem; }
 }
 
