@@ -8,6 +8,10 @@ Cada archivo .txt lleva una o varias lecciones (lo normal: un archivo por capít
 por orden de archivo y de aparición: 001, 002… Las lecciones que hubiera antes en el curso se sustituyen.
 Los capítulos van en <curso>/capitulos.txt:   número | título en el idioma | título en español | descripción
 
+Curso que ya tenía lecciones hechas de otra forma (danés): <curso>/desde.txt lleva el número de la primera
+lección nueva (70). Las anteriores no se tocan, sus palabras cuentan como ya enseñadas y los capítulos
+nuevos se añaden a los que había.
+
 Formato de una lección (una cosa por línea; «::» separa campos):
 
   N Anna, Tom                                   nombres propios (no necesitan ficha); valen para todo el curso
@@ -314,7 +318,16 @@ def main():
         sys.exit('No hay lecciones')
 
     conocidas, vistas, avisos, automaticas = set(), {}, [], []
-    for i, (origen, leccion, av) in enumerate(lecciones, 1):
+    primera = 1
+    if (AQUI / curso / 'desde.txt').exists():
+        primera = int((AQUI / curso / 'desde.txt').read_text(encoding='utf-8').split()[0])
+        for n in range(1, primera):
+            vieja = json.loads((destino / f'{n:03d}.json').read_text(encoding='utf-8'))
+            for w, ficha in vieja.get('palabras', {}).items():
+                vistas.setdefault(normal(w), (f'{n:03d}', ficha.get('es', '')))
+                conocidas.add(normal(w))
+    ultima = primera - 1 + len(lecciones)
+    for i, (origen, leccion, av) in enumerate(lecciones, primera):
         num = f'{i:03d}'
         for w, ficha in leccion['palabras'].items():
             antes = vistas.get(normal(w))
@@ -349,9 +362,9 @@ def main():
     destino.mkdir(exist_ok=True)
     # Sobran las lecciones antiguas con un número mayor que la última de ahora (las demás se sobrescriben).
     for viejo in destino.glob('[0-9]*.json'):
-        if int(viejo.stem) > len(lecciones):
+        if int(viejo.stem) > ultima:
             viejo.unlink()
-    for i, (_, leccion, _) in enumerate(lecciones, 1):
+    for i, (_, leccion, _) in enumerate(lecciones, primera):
         escribir(destino / f'{i:03d}.json', json.dumps(leccion, ensure_ascii=False, indent=1) + '\n')
 
     usados = {l['capitulo'] for _, l, _ in lecciones}
@@ -364,6 +377,10 @@ def main():
     faltan = usados - {c['numero'] for c in caps}
     if faltan:
         avisos.append(f'capítulos sin título en capitulos.txt: {sorted(faltan)}')
+    if primera > 1:  # se conservan los capítulos que ya había; los nuevos van detrás de los numerados
+        nuevos = {c['numero'] for c in caps}
+        antes = [c for c in json.loads((destino / 'capitulos.json').read_text(encoding='utf-8')) if c['numero'] not in nuevos]
+        caps = [c for c in antes if isinstance(c['numero'], int)] + caps + [c for c in antes if not isinstance(c['numero'], int)]
     escribir(destino / 'capitulos.json', json.dumps(caps, ensure_ascii=False, indent=1) + '\n')
 
     # Número de lecciones del curso en js/cursos.js. Con «--sin-lista» no se toca: es un archivo común a todos
@@ -372,7 +389,7 @@ def main():
         cursos = RAIZ / 'Idiomas' / 'js' / 'cursos.js'
         t = cursos.read_text(encoding='utf-8')
         j = t.index('"lecciones":', t.index(f'"id": "{curso}"'))
-        t2 = t[:j] + re.sub(r'"lecciones": \d+', f'"lecciones": {len(lecciones)}', t[j:], count=1)
+        t2 = t[:j] + re.sub(r'"lecciones": \d+', f'"lecciones": {ultima}', t[j:], count=1)
         if t2 != t:
             escribir(cursos, t2)
 
@@ -383,6 +400,8 @@ def main():
         print('AVISO', a)
     ej = sum(1 for _, l, _ in lecciones for b in l['bloques'] if b['tipo'] in ('test', 'traduccion', 'huecos', 'ordenar', 'escribir'))
     enseñadas = sum(1 for _, l, _ in lecciones for f in l.get('palabras', {}).values() if not f.get('oculta'))
+    if primera > 1:
+        print(f'{curso}: lecciones nuevas de la {primera:03d} a la {ultima:03d} (las anteriores no se tocan)')
     print(f'{curso}: {len(lecciones)} lecciones, {len(caps)} capítulos, {enseñadas} palabras, {ej} ejercicios, {len(avisos)} avisos')
 
 
