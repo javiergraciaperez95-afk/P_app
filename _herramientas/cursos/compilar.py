@@ -22,6 +22,8 @@ Formato de una lección (una cosa por línea; «::» separa campos):
   T Título                                      texto (sin personajes); debajo, sus frases:
   - Sentence. = Traducción.
   W word = traducción | pronunciación | consejo palabra nueva (pronunciación y consejo, opcionales)
+  w word = traducción | pronunciación           ficha oculta: se puede tocar en las frases, pero no sale en las
+                                                listas de vocabulario ni va al cuaderno (nombres, formas sueltas)
   V Título                                      lista de vocabulario: las W que haya hasta ahí sin listar
   Q Pregunta                                    test            } debajo, las opciones:
   R Sentence :: pregunta (opcional)             traducción      }   + buena :: explicación
@@ -33,9 +35,15 @@ Formato de una lección (una cosa por línea; «::» separa campos):
 
 Avisa de: palabras de las frases sin ficha, trozos de análisis que no están en la frase,
 ejercicios sin una única opción buena y palabras repetidas.
+
+Coreano: la pronunciación se calcula sola si no se escribe, y las palabras con partícula pegada
+(학교에, 저는…) reciben una ficha oculta automática si la palabra base ya tiene ficha (ver coreano.py).
+Con «-v» detrás del curso se listan esas fichas automáticas.
 """
 import json, re, sys, time
 from pathlib import Path
+
+import coreano
 
 AQUI = Path(__file__).resolve().parent
 RAIZ = AQUI.parent.parent
@@ -88,8 +96,6 @@ def leer(curso, campo):
                 return
             if pendientes:
                 leccion['bloques'].append({'tipo': 'vocabulario', 'titulo': 'Vocabulario', 'palabras': pendientes[:]})
-            if not palabras:
-                leccion.pop('palabras', None)
             lecciones.append((ruta.name, leccion, avisos))
 
         for n, cruda in enumerate(ruta.read_text(encoding='utf-8').splitlines(), 1):
@@ -135,10 +141,10 @@ def leer(curso, campo):
             elif marca in ('D', 'T') and ' = ' not in resto:
                 actual = {'tipo': 'dialogo' if marca == 'D' else 'texto', 'titulo': resto, 'frases': []}
                 leccion['bloques'].append(actual)
-            elif marca == 'W':
+            elif marca in ('W', 'w'):
                 w, _, resto2 = resto.partition(' = ')
                 w = w.strip()
-                trozos = [x.strip() for x in resto2.split(' | ')]
+                trozos = [x.strip() for x in resto2.split('|')]
                 if not trozos[0]:
                     raise Fallo(f'{donde}: palabra sin traducción')
                 if normal(w) in (normal(x) for x in palabras):
@@ -146,10 +152,15 @@ def leer(curso, campo):
                 ficha = {'es': trozos[0]}
                 if len(trozos) > 1 and trozos[1]:
                     ficha['pron'] = trozos[1]
+                elif curso == 'ko':
+                    ficha['pron'] = coreano.pron(w)
                 if len(trozos) > 2 and trozos[2]:
                     ficha['consejo'] = trozos[2]
                 palabras[w] = ficha
-                pendientes.append(w)
+                if marca == 'w':
+                    ficha['oculta'] = True
+                else:
+                    pendientes.append(w)
             elif marca == 'V':
                 actual = None
                 leccion['bloques'].append({'tipo': 'vocabulario', 'titulo': resto or 'Vocabulario', 'palabras': pendientes[:]})
@@ -218,8 +229,9 @@ def leer(curso, campo):
     return lecciones, nombres
 
 
-def sin_ficha(frase, conocidas, nombres):
-    """Palabras de la frase que no tienen ficha (ni solas ni dentro de una expresión), como las vería la app."""
+def sin_ficha(frase, conocidas, nombres, auto=None):
+    """Palabras de la frase que no tienen ficha (ni solas ni dentro de una expresión), como las vería la app.
+    auto(palabra): en coreano, intenta crear la ficha de «palabra + partícula»; devuelve si lo ha logrado."""
     fichas = [(m.group(0), m.start(), m.end()) for m in PALABRA.finditer(frase)]
     faltan, i = [], 0
     while i < len(fichas):
@@ -240,13 +252,16 @@ def sin_ficha(frase, conocidas, nombres):
             i += 1
             continue
         suelta = len(w) == 1 and w.isupper()  # una letra al deletrear
+        if auto and auto(w):
+            i += 1
+            continue
         if not w.isdigit() and not suelta and normal(w) not in nombres:
             faltan.append(w)
         i += 1
     return list(dict.fromkeys(faltan))
 
 
-def revisar(num, leccion, campo, conocidas, nombres, avisos):
+def revisar(num, leccion, campo, conocidas, nombres, avisos, auto=None):
     ejercicios = 0
     for b in leccion['bloques']:
         if b['tipo'] in ('test', 'traduccion', 'huecos', 'ordenar', 'escribir'):
@@ -263,7 +278,7 @@ def revisar(num, leccion, campo, conocidas, nombres, avisos):
                 limpio = re.sub(r'^[¿¡]+', '', re.sub(r'[?!.]+$', '', trozo.lower()))
                 if limpio not in f[campo].lower():
                     avisos.append(f'{num}: el trozo «{trozo}» no está en «{f[campo][:50]}»')
-            faltan = sin_ficha(f[campo], conocidas, nombres)
+            faltan = sin_ficha(f[campo], conocidas, nombres, auto)
             if faltan:
                 avisos.append(f'{num}: sin ficha: {", ".join(faltan)}  ← «{f[campo][:60]}»')
         # Los ejercicios solo deberían usar palabras ya enseñadas.
@@ -273,7 +288,7 @@ def revisar(num, leccion, campo, conocidas, nombres, avisos):
                 buena = next((o['texto'] for o in b.get('opciones', []) if o.get('correcta')), '')
                 frase = frase.replace('___', buena)
             frase = re.sub(r'\([^)]*\)', '', frase)
-            faltan = sin_ficha(frase, conocidas, nombres)
+            faltan = sin_ficha(frase, conocidas, nombres, auto)
             if faltan:
                 avisos.append(f'{num}: ejercicio con palabras sin ficha: {", ".join(faltan)}  ← «{frase[:60]}»')
     if ejercicios < 6:
@@ -295,17 +310,38 @@ def main():
     if not lecciones:
         sys.exit('No hay lecciones')
 
-    conocidas, vistas, avisos = set(), {}, []
+    conocidas, vistas, avisos, automaticas = set(), {}, [], []
     for i, (origen, leccion, av) in enumerate(lecciones, 1):
         num = f'{i:03d}'
-        for w, ficha in leccion.get('palabras', {}).items():
+        for w, ficha in leccion['palabras'].items():
             antes = vistas.get(normal(w))
             if antes and antes[1] == ficha['es']:
                 av.append(f'{num}: «{w}» ya se enseñó igual en la {antes[0]}')
             vistas.setdefault(normal(w), (num, ficha['es']))
             conocidas.add(normal(w))
-        revisar(num, leccion, campo, conocidas, nombres, av)
+
+        def auto(w, leccion=leccion, num=num):
+            """Coreano: «palabra conocida + partícula» → ficha oculta en esta lección."""
+            trozo = coreano.partir(w, lambda base: normal(base) in vistas)
+            if not trozo:
+                return False
+            base, part, glosa = trozo
+            propia = next((f for w2, f in leccion['palabras'].items() if normal(w2) == normal(base)), None)
+            # Si la base se enseña en esta lección, vale su primer sentido («día; uno; trabajo» → día).
+            entera = propia['es'].split(';')[0].strip() if propia else vistas[normal(base)][1]
+            es = re.sub(r'\s*\([^)]*\)$', '', entera)
+            if not es:  # la traducción entera iba entre paréntesis: «(contador de personas)»
+                es = entera.split(';')[0].strip('() ')
+            leccion['palabras'][w] = {'es': f'{es} + {part} ({glosa})', 'pron': coreano.pron_con_particula(w, part), 'oculta': True}
+            vistas[normal(w)] = (num, '')
+            conocidas.add(normal(w))
+            automaticas.append(f'{num}  {w} = {es} + {part} ({glosa})')
+            return True
+
+        revisar(num, leccion, campo, conocidas, nombres, av, auto if curso == 'ko' else None)
         avisos += av
+        if not leccion['palabras']:
+            del leccion['palabras']
 
     destino.mkdir(exist_ok=True)
     # Sobran las lecciones antiguas con un número mayor que la última de ahora (las demás se sobrescriben).
@@ -335,10 +371,14 @@ def main():
     if t2 != t:
         escribir(cursos, t2)
 
+    if '-v' in sys.argv:
+        for a in automaticas:
+            print('auto', a)
     for a in avisos:
         print('AVISO', a)
     ej = sum(1 for _, l, _ in lecciones for b in l['bloques'] if b['tipo'] in ('test', 'traduccion', 'huecos', 'ordenar', 'escribir'))
-    print(f'{curso}: {len(lecciones)} lecciones, {len(caps)} capítulos, {len(vistas)} palabras, {ej} ejercicios, {len(avisos)} avisos')
+    enseñadas = sum(1 for _, l, _ in lecciones for f in l.get('palabras', {}).values() if not f.get('oculta'))
+    print(f'{curso}: {len(lecciones)} lecciones, {len(caps)} capítulos, {enseñadas} palabras, {ej} ejercicios, {len(avisos)} avisos')
 
 
 if __name__ == '__main__':

@@ -16,7 +16,7 @@ const TIPOS_OPCIONES = ['test', 'traduccion', 'huecos'];
 
 const CAMPOS = {
   leccion: ['capitulo', 'titulo_es', 'titulo', 'intro', 'palabras', 'bloques'],
-  palabra: ['en', 'vi', 'zh', 'tes', 'definida', 'femenino', 'pron', 'consejo', 'ipa', 'cat', 'genero', 'plural', 'nota', 'ejemplo'],
+  palabra: ['en', 'vi', 'zh', 'tes', 'definida', 'femenino', 'pron', 'consejo', 'ipa', 'cat', 'genero', 'plural', 'nota', 'ejemplo', 'oculta'],
   explicacion: ['tipo', 'titulo', 'texto', 'tutora'],
   dialogo: ['tipo', 'titulo', 'frases', 'tutora'],
   frase: ['quien', 'es', 'en', 'vi', 'zh', 'tes', 'literal', 'pron', 'nota', 'analisis', 'estructura'],

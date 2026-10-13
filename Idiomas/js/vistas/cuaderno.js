@@ -93,6 +93,7 @@ function buscadorDiccionario(alGuardar) {
     if (q.length < 2) { poner(resultados); return; }
     const encontradas = [];
     for (const v of diccionarioCompleto().values()) {
+      if (v.oculta) continue;
       const es = sinTildes(v.es);
       const trad = sinTildes(tr(v.trad));
       const palabrasTrad = trad.split(/[^\p{L}]+/u);

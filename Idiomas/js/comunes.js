@@ -11,10 +11,11 @@ import { LANG } from './curso.js';
 /**
  * Al terminar una lección, sus palabras pasan al cuaderno y, con eso, al repaso.
  * palabras: las propias de la lección (Map). Devuelve cuántas se han añadido ahora.
+ * Las fichas «ocultas» (nombres, palabra + partícula…) solo sirven para tocarlas en las frases: no se apuntan.
  */
 export function apuntarPalabrasDeLeccion(leccion, palabras = leccion.palabras) {
   const origen = tTodos('cuaderno.deLeccion', { id: leccion.id, titulo: leccion.titulo_es });
-  const nuevas = guardarVariasEnCuaderno([...palabras.values()].map(v => ({
+  const nuevas = guardarVariasEnCuaderno([...palabras.values()].filter(v => !v.oculta).map(v => ({
     es: v.es, trad: v.trad, pron: v.pron, nota: v.nota || v.consejo,
     tipo: v.es.includes(' ') ? 'frase' : 'palabra', origen,
   })));

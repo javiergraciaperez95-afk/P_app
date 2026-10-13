@@ -407,7 +407,8 @@ export function pintarLeccion(contenedor, resultado, siguiente) {
 function pintarLibro(contenedor, resultado, siguiente, alJuego) {
   const { avisos } = resultado;
   // Las palabras propias de la lección mandan sobre las del resto del curso.
-  const leccion = { ...resultado.leccion, palabras: new Map([...diccionarioGlobal, ...resultado.leccion.palabras]) };
+  const propias = resultado.leccion.palabras;
+  const leccion = { ...resultado.leccion, palabras: new Map([...diccionarioGlobal, ...propias]) };
   marcarAbierta(leccion.id);
   origenActual = tTodos('leccion.numero', { id: leccion.id });
 
@@ -456,7 +457,7 @@ function pintarLibro(contenedor, resultado, siguiente, alJuego) {
         return;
       }
       marcarTerminada(leccion.id);
-      const nuevas = apuntarPalabrasDeLeccion(leccion);
+      const nuevas = apuntarPalabrasDeLeccion(leccion, propias);
       sonar('fin');
       decir([t('leccion.terminadaTutora', { n: r.aciertos }), nuevas ? t('leccion.apuntadas', { n: nuevas }) : null].filter(Boolean).join(' '), 'contenta');
       actualizar();
@@ -467,7 +468,7 @@ function pintarLibro(contenedor, resultado, siguiente, alJuego) {
       el('h2', {}, t(r.terminada ? 'leccion.terminada' : 'leccion.fin')),
       el('p', { class: 'resumen' }, textoProgreso(r)),
       r.terminada ? null : botonTerminar,
-      r.terminada && leccion.palabras.size ? el('a', { class: 'boton boton-principal', href: '#/repaso' }, t('leccion.repasarAhora')) : null,
+      r.terminada && propias.size ? el('a', { class: 'boton boton-principal', href: '#/repaso' }, t('leccion.repasarAhora')) : null,
       siguiente
         ? el('a', { class: 'boton', href: `#/leccion/${siguiente}` }, t('leccion.siguiente'))
         : el('a', { class: 'boton', href: '#/lecciones' }, t('comun.volverLecciones')));
