@@ -253,13 +253,17 @@ def mover_audio(cid, carpeta):
     return len(list(nuevo.glob('*.mp3'))) if nuevo.exists() else 0
 
 
+# Nombre de cada idioma en portugués (para la interfaz en portugués).
+PT = {'English': 'inglês', 'Spanish': 'espanhol', 'French': 'francês', 'German': 'alemão', 'Japanese': 'japonês', 'Italian': 'italiano', 'Korean': 'coreano', 'Chinese': 'chinês', 'Portuguese': 'português', 'Russian': 'russo', 'Turkish': 'turco', 'Dutch': 'holandês', 'Swedish': 'sueco', 'Greek': 'grego', 'Polish': 'polonês', 'Norwegian': 'norueguês', 'Vietnamese': 'vietnamita', 'Indonesian': 'indonésio', 'Danish': 'dinamarquês', 'Romanian': 'romeno', 'Thai': 'tailandês'}
+
+
 def main():
     solo = set(sys.argv[1:])
     lista = []
     for (cid, carpeta, formato, voz, prefijo, tabla, nativo, en, es, vi, zh, hola, letras) in L:
         entrada = {
             'id': cid, 'carpeta': f'cursos/{cid}', 'campo': campo_de(cid), 'lang': voz.split('-')[0] if cid != 'no' else 'nb', 'voz': voz,
-            'prefijo': prefijo, 'tabla': tabla, 'nativo': nativo, 'nombre': {'en': en, 'es': es, 'vi': vi, 'zh': zh},
+            'prefijo': prefijo, 'tabla': tabla, 'nativo': nativo, 'nombre': {'en': en, 'es': es, 'vi': vi, 'zh': zh, 'pt': PT[en]},
             'hola': hola, 'letras': letras.split(), 'bandera': bandera(carpeta),
         }
         # Los cursos que ya se escriben aquí (_herramientas/cursos/<id>) no se vuelven a traer de la app antigua.

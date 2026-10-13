@@ -1,5 +1,5 @@
-// Idioma de la interfaz (inglés, vietnamita, chino o español). Lo que no esté traducido sale en inglés.
-// - t('clave', { n: 3 }): textos de la aplicación (están en i18n/en.js, i18n/vi.js e i18n/zh.js).
+// Idioma de la interfaz (inglés, español, portugués, vietnamita o chino). Lo que no esté traducido sale en inglés.
+// - t('clave', { n: 3 }): textos de la aplicación (están en i18n/<idioma>.js).
 // - tr(valor): textos del contenido de las lecciones. Pueden ser un texto
 //   (igual en los dos idiomas) o un grupo { "en": "…", "vi": "…" }.
 
@@ -8,6 +8,7 @@ import en from './i18n/en.js';
 import vi from './i18n/vi.js';
 import zh from './i18n/zh.js';
 import es from './i18n/es.js';
+import pt from './i18n/pt.js';
 import { curso, nombreDelCurso, saludo } from './curso.js';
 
 export const IDIOMAS = [
@@ -15,9 +16,10 @@ export const IDIOMAS = [
   { clave: 'vi', nombre: 'Tiếng Việt', corto: 'VI', locale: 'vi-VN' },
   { clave: 'zh', nombre: '中文', corto: '中', locale: 'zh-CN' },
   { clave: 'es', nombre: 'Español', corto: 'ES', locale: 'es-ES' },
+  { clave: 'pt', nombre: 'Português', corto: 'PT', locale: 'pt-BR' },
 ];
 
-const TEXTOS = { en, vi, zh, es };
+const TEXTOS = { en, vi, zh, es, pt };
 
 export function idioma() {
   const i = ajuste('idioma');

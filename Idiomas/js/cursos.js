@@ -16,7 +16,8 @@ export const CURSOS = [
       "en": "English",
       "es": "inglés",
       "vi": "tiếng Anh",
-      "zh": "英语"
+      "zh": "英语",
+      "pt": "inglês"
     },
     "hola": "Hello!",
     "letras": [],
@@ -37,7 +38,8 @@ export const CURSOS = [
       "en": "Spanish",
       "es": "español",
       "vi": "tiếng Tây Ban Nha",
-      "zh": "西班牙语"
+      "zh": "西班牙语",
+      "pt": "espanhol"
     },
     "hola": "¡Hola!",
     "letras": [
@@ -69,7 +71,8 @@ export const CURSOS = [
       "en": "French",
       "es": "francés",
       "vi": "tiếng Pháp",
-      "zh": "法语"
+      "zh": "法语",
+      "pt": "francês"
     },
     "hola": "Bonjour !",
     "letras": [
@@ -104,7 +107,8 @@ export const CURSOS = [
       "en": "German",
       "es": "alemán",
       "vi": "tiếng Đức",
-      "zh": "德语"
+      "zh": "德语",
+      "pt": "alemão"
     },
     "hola": "Hallo!",
     "letras": [
@@ -130,7 +134,8 @@ export const CURSOS = [
       "en": "Japanese",
       "es": "japonés",
       "vi": "tiếng Nhật",
-      "zh": "日语"
+      "zh": "日语",
+      "pt": "japonês"
     },
     "hola": "こんにちは！",
     "letras": [],
@@ -151,7 +156,8 @@ export const CURSOS = [
       "en": "Italian",
       "es": "italiano",
       "vi": "tiếng Ý",
-      "zh": "意大利语"
+      "zh": "意大利语",
+      "pt": "italiano"
     },
     "hola": "Ciao!",
     "letras": [
@@ -179,7 +185,8 @@ export const CURSOS = [
       "en": "Korean",
       "es": "coreano",
       "vi": "tiếng Hàn",
-      "zh": "韩语"
+      "zh": "韩语",
+      "pt": "coreano"
     },
     "hola": "안녕하세요!",
     "letras": [],
@@ -200,7 +207,8 @@ export const CURSOS = [
       "en": "Chinese",
       "es": "chino",
       "vi": "tiếng Trung",
-      "zh": "中文"
+      "zh": "中文",
+      "pt": "chinês"
     },
     "hola": "你好！",
     "letras": [],
@@ -223,7 +231,8 @@ export const CURSOS = [
       "en": "Portuguese",
       "es": "portugués",
       "vi": "tiếng Bồ Đào Nha",
-      "zh": "葡萄牙语"
+      "zh": "葡萄牙语",
+      "pt": "português"
     },
     "hola": "Olá!",
     "letras": [
@@ -257,7 +266,8 @@ export const CURSOS = [
       "en": "Russian",
       "es": "ruso",
       "vi": "tiếng Nga",
-      "zh": "俄语"
+      "zh": "俄语",
+      "pt": "russo"
     },
     "hola": "Привет!",
     "letras": [],
@@ -278,7 +288,8 @@ export const CURSOS = [
       "en": "Turkish",
       "es": "turco",
       "vi": "tiếng Thổ Nhĩ Kỳ",
-      "zh": "土耳其语"
+      "zh": "土耳其语",
+      "pt": "turco"
     },
     "hola": "Merhaba!",
     "letras": [
@@ -307,7 +318,8 @@ export const CURSOS = [
       "en": "Dutch",
       "es": "neerlandés",
       "vi": "tiếng Hà Lan",
-      "zh": "荷兰语"
+      "zh": "荷兰语",
+      "pt": "holandês"
     },
     "hola": "Hallo!",
     "letras": [
@@ -333,7 +345,8 @@ export const CURSOS = [
       "en": "Swedish",
       "es": "sueco",
       "vi": "tiếng Thụy Điển",
-      "zh": "瑞典语"
+      "zh": "瑞典语",
+      "pt": "sueco"
     },
     "hola": "Hej!",
     "letras": [
@@ -358,7 +371,8 @@ export const CURSOS = [
       "en": "Greek",
       "es": "griego",
       "vi": "tiếng Hy Lạp",
-      "zh": "希腊语"
+      "zh": "希腊语",
+      "pt": "grego"
     },
     "hola": "Γεια!",
     "letras": [],
@@ -379,7 +393,8 @@ export const CURSOS = [
       "en": "Polish",
       "es": "polaco",
       "vi": "tiếng Ba Lan",
-      "zh": "波兰语"
+      "zh": "波兰语",
+      "pt": "polonês"
     },
     "hola": "Cześć!",
     "letras": [
@@ -410,7 +425,8 @@ export const CURSOS = [
       "en": "Norwegian",
       "es": "noruego",
       "vi": "tiếng Na Uy",
-      "zh": "挪威语"
+      "zh": "挪威语",
+      "pt": "norueguês"
     },
     "hola": "Hei!",
     "letras": [
@@ -435,7 +451,8 @@ export const CURSOS = [
       "en": "Vietnamese",
       "es": "vietnamita",
       "vi": "tiếng Việt",
-      "zh": "越南语"
+      "zh": "越南语",
+      "pt": "vietnamita"
     },
     "hola": "Xin chào!",
     "letras": [
@@ -464,7 +481,8 @@ export const CURSOS = [
       "en": "Indonesian",
       "es": "indonesio",
       "vi": "tiếng Indonesia",
-      "zh": "印尼语"
+      "zh": "印尼语",
+      "pt": "indonésio"
     },
     "hola": "Halo!",
     "letras": [],
@@ -485,7 +503,8 @@ export const CURSOS = [
       "en": "Danish",
       "es": "danés",
       "vi": "tiếng Đan Mạch",
-      "zh": "丹麦语"
+      "zh": "丹麦语",
+      "pt": "dinamarquês"
     },
     "hola": "Hej!",
     "letras": [
@@ -510,7 +529,8 @@ export const CURSOS = [
       "en": "Romanian",
       "es": "rumano",
       "vi": "tiếng Romania",
-      "zh": "罗马尼亚语"
+      "zh": "罗马尼亚语",
+      "pt": "romeno"
     },
     "hola": "Salut!",
     "letras": [
@@ -537,7 +557,8 @@ export const CURSOS = [
       "en": "Thai",
       "es": "tailandés",
       "vi": "tiếng Thái",
-      "zh": "泰语"
+      "zh": "泰语",
+      "pt": "tailandês"
     },
     "hola": "สวัสดี!",
     "letras": [],

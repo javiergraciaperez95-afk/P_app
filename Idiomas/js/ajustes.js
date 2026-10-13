@@ -6,7 +6,7 @@ const CLAVE_ANTIGUA = 'espanol-ajustes'; // de cuando la app era solo de españo
 
 const PREDETERMINADOS = {
   // Idioma de la interfaz: el del dispositivo si es uno de los que hay; si no, inglés.
-  idioma: ['vi', 'zh', 'es'].find(i => (navigator.language ?? '').toLowerCase().startsWith(i)) ?? 'en',
+  idioma: ['vi', 'zh', 'es', 'pt'].find(i => (navigator.language ?? '').toLowerCase().startsWith(i)) ?? 'en',
   tema: 'auto',       // auto · oscuro · claro
   efectos: true,      // sonidos 8-bit de la interfaz
   vozTutora: true,    // pitidos mientras habla la tutora
