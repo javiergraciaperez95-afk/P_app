@@ -60,9 +60,9 @@
         },
         {
           "quien": "Pablo",
-          "es": "Va a nevar. Estarán a dos grados bajo cero.",
-          "en": "It's going to snow. It will be two degrees below zero.",
-          "analisis": [["Va a nevar", "verb"], ["Estarán", "verb"], ["a dos grados bajo cero", "temperature"]]
+          "es": "Va a nevar. La temperatura estará a dos grados bajo cero.",
+          "en": "It's going to snow. The temperature will be two degrees below zero.",
+          "analisis": [["Va a nevar", "verb"], ["La temperatura", "subject"], ["estará", "verb"], ["a dos grados bajo cero", "temperature"]]
         },
         {
           "quien": "Lucía",
@@ -82,6 +82,14 @@
           "en": "On Sunday the sky will be clear and it will be sunny.",
           "analisis": [["El domingo", "time"], ["el cielo", "subject"], ["estará despejado", "verb"], ["hará sol", "verb"]]
         }
+      ]
+    },
+    {
+      "tipo": "texto",
+      "titulo": {"en": "A short forecast"},
+      "frases": [
+        {"es": "Viernes: Por la mañana habrá nubes. Por la tarde lloverá en el norte.", "en": "Friday: It will be cloudy in the morning. It will rain in the north in the afternoon.", "analisis": [["Por la mañana", "in the morning"], ["habrá nubes", "it will be cloudy"], ["Por la tarde", "in the afternoon"], ["lloverá", "it will rain"]]},
+        {"es": "Sábado: Hará sol en el sur. La temperatura estará a 18 grados.", "en": "Saturday: It will be sunny in the south. The temperature will be 18 degrees.", "analisis": [["Hará sol", "it will be sunny"], ["en el sur", "in the south"], ["18 grados", "18 degrees"]]}
       ]
     },
     {"tipo": "vocabulario"},
@@ -126,6 +134,20 @@
       "pregunta": {"en": "«El cielo está despejado» means the sky is…"},
       "opciones": {"clear": {"en": "No clouds."}, "cloudy": {"en": "That is nublado."}, "dark": {"en": "That is oscuro."}},
       "correcta": "clear"
+    },
+    {
+      "tipo": "test",
+      "id": "clima-lectura-1",
+      "pregunta": {"en": "When and where will it rain on Friday?"},
+      "opciones": {"In the north, in the afternoon": {"en": "Read the Friday forecast."}, "In the south, in the morning": {"en": "That is not in the forecast."}, "Everywhere on Saturday": {"en": "Saturday will be sunny in the south."}},
+      "correcta": "In the north, in the afternoon"
+    },
+    {
+      "tipo": "test",
+      "id": "clima-lectura-2",
+      "pregunta": {"en": "What is the forecast for Saturday in the south?"},
+      "opciones": {"Sun and 18 degrees": {"en": "Hará sol; la temperatura estará a 18 grados."}, "Cloud and rain": {"en": "That is the Friday forecast."}, "Snow below zero": {"en": "Snow is not mentioned in this notice."}},
+      "correcta": "Sun and 18 degrees"
     },
     {
       "tipo": "escribir",

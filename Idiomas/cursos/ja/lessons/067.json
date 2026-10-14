@@ -28,6 +28,36 @@
   "あそびます": {
    "es": "jugar; divertirse",
    "pron": "asobimasu"
+  },
+  "予定変更": {
+   "es": "cambio de planes",
+   "pron": "yotei henkou",
+   "consejo": "Lectura: よていへんこう."
+  },
+  "雨具": {
+   "es": "ropa para la lluvia",
+   "pron": "amagu",
+   "consejo": "Lectura: あまぐ."
+  },
+  "散歩道": {
+   "es": "sendero para pasear",
+   "pron": "sanpomichi",
+   "consejo": "Lectura: さんぽみち."
+  },
+  "屋内": {
+   "es": "interior",
+   "pron": "okunai",
+   "consejo": "Lectura: おくない."
+  },
+  "開催": {
+   "es": "celebración",
+   "pron": "kaisai",
+   "consejo": "Lectura: かいさい."
+  },
+  "集合場所": {
+   "es": "lugar de encuentro",
+   "pron": "shuugou basho",
+   "consejo": "Lectura: しゅうごうばしょ."
   }
  },
  "bloques": [
@@ -35,8 +65,7 @@
    "tipo": "explicacion",
    "titulo": "〜ても: aunque",
    "texto": [
-    "Con la forma **て + も** dices que algo pasa **sin que** lo anterior lo impida: **あめ が ふっても、 さんぽ を します** (aunque llueva, doy un paseo).",
-    "Con los adjetivos en -i se quita la **い** y se pone **くても**: **たかい** → **たかくても** (aunque sea caro)."
+    "Con verbos se añade **も** a la forma **て**: **あめ が ふっても**. En adjetivos -i, cambia **い** por **くても**: **たかくても**. En adjetivos -na y nombres se usa **でも**: **げんき でも** (aunque esté bien), **あめ でも** (aunque llueva)."
    ]
   },
   {
@@ -82,7 +111,13 @@
     "すわっても",
     "かまいません",
     "さむくても",
-    "あそびます"
+    "あそびます",
+    "予定変更",
+    "雨具",
+    "散歩道",
+    "屋内",
+    "開催",
+    "集合場所"
    ]
   },
   {
@@ -184,9 +219,59 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Cambio de planes",
+   "frases": [
+    {
+     "ja": "週末 の 集合場所 は 公園 でした が、雨 にもかかわらず、参加者 は 予定どおり 集まりました。屋外 の 散歩 は 中止 に なった 一方、屋内 の 写真展 は 開催 されました。主催者 は 変更 を 事前 に 連絡 しました。",
+     "es": "El punto de encuentro era el parque, pero los participantes se reunieron como estaba previsto a pesar de la lluvia. Se canceló el paseo al aire libre, mientras que la exposición cubierta sí se celebró. Los organizadores avisaron del cambio con antelación."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué actividad sí se celebró?",
+   "id": "ja067-1",
+   "opciones": [
+    {
+     "texto": "La exposición cubierta.",
+     "explicacion": "La lectura lo indica explícitamente.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Cuándo avisaron los organizadores del cambio?",
+   "id": "ja067-2",
+   "opciones": [
+    {
+     "texto": "Con antelación.",
+     "explicacion": "La respuesta aparece en la lectura.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «あめ が ふっても、 さんぽ を します»?",
-   "id": "ja067-1",
+   "id": "ja067-3",
    "opciones": [
     {
      "texto": "Aunque llueva, doy un paseo.",
@@ -206,7 +291,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué forma es correcta para «aunque sea caro»?",
-   "id": "ja067-2",
+   "id": "ja067-4",
    "opciones": [
     {
      "texto": "たかくても",
@@ -227,7 +312,7 @@
    "tipo": "huecos",
    "pregunta": "No importa si te sientas aquí.",
    "frase": "ここ で すわっても ___ 。",
-   "id": "ja067-3",
+   "id": "ja067-5",
    "opciones": [
     {
      "texto": "かまいません",
@@ -248,7 +333,7 @@
    "tipo": "huecos",
    "pregunta": "Mañana, aunque llueva, iré.",
    "frase": "あした、 あめ が ___ 、 いきます。",
-   "id": "ja067-4",
+   "id": "ja067-6",
    "opciones": [
     {
      "texto": "ふっても",
@@ -269,7 +354,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "たかくても、 かいます。",
-   "id": "ja067-5",
+   "id": "ja067-7",
    "opciones": [
     {
      "texto": "Aunque sea caro, lo compro.",
@@ -290,7 +375,7 @@
    "tipo": "test",
    "pregunta": "¿Qué pregunta?",
    "audio": "ここ で すわっても かまいません か。",
-   "id": "ja067-6",
+   "id": "ja067-8",
    "opciones": [
     {
      "texto": "¿Puedo sentarme aquí?",
@@ -313,12 +398,12 @@
    "frase": "あめ が ふっても いきます",
    "traduccion": "Aunque llueva, iré.",
    "explicacion": "ても = aunque.",
-   "id": "ja067-7"
+   "id": "ja067-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Qué significa «〜ても かまいません»?",
-   "id": "ja067-8",
+   "id": "ja067-10",
    "opciones": [
     {
      "texto": "No importa si...",

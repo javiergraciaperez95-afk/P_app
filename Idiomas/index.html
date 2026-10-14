@@ -97,7 +97,7 @@
   <header class="cabecera">
     <a href="#/inicio" id="marca" class="marca">
       <img class="marca-logo" src="assets/favicon.svg" alt="" width="32" height="32">
-      <span class="marca-textos"><span class="marca-titulo"><span id="marca-nombre"></span> <span id="marca-bandera"></span></span> <small id="marca-subtitulo"></small></span>
+      <span class="marca-textos"><span class="marca-titulo" id="marca-nombre"></span><small class="marca-curso" hidden><span id="marca-bandera" aria-hidden="true"></span><span id="marca-subtitulo"></span></small></span>
     </a>
     <nav id="cabecera-nav" class="cabecera-nav">
       <a class="btn" href="#/inicio" data-nav="inicio" data-t="inicio.titulo">Home</a>
@@ -105,6 +105,7 @@
       <a class="btn" href="#/precios" data-nav="precios" data-t="precios.titulo">Pricing</a>
       <a class="btn" href="#/sobre" data-nav="sobre" data-t="sobre.titulo">About</a>
     </nav>
+    <nav id="menu" class="menu" data-t-aria="html.secciones"></nav>
     <span class="cabecera-botones">
       <a id="btn-curso" class="btn btn-icono btn-curso" href="#/idiomas" hidden>⇄</a>
       <span class="idioma-menu">
@@ -115,8 +116,6 @@
       <button type="button" id="btn-tema" class="btn btn-icono" aria-label="Switch to dark mode">☾</button>
     </span>
   </header>
-
-  <nav id="menu" class="menu" data-t-aria="html.secciones"></nav>
 
   <main id="app" tabindex="-1">
     <div class="arranque">

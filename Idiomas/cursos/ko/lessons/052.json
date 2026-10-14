@@ -1,7 +1,7 @@
 {
  "capitulo": 17,
  "titulo_ko": "피곤한 것 같아요",
- "titulo_es": "Parece que… (lo que se ve): -는/-(으)ㄴ 것 같아요",
+ "titulo_es": "Conjeturas sobre el presente: -는/-(으)ㄴ 것 같아요",
  "palabras": {
   "피곤한 것 같아요": {
    "es": "parece cansado",
@@ -14,6 +14,14 @@
   "바쁜 것 같아요": {
    "es": "parece ocupado",
    "pron": "ba-ppŭn gŏt ga-ta-yo"
+  },
+  "잤던 것 같아요": {
+   "es": "parece que durmió",
+   "pron": "jat-tŏn gŏt ga-ta-yo"
+  },
+  "피곤했었던 것 같아요": {
+   "es": "creo que estuvo cansado",
+   "pron": "pi-gon-he-ssŏt-tŏn gŏt ga-ta-yo"
   },
   "자는 것 같아요": {
    "es": "parece que duerme",
@@ -38,68 +46,67 @@
   "그럴 것 같아요": {
    "es": "creo que sí",
    "pron": "gŭ-rŏl gŏt ga-ta-yo"
-  },
-  "사람은": {
-   "es": "persona + 은 (tema)",
-   "pron": "sa-ra-mŭn",
-   "oculta": true
   }
  },
  "bloques": [
   {
    "tipo": "explicacion",
-   "titulo": "Lo que parece",
+   "titulo": "Conjetura sobre el presente",
    "texto": [
-    "Para decir lo que parece en este momento se usa **-(으)ㄴ 것 같아요** con adjetivos y **-는 것 같아요** con verbos: 피곤하다 → **피곤한 것 같아요** (parece cansado), 비싸다 → **비싼 것 같아요** (parece caro), 자다 → **자는 것 같아요** (parece que duerme).",
-    "민수 씨 **피곤한 것 같아요** = creo que Minsu está cansado."
+    "Para describir un estado presente, los adjetivos usan **-(으)ㄴ 것 같아요**: 피곤하다 → **피곤한 것 같아요** (parece/creo que está cansado), 비싸다 → **비싼 것 같아요**. Los verbos usan **-는 것 같아요**: 자다 → **자는 것 같아요** (parece que duerme). **것 같아요** expresa una impresión o evaluación; puede basarse en lo que ves, o en otra información."
    ]
   },
   {
    "tipo": "explicacion",
-   "titulo": "Suposición con lo que ves",
+   "titulo": "Contraste temporal",
    "texto": [
-    "Se usa cuando miras algo y lo interpretas. Si es algo que todavía no ha pasado, usa **-(으)ㄹ 것 같아요** (lección anterior).",
-    "바빠 보여요 es parecido, pero aquí ves algo que ya está pasando."
+    "Para una conjetura sobre un estado pasado se usa **-았/었던 것 같아요**: 피곤했었던 것 같아요 (creo que estuvo/estaba cansado). Para una acción pasada son posibles formas como **잤던 것 같아요** (creo que durmió); las formas pasadas pueden variar según aspecto y contexto. Para una posibilidad futura o aún no realizada se usa **-(으)ㄹ 것 같아요**, como en la lección anterior. Aquí nos centramos en el contraste presente/pasado/futuro básico."
    ]
   },
   {
    "tipo": "tabla",
-   "titulo": "Verbo o adjetivo",
+   "titulo": "Tipo",
    "filas": [
     [
+     "Adjetivo",
      "피곤하다",
-     "피곤하",
      "피곤한 것 같아요",
-     "parece cansado"
+     "parece que está cansado"
     ],
     [
+     "Adjetivo",
      "비싸다",
-     "비싸",
      "비싼 것 같아요",
-     "parece caro"
+     "parece que es caro"
     ],
     [
-     "바쁘다",
-     "바ㅃ",
-     "바쁜 것 같아요",
-     "parece ocupado"
-    ],
-    [
+     "Verbo",
      "자다",
-     "자",
      "자는 것 같아요",
      "parece que duerme"
     ],
     [
+     "Verbo",
      "먹다",
-     "먹",
      "먹는 것 같아요",
      "parece que come"
+    ],
+    [
+     "Acción pasada",
+     "자다",
+     "잤던 것 같아요",
+     "parece / creo que durmió"
+    ],
+    [
+     "Estado pasado",
+     "피곤하다",
+     "피곤했었던 것 같아요",
+     "creo que estuvo/estaba cansado"
     ]
    ],
    "columnas": [
-    "Raíz",
-    "Parece que…",
+    "Forma base",
+    "Conjetura presente",
     "Español"
    ]
   },
@@ -110,6 +117,8 @@
     "피곤한 것 같아요",
     "비싼 것 같아요",
     "바쁜 것 같아요",
+    "잤던 것 같아요",
+    "피곤했었던 것 같아요",
     "자는 것 같아요",
     "먹는 것 같아요",
     "아픈 것 같아요",
@@ -174,21 +183,21 @@
   },
   {
    "tipo": "test",
-   "pregunta": "¿Qué significa «피곤한 것 같아요»?",
+   "pregunta": "¿Qué expresa «피곤한 것 같아요»?",
    "id": "ko052-1",
    "opciones": [
     {
-     "texto": "Parece cansado.",
-     "explicacion": "피곤한 것 같아요 = parece cansado.",
+     "texto": "Una impresión: «parece / creo que está cansado».",
+     "explicacion": "La forma señala conjetura, no certeza total.",
      "correcta": true
     },
     {
-     "texto": "Está cansado de verdad.",
-     "explicacion": "Eso sería 정말 피곤해요."
+     "texto": "Una afirmación explícita de que estuvo cansado ayer.",
+     "explicacion": "El pasado sería 피곤했던 것 같아요, con contexto temporal."
     },
     {
-     "texto": "Estaba cansado ayer.",
-     "explicacion": "Eso sería 어제 피곤했어요."
+     "texto": "Una predicción de que se cansará.",
+     "explicacion": "Eso sería 피곤할 것 같아요."
     }
    ]
   },
@@ -285,22 +294,22 @@
   },
   {
    "tipo": "huecos",
-   "pregunta": "parece cansado",
-   "frase": "그 사람은 ___ 것 같아요.",
+   "pregunta": "creo que durmió",
+   "frase": "어제는 많이 ___ 것 같아요.",
    "id": "ko052-7",
    "opciones": [
     {
-     "texto": "피곤한",
-     "explicacion": "피곤하다 → 피곤한 것 같아요.",
+     "texto": "잤던",
+     "explicacion": "La forma pasada es 잤던 것 같아요.",
      "correcta": true
     },
     {
-     "texto": "피곤해요",
-     "explicacion": "Es «está cansado», sin suponer."
+     "texto": "자는",
+     "explicacion": "Es una conjetura sobre una acción presente/habitual."
     },
     {
-     "texto": "피곤했어요",
-     "explicacion": "Es «estaba cansado», pasado."
+     "texto": "잘",
+     "explicacion": "Es «dormirá», sin la construcción de conjetura completa."
     }
    ]
   },

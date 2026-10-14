@@ -66,6 +66,42 @@
   "glücklich": {
    "es": "feliz",
    "pron": "GLÜK-lij"
+  },
+  "Schlüssel": {
+   "es": "llave (der)",
+   "pron": "SHLÜ-sel"
+  },
+  "deinen": {
+   "es": "tu (acusativo masculino)",
+   "oculta": true
+  },
+  "Arbeitstag": {
+   "es": "jornada de trabajo",
+   "oculta": true
+  },
+  "bekommst": {
+   "es": "recibes (de «bekommen»)",
+   "oculta": true
+  },
+  "danach": {
+   "es": "después",
+   "oculta": true
+  },
+  "dauert": {
+   "es": "dura (de «dauern»)",
+   "oculta": true
+  },
+  "Monate": {
+   "es": "meses (plural de «der Monat»)",
+   "oculta": true
+  },
+  "bring": {
+   "es": "trae (imperativo de «mitbringen»)",
+   "oculta": true
+  },
+  "sag": {
+   "es": "di (imperativo de «sagen»)",
+   "oculta": true
   }
  },
  "bloques": [
@@ -73,15 +109,15 @@
    "tipo": "explicacion",
    "titulo": "Plusquamperfekt",
    "texto": [
-    "Se forma con **hatte** o **hatten** (si es con «haben») o **war** y **waren** (si es con «sein»), más el participio al final: **Ich hatte den Vertrag unterschrieben** (yo había firmado el contrato). Con verbos de movimiento como «gehen» se usa «war»: **Er war schon gegangen** (él ya se había ido).",
-    "Se usa para una acción anterior a otra en pasado: **Als ich kam, war die Sitzung schon vorbei** (cuando llegué, la reunión ya había terminado)."
+    "Se forma con el Präteritum de **haben** o **sein** y el participio al final: **Ich hatte den Vertrag unterschrieben** (había firmado); **Er war schon gegangen** (ya se había ido). El auxiliar suele ser el mismo que el verbo usa en Perfekt: **hatte gearbeitet**, **war gekommen**. Muchos verbos intransitivos de cambio de lugar o estado usan **sein**, pero no basta con que haya movimiento: **hatte getanzt**.",
+    "Se usa para una acción anterior a otra acción pasada: **Als ich kam, hatte die Sitzung schon begonnen**."
    ]
   },
   {
    "tipo": "explicacion",
    "titulo": "nachdem: después de que",
    "texto": [
-    "**Nachdem** significa «después de que»: primero pasa lo que va en Plusquamperfekt, después lo principal en Präteritum o Perfekt. El verbo de la oración con «nachdem» va al final: **Nachdem ich den Vertrag unterschrieben hatte, bekam ich die Stelle** (después de firmar el contrato, conseguí el puesto). Ojo: en español se dice «después de firmar», pero en alemán lleva «que» y el verbo conjugado."
+    "**Nachdem** significa «después de que» y lleva el verbo al final. Si ambas acciones se cuentan en pasado, la anterior suele ir en Plusquamperfekt: **Nachdem ich unterschrieben hatte, bekam ich die Stelle**. Si la principal está en presente o futuro, se usa el tiempo que pide ese contexto: **Nachdem du unterschrieben hast, bekommst du den Schlüssel**."
    ]
   },
   {
@@ -128,7 +164,8 @@
     "anfing",
     "angefangen",
     "hatte",
-    "glücklich"
+    "glücklich",
+    "Schlüssel"
    ]
   },
   {
@@ -218,9 +255,95 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Correo de bienvenida",
+   "frases": [
+    {
+     "de": "Hallo, Julia, dein erster Arbeitstag beginnt am Montag um neun Uhr.",
+     "es": "Hola, Julia, tu primer día de trabajo empieza el lunes a las nueve."
+    },
+    {
+     "de": "Nachdem du den Vertrag unterschrieben hast, bekommst du deinen Schlüssel.",
+     "es": "Después de firmar el contrato, recibirás tu llave."
+    },
+    {
+     "de": "Danach gehst du zur Abteilung.",
+     "es": "Después vas al departamento."
+    },
+    {
+     "de": "Deine Probezeit dauert drei Monate.",
+     "es": "Tu período de prueba dura tres meses."
+    },
+    {
+     "de": "Bitte bring deinen Ausweis mit.",
+     "es": "Por favor, trae tu documento de identidad."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "Según el correo, ¿cuándo empieza el primer día de Julia?",
+   "id": "de064-1",
+   "opciones": [
+    {
+     "texto": "Am Montag um neun Uhr.",
+     "explicacion": "Esa es la hora indicada en el mensaje.",
+     "correcta": true
+    },
+    {
+     "texto": "Am Dienstag um acht Uhr.",
+     "explicacion": "El correo dice «am Montag um neun Uhr»."
+    },
+    {
+     "texto": "Am Montag um zehn Uhr.",
+     "explicacion": "El correo dice «um neun Uhr»."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué tiene que llevar Julia?",
+   "id": "de064-2",
+   "opciones": [
+    {
+     "texto": "Ihren Ausweis.",
+     "explicacion": "El correo le pide que lleve su documento.",
+     "correcta": true
+    },
+    {
+     "texto": "Einen Schlüssel von zu Hause.",
+     "explicacion": "El correo dice que recibirá una llave."
+    },
+    {
+     "texto": "Einen neuen Vertrag.",
+     "explicacion": "El contrato ya está firmado."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué sucede después de firmar el contrato?",
+   "id": "de064-3",
+   "opciones": [
+    {
+     "texto": "Sie bekommt ihren Schlüssel.",
+     "explicacion": "El correo explica el siguiente paso.",
+     "correcta": true
+    },
+    {
+     "texto": "Sie geht zur Abteilung.",
+     "explicacion": "Eso sucede después; primero recibe la llave."
+    },
+    {
+     "texto": "Sie fährt nach Hause.",
+     "explicacion": "Eso no aparece en el mensaje."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué tiempo va en la oración con «nachdem» (algo ya terminado)?",
-   "id": "de064-1",
+   "id": "de064-4",
    "opciones": [
     {
      "texto": "Plusquamperfekt",
@@ -240,7 +363,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Cómo se dice «antes de que empezara»?",
-   "id": "de064-2",
+   "id": "de064-5",
    "opciones": [
     {
      "texto": "bevor ich anfing",
@@ -261,7 +384,7 @@
    "tipo": "huecos",
    "pregunta": "firmado",
    "frase": "Nachdem ich den Vertrag ___ hatte, bin ich gegangen.",
-   "id": "de064-3",
+   "id": "de064-6",
    "opciones": [
     {
      "texto": "unterschrieben",
@@ -282,7 +405,7 @@
    "tipo": "huecos",
    "pregunta": "trabajo",
    "frase": "Seitdem ich hier ___ , bin ich glücklich.",
-   "id": "de064-4",
+   "id": "de064-7",
    "opciones": [
     {
      "texto": "arbeite",
@@ -303,7 +426,7 @@
    "tipo": "test",
    "pregunta": "Escucha. ¿Qué significa?",
    "audio": "Bevor ich anfing, hatte ich Angst.",
-   "id": "de064-5",
+   "id": "de064-8",
    "opciones": [
     {
      "texto": "Antes de empezar, tenía miedo.",
@@ -326,12 +449,12 @@
    "frase": "Nachdem ich gegessen hatte",
    "traduccion": "Después de que hube comido",
    "explicacion": "nachdem + Plusquamperfekt al final.",
-   "id": "de064-6"
+   "id": "de064-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Cómo se dice «yo ya me había ido» (gehen)?",
-   "id": "de064-7",
+   "id": "de064-10",
    "opciones": [
     {
      "texto": "ich war gegangen",
@@ -356,7 +479,7 @@
     "Nachdem ich den Vertrag unterschrieben hatte"
    ],
    "explicacion": "Plusquamperfekt con «haben» al final de la oración.",
-   "id": "de064-8"
+   "id": "de064-11"
   }
  ],
  "intro": "Empezamos el nivel B1 en el trabajo. Para contar lo que pasó antes de otra cosa, el alemán usa el **Plusquamperfekt**: el pasado del pasado."

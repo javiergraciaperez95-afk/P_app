@@ -26,6 +26,36 @@
   "おわった": {
    "es": "terminó (de おわる)",
    "pron": "owatta"
+  },
+  "実現": {
+   "es": "realización",
+   "pron": "jitsugen",
+   "consejo": "Lectura: じつげん."
+  },
+  "終了": {
+   "es": "finalización",
+   "pron": "shuuryou",
+   "consejo": "Lectura: しゅうりょう."
+  },
+  "達成": {
+   "es": "logro",
+   "pron": "tassei",
+   "consejo": "Lectura: たっせい."
+  },
+  "最後": {
+   "es": "final",
+   "pron": "saigo",
+   "consejo": "Lectura: さいご."
+  },
+  "長年": {
+   "es": "muchos años",
+   "pron": "naganen",
+   "consejo": "Lectura: ながねん."
+  },
+  "夢中": {
+   "es": "entusiasmado",
+   "pron": "muchuu",
+   "consejo": "Lectura: むちゅう."
   }
  },
  "bloques": [
@@ -41,16 +71,14 @@
    "tipo": "explicacion",
    "titulo": "ついに: al final",
    "texto": [
-    "Para decir que algo llega tras mucho tiempo, muchas veces algo grande o deseado: **ついに ゆめ が かなった** (al final se cumplió mi sueño).",
-    "Suena más solemne que やっと."
+    "Para marcar que algo ocurrió finalmente tras una espera: **ついに ゆめ が かなった** (por fin se cumplió mi sueño). Puede usarse en resultados positivos o negativos."
    ]
   },
   {
    "tipo": "explicacion",
    "titulo": "とうとう: finalmente (algo no deseado o inevitable)",
    "texto": [
-    "Para decir que algo ocurre después de mucho tiempo, a veces algo que no querías: **とうとう にほん へ いく こと に なりました** (al final se decidió que iré a Japón).",
-    "Suele ser inevitable."
+    "Para decir que algo acabó ocurriendo después de un proceso o una espera: **とうとう にほん へ いく こと に なりました** (finalmente se decidió que iría a Japón). El tono depende del contexto."
    ]
   },
   {
@@ -88,7 +116,13 @@
     "とうとう",
     "ゆめ",
     "かなった",
-    "おわった"
+    "おわった",
+    "実現",
+    "終了",
+    "達成",
+    "最後",
+    "長年",
+    "夢中"
    ]
   },
   {
@@ -140,9 +174,59 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Un sueño cumplido",
+   "frases": [
+    {
+     "ja": "長年 の 夢 が ついに 実現 しました。準備 は 大変 でした が、最後 まで 続けました。発表 が 終わる と、家族 が 花 を 持って きて くれました。",
+     "es": "Por fin se cumplió un sueño de muchos años. La preparación fue dura, pero continué hasta el final. Cuando terminó la presentación, mi familia me trajo flores."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué se cumplió por fin?",
+   "id": "ja086-1",
+   "opciones": [
+    {
+     "texto": "Un sueño de muchos años.",
+     "explicacion": "La lectura lo indica explícitamente.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué hizo la familia al terminar la presentación?",
+   "id": "ja086-2",
+   "opciones": [
+    {
+     "texto": "Le llevó flores.",
+     "explicacion": "La respuesta aparece en la lectura.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «やっと しけん が おわった»?",
-   "id": "ja086-1",
+   "id": "ja086-3",
    "opciones": [
     {
      "texto": "Por fin terminó el examen.",
@@ -162,7 +246,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué diferencia tiene «とうとう» de «ついに»?",
-   "id": "ja086-2",
+   "id": "ja086-4",
    "opciones": [
     {
      "texto": "とうとう suele ser algo inevitable.",
@@ -183,7 +267,7 @@
    "tipo": "huecos",
    "pregunta": "Al final se cumplió mi sueño.",
    "frase": "ついに ゆめ が ___ 。",
-   "id": "ja086-3",
+   "id": "ja086-5",
    "opciones": [
     {
      "texto": "かなった",
@@ -204,7 +288,7 @@
    "tipo": "huecos",
    "pregunta": "Por fin terminó el examen.",
    "frase": "___ しけん が おわった。",
-   "id": "ja086-4",
+   "id": "ja086-6",
    "opciones": [
     {
      "texto": "やっと",
@@ -225,7 +309,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "ついに ゆめ が かなった。",
-   "id": "ja086-5",
+   "id": "ja086-7",
    "opciones": [
     {
      "texto": "Al final se cumplió mi sueño.",
@@ -246,7 +330,7 @@
    "tipo": "test",
    "pregunta": "¿Qué sentimiento hay?",
    "audio": "やっと しけん が おわった。",
-   "id": "ja086-6",
+   "id": "ja086-8",
    "opciones": [
     {
      "texto": "Alivio: el examen por fin terminó.",
@@ -269,12 +353,12 @@
    "frase": "とうとう にほん へ いく こと に なりました",
    "traduccion": "Al final se decidió que iré a Japón.",
    "explicacion": "とうとう = finalmente.",
-   "id": "ja086-7"
+   "id": "ja086-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Cuál es la forma de decir «al final» (algo deseado)?",
-   "id": "ja086-8",
+   "id": "ja086-10",
    "opciones": [
     {
      "texto": "ついに",

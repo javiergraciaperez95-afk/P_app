@@ -43,6 +43,31 @@
   "まだ": {
    "es": "todavía, aún",
    "pron": "mada"
+  },
+  "今": {
+   "es": "ahora",
+   "pron": "ima",
+   "consejo": "Lectura: いま."
+  },
+  "住所": {
+   "es": "dirección; domicilio",
+   "pron": "juusho",
+   "consejo": "Lectura: じゅうしょ."
+  },
+  "出身": {
+   "es": "lugar de origen",
+   "pron": "shusshin",
+   "consejo": "Lectura: しゅっしん."
+  },
+  "住んでいます": {
+   "es": "vivir (actualmente)",
+   "pron": "sunde imasu",
+   "consejo": "Lectura: すんでいます."
+  },
+  "大阪": {
+   "es": "Osaka",
+   "pron": "oosaka",
+   "consejo": "Lectura: おおさか."
   }
  },
  "bloques": [
@@ -50,8 +75,7 @@
    "tipo": "explicacion",
    "titulo": "〜ている: acción en curso",
    "texto": [
-    "Para decir que algo **está pasando ahora** se usa la forma て + **います**: **たべて います** (está comiendo). Se escribe junto: **たべています**.",
-    "Con **〜ている** se dice lo que alguien **sigue haciendo**: **まって います** (está esperando)."
+    "Para decir que una acción **está en curso** se usa la forma て + **います**: **たべています** (está comiendo). El contexto puede indicar si ocurre ahora o durante un período."
    ]
   },
   {
@@ -96,7 +120,12 @@
     "しっています",
     "ふっています",
     "そと",
-    "まだ"
+    "まだ",
+    "今",
+    "住所",
+    "出身",
+    "住んでいます",
+    "大阪"
    ]
   },
   {
@@ -176,9 +205,43 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Presentación de un vecino",
+   "frases": [
+    {
+     "ja": "出身 は 大阪 です。",
+     "es": "Soy de Osaka."
+    },
+    {
+     "ja": "今 は 京都 に 住んでいます。",
+     "es": "Ahora vivo en Kioto."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Dónde vive ahora?",
+   "id": "ja034-1",
+   "opciones": [
+    {
+     "texto": "En Kioto.",
+     "explicacion": "京都 に 住んでいます.",
+     "correcta": true
+    },
+    {
+     "texto": "En Osaka.",
+     "explicacion": "Osaka es su lugar de origen."
+    },
+    {
+     "texto": "En Tokio.",
+     "explicacion": "No aparece 東京."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Cómo dices «estoy esperando»?",
-   "id": "ja034-1",
+   "id": "ja034-2",
    "opciones": [
     {
      "texto": "まっています",
@@ -199,7 +262,7 @@
    "tipo": "huecos",
    "pregunta": "Estoy esperando a un amigo.",
    "frase": "ともだち を ___ 。",
-   "id": "ja034-2",
+   "id": "ja034-3",
    "opciones": [
     {
      "texto": "まっています",
@@ -220,7 +283,7 @@
    "tipo": "huecos",
    "pregunta": "Mika vive en Tokio.",
    "frase": "みか さん は とうきょう に ___ 。",
-   "id": "ja034-3",
+   "id": "ja034-4",
    "opciones": [
     {
      "texto": "すんでいます",
@@ -241,7 +304,7 @@
    "tipo": "huecos",
    "pregunta": "Está lloviendo.",
    "frase": "あめ が ___ 。",
-   "id": "ja034-4",
+   "id": "ja034-5",
    "opciones": [
     {
      "texto": "ふっています",
@@ -262,7 +325,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "やまだ さん は けっこんしています。",
-   "id": "ja034-5",
+   "id": "ja034-6",
    "opciones": [
     {
      "texto": "Yamada está casado.",
@@ -283,7 +346,7 @@
    "tipo": "test",
    "pregunta": "¿Qué pregunta?",
    "audio": "いま、 なに を して います か。",
-   "id": "ja034-6",
+   "id": "ja034-7",
    "opciones": [
     {
      "texto": "¿Qué está haciendo ahora?",
@@ -306,7 +369,7 @@
    "frase": "そと は さむい です",
    "traduccion": "Hace frío fuera.",
    "explicacion": "そと es «fuera».",
-   "id": "ja034-7"
+   "id": "ja034-8"
   }
  ],
  "intro": "Con la forma て puedes decir lo que alguien está haciendo ahora, y también algunos estados. Es una de las frases que más se oyen en Japón."

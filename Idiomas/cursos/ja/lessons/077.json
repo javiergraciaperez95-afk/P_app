@@ -18,6 +18,46 @@
   "いきません": {
    "es": "no voy; no iré",
    "pron": "ikimasen"
+  },
+  "人手不足": {
+   "es": "falta de personal",
+   "pron": "hitode busoku",
+   "consejo": "Lectura: ひとでぶそく."
+  },
+  "残業": {
+   "es": "horas extra",
+   "pron": "zangyou",
+   "consejo": "Lectura: ざんぎょう."
+  },
+  "欠勤": {
+   "es": "ausencia laboral",
+   "pron": "kekkin",
+   "consejo": "Lectura: けっきん."
+  },
+  "事情": {
+   "es": "circunstancias",
+   "pron": "jijou",
+   "consejo": "Lectura: じじょう."
+  },
+  "勤務表": {
+   "es": "horario laboral",
+   "pron": "kinmuhyou",
+   "consejo": "Lectura: きんむひょう."
+  },
+  "代休": {
+   "es": "día libre compensatorio",
+   "pron": "daikyuu",
+   "consejo": "Lectura: だいきゅう."
+  },
+  "交代要員": {
+   "es": "persona de sustitución",
+   "pron": "koutai youin",
+   "consejo": "Lectura: こうたいよういん."
+  },
+  "早番": {
+   "es": "turno de mañana",
+   "pron": "hayaban",
+   "consejo": "Lectura: はやばん."
   }
  },
  "bloques": [
@@ -65,7 +105,15 @@
     "わけ",
     "あるく",
     "しか",
-    "いきません"
+    "いきません",
+    "人手不足",
+    "残業",
+    "欠勤",
+    "事情",
+    "勤務表",
+    "代休",
+    "交代要員",
+    "早番"
    ]
   },
   {
@@ -108,9 +156,59 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Turno complicado",
+   "frases": [
+    {
+     "ja": "今週 は 人手不足 なので、店長 は 休む わけにはいきません。別 の 店員 も 欠勤 している ため、みんな で 残業 する しか ありません。来週 は 交代 できる 人 を 探す 予定 です。",
+     "es": "Esta semana falta personal, así que el encargado no puede permitirse faltar. Como otro empleado también está ausente, no les queda más remedio que hacer horas extra. La semana que viene piensan buscar a alguien que pueda cubrir el turno."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Por qué no puede faltar el encargado?",
+   "id": "ja077-1",
+   "opciones": [
+    {
+     "texto": "Porque falta personal.",
+     "explicacion": "La lectura lo indica explícitamente.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué no les queda más remedio que hacer?",
+   "id": "ja077-2",
+   "opciones": [
+    {
+     "texto": "Horas extra.",
+     "explicacion": "La respuesta aparece en la lectura.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «しごと が おおい から、 やすむ わけ に は いきません»?",
-   "id": "ja077-1",
+   "id": "ja077-3",
    "opciones": [
     {
      "texto": "Como hay mucho trabajo, no puedo faltar.",
@@ -130,7 +228,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué expresa «〜しか ない»?",
-   "id": "ja077-2",
+   "id": "ja077-4",
    "opciones": [
     {
      "texto": "Que no hay más remedio.",
@@ -151,7 +249,7 @@
    "tipo": "huecos",
    "pregunta": "No puedo faltar, por la situación.",
    "frase": "しごと が おおい から、 やすむ ___ は いきません。",
-   "id": "ja077-3",
+   "id": "ja077-5",
    "opciones": [
     {
      "texto": "わけ に",
@@ -172,7 +270,7 @@
    "tipo": "huecos",
    "pregunta": "No hay más remedio que caminar.",
    "frase": "おかね が ない ので、 あるく ___ ありません。",
-   "id": "ja077-4",
+   "id": "ja077-6",
    "opciones": [
     {
      "texto": "しか",
@@ -193,7 +291,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "しごと が おおい から、 やすむ わけ に は いきません。",
-   "id": "ja077-5",
+   "id": "ja077-7",
    "opciones": [
     {
      "texto": "Como hay mucho trabajo, no puedo faltar.",
@@ -214,7 +312,7 @@
    "tipo": "test",
    "pregunta": "¿Qué cuenta?",
    "audio": "おかね が ない ので、 あるく しか ありません。",
-   "id": "ja077-6",
+   "id": "ja077-8",
    "opciones": [
     {
      "texto": "Que no hay más remedio que caminar porque no tiene dinero.",
@@ -237,12 +335,12 @@
    "frase": "あるく しか ありません",
    "traduccion": "No hay más remedio que caminar.",
    "explicacion": "しか = solo esa opción.",
-   "id": "ja077-7"
+   "id": "ja077-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Cuál expresa que algo es imposible socialmente?",
-   "id": "ja077-8",
+   "id": "ja077-10",
    "opciones": [
     {
      "texto": "〜わけにはいかない",

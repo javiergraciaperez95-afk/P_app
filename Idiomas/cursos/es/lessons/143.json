@@ -2,11 +2,12 @@
   "capitulo": 13,
   "titulo_es": "Me dijo que sí",
   "titulo": { "en": "She told me yes" },
-  "intro": { "en": "Reporting what someone said, with dijo que and preguntó si." },
+  "intro": { "en": "Reporting statements and questions: dijo que, preguntó si and preguntó dónde." },
   "palabras": {
     "dijo": { "en": "he/she said", "pron": "DI-ho", "cat": "verb" },
     "me dijo": { "en": "he/she told me", "pron": "me DI-ho", "cat": "verb" },
     "preguntó": { "en": "he/she asked", "pron": "pre-gun-TO", "cat": "verb" },
+    "dónde": { "en": "where (question word)", "pron": "DON-de", "cat": "adverb" },
     "que": { "en": "that", "pron": "ke", "cat": "conjunction" },
     "si": { "en": "if, whether", "pron": "si", "cat": "conjunction", "nota": "Si with no accent means if. Sí with an accent means yes." },
     "estaba": { "en": "he/she was, I was", "pron": "es-TA-ba", "cat": "verb" },
@@ -17,7 +18,7 @@
     {
       "tipo": "explicacion",
       "titulo": "One step back in time",
-      "texto": "A statement becomes **dijo que**. A yes/no question becomes **preguntó si**.\n\nIf the original was present, the report often moves to the imperfect.\n\n- «Estoy cansada.» → Ana **dijo que estaba** cansada.\n- «¿Hablas español?» → Me **preguntó si hablaba** español.\n\n**Dice que está cansada** stays in the present when the report is still current."
+      "texto": "A statement becomes **dijo que**. A yes/no question becomes **preguntó si**. A question with a question word keeps that word, without question marks: **¿Dónde vives? → Me preguntó dónde vivía**.\n\nIf the reporting verb is in the past, the present often moves to the imperfect:\n\n- «Estoy cansada.» → Ana **dijo que estaba** cansada.\n- «¿Hablas español?» → Me **preguntó si hablaba** español.\n- «¿Dónde trabajas?» → Me **preguntó dónde trabajaba**.\n\nThis change is common, but it is not automatic in every context. If the information is still current, the present can remain: **Ana dice que está mejor**."
     },
     {
       "tipo": "dialogo",
@@ -50,6 +51,16 @@
           "analisis": [
             ["dije", "I said"],
             ["que sí", "that yes"]
+          ]
+        },
+        {
+          "quien": "Pablo",
+          "es": "También me preguntó dónde vivía.",
+          "en": "She also asked me where I lived.",
+          "analisis": [
+            ["me preguntó", "she asked me"],
+            ["dónde", "where (question word)"],
+            ["vivía", "imperfect in reported question"]
           ]
         },
         {
@@ -111,6 +122,19 @@
         "esté": {"en": "A report of information takes the indicative."}
       },
       "correcta": "está"
+    },
+    {
+      "tipo": "huecos",
+      "id": "b1-pregunto-donde",
+      "pregunta": { "en": "Complete: she asked me where I lived." },
+      "frase": "Me preguntó ___ vivía.",
+      "audio": true,
+      "opciones": {
+        "dónde": { "en": "Keep the question word and its written accent." },
+        "donde": { "en": "Without an accent it does not introduce this indirect question." },
+        "si": { "en": "Si reports a yes/no question." }
+      },
+      "correcta": "dónde"
     },
     {
       "tipo": "escribir",

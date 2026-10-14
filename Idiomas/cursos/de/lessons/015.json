@@ -90,6 +90,18 @@
   "Sport": {
    "es": "deporte (der)",
    "pron": "shport"
+  },
+  "geöffnet": {
+   "es": "abierto; abierta",
+   "pron": "gue-ÖF-net"
+  },
+  "geschlossen": {
+   "es": "cerrado; cerrada",
+   "pron": "gue-SHLO-sen"
+  },
+  "Öffnungszeiten": {
+   "es": "horario de apertura (plural)",
+   "pron": "ÖF-nungs-tsai-ten"
   }
  },
  "bloques": [
@@ -182,7 +194,10 @@
     "Freunden",
     "Kino",
     "Schwimmbad",
-    "Sport"
+    "Sport",
+    "geöffnet",
+    "geschlossen",
+    "Öffnungszeiten"
    ]
   },
   {
@@ -297,9 +312,63 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Horario de una tienda",
+   "frases": [
+    {
+     "de": "Öffnungszeiten: Montag bis Freitag, 9 bis 18 Uhr.",
+     "es": "Horario: de lunes a viernes, de 9 a 18 h."
+    },
+    {
+     "de": "Samstag: 10 bis 14 Uhr. Sonntag: geschlossen.",
+     "es": "Sábado: de 10 a 14 h. Domingo: cerrado."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿A qué hora cierra de lunes a viernes?",
+   "id": "de015-1",
+   "opciones": [
+    {
+     "texto": "A las 18 h.",
+     "explicacion": "El horario termina a las 18 Uhr.",
+     "correcta": true
+    },
+    {
+     "texto": "A las 14 h.",
+     "explicacion": "Esa hora corresponde al sábado."
+    },
+    {
+     "texto": "A las 9 h.",
+     "explicacion": "Esa es la hora de apertura."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Está abierta la tienda el domingo?",
+   "id": "de015-2",
+   "opciones": [
+    {
+     "texto": "No.",
+     "explicacion": "El aviso dice «geschlossen».",
+     "correcta": true
+    },
+    {
+     "texto": "Sí, de 9 a 18 h.",
+     "explicacion": "Ese horario es de lunes a viernes."
+    },
+    {
+     "texto": "Sí, de 10 a 14 h.",
+     "explicacion": "Ese horario es del sábado."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Cómo dices «el lunes»?",
-   "id": "de015-1",
+   "id": "de015-3",
    "opciones": [
     {
      "texto": "am Montag",
@@ -319,7 +388,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Cómo dices «nunca trabajo»?",
-   "id": "de015-2",
+   "id": "de015-4",
    "opciones": [
     {
      "texto": "Ich arbeite nie.",
@@ -339,7 +408,7 @@
   {
    "tipo": "test",
    "pregunta": "Te dicen «Du arbeitest nicht». Sí trabajas. ¿Qué respondes?",
-   "id": "de015-3",
+   "id": "de015-5",
    "opciones": [
     {
      "texto": "Doch!",
@@ -360,7 +429,7 @@
    "tipo": "traduccion",
    "pregunta": "¿Qué significa?",
    "frase": "Ich mache oft Sport.",
-   "id": "de015-4",
+   "id": "de015-6",
    "opciones": [
     {
      "texto": "Hago deporte a menudo.",
@@ -381,7 +450,7 @@
    "tipo": "huecos",
    "pregunta": "Completa la frase.",
    "frase": "Wir gehen ___ Kino.",
-   "id": "de015-5",
+   "id": "de015-7",
    "opciones": [
     {
      "texto": "ins",
@@ -402,7 +471,7 @@
    "tipo": "huecos",
    "pregunta": "Completa la frase.",
    "frase": "Was ___ du am Wochenende?",
-   "id": "de015-6",
+   "id": "de015-8",
    "opciones": [
     {
      "texto": "machst",
@@ -423,7 +492,7 @@
    "tipo": "test",
    "pregunta": "Escucha. ¿Qué significa?",
    "audio": "Am Sonntag arbeite ich nie.",
-   "id": "de015-7",
+   "id": "de015-9",
    "opciones": [
     {
      "texto": "Los domingos no trabajo nunca.",
@@ -446,7 +515,7 @@
    "frase": "Ich gehe oft mit Freunden ins Kino",
    "traduccion": "Voy a menudo al cine con amigos",
    "explicacion": "Sujeto + verbo + frecuencia + compañía + lugar.",
-   "id": "de015-8"
+   "id": "de015-10"
   }
  ]
 }

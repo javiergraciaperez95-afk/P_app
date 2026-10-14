@@ -7,12 +7,12 @@
 <style>
   :root {
     --fondo: #f4f1ea; --tarjeta: #ffffff; --texto: #23212b; --suave: #6f6b7a; --borde: #e3ded2;
-    --hecho: #2e9e6b; --sinrevisar: #d2443a; --opus: #e0a21b; --opusia: #3b82c4; --falta: #d9d4c8; --falta-texto: #8b8697;
+    --hecho: #d2443a; --luna: #e0a21b; --lunaopus: #3b82c4; --lunaopussol: #8559c7; --humano: #2e9e6b; --falta: #d9d4c8; --falta-texto: #8b8697;
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --fondo: #17161c; --tarjeta: #211f29; --texto: #f0edf5; --suave: #a29db0; --borde: #33303f;
-      --hecho: #3fbf85; --sinrevisar: #ef6359; --opus: #f0b93a; --opusia: #5aa2e6; --falta: #2f2c3a; --falta-texto: #7d788c;
+      --hecho: #ef6359; --luna: #f0b93a; --lunaopus: #5aa2e6; --lunaopussol: #a982ed; --humano: #3fbf85; --falta: #2f2c3a; --falta-texto: #7d788c;
     }
   }
   * { box-sizing: border-box; }
@@ -42,7 +42,7 @@
   .filtros button[aria-pressed="true"] { background: var(--texto); color: var(--fondo); border-color: var(--texto); }
 
   .tabla { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 16px; overflow: hidden; }
-  .fila { display: grid; grid-template-columns: minmax(150px, 1.5fr) repeat(4, 1fr) minmax(90px, .9fr); gap: 8px; align-items: center; padding: 10px 14px; border-top: 1px solid var(--borde); }
+  .fila { display: grid; grid-template-columns: minmax(150px, 1.5fr) repeat(5, 1fr) minmax(90px, .9fr); gap: 8px; align-items: center; padding: 10px 14px; border-top: 1px solid var(--borde); }
   .fila:first-child { border-top: 0; }
   .cabecera { font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--suave); font-weight: 600; }
   .cabecera div:not(:first-child) { text-align: center; }
@@ -52,10 +52,11 @@
   .idioma small { color: var(--suave); }
   .nivel { height: 38px; border-radius: 10px; display: grid; place-items: center; font-weight: 700; font-size: .85rem; color: #fff; cursor: default; position: relative; }
   .nivel.hecho { background: var(--hecho); }
-  .nivel.sinrevisar { background: var(--sinrevisar); }
-  .nivel.opus { background: var(--opus); color: #2a2000; }
-  .nivel.opusia { background: var(--opusia); }
-  .nivel.medias { background: repeating-linear-gradient(45deg, var(--falta), var(--falta) 8px, var(--sinrevisar) 8px, var(--sinrevisar) 16px); }
+  .nivel.luna { background: var(--luna); color: #2a2000; }
+  .nivel.lunaopus { background: var(--lunaopus); }
+  .nivel.lunaopussol { background: var(--lunaopussol); }
+  .nivel.humano { background: var(--humano); }
+  .nivel.medias { background: repeating-linear-gradient(45deg, var(--falta), var(--falta) 8px, #9b96a5 8px, #9b96a5 16px); }
   .nivel.falta { background: var(--falta); color: var(--falta-texto); font-weight: 500; }
   .avance { display: flex; flex-direction: column; gap: 4px; font-size: .85rem; color: var(--suave); text-align: right; }
   .avance .mini { height: 6px; border-radius: 99px; background: var(--falta); overflow: hidden; }
@@ -67,7 +68,7 @@
   .nota { margin-top: 14px; color: var(--suave); font-size: .85rem; }
 
   @media (max-width: 640px) {
-    .fila { grid-template-columns: 1fr repeat(4, 44px); }
+    .fila { grid-template-columns: 1fr repeat(5, 40px); }
     .fila > :last-child { display: none; }
     .idioma small { display: none; }
     .codigo { width: 32px; height: 32px; }
@@ -81,11 +82,12 @@
   <p class="sub">21 idiomas · niveles A1 a B2 · actualizado el <span id="fecha"></span></p>
 
   <div class="leyenda">
-    <span><i style="background:var(--hecho)"></i> Hecho: revisado por ti, por Opus y por otra IA</span>
-    <span><i style="background:var(--opusia)"></i> Revisado por Opus y por otra IA</span>
-    <span><i style="background:var(--opus)"></i> Revisado por Opus</span>
-    <span><i style="background:var(--sinrevisar)"></i> Hecho, sin revisión</span>
-    <span><i style="background:repeating-linear-gradient(45deg, var(--falta), var(--falta) 4px, var(--sinrevisar) 4px, var(--sinrevisar) 8px)"></i> A medias</span>
+    <span><i style="background:var(--hecho)"></i> Hecho, sin revisar</span>
+    <span><i style="background:var(--luna)"></i> Revisado por Luna</span>
+    <span><i style="background:var(--lunaopus)"></i> Revisado por Luna y Opus</span>
+    <span><i style="background:var(--lunaopussol)"></i> Revisado por Luna, Opus y Sol</span>
+    <span><i style="background:var(--humano)"></i> Revisado por Luna, Opus, Sol y un humano</span>
+    <span><i style="background:repeating-linear-gradient(45deg, var(--falta), var(--falta) 4px, #9b96a5 4px, #9b96a5 8px)"></i> A medias</span>
     <span><i style="background:var(--falta)"></i> Por hacer</span>
   </div>
 
@@ -97,47 +99,45 @@
   <div class="filtros" id="filtros"></div>
   <div class="tabla" id="tabla"></div>
 
-  <p class="nota">Para actualizar esta página, cambia la lista CURSOS al principio del script: cada nivel es «hecho», «opusia», «opus», «sinrevisar», «medias» o «falta».</p>
+  <p class="nota">«Hecho» significa que el nivel está escrito, pero aún no ha pasado ninguna revisión. Los cursos de muestra aparecen como «A medias».</p>
 </main>
 
 <script>
-// ---- DATOS: es lo único que hay que tocar para actualizar la página ----
-const ACTUALIZADO = '13-10-2026';
+// ---- DATOS: contrastados con _herramientas/cursos/PLAN.txt, los ESTADO.txt y los cursos actuales ----
+const ACTUALIZADO = '14-10-2026';
 const NIVELES = ['A1', 'A2', 'B1', 'B2'];
-// estados: 'hecho' (revisado por el usuario + Opus + otra IA) · 'opusia' (Opus + otra IA) · 'opus' (solo Opus)
-//          'sinrevisar' (escrito, sin revisión) · 'medias' (a medio escribir) · 'falta'
+// Hecho significa escrito, sin revisar. Los otros estados indican revisiones acumulativas.
 const CURSOS = [
-  { codigo: 'es', nombre: 'Español',    lecciones: 293, niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'sinrevisar'] },
-  { codigo: 'vi', nombre: 'Vietnamita', lecciones: 263, niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'sinrevisar'] },
-  { codigo: 'da', nombre: 'Danés',      lecciones: 111, niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'sinrevisar'] },
-  { codigo: 'en', nombre: 'Inglés',     lecciones: 130, niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'sinrevisar'] },
-  { codigo: 'fr', nombre: 'Francés',    lecciones: 124, niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'sinrevisar'] },
-  { codigo: 'de', nombre: 'Alemán',     lecciones: 125, niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'sinrevisar'] },
-  { codigo: 'ja', nombre: 'Japonés',    lecciones: 125, niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'sinrevisar'] },
-  { codigo: 'it', nombre: 'Italiano',   lecciones: 124, niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'sinrevisar'] },
-  { codigo: 'ko', nombre: 'Coreano',    lecciones: 125, niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'sinrevisar'] },
-  { codigo: 'pt', nombre: 'Portugués',  lecciones: 124, niveles: ['sinrevisar', 'sinrevisar', 'sinrevisar', 'sinrevisar'] },
-  { codigo: 'ru', nombre: 'Ruso',       lecciones: 31,  niveles: ['sinrevisar', 'falta', 'falta', 'falta'] },
-  { codigo: 'zh', nombre: 'Chino',      lecciones: 0,   niveles: ['falta', 'falta', 'falta', 'falta'] },
-  { codigo: 'tr', nombre: 'Turco',      lecciones: 3,   niveles: ['falta', 'falta', 'falta', 'falta'] },
-  { codigo: 'nl', nombre: 'Neerlandés', lecciones: 3,   niveles: ['falta', 'falta', 'falta', 'falta'] },
-  { codigo: 'sv', nombre: 'Sueco',      lecciones: 3,   niveles: ['falta', 'falta', 'falta', 'falta'] },
-  { codigo: 'el', nombre: 'Griego',     lecciones: 3,   niveles: ['falta', 'falta', 'falta', 'falta'] },
-  { codigo: 'pl', nombre: 'Polaco',     lecciones: 3,   niveles: ['falta', 'falta', 'falta', 'falta'] },
-  { codigo: 'no', nombre: 'Noruego',    lecciones: 3,   niveles: ['falta', 'falta', 'falta', 'falta'] },
-  { codigo: 'id', nombre: 'Indonesio',  lecciones: 3,   niveles: ['falta', 'falta', 'falta', 'falta'] },
-  { codigo: 'ro', nombre: 'Rumano',     lecciones: 3,   niveles: ['falta', 'falta', 'falta', 'falta'] },
-  { codigo: 'th', nombre: 'Tailandés',  lecciones: 3,   niveles: ['falta', 'falta', 'falta', 'falta'] },
+  { codigo: 'es', nombre: 'Español', lecciones: 293, niveles: ['luna','luna','hecho','hecho'] },
+  { codigo: 'vi', nombre: 'Vietnamita', lecciones: 263, niveles: ['luna','luna','hecho','hecho'] },
+  { codigo: 'da', nombre: 'Danés', lecciones: 137, niveles: ['luna','luna','hecho','hecho'] },
+  { codigo: 'en', nombre: 'Inglés', lecciones: 157, niveles: ['luna','luna','hecho','hecho'] },
+  { codigo: 'fr', nombre: 'Francés', lecciones: 164, niveles: ['luna','luna','hecho','hecho'] },
+  { codigo: 'de', nombre: 'Alemán', lecciones: 160, niveles: ['luna','luna','hecho','hecho'] },
+  { codigo: 'ja', nombre: 'Japonés', lecciones: 136, niveles: ['luna','luna','hecho','hecho'] },
+  { codigo: 'it', nombre: 'Italiano', lecciones: 149, niveles: ['luna','luna','hecho','hecho'] },
+  { codigo: 'ko', nombre: 'Coreano', lecciones: 166, niveles: ['luna','luna','hecho','hecho'] },
+  { codigo: 'pt', nombre: 'Portugués', lecciones: 148, niveles: ['luna','luna','hecho','hecho'] },
+  { codigo: 'ru', nombre: 'Ruso', lecciones: 174, niveles: ['luna','luna','hecho','hecho'] },
+  { codigo: 'zh', nombre: 'Chino', lecciones: 0, niveles: ['falta','falta','falta','falta'] },
+  { codigo: 'tr', nombre: 'Turco', lecciones: 3, niveles: ['medias','falta','falta','falta'] },
+  { codigo: 'nl', nombre: 'Neerlandés', lecciones: 3, niveles: ['medias','falta','falta','falta'] },
+  { codigo: 'sv', nombre: 'Sueco', lecciones: 3, niveles: ['medias','falta','falta','falta'] },
+  { codigo: 'el', nombre: 'Griego', lecciones: 3, niveles: ['medias','falta','falta','falta'] },
+  { codigo: 'pl', nombre: 'Polaco', lecciones: 3, niveles: ['medias','falta','falta','falta'] },
+  { codigo: 'no', nombre: 'Noruego', lecciones: 3, niveles: ['medias','falta','falta','falta'] },
+  { codigo: 'id', nombre: 'Indonesio', lecciones: 3, niveles: ['medias','falta','falta','falta'] },
+  { codigo: 'ro', nombre: 'Rumano', lecciones: 3, niveles: ['medias','falta','falta','falta'] },
+  { codigo: 'th', nombre: 'Tailandés', lecciones: 3, niveles: ['medias','falta','falta','falta'] },
 ];
-// -------------------------------------------------------------------------
-
-const TEXTO = { hecho: 'Hecho (revisado por ti, Opus y otra IA)', opusia: 'Revisado por Opus y otra IA', opus: 'Revisado por Opus', sinrevisar: 'Hecho, sin revisión', medias: 'A medias', falta: 'Por hacer' };
-const SIGNO = { hecho: '✓', opusia: '2', opus: '1', sinrevisar: '0', medias: '½', falta: '–' };
-const ESCRITO = { hecho: 1, opusia: 1, opus: 1, sinrevisar: 1, medias: 0.5, falta: 0 };
+const TEXTO = { hecho: 'Hecho, sin revisar', luna: 'Revisado por Luna', lunaopus: 'Revisado por Luna y Opus', lunaopussol: 'Revisado por Luna, Opus y Sol', humano: 'Revisado por Luna, Opus, Sol y un humano', medias: 'A medias', falta: 'Por hacer' };
+const SIGNO = { hecho: '0', luna: '1', lunaopus: '2', lunaopussol: '3', humano: '✓', medias: '½', falta: '–' };
+const ESCRITO = { hecho: 1, luna: 1, lunaopus: 1, lunaopussol: 1, humano: 1, medias: 0.5, falta: 0 };
+const ESTADOS_REVISION = ['hecho', 'luna', 'lunaopus', 'lunaopussol', 'humano'];
 const FILTROS = [
   ['todos', 'Todos', () => true],
   ['empezados', 'Con algo hecho', c => c.niveles.some(n => n !== 'falta')],
-  ['revisar', 'Con algo por revisar', c => c.niveles.some(n => ['sinrevisar', 'opus', 'opusia'].includes(n))],
+  ['revisar', 'Con algo por revisar', c => c.niveles.some(n => n === 'hecho' || n === 'medias')],
   ['vacios', 'Sin empezar', c => c.niveles.every(n => n === 'falta')],
 ];
 let filtro = 'todos';
@@ -154,10 +154,11 @@ function pintarResumen() {
   const cuenta = estado => todos.filter(n => n === estado).length;
   const datos = [
     [CURSOS.length, 'idiomas'],
-    [cuenta('hecho'), `niveles hechos del todo, de ${todos.length}`],
-    [cuenta('opusia'), 'revisados por Opus y otra IA'],
-    [cuenta('opus'), 'revisados por Opus'],
-    [cuenta('sinrevisar'), 'hechos, sin revisión'],
+    [todos.filter(n => ESTADOS_REVISION.includes(n)).length, `niveles hechos, de ${todos.length}`],
+    [cuenta('hecho'), 'hechos, sin revisar'],
+    [cuenta('luna'), 'revisados por Luna'],
+    [cuenta('lunaopus'), 'revisados por Luna y Opus'],
+    [cuenta('lunaopussol') + cuenta('humano'), 'revisados por Luna, Opus y Sol'],
     [cuenta('falta'), 'por hacer'],
     [CURSOS.reduce((s, c) => s + c.lecciones, 0), 'lecciones en total'],
   ];
@@ -168,7 +169,7 @@ function pintarResumen() {
     caja.append(d);
   }
   const barra = document.getElementById('barra');
-  for (const estado of ['hecho', 'opusia', 'opus', 'sinrevisar']) {
+  for (const estado of ESTADOS_REVISION) {
     const i = el('i');
     i.style.background = `var(--${estado})`;
     i.style.width = (cuenta(estado) / todos.length * 100) + '%';
@@ -181,10 +182,11 @@ function pintarResumen() {
 function pintarBarras() {
   const todos = CURSOS.flatMap(c => c.niveles);
   const pasos = [
-    ['Escrito', 'sinrevisar', ['sinrevisar', 'opus', 'opusia', 'hecho']],
-    ['Revisado por Opus', 'opus', ['opus', 'opusia', 'hecho']],
-    ['Opus + otra IA', 'opusia', ['opusia', 'hecho']],
-    ['Opus + otra IA + tú', 'hecho', ['hecho']],
+    ['Hecho', 'hecho', ESTADOS_REVISION],
+    ['Revisado por Luna', 'luna', ['luna', 'lunaopus', 'lunaopussol', 'humano']],
+    ['Luna y Opus', 'lunaopus', ['lunaopus', 'lunaopussol', 'humano']],
+    ['Luna, Opus y Sol', 'lunaopussol', ['lunaopussol', 'humano']],
+    ['También por un humano', 'humano', ['humano']],
   ];
   const caja = document.getElementById('barras');
   for (const [texto, color, estados] of pasos) {

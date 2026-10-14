@@ -49,6 +49,40 @@
   "でかけます": {
    "es": "salgo (de casa)",
    "pron": "dekakemasu"
+  },
+  "今朝": {
+   "es": "esta mañana",
+   "pron": "kesa",
+   "consejo": "Lectura: けさ."
+  },
+  "昨夜": {
+   "es": "anoche",
+   "pron": "sakuya",
+   "consejo": "Lectura: さくや."
+  },
+  "行く": {
+   "es": "ir",
+   "pron": "iku",
+   "consejo": "Lectura: いく."
+  },
+  "早く": {
+   "es": "temprano; rápido",
+   "pron": "hayaku",
+   "consejo": "Lectura: はやく."
+  },
+  "ねました": {
+   "es": "me acosté; dormí",
+   "pron": "nemashita"
+  },
+  "食後": {
+   "es": "después de comer",
+   "pron": "shokugo",
+   "consejo": "Lectura: しょくご."
+  },
+  "終電": {
+   "es": "último tren",
+   "pron": "shuuden",
+   "consejo": "Lectura: しゅうでん."
   }
  },
  "bloques": [
@@ -108,7 +142,14 @@
     "さんぽ",
     "べんきょう",
     "でかける",
-    "でかけます"
+    "でかけます",
+    "今朝",
+    "昨夜",
+    "行く",
+    "早く",
+    "ねました",
+    "食後",
+    "終電"
    ]
   },
   {
@@ -225,9 +266,43 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Nota sobre los horarios",
+   "frases": [
+    {
+     "ja": "今朝、学校 へ 行く 前 に 朝ご飯 を 食べました。",
+     "es": "Esta mañana desayuné antes de ir a la escuela."
+    },
+    {
+     "ja": "昨夜 は 早く ねました。",
+     "es": "Anoche me acosté temprano."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué hizo antes de ir a la escuela?",
+   "id": "ja039-1",
+   "opciones": [
+    {
+     "texto": "Desayunó.",
+     "explicacion": "行く 前 に 朝ご飯 を 食べました.",
+     "correcta": true
+    },
+    {
+     "texto": "Cenó.",
+     "explicacion": "No aparece ばんごはん."
+    },
+    {
+     "texto": "Tomó el último tren.",
+     "explicacion": "No aparece 終電."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Cómo dices «antes de dormir»?",
-   "id": "ja039-1",
+   "id": "ja039-2",
    "opciones": [
     {
      "texto": "ねる まえに",
@@ -247,7 +322,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué significa «たべた あと で»?",
-   "id": "ja039-2",
+   "id": "ja039-3",
    "opciones": [
     {
      "texto": "Después de comer.",
@@ -268,7 +343,7 @@
    "tipo": "huecos",
    "pregunta": "Después de comer, doy un paseo.",
    "frase": "ごはん を ___ 、 さんぽ を します。",
-   "id": "ja039-3",
+   "id": "ja039-4",
    "opciones": [
     {
      "texto": "たべた あと で",
@@ -289,7 +364,7 @@
    "tipo": "huecos",
    "pregunta": "Antes de dormir, me cepillo los dientes.",
    "frase": "___ 、 はみがき を します。",
-   "id": "ja039-4",
+   "id": "ja039-5",
    "opciones": [
     {
      "texto": "ねる まえに",
@@ -310,7 +385,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "つかれた とき、 はやく ねます。",
-   "id": "ja039-5",
+   "id": "ja039-6",
    "opciones": [
     {
      "texto": "Cuando estoy cansado, me acuesto temprano.",
@@ -331,7 +406,7 @@
    "tipo": "test",
    "pregunta": "¿Qué pide?",
    "audio": "でかける まえに、 かぎ を もって ください。",
-   "id": "ja039-6",
+   "id": "ja039-7",
    "opciones": [
     {
      "texto": "Pide que lleve la llave antes de salir.",
@@ -354,7 +429,7 @@
    "frase": "にほん へ いく とき",
    "traduccion": "Cuando voy a Japón.",
    "explicacion": "いく とき = cuando voy.",
-   "id": "ja039-7"
+   "id": "ja039-8"
   }
  ],
  "intro": "Ahora aprenderás a situar las acciones en el tiempo: cuándo pasa algo, qué pasa antes y qué pasa después. Son frases que usarás todos los días."

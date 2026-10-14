@@ -47,6 +47,26 @@
   "たいせつ": {
    "es": "importante, valioso",
    "pron": "taisetsu"
+  },
+  "誕生日": {
+   "es": "cumpleaños",
+   "pron": "tanjoubi",
+   "consejo": "Lectura: たんじょうび."
+  },
+  "手紙": {
+   "es": "carta",
+   "pron": "tegami",
+   "consejo": "Lectura: てがみ."
+  },
+  "お祝い": {
+   "es": "celebración; felicitación",
+   "pron": "oiwai",
+   "consejo": "Lectura: おいわい."
+  },
+  "贈り物": {
+   "es": "regalo",
+   "pron": "okurimono",
+   "consejo": "Lectura: おくりもの."
   }
  },
  "bloques": [
@@ -105,7 +125,11 @@
     "やさしい",
     "ちず",
     "つくります",
-    "たいせつ"
+    "たいせつ",
+    "誕生日",
+    "手紙",
+    "お祝い",
+    "贈り物"
    ]
   },
   {
@@ -186,9 +210,43 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Mensaje de cumpleaños",
+   "frases": [
+    {
+     "ja": "誕生日 に 友達 から 手紙 を もらいました。",
+     "es": "Por mi cumpleaños recibí una carta de un amigo."
+    },
+    {
+     "ja": "家族 は お祝い に 贈り物 を くれました。",
+     "es": "Mi familia me dio un regalo para celebrarlo."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué recibió de su amigo?",
+   "id": "ja036-1",
+   "opciones": [
+    {
+     "texto": "Una carta.",
+     "explicacion": "友達 から 手紙 を もらいました.",
+     "correcta": true
+    },
+    {
+     "texto": "Un mapa.",
+     "explicacion": "No aparece ちず."
+    },
+    {
+     "texto": "Una tarta.",
+     "explicacion": "No aparece ケーキ."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «わたし は ともだち に はな を あげました»?",
-   "id": "ja036-1",
+   "id": "ja036-2",
    "opciones": [
     {
      "texto": "Yo di flores a mi amigo.",
@@ -209,7 +267,7 @@
    "tipo": "huecos",
    "pregunta": "Mi amigo me dio un libro.",
    "frase": "ともだち が わたし に ほん を ___ 。",
-   "id": "ja036-2",
+   "id": "ja036-3",
    "opciones": [
     {
      "texto": "くれました",
@@ -230,7 +288,7 @@
    "tipo": "huecos",
    "pregunta": "Recibí un libro de mi amigo.",
    "frase": "わたし は ともだち から ほん を ___ 。",
-   "id": "ja036-3",
+   "id": "ja036-4",
    "opciones": [
     {
      "texto": "もらいました",
@@ -251,7 +309,7 @@
    "tipo": "huecos",
    "pregunta": "Yo le di una tarta a mi amigo.",
    "frase": "わたし は ともだち に ケーキ を ___ 。",
-   "id": "ja036-4",
+   "id": "ja036-5",
    "opciones": [
     {
      "texto": "あげました",
@@ -272,7 +330,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "やまだ さん は わたし に ほん を くれました。",
-   "id": "ja036-5",
+   "id": "ja036-6",
    "opciones": [
     {
      "texto": "Yamada me dio un libro.",
@@ -293,7 +351,7 @@
    "tipo": "test",
    "pregunta": "¿Qué hizo ayer?",
    "audio": "きのう、 ケーキ を もらいました。",
-   "id": "ja036-6",
+   "id": "ja036-7",
    "opciones": [
     {
      "texto": "Recibió una tarta.",
@@ -316,7 +374,7 @@
    "frase": "ともだち から ほん を もらいました",
    "traduccion": "Recibí un libro de mi amigo.",
    "explicacion": "から marca de quién viene el regalo.",
-   "id": "ja036-7"
+   "id": "ja036-8"
   }
  ],
  "intro": "Hoy aprendemos a decir quién da y quién recibe. En japonés cambia el verbo según la dirección del regalo, y eso es clave para no sonar raro."

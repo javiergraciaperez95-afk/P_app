@@ -47,6 +47,86 @@
    "es": "pregunta",
    "pron": "SPØRS-mol",
    "consejo": "La ø suena «ö»."
+  },
+  "møbleret": {
+   "es": "amueblado",
+   "pron": "MØB-le-ret"
+  },
+  "kvadratmeter": {
+   "es": "metros cuadrados",
+   "pron": "kva-DRAT-me-ter"
+  },
+  "husleje": {
+   "es": "alquiler mensual",
+   "pron": "HUS-lai-e"
+  },
+  "separat": {
+   "es": "por separado",
+   "pron": "se-pa-RAT"
+  },
+  "fremvisning": {
+   "es": "visita para ver una vivienda",
+   "pron": "frem-VIS-ning"
+  },
+  "huslejen": {
+   "es": "el alquiler",
+   "pron": "HUS-lai-en"
+  },
+  "måneden": {
+   "es": "el mes",
+   "pron": "MO-ne-den"
+  },
+  "rolig": {
+   "es": "tranquilo",
+   "pron": "RO-lig"
+  },
+  "kontakt": {
+   "es": "contacto; contactar",
+   "pron": "kon-TAKT"
+  },
+  "torsdag": {
+   "es": "jueves",
+   "pron": "TOR-dag"
+  },
+  "kl": {
+   "es": "a las; hora (abreviatura de «klokken»)",
+   "pron": "kel"
+  },
+  "rummet": {
+   "es": "la habitación",
+   "pron": "RUM-et"
+  },
+  "køkken": {
+   "es": "cocina",
+   "pron": "KØ-ken"
+  },
+  "bad": {
+   "es": "baño",
+   "pron": "bath"
+  },
+  "deler": {
+   "es": "compartes",
+   "pron": "DE-ler"
+  },
+  "betales": {
+   "es": "se pagan",
+   "pron": "be-TA-les"
+  },
+  "rydder op": {
+   "es": "recoge; ordena",
+   "pron": "RYD-er op"
+  },
+  "værelset": {
+   "es": "la habitación",
+   "pron": "VÆ-rel-set"
+  },
+  "el": {
+   "es": "electricidad",
+   "pron": "el"
+  },
+  "internet": {
+   "es": "internet",
+   "pron": "IN-ter-net"
   }
  },
  "bloques": [
@@ -101,7 +181,27 @@
     "cyklerne",
     "forståelsen",
     "forståelse",
-    "spørgsmål"
+    "spørgsmål",
+    "møbleret",
+    "kvadratmeter",
+    "husleje",
+    "separat",
+    "fremvisning",
+    "huslejen",
+    "måneden",
+    "rolig",
+    "kontakt",
+    "torsdag",
+    "kl",
+    "rummet",
+    "køkken",
+    "bad",
+    "deler",
+    "betales",
+    "rydder op",
+    "værelset",
+    "el",
+    "internet"
    ]
   },
   {
@@ -173,9 +273,159 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Værelse til leje",
+   "frases": [
+    {
+     "da": "Værelse til leje i Odense C fra 1. september.",
+     "es": "Habitación en alquiler en Odense C desde el 1 de septiembre.",
+     "analisis": [
+      [
+       "til leje",
+       "en alquiler"
+      ],
+      [
+       "fra 1. september",
+       "desde el 1 de septiembre"
+      ]
+     ]
+    },
+    {
+     "da": "Rummet er møbleret og har 16 kvadratmeter.",
+     "es": "La habitación está amueblada y tiene 16 metros cuadrados.",
+     "analisis": [
+      [
+       "møbleret",
+       "amueblada"
+      ],
+      [
+       "kvadratmeter",
+       "metros cuadrados"
+      ]
+     ]
+    },
+    {
+     "da": "Du deler køkken og bad med to andre studerende.",
+     "es": "Compartes cocina y baño con otros dos estudiantes.",
+     "analisis": [
+      [
+       "deler",
+       "compartes"
+      ],
+      [
+       "to andre",
+       "otros dos"
+      ]
+     ]
+    },
+    {
+     "da": "Huslejen er 3.400 kroner om måneden; el og internet betales separat.",
+     "es": "El alquiler es de 3.400 coronas al mes; la electricidad e internet se pagan aparte.",
+     "analisis": [
+      [
+       "huslejen",
+       "el alquiler"
+      ],
+      [
+       "om måneden",
+       "al mes"
+      ],
+      [
+       "separat",
+       "aparte"
+      ]
+     ]
+    },
+    {
+     "da": "Vi søger en rolig lejer, som rydder op efter sig.",
+     "es": "Buscamos un inquilino tranquilo que recoja después de usar los espacios.",
+     "analisis": [
+      [
+       "rolig lejer",
+       "inquilino tranquilo"
+      ]
+     ]
+    },
+    {
+     "da": "Kontakt os, hvis du vil se værelset. Der er fremvisning torsdag kl. 17.",
+     "es": "Contáctanos si quieres ver la habitación. La visita es el jueves a las 17.",
+     "analisis": [
+      [
+       "se værelset",
+       "ver la habitación"
+      ],
+      [
+       "fremvisning",
+       "visita"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿En qué ciudad está la habitación?",
+   "id": "da016-1",
+   "opciones": [
+    {
+     "texto": "En Odense C.",
+     "explicacion": "El anuncio especifica esa ubicación.",
+     "correcta": true
+    },
+    {
+     "texto": "En Aarhus.",
+     "explicacion": "Esa ciudad no aparece."
+    },
+    {
+     "texto": "En Copenhague.",
+     "explicacion": "Esa ciudad no aparece."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué gastos se pagan aparte del alquiler?",
+   "id": "da016-2",
+   "opciones": [
+    {
+     "texto": "La electricidad e internet.",
+     "explicacion": "El anuncio dice que se pagan por separado.",
+     "correcta": true
+    },
+    {
+     "texto": "El agua y la calefacción.",
+     "explicacion": "No se mencionan."
+    },
+    {
+     "texto": "Los muebles.",
+     "explicacion": "La habitación ya está amueblada."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Cuándo se puede visitar la habitación?",
+   "id": "da016-3",
+   "opciones": [
+    {
+     "texto": "El jueves a las 17.",
+     "explicacion": "El anuncio indica esa hora.",
+     "correcta": true
+    },
+    {
+     "texto": "El martes a las 17.",
+     "explicacion": "El día es jueves."
+    },
+    {
+     "texto": "El 1 de septiembre a las 17.",
+     "explicacion": "Esa es la fecha desde la que se alquila."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «Til leje»?",
-   "id": "da016-1",
+   "id": "da016-4",
    "opciones": [
     {
      "texto": "En alquiler.",
@@ -195,7 +445,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué significa «Forbudt»?",
-   "id": "da016-2",
+   "id": "da016-5",
    "opciones": [
     {
      "texto": "Prohibido.",
@@ -216,7 +466,7 @@
    "tipo": "huecos",
    "pregunta": "pista: aparcar (pasiva)",
    "frase": "Der må ikke ___ foran døren.",
-   "id": "da016-3",
+   "id": "da016-6",
    "opciones": [
     {
      "texto": "parkeres",
@@ -237,7 +487,7 @@
    "tipo": "huecos",
    "pregunta": "pista: estar",
    "frase": "Cyklerne skal ___ i kælderen.",
-   "id": "da016-4",
+   "id": "da016-7",
    "opciones": [
     {
      "texto": "stå",
@@ -258,7 +508,7 @@
    "tipo": "traduccion",
    "pregunta": "¿Qué significa?",
    "frase": "Vi maler opgangen i næste uge.",
-   "id": "da016-5",
+   "id": "da016-8",
    "opciones": [
     {
      "texto": "Pintamos el portal la semana que viene.",
@@ -279,7 +529,7 @@
    "tipo": "test",
    "pregunta": "Escucha. ¿Qué significa?",
    "audio": "Tak for forståelsen!",
-   "id": "da016-6",
+   "id": "da016-9",
    "opciones": [
     {
      "texto": "¡Gracias por la comprensión!",
@@ -302,7 +552,7 @@
    "frase": "Der må ikke parkeres foran døren",
    "traduccion": "No se puede aparcar delante de la puerta",
    "explicacion": "«der» + «må ikke» + pasiva.",
-   "id": "da016-7"
+   "id": "da016-10"
   },
   {
    "tipo": "escribir",
@@ -312,7 +562,7 @@
     "parkering er forbudt"
    ],
    "explicacion": "Hay dos formas válidas.",
-   "id": "da016-8"
+   "id": "da016-11"
   }
  ],
  "intro": "Hoy lees anuncios y avisos, que se escriben con pocas palabras. Hay que entender lo importante de un vistazo."

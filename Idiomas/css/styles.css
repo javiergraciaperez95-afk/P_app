@@ -2612,3 +2612,98 @@ body.en-precios { overflow: hidden; }
   .px-lado-oro[aria-pressed="false"], .px-llega, .px-ahorro, .px-valor, .px-ayuda, .px-cinta-corazon, .px-entra, .px-publico canvas { animation: none !important; }
   .px-barra i { transition-delay: 0s; }
 }
+
+/* Cabecera de estudio: una superficie tranquila y una sola jerarquía. */
+body.en-estudio .cabecera {
+  flex-wrap: nowrap;
+  gap: 20px;
+  padding: 14px max(20px, calc((100% - 1280px) / 2 + 20px));
+  border-bottom: 2px solid var(--h-borde);
+  background-image: none;
+}
+body.en-estudio .cabecera-nav { display: none; }
+body.en-estudio .marca {
+  flex: 0 1 190px;
+  gap: 12px;
+  font-family: var(--h-texto);
+  font-size: 1.25rem;
+}
+body.en-estudio .marca-titulo {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--h-texto);
+  line-height: 1.25;
+}
+body.en-estudio .marca-textos { gap: 4px; align-items: flex-start; }
+body.en-estudio .marca small {
+  display: flex; align-items: center; gap: 6px; max-width: 100%;
+  font-family: var(--h-texto); font-size: .8rem;
+  line-height: 1.4; letter-spacing: 0;
+}
+body.en-estudio #marca-subtitulo { overflow: hidden; text-overflow: ellipsis; }
+body.en-estudio #marca-bandera { display: inline-flex; flex: none; }
+body.en-estudio .marca-curso .bandera { width: 18px; height: 12px; }
+body.en-estudio .marca-logo { display: block; width: 44px; height: 44px; }
+body.en-estudio .cabecera .menu {
+  flex: 1; min-width: 0; max-width: none; margin: 0; padding: 0; background: none;
+}
+body.en-estudio .menu ul { flex-wrap: nowrap; align-items: center; gap: 8px; }
+body.en-estudio .menu-enlace {
+  min-height: 44px; margin: 2px; padding: 10px 12px;
+  font-family: var(--h-texto); font-size: .9rem; font-weight: 700;
+  background: transparent; color: var(--h-suave); border-radius: 0;
+  box-shadow: 0 -2px 0 var(--h-borde), 0 2px 0 var(--h-borde),
+    -2px 0 0 var(--h-borde), 2px 0 0 var(--h-borde);
+}
+body.en-estudio .menu-enlace:hover { background: var(--h-resalte); color: var(--h-tinta); }
+body.en-estudio .menu-enlace[aria-current="page"] {
+  background: #c8445a; color: #fff;
+  box-shadow: 0 -2px 0 #c8445a, 0 2px 0 #c8445a,
+    -2px 0 0 #c8445a, 2px 0 0 #c8445a, 2px 4px 0 var(--h-sombra);
+}
+body.en-estudio .cabecera-botones { gap: 8px; }
+body.en-estudio .cabecera .btn,
+.cabecera-ajustes > summary {
+  min-height: 44px; height: 44px; margin: 2px; border: 0;
+  border-radius: 0; background: var(--h-papel-2);
+  box-shadow: 0 -2px 0 var(--h-borde), 0 2px 0 var(--h-borde),
+    -2px 0 0 var(--h-borde), 2px 0 0 var(--h-borde), 2px 4px 0 var(--h-sombra);
+  font-family: var(--h-texto); font-weight: 700; font-size: .9rem; color: var(--h-tinta);
+}
+body.en-estudio .cabecera .btn:active { transform: none; }
+.cabecera-ajustes { position: relative; }
+.cabecera-ajustes > summary {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 0 12px; cursor: pointer; list-style: none; white-space: nowrap;
+}
+.cabecera-ajustes > summary::-webkit-details-marker { display: none; }
+.cabecera-ajustes > summary:hover,
+.cabecera-ajustes[open] > summary { background: var(--h-papel-2); }
+.cabecera-ajustes-panel {
+  position: absolute; right: 0; top: calc(100% + 12px); z-index: 65;
+  display: flex; align-items: center; gap: 10px; padding: 16px;
+  background: var(--h-fondo); border: 0; border-radius: 0;
+  box-shadow: 0 -2px 0 var(--h-borde), 0 2px 0 var(--h-borde),
+    -2px 0 0 var(--h-borde), 2px 0 0 var(--h-borde), 4px 6px 0 var(--h-sombra);
+}
+body.en-estudio .cabecera-ajustes .sel-idioma {
+  max-width: 145px; font-family: var(--h-texto); font-weight: 700; font-size: .9rem;
+}
+body.en-estudio .cabecera-ajustes .idioma-opcion {
+  font-family: var(--h-texto); font-weight: 700;
+}
+body.en-estudio .menu-aviso { top: 0; right: 0; min-width: 16px; height: 16px; font-size: .65rem; }
+@media (max-width: 1100px) {
+  body.en-estudio .cabecera { flex-wrap: wrap; gap: 10px 16px; }
+  body.en-estudio .marca { flex: 1; }
+  body.en-estudio .cabecera .menu { order: 3; flex-basis: 100%; }
+  body.en-estudio .menu ul { justify-content: center; }
+}
+@media (max-width: 600px) {
+  body.en-estudio .cabecera { padding: 10px 12px; }
+  body.en-estudio:not(.en-inicio):not(.sin-curso) .marca-logo { display: block; width: 40px; height: 40px; }
+  body.en-estudio .menu ul { overflow-x: auto; justify-content: flex-start; padding: 4px 2px; }
+  body.en-estudio .menu-enlace { padding: 10px; font-size: .85rem; white-space: nowrap; }
+  body.en-estudio .cabecera-ajustes-panel { padding: 12px; gap: 8px; }
+}

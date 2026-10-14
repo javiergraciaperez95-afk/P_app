@@ -22,6 +22,41 @@
   "ふっていました": {
    "es": "estaba lloviendo",
    "pron": "futte imashita"
+  },
+  "価格": {
+   "es": "precio",
+   "pron": "kakaku",
+   "consejo": "Lectura: かかく."
+  },
+  "比較": {
+   "es": "comparación",
+   "pron": "hikaku",
+   "consejo": "Lectura: ひかく."
+  },
+  "購入": {
+   "es": "compra",
+   "pron": "kounyuu",
+   "consejo": "Lectura: こうにゅう."
+  },
+  "保証期間": {
+   "es": "periodo de garantía",
+   "pron": "hoshou kikan",
+   "consejo": "Lectura: ほしょうきかん."
+  },
+  "機能": {
+   "es": "función",
+   "pron": "kinou",
+   "consejo": "Lectura: きのう."
+  },
+  "素材": {
+   "es": "material",
+   "pron": "sozai",
+   "consejo": "Lectura: そざい."
+  },
+  "返品": {
+   "es": "devolución",
+   "pron": "henpin",
+   "consejo": "Lectura: へんぴん."
   }
  },
  "bloques": [
@@ -29,8 +64,7 @@
    "tipo": "explicacion",
    "titulo": "〜にもかかわらず: a pesar de",
    "texto": [
-    "Con un nombre o una frase: **あめ にもかかわらず、 おおく の ひと が きました** (a pesar de la lluvia, vino mucha gente).",
-    "Es más formal que **〜のに**. Se usa mucho en noticias."
+    "Con nombres se une directamente: **あめ にもかかわらず**. También puede seguir a una frase en forma normal: **あめ が ふっている にもかかわらず、 しあい は つづきました** (a pesar de que llovía, el partido continuó). Es más formal que **のに**."
    ]
   },
   {
@@ -43,10 +77,9 @@
   },
   {
    "tipo": "explicacion",
-   "titulo": "〜にしては: para ser (algo)",
+   "titulo": "〜にしては: para ser; considerando que",
    "texto": [
-    "Para juzgar algo según quién lo hace o lo que es: **がくせい にしては、 にほんご が じょうず です** (para ser estudiante, su japonés es bueno).",
-    "Va después de un nombre."
+    "Sirve para valorar algo frente a lo esperable: **がくせい にしては、 にほんご が じょうず です**. Se usa con nombres y también con verbos en forma normal."
    ]
   },
   {
@@ -83,7 +116,14 @@
     "わりに",
     "にしては",
     "おおく",
-    "ふっていました"
+    "ふっていました",
+    "価格",
+    "比較",
+    "購入",
+    "保証期間",
+    "機能",
+    "素材",
+    "返品"
    ]
   },
   {
@@ -156,9 +196,59 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Comparar antes de comprar",
+   "frases": [
+    {
+     "ja": "この 商品 は 値段 の わりに、機能 が 多い です。高い 商品 にしては、保証期間 が 短い と 思います。購入 する 前 に、素材 と 送料 も 比較 します。",
+     "es": "Este producto tiene muchas funciones para su precio. Para ser un producto caro, creo que el periodo de garantía es corto. Antes de comprarlo, también comparo el material y los gastos de envío."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué le parece corto a quien escribe?",
+   "id": "ja068-1",
+   "opciones": [
+    {
+     "texto": "El periodo de garantía.",
+     "explicacion": "La lectura lo indica explícitamente.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué compara antes de comprar?",
+   "id": "ja068-2",
+   "opciones": [
+    {
+     "texto": "El material y los gastos de envío.",
+     "explicacion": "La respuesta aparece en la lectura.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «あめ にもかかわらず、 おおく の ひと が きました»?",
-   "id": "ja068-1",
+   "id": "ja068-3",
    "opciones": [
     {
      "texto": "A pesar de la lluvia, vino mucha gente.",
@@ -178,7 +268,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué expresa «〜わりに»?",
-   "id": "ja068-2",
+   "id": "ja068-4",
    "opciones": [
     {
      "texto": "Lo que se espera según la situación.",
@@ -199,7 +289,7 @@
    "tipo": "huecos",
    "pregunta": "Considerando que es barato, está rico.",
    "frase": "この みせ は やすい ___ 、 おいしい です。",
-   "id": "ja068-3",
+   "id": "ja068-5",
    "opciones": [
     {
      "texto": "わりに",
@@ -220,7 +310,7 @@
    "tipo": "huecos",
    "pregunta": "Para ser estudiante, su japonés es bueno.",
    "frase": "がくせい ___ 、 にほんご が じょうず です。",
-   "id": "ja068-4",
+   "id": "ja068-6",
    "opciones": [
     {
      "texto": "にしては",
@@ -241,7 +331,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "やすい わりに、 おいしい です。",
-   "id": "ja068-5",
+   "id": "ja068-7",
    "opciones": [
     {
      "texto": "Considerando que es barato, está rico.",
@@ -262,7 +352,7 @@
    "tipo": "test",
    "pregunta": "¿Qué cuenta?",
    "audio": "あめ にもかかわらず、 おおく の ひと が きました。",
-   "id": "ja068-6",
+   "id": "ja068-8",
    "opciones": [
     {
      "texto": "Que vino mucha gente aunque llovía.",
@@ -285,12 +375,12 @@
    "frase": "けさ あめ が ふっていました",
    "traduccion": "Esta mañana estaba lloviendo.",
    "explicacion": "ふっていました = estaba lloviendo.",
-   "id": "ja068-7"
+   "id": "ja068-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Cuál tiene un sentido parecido a «〜にもかかわらず»?",
-   "id": "ja068-8",
+   "id": "ja068-10",
    "opciones": [
     {
      "texto": "〜のに",

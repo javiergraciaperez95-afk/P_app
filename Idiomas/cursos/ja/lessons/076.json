@@ -22,6 +22,41 @@
   "むり": {
    "es": "esfuerzo excesivo; imposible",
    "pron": "muri"
+  },
+  "責任": {
+   "es": "responsabilidad",
+   "pron": "sekinin",
+   "consejo": "Lectura: せきにん."
+  },
+  "判断": {
+   "es": "juicio",
+   "pron": "handan",
+   "consejo": "Lectura: はんだん."
+  },
+  "社会": {
+   "es": "sociedad",
+   "pron": "shakai",
+   "consejo": "Lectura: しゃかい."
+  },
+  "選択肢": {
+   "es": "opción",
+   "pron": "sentakushi",
+   "consejo": "Lectura: せんたくし."
+  },
+  "義務": {
+   "es": "deber",
+   "pron": "gimu",
+   "consejo": "Lectura: ぎむ."
+  },
+  "公正": {
+   "es": "imparcialidad",
+   "pron": "kousei",
+   "consejo": "Lectura: こうせい."
+  },
+  "迷惑行為": {
+   "es": "conducta molesta",
+   "pron": "meiwaku koui",
+   "consejo": "Lectura: めいわくこうい."
   }
  },
  "bloques": [
@@ -30,7 +65,7 @@
    "titulo": "〜べきだ: deber (opinión)",
    "texto": [
     "Para decir lo que debería hacerse, según tu opinión: verbo en forma de diccionario + **べき です**: **まいにち にほんご を べんきょう する べき です** (deberías estudiar japonés cada día).",
-    "Es un consejo firme: no es una orden de alguien, es lo que tú piensas que es correcto."
+    "Es una recomendación firme o un juicio; puede sonar impositivo si se dirige a otra persona. Con **する** se usan **するべき** y **すべき**."
    ]
   },
   {
@@ -38,7 +73,7 @@
    "titulo": "〜べきではない: no debería",
    "texto": [
     "Para decir lo que no debería hacerse: verbo en forma de diccionario + **べき では ありません**: **ひとり で なやむ べき では ありません** (no deberías preocuparte tú solo).",
-    "Con el verbo **する** queda **する べき**."
+    "Con **する** son válidas **する べき** y **す べき**."
    ]
   },
   {
@@ -70,7 +105,14 @@
     "もんだい",
     "なやむ",
     "では",
-    "むり"
+    "むり",
+    "責任",
+    "判断",
+    "社会",
+    "選択肢",
+    "義務",
+    "公正",
+    "迷惑行為"
    ]
   },
   {
@@ -128,9 +170,59 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Una decisión responsable",
+   "frases": [
+    {
+     "ja": "その 問題 を 知って いる のに、何も しない のは よくありません。立場 が 違っても、相手 の 意見 を 聞く べきです。自分 の 選択 に 責任 を 持つ こと が 大切 です。",
+     "es": "Aunque conozcamos el problema, no está bien no hacer nada. Aunque las posturas sean distintas, debemos escuchar la opinión de la otra parte. Es importante responsabilizarse de las propias decisiones."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué debemos hacer aunque las posturas sean distintas?",
+   "id": "ja076-1",
+   "opciones": [
+    {
+     "texto": "Escuchar la opinión de la otra parte.",
+     "explicacion": "La lectura lo indica explícitamente.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué es importante respecto a las decisiones?",
+   "id": "ja076-2",
+   "opciones": [
+    {
+     "texto": "Responsabilizarse de ellas.",
+     "explicacion": "La respuesta aparece en la lectura.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «まいにち にほんご を べんきょう する べき です»?",
-   "id": "ja076-1",
+   "id": "ja076-3",
    "opciones": [
     {
      "texto": "Deberías estudiar japonés cada día.",
@@ -150,7 +242,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué forma se usa antes de «べき»?",
-   "id": "ja076-2",
+   "id": "ja076-4",
    "opciones": [
     {
      "texto": "La forma de diccionario.",
@@ -171,7 +263,7 @@
    "tipo": "huecos",
    "pregunta": "No deberías preocuparte tú solo.",
    "frase": "もんだい が ある とき は、 ひとり で ___ べき では ありません。",
-   "id": "ja076-3",
+   "id": "ja076-5",
    "opciones": [
     {
      "texto": "なやむ",
@@ -192,7 +284,7 @@
    "tipo": "huecos",
    "pregunta": "Deberías estudiar cada día.",
    "frase": "まいにち べんきょう ___ です。",
-   "id": "ja076-4",
+   "id": "ja076-6",
    "opciones": [
     {
      "texto": "する べき",
@@ -213,7 +305,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "まいにち にほんご を べんきょう する べき です。",
-   "id": "ja076-5",
+   "id": "ja076-7",
    "opciones": [
     {
      "texto": "Deberías estudiar japonés cada día.",
@@ -234,7 +326,7 @@
    "tipo": "test",
    "pregunta": "¿Qué aconseja?",
    "audio": "でも、 むり を する べき では ありません。",
-   "id": "ja076-6",
+   "id": "ja076-8",
    "opciones": [
     {
      "texto": "No forzarse.",
@@ -257,12 +349,12 @@
    "frase": "する べき です",
    "traduccion": "Deberías hacerlo.",
    "explicacion": "べき です = deber.",
-   "id": "ja076-7"
+   "id": "ja076-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Cuál significa «むり を する べき では ありません»?",
-   "id": "ja076-8",
+   "id": "ja076-10",
    "opciones": [
     {
      "texto": "No deberías forzarte.",

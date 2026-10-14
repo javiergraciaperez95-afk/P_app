@@ -69,6 +69,15 @@
         }
       ]
     },
+    {
+      "tipo": "texto",
+      "titulo": {"en": "A train timetable"},
+      "frases": [
+        {"es": "MADRID → TOLEDO | Salida 10:15 | Llegada 10:48 | Andén 6", "en": "MADRID → TOLEDO | Departure 10:15 | Arrival 10:48 | Platform 6", "analisis": [["Salida", "departure"], ["Llegada", "arrival"], ["Andén 6", "platform"]]},
+        {"es": "TOLEDO → MADRID | Salida 12:20 | Llegada 12:53 | Andén 2", "en": "TOLEDO → MADRID | Departure 12:20 | Arrival 12:53 | Platform 2", "analisis": [["Salida", "departure"], ["Llegada", "arrival"], ["Andén 2", "platform"]]},
+        {"es": "Aviso: El tren de las 10:15 sale con 15 minutos de retraso.", "en": "Notice: The 10:15 train is leaving 15 minutes late.", "analisis": [["Aviso", "notice"], ["sale con retraso", "is delayed"]]}
+      ]
+    },
     {"tipo": "vocabulario"},
     {
       "tipo": "huecos",
@@ -106,6 +115,20 @@
         "The journey takes 20 minutes": {"en": "That would be tarda 20 minutos."}
       },
       "correcta": "The train is 20 minutes late"
+    },
+    {
+      "tipo": "test",
+      "id": "de-viaje-lectura-1",
+      "pregunta": {"en": "According to the timetable, what time does the train from Madrid to Toledo arrive?"},
+      "opciones": {"10:48": {"en": "Read the arrival time in the first line."}, "10:15": {"en": "That is the departure time."}, "12:53": {"en": "That is the return train's arrival time."}},
+      "correcta": "10:48"
+    },
+    {
+      "tipo": "test",
+      "id": "de-viaje-lectura-2",
+      "pregunta": {"en": "What does the notice say about the 10:15 train?"},
+      "opciones": {"It is 15 minutes late": {"en": "Retraso means delay."}, "It arrives 15 minutes early": {"en": "The notice says sale con retraso."}, "It leaves from platform 15": {"en": "The platform is 6."}},
+      "correcta": "It is 15 minutes late"
     },
     {
       "tipo": "escribir",

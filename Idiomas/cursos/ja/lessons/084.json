@@ -14,6 +14,51 @@
   "すいて": {
    "es": "(forma て de すく) tener hambre (estar con hambre)",
    "pron": "suite"
+  },
+  "空腹": {
+   "es": "hambre",
+   "pron": "kuufuku",
+   "consejo": "Lectura: くうふく."
+  },
+  "苦痛": {
+   "es": "sufrimiento",
+   "pron": "kutsuu",
+   "consejo": "Lectura: くつう."
+  },
+  "我慢": {
+   "es": "paciencia; aguante",
+   "pron": "gaman",
+   "consejo": "Lectura: がまん."
+  },
+  "不安": {
+   "es": "inquietud",
+   "pron": "fuan",
+   "consejo": "Lectura: ふあん."
+  },
+  "疲労": {
+   "es": "cansancio",
+   "pron": "hirou",
+   "consejo": "Lectura: ひろう."
+  },
+  "眠気": {
+   "es": "somnolencia",
+   "pron": "nemuke",
+   "consejo": "Lectura: ねむけ."
+  },
+  "緊張": {
+   "es": "nervios; tensión",
+   "pron": "kinchou",
+   "consejo": "Lectura: きんちょう."
+  },
+  "心配事": {
+   "es": "preocupación",
+   "pron": "shinpai goto",
+   "consejo": "Lectura: しんぱいごと."
+  },
+  "食欲": {
+   "es": "apetito",
+   "pron": "shokuyoku",
+   "consejo": "Lectura: しょくよく."
   }
  },
  "bloques": [
@@ -21,7 +66,7 @@
    "tipo": "explicacion",
    "titulo": "〜てしょうがない: insoportable",
    "texto": [
-    "Para decir que sientes algo muy intensamente y no puedes evitarlo: adjetivo en forma て + **しょうがない**: **ふゆ は さむくて しょうがない です** (en invierno hace un frío insoportable).",
+    "Para expresar que un sentimiento o estado es muy intenso: adjetivo o verbo en forma て + **しょうがない**: **ふゆ は さむくて しょうがない です** (en invierno hace un frío insoportable).",
     "Con **しかたが ない** se dice lo mismo: **おなか が すいて しかたが ない** (tengo muchísima hambre)."
    ]
   },
@@ -29,8 +74,7 @@
    "tipo": "explicacion",
    "titulo": "Con nombres: con preocupación",
    "texto": [
-    "Con un sustantivo se usa **で**: **しんぱい で しょうがない** (estoy muy preocupado).",
-    "Es muy natural en la conversación."
+    "Con adjetivos -na y nombres se usa **で**: **しんぱい で しょうがない** (estoy muy preocupado). También se usa con verbos, como **あいたくて しょうがない** (tengo muchísimas ganas de verte)."
    ]
   },
   {
@@ -65,7 +109,16 @@
    "palabras": [
     "さむくて",
     "しょうがない",
-    "すいて"
+    "すいて",
+    "空腹",
+    "苦痛",
+    "我慢",
+    "不安",
+    "疲労",
+    "眠気",
+    "緊張",
+    "心配事",
+    "食欲"
    ]
   },
   {
@@ -97,9 +150,59 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Una tarde muy larga",
+   "frases": [
+    {
+     "ja": "試験 の 結果 が 心配 で しょうがありません。昼 から 何も 食べて いない ので、おなか も すいて しかたが ありません。早く 家 に 帰りたい です。",
+     "es": "Estoy muy preocupado por el resultado del examen. Como no he comido nada desde el mediodía, tengo muchísima hambre. Quiero volver pronto a casa."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Por qué está preocupado?",
+   "id": "ja084-1",
+   "opciones": [
+    {
+     "texto": "Por el resultado del examen.",
+     "explicacion": "La lectura lo indica explícitamente.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Desde cuándo no ha comido?",
+   "id": "ja084-2",
+   "opciones": [
+    {
+     "texto": "Desde el mediodía.",
+     "explicacion": "La respuesta aparece en la lectura.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «ふゆ は さむくて しょうがない です»?",
-   "id": "ja084-1",
+   "id": "ja084-3",
    "opciones": [
     {
      "texto": "El invierno hace un frío insoportable.",
@@ -119,7 +222,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué expresa «〜て しょうがない»?",
-   "id": "ja084-2",
+   "id": "ja084-4",
    "opciones": [
     {
      "texto": "Un sentimiento tan intenso que no se puede evitar.",
@@ -140,7 +243,7 @@
    "tipo": "huecos",
    "pregunta": "Tengo muchísima hambre.",
    "frase": "おなか が すいて ___ 。",
-   "id": "ja084-3",
+   "id": "ja084-5",
    "opciones": [
     {
      "texto": "しかたが ない",
@@ -161,7 +264,7 @@
    "tipo": "huecos",
    "pregunta": "Como hay examen, estoy muy preocupado.",
    "frase": "しけん が ある ので、 しんぱい で ___ です。",
-   "id": "ja084-4",
+   "id": "ja084-6",
    "opciones": [
     {
      "texto": "しょうがない",
@@ -182,7 +285,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "ふゆ は さむくて しょうがない です。",
-   "id": "ja084-5",
+   "id": "ja084-7",
    "opciones": [
     {
      "texto": "El invierno hace un frío insoportable.",
@@ -203,7 +306,7 @@
    "tipo": "test",
    "pregunta": "¿Qué dice?",
    "audio": "おなか が すいて しかたが ない。",
-   "id": "ja084-6",
+   "id": "ja084-8",
    "opciones": [
     {
      "texto": "Que tiene muchísima hambre.",
@@ -226,12 +329,12 @@
    "frase": "しんぱい で しょうがない です",
    "traduccion": "Estoy muy preocupado.",
    "explicacion": "しょうがない = insoportable.",
-   "id": "ja084-7"
+   "id": "ja084-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Qué sentido tiene «しょうがない» en «さむくて しょうがない»?",
-   "id": "ja084-8",
+   "id": "ja084-10",
    "opciones": [
     {
      "texto": "Que el frío no se puede soportar.",

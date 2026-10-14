@@ -34,6 +34,26 @@
   "よんだ": {
    "es": "leí (forma た de よむ)",
    "pron": "yonda"
+  },
+  "幼い頃": {
+   "es": "cuando era pequeño",
+   "pron": "osanai koro",
+   "consejo": "Lectura: おさないころ."
+  },
+  "思い出": {
+   "es": "recuerdo",
+   "pron": "omoide",
+   "consejo": "Lectura: おもいで."
+  },
+  "夏祭り": {
+   "es": "festival de verano",
+   "pron": "natsumatsuri",
+   "consejo": "Lectura: なつまつり."
+  },
+  "遊び場": {
+   "es": "lugar para jugar",
+   "pron": "asobiba",
+   "consejo": "Lectura: あそびば."
   }
  },
  "bloques": [
@@ -41,15 +61,15 @@
    "tipo": "explicacion",
    "titulo": "〜たものだ: solía",
    "texto": [
-    "Para decir que hacías algo de forma habitual en el pasado y ya no: verbo en forma た + **もの だ**: **こども の とき、 よく うみ へ いった もの です** (de niño solía ir mucho al mar).",
-    "Suena a recuerdo, con un poco de nostalgia."
+    "Para recordar una acción habitual del pasado: verbo en forma た + **もの だ**: **こども の とき、 よく うみ へ いった もの です** (de niño solía ir mucho al mar).",
+    "A menudo expresa nostalgia o reflexión, aunque el contexto determina el tono."
    ]
   },
   {
    "tipo": "explicacion",
    "titulo": "〜ことがある: a veces ocurre",
    "texto": [
-    "Para decir que algo pasa de vez en cuando: verbo en forma normal + **こと が ある**: **ときどき、 ねぼう する こと が あります** (a veces me quedo dormido).",
+    "Para decir que algo ocurre de vez en cuando: verbo en forma diccionario + **こと が ある**: **ときどき、 ねぼう する こと が あります** (a veces me quedo dormido).",
     "No es lo mismo que la experiencia de 041 (たことがある): aquí se habla de algo que pasa."
    ]
   },
@@ -93,7 +113,11 @@
     "ねぼう",
     "した",
     "あそんだ",
-    "よんだ"
+    "よんだ",
+    "幼い頃",
+    "思い出",
+    "夏祭り",
+    "遊び場"
    ]
   },
   {
@@ -140,9 +164,59 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Recuerdos del colegio",
+   "frases": [
+    {
+     "ja": "子どもの 頃、放課後 に 校庭 で 友達 と 遊んだ ものです。夏祭り の 日 は、近所 の 人 も 集まりました。今 でも 写真 を 見る たびに、当時 の こと を 思い出します。",
+     "es": "De niño solía jugar con mis amigos en el patio después de clase. El día del festival de verano también se reunían los vecinos. Incluso ahora, cada vez que veo las fotos, recuerdo aquella época."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Dónde solía jugar después de clase?",
+   "id": "ja073-1",
+   "opciones": [
+    {
+     "texto": "En el patio del colegio.",
+     "explicacion": "La lectura lo indica explícitamente.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué recuerda al ver las fotos?",
+   "id": "ja073-2",
+   "opciones": [
+    {
+     "texto": "Aquella época.",
+     "explicacion": "La respuesta aparece en la lectura.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «こども の とき、 よく うみ へ いった もの です»?",
-   "id": "ja073-1",
+   "id": "ja073-3",
    "opciones": [
     {
      "texto": "De niño solía ir mucho al mar.",
@@ -162,7 +236,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué expresa «〜た もの です»?",
-   "id": "ja073-2",
+   "id": "ja073-4",
    "opciones": [
     {
      "texto": "Una costumbre del pasado que ya no existe.",
@@ -183,7 +257,7 @@
    "tipo": "huecos",
    "pregunta": "De niño solía ir al mar.",
    "frase": "こども の とき、 よく うみ へ ___ もの です。",
-   "id": "ja073-3",
+   "id": "ja073-5",
    "opciones": [
     {
      "texto": "いった",
@@ -204,7 +278,7 @@
    "tipo": "huecos",
    "pregunta": "A veces me quedo dormido.",
    "frase": "___ こと が あります。",
-   "id": "ja073-4",
+   "id": "ja073-6",
    "opciones": [
     {
      "texto": "ねぼう する",
@@ -225,7 +299,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "こども の とき、 よく うみ で あそんだ もの です。",
-   "id": "ja073-5",
+   "id": "ja073-7",
    "opciones": [
     {
      "texto": "De niño solía jugar mucho en el mar.",
@@ -246,7 +320,7 @@
    "tipo": "test",
    "pregunta": "¿Qué cuenta?",
    "audio": "そう です か。 わたし は いえ で ほん を よんだ もの です。",
-   "id": "ja073-6",
+   "id": "ja073-8",
    "opciones": [
     {
      "texto": "Que solía leer libros en casa.",
@@ -269,12 +343,12 @@
    "frase": "ときどき、 ねぼう する こと が あります",
    "traduccion": "A veces me quedo dormido.",
    "explicacion": "こと が ある = pasa a veces.",
-   "id": "ja073-7"
+   "id": "ja073-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Cuál es el sentido de «ときどき ... こと が ある»?",
-   "id": "ja073-8",
+   "id": "ja073-10",
    "opciones": [
     {
      "texto": "Algo que pasa de vez en cuando.",

@@ -26,6 +26,36 @@
   "いられません": {
    "es": "no puedo estar; no puedo evitar",
    "pron": "irare masen"
+  },
+  "証拠": {
+   "es": "prueba",
+   "pron": "shouko",
+   "consejo": "Lectura: しょうこ."
+  },
+  "隠れる": {
+   "es": "esconderse",
+   "pron": "kakureru",
+   "consejo": "Lectura: かくれる."
+  },
+  "結局": {
+   "es": "al final",
+   "pron": "kekkyoku",
+   "consejo": "Lectura: けっきょく."
+  },
+  "反応": {
+   "es": "reacción",
+   "pron": "hannou",
+   "consejo": "Lectura: はんのう."
+  },
+  "目撃者": {
+   "es": "testigo",
+   "pron": "mokugekisha",
+   "consejo": "Lectura: もくげきしゃ."
+  },
+  "犯人": {
+   "es": "culpable",
+   "pron": "hannin",
+   "consejo": "Lectura: はんにん."
   }
  },
  "bloques": [
@@ -34,7 +64,7 @@
    "titulo": "〜ずに: sin hacer",
    "texto": [
     "Para decir que algo se hace sin hacer otra cosa: forma ない sin い + **ずに**: **なにも いわずに、 でかけました** (salió sin decir nada).",
-    "Con **する** queda **せずに**."
+    "Con **する** queda **せずに**; con **くる**, **こずに**."
    ]
   },
   {
@@ -42,7 +72,7 @@
    "titulo": "〜ずにはいられない: no puedo evitar",
    "texto": [
     "Para decir que no puedes evitar sentir o hacer algo: forma ない sin い + **ずには いられない**: **かわいい です から、 わらわずには いられません** (es tan mono que no puedo evitar reírme).",
-    "Suena muy natural en la conversación formal."
+    "Es una expresión enfática que se usa para sentimientos o impulsos difíciles de contener."
    ]
   },
   {
@@ -75,7 +105,13 @@
     "でかけました",
     "かわいい",
     "わらわずには",
-    "いられません"
+    "いられません",
+    "証拠",
+    "隠れる",
+    "結局",
+    "反応",
+    "目撃者",
+    "犯人"
    ]
   },
   {
@@ -107,9 +143,59 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "El gato y la caja",
+   "frases": [
+    {
+     "ja": "猫 は 箱 の 中 に 隠れた ようです。足跡 が ある ので、だれか が 外 から 連れて来た わけ では ありません。結局、箱 を 開ける と、猫 は 眠っていました。",
+     "es": "Parece que el gato se escondió dentro de la caja. Como hay huellas, no es que alguien lo trajera de fuera. Al final, cuando abrimos la caja, el gato estaba dormido."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Dónde se escondió el gato?",
+   "id": "ja078-1",
+   "opciones": [
+    {
+     "texto": "Dentro de la caja.",
+     "explicacion": "La lectura lo indica explícitamente.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué estaba haciendo al abrir la caja?",
+   "id": "ja078-2",
+   "opciones": [
+    {
+     "texto": "Estaba dormido.",
+     "explicacion": "La respuesta aparece en la lectura.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «なにも いわずに、 でかけました»?",
-   "id": "ja078-1",
+   "id": "ja078-3",
    "opciones": [
     {
      "texto": "Salió sin decir nada.",
@@ -129,7 +215,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué expresa «〜ずには いられない»?",
-   "id": "ja078-2",
+   "id": "ja078-4",
    "opciones": [
     {
      "texto": "No se puede evitar algo.",
@@ -150,7 +236,7 @@
    "tipo": "huecos",
    "pregunta": "Salió sin decir nada.",
    "frase": "なにも ___ 、 でかけました。",
-   "id": "ja078-3",
+   "id": "ja078-5",
    "opciones": [
     {
      "texto": "いわずに",
@@ -171,7 +257,7 @@
    "tipo": "huecos",
    "pregunta": "Es tan mono que no puedo evitar reírme.",
    "frase": "かわいい です から、 ___ 。",
-   "id": "ja078-4",
+   "id": "ja078-6",
    "opciones": [
     {
      "texto": "わらわずには いられません",
@@ -192,7 +278,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "なにも いわずに、 でかけました。",
-   "id": "ja078-5",
+   "id": "ja078-7",
    "opciones": [
     {
      "texto": "Salió sin decir nada.",
@@ -213,7 +299,7 @@
    "tipo": "test",
    "pregunta": "¿Qué cuenta?",
    "audio": "あの ねこ は かわいい です ね。 わらわずには いられません。",
-   "id": "ja078-6",
+   "id": "ja078-8",
    "opciones": [
     {
      "texto": "Que no puede evitar reírse porque el gato es precioso.",
@@ -236,12 +322,12 @@
    "frase": "なにも いわずに",
    "traduccion": "Sin decir nada.",
    "explicacion": "ずに = sin.",
-   "id": "ja078-7"
+   "id": "ja078-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Cuál es el sentido de «いわずに»?",
-   "id": "ja078-8",
+   "id": "ja078-10",
    "opciones": [
     {
      "texto": "Sin decir.",
@@ -259,5 +345,5 @@
    ]
   }
  ],
- "intro": "Por último, dos formas muy formales y escritas: hacer algo sin hacer otra cosa, y no poder evitar algo. Aparecen mucho en novelas y en los medios."
+ "intro": "Por último, dos formas con matices distintos: hacer algo sin hacer otra cosa y no poder evitar una acción o sentimiento. **ずに** aparece también en japonés cotidiano; **ずにはいられない** suele enfatizar una reacción intensa."
 }

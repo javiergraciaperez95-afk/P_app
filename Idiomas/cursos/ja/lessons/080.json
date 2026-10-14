@@ -14,6 +14,51 @@
   "しんぱい": {
    "es": "preocupación",
    "pron": "shinpai"
+  },
+  "完成": {
+   "es": "finalización",
+   "pron": "kansei",
+   "consejo": "Lectura: かんせい."
+  },
+  "発表会": {
+   "es": "presentación pública",
+   "pron": "happyoukai",
+   "consejo": "Lectura: はっぴょうかい."
+  },
+  "締め切り": {
+   "es": "fecha límite",
+   "pron": "shimekiri",
+   "consejo": "Lectura: しめきり."
+  },
+  "未完成": {
+   "es": "inacabado",
+   "pron": "mikansei",
+   "consejo": "Lectura: みかんせい."
+  },
+  "進行状況": {
+   "es": "estado de avance",
+   "pron": "shinkou joukyou",
+   "consejo": "Lectura: しんこうじょうきょう."
+  },
+  "仕上げ": {
+   "es": "toque final",
+   "pron": "shiage",
+   "consejo": "Lectura: しあげ."
+  },
+  "作業時間": {
+   "es": "tiempo de trabajo",
+   "pron": "sagyou jikan",
+   "consejo": "Lectura: さぎょうじかん."
+  },
+  "提出期限": {
+   "es": "fecha límite de entrega",
+   "pron": "teishutsu kigen",
+   "consejo": "Lectura: ていしゅつきげん."
+  },
+  "予定表": {
+   "es": "agenda",
+   "pron": "yoteihyou",
+   "consejo": "Lectura: よていひょう."
   }
  },
  "bloques": [
@@ -27,10 +72,9 @@
   },
   {
    "tipo": "explicacion",
-   "titulo": "〜そうにない: no parece que",
+   "titulo": "〜そうにない: no parece que vaya a ocurrir",
    "texto": [
-    "Para decir que, por lo que se ve, algo no va a pasar: verbo en forma -masu sin ます + **そう に ない**: **この しごと は あした まで に おわりそう に ない です** (no parece que este trabajo termine para mañana).",
-    "Con **ない** sí se usa la forma あ: **おわりそう に ない**."
+    "Se forma normalmente con la raíz de **ます** + **そうにない**: **おわりそう に ない** (no parece que vaya a terminar). No debe confundirse con **ない + そうです**, que expresa que «dicen que no» o «parece que no» según la construcción."
    ]
   },
   {
@@ -60,7 +104,16 @@
    "palabras": [
     "ちがいない",
     "おわりそう に ない",
-    "しんぱい"
+    "しんぱい",
+    "完成",
+    "発表会",
+    "締め切り",
+    "未完成",
+    "進行状況",
+    "仕上げ",
+    "作業時間",
+    "提出期限",
+    "予定表"
    ]
   },
   {
@@ -92,9 +145,59 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Entrega de un proyecto",
+   "frases": [
+    {
+     "ja": "発表会 は 明日 です が、資料 は まだ 未完成 です。今夜 まで に 仕上がりそうにない ので、担当者 に 進行状況 を 伝えました。必要 な 部分 から 確認 して、朝 に 最後 の 修正 を します。",
+     "es": "La presentación es mañana, pero los materiales aún no están terminados. Como no parece que estén listos esta noche, avisé a la persona responsable del progreso. Revisaré primero las partes necesarias y haré los últimos cambios por la mañana."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Por qué avisó a la persona responsable?",
+   "id": "ja080-1",
+   "opciones": [
+    {
+     "texto": "Porque los materiales no parecen estar listos esta noche.",
+     "explicacion": "La lectura lo indica explícitamente.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Cuándo hará los últimos cambios?",
+   "id": "ja080-2",
+   "opciones": [
+    {
+     "texto": "Por la mañana.",
+     "explicacion": "La respuesta aparece en la lectura.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «あの ひと は にほんご が じょうず に ちがいない»?",
-   "id": "ja080-1",
+   "id": "ja080-3",
    "opciones": [
     {
      "texto": "Seguro que ese hombre habla bien japonés.",
@@ -114,7 +217,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué expresa «〜そう に ない»?",
-   "id": "ja080-2",
+   "id": "ja080-4",
    "opciones": [
     {
      "texto": "Que no parece que vaya a pasar.",
@@ -135,7 +238,7 @@
    "tipo": "huecos",
    "pregunta": "Seguro que ese hombre habla bien japonés.",
    "frase": "あの ひと は にほんご が じょうず に ___ 。",
-   "id": "ja080-3",
+   "id": "ja080-5",
    "opciones": [
     {
      "texto": "ちがいない",
@@ -156,7 +259,7 @@
    "tipo": "huecos",
    "pregunta": "No parece que este trabajo termine para mañana.",
    "frase": "この しごと は あした まで に ___ です。",
-   "id": "ja080-4",
+   "id": "ja080-6",
    "opciones": [
     {
      "texto": "おわりそう に ない",
@@ -177,7 +280,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "この しごと は あした まで に おわりそう に ない です。",
-   "id": "ja080-5",
+   "id": "ja080-7",
    "opciones": [
     {
      "texto": "No parece que este trabajo termine para mañana.",
@@ -198,7 +301,7 @@
    "tipo": "test",
    "pregunta": "¿Qué opina el hablante?",
    "audio": "あの ひと は にほんご が じょうず に ちがいない。",
-   "id": "ja080-6",
+   "id": "ja080-8",
    "opciones": [
     {
      "texto": "Está seguro de que ese hombre habla bien japonés.",
@@ -221,12 +324,12 @@
    "frase": "じょうず に ちがいない",
    "traduccion": "Seguro que es bueno.",
    "explicacion": "に ちがいない = seguridad.",
-   "id": "ja080-7"
+   "id": "ja080-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Cuál es más seguro?",
-   "id": "ja080-8",
+   "id": "ja080-10",
    "opciones": [
     {
      "texto": "〜に ちがいない",

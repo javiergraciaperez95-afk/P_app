@@ -12,6 +12,7 @@ const quieto = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 function pulsableDe(nodo) {
   const pieza = nodo instanceof Element ? nodo.closest(PULSABLE) : null;
+  if (pieza?.closest('body.en-estudio .cabecera')) return null;
   return pieza && !pieza.disabled && pieza.getAttribute('aria-disabled') !== 'true' ? pieza : null;
 }
 

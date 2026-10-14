@@ -284,7 +284,7 @@ def main():
             print(f'{cid}  {carpeta:11} {n:4} lecciones, {audios:5} audios, tutora {"sí" if tutora else "propia" if cid == "es" else "NO"}')
         if cid in ('es', 'zh'):  # traen su propio dibujo (tutor-sprite.js)
             entrada['sprite'] = 'propio'
-        if formato == 'pendiente':
+        if formato == 'pendiente' and not propio:
             entrada['proximamente'] = True
         entrada['lecciones'] = len(list((CURSOS / cid / 'lessons').glob('[0-9]*.json'))) if (CURSOS / cid / 'lessons').exists() else 0
         entrada['audio'] = (CURSOS / cid / 'audio' / 'indice.json').exists()

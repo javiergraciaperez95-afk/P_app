@@ -27,12 +27,33 @@ import { pintarEntrar } from './vistas/entrar.js';
 import { pintarPrecios } from './vistas/precios.js';
 import { pintarBienvenida, bienvenidaVista } from './vistas/bienvenida.js';
 import { pintarPerdida } from './vistas/perdida.js';
-import { curso, hayCurso } from './curso.js';
+import { curso, hayCurso, nombreDelCurso } from './curso.js';
 import './movil.js';
 import './chispa.js';
 
 const app = document.getElementById('app');
 const menu = document.getElementById('menu');
+const controlesCabecera = document.querySelector('.cabecera-botones');
+const ajustesCabecera = document.createElement('details');
+ajustesCabecera.className = 'cabecera-ajustes';
+const abrirAjustes = document.createElement('summary');
+const panelAjustes = document.createElement('div');
+panelAjustes.className = 'cabecera-ajustes-panel';
+ajustesCabecera.append(abrirAjustes, panelAjustes);
+const controlesAjustes = ['.idioma-menu', '#btn-sonido', '#btn-tema'].map(s => controlesCabecera.querySelector(s));
+document.addEventListener('click', e => {
+  if (!ajustesCabecera.contains(e.target)) ajustesCabecera.open = false;
+});
+ajustesCabecera.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    cerrarIdiomas();
+    ajustesCabecera.open = false;
+    abrirAjustes.focus();
+  }
+});
+ajustesCabecera.addEventListener('toggle', () => {
+  if (!ajustesCabecera.open) cerrarIdiomas();
+});
 
 const SECCIONES = [
   { ruta: 'lecciones', icono: 'libro' },
@@ -95,16 +116,28 @@ function pintarBotonSonido() {
   boton.title = boton.getAttribute('aria-label');
 }
 
-// La marca de la cabecera: el logotipo y, dentro de un curso, el nombre del idioma que se estudia y su bandera.
-// En la pantalla de inicio (y mientras no hay curso elegido) lleva el nombre de la app. Siempre lleva al inicio.
+// La marca siempre es Paglot; dentro de un curso el idioma aparece debajo.
+// Siempre lleva al inicio.
 function pintarMarca() {
+  const dentro = !document.body.classList.contains('en-inicio');
+  document.body.classList.toggle('en-estudio', dentro);
+  ajustesCabecera.open = false;
+  abrirAjustes.textContent = `⚙ ${t('ajustes.titulo')}`;
+  if (dentro) {
+    controlesCabecera.append(ajustesCabecera);
+    panelAjustes.append(...controlesAjustes);
+  } else {
+    controlesCabecera.append(...controlesAjustes);
+    ajustesCabecera.remove();
+  }
   const deCurso = hayCurso && !document.body.classList.contains('en-inicio');
   const nombre = document.getElementById('marca-nombre');
-  nombre.textContent = deCurso ? curso.nativo : t('app.nombre');
-  if (deCurso) nombre.lang = curso.lang;
-  else nombre.removeAttribute('lang');
-  document.getElementById('marca-bandera').innerHTML = deCurso ? curso.bandera : ''; // dibujo fijo de js/cursos.js
-  document.getElementById('marca-subtitulo').textContent = deCurso ? t('html.subtitulo') : '';
+  nombre.textContent = t('app.nombre');
+  nombre.removeAttribute('lang');
+  document.getElementById('marca-bandera').innerHTML = deCurso ? curso.bandera : ''; // SVG del catálogo local de cursos.
+  const subtitulo = document.getElementById('marca-subtitulo');
+  subtitulo.textContent = deCurso ? nombreDelCurso(idioma()) : '';
+  subtitulo.parentElement.hidden = !deCurso;
   document.getElementById('marca').title = t('inicio.titulo');
   pintarNavegacion();
   const boton = document.getElementById('btn-curso');

@@ -90,6 +90,18 @@
   "Adresse": {
    "es": "dirección (die)",
    "pron": "a-DRE-se"
+  },
+  "Geburtsdatum": {
+   "es": "fecha de nacimiento (das)",
+   "pron": "gue-BURTS-da-tum"
+  },
+  "Geburtsort": {
+   "es": "lugar de nacimiento (der)",
+   "pron": "gue-BURTS-ort"
+  },
+  "Postleitzahl": {
+   "es": "código postal (die)",
+   "pron": "POST-laits-tsal"
   }
  },
  "bloques": [
@@ -213,7 +225,10 @@
     "Ihre",
     "Telefonnummer",
     "Nummer",
-    "Adresse"
+    "Adresse",
+    "Geburtsdatum",
+    "Geburtsort",
+    "Postleitzahl"
    ]
   },
   {
@@ -323,9 +338,83 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Ficha de inscripción",
+   "frases": [
+    {
+     "de": "Vorname: Maria. Geburtsdatum: 12.05.",
+     "es": "Nombre: Maria. Fecha de nacimiento: 12 de mayo."
+    },
+    {
+     "de": "Geburtsort: Wien. Postleitzahl: 1010.",
+     "es": "Lugar de nacimiento: Viena. Código postal: 1010."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿En qué ciudad nació Maria?",
+   "id": "de007-1",
+   "opciones": [
+    {
+     "texto": "En Viena.",
+     "explicacion": "El campo «Geburtsort» dice Wien.",
+     "correcta": true
+    },
+    {
+     "texto": "En Berlín.",
+     "explicacion": "Berlín no aparece."
+    },
+    {
+     "texto": "En Madrid.",
+     "explicacion": "Madrid no aparece."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Cuál es su código postal?",
+   "id": "de007-2",
+   "opciones": [
+    {
+     "texto": "1010.",
+     "explicacion": "Ese número sigue a «Postleitzahl».",
+     "correcta": true
+    },
+    {
+     "texto": "1001.",
+     "explicacion": "No coincide con la ficha."
+    },
+    {
+     "texto": "1100.",
+     "explicacion": "No coincide con la ficha."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué fecha de nacimiento aparece en la ficha?",
+   "id": "de007-3",
+   "opciones": [
+    {
+     "texto": "12.05.",
+     "explicacion": "Es la fecha que sigue a «Geburtsdatum».",
+     "correcta": true
+    },
+    {
+     "texto": "05.12.",
+     "explicacion": "Los números aparecen en el orden contrario."
+    },
+    {
+     "texto": "12.50.",
+     "explicacion": "No coincide con el campo."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Cómo dices «tengo veinte años»?",
-   "id": "de007-1",
+   "id": "de007-4",
    "opciones": [
     {
      "texto": "Ich bin zwanzig Jahre alt.",
@@ -345,7 +434,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué número es «zwölf»?",
-   "id": "de007-2",
+   "id": "de007-5",
    "opciones": [
     {
      "texto": "12",
@@ -365,7 +454,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Cómo se dice «16»?",
-   "id": "de007-3",
+   "id": "de007-6",
    "opciones": [
     {
      "texto": "sechzehn",
@@ -386,7 +475,7 @@
    "tipo": "traduccion",
    "pregunta": "¿Qué significa?",
    "frase": "Wie alt bist du?",
-   "id": "de007-4",
+   "id": "de007-7",
    "opciones": [
     {
      "texto": "¿Cuántos años tienes?",
@@ -407,7 +496,7 @@
    "tipo": "huecos",
    "pregunta": "Completa la frase.",
    "frase": "Ich ___ neunzehn Jahre alt.",
-   "id": "de007-5",
+   "id": "de007-8",
    "opciones": [
     {
      "texto": "bin",
@@ -428,7 +517,7 @@
    "tipo": "huecos",
    "pregunta": "Completa la frase.",
    "frase": "Wie ist Ihre ___ ?",
-   "id": "de007-6",
+   "id": "de007-9",
    "opciones": [
     {
      "texto": "Telefonnummer",
@@ -449,7 +538,7 @@
    "tipo": "test",
    "pregunta": "Escucha. ¿Qué significa?",
    "audio": "Meine Adresse ist Hauptstraße 8.",
-   "id": "de007-7",
+   "id": "de007-10",
    "opciones": [
     {
      "texto": "Mi dirección es calle Mayor, 8.",
@@ -472,7 +561,7 @@
    "frase": "Wie alt sind Sie",
    "traduccion": "¿Cuántos años tiene usted?",
    "explicacion": "Wie alt + sind + Sie.",
-   "id": "de007-8"
+   "id": "de007-11"
   }
  ]
 }

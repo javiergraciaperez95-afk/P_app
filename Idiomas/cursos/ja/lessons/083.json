@@ -18,6 +18,46 @@
   "しかたが": {
    "es": "(de しかた) remedio, forma de",
    "pron": "shikata ga"
+  },
+  "呼び出し": {
+   "es": "llamada o aviso",
+   "pron": "yobidashi",
+   "consejo": "Lectura: よびだし."
+  },
+  "留守": {
+   "es": "ausencia",
+   "pron": "rusu",
+   "consejo": "Lectura: るす."
+  },
+  "折り返す": {
+   "es": "devolver una llamada",
+   "pron": "orikaesu",
+   "consejo": "Lectura: おりかえす."
+  },
+  "在宅": {
+   "es": "en casa",
+   "pron": "zaitaku",
+   "consejo": "Lectura: ざいたく."
+  },
+  "用件": {
+   "es": "asunto y motivo",
+   "pron": "youken",
+   "consejo": "Lectura: ようけん."
+  },
+  "着信履歴": {
+   "es": "historial de llamadas",
+   "pron": "chakushin rireki",
+   "consejo": "Lectura: ちゃくしんりれき."
+  },
+  "伝言板": {
+   "es": "tablón de mensajes",
+   "pron": "dengonban",
+   "consejo": "Lectura: でんごんばん."
+  },
+  "応答": {
+   "es": "respuesta",
+   "pron": "outou",
+   "consejo": "Lectura: おうとう."
   }
  },
  "bloques": [
@@ -33,8 +73,7 @@
    "tipo": "explicacion",
    "titulo": "〜たところ: al hacerlo, resultó que",
    "texto": [
-    "Para contar lo que pasó al hacer algo: verbo en forma た + **ところ**: **でんわ を かけた ところ、 でませんでした** (llamé, y no contestó).",
-    "El resultado va después de la coma y suele ser inesperado."
+    "Para contar qué pasó cuando se hizo algo: verbo en forma た + **ところ**: **でんわ を かけた ところ、 でませんでした** (llamé, pero no contestó). El resultado puede sorprender, aunque la sorpresa no es obligatoria."
    ]
   },
   {
@@ -65,7 +104,15 @@
     "ちょうど",
     "ところ",
     "かけた",
-    "しかたが"
+    "しかたが",
+    "呼び出し",
+    "留守",
+    "折り返す",
+    "在宅",
+    "用件",
+    "着信履歴",
+    "伝言板",
+    "応答"
    ]
   },
   {
@@ -101,9 +148,59 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Una llamada perdida",
+   "frases": [
+    {
+     "ja": "今、友達 に 電話 を かける ところ です。ところが、相手 は 留守 でした。用件 を 伝言 に 残した ところ、すぐに 折り返し 電話 が 来ました。",
+     "es": "Ahora mismo voy a llamar a un amigo. Sin embargo, no está en casa. Después de dejarle un recado, me devolvió la llamada enseguida."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué hizo al no encontrar a su amigo?",
+   "id": "ja083-1",
+   "opciones": [
+    {
+     "texto": "Le dejó un recado.",
+     "explicacion": "La lectura lo indica explícitamente.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué ocurrió después?",
+   "id": "ja083-2",
+   "opciones": [
+    {
+     "texto": "El amigo devolvió la llamada.",
+     "explicacion": "La respuesta aparece en la lectura.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «いま、 ちょうど でかける ところ です»?",
-   "id": "ja083-1",
+   "id": "ja083-3",
    "opciones": [
     {
      "texto": "Ahora mismo estoy a punto de salir.",
@@ -123,7 +220,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué expresa «〜た ところ»?",
-   "id": "ja083-2",
+   "id": "ja083-4",
    "opciones": [
     {
      "texto": "Lo que pasó al hacer algo: el resultado.",
@@ -144,7 +241,7 @@
    "tipo": "huecos",
    "pregunta": "Ahora mismo estoy a punto de salir.",
    "frase": "いま、 ちょうど でかける ___ です。",
-   "id": "ja083-3",
+   "id": "ja083-5",
    "opciones": [
     {
      "texto": "ところ",
@@ -165,7 +262,7 @@
    "tipo": "huecos",
    "pregunta": "Llamé, y no contestó.",
    "frase": "でんわ を ___ 、 でませんでした。",
-   "id": "ja083-4",
+   "id": "ja083-6",
    "opciones": [
     {
      "texto": "かけた ところ",
@@ -186,7 +283,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "いま、 ちょうど でかける ところ です。",
-   "id": "ja083-5",
+   "id": "ja083-7",
    "opciones": [
     {
      "texto": "Estoy a punto de salir ahora mismo.",
@@ -207,7 +304,7 @@
    "tipo": "test",
    "pregunta": "¿Qué pasó?",
    "audio": "でんわ を かけた ところ、 でませんでした。",
-   "id": "ja083-6",
+   "id": "ja083-8",
    "opciones": [
     {
      "texto": "Llamó, pero no contestaron.",
@@ -230,12 +327,12 @@
    "frase": "ちょうど でかける ところ です",
    "traduccion": "Estoy a punto de salir.",
    "explicacion": "ところ です = a punto de.",
-   "id": "ja083-7"
+   "id": "ja083-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Qué significa «ところ» en «ちょうど でかける ところ»?",
-   "id": "ja083-8",
+   "id": "ja083-10",
    "opciones": [
     {
      "texto": "El momento exacto antes de hacer algo.",

@@ -14,6 +14,51 @@
   "したら": {
    "es": "si lo haces; haciéndolo",
    "pron": "shitara"
+  },
+  "助言": {
+   "es": "consejo",
+   "pron": "jogen",
+   "consejo": "Lectura: じょげん."
+  },
+  "交通手段": {
+   "es": "medio de transporte",
+   "pron": "koutsuu shudan",
+   "consejo": "Lectura: こうつうしゅだん."
+  },
+  "少量": {
+   "es": "pequeña cantidad",
+   "pron": "shouryou",
+   "consejo": "Lectura: しょうりょう."
+  },
+  "継続": {
+   "es": "continuidad",
+   "pron": "keizoku",
+   "consejo": "Lectura: けいぞく."
+  },
+  "最短経路": {
+   "es": "ruta más corta",
+   "pron": "saitan keiro",
+   "consejo": "Lectura: さいたんけいろ."
+  },
+  "乗車券": {
+   "es": "billete de transporte",
+   "pron": "joushaken",
+   "consejo": "Lectura: じょうしゃけん."
+  },
+  "学習方法": {
+   "es": "método de estudio",
+   "pron": "gakushuu houhou",
+   "consejo": "Lectura: がくしゅうほうほう."
+  },
+  "分量": {
+   "es": "cantidad",
+   "pron": "bunryou",
+   "consejo": "Lectura: ぶんりょう."
+  },
+  "毎回": {
+   "es": "cada vez",
+   "pron": "maikai",
+   "consejo": "Lectura: まいかい."
   }
  },
  "bloques": [
@@ -21,16 +66,14 @@
    "tipo": "explicacion",
    "titulo": "〜ばいい: podrías (consejo suave)",
    "texto": [
-    "Para dar una sugerencia: forma ば (de いく: いけば) + **いい です**: **でんしゃ で いけば いい です** (podrías ir en tren).",
-    "Se usa cuando hay varias formas de hacer algo."
+    "Para sugerir una opción: forma ば + **いい**: **でんしゃ で いけば いい です** (podrías ir en tren)."
    ]
   },
   {
    "tipo": "explicacion",
    "titulo": "〜たらいい: podrías (con cuidado)",
    "texto": [
-    "Para dar un consejo sobre cómo hacer algo poco a poco: forma たら + **いい です**: **まいにち すこし ずつ べんきょう したら いい です** (podrías estudiar un poco cada día).",
-    "Con **ずつ** se habla de cantidades poco a poco."
+    "También puede dar un consejo: forma たら + **いい**: **まいにち すこし ずつ べんきょう したら いい です** (podrías estudiar un poco cada día). **ばいい** y **たらいい** se solapan mucho; **ずつ** aporta por separado la idea de avanzar poco a poco."
    ]
   },
   {
@@ -60,7 +103,16 @@
    "palabras": [
     "いけば",
     "ずつ",
-    "したら"
+    "したら",
+    "助言",
+    "交通手段",
+    "少量",
+    "継続",
+    "最短経路",
+    "乗車券",
+    "学習方法",
+    "分量",
+    "毎回"
    ]
   },
   {
@@ -118,9 +170,59 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Consejos para el viaje",
+   "frases": [
+    {
+     "ja": "駅 へ 行く なら、地下鉄 に 乗れば いい です。切符 の 買い方 が わからなかったら、駅員 に 聞いたら いい です。毎日 少しずつ 練習 すれば、乗り換え にも 慣れます。",
+     "es": "Si vas a la estación, puedes tomar el metro. Si no sabes cómo comprar el billete, puedes preguntarle al personal. Si practicas un poco cada día, también te acostumbrarás a hacer transbordos."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué puede hacer si no sabe comprar el billete?",
+   "id": "ja090-1",
+   "opciones": [
+    {
+     "texto": "Preguntar al personal de la estación.",
+     "explicacion": "La lectura lo indica explícitamente.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué ocurrirá si practica cada día?",
+   "id": "ja090-2",
+   "opciones": [
+    {
+     "texto": "Se acostumbrará a hacer transbordos.",
+     "explicacion": "La respuesta aparece en la lectura.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «でんしゃ で いけば いい です»?",
-   "id": "ja090-1",
+   "id": "ja090-3",
    "opciones": [
     {
      "texto": "Podrías ir en tren.",
@@ -140,7 +242,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué expresa «〜ばいい»?",
-   "id": "ja090-2",
+   "id": "ja090-4",
    "opciones": [
     {
      "texto": "Un consejo suave.",
@@ -161,7 +263,7 @@
    "tipo": "huecos",
    "pregunta": "Podrías estudiar un poco cada día.",
    "frase": "まいにち すこし ___ べんきょう したら いい です。",
-   "id": "ja090-3",
+   "id": "ja090-5",
    "opciones": [
     {
      "texto": "ずつ",
@@ -182,7 +284,7 @@
    "tipo": "huecos",
    "pregunta": "Podrías ir en tren.",
    "frase": "でんしゃ で ___ いい です。",
-   "id": "ja090-4",
+   "id": "ja090-6",
    "opciones": [
     {
      "texto": "いけば",
@@ -203,7 +305,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "まいにち すこし ずつ べんきょう したら いい です。",
-   "id": "ja090-5",
+   "id": "ja090-7",
    "opciones": [
     {
      "texto": "Podrías estudiar un poco cada día.",
@@ -224,7 +326,7 @@
    "tipo": "test",
    "pregunta": "¿Qué pregunta?",
    "audio": "どう いけば いい です か。",
-   "id": "ja090-6",
+   "id": "ja090-8",
    "opciones": [
     {
      "texto": "¿Cómo debería ir?",
@@ -247,12 +349,12 @@
    "frase": "すこし ずつ",
    "traduccion": "Poco a poco.",
    "explicacion": "ずつ = cada uno, poco a poco.",
-   "id": "ja090-7"
+   "id": "ja090-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Cuál es la diferencia entre 〜ばいい y 〜なければならない?",
-   "id": "ja090-8",
+   "id": "ja090-10",
    "opciones": [
     {
      "texto": "ばいい = consejo suave; なければ = obligación.",
@@ -270,5 +372,5 @@
    ]
   }
  ],
- "intro": "Por último, cómo dar un consejo suave: decir qué podrías hacer, sin imponer nada. Es la forma más amable de aconsejar."
+ "intro": "Terminamos con dos formas comunes de sugerir qué hacer. El tono depende de la situación y de cómo se formule el resto de la frase."
 }

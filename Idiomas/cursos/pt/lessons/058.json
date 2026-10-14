@@ -62,6 +62,17 @@
    "es": "más tarde",
    "pron": "mais TAR-d(e)",
    "consejo": "Lo que pasará después."
+  },
+  "recomendo": {
+   "es": "recomiendo",
+   "pron": "re-ku-MEN-du",
+   "consejo": "Primera persona de «recomendar»."
+  },
+  "caldo verde": {
+   "es": "sopa tradicional portuguesa"
+  },
+  "prato principal": {
+   "es": "plato principal"
   }
  },
  "bloques": [
@@ -77,7 +88,7 @@
    "tipo": "explicacion",
    "titulo": "Recomendar y el plato del día",
    "texto": [
-    "**Queria recomendar o prato do dia** (quería recomendarle el plato del día). Es muy usado en restaurantes.",
+    "El camarero puede recomendarlo: **Recomendo o prato do dia** (recomiendo el plato del día). El cliente puede pedir una recomendación: **Pode recomendar-me um prato?** (¿puede recomendarme un plato?).",
     "**Bom apetite** (buen provecho) se dice antes de comer."
    ]
   },
@@ -85,7 +96,7 @@
    "tipo": "explicacion",
    "titulo": "La cuenta",
    "texto": [
-    "**A conta, por favor** (la cuenta, por favor). Si quieres pagar más tarde, di **mais tarde** (más tarde)."
+    "Para pedirla, di **A conta, por favor** (la cuenta, por favor). **Mais tarde** significa «más tarde»; no lo añadas a la petición si quieres que te la traigan ahora."
    ]
   },
   {
@@ -128,7 +139,10 @@
     "menu",
     "bom apetite",
     "a conta",
-    "mais tarde"
+    "mais tarde",
+    "recomendo",
+    "caldo verde",
+    "prato principal"
    ]
   },
   {
@@ -137,12 +151,12 @@
    "frases": [
     {
      "quien": "Carlos",
-     "pt": "Boa tarde. Queria recomendar o prato do dia.",
-     "es": "Buenas tardes. Quería recomendarle el plato del día.",
+     "pt": "Boa tarde. Posso recomendar o prato do dia?",
+     "es": "Buenas tardes. ¿Puedo recomendarle el plato del día?",
      "analisis": [
       [
-       "Queria recomendar",
-       "quería recomendar"
+       "Posso recomendar",
+       "¿puedo recomendar?"
       ],
       [
        "o prato do dia",
@@ -152,8 +166,8 @@
     },
     {
      "quien": "Ana",
-     "pt": "Queria um peixe grelhado, e pode trazer água?",
-     "es": "Quería un pescado a la plancha, ¿y puede traer agua?",
+     "pt": "Sim, por favor. E pode trazer água?",
+     "es": "Sí, por favor. ¿Y puede traer agua?",
      "analisis": [
       [
        "pode trazer água",
@@ -163,23 +177,27 @@
     },
     {
      "quien": "Carlos",
-     "pt": "Claro. Alguma bebida?",
-     "es": "Claro. ¿Alguna bebida?",
+     "pt": "Recomendo o peixe grelhado. Quer uma bebida?",
+     "es": "Recomiendo el pescado a la plancha. ¿Quiere una bebida?",
      "analisis": [
       [
-       "Alguma bebida",
-       "¿alguna bebida?"
+       "Recomendo",
+       "recomiendo"
+      ],
+      [
+       "peixe grelhado",
+       "pescado a la plancha"
       ]
      ]
     },
     {
      "quien": "Ana",
-     "pt": "Não, obrigada. Só a água.",
-     "es": "No, gracias. Solo el agua.",
+     "pt": "Queria água, por favor.",
+     "es": "Quería agua, por favor.",
      "analisis": [
       [
-       "Só a água",
-       "solo el agua"
+       "Queria água",
+       "quería agua"
       ]
      ]
     },
@@ -196,16 +214,16 @@
     },
     {
      "quien": "Ana",
-     "pt": "Obrigada. A conta, por favor, mais tarde.",
-     "es": "Gracias. La cuenta, por favor, más tarde.",
+     "pt": "A conta, por favor.",
+     "es": "La cuenta, por favor.",
      "analisis": [
       [
-       "A conta, por favor",
-       "la cuenta, por favor"
+       "A conta",
+       "la cuenta"
       ],
       [
-       "mais tarde",
-       "más tarde"
+       "por favor",
+       "por favor"
       ]
      ]
     }
@@ -351,6 +369,64 @@
    ],
    "explicacion": "Se dice antes de comer.",
    "id": "pt058-8"
+  },
+  {
+   "tipo": "texto",
+   "titulo": "Menu do dia",
+   "frases": [
+    {
+     "pt": "Sopa: caldo verde — 3 euros.",
+     "es": "Sopa: caldo verde, 3 euros."
+    },
+    {
+     "pt": "Prato principal: peixe grelhado com arroz — 12 euros.",
+     "es": "Plato principal: pescado a la plancha con arroz, 12 euros."
+    },
+    {
+     "pt": "Sobremesa: fruta ou bolo — 4 euros.",
+     "es": "Postre: fruta o pastel, 4 euros."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Cuánto cuesta el plato principal?",
+   "id": "pt058-9",
+   "opciones": [
+    {
+     "texto": "12 euros",
+     "explicacion": "El menú indica ese precio junto al plato principal.",
+     "correcta": true
+    },
+    {
+     "texto": "3 euros",
+     "explicacion": "Ese es el precio de la sopa."
+    },
+    {
+     "texto": "4 euros",
+     "explicacion": "Ese es el precio del postre."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué opciones hay de postre?",
+   "id": "pt058-10",
+   "opciones": [
+    {
+     "texto": "Fruta ou bolo.",
+     "explicacion": "El menú ofrece fruta o pastel.",
+     "correcta": true
+    },
+    {
+     "texto": "Sopa ou arroz.",
+     "explicacion": "Esos elementos aparecen en otros apartados."
+    },
+    {
+     "texto": "Água ou café.",
+     "explicacion": "No son las opciones de postre indicadas."
+    }
+   ]
   }
  ],
  "intro": "Hoy vamos a un restaurante. Aprenderás a pedir, a preguntar y a pedir la cuenta."

@@ -31,6 +31,31 @@
   "やすむ": {
    "es": "faltar; descansar; no ir",
    "pron": "yasumu"
+  },
+  "運休": {
+   "es": "suspensión del servicio",
+   "pron": "unkyuu",
+   "consejo": "Lectura: うんきゅう."
+  },
+  "交通情報": {
+   "es": "información de tráfico",
+   "pron": "koutsuu jouhou",
+   "consejo": "Lectura: こうつうじょうほう."
+  },
+  "遅れ": {
+   "es": "retraso",
+   "pron": "okure",
+   "consejo": "Lectura: おくれ."
+  },
+  "迂回": {
+   "es": "desvío",
+   "pron": "ukai",
+   "consejo": "Lectura: うかい."
+  },
+  "時刻表": {
+   "es": "horario",
+   "pron": "jikokuhyou",
+   "consejo": "Lectura: じこくひょう."
   }
  },
  "bloques": [
@@ -47,40 +72,38 @@
    "titulo": "〜から: motivo directo",
    "texto": [
     "Con **から** das tu motivo de forma más directa y personal: **おいしい から、 たくさん たべました** (como estaba rico, comí mucho).",
-    "Suena más directo: con personas que no conoces, mejor **ので**. Ojo: en el capítulo 1 ya viste **から** como «de» o «desde»; aquí es «porque»."
+    "Puede sonar más directo o enfático que **ので**, pero la cortesía depende del contexto y de toda la frase. En el capítulo 1 ya viste **から** como «de» o «desde»; aquí expresa causa."
    ]
   },
   {
    "tipo": "explicacion",
    "titulo": "Con nombres y adjetivos en -na",
    "texto": [
-    "Delante de **ので** o **から**, los nombres y los adjetivos en -na llevan **な**: **ひま な ので** (como tengo tiempo libre).",
-    "Con los adjetivos en -i no hace falta nada: **おいしい から**."
+    "Con **ので**, los nombres y adjetivos en -na llevan **な**: **ひま なので**. Con **から**, llevan **だ**: **ひま だから**. Los adjetivos en -i se conectan directamente: **おいしい から**."
    ]
   },
   {
    "tipo": "tabla",
-   "titulo": "Porque…",
+   "titulo": "Expresar una causa",
    "filas": [
     [
-     "〜ので",
-     "con cortesía; explica una situación",
+     "verbo/adjetivo -i + ので",
+     "motivo presentado con suavidad",
      "あめ が ふっている ので"
     ],
     [
-     "〜から",
-     "directo; tu motivo",
-     "おいしい から"
+     "nombre/adjetivo -na + なので",
+     "motivo",
+     "ひま なので"
     ],
     [
-     "なに + ので",
-     "nombre o adjetivo en -na",
-     "ひま な ので"
+     "nombre/adjetivo -na + だから",
+     "motivo más directo",
+     "ひま だから"
     ]
    ],
    "columnas": [
     "Forma",
-    "Tono",
     "Ejemplo"
    ]
   },
@@ -94,7 +117,12 @@
     "たくさん",
     "どうして",
     "やすみました",
-    "やすむ"
+    "やすむ",
+    "運休",
+    "交通情報",
+    "遅れ",
+    "迂回",
+    "時刻表"
    ]
   },
   {
@@ -200,9 +228,59 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Aviso de transporte",
+   "frases": [
+    {
+     "ja": "天気予報 によると、午後 は 強い 雨 です。電車 は 一部 運休 なので、出発 前 に 時刻表 を 確認 してください。駅員 は 乗客 に 運行状況 を 説明 しました。",
+     "es": "Según la previsión, por la tarde habrá lluvia fuerte. Como algunos trenes están suspendidos, comprueba el horario antes de salir. El personal de la estación explicó el estado del servicio."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué deben comprobar los pasajeros antes de salir?",
+   "id": "ja064-1",
+   "opciones": [
+    {
+     "texto": "El horario.",
+     "explicacion": "La lectura lo indica explícitamente.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Por qué habrá cambios en el transporte?",
+   "id": "ja064-2",
+   "opciones": [
+    {
+     "texto": "Porque algunos trenes están suspendidos.",
+     "explicacion": "La respuesta aparece en la lectura.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «あめ が ふっている ので、 かさ を もって いきます»?",
-   "id": "ja064-1",
+   "id": "ja064-3",
    "opciones": [
     {
      "texto": "Como llueve, llevo paraguas.",
@@ -222,7 +300,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué forma es correcta antes de ので con «ひま»?",
-   "id": "ja064-2",
+   "id": "ja064-4",
    "opciones": [
     {
      "texto": "ひま な ので",
@@ -243,7 +321,7 @@
    "tipo": "huecos",
    "pregunta": "Como tenía fiebre, faltó a clase.",
    "frase": "ねつ が ある ___ 、 がっこう を やすみました。",
-   "id": "ja064-3",
+   "id": "ja064-5",
    "opciones": [
     {
      "texto": "ので",
@@ -264,7 +342,7 @@
    "tipo": "huecos",
    "pregunta": "Como estaba rico, comió mucho.",
    "frase": "おいしい ___ 、 たくさん たべました。",
-   "id": "ja064-4",
+   "id": "ja064-6",
    "opciones": [
     {
      "texto": "から",
@@ -285,7 +363,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "けんじ さん は ねつ が ある ので、 がっこう を やすみました。",
-   "id": "ja064-5",
+   "id": "ja064-7",
    "opciones": [
     {
      "texto": "Ken faltó a clase porque tenía fiebre.",
@@ -306,7 +384,7 @@
    "tipo": "test",
    "pregunta": "¿Qué cuenta?",
    "audio": "おいしい から、 たくさん たべました。",
-   "id": "ja064-6",
+   "id": "ja064-8",
    "opciones": [
     {
      "texto": "Que comió mucho porque estaba rico.",
@@ -329,12 +407,12 @@
    "frase": "ひま な ので",
    "traduccion": "Como tengo tiempo libre.",
    "explicacion": "ので = motivo.",
-   "id": "ja064-7"
+   "id": "ja064-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Qué significa «みに いきます»?",
-   "id": "ja064-8",
+   "id": "ja064-10",
    "opciones": [
     {
      "texto": "Voy a ver (algo).",
@@ -352,5 +430,5 @@
    ]
   }
  ],
- "intro": "Empezamos el nivel B1, que en Japón se llama JLPT N3. Hoy aprendes a explicar el motivo de algo con ので y から, las dos formas más usadas para decir «porque»."
+ "intro": "Empezamos el nivel B1 con conectores para explicar causas, resultados y objetivos. B1 y JLPT N3 son referencias relacionadas, pero no equivalentes automáticamente."
 }

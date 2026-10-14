@@ -74,23 +74,90 @@
   "wirklich": {
    "es": "de verdad, realmente",
    "pron": "VIRK-lij"
+  },
+  "Anwohner": {
+   "es": "residente (der)",
+   "pron": "AN-vo-ner"
+  },
+  "Bauzeit": {
+   "es": "período de obras (die)",
+   "pron": "BAU-tsait"
+  },
+  "Baustelle": {
+   "es": "obra, zona de obras (die)",
+   "pron": "BAU-shte-le"
+  },
+  "Umleitung": {
+   "es": "desvío (die)",
+   "pron": "UM-lai-tung"
+  },
+  "wird": {
+   "es": "se está; es (de «werden»)",
+   "oculta": true
+  },
+  "soll": {
+   "es": "se supone que; debe (de «sollen»)",
+   "oculta": true
+  },
+  "fertig": {
+   "es": "terminado",
+   "oculta": true
+  },
+  "künftig": {
+   "es": "en el futuro",
+   "oculta": true
+  },
+  "informiert": {
+   "es": "informa (de «informieren»)",
+   "oculta": true
+  },
+  "bekommt": {
+   "es": "recibe (de «bekommen»)",
+   "oculta": true
+  },
+  "Anlage": {
+   "es": "instalación (die)",
+   "oculta": true
+  },
+  "Menschen": {
+   "es": "personas (plural)",
+   "pron": "MEN-shen"
+  },
+  "neue": {
+   "es": "nueva (delante de un nombre femenino)",
+   "oculta": true
+  },
+  "liefert": {
+   "es": "suministra (de «liefern»)",
+   "oculta": true
+  },
+  "Arbeiten": {
+   "es": "obras, trabajos (plural de «die Arbeit»)",
+   "oculta": true
+  },
+  "bleibt": {
+   "es": "permanece (de «bleiben»)",
+   "oculta": true
+  },
+  "geöffnet": {
+   "es": "abierta (participio de «öffnen»)",
+   "oculta": true
   }
  },
  "bloques": [
   {
    "tipo": "explicacion",
-   "titulo": "Pasiva en presente",
+   "titulo": "Pasiva de proceso en presente",
    "texto": [
-    "Se forma con **werden** conjugado y el participio al final: **Das Haus wird renoviert** (la casa se está renovando). Es la forma de «se» + verbo o de «ser + participio» del español, pero siempre con «werden».",
-    "El que hace la acción va con **von** + dativo: **Das Haus wird vom Architekten geplant** (la casa la diseña el arquitecto)."
+    "La pasiva de proceso (**Vorgangspassiv**) se forma con **werden** conjugado y el participio al final: **Das Haus wird renoviert** (están renovando la casa). Sirve para destacar la acción; no siempre equivale a «se» en español.",
+    "La persona que realiza la acción puede aparecer con **von** + dativo: **Das Haus wird vom Architekten geplant**."
    ]
   },
   {
    "tipo": "explicacion",
    "titulo": "Activa y pasiva",
    "texto": [
-    "En activa el sujeto hace la acción: **Der Architekt plant das Haus** (el arquitecto diseña la casa). En pasiva el objeto pasa a ser el sujeto: **Das Haus wird vom Architekten geplant**.",
-    "Ojo con el falso amigo: «se» en español puede ser pasiva o reflexiva. En alemán la pasiva siempre usa **werden**."
+    "En activa, el sujeto hace la acción: **Der Architekt plant das Haus**. En la pasiva de proceso, el objeto pasa a ser sujeto: **Das Haus wird geplant**. Para describir el estado resultante se usa la pasiva de estado (**Zustandspassiv**) con **sein**: **Die Tür ist geschlossen** (la puerta está cerrada). En B1 nos centramos en **werden**; verás más usos de **sein** en el capítulo 32."
    ]
   },
   {
@@ -139,7 +206,12 @@
     "repariert",
     "Dach",
     "gerade",
-    "wirklich"
+    "wirklich",
+    "Anwohner",
+    "Bauzeit",
+    "Baustelle",
+    "Umleitung",
+    "Menschen"
    ]
   },
   {
@@ -217,9 +289,95 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Aviso municipal",
+   "frases": [
+    {
+     "de": "In der Stadt wird die Solaranlage gebaut.",
+     "es": "En la ciudad se construye la instalación solar."
+    },
+    {
+     "de": "Sie ist im Herbst fertig. Dann bekommt die Schule Strom aus der Anlage.",
+     "es": "Estará terminada en otoño. Entonces la escuela recibirá electricidad de la instalación."
+    },
+    {
+     "de": "Die Stadt informiert die Menschen nächste Woche über die Arbeiten.",
+     "es": "La ciudad informará a la gente sobre las obras la próxima semana."
+    },
+    {
+     "de": "Während der Bauzeit bleibt die Schule geöffnet.",
+     "es": "Durante las obras, la escuela permanece abierta."
+    },
+    {
+     "de": "Deshalb fährt der Bus eine Umleitung.",
+     "es": "Por eso, el autobús sigue un desvío."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué se está construyendo en la ciudad?",
+   "id": "de070-1",
+   "opciones": [
+    {
+     "texto": "Eine Solaranlage.",
+     "explicacion": "El aviso menciona una instalación solar.",
+     "correcta": true
+    },
+    {
+     "texto": "Eine neue Schule.",
+     "explicacion": "La escuela recibirá electricidad; no se construye."
+    },
+    {
+     "texto": "Eine Bushaltestelle.",
+     "explicacion": "El aviso habla de un desvío de autobús."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué lugar seguirá abierto durante las obras?",
+   "id": "de070-2",
+   "opciones": [
+    {
+     "texto": "Die Schule.",
+     "explicacion": "El aviso dice que la escuela permanece abierta.",
+     "correcta": true
+    },
+    {
+     "texto": "Die Baustelle.",
+     "explicacion": "La obra causa un desvío."
+    },
+    {
+     "texto": "Das Rathaus.",
+     "explicacion": "No aparece en el aviso."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué cambio se anuncia para el autobús?",
+   "id": "de070-3",
+   "opciones": [
+    {
+     "texto": "Er fährt eine Umleitung.",
+     "explicacion": "El aviso dice que el autobús toma un desvío.",
+     "correcta": true
+    },
+    {
+     "texto": "Er fährt nur sonntags.",
+     "explicacion": "No se menciona ese horario."
+    },
+    {
+     "texto": "Er fährt zur Schule.",
+     "explicacion": "El aviso dice que lleva electricidad a la escuela."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué verbo auxiliar forma la pasiva en alemán?",
-   "id": "de070-1",
+   "id": "de070-4",
    "opciones": [
     {
      "texto": "werden",
@@ -239,7 +397,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Cómo se dice «la casa se construye»?",
-   "id": "de070-2",
+   "id": "de070-5",
    "opciones": [
     {
      "texto": "Das Haus wird gebaut.",
@@ -260,7 +418,7 @@
    "tipo": "traduccion",
    "pregunta": "¿Qué significa?",
    "frase": "Das Haus wird vom Architekten geplant.",
-   "id": "de070-3",
+   "id": "de070-6",
    "opciones": [
     {
      "texto": "La casa la diseña el arquitecto.",
@@ -281,7 +439,7 @@
    "tipo": "huecos",
    "pregunta": "se repara",
    "frase": "Die Heizung ___ repariert.",
-   "id": "de070-4",
+   "id": "de070-7",
    "opciones": [
     {
      "texto": "wird",
@@ -302,7 +460,7 @@
    "tipo": "huecos",
    "pregunta": "construido",
    "frase": "Das Dach wird im Sommer ___ .",
-   "id": "de070-5",
+   "id": "de070-8",
    "opciones": [
     {
      "texto": "gebaut",
@@ -323,7 +481,7 @@
    "tipo": "test",
    "pregunta": "Escucha. ¿Qué significa?",
    "audio": "Das Haus wird gerade renoviert.",
-   "id": "de070-6",
+   "id": "de070-9",
    "opciones": [
     {
      "texto": "La casa se está renovando ahora mismo.",
@@ -346,12 +504,12 @@
    "frase": "Das Haus wird gebaut",
    "traduccion": "La casa se construye",
    "explicacion": "werden + participio al final.",
-   "id": "de070-7"
+   "id": "de070-10"
   },
   {
    "tipo": "test",
    "pregunta": "¿Cuál es la forma pasiva correcta para «se diseña la instalación»?",
-   "id": "de070-8",
+   "id": "de070-11",
    "opciones": [
     {
      "texto": "Die Solaranlage wird geplant.",
@@ -376,8 +534,8 @@
     "Das Haus wird im Sommer gebaut"
    ],
    "explicacion": "werden + participio al final.",
-   "id": "de070-9"
+   "id": "de070-12"
   }
  ],
- "intro": "Hoy cambiamos de punto de vista: nos interesa lo que pasa, no quién lo hace. Eso es la **voz pasiva**, y en alemán se forma con **werden** y el participio."
+ "intro": "Hoy cambiamos de punto de vista: nos interesa la acción, no quién la realiza. Practicamos la pasiva de proceso, que se forma con **werden** y el participio."
 }

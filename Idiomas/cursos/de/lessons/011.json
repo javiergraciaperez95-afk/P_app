@@ -90,6 +90,22 @@
   "keinen": {
    "es": "ningún (acusativo masculino)",
    "pron": "KAI-nen"
+  },
+  "zu vermieten": {
+   "es": "en alquiler",
+   "pron": "tsu fer-MI-ten"
+  },
+  "Miete": {
+   "es": "alquiler mensual (die)",
+   "pron": "MI-te"
+  },
+  "Baum": {
+   "es": "árbol (der)",
+   "pron": "baum"
+  },
+  "Blumen": {
+   "es": "flores",
+   "pron": "BLU-men"
   }
  },
  "bloques": [
@@ -160,7 +176,11 @@
     "schön",
     "große",
     "kleinen",
-    "keinen"
+    "keinen",
+    "zu vermieten",
+    "Miete",
+    "Baum",
+    "Blumen"
    ]
   },
   {
@@ -263,9 +283,93 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "En el jardín",
+   "frases": [
+    {
+     "de": "Der Garten ist klein. Es gibt Blumen und einen Baum.",
+     "es": "El jardín es pequeño. Hay flores y un árbol."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué hay en el jardín?",
+   "id": "de011-1",
+   "opciones": [
+    {
+     "texto": "Flores y un árbol.",
+     "explicacion": "El texto dice «Blumen und einen Baum».",
+     "correcta": true
+    },
+    {
+     "texto": "Un salón y una cocina.",
+     "explicacion": "Son habitaciones del piso."
+    },
+    {
+     "texto": "Una mesa y dos sillas.",
+     "explicacion": "Están en la cocina."
+    }
+   ]
+  },
+  {
+   "tipo": "texto",
+   "titulo": "Anuncio de piso",
+   "frases": [
+    {
+     "de": "Wohnung zu vermieten: zwei Zimmer, eine Küche und ein Bad.",
+     "es": "Piso en alquiler: dos habitaciones, una cocina y un baño."
+    },
+    {
+     "de": "Miete: 700 €. Kein Garten.",
+     "es": "Alquiler: 700 €. Sin jardín."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Cuántas habitaciones tiene el piso?",
+   "id": "de011-2",
+   "opciones": [
+    {
+     "texto": "Dos.",
+     "explicacion": "El anuncio dice «zwei Zimmer».",
+     "correcta": true
+    },
+    {
+     "texto": "Una.",
+     "explicacion": "«Eine» corresponde a la cocina."
+    },
+    {
+     "texto": "Tres.",
+     "explicacion": "No aparece ese número."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Cuánto cuesta al mes?",
+   "id": "de011-3",
+   "opciones": [
+    {
+     "texto": "700 €.",
+     "explicacion": "El anuncio indica «Miete: 700 €».",
+     "correcta": true
+    },
+    {
+     "texto": "70 €.",
+     "explicacion": "Falta un cero."
+    },
+    {
+     "texto": "7 €.",
+     "explicacion": "No coincide con el precio."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Cómo dices «hay un jardín»?",
-   "id": "de011-1",
+   "id": "de011-4",
    "opciones": [
     {
      "texto": "Es gibt einen Garten.",
@@ -285,7 +389,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Cómo dices «no hay baño»?",
-   "id": "de011-2",
+   "id": "de011-5",
    "opciones": [
     {
      "texto": "Es gibt kein Bad.",
@@ -305,7 +409,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Cómo preguntas «¿hay una cocina?»?",
-   "id": "de011-3",
+   "id": "de011-6",
    "opciones": [
     {
      "texto": "Gibt es eine Küche?",
@@ -326,7 +430,7 @@
    "tipo": "traduccion",
    "pregunta": "¿Qué significa?",
    "frase": "Wie viele Zimmer gibt es?",
-   "id": "de011-4",
+   "id": "de011-7",
    "opciones": [
     {
      "texto": "¿Cuántas habitaciones hay?",
@@ -347,7 +451,7 @@
    "tipo": "huecos",
    "pregunta": "Completa la frase.",
    "frase": "Es gibt ___ Sofa in der Wohnung.",
-   "id": "de011-5",
+   "id": "de011-8",
    "opciones": [
     {
      "texto": "ein",
@@ -368,7 +472,7 @@
    "tipo": "huecos",
    "pregunta": "Completa la frase.",
    "frase": "Es gibt ___ Garten. (ningún)",
-   "id": "de011-6",
+   "id": "de011-9",
    "opciones": [
     {
      "texto": "keinen",
@@ -389,7 +493,7 @@
    "tipo": "test",
    "pregunta": "Escucha. ¿Qué significa?",
    "audio": "Es gibt drei Zimmer und einen Garten.",
-   "id": "de011-7",
+   "id": "de011-10",
    "opciones": [
     {
      "texto": "Hay tres habitaciones y un jardín.",
@@ -412,7 +516,7 @@
    "frase": "Es gibt zwei Stühle in der Küche",
    "traduccion": "Hay dos sillas en la cocina",
    "explicacion": "Es gibt + número + plural + lugar.",
-   "id": "de011-8"
+   "id": "de011-11"
   }
  ]
 }

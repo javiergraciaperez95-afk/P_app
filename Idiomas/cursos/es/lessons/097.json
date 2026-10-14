@@ -80,6 +80,15 @@
         }
       ]
     },
+    {
+      "tipo": "texto",
+      "titulo": {"en": "A flat advert"},
+      "frases": [
+        {"es": "Se alquila piso luminoso de 2 habitaciones, amueblado y con ascensor.", "en": "Bright two-bedroom flat for rent, furnished and with a lift.", "analisis": [["Se alquila", "for rent"], ["2 habitaciones", "two bedrooms"], ["amueblado", "furnished"], ["con ascensor", "with a lift"]]},
+        {"es": "Zona tranquila, cerca del metro. Tercer piso.", "en": "Quiet area, near the metro. Third floor.", "analisis": [["Zona tranquila", "area"], ["cerca del metro", "near the metro"], ["Tercer piso", "floor"]]},
+        {"es": "750 € al mes. Gastos no incluidos. Fianza: un mes.", "en": "€750 per month. Bills not included. Deposit: one month's rent.", "analisis": [["750 € al mes", "monthly rent"], ["no incluidos", "not included"], ["Fianza", "deposit"]]}
+      ]
+    },
     {"tipo": "vocabulario"},
     {
       "tipo": "huecos",
@@ -117,6 +126,20 @@
         "The deposit is included": {"en": "The deposit is la fianza."}
       },
       "correcta": "Bills are included in the rent"
+    },
+    {
+      "tipo": "test",
+      "id": "piso-lectura-1",
+      "pregunta": {"en": "How much is the monthly rent in the advert?"},
+      "opciones": {"750 euros": {"en": "Read the price line."}, "700 euros": {"en": "That was the price in the dialogue."}, "One month's rent": {"en": "That is the deposit."}},
+      "correcta": "750 euros"
+    },
+    {
+      "tipo": "test",
+      "id": "piso-lectura-2",
+      "pregunta": {"en": "Which statement is true according to the advert?"},
+      "opciones": {"Bills are not included": {"en": "The advert says gastos no incluidos."}, "The flat has no lift": {"en": "It says con ascensor."}, "The deposit is two months": {"en": "It says fianza: un mes."}},
+      "correcta": "Bills are not included"
     },
     {
       "tipo": "escribir",

@@ -30,6 +30,31 @@
   "はんたい": {
    "es": "en contra; oposición",
    "pron": "hantai"
+  },
+  "視点": {
+   "es": "punto de vista",
+   "pron": "shiten",
+   "consejo": "Lectura: してん."
+  },
+  "消費者": {
+   "es": "consumidor",
+   "pron": "shouhisha",
+   "consejo": "Lectura: しょうひしゃ."
+  },
+  "農家": {
+   "es": "agricultor",
+   "pron": "nouka",
+   "consejo": "Lectura: のうか."
+  },
+  "立場": {
+   "es": "posición",
+   "pron": "tachiba",
+   "consejo": "Lectura: たちば."
+  },
+  "影響": {
+   "es": "influencia",
+   "pron": "eikyou",
+   "consejo": "Lectura: えいきょう."
   }
  },
  "bloques": [
@@ -43,18 +68,16 @@
   },
   {
    "tipo": "explicacion",
-   "titulo": "〜にとって: para (alguien)",
+   "titulo": "〜にとって: desde el punto de vista de",
    "texto": [
-    "Para dar una opinión desde el punto de vista de alguien: **わたし に とって、 にほんご は むずかしい です** (para mí, el japonés es difícil).",
-    "Expresa lo que le pasa a una persona, no el tema."
+    "Señala para quién se evalúa algo: **わたし に とって、 にほんご は むずかしい です** (para mí, el japonés es difícil). No introduce el tema del que se habla; para eso sirve **について**."
    ]
   },
   {
    "tipo": "explicacion",
-   "titulo": "〜に対して: frente a; hacia",
+   "titulo": "〜に対して: hacia; con respecto a",
    "texto": [
-    "Para decir la actitud hacia algo: **この けいかく に たいして、 はんたい です** (estoy en contra de este plan).",
-    "Se usa en debates y en noticias."
+    "Señala el objeto de una acción, actitud o respuesta: **この けいかく に たいして、 きびしい いけん が でました** (se expresaron opiniones críticas sobre este plan). No siempre significa «estar en contra»."
    ]
   },
   {
@@ -93,13 +116,68 @@
     "とって",
     "けいかく",
     "たいして",
-    "はんたい"
+    "はんたい",
+    "視点",
+    "消費者",
+    "農家",
+    "立場",
+    "影響"
+   ]
+  },
+  {
+   "tipo": "texto",
+   "titulo": "Dos puntos de vista",
+   "frases": [
+    {
+     "ja": "農家 にとって、急な 値下げ は 大きな 問題 です。一方、消費者 にとって は、安い 商品 が ある と 助かります。両方 の 立場 を 考える と、公平 な 仕組み が 必要 です。",
+     "es": "Para los agricultores, una rebaja repentina es un gran problema. Por otro lado, a los consumidores les ayuda que haya productos baratos. Si se tienen en cuenta ambas perspectivas, hace falta un sistema justo."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué beneficia a los consumidores?",
+   "id": "ja071-1",
+   "opciones": [
+    {
+     "texto": "Que haya productos baratos.",
+     "explicacion": "La lectura lo indica explícitamente.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué hace falta al considerar ambas perspectivas?",
+   "id": "ja071-2",
+   "opciones": [
+    {
+     "texto": "Un sistema justo.",
+     "explicacion": "La respuesta aparece en la lectura.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
    ]
   },
   {
    "tipo": "test",
    "pregunta": "¿Qué significa «にほん の ぶんか に ついて はなします»?",
-   "id": "ja071-1",
+   "id": "ja071-3",
    "opciones": [
     {
      "texto": "Hablaré sobre la cultura japonesa.",
@@ -119,7 +197,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué expresa «〜にとって»?",
-   "id": "ja071-2",
+   "id": "ja071-4",
    "opciones": [
     {
      "texto": "Desde el punto de vista de alguien.",
@@ -140,7 +218,7 @@
    "tipo": "huecos",
    "pregunta": "Para mí, el japonés es difícil.",
    "frase": "わたし に ___、 にほんご は むずかしい です。",
-   "id": "ja071-3",
+   "id": "ja071-5",
    "opciones": [
     {
      "texto": "とって",
@@ -161,7 +239,7 @@
    "tipo": "huecos",
    "pregunta": "Estoy en contra de este plan.",
    "frase": "この けいかく に ___、 はんたい です。",
-   "id": "ja071-4",
+   "id": "ja071-6",
    "opciones": [
     {
      "texto": "たいして",
@@ -182,7 +260,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "この けいかく に たいして、 はんたい です。",
-   "id": "ja071-5",
+   "id": "ja071-7",
    "opciones": [
     {
      "texto": "Estoy en contra de este plan.",
@@ -203,7 +281,7 @@
    "tipo": "test",
    "pregunta": "¿De qué tema hablará?",
    "audio": "にほん の ぶんか に ついて はなします。",
-   "id": "ja071-6",
+   "id": "ja071-8",
    "opciones": [
     {
      "texto": "De la cultura japonesa.",
@@ -226,12 +304,12 @@
    "frase": "わたし に とって",
    "traduccion": "Para mí.",
    "explicacion": "にとって = para alguien.",
-   "id": "ja071-7"
+   "id": "ja071-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Cuál es el sentido de «について»?",
-   "id": "ja071-8",
+   "id": "ja071-10",
    "opciones": [
     {
      "texto": "Sobre (el tema).",

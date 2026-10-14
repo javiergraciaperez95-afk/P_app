@@ -30,6 +30,31 @@
   "という": {
    "es": "que, llamado (forma de decir)",
    "pron": "to iu"
+  },
+  "調査結果": {
+   "es": "resultado de investigación",
+   "pron": "chousa kekka",
+   "consejo": "Lectura: ちょうさけっか."
+  },
+  "物価": {
+   "es": "precios y coste de vida",
+   "pron": "bukka",
+   "consejo": "Lectura: ぶっか."
+  },
+  "上昇": {
+   "es": "subida",
+   "pron": "joushou",
+   "consejo": "Lectura: じょうしょう."
+  },
+  "世論": {
+   "es": "opinión pública",
+   "pron": "yoron",
+   "consejo": "Lectura: よろん."
+  },
+  "統計": {
+   "es": "estadística",
+   "pron": "toukei",
+   "consejo": "Lectura: とうけい."
   }
  },
  "bloques": [
@@ -93,7 +118,12 @@
     "ニュース",
     "ぶっか",
     "あがった",
-    "という"
+    "という",
+    "調査結果",
+    "物価",
+    "上昇",
+    "世論",
+    "統計"
    ]
   },
   {
@@ -137,9 +167,59 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Una encuesta reciente",
+   "frases": [
+    {
+     "ja": "市 の 調査 によると、図書館 を 使う 人 が 増えました。発表資料 には、利用者 の 割合 と 年齢 の 傾向 が あります。専門家 によれば、夜 の 開館時間 が 長く なった こと も 影響 しています。",
+     "es": "Según la encuesta municipal, aumentó el número de usuarios de la biblioteca. El material presenta la proporción de usuarios y las tendencias por edad. Según los especialistas, también influye la ampliación del horario nocturno."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué muestra la presentación?",
+   "id": "ja070-1",
+   "opciones": [
+    {
+     "texto": "La proporción de usuarios y las tendencias por edad.",
+     "explicacion": "La lectura lo indica explícitamente.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué otro factor influyó?",
+   "id": "ja070-2",
+   "opciones": [
+    {
+     "texto": "La ampliación del horario nocturno.",
+     "explicacion": "La respuesta aparece en la lectura.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «てんき よほう によると、 あした は あめ です»?",
-   "id": "ja070-1",
+   "id": "ja070-3",
    "opciones": [
     {
      "texto": "Según la previsión, mañana lloverá.",
@@ -159,7 +239,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué expresa «〜という こと だ»?",
-   "id": "ja070-2",
+   "id": "ja070-4",
    "opciones": [
     {
      "texto": "Algo que se ha oído de otra persona.",
@@ -180,7 +260,7 @@
    "tipo": "huecos",
    "pregunta": "Según la previsión, mañana lloverá.",
    "frase": "てんき よほう ___ 、 あした は あめ です。",
-   "id": "ja070-3",
+   "id": "ja070-5",
    "opciones": [
     {
      "texto": "によると",
@@ -201,7 +281,7 @@
    "tipo": "huecos",
    "pregunta": "Dicen que Yamada irá a Japón el mes que viene.",
    "frase": "やまだ さん は らいげつ にほん へ いく ___ 。",
-   "id": "ja070-4",
+   "id": "ja070-6",
    "opciones": [
     {
      "texto": "という こと だ",
@@ -222,7 +302,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "ニュース によれば、 ぶっか が あがった という こと です。",
-   "id": "ja070-5",
+   "id": "ja070-7",
    "opciones": [
     {
      "texto": "Según las noticias, los precios han subido.",
@@ -243,7 +323,7 @@
    "tipo": "test",
    "pregunta": "¿Qué cuenta?",
    "audio": "やまだ さん は らいげつ にほん へ いく という こと だ。",
-   "id": "ja070-6",
+   "id": "ja070-8",
    "opciones": [
     {
      "texto": "Que dicen que Yamada irá a Japón el mes que viene.",
@@ -266,12 +346,12 @@
    "frase": "てんき よほう によると",
    "traduccion": "Según la previsión del tiempo.",
    "explicacion": "によると = según una fuente.",
-   "id": "ja070-7"
+   "id": "ja070-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Qué significa «によると»?",
-   "id": "ja070-8",
+   "id": "ja070-10",
    "opciones": [
     {
      "texto": "Según (una fuente).",

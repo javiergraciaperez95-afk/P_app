@@ -10,6 +10,56 @@
   "いきようがない": {
    "es": "no hay forma de ir",
    "pron": "ikiyō ga nai"
+  },
+  "方法": {
+   "es": "método",
+   "pron": "houhou",
+   "consejo": "Lectura: ほうほう."
+  },
+  "検索": {
+   "es": "búsqueda",
+   "pron": "kensaku",
+   "consejo": "Lectura: けんさく."
+  },
+  "手段": {
+   "es": "medio",
+   "pron": "shudan",
+   "consejo": "Lectura: しゅだん."
+  },
+  "連絡先": {
+   "es": "datos de contacto",
+   "pron": "renrakusaki",
+   "consejo": "Lectura: れんらくさき."
+  },
+  "行き方": {
+   "es": "cómo llegar",
+   "pron": "ikikata",
+   "consejo": "Lectura: いきかた."
+  },
+  "所在地": {
+   "es": "ubicación",
+   "pron": "shozaichi",
+   "consejo": "Lectura: しょざいち."
+  },
+  "番地": {
+   "es": "número de portal",
+   "pron": "banchi",
+   "consejo": "Lectura: ばんち."
+  },
+  "道順": {
+   "es": "ruta",
+   "pron": "michijun",
+   "consejo": "Lectura: みちじゅん."
+  },
+  "問い合わせ先": {
+   "es": "contacto para consultas",
+   "pron": "toiawasesaki",
+   "consejo": "Lectura: といあわせさき."
+  },
+  "案内図": {
+   "es": "plano orientativo",
+   "pron": "annaizu",
+   "consejo": "Lectura: あんないず."
   }
  },
  "bloques": [
@@ -17,8 +67,7 @@
    "tipo": "explicacion",
    "titulo": "〜ようがない: no hay forma de",
    "texto": [
-    "Para decir que algo es imposible porque no hay manera de hacerlo: verbo en forma de diccionario + **よう が ない**: **ばしょ が わからない ので、 いきようがない です** (como no sé el lugar, no hay forma de ir).",
-    "Con **いく** queda **いきようがない**."
+    "Para decir que no existe una manera de hacerlo: raíz de la forma **ます** + **よう が ない**: **じゅうしょ が わからなくて、 いきようがない です** (no sé la dirección y no hay forma de llegar). **いく → いきようがない**."
    ]
   },
   {
@@ -55,7 +104,17 @@
    "titulo": "Vocabulario: no hay forma",
    "palabras": [
     "ばしょ",
-    "いきようがない"
+    "いきようがない",
+    "方法",
+    "検索",
+    "手段",
+    "連絡先",
+    "行き方",
+    "所在地",
+    "番地",
+    "道順",
+    "問い合わせ先",
+    "案内図"
    ]
   },
   {
@@ -85,9 +144,59 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Buscar una dirección",
+   "frases": [
+    {
+     "ja": "住所 が わからない と、目的地 へ 行きようがありません。地図 で 検索 した ところ、近く に 駅 が ある と わかりました。駅員 に 聞いて、道順 を 確認 します。",
+     "es": "Si no sé la dirección, no hay forma de llegar al destino. Al buscarlo en el mapa, descubrí que hay una estación cerca. Preguntaré al personal y confirmaré la ruta."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué descubrió al buscar en el mapa?",
+   "id": "ja081-1",
+   "opciones": [
+    {
+     "texto": "Que hay una estación cerca.",
+     "explicacion": "La lectura lo indica explícitamente.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué hará después?",
+   "id": "ja081-2",
+   "opciones": [
+    {
+     "texto": "Preguntará al personal por la ruta.",
+     "explicacion": "La respuesta aparece en la lectura.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «ばしょ が わからない ので、 いきようがない です»?",
-   "id": "ja081-1",
+   "id": "ja081-3",
    "opciones": [
     {
      "texto": "Como no sé el lugar, no hay forma de ir.",
@@ -107,7 +216,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué expresa «〜ことは ない»?",
-   "id": "ja081-2",
+   "id": "ja081-4",
    "opciones": [
     {
      "texto": "No hace falta.",
@@ -128,7 +237,7 @@
    "tipo": "huecos",
    "pregunta": "Como no sé el lugar, no hay forma de ir.",
    "frase": "ばしょ が わからない ので、 ___ です。",
-   "id": "ja081-3",
+   "id": "ja081-5",
    "opciones": [
     {
      "texto": "いきようがない",
@@ -149,7 +258,7 @@
    "tipo": "huecos",
    "pregunta": "No hace falta que te preocupes tanto.",
    "frase": "そんな に しんぱい する ___ は ない です。",
-   "id": "ja081-4",
+   "id": "ja081-6",
    "opciones": [
     {
      "texto": "こと",
@@ -170,7 +279,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "そんな に しんぱい する こと は ない です。",
-   "id": "ja081-5",
+   "id": "ja081-7",
    "opciones": [
     {
      "texto": "No hace falta que te preocupes tanto.",
@@ -191,7 +300,7 @@
    "tipo": "test",
    "pregunta": "¿Qué pasa?",
    "audio": "ばしょ が わからない ので、 いきようがない です。",
-   "id": "ja081-6",
+   "id": "ja081-8",
    "opciones": [
     {
      "texto": "No hay forma de ir porque no sabe el lugar.",
@@ -214,12 +323,12 @@
    "frase": "いきようがない です",
    "traduccion": "No hay forma de ir.",
    "explicacion": "ようがない = imposible.",
-   "id": "ja081-7"
+   "id": "ja081-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Cuál es la diferencia de 〜ことは ない con 〜なければ ならない?",
-   "id": "ja081-8",
+   "id": "ja081-10",
    "opciones": [
     {
      "texto": "〜ことは ない = no hace falta; 〜なければ ならない = hay que.",

@@ -66,6 +66,18 @@
   "meinem": {
    "es": "mi (dativo masculino o neutro)",
    "pron": "MAI-nem"
+  },
+  "frei": {
+   "es": "disponible, libre",
+   "pron": "frai"
+  },
+  "November": {
+   "es": "noviembre (der)",
+   "pron": "no-VEM-ber"
+  },
+  "Besichtigung": {
+   "es": "visita para ver un piso (die)",
+   "pron": "be-ZIJ-ti-gung"
   }
  },
  "bloques": [
@@ -73,51 +85,89 @@
    "tipo": "explicacion",
    "titulo": "Posesivos: mein, dein…",
    "texto": [
-    "Los posesivos se comportan como «ein». Lo que cambia es el género de lo que posees: **mein Sofa** (mi sofá, neutro), **meine Lampe** (mi lámpara, femenina), **mein Bett** (mi cama, neutra).",
-    "Con «unser» (nuestro) pasa igual: **unser Umzug** (nuestra mudanza), **unsere Miete** (nuestro alquiler)."
+    "Los posesivos llevan terminaciones parecidas a **ein**. La terminación depende del género y número del nombre y del caso: **mein Sofa**, **meine Lampe**, **meine Freunde**. La persona que posee determina la raíz (**mein-**, **dein-**, **unser-**, **Ihr-**); el objeto determina la terminación."
    ]
   },
   {
    "tipo": "explicacion",
-   "titulo": "Acusativo y dativo",
+   "titulo": "Posesivos en los casos más frecuentes",
    "texto": [
-    "Con el masculino cambia en acusativo: **Ich suche meinen Schlüssel** (busco mi llave). Con dativo, el masculino es **meinem**: **mit meinem Freund** (con mi amigo).",
-    "Los neutros y femeninos en acusativo no cambian: **mein Sofa**, **meine Lampe**."
+    "En nominativo: **mein Vater**, **meine Mutter**, **mein Kind**, **meine Freunde**. En acusativo cambia el masculino: **Ich suche meinen Schlüssel**; en dativo: **mit meinem Freund**, **mit meiner Schwester**, **mit meinem Kind**, **mit meinen Freunden**. En dativo plural el nombre suele añadir **-n**: **Freunden**."
    ]
   },
   {
    "tipo": "tabla",
-   "titulo": "Posesivo",
+   "titulo": "Terminaciones de posesivos",
    "filas": [
     [
-     "ich",
+     "mein-",
      "mein",
      "meine",
-     "mein"
+     "mein",
+     "meine"
     ],
     [
-     "du",
+     "dein-",
      "dein",
      "deine",
-     "dein"
+     "dein",
+     "deine"
     ],
     [
-     "wir",
+     "unser-",
      "unser",
      "unsere",
-     "unser"
+     "unser",
+     "unsere"
     ],
     [
-     "Sie",
+     "Ihr- (usted)",
      "Ihr",
      "Ihre",
-     "Ihr"
+     "Ihr",
+     "Ihre"
     ]
    ],
    "columnas": [
-    "Masculino",
-    "Femenino",
-    "Neutro"
+    "Nominativo masc.",
+    "Nominativo fem.",
+    "Nominativo neutro",
+    "Nominativo plural"
+   ]
+  },
+  {
+   "tipo": "tabla",
+   "titulo": "Ejemplos en acusativo y dativo",
+   "filas": [
+    [
+     "masc.",
+     "meinen Schlüssel",
+     "meinem Schlüssel",
+     "mi llave"
+    ],
+    [
+     "fem.",
+     "meine Tasche",
+     "meiner Tasche",
+     "mi bolsa"
+    ],
+    [
+     "neutro",
+     "mein Bett",
+     "meinem Bett",
+     "mi cama"
+    ],
+    [
+     "plural",
+     "meine Freunde",
+     "meinen Freunden",
+     "mis amigos"
+    ]
+   ],
+   "columnas": [
+    "Acusativo",
+    "Dativo",
+    "Significado"
    ]
   },
   {
@@ -360,6 +410,77 @@
    ],
    "explicacion": "acusativo masculino: meinen.",
    "id": "de041-8"
+  },
+  {
+   "tipo": "vocabulario",
+   "titulo": "Lectura: anuncio de vivienda",
+   "palabras": [
+    "frei",
+    "November",
+    "Besichtigung"
+   ]
+  },
+  {
+   "tipo": "texto",
+   "titulo": "Wohnungsanzeige",
+   "frases": [
+    {
+     "de": "Wohnung in Berlin: zwei Zimmer, Küche und Bad.",
+     "es": "Piso en Berlín: dos habitaciones, cocina y baño."
+    },
+    {
+     "de": "Die Miete kostet 650 Euro.",
+     "es": "El alquiler cuesta 650 euros."
+    },
+    {
+     "de": "Die Wohnung ist ab 1. November frei.",
+     "es": "El piso está disponible a partir del 1 de noviembre."
+    },
+    {
+     "de": "Besichtigung: Samstag, 10 bis 12 Uhr.",
+     "es": "Visita: sábado, de 10 a 12."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Cuánto cuesta el alquiler?",
+   "id": "de041-9",
+   "opciones": [
+    {
+     "texto": "650 Euro",
+     "explicacion": "El anuncio indica 650 euros.",
+     "correcta": true
+    },
+    {
+     "texto": "560 Euro",
+     "explicacion": "Esa cantidad no aparece."
+    },
+    {
+     "texto": "650 Euro pro Woche",
+     "explicacion": "El anuncio solo indica el precio, no un periodo."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Cuándo se puede visitar el piso?",
+   "id": "de041-10",
+   "opciones": [
+    {
+     "texto": "el sábado, de 10 a 12",
+     "explicacion": "Es el horario del anuncio.",
+     "correcta": true
+    },
+    {
+     "texto": "el viernes por la tarde",
+     "explicacion": "Ese horario no aparece."
+    },
+    {
+     "texto": "el 1 de noviembre a las 12",
+     "explicacion": "Esa fecha indica desde cuándo está disponible."
+    }
+   ]
   }
  ],
  "intro": "Llega la mudanza. Para hablar de lo que tienes en casa usamos los posesivos: **mein**, **dein**, **unser**... Cambian según el género de lo que posees."

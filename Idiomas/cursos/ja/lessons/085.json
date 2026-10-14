@@ -26,6 +26,36 @@
   "ねすぎて": {
    "es": "(de ねすぎる) dormir demasiado",
    "pron": "nesugite"
+  },
+  "故意": {
+   "es": "intención deliberada",
+   "pron": "koi",
+   "consejo": "Lectura: こい."
+  },
+  "間違い": {
+   "es": "error",
+   "pron": "machigai",
+   "consejo": "Lectura: まちがい."
+  },
+  "謝罪": {
+   "es": "disculpa",
+   "pron": "shazai",
+   "consejo": "Lectura: しゃざい."
+  },
+  "丁寧": {
+   "es": "cortés; cuidadoso",
+   "pron": "teinei",
+   "consejo": "Lectura: ていねい."
+  },
+  "訪問": {
+   "es": "visita",
+   "pron": "houmon",
+   "consejo": "Lectura: ほうもん."
+  },
+  "お礼状": {
+   "es": "carta de agradecimiento",
+   "pron": "oreijou",
+   "consejo": "Lectura: おれいじょう."
   }
  },
  "bloques": [
@@ -33,8 +63,7 @@
    "tipo": "explicacion",
    "titulo": "わざわざ: expresamente",
    "texto": [
-    "Para decir que alguien se ha tomado la molestia de hacer algo, sobre todo algo que no era necesario: **わざわざ きて くれて、 ありがとう** (gracias por venir expresamente).",
-    "Se usa mucho para agradecer."
+    "Para señalar que alguien hizo un esfuerzo especial o se tomó la molestia: **わざわざ きて くれて、 ありがとう** (gracias por venir expresamente). Puede expresar agradecimiento o, según el tono, reproche."
    ]
   },
   {
@@ -42,7 +71,7 @@
    "titulo": "わざと: a propósito",
    "texto": [
     "Para decir que lo has hecho con intención: **わざと へんじ を しなかった** (no contesté a propósito).",
-    "Lo contrario es **つい** o sin querer."
+    "**つい** puede indicar que algo ocurrió sin proponérselo, pero no es un antónimo exacto de **わざと**."
    ]
   },
   {
@@ -88,7 +117,13 @@
     "へんじ",
     "しなかった",
     "つい",
-    "ねすぎて"
+    "ねすぎて",
+    "故意",
+    "間違い",
+    "謝罪",
+    "丁寧",
+    "訪問",
+    "お礼状"
    ]
   },
   {
@@ -124,9 +159,59 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Un favor inesperado",
+   "frases": [
+    {
+     "ja": "友達 は わざわざ 駅 まで 来て くれました。私 は お礼 を 言いました が、彼 は ついで だった と 笑いました。私は 間違えて 時間 を 伝えた のに、怒りません でした。",
+     "es": "Mi amigo se tomó la molestia de venir hasta la estación. Le di las gracias, pero dijo que ya tenía que pasar por allí. Aunque me equivoqué al decirle la hora, no se enfadó."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Por qué le dio las gracias?",
+   "id": "ja085-1",
+   "opciones": [
+    {
+     "texto": "Porque su amigo fue hasta la estación.",
+     "explicacion": "La lectura lo indica explícitamente.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Se enfadó el amigo?",
+   "id": "ja085-2",
+   "opciones": [
+    {
+     "texto": "No.",
+     "explicacion": "La respuesta aparece en la lectura.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «わざわざ きて くれて、 ありがとう»?",
-   "id": "ja085-1",
+   "id": "ja085-3",
    "opciones": [
     {
      "texto": "Gracias por venir expresamente.",
@@ -146,7 +231,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué expresa «わざと»?",
-   "id": "ja085-2",
+   "id": "ja085-4",
    "opciones": [
     {
      "texto": "Hacer algo a propósito.",
@@ -167,7 +252,7 @@
    "tipo": "huecos",
    "pregunta": "No contesté a propósito.",
    "frase": "わざと へんじ を ___ 。",
-   "id": "ja085-3",
+   "id": "ja085-5",
    "opciones": [
     {
      "texto": "しなかった",
@@ -188,7 +273,7 @@
    "tipo": "huecos",
    "pregunta": "Me quedé dormido sin querer.",
    "frase": "___ ねすぎて しまいました。",
-   "id": "ja085-4",
+   "id": "ja085-6",
    "opciones": [
     {
      "texto": "つい",
@@ -209,7 +294,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "わざわざ きて くれて、 ありがとう。",
-   "id": "ja085-5",
+   "id": "ja085-7",
    "opciones": [
     {
      "texto": "Gracias por venir expresamente.",
@@ -230,7 +315,7 @@
    "tipo": "test",
    "pregunta": "¿Qué explica?",
    "audio": "いいえ、 つい ねすぎて しまいました。",
-   "id": "ja085-6",
+   "id": "ja085-8",
    "opciones": [
     {
      "texto": "Que se quedó dormido sin querer.",
@@ -253,12 +338,12 @@
    "frase": "わざと へんじ を しなかった",
    "traduccion": "No contesté a propósito.",
    "explicacion": "わざと = a propósito.",
-   "id": "ja085-7"
+   "id": "ja085-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Cuál significa «つい»?",
-   "id": "ja085-8",
+   "id": "ja085-10",
    "opciones": [
     {
      "texto": "Sin querer.",

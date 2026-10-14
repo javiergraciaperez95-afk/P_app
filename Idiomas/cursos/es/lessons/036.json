@@ -2,7 +2,7 @@
   "capitulo": 4,
   "titulo_es": "¿Quedamos el sábado?",
   "titulo": { "en": "Shall we meet on Saturday?" },
-  "intro": { "en": "Quedar is how you arrange to meet. Es que softens a no." },
+  "intro": { "en": "Suggest a meeting, agree on a time and place, or say what you are going to do." },
   "palabras": {
     "quedamos": { "en": "we meet, shall we meet", "pron": "ke-DA-mos", "cat": "verb" },
     "a las seis": { "en": "at six", "pron": "a las seis", "cat": "expression" },
@@ -11,13 +11,16 @@
     "es que": { "en": "the thing is, well", "pron": "es ke", "cat": "expression", "nota": "Es que introduces an excuse without a hard no." },
     "trabajo": { "en": "I work", "pron": "tra-BA-ho", "cat": "verb" },
     "en el café": { "en": "at the café", "pron": "en el ka-FE", "cat": "expression" },
-    "vale": { "en": "OK", "pron": "BA-le", "cat": "interjection" }
+    "vale": { "en": "OK", "pron": "BA-le", "cat": "interjection" },
+    "voy a": { "en": "I am going to", "pron": "boy a", "cat": "expression" },
+    "vas a": { "en": "you are going to (tú)", "pron": "bas a", "cat": "expression" },
+    "estudiar": { "en": "to study", "pron": "es-tu-DYAR", "cat": "verb" }
   },
   "bloques": [
     {
       "tipo": "explicacion",
       "titulo": "Make a plan",
-      "texto": "**¿Quedamos** el sábado**?** proposes a meeting.\n\nThen fix the details: **a las** seis, **en el** café.\n\nTo say no gently: **No puedo. Es que** trabajo. **Vale** accepts the plan."
+      "texto": "**¿Quedamos** el sábado**?** proposes a meeting. Fix the details with a time and place: **a las** seis, **en el** café.\n\nFor a simple plan, use **ir + a + infinitive**: **Voy a estudiar** mañana; **¿Qué vas a hacer?** The verb after **a** stays in the infinitive.\n\nTo say no gently: **No puedo. Es que** trabajo. **Vale** accepts the plan."
     },
     {
       "tipo": "dialogo",
@@ -58,12 +61,24 @@
             ["Es que", "the reason starts"],
             ["trabajo", "verb"]
           ]
+        },
+        {
+          "quien": "Lucía",
+          "es": "¿Qué vas a hacer mañana?",
+          "en": "What are you going to do tomorrow?",
+          "analisis": [["Qué", "question"], ["vas a hacer", "plan"], ["mañana", "time"]]
+        },
+        {
+          "quien": "Pablo",
+          "es": "Voy a estudiar.",
+          "en": "I'm going to study.",
+          "analisis": [["Voy a", "plan"], ["estudiar", "infinitive"]]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["quedamos", "a las seis", "el sábado", "no puedo", "es que", "trabajo", "en el café", "vale"]
+      "palabras": ["quedamos", "a las seis", "el sábado", "no puedo", "es que", "trabajo", "en el café", "vale", "voy a", "vas a", "estudiar"]
     },
     {
       "tipo": "huecos",
@@ -97,6 +112,19 @@
         "Son": {"en": "Son las seis tells the time. It does not say when."}
       },
       "correcta": "A"
+    },
+    {
+      "tipo": "huecos",
+      "id": "a1-qued-plan",
+      "pregunta": { "en": "Complete: I'm going to study tomorrow." },
+      "frase": "Voy a ___ mañana.",
+      "audio": true,
+      "opciones": {
+        "estudiar": { "en": "After ir a, use the infinitive." },
+        "estudio": { "en": "Use the infinitive after voy a." },
+        "estudias": { "en": "Use the infinitive after voy a." }
+      },
+      "correcta": "estudiar"
     },
     {
       "tipo": "test",

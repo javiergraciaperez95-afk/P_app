@@ -32,6 +32,31 @@
   "かえりました": {
    "es": "volví (a casa)",
    "pron": "kaerimashita"
+  },
+  "渋滞": {
+   "es": "atasco",
+   "pron": "juutai",
+   "consejo": "Lectura: じゅうたい."
+  },
+  "遅延": {
+   "es": "demora",
+   "pron": "chien",
+   "consejo": "Lectura: ちえん."
+  },
+  "運転見合わせ": {
+   "es": "interrupción temporal del servicio",
+   "pron": "unten miawase",
+   "consejo": "Lectura: うんてんみあわせ."
+  },
+  "事故現場": {
+   "es": "lugar del accidente",
+   "pron": "jiko genba",
+   "consejo": "Lectura: じこげんば."
+  },
+  "高速道路": {
+   "es": "autopista",
+   "pron": "kousoku douro",
+   "consejo": "Lectura: こうそくどうろ."
   }
  },
  "bloques": [
@@ -82,7 +107,12 @@
     "おくれました",
     "かぜ",
     "パーティー",
-    "かえりました"
+    "かえりました",
+    "渋滞",
+    "遅延",
+    "運転見合わせ",
+    "事故現場",
+    "高速道路"
    ]
   },
   {
@@ -176,9 +206,59 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Retraso en la autopista",
+   "frases": [
+    {
+     "ja": "高速道路 で 事故 が 起きた せいで、長い 渋滞 が できました。運転手 の おかげで、救急車 は 早く 事故現場 に 着きました。警察 は 原因 を 調べています。",
+     "es": "Por culpa de un accidente en la autopista, se formó un largo atasco. Gracias a los conductores, la ambulancia llegó pronto al lugar del accidente. La policía investiga la causa."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué causó el atasco?",
+   "id": "ja065-1",
+   "opciones": [
+    {
+     "texto": "Un accidente en la autopista.",
+     "explicacion": "La lectura lo indica explícitamente.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué pudo hacer pronto la ambulancia?",
+   "id": "ja065-2",
+   "opciones": [
+    {
+     "texto": "Llegar al lugar del accidente.",
+     "explicacion": "La respuesta aparece en la lectura.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «みなさん の おかげで»?",
-   "id": "ja065-1",
+   "id": "ja065-3",
    "opciones": [
     {
      "texto": "Gracias a todos.",
@@ -198,7 +278,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué expresa «〜せいで»?",
-   "id": "ja065-2",
+   "id": "ja065-4",
    "opciones": [
     {
      "texto": "Una causa negativa.",
@@ -219,7 +299,7 @@
    "tipo": "huecos",
    "pregunta": "Por culpa de la lluvia, el tren llegó tarde.",
    "frase": "あめ の ___ 、 でんしゃ が おくれました。",
-   "id": "ja065-3",
+   "id": "ja065-5",
    "opciones": [
     {
      "texto": "せいで",
@@ -240,7 +320,7 @@
    "tipo": "huecos",
    "pregunta": "Gracias a todos, mi japonés mejoró.",
    "frase": "みなさん の ___ 、 にほんご が じょうず に なりました。",
-   "id": "ja065-4",
+   "id": "ja065-6",
    "opciones": [
     {
      "texto": "おかげで",
@@ -261,7 +341,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "かぜ の せいで、 しごと を やすみました。",
-   "id": "ja065-5",
+   "id": "ja065-7",
    "opciones": [
     {
      "texto": "Por culpa del resfriado, falté al trabajo.",
@@ -282,7 +362,7 @@
    "tipo": "test",
    "pregunta": "¿Qué cuenta?",
    "audio": "でも、 あめ の せいで、 はやく かえりました。",
-   "id": "ja065-6",
+   "id": "ja065-8",
    "opciones": [
     {
      "texto": "Que volvió pronto por la lluvia.",
@@ -305,12 +385,12 @@
    "frase": "みなさん の おかげで",
    "traduccion": "Gracias a todos.",
    "explicacion": "おかげで = gracias a.",
-   "id": "ja065-7"
+   "id": "ja065-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Cuál dice «por culpa de»?",
-   "id": "ja065-8",
+   "id": "ja065-10",
    "opciones": [
     {
      "texto": "せいで",

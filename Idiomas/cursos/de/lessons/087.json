@@ -34,14 +34,54 @@
   "Kosten": {
    "es": "gastos, coste (die, plural)",
    "pron": "KOS-ten"
+  },
+  "günstig": {
+   "es": "barato, económico",
+   "pron": "GÜNS-tig"
+  },
+  "Fahrt": {
+   "es": "trayecto (die)",
+   "pron": "fart"
+  },
+  "unterwegs": {
+   "es": "de camino",
+   "pron": "UN-ter-veks"
+  },
+  "bequem": {
+   "es": "cómodo",
+   "pron": "be-KVEM"
+  },
+  "kostet": {
+   "es": "cuesta (de «kosten»)",
+   "oculta": true
+  },
+  "länger": {
+   "es": "más largo (comparativo de «lang»)",
+   "oculta": true
+  },
+  "muss": {
+   "es": "tengo que (de «müssen»)",
+   "oculta": true
+  },
+  "fahre": {
+   "es": "voy (de «fahren»)",
+   "oculta": true
+  },
+  "Parkplätze": {
+   "es": "plazas de aparcamiento (plural de «der Parkplatz»)",
+   "oculta": true
+  },
+  "selbst": {
+   "es": "por sí mismo",
+   "oculta": true
   }
  },
  "bloques": [
   {
    "tipo": "explicacion",
-   "titulo": "zwar … aber: es verdad que … pero",
+   "titulo": "zwar … aber y obwohl",
    "texto": [
-    "**Zwar** admite algo y **aber** lo contrapone: **Das Projekt ist zwar teuer, aber es lohnt sich** (es verdad que el proyecto es caro, pero merece la pena). Con «zwar» la frase va en segunda posición como cualquier oración principal."
+    "**Zwar … aber** admite una idea y la contrapone: **Das Projekt ist zwar teuer, aber es lohnt sich**. **Obwohl** significa «aunque» e introduce una subordinada; el verbo conjugado va al final: **Obwohl das Ticket teuer ist, fahre ich mit dem Zug**. Compara el orden de las dos estructuras."
    ]
   },
   {
@@ -82,7 +122,11 @@
     "lohnt sich",
     "Arbeitsplatz",
     "Zukunft",
-    "Kosten"
+    "Kosten",
+    "günstig",
+    "Fahrt",
+    "unterwegs",
+    "bequem"
    ]
   },
   {
@@ -144,9 +188,95 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Comentarios sobre el transporte",
+   "frases": [
+    {
+     "de": "Ich nehme oft den Zug zur Arbeit.",
+     "es": "A menudo voy al trabajo en tren."
+    },
+    {
+     "de": "Einerseits ist die Fahrt günstig, andererseits dauert sie länger als mit dem Auto.",
+     "es": "Por un lado, el trayecto es económico; por otro, dura más que en coche."
+    },
+    {
+     "de": "Obwohl ich manchmal umsteigen muss, lese ich unterwegs gern.",
+     "es": "Aunque a veces tengo que hacer transbordo, me gusta leer durante el trayecto."
+    },
+    {
+     "de": "Mein Kollege fährt lieber selbst.",
+     "es": "Mi compañero prefiere conducir él mismo."
+    },
+    {
+     "de": "Zwar ist das Auto bequem, aber Parkplätze sind teuer.",
+     "es": "Es verdad que el coche es cómodo, pero las plazas de aparcamiento son caras."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué ventaja del tren menciona la persona?",
+   "id": "de087-1",
+   "opciones": [
+    {
+     "texto": "La tarifa es económica.",
+     "explicacion": "El texto dice que la Fahrt es günstig.",
+     "correcta": true
+    },
+    {
+     "texto": "El trayecto siempre es más corto.",
+     "explicacion": "Dice que dura más que en coche."
+    },
+    {
+     "texto": "No hace falta hacer transbordo.",
+     "explicacion": "El texto dice que a veces debe hacerlo."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué hace la persona mientras viaja?",
+   "id": "de087-2",
+   "opciones": [
+    {
+     "texto": "Lee.",
+     "explicacion": "Dice que le gusta leer durante el trayecto.",
+     "correcta": true
+    },
+    {
+     "texto": "Conduce su propio coche.",
+     "explicacion": "Eso lo prefiere su compañero."
+    },
+    {
+     "texto": "Busca aparcamiento.",
+     "explicacion": "El aparcamiento se menciona como problema del coche."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué desventaja del coche menciona el compañero?",
+   "id": "de087-3",
+   "opciones": [
+    {
+     "texto": "Las plazas de aparcamiento son caras.",
+     "explicacion": "Es la última idea del texto.",
+     "correcta": true
+    },
+    {
+     "texto": "El coche tarda más que el tren.",
+     "explicacion": "El texto compara la duración del trayecto en tren."
+    },
+    {
+     "texto": "No se puede viajar al trabajo en coche.",
+     "explicacion": "No dice eso."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué par significa «es verdad que … pero»?",
-   "id": "de087-1",
+   "id": "de087-4",
    "opciones": [
     {
      "texto": "zwar … aber",
@@ -166,7 +296,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Cómo se dice «por un lado … por otro»?",
-   "id": "de087-2",
+   "id": "de087-5",
    "opciones": [
     {
      "texto": "einerseits … andererseits",
@@ -187,7 +317,7 @@
    "tipo": "traduccion",
    "pregunta": "¿Qué significa?",
    "frase": "Das Projekt ist zwar teuer, aber es lohnt sich.",
-   "id": "de087-3",
+   "id": "de087-6",
    "opciones": [
     {
      "texto": "Es verdad que el proyecto es caro, pero merece la pena.",
@@ -208,7 +338,7 @@
    "tipo": "huecos",
    "pregunta": "andererseits",
    "frase": "Einerseits ist der Zug schnell, ___ ist er teuer.",
-   "id": "de087-4",
+   "id": "de087-7",
    "opciones": [
     {
      "texto": "andererseits",
@@ -229,7 +359,7 @@
    "tipo": "test",
    "pregunta": "Escucha. ¿Qué significa?",
    "audio": "Einerseits ist die Idee gut.",
-   "id": "de087-5",
+   "id": "de087-8",
    "opciones": [
     {
      "texto": "Por un lado, la idea es buena.",
@@ -252,12 +382,12 @@
    "frase": "zwar teuer, aber gut",
    "traduccion": "es verdad que caro, pero bueno",
    "explicacion": "zwar … aber.",
-   "id": "de087-6"
+   "id": "de087-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Qué significa «lohnt sich»?",
-   "id": "de087-7",
+   "id": "de087-10",
    "opciones": [
     {
      "texto": "merece la pena",
@@ -282,7 +412,7 @@
     "Es ist zwar teuer, aber es lohnt sich"
    ],
    "explicacion": "zwar … aber; sich lohnen.",
-   "id": "de087-8"
+   "id": "de087-11"
   }
  ],
  "intro": "Para argumentar, el alemán usa pares como **zwar … aber** y **einerseits … andererseits**: primero una idea y después su contraria."

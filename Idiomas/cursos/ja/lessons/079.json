@@ -18,6 +18,46 @@
   "いそがしい": {
    "es": "ocupado",
    "pron": "isogashii"
+  },
+  "根拠": {
+   "es": "fundamento",
+   "pron": "konkyo",
+   "consejo": "Lectura: こんきょ."
+  },
+  "確率": {
+   "es": "probabilidad",
+   "pron": "kakuritsu",
+   "consejo": "Lectura: かくりつ."
+  },
+  "手がかり": {
+   "es": "pista",
+   "pron": "tegakari",
+   "consejo": "Lectura: てがかり."
+  },
+  "推理": {
+   "es": "deducción",
+   "pron": "suiri",
+   "consejo": "Lectura: すいり."
+  },
+  "結論": {
+   "es": "conclusión",
+   "pron": "ketsuron",
+   "consejo": "Lectura: けつろん."
+  },
+  "仮説": {
+   "es": "hipótesis",
+   "pron": "kasetsu",
+   "consejo": "Lectura: かせつ."
+  },
+  "証明": {
+   "es": "demostración",
+   "pron": "shoumei",
+   "consejo": "Lectura: しょうめい."
+  },
+  "見込み": {
+   "es": "expectativa",
+   "pron": "mikomi",
+   "consejo": "Lectura: みこみ."
   }
  },
  "bloques": [
@@ -34,7 +74,7 @@
    "titulo": "〜わけがない: no puede ser",
    "texto": [
     "Para decir que algo es imposible según lo que sabes: frase en forma normal + **わけ が ない**: **そんな こと が ある わけ が ありません** (no puede ser que pase algo así).",
-    "Es más firme que 〜はずがない."
+    "También expresa una conclusión negativa fuerte; **はずがない** puede sonar igualmente firme según el contexto."
    ]
   },
   {
@@ -78,7 +118,15 @@
     "なるほど",
     "ひいた",
     "そんな",
-    "いそがしい"
+    "いそがしい",
+    "根拠",
+    "確率",
+    "手がかり",
+    "推理",
+    "結論",
+    "仮説",
+    "証明",
+    "見込み"
    ]
   },
   {
@@ -118,9 +166,59 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Una deducción",
+   "frases": [
+    {
+     "ja": "玄関 に ぬれた 靴 が あります。外 は もう 晴れています が、道 に 水たまり が あります。少し 前 に 雨 が 降った に違いありません。近所 の 人 も 傘 を 持って 帰った そうです。",
+     "es": "Hay zapatos mojados en la entrada. Ya hace sol, pero quedan charcos en la calle. Debió de llover hace poco. Según parece, un vecino también volvió con un paraguas."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué deduce la persona al ver los zapatos mojados?",
+   "id": "ja079-1",
+   "opciones": [
+    {
+     "texto": "Que debió de llover.",
+     "explicacion": "La lectura lo indica explícitamente.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué otra información tiene?",
+   "id": "ja079-2",
+   "opciones": [
+    {
+     "texto": "Que, según parece, un vecino volvió con un paraguas.",
+     "explicacion": "La respuesta aparece en la lectura.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «かぜ を ひいた わけ です ね»?",
-   "id": "ja079-1",
+   "id": "ja079-3",
    "opciones": [
     {
      "texto": "Así que cogió un resfriado, ¿verdad?",
@@ -140,7 +238,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué expresa «〜わけがない»?",
-   "id": "ja079-2",
+   "id": "ja079-4",
    "opciones": [
     {
      "texto": "Algo que no puede ser.",
@@ -161,7 +259,7 @@
    "tipo": "huecos",
    "pregunta": "Ya veo, así que cogió un resfriado.",
    "frase": "やまだ さん が いません。 なるほど、 かぜ を ___ わけ です。",
-   "id": "ja079-3",
+   "id": "ja079-5",
    "opciones": [
     {
      "texto": "ひいた",
@@ -182,7 +280,7 @@
    "tipo": "huecos",
    "pregunta": "No puede ser que pase algo así.",
    "frase": "そんな こと が ある ___ 。",
-   "id": "ja079-4",
+   "id": "ja079-6",
    "opciones": [
     {
      "texto": "わけ が ありません",
@@ -203,7 +301,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "いそがしい わけ では ありません。",
-   "id": "ja079-5",
+   "id": "ja079-7",
    "opciones": [
     {
      "texto": "No es que esté muy ocupado.",
@@ -224,7 +322,7 @@
    "tipo": "test",
    "pregunta": "¿Qué entiende?",
    "audio": "やまだ さん が いません。 なるほど、 かぜ を ひいた わけ です ね。",
-   "id": "ja079-6",
+   "id": "ja079-8",
    "opciones": [
     {
      "texto": "Que ya ve por qué Yamada no está: cogió un resfriado.",
@@ -247,12 +345,12 @@
    "frase": "そんな こと が ある わけ が ありません",
    "traduccion": "No puede ser que pase algo así.",
    "explicacion": "わけ が ない = imposible.",
-   "id": "ja079-7"
+   "id": "ja079-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Cuál significa «わけ では ない»?",
-   "id": "ja079-8",
+   "id": "ja079-10",
    "opciones": [
     {
      "texto": "No significa que...",

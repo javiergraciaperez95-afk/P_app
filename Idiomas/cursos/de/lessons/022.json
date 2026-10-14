@@ -82,6 +82,22 @@
   "vielen Dank": {
    "es": "muchas gracias",
    "pron": "FI-len dank"
+  },
+  "Post": {
+   "es": "oficina de correos (die)",
+   "pron": "post"
+  },
+  "Briefmarke": {
+   "es": "sello (die)",
+   "pron": "BRIF-mar-ke"
+  },
+  "Geldautomat": {
+   "es": "cajero automático (der)",
+   "pron": "gueLT-au-to-mat"
+  },
+  "Polizei": {
+   "es": "comisaría; policía (die)",
+   "pron": "po-li-TSÁI"
   }
  },
  "bloques": [
@@ -98,7 +114,7 @@
    "tipo": "explicacion",
    "titulo": "Dar indicaciones",
    "texto": [
-    "A un desconocido se le habla de «Sie». El imperativo con «Sie» es muy fácil: el verbo y detrás **Sie**: **Gehen Sie geradeaus** (siga recto).",
+    "A un desconocido se le habla de «Sie». El imperativo con **Sie** lleva el verbo delante de **Sie**: **Gehen Sie geradeaus** (siga recto). Con **du**, suele usarse la raíz del verbo: **Geh geradeaus!**; con **ihr**, la forma plural: **Geht geradeaus!**.",
     "**Geradeaus** = todo recto. **Links** = a la izquierda. **Rechts** = a la derecha. Con movimiento: **nach links**, **nach rechts**.",
     "Para situar: **neben** (al lado de) y **gegenüber von** (enfrente de), los dos con dativo: **neben dem Hotel**, **gegenüber vom Park** (von + dem = vom)."
    ]
@@ -126,7 +142,11 @@
     "Apotheke",
     "Minuten",
     "nur",
-    "vielen Dank"
+    "vielen Dank",
+    "Post",
+    "Briefmarke",
+    "Geldautomat",
+    "Polizei"
    ]
   },
   {
@@ -260,9 +280,83 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Avisos en la ciudad",
+   "frases": [
+    {
+     "de": "Post: Briefmarke, 1 Euro. Geldautomat: neben dem Bahnhof.",
+     "es": "Correos: sello, 1 euro. Cajero: al lado de la estación."
+    },
+    {
+     "de": "Polizei: gegenüber vom Park.",
+     "es": "Comisaría: enfrente del parque."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Dónde está el cajero automático?",
+   "id": "de022-1",
+   "opciones": [
+    {
+     "texto": "Al lado de la estación.",
+     "explicacion": "El aviso dice «neben dem Bahnhof».",
+     "correcta": true
+    },
+    {
+     "texto": "Enfrente del parque.",
+     "explicacion": "Esa es la ubicación de la comisaría."
+    },
+    {
+     "texto": "Dentro del museo.",
+     "explicacion": "El museo no aparece en este aviso."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Dónde está la comisaría?",
+   "id": "de022-2",
+   "opciones": [
+    {
+     "texto": "Enfrente del parque.",
+     "explicacion": "El aviso dice «gegenüber vom Park».",
+     "correcta": true
+    },
+    {
+     "texto": "Al lado de la estación.",
+     "explicacion": "Esa es la ubicación del cajero."
+    },
+    {
+     "texto": "En el hotel.",
+     "explicacion": "El hotel no aparece en este aviso."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué puedes comprar en correos?",
+   "id": "de022-3",
+   "opciones": [
+    {
+     "texto": "Un sello.",
+     "explicacion": "«Briefmarke» significa sello.",
+     "correcta": true
+    },
+    {
+     "texto": "Un billete de tren.",
+     "explicacion": "No se menciona una «Fahrkarte»."
+    },
+    {
+     "texto": "Un café.",
+     "explicacion": "El aviso no es del café."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Cómo dices «siga recto» a un desconocido?",
-   "id": "de022-1",
+   "id": "de022-4",
    "opciones": [
     {
      "texto": "Gehen Sie geradeaus.",
@@ -281,8 +375,28 @@
   },
   {
    "tipo": "test",
+   "pregunta": "¿Qué orden darías a varias personas conocidas para que sigan recto?",
+   "id": "de022-5",
+   "opciones": [
+    {
+     "texto": "Geht geradeaus!",
+     "explicacion": "El imperativo de «ihr» usa la forma «geht».",
+     "correcta": true
+    },
+    {
+     "texto": "Geh geradeaus!",
+     "explicacion": "Es la forma de «du»."
+    },
+    {
+     "texto": "Gehen Sie geradeaus!",
+     "explicacion": "Es la forma formal de «Sie»."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
    "pregunta": "Te dan las gracias. ¿Qué respondes?",
-   "id": "de022-2",
+   "id": "de022-6",
    "opciones": [
     {
      "texto": "Bitte.",
@@ -302,7 +416,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué significa «gegenüber vom Park»?",
-   "id": "de022-3",
+   "id": "de022-7",
    "opciones": [
     {
      "texto": "Enfrente del parque.",
@@ -323,7 +437,7 @@
    "tipo": "traduccion",
    "pregunta": "¿Qué significa?",
    "frase": "Gibt es hier in der Nähe eine Apotheke?",
-   "id": "de022-4",
+   "id": "de022-8",
    "opciones": [
     {
      "texto": "¿Hay una farmacia por aquí cerca?",
@@ -344,7 +458,7 @@
    "tipo": "huecos",
    "pregunta": "Completa la frase.",
    "frase": "Gehen Sie ___ und dann nach rechts.",
-   "id": "de022-5",
+   "id": "de022-9",
    "opciones": [
     {
      "texto": "geradeaus",
@@ -365,7 +479,7 @@
    "tipo": "huecos",
    "pregunta": "Completa la frase.",
    "frase": "Der Bahnhof ist ___ dem Museum.",
-   "id": "de022-6",
+   "id": "de022-10",
    "opciones": [
     {
      "texto": "neben",
@@ -386,7 +500,7 @@
    "tipo": "test",
    "pregunta": "Escucha. ¿Qué significa?",
    "audio": "Das Museum ist neben dem Bahnhof.",
-   "id": "de022-7",
+   "id": "de022-11",
    "opciones": [
     {
      "texto": "El museo está al lado de la estación.",
@@ -409,7 +523,7 @@
    "frase": "Gehen Sie am Kino nach links",
    "traduccion": "En el cine, vaya a la izquierda",
    "explicacion": "Gehen Sie + lugar + dirección.",
-   "id": "de022-8"
+   "id": "de022-12"
   }
  ]
 }

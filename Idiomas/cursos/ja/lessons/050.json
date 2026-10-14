@@ -18,6 +18,49 @@
   "らしい": {
    "es": "dicen que; por lo visto",
    "pron": "rashii"
+  },
+  "では": {
+   "es": "en cuanto a; según",
+   "pron": "dewa"
+  },
+  "雨": {
+   "es": "lluvia",
+   "pron": "ame",
+   "consejo": "Lectura: あめ."
+  },
+  "持って": {
+   "es": "(forma て de 持つ) llevar; sosteniendo",
+   "pron": "motte"
+  },
+  "天気予報": {
+   "es": "pronóstico del tiempo",
+   "pron": "tenki yohou",
+   "consejo": "Lectura: てんきよほう."
+  },
+  "気温": {
+   "es": "temperatura",
+   "pron": "kion",
+   "consejo": "Lectura: きおん."
+  },
+  "晴れ": {
+   "es": "buen tiempo; despejado",
+   "pron": "hare",
+   "consejo": "Lectura: はれ."
+  },
+  "曇り": {
+   "es": "nublado",
+   "pron": "kumori",
+   "consejo": "Lectura: くもり."
+  },
+  "傘": {
+   "es": "paraguas",
+   "pron": "kasa",
+   "consejo": "Lectura: かさ."
+  },
+  "低い": {
+   "es": "bajo",
+   "pron": "hikui",
+   "consejo": "Lectura: ひくい."
   }
  },
  "bloques": [
@@ -31,17 +74,24 @@
   },
   {
    "tipo": "explicacion",
-   "titulo": "〜そうです: dicen que",
+   "titulo": "〜そうです con adjetivos en -na",
    "texto": [
-    "Con **〜そう です** también se dice lo que has oído de otra persona. Hay que tener cuidado: la forma **そう です** (así es) es otra cosa."
+    "Con un adjetivo en -na se añade **そうです** sin **な**: **げんき** → **げんきそうです** (parece estar bien). Con **いい**, la forma es **よさそうです** (parece bueno)."
    ]
   },
   {
    "tipo": "explicacion",
-   "titulo": "〜らしい: dicen que (por lo visto)",
+   "titulo": "〜そうです: dicen que",
    "texto": [
-    "Con **〜らしい** se dice algo que se ha oído o que parece claro por las pruebas: **あした は やすみ らしい です** (dicen que mañana es fiesta).",
-    "Es más general que 〜そう です."
+    "Con la forma plana + **そうです** cuentas algo que has oído: **かえる そうです** (dicen que vuelve). Con sustantivos y adjetivos en -na se conserva **だ**: **あした は やすみ だそうです** (dicen que mañana es festivo).",
+    "No confundas este uso con **おいしそうです** (parece rico), que expresa una impresión visual."
+   ]
+  },
+  {
+   "tipo": "explicacion",
+   "titulo": "〜らしい: por lo visto; dicen que",
+   "texto": [
+    "**〜らしい** comunica una inferencia o información indirecta: **あした は やすみ らしい です** (por lo visto, mañana es festivo). No es simplemente «más general» que **〜そうです**: el matiz depende de si se presenta una impresión visible o algo oído."
    ]
   },
   {
@@ -111,12 +161,12 @@
     },
     {
      "quien": "まり",
-     "ja": "じゃあ、 あした は やすみ らしい です か。",
-     "es": "Entonces, ¿mañana es fiesta, por lo visto?",
+     "ja": "じゃあ、 あした は やすみ らしい です ね。",
+     "es": "Entonces, por lo visto mañana es festivo.",
      "analisis": [
       [
-       "やすみ らしい です か",
-       "¿por lo visto es fiesta?"
+       "やすみ らしい です ね",
+       "por lo visto mañana es festivo"
       ]
      ]
     }
@@ -163,10 +213,30 @@
    ]
   },
   {
+   "tipo": "test",
+   "pregunta": "En «あした は やすみ だそうです», ¿qué expresa そうです?",
+   "id": "ja050-3",
+   "opciones": [
+    {
+     "texto": "Información que se ha oído: dicen que mañana es festivo.",
+     "explicacion": "Con sustantivos, la cita lleva だそうです.",
+     "correcta": true
+    },
+    {
+     "texto": "Una impresión visual: parece un día festivo.",
+     "explicacion": "La apariencia se forma de otra manera."
+    },
+    {
+     "texto": "Una orden para descansar.",
+     "explicacion": "No es una orden."
+    }
+   ]
+  },
+  {
    "tipo": "huecos",
    "pregunta": "Esta tarta parece rica.",
    "frase": "この ケーキ は ___ です。",
-   "id": "ja050-3",
+   "id": "ja050-4",
    "opciones": [
     {
      "texto": "おいしそう",
@@ -187,7 +257,7 @@
    "tipo": "huecos",
    "pregunta": "Dicen que mañana es fiesta.",
    "frase": "あした は やすみ ___ です。",
-   "id": "ja050-4",
+   "id": "ja050-5",
    "opciones": [
     {
      "texto": "らしい",
@@ -208,7 +278,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "あめ が ふりそう です。",
-   "id": "ja050-5",
+   "id": "ja050-6",
    "opciones": [
     {
      "texto": "Parece que va a llover.",
@@ -229,7 +299,7 @@
    "tipo": "test",
    "pregunta": "¿Qué informa?",
    "audio": "やまだ さん は あした かえる そう です。",
-   "id": "ja050-6",
+   "id": "ja050-7",
    "opciones": [
     {
      "texto": "Dicen que Yamada vuelve mañana.",
@@ -252,12 +322,12 @@
    "frase": "おいしそう です",
    "traduccion": "Parece rico.",
    "explicacion": "そう = parece.",
-   "id": "ja050-7"
+   "id": "ja050-8"
   },
   {
    "tipo": "test",
    "pregunta": "¿Cuál es la forma de «parece que va a llover»?",
-   "id": "ja050-8",
+   "id": "ja050-9",
    "opciones": [
     {
      "texto": "ふりそう です",
@@ -271,6 +341,79 @@
     {
      "texto": "ふったら",
      "explicacion": "Eso es «si llueve»."
+    }
+   ]
+  },
+  {
+   "tipo": "vocabulario",
+   "titulo": "Lectura: publicación sobre el tiempo",
+   "palabras": [
+    "では",
+    "雨",
+    "持って",
+    "天気予報",
+    "気温",
+    "晴れ",
+    "曇り",
+    "傘",
+    "低い"
+   ]
+  },
+  {
+   "tipo": "texto",
+   "titulo": "Pronóstico del fin de semana",
+   "frases": [
+    {
+     "ja": "天気予報 では、土曜日 は 晴れ です。",
+     "es": "Según el pronóstico, el sábado estará despejado."
+    },
+    {
+     "ja": "日曜日 は 雨 でしょう。気温 も 低い です。",
+     "es": "El domingo probablemente lloverá. La temperatura también es baja."
+    },
+    {
+     "ja": "傘 を 持って いった ほう が いい です。",
+     "es": "Es mejor que lleve paraguas."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué tiempo hará el sábado?",
+   "id": "ja050-10",
+   "opciones": [
+    {
+     "texto": "Estará despejado.",
+     "explicacion": "土曜日 は 晴れ です.",
+     "correcta": true
+    },
+    {
+     "texto": "Lloverá.",
+     "explicacion": "La lluvia se pronostica para el domingo."
+    },
+    {
+     "texto": "Estará nublado.",
+     "explicacion": "No se dice 曇り."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué aconseja el aviso?",
+   "id": "ja050-11",
+   "opciones": [
+    {
+     "texto": "Llevar paraguas.",
+     "explicacion": "傘 を 持って いった ほう が いい.",
+     "correcta": true
+    },
+    {
+     "texto": "Quedarse en casa.",
+     "explicacion": "No aparece en el texto."
+    },
+    {
+     "texto": "Ir sin abrigo.",
+     "explicacion": "No aparece en el texto."
     }
    ]
   }

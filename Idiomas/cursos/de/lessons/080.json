@@ -78,6 +78,50 @@
   "berichten": {
    "es": "informar",
    "pron": "be-RIH-ten"
+  },
+  "Leser": {
+   "es": "lector (der)",
+   "pron": "LE-zer"
+  },
+  "Geschichte": {
+   "es": "historia (die)",
+   "pron": "ge-SHIH-te"
+  },
+  "spannend": {
+   "es": "emocionante",
+   "pron": "SHPAN-ent"
+  },
+  "traurig": {
+   "es": "triste",
+   "pron": "TRAU-rig"
+  },
+  "Nachbarn": {
+   "es": "vecinos (plural de «der Nachbar»)",
+   "oculta": true
+  },
+  "renoviert": {
+   "es": "renueva (de «renovieren»)",
+   "oculta": true
+  },
+  "viele": {
+   "es": "muchos",
+   "oculta": true
+  },
+  "spielt": {
+   "es": "transcurre (de «spielen»)",
+   "oculta": true
+  },
+  "beschreibt": {
+   "es": "describe (de «beschreiben»)",
+   "oculta": true
+  },
+  "Besonders": {
+   "es": "especialmente",
+   "oculta": true
+  },
+  "lobt": {
+   "es": "elogia (de «loben»)",
+   "oculta": true
   }
  },
  "bloques": [
@@ -143,7 +187,11 @@
     "Aufführung",
     "Person",
     "gelesen",
-    "berichten"
+    "berichten",
+    "Leser",
+    "Geschichte",
+    "spannend",
+    "traurig"
    ]
   },
   {
@@ -197,9 +245,95 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Reseña de un libro",
+   "frases": [
+    {
+     "de": "Ich habe ein Buch gelesen, über das viele Leser sprechen.",
+     "es": "He leído un libro del que hablan muchos lectores."
+    },
+    {
+     "de": "Die Geschichte spielt in Berlin.",
+     "es": "La historia transcurre en Berlín."
+    },
+    {
+     "de": "Der Autor beschreibt eine Familie, die zusammen ein Haus renoviert.",
+     "es": "El autor describe una familia que renueva una casa juntos."
+    },
+    {
+     "de": "Besonders spannend ist die Frau, der die Nachbarn helfen.",
+     "es": "La mujer a la que ayudan los vecinos es especialmente interesante."
+    },
+    {
+     "de": "Die Zeitung lobt das Buch, aber ich finde das Ende traurig.",
+     "es": "El periódico elogia el libro, pero a mí me parece triste el final."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿De qué trata la historia del libro?",
+   "id": "de080-1",
+   "opciones": [
+    {
+     "texto": "De una familia que renueva una casa.",
+     "explicacion": "La tercera frase resume la historia.",
+     "correcta": true
+    },
+    {
+     "texto": "De un artista que trabaja en un teatro.",
+     "explicacion": "Eso aparece en el diálogo, no en la reseña."
+    },
+    {
+     "texto": "De unos vecinos que viajan a Berlín.",
+     "explicacion": "El texto dice que la historia ocurre en Berlín."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿A quién ayudan los vecinos?",
+   "id": "de080-2",
+   "opciones": [
+    {
+     "texto": "A la mujer de la historia.",
+     "explicacion": "El relativo «der» se refiere a «die Frau».",
+     "correcta": true
+    },
+    {
+     "texto": "Al autor del libro.",
+     "explicacion": "No aparece como persona que recibe ayuda."
+    },
+    {
+     "texto": "A los lectores del periódico.",
+     "explicacion": "El texto no dice eso."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué opina quien escribe la reseña del final?",
+   "id": "de080-3",
+   "opciones": [
+    {
+     "texto": "Le parece triste.",
+     "explicacion": "Lo dice en la última frase.",
+     "correcta": true
+    },
+    {
+     "texto": "Le parece emocionante.",
+     "explicacion": "«Spannend» describe a la mujer."
+    },
+    {
+     "texto": "Le parece gracioso.",
+     "explicacion": "El texto no lo afirma."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué relativo es correcto para «el libro del que hablamos» (über + neutro)?",
-   "id": "de080-1",
+   "id": "de080-4",
    "opciones": [
     {
      "texto": "über das",
@@ -219,7 +353,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Cuál es correcta para «la persona con la que trabajo» (mit + femenino)?",
-   "id": "de080-2",
+   "id": "de080-5",
    "opciones": [
     {
      "texto": "mit der",
@@ -240,7 +374,7 @@
    "tipo": "traduccion",
    "pregunta": "¿Qué significa?",
    "frase": "Das Buch, über das wir sprechen, ist interessant.",
-   "id": "de080-3",
+   "id": "de080-6",
    "opciones": [
     {
      "texto": "El libro del que hablamos es interesante.",
@@ -261,7 +395,7 @@
    "tipo": "huecos",
    "pregunta": "del que",
    "frase": "Der Film, von ___ alle sprechen, ist toll.",
-   "id": "de080-4",
+   "id": "de080-7",
    "opciones": [
     {
      "texto": "dem",
@@ -282,7 +416,7 @@
    "tipo": "test",
    "pregunta": "Escucha. ¿Qué significa?",
    "audio": "Die Person, mit der ich arbeite, ist nett.",
-   "id": "de080-5",
+   "id": "de080-8",
    "opciones": [
     {
      "texto": "La persona con la que trabajo es simpática.",
@@ -305,12 +439,12 @@
    "frase": "über das wir sprechen",
    "traduccion": "del que hablamos",
    "explicacion": "preposición + relativo + verbo al final.",
-   "id": "de080-6"
+   "id": "de080-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Qué verbo va con «an» y pide acusativo?",
-   "id": "de080-7",
+   "id": "de080-10",
    "opciones": [
     {
      "texto": "denken an",
@@ -335,7 +469,7 @@
     "die Zeitung, über die wir sprechen"
    ],
    "explicacion": "über + die (femenino en acusativo).",
-   "id": "de080-8"
+   "id": "de080-11"
   }
  ],
  "intro": "Ahora el relativo va con preposición. La preposición va delante del relativo, y el caso lo decide la preposición."

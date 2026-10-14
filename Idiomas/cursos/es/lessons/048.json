@@ -13,13 +13,18 @@
     "euros": { "en": "euros", "pron": "EW-ros", "cat": "noun" },
     "caro": { "en": "expensive (masculine)", "pron": "KA-ro", "cat": "adjective" },
     "cara": { "en": "expensive (feminine)", "pron": "KA-ra", "cat": "adjective", "nota": "It matches the noun: el libro es caro, la camisa es cara." },
-    "barato": { "en": "cheap", "pron": "ba-RA-to", "cat": "adjective" }
+    "barato": { "en": "cheap", "pron": "ba-RA-to", "cat": "adjective" },
+    "lo": { "en": "it (masculine object pronoun)", "pron": "lo", "cat": "pronoun" },
+    "la": { "en": "it (feminine object pronoun)", "pron": "la", "cat": "pronoun" },
+    "los": { "en": "them (masculine or mixed object pronoun)", "pron": "los", "cat": "pronoun" },
+    "las": { "en": "them (feminine object pronoun)", "pron": "las", "cat": "pronoun" },
+    "quiero la azul": { "en": "I want the blue one", "pron": "KYE-ro la a-THUL", "cat": "expression" }
   },
   "bloques": [
     {
       "tipo": "explicacion",
       "titulo": "How much is it?",
-      "texto": "**¿Cuánto cuesta?** is for one thing. **¿Cuánto cuestan?** is for more than one.\n\n**Quiero** esta camisa. The **e** in querer becomes **ie**: quiero, quieres, quiere.\n\nPrices: cuesta veinte **euros**. The adjective matches the noun: la camisa es **cara**, el libro es **caro**. The opposite is **barato** or **barata**."
+      "texto": "**¿Cuánto cuesta?** is for one thing. **¿Cuánto cuestan?** is for more than one.\n\n**Quiero** esta camisa. The **e** in querer becomes **ie**: quiero, quieres, quiere. **La azul** means ‘the blue one’ when the noun is clear. Here **la** goes with the adjective; in **la quiero**, it is an object pronoun.\n\nReplace a known thing with **lo/la** (singular) or **los/las** (plural): **¿Quieres el libro? Sí, lo quiero. ¿Quieres la camisa? Sí, la quiero. ¿Quieres los zapatos? Sí, los quiero. ¿Quieres las camisas? Sí, las quiero.** Put the pronoun before the conjugated verb.\n\nPrices: cuesta veinte **euros**. The adjective matches the noun: la camisa es **cara**, el libro es **caro**. The opposite is **barato** or **barata**."
     },
     {
       "tipo": "dialogo",
@@ -69,7 +74,27 @@
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["quiero", "cuesta", "cuestan", "cuánto", "esta", "camisa", "euros", "caro", "cara", "barato"]
+      "palabras": ["quiero", "cuesta", "cuestan", "cuánto", "esta", "camisa", "euros", "caro", "cara", "barato", "lo", "la", "los", "las"]
+    },
+    {
+      "tipo": "texto",
+      "titulo": "A price label",
+      "frases": [
+        { "es": "CAMISETA AZUL · 12 €", "en": "Blue T-shirt · €12" },
+        { "es": "CAMISA BLANCA · 18 €", "en": "White shirt · €18" },
+        { "es": "PREGUNTA EN CAJA", "en": "Ask at the till" }
+      ]
+    },
+    {
+      "tipo": "test",
+      "id": "a1-tienda-lectura-precio",
+      "pregunta": { "en": "Which item costs 18 euros?" },
+      "opciones": {
+        "La camisa blanca": { "en": "The label gives the white shirt a price of 18 euros." },
+        "La camiseta azul": { "en": "The blue T-shirt costs 12 euros." },
+        "Los dos artículos": { "en": "The prices are different." }
+      },
+      "correcta": "La camisa blanca"
     },
     {
       "tipo": "huecos",
@@ -116,6 +141,28 @@
         "Quiere": {"en": "Quiere is él, ella or usted."}
       },
       "correcta": "Quiero"
+    },
+    {
+      "tipo": "test",
+      "id": "a1-tienda-pronombre",
+      "pregunta": { "en": "You mean «I want the book». Which sentence is correct?" },
+      "opciones": {
+        "Lo quiero": { "en": "Libro is masculine; lo goes before quiero." },
+        "La quiero": { "en": "La is feminine and does not refer to libro." },
+        "Quiero lo": { "en": "In this basic pattern, the pronoun comes before the conjugated verb." }
+      },
+      "correcta": "Lo quiero"
+    },
+    {
+      "tipo": "test",
+      "id": "a1-tienda-pronombre-plural",
+      "pregunta": { "en": "You mean «I want the shirts». Which sentence is correct?" },
+      "opciones": {
+        "Las quiero": { "en": "Camisas is feminine plural, so use las." },
+        "Lo quiero": { "en": "Lo is masculine singular." },
+        "La quiero": { "en": "La is feminine singular." }
+      },
+      "correcta": "Las quiero"
     },
     {
       "tipo": "ordenar",

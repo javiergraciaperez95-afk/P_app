@@ -7,13 +7,58 @@
    "es": "(forma volitiva de にげる) huyamos; voy a huir",
    "pron": "nigeyō"
   },
-  "のまよう": {
-   "es": "(forma volitiva de のむ) intentemos beber; voy a tomar",
-   "pron": "nomayō"
+  "のもう": {
+   "es": "(forma volitiva de のむ) voy a beber; intentemos beber",
+   "pron": "nomō"
   },
   "にげる": {
    "es": "huir; escapar",
    "pron": "nigeru"
+  },
+  "逃げる": {
+   "es": "escapar",
+   "pron": "nigeru",
+   "consejo": "Lectura: にげる."
+  },
+  "拒否": {
+   "es": "rechazo",
+   "pron": "kyohi",
+   "consejo": "Lectura: きょひ."
+  },
+  "抵抗": {
+   "es": "resistencia",
+   "pron": "teikou",
+   "consejo": "Lectura: ていこう."
+  },
+  "捕まえる": {
+   "es": "atrapar",
+   "pron": "tsukamaeru",
+   "consejo": "Lectura: つかまえる."
+  },
+  "服用": {
+   "es": "tomar un medicamento",
+   "pron": "fukuyou",
+   "consejo": "Lectura: ふくよう."
+  },
+  "説得": {
+   "es": "persuasión",
+   "pron": "settoku",
+   "consejo": "Lectura: せっとく."
+  },
+  "逃走": {
+   "es": "huida",
+   "pron": "tousou",
+   "consejo": "Lectura: とうそう."
+  },
+  "追いかける": {
+   "es": "perseguir",
+   "pron": "oikakeru",
+   "consejo": "Lectura: おいかける."
+  },
+  "注射": {
+   "es": "inyección",
+   "pron": "chuusha",
+   "consejo": "Lectura: ちゅうしゃ."
   }
  },
  "bloques": [
@@ -29,8 +74,7 @@
    "tipo": "explicacion",
    "titulo": "〜ようとしない: no intentar",
    "texto": [
-    "Para decir que alguien se niega a intentarlo: forma volitiva + **と しない**: **こども は くすり を のまよう と しません** (el niño no quiere tomar la medicina).",
-    "Suena a rechazo o terquedad."
+    "Para decir que alguien no muestra intención de hacer algo: forma volitiva + **と しない**: **こども は くすり を のもう と しません** (el niño no intenta tomar la medicina). Según el contexto puede sonar a rechazo."
    ]
   },
   {
@@ -44,8 +88,8 @@
     ],
     [
      "〜ようとしない",
-     "negarse a intentar",
-     "のまよう と しません"
+     "no intentar; no mostrar intención",
+     "のもう と しません"
     ]
    ],
    "columnas": [
@@ -59,8 +103,17 @@
    "titulo": "Vocabulario: intentar",
    "palabras": [
     "にげよう",
-    "のまよう",
-    "にげる"
+    "のもう",
+    "にげる",
+    "逃げる",
+    "拒否",
+    "抵抗",
+    "捕まえる",
+    "服用",
+    "説得",
+    "逃走",
+    "追いかける",
+    "注射"
    ]
   },
   {
@@ -78,21 +131,71 @@
      ]
     },
     {
-     "ja": "こども は くすり を のまよう と しません。",
-     "es": "El niño no quiere tomar la medicina.",
+     "ja": "こども は くすり を のもう と しません。",
+     "es": "El niño no intenta tomar la medicina.",
      "analisis": [
       [
-       "のまよう と しません",
-       "no quiere tomarla"
+       "のもう と しません",
+       "no intenta tomarla"
       ]
      ]
     }
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "El perro y la medicina",
+   "frases": [
+    {
+     "ja": "犬 は 薬 を 飲もう と しました が、におい を かいで 逃げよう と しました。家族 が 優しく 呼ぶ と、少しずつ 近づいて きました。最後 は 薬 を 飲みました。",
+     "es": "El perro intentó tomar la medicina, pero olió el medicamento e intentó escapar. Cuando la familia lo llamó con cariño, se acercó poco a poco. Al final se tomó la medicina."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué intentó hacer el perro después de oler la medicina?",
+   "id": "ja082-1",
+   "opciones": [
+    {
+     "texto": "Intentó escapar.",
+     "explicacion": "La lectura lo indica explícitamente.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Cómo se acercó después?",
+   "id": "ja082-2",
+   "opciones": [
+    {
+     "texto": "Poco a poco.",
+     "explicacion": "La respuesta aparece en la lectura.",
+     "correcta": true
+    },
+    {
+     "texto": "Una opción que contradice el texto.",
+     "explicacion": "El texto dice otra cosa."
+    },
+    {
+     "texto": "Ese detalle no aparece en la lectura.",
+     "explicacion": "No se menciona."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «ねこ が にげよう と して います»?",
-   "id": "ja082-1",
+   "id": "ja082-3",
    "opciones": [
     {
      "texto": "El gato está intentando escapar.",
@@ -112,7 +215,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué expresa «〜ようとする»?",
-   "id": "ja082-2",
+   "id": "ja082-4",
    "opciones": [
     {
      "texto": "Intentar o estar a punto de hacer algo.",
@@ -133,7 +236,7 @@
    "tipo": "huecos",
    "pregunta": "El gato está intentando escapar.",
    "frase": "ねこ が ___ と して います。",
-   "id": "ja082-3",
+   "id": "ja082-5",
    "opciones": [
     {
      "texto": "にげよう",
@@ -152,12 +255,12 @@
   },
   {
    "tipo": "huecos",
-   "pregunta": "El niño no quiere tomar la medicina.",
+   "pregunta": "El niño no intenta tomar la medicina.",
    "frase": "こども は くすり を ___ と しません。",
-   "id": "ja082-4",
+   "id": "ja082-6",
    "opciones": [
     {
-     "texto": "のまよう",
+     "texto": "のもう",
      "explicacion": "Forma volitiva de のむ.",
      "correcta": true
     },
@@ -174,12 +277,12 @@
   {
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
-   "frase": "こども は くすり を のまよう と しません。",
-   "id": "ja082-5",
+   "frase": "こども は くすり を のもう と しません。",
+   "id": "ja082-7",
    "opciones": [
     {
-     "texto": "El niño no quiere tomar la medicina.",
-     "explicacion": "ようとしない = negarse a intentar.",
+     "texto": "El niño no intenta tomar la medicina.",
+     "explicacion": "ようとしない = no mostrar intención de hacerlo.",
      "correcta": true
     },
     {
@@ -196,7 +299,7 @@
    "tipo": "test",
    "pregunta": "¿Qué pasa?",
    "audio": "ねこ が にげよう と して います。",
-   "id": "ja082-6",
+   "id": "ja082-8",
    "opciones": [
     {
      "texto": "El gato intenta escapar.",
@@ -219,12 +322,12 @@
    "frase": "にげよう と して います",
    "traduccion": "Está intentando escapar.",
    "explicacion": "ようとする = intentar.",
-   "id": "ja082-7"
+   "id": "ja082-9"
   },
   {
    "tipo": "test",
    "pregunta": "¿Cuál es la forma volitiva de «にげる»?",
-   "id": "ja082-8",
+   "id": "ja082-10",
    "opciones": [
     {
      "texto": "にげよう",

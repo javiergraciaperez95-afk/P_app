@@ -42,6 +42,44 @@
   "ひま": {
    "es": "tiempo libre",
    "pron": "hima"
+  },
+  "目的地": {
+   "es": "destino",
+   "pron": "mokutekichi",
+   "consejo": "Lectura: もくてきち."
+  },
+  "着いたら": {
+   "es": "cuando llegue; si llega",
+   "pron": "tsuitara",
+   "consejo": "Lectura: ついたら."
+  },
+  "地図": {
+   "es": "mapa",
+   "pron": "chizu",
+   "consejo": "Lectura: ちず."
+  },
+  "忘れ物": {
+   "es": "objeto olvidado",
+   "pron": "wasuremono",
+   "consejo": "Lectura: わすれもの."
+  },
+  "駅員": {
+   "es": "empleado de estación",
+   "pron": "ekiin",
+   "consejo": "Lectura: えきいん."
+  },
+  "電話": {
+   "es": "teléfono; llamada",
+   "pron": "denwa",
+   "consejo": "Lectura: でんわ."
+  },
+  "したら": {
+   "es": "si lo hace; cuando lo haga",
+   "pron": "shitara"
+  },
+  "聞いて": {
+   "es": "(forma て de 聞く) preguntar; escuchar",
+   "pron": "kiite"
   }
  },
  "bloques": [
@@ -57,8 +95,14 @@
    "tipo": "explicacion",
    "titulo": "〜たら: si (una condición)",
    "texto": [
-    "Para una condición: **あめ が ふったら、 うち に います** (si llueve, me quedo en casa).",
-    "Para algo imaginario: **おかね が あったら、 にほん へ いきます** (si tuviera dinero, iría a Japón)."
+    "Para una condición o una situación futura: **あめ が ふったら、 うち に います** (si llueve, me quedo en casa). También puede plantear una hipótesis: **おかね が あったら、 にほん へ いきたい です** (si tuviera dinero, querría ir a Japón)."
+   ]
+  },
+  {
+   "tipo": "explicacion",
+   "titulo": "〜なら: si es el caso de…",
+   "texto": [
+    "**なら** retoma una situación o tema que ya se ha mencionado: **にほん へ いく なら、 はる が いい です** (si vas a Japón, la primavera es buena época). Se usa para ofrecer información o consejo sobre ese tema."
    ]
   },
   {
@@ -104,7 +148,15 @@
     "ふる",
     "ある",
     "おかね",
-    "ひま"
+    "ひま",
+    "目的地",
+    "着いたら",
+    "地図",
+    "忘れ物",
+    "駅員",
+    "電話",
+    "したら",
+    "聞いて"
    ]
   },
   {
@@ -170,9 +222,43 @@
    ]
   },
   {
+   "tipo": "texto",
+   "titulo": "Recordatorio para el viaje",
+   "frases": [
+    {
+     "ja": "目的地 に 着いたら、地図 を 見ます。",
+     "es": "Cuando llegue al destino, miraré el mapa."
+    },
+    {
+     "ja": "駅 で 忘れ物 を したら、駅員 に 聞いて ください。",
+     "es": "Si olvida algo en la estación, llame al empleado."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué debe hacer al llegar al destino?",
+   "id": "ja042-1",
+   "opciones": [
+    {
+     "texto": "Mirar el mapa.",
+     "explicacion": "着いたら、地図 を 見ます.",
+     "correcta": true
+    },
+    {
+     "texto": "Tomar el último tren.",
+     "explicacion": "No aparece 終電."
+    },
+    {
+     "texto": "Ir a la empresa.",
+     "explicacion": "No aparece 会社."
+    }
+   ]
+  },
+  {
    "tipo": "test",
    "pregunta": "¿Qué significa «ばんごはん を たべたら、 さんぽ を します»?",
-   "id": "ja042-1",
+   "id": "ja042-2",
    "opciones": [
     {
      "texto": "Cuando cene, daré un paseo.",
@@ -192,7 +278,7 @@
   {
    "tipo": "test",
    "pregunta": "¿Qué forma de «ふる» (llover) usas en «si llueve»?",
-   "id": "ja042-2",
+   "id": "ja042-3",
    "opciones": [
     {
      "texto": "ふったら",
@@ -213,7 +299,7 @@
    "tipo": "huecos",
    "pregunta": "Si llueve, me quedo en casa.",
    "frase": "あめ が ___、 うち に います。",
-   "id": "ja042-3",
+   "id": "ja042-4",
    "opciones": [
     {
      "texto": "ふったら",
@@ -234,7 +320,7 @@
    "tipo": "huecos",
    "pregunta": "Si tuviera dinero, iría a Japón.",
    "frase": "おかね が ___、 にほん へ いきます。",
-   "id": "ja042-4",
+   "id": "ja042-5",
    "opciones": [
     {
      "texto": "あったら",
@@ -255,7 +341,7 @@
    "tipo": "traduccion",
    "pregunta": "Traduce la frase.",
    "frase": "しごと が おわったら、 でんわ を ください。",
-   "id": "ja042-5",
+   "id": "ja042-6",
    "opciones": [
     {
      "texto": "Cuando termine el trabajo, llámeme.",
@@ -276,7 +362,7 @@
    "tipo": "test",
    "pregunta": "¿Qué dice?",
    "audio": "あめ が ふったら、 うち に います。",
-   "id": "ja042-6",
+   "id": "ja042-7",
    "opciones": [
     {
      "texto": "Si llueve, se queda en casa.",
@@ -299,12 +385,12 @@
    "frase": "ばんごはん を たべたら",
    "traduccion": "Cuando cene.",
    "explicacion": "たら = cuando (algo futuro).",
-   "id": "ja042-7"
+   "id": "ja042-8"
   },
   {
    "tipo": "test",
    "pregunta": "¿Cuál dice «si tuviera dinero»?",
-   "id": "ja042-8",
+   "id": "ja042-9",
    "opciones": [
     {
      "texto": "おかね が あったら",
@@ -318,6 +404,26 @@
     {
      "texto": "おかね が ありません",
      "explicacion": "Eso es «no tengo dinero»."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "En «にほん へ いく なら、 はる が いい です», ¿qué expresa なら?",
+   "id": "ja042-10",
+   "opciones": [
+    {
+     "texto": "Si se da el caso de ir a Japón.",
+     "explicacion": "なら retoma un tema para dar información o consejo.",
+     "correcta": true
+    },
+    {
+     "texto": "Que ya fue a Japón.",
+     "explicacion": "Eso sería にほん へ いきました."
+    },
+    {
+     "texto": "Que debe ir a Japón.",
+     "explicacion": "La frase no expresa obligación."
     }
    ]
   }
