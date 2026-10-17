@@ -12,7 +12,8 @@ import { LANG } from '../curso.js';
 
 const TANDA = 10;
 
-function todosLosEjercicios(resultados) {
+/** Los ejercicios de esas lecciones (ya completas). */
+function ejerciciosDe(resultados) {
   const lista = [];
   for (const r of resultados) {
     if (!r.leccion) continue;
@@ -23,8 +24,13 @@ function todosLosEjercicios(resultados) {
   return lista;
 }
 
-export function pintarPractica(app, { resultados }) {
-  const todos = todosLosEjercicios(resultados);
+/**
+ * resultados: la lista de lecciones del curso (con índice, solo el resumen de cada una).
+ * leccionCompleta: carga una lección entera; solo se piden las que hacen falta para la tanda.
+ */
+export function pintarPractica(app, { resultados, leccionCompleta }) {
+  const validas = resultados.filter(r => r.leccion);
+  const cargar = lista => Promise.all(lista.map(leccionCompleta));
   const zona = el('div', { class: 'zona-practica' });
 
   function tanda(lista, titulo, vacio) {
@@ -47,13 +53,20 @@ export function pintarPractica(app, { resultados }) {
     zona.querySelector('h2')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  const oido = () => tanda(
-    barajar(todos.filter(x => x.bloque.audio)).slice(0, TANDA),
-    t('practica.oidoTitulo'),
-    t('practica.sinAudio'));
+  // Con índice se sabe qué lecciones tienen audio: se cargan unas cuantas al azar, no todas.
+  const oido = async () => {
+    const conAudio = validas.filter(r => r.audio ?? true);
+    const todos = ejerciciosDe(await cargar(barajar(conAudio).slice(0, TANDA)));
+    tanda(
+      barajar(todos.filter(x => x.bloque.audio)).slice(0, TANDA),
+      t('practica.oidoTitulo'),
+      t('practica.sinAudio'));
+  };
 
-  const fallos = () => {
+  const fallos = async () => {
     const fallados = new Set(ejerciciosFallados().map(f => `${f.idLeccion}|${f.idEjercicio}`));
+    const conFallos = new Set(ejerciciosFallados().map(f => f.idLeccion));
+    const todos = ejerciciosDe(await cargar(validas.filter(r => conFallos.has(r.id))));
     tanda(
       barajar(todos.filter(x => fallados.has(`${x.leccion.id}|${x.bloque.id}`) && (hayVoz() || !x.bloque.soloOido))).slice(0, 15),
       t('practica.fallosTitulo'),

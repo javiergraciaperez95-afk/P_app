@@ -1,171 +1,934 @@
 {
+  "esquema": 2,
+  "id": "011",
   "capitulo": 2,
-  "titulo_es": "Hablo español",
-  "titulo": { "en": "I speak Spanish" },
-  "intro": { "en": "Regular verbs in the present. The ending tells you the person, so the subject pronoun is usually absent." },
+  "nivel": "A1",
   "palabras": {
-    "hablo": { "en": "I speak", "pron": "A-blo", "cat": "verb", "consejo": "The h is silent. The stress stays on the stem: HA-blo." },
-    "hablas": { "en": "you speak", "pron": "A-blas", "cat": "verb" },
-    "habla": { "en": "he/she speaks; you (formal) speak", "pron": "A-bla", "cat": "verb" },
-    "hablamos": { "en": "we speak", "pron": "a-BLA-mos", "cat": "verb", "nota": "Nosotros moves the stress onto the ending." },
-    "habláis": { "en": "you (plural, Spain) speak", "pron": "a-BLAIS", "cat": "verb" },
-    "hablan": { "en": "they speak; you (plural) speak", "pron": "A-blan", "cat": "verb" },
-    "como": { "en": "I eat", "pron": "KO-mo", "cat": "verb" },
-    "comes": { "en": "you eat", "pron": "KO-mes", "cat": "verb" },
-    "vivo": { "en": "I live", "pron": "BI-bo", "cat": "verb" },
-    "vives": { "en": "you live", "pron": "BI-bes", "cat": "verb" },
-    "vivimos": { "en": "we live", "pron": "bi-BI-mos", "cat": "verb" },
-    "español": { "en": "Spanish (the language)", "pron": "es-pa-NYOL", "genero": "m", "nota": "When naming a language in general after hablar, the article is usually omitted: hablo español." },
-    "un poco": { "en": "a little", "pron": "un PO-ko", "cat": "expression" },
-    "en": { "en": "in", "pron": "en", "cat": "preposition" },
-    "casa": { "en": "house, home", "pron": "KA-sa", "genero": "f", "nota": "En casa means at home, with no article." }
+    "hablo": {
+      "pron": "A-blo",
+      "cat": "verb"
+    },
+    "hablas": {
+      "pron": "A-blas",
+      "cat": "verb"
+    },
+    "habla": {
+      "pron": "A-bla",
+      "cat": "verb"
+    },
+    "hablamos": {
+      "pron": "a-BLA-mos",
+      "cat": "verb"
+    },
+    "habláis": {
+      "pron": "a-BLAIS",
+      "cat": "verb"
+    },
+    "hablan": {
+      "pron": "A-blan",
+      "cat": "verb"
+    },
+    "como": {
+      "pron": "KO-mo",
+      "cat": "verb"
+    },
+    "comes": {
+      "pron": "KO-mes",
+      "cat": "verb"
+    },
+    "come": {
+      "pron": "KO-me",
+      "cat": "verb"
+    },
+    "comemos": {
+      "pron": "ko-ME-mos",
+      "cat": "verb"
+    },
+    "vivo": {
+      "pron": "BI-bo",
+      "cat": "verb"
+    },
+    "vives": {
+      "pron": "BI-bes",
+      "cat": "verb"
+    },
+    "vive": {
+      "pron": "BI-be",
+      "cat": "verb"
+    },
+    "vivimos": {
+      "pron": "bi-BI-mos",
+      "cat": "verb"
+    },
+    "español": {
+      "pron": "es-pa-NYOL",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "inglés": {
+      "pron": "in-GLES",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "un poco": {
+      "pron": "un PO-ko",
+      "cat": "expr"
+    },
+    "en": {
+      "pron": "en",
+      "cat": "prep"
+    },
+    "la casa": {
+      "pron": "la KA-sa",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "en casa": {
+      "pron": "en KA-sa",
+      "cat": "expr"
+    },
+    "Pablo": {
+      "propio": true
+    },
+    "Lucía": {
+      "propio": true
+    },
+    "Sevilla": {
+      "propio": true
+    },
+    "Madrid": {
+      "propio": true
+    }
   },
   "bloques": [
     {
-      "tipo": "explicacion",
-      "titulo": "Three families",
-      "texto": "Take off **-ar**, **-er** or **-ir** and add the person.\n\n- hablar: hablo, hablas, habla, hablamos, habláis, hablan\n- comer: como, comes, come, comemos, coméis, comen\n- vivir: vivo, vives, vive, vivimos, vivís, viven\n\n**Yo, tú, él** and **ellos** keep the stress on the stem: hablo, hablas, habla, hablan. **Nosotros** and **vosotros** move it to the ending: hablamos, habláis, comemos, coméis, vivimos, vivís.\n\nYou can leave out yo, tú and nosotros. The ending usually identifies the subject. Use a pronoun to contrast or add emphasis: yo vivo en Sevilla, ella vive en Lima.\n\nWhen naming a language in general after hablar, the article is usually omitted: **hablo español**, **hablamos inglés**."
+      "id": "b1",
+      "tipo": "explicacion"
     },
     {
-      "tipo": "tabla",
-      "titulo": "Hablar, comer, vivir",
-      "columnas": ["Person", "hablar", "comer", "vivir"],
-      "filas": [
-        ["yo", "hablo", "como", "vivo"],
-        ["tú", "hablas", "comes", "vives"],
-        ["él / ella / usted", "habla", "come", "vive"],
-        ["nosotros", "hablamos", "comemos", "vivimos"],
-        ["vosotros", "habláis", "coméis", "vivís"],
-        ["ellos / ustedes", "hablan", "comen", "viven"]
-      ],
-      "nota": { "en": "Some regions use vos instead of tú, with forms such as hablás, comés and vivís. Querer and tener change their stem in some forms (quiero, tengo); ir is irregular (voy). These patterns come later." }
-    },
-    {
+      "id": "b2",
       "tipo": "dialogo",
-      "titulo": "A new city",
       "frases": [
         {
           "quien": "Pablo",
-          "es": "¿Hablas español?",
-          "en": "Do you speak Spanish?",
-          "analisis": [
-            ["¿Hablas", "verb"],
-            ["español", "object"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Hablas español",
+                "nucleo": "Hablas",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Hablas",
+                    "nucleo": "Hablas"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "español",
+                    "nucleo": "español"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Lucía",
-          "es": "Hablo un poco. En casa hablamos inglés.",
-          "en": "I speak a little. At home we speak English.",
-          "analisis": [
-            ["Hablo", "verb"],
-            ["un poco", "how much"],
-            ["En casa", "place"],
-            ["hablamos", "verb"],
-            ["inglés", "object"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Hablo un poco",
+                "nucleo": "Hablo",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Hablo",
+                    "nucleo": "Hablo"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "un poco",
+                    "nucleo": "poco"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "En casa hablamos inglés",
+                "nucleo": "hablamos",
+                "partes": [
+                  {
+                    "funcion": "CCL",
+                    "texto": "En casa",
+                    "nucleo": "casa",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "En"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "casa",
+                        "nucleo": "casa"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "hablamos",
+                    "nucleo": "hablamos"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "inglés",
+                    "nucleo": "inglés"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "Yo vivo en Sevilla.",
-          "en": "I live in Seville.",
-          "analisis": [
-            ["Yo", "subject"],
-            ["vivo", "verb"],
-            ["en Sevilla", "place"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Yo",
+                "nucleo": "Yo"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "vivo en Sevilla",
+                "nucleo": "vivo",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "vivo",
+                    "nucleo": "vivo"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en Sevilla",
+                    "nucleo": "Sevilla",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "Sevilla",
+                        "nucleo": "Sevilla"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Lucía",
-          "es": "¿Comes en casa?",
-          "en": "Do you eat at home?",
-          "analisis": [
-            ["¿Comes", "verb"],
-            ["en casa", "place"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Comes en casa",
+                "nucleo": "Comes",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Comes",
+                    "nucleo": "Comes"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en casa",
+                    "nucleo": "casa",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "casa",
+                        "nucleo": "casa"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "Sí, como en casa.",
-          "en": "Yes, I eat at home.",
-          "analisis": [
-            ["Sí", "yes"],
-            ["como", "verb"],
-            ["en casa", "place"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Sí, como en casa",
+                "nucleo": "como",
+                "partes": [
+                  {
+                    "funcion": "ADV",
+                    "texto": "Sí"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "como",
+                    "nucleo": "como"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en casa",
+                    "nucleo": "casa",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "casa",
+                        "nucleo": "casa"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Lucía",
-          "es": "Nosotros vivimos en Madrid.",
-          "en": "We live in Madrid.",
-          "analisis": [
-            ["Nosotros", "subject"],
-            ["vivimos", "verb"],
-            ["en Madrid", "place"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Nosotros",
+                "nucleo": "Nosotros"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "vivimos en Madrid",
+                "nucleo": "vivimos",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "vivimos",
+                    "nucleo": "vivimos"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en Madrid",
+                    "nucleo": "Madrid",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "Madrid",
+                        "nucleo": "Madrid"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },
     {
+      "id": "b3",
       "tipo": "vocabulario",
-      "palabras": ["hablo", "hablas", "habla", "hablamos", "habláis", "hablan", "como", "comes", "vivo", "vives", "vivimos", "español", "un poco", "en", "casa"]
+      "palabras": [
+        "hablo",
+        "hablas",
+        "habla",
+        "hablamos",
+        "habláis",
+        "hablan",
+        "como",
+        "comes",
+        "come",
+        "comemos",
+        "vivo",
+        "vives",
+        "vive",
+        "vivimos",
+        "español",
+        "inglés",
+        "un poco",
+        "en",
+        "la casa",
+        "en casa"
+      ]
     },
     {
-      "tipo": "huecos",
-      "id": "a1-pres-hablamos",
-      "pregunta": { "en": "Complete: we speak Spanish." },
-      "frase": "Nosotros ___ español.",
-      "audio": true,
-      "opciones": {
-        "hablamos": { "en": "Nosotros takes -amos on an -ar verb." },
-        "hablo": { "en": "Hablo is for yo." },
-        "hablas": { "en": "Hablas is for tú." }
-      },
-      "correcta": "hablamos"
+      "id": "b4",
+      "tipo": "gramatica",
+      "ejemplos": [
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Hablo español",
+                "nucleo": "Hablo",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Hablo",
+                    "nucleo": "Hablo"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "español",
+                    "nucleo": "español"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Vivimos en España",
+                "nucleo": "Vivimos",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Vivimos",
+                    "nucleo": "Vivimos"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en España",
+                    "nucleo": "España",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "España",
+                        "nucleo": "España"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
     },
     {
-      "tipo": "huecos",
-      "id": "a1-pres-madrid",
-      "pregunta": { "en": "Complete: I live in Madrid." },
-      "frase": "Yo ___ en Madrid.",
-      "audio": true,
-      "opciones": {
-        "vivo": { "en": "Vivir: yo vivo. The stress stays on the stem." },
-        "vives": { "en": "Vives is for tú." },
-        "vivimos": { "en": "Vivimos is for nosotros." }
-      },
-      "correcta": "vivo"
+      "id": "b5",
+      "tipo": "texto",
+      "registro": "literario",
+      "frases": [
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Lucía",
+                "nucleo": "Lucía"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "vive en un barrio tranquilo de Madrid",
+                "nucleo": "vive",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "vive",
+                    "nucleo": "vive"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en un barrio tranquilo de Madrid",
+                    "nucleo": "barrio",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "un barrio tranquilo de Madrid",
+                        "nucleo": "barrio",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "un"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "barrio",
+                            "nucleo": "barrio"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "tranquilo",
+                            "nucleo": "tranquilo"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "de Madrid",
+                            "nucleo": "Madrid",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "de"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "Madrid",
+                                "nucleo": "Madrid"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Habla siempre español con sus nuevos amigos",
+                "nucleo": "Habla",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Habla",
+                    "nucleo": "Habla"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "siempre",
+                    "nucleo": "siempre"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "español",
+                    "nucleo": "español"
+                  },
+                  {
+                    "funcion": "CCCOMP",
+                    "texto": "con sus nuevos amigos",
+                    "nucleo": "amigos",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "sus nuevos amigos",
+                        "nucleo": "amigos",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "sus"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "nuevos",
+                            "nucleo": "nuevos"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "amigos",
+                            "nucleo": "amigos"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Cada día aprende palabras muy útiles",
+                "nucleo": "aprende",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "Cada día",
+                    "nucleo": "día",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "Cada"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "día",
+                        "nucleo": "día"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "aprende",
+                    "nucleo": "aprende"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "palabras muy útiles",
+                    "nucleo": "palabras",
+                    "partes": [
+                      {
+                        "funcion": "N",
+                        "texto": "palabras",
+                        "nucleo": "palabras"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "muy útiles",
+                        "nucleo": "útiles",
+                        "partes": [
+                          {
+                            "funcion": "ADV",
+                            "texto": "muy"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "útiles",
+                            "nucleo": "útiles"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Pablo",
+                "nucleo": "Pablo"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "come en casa después de las clases",
+                "nucleo": "come",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "come",
+                    "nucleo": "come"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en casa",
+                    "nucleo": "casa",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "casa",
+                        "nucleo": "casa"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "después de las clases",
+                    "nucleo": "después",
+                    "partes": [
+                      {
+                        "funcion": "ADV",
+                        "texto": "después",
+                        "nucleo": "después"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "de las clases",
+                        "nucleo": "clases",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "de"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "las clases",
+                            "nucleo": "clases",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "las"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "clases",
+                                "nucleo": "clases"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Prepara platos sencillos en la cocina",
+                "nucleo": "Prepara",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Prepara",
+                    "nucleo": "Prepara"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "platos sencillos",
+                    "nucleo": "platos",
+                    "partes": [
+                      {
+                        "funcion": "N",
+                        "texto": "platos",
+                        "nucleo": "platos"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "sencillos",
+                        "nucleo": "sencillos"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en la cocina",
+                    "nucleo": "cocina",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la cocina",
+                        "nucleo": "cocina",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "cocina",
+                            "nucleo": "cocina"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Los dos compañeros",
+                "nucleo": "compañeros",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Los"
+                  },
+                  {
+                    "funcion": "CUANT",
+                    "texto": "dos"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "compañeros",
+                    "nucleo": "compañeros"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "comparten la mesa con alegría",
+                "nucleo": "comparten",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "comparten",
+                    "nucleo": "comparten"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "la mesa",
+                    "nucleo": "mesa",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "la"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "mesa",
+                        "nucleo": "mesa"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "con alegría",
+                    "nucleo": "alegría",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "alegría",
+                        "nucleo": "alegría"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
     },
     {
+      "id": "b6",
       "tipo": "test",
-      "id": "a1-pres-articulo",
-      "pregunta": { "en": "Which is the usual basic way to say 'I speak Spanish'?" },
-      "opciones": {
-        "Hablo español": { "en": "The language after hablar has no article." },
-        "Hablo el español": { "en": "The usual basic expression omits the article; it may appear in other contexts." },
-        "Hablo una español": { "en": "Español is not counted with una." }
-      },
-      "correcta": "Hablo español"
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
     },
     {
-      "tipo": "ordenar",
-      "id": "a1-pres-vivo",
-      "frase": "Yo vivo en Madrid",
-      "traduccion": { "en": "I live in Madrid." }
+      "id": "b7",
+      "tipo": "huecos",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
     },
     {
+      "id": "b8",
+      "tipo": "ordenar"
+    },
+    {
+      "id": "b9",
       "tipo": "escribir",
-      "id": "a1-pres-como",
-      "pregunta": { "en": "Write: I eat at home." },
-      "respuestas": ["Como en casa", "Yo como en casa"],
-      "explicacion": { "en": "Comer: yo como. En casa has no article." }
-    },
-    {
-      "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
-      "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Write about what you and your family do: which languages you speak, where you work or study, where you live.\n\n**Speak (about 30 seconds).** Talk about yourself using at least six verbs in the present: hablo, trabajo, estudio, vivo, como, leo…"
-      }
+      "respuestas": [
+        "Como en casa",
+        "Yo como en casa"
+      ]
     }
   ]
 }

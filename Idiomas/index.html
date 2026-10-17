@@ -27,6 +27,13 @@
       const detectar = () => [...(navigator.languages ?? []), navigator.language ?? '']
         .map(x => x.toLowerCase().replaceAll('_', '-').split('-')[0]).find(x => compatibles.has(x)) ?? 'en';
       document.documentElement.lang = a.idioma && a.idioma !== 'auto' && compatibles.has(a.idioma) ? a.idioma : detectar();
+      // los textos de ese idioma se piden ya, a la vez que el resto de la app (js/i18n.js solo carga el idioma en uso)
+      if (document.documentElement.lang !== 'en') {
+        const l = document.createElement('link');
+        l.rel = 'modulepreload';
+        l.href = 'js/i18n/' + document.documentElement.lang + '.js?v=__VERSION__';
+        document.head.append(l);
+      }
     } catch (e) { /* tema por defecto */ }
   </script>
   <link rel="stylesheet" href="css/fuentes.css?v=__VERSION__">
@@ -40,6 +47,7 @@
   <link rel="stylesheet" href="css/pie.css?v=__VERSION__">
   <link rel="stylesheet" href="css/inicio.css?v=__VERSION__">
   <link rel="stylesheet" href="css/precios.css?v=__VERSION__">
+  <link rel="stylesheet" href="css/entrar.css?v=__VERSION__">
   <!-- Al publicar, __VERSION__ se cambia por el código de la versión (ver .github/workflows/static.yml),
        así el navegador descarga siempre los archivos nuevos en lugar de usar los antiguos guardados. -->
   <script type="importmap">

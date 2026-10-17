@@ -9,7 +9,7 @@
    ===================================================================== */
 
 /* Los colores se comparten con el pie (css/pie.css) y la portada (css/inicio.css): todo de la misma familia */
-.cabecera, .pie-sitio, .inicio, .precios {
+.cabecera, .pie-sitio, .inicio, .precios, .academia-entrada {
   --h-fondo: #efe6d2;
   --h-trama: #e8dcc3;
   --h-tinta: #2b1d1a;
@@ -40,7 +40,7 @@
   background-size: 8px 8px;
   font-synthesis-weight: none;
 }
-:root[data-tema="oscuro"] .cabecera, :root[data-tema="oscuro"] .pie-sitio, :root[data-tema="oscuro"] .inicio, :root[data-tema="oscuro"] .precios {
+:root[data-tema="oscuro"] .cabecera, :root[data-tema="oscuro"] .pie-sitio, :root[data-tema="oscuro"] .inicio, :root[data-tema="oscuro"] .precios, :root[data-tema="oscuro"] .academia-entrada {
   --h-fondo: #17121c;
   --h-trama: #1c1623;
   --h-tinta: #f2e8da;
@@ -186,9 +186,21 @@ body.en-inicio #btn-curso { display: none; } /* en la portada ya hay un botón p
 #marca-subtitulo { overflow: hidden; text-overflow: ellipsis; }
 #marca-bandera { display: inline-flex; flex: none; }
 .marca-curso .bandera { width: 18px; height: 12px; box-shadow: 0 0 0 1px var(--h-borde); }
-/* «glot» destella un instante de vez en cuando (solo en las portadas) */
-body.en-inicio .marca-glot { animation: glot-brilla 6s steps(1) infinite; }
-@keyframes glot-brilla { 90% { color: #fff6c8; } 93% { color: var(--marca-oro); } 96% { color: #fff6c8; } }
+/* «glot» destella un instante de vez en cuando (solo en las portadas).
+   El destello es una copia clara de la palabra encima que aparece y desaparece: animar la opacidad lo hace la tarjeta
+   gráfica, mientras que animar el color obligaba al navegador a recalcular la página en cada fotograma. */
+body.en-inicio .marca-glot { position: relative; }
+body.en-inicio .marca-glot::after {
+  content: "glot" / "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #fff6c8;
+  opacity: 0;
+  pointer-events: none;
+  animation: glot-brilla 6s steps(1) infinite;
+}
+@keyframes glot-brilla { 90% { opacity: 1; } 93% { opacity: 0; } 96% { opacity: 1; } }
 
 /* ----- Navegación de la web (Inicio · Idiomas · Paglot Max) ----- */
 .cabecera-nav { display: flex; justify-content: center; gap: 8px; min-width: 0; }
@@ -304,13 +316,14 @@ body.en-inicio .marca-glot { animation: glot-brilla 6s steps(1) infinite; }
   content: "";
   position: absolute;
   top: 0; bottom: 0; left: -40%;
-  width: 22%;
+  width: 22%; /* recorre del −40 % al 130 % del botón: 170 % del botón = 772,73 % de su propio ancho */
   background: linear-gradient(90deg, transparent 0 25%, rgba(255, 255, 255, .55) 25% 50%, transparent 50% 62%, rgba(255, 255, 255, .35) 62% 80%, transparent 80%);
   transform: skewX(-20deg);
   animation: destello 5s steps(10) infinite;
 }
 .cabecera-crear:hover::before { animation-duration: 1.1s; }
-@keyframes destello { 0%, 70% { left: -40%; } 100% { left: 130%; } }
+/* se mueve con transform (lo hace la tarjeta gráfica); con «left» había que recalcular la página en cada fotograma */
+@keyframes destello { 0%, 70% { transform: translateX(0) skewX(-20deg); } 100% { transform: translateX(772.73%) skewX(-20deg); } }
 .cabecera .cabecera-entrar { font-family: var(--h-pixel); font-weight: 500; font-size: .98rem; letter-spacing: .02em; }
 
 /* ----- La cuenta: con sesión ----- */
@@ -548,7 +561,7 @@ body.en-estudio .marca-titulo { font-size: 1.35rem; }
    Sin movimiento si así lo pide el dispositivo
    ===================================================================== */
 @media (prefers-reduced-motion: reduce) {
-  .cabecera::after, .cabecera::before, .marca-glot, .nav-corona, .cabecera-crear::before,
+  .cabecera::after, .cabecera::before, .marca-glot, .marca-glot::after, .nav-corona, .cabecera-crear::before,
   .racha-llama, .avatar-nube, .idioma-lista, .cuenta-panel, .cabecera-ajustes-panel { animation: none !important; }
   .cabecera-crear::before { display: none; }
   .marca:hover .marca-logo, .cuenta-avatar:hover { animation: none; }

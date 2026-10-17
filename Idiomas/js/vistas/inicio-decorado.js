@@ -13,9 +13,18 @@ function svg(rejilla, clase, prefijo) {
   dibujo.setAttribute('shape-rendering', 'crispEdges');
   dibujo.setAttribute('aria-hidden', 'true');
   const trazos = {};
-  rejilla.forEach((fila, y) => [...fila].forEach((c, x) => {
-    if (c && c !== '.') trazos[c] = (trazos[c] ?? '') + `M${x} ${y}h1v1h-1z`;
-  }));
+  // cada tramo seguido del mismo color, un solo rectángulo (mucho menos que pintar píxel a píxel)
+  rejilla.forEach((fila, y) => {
+    const celdas = [...fila];
+    for (let x = 0; x < celdas.length; x++) {
+      const c = celdas[x];
+      if (!c || c === '.') continue;
+      let fin = x + 1;
+      while (celdas[fin] === c) fin++;
+      trazos[c] = (trazos[c] ?? '') + `M${x} ${y}h${fin - x}v1h-${fin - x}z`;
+      x = fin - 1;
+    }
+  });
   for (const [c, d] of Object.entries(trazos)) {
     const ruta = document.createElementNS(SVG, 'path');
     ruta.setAttribute('d', d);
@@ -115,7 +124,15 @@ function rejillaUniversidad() {
 let guardada = null;
 export function universidad() {
   guardada ??= rejillaUniversidad();
-  return svg(guardada, 'inicio-universidad', 'u');
+  const dibujo = svg(guardada, 'inicio-universidad', 'u');
+  // la ventana que parpadea de noche lleva debajo una copia apagada: así basta con animar la opacidad (ver css/inicio.css)
+  const parpadea = dibujo.querySelector('.u-x');
+  if (parpadea) {
+    const apagada = parpadea.cloneNode();
+    apagada.setAttribute('class', 'u-xo');
+    parpadea.before(apagada);
+  }
+  return dibujo;
 }
 
 // ---------------------------------------------------------------------------

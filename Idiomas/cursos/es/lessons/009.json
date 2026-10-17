@@ -1,160 +1,559 @@
 {
+  "esquema": 2,
+  "id": "009",
   "capitulo": 2,
-  "titulo_es": "Es alta y simpática",
-  "titulo": { "en": "She is tall and friendly" },
-  "intro": { "en": "Use ser for a person's usual physical traits and character. Adjectives agree with the person; place muy, bastante or un poco before the adjective." },
+  "nivel": "A1",
   "palabras": {
-    "alto": { "en": "tall (masculine)", "pron": "AL-to", "cat": "adjective" },
-    "alta": { "en": "tall (feminine)", "pron": "AL-ta", "cat": "adjective" },
-    "bajo": { "en": "short (masculine)", "pron": "BA-ho", "cat": "adjective", "consejo": "The j in bajo is a strong h-like sound; its exact quality varies by region." },
-    "baja": { "en": "short (feminine)", "pron": "BA-ha", "cat": "adjective" },
-    "joven": { "en": "young", "pron": "HO-ben", "cat": "adjective", "consejo": "The initial j is a rough h-like sound, unlike the j in English.", "nota": "Same form for masculine and feminine; plural jóvenes." },
-    "jóvenes": { "en": "young (plural)", "pron": "HO-be-nes", "cat": "adjective" },
-    "simpático": { "en": "nice, friendly (masculine)", "pron": "sim-PA-ti-ko", "cat": "adjective" },
-    "simpática": { "en": "nice, friendly (feminine)", "pron": "sim-PA-ti-ka", "cat": "adjective" },
-    "morena": { "en": "dark-haired (feminine)", "pron": "mo-RE-na", "cat": "adjective" },
-    "moreno": { "en": "dark-haired (masculine)", "pron": "mo-RE-no", "cat": "adjective" },
-    "inteligente": { "en": "intelligent", "pron": "in-te-li-HEN-te", "cat": "adjective", "nota": "Many adjectives ending in -e use the same form for masculine and feminine; the plural is inteligentes." },
-    "muy": { "en": "very", "pron": "mwi", "cat": "adverb" },
-    "bastante": { "en": "quite, rather", "pron": "bas-TAN-te", "cat": "adverb" },
-    "un poco": { "en": "a bit", "pron": "un PO-ko", "cat": "expression" }
+    "alto": {
+      "pron": "AL-to",
+      "cat": "adj"
+    },
+    "alta": {
+      "pron": "AL-ta",
+      "cat": "adj"
+    },
+    "bajo": {
+      "pron": "BA-ho",
+      "cat": "adj"
+    },
+    "baja": {
+      "pron": "BA-ha",
+      "cat": "adj"
+    },
+    "joven": {
+      "pron": "HO-ben",
+      "cat": "adj"
+    },
+    "jóvenes": {
+      "pron": "HO-be-nes",
+      "cat": "adj"
+    },
+    "simpático": {
+      "pron": "sim-PA-ti-ko",
+      "cat": "adj"
+    },
+    "simpática": {
+      "pron": "sim-PA-ti-ka",
+      "cat": "adj"
+    },
+    "moreno": {
+      "pron": "mo-RE-no",
+      "cat": "adj"
+    },
+    "morena": {
+      "pron": "mo-RE-na",
+      "cat": "adj"
+    },
+    "inteligente": {
+      "pron": "in-te-li-HEN-te",
+      "cat": "adj"
+    },
+    "inteligentes": {
+      "pron": "in-te-li-HEN-tes",
+      "cat": "adj"
+    },
+    "muy": {
+      "pron": "mwi",
+      "cat": "adv"
+    },
+    "bastante": {
+      "pron": "bas-TAN-te",
+      "cat": "adv"
+    },
+    "un poco": {
+      "pron": "un PO-ko",
+      "cat": "expr"
+    },
+    "Ana": {
+      "propio": true
+    },
+    "Pablo": {
+      "propio": true
+    },
+    "Lucía": {
+      "propio": true
+    }
   },
   "bloques": [
     {
-      "tipo": "explicacion",
-      "titulo": "What someone is like",
-      "texto": "Use **ser** for a person's usual physical traits and character.\n\n- Pablo **es alto** y **moreno**.\n- Ana **es alta** y **simpática**.\n- Lucía **es joven** e **inteligente**.\n\nAdjectives ending in **-o** often change to **-a** for feminine nouns, then to **-os** or **-as** in the plural: alto, alta, altos, altas. Some common adjectives ending in **-e** or a consonant use the same form for masculine and feminine, but still change in the plural: joven → **jóvenes**, inteligente → **inteligentes**. Use feminine plural for a group of women; masculine plural for an all-male or mixed group.\n\n**Muy**, **bastante** and **un poco** go before the adjective: es **muy** simpática, es **bastante** alta, es **un poco** baja. **Muy** does not become mucho directly before an adjective. **Mucho** can modify a verb: trabaja mucho."
+      "id": "b1",
+      "tipo": "explicacion"
     },
     {
-      "tipo": "tabla",
-      "titulo": "The adjective follows the person",
-      "columnas": ["Person", "With -o", "With -e"],
-      "filas": [
-        ["Pablo", "es alto", "es inteligente"],
-        ["Ana", "es alta", "es inteligente"],
-        ["ellos", "son altos", "son inteligentes"],
-        ["ellas", "son altas", "son jóvenes"]
-      ]
-    },
-    {
+      "id": "b2",
       "tipo": "dialogo",
-      "titulo": "A friend",
       "frases": [
         {
           "quien": "Lucía",
-          "es": "¿Cómo es Ana?",
-          "en": "What is Ana like?",
-          "analisis": [
-            ["¿Cómo", "question"],
-            ["es", "verb"],
-            ["Ana", "subject"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Cómo es",
+                "nucleo": "es",
+                "partes": [
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "Cómo",
+                    "nucleo": "Cómo"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  }
+                ]
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "Ana",
+                "nucleo": "Ana"
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "Es alta, morena y muy simpática.",
-          "en": "She is tall, dark-haired and very friendly.",
-          "analisis": [
-            ["Es", "verb"],
-            ["alta", "adjective"],
-            ["morena", "adjective"],
-            ["muy simpática", "adjective"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Es alta, morena y muy simpática",
+                "nucleo": "Es",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Es",
+                    "nucleo": "Es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "alta, morena y muy simpática",
+                    "nucleo": "alta",
+                    "partes": [
+                      {
+                        "funcion": "ADY",
+                        "texto": "alta",
+                        "nucleo": "alta"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "morena",
+                        "nucleo": "morena"
+                      },
+                      {
+                        "funcion": "CONJ",
+                        "texto": "y"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "muy simpática",
+                        "nucleo": "simpática",
+                        "partes": [
+                          {
+                            "funcion": "ADV",
+                            "texto": "muy"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "simpática",
+                            "nucleo": "simpática"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Lucía",
-          "es": "¿Es joven?",
-          "en": "Is she young?",
-          "analisis": [
-            ["¿Es", "verb"],
-            ["joven", "adjective"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Es joven",
+                "nucleo": "Es",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Es",
+                    "nucleo": "Es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "joven",
+                    "nucleo": "joven"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "Sí, es bastante joven. Y es inteligente.",
-          "en": "Yes, she is quite young. And she is intelligent.",
-          "analisis": [
-            ["es", "verb"],
-            ["bastante joven", "adjective"],
-            ["inteligente", "adjective"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Sí, es bastante joven",
+                "nucleo": "es",
+                "partes": [
+                  {
+                    "funcion": "ADV",
+                    "texto": "Sí"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "bastante joven",
+                    "nucleo": "joven",
+                    "partes": [
+                      {
+                        "funcion": "ADV",
+                        "texto": "bastante"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "joven",
+                        "nucleo": "joven"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Pablo",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Y es inteligente",
+                "nucleo": "es",
+                "partes": [
+                  {
+                    "funcion": "CONJ",
+                    "texto": "Y"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "inteligente",
+                    "nucleo": "inteligente"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Lucía",
-          "es": "Tú eres alto. Yo soy un poco baja.",
-          "en": "You are tall. I am a bit short.",
-          "analisis": [
-            ["Tú", "subject"],
-            ["eres", "verb"],
-            ["alto", "adjective"],
-            ["Yo", "subject"],
-            ["soy", "verb"],
-            ["un poco baja", "adjective"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Tú",
+                "nucleo": "Tú"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "eres alto",
+                "nucleo": "eres",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "eres",
+                    "nucleo": "eres"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "alto",
+                    "nucleo": "alto"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Yo",
+                "nucleo": "Yo"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "soy un poco baja",
+                "nucleo": "soy",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "soy",
+                    "nucleo": "soy"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "un poco baja",
+                    "nucleo": "baja",
+                    "partes": [
+                      {
+                        "funcion": "ADV",
+                        "texto": "un poco"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "baja",
+                        "nucleo": "baja"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "Los estudiantes son jóvenes y simpáticos.",
-          "en": "The students are young and friendly.",
-          "analisis": [
-            ["Los estudiantes", "subject"],
-            ["son", "verb"],
-            ["jóvenes", "adjective"],
-            ["simpáticos", "adjective"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Los estudiantes",
+                "nucleo": "estudiantes",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Los"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "estudiantes"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "son jóvenes y simpáticos",
+                "nucleo": "son",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "son",
+                    "nucleo": "son"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "jóvenes y simpáticos",
+                    "nucleo": "jóvenes",
+                    "partes": [
+                      {
+                        "funcion": "ADY",
+                        "texto": "jóvenes",
+                        "nucleo": "jóvenes"
+                      },
+                      {
+                        "funcion": "CONJ",
+                        "texto": "y"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "simpáticos",
+                        "nucleo": "simpáticos"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },
     {
+      "id": "b3",
       "tipo": "vocabulario",
-      "palabras": ["alto", "alta", "bajo", "baja", "joven", "jóvenes", "simpático", "simpática", "moreno", "morena", "inteligente", "muy", "bastante", "un poco"]
+      "palabras": [
+        "alto",
+        "alta",
+        "bajo",
+        "baja",
+        "joven",
+        "jóvenes",
+        "simpático",
+        "simpática",
+        "moreno",
+        "morena",
+        "inteligente",
+        "inteligentes",
+        "muy",
+        "bastante",
+        "un poco"
+      ]
     },
     {
+      "id": "b4",
+      "tipo": "gramatica",
+      "ejemplos": [
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Ana",
+                "nucleo": "Ana"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "es alta y simpática",
+                "nucleo": "es",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "alta y simpática",
+                    "nucleo": "alta",
+                    "partes": [
+                      {
+                        "funcion": "ADY",
+                        "texto": "alta",
+                        "nucleo": "alta"
+                      },
+                      {
+                        "funcion": "CONJ",
+                        "texto": "y"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "simpática",
+                        "nucleo": "simpática"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Ellas",
+                "nucleo": "Ellas"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "son inteligentes",
+                "nucleo": "son",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "son",
+                    "nucleo": "son"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "inteligentes",
+                    "nucleo": "inteligentes"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "b5",
+      "tipo": "texto",
+      "registro": "literario",
+      "parrafos": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "b6",
+      "tipo": "test",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b7",
       "tipo": "huecos",
-      "id": "a1-desc-muy",
-      "pregunta": { "en": "Complete: she is very tall." },
-      "frase": "Es ___ alta.",
-      "audio": true,
-      "opciones": {
-        "muy": { "en": "Muy goes before an adjective." },
-        "mucho": { "en": "Mucho goes with a verb or a noun: trabaja mucho." },
-        "muchos": { "en": "Muchos goes with a plural noun." }
-      },
-      "correcta": "muy"
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
     },
     {
-      "tipo": "huecos",
-      "id": "a1-desc-alta",
-      "pregunta": { "en": "Complete: Ana is tall." },
-      "frase": "Ana es ___.",
-      "audio": true,
-      "opciones": {
-        "alta": { "en": "Ana is a woman, so alto becomes alta." },
-        "alto": { "en": "Alto is the masculine form." },
-        "altos": { "en": "Altos is masculine plural." }
-      },
-      "correcta": "alta"
+      "id": "b8",
+      "tipo": "ordenar"
     },
     {
-      "tipo": "ordenar",
-      "id": "a1-desc-ana",
-      "frase": "Ana es alta y morena",
-      "traduccion": { "en": "Ana is tall and dark-haired." }
-    },
-    {
+      "id": "b9",
       "tipo": "escribir",
-      "id": "a1-desc-muy-simpatica",
-      "pregunta": { "en": "Write: She is very friendly." },
-      "respuestas": ["Es muy simpática", "Ella es muy simpática"],
-      "explicacion": { "en": "Muy before the adjective, and simpática because she is a woman." }
-    },
-    {
-      "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
-      "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Describe two people you know well: what they are like physically and as people.\n\n**Speak (about 30 seconds).** Describe aloud a famous person without saying the name. If you have a partner, let them guess."
-      }
+      "respuestas": [
+        "Es muy simpática",
+        "Ella es muy simpática"
+      ]
     }
   ]
 }

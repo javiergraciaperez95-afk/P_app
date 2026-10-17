@@ -27,7 +27,30 @@ let g;
 let dy = 0; // la cabeza «respira» (sube y baja) y además asiente o se inclina
 let dx = 0; // y se mueve de lado al decir que no
 let manga = null; // los colores de la manga, que guarda mangas() para poder dibujar el brazo en otra postura
-const clear = () => { g = Array.from({ length: ALTO }, () => Array(ANCHO).fill(null)); };
+// La rejilla se reutiliza de un dibujo al siguiente: crearla nueva en cada fotograma daba trabajo de más al recolector de basura.
+const clear = () => {
+  if (!g) g = Array.from({ length: ALTO }, () => Array(ANCHO).fill(null));
+  else for (const fila of g) fila.fill(null);
+};
+
+// Un solo reloj para todas las tutoras que hay en pantalla, unas 14 veces por segundo.
+// Antes cada una pedía requestAnimationFrame 60 veces por segundo aunque solo dibujase 14, y cada una de esas
+// peticiones obligaba al navegador a repasar todas las animaciones CSS de la página (en la portada hay cientos).
+const PASO = 70;
+const latidos = new Set();
+let reloj = null;
+function latir() {
+  reloj = null;
+  if (!latidos.size) return;
+  reloj = setTimeout(latir, PASO);
+  if (document.hidden) return; // con la pestaña escondida no se ve: no se dibuja
+  const ahora = performance.now();
+  for (const f of latidos) f(ahora);
+}
+function escucharReloj(f) {
+  latidos.add(f);
+  reloj ??= setTimeout(latir, 0);
+}
 const R = (x, y, w, h, c) => {
   for (let j = y + OY; j < y + OY + h; j++) for (let i = x; i < x + w; i++) if (i >= 0 && i < ANCHO && j >= 0 && j < ALTO) g[j][i] = c;
 };
@@ -302,6 +325,10 @@ const ANIMACIONES = {
   asomarse: { duracion: 1300, prioridad: 2, cuadro: p => ({ temblor: Math.round((1 - suave(p / 0.7)) * 40), mira: { x: -1, y: 0 }, eyes: 'open', brow: 'flat' }) },
   cruzarBrazos: { duracion: 2600, cuadro: () => ({ brazoI: 'cruzadoArriba', brazoD: 'cruzadoAbajo', eyes: 'open', brow: 'smug', mouth: 'smirk' }) },
   taparseOjos: { duracion: 2600, cuadro: p => { const b = p < 0.55 ? 'cara' : 'caraEspia'; return { brazoI: b, brazoD: b, eyes: 'wide', brow: 'worry', mouth: 'flat' }; } },
+  // mientras se escribe una contraseña: no mira (o, si se enseña la contraseña, espía entre los dedos); «soltar» la devuelve a su postura
+  noMirar: { duracion: Infinity, cuadro: (p, t) => ({ brazoI: 'cara', brazoD: 'cara', eyes: 'blink', brow: 'worry', mouth: 'flat', temblor: Math.floor(t / 1400) % 4 === 3 ? alterna(t, 120, 0, 1) : 0 }) },
+  espiar: { duracion: Infinity, cuadro: () => ({ brazoI: 'caraEspia', brazoD: 'caraEspia', eyes: 'wide', brow: 'worry', mouth: 'o' }) },
+  soltar: { duracion: 80, cuadro: () => ({}) },
   // paseando (mientras sprite.andando): un paso cada 180 ms, botando un poco
   caminar: { duracion: Infinity, cuadro: (p, t) => ({ piernaI: alterna(t, 180, 1, 0), piernaD: alterna(t, 180, 0, 1), salto: alterna(t, 180, 0, 1), eyes: 'open', mouth: 'smile', brow: 'flat' }) },
   correr: { duracion: 1600, cuadro: (p, t) => ({ piernaI: alterna(t, 120, 2, 0), piernaD: alterna(t, 120, 0, 2), salto: alterna(t, 120, 1, 0), eyes: 'wide', brow: 'worry', mouth: 'flat', fx: 'sweat' }) },
@@ -491,14 +518,14 @@ export function fabricar(disenar) {
     const anim = ANIMACIONES[animacion === 'firma' ? firma : animacion];
     const extra = anim ? anim.cuadro(momento, momento * Math.min(anim.duracion, 4000)) : {};
     build({ bob: 0, sway, star: 0, ...cara, ...extra, t: momento * 4000 });
-    return g;
+    return g.map(fila => fila.slice()); // una copia: la rejilla se reutiliza en el siguiente dibujo
   }
 
   function crearSprite(canvas) {
     const ctx = canvas.getContext('2d');
     // escuchando / dormida / andando: posturas que duran mientras sigan en true
     // sujeta: 'I' o 'D' — sostiene algo en alto con esa mano (el palo de la pancarta) aunque haga otros gestos
-    const sprite = { expresion: 'normal', hablando: false, escuchando: false, dormida: false, andando: false, sujeta: null };
+    const sprite = { expresion: 'normal', hablando: false, escuchando: false, dormida: false, andando: false, sujeta: null, pintados: 0 };
     let reaccion = null; // { expresion, hasta }
     let actual = null; // { nombre, inicio }
     let cola = [];
@@ -529,7 +556,6 @@ export function fabricar(disenar) {
     let expresionAnterior = 'normal';
     let inicioRebote = 0;
     let ultimaClave = '';
-    let ultimoFotograma = 0;
 
     function pintar(estado) {
       build(estado);
@@ -537,24 +563,32 @@ export function fabricar(disenar) {
       // El dibujo se apoya en el borde de abajo del lienzo, sea cual sea su alto.
       const arriba = canvas.height - ALTO - estado.salto;
       const k = estado.giro ?? 1; // la vueltecita: el dibujo se estrecha, se da la vuelta y vuelve
-      for (let y = 0; y < ALTO; y++) for (let x = 0; x < ANCHO; x++) {
-        const c = g[y][x];
-        if (!c) continue;
-        const nx = k === 1 ? x : Math.round(ANCHO / 2 + (x + 0.5 - ANCHO / 2) * k - 0.5);
-        ctx.fillStyle = c;
-        ctx.fillRect(nx + estado.temblor, y + arriba, 1, 1);
+      for (let y = 0; y < ALTO; y++) {
+        const fila = g[y];
+        for (let x = 0; x < ANCHO; x++) {
+          const c = fila[x];
+          if (!c) continue;
+          if (k !== 1) {
+            ctx.fillStyle = c;
+            ctx.fillRect(Math.round(ANCHO / 2 + (x + 0.5 - ANCHO / 2) * k - 0.5) + estado.temblor, y + arriba, 1, 1);
+            continue;
+          }
+          // tramo seguido del mismo color: un solo rectángulo
+          let fin = x + 1;
+          while (fin < ANCHO && fila[fin] === c) fin++;
+          ctx.fillStyle = c;
+          ctx.fillRect(x + estado.temblor, y + arriba, fin - x, 1);
+          x = fin - 1;
+        }
       }
     }
 
     let parado = false;
     /** Deja de dibujar (cuando el canvas ya no está en pantalla). */
-    sprite.parar = () => { parado = true; };
+    sprite.parar = () => { parado = true; latidos.delete(fotograma); };
 
     function fotograma(ahora) {
       if (parado) return;
-      requestAnimationFrame(fotograma);
-      if (ahora - ultimoFotograma < 70) return;
-      ultimoFotograma = ahora;
 
       if (reaccion && ahora > reaccion.hasta) reaccion = null;
       const expresion = reaccion ? reaccion.expresion : sprite.expresion;
@@ -601,7 +635,7 @@ export function fabricar(disenar) {
         ...cuerpo,
         bob: mover ? Math.floor(ahora / 650) % 2 : 0,
         sway: mover ? Math.floor(ahora / 1000) % 2 : 0,
-        star: Math.floor(ahora / 380) % 2,
+        star: fx === 'sparkle' ? Math.floor(ahora / 380) % 2 : 0, // solo cuenta si hay destellos: así no se repinta de más
         salto: mover ? (cuerpo.salto ?? (rebote?.salto ? rebote.salto(progreso) : 0)) : 0,
         temblor: mover ? (cuerpo.temblor ?? (rebote?.temblor ? rebote.temblor(progreso) : 0)) : 0,
         giro: mover ? cuerpo.giro : undefined,
@@ -615,9 +649,10 @@ export function fabricar(disenar) {
       if (clave === ultimaClave) return;
       ultimaClave = clave;
       pintar(estado);
+      sprite.pintados++;
     }
 
-    requestAnimationFrame(fotograma);
+    escucharReloj(fotograma);
     return sprite;
   }
 

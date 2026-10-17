@@ -733,6 +733,17 @@ input[type="range"] { width: min(100%, 300px); accent-color: var(--rojo); }
 .mensaje-formulario.error::before { content: "⚠ "; }
 .mensaje-formulario.bien { color: var(--verde); }
 .mensaje-formulario.bien:not(:empty)::before { content: "✔ "; }
+/* Cuenta: Google, el separador «o con tu correo» y el código de 6 cifras */
+.cuenta-google { display: grid; gap: 6px; margin: 10px 0 4px; }
+.boton-google { display: flex; justify-content: center; min-height: 44px; }
+.boton-google-nativo { display: inline-flex; align-items: center; gap: 10px; }
+.google-g { display: inline-grid; place-items: center; width: 1.5em; height: 1.5em; border-radius: 50%; background: #fff; color: #4285f4; font-weight: 800; }
+.separador-o { display: flex; align-items: center; gap: 10px; margin: 4px 0; color: var(--texto-suave); font-size: .9em; }
+.separador-o::before, .separador-o::after { content: ""; flex: 1; border-top: 2px dashed var(--panel-hover); }
+.campo-codigo { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 1.6em; letter-spacing: .3em; text-align: center; max-width: 12ch; }
+.botonera-secundaria { display: inline-flex; flex-wrap: wrap; gap: 8px; }
+.enlace-correo { max-width: 560px; margin: 24px auto; text-align: center; }
+.enlace-correo .botonera { justify-content: center; }
 .aviso-nube {
   padding: 8px 12px;
   background: var(--fondo);
@@ -2021,48 +2032,11 @@ body.en-inicio main { max-width: 1040px; }
   .sobre-fila canvas:nth-child(n + 21) { display: none; }
 }
 
-/* ===== Pantalla de entrada ===== */
-.entrar { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
-.entrar .sobre-cabecera { padding-top: 64px; margin-bottom: 4px; }
-.entrar .caja { margin-bottom: 0; }
-.entrar-pie { text-align: center; }
-.entrar-aviso { display: flex; align-items: center; gap: 10px; }
-.entrar-aviso .sobre-actriz { flex: none; align-self: flex-end; }
-.entrar-aviso p { margin: 0 0 8px; }
-.entrar-aviso .botonera { justify-content: flex-end; }
-@media (max-width: 460px) {
-  .entrar-aviso { flex-direction: column; text-align: center; }
-  .entrar-aviso .sobre-actriz { align-self: center; }
-}
+/* La pantalla de entrada (#/entrar) tiene su hoja: css/entrar.css */
 
 /* El logotipo de espera solo llega a verse si la carga tarda: aparece pasado medio segundo */
 .arranque { opacity: 0; animation: asomar .15s .5s forwards; }
 @keyframes asomar { to { opacity: 1; } }
-
-/* Entrada: todo centrado en una columna y recogido, para que quepa sin desplazar en un ordenador */
-.entrar { max-width: 540px; gap: 12px; }
-.entrar .sobre-cabecera { padding-top: 46px; margin-bottom: 0; gap: 14px; }
-.entrar .sobre-guia { width: 96px; height: 128px; }
-.entrar .sobre-cabecera-texto { padding-bottom: 10px; }
-.entrar .sobre-cabecera h1 { font-size: 2.4rem; margin-bottom: 4px; }
-.entrar .sobre-lema { font-size: 1.02rem; }
-.entrar #cuenta { padding: 14px 16px; }
-.entrar #cuenta > h2 { display: none; }       /* el título de la pantalla ya lo dice */
-.entrar #cuenta > .aprox { display: none; }   /* ya lo dice el lema */
-.entrar #cuenta .estado-nube { margin-bottom: 6px; font-size: .95rem; }
-.entrar #cuenta .pestanas { margin: 6px 0 10px; }
-.entrar #cuenta .campo { margin-bottom: 6px; }
-.entrar .mensaje-formulario:empty { display: none; }
-
-/* Entrada: una tutora a cada lado del título, todo un poco más arriba y la parte de arriba de la tarjeta centrada */
-.entrar { margin-top: -14px; }
-.entrar .sobre-cabecera { padding-top: 40px; text-align: center; }
-.entrar #cuenta .estado-nube { text-align: center; }
-.entrar #cuenta .pestanas { justify-content: center; }
-@media (max-width: 700px) {
-  .entrar .sobre-cabecera { flex-direction: row; flex-wrap: wrap; align-items: flex-end; }
-  .entrar .sobre-cabecera-texto { order: 3; width: 100%; }
-}
 
 /* ===== Detalles que llaman la atención (js/chispa.js) =====
    Se anima «scale», no «transform»: así no pisa a las piezas que ya se mueven con transform. */

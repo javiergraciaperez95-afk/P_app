@@ -94,6 +94,19 @@ function zona(elemento, tutoras, { alVer = () => {}, alDejar = () => {} } = {}) 
   return { apagar: () => { observador.disconnect(); ver(false); } };
 }
 
+/**
+ * Las animaciones de CSS de una parte de la portada se quedan quietas mientras no se ve (como las del pie):
+ * cada animación en marcha le cuesta trabajo al navegador en cada fotograma, se vea o no, y aquí hay cientos.
+ */
+function quietasFuera(partes) {
+  if (!('IntersectionObserver' in window)) return () => {};
+  const vigia = new IntersectionObserver(entradas => {
+    for (const e of entradas) e.target.classList.toggle('quieta', !e.isIntersecting);
+  }, { rootMargin: '60px' });
+  for (const p of partes) if (p) vigia.observe(p);
+  return () => vigia.disconnect();
+}
+
 function logo(clase, lado) {
   return el('img', { class: clase, src: 'assets/logo.svg', alt: '', width: lado, height: lado });
 }
@@ -447,8 +460,11 @@ export function pintarInicio(contenedor) {
         lista)));
   placa(primera);
   for (const b of lista.querySelectorAll('.inicio-idioma')) b.classList.toggle('en-escena', b.dataset.id === primera.id);
+  const despertar = quietasFuera(['.inicio-cielo', '.inicio-cabeza', '.inicio-trio', '.inicio-bajo', '.inicio-pasillo', '.inicio-teatro']
+    .map(sel => contenedor.querySelector(sel)));
 
   return () => {
+    despertar();
     for (const r of relojes) clearTimeout(r);
     clearInterval(relojEscenas);
     clearInterval(relojTeatro);

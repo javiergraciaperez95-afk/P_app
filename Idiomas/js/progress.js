@@ -1,6 +1,6 @@
 // Todos los datos del estudiante: perfil, progreso de lecciones, cuaderno y actividad.
 // Se guardan en el navegador (localStorage) y, si hay sesión iniciada, se
-// sincronizan con Supabase (ver sync.js). Cada entrada lleva «t», la hora de su
+// sincronizan con la API propia (ver sync.js). Cada entrada lleva «t», la hora de su
 // último cambio, para poder juntar los datos de varios dispositivos.
 
 import { nuevaTarjeta } from './srs.js';

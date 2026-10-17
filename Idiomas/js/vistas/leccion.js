@@ -222,10 +222,69 @@ function bloqueGramatica(b) {
   return caja;
 }
 
+/**
+ * Lectura por frases: se ve como texto corrido, en sus dos párrafos. Cada frase
+ * lleva detrás un botón discreto que abre, bajo su párrafo, la traducción, el
+ * análisis sintáctico, la voz y el botón de guardar de esa frase.
+ */
+function lecturaPorFrases(b, leccion) {
+  const lista = el('div', { class: 'lectura' });
+  const frases = [];
+  for (const n of [0, 1]) {
+    const propias = b.frases.filter(f => (f.parrafo ?? 0) === n);
+    if (!propias.length) continue;
+    const detalle = el('div', { class: 'lectura-detalle', hidden: true });
+    let abierto = null;
+    const parrafo = el('p', { class: 'lectura-parrafo', lang: LANG });
+    for (const frase of propias) {
+      const boton = el('button', {
+        type: 'button',
+        class: 'lectura-boton',
+        'aria-expanded': 'false',
+        'aria-label': t('frase.explicarAria', { frase: frase.es }),
+        title: t('frase.explicar'),
+      }, '▸');
+      const trozo = el('span', { class: 'lectura-frase' }, fraseInteractiva(frase.es, leccion.palabras), boton);
+      boton.addEventListener('click', () => {
+        const cerrar = abierto === boton;
+        abierto?.setAttribute('aria-expanded', 'false');
+        abierto?.parentElement.classList.remove('elegida');
+        sonar('pagina');
+        if (cerrar) { abierto = null; detalle.hidden = true; return; }
+        abierto = boton;
+        boton.setAttribute('aria-expanded', 'true');
+        trozo.classList.add('elegida');
+        const analisis = analisisDesplegable(frase, `analisis-${++contadorAnalisis}`);
+        detalle.replaceChildren(
+          el('p', { class: 'frase-es', lang: LANG }, frase.es),
+          frase.trad && el('p', { class: 'frase-trad-lectura' }, tr(frase.trad)),
+          analisis,
+          el('div', { class: 'frase-acciones' },
+            botonEscuchar(frase.es),
+            botonGuardar({ es: frase.es, trad: frase.trad, pron: pronunciacionFrase(frase, leccion.palabras), nota: frase.notas[0], tipo: 'frase', origen: origenActual })));
+        // Se abre ya desplegado: es lo que el alumno ha venido a ver.
+        analisis?.querySelector('.boton-analisis')?.click();
+        detalle.hidden = false;
+      });
+      parrafo.append(trozo, ' ');
+      frases.push(trozo);
+    }
+    const traduccion = propias.map(f => f.trad && tr(f.trad)).filter(Boolean).join(' ');
+    lista.append(el('div', { class: 'lectura-bloque' },
+      parrafo,
+      traduccion && el('p', { class: 'frase-trad' }, traduccion),
+      detalle));
+  }
+  return { lista, items: frases };
+}
+
 function bloqueDialogo(b, leccion) {
-  const lista = el('ul', { class: 'frases' });
+  // Una lectura con análisis por frase se pinta como texto corrido.
+  const porFrases = b.esTexto && b.frases.some(f => f.analisis);
+  const lectura = porFrases ? lecturaPorFrases(b, leccion) : null;
+  const lista = lectura ? lectura.lista : el('ul', { class: 'frases' });
   let selloActivo = null;
-  for (const frase of b.frases) {
+  for (const frase of lectura ? [] : b.frases) {
     const sello = el('button', {
       type: 'button',
       class: 'sello',
@@ -281,7 +340,7 @@ function bloqueDialogo(b, leccion) {
   const textoEscuchar = t(b.esTexto ? 'dialogo.escucharTexto' : 'dialogo.escucharDialogo');
   const escuchar = el('button', { type: 'button', class: 'boton boton-principal boton-mini con-voz' }, `▶ ${textoEscuchar}`);
   let sonando = false;
-  const items = [...lista.children];
+  const items = lectura ? lectura.items : [...lista.children];
   const parar = () => {
     sonando = false;
     escuchar.textContent = `▶ ${textoEscuchar}`;
@@ -384,6 +443,12 @@ export function diccionarioCompleto() {
   return diccionarioGlobal;
 }
 
+/** El diccionario ya hecho (indice/diccionario.json del curso). */
+export function ponerDiccionario(mapa) {
+  diccionarioGlobal = new Map([...mapa].map(([clave, ficha]) => [clave, { ...ficha, es: ficha.es ?? clave }]));
+}
+
+/** Sin índice: el diccionario se hace con las palabras de todas las lecciones cargadas. */
 export function ponerDiccionarioGlobal(resultados) {
   diccionarioGlobal = new Map();
   for (const r of resultados) {

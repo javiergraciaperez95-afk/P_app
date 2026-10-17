@@ -5,17 +5,6 @@
 
 import { ajuste, cambiarAjuste, idiomaDispositivo } from './ajustes.js';
 import en from './i18n/en.js';
-import vi from './i18n/vi.js';
-import zh from './i18n/zh.js';
-import es from './i18n/es.js';
-import pt from './i18n/pt.js';
-import fr from './i18n/fr.js';
-import ja from './i18n/ja.js';
-import it from './i18n/it.js';
-import ko from './i18n/ko.js';
-import de from './i18n/de.js';
-import ru from './i18n/ru.js';
-import id from './i18n/id.js';
 import { curso, nombreDelCurso, nombreTutora, saludo } from './curso.js';
 
 export const IDIOMAS = [
@@ -33,11 +22,30 @@ export const IDIOMAS = [
   { clave: 'id', nombre: 'Bahasa Indonesia', corto: 'ID', locale: 'id-ID' },
 ];
 
-const TEXTOS = { en, vi, zh, es, pt, fr, ja, it, ko, de, ru, id };
+// Al abrir solo se cargan los textos del idioma en uso (y el inglés, que es el de reserva): son unos 90 KB por idioma.
+// Los demás llegan después, cuando el navegador está libre (los necesitan tTodos y el cambio de idioma).
+const CARGAR = {
+  vi: () => import('./i18n/vi.js'), zh: () => import('./i18n/zh.js'), es: () => import('./i18n/es.js'),
+  pt: () => import('./i18n/pt.js'), fr: () => import('./i18n/fr.js'), ja: () => import('./i18n/ja.js'),
+  it: () => import('./i18n/it.js'), ko: () => import('./i18n/ko.js'), de: () => import('./i18n/de.js'),
+  ru: () => import('./i18n/ru.js'), id: () => import('./i18n/id.js'),
+};
+const TEXTOS = { en };
+const cargando = {};
+function cargarTextos(i) {
+  if (TEXTOS[i] || !CARGAR[i]) return Promise.resolve();
+  cargando[i] ??= CARGAR[i]().then(m => { TEXTOS[i] = m.default; }).catch(() => { delete cargando[i]; });
+  return cargando[i];
+}
+const pedido = () => { const i = ajuste('idioma'); return i === 'en' || CARGAR[i] ? i : idiomaDispositivo(); };
+await cargarTextos(pedido());
+const cargarElResto = () => Object.keys(CARGAR).forEach(cargarTextos);
+if ('requestIdleCallback' in window) requestIdleCallback(cargarElResto, { timeout: 5000 });
+else setTimeout(cargarElResto, 3000);
 
 export function idioma() {
-  const i = ajuste('idioma');
-  return TEXTOS[i] ? i : idiomaDispositivo();
+  const i = pedido();
+  return TEXTOS[i] ? i : 'en'; // (solo pasa un instante, si el idioma del dispositivo cambia y sus textos aún no han llegado)
 }
 
 /** Para fechas y horas: 'en-GB' o 'vi-VN'. */
@@ -49,7 +57,7 @@ function textoEn(i, clave, vars) {
   // Un texto puede tener una versión solo para un curso: «clave@es» gana a «clave» en el curso de español
   // (bromas con palabras en español, ejemplos…).
   const delCursoActual = `${clave}@${curso.id}`;
-  const propio = TEXTOS[i][delCursoActual] ?? TEXTOS[i][clave];
+  const propio = TEXTOS[i]?.[delCursoActual] ?? TEXTOS[i]?.[clave];
   const v = propio ?? TEXTOS.en[delCursoActual] ?? TEXTOS.en[clave];
   if (v === undefined) {
     console.warn(`Falta el texto «${clave}»`);
@@ -98,16 +106,18 @@ export function aplicarIdioma() {
   for (const nodo of document.querySelectorAll('[data-t-title]')) nodo.title = t(nodo.dataset.tTitle);
 }
 
-export function cambiarIdioma(clave) {
-  if (clave !== 'auto' && !TEXTOS[clave]) return;
+export async function cambiarIdioma(clave) {
+  if (clave !== 'auto' && clave !== 'en' && !CARGAR[clave]) return;
   if (ajuste('idioma') === clave) return;
+  await cargarTextos(clave === 'auto' ? idiomaDispositivo() : clave);
   cambiarAjuste('idioma', clave);
   aplicarIdioma();
   window.dispatchEvent(new Event('idioma-cambiado'));
 }
 
-window.addEventListener('languagechange', () => {
+window.addEventListener('languagechange', async () => {
   if (ajuste('idioma') !== 'auto') return;
+  await cargarTextos(idiomaDispositivo());
   aplicarIdioma();
   window.dispatchEvent(new Event('idioma-cambiado'));
 });

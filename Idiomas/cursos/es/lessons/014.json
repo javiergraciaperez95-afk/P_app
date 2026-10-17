@@ -1,169 +1,1026 @@
 {
+  "esquema": 2,
+  "id": "014",
   "capitulo": 2,
-  "titulo_es": "Mi, tu, su",
-  "titulo": { "en": "Spanish possessives" },
-  "intro": { "en": "Possessive determiners go before the noun. Mi, tu and su change for singular or plural nouns; nuestro changes for gender and number. They match the noun, not the owner." },
+  "nivel": "A1",
   "palabras": {
-    "mi": { "en": "my (before one noun)", "pron": "mi", "cat": "determiner", "nota": "Mi does not change for gender: mi hermano, mi hermana. Before plural nouns, use mis." },
-    "mis": { "en": "my (before plural nouns)", "pron": "mis", "cat": "determiner" },
-    "tu": { "en": "your (informal singular, before one noun)", "pron": "tu", "cat": "determiner", "nota": "Tu is the possessive determiner; tú is the subject pronoun. The accent distinguishes them." },
-    "tus": { "en": "your (informal singular, before plural nouns)", "pron": "tus", "cat": "determiner" },
-    "tú": { "en": "you (informal singular)", "pron": "tu", "cat": "pronoun", "consejo": "The accent distinguishes tú (you) from tu (your)." },
-    "su": { "en": "his, her, its, your (formal), their (before one noun)", "pron": "su", "cat": "determiner", "nota": "Su does not identify the owner; context may help. If it is unclear, name the person." },
-    "sus": { "en": "his, her, its, your (formal), their (before plural nouns)", "pron": "sus", "cat": "determiner" },
-    "nuestro": { "en": "our (masculine)", "pron": "NWES-tro", "cat": "determiner" },
-    "nuestra": { "en": "our (feminine)", "pron": "NWES-tra", "cat": "determiner" },
-    "nuestros": { "en": "our (masculine plural)", "pron": "NWES-tros", "cat": "determiner" },
-    "nuestras": { "en": "our (feminine plural)", "pron": "NWES-tras", "cat": "determiner" },
-    "hermana": { "en": "sister", "pron": "er-MA-na", "genero": "f" },
-    "hermano": { "en": "brother", "pron": "er-MA-no", "genero": "m" },
-    "la clase": { "en": "the class", "pron": "la KLA-se", "genero": "f" }
+    "mi": {
+      "pron": "mi",
+      "cat": "adj"
+    },
+    "mis": {
+      "pron": "mis",
+      "cat": "adj"
+    },
+    "tu": {
+      "pron": "tu",
+      "cat": "adj"
+    },
+    "tus": {
+      "pron": "tus",
+      "cat": "adj"
+    },
+    "tú": {
+      "pron": "tu",
+      "cat": "pron"
+    },
+    "su": {
+      "pron": "su",
+      "cat": "adj"
+    },
+    "sus": {
+      "pron": "sus",
+      "cat": "adj"
+    },
+    "nuestro": {
+      "pron": "NWES-tro",
+      "cat": "adj"
+    },
+    "nuestra": {
+      "pron": "NWES-tra",
+      "cat": "adj"
+    },
+    "nuestros": {
+      "pron": "NWES-tros",
+      "cat": "adj"
+    },
+    "nuestras": {
+      "pron": "NWES-tras",
+      "cat": "adj"
+    },
+    "la hermana": {
+      "pron": "la er-MA-na",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "el hermano": {
+      "pron": "el er-MA-no",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la clase": {
+      "pron": "la KLA-se",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "Lucía": {
+      "propio": true
+    },
+    "Pablo": {
+      "propio": true
+    },
+    "Lima": {
+      "propio": true
+    },
+    "Madrid": {
+      "propio": true
+    }
   },
   "bloques": [
     {
-      "tipo": "explicacion",
-      "titulo": "Before the noun",
-      "texto": "**Mi, tu, su** do not change for the gender of the noun; they change for singular or plural: **mi** hermana, **mi** hermano, **mis** hermanos; **tu** casa, **tus** libros; **su** clase, **sus** amigos.\n\n**Nuestro** changes for the noun's gender and number: **nuestro** profesor, **nuestra** clase, **nuestros** libros, **nuestras** mesas. It matches the noun, not the owner. **Nuestra madre** is feminine because **madre** is feminine, regardless of the owners' gender.\n\n**Tu** (no accent) is the possessive determiner 'your'; **tú** (with an accent) is the subject pronoun 'you.'\n\n**Su** can mean his, her, its, your (usted) or their. Context may identify the owner; if it is ambiguous, name the person: **la casa de Ana**."
+      "id": "b1",
+      "tipo": "explicacion"
     },
     {
-      "tipo": "tabla",
-      "titulo": "Match the thing",
-      "columnas": ["Owner", "Singular noun", "Plural noun", "Our"],
-      "filas": [
-        ["I", "mi libro, mi casa", "mis libros", "—"],
-        ["you (informal)", "tu libro", "tus libros", "—"],
-        ["he, she, it, usted, ustedes, they", "su libro", "sus libros", "—"],
-        ["we", "—", "—", "nuestro libro, nuestra casa"]
-      ]
-    },
-    {
+      "id": "b2",
       "tipo": "dialogo",
-      "titulo": "Whose house?",
       "frases": [
         {
           "quien": "Lucía",
-          "es": "Mi hermana vive en Lima.",
-          "en": "My sister lives in Lima.",
-          "analisis": [
-            ["Mi hermana", "subject"],
-            ["vive", "verb"],
-            ["en Lima", "place"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Mi hermana",
+                "nucleo": "hermana",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Mi"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "hermana"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "vive en Lima",
+                "nucleo": "vive",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "vive",
+                    "nucleo": "vive"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en Lima",
+                    "nucleo": "Lima",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "Lima",
+                        "nucleo": "Lima"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "¿Y tu hermano?",
-          "en": "And your brother?",
-          "analisis": [
-            ["tu hermano", "object"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Tu hermano",
+                "nucleo": "hermano",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Tu"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "hermano"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "vive aquí",
+                "nucleo": "vive",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "vive",
+                    "nucleo": "vive"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "aquí",
+                    "nucleo": "aquí"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Lucía",
-          "es": "Su casa está en Madrid. Mis padres viven allí.",
-          "en": "His house is in Madrid. My parents live there.",
-          "analisis": [
-            ["Su casa", "subject"],
-            ["está", "verb"],
-            ["en Madrid", "place"],
-            ["Mis padres", "subject"],
-            ["viven", "verb"]
-          ]
-        },
-        {
-          "quien": "Pablo",
-          "es": "¿Tú vives con ellos?",
-          "en": "Do you live with them?",
-          "analisis": [
-            ["¿Tú", "subject"],
-            ["vives", "verb"],
-            ["con ellos", "object"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Su casa",
+                "nucleo": "casa",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Su"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "casa"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "está en Madrid",
+                "nucleo": "está",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "está",
+                    "nucleo": "está"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en Madrid",
+                    "nucleo": "Madrid",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "Madrid",
+                        "nucleo": "Madrid"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Lucía",
-          "es": "No. Nuestra clase es por la mañana, y yo vivo sola.",
-          "en": "No. Our class is in the morning, and I live alone.",
-          "analisis": [
-            ["No", "negation"],
-            ["Nuestra clase", "subject"],
-            ["es", "verb"],
-            ["yo", "subject"],
-            ["vivo", "verb"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Mis padres",
+                "nucleo": "padres",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Mis"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "padres"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "viven allí",
+                "nucleo": "viven",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "viven",
+                    "nucleo": "viven"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "allí",
+                    "nucleo": "allí"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "Nuestros libros están en la mesa.",
-          "en": "Our books are on the table.",
-          "analisis": [
-            ["Nuestros libros", "subject"],
-            ["están", "verb"],
-            ["en la mesa", "place"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Tú",
+                "nucleo": "Tú"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "vives con ellos",
+                "nucleo": "vives",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "vives",
+                    "nucleo": "vives"
+                  },
+                  {
+                    "funcion": "CCCOMP",
+                    "texto": "con ellos",
+                    "nucleo": "ellos",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "ellos",
+                        "nucleo": "ellos"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Pablo",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Nuestros libros",
+                "nucleo": "libros",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Nuestros"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "libros"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "están en la mesa",
+                "nucleo": "están",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "están",
+                    "nucleo": "están"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en la mesa",
+                    "nucleo": "mesa",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la mesa",
+                        "nucleo": "mesa",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "mesa"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },
     {
+      "id": "b3",
       "tipo": "vocabulario",
-      "palabras": ["mi", "mis", "tu", "tus", "tú", "su", "sus", "nuestro", "nuestra", "nuestros", "nuestras", "hermana", "hermano", "la clase"]
+      "palabras": [
+        "mi",
+        "mis",
+        "tu",
+        "tus",
+        "tú",
+        "su",
+        "sus",
+        "nuestro",
+        "nuestra",
+        "nuestros",
+        "nuestras",
+        "la hermana",
+        "el hermano",
+        "la clase"
+      ]
     },
     {
-      "tipo": "huecos",
-      "id": "a1-pos-mi",
-      "pregunta": { "en": "Complete: my sister lives in Lima." },
-      "frase": "___ hermana vive en Lima.",
-      "audio": true,
-      "opciones": {
-        "Mi": { "en": "Mi is my. It does not become mía before the noun." },
-        "Tu": { "en": "Tu is your." },
-        "Su": { "en": "Su can mean his, her, its, your (formal) or their." }
-      },
-      "correcta": "Mi"
+      "id": "b4",
+      "tipo": "gramatica",
+      "ejemplos": [
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Tu libro",
+                "nucleo": "libro",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Tu"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "libro"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "está en la mesa",
+                "nucleo": "está",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "está",
+                    "nucleo": "está"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en la mesa",
+                    "nucleo": "mesa",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la mesa",
+                        "nucleo": "mesa",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "mesa"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Nuestra clase",
+                "nucleo": "clase",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Nuestra"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "clase"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "es por la mañana",
+                "nucleo": "es",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "por la mañana",
+                    "nucleo": "mañana",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "por"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la mañana",
+                        "nucleo": "mañana",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "mañana"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
     },
     {
+      "id": "b5",
+      "tipo": "texto",
+      "registro": "literario",
+      "frases": [
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Nuestra casa familiar",
+                "nucleo": "casa",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Nuestra"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "casa"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "familiar",
+                    "nucleo": "familiar"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "es muy acogedora y luminosa",
+                "nucleo": "es",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "muy acogedora y luminosa",
+                    "nucleo": "acogedora",
+                    "partes": [
+                      {
+                        "funcion": "ADY",
+                        "texto": "muy acogedora",
+                        "nucleo": "acogedora",
+                        "partes": [
+                          {
+                            "funcion": "ADV",
+                            "texto": "muy"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "acogedora",
+                            "nucleo": "acogedora"
+                          }
+                        ]
+                      },
+                      {
+                        "funcion": "CONJ",
+                        "texto": "y"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "luminosa",
+                        "nucleo": "luminosa"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Mi hermano pequeño",
+                "nucleo": "hermano",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Mi"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "hermano"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "pequeño",
+                    "nucleo": "pequeño"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "juega en su habitación bonita",
+                "nucleo": "juega",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "juega",
+                    "nucleo": "juega"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en su habitación bonita",
+                    "nucleo": "habitación",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "su habitación bonita",
+                        "nucleo": "habitación",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "su"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "habitación"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "bonita",
+                            "nucleo": "bonita"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Nuestros padres",
+                "nucleo": "padres",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Nuestros"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "padres"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "leen con gran tranquilidad en el salón",
+                "nucleo": "leen",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "leen",
+                    "nucleo": "leen"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "con gran tranquilidad",
+                    "nucleo": "tranquilidad",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "gran tranquilidad",
+                        "nucleo": "tranquilidad",
+                        "partes": [
+                          {
+                            "funcion": "ADY",
+                            "texto": "gran",
+                            "nucleo": "gran"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "tranquilidad"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en el salón",
+                    "nucleo": "salón",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "el salón",
+                        "nucleo": "salón",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "salón"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Tu hermana",
+                "nucleo": "hermana",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Tu"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "hermana"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "estudia siempre con sus mejores amigos",
+                "nucleo": "estudia",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "estudia",
+                    "nucleo": "estudia"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "siempre",
+                    "nucleo": "siempre"
+                  },
+                  {
+                    "funcion": "CCCOMP",
+                    "texto": "con sus mejores amigos",
+                    "nucleo": "amigos",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "sus mejores amigos",
+                        "nucleo": "amigos",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "sus"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "mejores",
+                            "nucleo": "mejores"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "amigos"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Ellos",
+                "nucleo": "Ellos"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "hacen todas sus tareas juntos cada tarde",
+                "nucleo": "hacen",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "hacen",
+                    "nucleo": "hacen"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "todas sus tareas",
+                    "nucleo": "tareas",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "todas"
+                      },
+                      {
+                        "funcion": "DET",
+                        "texto": "sus"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "tareas"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CPVO",
+                    "texto": "juntos",
+                    "nucleo": "juntos"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "cada tarde",
+                    "nucleo": "tarde",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "cada"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "tarde"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Nuestra vida en este barrio",
+                "nucleo": "vida",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Nuestra"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "vida"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "en este barrio",
+                    "nucleo": "barrio",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "este barrio",
+                        "nucleo": "barrio",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "este"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "barrio"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "es realmente agradable",
+                "nucleo": "es",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "realmente agradable",
+                    "nucleo": "agradable",
+                    "partes": [
+                      {
+                        "funcion": "ADV",
+                        "texto": "realmente"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "agradable",
+                        "nucleo": "agradable"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "b6",
       "tipo": "test",
-      "id": "a1-pos-tu",
-      "pregunta": { "en": "Which word means your before a singular noun when speaking informally to one person?" },
-      "opciones": {
-        "tu": { "en": "Tu, with no accent, means your." },
-        "tú": { "en": "Tú, with an accent, means you." },
-        "su": { "en": "Su is his, her, your (usted) or their." }
-      },
-      "correcta": "tu"
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
     },
     {
+      "id": "b7",
       "tipo": "huecos",
-      "id": "a1-pos-nuestra",
-      "pregunta": { "en": "Complete: our class is in the morning." },
-      "frase": "___ clase es por la mañana.",
-      "audio": true,
-      "opciones": {
-        "Nuestra": { "en": "Clase is feminine, so nuestro becomes nuestra." },
-        "Nuestro": { "en": "Nuestro would match a masculine noun." },
-        "Nuestros": { "en": "Nuestros is masculine plural." }
-      },
-      "correcta": "Nuestra"
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
     },
     {
-      "tipo": "ordenar",
-      "id": "a1-pos-clase",
-      "frase": "Nuestra clase es por la mañana",
-      "traduccion": { "en": "Our class is in the morning." }
+      "id": "b8",
+      "tipo": "ordenar"
     },
     {
+      "id": "b9",
       "tipo": "escribir",
-      "id": "a1-pos-libros",
-      "pregunta": { "en": "Write: Our books are on the table." },
-      "respuestas": ["Nuestros libros están en la mesa"],
-      "explicacion": { "en": "Libros is masculine plural, so nuestros. The place uses están." }
-    },
-    {
-      "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
-      "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Write about the things and people that belong to you and to a friend: mi casa, su coche, nuestros amigos…\n\n**Speak (about 30 seconds).** Compare aloud your things with a friend's: Mi móvil es…, su móvil es…"
-      }
+      "respuestas": [
+        "Nuestros libros están en la mesa"
+      ]
     }
   ]
 }

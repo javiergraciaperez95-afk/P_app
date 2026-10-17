@@ -1,7 +1,7 @@
 // Los cursos de la app: uno por idioma. Se edita a mano; el número de lecciones lo pone al día
 // _herramientas/contar_lecciones.py (y compilar.py, con el curso que compila).
 // campo: clave bajo la que va el texto del idioma en sus archivos · voz: idioma de la voz · prefijo: con qué nombre
-// guarda su progreso en el dispositivo · tabla: su tabla en Supabase · letras: teclas de ayuda al escribir.
+// guarda su progreso en el dispositivo · letras: teclas de ayuda al escribir.
 
 export const CURSOS = [
   {

@@ -310,41 +310,169 @@
 .pr-hucha-texto .pr-boton { width: auto; min-width: 220px; }
 
 /* ===================================================================== */
-/* 3. La colección de Max                                                  */
+/* 3. La colección de Max: una biblioteca                                  */
+/*    estanterías llenas de lomos al fondo, dos lámparas colgantes, la     */
+/*    balda con los 6 libros, la escalera de mano y cómo llegan los libros  */
 /* ===================================================================== */
-.pr-coleccion { text-align: center; color: #f2ecf7; background: #15121d; }
-:root[data-tema="claro"] .pr-coleccion { background: #231c2b; }
-.pr-coleccion .pr-entradilla { color: #b9aec8; }
-.pr-estante { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; margin: 10px auto 0; padding: 0 10px; list-style: none; }
+.pr-coleccion {
+  --pared: #5c3b26;
+  --balda: #3d2414;
+  --balda-luz: #7a4c28;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  color: #f7eedc;
+  background: var(--pared);
+  box-shadow: inset 0 3px 0 #000, inset 0 -3px 0 #000;
+}
+:root[data-tema="oscuro"] .pr-coleccion { --pared: #241829; --balda: #150e19; --balda-luz: #3a2440; }
+.pr-coleccion > :not(.pr-biblio-fondo):not(.pr-lampara):not(.pr-luz) { position: relative; z-index: 2; }
+/* el fondo: baldas y lomos de todos los colores, en penumbra */
+.pr-biblio-fondo { position: absolute; inset: 0; z-index: 0; max-width: none !important; margin: 0 !important; opacity: .5; pointer-events: none; }
+.pr-biblio-fondo i { position: absolute; inset: 0; }
+.pr-biblio-libros {
+  background: repeating-linear-gradient(90deg,
+    #8c3b3b 0 14px, #2a1a14 14px 15px, #2e4f7a 15px 27px, #2a1a14 27px 28px, #c9a24a 28px 36px, #2a1a14 36px 37px,
+    #3c6b46 37px 53px, #2a1a14 53px 54px, #6b3f6b 54px 63px, #2a1a14 63px 64px, #a0522d 64px 80px, #2a1a14 80px 81px,
+    #d8c7a0 81px 89px, #2a1a14 89px 90px, #4a6e8c 90px 104px, #2a1a14 104px 105px, #b04a5a 105px 113px, #2a1a14 113px 114px,
+    #5f7d3a 114px 128px, transparent 128px 140px, #8a6a3a 140px 152px, #2a1a14 152px 153px, #3a4f6b 153px 166px, #2a1a14 166px 167px,
+    #c96b3a 167px 175px, #2a1a14 175px 176px, #6b5a8c 176px 192px, #2a1a14 192px 193px, #9c8a5a 193px 205px, transparent 205px 222px);
+  -webkit-mask-image: repeating-linear-gradient(180deg, transparent 0 26px, #000 26px 104px, transparent 104px 120px);
+  mask-image: repeating-linear-gradient(180deg, transparent 0 26px, #000 26px 104px, transparent 104px 120px);
+}
+.pr-biblio-baldas { background: repeating-linear-gradient(180deg, transparent 0 104px, var(--balda-luz) 104px 107px, var(--balda) 107px 120px); }
+/* la penumbra de los bordes */
+.pr-coleccion::after { content: ""; position: absolute; inset: 0; z-index: 1; background: radial-gradient(ellipse at 50% 45%, transparent 35%, rgba(0, 0, 0, .55) 100%); pointer-events: none; }
+
+/* las lámparas colgantes y su luz */
+.pr-lampara { position: absolute; z-index: 3; top: 0; width: 56px; height: 96px; }
+.pr-lampara-izq { left: calc(50% - 470px); }
+.pr-lampara-der { right: calc(50% - 470px); }
+.pr-lampara .lp-a { fill: #1a1018; }
+.pr-lampara .lp-o { fill: var(--marca-oro); }
+.pr-lampara .lp-O { fill: #a8761c; }
+.pr-lampara .lp-y { fill: #fff3b0; }
+.pr-lampara .lp-k { fill: #000; }
+.pr-luz {
+  position: absolute;
+  z-index: 1;
+  top: 88px;
+  width: 300px;
+  height: 400px;
+  background: #ffe9a8;
+  opacity: .13;
+  clip-path: polygon(42% 0, 58% 0, 58% 8%, 64% 8%, 64% 24%, 70% 24%, 70% 40%, 76% 40%, 76% 56%, 82% 56%, 82% 72%, 88% 72%, 88% 100%, 12% 100%, 12% 72%, 18% 72%, 18% 56%, 24% 56%, 24% 40%, 30% 40%, 30% 24%, 36% 24%, 36% 8%, 42% 8%);
+  pointer-events: none;
+}
+:root[data-tema="oscuro"] .pr-luz { opacity: .2; }
+.pr-luz-izq { left: calc(50% - 470px + 28px - 150px); }
+.pr-luz-der { right: calc(50% - 470px + 28px - 150px); }
+
+.pr-coleccion h2 { color: #fff6e0; text-shadow: 4px 4px 0 rgba(0, 0, 0, .45); }
+.pr-coleccion .pr-entradilla { color: #e9d9c2; }
+
+/* la balda principal con los 6 libros */
+.pr-estanteria { position: relative; max-width: 1110px; margin: 10px auto 0; }
+.pr-estante { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; margin: 0; padding: 0 12px; list-style: none; }
 .pr-libro {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  height: 250px;
+  height: 260px;
   padding: 14px 10px 14px 16px;
   color: #fff;
   background: var(--c);
-  box-shadow: inset 9px 0 0 rgba(0, 0, 0, .22), 0 -3px 0 0 #000, 0 3px 0 0 #000, -3px 0 0 0 #000, 3px 0 0 0 #000, 6px 6px 0 0 rgba(0, 0, 0, .35);
+  box-shadow: inset 9px 0 0 rgba(0, 0, 0, .22), inset -3px 0 0 rgba(255, 255, 255, .18), 0 -3px 0 0 #000, 0 3px 0 0 #000, -3px 0 0 0 #000, 3px 0 0 0 #000, 6px 6px 0 0 rgba(0, 0, 0, .35);
+  cursor: pointer;
   transition: transform .12s steps(2);
 }
-.pr-libro:hover { transform: translateY(-8px); }
+.pr-libro:hover { transform: translateY(-12px); }
 .pr-libro:last-child { color: #15121d; }
 .pr-libro-marca { position: absolute; top: 10px; left: 18px; font: 700 .8rem var(--fuente-pixel); opacity: .85; }
-.pr-libro-tutora { width: 96px; height: 120px; image-rendering: pixelated; margin-bottom: 8px; }
+.pr-libro .pr-libro-tutora { margin-bottom: 6px; }
+.pr-libro .pr-libro-tutora .tutora-lienzo { width: 96px; height: 128px; }
 .pr-libro b { font: 700 1.6rem var(--fuente-pixel); line-height: 1; }
 .pr-libro-nombre { margin-top: 4px; font-size: .78rem; font-weight: 700; opacity: .92; }
 .pr-sello-pdf { position: absolute; top: 34px; right: 8px; padding: 2px 6px; font: 700 .75rem var(--fuente-pixel); color: #15121d; background: #fff; box-shadow: 0 0 0 2px #000; transform: rotate(8deg); }
-.pr-sello-pdf[hidden] { display: none; }
-.pr-tabla-madera { height: 18px; margin-top: 0 !important; max-width: 1110px !important; background: linear-gradient(#c98e58, #c98e58) 0 0 / 100% 4px no-repeat, repeating-linear-gradient(90deg, #a06a3c 0 70px, #7a4c28 70px 72px); box-shadow: 0 3px 0 #000, 0 9px 0 rgba(0, 0, 0, .3); }
-.pr-dos { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 34px; text-align: left; }
-.pr-coleccion .pr-carta { --h-papel: #231e30; --h-borde: #6c5a7c; --h-sombra: #070509; }
+/* el tablón con sus escuadras de hierro */
+.pr-tabla-madera {
+  position: relative;
+  height: 20px;
+  margin: 0 !important;
+  background: linear-gradient(#d9a066, #d9a066) 0 0 / 100% 4px no-repeat, repeating-linear-gradient(90deg, #a06a3c 0 70px, #7a4c28 70px 72px);
+  box-shadow: 0 3px 0 #000, 0 10px 0 rgba(0, 0, 0, .3);
+}
+.pr-tabla-madera i { position: absolute; top: 100%; width: 22px; height: 30px; background: #2a2030; clip-path: polygon(0 0, 100% 0, 100% 100%, 70% 100%, 70% 25%, 0 25%); }
+.pr-tabla-madera i:first-child { left: 8%; transform: scaleX(-1); }
+.pr-tabla-madera i:last-child { right: 8%; }
+/* la escalera de mano, con la tutora subida */
+.pr-escalera-mano { position: absolute; right: -88px; bottom: -40px; width: 80px; height: 296px; }
+.pr-escalera-dibujo { display: block; width: 100%; height: 100%; }
+.pr-escalera-dibujo .lp-m { fill: #a06a3c; }
+.pr-escalera-dibujo .lp-M { fill: #7a4c28; }
+.pr-escalera-dibujo .lp-k { fill: #000; }
+.pr-escalera-tutora { position: absolute !important; left: -8px; bottom: 132px; }
+.pr-escalera-tutora .tutora-lienzo { width: 96px; height: 128px; }
+
+/* cómo llegan */
+.pr-dos { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; text-align: left; }
+.pr-coleccion .pr-carta { --h-papel: #2b1e2a; --h-borde: #000; --h-sombra: rgba(0, 0, 0, .4); }
+:root[data-tema="claro"] .pr-coleccion .pr-carta { --h-papel: #3d2716; }
 .pr-coleccion .pr-carta h3 { color: var(--marca-oro); }
-.pr-coleccion .pr-carta p { color: #d9cfe6; }
-.pr-col-pdf { margin: 22px auto 0; font-weight: 700; color: #b9aec8; }
-.pr-col-pdf-si { color: #ffd866; }
-.pr-col-otro { margin: 6px auto 0; color: #8e83a3; font-size: .92rem; }
+:root[data-tema="claro"] .pr-coleccion .pr-carta h3 { color: #f4c84a; }
+.pr-coleccion .pr-carta p { color: #ecdfcc; }
+.pr-envio { display: flex; align-items: center; gap: 20px; }
+.pr-caja { flex: none; width: 128px; height: 106px; }
+.pr-caja .cj-c { fill: #d9a066; }
+.pr-caja .cj-C { fill: #b07a40; }
+.pr-caja .cj-T { fill: #f0d79c; }
+.pr-caja .cj-w { fill: #fffaf0; }
+.pr-caja .cj-k { fill: #000; }
+.pr-caja .cj-1 { fill: #5fae6a; } .pr-caja .cj-2 { fill: #4f9fd8; } .pr-caja .cj-3 { fill: #9a6bd1; }
+.pr-caja .cj-4 { fill: #d2353d; } .pr-caja .cj-5 { fill: #f08a4b; } .pr-caja .cj-6 { fill: #f4c84a; }
+.pr-envio-mes { flex-direction: column; align-items: stretch; }
+/* el camino de paquetes: llegan uno detrás de otro, nivel a nivel */
+.pr-camino { position: relative; display: flex; justify-content: space-between; margin: 6px 0 0; padding: 0; list-style: none; }
+.pr-camino::before { content: ""; position: absolute; left: 6%; right: 6%; top: 13px; height: 3px; background: repeating-linear-gradient(90deg, #ecdfcc 0 6px, transparent 6px 12px); opacity: .5; }
+.pr-camino li { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.pr-camino b { font: 700 .74rem var(--fuente-pixel); color: #ecdfcc; white-space: nowrap; }
+.pr-paquete {
+  width: 28px;
+  height: 26px;
+  background: linear-gradient(#f0d79c, #f0d79c) 50% 0 / 6px 100% no-repeat, #d9a066;
+  box-shadow: inset 0 -4px 0 #b07a40, 0 0 0 2px #000;
+  opacity: .45;
+  animation: pr-entrega 5s steps(1) infinite;
+  animation-delay: calc(var(--n) * .7s);
+}
+@keyframes pr-entrega { 0% { opacity: .45; transform: none; } 10% { opacity: 1; transform: translateY(-6px); } 16%, 70% { opacity: 1; transform: none; } }
+.pr-envio-pdf { max-width: 640px; margin: 56px auto 0 !important; text-align: left; }
+.pr-tableta { flex: none; width: 72px; height: 96px; }
+.pr-tableta .tb-g { fill: #3a3150; }
+.pr-tableta .tb-s { fill: #fffaf0; }
+.pr-tableta .tb-r { fill: #d2353d; }
+.pr-tableta .tb-l { fill: #c9c0d6; }
+.pr-tableta .tb-k { fill: #000; }
+.pr-col-otro { margin: 18px auto 0; color: #d9c7ae; font-size: .92rem; }
+
+@media (max-width: 1300px) {
+  .pr-escalera-mano { display: none; }
+  .pr-lampara-izq { left: 3%; }
+  .pr-lampara-der { right: 3%; }
+  .pr-luz-izq { left: calc(3% + 28px - 150px); }
+  .pr-luz-der { right: calc(3% + 28px - 150px); }
+}
+@media (max-width: 760px) {
+  .pr-lampara, .pr-luz { display: none; }
+  .pr-envio { flex-direction: column; text-align: center; }
+  .pr-envio-mes { text-align: left; }
+  .pr-camino b { font-size: .64rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pr-paquete { animation: none; opacity: 1; }
+}
 
 /* ===================================================================== */
 /* 4. Familia y Fundadores                                                 */
@@ -354,37 +482,539 @@
 .pr-extras .pr-carta { display: flex; flex-direction: column; padding: 26px; }
 .pr-extras .pr-boton { margin-top: auto; }
 .pr-extras .pr-por { margin-bottom: 4px; }
-.pr-familia-fila { display: flex; justify-content: center; margin: -6px 0 10px; }
-.pr-retrato { width: 72px; height: 90px; margin: 0 -6px; image-rendering: pixelated; }
+
+/* Familia: la casita con chimenea y las seis tutoras dentro, cada una con su progreso */
+.pr-casa { position: relative; width: min(460px, 100%); margin: 0 auto 16px; padding-top: 18px; }
+.pr-chimenea {
+  position: absolute;
+  z-index: 0;
+  top: 4px;
+  right: 22%;
+  width: 26px;
+  height: 46px;
+  background: repeating-linear-gradient(180deg, #b5523b 0 7px, #8a3a28 7px 9px);
+  box-shadow: 0 0 0 3px var(--h-borde);
+}
+/* el humo: tres bocanadas de píxel que suben y se deshacen */
+.pr-chimenea i { position: absolute; left: 5px; top: -14px; width: 14px; height: 14px; background: #d8d0c8; opacity: 0; animation: pr-humo 2.4s steps(6) infinite; animation-delay: calc(var(--d, 0) * 1s); }
+.pr-chimenea i:nth-child(2) { --d: .8; width: 10px; height: 10px; }
+.pr-chimenea i:nth-child(3) { --d: 1.6; width: 12px; height: 12px; }
+@keyframes pr-humo { 0% { opacity: .9; transform: translate(0, 0); } 60% { opacity: .6; transform: translate(8px, -26px); } 100% { opacity: 0; transform: translate(16px, -44px); } }
+:root[data-tema="oscuro"] .pr-chimenea i { background: #6c5a7c; }
+/* el tejado, a escalones, con su borde de tinta */
+.pr-tejado {
+  position: relative;
+  z-index: 1;
+  height: 62px;
+  background: var(--h-borde);
+  clip-path: polygon(0 100%, 0 86%, 6% 86%, 6% 72%, 12% 72%, 12% 58%, 18% 58%, 18% 44%, 24% 44%, 24% 30%, 30% 30%, 30% 16%, 36% 16%, 36% 0, 64% 0, 64% 16%, 70% 16%, 70% 30%, 76% 30%, 76% 44%, 82% 44%, 82% 58%, 88% 58%, 88% 72%, 94% 72%, 94% 86%, 100% 86%, 100% 100%);
+}
+.pr-tejado::after {
+  content: "";
+  position: absolute;
+  inset: 3px 3px 0;
+  background: repeating-linear-gradient(180deg, var(--h-rosa) 0 6px, #a8354a 6px 8px);
+  clip-path: inherit;
+}
+/* la fachada: las seis, de pie, cada una con su barrita */
+.pr-casa-fila {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 0 3% !important;
+  padding: 12px 6px 6px;
+  list-style: none;
+  background: var(--h-papel-2);
+  box-shadow: -3px 0 0 var(--h-borde), 3px 0 0 var(--h-borde);
+}
+.pr-casa-fila li { display: flex; flex-direction: column; align-items: center; gap: 4px; margin: 0 -5px; }
+.pr-casa-fila .pr-tutora .tutora-lienzo { width: 72px; height: 96px; }
+.pr-casa-barra { position: relative; width: 44px; height: 8px; background: var(--h-papel); box-shadow: 0 0 0 2px var(--h-borde); }
+.pr-casa-barra i { position: absolute; inset: 0; background: var(--c, #5fae6a); transform-origin: 0 50%; animation: pr-progreso calc(5s + var(--n) * 1.3s) steps(8) infinite; }
+.pr-casa-fila li:nth-child(2) .pr-casa-barra i { --c: #4f9fd8; }
+.pr-casa-fila li:nth-child(3) .pr-casa-barra i { --c: #9a6bd1; }
+.pr-casa-fila li:nth-child(4) .pr-casa-barra i { --c: #d2353d; }
+.pr-casa-fila li:nth-child(5) .pr-casa-barra i { --c: #f08a4b; }
+.pr-casa-fila li:nth-child(6) .pr-casa-barra i { --c: var(--marca-oro); }
+@keyframes pr-progreso { 0% { transform: scaleX(.1); } 100% { transform: none; } }
+.pr-casa-suelo { height: 12px; margin: 0 1%; background: repeating-linear-gradient(90deg, #a06a3c 0 30px, #7a4c28 30px 32px); box-shadow: 0 0 0 3px var(--h-borde); }
+
+/* Fundadores: el carné, con un brillo que lo cruza y destellos alrededor */
 .pr-fundadores { background: linear-gradient(var(--h-resalte), var(--h-resalte)) 0 0 / 100% 10px no-repeat, var(--h-papel); }
-.pr-insignia { display: inline-grid; place-items: center; width: 64px; height: 64px; margin-bottom: 12px; font-size: 2rem; color: #15121d; background: var(--marca-oro); clip-path: polygon(30% 0, 70% 0, 70% 15%, 85% 15%, 85% 30%, 100% 30%, 100% 70%, 85% 70%, 85% 85%, 70% 85%, 70% 100%, 30% 100%, 30% 85%, 15% 85%, 15% 70%, 0 70%, 0 30%, 15% 30%, 15% 15%, 30% 15%); }
+.pr-carne {
+  position: relative;
+  width: min(380px, 100%);
+  margin: 6px auto 18px;
+  overflow: hidden;
+  background-color: #fff3c9;
+  background-image: radial-gradient(#f2d98a 1.2px, transparent 1.6px);
+  background-size: 10px 10px;
+  box-shadow: inset 0 0 0 3px var(--marca-oro), 0 0 0 3px var(--h-borde), 6px 8px 0 0 var(--h-sombra);
+  animation: pr-flota 3.2s steps(1) infinite;
+}
+@keyframes pr-flota { 50% { transform: translateY(-4px); } }
+.pr-carne::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: -40%;
+  width: 26%;
+  background: rgba(255, 255, 255, .55);
+  transform: translateX(0) skewX(-20deg);
+  animation: pr-holograma 3.6s steps(12) infinite;
+  pointer-events: none;
+}
+@keyframes pr-holograma { 0%, 55% { transform: translateX(0) skewX(-20deg); } 100% { transform: translateX(654%) skewX(-20deg); } }
+.pr-carne-cabeza { display: flex; justify-content: space-between; align-items: center; padding: 7px 12px; font: 700 .78rem var(--fuente-pixel); color: #fff; background: #b8730a; box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .2); }
+.pr-carne-marca { font-size: 1.05rem; }
+.pr-carne-marca i { font-style: normal; color: #ffe066; }
+.pr-carne-cuerpo { display: flex; gap: 14px; padding: 12px 14px 14px; text-align: left; }
+.pr-carne-foto { position: relative; flex: none; display: flex; align-items: flex-end; justify-content: center; width: 84px; height: 104px; overflow: hidden; background: #bfe3f7; box-shadow: 0 0 0 3px var(--h-borde); }
+.pr-carne-foto .pr-tutora { margin-bottom: -6px; }
+.pr-carne-foto .pr-tutora .tutora-lienzo { width: 84px; height: 112px; }
+.pr-carne-foto .pr-globo { display: none; }
+.pr-carne-datos { display: flex; flex-direction: column; justify-content: center; gap: 8px; min-width: 0; }
+.pr-carne-numero { font: 700 1.6rem var(--fuente-pixel); color: #2b1d1a; letter-spacing: .04em; }
+.pr-carne-plus { align-self: flex-start; padding: 3px 8px; font: 700 .8rem var(--fuente-pixel); color: #fff; background: #3f86c4; box-shadow: 0 0 0 2px var(--h-borde); }
+.pr-carne-lineas { display: flex; flex-direction: column; gap: 5px; }
+.pr-carne-lineas i { display: block; height: 5px; width: 120px; background: #e0c98f; }
+.pr-carne-lineas i:nth-child(2) { width: 90px; }
+.pr-carne-lineas i:nth-child(3) { width: 104px; }
+.pr-carne-sello {
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  font-size: 1.5rem;
+  color: #fff;
+  background: var(--h-rosa);
+  clip-path: polygon(30% 0, 70% 0, 70% 15%, 85% 15%, 85% 30%, 100% 30%, 100% 70%, 85% 70%, 85% 85%, 70% 85%, 70% 100%, 30% 100%, 30% 85%, 15% 85%, 15% 70%, 0 70%, 0 30%, 15% 30%, 15% 15%, 30% 15%);
+  transform: rotate(-12deg);
+  animation: pr-sello 1.6s steps(1) infinite;
+}
+@keyframes pr-sello { 50% { transform: rotate(-12deg) scale(1.12); } }
+/* los destellos de alrededor */
+.pr-chispa { position: absolute; z-index: 2; width: 12px; height: 12px; background: #fff; clip-path: polygon(40% 0, 60% 0, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0 60%, 0 40%, 40% 40%); opacity: 0; animation: pr-chispa 2.4s steps(1) infinite; animation-delay: calc(var(--n) * .8s); }
+.pr-chispa:nth-of-type(1) { left: 44%; top: 46px; }
+.pr-chispa:nth-of-type(2) { right: 26%; top: 74px; }
+.pr-chispa:nth-of-type(3) { left: 8px; bottom: 8px; }
+@keyframes pr-chispa { 0% { opacity: 1; transform: scale(.6); } 15% { opacity: 1; transform: scale(1.1); } 30%, 100% { opacity: 0; } }
+
+@media (max-width: 520px) {
+  .pr-casa-fila .pr-tutora .tutora-lienzo { width: 48px; height: 64px; }
+  .pr-casa-barra { width: 30px; }
+  .pr-carne-numero { font-size: 1.25rem; }
+  .pr-carne-lineas i { width: 80px; }
+  .pr-carne-lineas i:nth-child(2) { width: 60px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pr-chimenea i, .pr-casa-barra i, .pr-carne, .pr-carne::after, .pr-carne-sello, .pr-chispa { animation: none; }
+  .pr-casa-barra i { transform: scaleX(.6); }
+}
+
+/* El barrio de detrás: cielo, casitas de colores, árboles y farolas; de noche se encienden las ventanas */
+.pr-extras {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 150px;
+  background: linear-gradient(var(--h-cielo) 0 60%, #fae2b6 60%);
+}
+:root[data-tema="oscuro"] .pr-extras { background: linear-gradient(var(--h-cielo) 0 60%, #30234a 60%); }
+.pr-extras > .pr-carta { position: relative; z-index: 2; }
+.pr-extras > .pr-barrio-cielo { position: absolute; z-index: 0; }
+.pr-barrio {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  width: max(100%, 1440px);
+  height: auto;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.pr-barrio .bz-k { fill: var(--h-borde); }
+.pr-barrio .bz-a { fill: #f2b8a2; }
+.pr-barrio .bz-b { fill: #a9d3e8; }
+.pr-barrio .bz-c { fill: #f6dc8c; }
+.pr-barrio .bz-d { fill: #b9dca6; }
+.pr-barrio .bz-r { fill: #c2493f; }
+.pr-barrio .bz-R { fill: #6a5a9c; }
+.pr-barrio .bz-w { fill: #e8f4fb; }
+.pr-barrio .bz-W { fill: #cfe6f3; }
+.pr-barrio .bz-p { fill: #7a4c28; }
+.pr-barrio .bz-h { fill: #8a3a28; }
+.pr-barrio .bz-t { fill: #5fae6a; }
+.pr-barrio .bz-q { fill: #7a4c28; }
+.pr-barrio .bz-l { fill: #3a3150; }
+.pr-barrio .bz-y { fill: #fff3b0; }
+:root[data-tema="oscuro"] .pr-barrio .bz-a { fill: #5a3a4e; }
+:root[data-tema="oscuro"] .pr-barrio .bz-b { fill: #34426a; }
+:root[data-tema="oscuro"] .pr-barrio .bz-c { fill: #5a4a46; }
+:root[data-tema="oscuro"] .pr-barrio .bz-d { fill: #2f4a44; }
+:root[data-tema="oscuro"] .pr-barrio .bz-r { fill: #6e2a34; }
+:root[data-tema="oscuro"] .pr-barrio .bz-R { fill: #3a2f5c; }
+:root[data-tema="oscuro"] .pr-barrio .bz-w { fill: #ffd76a; }
+:root[data-tema="oscuro"] .pr-barrio .bz-W { fill: #2a2236; }
+:root[data-tema="oscuro"] .pr-barrio .bz-t { fill: #2e5a3c; }
+:root[data-tema="oscuro"] .pr-barrio .bz-y { fill: #ffe066; }
+:root[data-tema="oscuro"] .pr-barrio .bz-p { fill: #3d2414; }
+/* la acera: losetas y bordillo */
+.pr-acera {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: none !important;
+  height: 30px;
+  background: linear-gradient(var(--h-borde), var(--h-borde)) 0 0 / 100% 3px no-repeat, linear-gradient(#cfc4b4, #cfc4b4) 0 3px / 100% 6px no-repeat, repeating-linear-gradient(90deg, #b5a894 0 46px, #9c8f7c 46px 48px);
+}
+:root[data-tema="oscuro"] .pr-acera { background: linear-gradient(var(--h-borde), var(--h-borde)) 0 0 / 100% 3px no-repeat, linear-gradient(#4a4058, #4a4058) 0 3px / 100% 6px no-repeat, repeating-linear-gradient(90deg, #3a3148 0 46px, #2c2538 46px 48px); }
 
 /* ===================================================================== */
-/* 5. La tabla                                                             */
+/* 5. La tabla: la pizarra de un aula                                     */
+/*    cada fila tiene su alumna; el puntero pasa lista y la señalada hace */
+/*    lo que dice su fila. Columna Max enmarcada con tiza amarilla.       */
 /* ===================================================================== */
-.pr-comparar { text-align: center; background: var(--h-fondo); background-image: repeating-conic-gradient(var(--h-trama) 0 25%, transparent 0 50%); background-size: 8px 8px; box-shadow: inset 0 3px 0 var(--h-borde); }
-.pr-tabla-caja { max-width: 900px !important; overflow-x: auto; background: var(--h-papel); box-shadow: 0 -3px 0 0 var(--h-borde), 0 3px 0 0 var(--h-borde), -3px 0 0 0 var(--h-borde), 3px 0 0 0 var(--h-borde), 5px 8px 0 0 var(--h-sombra); margin-top: 22px !important; }
-.pr-tabla { width: 100%; border-collapse: collapse; text-align: center; font-size: .95rem; }
-.pr-tabla th, .pr-tabla td { padding: 12px 14px; border-bottom: 2px solid var(--h-papel-2); }
-.pr-tabla thead th { font: 700 1.1rem var(--fuente-pixel); background: var(--h-papel-2); border-bottom: 3px solid var(--h-borde); }
+.pr-comparar {
+  --pared: #dfe8d2;
+  --pared-raya: #d5e0c6;
+  --zocalo: #b07a4a;
+  --zocalo-2: #8f5e36;
+  --pizarra: #2f5d46;
+  --tiza: #f4f1e6;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 200px;
+  text-align: center;
+  background:
+    linear-gradient(var(--h-borde), var(--h-borde)) 0 calc(100% - 150px) / 100% 3px no-repeat,
+    linear-gradient(#d9a066, #d9a066) 0 calc(100% - 147px) / 100% 6px no-repeat,
+    repeating-linear-gradient(90deg, var(--zocalo) 0 58px, var(--zocalo-2) 58px 61px) 0 100% / 100% 147px no-repeat,
+    repeating-linear-gradient(90deg, var(--pared) 0 30px, var(--pared-raya) 30px 60px);
+  box-shadow: inset 0 3px 0 var(--h-borde);
+}
+:root[data-tema="oscuro"] .pr-comparar { --pared: #262b3e; --pared-raya: #2b3146; --zocalo: #4a2f45; --zocalo-2: #36202f; --pizarra: #1f3d33; }
+.pr-comparar > * { position: relative; z-index: 2; }
+.pr-aula-pared, .pr-aula-suelo { position: absolute !important; z-index: 1 !important; max-width: none !important; margin: 0 !important; pointer-events: none; }
+.pr-aula-pared { inset: 0; }
+/* el suelo de tarima */
+.pr-aula-suelo { left: 0; right: 0; bottom: 0; height: 44px; background: linear-gradient(#000, #000) 0 0 / 100% 3px no-repeat, repeating-linear-gradient(90deg, #a06a3c 0 120px, #7a4c28 120px 123px); }
+:root[data-tema="oscuro"] .pr-aula-suelo { background: linear-gradient(#000, #000) 0 0 / 100% 3px no-repeat, repeating-linear-gradient(90deg, #4a3040 0 120px, #36222e 120px 123px); }
+/* el reloj de pared: las agujas dan saltitos */
+.pr-reloj {
+  position: absolute;
+  top: 40px;
+  left: calc(50% - 560px);
+  width: 64px;
+  height: 64px;
+  background: #fffaf0;
+  clip-path: polygon(30% 0, 70% 0, 70% 8%, 85% 8%, 85% 15%, 92% 15%, 92% 30%, 100% 30%, 100% 70%, 92% 70%, 92% 85%, 85% 85%, 85% 92%, 70% 92%, 70% 100%, 30% 100%, 30% 92%, 15% 92%, 15% 85%, 8% 85%, 8% 70%, 0 70%, 0 30%, 8% 30%, 8% 15%, 15% 15%, 15% 8%, 30% 8%);
+  box-shadow: inset 0 0 0 5px var(--h-rosa), inset 0 0 0 8px var(--h-borde);
+}
+.pr-reloj::before { content: ""; position: absolute; inset: 0; background: radial-gradient(#2b1d1a 2px, transparent 2.5px) 50% 13px / 4px 4px no-repeat, radial-gradient(#2b1d1a 2px, transparent 2.5px) 50% calc(100% - 13px) / 4px 4px no-repeat, radial-gradient(#2b1d1a 2px, transparent 2.5px) 13px 50% / 4px 4px no-repeat, radial-gradient(#2b1d1a 2px, transparent 2.5px) calc(100% - 13px) 50% / 4px 4px no-repeat; }
+.pr-reloj i { position: absolute; left: 30px; bottom: 30px; width: 4px; background: #2b1d1a; transform-origin: 50% 100%; }
+.pr-reloj-hora { height: 14px; animation: pr-aguja 96s steps(12) infinite; }
+.pr-reloj-min { height: 21px; background: var(--h-rosa) !important; animation: pr-aguja 8s steps(12) infinite; }
+@keyframes pr-aguja { to { transform: rotate(360deg); } }
+/* el póster del alfabeto */
+.pr-poster {
+  position: absolute;
+  top: 34px;
+  right: calc(50% - 560px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  width: 76px;
+  padding: 26px 8px 8px;
+  background: #fffaf0;
+  box-shadow: 0 0 0 3px var(--h-borde), 4px 5px 0 var(--h-sombra);
+  transform: rotate(3deg);
+}
+.pr-poster::before { content: "A·あ·Я"; position: absolute; top: 5px; left: 0; right: 0; font: 700 .78rem var(--fuente-pixel); color: #2b1d1a; }
+.pr-poster i { height: 22px; background: #5fae6a; }
+.pr-poster i:nth-child(2) { background: #4f9fd8; }
+.pr-poster i:nth-child(3) { background: #f08a4b; }
+.pr-poster i:nth-child(4) { background: var(--h-rosa); }
+/* el título, escrito en un papel pegado con celo */
+.pr-aula-titulo span { position: relative; display: inline-block; padding: 8px 22px; background: var(--h-papel); box-shadow: 0 0 0 3px var(--h-borde), 4px 6px 0 var(--h-sombra); transform: rotate(-1.5deg); }
+.pr-aula-titulo span::before, .pr-aula-titulo span::after { content: ""; position: absolute; top: -10px; width: 46px; height: 16px; background: rgba(255, 236, 170, .8); box-shadow: 0 0 0 2px rgba(0, 0, 0, .15); }
+.pr-aula-titulo span::before { left: -14px; transform: rotate(-24deg); }
+.pr-aula-titulo span::after { right: -14px; transform: rotate(22deg); }
+
+/* la pizarra: marco de madera, tiza y algo de polvo */
+.pr-pizarra {
+  position: relative;
+  max-width: 920px !important;
+  margin-top: 30px !important;
+  padding: 14px;
+  background: repeating-linear-gradient(90deg, #a06a3c 0 80px, #8f5e36 80px 83px);
+  box-shadow: 0 -3px 0 0 #000, 0 3px 0 0 #000, -3px 0 0 0 #000, 3px 0 0 0 #000, 8px 10px 0 0 var(--h-sombra);
+}
+.pr-pizarra-dentro {
+  position: relative;
+  padding: 34px 18px 28px;
+  color: var(--tiza);
+  background:
+    radial-gradient(ellipse 160px 50px at 18% 82%, rgba(255, 255, 255, .06), transparent 70%),
+    radial-gradient(ellipse 220px 60px at 78% 30%, rgba(255, 255, 255, .05), transparent 70%),
+    var(--pizarra);
+  box-shadow: inset 0 0 0 3px #000, inset 0 0 0 9px rgba(0, 0, 0, .18);
+}
+/* los garabatos de la clase anterior, casi borrados */
+.pr-pizarra-dentro::before { content: "¡Hola! · Hello · 你好 · Ciao · Olá"; position: absolute; top: 9px; left: 18px; font: 700 .78rem var(--fuente-pixel); color: var(--tiza); opacity: .28; white-space: nowrap; }
+.pr-pizarra-dentro::after { content: "★ A1 → B2 ★"; position: absolute; top: 9px; right: 18px; font: 700 .78rem var(--fuente-pixel); color: #ffe066; opacity: .5; }
+.pr-tabla { width: 100%; border-collapse: collapse; text-align: center; font: 600 1rem var(--fuente-pixel); }
+.pr-tabla th, .pr-tabla td { padding: 8px 10px; border-bottom: 2px dashed rgba(244, 241, 230, .2); }
+.pr-tabla tbody tr:last-child th, .pr-tabla tbody tr:last-child td { border-bottom: 0; }
+.pr-tabla thead th { padding: 6px 10px 10px; font: 700 1.35rem var(--fuente-pixel); border-bottom: 3px solid rgba(244, 241, 230, .55); }
+.pr-th-gratis { color: #a8e6a0; }
+.pr-th-plus { color: #9cd0ff; }
+.pr-th-max { color: #ffe066; }
+/* la columna de Max, rodeada con tiza amarilla */
+.pr-tabla .pr-col-max { position: relative; color: #fff3b0; font-weight: 700; box-shadow: inset 3px 0 0 rgba(255, 224, 102, .75), inset -3px 0 0 rgba(255, 224, 102, .75); }
+.pr-tabla thead .pr-col-max { box-shadow: inset 3px 3px 0 rgba(255, 224, 102, .75), inset -3px 0 0 rgba(255, 224, 102, .75); }
+.pr-tabla tbody tr:last-child .pr-col-max { box-shadow: inset 3px -3px 0 rgba(255, 224, 102, .75), inset -3px -3px 0 rgba(255, 224, 102, .75); }
+/* las filas: la alumna y lo que se compara */
 .pr-tabla tbody th { text-align: left; font-weight: 600; }
-.pr-th-gratis { color: #4d9a59; }
-.pr-th-plus { color: #3f86c4; }
-.pr-th-max { color: var(--h-tinta); background: var(--marca-oro) !important; }
-:root[data-tema="oscuro"] .pr-th-max { color: #15121d; }
-.pr-tabla td:last-child { background: color-mix(in srgb, var(--marca-oro) 12%, transparent); font-weight: 700; }
-.pr-no { color: var(--h-suave); }
-.pr-check { display: inline-block; width: 18px; height: 14px; background: #5fae6a; clip-path: polygon(0 50%, 17% 50%, 17% 64%, 33% 64%, 33% 79%, 50% 79%, 50% 50%, 67% 50%, 67% 21%, 83% 21%, 83% 0, 100% 0, 100% 29%, 83% 29%, 83% 57%, 67% 57%, 67% 86%, 50% 86%, 50% 100%, 33% 100%, 33% 86%, 17% 86%, 17% 71%, 0 71%); }
+.pr-fila-nombre { display: flex; align-items: center; gap: 10px; }
+.pr-fila-quien { flex: none; display: block; width: 64px; height: 54px; }
+.pr-alumna { position: relative; margin: -30px 0 0 -6px; }
+.pr-alumna .tutora-lienzo { width: 72px; height: 96px; }
+.pr-alumna .pr-globo { display: none; }
+.pr-fila-que { position: relative; }
+.pr-tabla tbody tr { transition: background-color .2s steps(2); }
+.pr-tabla tbody tr.pr-activa { background: rgba(244, 241, 230, .09); }
+.pr-tabla tbody tr.pr-activa .pr-fila-que { color: #fff; text-shadow: 0 0 6px rgba(255, 255, 255, .5); }
+/* la tiza subraya la fila señalada */
+.pr-fila-que::after { content: ""; position: absolute; left: 0; bottom: -5px; width: 0; height: 3px; background: #ffe066; opacity: .85; }
+.pr-activa .pr-fila-que::after { animation: pr-subraya .5s steps(6) forwards; }
+@keyframes pr-subraya { to { width: 100%; } }
+.pr-activa td.pr-si .pr-check { animation: pr-tic .5s steps(2); }
+@keyframes pr-tic { 50% { transform: scale(1.35); } }
+.pr-no { color: rgba(244, 241, 230, .4); }
+.pr-raya { display: inline-block; width: 18px; height: 3px; background: rgba(244, 241, 230, .35); vertical-align: middle; }
+.pr-check { display: inline-block; width: 22px; height: 17px; background: #a8e6a0; clip-path: polygon(0 50%, 17% 50%, 17% 64%, 33% 64%, 33% 79%, 50% 79%, 50% 50%, 67% 50%, 67% 21%, 83% 21%, 83% 0, 100% 0, 100% 29%, 83% 29%, 83% 57%, 67% 57%, 67% 86%, 50% 86%, 50% 100%, 33% 100%, 33% 86%, 17% 86%, 17% 71%, 0 71%); }
+.pr-col-max .pr-check { background: #ffe066; }
+/* el puntero del profe: entra por la izquierda y va bajando de fila en fila */
+.pr-puntero {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: -96px;
+  width: 104px;
+  height: 24px;
+  transition: transform .4s steps(5);
+  pointer-events: none;
+}
+.pr-puntero::before { content: ""; position: absolute; left: 0; top: 9px; width: 92px; height: 6px; background: #c08a5a; box-shadow: 0 0 0 2px #000; }
+.pr-puntero::after { content: ""; position: absolute; right: 0; top: 6px; width: 14px; height: 12px; background: var(--h-rosa); clip-path: polygon(0 0, 50% 0, 50% 25%, 100% 25%, 100% 75%, 50% 75%, 50% 100%, 0 100%); animation: pr-toque 1.3s steps(1) infinite; }
+@keyframes pr-toque { 50% { transform: translateX(-4px); } }
+/* la repisa con las tizas y el borrador */
+.pr-repisa { position: absolute; left: 6%; right: 6%; bottom: -12px; height: 12px; background: #d9a066; box-shadow: 0 0 0 3px #000, 0 6px 0 rgba(0, 0, 0, .25); }
+.pr-repisa i { position: absolute; bottom: 100%; }
+.pr-tiza { left: 14%; width: 22px; height: 6px; background: #fffaf0; box-shadow: 0 0 0 2px #000; }
+.pr-tiza-rosa { left: calc(14% + 34px); width: 16px; background: #ffb3c7; }
+.pr-tiza-amarilla { left: calc(14% + 60px); width: 12px; background: #ffe066; }
+.pr-borrador { right: 16%; width: 46px; height: 14px; background: linear-gradient(#3a3150, #3a3150) 0 0 / 100% 6px no-repeat, #e8dcc3; box-shadow: 0 0 0 2px #000; animation: pr-borrar 9s steps(1) infinite; }
+@keyframes pr-borrar { 0%, 90%, 100% { transform: none; } 92% { transform: translateX(-10px); } 94% { transform: translateX(6px); } 96% { transform: translateX(-6px); } }
+/* las notas al pie, en tres pósits */
+.pr-notas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; max-width: 920px !important; margin-top: 40px !important; text-align: left; }
+.pr-notas p { margin: 0; padding: 14px 14px 12px; font-size: .82rem; line-height: 1.45; color: #2b1d1a; background: #fff3a8; box-shadow: 0 0 0 3px #000, 4px 5px 0 rgba(0, 0, 0, .25); transform: rotate(-1.5deg); }
+.pr-notas p:nth-child(2) { background: #ffd1dc; transform: rotate(1deg); }
+.pr-notas p:nth-child(3) { background: #cfe8ff; transform: rotate(-.5deg); }
+
+@media (max-width: 1260px) {
+  .pr-reloj { left: 16px; top: 16px; width: 48px; height: 48px; }
+  .pr-reloj i { left: 22px; bottom: 22px; }
+  .pr-reloj-hora { height: 10px; }
+  .pr-reloj-min { height: 15px; }
+  .pr-poster { display: none; }
+}
+@media (max-width: 1100px) {
+  .pr-puntero { left: -40px; width: 50px; }
+  .pr-puntero::before { width: 38px; }
+}
+@media (max-width: 760px) {
+  .pr-notas { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .pr-seccion.pr-extras { padding-bottom: 150px; }
+  .pr-seccion.pr-comparar { padding-bottom: 190px; }
+  .pr-barrio { width: 1000px; }
+}
+@media (max-width: 520px) {
+  .pr-reloj { display: none; }
+  .pr-pizarra { margin-left: -6px !important; margin-right: -6px !important; padding: 8px; }
+  .pr-pizarra-dentro { padding: 30px 6px 10px; }
+  .pr-pizarra-dentro::before { left: 8px; font-size: .64rem; }
+  .pr-pizarra-dentro::after { right: 8px; font-size: .64rem; }
+  .pr-tabla { font-size: .78rem; }
+  .pr-tabla th, .pr-tabla td { padding: 6px 4px; }
+  .pr-tabla thead th { font-size: 1rem; padding: 4px 4px 8px; }
+  .pr-fila-nombre { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .pr-fila-quien { width: 40px; height: 58px; }
+  .pr-alumna { margin: -8px 0 0 -6px; }
+  .pr-alumna .tutora-lienzo { width: 48px; height: 64px; }
+  .pr-puntero { display: none; }
+  .pr-check { width: 18px; height: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pr-reloj i, .pr-puntero::after, .pr-borrador, .pr-activa .pr-fila-que::after, .pr-activa td.pr-si .pr-check { animation: none; }
+  .pr-activa .pr-fila-que::after { width: 100%; }
+  .pr-puntero, .pr-tabla tbody tr { transition: none; }
+}
+
+/* Las secciones que no están en pantalla paran sus animaciones (las marca precios.js) */
+.pr-fuera, .pr-fuera *, .pr-fuera *::before, .pr-fuera *::after { animation-play-state: paused !important; }
 
 /* ===================================================================== */
-/* 6. Las promesas                                                         */
+/* 6. Las promesas: un pergamino que se desenrolla                         */
+/*    cada promesa con su dibujito y su sello de lacre, que se estampan     */
+/*    uno detrás de otro; abajo, la firma. Corazones que suben al fondo.    */
 /* ===================================================================== */
-.pr-promesas { text-align: center; background: var(--h-cielo); }
-.pr-sellos { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; margin: 20px auto 0 !important; padding: 0; list-style: none; }
-.pr-sellos li { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 14px; background: var(--h-papel); box-shadow: 0 -3px 0 0 var(--h-borde), 0 3px 0 0 var(--h-borde), -3px 0 0 0 var(--h-borde), 3px 0 0 0 var(--h-borde), 4px 6px 0 0 var(--h-sombra); }
-.pr-sellos p { margin: 0; font-weight: 700; font-size: .92rem; line-height: 1.4; }
-.pr-corazon { width: 28px; height: 24px; background: var(--h-rosa); clip-path: polygon(0 17%, 14% 17%, 14% 0, 43% 0, 43% 17%, 57% 17%, 57% 0, 86% 0, 86% 17%, 100% 17%, 100% 50%, 86% 50%, 86% 67%, 71% 67%, 71% 83%, 57% 83%, 57% 100%, 43% 100%, 43% 83%, 29% 83%, 29% 67%, 14% 67%, 14% 50%, 0 50%); animation: latido 1.4s steps(1) infinite; animation-delay: calc(var(--n) * -.28s); }
-.pr-aviso { margin: 26px auto 0 !important; max-width: 46em !important; font-size: .85rem; color: var(--h-suave); }
+.pr-promesas {
+  --tinta: #4a2e1c;
+  --papel-1: #f8ebc8;
+  --papel-2: #efdcab;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  background: linear-gradient(var(--h-cielo) 0 70%, #fae2b6 70%);
+}
+:root[data-tema="oscuro"] .pr-promesas { background: linear-gradient(var(--h-cielo) 0 70%, #30234a 70%); --papel-1: #ecdcb4; --papel-2: #dcc794; }
+.pr-promesas > .inicio-cielo { position: absolute; z-index: 0; max-width: none; margin: 0; }
+.pr-promesas > :not(.inicio-cielo):not(.pr-corazones) { position: relative; z-index: 2; }
+/* los corazoncitos que suben despacio por detrás */
+.pr-corazones { position: absolute !important; inset: 0; z-index: 1; max-width: none !important; margin: 0 !important; pointer-events: none; }
+.pr-corazones i {
+  position: absolute;
+  bottom: -30px;
+  left: calc(4% + var(--n) * 11.5%);
+  width: 21px;
+  height: 18px;
+  background: var(--h-rosa);
+  opacity: 0;
+  clip-path: polygon(0 17%, 14% 17%, 14% 0, 43% 0, 43% 17%, 57% 17%, 57% 0, 86% 0, 86% 17%, 100% 17%, 100% 50%, 86% 50%, 86% 67%, 71% 67%, 71% 83%, 57% 83%, 57% 100%, 43% 100%, 43% 83%, 29% 83%, 29% 67%, 14% 67%, 14% 50%, 0 50%);
+  animation: pr-sube 9s steps(24) infinite;
+  animation-delay: calc(var(--n) * -1.7s);
+}
+.pr-corazones i:nth-child(3n) { width: 14px; height: 12px; background: #f08a4b; }
+.pr-corazones i:nth-child(3n + 1) { background: var(--marca-oro); }
+@keyframes pr-sube { 0% { opacity: 0; transform: translate(0, 0); } 10% { opacity: .7; } 50% { transform: translate(14px, -320px); } 90% { opacity: .5; } 100% { opacity: 0; transform: translate(0, -640px); } }
+
+/* el pergamino: rodillo arriba, papel que se desenrolla, rodillo abajo */
+.pr-pergamino { max-width: 780px !important; }
+.pr-rodillo {
+  position: relative;
+  z-index: 2;
+  height: 22px;
+  margin: 0 -14px;
+  background: linear-gradient(#d9a066 0 5px, #a06a3c 5px 15px, #7a4c28 15px);
+  box-shadow: 0 0 0 3px #000, 0 6px 0 rgba(0, 0, 0, .2);
+}
+/* los pomos de los extremos */
+.pr-rodillo::before, .pr-rodillo::after { content: ""; position: absolute; top: -6px; width: 22px; height: 34px; background: linear-gradient(#f4c84a 0 8px, #c7922a 8px 24px, #8a6418 24px); box-shadow: 0 0 0 3px #000; }
+.pr-rodillo::before { left: -28px; }
+.pr-rodillo::after { right: -28px; }
+/* sin abrir, el papel no ocupa nada; al abrirse baja a ritmo constante hasta su alto (--alto lo mide precios.js) */
+.pr-promesas:not(.pr-visto) .pr-papel { max-height: 0; }
+.pr-visto .pr-papel { animation: pr-desenrolla 1.2s steps(12) backwards; }
+@keyframes pr-desenrolla { from { max-height: 0; } to { max-height: var(--alto, 800px); } }
+.pr-papel {
+  overflow: hidden;
+  padding: 0 44px;
+  color: var(--tinta);
+  background:
+    radial-gradient(rgba(122, 76, 40, .12) 1.2px, transparent 1.6px) 0 0 / 14px 14px,
+    linear-gradient(90deg, var(--papel-2) 0 14px, var(--papel-1) 14px calc(100% - 14px), var(--papel-2) calc(100% - 14px));
+  box-shadow: inset 3px 0 0 #000, inset -3px 0 0 #000, inset 0 10px 0 rgba(0, 0, 0, .08), inset 0 -10px 0 rgba(0, 0, 0, .08);
+}
+.pr-papel h2 { margin: 32px auto 4px !important; color: var(--tinta); }
+/* la cenefa de debajo del título */
+.pr-papel h2::after { content: ""; display: block; width: 160px; height: 6px; margin: 12px auto 0; background: repeating-linear-gradient(90deg, var(--h-rosa) 0 6px, transparent 6px 12px); }
+
+/* las promesas */
+.pr-juras { margin: 18px 0 0; padding: 0; list-style: none; text-align: left; }
+.pr-juras li {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr) 56px;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 4px;
+  border-bottom: 3px dashed rgba(74, 46, 28, .22);
+}
+.pr-juras li:last-child { border-bottom: 0; }
+.pr-juras p { margin: 0; font-weight: 700; font-size: 1.02rem; line-height: 1.45; }
+.pr-jura-icono { display: grid; place-items: center; width: 58px; height: 58px; background: #fffaf0; box-shadow: 0 0 0 3px var(--tinta), 3px 4px 0 rgba(74, 46, 28, .25); transition: translate .15s steps(2); }
+.pr-juras li:hover .pr-jura-icono { translate: 0 -5px; }
+.pr-icono-promesa { width: 42px; height: auto; }
+.pr-icono-promesa .pi-k, .pr-icono-promesa .pi-e { fill: #2b1d1a; }
+.pr-icono-promesa .pi-p { fill: #f4a6b8; }
+.pr-icono-promesa .pi-P { fill: #d77890; }
+.pr-icono-promesa .pi-c, .pr-icono-promesa .pi-y { fill: #f4c84a; }
+.pr-icono-promesa .pi-C, .pr-icono-promesa .pi-Y { fill: #c7922a; }
+.pr-icono-promesa .pi-r { fill: #d2353d; }
+.pr-icono-promesa .pi-R { fill: #9c2430; }
+.pr-icono-promesa .pi-w { fill: #fff; }
+.pr-icono-promesa .pi-g { fill: #c9c0d6; }
+.pr-icono-promesa .pi-G { fill: #7c7590; }
+.pr-icono-promesa .pi-b { fill: #4f9fd8; }
+.pr-icono-promesa .pi-B { fill: #2f6fa8; }
+/* el sello de lacre: cae y se estampa, uno detrás de otro */
+.pr-lacre {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  font-size: 1.4rem;
+  color: #ffd1d6;
+  background: radial-gradient(circle at 35% 30%, #e0505a 0 30%, #b8232f 31% 62%, #8e1823 63%);
+  clip-path: polygon(30% 0, 70% 0, 70% 8%, 85% 8%, 85% 15%, 92% 15%, 92% 30%, 100% 30%, 100% 70%, 92% 70%, 92% 85%, 85% 85%, 85% 92%, 70% 92%, 70% 100%, 30% 100%, 30% 92%, 15% 92%, 15% 85%, 8% 85%, 8% 70%, 0 70%, 0 30%, 8% 30%, 8% 15%, 15% 15%, 15% 8%, 30% 8%);
+  cursor: pointer;
+  rotate: calc(-14deg + var(--n) * 7deg);
+  transition: scale .15s steps(2);
+}
+.pr-juras li:hover .pr-lacre { scale: 1.12; }
+.pr-promesas:not(.pr-visto) .pr-lacre { opacity: 0; }
+.pr-visto .pr-lacre { animation: pr-estampa .45s steps(4) both; animation-delay: calc(1.2s + var(--n) * .45s); }
+.pr-lacre.pr-otra-vez { animation: pr-estampa .45s steps(4) both; animation-delay: 0s; }
+@keyframes pr-estampa { 0% { opacity: 0; transform: scale(2.4); } 60% { opacity: 1; transform: scale(.9); } 100% { opacity: 1; transform: none; } }
+
+/* la firma, que se escribe al final */
+.pr-firma { position: relative; display: flex; flex-direction: column; align-items: flex-end; margin: 6px 0 0 auto; padding: 14px 6px 30px; width: max-content; }
+.pr-firma-nombre { font: 700 2rem var(--fuente-pixel); color: var(--tinta); transform: rotate(-4deg); }
+.pr-firma-nombre i { font-style: normal; color: #c77a00; }
+.pr-firma-trazo { display: block; width: 100%; height: 4px; margin-top: 4px; background: var(--tinta); transform: rotate(-4deg); transform-origin: 0 50%; }
+.pr-promesas:not(.pr-visto) .pr-firma { clip-path: inset(0 100% 0 0); }
+.pr-visto .pr-firma { animation: pr-firmar .9s steps(9) both; animation-delay: 3.6s; }
+@keyframes pr-firmar { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 -10px 0 0); } }
+
+.pr-promesas .pr-aviso { margin: 30px auto 0 !important; max-width: 46em !important; font-size: .85rem; color: var(--h-suave); }
+
+@media (max-width: 560px) {
+  .pr-rodillo { margin: 0 4px; }
+  .pr-rodillo::before { left: -16px; width: 16px; }
+  .pr-rodillo::after { right: -16px; width: 16px; }
+  .pr-pergamino { margin: 0 12px !important; }
+  .pr-papel { padding: 0 16px; }
+  .pr-juras li { grid-template-columns: 44px minmax(0, 1fr) 36px; gap: 10px; padding: 12px 0; }
+  .pr-jura-icono { width: 44px; height: 44px; }
+  .pr-icono-promesa { width: 32px; }
+  .pr-lacre { width: 36px; height: 36px; font-size: 1rem; }
+  .pr-juras p { font-size: .9rem; }
+  .pr-firma-nombre { font-size: 1.6rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pr-corazones { display: none; }
+  .pr-visto .pr-papel, .pr-visto .pr-lacre, .pr-visto .pr-firma, .pr-lacre.pr-otra-vez { animation: none; }
+  .pr-promesas .pr-papel { max-height: none !important; }
+  .pr-promesas .pr-lacre { opacity: 1 !important; }
+  .pr-promesas .pr-firma { clip-path: none !important; }
+  .pr-jura-icono, .pr-lacre { transition: none; }
+}
 
 /* ===================================================================== */
 /* Menos sitio                                                             */
@@ -394,7 +1024,6 @@
   .pr-bloque { padding: 20px 12px 12px; }
   .pr-precio { font-size: 2rem; }
   .pr-estante { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 26px; }
-  .pr-sellos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {
   /* en el móvil los planes van en fila y se deslizan de lado (se empieza mirando Plus) */
@@ -416,7 +1045,7 @@
   .pr-hucha { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .pr-hucha-texto { order: -1; margin-bottom: 0 !important; }
   .pr-extras { grid-template-columns: minmax(0, 1fr); }
-  .pr-dos { grid-template-columns: 1fr; }
+  .pr-dos { grid-template-columns: minmax(0, 1fr); }
   .pr-seccion { padding-top: 48px; padding-bottom: 48px; }
 }
 @media (max-width: 560px) {
@@ -424,11 +1053,8 @@
 }
 @media (max-width: 520px) {
   .pr-estante { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .pr-sellos { grid-template-columns: 1fr 1fr; }
   .pr-libro { height: 220px; }
-  .pr-libro-tutora { width: 72px; height: 90px; }
-  .pr-tabla th, .pr-tabla td { padding: 10px 8px; font-size: .85rem; }
-  .pr-retrato { width: 52px; height: 65px; margin: 0 -4px; }
+  .pr-libro .pr-libro-tutora .tutora-lienzo { width: 72px; height: 96px; }
   /* arriba, lo justo para que los planes quepan en la primera pantalla del móvil */
   .pr-texto, .pr-lema { display: none; }
   .pr-titulo { font-size: 1.7rem; margin-bottom: 10px; }
@@ -443,7 +1069,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pr-moneda-vuela, .pr-hucha-barra i, .pr-tele .tv-s, .pr-tele-brillo, .pr-hucha-dibujo, .pr-corazon, .pr-salta { animation: none; }
+  .pr-moneda-vuela, .pr-hucha-barra i, .pr-tele .tv-s, .pr-tele-brillo, .pr-hucha-dibujo, .pr-salta { animation: none; }
   .pr-hucha-barra > i > i { width: 68%; }
   .pr-globo, .pr-libro { transition: none; }
 }

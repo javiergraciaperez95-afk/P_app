@@ -4,7 +4,7 @@
 
 import { el, poner } from './dom.js';
 import { icono } from './iconos.js';
-import { descubrirLecciones, cargarCapitulos, cargarFrases } from './lessons.js';
+import { descubrirLecciones, cargarIndice, cargarDiccionario, cargarLeccion, cargarCapitulos, cargarFrases } from './lessons.js';
 import { ajuste, aplicarTema, temaActual, cambiarAjuste } from './ajustes.js';
 import { t, tr, aplicarIdioma, IDIOMAS, idioma, cambiarIdioma } from './i18n.js';
 import { sonar, prepararVoces } from './sonidos.js';
@@ -14,7 +14,7 @@ import { pintarCabecera, pendientesDeHoy } from './cabecera.js';
 import { iniciarPie, pintarPie } from './pie.js';
 import { decir } from './tutor.js';
 import { agrupar, pintarLecciones } from './vistas/lecciones.js';
-import { pintarLeccion, cerrarFicha, ponerDiccionarioGlobal } from './vistas/leccion.js';
+import { pintarLeccion, cerrarFicha, ponerDiccionarioGlobal, ponerDiccionario } from './vistas/leccion.js';
 import { pintarFrases } from './vistas/frases.js';
 import { pintarCuaderno } from './vistas/cuaderno.js';
 import { pintarRepaso } from './vistas/repaso.js';
@@ -25,6 +25,7 @@ import { pintarInicio } from './vistas/inicio.js';
 import { pintarLegal, pintarAvisoDeDatos } from './vistas/legal.js';
 import { pintarSobre } from './vistas/sobre.js';
 import { pintarEntrar } from './vistas/entrar.js';
+import { pintarEnlace } from './vistas/enlace.js';
 import { pintarPrecios } from './vistas/precios.js';
 import { pintarBienvenida, bienvenidaVista } from './vistas/bienvenida.js';
 import { pintarPerdida } from './vistas/perdida.js';
@@ -95,6 +96,7 @@ const GENERALES = {
   idiomas: { titulo: 'cursos.titulo', pintar: pintarElegirCurso, sinPortada: true },
   creditos: { titulo: 'creditos.titulo', pintar: pintarCreditos, sinPortada: true },
   legal: { titulo: 'legal.titulo', pintar: pintarLegal, sinPortada: true },
+  enlace: { titulo: 'enlace.titulo', pintar: pintarEnlace, sinPortada: true },
 };
 // Las portadas llevan la cabecera de la web (Inicio, Entrar, Paglot Max) en lugar del menú del curso.
 const PORTADAS = Object.keys(GENERALES).filter(ruta => !GENERALES[ruta].sinPortada);
@@ -347,7 +349,15 @@ let cursoCargado = false;
 function cargarCurso() {
   cargaDelCurso ??= (async () => {
     // Se espera a saber si el dispositivo tiene voz (segundo y medio como mucho): de eso depende qué ejercicios hay.
-    const [cargadas, { capitulos, error }] = await Promise.all([descubrirLecciones(), cargarCapitulos(), prepararVoces()]);
+    // Con índice (indice/lecciones.json) basta un archivo para la lista; cada lección se carga al abrirla.
+    // Sin índice (un curso al que aún no se le ha generado) se descargan todas, como antes.
+    const diccionario = cargarDiccionario();
+    const [indice, { capitulos, error }] = await Promise.all([cargarIndice(), cargarCapitulos(), prepararVoces()]);
+    const cargadas = indice ?? await descubrirLecciones();
+    contenido.diccionario = diccionario.then(mapa => {
+      if (mapa) ponerDiccionario(mapa);
+      else ponerDiccionarioGlobal(cargadas);
+    });
     // Los IDs internos conservan rutas y progreso; cada curso define su orden visible.
     const resultados = curso.id === 'vi'
       ? cargadas.sort((a, b) =>
@@ -368,10 +378,29 @@ function cargarCurso() {
         .forEach((resultado, i) => { resultado.leccion.numero_curso = i + 1; });
     }
     Object.assign(contenido, { resultados, capitulos, errorCapitulos: error ?? null, sinConexion: Boolean(resultados.sinConexion) });
-    ponerDiccionarioGlobal(resultados);
     cursoCargado = true;
   })();
   return cargaDelCurso;
+}
+
+// Lecciones completas ya cargadas, por idioma de la interfaz (los textos de las v2 dependen de él).
+const completas = new Map();
+
+/**
+ * La lección entera (bloques y palabras) de un resultado de la lista. Con índice, la lista solo trae
+ * el resumen y la lección se pide aquí; se le pone el número que enseña la lista, que puede venir reordenado.
+ */
+function leccionCompleta(resultado) {
+  if (resultado.error || resultado.leccion?.bloques) return Promise.resolve(resultado);
+  const clave = `${idioma()}|${resultado.id}`;
+  if (!completas.has(clave)) {
+    completas.set(clave, cargarLeccion(resultado.id).then(r => {
+      if (r.leccion) r.leccion.numero_curso = resultado.leccion.numero_curso;
+      else completas.delete(clave); // sin conexión, por ejemplo: la próxima vez se vuelve a intentar
+      return r;
+    }));
+  }
+  return completas.get(clave);
 }
 
 /** Las pantallas que no dependen ni de la voz ni del progreso: repintarlas a media visita las reiniciaría (la bienvenida, los precios…). */
@@ -414,9 +443,16 @@ async function navegar({ cambioDeIdioma = false } = {}) {
     if (estePase !== pase) return;
   }
 
+  // La lección, el cuaderno (su buscador) y la bienvenida usan el diccionario del curso.
+  if (['leccion', 'cuaderno', 'bienvenida'].includes(seccion)) {
+    await contenido.diccionario;
+    if (estePase !== pase) return;
+  }
+
   if (seccion === 'leccion') {
     const i = contenido.resultados.findIndex(r => r.id === parametro);
-    const resultado = contenido.resultados[i];
+    const resultado = contenido.resultados[i] && await leccionCompleta(contenido.resultados[i]);
+    if (estePase !== pase) return;
     if (!resultado || resultado.error) {
       pintarNoEncontrada(t('app.leccionNoAbre', { id: parametro }));
     } else {
@@ -430,7 +466,7 @@ async function navegar({ cambioDeIdioma = false } = {}) {
     else pintarLecciones(app, contenido);
   } else if (seccion === 'practica') {
     titulo(t('menu.practica'));
-    pintarPractica(app, contenido);
+    pintarPractica(app, { ...contenido, leccionCompleta });
   } else if (seccion === 'frases') {
     titulo(t('menu.frases'));
     contenido.frases ??= await cargarFrases();
@@ -447,8 +483,11 @@ async function navegar({ cambioDeIdioma = false } = {}) {
   } else if (esGeneral(seccion)) {
     pintarGeneral(seccion);
   } else if (seccion === 'bienvenida') {
+    // La bienvenida busca su frase de ejemplo en las primeras lecciones: solo esas se cargan enteras.
+    const primeras = await Promise.all(contenido.resultados.filter(r => !r.error).slice(0, 8).map(leccionCompleta));
+    if (estePase !== pase) return;
     titulo(t('bienvenida.titulo'));
-    limpiarVista = pintarBienvenida(app, contenido);
+    limpiarVista = pintarBienvenida(app, { ...contenido, resultados: primeras });
   } else {
     pintarNoEncontrada('');
   }
@@ -557,9 +596,16 @@ async function iniciar() {
   menu.addEventListener('click', e => { if (e.target.closest('a')) sonar('pagina'); });
 
   // La primera pantalla se pinta ya; las lecciones del curso se van cargando mientras tanto.
+  // En una pantalla general (la portada…) se espera a que el navegador esté libre: el diccionario pesa unos 750 KB
+  // y leerlo a la vez que arrancan las animaciones de la portada las hacía ir a trompicones.
   const primera = navegar();
   if (document.body.classList.contains('en-inicio')) quitarArranque();
-  cargarCurso();
+  if (enPantallaGeneral() && location.hash !== '#/bienvenida') {
+    if ('requestIdleCallback' in window) requestIdleCallback(() => cargarCurso(), { timeout: 3000 });
+    else setTimeout(cargarCurso, 1500);
+  } else {
+    cargarCurso();
+  }
   await primera;
   quitarArranque();
   iniciarNube();

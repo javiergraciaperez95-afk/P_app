@@ -65,6 +65,68 @@ const VENTANA = rejilla(22, 26, R => {
   for (const [x, y] of [[5, 4], [16, 6], [4, 15], [14, 18], [7, 9]]) R(x, y, 1, 1, 'e');
 });
 
+// La biblioteca de la colección: lámpara colgante (a cable · o pantalla · O sombra · y bombilla), la escalera de mano,
+// la caja de cartón del envío anual (c cartón · C sombra · T cinta · w etiqueta · 1-6 lomos) y la tableta del PDF.
+const LAMPARA = rejilla(14, 22, R => { R(6, 0, 2, 9, 'a'); R(5, 9, 4, 2, 'O'); for (let i = 0; i < 6; i++) R(5 - i, 11 + i, 4 + i * 2, 1, i % 2 ? 'O' : 'o'); R(5, 17, 4, 2, 'y'); });
+const ESCALERA = rejilla(18, 72, R => { R(1, 0, 3, 72, 'm'); R(14, 0, 3, 72, 'm'); for (let y = 6; y < 72; y += 11) R(4, y, 10, 2, 'M'); });
+const CAJA = rejilla(32, 26, R => {
+  [['1', 3], ['2', 7], ['3', 11], ['4', 15], ['5', 19], ['6', 23]].forEach(([c2, x], i) => R(x, i % 2 ? 1 : 0, 4, 8, c2));
+  R(0, 6, 32, 20, 'c'); R(0, 6, 32, 3, 'C'); R(14, 6, 4, 20, 'T'); R(3, 14, 9, 6, 'w'); R(4, 16, 7, 1, 'C'); R(4, 18, 5, 1, 'C'); R(0, 24, 32, 2, 'C');
+});
+const TABLETA = rejilla(18, 24, R => {
+  R(0, 0, 18, 24, 'g'); R(2, 2, 14, 18, 's'); R(4, 4, 10, 4, 'r'); for (const y of [10, 12, 14, 16]) R(4, y, 10, 1, 'l'); R(8, 21, 2, 1, 's');
+});
+
+// El barrio de detrás de Familia y Fundadores: casas de colores (a/b/c/d fachadas, r/R tejados, w ventanas que de noche
+// se encienden, p puertas, h chimeneas), árboles (t copa, q tronco) y farolas (l poste, y luz).
+function rejillaBarrio() {
+  const W = 480;
+  const H = 64;
+  const g = Array.from({ length: H }, () => Array(W).fill('.'));
+  const R = (x, y, w, h, c) => { for (let j = y; j < y + h; j++) for (let i = x; i < x + w; i++) if (i >= 0 && i < W && j >= 0 && j < H) g[j][i] = c; };
+  const casa = (x0, ancho, alto, n) => {
+    const pared = 'abcd'[n % 4];
+    const tejado = n % 2 ? 'r' : 'R';
+    const arriba = H - alto;
+    R(x0, arriba, ancho, alto, pared);
+    const pisos = Math.floor((alto - 10) / 10);
+    for (let p = 0; p < pisos; p++) for (let v = 3; v + 4 <= ancho - 3; v += 8) if (!(p === pisos - 1 && Math.abs(v + 2 - ancho / 2) < 4)) R(x0 + v, arriba + 4 + p * 10, 4, 5, (v + p + n) % 3 ? 'w' : 'W');
+    R(x0 + Math.floor(ancho / 2) - 3, H - 10, 6, 10, 'p');
+    for (let i = 0; i < 6; i++) R(x0 - 2 + i * 2, arriba - 1 - i, ancho + 4 - i * 4, 1, tejado);
+    if (n % 3 === 0) R(x0 + ancho - 9, arriba - 12, 4, 9, 'h');
+  };
+  const arbol = cx => {
+    for (const [dy, hw] of [[0, 3], [1, 5], [2, 6], [3, 6], [4, 6], [5, 6], [6, 5], [7, 3]]) R(cx - hw, H - 22 + dy, hw * 2 + 1, 1, 't');
+    R(cx - 1, H - 14, 3, 14, 'q');
+  };
+  const farola = x => { R(x, H - 26, 2, 26, 'l'); R(x - 2, H - 29, 6, 3, 'l'); R(x - 1, H - 27, 4, 2, 'y'); };
+  let x = 0;
+  let n = 0;
+  while (x < W) {
+    const ancho = 30 + ((n * 7) % 18);
+    const alto = 30 + ((n * 11) % 22);
+    casa(x, ancho, alto, n);
+    x += ancho + 2;
+    if (n % 2 === 0) { arbol(x + 8); x += 18; } else { farola(x + 6); x += 14; }
+    n++;
+  }
+  return conContorno(g.map(f => f.join(''))).slice(1, -1);
+}
+
+// Los dibujitos del pergamino de las promesas, uno por promesa (el contorno lo pone conContorno).
+const ICONOS_PROMESA = [
+  // la hucha con su moneda: anuncios solo si tú quieres
+  ['....cccc....', '....cCCc....', '....cccc....', '............', '..ppppppp...', '.ppppppppp.p', 'pppepppppppp', 'ppppppppppp.', 'Pppppppppp..', '.ppppppppp..', '.pP.....pP..'],
+  // un corazón entero: sin vidas ni castigos
+  ['.rrr...rrr.', 'rrwrr.rrrrr', 'rwrrrrrrrrr', 'rrrrrrrrrrr', 'rrrrrrrrrrR', '.rrrrrrrrR.', '..rrrrrrR..', '...rrrrR...', '....rrR....', '.....R.....'],
+  // el botón: cancelar es pulsar y ya
+  ['...rrrrr...', '.rrrrrrrrr.', 'rrwrrrrrrrr', 'rrrrrrrrrrr', 'RrrrrrrrrrR', 'gRRRRRRRRRg', 'ggggggggggg', 'GGGGGGGGGGG'],
+  // el candado: tu precio no sube
+  ['..gggggg..', '.gg....gg.', '.g......g.', '.g......g.', 'yyyyyyyyyy', 'yyyykkyyyy', 'yyyykkyyyy', 'yyyykkyyyy', 'YyyyyyyyyY', 'YYYYYYYYYY'],
+  // el regalo: si cerramos, os quedáis con una copia
+  ['..rr...rr..', '.r..r.r..r.', '..rrrrrrr..', 'bbbbbrbbbbb', 'bbbbbrbbbbb', 'BBBBBrBBBBB', '.bbbbrbbbb.', '.bbbbrbbbb.', '.bbbbrbbbb.', '.BBBBrBBBB.'],
+];
+
 /** Pinta la pantalla. Devuelve una función que la apaga: hay que llamarla al salir. */
 export function pintarPrecios(contenedor) {
   const apagar = [];
@@ -75,19 +137,45 @@ export function pintarPrecios(contenedor) {
   const barajadas = [...disponibles].sort(() => Math.random() - 0.5);
   const principal = hayCurso ? curso : (disponibles.find(c => c.id === 'es') ?? disponibles[0]);
   const otras = barajadas.filter(c => c.id !== principal.id);
+  // Las demás se reparten sin repetirse: cada sitio de la página se lleva la siguiente que quede libre.
+  let siguienteLibre = 0;
+  const repartir = (n = 1) => { const lote = otras.slice(siguienteLibre, siguienteLibre + n); siguienteLibre += n; return lote; };
 
   const z = preciosDeSuZona();
   let pago = 'ano'; // ano · mes
 
-  // ----- Tutoras: vivas (se mueven mientras se ven) o en retrato fijo -----
+  // ----- Tutoras vivas: solo se mueven las de las secciones que están en pantalla -----
+  // Las «quietas» (las alumnas de la pizarra) se pintan una vez y solo despiertan para hacer su gesto.
   const vivas = [];
-  function tutoraViva(c) {
+  const vistas = new Set();
+  const seVe = v => !document.hidden && [...vistas].some(s => s.contains(v.figura));
+  const despertar = v => { if (v.dibujo && !v.sprite) v.sprite = v.dibujo.crearSprite(v.figura.querySelector('canvas')); };
+  const dormirla = v => { v.siesta = null; v.sprite?.parar(); v.sprite = null; };
+  // se para cuando ha pintado algún fotograma y ya no tiene gestos pendientes
+  const dormirAlAcabar = v => {
+    const turno = v.siesta = {};
+    const mirar = () => {
+      if (v.siesta !== turno || !v.sprite) return;
+      if (v.sprite.pintados && !v.sprite.ocupada()) dormirla(v); else setTimeout(mirar, 200);
+    };
+    setTimeout(mirar, 200);
+  };
+  // una quieta: se dibuja un momento y se para (el lienzo conserva el dibujo)
+  const pintarQuieta = v => { if (v.pintada || !v.dibujo) return; v.pintada = true; despertar(v); dormirAlAcabar(v); };
+  function tutoraViva(c, quieta = false) {
     const canvas = el('canvas', { class: 'tutora-lienzo', width: 48, height: 64 });
     const globo = el('span', { class: 'pr-globo' });
     const figura = el('div', { class: 'inicio-figura pr-tutora', 'aria-hidden': 'true' }, globo, canvas);
-    const yo = { figura, sprite: null, dibujo: null, apagarGlobo: null };
-    dibujoDe(c).then(d => { yo.dibujo = d; if (visible) yo.sprite = d.crearSprite(canvas); }).catch(() => { figura.hidden = true; });
-    yo.gesto = nombre => yo.sprite?.gesto(nombre);
+    const yo = { figura, sprite: null, dibujo: null, apagarGlobo: null, quieta, pintada: false, siesta: null };
+    dibujoDe(c).then(d => { yo.dibujo = d; if (seVe(yo)) (quieta ? pintarQuieta(yo) : despertar(yo)); }).catch(() => { figura.hidden = true; });
+    yo.gesto = nombre => {
+      if (!quieta) return yo.sprite?.gesto(nombre);
+      if (!seVe(yo)) return false;
+      despertar(yo);
+      yo.sprite?.gesto(nombre);
+      dormirAlAcabar(yo);
+      return true;
+    };
     yo.decir = (texto, ms = 3200) => {
       globo.textContent = texto;
       figura.classList.add('habla');
@@ -99,20 +187,16 @@ export function pintarPrecios(contenedor) {
     return yo;
   }
   let visible = false;
-  const encender = () => { visible = true; for (const v of vivas) if (v.dibujo && !v.sprite) v.sprite = v.dibujo.crearSprite(v.figura.querySelector('canvas')); };
-  const dormir = () => { visible = false; for (const v of vivas) { v.sprite?.parar(); v.sprite = null; } };
-  apagar.push(() => { dormir(); for (const v of vivas) clearTimeout(v.apagarGlobo); });
-
-  /** Un retrato quieto (para las portadas de los libros y la familia). */
-  function retrato(c, clase = 'pr-retrato', animacion = null) {
-    const lienzo = el('canvas', { class: clase, width: 48, height: 60, 'aria-hidden': 'true' });
-    dibujoDe(c).then(d => {
-      const rejilla = d.rejilla('contenta', 0, animacion, 0.5);
-      const ctx = lienzo.getContext('2d');
-      rejilla.forEach((fila, y) => fila.forEach((color, x) => { if (color) { ctx.fillStyle = color; ctx.fillRect(x, y, 1, 1); } }));
-    }).catch(() => { lienzo.hidden = true; });
-    return lienzo;
-  }
+  const actualizar = () => {
+    visible = vistas.size > 0 && !document.hidden;
+    for (const v of vivas) {
+      const ve = seVe(v);
+      if (v.quieta) { if (ve) pintarQuieta(v); else if (v.sprite) dormirla(v); } else if (ve) despertar(v); else dormirla(v);
+    }
+  };
+  const dormir = () => { visible = false; for (const v of vivas) dormirla(v); };
+  document.addEventListener('visibilitychange', actualizar);
+  apagar.push(() => { dormir(); document.removeEventListener('visibilitychange', actualizar); for (const v of vivas) clearTimeout(v.apagarGlobo); });
 
   // ----- «Muy pronto»: todavía no se cobra -----
   const pronto = (quien, nota) => () => {
@@ -132,8 +216,8 @@ export function pintarPrecios(contenedor) {
   // =====================================================================
   // 1. La escalera
   // =====================================================================
-  const tGratis = tutoraViva(otras[0]);
-  const tPlus = tutoraViva(otras[1]);
+  const tGratis = tutoraViva(repartir()[0]);
+  const tPlus = tutoraViva(repartir()[0]);
   const tMax = tutoraViva(principal);
 
   const precioPlus = el('p', { class: 'pr-precio' });
@@ -199,7 +283,7 @@ export function pintarPrecios(contenedor) {
   // =====================================================================
   // 2. La Hucha
   // =====================================================================
-  const tHucha = tutoraViva(otras[2]);
+  const tHucha = tutoraViva(repartir()[0]);
   // El cuarto: la tele echa un anuncio y de la pantalla sale una moneda que va volando hasta la ranura del cerdito.
   const cuarto = el('div', { class: 'pr-hucha-escena', 'aria-hidden': 'true' },
     dibujoPixel(VENTANA, 'pr-cuarto-ventana', 'vh'),
@@ -226,29 +310,52 @@ export function pintarPrecios(contenedor) {
   // 3. La colección de Max
   // =====================================================================
   const LIBROS = [['A1', 'a1', '#5fae6a'], ['A2', 'a2', '#4f9fd8'], ['B1', 'b1', '#9a6bd1'], ['B2', 'b2', '#d2353d'], ['GR', 'gram', '#f08a4b'], ['EX', 'examen', '#f4c84a']];
-  const ANIMACIONES_LIBRO = [null, 'saludar', 'hojear', 'pulgar', 'pensar', 'celebrar'];
-  const sellosPdf = [];
+  const GESTOS_LIBRO = ['saludar', 'hojear', 'escribir', 'pulgar', 'pensar', 'celebrar'];
+  const enPdf = z.libros === 'pdf';
+  const corto = codigo => (codigo === 'GR' ? t('pr.libro.gramCorto') : codigo === 'EX' ? t('pr.libro.examenCorto') : codigo);
+  // cada portada lleva a la tutora viva: al pasar por el libro, hace lo suyo
   const estante = el('ul', { class: 'pr-estante' }, LIBROS.map(([codigo, clave, color], i) => {
-    const sello = el('span', { class: 'pr-sello-pdf', hidden: true }, 'PDF');
-    sellosPdf.push(sello);
-    return el('li', { class: 'pr-libro', style: `--c:${color}` },
+    const tutora = tutoraViva(principal);
+    tutora.figura.classList.add('pr-libro-tutora');
+    const libro = el('li', { class: 'pr-libro', style: `--c:${color}` },
       el('span', { class: 'pr-libro-marca' }, 'Paglot'),
-      retrato(principal, 'pr-libro-tutora', ANIMACIONES_LIBRO[i]),
-      el('b', {}, codigo === 'GR' ? t('pr.libro.gramCorto') : codigo === 'EX' ? t('pr.libro.examenCorto') : codigo),
+      tutora.figura,
+      el('b', {}, corto(codigo)),
       el('span', { class: 'pr-libro-nombre' }, t(`pr.libro.${clave}`)),
-      sello);
+      enPdf ? el('span', { class: 'pr-sello-pdf' }, 'PDF') : null);
+    libro.addEventListener('pointerenter', () => tutora.gesto(GESTOS_LIBRO[i]));
+    return libro;
   }));
-  const notaZona = el('p', { class: 'pr-col-pdf' });
+  const tEscalera = tutoraViva(principal);
+  tEscalera.figura.classList.add('pr-escalera-tutora');
+
+  // cómo llegan: la caja con todo (pago anual) y el camino de paquetes nivel a nivel (pago mensual); o el PDF
+  const pasos = [['A1', 'GR'], ['A2'], ['B1'], ['B2'], ['EX']];
+  const envios = enPdf
+    ? el('div', { class: 'pr-carta pr-envio pr-envio-pdf' },
+      dibujoPixel(TABLETA, 'pr-tableta', 'tb'),
+      el('div', {}, el('h3', {}, 'PDF'), el('p', {}, t('pr.col.pdf'))))
+    : el('div', { class: 'pr-dos' },
+      el('div', { class: 'pr-carta pr-envio' },
+        dibujoPixel(CAJA, 'pr-caja', 'cj'),
+        el('div', {}, el('h3', {}, t('pr.col.anual.titulo')), el('p', {}, t('pr.col.anual.texto')))),
+      el('div', { class: 'pr-carta pr-envio pr-envio-mes' },
+        el('div', {}, el('h3', {}, t('pr.col.mes.titulo')), el('p', {}, t('pr.col.mes.texto'))),
+        el('ol', { class: 'pr-camino', 'aria-hidden': 'true' }, pasos.map((p, i) => el('li', { style: `--n:${i}` },
+          el('span', { class: 'pr-paquete' }), el('b', {}, p.map(corto).join(' + ')))))));
+
   const seccionColeccion = el('section', { class: 'pr-seccion pr-coleccion' },
+    el('div', { class: 'pr-biblio-fondo', 'aria-hidden': 'true' }, el('i', { class: 'pr-biblio-libros' }), el('i', { class: 'pr-biblio-baldas' })),
+    dibujoPixel(LAMPARA, 'pr-lampara pr-lampara-izq', 'lp'), dibujoPixel(LAMPARA, 'pr-lampara pr-lampara-der', 'lp'),
+    el('span', { class: 'pr-luz pr-luz-izq', 'aria-hidden': 'true' }), el('span', { class: 'pr-luz pr-luz-der', 'aria-hidden': 'true' }),
     el('span', { class: 'pr-etiqueta' }, t('pr.max.nombre')),
     el('h2', {}, t('pr.col.titulo')),
     el('p', { class: 'pr-entradilla' }, t('pr.col.texto', { tutora: NOMBRES_TUTORAS[principal.id] ?? '' })),
-    estante,
-    el('div', { class: 'pr-tabla-madera', 'aria-hidden': 'true' }),
-    el('div', { class: 'pr-dos' },
-      el('div', { class: 'pr-carta' }, el('h3', {}, t('pr.col.anual.titulo')), el('p', {}, t('pr.col.anual.texto'))),
-      el('div', { class: 'pr-carta' }, el('h3', {}, t('pr.col.mes.titulo')), el('p', {}, t('pr.col.mes.texto')))),
-    notaZona,
+    el('div', { class: 'pr-estanteria' },
+      estante,
+      el('div', { class: 'pr-tabla-madera', 'aria-hidden': 'true' }, el('i'), el('i')),
+      el('div', { class: 'pr-escalera-mano', 'aria-hidden': 'true' }, dibujoPixel(ESCALERA, 'pr-escalera-dibujo', 'lp'), tEscalera.figura)),
+    envios,
     el('p', { class: 'pr-col-otro' }, t('pr.col.otro')));
 
   // =====================================================================
@@ -257,15 +364,55 @@ export function pintarPrecios(contenedor) {
   const precioFamilia = el('p', { class: 'pr-precio pr-precio-medio' });
   const porFamilia = el('p', { class: 'pr-por' });
   const precioFundadores = el('p', { class: 'pr-precio pr-precio-medio' });
+
+  // Familia: una casita con chimenea y las seis tutoras dentro, cada una con su barrita de progreso; hacen la ola
+  const familia = repartir(6).map(c => tutoraViva(c));
+  const casa = el('div', { class: 'pr-casa', 'aria-hidden': 'true' },
+    el('div', { class: 'pr-chimenea' }, el('i'), el('i'), el('i')),
+    el('div', { class: 'pr-tejado' }),
+    el('ul', { class: 'pr-casa-fila' }, familia.map((x, i) => el('li', { style: `--n:${i}` },
+      x.figura, el('span', { class: 'pr-casa-barra' }, el('i'))))),
+    el('div', { class: 'pr-casa-suelo' }));
+  let olaEn = 0;
+  const ola = () => {
+    if (!vistas.has(seccionExtras) || document.hidden) return;
+    const gesto = ['saludar', 'vueltecita', 'aplaudir'][olaEn++ % 3];
+    familia.forEach((x, i) => despues(i * 180, () => x.gesto(gesto)));
+  };
+
+  // Fundadores: el carné, con la foto de una tutora, el número de plaza rodando y un brillo que lo cruza
+  const fundadora = tutoraViva(repartir()[0]);
+  const numero = el('b', { class: 'pr-carne-numero' }, 'Nº 0001');
+  const carne = el('div', { class: 'pr-carne', 'aria-hidden': 'true' },
+    el('div', { class: 'pr-carne-cabeza' }, el('span', { class: 'pr-carne-marca' }, 'Pa', el('i', {}, 'glot')), el('span', {}, '★ ' + t('pr.fun.titulo').toUpperCase())),
+    el('div', { class: 'pr-carne-cuerpo' },
+      el('div', { class: 'pr-carne-foto' }, fundadora.figura),
+      el('div', { class: 'pr-carne-datos' },
+        numero,
+        el('span', { class: 'pr-carne-plus' }, 'PLUS ∞'),
+        el('span', { class: 'pr-carne-lineas' }, el('i'), el('i'), el('i')))),
+    el('span', { class: 'pr-carne-sello' }, '★'),
+    el('span', { class: 'pr-chispa', style: '--n:0' }), el('span', { class: 'pr-chispa', style: '--n:1' }), el('span', { class: 'pr-chispa', style: '--n:2' }));
+  let plaza = 1;
+  const rodarPlaza = () => {
+    if (!vistas.has(seccionExtras) || document.hidden) return;
+    plaza = (plaza % PLAZAS_FUNDADORES) + 1 + Math.floor(Math.random() * 37);
+    if (plaza > PLAZAS_FUNDADORES) plaza = 1;
+    numero.textContent = `Nº ${String(plaza).padStart(4, '0')}`;
+  };
+
   const seccionExtras = el('section', { class: 'pr-seccion pr-extras' },
+    el('div', { class: 'inicio-cielo pr-barrio-cielo', 'aria-hidden': 'true' }, nubes()),
+    dibujoPixel(rejillaBarrio(), 'pr-barrio', 'bz'),
+    el('div', { class: 'pr-acera', 'aria-hidden': 'true' }),
     el('div', { class: 'pr-carta pr-familia' },
-      el('div', { class: 'pr-familia-fila' }, barajadas.slice(0, 6).map(c => retrato(c))),
+      casa,
       el('h3', {}, t('pr.fam.titulo')),
       el('p', {}, t('pr.fam.texto')),
       precioFamilia, porFamilia,
       ...botonPronto(null)),
     el('div', { class: 'pr-carta pr-fundadores' },
-      el('span', { class: 'pr-insignia', 'aria-hidden': 'true' }, '★'),
+      carne,
       el('h3', {}, t('pr.fun.titulo')),
       el('p', {}, t('pr.fun.texto', { n: PLAZAS_FUNDADORES.toLocaleString(locale()) })),
       precioFundadores,
@@ -288,26 +435,94 @@ export function pintarPrecios(contenedor) {
     ['pr.t.libros', null, null, SI],
     ['pr.t.hucha', SI, null, null],
   ];
-  const celda = v => {
-    if (v === SI) return el('td', { class: 'pr-si' }, el('span', { class: 'pr-check', 'aria-label': '✔' }));
-    if (v === null) return el('td', { class: 'pr-no' }, '—');
-    return el('td', {}, v.startsWith('pr.') ? t(v) : v);
+  // lo que hace la tutora de cada fila cuando el puntero la señala
+  const GESTO_FILA = {
+    'pr.t.idiomas': 'saludar', 'pr.t.lecciones': 'escribir', 'pr.t.repaso': 'asentir', 'pr.t.practica': 'pensar',
+    'pr.t.simulacros': 'rascarse', 'pr.t.certificado': 'presentarDer', 'pr.t.familia': 'aplaudir', 'pr.t.trajes': 'vueltecita',
+    'pr.t.libros': 'hojear', 'pr.t.hucha': 'celebrar',
   };
+  const celda = (v, clase = '') => {
+    if (v === SI) return el('td', { class: `pr-si ${clase}` }, el('span', { class: 'pr-check', 'aria-label': '✔' }));
+    if (v === null) return el('td', { class: `pr-no ${clase}` }, el('span', { class: 'pr-raya', 'aria-label': '—' }));
+    return el('td', { class: clase }, v.startsWith('pr.') ? t(v) : v);
+  };
+  const alumnas = repartir(FILAS.length).map(c2 => tutoraViva(c2, true));
+  const filas = FILAS.map(([clave, gr, pl, mx, marca], i) => {
+    const alumna = alumnas[i];
+    alumna?.figura.classList.add('pr-alumna');
+    const fila = el('tr', { 'data-gesto': GESTO_FILA[clave] ?? 'saludar' },
+      el('th', { scope: 'row' }, el('div', { class: 'pr-fila-nombre' }, el('span', { class: 'pr-fila-quien' }, alumna?.figura ?? null), el('span', { class: 'pr-fila-que' }, t(clave), marca ?? null))),
+      celda(gr), celda(pl), celda(mx, 'pr-col-max'));
+    fila.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { manual = true; senalar(i); } });
+    fila.addEventListener('pointerleave', () => { manual = false; });
+    return { fila, alumna };
+  });
+  const puntero = el('span', { class: 'pr-puntero', 'aria-hidden': 'true' });
+  const tabla = el('table', { class: 'pr-tabla pr-pizarra-tabla' },
+    el('thead', {}, el('tr', {}, el('th', {}, ''),
+      el('th', { class: 'pr-th-gratis' }, t('pr.gratis.nombre')),
+      el('th', { class: 'pr-th-plus' }, t('pr.plus.nombre')),
+      el('th', { class: 'pr-th-max pr-col-max' }, t('pr.max.nombre')))),
+    el('tbody', {}, filas.map(f => f.fila)));
+  let activa = -1;
+  let manual = false;
+  function senalar(i) {
+    if (activa === i) return;
+    filas[activa]?.fila.classList.remove('pr-activa');
+    activa = i;
+    const { fila, alumna } = filas[i];
+    fila.classList.add('pr-activa');
+    const caja = puntero.parentElement.getBoundingClientRect();
+    const sitio = fila.getBoundingClientRect();
+    puntero.style.transform = `translateY(${Math.round(sitio.top - caja.top + sitio.height / 2 - 12)}px)`;
+    alumna?.gesto(fila.dataset.gesto);
+  }
+  const pasarLista = () => { if (!vistas.has(seccionTabla) || document.hidden || manual) return; senalar((activa + 1) % filas.length); };
+
   const seccionTabla = el('section', { class: 'pr-seccion pr-comparar' },
-    el('h2', {}, t('pr.tabla.titulo')),
-    el('div', { class: 'pr-tabla-caja' },
-      el('table', { class: 'pr-tabla' },
-        el('thead', {}, el('tr', {}, el('th', {}, ''), el('th', { class: 'pr-th-gratis' }, t('pr.gratis.nombre')), el('th', { class: 'pr-th-plus' }, t('pr.plus.nombre')), el('th', { class: 'pr-th-max' }, t('pr.max.nombre')))),
-        el('tbody', {}, FILAS.map(([clave, a, b, m, marca]) => el('tr', {}, el('th', { scope: 'row' }, t(clave), marca ?? null), celda(a), celda(b), celda(m)))))),
-    el('p', { class: 'pr-notas' }, t('pr.nota.oral'), el('br'), t('pr.nota.certificado'), el('br'), t('pr.nota.caprichos')));
+    el('div', { class: 'pr-aula-pared', 'aria-hidden': 'true' },
+      el('span', { class: 'pr-reloj' }, el('i', { class: 'pr-reloj-hora' }), el('i', { class: 'pr-reloj-min' })),
+      el('span', { class: 'pr-poster' }, el('i'), el('i'), el('i'), el('i'))),
+    el('h2', { class: 'pr-aula-titulo' }, el('span', {}, t('pr.tabla.titulo'))),
+    el('div', { class: 'pr-pizarra' },
+      puntero,
+      el('div', { class: 'pr-pizarra-dentro' }, tabla),
+      el('div', { class: 'pr-repisa', 'aria-hidden': 'true' }, el('i', { class: 'pr-tiza' }), el('i', { class: 'pr-tiza pr-tiza-rosa' }), el('i', { class: 'pr-tiza pr-tiza-amarilla' }), el('i', { class: 'pr-borrador' }))),
+    el('div', { class: 'pr-notas' }, el('p', {}, t('pr.nota.oral')), el('p', {}, t('pr.nota.certificado')), el('p', {}, t('pr.nota.caprichos'))),
+    el('div', { class: 'pr-aula-suelo', 'aria-hidden': 'true' }));
 
   // =====================================================================
   // 6. Las promesas
   // =====================================================================
+  // Un pergamino que se desenrolla al llegar; cada promesa lleva su dibujito y un sello de lacre que se estampa
+  // uno detrás de otro. Abajo, la firma. Al pulsar un sello se vuelve a estampar.
+  const lacre = () => {
+    const sello = el('span', { class: 'pr-lacre', 'aria-hidden': 'true' }, '♥');
+    sello.addEventListener('click', () => {
+      sonar('guardar');
+      sello.classList.remove('pr-otra-vez');
+      void sello.offsetWidth;
+      sello.classList.add('pr-otra-vez');
+    });
+    return sello;
+  };
   const seccionPromesas = el('section', { class: 'pr-seccion pr-promesas' },
-    el('h2', {}, t('precios.promesas.titulo')),
-    el('ul', { class: 'pr-sellos' }, ['pr.prom1', 'precios.p2', 'precios.p3', 'pr.prom5', 'precios.p4'].map((k, i) =>
-      el('li', { style: `--n:${i}` }, el('span', { class: 'pr-corazon', 'aria-hidden': 'true' }), el('p', {}, t(k))))),
+    el('div', { class: 'inicio-cielo', 'aria-hidden': 'true' }, nubes()),
+    el('div', { class: 'pr-corazones', 'aria-hidden': 'true' }, Array.from({ length: 9 }, (_, i) => el('i', { style: `--n:${i}` }))),
+    el('div', { class: 'pr-pergamino' },
+      el('div', { class: 'pr-rodillo', 'aria-hidden': 'true' }),
+      el('div', { class: 'pr-rollo' },
+        el('div', { class: 'pr-papel' },
+          el('h2', {}, t('precios.promesas.titulo')),
+          el('ol', { class: 'pr-juras' }, ['pr.prom1', 'precios.p2', 'precios.p3', 'pr.prom5', 'precios.p4'].map((k, i) =>
+            el('li', { style: `--n:${i}` },
+              el('span', { class: 'pr-jura-icono' }, dibujoPixel(conContorno(ICONOS_PROMESA[i]), 'pr-icono-promesa', 'pi')),
+              el('p', {}, t(k)),
+              lacre()))),
+          el('div', { class: 'pr-firma', 'aria-hidden': 'true' },
+            el('span', { class: 'pr-firma-nombre' }, 'Pa', el('i', {}, 'glot')),
+            el('span', { class: 'pr-firma-trazo' })))),
+      el('div', { class: 'pr-rodillo pr-rodillo-abajo', 'aria-hidden': 'true' })),
     el('p', { class: 'pr-aviso' }, t('pr.aviso')));
 
   // ----- Los precios de la zona y el tipo de pago elegidos -----
@@ -329,10 +544,6 @@ export function pintarPrecios(contenedor) {
     poner2(precioFamilia, euros(z.familia));
     porFamilia.textContent = t('pr.fam.porPersona', { p: euros(Math.round(z.familia / 6 * 100) / 100) });
     poner2(precioFundadores, euros(z.fundadores));
-    const pdf = z.libros === 'pdf';
-    for (const s of sellosPdf) s.hidden = !pdf;
-    notaZona.textContent = pdf ? t('pr.col.pdf') : t('pr.col.impresos');
-    notaZona.classList.toggle('pr-col-pdf-si', pdf);
   }
 
   // ----- Montaje -----
@@ -365,7 +576,7 @@ export function pintarPrecios(contenedor) {
   });
 
   // Las tutoras se mueven solo mientras la pantalla se ve; cada poco, una hace algo.
-  const GESTOS = [[tGratis, ['saludar', 'guino', 'asentir']], [tPlus, ['pulgar', 'aplaudir', 'presentarDer']], [tMax, ['hojear', 'celebrar', 'presentarIzq']], [tHucha, ['aplaudir', 'senalar', 'pulgar']]];
+  const GESTOS = [[tGratis, ['saludar', 'guino', 'asentir']], [tPlus, ['pulgar', 'aplaudir', 'presentarDer']], [tMax, ['hojear', 'celebrar', 'presentarIzq']], [tHucha, ['aplaudir', 'senalar', 'pulgar']], [tEscalera, ['hojear', 'saludar', 'estirarse']]];
   let turno = 0;
   const reloj = setInterval(() => {
     if (!visible || document.hidden) return;
@@ -374,20 +585,41 @@ export function pintarPrecios(contenedor) {
     turno++;
   }, CADA_GESTO);
   apagar.push(() => clearInterval(reloj));
+  const relojOla = setInterval(ola, 5200);
+  const relojLista = setInterval(pasarLista, 2600);
+  apagar.push(() => clearInterval(relojLista));
+  const relojPlaza = setInterval(rodarPlaza, 140);
+  apagar.push(() => { clearInterval(relojOla); clearInterval(relojPlaza); });
+  fundadora.figura.addEventListener('pointerenter', () => fundadora.gesto('pulgar'));
   for (const [quien, nombre] of [[peldanoGratis, 'saludar'], [peldanoPlus, 'pulgar'], [peldanoMax, 'celebrar']]) {
     const v = vivas.find(x => quien.contains(x.figura));
     quien.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') v?.gesto(nombre); });
   }
   const raiz = contenedor.firstElementChild;
   if ('IntersectionObserver' in window) {
-    const vistas = new Set();
     const ojo = new IntersectionObserver(entradas => {
-      for (const e of entradas) if (e.isIntersecting) vistas.add(e.target); else vistas.delete(e.target);
-      if (vistas.size) encender(); else dormir();
+      for (const e of entradas) {
+        if (e.isIntersecting) vistas.add(e.target); else vistas.delete(e.target);
+        e.target.classList.toggle('pr-fuera', !e.isIntersecting); // fuera de pantalla, sus animaciones de CSS se paran
+      }
+      actualizar();
     });
     for (const s of raiz.children) ojo.observe(s);
     apagar.push(() => ojo.disconnect());
-  } else encender();
+  } else { for (const s of raiz.children) vistas.add(s); actualizar(); }
+  // el pergamino se desenrolla (una sola vez) cuando ya se ve bien: su parte de arriba pasa de media pantalla,
+  // o no se puede bajar más. Se mide lo que ocupa el papel para que baje a ritmo constante.
+  const mirarPergamino = () => {
+    const abajoDelTodo = innerHeight + scrollY >= document.documentElement.scrollHeight - 4;
+    if (seccionPromesas.getBoundingClientRect().top > innerHeight * 0.55 && !abajoDelTodo) return;
+    const papel = seccionPromesas.querySelector('.pr-papel');
+    papel.style.setProperty('--alto', `${papel.scrollHeight}px`);
+    seccionPromesas.classList.add('pr-visto');
+    removeEventListener('scroll', mirarPergamino);
+  };
+  addEventListener('scroll', mirarPergamino, { passive: true });
+  apagar.push(() => removeEventListener('scroll', mirarPergamino));
+  mirarPergamino();
   despues(600, () => tMax.decir(t('pr.saludo', { nombre: NOMBRES_TUTORAS[principal.id] ?? '' })));
 
   return () => {

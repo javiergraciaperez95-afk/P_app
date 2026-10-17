@@ -159,6 +159,10 @@ body.en-inicio { overflow-x: clip; } /* el escenario va de lado a lado de la ven
 :root[data-tema="oscuro"] .inicio-universidad .u-c { fill: #4c3f68; }
 :root[data-tema="oscuro"] .inicio-universidad .u-r { fill: #5a3552; }
 :root[data-tema="oscuro"] .inicio-universidad .u-w, :root[data-tema="oscuro"] .inicio-universidad .u-x { fill: #ffd86b; }
+/* la ventana que parpadea: debajo, la misma ventana apagada (u-xo); encima, la encendida aparece y desaparece.
+   Animar la opacidad lo hace la tarjeta gráfica; animar el color (fill) recalculaba la página en cada fotograma. */
+.inicio-universidad .u-xo { fill: none; }
+:root[data-tema="oscuro"] .inicio-universidad .u-xo { fill: #4c3f68; }
 :root[data-tema="oscuro"] .inicio-universidad .u-x { animation: ventana-luz 5s steps(1) infinite; }
 :root[data-tema="oscuro"] .inicio-universidad .u-d { fill: #1e1629; }
 :root[data-tema="oscuro"] .inicio-universidad .u-o { fill: #fff3c4; }
@@ -168,7 +172,7 @@ body.en-inicio { overflow-x: clip; } /* el escenario va de lado a lado de la ven
 :root[data-tema="oscuro"] .inicio-universidad .u-n { fill: #2c2233; }
 :root[data-tema="oscuro"] .inicio-universidad .u-p { fill: #6c5a7c; }
 :root[data-tema="oscuro"] .inicio-universidad .u-k { fill: #16101f; }
-@keyframes ventana-luz { 60% { fill: #4c3f68; } }
+@keyframes ventana-luz { 60% { opacity: 0; } }
 .inicio-figura.boton-izq { margin-right: -14px; }
 .inicio-figura.boton-der { margin-left: -14px; }
 .inicio-plataforma { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
@@ -318,19 +322,32 @@ body.en-inicio { overflow-x: clip; } /* el escenario va de lado a lado de la ven
   padding: 24px 40px 26px;
   color: var(--h-rosa-tinta);
   text-align: center;
+  isolation: isolate; /* los pliegues (::before) van detrás del texto */
   background-color: var(--h-rosa);
-  background-image: repeating-linear-gradient(90deg, transparent 0 48px, rgba(0, 0, 0, .08) 48px 72px, transparent 72px 96px, rgba(255, 255, 255, .08) 96px 120px, transparent 120px 144px);
-  background-size: 144px 100%;
   box-shadow:
     inset 12px 0 0 rgba(0, 0, 0, .2), inset -12px 0 0 rgba(0, 0, 0, .2),
     0 -3px 0 0 var(--h-borde), 0 3px 0 0 var(--h-borde), -3px 0 0 0 var(--h-borde), 3px 0 0 0 var(--h-borde),
     4px 8px 0 0 rgba(0, 0, 0, .2);
   outline: 2px dashed rgba(255, 255, 255, .55);
   outline-offset: -20px;
+}
+/* los pliegues que se mueven: una tira más ancha que la tela (144 px, lo que mide un pliegue) que se desliza con transform.
+   Antes se movía el fondo (background-position), y eso obligaba a repintar la pancarta en cada fotograma. */
+.pancarta::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: -144px;
+  right: 0;
+  background-image: repeating-linear-gradient(90deg, transparent 0 48px, rgba(0, 0, 0, .08) 48px 72px, transparent 72px 96px, rgba(255, 255, 255, .08) 96px 120px, transparent 120px 144px);
+  background-size: 144px 100%;
+  pointer-events: none;
   animation: pancarta-ondea 3.6s steps(12) infinite;
 }
 :root[data-tema="oscuro"] .pancarta { outline-color: rgba(0, 0, 0, .35); }
-@keyframes pancarta-ondea { to { background-position: 144px 0; } }
+@keyframes pancarta-ondea { to { transform: translateX(144px); } }
 .pancarta::after {
   content: "";
   position: absolute;
@@ -440,9 +457,9 @@ body.en-inicio { overflow-x: clip; } /* el escenario va de lado a lado de la ven
 .pancarta {
   color: #2b1d1a;
   background-color: #fffaf0;
-  background-image: repeating-linear-gradient(90deg, transparent 0 48px, rgba(0, 0, 0, .05) 48px 72px, transparent 72px 96px, rgba(255, 255, 255, .5) 96px 120px, transparent 120px 144px);
   outline-color: rgba(200, 68, 90, .6);
 }
+.pancarta::before { background-image: repeating-linear-gradient(90deg, transparent 0 48px, rgba(0, 0, 0, .05) 48px 72px, transparent 72px 96px, rgba(255, 255, 255, .5) 96px 120px, transparent 120px 144px); }
 :root[data-tema="oscuro"] .pancarta { background-color: #f1e7d6; outline-color: rgba(200, 68, 90, .65); }
 .pancarta .inicio-datos strong { color: #c8445a; text-shadow: 3px 3px 0 rgba(0, 0, 0, .12); }
 .pancarta .inicio-datos span { color: #6d5b50; opacity: 1; }
@@ -502,9 +519,18 @@ body.en-inicio { overflow-x: clip; } /* el escenario va de lado a lado de la ven
 }
 .pancarta {
   padding: 44px 40px 46px;
-  box-shadow: inset 12px 0 0 rgba(0, 0, 0, .08), inset -12px 0 0 rgba(0, 0, 0, .08);
+  box-shadow: none;
 }
-.pancarta::after { content: none; }
+/* la sombra de las mangas, encima de los pliegues (como cuando los pliegues eran el fondo de la tela) */
+.pancarta::after {
+  content: "";
+  z-index: -1;
+  inset: 0;
+  height: auto;
+  background: none;
+  box-shadow: inset 12px 0 0 rgba(0, 0, 0, .08), inset -12px 0 0 rgba(0, 0, 0, .08);
+  pointer-events: none;
+}
 .pancarta-flecos {
   position: absolute;
   left: 3px;
@@ -1117,7 +1143,8 @@ body.en-inicio { overflow-x: clip; } /* el escenario va de lado a lado de la ven
   .pancarta-escena { --lado: 66px; --palo-izq: 47px; --palo-der: 11px; }
   .lado-izq .inicio-figura { margin-left: -30px; }
   .lado-der .inicio-figura { margin-right: -30px; }
-  .pancarta { padding: 38px 22px 40px; outline-offset: -14px; box-shadow: inset 8px 0 0 rgba(0, 0, 0, .08), inset -8px 0 0 rgba(0, 0, 0, .08); }
+  .pancarta { padding: 38px 22px 40px; outline-offset: -14px; }
+  .pancarta::after { box-shadow: inset 8px 0 0 rgba(0, 0, 0, .08), inset -8px 0 0 rgba(0, 0, 0, .08); }
   .paseante { width: 24px; height: 32px; }
   .mercado-paseantes { height: 32px; }
   .pancarta .inicio-texto { font-size: .95rem; }
@@ -1146,8 +1173,11 @@ body.en-inicio { overflow-x: clip; } /* el escenario va de lado a lado de la ven
   .inicio-nombre { font-size: clamp(4rem, 10vw, 6.6rem); }
 }
 
+/* una parte de la portada que no se ve: sus animaciones esperan quietas (lo pone js/vistas/inicio.js) */
+.quieta, .quieta::before, .quieta::after, .quieta *, .quieta *::before, .quieta *::after { animation-play-state: paused !important; }
+
 @media (prefers-reduced-motion: reduce) {
-  .teatro-cartel::before, .teatro-cartel::after, .telon, .teatro-publico i, .paseante, .paseante svg, .farolillo, .inicio-mercado .x-s, .pancarta, .ondea-tira, .pasillo-banderines i, .pasillo-aplique::before, .inicio-cielo::before, .inicio-cielo::after, .sol-a, .sol-b, .inicio-nube, .inicio-universidad .u-x, .inicio-logo, .inicio-empezar::before,
+  .teatro-cartel::before, .teatro-cartel::after, .telon, .teatro-publico i, .paseante, .paseante svg, .farolillo, .inicio-mercado .x-s, .pancarta::before, .ondea-tira, .pasillo-banderines i, .pasillo-aplique::before, .inicio-cielo::before, .inicio-cielo::after, .sol-a, .sol-b, .inicio-nube, .inicio-universidad .u-x, .inicio-logo, .inicio-empezar::before,
   .inicio-plataforma.apretujado .inicio-empezar, .inicio-plataforma.brilla .inicio-empezar, .inicio-plataforma.pisado::after { animation: none; }
   .inicio-plataforma.pisado .inicio-empezar, .inicio-plataforma.pisado .boton-arriba { transform: none; }
 }

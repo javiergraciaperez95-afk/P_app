@@ -37,7 +37,7 @@ function tarjetaLeccion(resultado) {
       el('span', { class: `estado-${r.estado}` }, `${ICONOS_ESTADO[r.estado]} ${t(`estado.${r.estado}`)}`),
       barra(r.completados, r.total),
       el('span', {}, t('lecciones.ejercicios', { hechos: r.completados, total: r.total })),
-      resultado.avisos.length ? el('span', { class: 'aviso-bloque' }, t('comun.nAvisos', { n: resultado.avisos.length })) : null)));
+      (resultado.nAvisos ?? resultado.avisos.length) ? el('span', { class: 'aviso-bloque' }, t('comun.nAvisos', { n: resultado.nAvisos ?? resultado.avisos.length })) : null)));
 }
 
 /** Agrupa por «capitulo». Las lecciones sin capítulo van al final. */

@@ -11,8 +11,10 @@ import { ajuste, cambiarAjuste } from '../ajustes.js';
 import { prepararVoces, nombreVoz, pronunciar, sonar, ayudaVoz, abrirInstalacionDeVoces } from '../sonidos.js';
 import {
   nubeConfigurada, nube, usuarioActual, entrar, crearCuenta, salir, sincronizar, alCambiarNube,
-  recuperarContrasena, cambiarContrasena, borrarDatosNube,
+  recuperarContrasena, cambiarContrasena, borrarDatosNube, pedirCodigo, entrarConCodigo, entrarConGoogle,
+  reenviarConfirmacion,
 } from '../sync.js';
+import { googleDisponible, botonGoogle } from '../google.js';
 import { decir } from '../tutor.js';
 import { curso } from '../curso.js';
 
@@ -76,7 +78,8 @@ function seccionProgreso(resultados) {
 // Cuenta: registro, inicio de sesión, recuperar contraseña…
 // ---------------------------------------------------------------------------
 
-let pestanaCuenta = 'entrar'; // entrar · crear · recuperar
+let pestanaCuenta = 'entrar'; // con contraseña: entrar · crear · recuperar
+let correoDelCodigo = '';     // a qué correo se ha mandado el código (paso 2 del formulario del código)
 
 function campo(id, texto, atributos) {
   const entrada = el('input', { id, ...atributos });
@@ -85,7 +88,7 @@ function campo(id, texto, atributos) {
 
 /** Campo de contraseña con botón para verla. */
 function campoContrasena(id, texto, autocompletar) {
-  const c = campo(id, texto, { type: 'password', required: true, minlength: '6', autocomplete: autocompletar });
+  const c = campo(id, texto, { type: 'password', required: true, minlength: '8', autocomplete: autocompletar });
   const ver = el('button', { type: 'button', class: 'boton boton-mini', 'aria-pressed': 'false', 'aria-controls': id }, t('form.ver'));
   ver.addEventListener('click', () => {
     const visible = c.entrada.type === 'password';
@@ -98,10 +101,10 @@ function campoContrasena(id, texto, autocompletar) {
 }
 
 /** Formulario genérico: muestra «Un momento…», los errores y el resultado. */
-function formulario(hijos, textoBoton, accion, { principal = true } = {}) {
+function formulario(hijos, textoBoton, accion, { principal = true, extra = null } = {}) {
   const mensaje = el('p', { class: 'mensaje-formulario', role: 'status' });
   const enviar = el('button', { type: 'submit', class: `boton ${principal ? 'boton-principal' : ''}` }, textoBoton);
-  const form = el('form', { class: 'formulario', novalidate: true }, hijos, mensaje, el('div', { class: 'botonera' }, enviar));
+  const form = el('form', { class: 'formulario', novalidate: true }, hijos, mensaje, el('div', { class: 'botonera' }, enviar, extra));
   form.addEventListener('submit', async e => {
     e.preventDefault();
     const invalido = [...form.querySelectorAll('input')].find(i => !i.checkValidity());
@@ -109,9 +112,11 @@ function formulario(hijos, textoBoton, accion, { principal = true } = {}) {
       mensaje.className = 'mensaje-formulario error';
       mensaje.textContent = invalido.type === 'email'
         ? t('form.correoValido')
-        : invalido.type === 'password' || invalido.minLength > 0
-          ? t('form.contrasenaCorta')
-          : t('form.rellena');
+        : invalido.dataset.codigo
+          ? t('nube.err.codigo')
+          : invalido.type === 'password' || invalido.minLength > 0
+            ? t('form.contrasenaCorta')
+            : t('form.rellena');
       invalido.focus();
       return;
     }
@@ -125,6 +130,7 @@ function formulario(hijos, textoBoton, accion, { principal = true } = {}) {
     mensaje.textContent = t('form.unMomento');
     try {
       const resultado = await accion();
+      if (!form.isConnected) return; // ha abierto sesión y la sección ya se ha repintado
       mensaje.className = 'mensaje-formulario bien';
       mensaje.textContent = resultado ?? '';
     } catch (error) {
@@ -139,13 +145,80 @@ function formulario(hijos, textoBoton, accion, { principal = true } = {}) {
   return form;
 }
 
+/** Lo que dice la tutora al entrar, según si la cuenta es nueva. */
+function celebrarEntrada(nueva) {
+  sonar('bien');
+  decir(t(nueva ? 'cuenta.creadaTutora' : 'cuenta.sesionIniciadaTutora'), 'contenta');
+}
+
+/**
+ * Entrar con un código por correo, en dos pasos: el correo y, cuando llega, las 6 cifras.
+ * Si no había cuenta, se crea al entrar: no hay que elegir entre «entrar» y «crear».
+ */
+function formularioCodigo(repintar) {
+  if (!correoDelCodigo) {
+    const correo = campo('cuenta-correo-codigo', t('form.correo'), { type: 'email', required: true, autocomplete: 'email', inputmode: 'email' });
+    return formulario([el('p', { class: 'aprox' }, t('cuenta.codigoTexto')), correo.nodo], t('cuenta.enviarCodigo'), async () => {
+      const direccion = correo.entrada.value.trim();
+      await pedirCodigo(direccion);
+      correoDelCodigo = direccion;
+      sonar('bien');
+      decir(t('cuenta.codigoEnviadoTutora'), 'contenta');
+      repintar();
+      document.getElementById('cuenta-codigo')?.focus();
+    });
+  }
+  // Seis cifras: en el móvil sale el teclado numérico y el sistema puede ofrecer el código del correo.
+  const codigo = campo('cuenta-codigo', t('form.codigo'), {
+    type: 'text', required: true, inputmode: 'numeric', autocomplete: 'one-time-code', pattern: '\\s*(\\d\\s*){6}', maxlength: '9',
+    'data-codigo': '1', class: 'campo-codigo',
+  });
+  const otroCorreo = el('button', { type: 'button', class: 'boton boton-mini' }, t('cuenta.otroCorreo'));
+  otroCorreo.addEventListener('click', () => { correoDelCodigo = ''; sonar('clic'); repintar(); });
+  const reenviar = el('button', { type: 'button', class: 'boton boton-mini' }, t('cuenta.reenviar'));
+  reenviar.addEventListener('click', async () => {
+    try {
+      await pedirCodigo(correoDelCodigo);
+      sonar('bien');
+      decir(t('cuenta.codigoEnviadoTutora'), 'contenta');
+    } catch (error) {
+      decir(error.message, 'confundida');
+    }
+  });
+  return formulario([
+    el('p', { class: 'aprox' }, t('cuenta.codigoEnviado', { correo: correoDelCodigo })),
+    codigo.nodo,
+  ], t('cuenta.entrarCodigo'), async () => {
+    const nueva = await entrarConCodigo(correoDelCodigo, codigo.entrada.value, nombre());
+    correoDelCodigo = '';
+    celebrarEntrada(nueva);
+    return t('cuenta.sesionIniciada');
+  }, { extra: el('span', { class: 'botonera-secundaria' }, reenviar, otroCorreo) });
+}
+
 function formularioEntrar() {
   const correo = campo('cuenta-correo', t('form.correo'), { type: 'email', required: true, autocomplete: 'email' });
   const clave = campoContrasena('cuenta-clave', t('form.contrasena'), 'current-password');
-  return formulario([correo.nodo, clave.nodo], t('cuenta.iniciarSesion'), async () => {
-    await entrar(correo.entrada.value.trim(), clave.entrada.value);
-    sonar('bien');
-    decir(t('cuenta.sesionIniciadaTutora'), 'contenta');
+  clave.entrada.minLength = 1; // al entrar no se juzga la contraseña: lo dice el servidor
+  const reenvio = el('p', { class: 'aprox', hidden: true });
+  return formulario([correo.nodo, clave.nodo, reenvio], t('cuenta.iniciarSesion'), async () => {
+    try {
+      await entrar(correo.entrada.value.trim(), clave.entrada.value);
+    } catch (error) {
+      // Sin confirmar: se ofrece mandar otra vez el enlace.
+      if (error.codigo === 'sin_confirmar') {
+        const boton = el('button', { type: 'button', class: 'boton boton-mini' }, t('cuenta.reenviarConfirmacion'));
+        boton.addEventListener('click', async () => {
+          await reenviarConfirmacion(correo.entrada.value.trim()).catch(() => {});
+          sonar('bien');
+          poner(reenvio, t('cuenta.enlaceEnviado'));
+        });
+        poner(reenvio, boton);
+        reenvio.hidden = false;
+      }
+      throw error;
+    }
+    celebrarEntrada(false);
     return t('cuenta.sesionIniciada');
   });
 }
@@ -158,10 +231,10 @@ function formularioCrear() {
   return formulario([nombreCampo.nodo, correo.nodo, clave.nodo, repetir.nodo], t('cuenta.crear'), async () => {
     if (clave.entrada.value !== repetir.entrada.value) throw new Error(t('form.noCoinciden'));
     if (nombreCampo.entrada.value.trim()) cambiarNombre(nombreCampo.entrada.value);
-    const confirmar = await crearCuenta(correo.entrada.value.trim(), clave.entrada.value, nombreCampo.entrada.value.trim());
+    await crearCuenta(correo.entrada.value.trim(), clave.entrada.value, nombreCampo.entrada.value.trim());
     sonar('bien');
-    decir(t(confirmar ? 'cuenta.creadaConfirmaTutora' : 'cuenta.creadaTutora'), 'contenta');
-    return t(confirmar ? 'cuenta.creadaConfirma' : 'cuenta.creada');
+    decir(t('cuenta.creadaConfirmaTutora'), 'contenta');
+    return t('cuenta.creadaConfirma');
   });
 }
 
@@ -177,23 +250,43 @@ function formularioRecuperar() {
   });
 }
 
-function formularioNuevaContrasena(titulo) {
+/** Contraseña nueva: desde el enlace del correo, para cambiarla o para poner la primera (cuentas de código o Google). */
+function formularioNuevaContrasena(titulo, { pedirActual = false } = {}) {
+  const actual = pedirActual ? campoContrasena('cuenta-clave-actual', t('form.contrasenaActual'), 'current-password') : null;
+  if (actual) actual.entrada.minLength = 1;
   const clave = campoContrasena('cuenta-clave-cambio', t('form.contrasenaNuevaMinimo'), 'new-password');
   const repetir = campoContrasena('cuenta-clave-cambio-repetir', t('form.repiteContrasenaNueva'), 'new-password');
   return el('div', {},
     el('h3', {}, titulo),
-    formulario([clave.nodo, repetir.nodo], t('cuenta.guardarContrasena'), async () => {
+    formulario([actual?.nodo, clave.nodo, repetir.nodo].filter(Boolean), t('cuenta.guardarContrasena'), async () => {
       if (clave.entrada.value !== repetir.entrada.value) throw new Error(t('form.noCoinciden'));
-      await cambiarContrasena(clave.entrada.value);
+      await cambiarContrasena(clave.entrada.value, actual?.entrada.value ?? '');
       sonar('guardar');
       decir(t('cuenta.contrasenaCambiadaTutora'), 'contenta');
       return t('cuenta.contrasenaCambiada');
     }, { principal: false }));
 }
 
-/** La cuenta: entrar, crear o recuperar; o los datos de la sesión. «pestana» elige con qué formulario se abre. */
+/** El botón de Google (si está configurado), con su mensaje de error debajo. */
+function bloqueGoogle() {
+  if (!nubeConfigurada || !googleDisponible()) return null;
+  const mensaje = el('p', { class: 'mensaje-formulario', role: 'status' });
+  const boton = botonGoogle(async credencial => {
+    mensaje.className = 'mensaje-formulario';
+    mensaje.textContent = t('form.unMomento');
+    const nueva = await entrarConGoogle(credencial);
+    celebrarEntrada(nueva);
+  }, error => {
+    mensaje.className = 'mensaje-formulario error';
+    mensaje.textContent = error?.message || t('nube.err.google');
+    sonar('mal');
+  });
+  return el('div', { class: 'cuenta-google' }, boton, mensaje, el('p', { class: 'separador-o' }, el('span', {}, t('cuenta.oCorreo'))));
+}
+
+/** La cuenta: entrar o crearla (código, Google o contraseña); o los datos de la sesión. */
 export function seccionCuenta(pestana) {
-  if (pestana) pestanaCuenta = pestana;
+  if (pestana === 'crear' || pestana === 'recuperar') pestanaCuenta = pestana;
   const seccion = el('section', { class: 'caja', id: 'cuenta' });
 
   function textoEstado() {
@@ -207,11 +300,14 @@ export function seccionCuenta(pestana) {
   }
 
   function pintarConSesion(usuario, estado) {
+    // Las cuentas con contraseña la piden para borrar; las de código o Google, no (basta la sesión).
+    const claveBorrar = usuario.contrasena ? campoContrasena('cuenta-clave-borrar', t('form.contrasena'), 'current-password') : null;
     const borrar = el('button', { type: 'button', class: 'boton boton-peligro' }, t('cuenta.borrarMisDatos'));
     borrar.addEventListener('click', async () => {
+      if (claveBorrar && !claveBorrar.entrada.value) { claveBorrar.entrada.focus(); return; }
       if (!confirm(t('cuenta.borrarConfirmar'))) return;
       try {
-        await borrarDatosNube();
+        await borrarDatosNube(claveBorrar?.entrada.value ?? '');
         await salir();
         decir(t('cuenta.borradoTutora'), 'sorprendida');
       } catch (error) {
@@ -230,15 +326,18 @@ export function seccionCuenta(pestana) {
           onclick: async () => { await salir(); sonar('clic'); decir(t('cuenta.sesionCerradaTutora')); },
         }, t('cuenta.cerrarSesion'))),
       el('details', { class: 'plegable' },
-        el('summary', {}, t('cuenta.cambiarContrasena')),
-        formularioNuevaContrasena(t('cuenta.contrasenaNueva'))),
+        el('summary', {}, t(usuario.contrasena ? 'cuenta.cambiarContrasena' : 'cuenta.ponerContrasena')),
+        !usuario.contrasena && el('p', { class: 'aprox' }, t('cuenta.ponerContrasenaTexto')),
+        formularioNuevaContrasena(t('cuenta.contrasenaNueva'), { pedirActual: usuario.contrasena })),
       el('details', { class: 'plegable' },
         el('summary', {}, t('cuenta.borrarNube')),
         el('p', { class: 'aprox' }, t('cuenta.borrarNubeTexto')),
+        claveBorrar?.nodo,
         borrar));
   }
 
   function pintarSinSesion(estado) {
+    // Con contraseña (plegado, para quien la prefiera): entrar, crear la cuenta o recuperar la contraseña.
     const pestanas = [['entrar', t('cuenta.iniciarSesion')], ['crear', t('cuenta.crear')], ['recuperar', t('cuenta.olvidada')]];
     const barra = el('div', { class: 'filtros pestanas', role: 'group', 'aria-label': t('cuenta.opciones') },
       pestanas.map(([clave, texto]) => el('button', {
@@ -249,23 +348,33 @@ export function seccionCuenta(pestana) {
           pestanaCuenta = clave;
           sonar('clic');
           pintar();
-          seccion.querySelector('input')?.focus();
+          seccion.querySelector('.cuenta-contrasena input')?.focus();
         },
       }, texto)));
-    const form = { entrar: formularioEntrar, crear: formularioCrear, recuperar: formularioRecuperar }[pestanaCuenta]();
+    const conContrasena = { entrar: formularioEntrar, crear: formularioCrear, recuperar: formularioRecuperar }[pestanaCuenta]();
+    const plegable = el('details', { class: 'plegable cuenta-contrasena' },
+      el('summary', {}, t('cuenta.conContrasena')),
+      barra,
+      conContrasena);
+    if (abiertaContrasena) plegable.open = true;
+    plegable.addEventListener('toggle', () => { abiertaContrasena = plegable.open; });
     poner(seccion,
       el('h2', {}, t('cuenta.titulo')),
       !nubeConfigurada && el('p', { class: 'aviso-nube', role: 'note' }, t('cuenta.sinConfigurar')),
       estado,
       el('p', { class: 'aprox' }, t('cuenta.ventajas')),
-      barra,
-      form);
+      bloqueGoogle(),
+      formularioCodigo(pintar),
+      plegable);
   }
+
+  // Al repintar (p. ej. tras cambiar de pestaña), el bloque de la contraseña sigue abierto si lo estaba.
+  let abiertaContrasena = pestana === 'crear' || pestana === 'recuperar';
 
   function pintar() {
     const usuario = usuarioActual();
     const estado = el('p', { class: `estado-nube nube-${nube.estado}`, role: 'status' }, textoEstado());
-    if (nube.recuperando && usuario) {
+    if (nube.recuperando) {
       poner(seccion, el('h2', {}, t('cuenta.titulo')), formularioNuevaContrasena(t('cuenta.ponNueva')));
       decir(t('cuenta.ponNuevaTutora'), 'normal');
     } else if (usuario) {
@@ -275,15 +384,16 @@ export function seccionCuenta(pestana) {
     }
   }
 
+  const huella = () => `${nube.estado}|${Boolean(usuarioActual())}|${Boolean(nube.recuperando)}|${usuarioActual()?.contrasena}`;
   pintar();
-  let ultimoEstado = `${nube.estado}|${Boolean(usuarioActual())}|${nube.recuperando}`;
+  let ultimoEstado = huella();
   const dejar = alCambiarNube(() => {
     if (!seccion.isConnected) {
       dejar();
       return;
     }
     // Solo se repinta si cambia algo importante, para no borrar lo que se está escribiendo.
-    const ahora = `${nube.estado}|${Boolean(usuarioActual())}|${nube.recuperando}`;
+    const ahora = huella();
     const soloEstado = ahora.split('|').slice(1).join() === ultimoEstado.split('|').slice(1).join();
     ultimoEstado = ahora;
     const estadoEl = seccion.querySelector('.estado-nube');

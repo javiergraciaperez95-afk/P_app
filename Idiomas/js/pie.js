@@ -180,6 +180,8 @@ export function iniciarPie() {
   const escena = pie.querySelector('.pie-escena');
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(([entrada]) => (entrada.isIntersecting ? encender() : apagar()), { rootMargin: '80px' }).observe(escena);
+    // y mientras no se ve, sus animaciones de CSS (banderitas, estrellas…) se quedan quietas
+    new IntersectionObserver(([entrada]) => pie.classList.toggle('pie-fuera', !entrada.isIntersecting)).observe(pie);
   } else {
     encender();
   }

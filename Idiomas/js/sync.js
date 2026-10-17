@@ -1,29 +1,34 @@
-// Cuentas de usuario y sincronización del progreso con Supabase.
-// Solo se activa si config.js tiene la URL y la clave pública.
-// La librería de Supabase se descarga únicamente cuando hace falta.
+// Cuentas de usuario y progreso en la nube, con la API propia (servidor/, ver servidor/LEEME.md).
+// Solo se activa si config.js tiene la dirección de la API.
+//
+// Tres formas de entrar:
+//   - código de 6 cifras por correo (pedirCodigo + entrarConCodigo): entrar y crear la cuenta son lo mismo;
+//   - Google (entrarConGoogle, con el token que da Google: ver js/google.js);
+//   - correo y contraseña (entrar, crearCuenta, recuperarContrasena).
+// La sesión es un token que se guarda en el dispositivo y va en cada petición («Authorization: Bearer …»).
 
-import { SUPABASE_URL, SUPABASE_CLAVE_PUBLICA, ENLACE_APP } from './config.js';
+import { API_URL } from './config.js';
 import { curso } from './curso.js';
-
-const SUPABASE_TABLA = curso.tabla; // cada curso guarda su progreso en su propia tabla
 import { todosLosDatos, reemplazarDatos, unirDatos, alCambiar } from './progress.js';
-import { t } from './i18n.js';
+import { t, idioma } from './i18n.js';
 
-const LIBRERIA = './vendor/supabase.js'; // copia local: funciona aunque no haya conexión al abrir la app
 const ESPERA_SUBIDA = 2000;
+const CLAVE_SESION = 'paglot-sesion'; // { token, usuario }: la misma para todos los cursos
 
-export const nubeConfigurada = Boolean(SUPABASE_URL && SUPABASE_CLAVE_PUBLICA);
+export const nubeConfigurada = Boolean(API_URL);
 
-let cliente = null;
-let usuario = null;
+let sesion = leerSesion();
+let usuario = sesion ? adaptar(sesion.usuario) : null;
+let version = 0; // la versión del progreso de este curso en la nube (para no pisar a otro dispositivo)
 let temporizador = null;
 const oyentes = new Set();
 
 /**
- * estado: desactivada · sin-sesion · sincronizando · sincronizada · error
+ * estado: desactivada · sin-sesion · sin-curso · sincronizando · sincronizada · error
  * mensaje(): el texto del error, en el idioma que esté puesto al leerlo.
+ * recuperando: el token del enlace «he olvidado mi contraseña» mientras se pone la nueva.
  */
-export const nube = { estado: nubeConfigurada ? 'sin-sesion' : 'desactivada', mensaje: () => '', ultima: null, recuperando: false };
+export const nube = { estado: nubeConfigurada ? 'sin-sesion' : 'desactivada', mensaje: () => '', ultima: null, recuperando: null };
 
 function avisar(estado, mensaje = () => '') {
   nube.estado = estado;
@@ -37,193 +42,300 @@ export function alCambiarNube(fn) {
   return () => oyentes.delete(fn);
 }
 
+/**
+ * La cuenta con sesión, o null. Conserva la forma que tenía con Supabase (email, user_metadata), que es
+ * la que usan la cabecera y el perfil; además dice si tiene contraseña y si está enlazada con Google.
+ */
 export function usuarioActual() {
   return usuario;
 }
 
-async function obtenerCliente() {
-  if (cliente) return cliente;
-  let createClient;
-  try {
-    ({ createClient } = await import(LIBRERIA));
-  } catch {
-    throw new Error(t('nube.sinServidorCuentas'));
-  }
-  cliente = createClient(SUPABASE_URL, SUPABASE_CLAVE_PUBLICA, {
-    // PKCE: los enlaces de los correos vuelven con «?code=…» y no ocupan el «#»,
-    // que es lo que usa la web para saber en qué pantalla está.
-    auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, flowType: 'pkce' },
-  });
-  // Se escucha desde el principio para no perderse el aviso de «recuperar contraseña»,
-  // que llega mientras la librería lee el enlace del correo.
-  cliente.auth.onAuthStateChange(alCambiarSesion);
-  return cliente;
+function adaptar(u) {
+  if (!u) return null;
+  return { id: u.id, email: u.correo, user_metadata: { nombre: u.nombre, foto: u.foto }, contrasena: u.contrasena !== false, google: Boolean(u.google) };
 }
 
-function alCambiarSesion(evento, sesion) {
-  // Llegada desde el enlace de «he olvidado mi contraseña».
-  if (evento === 'PASSWORD_RECOVERY') {
-    nube.recuperando = true;
-    setTimeout(() => { location.hash = curso.id ? '#/perfil' : '#/entrar'; avisar(nube.estado); }, 0);
+function leerSesion() {
+  try {
+    const s = JSON.parse(localStorage.getItem(CLAVE_SESION));
+    return s?.token ? s : null;
+  } catch {
+    return null;
   }
-  const antes = usuario?.id;
-  usuario = sesion?.user ?? null;
-  if (evento === 'INITIAL_SESSION') return; // de esto se encarga iniciarNube
-  if (!usuario) avisar('sin-sesion');
-  // Se aplaza: llamar a Supabase dentro de este aviso puede bloquearlo.
-  else if (usuario.id !== antes) setTimeout(sincronizar, 0);
 }
+
+function guardarSesion(nueva) {
+  sesion = nueva;
+  usuario = adaptar(nueva?.usuario);
+  try {
+    if (nueva) localStorage.setItem(CLAVE_SESION, JSON.stringify(nueva));
+    else localStorage.removeItem(CLAVE_SESION);
+  } catch { /* sin almacenamiento: la sesión dura lo que dure la visita */ }
+}
+
+// ---------------------------------------------------------------------------
+// Peticiones a la API
+// ---------------------------------------------------------------------------
+
+/** Un error de la API: «codigo» es el de servidor/LEEME.md; «datos», lo que trae con él. */
+class ErrorNube extends Error {
+  constructor(codigo, datos = {}, estado = 0) {
+    super(textoDeError(codigo, datos));
+    this.codigo = codigo;
+    this.datos = datos;
+    this.estado = estado;
+  }
+}
+
+async function api(metodo, ruta, cuerpo) {
+  if (!nubeConfigurada) throw new ErrorNube('desactivada');
+  const cabeceras = {};
+  if (cuerpo !== undefined) cabeceras['Content-Type'] = 'application/json';
+  if (sesion?.token) cabeceras.Authorization = `Bearer ${sesion.token}`;
+  let respuesta;
+  try {
+    respuesta = await fetch(`${API_URL}${ruta}`, {
+      method: metodo,
+      headers: cabeceras,
+      body: cuerpo === undefined ? undefined : JSON.stringify(cuerpo),
+    });
+  } catch {
+    throw new ErrorNube('sin_conexion');
+  }
+  let json = null;
+  try { json = await respuesta.json(); } catch { /* 202 y otros sin cuerpo */ }
+  if (respuesta.ok) return json ?? {};
+  const codigo = json?.error ?? 'interno';
+  // La sesión ha caducado o se ha cerrado desde otro dispositivo: se sigue sin cuenta.
+  if (codigo === 'sin_sesion' && sesion) {
+    clearTimeout(temporizador);
+    guardarSesion(null);
+    avisar('sin-sesion');
+  }
+  throw new ErrorNube(codigo, json ?? {}, respuesta.status);
+}
+
+function textoDeError(codigo, datos = {}) {
+  const claves = {
+    credenciales: 'nube.err.credenciales',
+    sin_confirmar: 'nube.err.sinConfirmar',
+    contrasena_corta: 'form.contrasenaCorta',
+    contrasena_debil: 'nube.err.debil',
+    contrasena_igual: 'nube.err.mismaContrasena',
+    contrasena_incorrecta: 'nube.err.contrasenaIncorrecta',
+    correo_invalido: 'nube.err.correoInvalido',
+    correo_igual: 'nube.err.correoIgual',
+    correo_en_uso: 'nube.err.correoEnUso',
+    codigo_invalido: 'nube.err.codigo',
+    google_invalido: 'nube.err.google',
+    google_desactivado: 'nube.err.google',
+    enlace_invalido: 'nube.err.enlace',
+    demasiados: 'nube.err.demasiados',
+    sin_conexion: 'nube.err.sinConexion',
+    desactivada: 'form.sinSupabase',
+  };
+  if (codigo === 'datos_invalidos' && datos.campo === 'correo') return t('nube.err.correoInvalido');
+  return claves[codigo] ? t(claves[codigo]) : t('nube.err.otro', { mensaje: codigo });
+}
+
+// ---------------------------------------------------------------------------
+// Sincronizar el progreso de este curso
+// ---------------------------------------------------------------------------
 
 export async function iniciarNube() {
   if (!nubeConfigurada) return;
+  alCambiar(programarSubida);
+  if (!sesion) { avisar('sin-sesion'); return; }
   try {
-    const c = await obtenerCliente();
-    const { data } = await c.auth.getSession();
-    usuario = data.session?.user ?? null;
-    alCambiar(programarSubida);
-    if (usuario) await sincronizar();
-    else avisar('sin-sesion');
+    // Al abrir la app se pregunta por la cuenta: así llegan el nombre o la foto cambiados en otro dispositivo.
+    const { usuario: u } = await api('GET', '/yo');
+    guardarSesion({ ...sesion, usuario: u });
+    await sincronizar();
   } catch (e) {
     console.error(e);
-    avisar('error', () => t('nube.sinServidor'));
+    if (sesion) avisar('error', () => e.message);
   }
 }
 
 /** Baja los datos de la nube, los junta con los locales y sube el resultado. */
 export async function sincronizar() {
-  if (!usuario) return;
-  // Sin curso elegido (pantalla de entrada) hay sesión, pero todavía no hay progreso que guardar.
-  if (!SUPABASE_TABLA) { avisar('sin-curso'); return; }
+  if (!sesion) return;
+  // Sin curso elegido (pantalla de inicio) hay sesión, pero todavía no hay progreso que guardar.
+  if (!curso.id) { avisar('sin-curso'); return; }
   avisar('sincronizando');
   try {
-    const c = await obtenerCliente();
-    const { data, error } = await c.from(SUPABASE_TABLA).select('datos').eq('user_id', usuario.id).maybeSingle();
-    if (error) throw error;
+    const nubeDatos = await api('GET', `/progreso/${curso.id}`);
+    version = nubeDatos.version ?? 0;
     const antes = JSON.stringify(todosLosDatos());
-    reemplazarDatos(unirDatos(todosLosDatos(), data?.datos ?? null));
+    reemplazarDatos(unirDatos(todosLosDatos(), nubeDatos.datos ?? null));
     await subir();
     // Si han llegado datos nuevos de la nube, la pantalla abierta se repinta.
     if (JSON.stringify(todosLosDatos()) !== antes) window.dispatchEvent(new Event('datos-sincronizados'));
   } catch (e) {
     console.error(e);
-    avisar('error', () => textoDeError(e));
+    if (sesion) avisar('error', () => e.message);
   }
 }
 
+/**
+ * Sube el progreso. Si otro dispositivo ha guardado mientras tanto (409 «conflicto»), la API devuelve lo que
+ * hay ahora: se junta con lo de aquí y se vuelve a intentar. Así nadie pisa a nadie.
+ */
 async function subir() {
-  const c = await obtenerCliente();
-  const { error } = await c.from(SUPABASE_TABLA).upsert({
-    user_id: usuario.id,
-    datos: todosLosDatos(),
-    actualizado: new Date().toISOString(),
-  });
-  if (error) throw error;
-  avisar('sincronizada');
+  for (let intento = 0; ; intento++) {
+    try {
+      const r = await api('PUT', `/progreso/${curso.id}`, { datos: todosLosDatos(), version });
+      version = r.version;
+      avisar('sincronizada');
+      return;
+    } catch (e) {
+      if (intento >= 3) throw e;
+      if (e.codigo === 'conflicto') {
+        version = e.datos.version ?? 0;
+        reemplazarDatos(unirDatos(todosLosDatos(), e.datos.datos ?? null));
+      } else if (e.codigo === 'retroceso') {
+        // Lo de aquí tiene mucho menos que la nube (p. ej. datos del navegador borrados): no se pisa la nube,
+        // se baja lo que hay, se junta con lo de aquí y se vuelve a guardar.
+        const nubeDatos = await api('GET', `/progreso/${curso.id}`);
+        version = nubeDatos.version ?? 0;
+        reemplazarDatos(unirDatos(todosLosDatos(), nubeDatos.datos ?? null));
+        window.dispatchEvent(new Event('datos-sincronizados'));
+      } else {
+        throw e;
+      }
+    }
+  }
 }
 
 function programarSubida() {
-  if (!usuario || !SUPABASE_TABLA) return;
+  if (!sesion || !curso.id) return;
   clearTimeout(temporizador);
   temporizador = setTimeout(async () => {
     avisar('sincronizando');
     try {
-      // Antes de subir se juntan los datos de la nube: así no se pisa lo que
-      // otro dispositivo haya guardado mientras tanto. No se repinta la pantalla.
-      const c = await obtenerCliente();
-      const { data, error } = await c.from(SUPABASE_TABLA).select('datos').eq('user_id', usuario.id).maybeSingle();
-      if (error) throw error;
-      if (data?.datos) reemplazarDatos(unirDatos(todosLosDatos(), data.datos));
       await subir();
     } catch (e) {
       console.error(e);
-      avisar('error', () => textoDeError(e));
+      if (sesion) avisar('error', () => e.message);
     }
   }, ESPERA_SUBIDA);
 }
 
-function textoDeError(e) {
-  const m = String(e?.message ?? e);
-  if (/invalid login credentials/i.test(m)) return t('nube.err.credenciales');
-  if (/email not confirmed/i.test(m)) return t('nube.err.sinConfirmar');
-  if (/already registered/i.test(m)) return t('nube.err.yaExiste');
-  if (/password/i.test(m) && /6|characters|short/i.test(m)) return t('form.contrasenaCorta');
-  if (/same.*password|different from the old/i.test(m)) return t('nube.err.mismaContrasena');
-  if (/weak|pwned/i.test(m)) return t('nube.err.debil');
-  if (/valid email|invalid.*email/i.test(m)) return t('nube.err.correoInvalido');
-  if (/rate limit/i.test(m)) return t('nube.err.demasiados');
-  if (/relation|does not exist|schema cache/i.test(m)) return t('nube.err.sinTabla');
-  if (/fetch|network|import/i.test(m)) return t('nube.err.sinConexion');
-  return t('nube.err.otro', { mensaje: m });
+// ---------------------------------------------------------------------------
+// Entrar y crear la cuenta
+// ---------------------------------------------------------------------------
+
+/** Respuesta de la API que abre sesión ({token, usuario}): se guarda y se sincroniza. */
+async function abrirSesion(r) {
+  guardarSesion({ token: r.token, usuario: r.usuario });
+  avisar(curso.id ? 'sincronizando' : 'sin-curso');
+  await sincronizar();
+  return r;
 }
 
-// ---------------------------------------------------------------------------
-// Cuenta
-// ---------------------------------------------------------------------------
+/** Manda un código de 6 cifras al correo. Llega aunque aún no haya cuenta (se crea al entrar). */
+export async function pedirCodigo(correo) {
+  await api('POST', '/codigo', { correo, idioma: idioma() });
+}
+
+/** Entra (o crea la cuenta) con el código. Devuelve true si la cuenta es nueva. */
+export async function entrarConCodigo(correo, codigo, nombre = '') {
+  const r = await api('POST', '/codigo/entrar', { correo, codigo, idioma: idioma(), ...(nombre ? { nombre } : {}) });
+  await abrirSesion(r);
+  return r.nueva;
+}
+
+/** Entra (o crea la cuenta) con el token que da Google. Devuelve true si la cuenta es nueva. */
+export async function entrarConGoogle(credencial) {
+  const r = await api('POST', '/google', { credencial, idioma: idioma() });
+  await abrirSesion(r);
+  return r.nueva;
+}
 
 export async function entrar(correo, contrasena) {
-  const c = await obtenerCliente();
-  const { error } = await c.auth.signInWithPassword({ email: correo, password: contrasena });
-  if (error) throw new Error(textoDeError(error));
+  await abrirSesion(await api('POST', '/entrar', { correo, contrasena }));
 }
 
-/** Adónde lleva el enlace de los correos: a esta misma página en la web, o a la app si va instalada en un móvil. */
-function direccionDeVuelta() {
-  if (window.Capacitor?.isNativePlatform?.()) return ENLACE_APP;
-  return `${location.origin}${location.pathname}`;
-}
-
-/** Devuelve true si hace falta confirmar el correo. */
+/** Devuelve true: con contraseña siempre hay que confirmar el correo (llega un enlace). */
 export async function crearCuenta(correo, contrasena, nombre = '') {
-  const c = await obtenerCliente();
-  const { data, error } = await c.auth.signUp({
-    email: correo,
-    password: contrasena,
-    options: { emailRedirectTo: direccionDeVuelta(), data: { nombre } },
-  });
-  if (error) throw new Error(textoDeError(error));
-  return !data.session;
+  await api('POST', '/registro', { correo, contrasena, idioma: idioma(), ...(nombre ? { nombre } : {}) });
+  return true;
+}
+
+export async function reenviarConfirmacion(correo) {
+  await api('POST', '/confirmar/reenviar', { correo });
 }
 
 export async function salir() {
-  const c = await obtenerCliente();
   clearTimeout(temporizador);
-  await c.auth.signOut();
-  usuario = null;
-  avisar('sin-sesion');
+  try { await api('POST', '/salir'); } catch { /* sin conexión: la sesión caducará sola */ }
+  guardarSesion(null);
+  version = 0;
+  avisar(nubeConfigurada ? 'sin-sesion' : 'desactivada');
 }
 
 /** Envía un correo con un enlace para poner una contraseña nueva. */
 export async function recuperarContrasena(correo) {
-  const c = await obtenerCliente();
-  const { error } = await c.auth.resetPasswordForEmail(correo, { redirectTo: direccionDeVuelta() });
-  if (error) throw new Error(textoDeError(error));
+  await api('POST', '/recuperar', { correo });
 }
 
-export async function cambiarContrasena(nueva) {
-  const c = await obtenerCliente();
-  const { error } = await c.auth.updateUser({ password: nueva });
-  if (error) throw new Error(textoDeError(error));
-  nube.recuperando = false;
+/**
+ * Pone una contraseña nueva. Llegando desde el enlace del correo (nube.recuperando), abre sesión.
+ * Con sesión: «actual» solo hace falta si la cuenta ya tenía contraseña.
+ */
+export async function cambiarContrasena(nueva, actual = '') {
+  if (nube.recuperando) {
+    const r = await api('POST', '/recuperar/nueva', { token: nube.recuperando, contrasena: nueva });
+    nube.recuperando = null;
+    await abrirSesion(r);
+    return;
+  }
+  await api('POST', '/yo/contrasena', usuario?.contrasena ? { actual, nueva } : { nueva });
+  guardarSesion({ ...sesion, usuario: { ...sesion.usuario, contrasena: true } });
   avisar(nube.estado);
 }
 
 /**
- * Pone (o quita, con null) la foto de perfil. Va en los datos de la cuenta, ya reducida a una miniatura
- * (js/cabecera.js la deja en unos pocos KB): así sale en todos los dispositivos sin necesitar otro almacén.
+ * Pone (o quita, con null) la foto de perfil, ya reducida a una miniatura (js/cabecera.js la deja en
+ * unos pocos KB). El servidor la vuelve a dibujar y la guarda con la cuenta.
  */
 export async function cambiarFoto(foto) {
-  const c = await obtenerCliente();
-  const { data, error } = await c.auth.updateUser({ data: { foto: foto ?? null } });
-  if (error) throw new Error(textoDeError(error));
-  usuario = data.user ?? usuario;
+  const { usuario: u } = await api('PATCH', '/yo', { foto: foto ?? null });
+  guardarSesion({ ...sesion, usuario: u });
   avisar(nube.estado);
 }
 
-/** Borra la copia de la nube (los datos de este navegador se quedan). */
-export async function borrarDatosNube() {
-  if (!usuario || !SUPABASE_TABLA) return;
-  const c = await obtenerCliente();
+/** Borra la copia de la nube de este curso (los datos del dispositivo se quedan). */
+export async function borrarDatosNube(contrasena = '') {
+  if (!sesion || !curso.id) return;
   clearTimeout(temporizador);
-  const { error } = await c.from(SUPABASE_TABLA).delete().eq('user_id', usuario.id);
-  if (error) throw new Error(textoDeError(error));
+  await api('DELETE', `/progreso/${curso.id}`, { contrasena });
+  version = 0;
+}
+
+// ---------------------------------------------------------------------------
+// Enlaces de los correos: #/enlace/{confirmar|recuperar|correo}/{token}
+// ---------------------------------------------------------------------------
+
+/**
+ * Atiende el enlace de un correo. Devuelve qué ha pasado: 'confirmada' (ya con sesión),
+ * 'recuperar' (falta escribir la contraseña nueva) o 'correo' (el correo nuevo ya vale).
+ */
+export async function abrirEnlace(accion, token) {
+  if (accion === 'confirmar') {
+    await abrirSesion(await api('POST', '/confirmar', { token }));
+    return 'confirmada';
+  }
+  if (accion === 'recuperar') {
+    nube.recuperando = token;
+    avisar(nube.estado);
+    return 'recuperar';
+  }
+  if (accion === 'correo') {
+    const { usuario: u } = await api('POST', '/yo/correo/confirmar', { token });
+    if (sesion && sesion.usuario?.id === u.id) guardarSesion({ ...sesion, usuario: u });
+    avisar(nube.estado);
+    return 'correo';
+  }
+  throw new ErrorNube('enlace_invalido');
 }

@@ -23,13 +23,14 @@ const CAMPOS = {
   explicacion: ['tipo', 'titulo', 'texto', 'tutora'],
   gramatica: ['tipo', 'titulo', 'texto', 'ejemplos', 'tutora'],
   dialogo: ['tipo', 'titulo', 'frases', 'tutora', 'esTexto'],
-  frase: ['quien', 'es', 'trad', 'en', 'vi', 'zh', 'ko', 'ja', 'ru', 'de', 'fr', 'it', 'pt', 'id', 'tes', 'literal', 'pron', 'nota', 'analisis', 'estructura'],
+  frase: ['quien', 'es', 'trad', 'en', 'vi', 'zh', 'ko', 'ja', 'ru', 'de', 'fr', 'it', 'pt', 'id', 'tes', 'literal', 'pron', 'nota', 'analisis', 'estructura', 'parrafo'],
   vocabulario: ['tipo', 'titulo', 'palabras', 'tutora'],
   tabla: ['tipo', 'titulo', 'columnas', 'filas', 'nota', 'tutora'],
   imagen: ['tipo', 'archivo', 'descripcion', 'pie', 'tutora'],
-  ejercicio: ['tipo', 'id', 'audio', 'pregunta', 'frase', 'opciones', 'correcta', 'tutora'],
-  escribir: ['tipo', 'id', 'audio', 'pregunta', 'frase', 'respuestas', 'explicacion', 'autoevaluacion', 'tutora'],
+  ejercicio: ['tipo', 'id', 'audio', 'pregunta', 'frase', 'opciones', 'correcta', 'tutora', 'traduccion'],
+  escribir: ['tipo', 'id', 'audio', 'pregunta', 'frase', 'respuestas', 'explicacion', 'autoevaluacion', 'tutora', 'traduccion'],
   ordenar: ['tipo', 'id', 'audio', 'pregunta', 'frase', 'traduccion', 'explicacion', 'tutora'],
+  huecos: ['tipo', 'id', 'audio', 'pregunta', 'frase', 'opciones', 'correcta', 'tutora', 'traduccion'],
 };
 
 /** Nombre de archivo a partir de un número: 7 → "007". */
@@ -74,6 +75,59 @@ export async function descubrirLecciones() {
   // mostrar lo disponible y ofrecer recargar para recuperar las lecciones pendientes.
   if (sinConexion) encontradas.sinConexion = true;
   return encontradas;
+}
+
+/**
+ * El índice del curso (indice/lecciones.json, lo genera _herramientas/generar_indices.mjs): lo que pinta la
+ * lista sin descargar cada lección. Devuelve resultados como los de descubrirLecciones(), pero sin bloques
+ * ni palabras (la lección completa se carga al abrirla, con cargarLeccion), o null si el curso no tiene índice.
+ */
+export async function cargarIndice() {
+  let indice;
+  try {
+    const respuesta = await fetch(conVersion(ruta('indice/lecciones.json')), { cache: 'no-cache' });
+    if (!respuesta.ok) return null;
+    indice = JSON.parse((await respuesta.text()).replace(/^﻿/, ''));
+  } catch {
+    return null;
+  }
+  if (!Array.isArray(indice?.lecciones)) return null;
+  return Promise.all(indice.lecciones.map(async e => {
+    // Las que no cargan se piden enteras: así la lista enseña el error con su detalle.
+    if (e.error) return cargarLeccion(e.id);
+    return {
+      id: e.id,
+      archivo: `${CARPETA}${e.id}.json`,
+      avisos: [],
+      nAvisos: e.avisos ?? 0,
+      audio: e.audio ?? 0,
+      leccion: {
+        id: e.id,
+        titulo_es: e.titulo_es,
+        titulo: e.titulo,
+        capitulo: e.capitulo,
+        orden_curso: e.orden_curso,
+        numero_curso: e.numero_curso,
+        // Igual que en revisarLeccion: sin voz en el dispositivo, los ejercicios solo de oído no cuentan.
+        get idsEjercicios() {
+          const voz = hayVoz();
+          const lista = e.ejerciciosPorIdioma?.[idiomaDeEntorno()] ?? e.ejercicios;
+          return lista.filter(([, soloOido]) => voz || !soloOido).map(([id]) => id);
+        },
+      },
+    };
+  }));
+}
+
+/** Todas las palabras del curso (indice/diccionario.json): Map de palabra normalizada → ficha. null si no hay. */
+export async function cargarDiccionario() {
+  try {
+    const respuesta = await fetch(conVersion(ruta('indice/diccionario.json')), { cache: 'no-cache' });
+    if (!respuesta.ok) return null;
+    return new Map(Object.entries(JSON.parse((await respuesta.text()).replace(/^﻿/, ''))));
+  } catch {
+    return null;
+  }
 }
 
 // Versión del despliegue (la pone el workflow en index.html). Evita que la caché sirva JSON viejos.
@@ -350,9 +404,20 @@ async function adaptarV2(json, id) {
   const etiquetas = { ...(await leerCatalogo('_etiquetas', 'en')), ...(await leerCatalogo('_etiquetas', entorno)) };
   const etq = (grupo, codigo) => etiquetas[`${grupo}.${codigo}`] ?? codigo;
 
-  /** Texto de ayuda: idioma del alumno, con el inglés detrás. */
+  /**
+   * Texto de ayuda: idioma del alumno, con el inglés detrás. El inglés se añade
+   * SIEMPRE, aunque haya traducción: el revisor de la app exige una traducción «en».
+   */
   const T = (claveTexto, original = '') => {
-    const salida = textoTraducible(claveTexto, textos, ingles);
+    const salida = {};
+    for (const fuente of [ingles, textos]) {
+      const v = fuente?.[claveTexto];
+      if (typeof v === 'string' && v.trim()) salida[fuente.idioma === entorno ? entorno : 'en'] = v;
+    }
+    if (!Object.keys(salida).length) {
+      const v = textos?.[claveTexto];
+      if (typeof v === 'string' && v.trim()) salida[entorno] = v;
+    }
     return Object.keys(salida).length ? salida : { es: original };
   };
   /** Texto de ayuda que puede no existir (títulos de bloque, enunciados): null si falta. */
@@ -368,16 +433,20 @@ async function adaptarV2(json, id) {
     const v = estudio[claveTexto];
     return typeof v === 'string' ? v.trim() : '';
   };
-  /** Traducción para el alumno, con el mismo criterio que tr(). */
+  /**
+   * Traducción para el alumno. El revisor exige que haya SIEMPRE una traducción «en»,
+   * así que el inglés se incluye aunque el alumno lea en otro idioma. «es» es el
+   * nombre interno del idioma que se estudia, así que la traducción al español va en «tes».
+   */
   const TRAD = claveTexto => {
-    const salida = textoTraducible(claveTexto, textos, null);
-    if (!Object.keys(salida).length) return null;
-    // «es» es el nombre interno del idioma que se estudia: la traducción al español va en «tes».
-    if (delCurso !== 'es' && salida.es !== undefined) {
-      salida.tes = salida.es;
-      delete salida.es;
+    const salida = {};
+    for (const fuente of [ingles, textos]) {
+      const v = fuente?.[claveTexto];
+      if (typeof v !== 'string' || !v.trim()) continue;
+      const codigo = fuente.idioma === delCurso && delCurso !== 'es' ? 'tes' : fuente.idioma;
+      salida[codigo] = v;
     }
-    return salida;
+    return Object.keys(salida).length ? salida : null;
   };
   /**
    * Frase que se estudia. El revisor de la app exige el texto del curso en el campo
@@ -440,11 +509,21 @@ async function adaptarV2(json, id) {
         tipo: 'texto',
         esTexto: true,
         titulo,
-        frases: (b.parrafos ?? []).map((p, n) => ({
-          ...ESTUDIO(`${b.id}.p${n}`),
-          trad: TRAD(`${b.id}.p${n}`),
-          nota: [],
-        })),
+        // Por frases, cada una con su análisis y su párrafo (0 o 1). Las lecturas
+        // antiguas, con «parrafos», llegan como un párrafo entero por frase.
+        frases: Array.isArray(b.frases)
+          ? b.frases.map((f, n) => ({
+            ...ESTUDIO(`${b.id}.f${n}.texto`),
+            trad: TRAD(`${b.id}.f${n}.texto`),
+            analisis: aplanar(f.sintaxis?.unidades),
+            parrafo: f.parrafo === 1 ? 1 : 0,
+            nota: [],
+          }))
+          : (b.parrafos ?? []).map((p, n) => ({
+            ...ESTUDIO(`${b.id}.p${n}`),
+            trad: TRAD(`${b.id}.p${n}`),
+            nota: [],
+          })),
       };
     }
     if (b.tipo === 'vocabulario') return { tipo: 'vocabulario', palabras: b.palabras ?? [] };
@@ -452,6 +531,7 @@ async function adaptarV2(json, id) {
       const bloque = {
         tipo: b.tipo,
         opciones: (b.opciones ?? []).map((o, n) => ({
+          // El texto de la opción se estudia (es español) y se traduce para el alumno.
           texto: CURSO(`${b.id}.o${n}`),
           explicacion: T(`${b.id}.o${n}.refuerzo`),
           correcta: o.correcta === true,
@@ -459,7 +539,11 @@ async function adaptarV2(json, id) {
       };
       const pregunta = OPCIONAL(`${b.id}.pregunta`);
       if (pregunta) bloque.pregunta = pregunta;
-      if (b.tipo === 'huecos') bloque.frase = CURSO(`${b.id}.frase`);
+      if (b.tipo === 'huecos') {
+        // La frase del hueco se pinta bajo la pregunta con su traducción.
+        bloque.frase = CURSO(`${b.id}.frase`);
+        bloque.traduccion = OPCIONAL(`${b.id}.frase`) ?? '';
+      }
       return bloque;
     }
     if (b.tipo === 'ordenar') {

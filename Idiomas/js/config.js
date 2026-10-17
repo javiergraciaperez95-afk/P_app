@@ -1,12 +1,13 @@
-// Configuración de Supabase (cuentas y progreso en la nube).
-// Pega aquí la URL del proyecto y la clave PÚBLICA («anon» o «publishable»).
-// Nunca pongas aquí la clave secreta («service_role» o «secret»).
-// Si se dejan vacías, la app funciona igual, guardando solo en este navegador.
+// Cuentas y progreso en la nube: la API propia (servidor/, ver servidor/LEEME.md).
+// Si se deja vacía, la app funciona igual, guardando solo en este dispositivo.
+// En el ordenador («Abrir Paglot.cmd», puerto 8100) se usa la API local: bash servidor/local/arrancar.sh.
+// TODO al publicar: la dirección de la API en el VPS (p. ej. 'https://api.paglot.app/api/v1').
+const EN_ORDENADOR = ['localhost', '127.0.0.1'].includes(location.hostname) && !window.Capacitor?.isNativePlatform?.();
+export const API_URL = EN_ORDENADOR ? 'http://127.0.0.1:8180/api/v1' : '';
 
-export const SUPABASE_URL = 'https://iuniglsiqnfvnotmfgdo.supabase.co';
-export const SUPABASE_CLAVE_PUBLICA = 'sb_publishable_dZDATuXD7GFWilF-SnWXyw_KVWjyX4P';
-
-// La tabla de cada curso está en js/cursos.js (campo «tabla»).
+// «Continuar con Google»: el ID de cliente WEB de Google Cloud (el mismo que va en servidor/config.php,
+// 'google' → 'clientes'). Vacío = el botón no sale.
+export const GOOGLE_CLIENTE = '';
 
 // Quién responde de la app y de los datos: sale en la página «Aviso legal y privacidad» (#/legal).
 // Lo que se deje vacío aparece como «pendiente de completar». Hay que rellenarlo antes de publicar la app.
@@ -52,6 +53,3 @@ export const ZONAS = {
 // Plazas del plan «Fundadores» (Plus para siempre con un solo pago).
 export const PLAZAS_FUNDADORES = 2000;
 
-// Adónde vuelven los enlaces de los correos (confirmar cuenta, cambiar contraseña) cuando la app va instalada
-// en un móvil. Tiene que estar también en Supabase → Authentication → URL Configuration → Redirect URLs.
-export const ENLACE_APP = 'idiomasapp://auth';
