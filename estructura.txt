@@ -1,146 +1,132 @@
 ESTRUCTURA DEL PROYECTO
 =======================
-Escrito el 12 de octubre de 2026. Si se mueve o se añade una carpeta, se apunta aquí.
+Puesto al día el 17 de octubre de 2026, tras la limpieza. Si se mueve o se añade una carpeta, se apunta aquí.
+
+IMPORTANTE: el proyecto es SOLO esta carpeta (Imágenes\Aplicaciones de idiomas desarrolladas).
+La copia que hubo en Descargas está archivada y no se usa.
 
 
 LO QUE HAY EN ESTA CARPETA
 --------------------------
 Idiomas/                 LA APP. Todo lo nuevo se hace aquí.
-Abrir Paglot.cmd        Doble clic para abrir la app en el ordenador.
-Paglot-prueba.apk       La app para Android (se genera desde _apk).
+Abrir Paglot.cmd         Doble clic para abrir la app en el ordenador.
+Paglot-prueba.apk        La app para Android (se genera con _apk/generar-apk.cmd).
+progreso.html            Tabla del estado de revisión de cada curso.
 estructura.txt           Este archivo.
-notas_voces.txt          Cómo lee la app en voz alta (la voz del dispositivo) y notas
-                         de voces por si algún día se graban audios.
 
 _herramientas/           Programas que preparan contenido (no van dentro de la app).
-_audio/                  Programas y voces para generar audios grabados. Ya no se
-                         usan: la app lee con la voz del dispositivo. Los audios
-                         que se hicieron están en _audio/grabados/.
-_tutoras/                Los dibujos de las tutoras y su generador.
-_apk/                    El proyecto de Android.
+_apk/                    El proyecto de Android (Capacitor).
+_notas/                  Notas de trabajo: resumenes/ (qué se hizo en cada conversación, por tema)
+                         e informes/ (revisiones lección a lección y auditorías de cada curso).
+                         También notas_voces.txt (cómo lee la app en voz alta).
 Para_lodriga/            El SQL y los pasos de Supabase.
-Muestras de voz/         Pruebas de voces.
-_copias/                 Copias de seguridad hechas a mano.
 
-_antiguas/               Las 21 apps ANTIGUAS, una por idioma, y su lanzador
-                         («Abrir todas.cmd»). Ya no se usan: su contenido está
-                         copiado en Idiomas/cursos/. Dentro están:
-                         Spanish, English, French, German, Italian, Portuguese,
-                         Dutch, Danish, Norwegian, Swedish, Polish, Romanian,
-                         Greek, Russian, Turkish, Indonesian, Japanese, Korean,
-                         Thai, Vietnamese y Chinese.
-
-.gitignore               Lo que NO se sube a GitHub (ver abajo).
+Fuera del proyecto, en «Imágenes\Paglot - archivo (fuera de la app)»: las 21 apps antiguas (_antiguas),
+los audios grabados y sus programas (_audio), el generador antiguo de tutoras (_tutoras), copias hechas
+a mano (_copias), muestras de voz, «Prueba Opus», montar_cursos.py, los PDF de marca y el libro de inglés,
+y la copia de Descargas. Nada de eso lo necesita la app.
 
 
 LA APP: Idiomas/
 ----------------
-index.html               La página.
-css/                     El aspecto.
-assets/                  Iconos y logotipo (se generan: ver _herramientas/logo/).
+index.html               La página: cabecera, pie y la lista de módulos.
+css/                     El aspecto: styles.css (casi todo), tienda.css, comunidad-extra.css,
+                         juego-ilustrado.css (minijuegos), proteccion-texto.css, fuentes.css.
+assets/                  Iconos y logotipo (se generan: ver _herramientas/logo/) y fotos de la tienda.
 manifest.webmanifest, sw.js   Para que se pueda instalar y funcione sin conexión.
 LEEME.txt                Explicación más detallada de la app.
 
 js/                      EL PROGRAMA (común a todos los idiomas)
-   app.js                Arranque y pantallas. Al abrir, lleva a la pantalla de inicio.
-   cursos.js             La lista de cursos (se genera sola; no se edita a mano).
-   curso.js              Qué curso está elegido.
-   lessons.js            Carga las lecciones del curso.
+   app.js                Arranque y pantallas. Las pantallas generales están en una sola tabla (GENERALES).
+   cursos.js             La lista de cursos. Se edita a mano; el número de lecciones lo pone al día
+                         _herramientas/contar_lecciones.py.
+   curso.js              Qué curso está elegido y el nombre de cada tutora.
+   lessons.js            Carga y revisa las lecciones del curso.
    exercises.js          Los tipos de ejercicio.
    progress.js, srs.js   Progreso y repaso espaciado.
-   sync.js, config.js    Cuenta y Supabase.
+   sync.js, config.js    Cuenta y Supabase; precios y límites del plan gratis (aún sin aplicar).
    tutor.js, tutor-sprite.js, tutora-base.js   La tutora.
    sonidos.js            Efectos de sonido y la voz que lee (la del dispositivo).
-   i18n.js, i18n/        Idioma de la interfaz (inglés, español, portugués, vietnamita, chino).
+   i18n.js, i18n/        Idioma de la interfaz: 12 idiomas (en, es, pt, vi, zh, fr, ja, it, ko, ru, de, id).
+                         TODOS los textos de la interfaz van en i18n/<idioma>.js y se piden con t('clave').
    movil.js              Lo propio de Android (botón atrás…).
    chispa.js             Rebote, chispas y sonido al pulsar o rozar cualquier botón.
+   proteccion-texto.js   Impide seleccionar y copiar texto (salvo en los campos de escribir).
    creditos.js           A quién se agradecen las voces.
-   juego/                El modo juego.
-   vistas/               Una pantalla por archivo: inicio (la portada), cursos (elegir idioma),
-                         lecciones, leccion, practica, repaso, frases,
-                         cuaderno, perfil, legal (aviso legal), sobre (Sobre Paglot), entrar (login),
-                         bienvenida (la primera vez), perdida (dirección que no existe), precios.
+   juego/                El modo juego (minijuegos de las lecciones).
+   vistas/               Una pantalla por archivo: inicio (portada), cursos (elegir idioma), lecciones, leccion,
+                         practica, repaso, frases, cuaderno, perfil, legal, sobre, entrar, bienvenida, perdida,
+                         precios (Paglot Max), comunidad (contacto y producto), comunidad-extra (guías, FAQ,
+                         laboratorio), productos (Schools, Empresas, Regala Max), social y tienda.
+                         Tienda, contacto y laboratorio son de muestra: todavía no envían ni cobran nada.
 
 cursos/                  EL CONTENIDO: una carpeta por idioma
    <código>/
       lessons/           001.json, 002.json… y capitulos.json
       phrases/           Frases útiles
       juegos/            Modo juego (solo español)
-      tutora.js          El dibujo de la tutora
+      tutora.js          El dibujo de la tutora (se edita aquí mismo)
 
 
 LOS CURSOS (en el orden en que salen en la app)
 -----------------------------------------------
-Código  Idioma       Lecciones  Estado
-en      Inglés         130      A1 a B2 (sin revisar)
-es      Español        293      completo hasta B2
-fr      Francés        128      A1 revisado; A2 a B2 sin revisar
-de      Alemán         125      A1 a B2 (sin revisar)
-ja      Japonés        125      A1 a B2 (con hiragana y katakana; sin revisar)
-it      Italiano       124      A1 a B2 (sin revisar)
-ko      Coreano        125      A1 a B2 (con hangul; sin revisar)
-zh      Chino            3      muestra de mandarín (caracteres simplificados y pinyin)
-pt      Portugués      300      A1 a B2 (portugués de Portugal; revisado y ampliado)
-ru      Ruso            31      A1 completo (con alfabeto cirílico)
-tr      Turco            3      muestra
-nl      Neerlandés      300      A1 a B2
-sv      Sueco            3      muestra
-el      Griego           3      muestra
-pl      Polaco           3      muestra
-no      Noruego          3      muestra
-vi      Vietnamita     263      A1 a B2 (B1 y B2 pendientes de revisar)
-id      Indonesio        3      muestra
-da      Danés          111      A1 a B2 (sin revisar)
-ro      Rumano           3      muestra
+Código  Idioma       Lecciones  Notas
+en      Inglés         300      A1 a B2, revisado lección a lección
+es      Español        320      A1 a B2; revisión lección a lección hecha hasta la 181
+fr      Francés        300      A1 a B2 (133-300: ampliación generada; ver su ESTADO.txt)
+de      Alemán         308      A1 a B2
+ja      Japonés        300      A1 a B2
+it      Italiano       265      A1 a B2
+ko      Coreano        300      A1 a B2
+zh      Chino           93      HSK 1 a 3
+pt      Portugués      263      A1 a B2 (portugués de Portugal)
+ru      Ruso           325      A1 a B2; los JSON son la versión buena (no compilar)
+tr      Turco          295      A1 a B2
+nl      Neerlandés     300      A1 a B2
+sv      Sueco          304      A1 a B2
+el      Griego         300      A1 a B2
+pl      Polaco         229      ampliación en curso
+no      Noruego        157      ampliación en curso (A1 hasta el capítulo 21)
+vi      Vietnamita     300      A1 a B2
+id      Indonesio      124      A1 a B2 (sin ampliar)
+da      Danés          304      A1 a B2
+ro      Rumano         124      A1 a B2 (sin ampliar)
 th      Tailandés        3      muestra
+Ningún curso lo ha revisado todavía un hablante nativo.
 
 
 HERRAMIENTAS
 ------------
-_herramientas/montar_cursos.py   Copia el contenido de _antiguas/ a
-                                 Idiomas/cursos/ y genera js/cursos.js.
-                                 OJO: machaca lo que haya en cursos/<código>
-                                 (menos español). No usar con vietnamita.
-_herramientas/logo/generar.py    Dibuja el logotipo de Paglot (el nombre de la app)
-                                 y saca todos los iconos de la web y de la APK.
-_herramientas/cursos/            Los cursos A1 escritos en formato corto:
-                                 <código>/NN.txt (un archivo por capítulo) y
-                                 capitulos.txt. compilar.py los convierte en
-                                 Idiomas/cursos/<código>/lessons/ y avisa de
-                                 los fallos. coreano.py calcula la
-                                 pronunciación del hangul. PLAN.txt: normas
-                                 y estado. Hechos: en, fr, ja, it, de, ko, pt, ru, nl.
-                                 montar_cursos.py ya no toca estos cursos.
-_herramientas/vi_b1b2/           Borradores de las lecciones 144-263 de
-                                 vietnamita (fuente/NNN.txt) y compilar.py,
-                                 que los convierte en cursos/vi/lessons/.
-_herramientas/vi_silabas.json    Tabla de pronunciación del vietnamita.
-_audio/generar.py, generar_apps.py   Generaban los audios grabados. Ya no se usan.
-_tutoras/generar.py              Genera las tutoras de las apps antiguas desde
-                                 _tutoras/disenos/ (las de la app nueva las
-                                 pone montar_cursos.py).
-_apk/generar-apk.cmd             Genera Paglot-prueba.apk.
+_herramientas/cursos/compilar.py   Convierte las fuentes cortas (_herramientas/cursos/<código>/NN.txt y
+                                   capitulos.txt) en Idiomas/cursos/<código>/lessons/. Se para solo si
+                                   compilar dejara el curso con menos lecciones de las que tiene (hay
+                                   cursos con lecciones generadas aparte o corregidas en los JSON: mira
+                                   antes el ESTADO.txt del curso). --prueba compila sin escribir nada.
+                                   coreano.py calcula la pronunciación del hangul. PLAN.txt: normas.
+_herramientas/validar_lecciones.mjs   Revisa todas las lecciones con el mismo revisor de la app:
+                                   node _herramientas/validar_lecciones.mjs        (todos los cursos)
+                                   node _herramientas/validar_lecciones.mjs fr -v  (uno, con los avisos)
+_herramientas/contar_lecciones.py  Pone al día en js/cursos.js cuántas lecciones tiene cada curso.
+_herramientas/logo/generar.py      Dibuja el logotipo de Paglot y saca todos los iconos (web y APK).
+_herramientas/vi_b1b2/             Borradores de las lecciones 144-263 de vietnamita.
+_herramientas/vi_silabas.json      Tabla de pronunciación del vietnamita.
+_herramientas/prueba-voces/        Pruebas de qué voces tiene cada navegador.
+_apk/generar-apk.cmd               Genera Paglot-prueba.apk (usa el Java de Android Studio).
 
 
 CÓMO SE HACE CADA COSA
 ----------------------
 Abrir la app          Doble clic en «Abrir Paglot.cmd».
-Cambiar una lección   Se edita su .json en Idiomas/cursos/<código>/lessons/.
-                      (Cursos A1 de _herramientas/cursos/: se edita el .txt
-                      del capítulo y se compila:
-                      py -X utf8 _herramientas/cursos/compilar.py <código>)
-                      (Vietnamita 144-263: se edita el borrador y se compila.)
+Cambiar una lección   Se edita su .json en Idiomas/cursos/<código>/lessons/ (o su fuente .txt y se compila,
+                      si el ESTADO.txt del curso lo permite). Después: validar_lecciones.mjs.
+Añadir un texto       En i18n/en.js y en los otros 11 idiomas, con la misma clave; en el código, t('clave').
+Añadir una pantalla   Su archivo en js/vistas/, su línea en el importmap de index.html y su línea en la
+                      tabla GENERALES de app.js (si es una pantalla general).
 Generar la APK        _apk/generar-apk.cmd
 
 
 COPIA EN GITHUB
 ---------------
 Repositorio (privado): github.com/javiergraciaperez95-afk/Learning_language_app
-Se sube todo menos lo que pesa demasiado o se puede volver a generar:
-   Paglot-prueba.apk          (se genera con _apk/generar-apk.cmd)
-   _audio/piper, voces, kokoro (programas de voz y voces, más de 2 GB)
-   _audio/grabados             (los audios que se generaron; ya no van en la app)
-   Prueba Opus                 (muestras de prueba)
-   _apk/node_modules, _apk/www y lo compilado de _apk/android
-   _antiguas/Chinese/Otros archivos
-   _antiguas/<app>/audio
+Se sube todo menos lo que pesa demasiado o se puede volver a generar (ver .gitignore):
+   *.apk, _apk/node_modules, _apk/www y lo compilado de _apk/android, tmp/, scratch/, output/.

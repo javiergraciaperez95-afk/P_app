@@ -1,6 +1,6 @@
 PAGLOT · LA APP ÚNICA
 =====================
-Escrito el 12 de octubre de 2026.
+Escrito el 12 de octubre de 2026; puesto al día el 17 de octubre.
 
 La app se llama Paglot desde el 13-10-2026; la carpeta sigue
 llamándose Idiomas. El logotipo es un bocadillo con cara: se dibuja y se sacan todos
@@ -9,7 +9,7 @@ inicio (js/vistas/inicio.js), con el botón para empezar o seguir.
 
 Esta carpeta es la app de todos los idiomas: un solo programa y una carpeta
 de contenido por curso. Sustituye a las 21 apps antiguas (Spanish, French,
-Danish…), que están guardadas en _antiguas/. Lo nuevo se hace aquí.
+Danish…), archivadas fuera del proyecto. Lo nuevo se hace aquí.
 El mapa de todo el proyecto está en estructura.txt, en la carpeta de arriba.
 
 Para abrirla en el ordenador: doble clic en «Abrir Paglot.cmd», en la carpeta
@@ -30,7 +30,8 @@ cursos/<código>/                 Un curso por carpeta: es, en, fr, de, it, pt,
    tutora.js    El diseño de la tutora de ese curso.
 
 js/cursos.js    La lista de cursos: nombre, bandera, voz, tabla de Supabase…
-                Se genera con _herramientas/montar_cursos.py; no se edita a mano.
+                Se edita a mano; el número de lecciones lo pone al día
+                _herramientas/contar_lecciones.py.
 js/curso.js     Sabe qué curso está elegido. Cambiar de curso recarga la app.
 js/creditos.js  A quién se agradecen las voces. Si se cambia una voz, se apunta aquí.
 js/config.js    Supabase.
@@ -63,27 +64,15 @@ español, el español va en «es» y las traducciones en «en», «vi» y «zh»
 
 HERRAMIENTAS (carpetas de arriba, no van dentro de la app)
 ----------------------------------------------------------
-_herramientas/montar_cursos.py   Trae el contenido de _antiguas/ a
-                                 cursos/ y genera js/cursos.js y las tutoras.
-                                 OJO: vuelve a copiar encima de cursos/<id>
-                                 (menos español). Si se edita una lección aquí,
-                                 no hay que volver a montar ese curso.
-_tutoras/disenos/                El dibujo de cada tutora.
-_herramientas/vi_b1b2/           Las lecciones 144-263 de vietnamita (B1 y B2):
-                                 fuente/NNN.txt se escribe a mano y compilar.py
-                                 las convierte en cursos/vi/lessons/NNN.json.
-_audio/                          Generadores de audios grabados. YA NO SE USAN:
-                                 la app lee con la voz del dispositivo. Los audios
-                                 que se hicieron están en _audio/grabados/.
-_apk/                            El proyecto de Android (Capacitor).
-Para_lodriga/                    El SQL y los pasos de Supabase.
-_antiguas/                       Las 21 apps de antes y «Abrir todas.cmd».
+Están explicadas en estructura.txt (carpeta de arriba). Las principales:
+_herramientas/cursos/compilar.py      Convierte las fuentes .txt de un curso en sus lecciones.
+_herramientas/validar_lecciones.mjs   Revisa todas las lecciones con el revisor de la app.
+_herramientas/contar_lecciones.py     Pone al día cuántas lecciones tiene cada curso en js/cursos.js.
+_apk/generar-apk.cmd                  Genera la APK.
 
 
 LO QUE FALTA
 ------------
-- Chino: hay tres lecciones de muestra originales de mandarín. El entrenador
-  de exámenes HSK de _antiguas/Chinese no se ha trasladado.
 - Probar la voz en móviles de verdad (sobre todo Samsung).
 - El modo juego del curso de español desde la lección 8, y en los demás cursos.
 - Traducir al español los textos del modo juego.
