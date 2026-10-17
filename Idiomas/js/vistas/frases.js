@@ -3,7 +3,7 @@
 // Modo práctica: «Tapar el español» difumina el español; se destapa tocándolo.
 
 import { el, poner } from '../dom.js';
-import { t, tr, tTodos } from '../i18n.js';
+import { t, tr, origenTarjeta } from '../i18n.js';
 import { botonEscuchar, botonGuardar, analisisDesplegable } from '../comunes.js';
 import { decir } from '../tutor.js';
 import { sonar, pronunciarSeguido, callar, ayudaVoz } from '../sonidos.js';
@@ -56,11 +56,9 @@ function seccionGrupo(g, categoria) {
     el('ul', { class: 'lista-frases' }, g.frases.map(f => tarjetaFrase(f, origenDe(categoria, g.titulo)))));
 }
 
-/** «Frases · Categoría · Grupo», en los dos idiomas (se guarda en el cuaderno). */
+/** «Frases · Categoría · Grupo» (se guarda en el cuaderno y se traduce al enseñarlo). */
 function origenDe(...partes) {
-  const base = tTodos('menu.frases');
-  return Object.fromEntries(Object.entries(base).map(([i, texto]) =>
-    [i, [texto, ...partes.map(p => (p && typeof p === 'object' ? p[i] ?? p.en : p))].join(' · ')]));
+  return origenTarjeta('menu.frases', null, partes);
 }
 
 export function pintarFrases(app, { categorias, avisos, error }) {

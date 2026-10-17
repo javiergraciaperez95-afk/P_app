@@ -55,6 +55,7 @@ export default {
   'app.noEncontradaTitulo': 'Page introuvable',
   'app.noEncontradaTutora': 'Hmm… Je ne trouve pas ça. Tu es sûr que ça existe ?',
   'app.leccionNoAbre': 'Impossible d’ouvrir la leçon {id}.',
+  'app.guardadoFallido': 'Je n’arrive pas à enregistrer ta progression sur cet appareil (plus de place ou le navigateur ne le permet pas). Si tu fermes l’appli, le travail d’aujourd’hui sera perdu, sauf ce qui est déjà dans ton compte.',
   'app.noExiste': 'Cette adresse n’existe pas.',
   'app.sinConexionTitulo': '⚠ Impossible de charger les leçons',
   'app.sinConexionTexto': 'Il semble que la connexion Internet soit coupée (ou que le serveur local soit arrêté).',

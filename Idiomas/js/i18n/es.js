@@ -488,6 +488,7 @@ export default {
 
   // ----- Avisos que faltaban -----
   'app.leccionNoAbre': 'La lección {id} no se puede abrir.',
+  'app.guardadoFallido': 'No puedo guardar tu progreso en este dispositivo (no queda sitio o el navegador no lo deja). Si cierras la app, lo de hoy se perderá, salvo lo que ya esté en tu cuenta.',
   'app.archivoLocalTitulo': '⚠ Abre la web con el servidor local',
   'app.archivoLocalTexto': 'Has abierto index.html directamente, y así el navegador no me deja leer las lecciones.',
   'app.archivoLocalWindows': 'En Windows, haz doble clic en este archivo de la carpeta principal del proyecto:',

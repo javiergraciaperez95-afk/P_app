@@ -186,21 +186,11 @@ body.en-inicio #btn-curso { display: none; } /* en la portada ya hay un botón p
 #marca-subtitulo { overflow: hidden; text-overflow: ellipsis; }
 #marca-bandera { display: inline-flex; flex: none; }
 .marca-curso .bandera { width: 18px; height: 12px; box-shadow: 0 0 0 1px var(--h-borde); }
-/* «glot» destella un instante de vez en cuando (solo en las portadas).
-   El destello es una copia clara de la palabra encima que aparece y desaparece: animar la opacidad lo hace la tarjeta
-   gráfica, mientras que animar el color obligaba al navegador a recalcular la página en cada fotograma. */
-body.en-inicio .marca-glot { position: relative; }
-body.en-inicio .marca-glot::after {
-  content: "glot" / "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: #fff6c8;
-  opacity: 0;
-  pointer-events: none;
-  animation: glot-brilla 6s steps(1) infinite;
+/* «glot» destella un instante de vez en cuando (solo en las portadas). La clase «brilla» la pone y la quita js/app.js
+   cuatro veces cada 6 s: una animación de color obligaba al navegador a recalcular la página 60 veces por segundo. */
+@media (prefers-reduced-motion: no-preference) {
+  body.en-inicio .marca-glot.brilla { color: #fff6c8; }
 }
-@keyframes glot-brilla { 90% { opacity: 1; } 93% { opacity: 0; } 96% { opacity: 1; } }
 
 /* ----- Navegación de la web (Inicio · Idiomas · Paglot Max) ----- */
 .cabecera-nav { display: flex; justify-content: center; gap: 8px; min-width: 0; }
@@ -561,7 +551,7 @@ body.en-estudio .marca-titulo { font-size: 1.35rem; }
    Sin movimiento si así lo pide el dispositivo
    ===================================================================== */
 @media (prefers-reduced-motion: reduce) {
-  .cabecera::after, .cabecera::before, .marca-glot, .marca-glot::after, .nav-corona, .cabecera-crear::before,
+  .cabecera::after, .cabecera::before, .marca-glot, .nav-corona, .cabecera-crear::before,
   .racha-llama, .avatar-nube, .idioma-lista, .cuenta-panel, .cabecera-ajustes-panel { animation: none !important; }
   .cabecera-crear::before { display: none; }
   .marca:hover .marca-logo, .cuenta-avatar:hover { animation: none; }

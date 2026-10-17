@@ -23,7 +23,7 @@ export const IDIOMAS = [
 ];
 
 // Al abrir solo se cargan los textos del idioma en uso (y el inglés, que es el de reserva): son unos 90 KB por idioma.
-// Los demás llegan después, cuando el navegador está libre (los necesitan tTodos y el cambio de idioma).
+// Los demás llegan después, cuando el navegador está libre (para cambiar de idioma al momento).
 const CARGAR = {
   vi: () => import('./i18n/vi.js'), zh: () => import('./i18n/zh.js'), es: () => import('./i18n/es.js'),
   pt: () => import('./i18n/pt.js'), fr: () => import('./i18n/fr.js'), ja: () => import('./i18n/ja.js'),
@@ -83,9 +83,67 @@ export function t(clave, vars = {}) {
   return textoEn(idioma(), clave, vars);
 }
 
-/** El mismo texto en todos los idiomas: { en, vi }. Para guardar datos que se leerán más tarde (p. ej. el origen de una tarjeta). */
-export function tTodos(clave, vars = {}) {
-  return Object.fromEntries(IDIOMAS.map(({ clave: i }) => [i, textoEn(i, clave, vars)]));
+// ---------------------------------------------------------------------------
+// El origen de una tarjeta del cuaderno (de qué lección, frase o del diccionario sale).
+// Se guarda como una lista corta [clave, datos?, partes?] y se traduce al enseñarlo: así ocupa poco y sale en el idioma
+// de la interfaz de ese momento. Los datos antiguos lo traen escrito en los 12 idiomas ({ en, vi… }),
+// que llegaba a ser más de la mitad de lo que pesa un cuaderno lleno.
+// ---------------------------------------------------------------------------
+
+/** Un origen para guardar: la clave del texto, sus datos ({ id, titulo }…) y los trozos de contenido que van detrás. */
+export function origenTarjeta(clave, datos = null, partes = []) {
+  const conDatos = datos && Object.keys(datos).length ? datos : null;
+  const trozos = partes.filter(p => p !== null && p !== undefined && p !== '');
+  if (trozos.length) return [clave, conDatos, trozos];
+  return conDatos ? [clave, conDatos] : [clave];
+}
+
+/** El origen guardado, como texto para enseñarlo. */
+export function textoOrigen(o) {
+  if (!o) return '';
+  if (!Array.isArray(o)) return tr(o); // un texto, o el formato antiguo { en, vi… }
+  const [clave, datos, partes] = o;
+  // Como en tr(): si la interfaz y el curso usan el mismo idioma, va en inglés (así se veía con el formato antiguo).
+  const i = idioma() === curso.campo ? 'en' : idioma();
+  return [textoEn(i, clave, datos ?? {}), ...(partes ?? []).map(tr)].join(' · ');
+}
+
+// Los orígenes antiguos se reconocen por su texto en inglés, con las mismas plantillas que los escribieron.
+const ORIGENES_CONOCIDOS = ['cuaderno.deLeccion', 'leccion.numero', 'cuaderno.aMano', 'cuaderno.diccionario'];
+let patronesDeOrigen = null;
+function patrones() {
+  patronesDeOrigen ??= ORIGENES_CONOCIDOS.map(clave => {
+    const nombres = [];
+    const fuente = String(TEXTOS.en[clave]).split(/\{(\w+)\}/)
+      .map((trozo, i) => (i % 2 ? (nombres.push(trozo), '(.+?)') : trozo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')))
+      .join('');
+    return { clave, nombres, re: new RegExp(`^${fuente}$`) };
+  });
+  return patronesDeOrigen;
+}
+
+/** Pasa un origen antiguo ({ en, vi… }) al formato compacto. Si no lo reconoce, lo deja como estaba. */
+export function compactarOrigen(viejo) {
+  if (!viejo || typeof viejo !== 'object' || Array.isArray(viejo) || typeof viejo.en !== 'string') return viejo;
+  const en = viejo.en;
+  for (const { clave, nombres, re } of patrones()) {
+    const m = en.match(re);
+    if (m) return origenTarjeta(clave, Object.fromEntries(nombres.map((n, i) => [n, m[i + 1]])));
+  }
+  // «Frases · Categoría · Grupo»: los trozos de detrás son contenido; se guardan en un texto o, si cambian, por idioma.
+  const frases = TEXTOS.en['menu.frases'];
+  if (en === frases || en.startsWith(`${frases} · `)) {
+    const trozos = Object.entries(viejo).map(([i, texto]) => [i, String(texto).split(' · ').slice(1)]);
+    const cuantos = trozos[0][1].length;
+    if (trozos.every(([, x]) => x.length === cuantos)) {
+      const partes = Array.from({ length: cuantos }, (_, j) => {
+        const parte = Object.fromEntries(trozos.map(([i, x]) => [i, x[j]]));
+        return new Set(Object.values(parte)).size === 1 ? parte.en : parte;
+      });
+      return origenTarjeta('menu.frases', null, partes);
+    }
+  }
+  return viejo;
 }
 
 /** Resuelve un texto del contenido: un texto normal o { en, vi }. */

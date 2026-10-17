@@ -96,6 +96,7 @@ export default {
   'app.noEncontradaTitulo': 'Page not found',
   'app.noEncontradaTutora': 'Hmm… I can’t find that. Are you sure it exists?',
   'app.leccionNoAbre': 'Lesson {id} can’t be opened.',
+  'app.guardadoFallido': 'I can’t save your progress on this device (it’s out of space or the browser won’t allow it). If you close the app, today’s work will be lost, except what’s already in your account.',
   'app.noExiste': 'This address doesn’t exist.',
   'app.sinConexionTitulo': '⚠ The lessons couldn’t be loaded',
   'app.sinConexionTexto': 'It looks like there’s no internet connection (or the local server is off).',

@@ -103,6 +103,7 @@ export default {
   'app.noEncontradaTitulo': 'Không tìm thấy trang',
   'app.noEncontradaTutora': 'Hừm… cô không tìm thấy trang đó. Em chắc là nó có thật không?',
   'app.leccionNoAbre': 'Không mở được bài {id}.',
+  'app.guardadoFallido': 'Cô không lưu được tiến độ của em trên thiết bị này (hết dung lượng hoặc trình duyệt không cho phép). Nếu em đóng ứng dụng, phần học hôm nay sẽ mất, trừ những gì đã có trong tài khoản.',
   'app.noExiste': 'Địa chỉ này không tồn tại.',
   'app.sinConexionTitulo': '⚠ Không tải được bài học',
   'app.sinConexionTexto': 'Có vẻ như không có kết nối internet (hoặc máy chủ cục bộ đang tắt).',

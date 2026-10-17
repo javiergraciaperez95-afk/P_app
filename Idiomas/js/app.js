@@ -211,6 +211,19 @@ function pintarMarca() {
   boton.hidden = !hayCurso;
 }
 
+// «glot» destella cada 6 s: claro del 90 % al 93 % del ciclo y del 96 % al final (el CSS solo lo enseña en las portadas).
+// Con un reloj en vez de una animación de CSS el navegador solo trabaja en esos cuatro cambios.
+{
+  const brillar = si => document.querySelector('.marca-glot')?.classList.toggle('brilla', si);
+  const ciclo = () => {
+    setTimeout(() => brillar(true), 5400);
+    setTimeout(() => brillar(false), 5580);
+    setTimeout(() => brillar(true), 5760);
+    setTimeout(() => { brillar(false); ciclo(); }, 6000);
+  };
+  ciclo();
+}
+
 /** La navegación de la web: Inicio, Idiomas y Paglot Max (la cuenta va aparte, en js/cabecera.js). */
 function pintarNavegacion() {
   const aqui = location.hash.slice(2).split('/')[0] || (hayCurso ? 'lecciones' : 'inicio');
@@ -329,6 +342,8 @@ window.addEventListener('idioma-cambiado', () => {
 alCambiar(pintarAvisoRepaso);
 window.addEventListener('datos-sincronizados', pintarAvisoRepaso);
 setInterval(pintarAvisoRepaso, 60 * 1000); // las tarjetas también vencen con el paso del tiempo
+// Si el navegador no deja guardar el progreso (sin sitio, modo privado…), la tutora lo dice una vez (ver progress.js).
+window.addEventListener('guardado-fallido', () => decir(t('app.guardadoFallido'), 'apurada'));
 
 /** Una dirección que no existe o una lección que no se abre: la página perdida, con su propia tutora. */
 function pintarNoEncontrada(texto) {

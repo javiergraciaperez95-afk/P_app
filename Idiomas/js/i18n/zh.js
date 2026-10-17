@@ -69,6 +69,7 @@ export default {
   'app.noEncontradaTitulo': '找不到页面',
   'app.noEncontradaTutora': '嗯…老师找不到这个。你确定它存在吗？',
   'app.leccionNoAbre': '第 {id} 课打不开。',
+  'app.guardadoFallido': '我无法在这台设备上保存你的进度（空间不足或浏览器不允许）。如果关闭应用，今天的进度会丢失，已保存在账号里的除外。',
   'app.noExiste': '这个地址不存在。',
   'app.sinConexionTitulo': '⚠ 课程加载失败',
   'app.sinConexionTexto': '好像没有网络连接（或者本地服务器没有打开）。',

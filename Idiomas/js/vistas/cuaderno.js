@@ -1,7 +1,7 @@
 // Pantalla «Cuaderno»: todo lo que el estudiante ha guardado.
 
 import { el, poner } from '../dom.js';
-import { t, tr, tTodos, idioma, locale } from '../i18n.js';
+import { t, tr, origenTarjeta, textoOrigen, idioma, locale } from '../i18n.js';
 import { icono } from '../iconos.js';
 import { tarjetas, quitarDelCuaderno, guardarEnCuaderno, estaEnCuaderno } from '../progress.js';
 import { etapa, tocaRepasar, esNueva } from '../srs.js';
@@ -49,7 +49,7 @@ function tarjeta(c, repintar) {
       el('p', { class: 'meta' },
         el('span', { class: `etapa etapa-${e.clave}` }, e.texto),
         ` · ${t(c.tipo === 'frase' ? 'tipo.Frase' : 'tipo.Palabra')}`,
-        c.origen && ` · ${tr(c.origen)}`),
+        c.origen && ` · ${textoOrigen(c.origen)}`),
       el('p', { class: 'meta' }, textoProximo(c))),
     el('div', { class: 'frase-acciones' }, botonEscuchar(c.es), quitar));
 }
@@ -70,7 +70,7 @@ function formularioNueva(repintar) {
       return;
     }
     // La traducción se guarda en el idioma en que se ha escrito.
-    guardarEnCuaderno({ es: texto, trad: { [idioma()]: trad.value.trim() }, tipo: texto.includes(' ') ? 'frase' : 'palabra', origen: tTodos('cuaderno.aMano') });
+    guardarEnCuaderno({ es: texto, trad: { [idioma()]: trad.value.trim() }, tipo: texto.includes(' ') ? 'frase' : 'palabra', origen: origenTarjeta('cuaderno.aMano') });
     sonar('guardar');
     decir(t('comun.apuntado', { texto }), 'contenta');
     form.reset();
@@ -110,7 +110,7 @@ function buscadorDiccionario(alGuardar) {
           v.consejo && el('p', { class: 'aprox consejo' }, `🗣 ${tr(v.consejo)}`)),
         el('div', { class: 'frase-acciones' },
           botonEscuchar(v.es),
-          botonGuardar({ es: v.es, trad: v.trad, pron: v.pron, nota: v.nota || v.consejo, tipo: v.es.includes(' ') ? 'frase' : 'palabra', origen: tTodos('cuaderno.diccionario') }))))
+          botonGuardar({ es: v.es, trad: v.trad, pron: v.pron, nota: v.nota || v.consejo, tipo: v.es.includes(' ') ? 'frase' : 'palabra', origen: origenTarjeta('cuaderno.diccionario') }))))
       : el('li', { class: 'aprox' }, t('cuaderno.noEsta')));
   });
   const alCambiar = () => {

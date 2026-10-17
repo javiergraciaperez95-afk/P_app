@@ -1,7 +1,7 @@
 // Vista de una lección: pinta los bloques en orden, como las páginas de un libro.
 
 import { el, textoConFormato, poner, enLinea } from '../dom.js';
-import { t, tr, tTodos } from '../i18n.js';
+import { t, tr, origenTarjeta } from '../i18n.js';
 import { normalizarPalabra } from '../lessons.js';
 import { crearEjercicio } from '../exercises.js';
 import { decir } from '../tutor.js';
@@ -26,7 +26,7 @@ const ficha = document.getElementById('ficha-palabra');
 let botonFicha = null;
 let fichaFijada = false;
 let cierrePendiente = null;
-let origenActual = null; // { en, vi }: de dónde sale lo que se guarda en el cuaderno
+let origenActual = null; // de dónde sale lo que se guarda en el cuaderno (ver origenTarjeta en i18n.js)
 let contadorAnalisis = 0;
 
 function itemPalabra(entrada) {
@@ -497,7 +497,7 @@ function pintarLibro(contenedor, resultado, siguiente, alJuego) {
   const propias = resultado.leccion.palabras;
   const leccion = { ...resultado.leccion, palabras: new Map([...diccionarioGlobal, ...propias]) };
   marcarAbierta(leccion.id);
-  origenActual = tTodos('leccion.numero', { id: leccion.numero_curso });
+  origenActual = origenTarjeta('leccion.numero', { id: leccion.numero_curso });
 
   const progreso = el('p', { class: 'aprox' });
   const actualizar = () => {

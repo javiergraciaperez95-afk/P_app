@@ -46,6 +46,7 @@ export default {
   'app.noEncontradaTitulo': 'ページが見つかりません',
   'app.noEncontradaTutora': 'うーん、見つからないな。本当にあるページかな？',
   'app.leccionNoAbre': 'レッスン{id}を開けません。',
+  'app.guardadoFallido': 'この端末に進み具合を保存できません（空き容量がないか、ブラウザが許可していません）。アプリを閉じると、アカウントに保存済みの分を除き、今日の学習は失われます。',
   'app.noExiste': 'このアドレスは存在しません。',
   'app.sinConexionTitulo': '⚠ レッスンを読み込めませんでした',
   'app.sinConexionTexto': 'インターネットに接続されていないか、ローカルサーバーが停止しています。',

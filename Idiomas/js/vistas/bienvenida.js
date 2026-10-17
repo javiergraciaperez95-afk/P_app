@@ -8,7 +8,7 @@
 // Los textos están en i18n/ (claves «bienvenida.*»).
 
 import { el, poner, enLinea, barajar } from '../dom.js';
-import { t, tr, tTodos } from '../i18n.js';
+import { t, tr, origenTarjeta } from '../i18n.js';
 import { icono } from '../iconos.js';
 import { curso, LANG } from '../curso.js';
 import { crearSprite } from '../tutor-sprite.js';
@@ -488,7 +488,7 @@ export function pintarBienvenida(contenedor, { resultados }) {
       if (!estaEnCuaderno(estrella.es)) {
         guardarEnCuaderno({
           es: estrella.es, trad: estrella.trad, pron: estrella.pron, nota: estrella.nota || estrella.consejo, tipo: estrella.es.includes(' ') ? 'frase' : 'palabra',
-          origen: tTodos('cuaderno.deLeccion', { id: ejemplo.leccion.numero_curso, titulo: ejemplo.leccion.titulo_es }),
+          origen: origenTarjeta('cuaderno.deLeccion', { id: ejemplo.leccion.numero_curso, titulo: ejemplo.leccion.titulo_es }),
         });
         window.dispatchEvent(new CustomEvent('cuaderno-cambiado', { detail: null }));
       }

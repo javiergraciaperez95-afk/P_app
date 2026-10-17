@@ -43,6 +43,7 @@ export default {
   'app.noEncontradaTitulo': 'Pagina non trovata',
   'app.noEncontradaTutora': 'Mmm… non riesco a trovarla. Sicuro che esista?',
   'app.leccionNoAbre': 'Impossibile aprire la lezione {id}.',
+  'app.guardadoFallido': 'Non riesco a salvare i tuoi progressi su questo dispositivo (manca spazio o il browser non lo permette). Se chiudi l’app, quanto fatto oggi andrà perso, tranne ciò che è già nel tuo account.',
   'app.noExiste': 'Questo indirizzo non esiste.',
   'app.sinConexionTitulo': '⚠ Impossibile caricare le lezioni',
   'app.sinConexionTexto': 'Sembra che la connessione Internet non sia disponibile (o che il server locale sia spento).',

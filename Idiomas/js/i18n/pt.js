@@ -71,6 +71,7 @@ export default {
   'app.noEncontradaTitulo': 'Página não encontrada',
   'app.noEncontradaTutora': 'Hum… não estou encontrando isso. Tem certeza de que existe?',
   'app.leccionNoAbre': 'Não foi possível abrir a lição {id}.',
+  'app.guardadoFallido': 'Não consigo salvar seu progresso neste dispositivo (falta espaço ou o navegador não permite). Se você fechar o app, o progresso de hoje será perdido, exceto o que já estiver na sua conta.',
   'app.noExiste': 'Este endereço não existe.',
   'app.sinConexionTitulo': '⚠ Não foi possível carregar as lições',
   'app.sinConexionTexto': 'Parece que não há conexão com a internet (ou o servidor local está desligado).',

@@ -2,15 +2,28 @@
 // Se guardan en el navegador (localStorage) y, si hay sesión iniciada, se
 // sincronizan con la API propia (ver sync.js). Cada entrada lleva «t», la hora de su
 // último cambio, para poder juntar los datos de varios dispositivos.
+//
+// Cómo se guarda (pensado para cuadernos de miles de tarjetas):
+// - cada tarjeta del cuaderno va en su propia clave («<curso>-tarjeta:<id>») y solo se reescriben las que cambian;
+//   el resto de los datos va en «<curso>-datos». Repasar una tarjeta escribe unos cientos de letras, no el cuaderno entero;
+// - las tarjetas se guardan sin lo que se puede deducir (ver tarjetaParaGuardar), también al subirlas a la nube,
+//   donde la API admite como mucho 1,5 MB por curso;
+// - los cambios seguidos se escriben de una vez (ver guardar()).
 
 import { nuevaTarjeta } from './srs.js';
 import { LANG } from './curso.js';
 import { clave } from './curso.js';
+import { compactarOrigen } from './i18n.js';
 
 const CLAVE = clave('datos');
+const PREFIJO_TARJETA = `${clave('tarjeta')}:`;
+const ESPERA_GUARDAR = 800; // milisegundos: los cambios seguidos (varias respuestas) se escriben de una vez
 
-let datos = cargar();
 const oyentes = new Set();
+let pendiente = null; // { resto: true, tarjetas: Set de ids | 'todas' }
+let relojGuardar = null;
+let avisadoFallo = false;
+let datos; // se carga más abajo, cuando ya está definido todo lo que hace falta para leerlos
 
 function vacio() {
   return { version: 2, reiniciado: 0, perfil: { nombre: '', t: 0 }, lecciones: {}, cuaderno: {}, actividad: {} };
@@ -23,30 +36,141 @@ function completar(d) {
     ...d,
     perfil: { ...base.perfil, ...(d.perfil ?? {}) },
     lecciones: d.lecciones ?? {},
-    cuaderno: d.cuaderno ?? {},
+    cuaderno: tarjetasLeidas(d.cuaderno ?? {}),
     actividad: d.actividad ?? {},
   };
 }
 
-function cargar() {
-  try {
-    const guardado = JSON.parse(localStorage.getItem(CLAVE));
-    if (guardado && typeof guardado === 'object') return completar(guardado);
-  } catch {
-    // Datos dañados o almacenamiento bloqueado: empezamos de cero.
-  }
-  return vacio();
+// ---------------------------------------------------------------------------
+// Una tarjeta, tal como se guarda y tal como se usa
+// ---------------------------------------------------------------------------
+
+const tipoDeduciblePor = es => (String(es).includes(' ') ? 'frase' : 'palabra');
+const SRS_INICIAL = nuevaTarjeta();
+const srsInicial = srs => srs && typeof srs === 'object' && Object.keys(srs).length === Object.keys(SRS_INICIAL).length
+  && Object.entries(SRS_INICIAL).every(([k, v]) => srs[k] === v);
+
+/** La tarjeta sin lo que se puede deducir: su id (es la clave), el tipo de siempre, textos vacíos, la fecha de creación si no ha cambiado y el repaso sin empezar. */
+function tarjetaParaGuardar(tarjeta) {
+  const { id, ...g } = tarjeta;
+  if (g.borrada) return g;
+  if (g.tipo === tipoDeduciblePor(g.es)) delete g.tipo;
+  for (const campo of ['trad', 'pron', 'nota', 'origen']) if (g[campo] === '' || g[campo] == null) delete g[campo];
+  if (g.creada === g.t) delete g.creada;
+  if (srsInicial(g.srs)) delete g.srs;
+  return g;
 }
 
-/** Guarda en el navegador y avisa a quien escuche (por ejemplo, la sincronización). */
-function guardar({ avisar = true } = {}) {
-  try {
-    localStorage.setItem(CLAVE, JSON.stringify(datos));
-  } catch {
-    // Sin almacenamiento (modo privado, etc.): los datos duran solo esta visita.
+/** La tarjeta completa a partir de lo guardado (de este formato o de los anteriores). Si ya está completa, la misma. */
+function tarjetaLeida(id, g) {
+  if (!g || typeof g !== 'object') return null;
+  const origen = g.origen && typeof g.origen === 'object' ? compactarOrigen(g.origen) : g.origen;
+  if (g.borrada) return g.id === id ? g : { ...g, id };
+  if (g.id === id && g.srs && typeof g.tipo === 'string' && 'creada' in g && 'trad' in g && 'pron' in g && 'nota' in g && origen === g.origen) return g;
+  return { tipo: tipoDeduciblePor(g.es), trad: '', pron: '', nota: '', origen: '', creada: g.t, srs: nuevaTarjeta(), ...g, origen: origen ?? '', id };
+}
+
+function tarjetasLeidas(cuaderno) {
+  const resultado = {};
+  for (const [id, g] of Object.entries(cuaderno)) {
+    const tarjeta = tarjetaLeida(id, g);
+    if (tarjeta) resultado[id] = tarjeta;
   }
+  return resultado;
+}
+
+/** Los datos tal como se suben a la nube: las tarjetas sin lo deducible. */
+export function datosParaGuardar() {
+  const cuaderno = {};
+  for (const [id, tarjeta] of Object.entries(datos.cuaderno)) cuaderno[id] = tarjetaParaGuardar(tarjeta);
+  return { ...datos, cuaderno };
+}
+
+// ---------------------------------------------------------------------------
+// Leer y escribir en el navegador
+// ---------------------------------------------------------------------------
+
+function leer(claveGuardada) {
+  try {
+    const valor = JSON.parse(localStorage.getItem(claveGuardada));
+    return valor && typeof valor === 'object' ? valor : null;
+  } catch {
+    return null; // datos dañados o almacenamiento bloqueado
+  }
+}
+
+function clavesDeTarjetas() {
+  try {
+    return Object.keys(localStorage).filter(k => k.startsWith(PREFIJO_TARJETA));
+  } catch {
+    return [];
+  }
+}
+
+function cargar() {
+  const guardado = leer(CLAVE) ?? {};
+  const cuaderno = {};
+  for (const k of clavesDeTarjetas()) {
+    const tarjeta = leer(k);
+    if (tarjeta) cuaderno[k.slice(PREFIJO_TARJETA.length)] = tarjeta;
+  }
+  // Los datos de antes llevaban el cuaderno dentro de «datos»: en el primer guardado cada tarjeta pasa a su clave.
+  // Si hay de las dos formas (una versión vieja de la app pudo volver a escribirlo dentro), se juntan tarjeta a tarjeta.
+  if (guardado.cuaderno) {
+    pendiente = { resto: true, tarjetas: 'todas' };
+    relojGuardar = setTimeout(escribir, ESPERA_GUARDAR);
+  }
+  return completar({ ...guardado, cuaderno: guardado.cuaderno ? unirMapas(guardado.cuaderno, cuaderno, masReciente) : cuaderno });
+}
+
+/**
+ * Apunta que hay cambios y avisa a quien escuche (por ejemplo, la sincronización).
+ * Se escriben en el navegador agrupados: como mucho cada ESPERA_GUARDAR, y siempre al ocultar o cerrar la app.
+ * tarjetas: los ids de las tarjetas del cuaderno que han cambiado (o 'todas'); el resto de los datos se escribe siempre.
+ */
+function guardar({ avisar = true, tarjetas = [] } = {}) {
+  pendiente ??= { resto: true, tarjetas: new Set() };
+  if (tarjetas === 'todas' || pendiente.tarjetas === 'todas') pendiente.tarjetas = 'todas';
+  else for (const id of tarjetas) pendiente.tarjetas.add(id);
+  relojGuardar ??= setTimeout(escribir, ESPERA_GUARDAR);
   if (avisar) for (const fn of oyentes) fn();
 }
+
+function escribir() {
+  clearTimeout(relojGuardar);
+  relojGuardar = null;
+  if (!pendiente) return;
+  const { tarjetas } = pendiente;
+  pendiente = null;
+  const { cuaderno, ...resto } = datos;
+  const ids = tarjetas === 'todas' ? Object.keys(cuaderno) : [...tarjetas];
+  try {
+    // Primero las tarjetas y después lo demás: así, si algo falla, los datos de antes siguen enteros.
+    if (tarjetas === 'todas') {
+      const quedan = new Set(ids.map(id => PREFIJO_TARJETA + id));
+      for (const k of clavesDeTarjetas()) if (!quedan.has(k)) localStorage.removeItem(k);
+    }
+    for (const id of ids) {
+      if (cuaderno[id]) localStorage.setItem(PREFIJO_TARJETA + id, JSON.stringify(tarjetaParaGuardar(cuaderno[id])));
+      else localStorage.removeItem(PREFIJO_TARJETA + id);
+    }
+    localStorage.setItem(CLAVE, JSON.stringify(resto));
+  } catch (e) {
+    console.error(e);
+    // Lo que no se ha podido escribir se vuelve a intentar con el siguiente cambio.
+    pendiente ??= { resto: true, tarjetas: new Set() };
+    if (tarjetas === 'todas') pendiente.tarjetas = 'todas';
+    else if (pendiente.tarjetas !== 'todas') for (const id of ids) pendiente.tarjetas.add(id);
+    // Se avisa una vez por visita: lo de hoy solo dura mientras la app siga abierta (y en la nube, si hay sesión).
+    if (!avisadoFallo) { avisadoFallo = true; window.dispatchEvent(new Event('guardado-fallido')); }
+  }
+}
+
+// Al ocultar la pestaña, cerrarla o pasar la app a segundo plano en el móvil, se escribe lo pendiente ya.
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') escribir(); });
+window.addEventListener('pagehide', escribir);
+
+datos = cargar();
 
 export function alCambiar(fn) {
   oyentes.add(fn);
@@ -56,10 +180,15 @@ export function todosLosDatos() {
   return datos;
 }
 
-/** Sustituye los datos (tras juntarlos con los de la nube). */
+/** Sustituye los datos (tras juntarlos con los de la nube). Solo se reescriben las tarjetas que han cambiado. */
 export function reemplazarDatos(nuevos) {
+  const antes = datos.cuaderno;
   datos = completar(nuevos);
-  guardar({ avisar: false });
+  const cambiadas = [];
+  for (const id of new Set([...Object.keys(antes), ...Object.keys(datos.cuaderno)])) {
+    if (antes[id] !== datos.cuaderno[id]) cambiadas.push(id);
+  }
+  guardar({ avisar: false, tarjetas: cambiadas });
 }
 
 function hoy() {
@@ -204,7 +333,7 @@ export function guardarEnCuaderno(item) {
     t: ahora,
     srs: nuevaTarjeta(),
   };
-  guardar();
+  guardar({ tarjetas: [id] });
 }
 
 /**
@@ -213,7 +342,7 @@ export function guardarEnCuaderno(item) {
  */
 export function guardarVariasEnCuaderno(items) {
   const ahora = Date.now();
-  let nuevas = 0;
+  const nuevas = [];
   for (const item of items) {
     const id = idDeTarjeta(item.es);
     if (datos.cuaderno[id]) continue;
@@ -229,10 +358,10 @@ export function guardarVariasEnCuaderno(items) {
       t: ahora,
       srs: nuevaTarjeta(),
     };
-    nuevas += 1;
+    nuevas.push(id);
   }
-  if (nuevas) guardar();
-  return nuevas;
+  if (nuevas.length) guardar({ tarjetas: nuevas });
+  return nuevas.length;
 }
 
 export function quitarDelCuaderno(es) {
@@ -240,7 +369,7 @@ export function quitarDelCuaderno(es) {
   if (!datos.cuaderno[id]) return;
   // Se deja una marca de borrado para que la nube también la borre.
   datos.cuaderno[id] = { id, borrada: true, t: Date.now() };
-  guardar();
+  guardar({ tarjetas: [id] });
 }
 
 export function actualizarTarjeta(id, srs) {
@@ -249,7 +378,7 @@ export function actualizarTarjeta(id, srs) {
   tarjeta.srs = srs;
   tarjeta.t = Date.now();
   anotarActividad('repasos');
-  guardar();
+  guardar({ tarjetas: [id] });
 }
 
 // ---------------------------------------------------------------------------
@@ -289,12 +418,24 @@ export function reiniciarProgreso({ vaciarCuaderno = false } = {}) {
     for (const t of tarjetas()) cuaderno[t.id] = { ...t, srs: nuevaTarjeta(), t: ahora + 1 };
   }
   datos = { ...vacio(), reiniciado: ahora, perfil: datos.perfil, cuaderno };
-  guardar();
+  guardar({ tarjetas: 'todas' });
 }
 
 // ---------------------------------------------------------------------------
 // Unir datos de dos dispositivos (local y nube)
 // ---------------------------------------------------------------------------
+
+/** Junta dos mapas entrada a entrada con fn(a, b); las entradas que no cumplen «vale» no cuentan. */
+function unirMapas(mapaA, mapaB, fn, vale = () => true) {
+  const resultado = {};
+  for (const clave of new Set([...Object.keys(mapaA), ...Object.keys(mapaB)])) {
+    const x = vale(mapaA[clave]) ? mapaA[clave] : null;
+    const y = vale(mapaB[clave]) ? mapaB[clave] : null;
+    const elegido = fn(x, y);
+    if (elegido) resultado[clave] = elegido;
+  }
+  return resultado;
+}
 
 function masReciente(a, b) {
   if (!a) return b;
@@ -324,16 +465,7 @@ export function unirDatos(local, remoto) {
   const reiniciado = Math.max(a.reiniciado ?? 0, b.reiniciado ?? 0);
   const vigente = x => x && (x.t ?? 0) >= reiniciado;
 
-  const unir = (mapaA, mapaB, fn) => {
-    const resultado = {};
-    for (const clave of new Set([...Object.keys(mapaA), ...Object.keys(mapaB)])) {
-      const x = vigente(mapaA[clave]) ? mapaA[clave] : null;
-      const y = vigente(mapaB[clave]) ? mapaB[clave] : null;
-      const elegido = fn(x, y);
-      if (elegido) resultado[clave] = elegido;
-    }
-    return resultado;
-  };
+  const unir = (mapaA, mapaB, fn) => unirMapas(mapaA, mapaB, fn, vigente);
 
   return {
     version: 2,
@@ -354,7 +486,7 @@ export function unirDatos(local, remoto) {
 export function importarCopia(copia) {
   if (!copia || typeof copia !== 'object' || copia.version !== 2 || typeof copia.lecciones !== 'object') return false;
   datos = completar(unirDatos(datos, copia));
-  guardar();
+  guardar({ tarjetas: 'todas' });
   return true;
 }
 

@@ -42,6 +42,7 @@ export default {
   'app.noEncontradaTitulo': '페이지를 찾을 수 없습니다',
   'app.noEncontradaTutora': '음… 못 찾겠어. 정말 있는 페이지 맞아?',
   'app.leccionNoAbre': '레슨 {id}을(를) 열 수 없습니다.',
+  'app.guardadoFallido': '이 기기에 진행 상황을 저장할 수 없어요(공간이 부족하거나 브라우저가 허용하지 않아요). 앱을 닫으면 계정에 이미 저장된 것을 빼고 오늘 학습한 내용이 사라져요.',
   'app.noExiste': '이 주소는 존재하지 않습니다.',
   'app.sinConexionTitulo': '⚠ 레슨을 불러오지 못했습니다',
   'app.sinConexionTexto': '인터넷에 연결되지 않았거나 로컬 서버가 꺼져 있는 것 같습니다.',

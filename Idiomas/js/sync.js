@@ -9,7 +9,7 @@
 
 import { API_URL } from './config.js';
 import { curso } from './curso.js';
-import { todosLosDatos, reemplazarDatos, unirDatos, alCambiar } from './progress.js';
+import { todosLosDatos, datosParaGuardar, reemplazarDatos, unirDatos, alCambiar } from './progress.js';
 import { t, idioma } from './i18n.js';
 
 const ESPERA_SUBIDA = 2000;
@@ -184,7 +184,8 @@ export async function sincronizar() {
 async function subir() {
   for (let intento = 0; ; intento++) {
     try {
-      const r = await api('PUT', `/progreso/${curso.id}`, { datos: todosLosDatos(), version });
+      // las tarjetas sin lo deducible: así un cuaderno lleno cabe en el límite de la API (1,5 MB por curso)
+      const r = await api('PUT', `/progreso/${curso.id}`, { datos: datosParaGuardar(), version });
       version = r.version;
       avisar('sincronizada');
       return;

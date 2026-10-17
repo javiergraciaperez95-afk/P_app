@@ -2,7 +2,7 @@
 
 import { el } from './dom.js';
 import { icono } from './iconos.js';
-import { t, tr, tTodos } from './i18n.js';
+import { t, tr, origenTarjeta } from './i18n.js';
 import { pronunciar, sonar, ayudaVoz } from './sonidos.js';
 import { estaEnCuaderno, guardarEnCuaderno, guardarVariasEnCuaderno, quitarDelCuaderno } from './progress.js';
 import { decir } from './tutor.js';
@@ -14,7 +14,7 @@ import { LANG } from './curso.js';
  * Las fichas «ocultas» (nombres, palabra + partícula…) solo sirven para tocarlas en las frases: no se apuntan.
  */
 export function apuntarPalabrasDeLeccion(leccion, palabras = leccion.palabras) {
-  const origen = tTodos('cuaderno.deLeccion', { id: leccion.id, titulo: leccion.titulo_es });
+  const origen = origenTarjeta('cuaderno.deLeccion', { id: leccion.id, titulo: leccion.titulo_es });
   const nuevas = guardarVariasEnCuaderno([...palabras.values()].filter(v => !v.oculta).map(v => ({
     es: v.es, trad: v.trad, pron: v.pron, nota: v.nota || v.consejo,
     tipo: v.es.includes(' ') ? 'frase' : 'palabra', origen,
@@ -38,7 +38,7 @@ export function botonEscuchar(texto) {
 
 /**
  * Botón ☆/★ que guarda o quita del cuaderno.
- * item: { es, trad, pron?, nota?, tipo, origen? } (trad, nota y origen: texto o { en, vi })
+ * item: { es, trad, pron?, nota?, tipo, origen? } (trad y nota: texto o { en, vi }; origen: ver origenTarjeta en i18n.js)
  */
 export function botonGuardar(item, { conTexto = false } = {}) {
   const boton = el('button', { type: 'button', class: conTexto ? 'boton boton-mini boton-guardar' : 'boton-icono boton-guardar' });
