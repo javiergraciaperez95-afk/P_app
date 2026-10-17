@@ -1,6 +1,6 @@
 // Pequeños escenarios pixel. Las animaciones se activan al tocar, sin reproducir música.
 import { el, poner } from '../dom.js';
-import { copiarUI as copy } from '../i18n.js';
+import { t } from '../i18n.js';
 import { CURSOS } from '../cursos.js';
 import { dibujoDe } from '../tutor-sprite.js';
 import { sonar } from '../sonidos.js';
@@ -34,12 +34,12 @@ export function pintarSocial(root) {
   }
 
   const redes = [
-    { id: 'instagram', nombre: 'Instagram', icono: '◎', titulo: copy('Una foto de nuestro día', 'A snapshot of our day'), texto: copy('Novedades, ilustraciones y pequeños momentos entre lecciones.', 'Updates, illustrations and little moments between lessons.'), accion: copy('Saca una foto', 'Take a photo'), respuesta: copy('¡Lista para el álbum de Paglot!', 'Ready for the Paglot album!') },
-    { id: 'tiktok', nombre: 'TikTok', icono: '♪', titulo: copy('Idiomas con mucho ritmo', 'Languages with a little rhythm'), texto: copy('Vídeos cortos, curiosidades y un ratito para aprender sonriendo.', 'Short videos, fun discoveries and a little learning with a smile.'), accion: copy('Dale al ritmo', 'Find the rhythm'), respuesta: copy('¡Esta canción se queda en la cabeza!', 'That tune is going to stay with me!') },
-    { id: 'youtube', nombre: 'YouTube', icono: '▶', titulo: copy('Pasa, empieza la clase', 'Come in, class is starting'), texto: copy('Guías y explicaciones para acompañar tus ganas de aprender.', 'Guides and explanations to keep your curiosity going.'), accion: copy('Saluda a la cámara', 'Wave to the camera'), respuesta: copy('¡Hola! ¿Preparados para aprender algo nuevo?', 'Hello! Ready to learn something new?') },
-    { id: 'facebook', nombre: 'Facebook', icono: 'f', titulo: copy('Siempre hay sitio para ti', 'There is always room for you'), texto: copy('Un lugar para compartir novedades y celebrar pequeños avances.', 'A place to share updates and celebrate small steps forward.'), accion: copy('Únete a la conversación', 'Join the conversation'), respuesta: copy('¡Qué bien tenerte por aquí!', 'So lovely to have you here!') },
-    { id: 'x', nombre: 'X', icono: '𝕏', titulo: copy('Un mensaje y seguimos', 'A quick message before we go'), texto: copy('Anuncios, ideas y noticias breves, directo al grano.', 'Announcements, ideas and short news, straight to the point.'), accion: copy('Escribe una novedad', 'Write an update'), respuesta: copy('Nueva idea apuntada. ¡Seguimos creando!', 'New idea noted. Let’s keep creating!') },
-    { id: 'discord', nombre: 'Discord', icono: '⌘', titulo: copy('Tu rincón de conversación', 'Your little conversation corner'), texto: copy('Un espacio para conocer a otros estudiantes y compartir el camino.', 'A space to meet fellow learners and share the journey.'), accion: copy('Di hola al grupo', 'Say hello to the group'), respuesta: copy('¡Hola, equipo! ¿Qué practicamos hoy?', 'Hi, team! What shall we practise today?') },
+    { id: 'instagram', nombre: 'Instagram', icono: '◎', titulo: t('social.aSnapshotOfOurDay'), texto: t('social.updatesIllustrationsAndLittleMoments'), accion: t('social.takeAPhoto'), respuesta: t('social.readyForThePaglotAlbum') },
+    { id: 'tiktok', nombre: 'TikTok', icono: '♪', titulo: t('social.languagesWithALittleRhythm'), texto: t('social.shortVideosFunDiscoveriesAnd'), accion: t('social.findTheRhythm'), respuesta: t('social.thatTuneIsGoingTo') },
+    { id: 'youtube', nombre: 'YouTube', icono: '▶', titulo: t('social.comeInClassIsStarting'), texto: t('social.guidesAndExplanationsToKeep'), accion: t('social.waveToTheCamera'), respuesta: t('social.helloReadyToLearnSomething') },
+    { id: 'facebook', nombre: 'Facebook', icono: 'f', titulo: t('social.thereIsAlwaysRoomFor'), texto: t('social.aPlaceToShareUpdates'), accion: t('social.joinTheConversation'), respuesta: t('social.soLovelyToHaveYou') },
+    { id: 'x', nombre: 'X', icono: '𝕏', titulo: t('social.aQuickMessageBeforeWe'), texto: t('social.announcementsIdeasAndShortNews'), accion: t('social.writeAnUpdate'), respuesta: t('social.newIdeaNotedLetS') },
+    { id: 'discord', nombre: 'Discord', icono: '⌘', titulo: t('social.yourLittleConversationCorner'), texto: t('social.aSpaceToMeetFellow'), accion: t('social.sayHelloToTheGroup'), respuesta: t('social.hiTeamWhatShallWe') },
   ];
   // Direcciones provisionales solicitadas para preparar los botones de salida.
   const enlaces = {
@@ -87,17 +87,17 @@ export function pintarSocial(root) {
     });
     apagar.push(() => clearTimeout(reloj));
     return el('article', { class: `social-tarjeta social-tarjeta-${red.id}` },
-      el('header', { class: 'social-canal' }, el('span', { 'aria-hidden': 'true' }, red.icono), el('h2', {}, red.nombre), el('small', {}, copy('Demo', 'Demo'))),
+      el('header', { class: 'social-canal' }, el('span', { 'aria-hidden': 'true' }, red.icono), el('h2', {}, red.nombre), el('small', {}, t('social.demo'))),
       escena,
       el('div', { class: 'social-texto' }, el('h3', {}, red.titulo), el('p', { class: 'solo-lector' }, red.texto), feedback,
-        el('a', { class: 'social-enlace', href: enlaces[red.id], target: '_blank', rel: 'noopener noreferrer', 'aria-label': copy(`Abrir ${red.nombre} (enlace provisional, nueva pestaña)`, `Open ${red.nombre} (placeholder link, new tab)`) }, copy('Abrir ', 'Open '), red.nombre, ' ↗')));
+        el('a', { class: 'social-enlace', href: enlaces[red.id], target: '_blank', rel: 'noopener noreferrer', 'aria-label': t('social.abrirEnlace', { red: red.nombre }) }, t('social.open'), red.nombre, ' ↗')));
   });
   poner(root, el('article', { class: 'comunidad pagina-social' },
     el('header', { class: 'comunidad-hero' },
-      el('span', { class: 'comunidad-etiqueta' }, copy('La comunidad Paglot', 'The Paglot community')),
-      el('h1', {}, copy('Nos vemos entre lecciones', 'See you between lessons')),
-      el('p', {}, copy('Elige tu rincón. Toca las escenas y conoce a nuestras tutoras.', 'Pick your corner. Tap the scenes and meet our tutors.'))),
+      el('span', { class: 'comunidad-etiqueta' }, t('social.thePaglotCommunity')),
+      el('h1', {}, t('social.seeYouBetweenLessons')),
+      el('p', {}, t('social.pickYourCornerTapThe'))),
     el('div', { class: 'social-mosaico' }, tarjetas),
-    el('p', { class: 'comunidad-nota' }, copy('Enlaces de demostración: los perfiles oficiales llegarán pronto.', 'Demo links: official profiles coming soon.'))));
+    el('p', { class: 'comunidad-nota' }, t('social.demoLinksOfficialProfilesComing'))));
   return () => { viva = false; apagar.forEach(parar => parar()); };
 }

@@ -50,11 +50,9 @@ export const ruta = archivo => `${curso.carpeta}/${archivo}`;
 /** Nombre del idioma estudiado, adaptado al idioma de la interfaz cuando es posible. */
 export function nombreCurso(c, idioma) {
   if (c.nombre[idioma]) return c.nombre[idioma];
-  if (idioma === 'fr' || idioma === 'ja' || idioma === 'it' || idioma === 'ko' || idioma === 'de' || idioma === 'ru' || idioma === 'id') {
-    try { return new Intl.DisplayNames([idioma], { type: 'language' }).of(c.lang) ?? c.nombre.en ?? c.nativo; }
-    catch { /* Un navigateur sans DisplayNames garde le nom existant. */ }
-  }
-  return c.nombre.en ?? c.nativo;
+  // cursos.js trae los nombres en inglés, español, portugués, vietnamita y chino; para el resto lo dice el navegador.
+  try { return new Intl.DisplayNames([idioma], { type: 'language' }).of(c.lang) ?? c.nombre.en ?? c.nativo; }
+  catch { return c.nombre.en ?? c.nativo; } // navegador sin Intl.DisplayNames
 }
 export const nombreDelCurso = idioma => nombreCurso(curso, idioma);
 
