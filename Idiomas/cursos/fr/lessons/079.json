@@ -5,7 +5,7 @@
  "palabras": {
   "heureux": {
    "es": "feliz",
-   "pron": "ö-RÖ"
+   "pron": "ö-rö"
   },
   "triste": {
    "es": "triste",
@@ -13,19 +13,19 @@
   },
   "étonné": {
    "es": "asombrado",
-   "pron": "e-to-NÉ"
+   "pron": "e-to-ne"
   },
   "fier": {
    "es": "orgulloso",
-   "pron": "fi-ÉR"
+   "pron": "fyer"
   },
   "fière": {
    "es": "orgullosa",
-   "pron": "fi-ÉR"
+   "pron": "fyer"
   },
   "inquiet": {
    "es": "preocupado",
-   "pron": "i(n)-KIÉ"
+   "pron": "e(n)-kye"
   },
   "peur": {
    "es": "miedo",
@@ -33,23 +33,23 @@
   },
   "rassuré": {
    "es": "tranquilo, aliviado",
-   "pron": "ra-su-RÉ"
+   "pron": "ra-sü-re"
   },
   "furieux": {
    "es": "furioso",
-   "pron": "fü-RIÖ"
+   "pron": "fü-ryö"
   },
   "honteux": {
    "es": "avergonzado",
-   "pron": "o(n)-TÖ"
+   "pron": "o(n)-tö"
   },
   "bizarre": {
    "es": "raro, extraño",
-   "pron": "bi-ZAR"
+   "pron": "bi-zar"
   },
   "normal": {
    "es": "normal",
-   "pron": "nor-MÁL"
+   "pron": "nor-mal"
   },
   "sûr": {
    "es": "seguro",
@@ -132,7 +132,7 @@
      "es": "Me alegra que estés aquí.",
      "analisis": [
       [
-       "je suis content que",
+       "Je suis content que",
        "me alegra que"
       ],
       [
@@ -146,6 +146,10 @@
      "fr": "Moi, je suis inquiet que tu sois triste.",
      "es": "Yo, me preocupa que estés triste.",
      "analisis": [
+      [
+       "Moi",
+       "yo / en cuanto a mí"
+      ],
       [
        "je suis inquiet que",
        "me preocupa que"
@@ -162,7 +166,7 @@
      "es": "Es normal que esté cansada.",
      "analisis": [
       [
-       "c'est normal que",
+       "C'est normal que",
        "es normal que"
       ],
       [
@@ -177,8 +181,12 @@
      "es": "¡Me sorprende que estés tan orgullosa!",
      "analisis": [
       [
-       "je suis surpris que",
+       "Je suis surpris que",
        "me sorprende que"
+      ],
+      [
+       "tu sois",
+       "estés"
       ],
       [
        "si fière",
@@ -321,13 +329,24 @@
    "id": "fr079-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «me alegra que estés aquí»",
-   "respuestas": [
-    "je suis content que tu sois là"
-   ],
-   "explicacion": "Emoción + «que» + subjuntivo.",
-   "id": "fr079-8"
+   "tipo": "test",
+   "pregunta": "¿Cómo se expresa correctamente «me alegra que estés aquí»?",
+   "id": "fr079-8",
+   "opciones": [
+    {
+     "texto": "Je suis content que tu sois là.",
+     "explicacion": "Expresión de sentimiento («content que») + subjuntivo («tu sois»).",
+     "correcta": true
+    },
+    {
+     "texto": "Je suis content que tu es là.",
+     "explicacion": "«Tu es» es presente de indicativo, no subjuntivo."
+    },
+    {
+     "texto": "Je suis content de tu sois là.",
+     "explicacion": "Con dos sujetos distintos se debe emplear «que», no «de»."
+    }
+   ]
   }
  ],
  "intro": "Ahora el subjuntivo con emociones: alegría, miedo, sorpresa. Siempre con «que»."

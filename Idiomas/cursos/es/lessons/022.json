@@ -11,23 +11,28 @@
     "la iglesia": {"en": "the church", "pron": "la i-GLE-sya", "genero": "f"},
     "el hospital": {"en": "the hospital", "pron": "el os-pi-TAL", "genero": "m"},
     "la biblioteca": {"en": "the library", "pron": "la bi-blyo-TE-ka", "genero": "f", "nota": "A bookshop is una librería."},
-    "el colegio": {"en": "the school", "pron": "el ko-LE-hyo", "genero": "m"},
+    "el colegio": {"en": "the school", "pron": "el ko-LE-hyo", "genero": "m", "nota": "Usually a school, not a college or university."},
     "el cine": {"en": "the cinema", "pron": "el THI-ne", "genero": "m"},
     "el restaurante": {"en": "the restaurant", "pron": "el res-tau-RAN-te", "genero": "m"},
     "el hotel": {"en": "the hotel", "pron": "el o-TEL", "genero": "m"},
     "Correos": {"en": "the post office", "pron": "ko-RRE-os", "cat": "noun"},
     "el ayuntamiento": {"en": "the town hall", "pron": "el a-yun-ta-MYEN-to", "genero": "m"},
     "enfrente de": {"en": "opposite", "pron": "en-FREN-te de", "cat": "expression"},
+    "al lado de": {"en": "next to", "pron": "al LA-do de", "cat": "expression"},
+    "cerca de": {"en": "near", "pron": "THER-ka de", "cat": "expression"},
+    "lejos de": {"en": "far from", "pron": "LE-hos de", "cat": "expression"},
+    "del": {"en": "of the; from the (de + el)", "pron": "del", "cat": "contraction", "nota": "With a common masculine noun: enfrente del colegio. Not with a proper name such as El Salvador."},
     "entre": {"en": "between", "pron": "EN-tre", "cat": "preposition"},
-    "tranquilo": {"en": "quiet", "pron": "tran-KI-lo", "cat": "adjective"},
-    "ruidoso": {"en": "noisy", "pron": "rwi-DO-so", "cat": "adjective"}
+    "la tienda": {"en": "the shop; store", "pron": "la TYEN-da", "genero": "f"},
+    "tranquilo": {"en": "quiet", "pron": "tran-KI-lo", "cat": "adjective", "nota": "Feminine: tranquila."},
+    "ruidoso": {"en": "noisy", "pron": "rwi-DO-so", "cat": "adjective", "nota": "Feminine: ruidosa."}
   },
   "bloques": [
     {
       "tipo": "explicacion",
       "titulo": {"en": "What there is, and where"},
       "texto": {
-        "en": "**Hay** says what exists: **hay un** parque, **hay dos** supermercados, **hay muchas** tiendas.\n\nIn the negative the noun usually has no article: **no hay cine**, **no hay biblioteca**.\n\n**Está** locates a place you have already mentioned: **la** biblioteca **está** enfrente de la iglesia.\n\nPosition: **enfrente de**, **al lado de**, **cerca de**, **lejos de**, and **entre** … **y** …\n\nRemember **de + el = del**: enfrente **del** colegio.\n\nWhat the neighbourhood is like takes **ser**: es **tranquilo**, es **ruidoso**."
+        "en": "**Hay** says what exists: **hay un** parque, **hay dos** supermercados, **hay muchas** tiendas.\n\nIn the negative, a general statement often has no article: **no hay cine**, **no hay biblioteca**.\n\nUse **estar** to locate a specific place or thing: **la** biblioteca **está** enfrente de la iglesia.\n\nPosition: **enfrente de**, **al lado de**, **cerca de**, **lejos de**, and **entre** … **y** …\n\nWith a common masculine noun, **de + el** contracts to **del**: enfrente **del** colegio. The contraction is not used when **El** is part of a proper name, as in **de El Salvador**.\n\nWhat the neighbourhood is like takes **ser**: es **tranquilo**, es **ruidoso**."
       }
     },
     {
@@ -48,9 +53,9 @@
         },
         {
           "quien": "Lucía",
-          "es": "¿Hay biblioteca?",
+          "es": "¿Hay una biblioteca?",
           "en": "Is there a library?",
-          "analisis": [["¿Hay", "verb"], ["biblioteca", "object"]]
+          "analisis": [["¿Hay", "verb"], ["una biblioteca", "object"]]
         },
         {
           "quien": "Pablo",
@@ -87,8 +92,8 @@
       "frase": "La biblioteca está enfrente ___ colegio.",
       "audio": true,
       "opciones": {
-        "del": {"en": "De and el join into del."},
-        "de el": {"en": "De and el always join."},
+        "del": {"en": "With a common masculine noun, de + el contracts to del."},
+        "de el": {"en": "With common masculine nouns, use the contraction del."},
         "al": {"en": "Enfrente takes de."}
       },
       "correcta": "del"
@@ -101,7 +106,7 @@
       "audio": true,
       "opciones": {
         "Hay": {"en": "Hay says what exists."},
-        "Están": {"en": "Están locates things already known."},
+        "Están": {"en": "Están locates specific plural things; hay introduces their existence."},
         "Son": {"en": "Ser says what something is."}
       },
       "correcta": "Hay"

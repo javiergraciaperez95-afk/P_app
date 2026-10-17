@@ -28,22 +28,23 @@ export function crearEjercicio(bloque, idLeccion, numero, alResponder) {
 
   /** Lo común a todos: guardar, mostrar la explicación y que hable la tutora. */
   function resolver(acierto, mensajes, { feedback, pie }) {
-    sonar(acierto ? 'bien' : 'mal');
+    const autoevaluacion = acierto === null;
+    if (!autoevaluacion) sonar(acierto ? 'bien' : 'mal');
     registrarRespuesta(idLeccion, bloque.id, acierto);
-    fallosSeguidos = acierto ? 0 : fallosSeguidos + 1;
+    fallosSeguidos = acierto === false ? fallosSeguidos + 1 : 0;
 
     feedback.hidden = false;
-    feedback.className = `feedback ${acierto ? 'bien' : 'mal'}`;
+    feedback.className = `feedback ${autoevaluacion ? 'autoevaluacion' : acierto ? 'bien' : 'mal'}`;
     poner(feedback,
-      el('p', { class: 'feedback-titulo' }, t(acierto ? 'ej.correcto' : 'ej.incorrecto')),
+      el('p', { class: 'feedback-titulo' }, t(autoevaluacion ? 'ej.autoTitulo' : acierto ? 'ej.correcto' : 'ej.incorrecto')),
       ...mensajes.map(m => el('p', {}, enLinea(m))));
     feedback.focus({ preventScroll: true });
 
-    let expresion = acierto ? 'contenta' : 'pensando';
+    let expresion = acierto === false ? 'pensando' : 'contenta';
     if (!acierto && fallosSeguidos >= 2) expresion = 'apurada';
-    if (bloque.tutora && !acierto) expresion = bloque.tutora;
-    const animo = !acierto && fallosSeguidos >= 2 ? t('ej.seResiste') : null;
-    decir([animo, ...mensajes].filter(Boolean).join(' '), expresion);
+    if (bloque.tutora && acierto === false) expresion = bloque.tutora;
+    const animo = acierto === false && fallosSeguidos >= 2 ? t('ej.seResiste') : null;
+    if (!autoevaluacion) decir([animo, ...mensajes].filter(Boolean).join(' '), expresion);
 
     pintarPie(pie, true);
     alResponder();
@@ -51,8 +52,10 @@ export function crearEjercicio(bloque, idLeccion, numero, alResponder) {
 
   function pintarPie(pie, respondido) {
     const e = estadoEjercicio(idLeccion, bloque.id);
-    const datos = e.intentos
-      ? t('ej.estadisticas', { intentos: e.intentos, aciertos: e.aciertos, errores: e.errores })
+    const datos = e.ultimo === null && e.completado
+      ? t('ej.autoevaluado')
+      : e.intentos
+        ? t('ej.estadisticas', { intentos: e.intentos, aciertos: e.aciertos, errores: e.errores })
       : t('ej.sinResponder');
     poner(pie, el('span', {}, datos));
     if (respondido) {
@@ -61,7 +64,7 @@ export function crearEjercicio(bloque, idLeccion, numero, alResponder) {
         class: 'boton boton-mini',
         onclick: () => {
           pintar();
-          seccion.querySelector('.opcion, input, .pieza')?.focus();
+          seccion.querySelector('.opcion, input, textarea, .pieza')?.focus();
         },
       }, t('ej.repetir')));
     }
@@ -75,7 +78,7 @@ export function crearEjercicio(bloque, idLeccion, numero, alResponder) {
     const pie = el('div', { class: 'ejercicio-pie' });
     const oido = bloque.audio ? controlesAudio(bloque.audio, bloque.audioRevela) : null;
     poner(seccion,
-      el('span', { class: 'etiqueta-bloque' }, `${t('ej.ejercicio', { n: numero })} · `, bloque.audio && el('span', { class: 'con-voz' }, `🔊 ${t('ej.escucha')} · `), t(`ej.tipo.${bloque.tipo}`)),
+      el('span', { class: 'etiqueta-bloque' }, `${t('ej.ejercicio', { n: numero })} · `, bloque.audio && el('span', { class: 'con-voz' }, `🔊 ${t('ej.escucha')} · `), t(`ej.tipo.${bloque.autoevaluacion ? 'autoevaluacion' : bloque.tipo}`)),
       el('p', { class: 'ejercicio-pregunta', id: `ej-${numero}` }, enLinea(pregunta)),
       oido,
       ...contenido,
@@ -135,8 +138,9 @@ export function crearEjercicio(bloque, idLeccion, numero, alResponder) {
 
   function pintarEscribir() {
     const id = `escribir-${numero}`;
-    const entrada = el('input', {
-      id, type: 'text', lang: LANG, autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false',
+    const entrada = el(bloque.autoevaluacion ? 'textarea' : 'input', {
+      id, ...(bloque.autoevaluacion ? { rows: 5 } : { type: 'text' }),
+      lang: LANG, autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false',
       'aria-labelledby': `ej-${numero}`,
     });
     const letras = el('div', { class: 'letras-especiales', role: 'group', 'aria-label': t('ej.letrasEspeciales'), hidden: !LETRAS_ESPECIALES.length },
@@ -174,7 +178,15 @@ export function crearEjercicio(bloque, idLeccion, numero, alResponder) {
       letras.querySelectorAll('button').forEach(b => { b.disabled = true; });
 
       let mensajes;
-      if (acierto) {
+      if (bloque.autoevaluacion) {
+        mensajes = [
+          t('ej.autoInstruccion'),
+          bloque.explicacion ? `${t('ej.autoCriterios')} ${tr(bloque.explicacion)}` : null,
+          respuestas[0] ? t('ej.autoModelo', { texto: respuestas[0] }) : null,
+        ];
+        resolver(null, mensajes.filter(Boolean), zonas);
+        return;
+      } else if (acierto) {
         mensajes = [alAzar(t('ej.felicitaciones')), tr(bloque.explicacion)];
       } else {
         // Lo más típico: todo bien salvo las tildes o la ñ.

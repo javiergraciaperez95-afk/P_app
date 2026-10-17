@@ -23,11 +23,19 @@
       const t = a.tema || 'auto';
       const oscuro = t === 'oscuro' || (t === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
       document.documentElement.dataset.tema = oscuro ? 'oscuro' : 'claro';
-      if (a.idioma) document.documentElement.lang = a.idioma;
+      const compatibles = new Set(['en', 'vi', 'zh', 'es', 'pt', 'fr', 'ja', 'it', 'ko', 'ru', 'de', 'id']);
+      const detectar = () => [...(navigator.languages ?? []), navigator.language ?? '']
+        .map(x => x.toLowerCase().replaceAll('_', '-').split('-')[0]).find(x => compatibles.has(x)) ?? 'en';
+      document.documentElement.lang = a.idioma && a.idioma !== 'auto' && compatibles.has(a.idioma) ? a.idioma : detectar();
     } catch (e) { /* tema por defecto */ }
   </script>
   <link rel="stylesheet" href="css/fuentes.css?v=__VERSION__">
+  <link rel="stylesheet" href="css/proteccion-texto.css?v=__VERSION__">
+  <script src="js/proteccion-texto.js?v=__VERSION__"></script>
   <link rel="stylesheet" href="css/styles.css?v=__VERSION__&h=27">
+  <link rel="stylesheet" href="css/tienda.css?v=__VERSION__">
+  <link rel="stylesheet" href="css/comunidad-extra.css?v=__VERSION__">
+  <link rel="stylesheet" href="css/juego-ilustrado.css?v=__VERSION__">
   <!-- Al publicar, __VERSION__ se cambia por el código de la versión (ver .github/workflows/static.yml),
        así el navegador descarga siempre los archivos nuevos en lugar de usar los antiguos guardados. -->
   <script type="importmap">
@@ -46,6 +54,13 @@
         "./js/i18n.js": "./js/i18n.js?v=__VERSION__",
         "./js/i18n/en.js": "./js/i18n/en.js?v=__VERSION__",
         "./js/i18n/es.js": "./js/i18n/es.js?v=__VERSION__",
+        "./js/i18n/fr.js": "./js/i18n/fr.js?v=__VERSION__",
+        "./js/i18n/ja.js": "./js/i18n/ja.js?v=__VERSION__",
+        "./js/i18n/it.js": "./js/i18n/it.js?v=__VERSION__",
+        "./js/i18n/ko.js": "./js/i18n/ko.js?v=__VERSION__",
+        "./js/i18n/de.js": "./js/i18n/de.js?v=__VERSION__",
+        "./js/i18n/ru.js": "./js/i18n/ru.js?v=__VERSION__",
+        "./js/i18n/id.js": "./js/i18n/id.js?v=__VERSION__",
         "./js/i18n/pt.js": "./js/i18n/pt.js?v=__VERSION__",
         "./js/i18n/vi.js": "./js/i18n/vi.js?v=__VERSION__",
         "./js/i18n/zh.js": "./js/i18n/zh.js?v=__VERSION__",
@@ -65,6 +80,11 @@
         "./js/tutor.js": "./js/tutor.js?v=__VERSION__",
         "./js/tutora-base.js": "./js/tutora-base.js?v=__VERSION__",
         "./js/vistas/bienvenida.js": "./js/vistas/bienvenida.js?v=__VERSION__",
+        "./js/vistas/comunidad.js": "./js/vistas/comunidad.js?v=__VERSION__",
+        "./js/vistas/comunidad-extra.js": "./js/vistas/comunidad-extra.js?v=__VERSION__",
+        "./js/vistas/social.js": "./js/vistas/social.js?v=__VERSION__",
+        "./js/vistas/productos.js": "./js/vistas/productos.js?v=__VERSION__",
+        "./js/vistas/tienda.js": "./js/vistas/tienda.js?v=__VERSION__",
         "./js/vistas/cuaderno.js": "./js/vistas/cuaderno.js?v=__VERSION__",
         "./js/vistas/cursos.js": "./js/vistas/cursos.js?v=__VERSION__",
         "./js/vistas/entrar.js": "./js/vistas/entrar.js?v=__VERSION__",
@@ -99,11 +119,10 @@
       <img class="marca-logo" src="assets/favicon.svg" alt="" width="32" height="32">
       <span class="marca-textos"><span class="marca-titulo" id="marca-nombre"></span><small class="marca-curso" hidden><span id="marca-bandera" aria-hidden="true"></span><span id="marca-subtitulo"></span></small></span>
     </a>
-    <nav id="cabecera-nav" class="cabecera-nav">
-      <a class="btn" href="#/inicio" data-nav="inicio" data-t="inicio.titulo">Home</a>
-      <a class="btn" href="#/entrar" data-nav="entrar" id="nav-entrar">Log in</a>
-      <a class="btn" href="#/precios" data-nav="precios" data-t="precios.titulo">Pricing</a>
-      <a class="btn" href="#/sobre" data-nav="sobre" data-t="sobre.titulo">About</a>
+    <nav id="cabecera-nav" class="cabecera-nav" data-t-aria="html.secciones">
+      <a class="btn" href="#/inicio" data-nav="inicio">Inicio</a>
+      <a class="btn" href="#/entrar" data-nav="entrar" id="nav-entrar">Entrar</a>
+      <a class="btn" href="#/precios" data-nav="precios" id="nav-max">Paglot Max</a>
     </nav>
     <nav id="menu" class="menu" data-t-aria="html.secciones"></nav>
     <span class="cabecera-botones">
@@ -124,9 +143,43 @@
     </div>
   </main>
 
+  <footer id="pie-sitio" class="pie-sitio">
+    <div class="pie-interior">
+      <a class="pie-marca" href="#/inicio" aria-label="Paglot — Inicio">
+        <img src="assets/favicon.svg" alt="" width="36" height="36">
+        <span><strong>Paglot</strong><small data-pie-lema>Learn at your own pace</small></span>
+      </a>
+      <nav class="pie-grupos" aria-label="Paglot">
+        <section class="pie-grupo">
+          <h2 data-pie-titulo="descubre">Discover</h2>
+          <a href="#/sobre" data-pie="sobre">About Paglot</a>
+          <a href="#/social" data-pie="social">Social</a>
+          <a href="#/guias" data-pie="guias">Community guidelines</a>
+          <a href="#/laboratorio" data-pie="laboratorio">Idea Lab</a>
+        </section>
+        <section class="pie-grupo">
+          <h2 data-pie-titulo="producto">Products</h2>
+          <a href="#/escuelas" data-pie="escuelas">Paglot Schools</a>
+          <a href="#/empresas" data-pie="empresas">Paglot Business</a>
+          <a href="#/precios" data-pie="max">Paglot Max</a>
+          <a href="#/regala-max" data-pie="regalo">Gift Paglot Max</a>
+          <a href="#/tienda" data-pie="tienda">Store</a>
+        </section>
+        <section class="pie-grupo">
+          <h2 data-pie-titulo="ayuda">Help</h2>
+          <a href="#/contacto" data-pie="contacto">Contact</a>
+          <a href="#/faq" data-pie="faq">FAQ</a>
+          <a href="#/legal" data-pie="legal">Legal notice</a>
+          <a href="#/creditos" data-pie="creditos">Credits</a>
+        </section>
+      </nav>
+    </div>
+    <div class="pie-base"><span>© Paglot</span><span data-pie-final>Aprender, a tu ritmo.</span></div>
+  </footer>
+
   <aside id="tutora" class="tutora" data-t-aria="tutora.nombre">
     <div class="tutora-dialogo">
-      <p class="tutora-nombre" data-t="tutora.nombre">Tutor</p>
+      <p class="tutora-nombre" data-t="tutora.nombrePropio">Tutor</p>
       <p class="tutora-texto" aria-hidden="true"></p>
       <p class="solo-lector" aria-live="polite"></p>
       <div class="tutora-botones">

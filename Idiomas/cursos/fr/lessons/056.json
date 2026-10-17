@@ -5,19 +5,19 @@
  "palabras": {
   "devrais": {
    "es": "deberías",
-   "pron": "de-VRÉ"
+   "pron": "de-vre"
   },
   "dors": {
-   "es": "duermes",
+   "es": "duermes, duermo",
    "pron": "dor"
   },
   "vaut": {
    "es": "vale",
-   "pron": "vó"
+   "pron": "vo"
   },
   "arrêter": {
    "es": "dejar, parar",
-   "pron": "a-re-TÉ"
+   "pron": "a-re-te"
   },
   "boire": {
    "es": "beber",
@@ -25,7 +25,7 @@
   },
   "légume": {
    "es": "verdura",
-   "pron": "lé-GÜM"
+   "pron": "le-güm"
   },
   "fruit": {
    "es": "fruta",
@@ -33,19 +33,19 @@
   },
   "courir": {
    "es": "correr",
-   "pron": "ku-RÍR"
+   "pron": "ku-rir"
   },
   "marcher": {
    "es": "caminar",
-   "pron": "mar-SHÉ"
+   "pron": "mar-she"
   },
   "vitamine": {
    "es": "vitamina",
-   "pron": "vi-ta-MIN"
+   "pron": "vi-ta-min"
   },
   "stress": {
    "es": "estrés",
-   "pron": "es-TRÉS"
+   "pron": "stres"
   }
  },
  "bloques": [
@@ -132,6 +132,10 @@
      "es": "Sí, duermo mal.",
      "analisis": [
       [
+       "Oui",
+       "sí"
+      ],
+      [
        "je dors",
        "duermo"
       ],
@@ -147,8 +151,16 @@
      "es": "¡Deberías dormir más!",
      "analisis": [
       [
-       "devrais",
+       "Tu devrais",
        "deberías (consejo)"
+      ],
+      [
+       "dormir",
+       "dormir"
+      ],
+      [
+       "plus",
+       "más"
       ]
      ]
     },
@@ -158,12 +170,16 @@
      "es": "Más vale dejar el café por la noche.",
      "analisis": [
       [
-       "il vaut mieux",
+       "Il vaut mieux",
        "más vale"
       ],
       [
        "arrêter",
        "dejar"
+      ],
+      [
+       "le café",
+       "el café"
       ],
       [
        "le soir",
@@ -177,12 +193,20 @@
      "es": "No deberías beber café por la noche.",
      "analisis": [
       [
-       "tu ne devrais pas",
+       "Tu ne devrais pas",
        "no deberías"
       ],
       [
        "boire",
        "beber"
+      ],
+      [
+       "de café",
+       "café"
+      ],
+      [
+       "le soir",
+       "por la noche"
       ]
      ]
     }
@@ -321,13 +345,24 @@
    "id": "fr056-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «deberías beber menos café»",
-   "respuestas": [
-    "tu devrais boire moins de café"
-   ],
-   "explicacion": "«Moins de» = menos.",
-   "id": "fr056-8"
+   "tipo": "test",
+   "pregunta": "¿Cómo aconsejas a alguien que camine más usando «tu devrais»?",
+   "id": "fr056-8",
+   "opciones": [
+    {
+     "texto": "Tu devrais marcher plus.",
+     "explicacion": "«Tu devrais» seguido de infinitivo («marcher») y del adverbio «plus» expresa una recomendación o consejo personal.",
+     "correcta": true
+    },
+    {
+     "texto": "Tu dois marcher plus.",
+     "explicacion": "«Tu dois» expresa una obligación directa o precepto tajante, no una sugerencia o consejo atenuado."
+    },
+    {
+     "texto": "Tu devrais marches plus.",
+     "explicacion": "Tras el condicional «devrais», el verbo debe mantenerse en infinitivo («marcher»), nunca en presente conjugado."
+    }
+   ]
   }
  ],
  "intro": "Ahora damos consejos. Son más suaves que las reglas."

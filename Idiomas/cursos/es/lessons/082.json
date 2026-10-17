@@ -7,7 +7,7 @@
     "todo": {"en": "all; everything", "pron": "TO-do", "cat": "determiner"},
     "todos los días": {"en": "every day", "pron": "TO-dos los DI-as", "cat": "expression"},
     "toda la semana": {"en": "the whole week", "pron": "TO-da la se-MA-na", "cat": "expression"},
-    "otro": {"en": "another, other", "pron": "O-tro", "cat": "determiner", "nota": "Never un otro."},
+    "otro": {"en": "another, other", "pron": "O-tro", "cat": "determiner", "nota": "It agrees with the noun. In general modern Spanish, use otro/otra without un/una."},
     "otra cosa": {"en": "something else", "pron": "O-tra KO-sa", "cat": "expression"},
     "cada": {"en": "each, every", "pron": "KA-da", "cat": "determiner", "nota": "It never changes."},
     "cada uno": {"en": "each one", "pron": "KA-da U-no", "cat": "expression"},
@@ -15,8 +15,11 @@
     "algunos": {"en": "some", "pron": "al-GU-nos", "cat": "determiner"},
     "los demás": {"en": "the others, the rest", "pron": "los de-MAS", "cat": "pronoun"},
     "todo el mundo": {"en": "everybody", "pron": "TO-do el MUN-do", "cat": "expression", "nota": "It takes a singular verb."},
+    "mismo": {"en": "same", "pron": "MIS-mo", "cat": "adjective", "nota": "It agrees with the noun: mismo, misma, mismos, mismas."},
     "lo mismo": {"en": "the same (thing)", "pron": "lo MIS-mo", "cat": "expression"},
-    "la tostada": {"en": "the piece of toast", "pron": "la tos-TA-da", "genero": "f"},
+    "el café": {"en": "the coffee", "pron": "el ka-FE", "cat": "noun", "genero": "m"},
+    "la mañana": {"en": "the morning", "pron": "la ma-NYA-na", "cat": "noun", "genero": "f"},
+    "la tostada": {"en": "the piece of toast", "pron": "la tos-TA-da", "cat": "noun", "genero": "f"},
     "probar": {"en": "to try, to taste", "pron": "pro-BAR", "cat": "verb"}
   },
   "bloques": [
@@ -24,7 +27,7 @@
       "tipo": "explicacion",
       "titulo": {"en": "Todo, otro, cada"},
       "texto": {
-        "en": "With a noun meaning the whole of something, **todo/toda/todos/todas** commonly appears with a definite article: **todo el** día, **toda la** casa, **todos los** días, **todas las** semanas. Other patterns have no article: **todo mi tiempo**, **toda esta semana**. Used alone, **todo** can mean everything: lo sé **todo**.\n\n**Todo el mundo** means everybody and takes a singular verb: todo el mundo **está** aquí.\n\n**Otro** normally takes no un/una before it: quiero **otro** café; **otra** vez; **otros dos** cafés. **Cada** does not change and takes a singular noun: cada día, cada semana, cada uno. **Algunos** means some; **varios**, several; **los demás**, the rest. **Lo mismo** means the same thing: siempre pido **lo mismo**."
+        "en": "With a noun meaning the whole of something, **todo/toda/todos/todas** commonly appears with a definite article: **todo el** día, **toda la** casa, **todos los** días, **todas las** semanas. Other patterns have no article: **todo mi tiempo**, **toda esta semana**. Used alone, **todo** can mean everything: lo sé **todo**.\n\n**Todo el mundo** means everybody and takes a singular verb: todo el mundo **está** aquí.\n\n**Otro/otra/otros/otras** agrees with the noun and normally takes no un/una before it: quiero **otro** café; **otra** vez; **otros dos** cafés. **Cada** does not change and takes a singular noun: cada día, cada semana, cada uno. **Algunos/as** means some; **varios/as**, several; **los demás**, the others or the rest.\n\n**Mismo/misma/mismos/mismas** means the same and agrees with the noun: **el mismo** café, **la misma** tostada. With neuter **lo**, **lo mismo** means the same thing: siempre pido **lo mismo**."
       }
     },
     {
@@ -90,7 +93,7 @@
       "audio": true,
       "opciones": {
         "otro": {"en": "Otro takes no article."},
-        "un otro": {"en": "Spanish never says un otro."},
+        "un otro": {"en": "This is not the usual form in general modern Spanish; say otro café."},
         "otra": {"en": "Café is masculine."}
       },
       "correcta": "otro"
@@ -145,6 +148,19 @@
       "id": "todo-otro-6",
       "frase": "Siempre pido lo mismo",
       "traduccion": {"en": "I always order the same thing."}
+    },
+    {
+      "tipo": "huecos",
+      "id": "todo-otro-7",
+      "pregunta": {"en": "Complete: I order the same piece of toast."},
+      "frase": "Pido la ___ tostada.",
+      "audio": true,
+      "opciones": {
+        "misma": {"en": "Mismo agrees with the feminine noun tostada."},
+        "mismo": {"en": "Mismo is masculine singular."},
+        "mismos": {"en": "Mismos is masculine plural."}
+      },
+      "correcta": "misma"
     },
     {
       "tipo": "explicacion",

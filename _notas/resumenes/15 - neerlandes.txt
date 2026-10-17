@@ -1,0 +1,61 @@
+RESUMEN DEL TRABAJO: CURSO DE NEERLANDÉS A1–B2
+Fecha: 16 de octubre de 2026
+
+1. REVISIÓN Y COMPRENSIÓN DE LA APLICACIÓN
+
+Al principio se revisó cómo está organizada la aplicación y cómo se redactan y compilan las lecciones. La autoría usa archivos de texto por capítulo, con bloques para explicaciones, vocabulario, diálogos, lecturas, tablas y ejercicios. El compilador convierte esas fuentes en JSON y actualiza el índice de cursos. La ampliación se hizo siguiendo esa estructura existente, sin cambiar la lógica general de la aplicación.
+
+2. AUDITORÍA DEL CURSO ORIGINAL
+
+Se revisaron las 126 lecciones y los 40 capítulos existentes. La distribución inicial era:
+- A1: 31 lecciones.
+- A2: 31 lecciones.
+- B1: 31 lecciones.
+- B2: 33 lecciones.
+
+La auditoría encontró que el curso repetía mucho el mismo molde de diálogo y ejercicios, ofrecía poca lectura independiente y casi ninguna producción abierta, y necesitaba más variedad de tareas para comprensión, escritura, interacción y mediación. También señaló falta de fichas de apoyo para parte del vocabulario y cuatro ejercicios de huecos de B2 con respuestas incorrectas o mal construidas. El informe completo se guardó en AUDITORIA_Y_PLAN_AMPLIACION_NL.md.
+
+3. CONSULTA DE FUENTES Y CRITERIO DE AMPLIACIÓN
+
+Para orientar los niveles se consultaron los descriptores del Marco Común Europeo de Referencia del Consejo de Europa y ejemplos de tareas y desempeños de la Nederlandse Taalunie:
+- Consejo de Europa: https://www.coe.int/en/web/common-european-framework-reference-languages/cefr-descriptors
+- Taalunie: https://erk-nederlands.taalunie.org/voorbeelden-van-taken-en-prestaties/
+
+Las fuentes describen capacidades y tareas por nivel; no establecen un número oficial de lecciones. Se eligieron 300 como objetivo de diseño para poder ampliar la cobertura y variar la práctica.
+
+4. LECCIONES AÑADIDAS
+
+Se añadieron 174 lecciones en 58 capítulos nuevos, con tres lecciones por capítulo. El total queda en 300:
+- A1: 39 nuevas; 70 en total.
+- A2: 42 nuevas; 73 en total.
+- B1: 45 nuevas; 76 en total.
+- B2: 48 nuevas; 81 en total.
+
+Las nuevas lecciones amplían la variedad de actividades con textos independientes, diálogos, avisos, correos, relatos, procedimientos y tareas de producción. Incluyen 174 actividades abiertas con autoevaluación. El contenido progresa desde situaciones y estructuras cotidianas en A1 hasta lectura de fuentes, síntesis, argumentos, negociación y matización en B2.
+
+5. CORRECCIONES REALIZADAS
+
+Se corrigieron los cuatro ejercicios B2 señalados en la auditoría:
+- Lección 103: la respuesta del hueco ahora es «studielast».
+- Lección 113: la respuesta es «overtuigend».
+- Lección 120: se eliminó el hueco con terminación duplicada y se reformuló la pregunta como «Voldeed de conferentie aan je verwachtingen?» («¿Cumplió la conferencia tus expectativas?»). Se revisó el uso de «meevallen», que significa que algo resulta mejor de lo esperado.
+- Lección 122: la respuesta ahora es «belangen».
+
+También se quitaron instrucciones pedagógicas genéricas que se repetían en explicaciones de B2 y en las lecciones nuevas. Durante la revisión se corrigieron varias frases y traducciones, y se eliminaron duplicaciones visibles de vocabulario detectadas al compilar.
+
+6. CAMBIOS Y VERIFICACIÓN FINAL
+
+Se generaron 300 archivos JSON de lección y 98 capítulos. Se actualizaron el índice de cursos de la aplicación y el recuento de neerlandés en estructura.txt. Los 126 archivos de lecciones originales conservan sus identificadores de ejercicios; los 2.193 identificadores de ejercicios del curso son únicos.
+
+Resultado de compilación: 300 lecciones, 98 capítulos, 1.837 palabras de vocabulario visible y 2.193 ejercicios. La comprobación no detectó otros avisos de formato o de respuestas.
+
+7. AVISOS Y LÍMITES QUE CONVIENE RECORDAR
+
+El compilador todavía informa de 1.399 apariciones de palabras sin ficha de apoyo y 78 reutilizaciones de palabras con la misma traducción. Las reutilizaciones son intencionales para que vocabulario anterior reaparezca en niveles posteriores. Los avisos de fichas señalan vocabulario de textos, diálogos y ejercicios que aún podría necesitar traducción de apoyo; no se añadieron traducciones en bloque sin revisión, para evitar incorporar equivalencias imprecisas.
+
+El contenido no ha pasado por una revisión de una persona nativa o especialista en neerlandés. Esa revisión sigue siendo recomendable antes de presentar el curso como material validado lingüísticamente.
+
+Rutas principales:
+- Fuentes: _herramientas/cursos/nl/01.txt–98.txt
+- Capítulos compilados: Idiomas/cursos/nl/lessons/capitulos.json
+- Informe de auditoría y plan: AUDITORIA_Y_PLAN_AMPLIACION_NL.md

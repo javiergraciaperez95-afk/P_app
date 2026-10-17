@@ -4,27 +4,35 @@
   "titulo": {"en": "Travelling"},
   "intro": {"en": "Tickets, platforms, delays and the questions you need at a station or an airport."},
   "palabras": {
-    "el billete": {"en": "the ticket", "pron": "el bi-YE-te", "genero": "m"},
-    "de ida y vuelta": {"en": "return (ticket)", "pron": "de I-da i BWEL-ta", "cat": "expression"},
+    "el billete": {"en": "the ticket (el boleto in many Latin American countries)", "pron": "el bi-YE-te", "cat": "noun", "genero": "m"},
+    "de ida y vuelta": {"en": "return / round-trip (ticket)", "pron": "de I-da i BWEL-ta", "cat": "expression"},
     "solo ida": {"en": "one way", "pron": "SO-lo I-da", "cat": "expression"},
-    "el andén": {"en": "the platform", "pron": "el an-DEN", "genero": "m"},
-    "el retraso": {"en": "the delay", "pron": "el re-TRA-so", "genero": "m"},
+    "el andén": {"en": "the platform", "pron": "el an-DEN", "cat": "noun", "genero": "m"},
+    "el retraso": {"en": "the delay", "pron": "el re-TRA-so", "cat": "noun", "genero": "m"},
     "sale": {"en": "it leaves", "pron": "SA-le", "cat": "verb"},
     "llega": {"en": "it arrives", "pron": "YE-ga", "cat": "verb"},
     "tarda": {"en": "it takes (time)", "pron": "TAR-da", "cat": "verb"},
-    "el vuelo": {"en": "the flight", "pron": "el BWE-lo", "genero": "m"},
-    "la maleta": {"en": "the suitcase", "pron": "la ma-LE-ta", "genero": "f"},
-    "la puerta de embarque": {"en": "the boarding gate", "pron": "la PWER-ta de em-BAR-ke", "genero": "f"},
-    "facturar": {"en": "to check in (luggage)", "pron": "fak-tu-RAR", "cat": "verb"},
-    "el asiento": {"en": "the seat", "pron": "el a-SYEN-to", "genero": "m"},
-    "hacer transbordo": {"en": "to change (trains)", "pron": "a-THER trans-BOR-do", "cat": "expression"}
+    "el vuelo": {"en": "the flight", "pron": "el BWE-lo", "cat": "noun", "genero": "m"},
+    "la maleta": {"en": "the suitcase", "pron": "la ma-LE-ta", "cat": "noun", "genero": "f"},
+    "la puerta de embarque": {"en": "the boarding gate", "pron": "la PWER-ta de em-BAR-ke", "cat": "noun", "genero": "f"},
+    "facturar": {"en": "to check a bag", "pron": "fak-tu-RAR", "cat": "verb"},
+    "el asiento": {"en": "the seat", "pron": "el a-SYEN-to", "cat": "noun", "genero": "m"},
+    "hacer transbordo": {"en": "to make a transfer (change trains/lines)", "pron": "a-SER trans-BOR-do (seseo) / a-THER trans-BOR-do (distinción)", "cat": "expression"},
+    "el tren": {"en": "the train", "pron": "el TREN", "cat": "noun", "genero": "m"},
+    "la estación": {"en": "the station", "pron": "la es-ta-SYON (seseo) / la es-ta-THYON (distinción)", "cat": "noun", "genero": "f"},
+    "el aeropuerto": {"en": "the airport", "pron": "el a-e-ro-PWER-to", "cat": "noun", "genero": "m"},
+    "la salida": {"en": "the departure; the exit", "pron": "la sa-LI-da", "cat": "noun", "genero": "f"},
+    "la llegada": {"en": "the arrival", "pron": "la ye-GA-da", "cat": "noun", "genero": "f"},
+    "el equipaje": {"en": "the luggage; the baggage", "pron": "el e-ki-PA-je", "cat": "noun", "genero": "m"},
+    "directo": {"en": "direct (feminine: directa)", "pron": "di-REK-to / di-REK-ta", "cat": "adjective"},
+    "cancelado": {"en": "cancelled (feminine: cancelada)", "pron": "kan-se-LA-do / kan-se-LA-da", "cat": "adjective"}
   },
   "bloques": [
     {
       "tipo": "explicacion",
       "titulo": {"en": "At the ticket office"},
       "texto": {
-        "en": "To buy: **Un billete de ida y vuelta para** Sevilla, por favor.\n\nTo find out: **¿A qué hora sale** el próximo tren? **¿A qué hora llega?** **¿De qué andén sale?** **¿Cuánto tarda?** **¿Hay que hacer transbordo?**\n\nTimetables use the present: el tren **sale** a las diez y **llega** a las doce. **Tarda** dos horas.\n\nA late train **lleva** or **tiene** veinte minutos **de retraso**.\n\nAt the airport you **facturas** la maleta, look for **la puerta de embarque** and hope that **el vuelo** is not **cancelado**."
+        "en": "To buy: **Un billete de ida y vuelta para Sevilla, por favor.**\n\nTo ask about a route: **¿A qué hora sale** el próximo tren? **¿A qué hora llega?** **¿De qué andén sale?** **¿Cuánto tarda?** **¿Es directo?** **¿Hay que hacer transbordo?**\n\nTimetables use the present: el tren **sale** a las diez y **llega** a las doce. **Tarda** dos horas. On a timetable, **salida** is departure and **llegada** is arrival. These are scheduled times; delays can change them.\n\nA late train **lleva** or **tiene** veinte minutos **de retraso**.\n\nAt the airport, **facturas** (check) your luggage, find **la puerta de embarque** and check whether **el vuelo está cancelado**. **Directo** agrees with the noun: el tren es directo; la conexión es directa."
       }
     },
     {
@@ -71,11 +79,11 @@
     },
     {
       "tipo": "texto",
-      "titulo": {"en": "A train timetable"},
+      "titulo": {"en": "Example timetable (for practice)"},
       "frases": [
         {"es": "MADRID → TOLEDO | Salida 10:15 | Llegada 10:48 | Andén 6", "en": "MADRID → TOLEDO | Departure 10:15 | Arrival 10:48 | Platform 6", "analisis": [["Salida", "departure"], ["Llegada", "arrival"], ["Andén 6", "platform"]]},
         {"es": "TOLEDO → MADRID | Salida 12:20 | Llegada 12:53 | Andén 2", "en": "TOLEDO → MADRID | Departure 12:20 | Arrival 12:53 | Platform 2", "analisis": [["Salida", "departure"], ["Llegada", "arrival"], ["Andén 2", "platform"]]},
-        {"es": "Aviso: El tren de las 10:15 sale con 15 minutos de retraso.", "en": "Notice: The 10:15 train is leaving 15 minutes late.", "analisis": [["Aviso", "notice"], ["sale con retraso", "is delayed"]]}
+        {"es": "Aviso: El tren de las 10:15 sale con 15 minutos de retraso.", "en": "Notice: The 10:15 train is leaving 15 minutes late.", "analisis": [["Aviso", "notice"], ["sale con 15 minutos de retraso", "is delayed"]]}
       ]
     },
     {"tipo": "vocabulario"},
@@ -131,14 +139,40 @@
       "correcta": "It is 15 minutes late"
     },
     {
+      "tipo": "huecos",
+      "id": "de-viaje-6",
+      "pregunta": {"en": "Complete: Is the train direct?"},
+      "frase": "¿El tren es ___?",
+      "audio": true,
+      "opciones": {
+        "directo": {"en": "El tren is masculine, so use directo."},
+        "directa": {"en": "Directa is the feminine form."},
+        "directos": {"en": "Directos is plural."}
+      },
+      "correcta": "directo"
+    },
+    {
+      "tipo": "huecos",
+      "id": "de-viaje-7",
+      "pregunta": {"en": "Complete: At the airport, I check my luggage."},
+      "frase": "En el aeropuerto facturo el ___.",
+      "audio": true,
+      "opciones": {
+        "equipaje": {"en": "El equipaje means luggage."},
+        "andén": {"en": "Andén means platform."},
+        "asiento": {"en": "Asiento means seat."}
+      },
+      "correcta": "equipaje"
+    },
+    {
       "tipo": "escribir",
-      "id": "de-viaje-4",
+      "id": "de-viaje-8",
       "pregunta": {"en": "Translate: «What time does the train leave?»"},
       "respuestas": ["¿A qué hora sale el tren?"]
     },
     {
       "tipo": "ordenar",
-      "id": "de-viaje-5",
+      "id": "de-viaje-9",
       "frase": "¿De qué andén sale el tren?",
       "traduccion": {"en": "Which platform does the train leave from?"}
     },

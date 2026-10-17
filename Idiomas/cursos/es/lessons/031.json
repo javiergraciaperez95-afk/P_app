@@ -2,13 +2,15 @@
   "capitulo": 4,
   "titulo_es": "Me gusta",
   "titulo": { "en": "I like it" },
-  "intro": { "en": "Gustar works backwards: the thing is the subject." },
+  "intro": { "en": "With gustar, the thing liked is the subject, so the verb agrees with it. A pronoun before the verb shows who likes it." },
   "palabras": {
     "me gusta": { "en": "I like (one thing)", "pron": "me GUS-ta", "cat": "verb" },
     "me gustan": { "en": "I like (more than one)", "pron": "me GUS-tan", "cat": "verb" },
-    "te gusta": { "en": "you like (one thing)", "pron": "te GUS-ta", "cat": "verb" },
+    "te gusta": { "en": "you like one thing (informal, singular)", "pron": "te GUS-ta", "cat": "verb" },
+    "a mí": { "en": "as for me (emphasis)", "pron": "a MI", "cat": "expression" },
     "no": { "en": "not, no", "pron": "no", "cat": "adverb" },
     "el café": { "en": "coffee", "pron": "el ka-FE", "genero": "m" },
+    "el té": { "en": "tea", "pron": "el te", "genero": "m" },
     "los libros": { "en": "the books", "pron": "los LI-bros", "genero": "m" },
     "también": { "en": "also, too", "pron": "tam-BYEN", "cat": "adverb" },
     "mucho": { "en": "a lot, much", "pron": "MU-cho", "cat": "adverb" }
@@ -16,8 +18,21 @@
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "The thing does the liking",
-      "texto": "**Gustar** agrees with the thing you like, not with you.\n\n- Me **gusta** el café. (one thing)\n- Me **gustan** los libros. (more than one)\n\n**No** goes first: **No** me gusta el café.\n\n**Me, te, le, nos, os, les** say who likes it."
+      "titulo": "Gustar agrees with the thing",
+      "texto": "**Gustar** agrees with the thing you like, not the person who likes it.\n\n- Me **gusta** el café. (one thing)\n- Me **gustan** los libros. (plural subject)\n\nPut **no** before the pronoun: **No** me gusta el café. The pronoun before gustar shows who likes it.\n\n**A mí** adds emphasis or contrast; **me** still marks who likes the books. **Me gustan los libros** is complete without **A mí**."
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Pronouns with gustar",
+      "columnas": ["Who likes it?", "One thing", "Several things"],
+      "filas": [
+        ["I", "me gusta", "me gustan"],
+        ["you (tú)", "te gusta", "te gustan"],
+        ["he / she / usted", "le gusta", "le gustan"],
+        ["we", "nos gusta", "nos gustan"],
+        ["you all, informal (vosotros/as; Spain)", "os gusta", "os gustan"],
+        ["they / you all (ustedes; common in Latin America)", "les gusta", "les gustan"]
+      ]
     },
     {
       "tipo": "dialogo",
@@ -43,12 +58,14 @@
         },
         {
           "quien": "Lucía",
-          "es": "A mí me gustan los libros.",
-          "en": "I like books.",
-          "nota": "A mí makes it clear who likes them. Me gustan would also be correct.",
+          "es": "A mí también me gusta el café. Me gustan los libros.",
+          "en": "I like coffee too. I like books.",
+          "nota": "A mí adds emphasis or contrast; me is still required. Me gustan los libros is also a complete sentence.",
           "analisis": [
-            ["A mí", "who likes them"],
-            ["me gustan", "they please me"],
+            ["A mí", "adds emphasis or contrast"],
+            ["también", "also"],
+            ["me gusta el café", "I like coffee too"],
+            ["Me gustan", "verb agrees with plural subject"],
             ["los libros", "subject"]
           ]
         },
@@ -66,7 +83,7 @@
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["me gusta", "me gustan", "te gusta", "no", "el café", "los libros", "también", "mucho"]
+      "palabras": ["me gusta", "me gustan", "te gusta", "a mí", "no", "el café", "el té", "los libros", "también", "mucho"]
     },
     {
       "tipo": "huecos",
@@ -91,12 +108,12 @@
     {
       "tipo": "huecos",
       "id": "a1-gusta-m1",
-      "pregunta": {"en": "Complete: I like coffee."},
-      "frase": "Me ___ el café.",
+      "pregunta": {"en": "Complete: Lucía likes coffee."},
+      "frase": "A Lucía le ___ el café.",
       "audio": true,
       "opciones": {
-        "gusta": {"en": "One thing: gusta."},
-        "gustan": {"en": "Gustan is for a plural."},
+        "gusta": {"en": "The coffee is one thing, so use gusta."},
+        "gustan": {"en": "Gustan goes with a plural subject."},
         "gusto": {"en": "Gustar does not take a yo ending here."}
       },
       "correcta": "gusta"

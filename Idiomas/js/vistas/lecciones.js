@@ -30,7 +30,7 @@ function tarjetaLeccion(resultado) {
   const { leccion } = resultado;
   const r = resumenLeccion(leccion.id, leccion.idsEjercicios);
   return el('li', {}, el('a', { class: `caja tarjeta-leccion es-${r.estado}`, href: `#/leccion/${leccion.id}` },
-    el('span', { class: 'tarjeta-numero', 'aria-hidden': 'true' }, leccion.id),
+    el('span', { class: 'tarjeta-numero', 'aria-hidden': 'true' }, leccion.numero_curso),
     el('span', { class: 'tarjeta-es', lang: LANG }, leccion.titulo_es),
     el('span', { class: 'tarjeta-trad' }, tr(leccion.titulo)),
     el('span', { class: 'tarjeta-estado' },
@@ -41,7 +41,7 @@ function tarjetaLeccion(resultado) {
 }
 
 /** Agrupa por «capitulo». Las lecciones sin capítulo van al final. */
-function agrupar(resultados, capitulos) {
+export function agrupar(resultados, capitulos) {
   const grupos = new Map();
   for (const c of capitulos) grupos.set(String(c.numero), { capitulo: c, lecciones: [] });
   for (const r of resultados) {
@@ -49,9 +49,19 @@ function agrupar(resultados, capitulos) {
     if (!grupos.has(clave)) grupos.set(clave, { capitulo: clave === 'sin' ? null : { numero: clave }, lecciones: [] });
     grupos.get(clave).lecciones.push(r);
   }
+  for (const grupo of grupos.values()) {
+    grupo.lecciones.sort((a, b) =>
+      Number(a.leccion?.numero_curso ?? a.id) - Number(b.leccion?.numero_curso ?? b.id));
+  }
   const lista = [...grupos.values()].filter(g => g.lecciones.length);
-  // Primero los capítulos numéricos en orden; luego los de nombre (p. ej. «muestra»); «sin capítulo» al final.
-  const peso = g => (!g.capitulo ? [2, 0] : /^\d+$/.test(String(g.capitulo.numero)) ? [0, Number(g.capitulo.numero)] : [1, 0]);
+  // Respeta el orden de la metadata; después coloca capítulos sin metadata y, al final, las lecciones sin capítulo.
+  const orden = new Map(capitulos.map((c, i) => [String(c.numero), i]));
+  const peso = g => {
+    if (!g.capitulo) return [3, 0];
+    const clave = String(g.capitulo.numero);
+    if (orden.has(clave)) return [0, orden.get(clave)];
+    return /^\d+$/.test(clave) ? [1, Number(clave)] : [2, 0];
+  };
   return lista
     .map((g, i) => ({ g, i, p: peso(g) }))
     .sort((a, b) => a.p[0] - b.p[0] || a.p[1] - b.p[1] || a.i - b.i)
@@ -135,6 +145,10 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
     el('section', { class: 'intro-vista' },
       el('h1', {}, t('menu.lecciones')),
       el('p', {}, t('lecciones.intro'))),
+    resultados.sinConexion && el('section', { class: 'caja tarjeta-error', role: 'alert' },
+      el('h2', {}, t('app.sinConexionTitulo')),
+      el('p', {}, t('app.sinConexionTexto')),
+      el('button', { type: 'button', class: 'boton', onclick: () => location.reload() }, t('app.reintentar'))),
     errorCapitulos && tarjetaError(errorCapitulos, 'lessons/capitulos.json'),
     grupos.length > 1 && botonesPlegarTodo(grupos),
     grupos.length

@@ -4,59 +4,55 @@
  "titulo_es": "El que habla",
  "palabras": {
   "celui": {
-   "es": "el (cuyo)",
-   "pron": "se-LÜI"
+   "es": "el que, aquel",
+   "pron": "sö-lüi"
   },
   "celle": {
-   "es": "la",
+   "es": "la que, aquella",
    "pron": "sel"
   },
   "ceux": {
-   "es": "los (que)",
+   "es": "los que, aquellos",
    "pron": "sö"
   },
   "celles": {
-   "es": "las (que)",
+   "es": "las que, aquellas",
    "pron": "sel"
   },
   "chacun": {
    "es": "cada uno",
-   "pron": "sha-KÖ(N)"
-  },
-  "son": {
-   "es": "su",
-   "pron": "so(n)"
+   "pron": "sha-ke(n)"
   },
   "chacune": {
    "es": "cada una",
-   "pron": "sha-KÜN"
+   "pron": "sha-kün"
   },
   "l'un": {
    "es": "uno (de dos)",
-   "pron": "lö(n)"
+   "pron": "le(n)"
   },
   "l'autre": {
    "es": "el otro",
-   "pron": "lo-TR"
+   "pron": "lo-tr"
   },
   "les autres": {
    "es": "los demás",
-   "pron": "lez-O-TR"
+   "pron": "lez-o-tr"
   },
   "quiconque": {
    "es": "cualquiera que",
-   "pron": "ki-KO(N)K"
+   "pron": "ki-ko(n)k"
   },
   "majorité": {
    "es": "mayoría",
-   "pron": "ma-zho-ri-TÉ"
+   "pron": "ma-zho-ri-te"
   },
   "minorité": {
    "es": "minoría",
-   "pron": "mi-no-ri-TÉ"
+   "pron": "mi-no-ri-te"
   },
   "belle": {
-   "es": "bella",
+   "es": "hermosa, bella",
    "pron": "bel"
   }
  },
@@ -115,7 +111,6 @@
     "ceux",
     "celles",
     "chacun",
-    "son",
     "chacune",
     "l'un",
     "l'autre",
@@ -137,7 +132,11 @@
      "analisis": [
       [
        "celui qui parle",
-       "el que habla"
+       "el que habla (sujeto)"
+      ],
+      [
+       "est mon frère",
+       "es mi hermano"
       ]
      ]
     },
@@ -148,7 +147,11 @@
      "analisis": [
       [
        "celle que tu aimes",
-       "la que quieres"
+       "la que quieres (objeto directo)"
+      ],
+      [
+       "est très belle",
+       "es muy hermosa"
       ]
      ]
     },
@@ -159,7 +162,11 @@
      "analisis": [
       [
        "ceux dont tu parles",
-       "los de los que hablas"
+       "aquellos de los que hablas («parler de»)"
+      ],
+      [
+       "sont mes voisins",
+       "son mis vecinos"
       ]
      ]
     },
@@ -173,8 +180,8 @@
        "cada uno"
       ],
       [
-       "son avis",
-       "su opinión"
+       "a son avis",
+       "tiene su opinión"
       ]
      ]
     }
@@ -187,16 +194,16 @@
    "opciones": [
     {
      "texto": "Celui qui parle.",
-     "explicacion": "«Celui qui» = el que, como sujeto.",
+     "explicacion": "«Celui qui» = el que, en función de sujeto.",
      "correcta": true
     },
     {
      "texto": "Celui que parle.",
-     "explicacion": "«Que» no va delante de un verbo con sujeto."
+     "explicacion": "«Que» no puede funcionar como sujeto de «parle»."
     },
     {
      "texto": "Celle qui parle.",
-     "explicacion": "«Celle» es femenino."
+     "explicacion": "«Celle» es la forma demostrativa femenina singular."
     }
    ]
   },
@@ -207,16 +214,16 @@
    "opciones": [
     {
      "texto": "la que quiero",
-     "explicacion": "«Celle que» = la que, como objeto.",
+     "explicacion": "«Celle que» = la que, en función de objeto directo.",
      "correcta": true
     },
     {
      "texto": "la que me quiere",
-     "explicacion": "Eso cambia la función."
+     "explicacion": "Altera la función sintáctica del pronombre."
     },
     {
      "texto": "la que ya quiero",
-     "explicacion": "Esa frase no es la de «celle que»."
+     "explicacion": "Añade adverbios no presentes en la expresión."
     }
    ]
   },
@@ -228,16 +235,16 @@
    "opciones": [
     {
      "texto": "Ceux",
-     "explicacion": "«Ceux dont» = los de los que.",
+     "explicacion": "«Ceux dont» = aquellos de los que (masculino plural).",
      "correcta": true
     },
     {
      "texto": "Celui",
-     "explicacion": "Eso es singular."
+     "explicacion": "Forma singular masculina incompatible con «sont»."
     },
     {
      "texto": "Celle",
-     "explicacion": "Eso es femenino singular."
+     "explicacion": "Forma singular femenina incompatible con el verbo plural."
     }
    ]
   },
@@ -249,16 +256,16 @@
    "opciones": [
     {
      "texto": "celui",
-     "explicacion": "«Celui qui» = el que.",
+     "explicacion": "«Celui qui» = el que, libro o documento masculino singular.",
      "correcta": true
     },
     {
      "texto": "celle",
-     "explicacion": "Eso es femenino."
+     "explicacion": "Forma demostrativa femenina singular."
     },
     {
      "texto": "ceux",
-     "explicacion": "Eso es plural."
+     "explicacion": "Forma plural masculina incompatible con el verbo singular «est»."
     }
    ]
   },
@@ -270,16 +277,16 @@
    "opciones": [
     {
      "texto": "El que habla es mi hermano.",
-     "explicacion": "«Celui qui» = el que.",
+     "explicacion": "Demostrativo «celui» seguido del relativo sujeto «qui».",
      "correcta": true
     },
     {
      "texto": "Lo que hablo es mi hermano.",
-     "explicacion": "Eso sería «ce que»."
+     "explicacion": "Confunde «celui» con el neutro «ce que»."
     },
     {
      "texto": "Los que hablan son mis hermanos.",
-     "explicacion": "Eso es plural."
+     "explicacion": "Convierte erróneamente la oración al plural."
     }
    ]
   },
@@ -291,16 +298,16 @@
    "opciones": [
     {
      "texto": "Cada uno tiene su opinión.",
-     "explicacion": "«Chacun» = cada uno.",
+     "explicacion": "«Chacun» expresa individualidad en singular.",
      "correcta": true
     },
     {
      "texto": "Todos tienen la misma opinión.",
-     "explicacion": "Eso es «tous»."
+     "explicacion": "Sentido contrario («tous ont le même avis»)."
     },
     {
-     "texto": "Nadie tiene opinión.",
-     "explicacion": "Eso es «personne»."
+     "texto": "Nadie tiene opinión formada.",
+     "explicacion": "Niega la afirmación («personne n'a d'avis»)."
     }
    ]
   },
@@ -309,17 +316,28 @@
    "pregunta": "Ordena las palabras.",
    "frase": "celui qui",
    "traduccion": "el que",
-   "explicacion": "Demostrativo + relativo.",
+   "explicacion": "Demostrativo masculino singular con relativo sujeto.",
    "id": "fr111-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «los que hablan»",
-   "respuestas": [
-    "ceux qui parlent"
-   ],
-   "explicacion": "Plural masculino con «qui».",
-   "id": "fr111-8"
+   "tipo": "test",
+   "pregunta": "¿Cómo se dice «los que hablan» como pronombre demostrativo sujeto en plural masculino?",
+   "id": "fr111-8",
+   "opciones": [
+    {
+     "texto": "Ceux qui parlent",
+     "explicacion": "«Ceux» es el demostrativo masculino plural y «qui» actúa como sujeto del verbo.",
+     "correcta": true
+    },
+    {
+     "texto": "Ceux que parlent",
+     "explicacion": "«Que» funciona como complemento directo y no puede ser sujeto de «parlent»."
+    },
+    {
+     "texto": "Celui qui parlent",
+     "explicacion": "«Celui» es singular masculino y no concuerda con el verbo en plural."
+    }
+   ]
   }
  ],
  "intro": "Ahora los pronombres demostrativos con relativo: «el que», «la que», «los que»."

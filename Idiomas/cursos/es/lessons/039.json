@@ -2,7 +2,7 @@
   "capitulo": 5,
   "titulo_es": "Me ducho y me visto",
   "titulo": {"en": "I shower and get dressed"},
-  "intro": {"en": "Verbs whose action comes back to the person: me, te, se, nos, os, se."},
+  "intro": {"en": "Daily routines with pronominal verbs: me, te, se, nos, os, se."},
   "palabras": {
     "me ducho": {"en": "I have a shower", "pron": "me DU-cho", "cat": "verb"},
     "me visto": {"en": "I get dressed", "pron": "me BIS-to", "cat": "verb", "nota": "Vestirse: e becomes i."},
@@ -14,19 +14,22 @@
     "los dientes": {"en": "the teeth", "pron": "los DYEN-tes", "genero": "m"},
     "me peino": {"en": "I comb my hair", "pron": "me PEI-no", "cat": "verb"},
     "me afeito": {"en": "I shave", "pron": "me a-FEI-to", "cat": "verb"},
-    "el cepillo de dientes": {"en": "the toothbrush", "pron": "el the-PI-yo de DYEN-tes", "genero": "m"},
+    "el cepillo de dientes": {"en": "the toothbrush", "pron": "el the-PI-yo de DYEN-tes", "genero": "m", "nota": "The /θ/ guide is used in much of Spain; in seseante varieties, c before e sounds like /s/."},
     "el champú": {"en": "the shampoo", "pron": "el cham-PU", "genero": "m"},
     "el jabón": {"en": "the soap", "pron": "el ha-BON", "genero": "m"},
     "después": {"en": "afterwards", "pron": "des-PWES", "cat": "adverb"},
     "tarde": {"en": "late", "pron": "TAR-de", "cat": "adverb"},
-    "pronto": {"en": "early, soon", "pron": "PRON-to", "cat": "adverb"}
+    "temprano": {"en": "early", "pron": "tem-PRA-no", "cat": "adverb"},
+    "me despierto": {"en": "I wake up", "pron": "me des-PYER-to", "cat": "verb"},
+    "las manos": {"en": "the hands", "pron": "las MA-nos", "genero": "f"},
+    "el coche": {"en": "the car", "pron": "el KO-che", "genero": "m"}
   },
   "bloques": [
     {
       "tipo": "explicacion",
       "titulo": {"en": "Verbs with me, te, se"},
       "texto": {
-        "en": "In the dictionary these verbs end in **-se**: levantarse, ducharse, acostarse. The pronoun goes before the verb and matches the subject.\n\n- **me** levanto, **te** levantas, **se** levanta\n- **nos** levantamos, **os** levantáis, **se** levantan\n\n**Llamarse** is one of them: me llamo, te llamas, se llama.\n\nWith parts of the body and clothes, use the article, not mi: me lavo **los** dientes, me lavo **las** manos.\n\nWithout the pronoun the action goes to something else: **lavo** el coche, but **me lavo**.\n\nWith an infinitive, the pronoun can hang on the end: voy a **ducharme**."
+        "en": "In the dictionary these verbs end in **-se**: levantarse, ducharse, acostarse. The pronoun goes before the conjugated verb and matches the subject.\n\n- **me** levanto, **te** levantas, **se** levanta\n- **nos** levantamos, **os** levantáis, **se** levantan\n\n**Os** and **vosotros** are used mainly in Spain; across most of Latin America, **ustedes** and **se** are used for a group. **Llamarse** is another example: me llamo, te llamas, se llama.\n\nWith reflexive verbs and body parts, Spanish normally uses the definite article: me lavo **los** dientes, me lavo **las** manos.\n\nSome verb pairs contrast an action on something else with an action on yourself: **lavo** el coche, but **me lavo**.\n\nWith an infinitive, the pronoun can attach to the end: voy a **ducharme**."
       }
     },
     {
@@ -37,7 +40,7 @@
         ["yo", "me levanto"],
         ["tú", "te levantas"],
         ["él / ella / usted", "se levanta"],
-        ["nosotros", "nos levantamos"],
+        ["nosotros/as", "nos levantamos"],
         ["vosotros", "os levantáis"],
         ["ellos / ustedes", "se levantan"]
       ]
@@ -64,7 +67,7 @@
           "es": "Me visto, desayuno y me lavo los dientes.",
           "en": "I get dressed, have breakfast and brush my teeth.",
           "analisis": [["Me visto", "verb"], ["desayuno", "verb"], ["me lavo", "verb"], ["los dientes", "object"]],
-          "nota": "Los dientes, not mis dientes. The me already says whose teeth they are."
+          "nota": "With this reflexive construction, Spanish normally uses the definite article: los dientes, not mis dientes."
         },
         {
           "quien": "Pablo",
@@ -85,11 +88,11 @@
       "tipo": "huecos",
       "id": "reflexivos-1",
       "pregunta": {"en": "Complete: we get up early."},
-      "frase": "Nosotros ___ levantamos pronto.",
+      "frase": "Nosotros ___ levantamos temprano.",
       "audio": true,
       "opciones": {
         "nos": {"en": "Nosotros takes nos."},
-        "se": {"en": "Se is for él, ella, usted or ellos."},
+        "se": {"en": "Se is for él, ella, usted, ellos or ustedes."},
         "me": {"en": "Me is for yo."}
       },
       "correcta": "nos"
@@ -102,7 +105,7 @@
       "audio": true,
       "opciones": {
         "los": {"en": "With me lavo, Spanish uses the article."},
-        "mis": {"en": "The me already shows they are yours."},
+        "mis": {"en": "Mis is possessive; this construction normally uses the definite article."},
         "mi": {"en": "Dientes is plural, and Spanish uses the article here."}
       },
       "correcta": "los"
@@ -112,7 +115,7 @@
       "id": "reflexivos-3",
       "pregunta": {"en": "Which sentence says that you wash yourself?"},
       "opciones": {
-        "Me lavo": {"en": "Me sends the action back to you."},
+        "Me lavo": {"en": "Me marks the first-person reflexive form here."},
         "Lavo el coche": {"en": "That washes something else."},
         "Se lava": {"en": "That is he or she."}
       },

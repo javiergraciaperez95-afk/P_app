@@ -1,0 +1,136 @@
+RESUMEN DEL TRABAJO REALIZADO EN PAGLOT
+
+1. Identidad y documentación de marca
+
+Se revisaron el logo de Paglot y varias capturas de la web, incluyendo la página principal, la selección de idiomas, la zona de lecciones y la página informativa de la marca.
+
+La identidad visual identificada se basa en:
+- Estética pixel art.
+- Fondo oscuro azul violáceo con patrón de puntos.
+- Blanco crema, amarillo dorado, morado y verde como colores principales.
+- Contenedores con bordes visibles, sombras duras y aspecto de interfaz retro.
+- Tutoras pixeladas como elemento central de la experiencia.
+- Emily como tutora de inglés.
+
+Se generaron los siguientes documentos de marca en PDF:
+- Paglot_Brandbook.pdf
+- Paglot_Style_Guidelines.pdf
+- Paglot_Style_Book_Guidelines.pdf
+- Paglot_Manual_Integral.pdf
+
+Después se creó un documento unificado con el contenido de los tres documentos principales y con portada y contraportada:
+- Paglot_Manual_Integral.pdf
+
+El manual integral cubre la identidad de Paglot, el uso del logo, el sistema visual, la presencia de las tutoras, la web, la aplicación móvil, la aplicación para tablet y las reglas de maquetación editorial.
+
+2. Libro de inglés A1
+
+Se recibió el archivo inglés.json como referencia de contenidos y el manual integral como referencia de diseño.
+
+Se descartó el primer libro de inglés porque el resultado no alcanzaba la calidad esperada. Se decidió crear un libro completamente nuevo desde cero, usando el JSON como referencia curricular y no como texto que hubiera que volcar literalmente.
+
+Se confirmó en los recursos originales de la aplicación que la tutora inglesa se llama Emily.
+
+El nuevo libro se desarrolló con:
+- Nivel A1.
+- Enfoque para hispanohablantes.
+- Inglés británico como referencia principal.
+- Tipografía Source Sans 3 para el texto de lectura.
+- Tipografía Pixelify para títulos y capítulos.
+- Formato A5.
+- Márgenes amplios y composición editorial siguiendo el manual de Paglot.
+- Texto seleccionable y fuentes incrustadas.
+- Fondo y colores coherentes con Paglot.
+- Emily presente de manera constante en explicaciones, pistas, lecturas, tareas y repasos.
+- Portada con logo, título Inglés A1, Emily y una adaptación pixelada del emblema europeo.
+- Texto “Marco de referencia europeo” bajo el emblema.
+- Contraportada con resumen del libro, nivel, número de unidades, número de lecciones y referencia a Paglot Max.
+
+El contenido nuevo se organizó en diez unidades:
+1. Hello!
+2. About you
+3. People & things
+4. At home
+5. Every day
+6. Food & drink
+7. In the shop
+8. Around town
+9. Days & plans
+10. A weekend away
+
+Cada unidad incluye cuatro lecciones. El libro contiene:
+- 40 lecciones.
+- Explicaciones gramaticales progresivas.
+- Ejemplos en inglés con traducción al español.
+- Actividades de completar, ordenar, transformar y producir frases.
+- Espacio para escribir a mano.
+- Lecturas originales breves.
+- Tareas finales por unidad.
+- Páginas de repaso para recuperar lo aprendido.
+- Reto final.
+- Alfabeto y pronunciación.
+- Números, fechas y calendario.
+- Frases útiles para pedir ayuda.
+- Verbos y nombres frecuentes.
+- Glosario temático.
+- Soluciones explicadas.
+- Modelos de respuesta.
+
+El archivo final es:
+- output/pdf/Paglot_Ingles_A1_Libro_Completo.pdf
+
+El libro final tiene 173 páginas. Se hizo una revisión visual de todas las páginas renderizadas, comprobando portada, contraportada, páginas de explicación, práctica, lecturas, soluciones, glosario y páginas de repaso.
+
+También se validó que:
+- No hay desbordamientos de contenido.
+- Las páginas de explicación y práctica mantienen una secuencia coherente.
+- Los enlaces internos del índice y de las referencias a soluciones funcionan.
+- Las fuentes están incrustadas.
+- El texto es seleccionable.
+- El PDF declara el idioma es-ES.
+
+3. Plantillas de imágenes de Emily
+
+Se solicitó generar cuatro plantillas visuales con nueve escenas cada una para utilizar a Emily de forma constante en el libro y en futuras piezas de Paglot.
+
+Plantilla 1: saludos, presentaciones y aula.
+Incluye a Emily saludando, señalando un mapa, sosteniendo una tarjeta con “EMILY”, escribiendo “I am…”, escuchando, dando un pulgar arriba, presentando, mirando al lector y despidiéndose.
+
+Plantilla 2: familia, casa y rutinas.
+Incluye a Emily mostrando una foto familiar, señalando un reloj, desayunando, explicando muebles, indicando “get up”, explicando una rutina, despidiéndose desde una puerta, leyendo en un sofá y señalando un calendario.
+
+Plantilla 3: comida, compras, transporte y ciudad.
+Incluye a Emily en un café, en un supermercado, en una estación, dentro de un autobús, indicando direcciones, preguntando un precio en una tienda, caminando con una bolsa, señalando un mapa urbano y descansando en un parque.
+
+Plantilla 4: pasado, salud, mensajes y cierre.
+Incluye a Emily indicando “ayer”, tocándose la cabeza con duda, señalando partes del cuerpo, mirando un móvil, trabajando en la recepción de un hotel, diciendo “Well done!”, revisando un mensaje, ofreciendo ayuda con “Can I help you?” y cerrando el libro junto al logo de Paglot.
+
+Las cuatro láminas se generaron como composiciones de 3 por 3 escenas, manteniendo los rasgos de Emily:
+- Pelo castaño claro.
+- Diadema azul.
+- Gafas redondas doradas.
+- Ojos azul grisáceos.
+- Jersey granate.
+- Falda de cuadros.
+- Libro verde.
+- Estética pixel art.
+
+Los archivos se guardaron en:
+- output/imagegen/emily-plantillas/01-saludos-aula.png
+- output/imagegen/emily-plantillas/02-familia-casa-rutinas.png
+- output/imagegen/emily-plantillas/03-comida-compras-ciudad.png
+- output/imagegen/emily-plantillas/04-pasado-salud-cierre.png
+
+También se creó un archivo ZIP con las cuatro imágenes y los prompts utilizados:
+- output/imagegen/Emily_4_Plantillas.zip
+
+4. Estado actual y puntos a revisar antes de seguir
+
+- El libro A1 está generado y revisado visualmente.
+- Las cuatro láminas de Emily están generadas y agrupadas.
+- La identidad visual y editorial de Paglot está documentada.
+- Emily debe seguir siendo la tutora de inglés en futuros contenidos.
+- Conviene decidir si las láminas de 3 por 3 se usarán como referencias generales o si se recortarán en 36 imágenes individuales.
+- Conviene comprobar si algunas escenas necesitan una segunda versión con fondos transparentes para integrarlas directamente en páginas, tarjetas o interfaces.
+- Conviene decidir si el siguiente paso será adaptar estas imágenes al propio libro A1, preparar fichas individuales o generar nuevos recursos para otras unidades.
+

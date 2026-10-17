@@ -218,6 +218,72 @@ export function pintarSobre(contenedor) {
     apagar.push(() => vigia.disconnect());
   }
 
+  // Cada ampliación tiene su propia escena; las interacciones avanzan solo al tocarlas.
+  const ampliaciones = ['mision', 'metodo', 'eficacia', 'tienda'].map(clave => {
+    const anfitriona = actriz(otra(), '');
+    anfitriona.nodo.setAttribute('role', 'button');
+    anfitriona.nodo.tabIndex = 0;
+    anfitriona.nodo.setAttribute('aria-label', `${t('tutora.tocar')}: ${t(`sobre.${clave}.titulo`)}`);
+    anfitriona.nodo.addEventListener('keydown', evento => {
+      if (evento.key === 'Enter' || evento.key === ' ') {
+        evento.preventDefault();
+        anfitriona.nodo.click();
+      }
+    });
+    const texto = el('div', { class: 'sobre-ampliacion-texto' },
+      el('h2', { id: `sobre-${clave}` }, t(`sobre.${clave}.titulo`)),
+      el('p', {}, t(`sobre.${clave}.p1`)),
+      el('p', {}, t(`sobre.${clave}.p2`)),
+      clave === 'tienda' && el('a', { class: 'boton boton-principal', href: '#/tienda', onclick: () => sonar('pagina') }, t('sobre.tienda.boton')));
+    const escena = el('div', { class: `sobre-ampliacion-escena sa-${clave}`, role: 'group', 'aria-label': t(`sobre.${clave}.titulo`) });
+    let paso = 0;
+    let botones = [];
+    const elegirPaso = nuevo => {
+      paso = nuevo;
+      escena.style.setProperty('--paso', String(paso));
+      botones.forEach((boton, i) => boton.setAttribute('aria-pressed', String(i === paso)));
+      if (!quieto) anfitriona.reaccionar('contenta', 900);
+    };
+    if (clave === 'tienda') {
+      escena.append(el('div', { class: 'sa-libros', 'aria-hidden': 'true' },
+        el('i', {}), el('i', {}), el('i', {})), anfitriona.nodo,
+        el('span', { class: 'sa-estante', 'aria-hidden': 'true' }));
+    } else {
+      const nombres = [0, 1, 2].map(i => t(`sobre.${clave}.paso${i + 1}`));
+      botones = nombres.map((nombre, i) => el('button', {
+        type: 'button', class: 'sa-paso', 'aria-pressed': String(i === 0),
+        onclick: () => { elegirPaso(i); sonar('clic'); },
+      }, el('span', { class: 'sa-paso-numero', 'aria-hidden': 'true' }, String(i + 1).padStart(2, '0')), nombre));
+      if (clave === 'mision') {
+        escena.append(el('div', { class: 'sa-camino', 'aria-hidden': 'true' }, el('i', {}), el('i', {}), el('i', {})),
+          anfitriona.nodo, el('div', { class: 'sa-etapas' }, botones));
+      } else if (clave === 'metodo') {
+        escena.append(el('div', { class: 'sa-anillas', 'aria-hidden': 'true' }, el('i', {}), el('i', {}), el('i', {})),
+          el('div', { class: 'sa-paginas' }, botones), anfitriona.nodo);
+      } else {
+        escena.append(el('span', { class: 'sa-circuito', 'aria-hidden': 'true' }), anfitriona.nodo, ...botones);
+      }
+      elegirPaso(0);
+    }
+    anfitriona.alTocar = () => {
+      if (botones.length) elegirPaso((paso + 1) % botones.length);
+      anfitriona.decir(t(`sobre.${clave}.dice`), 3500);
+    };
+    const seccion = el('section', { class: `sobre-ampliacion sobre-ampliacion-${clave}`, 'aria-labelledby': `sobre-${clave}` }, texto, escena);
+    return { seccion, anfitriona };
+  });
+  if (!quieto && 'IntersectionObserver' in window) {
+    const vigia = new IntersectionObserver(entradas => {
+      for (const entrada of entradas) {
+        if (!entrada.isIntersecting) continue;
+        ampliaciones.find(a => a.seccion === entrada.target)?.anfitriona.reaccionar('contenta', 1000);
+        vigia.unobserve(entrada.target);
+      }
+    }, { threshold: 0.25 });
+    ampliaciones.forEach(({ seccion }) => vigia.observe(seccion));
+    apagar.push(() => vigia.disconnect());
+  }
+
   // ----- 5. Final: todas las tutoras desfilan -----
   const quietaDe = c => {
     const canvas = el('canvas', { width: 48, height: 60 });
@@ -252,10 +318,13 @@ export function pintarSobre(contenedor) {
         el('h2', {}, t('sobre.valores.titulo')),
         el('ul', { class: 'sobre-valores' }, valores)),
 
+      ...ampliaciones.map(({ seccion }) => seccion),
+
       el('section', { class: 'sobre-fin' },
         el('h2', {}, t('sobre.contacto.titulo')),
         el('p', { class: 'sobre-fin-texto' }, t('sobre.contacto.texto'),
           TITULAR.correo && ' ', TITULAR.correo && el('a', { href: `mailto:${TITULAR.correo}` }, TITULAR.correo)),
+        el('a', { class: 'boton boton-principal', href: '#/contacto', onclick: () => sonar('pagina') }, t('sobre.contacto.boton')),
         el('h2', {}, t('sobre.fin.titulo')),
         el('p', { class: 'inicio-botones' },
           hayCurso
@@ -264,10 +333,7 @@ export function pintarSobre(contenedor) {
           el('a', { class: 'boton', href: '#/inicio', onclick: () => sonar('pagina') }, t('inicio.titulo'))),
         el('div', { class: 'sobre-desfile', 'aria-hidden': 'true' }, fila)),
 
-      el('p', { class: 'sobre-gracias' }, el('span', { 'aria-hidden': 'true' }, '♥ '), t('sobre.gracias')),
-
-      el('footer', { class: 'inicio-pie' },
-        el('p', {}, el('a', { href: '#/legal' }, t('legal.titulo')), ' · ', el('a', { href: '#/creditos' }, t('creditos.titulo'))))));
+      el('p', { class: 'sobre-gracias' }, el('span', { 'aria-hidden': 'true' }, '♥ '), t('sobre.gracias'))));
 
   return () => {
     encendida = false;

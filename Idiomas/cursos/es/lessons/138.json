@@ -2,32 +2,34 @@
   "capitulo": 12,
   "titulo_es": "No me lo digas",
   "titulo": {"en": "Don't tell me"},
-  "intro": {"en": "Every command form in one place: tú, usted, vosotros, let's, and all the negatives."},
+  "intro": {"en": "A practical overview of tú, usted, nosotros, vosotros and ustedes commands, including negatives and pronoun placement."},
   "palabras": {
     "no me lo digas": {"en": "don't tell me", "pron": "no me lo DI-gas", "cat": "expression"},
     "ten": {"en": "have, hold (tú)", "pron": "ten", "cat": "verb"},
     "pon": {"en": "put (tú)", "pron": "pon", "cat": "verb"},
+    "haz": {"en": "do, make (tú command)", "pron": "as/ATH", "cat": "verb"},
     "sal": {"en": "go out, leave (tú)", "pron": "sal", "cat": "verb"},
     "di": {"en": "say, tell (tú)", "pron": "di", "cat": "verb"},
     "ve": {"en": "go (tú)", "pron": "be", "cat": "verb"},
+    "ven": {"en": "come (tú command)", "pron": "ben", "cat": "verb"},
     "sé": {"en": "be (tú)", "pron": "se", "cat": "verb"},
     "venga": {
       "en": "come on",
       "pron": "BEN-ga",
       "cat": "interjection",
-      "nota": "Venga, vamos, anda and mira have become fillers."
+      "nota": "Venga, vamos, anda, mira and oye can also work as conversational markers, depending on context."
     },
     "no te preocupes": {"en": "don't worry (tú)", "pron": "no te pre-o-KU-pes", "cat": "expression"},
     "pasad": {"en": "come in (vosotros)", "pron": "pa-SAD", "cat": "verb"},
     "ten cuidado": {"en": "be careful (tú)", "pron": "ten kwi-DA-do", "cat": "expression"},
-    "la noticia": {"en": "the news, the piece of news", "pron": "la no-TI-thya", "genero": "f"}
+    "la noticia": {"en": "the news, the piece of news", "pron": "la no-TI-thya/sya", "cat": "noun", "genero": "f"}
   },
   "bloques": [
     {
       "tipo": "explicacion",
       "titulo": {"en": "The whole system"},
       "texto": {
-        "en": "**Affirmative tú** is the él form of the present: habla, come, escribe. Eight are irregular: **di, haz, ve, pon, sal, sé, ten, ven**.\n\n**Affirmative vosotros** swaps the -r of the infinitive for -d: habla**d**, come**d**, veni**d**.\n\n**Usted, ustedes** and **nosotros** (let's) use the subjunctive: hable, hablen, hablemos. Let's go is **vamos**.\n\n**Every negative** is no + subjunctive: **no hables, no hable, no hablemos, no habléis, no hablen**.\n\nPronouns go **on the end** of an affirmative command and **before** a negative one.\n\n- **Dímelo.** → **No me lo digas.**\n- **Siéntese.** → **No se siente.**\n\n**Venga**, **vamos**, **anda**, **mira** and **oye** are commands that have turned into fillers."
+        "en": "**Affirmative tú** usually matches the third-person singular present indicative: habla, come, escribe. Eight common irregular forms are **di, haz, ve, pon, sal, sé, ten, ven**.\n\nIn the simple form, **affirmative vosotros** changes the infinitive's final -r to -d: habla**d**, come**d**, veni**d**.\n\n**Usted, ustedes** and **nosotros** use present-subjunctive forms: hable, hablen, hablemos. For 'let's go', Spanish commonly uses **vamos**.\n\nNegative commands use **no + present subjunctive**: **no hables, no hable, no hablemos, no habléis, no hablen**.\n\nPronouns go **after** an affirmative command and **before** a negative one.\n\n- **Dímelo.** → **No me lo digas.**\n- **Siéntese.** → **No se siente.**\n\nIn conversation, forms such as **venga**, **vamos**, **anda**, **mira** and **oye** can also work as discourse markers; their command meanings depend on context."
       }
     },
     {
@@ -37,6 +39,7 @@
       "filas": [
         ["tú", "habla / di / ven", "no hables / no digas / no vengas"],
         ["usted", "hable / diga / venga", "no hable / no diga / no venga"],
+        ["nosotros", "hablemos / digamos / vengamos", "no hablemos / no digamos / no vengamos"],
         ["vosotros", "hablad / decid / venid", "no habléis / no digáis / no vengáis"],
         ["ustedes", "hablen / digan / vengan", "no hablen / no digan / no vengan"]
       ]
@@ -69,7 +72,7 @@
           "en": "Yes. But don't tell anyone yet.",
           "analisis": [
             ["no", "negation"],
-            ["se lo", "it to them"],
+            ["se lo", "it to anyone"],
             ["digas", "verb"],
             ["a nadie", "to whom"],
             ["todavía", "time"]
@@ -116,7 +119,7 @@
     {
       "tipo": "huecos",
       "id": "imperativo-total-2",
-      "pregunta": {"en": "Complete, with tú: be careful."},
+      "pregunta": {"en": "Complete, using tú: be careful."},
       "frase": "___ cuidado.",
       "audio": true,
       "opciones": {
@@ -131,11 +134,11 @@
       "id": "imperativo-total-3",
       "pregunta": {"en": "Where do the pronouns go in a negative command?"},
       "opciones": {
-        "Before the verb: no me lo digas": {"en": "No, then the pronouns, then the verb."},
-        "On the end: no dígasmelo": {"en": "They only attach to affirmative commands."},
-        "After no and the verb: no digas me lo": {"en": "They go before the verb."}
+        "Before the verb, after no: no me lo digas": {"en": "The negative marker comes first, followed by the pronouns and then the verb."},
+        "At the end of the verb": {"en": "That placement goes with affirmative commands; negative commands put pronouns before the verb."},
+        "Before no": {"en": "The pronouns follow no and come before the verb: no me lo digas."}
       },
-      "correcta": "Before the verb: no me lo digas"
+      "correcta": "Before the verb, after no: no me lo digas"
     },
     {
       "tipo": "huecos",

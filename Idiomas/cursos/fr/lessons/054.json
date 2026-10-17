@@ -5,36 +5,36 @@
  "palabras": {
   "écoute": {
    "es": "escucha",
-   "pron": "e-KUT"
+   "pron": "e-kut"
   },
   "attends": {
    "es": "espera",
-   "pron": "a-TA(N)"
+   "pron": "a-ta(n)"
   },
   "tourne": {
    "es": "gira",
-   "pron": "tur-N",
+   "pron": "turn",
    "consejo": "Imperativo de «tourner»."
   },
   "sois": {
    "es": "sé",
-   "pron": "suá"
+   "pron": "sua"
   },
   "soyez": {
    "es": "sed",
-   "pron": "suá-YÉ"
+   "pron": "sua-ye"
   },
   "mangeons": {
    "es": "comamos",
-   "pron": "ma(n)-ZHÓN"
+   "pron": "ma(n)-zho(n)"
   },
   "mangez": {
    "es": "comed",
-   "pron": "ma(n)-ZHÉ"
+   "pron": "ma(n)-zhe"
   },
   "ferme": {
    "es": "cierra",
-   "pron": "färm"
+   "pron": "ferm"
   },
   "ouvre": {
    "es": "abre",
@@ -42,11 +42,12 @@
   },
   "lève": {
    "es": "levanta",
-   "pron": "lev"
+   "pron": "lev",
+   "oculta": true
   },
   "arrête": {
    "es": "para (tú)",
-   "pron": "a-RET"
+   "pron": "a-ret"
   },
   "dis": {
    "es": "di",
@@ -124,7 +125,6 @@
     "mangez",
     "ferme",
     "ouvre",
-    "lève",
     "arrête",
     "dis",
     "mets"
@@ -140,6 +140,10 @@
      "es": "¡Léa, escucha!",
      "analisis": [
       [
+       "Léa",
+       "Léa"
+      ],
+      [
        "écoute",
        "escucha (tú)"
       ]
@@ -150,6 +154,10 @@
      "fr": "Oui, je suis là.",
      "es": "Sí, estoy aquí.",
      "analisis": [
+      [
+       "Oui",
+       "sí"
+      ],
       [
        "je suis là",
        "estoy aquí"
@@ -162,7 +170,7 @@
      "es": "Ve a la estación.",
      "analisis": [
       [
-       "va",
+       "Va",
        "ve (tú)"
       ],
       [
@@ -177,7 +185,11 @@
      "es": "De acuerdo. ¡Espera!",
      "analisis": [
       [
-       "attends",
+       "D'accord",
+       "de acuerdo"
+      ],
+      [
+       "Attends",
        "espera (tú)"
       ]
      ]
@@ -317,13 +329,24 @@
    "id": "fr054-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «¡espera!» (a un amigo)",
-   "respuestas": [
-    "attends !"
-   ],
-   "explicacion": "Imperativo de «tú».",
-   "id": "fr054-8"
+   "tipo": "test",
+   "pregunta": "¿Cuál es la forma correcta del imperativo negativo de «parler» para «tú»?",
+   "id": "fr054-8",
+   "opciones": [
+    {
+     "texto": "Ne parle pas !",
+     "explicacion": "En los verbos en -er, el imperativo de «tu» pierde la -s final tanto en frases afirmativas como negativas.",
+     "correcta": true
+    },
+    {
+     "texto": "Ne parles pas !",
+     "explicacion": "En imperativo con «tu», los verbos regulares en -er no llevan -s."
+    },
+    {
+     "texto": "Ne pas parle !",
+     "explicacion": "En una orden negativa con verbo conjugado, «ne» va antes y «pas» va después del verbo."
+    }
+   ]
   }
  ],
  "intro": "Hoy damos órdenes e instrucciones. En francés se usa el imperativo."

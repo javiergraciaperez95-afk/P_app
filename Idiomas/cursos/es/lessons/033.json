@@ -2,34 +2,38 @@
   "capitulo": 4,
   "titulo_es": "La comida",
   "titulo": {"en": "Food"},
-  "intro": {"en": "Basic food words and the three meals of the day."},
+  "intro": {"en": "Basic food words and meal names, with common regional alternatives."},
   "palabras": {
     "el pan": {"en": "bread", "pron": "el pan", "genero": "m"},
     "la leche": {"en": "milk", "pron": "la LE-che", "genero": "f"},
-    "el huevo": {"en": "the egg", "pron": "el WE-bo", "genero": "m"},
+    "el huevo": {"en": "egg", "pron": "el WE-bo", "genero": "m"},
     "el queso": {"en": "cheese", "pron": "el KE-so", "genero": "m"},
     "el arroz": {"en": "rice", "pron": "el a-RROTH", "genero": "m"},
     "la fruta": {"en": "fruit", "pron": "la FRU-ta", "genero": "f"},
     "la verdura": {"en": "vegetables", "pron": "la ber-DU-ra", "genero": "f"},
-    "la manzana": {"en": "the apple", "pron": "la man-THA-na", "genero": "f"},
-    "la naranja": {"en": "the orange", "pron": "la na-RAN-ha", "genero": "f"},
-    "el tomate": {"en": "the tomato", "pron": "el to-MA-te", "genero": "m"},
-    "la patata": {"en": "the potato", "pron": "la pa-TA-ta", "genero": "f"},
-    "el zumo": {"en": "juice", "pron": "el THU-mo", "genero": "m"},
+    "la manzana": {"en": "apple", "pron": "la man-THA-na", "genero": "f"},
+    "la naranja": {"en": "orange", "pron": "la na-RAN-ha", "genero": "f"},
+    "el tomate": {"en": "tomato", "pron": "el to-MA-te", "genero": "m"},
+    "la patata": {"en": "potato", "pron": "la pa-TA-ta", "genero": "f", "nota": "The usual word in Spain; many other countries use «la papa»."},
+    "la papa": {"en": "potato", "pron": "la PA-pa", "genero": "f", "nota": "Common alternative to «la patata», especially outside Spain."},
+    "el zumo": {"en": "juice", "pron": "el THU-mo", "genero": "m", "nota": "A common alternative is «el jugo»; usage varies by country."},
+    "el jugo": {"en": "juice", "pron": "el HU-go", "genero": "m", "nota": "A common alternative to «el zumo»; usage varies by country."},
     "el desayuno": {"en": "breakfast", "pron": "el de-sa-YU-no", "genero": "m"},
     "la comida": {"en": "lunch; food", "pron": "la ko-MI-da", "genero": "f"},
+    "el almuerzo": {"en": "lunch; midday meal", "pron": "el al-MWER-tho", "genero": "m", "nota": "Another word for the midday meal; meal names vary by region."},
     "la cena": {"en": "dinner", "pron": "la THE-na", "genero": "f"},
     "desayunar": {"en": "to have breakfast", "pron": "de-sa-yu-NAR", "cat": "verb"},
     "comer": {"en": "to eat; to have lunch", "pron": "ko-MER", "cat": "verb"},
     "cenar": {"en": "to have dinner", "pron": "the-NAR", "cat": "verb"},
-    "tengo hambre": {"en": "I'm hungry", "pron": "TEN-go AM-bre", "cat": "expression"}
+    "tengo hambre": {"en": "I'm hungry", "pron": "TEN-go AM-bre", "cat": "expression"},
+    "tengo sed": {"en": "I'm thirsty", "pron": "TEN-go sed", "cat": "expression"}
   },
   "bloques": [
     {
       "tipo": "explicacion",
       "titulo": {"en": "Three meals"},
       "texto": {
-        "en": "The day has **el desayuno**, **la comida** and **la cena**. Each has its verb: **desayunar**, **comer**, **cenar**. So ‘I have breakfast’ is just **desayuno**.\n\nIn Spain, lunch is often around two and dinner around nine or later; schedules differ by person and country.\n\nWhat you eat follows the verb with no article: **desayuno** café con leche y pan. **Como** arroz. **Ceno** huevos.\n\nWith **gustar** the article comes back: me gusta **el** queso; me gustan **las** manzanas.\n\nHunger and thirst take **tener**: **tengo hambre**, **tengo sed**."
+        "en": "Three common meal names are **el desayuno**, **la comida** and **la cena**. Each has its verb: **desayunar**, **comer**, **cenar**. So ‘I have breakfast’ is **desayuno**. The midday meal is called **la comida** in many parts of Spain; you may also hear **el almuerzo**.\n\nIn many parts of Spain, lunch is around two and dinner around nine or later; schedules differ by person and country.\n\nWith general foods, meal verbs often take no article: **desayuno** café con leche y pan; **como** arroz; **ceno** huevos. A singular countable item needs an article: **desayuno un huevo**. With **gustar**, the article is usually included: me gusta **el** queso; me gustan **las** manzanas.\n\nHunger and thirst use **tener**: **tengo hambre**, **tengo sed**. Pronunciation guides use /θ/ for z as in **arroz**, **manzana**, **zumo** and **almuerzo** in much of Spain; in Latin America and other seseo regions, z is /s/."
       }
     },
     {
@@ -45,7 +49,7 @@
         {
           "quien": "Pablo",
           "es": "Café con leche y pan con tomate. ¿Y tú?",
-          "en": "White coffee and bread with tomato. And you?",
+          "en": "Coffee with milk and bread with tomato. And you?",
           "analisis": [["Café con leche", "object"], ["pan con tomate", "object"]]
         },
         {
@@ -75,7 +79,7 @@
         {
           "quien": "Pablo",
           "es": "Yo ceno huevos con patatas. Tengo hambre.",
-          "en": "I have eggs and potatoes for dinner. I'm hungry.",
+          "en": "I have eggs with potatoes for dinner. I'm hungry.",
           "analisis": [["Yo", "subject"], ["ceno", "verb"], ["huevos con patatas", "object"], ["Tengo hambre", "verb"]]
         }
       ]
@@ -136,6 +140,30 @@
       "id": "comida-a1-6",
       "frase": "No me gusta la leche",
       "traduccion": {"en": "I don't like milk."}
+    },
+    {
+      "tipo": "huecos",
+      "id": "comida-a1-7",
+      "pregunta": {"en": "Complete: I have an egg for breakfast."},
+      "frase": "Desayuno ___ huevo.",
+      "opciones": {
+        "un": {"en": "Huevo is a singular masculine countable noun."},
+        "una": {"en": "Una is feminine."},
+        "unos": {"en": "Unos is plural."}
+      },
+      "correcta": "un"
+    },
+    {
+      "tipo": "huecos",
+      "id": "comida-a1-8",
+      "pregunta": {"en": "Complete: I'm thirsty."},
+      "frase": "Tengo ___.",
+      "opciones": {
+        "sed": {"en": "Tener sed means to be thirsty."},
+        "hambre": {"en": "Tener hambre means to be hungry."},
+        "arroz": {"en": "Arroz means rice."}
+      },
+      "correcta": "sed"
     },
     {
       "tipo": "explicacion",

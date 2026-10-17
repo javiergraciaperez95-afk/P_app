@@ -5,7 +5,7 @@ import { el, poner } from '../dom.js';
 import { t, locale, idioma } from '../i18n.js';
 import { icono } from '../iconos.js';
 import { CURSOS } from '../cursos.js';
-import { curso, hayCurso, elegirCurso } from '../curso.js';
+import { curso, hayCurso, elegirCurso, nombreCurso } from '../curso.js';
 import { dibujoDe } from '../tutor-sprite.js';
 import { sonar } from '../sonidos.js';
 
@@ -109,7 +109,7 @@ export function pintarInicio(contenedor) {
   const i = idioma();
   const ficha = c => {
     const pronto = Boolean(c.proximamente);
-    const traducido = c.nombre[i] ?? c.nombre.en ?? c.nativo;
+    const traducido = nombreCurso(c, i);
     return el('li', {},
       el('button', {
         type: 'button', class: `inicio-idioma${c.id === curso.id ? ' actual' : ''}`, disabled: pronto,
@@ -149,12 +149,7 @@ export function pintarInicio(contenedor) {
       el('section', { class: 'inicio-seccion' },
         el('h2', {}, t('inicio.idiomasTitulo', { n: CURSOS.length })),
         el('p', { class: 'inicio-seccion-texto' }, t('inicio.idiomasTexto')),
-        el('ul', { class: 'inicio-idiomas' }, CURSOS.map(ficha))),
-
-      el('footer', { class: 'inicio-pie' },
-        logo('inicio-pie-logo', 32),
-        el('p', {}, el('strong', {}, t('app.nombre')), ' · ', t('inicio.pie')),
-        el('p', {}, hayCurso && el('a', { href: '#/bienvenida' }, t('bienvenida.otraVez')), hayCurso && ' · ', el('a', { href: '#/sobre' }, t('sobre.titulo')), ' · ', el('a', { href: '#/legal' }, t('legal.titulo')), ' · ', el('a', { href: '#/creditos' }, t('creditos.titulo'))))));
+        el('ul', { class: 'inicio-idiomas' }, CURSOS.map(ficha)))));
 
   return () => {
     encendida = false;

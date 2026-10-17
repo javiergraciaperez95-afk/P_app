@@ -7,17 +7,21 @@
     "el lunes": { "en": "Monday", "pron": "el LU-nes", "genero": "m", "nota": "Weekdays do not take a capital letter." },
     "el sábado": { "en": "Saturday", "pron": "el SA-ba-do", "genero": "m" },
     "siempre": { "en": "always", "pron": "SYEM-pre", "cat": "adverb" },
-    "a veces": { "en": "sometimes", "pron": "a BE-thes", "cat": "expression" },
+    "a veces": { "en": "sometimes", "pron": "a BE-thes", "cat": "expression", "nota": "The pronunciation with /θ/ is used in much of Spain; in seseante varieties, the c sounds like /s/." },
     "nunca": { "en": "never", "pron": "NUN-ka", "cat": "adverb" },
-    "me levanto": { "en": "I get up", "pron": "me le-BAN-to", "cat": "verb", "nota": "The me says the action comes back to you." },
+    "me levanto": { "en": "I get up", "pron": "me le-BAN-to", "cat": "verb", "nota": "With yo, the reflexive pronoun is me: yo me levanto." },
     "temprano": { "en": "early", "pron": "tem-PRA-no", "cat": "adverb" },
-    "desayuno": { "en": "I have breakfast", "pron": "de-sa-YU-no", "cat": "verb" }
+    "desayuno": { "en": "I have breakfast", "pron": "de-sa-YU-no", "cat": "verb" },
+    "duermo": { "en": "I sleep", "pron": "DUER-mo", "cat": "verb" },
+    "en casa": { "en": "at home", "pron": "en KA-sa", "cat": "expression" },
+    "me ducho": { "en": "I take a shower", "pron": "me DU-cho", "cat": "verb" },
+    "me visto": { "en": "I get dressed", "pron": "me BIS-to", "cat": "verb" }
   },
   "bloques": [
     {
       "tipo": "explicacion",
       "titulo": "A normal day",
-      "texto": "Days use **el**: el lunes, los sábados. They are not capitalized.\n\nHow often: **siempre**, **a veces**, **nunca**. **Nunca** can go before the verb: **nunca** me levanto temprano.\n\nMorning verbs often take **me**: **me levanto**, me ducho, me visto."
+      "texto": "For one day, use **el**: **el lunes**. For a routine, use **los**: **los sábados**. Weekdays are not capitalized.\n\nHow often: **siempre**, **a veces**, **nunca**. Before the verb, **nunca** is enough: **Nunca me levanto temprano**. After the verb, keep **no**: **No me levanto nunca temprano**.\n\nWith **yo**, many routine verbs use the reflexive pronoun **me**: **me levanto**, me ducho, me visto."
     },
     {
       "tipo": "dialogo",
@@ -65,7 +69,7 @@
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["el lunes", "el sábado", "siempre", "a veces", "nunca", "me levanto", "temprano", "desayuno"]
+      "palabras": ["el lunes", "el sábado", "siempre", "a veces", "nunca", "me levanto", "temprano", "desayuno", "duermo", "en casa", "me ducho", "me visto"]
     },
     {
       "tipo": "huecos",
@@ -74,7 +78,7 @@
       "frase": "___ levanto a las siete.",
       "audio": true,
       "opciones": {
-        "Me": { "en": "Yo uses me." },
+        "Me": { "en": "With yo, use me: me levanto." },
         "Te": { "en": "Te is for tú." },
         "Se": { "en": "Se is for él, ella or usted." }
       },
@@ -98,6 +102,19 @@
         "A veces": {"en": "A veces is sometimes."}
       },
       "correcta": "Nunca"
+    },
+    {
+      "tipo": "huecos",
+      "id": "a1-hab-negacion-posverbal",
+      "pregunta": {"en": "Complete the negative sentence: I never get up early."},
+      "frase": "No me levanto ___ temprano.",
+      "audio": true,
+      "opciones": {
+        "nunca": {"en": "When nunca follows the verb, keep no before the verb."},
+        "siempre": {"en": "Siempre means always."},
+        "a veces": {"en": "A veces means sometimes."}
+      },
+      "correcta": "nunca"
     },
     {
       "tipo": "test",

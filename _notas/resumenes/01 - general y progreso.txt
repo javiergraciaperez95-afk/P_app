@@ -1,0 +1,167 @@
+NOTA 1 — RESUMEN DEL TRABAJO REALIZADO
+=========================================
+
+Esta nota resume las revisiones, comprobaciones y cambios realizados durante la conversación en el proyecto Learning_language_app-main.
+
+
+1. ORGANIZACIÓN GENERAL DEL PROYECTO
+------------------------------------
+
+Se revisó la organización del proyecto para entender dónde se guardan los cursos, cómo se cargan las lecciones, cómo se muestran los idiomas y de dónde obtiene la aplicación el progreso de producción y revisión.
+
+Las lecciones utilizadas por la aplicación web están principalmente en:
+
+  Idiomas/cursos/<código del idioma>/lessons/
+
+También existe una copia destinada a la versión APK en:
+
+  _apk/www/cursos/<código del idioma>/lessons/
+
+Además, hay material auxiliar, fuentes de trabajo o copias en carpetas como _herramientas y _antiguas. Estas carpetas no deben confundirse con la ubicación activa que lee la aplicación web.
+
+
+2. TRADUCCIONES DE LAS LECCIONES
+--------------------------------
+
+Se comprobó que las traducciones que aparecen al abrir una lección forman parte de los propios datos JSON de las lecciones. Un mismo archivo puede contener el contenido base y textos destinados a estudiantes que hablan otros idiomas.
+
+Por eso, al entrar por ejemplo en la unidad 1, lección 1 de español, pueden aparecer instrucciones o traducciones en vietnamita, inglés u otros idiomas sin que exista necesariamente una carpeta independiente con una copia completa de esa lección para cada lengua de interfaz.
+
+
+3. PROGRESO.HTML Y NIVELES DE REVISIÓN
+--------------------------------------
+
+Se trabajó varias veces sobre progreso.html para que reflejara el estado real de los cursos.
+
+Los niveles de revisión solicitados fueron:
+
+  - Hecho
+  - Revisado por luna
+  - Revisado por luna y opus
+  - Revisado por luna, opus y sol
+  - Revisado por luna, opus, sol y un humano
+
+Al principio se registraron como revisados por Luna varios idiomas, pero se corrigió después que Luna solo había revisado el nivel A1 de:
+
+  - Vietnamita
+  - Portugués
+  - Italiano
+  - Japonés
+  - Alemán
+  - Francés
+  - Español
+  - Danés
+  - Coreano
+  - Ruso
+  - Inglés
+
+Más adelante se indicó que Luna también había repasado el A2 de español, vietnamita, danés y ruso. Posteriormente terminó el A2 de japonés y también se actualizó.
+
+Después hubo nuevas revisiones de otros agentes. Finalmente se pidió que todo lo que figurase como revisado pasara a mostrarse simplemente como "Hecho", sin atribuir la revisión a Luna. Ese último criterio debe considerarse al comprobar el estado actual de progreso.html.
+
+
+4. INVESTIGACIÓN DE LAS LECCIONES DE RUSO
+-----------------------------------------
+
+Se investigó varias veces si el curso de ruso llegaba solo hasta A1 o si existían también las lecciones de A2 a B2.
+
+Se revisó especialmente esta ubicación externa de herramientas:
+
+  C:\Users\javie\Pictures\Aplicaciones de idiomas desarrolladas\_herramientas\cursos\ru
+
+También se buscó dentro de las carpetas del proyecto para averiguar dónde podían haberse guardado las 174 lecciones rusas que faltaban. Durante la investigación no aparecían inicialmente en la ubicación activa esperada y se consideró que podían haberse generado o guardado en otra copia del curso.
+
+El usuario copió y pegó manualmente los archivos encontrados. Después se volvió a comprobar la carpeta de ruso para confirmar que las lecciones adicionales ya estaban colocadas correctamente en el proyecto.
+
+En la auditoría posterior, el curso activo de ruso figuraba con 325 lecciones. Inglés, español y ruso quedaron excluidos de la revisión masiva más reciente porque otros agentes estaban trabajando en ellos en ese momento.
+
+
+5. CABECERA, LOGO Y TIPOGRAFÍA
+------------------------------
+
+Se pidió corregir la cabecera que aparece al entrar en las lecciones y en el selector de idiomas.
+
+Los cambios solicitados fueron:
+
+  - Agrandar el logo.
+  - Reorganizar el texto del logo para que se leyera mejor.
+  - Utilizar en esa cabecera la misma fuente que se usa en la página de inicio.
+
+Ambas peticiones, el ajuste visual del logo y la unificación de la fuente, se trataron como parte del mismo cambio de cabecera.
+
+
+6. AUDITORÍA DE LAS LECCIONES POR IDIOMA
+----------------------------------------
+
+Se realizó una revisión de los cursos para asegurar dos cosas:
+
+  1. Que la vista de idiomas mostrase el número correcto de lecciones.
+  2. Que, al entrar en un idioma, las lecciones apareciesen en el orden correcto.
+
+Por petición expresa, no se revisaron inglés, español ni ruso en esa auditoría, ya que otros agentes estaban modificándolos.
+
+Los idiomas revisados y los totales encontrados fueron:
+
+  - Danés: 304
+  - Alemán: 308
+  - Griego: 300
+  - Francés: 300
+  - Indonesio: 124
+  - Italiano: 300
+  - Japonés: 300
+  - Coreano: 300
+  - Neerlandés: 300
+  - Noruego: 157
+  - Polaco: 229
+  - Portugués: 300
+  - Rumano: 124
+  - Sueco: 304
+  - Tailandés: 3
+  - Turco: 295
+  - Vietnamita: 300
+  - Chino: 93
+
+Durante esa revisión se comprobó que los JSON se podían interpretar, que la numeración de los archivos era continua, que las lecciones estaban asociadas a capítulos y que no aparecían capítulos desconocidos en los idiomas incluidos.
+
+
+7. CAMBIOS REALIZADOS PARA LOS CONTEOS Y EL ORDEN
+-------------------------------------------------
+
+En Idiomas/js/cursos.js se actualizaron varios conteos que todavía conservaban valores antiguos:
+
+  - Chino: de 3 a 93
+  - Polaco: de 3 a 229
+  - Noruego: de 3 a 157
+  - Rumano: de 3 a 124
+
+En Idiomas/js/vistas/lecciones.js se hizo exportable la función agrupar.
+
+En Idiomas/js/app.js se importó esa función y se añadió la asignación secuencial del número visible de curso según el orden real de los grupos mostrados. Este ajuste se aplicó a los idiomas auditados, excluyendo inglés, español y ruso.
+
+El objetivo fue ordenar correctamente la presentación sin cambiar los identificadores internos que utilizan las rutas y el progreso guardado.
+
+También se ordenaron numéricamente los metadatos de capítulos de:
+
+  - Idiomas/cursos/el/lessons/capitulos.json
+  - Idiomas/cursos/pl/lessons/capitulos.json
+
+Se comprobó la sintaxis de Idiomas/js/app.js e Idiomas/js/vistas/lecciones.js con Node y ambos archivos pasaron la comprobación.
+
+
+8. ASUNTOS QUE CONVIENE REVISAR ANTES DE CONTINUAR
+--------------------------------------------------
+
+  - Confirmar visualmente que progreso.html mantiene el último criterio pedido: los elementos terminados deben aparecer como "Hecho" y no como revisados por Luna.
+
+  - Evitar modificar inglés, español o ruso mientras haya otros agentes trabajando sobre esos cursos, salvo que se coordinen primero los cambios.
+
+  - Comprobar si la copia de _apk debe regenerarse después de cualquier cambio en Idiomas/cursos. La aplicación web y la copia de la APK pueden quedar desincronizadas.
+
+  - Revisar la documentación antigua del proyecto, porque algunos textos todavía podrían indicar conteos anteriores, como las 3 lecciones que figuraban para chino antes de actualizarlo a 93.
+
+  - Verificar visualmente en el navegador el logo, el texto y la fuente de la cabecera en el selector de idiomas y dentro de las lecciones.
+
+  - Si se cambia la cantidad de archivos de un curso, actualizar también su conteo en el registro que alimenta la vista de idiomas.
+
+
+FIN DE LA NOTA 1

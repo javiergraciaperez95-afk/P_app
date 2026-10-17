@@ -1,0 +1,338 @@
+RESUMEN 13 — EVOLUCIÓN GENERAL DE PAGLOT
+Fecha del resumen: 16-10-2026
+
+OBJETIVO DE ESTA NOTA
+
+Este documento resume el trabajo y las decisiones recogidas en la conversación sobre Paglot. Separa lo que se implementó en el proyecto de las cuestiones que solamente se estudiaron o quedaron planteadas para el futuro.
+
+
+1. COMPRENSIÓN DEL PROYECTO Y ARQUITECTURA
+
+Al principio se revisó cómo estaba organizado el proyecto y cómo funcionaban sus vistas, cursos, lecciones, tutoras, estilos y recursos. Se confirmó que Paglot utiliza una única aplicación común para todos los idiomas: el motor de interfaz y de ejercicios se comparte, mientras que cada curso aporta su contenido, su tutora, su voz y sus archivos propios.
+
+También se estudió específicamente la arquitectura de los minijuegos de las lecciones. La conclusión fue que están suficientemente desacoplados del idioma como para reutilizarlos en otros cursos sin tener que duplicarlos. Se decidió conservar esa arquitectura común y no aislar una copia de los juegos por idioma, porque hacerlo aumentaría el mantenimiento y provocaría diferencias innecesarias entre cursos.
+
+Durante la conversación se propuso trabajar temporalmente desde:
+
+C:\Users\javie\Pictures\Aplicaciones de idiomas desarrolladas
+
+Después se decidió continuar en la ubicación anterior. El proyecto utilizado actualmente es:
+
+C:\Users\javie\Downloads\Learning_language_app-main\Learning_language_app-main
+
+
+2. CABECERA Y NAVEGACIÓN PRINCIPAL
+
+Se detectó que, después de entrar en la aplicación o abrir las lecciones y la vista de idiomas, aparecían dos cabeceras al mismo tiempo. Se rediseñó esa zona para utilizar una sola cabecera coherente.
+
+El diseño pasó por varias revisiones para mantener la identidad de píxeles sin sacrificar legibilidad. La marca quedó formada por el logotipo de Paglot, el nombre de la aplicación y, en las vistas de curso, el nombre del idioma acompañado por su bandera. Se evitó utilizar una tipografía excesivamente pixelada para todo el texto y se reservó el carácter pixel art para los elementos donde funciona bien.
+
+Más adelante se simplificó la cabecera pública para concentrarla en las acciones principales:
+
+- Inicio.
+- Entrar.
+- Paglot Max, que sustituyó al enlace denominado Precios.
+- Selector de idioma de interfaz.
+- Controles de sonido y tema.
+
+Los demás accesos se trasladaron al pie de página para que la cabecera fuera más clara y no saturara a las personas con déficit de atención.
+
+
+3. SELECTOR DE IDIOMAS E IDIOMA AUTOMÁTICO
+
+El selector de idiomas se rediseñó porque su lista abierta era demasiado larga. Se hizo más compacto y manejable, manteniendo el acceso a todos los idiomas disponibles.
+
+También se añadió la selección automática del idioma de interfaz a partir del idioma configurado en el navegador o dispositivo. Esta solución se planteó para funcionar tanto en la web como dentro de la futura aplicación Android construida con Capacitor. El usuario puede seguir escogiendo manualmente otro idioma.
+
+En la tienda se corrigió además el selector de idioma de los libros, que provocaba vibraciones y ocupaba demasiado espacio en pantalla.
+
+
+4. CURSO DE CHINO DE MUESTRA
+
+Se creó la aplicación o curso de chino que faltaba. Se añadieron tres lecciones de muestra siguiendo el modelo de los cursos de tailandés, indonesio, sueco y griego, y se habilitó el chino en el selector de idiomas.
+
+
+5. TUTORAS Y NOMBRES PROPIOS
+
+Se sustituyó el rótulo genérico “Tutora” por un nombre propio adecuado al idioma estudiado. La aplicación contiene los siguientes 21 nombres:
+
+1. Inglés: Emily.
+2. Español: Lucía.
+3. Francés: Camille.
+4. Alemán: Anna.
+5. Japonés: Yui.
+6. Italiano: Sofia.
+7. Coreano: 민지.
+8. Chino: 小雨.
+9. Portugués: Inês.
+10. Ruso: Анна.
+11. Turco: Elif.
+12. Neerlandés: Sophie.
+13. Sueco: Elsa.
+14. Griego: Ελένη.
+15. Polaco: Zofia.
+16. Noruego: Nora.
+17. Vietnamita: Linh.
+18. Indonesio: Sari.
+19. Danés: Freja.
+20. Rumano: Ana.
+21. Tailandés: มะลิ.
+
+Se comprobó expresamente que Elif es un nombre turco normal y Sari un nombre indonesio normal.
+
+
+6. LECCIÓN 1 DE LA UNIDAD 1 DE ESPAÑOL Y MINIJUEGOS
+
+Los minijuegos de la primera lección de la unidad 1 de español recibieron un rediseño visual para resultar más atractivos y mantener la atención, especialmente pensando en usuarios con déficit de atención.
+
+Tras la primera versión aparecieron varios problemas y se hicieron correcciones:
+
+- Se eliminó la barra de desplazamiento que aparecía a medida que avanzaba la partida.
+- Se recuperaron el fondo, los bordes y las proporciones que formaban parte del diseño anterior.
+- Se restauró el sistema de progreso anterior, que funcionaba mejor visualmente.
+- Se conservó el aumento de tamaño y la mejora de proporciones que sí habían resultado útiles.
+- El nombre de la tutora pasó a negro porque el texto blanco sobre amarillo era ilegible.
+- Se revisó la escena de paseo mostrada en la captura, donde las tarjetas, la tutora y el escenario no encajaban correctamente.
+
+La regla acordada para futuros cambios es mantener el lenguaje visual existente de Paglot y mejorar cada actividad sin convertir las 303 lecciones en diseños independientes difíciles de mantener.
+
+
+7. ADAPTACIÓN MÓVIL DE LAS LECCIONES
+
+En la vista móvil de lecciones se detectó que, al pulsar “desplegar todo”, la tutora salía del marco y ensanchaba la página. Se corrigió el comportamiento adaptable para que el contenido, el texto y la tutora permanezcan dentro del ancho disponible y no generen desplazamiento horizontal.
+
+La corrección se verificó en varios anchos de móvil y sobre los cursos completos disponibles, incluyendo pantallas de 320, 390 y 600 píxeles.
+
+
+8. BLOQUEO DE SELECCIÓN Y COPIA
+
+Se trató la posibilidad de impedir que el usuario seleccione, copie y pegue los textos desde el navegador y desde la aplicación Android. Después de estudiar la viabilidad se aplicó una protección de interfaz para dificultar la selección y la copia, sin alertas molestas ni mensajes extraños.
+
+Se dejó claro que este tipo de bloqueo evita la copia casual, pero no puede proteger por completo un contenido que ya se ha enviado al dispositivo del usuario. Una persona con conocimientos técnicos siempre puede analizar recursos descargados, interceptar respuestas o modificar una APK.
+
+
+9. SEGURIDAD, PAYWALLS Y PROTECCIÓN DE LA APK
+
+Se habló ampliamente de seguridad, pero esta parte fue principalmente una evaluación técnica y no una implementación completa.
+
+Las conclusiones fueron:
+
+- No es posible impedir al cien por cien el uso de las herramientas de desarrollo ni ocultar todo el código que el navegador necesita ejecutar.
+- La ofuscación, la minificación, el empaquetado Android y las comprobaciones de integridad pueden elevar mucho el coste de manipular la aplicación, pero no sustituyen la seguridad del servidor.
+- Los permisos premium y los paywalls deben validarse en un backend. La aplicación no debe decidir por sí sola qué usuario ha pagado.
+- El contenido de pago más sensible no debería incluirse completo y desbloqueado dentro de la APK.
+- Deben usarse sesiones o tokens de corta duración, comprobaciones de autorización en cada petición y límites de uso.
+- En Android se pueden añadir firma, ofuscación, Play Integrity y validación de recibos o suscripciones para dificultar la distribución de versiones modificadas.
+
+La conclusión general fue que Paglot puede protegerse mucho frente a la copia casual y la mayoría de versiones crackeadas, aunque ninguna aplicación cliente puede garantizar una protección absoluta.
+
+
+10. BACKEND PROPIO, BASE DE DATOS, CORREO Y HOSTING
+
+Se estudió la posibilidad de dejar de depender de Supabase y alojar en un mismo proveedor la web, un backend PHP, la base de datos y el correo.
+
+Se consideró técnicamente viable utilizar PHP con una base de datos administrada directamente en el hosting. También se explicó que la APK puede consumir ese backend mediante HTTPS igual que la web, de modo que el servidor no depende de que el cliente sea un navegador o una aplicación Android.
+
+Para los correos de confirmación, recuperación de contraseña y avisos se valoró utilizar el correo incluido en el alojamiento. Es la opción más sencilla para empezar, aunque a medida que aumente el volumen habrá que vigilar límites, reputación, SPF, DKIM, DMARC, colas, rebotes y entregabilidad.
+
+Se investigaron proveedores que permiten alojar PHP, bases de datos y correo, con especial atención a Dinahosting. También se confirmó que un dominio comprado en Namecheap se puede conectar mediante DNS a otro proveedor de alojamiento.
+
+Se explicaron las diferencias entre:
+
+- Hosting compartido: económico y sencillo, con recursos compartidos y menor control.
+- VPS: servidor virtual con recursos asignados y más control, que requiere administración o un plan administrado.
+- Cloud: infraestructura elástica compuesta por servicios que pueden crecer de forma más flexible.
+- Servidor dedicado: una máquina física completa para un solo cliente, con mayor coste y capacidad.
+
+La estrategia que quedó como preferencia es comenzar directamente con un VPS administrado, dominio en Namecheap, backend PHP, base de datos y correo; ampliar CPU, RAM y almacenamiento conforme crezca el uso; y pasar a un servidor dedicado si Paglot alcanza una escala que lo justifique. Los precios consultados eran orientativos y deben comprobarse de nuevo antes de contratar.
+
+No se migró todavía el backend, la autenticación, la base de datos ni el correo. Todo este bloque queda como planificación futura.
+
+
+11. TRADUCCIÓN COMPLETA DE LA INTERFAZ
+
+Se tradujo la interfaz pública de Paglot, excluyendo deliberadamente el contenido de las lecciones. El trabajo abarcó la portada, inicio de sesión, Paglot Max, Sobre Paglot, navegación, pies de página, productos, tienda y demás páginas públicas.
+
+Los idiomas de interfaz cubiertos son:
+
+- Inglés.
+- Vietnamita.
+- Chino.
+- Español.
+- Portugués.
+- Francés.
+- Japonés.
+- Italiano.
+- Coreano.
+- Ruso.
+- Alemán.
+- Indonesio.
+
+La última revisión reorganizó y completó las traducciones mediante un catálogo común en Idiomas/js/i18n/sitio.js y utilidades compartidas desde Idiomas/js/i18n.js. También se conectaron a ese sistema las rutas, los títulos, el pie y las vistas públicas construidas desde JavaScript.
+
+La auditoría final comprobó 12 idiomas y 272 textos públicos por idioma sin claves ausentes. Se verificó la sintaxis de los archivos JavaScript modificados. Las lecciones conservaron sus textos originales, tal como se pidió.
+
+
+12. PIE DE PÁGINA Y PORTADA
+
+Se creó un pie de página amplio para reunir la navegación que dejó de estar en la cabecera. Incluye la marca y enlaces agrupados hacia información, productos y ayuda.
+
+En varias páginas habían quedado dos pies de página. Se eliminó el duplicado en la portada y en Sobre Paglot, conservando un único componente común. La frase “Hecho con píxeles y paciencia” se trasladó al pie definitivo para no perderla.
+
+También se hicieron estos ajustes en la portada:
+
+- El logotipo de Paglot se agrandó para que tuviera presencia real.
+- La frase “Lecciones cortas, diálogos de verdad y una tutora…” se ajustó para aparecer en una sola línea cuando hay espacio suficiente.
+- El grupo de tutoras se desplazó hacia arriba para que el texto situado bajo los números sea visible al entrar.
+- Se mantuvo el estilo pixel art general.
+
+
+13. PÁGINA SOBRE PAGLOT
+
+La página existente se amplió sin sustituir ni rediseñar las secciones que ya funcionaban. Se añadieron cuatro bloques:
+
+- Misión: propósito general de Paglot y aprendizaje accesible.
+- Método: enfoque pensado para personas con déficit de atención y discapacidades visuales.
+- Eficacia: uso de estímulos claros, actividades breves y atención guiada.
+- “¡Ojea nuestra tienda!”: invitación no obligatoria a visitar la tienda y apoyar el proyecto.
+
+En una segunda revisión cada bloque recibió una composición propia para evitar que fueran cuatro rectángulos iguales. Las tutoras participan en las escenas y animaciones de la página.
+
+La sección “¿Hablamos?” conserva su frase y ahora incluye un botón que abre la página de contacto. También se eliminó el segundo pie de página y se dejó el mismo pie común que utiliza la portada.
+
+
+14. CONTACTO, SOCIAL, PRODUCTOS Y TIENDA
+
+Se añadieron nuevas áreas públicas y sus enlaces en la navegación o el pie.
+
+CONTACTO
+
+Se construyó el formulario visual con estos campos:
+
+- Usuario de Paglot.
+- Correo con el que está registrado el usuario.
+- Asunto mediante selector.
+- Mensaje.
+- Captcha.
+- Botón de envío.
+
+El formulario es solamente frontend. Aún no envía correos porque su backend se dejó para una fase posterior.
+
+SOCIAL
+
+Se creó una vista para mostrar las redes sociales con escenas diferentes protagonizadas por las tutoras, por ejemplo música para TikTok y una conversación con ordenador para Discord. Después se compactó para reducir mucho el desplazamiento vertical, se añadieron botones hacia cada red y se usaron enlaces provisionales porque las cuentas todavía no existen.
+
+El usuario indicó finalmente que arreglaría por su cuenta el aspecto de Social, por lo que conviene revisar esa página antes de tomarla como diseño definitivo.
+
+PRODUCTOS
+
+Se sustituyó la página genérica por páginas independientes para cada producto:
+
+- Paglot Schools: cursos personalizados para centros, colaboración con escuelas y compra colectiva con descuento del 50 % a partir de 20 alumnos.
+- Paglot Empresas: propuesta equivalente adaptada a equipos, formación y necesidades corporativas.
+- Regala Paglot Max: compra de un código que otra persona puede canjear cuando quiera por uno o doce meses de acceso premium.
+- Paglot Max conserva su propia vista.
+
+Cada producto recibió una composición visual diferenciada.
+
+TIENDA
+
+Se creó el frontend de una tienda con:
+
+- Libros de idiomas en formato impreso.
+- Libros en PDF.
+- Diez productos de impresión bajo demanda inspirados en el catálogo de Gelato.
+- Precios provisionales inventados.
+- Una fotografía de una nutria usada temporalmente en todos los productos hasta disponer de imágenes definitivas.
+- Controles y presentación visual de catálogo, sin backend de pagos definitivo.
+
+
+15. GUÍAS COMUNITARIAS, FAQ Y LABORATORIO
+
+Se crearon tres páginas adicionales:
+
+- Guías comunitarias, con las reglas básicas de convivencia.
+- FAQ, con respuestas a preguntas habituales.
+- Laboratorio, donde los usuarios pueden proponer ideas y votar las que consideren más útiles.
+
+El Laboratorio es todavía una demostración de frontend; la persistencia real de propuestas y votos necesitará backend. En la misma fase se revisó Paglot Max para que volviera a mostrar el pie de página común.
+
+
+16. NOTIFICACIONES ANDROID CON CAPACITOR
+
+Se preparó la integración de notificaciones para la aplicación Android sin afectar al funcionamiento normal de la página web.
+
+Después se añadió una primera prueba al abrir la APK. La versión inicial no solicitaba permiso ni mostraba la notificación, así que se revisaron la configuración y el flujo de permisos. Tras la corrección, la notificación funcionó.
+
+La prueba básica “¡Test!” se sustituyó por una notificación de bienvenida más cuidada, del estilo “¡Bienvenido a Paglot!”, con un texto descriptivo acorde con la aplicación.
+
+La infraestructura queda preparada para añadir en el futuro las notificaciones concretas que se definan. No se diseñó todavía un calendario completo de recordatorios.
+
+
+17. GENERACIÓN DE APK
+
+Durante el trabajo se generó la aplicación Android con Capacitor varias veces, especialmente después de implementar las notificaciones y después de corregir el problema móvil de las lecciones.
+
+Actualmente existe en la raíz del proyecto:
+
+Paglot-prueba.apk
+
+Estado comprobado al redactar esta nota:
+
+- Tamaño: 14.560.992 bytes.
+- Última modificación visible: 15-10-2026 a las 13:59.
+
+La traducción general más reciente se realizó después de algunas compilaciones de Android. Antes de distribuir una versión de prueba conviene volver a generar el APK para asegurarse de que incorpora exactamente los últimos textos y cambios de frontend.
+
+
+18. DOCUMENTACIÓN DE LA ESTRUCTURA
+
+Se creó en la raíz el archivo:
+
+estructura y arbol de paginas.txt
+
+Ese documento explica la organización de la aplicación y contiene un esquema del árbol de páginas y contenidos. En el momento de esta nota el archivo existe y tiene 9.621 bytes.
+
+
+19. IDEA FUTURA DE LIBRO PDF
+
+Se consultó si sería posible transformar todas las lecciones en un libro ordenado, con explicaciones adicionales y ejercicios, y entregarlo en PDF. Se confirmó que es viable, pero no se inició ese trabajo. Queda como proyecto futuro y requerirá definir alcance, formato editorial, maquetación y revisión del contenido.
+
+
+20. PRINCIPIOS DE DISEÑO ACORDADOS
+
+A lo largo de las revisiones quedaron establecidos estos criterios:
+
+- Mantener la identidad pixel art de Paglot.
+- Usar fuentes legibles para los textos largos y reservar las fuentes pixel para títulos, marca y detalles.
+- Evitar pantallas sobrecargadas, especialmente por el público con déficit de atención.
+- Mantener fondos, bordes, barras de progreso y componentes coherentes entre vistas.
+- No rediseñar una página completa cuando la petición sea únicamente añadir contenido.
+- Evitar barras de desplazamiento accidentales y desbordamientos horizontales.
+- Dar personalidad a cada sección mediante composición, escenas y tutoras, sin crear un sistema imposible de mantener para cientos de lecciones.
+- Reutilizar componentes compartidos: cabecera, pie, motor de ejercicios, internacionalización y estructura de cursos.
+- Diseñar primero el frontend cuando el backend todavía no está definido, dejando claro qué acciones son demostraciones.
+
+
+21. PENDIENTES IMPORTANTES ANTES DE CONTINUAR
+
+- Revisar visualmente todas las páginas en los 12 idiomas, porque una auditoría de claves no detecta textos que desborden por ser más largos.
+- Regenerar el APK después de la traducción general más reciente.
+- Revisar o sustituir el diseño de Social según el criterio del usuario.
+- Reemplazar los enlaces inventados de redes sociales por las cuentas reales cuando existan.
+- Sustituir la nutria provisional por imágenes definitivas de cada producto.
+- Definir precios, stock, carrito, pagos, pedidos y descargas digitales de la tienda.
+- Implementar el envío real del formulario de contacto y un captcha válido en el servidor.
+- Crear el backend real del Laboratorio para propuestas, votos, moderación y cuentas.
+- Elegir y contratar el dominio, el VPS administrado y la infraestructura definitiva.
+- Diseñar la migración desde Supabase solamente cuando se decida realizarla.
+- Implementar en el servidor la autenticación, recuperación de contraseña, correo transaccional, autorización premium y protección del contenido de pago.
+- Añadir las notificaciones Android definitivas cuando se concrete qué avisos debe recibir el usuario.
+- Recordar que el bloqueo de copia y la ofuscación son capas de dificultad, no garantías absolutas de seguridad.
+
+
+ESTADO GENERAL
+
+Paglot dispone ahora de una navegación pública simplificada, un pie común amplio, nuevas páginas informativas y comerciales, tienda de demostración, traducción de la interfaz a doce idiomas, tutoras con nombres propios, selector de idiomas compacto y automático, curso chino de muestra, minijuegos revisados, adaptación móvil corregida, notificaciones locales Android funcionales y una APK de prueba.
+
+La siguiente fase debería centrarse en revisar visualmente las traducciones, regenerar la APK y decidir qué bloque de backend se implementará primero. El orden más lógico sería autenticación y permisos premium, correo transaccional, contacto, Laboratorio y, finalmente, pagos y tienda.

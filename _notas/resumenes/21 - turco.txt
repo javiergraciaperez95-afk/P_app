@@ -1,0 +1,260 @@
+RESUMEN DEL TRABAJO REALIZADO EN EL CURSO DE TURCO A1-B2
+Fecha del cierre de esta etapa: 16 de octubre de 2026
+
+1. OBJETIVO GENERAL
+
+Se revisó cómo está estructurada la aplicación y, en particular, cómo se almacenan, organizan y compilan las lecciones. Después se amplió de forma progresiva el curso de turco en los niveles A1, A2, B1 y B2, respetando la estructura existente de la página y evitando modificar contenido ajeno al curso de turco.
+
+El trabajo terminó con una auditoría completa del contenido creado, una propuesta de ampliación y la aplicación efectiva de esa propuesta. El curso pasó de 127 a 295 lecciones.
+
+
+2. COMPRENSIÓN DE LA ESTRUCTURA DE LA APLICACIÓN
+
+Antes de crear contenido se revisó el sistema de lecciones para entender:
+
+- El formato de los archivos fuente de cada lección.
+- La forma en que se agrupan las lecciones dentro de capítulos.
+- Los tipos de ejercicios admitidos por la aplicación.
+- El sistema de vocabulario visible y oculto.
+- La relación entre los archivos fuente y los JSON finales que utiliza la web.
+- El funcionamiento del compilador de cursos.
+- El archivo que determina desde qué lección debe recompilarse el curso.
+
+El curso turco utiliza archivos fuente numerados dentro de:
+
+_herramientas/cursos/tr/
+
+El compilador genera las lecciones que consume la aplicación dentro de:
+
+Idiomas/cursos/tr/lessons/
+
+Se mantuvo el valor 96 en el archivo desde.txt. Por ello, las lecciones 001-095 quedaron intactas y el compilador reconstruyó solamente el tramo 096-295.
+
+
+3. INVESTIGACIÓN PREVIA EN FUENTES OFICIALES
+
+Antes de ampliar los niveles se investigaron referencias oficiales y educativas sobre la enseñanza del turco como lengua extranjera y los objetivos del MCER.
+
+Fuentes principales consultadas:
+
+- Programa de enseñanza de turco como lengua extranjera del Ministerio de Educación Nacional de Turquía, publicado en 2023:
+  https://ookgm.meb.gov.tr/meb_iys_dosyalar/2023_05/31163452_YabancY_Dil_Olarak_Turkce_OYretimi_Cevrim_Yci_Kurs_ProgramY.pdf
+
+- Descriptores del Marco Común Europeo de Referencia para las Lenguas del Consejo de Europa:
+  https://www.coe.int/en/web/common-european-framework-reference-languages/cefr-descriptors
+
+- CEFR Companion Volume de 2020:
+  https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4
+
+- Material Yedi İklim Türkçe A1 del Yunus Emre Enstitüsü:
+  https://www.yee.org.tr/tr/yayinlar/yedi-iklim-turkce-a1-ders-kitabi
+
+- Material Yedi İklim Türkçe A2 del Yunus Emre Enstitüsü:
+  https://www.yee.org.tr/tr/yayinlar/yedi-iklim-turkce-a2-ders-kitabi
+
+- Material Yedi İklim Türkçe B1 del Yunus Emre Enstitüsü:
+  https://www.yee.org.tr/tr/yayinlar/yedi-iklim-turkce-b1-ders-kitabi
+
+- Material Yedi İklim Türkçe B2 del Yunus Emre Enstitüsü:
+  https://www.yee.org.tr/en/yayinlar/yedi-iklim-turkce-b2-ders-kitabi
+
+Estas fuentes sirvieron para ordenar la progresión comunicativa, las destrezas de comprensión y producción, la mediación, los registros y los tipos de situaciones que corresponden a cada nivel.
+
+
+4. CREACIÓN PROGRESIVA DE LOS NIVELES
+
+Primero se generó y organizó el nivel A1. Después se continuó con A2, B1 y B2 siguiendo el mismo formato que ya utilizaba el sitio.
+
+La ampliación cubre, entre otros, los siguientes ámbitos:
+
+A1:
+- Alfabeto, pronunciación y división silábica.
+- Saludos y presentaciones.
+- Países, profesiones, idiomas y datos personales.
+- Familia, posesión y números.
+- Rutinas, horas, días y frecuencia.
+- Comida, cantidades, precios y compras.
+- Ciudad, transporte y direcciones.
+- Ropa, aspecto y profesiones.
+- Clima, fechas, aficiones y capacidades.
+- Invitaciones, viajes, hotel, salud y repaso integrado.
+
+A2:
+- Descripciones personales más completas.
+- Casa, barrio y servicios.
+- Rutinas y organización de actividades.
+- Experiencias pasadas y planes.
+- Comparaciones, preferencias y recomendaciones.
+- Viajes, incidencias y gestiones cotidianas.
+- Salud y comunicación en situaciones habituales.
+- Mensajes, relatos breves y tareas integradas.
+
+B1:
+- Narración y descripción con mayor detalle.
+- Opiniones justificadas y acuerdos o desacuerdos.
+- Estudios, empleo y vida social.
+- Noticias, cultura, medioambiente y sociedad.
+- Resolución de problemas cotidianos.
+- Mediación de información entre personas.
+- Textos más extensos y proyectos por destrezas.
+- Conversaciones en grupo y portafolio de progreso.
+
+B2:
+- Interpretación de obras, reseñas y textos culturales.
+- Argumentación, objeciones y respuesta razonada.
+- Probabilidad, cautela, inferencia y matices.
+- Debate y moderación de conversaciones complejas.
+- Datos, gráficos y comparación de fuentes.
+- Reclamaciones, solicitudes, informes y opinión formal.
+- Mediación y reformulación para distintas audiencias.
+- Proyectos integrados de lectura, escritura, escucha y presentación.
+
+
+5. AUDITORÍA DEL CURSO
+
+Después de crear A1-B2 se realizó una auditoría del propio trabajo. Se leyeron las lecciones, se comparó la cobertura con las referencias oficiales y se buscó qué faltaba, qué estaba repetido y qué podía mejorarse.
+
+La auditoría detectó principalmente:
+
+- Cobertura insuficiente de algunas destrezas comunicativas.
+- Pocas actividades integradas y de mediación.
+- Lecturas demasiado breves en parte de B1 y B2.
+- Instrucciones excesivamente repetidas en varias lecciones B2.
+- Algunos ejemplos que no ejercitaban exactamente el objetivo anunciado.
+- Vocabulario usado en textos o ejercicios sin la ficha correspondiente.
+- Definiciones repetidas en ciertas ampliaciones de A1.
+- Algunas frases turcas o traducciones que requerían ajustes.
+- Falta de una evaluación claramente separada por destrezas.
+- Limitaciones del formato actual para producción oral abierta y audios extensos evaluables.
+
+Se escribió el informe:
+
+informe_auditoria_turco_A1-B2.md
+
+El informe propuso llevar el curso a un total situado entre 280 y 340 lecciones. Finalmente se escogió una estructura de 295 lecciones, acorde con las necesidades encontradas.
+
+
+6. AMPLIACIÓN DERIVADA DE LA AUDITORÍA
+
+Se añadieron 168 lecciones a la versión de 127 lecciones que existía en el momento de la auditoría.
+
+Distribución final:
+
+- A1: 75 lecciones.
+- A2: 76 lecciones.
+- B1: 74 lecciones.
+- B2: 70 lecciones.
+- Total: 295 lecciones.
+- Capítulos: 38.
+
+Las lecciones nuevas se integraron en los 38 capítulos ya existentes, sin crear una organización paralela ni alterar los capítulos de otros idiomas.
+
+Los archivos fuente activos de la ampliación abarcan 39.txt-76.txt. Los archivos 31.txt-38.txt contienen el tramo B2 anterior que también fue corregido y recompilado.
+
+Se creó además este generador reproducible:
+
+_herramientas/cursos/tr/generar_ampliacion.py
+
+El generador contiene 141 de las lecciones añadidas. Las otras 27 ampliaciones de A1 ya estaban redactadas directamente en los archivos 39.txt-44.txt.
+
+
+7. CORRECCIONES CONCRETAS REALIZADAS
+
+Además de añadir contenido, se corrigieron problemas del material previo y de las primeras versiones de la ampliación.
+
+Entre las correcciones más claras se encuentran:
+
+- Se ajustó la lección B2 096 para que sus ejercicios practiquen realmente el objetivo relacionado con el área sobre la que cae la luz.
+- Se corrigió puntuación y formulación en ejemplos de B2.
+- En la lección B2 098 se incorporaron de forma efectiva las construcciones bir yandan... öte yandan y formas pasivas como sahnelendi y bestelendi.
+- Se sustituyeron instrucciones genéricas y repetidas en 32 lecciones B2 por indicaciones específicas para el contenido de cada lección.
+- Se añadió vocabulario que aparecía en frases, lecturas o ejercicios pero no tenía ficha.
+- Se eliminó vocabulario duplicado en las ampliaciones A1.
+- Se añadió cobertura para expresiones como Biz yorgunuz, değilim, hazırım, Kafeye gidiyorum, Kafeye gidiyoruz, Evden geliyorum, kapı açık, Okulun kapısı açık, Otobüsü bekliyorum, Çalışmıyor musun, Kart geçiyor, köşede y Daha yavaş konuşur musunuz.
+- Se añadió la entrada sade cuando era necesaria en una lección B2.
+- Se corrigió Domates kilosu yirmi lira por la forma natural Domatesin kilosu yirmi lira.
+- Se revisaron varios nombres propios para evitar que el compilador los tratara como vocabulario sin definir.
+- Se retiraron comas internas que dificultaban que el sistema reconociera correctamente ciertas expresiones completas.
+- Se corrigieron traducciones españolas y un error tipográfico en la palabra hito.
+- Se revisaron las opciones de ejercicios para evitar duplicados dentro de una misma actividad.
+
+
+8. FORMATO DE LAS NUEVAS LECCIONES
+
+Las lecciones añadidas conservan el sistema existente de la aplicación. Incluyen:
+
+- Título en turco y español.
+- Introducción y explicación adaptadas al objetivo.
+- Vocabulario y expresiones de apoyo.
+- Ejemplos contextualizados.
+- Diálogos o textos según el nivel.
+- Lecturas más desarrolladas en B1 y especialmente en B2.
+- Seis actividades por lección usando los tipos de ejercicio que ya admite la web.
+
+No se introdujeron componentes nuevos en la interfaz ni se cambió el funcionamiento general de la página.
+
+
+9. COMPILACIÓN Y COMPROBACIONES FINALES
+
+El curso se compiló con éxito después de corregir todos los avisos encontrados durante el proceso.
+
+Resultado final del compilador:
+
+- Lecciones recompiladas: 096-295.
+- Lecciones recompiladas en esta pasada: 200.
+- Lecciones totales del curso: 295.
+- Capítulos: 38.
+- Entradas de vocabulario generadas en el tramo recompilado: 445.
+- Ejercicios generados en el tramo recompilado: 1.323.
+- Avisos del compilador: 0.
+
+También se comprobó directamente la distribución de los archivos JSON finales:
+
+- A1: 75.
+- A2: 76.
+- B1: 74.
+- B2: 70.
+- Total real de archivos de lección numerados: 295.
+
+El archivo capitulos.json se mantiene como archivo adicional de configuración y no se cuenta como una lección.
+
+
+10. ARCHIVOS IMPORTANTES PARA RETOMAR EL TRABAJO
+
+- Informe completo de auditoría:
+  informe_auditoria_turco_A1-B2.md
+
+- Fuentes activas del curso:
+  _herramientas/cursos/tr/
+
+- Generador de la ampliación:
+  _herramientas/cursos/tr/generar_ampliacion.py
+
+- Compilador general de cursos:
+  _herramientas/cursos/compilar.py
+
+- Lecciones finales usadas por la aplicación:
+  Idiomas/cursos/tr/lessons/
+
+- Punto de inicio de recompilación conservado:
+  _herramientas/cursos/tr/desde.txt, con valor 96.
+
+
+11. ASPECTOS QUE TODAVÍA CONVIENE REVISAR
+
+Aunque la estructura compila sin avisos y la cobertura pedagógica es mucho más amplia, quedan recomendaciones para una fase futura:
+
+- Pedir a una persona nativa y especialista en enseñanza de turco que revise todas las frases, traducciones, explicaciones de sufijos, apóstrofos y matices de registro.
+- Crear una matriz explícita que relacione cada lección con descriptores del MCER, destrezas y criterios observables de éxito.
+- Añadir una evaluación de progreso separada por comprensión oral, comprensión escrita, producción oral, producción escrita, interacción y mediación.
+- Incorporar grabación oral abierta si en el futuro se desarrolla ese tipo de actividad en la aplicación.
+- Incorporar audios extensos evaluables si la plataforma añade soporte específico para ello.
+- Revisar el equilibrio de carga entre capítulos después de observar el uso real por estudiantes.
+
+El hecho de que el compilador no muestre avisos confirma la coherencia estructural y la cobertura de las fichas de vocabulario, pero no sustituye una revisión lingüística humana especializada.
+
+
+12. ESTADO AL CERRAR ESTA NOTA
+
+El curso de turco A1-B2 está ampliado, integrado y compilado. Cuenta con 295 lecciones distribuidas en 38 capítulos y conserva intacto el tramo 001-095. La ampliación y las correcciones están documentadas en el informe de auditoría y pueden regenerarse a partir de las fuentes guardadas en la carpeta de herramientas.
+

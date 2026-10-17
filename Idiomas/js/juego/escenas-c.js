@@ -9,6 +9,7 @@ import { crearSprite } from '../tutor-sprite.js';
 import { animar, confeti } from './efectos.js';
 import { relojes, oir, botonOir, respuestas } from './escenas.js';
 import { LANG } from '../curso.js';
+import { icono } from '../iconos.js';
 
 const cuentaDe = (n, total) => t('juego.cuenta', { n, total });
 const hecho = () => el('p', { class: 'juego-hecho centrado' }, t('juego.hecho'));
@@ -835,7 +836,7 @@ function explica({ paso, tablero, decir, completar, bien, mal }) {
 // mandarla al sitio donde pega. La fallada vuelve.
 // ---------------------------------------------------------------------------
 
-function paseo({ paso, tablero, decir, completar, bien, mal, retrato }) {
+function paseo({ paso, tablero, decir, completar, bien, mal, retrato, ilustrado }) {
   const { luego, limpiar } = relojes();
   retrato(false);
   const tutora = tutoraEnEscena(centro(50));
@@ -847,7 +848,9 @@ function paseo({ paso, tablero, decir, completar, bien, mal, retrato }) {
   const trad = el('p', { class: 'pas-trad' }, t('juego.paseo.prueba'));
   const zona = el('div', { class: 'centrado' });
   const sitios = paso.sitios.map((s, i) => {
-    const boton = el('button', { type: 'button', class: 'pas-sitio nueva' }, tr(s.donde));
+    const boton = el('button', { type: 'button', class: 'pas-sitio nueva' },
+      ilustrado && s.icono ? icono(s.icono, 'pas-icono') : null,
+      el('span', {}, tr(s.donde)));
     boton.addEventListener('click', () => ir(i, boton));
     return boton;
   });

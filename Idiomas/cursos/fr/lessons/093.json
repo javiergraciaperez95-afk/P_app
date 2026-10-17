@@ -5,58 +5,60 @@
  "palabras": {
   "lorsque": {
    "es": "cuando",
-   "pron": "lor-SKE"
+   "pron": "lor-skö"
   },
   "tandis que": {
    "es": "mientras tanto, en cambio",
-   "pron": "ta(n)-DI-ke"
+   "pron": "ta(n)-di kö"
   },
   "pendant que": {
    "es": "mientras",
-   "pron": "pa(n)-DA(N)-ke"
+   "pron": "pa(n)-da(n) kö"
   },
   "depuis que": {
    "es": "desde que",
-   "pron": "dö-PUI-ke"
+   "pron": "dö-püi kö"
   },
   "aussitôt que": {
    "es": "en cuanto, tan pronto como",
-   "pron": "o-si-TO-ke"
+   "pron": "o-si-to kö"
   },
   "tant que": {
    "es": "mientras, mientras que",
-   "pron": "ta(n) ke"
+   "pron": "ta(n) kö"
   },
   "une fois que": {
    "es": "una vez que",
-   "pron": "ün-fua-ke"
+   "pron": "ün fwa kö"
   },
   "au moment où": {
    "es": "en el momento en que",
-   "pron": "o mo-MA(N) u"
+   "pron": "o mo-ma(n) u"
   },
   "en attendant": {
    "es": "mientras tanto",
-   "pron": "a(n)-ta(n)-DA(N)"
+   "pron": "a(n)-ta(n)-da(n)"
   },
   "chaque fois que": {
    "es": "cada vez que",
-   "pron": "sha-ke-fua-ke"
+   "pron": "shak fwa kö"
   },
   "durer": {
    "es": "durar",
-   "pron": "dü-RÉ"
+   "pron": "dü-re"
   },
   "attendre": {
    "es": "esperar",
-   "pron": "a-ta(n)-DR"
+   "pron": "a-ta(n)dr"
   },
   "auras": {
    "es": "habrás, tendrás",
+   "pron": "o-ra",
    "oculta": true
   },
   "partirons": {
    "es": "partiremos",
+   "pron": "par-ti-ro(n)",
    "oculta": true
   }
  },
@@ -144,11 +146,11 @@
      "analisis": [
       [
        "lorsque tu es là",
-       "cuando estás aquí"
+       "cuando estás aquí (conjunción temporal con indicativo)"
       ],
       [
        "nous mangeons",
-       "comemos"
+       "comemos (presente)"
       ]
      ]
     },
@@ -158,12 +160,16 @@
      "es": "En cuanto termines, vendré.",
      "analisis": [
       [
-       "dès que tu auras fini",
-       "en cuanto termines"
+       "dès que",
+       "en cuanto"
+      ],
+      [
+       "tu auras fini",
+       "habrás terminado (futur antérieur)"
       ],
       [
        "je viendrai",
-       "vendré"
+       "vendré (futur simple)"
       ]
      ]
     },
@@ -174,7 +180,11 @@
      "analisis": [
       [
        "pendant que tu attends",
-       "mientras esperas"
+       "mientras esperas (simultaneidad de acciones)"
+      ],
+      [
+       "je travaille",
+       "trabajo"
       ]
      ]
     },
@@ -185,7 +195,11 @@
      "analisis": [
       [
        "depuis que tu es là",
-       "desde que estás aquí"
+       "desde que estás aquí (acción continuada en el presente)"
+      ],
+      [
+       "je suis content",
+       "estoy contento"
       ]
      ]
     }
@@ -345,13 +359,24 @@
    "id": "fr093-8"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «en cuanto termines, vendré»",
-   "respuestas": [
-    "dès que tu auras fini, je viendrai"
-   ],
-   "explicacion": "Acción futura terminada antes de otra: futur antérieur + futur simple.",
-   "id": "fr093-9"
+   "tipo": "test",
+   "pregunta": "¿Qué combinación verbal expresa «en cuanto termines, vendré»?",
+   "id": "fr093-9",
+   "opciones": [
+    {
+     "texto": "Dès que tu auras fini, je viendrai.",
+     "explicacion": "Acción futura completada antes de otra: «dès que» + futur antérieur (tu auras fini) y futur simple en la principal (je viendrai).",
+     "correcta": true
+    },
+    {
+     "texto": "Dès que tu finis, je viendrai.",
+     "explicacion": "En francés estándar no se usa presente simple con «dès que» para una acción futura previa."
+    },
+    {
+     "texto": "Dès que tu auras fini, je viens.",
+     "explicacion": "La acción principal consecuente en el futuro debe ir en futur simple (viendrai)."
+    }
+   ]
   }
  ],
  "intro": "Último paso: conectores de tiempo y acciones futuras en orden."

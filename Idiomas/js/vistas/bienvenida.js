@@ -276,7 +276,7 @@ export function pintarBienvenida(contenedor, { resultados }) {
   const tutora = el('button', { type: 'button', class: 'bv-tutora', 'aria-label': t('tutora.tocar') }, el('span', { class: 'sobre-salto' }, canvas));
   const dialogo = el('div', { class: 'bv-dialogo caja' },
     tutora,
-    el('p', { class: 'tutora-nombre' }, t('tutora.nombre')),
+    el('p', { class: 'tutora-nombre' }, t('tutora.nombrePropio')),
     texto, lector,
     el('div', { class: 'bv-dialogo-pie' }, siguiente));
   const saltar = el('button', { type: 'button', class: 'boton boton-mini bv-saltar' }, t('bienvenida.saltar'), ' ✕');
@@ -488,7 +488,7 @@ export function pintarBienvenida(contenedor, { resultados }) {
       if (!estaEnCuaderno(estrella.es)) {
         guardarEnCuaderno({
           es: estrella.es, trad: estrella.trad, pron: estrella.pron, nota: estrella.nota || estrella.consejo, tipo: estrella.es.includes(' ') ? 'frase' : 'palabra',
-          origen: tTodos('cuaderno.deLeccion', { id: ejemplo.leccion.id, titulo: ejemplo.leccion.titulo_es }),
+          origen: tTodos('cuaderno.deLeccion', { id: ejemplo.leccion.numero_curso, titulo: ejemplo.leccion.titulo_es }),
         });
         window.dispatchEvent(new CustomEvent('cuaderno-cambiado', { detail: null }));
       }

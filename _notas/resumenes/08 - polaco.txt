@@ -1,0 +1,189 @@
+RESUMEN DEL TRABAJO REALIZADO EN EL CURSO DE POLACO
+Fecha del resumen: 2026-10-16
+
+OBJETIVO GENERAL
+
+Se revisó el curso de polaco de la aplicación, desde A1 hasta B2, para entender su estructura, auditar su calidad y ampliarlo hasta un total previsto de 301 lecciones. El trabajo se ha realizado exclusivamente en los archivos del curso de polaco y en los JSON generados por el compilador. No se ha usado Git ni se han tocado los archivos comunes o el código de la aplicación.
+
+1. REVISIÓN DE LA APLICACIÓN Y DEL FORMATO DE LAS LECCIONES
+
+Se estudió cómo están organizados los cursos y cómo funciona el compilador. Se leyeron las normas del proyecto, la cabecera del compilador y cursos ya existentes como modelo. Se confirmó que:
+
+- Cada capítulo se escribe en _herramientas/cursos/pl/NN.txt.
+- Cada capítulo normal contiene tres lecciones.
+- Cada lección presenta explicaciones, entre 12 y 22 fichas visibles, vocabulario, diálogo o texto con análisis y ocho ejercicios variados.
+- Los exámenes finales contienen alrededor de 25 preguntas integradoras.
+- capitulos.txt contiene el título, la traducción y la descripción de cada capítulo.
+- El compilador genera automáticamente los JSON en Idiomas/cursos/pl/lessons/.
+- Todas las palabras y formas usadas en los diálogos, textos y ejercicios deben tener una ficha previa o presente.
+- Cada compilación válida debe terminar con 0 avisos.
+
+2. INVESTIGACIÓN EN INTERNET
+
+Antes de escribir y durante las dudas gramaticales se consultaron fuentes oficiales, universitarias y de referencia. Entre ellas:
+
+- Comisión Estatal de Certificación de Polaco como Lengua Extranjera: pruebas modelo y bancos de tareas A1-B2.
+- Examen oficial B2 en PDF.
+- NAWA y páginas oficiales sobre la certificación de polaco.
+- Marco Común Europeo de Referencia, volumen complementario.
+- Materiales didácticos del Gobierno de Polonia.
+- Plataforma educativa oficial ZPE para tiempo verbal, aspecto, imperativo, pronombres y otras cuestiones gramaticales.
+- Consultorio lingüístico de la Universidad de Varsovia para usos como boli mnie głowa.
+- Universidad de Varsovia, programa de polaco B1.
+- Universidad de Economía de Cracovia, programa B1.
+- Universidad Tecnológica de Białystok, programa intensivo B1.
+- PolskiCert para numerales, vocabulario cotidiano y estructura del examen.
+
+Se comprobó que el examen oficial evalúa comprensión auditiva, comprensión escrita, corrección gramatical, escritura y expresión oral. No existe un número oficial único de palabras exigidas para B1 o B2; el vocabulario se evalúa integrado en todas las destrezas.
+
+3. AUDITORÍA DEL CURSO ORIGINAL
+
+El curso original tenía 124 lecciones, 44 capítulos, 2183 palabras y 1061 ejercicios, con 0 avisos del compilador.
+
+Se detectaron y corrigieron varios problemas:
+
+- Tablas con filas y encabezados desalineados. Se añadió una columna de concepto donde era necesario.
+- Una tabla especial de participios que necesitaba una estructura distinta.
+- Una lección B2 con más de 22 fichas visibles; algunas fichas se convirtieron en ocultas.
+- Exámenes situados o numerados de manera incorrecta.
+- Duplicados de vocabulario y frases ya enseñadas.
+- Opciones de ejercicios repetidas.
+- Frases demasiado largas para funcionar como una sola ficha.
+- Ejercicios de escritura cuya consigna no coincidía exactamente con la respuesta.
+- Frases con comas que impedían al compilador reconocer correctamente una expresión de varias palabras.
+- Traducciones y ejemplos que necesitaban más precisión.
+
+También se remapearon los capítulos para dejar espacio a las ampliaciones:
+
+- A1: capítulos originales 1-10, ampliación 11-23 y examen 24.
+- A2: capítulos originales 25-34, ampliación 35-48 y examen 49.
+- B1: capítulos originales 50-59, ampliación 60-75 y examen 76.
+- B2: capítulos originales 77-86, ampliación 87-102 y examen 103.
+
+El objetivo final acordado quedó en 301 lecciones:
+
+- A1: lecciones 001-070.
+- A2: lecciones 071-143.
+- B1: lecciones 144-222.
+- B2: lecciones 223-301.
+
+4. AMPLIACIÓN A1 TERMINADA
+
+Se añadieron y compilaron los capítulos 11-23, tres lecciones por capítulo. Se cubrieron:
+
+- Sonidos, deletreo y ortografía.
+- Consonantes silbantes y suaves.
+- Datos personales y formularios.
+- Género y concordancia.
+- Acusativo.
+- Genitivo con negación, cantidades, origen, ausencia y pertenencia.
+- Locativo e instrumental.
+- Destinos, ubicación, horarios y direcciones.
+- Compras, cantidades, cambios y devoluciones.
+- Rutinas, frecuencia, reflexivos e invitaciones.
+- Futuro y tiempo atmosférico.
+- Salud y expresiones naturales como boli mnie głowa.
+- Comunicación básica por teléfono y aclaraciones.
+
+El examen final del capítulo 24 fue sustituido por un examen de 25 preguntas que cubre los capítulos 1-23.
+
+Resultado al cerrar A1:
+pl: 163 lecciones, 57 capítulos, 2682 palabras, 1373 ejercicios, 0 avisos
+
+5. AMPLIACIÓN A2 TERMINADA
+
+Se añadieron y compilaron los capítulos 35-48, tres lecciones por capítulo. Se cubrieron:
+
+- Narración de experiencias pasadas y orden de acontecimientos.
+- Contraste entre antes, ahora y desde hace tiempo.
+- Comparativos y superlativos de adjetivos y adverbios.
+- Imperativo afirmativo y negativo.
+- Peticiones formales con proszę e infinitivo.
+- Aspecto perfectivo e imperfectivo en situaciones reales.
+- Futuro simple y compuesto.
+- Condicional para cortesía, preferencias e hipótesis.
+- Pronombres personales en acusativo, dativo y formas tónicas.
+- Duración, límites temporales y secuenciación.
+- Numerales, edades, precios, fechas, horas y pisos.
+- Opiniones, acuerdo, desacuerdo, causas y consecuencias.
+- Mensajes personales, solicitudes formales y reclamaciones.
+- Permiso, obligación, prohibición y expresiones impersonales.
+- Tecnología, seguridad digital, fuentes y privacidad.
+- Tareas domésticas, reparaciones, convivencia vecinal, gastos y normas.
+
+El examen final del capítulo 49 fue reescrito con 25 preguntas que cubren los capítulos 25-48.
+
+Resultado al cerrar A2:
+pl: 205 lecciones, 71 capítulos, 3186 palabras, 1708 ejercicios, 0 avisos
+
+Observación para revisar: el bloque A2 de ESTADO.txt todavía conserva la línea ESTADO: EN CURSO aunque debajo consta TERMINADO. Conviene cambiarla a ESTADO: TERMINADO al retomar el trabajo.
+
+6. AMPLIACIÓN B1 EN CURSO
+
+Se investigó de nuevo el temario B1 en el examen oficial y en programas universitarios. Se planificaron los capítulos 60-75 y el examen final 76.
+
+Capítulo 60, lecciones 175-177: terminado y compilado con 0 avisos.
+Contenido: técnicas de estudio, adverbios de modo, selección de información, apuntes, resúmenes, formas impersonales, aclaraciones y corrección de errores.
+
+Capítulo 61, lecciones 178-180: terminado y compilado con 0 avisos.
+Contenido: correo profesional, registro formal, tratamiento Państwo, seguimiento de solicitudes, llamadas, comunicación con departamentos y recados.
+
+Capítulo 62, lecciones 181-183: terminado y compilado con 0 avisos.
+Contenido: apariencia, ropa, comparativos, superlativos, cumplidos, elogios y respuestas corteses. Se señaló el falso amigo uroda, que significa belleza o atractivo físico y no «feo».
+
+Capítulo 63, lecciones 184-186: terminado y compilado con 0 avisos.
+Contenido: condiciones laborales, contratos, salario, jornada, cotizaciones, numerales aplicados a personas y horas, funciones del puesto, negociación y entrevistas de trabajo.
+
+Capítulo 64, lecciones 187-189: terminado y compilado con 0 avisos.
+Contenido: migración, procedencia, idiomas, sociedad multicultural, integración, dativo con pomóc, costumbres, comunidad y confianza mutua.
+
+Capítulo 65, lecciones 190-192: terminado y compilado con 0 avisos.
+Contenido: formularios, solicitudes, certificados, nombres y datos personales, construcción mieć + infinitivo, plazos, resoluciones y seguimiento de trámites.
+
+Capítulo 66, lecciones 193-195: terminado y compilado con 0 avisos.
+Contenido: reserva de servicios, presupuestos, posibilidad, obligación, diferencia entre nie mogę y nie muszę, montaje, citas y reparaciones.
+
+Capítulo 67: el archivo está escrito y compilado con 0 avisos, pero todavía falta añadir su línea de finalización a ESTADO.txt.
+Contenido: defectos, averías, productos en garantía, reclamaciones, cambios, devoluciones, talleres, piezas, costes y formas impersonales como naprawiono y usunięto.
+
+Última compilación comprobada:
+pl: 229 lecciones, 79 capítulos, 3474 palabras, 1900 ejercicios, 0 avisos
+
+7. TRABAJO PENDIENTE
+
+- Añadir a ESTADO.txt la finalización del capítulo 67. Por la numeración actual debería corresponder a las lecciones 196-198.
+- Crear los capítulos B1 68-75, compilando cada uno por separado hasta obtener 0 avisos.
+- Reescribir el examen B1 del capítulo 76 con unas 25 preguntas que cubran los capítulos 50-75.
+- Marcar B1 como terminado solo después de que el examen y la compilación completa den 0 avisos.
+- Investigar de nuevo las dudas concretas de B2 antes de redactar cada bloque.
+- Crear los capítulos B2 87-102, tres lecciones por capítulo, compilando cada capítulo por separado.
+- Reescribir el examen B2 del capítulo 103 con unas 25 preguntas que cubran los capítulos 77-102.
+- Ordenar numéricamente las líneas de capitulos.txt al final. Actualmente las ampliaciones se fueron añadiendo al final del archivo, por lo que algunas líneas no están en orden numérico aunque el compilador las reconoce.
+- Corregir en ESTADO.txt los estados A2, B1 y B2 cuando corresponda.
+- Hacer una compilación final y comprobar exactamente 301 lecciones, 103 capítulos y 0 avisos.
+- Revisar que cada nivel tenga su examen completo y que ningún capítulo quede sin registrar.
+
+8. NORMAS Y LÍMITES RESPETADOS
+
+- Solo se han modificado _herramientas/cursos/pl/ y los JSON de polaco generados por el compilador.
+- Los JSON no se han editado manualmente.
+- Todas las compilaciones se han ejecutado con el argumento pl --sin-lista.
+- No se ha ejecutado montar_cursos.py.
+- No se han generado audios.
+- No se ha modificado español, vietnamita ni danés.
+- No se ha tocado el código JavaScript, CSS ni otros archivos comunes.
+- No se ha usado ningún comando de Git.
+- No se ha creado ningún commit.
+- Ningún hablante nativo ha revisado todavía las lecciones.
+
+9. ARCHIVOS IMPORTANTES PARA RETOMAR
+
+- _herramientas/cursos/pl/ESTADO.txt: progreso y fuentes.
+- _herramientas/cursos/pl/capitulos.txt: títulos y descripciones.
+- _herramientas/cursos/pl/01.txt a 67.txt, además de 76.txt y 77.txt a 103.txt: fuentes de las lecciones existentes y ampliadas.
+- Idiomas/cursos/pl/lessons/: resultados generados por el compilador.
+
+10. PUNTO EXACTO DE CONTINUACIÓN
+
+El siguiente paso es registrar el capítulo 67 en ESTADO.txt y crear el capítulo 68 de B1. Después se continúa hasta el capítulo 75, se amplía el examen 76 y se cierra B1. Finalmente se escriben los capítulos 87-102 de B2, se rehace el examen 103, se ordena capitulos.txt y se ejecuta la compilación final.
+

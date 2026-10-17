@@ -4,21 +4,22 @@
   "titulo": {"en": "Where can she be?"},
   "intro": {"en": "Spanish uses the future tense to make a guess about the present."},
   "palabras": {
-    "estará": {"en": "he/she will be; he/she is probably", "pron": "es-ta-RA", "cat": "verb"},
-    "serán": {"en": "they will be; it is probably (with times)", "pron": "se-RAN", "cat": "verb"},
-    "tendrá": {"en": "he/she will have; he/she probably has", "pron": "ten-DRA", "cat": "verb"},
-    "a lo mejor": {"en": "maybe", "pron": "a lo me-HOR", "cat": "expression", "nota": "A lo mejor always takes the indicative."},
+    "estar": {"en": "to be (state or location)", "pron": "es-TAR", "cat": "verb", "nota": "The future estará can express a guess about now: estará en casa = she is probably at home."},
+    "ser": {"en": "to be (identity or time)", "pron": "SER", "cat": "verb", "nota": "The future serán can express a guess about now: serán las diez = it is probably ten."},
+    "tener": {"en": "to have", "pron": "te-NER", "cat": "verb", "nota": "The future tendrá can express a guess about now: tendrá unos treinta años = he/she is probably about thirty."},
+    "haber": {"en": "there is/are (impersonal; hay)", "pron": "a-BER", "cat": "verb", "nota": "Impersonal habrá can express a guess about now: habrá un atasco = there is probably a traffic jam."},
+    "a lo mejor": {"en": "maybe", "pron": "a lo me-HOR", "cat": "expression", "nota": "A lo mejor normally takes the indicative: a lo mejor está en casa."},
     "seguramente": {
       "en": "probably",
       "pron": "se-gu-ra-MEN-te",
       "cat": "adverb",
-      "nota": "It looks like surely, but it means probably."
+      "nota": "In this lesson, it means probably, not absolute certainty."
     },
     "supongo que": {"en": "I suppose that", "pron": "su-PON-go ke", "cat": "expression"},
     "me imagino que": {"en": "I imagine that", "pron": "me i-ma-HI-no ke", "cat": "expression"},
     "ni idea": {"en": "no idea", "pron": "ni i-DE-a", "cat": "expression"},
-    "el atasco": {"en": "the traffic jam", "pron": "el a-TAS-ko", "genero": "m"},
-    "la batería": {"en": "the battery", "pron": "la ba-te-RI-a", "genero": "f"},
+    "el atasco": {"en": "the traffic jam", "pron": "el a-TAS-ko", "cat": "noun", "genero": "m"},
+    "la batería": {"en": "the battery", "pron": "la ba-te-RI-a", "cat": "noun", "genero": "f"},
     "tranquila": {"en": "calm, don't worry (to a woman)", "pron": "tran-KI-la", "cat": "adjective"},
     "unos": {"en": "about (with numbers)", "pron": "U-nos", "cat": "determiner"}
   },
@@ -27,7 +28,7 @@
       "tipo": "explicacion",
       "titulo": {"en": "The future as a guess"},
       "texto": {
-        "en": "The future can express a guess about **now**, when you do not know for sure.\n\n- ¿Dónde está Ana? — **Estará** en casa. (She is probably at home.)\n- ¿Qué hora es? — **Serán** las diez.\n- ¿Cuántos años tiene? — **Tendrá unos** treinta.\n\nIn a question it can mean ‘I wonder’: **¿Quién será? ¿Dónde estarán mis llaves?**\n\nCompare **Está en casa** (I state it as a fact) and **Estará en casa** (I am guessing). You can also say **A lo mejor está en casa** or **Supongo que está en casa**. With **seguramente**, both the indicative and the subjunctive are possible: **Seguramente está / esté en casa**; the choice can reflect how strongly the speaker presents the guess."
+        "en": "The future can express a guess about **now**, when you do not know for sure.\n\n- ¿Dónde está Ana? — **Estará** en casa. (She is probably at home.)\n- ¿Qué hora es? — **Serán** las diez.\n- ¿Cuántos años tiene? — **Tendrá unos** treinta.\n\nIn a question it can mean ‘I wonder’: **¿Quién será? ¿Dónde estarán mis llaves?**\n\nCompare **Está en casa** (I state it as a fact) and **Estará en casa** (I am guessing). You can also say **A lo mejor está en casa** or **Supongo que está en casa**. With **seguramente**, the indicative is common, but the subjunctive is also possible and can present the guess as less likely: **Seguramente está / esté en casa**."
       }
     },
     {
@@ -59,9 +60,10 @@
         },
         {
           "quien": "Pablo",
-          "es": "Estará en un atasco. A lo mejor ha salido tarde.",
-          "en": "She's probably in a traffic jam. Maybe she left late.",
+          "es": "Me imagino que estará en un atasco. A lo mejor ha salido tarde.",
+          "en": "I imagine she's in a traffic jam. Maybe she left late.",
           "analisis": [
+            ["Me imagino que", "guess"],
             ["Estará", "verb (guess)"],
             ["en un atasco", "place"],
             ["A lo mejor", "maybe"],
@@ -71,9 +73,9 @@
         },
         {
           "quien": "Lucía",
-          "es": "No contesta al teléfono.",
-          "en": "She isn't answering the phone.",
-          "analisis": [["No", "negation"], ["contesta", "verb"], ["al teléfono", "object"]]
+          "es": "No contesta al teléfono. Ni idea.",
+          "en": "She isn't answering the phone. No idea.",
+          "analisis": [["No", "negation"], ["contesta", "verb"], ["al teléfono", "object"], ["Ni idea", "expression"]]
         },
         {
           "quien": "Pablo",
@@ -90,7 +92,7 @@
         {
           "quien": "Pablo",
           "es": "Será ella.",
-          "en": "It'll be her.",
+          "en": "That must be her.",
           "analisis": [["Será", "verb (guess)"], ["ella", "who"]]
         }
       ]
@@ -128,7 +130,7 @@
       "audio": true,
       "opciones": {
         "está": {"en": "A lo mejor takes the indicative."},
-        "esté": {"en": "A lo mejor never takes the subjunctive."},
+        "esté": {"en": "A lo mejor normally takes the indicative."},
         "estar": {"en": "It needs a conjugated verb."}
       },
       "correcta": "está"
@@ -141,7 +143,7 @@
         {"texto": {"en": "He will probably arrive late."}, "correcta": true},
         {
           "texto": {"en": "He will definitely arrive late."},
-          "explicacion": {"en": "Seguramente is weaker than it looks: probably."}
+          "explicacion": {"en": "Seguramente expresses probability here, not a guarantee."}
         },
         {
           "texto": {"en": "He arrived late safely."},

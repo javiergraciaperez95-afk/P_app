@@ -4,6 +4,50 @@
 // la app lo nota (idiomaDisponible) y queda en modo de solo lectura.
 // La app web no se entera: sigue llamando a speechSynthesis como siempre.
 (() => {
+  // El puente se incluye solo en la APK, nunca en la versión web.
+  if (window.Capacitor?.isNativePlatform?.()) {
+    // Capacitor inyecta las APIs nativas estáticas en Plugins; registerPlugin
+    // solo existe en la integración con módulos/bundlers de la web.
+    const notificaciones = window.Capacitor?.Plugins?.LocalNotifications;
+    if (notificaciones) {
+      window.PaglotLocalNotifications = notificaciones;
+
+      // Bienvenida de primer inicio. La marca se guarda antes de solicitar
+      // permiso para no volver a interrumpir al usuario en aperturas posteriores.
+      const clavePrimerAviso = 'paglot_welcome_notification_v3';
+      try {
+        if (!localStorage.getItem(clavePrimerAviso)) {
+          localStorage.setItem(clavePrimerAviso, 'attempted');
+          void (async () => {
+            try {
+              let permiso = await notificaciones.checkPermissions();
+              if (permiso.display !== 'granted') {
+                permiso = await notificaciones.requestPermissions();
+              }
+              if (permiso.display !== 'granted') return;
+
+              await notificaciones.schedule({
+                notifications: [{
+                  id: 730002,
+                  title: '¡Bienvenido a Paglot! ✨',
+                  body: 'Tu próxima aventura empieza aquí. Elige un idioma y da hoy tu primer paso.',
+                  largeBody: 'Tu próxima aventura empieza aquí. Elige un idioma, conoce a tu tutora pixelada y disfruta de tu primera lección. ¡Cada palabra nueva cuenta!',
+                  schedule: { at: new Date(Date.now() + 1000) },
+                  isExactNotification: false,
+                }],
+              });
+            } catch (error) {
+              localStorage.removeItem(clavePrimerAviso);
+              console.warn('No se pudo mostrar la notificación de prueba.', error);
+            }
+          })();
+        }
+      } catch (error) {
+        console.warn('No se pudo guardar el estado de la notificación de prueba.', error);
+      }
+    }
+  }
+
   const voz = window.Capacitor?.Plugins?.TextToSpeech;
   if (!window.Capacitor?.isNativePlatform?.() || !voz) return;
 

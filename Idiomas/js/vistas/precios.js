@@ -225,7 +225,7 @@ export function pintarPrecios(contenedor) {
   const raiz = el('article', { class: 'px', 'data-plan': plan },
     lienzoFondo, publico('izq', otras.slice(0, 2)), publico('der', otras.slice(2, 4)), contenido, lienzoEfectos);
   poner(contenedor, raiz);
-  document.body.classList.add('en-precios'); // sin desplazamiento mientras esta pantalla está abierta
+  document.body.classList.add('en-precios');
   apagar.push(() => document.body.classList.remove('en-precios'));
 
   apagar.push(fondoVivo(lienzoFondo, quieto));
@@ -235,7 +235,7 @@ export function pintarPrecios(contenedor) {
   // ----- Que quepa siempre: la pantalla empieza justo debajo de la cabecera y, si el contenido no entra, se encoge -----
   const cabecera = document.querySelector('.cabecera');
   function encajar() {
-    raiz.style.top = `${Math.max(0, Math.round(cabecera.getBoundingClientRect().bottom))}px`;
+    raiz.style.minHeight = `${Math.max(320, Math.round(window.innerHeight - cabecera.getBoundingClientRect().bottom))}px`;
     const sitio = raiz.clientHeight - 16;
     const escala = Math.min(1, sitio / contenido.offsetHeight); // offsetHeight no cuenta la escala: es el alto de verdad
     contenido.style.transform = escala < 1 ? `scale(${escala.toFixed(3)})` : '';

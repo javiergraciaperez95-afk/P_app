@@ -1,0 +1,392 @@
+NOTA 22 — REVISIÓN Y AMPLIACIÓN DEL CURSO DE COREANO A1–B2
+============================================================
+
+Fecha del resumen: 16-10-2026
+
+
+OBJETIVO GENERAL DE LA CONVERSACIÓN
+-----------------------------------
+El trabajo de esta conversación se centró exclusivamente en comprender, auditar,
+corregir y ampliar el curso de coreano de Paglot desde A1 hasta B2.
+
+El usuario pidió primero estudiar con calma cómo está organizado el proyecto y cómo
+funcionan sus lecciones. Después solicitó auditorías separadas de A1, A2, B1 y B2,
+contrastando el contenido del proyecto con fuentes fiables en internet. Tras cada
+auditoría se autorizó editar las lecciones para cubrir las carencias detectadas.
+
+La última fase consistió en auditar de nuevo todo el trabajo, proponer una ampliación
+hasta un total de entre 280 y 340 lecciones y, finalmente, crear las lecciones que
+faltaban y corregir los problemas encontrados. Se eligió un total final de 300
+lecciones porque permitía cubrir los cuatro niveles con una progresión amplia sin
+inflar el curso con divisiones artificiales.
+
+Durante todo el trabajo se respetó una condición pedagógica importante: no centrar
+el curso en expresión escrita, expresión oral ni comprensión oral, porque esas
+competencias no se pueden practicar adecuadamente dentro de la aplicación. Las
+ampliaciones se concentraron en lectura, gramática, vocabulario, reconocimiento de
+formas, traducción guiada y comprensión de textos.
+
+
+1. ESTUDIO INICIAL DEL PROYECTO
+-------------------------------
+Se revisó la organización general del proyecto y el funcionamiento de los cursos.
+Se comprobó que:
+
+- Las fuentes editables de coreano están en _herramientas/cursos/ko/.
+- El compilador transforma esos archivos de formato corto en archivos JSON.
+- La aplicación consume las lecciones compiladas desde
+  Idiomas/cursos/ko/lessons/.
+- capitulos.txt define el nombre y la descripción de los 40 capítulos.
+- Idiomas/js/cursos.js guarda, entre otros datos, el número total de lecciones.
+- Cada lección combina explicaciones breves, tablas, vocabulario, diálogos o textos
+  y distintos ejercicios.
+- El formato admite preguntas de selección, traducción, huecos, ordenar palabras,
+  escritura y actividades con audio.
+- El compilador comprueba palabras sin ficha, repeticiones, opciones inválidas,
+  referencias incorrectas y lecciones con pocos ejercicios.
+
+También se estudió cómo estaban construidas las lecciones de coreano existentes:
+su distribución por capítulos, el uso de vocabulario visible u oculto, la forma de
+analizar frases y la progresión desde hangul y lenguaje cotidiano hasta estructuras
+intermedias y textos más complejos.
+
+
+2. AUDITORÍAS REALIZADAS
+------------------------
+Se realizaron auditorías independientes de los niveles A1, A2, B1 y B2. La
+auditoría de B1 se repitió con más detalle porque el primer informe se había hecho
+demasiado rápido.
+
+En cada auditoría se comparó el contenido local con descriptores del MCER y con
+programas, materiales o currículos de instituciones de calidad, entre ellas:
+
+- King Sejong Institute y Nuri Sejong Hakdang.
+- National Institute of Korean Language y Korean Teaching and Learning Center.
+- Programas universitarios de Sheffield, Ca' Foscari de Venecia, Indiana,
+  Colorado, Penn State y Chinese University of Hong Kong.
+- Materiales de Integrated Korean de University of Hawai'i Press.
+- Escala global y volumen complementario del MCER del Consejo de Europa.
+
+Las auditorías no buscaron una correspondencia mecánica entre MCER y TOPIK. Se
+utilizaron equivalencias funcionales: qué puede leer y comprender el alumno, qué
+gramática reconoce, qué vocabulario necesita y qué tipos de textos puede procesar.
+
+Las deficiencias generales que se detectaron fueron:
+
+- Muy pocas lecciones para cubrir con solidez cuatro niveles completos.
+- Cobertura irregular de pronunciación y cambios de sonido en el nivel inicial.
+- Falta de práctica suficiente con partículas y conjugaciones irregulares.
+- Algunas estructuras importantes aparecían una sola vez y sin contraste con
+  construcciones parecidas.
+- Escasez de lecturas graduadas y de preguntas sobre idea principal, datos,
+  referencias, cronología, fuente, tono e intención.
+- Salto excesivo entre ejemplos cotidianos y textos de B1/B2.
+- Pocos repasos acumulativos y evaluaciones de lectura por nivel.
+- Algunas explicaciones eran demasiado breves, ambiguas o mezclaban usos distintos.
+- Había ejercicios con formas flexionadas sin glosa, distractores poco naturales y
+  varios huecos que podían producir formas incorrectas.
+
+
+3. PRIMERAS MEJORAS DE A1, A2, B1 Y B2
+-------------------------------------
+Después de cada auditoría se editó el curso para reforzar el nivel correspondiente.
+El usuario permitió dividir lecciones y crear otras nuevas siempre que se evitaran
+los muros de texto.
+
+En A1 se reforzaron, entre otros aspectos:
+
+- Lectura del hangul, 받침 y enlace entre sílabas.
+- Contraste entre consonantes simples, aspiradas y tensas.
+- Categorías de sonido final y grupos consonánticos finales.
+- Nasalización, tensión, cambios de ㅎ, relación entre ㄴ y ㄹ e inserción de ㄴ.
+- Diferencia entre tema y sujeto.
+- Objeto, lugar, dirección, medio, 도 y 만.
+- Números, contadores, horas, fechas y precios.
+- Negación, imposibilidad, honoríficos y verbos honoríficos frecuentes.
+- Lectura de perfiles, formularios, horarios, recibos, carteles e indicaciones.
+
+En A2 se reforzaron:
+
+- Peticiones, órdenes, prohibición, permiso y obligación.
+- Destinatario, procedencia y respeto al sujeto.
+- 안, 못 y -지 않다.
+- Saber hacer algo con -(으)ㄹ 줄 알다.
+- Intención, plan tentativo, voluntad y conjetura.
+- Modificadores nominales de presente, pasado y futuro.
+- Verbos para llevar ropa.
+- Irregularidades de ㄷ, ㅅ, 르, ㅡ y ㅎ.
+- Experiencia, intento, simultaneidad, secuencia, duración y frecuencia.
+- Condición, deseo, distribución, aproximación y decisiones futuras.
+- Lectura de avisos, reglas, reseñas, mensajes, instrucciones y publicaciones.
+
+En B1 se reforzaron:
+
+- Cita indirecta de afirmaciones, preguntas, órdenes y propuestas.
+- -다가, -았다가, -다고요 y formas contraídas de información reportada.
+- Hábitos y recuerdos del pasado con -던, -곤 하다 y -았/었던.
+- Hipótesis, preocupación, posibilidad, expectativa y concesión.
+- Pasiva, causativa, cambio, resultado, obligación y falta de necesidad.
+- Emociones de terceras personas y expresión de planes.
+- Grado, finalidad, inferencia e información compartida.
+- Comparación de avisos y reseñas, hechos frente a opiniones, referencias omitidas,
+  fuente reportada, registro, cronología y postura del autor.
+- Lecturas sobre vivienda, educación, trabajo, salud, entorno y asuntos sociales.
+
+En B2 se reforzaron:
+
+- -고 보니, -는 척하다, -(으)ㄴ 척하다, N인 척하다 y -다니(요).
+- Información recordada, insistencia, rumores y generalizaciones incorrectas.
+- -듯이, -치고는, -다 보면 y -다고 해서 다 ~ 것은 아니다.
+- Pasado anterior con -았었/었었 y contraste entre -다가, -았다가 y -더니.
+- Elección con -(으)느니 차라리 y resultado conseguido con -아/어 내다.
+- Adición, contraste, advertencia, causa, comparación y cita nominal.
+- -거든 como condición y -거든요 como explicación.
+- Registro escrito con -(으)며 y -(으)ㅁ.
+- Preguntas indirectas, contrafactuales, apariencia y evidencia.
+- Lectura de noticias, informes, FAQ, reseñas, opiniones, textos culturales,
+  políticas públicas y textos con varias fuentes.
+
+
+4. INFORME GLOBAL Y AUTOAUDITORÍA
+---------------------------------
+Tras las primeras mejoras se redactó un informe global explicando cómo había
+cambiado el curso desde A1 hasta B2. También se razonó la cobertura estimada de
+cada nivel en términos de calidad para el alumno mediante porcentajes y una tabla.
+
+Después se hizo una autoauditoría crítica. Se volvió a leer el material, se
+contrastó de nuevo con fuentes externas y se reconoció que, aunque la cobertura
+gramatical había mejorado, el curso seguía siendo demasiado corto y necesitaba:
+
+- Más práctica espaciada de los puntos difíciles.
+- Más contrastes entre construcciones parecidas.
+- Más lecturas breves y graduadas.
+- Más repasos acumulativos.
+- Más trabajo con cohesión, referencias, intención y organización del texto.
+- Una progresión más gradual de A2 a B1 y de B1 a B2.
+
+Se propuso entonces ampliar el curso hasta una cifra situada entre 280 y 340
+lecciones. Se preparó una lista de nuevas lecciones separada por A1, A2, B1 y B2.
+Finalmente se eligieron 300 lecciones como punto equilibrado.
+
+
+5. AMPLIACIÓN FINAL HASTA 300 LECCIONES
+--------------------------------------
+Antes de esta ampliación final había:
+
+- A1: 32 lecciones.
+- A2: 31 lecciones.
+- B1: 41 lecciones.
+- B2: 38 lecciones.
+- Total: 142 lecciones.
+
+Se añadieron 158 lecciones:
+
+- 32 nuevas en A1.
+- 41 nuevas en A2.
+- 39 nuevas en B1.
+- 46 nuevas en B2.
+
+El resultado final es:
+
+- A1: 64 lecciones, numeradas 001–064, capítulos 1–10.
+- A2: 72 lecciones, numeradas 065–136, capítulos 11–20.
+- B1: 80 lecciones, numeradas 137–216, capítulos 21–30.
+- B2: 84 lecciones, numeradas 217–300, capítulos 31–40.
+- Total: 300 lecciones en 40 capítulos.
+
+Las 158 lecciones añadidas están distribuidas en 40 archivos fuente suplementarios:
+
+_herramientas/cursos/ko/01a.txt
+...
+_herramientas/cursos/ko/40a.txt
+
+Se usó un archivo suplementario por capítulo para conservar las fuentes originales
+y mantener una ordenación clara. Al compilar, cada archivo NN a.txt se intercala
+después del capítulo original NN.txt.
+
+Cada lección añadida tiene seis ejercicios cerrados. En total, las nuevas lecciones
+aportan 948 actividades:
+
+- 574 preguntas de selección.
+- 216 ejercicios de traducción o comprensión de frase.
+- 158 ejercicios de huecos.
+
+No se añadieron ejercicios de redacción libre ni ejercicios de escucha en esas 158
+lecciones. Los ejercicios de audio que ya existían en el material original no se
+eliminaron, porque la petición era no focalizar el curso en esas destrezas, no borrar
+todo el contenido previo que las utilizara.
+
+
+6. CORRECCIONES EDITORIALES IMPORTANTES
+---------------------------------------
+Además de añadir lecciones se corrigieron explicaciones y ejercicios existentes.
+Entre las correcciones concretas están:
+
+- Se aclaró que en 읽어요 la consonante ㄱ enlaza con 어 mientras ㄹ permanece
+  como consonante final.
+- Se corrigieron explicaciones de categorías finales, nasalización, liquidización,
+  aspiración, tensión e inserción de ㄴ.
+- Se sustituyeron varios ejercicios metalingüísticos poco naturales por ejemplos
+  coreanos directos, como 신라 → 실라, 좋다 → 조타 y 학교 → 학꾜.
+- Se corrigió un hueco honorífico para producir 선생님께서 책을 읽으세요.
+- Se corrigió el irregular ㅅ para producir 지어요, no 짓어요.
+- Se corrigió el irregular ㄷ de 묻다 «preguntar»: 길을 물어요.
+- Se aclaró la regla de ㅡ y la elección entre 아 y 어.
+- Se corrigió la traducción de 씩 como distribución «de uno en uno».
+- Se corrigieron horarios y datos de algunos textos de servicios.
+- Se corrigió 바쁜데 para evitar una forma imposible.
+- Se corrigieron huecos que producían 자았어야, 여행하ㄹ, 들어야고 u otras
+  combinaciones incorrectas.
+- Se diferenció la expectativa de -(으)ㄹ 텐데 de la concesión con -아/어도.
+- Se corrigió 아무리 바빠도 para que no generara 바쁘아도.
+- Se mejoraron ejemplos de pasiva, causativa, emociones ajenas y cronología.
+- Se corrigió la lección de -듯이 para que el ejemplo usara realmente -듯이.
+- Se explicó que -다고 해서 다 puede combinarse con nombres, adjetivos y verbos.
+- Se separaron claramente el uso condicional de -거든 y el explicativo de -거든요.
+- Se corrigieron las explicaciones de -는 척하다, -(으)ㄴ 척하다, N인 척하다,
+  -다니(요) y -아/어다 주다.
+- Se sustituyeron comparaciones artificiales con etiquetas A/B por frases más
+  naturales cuando afectaban a ejercicios de huecos.
+- Se añadieron glosas para formas flexionadas que aparecían en ejercicios, de modo
+  que el alumno pueda consultar su significado dentro de la aplicación.
+- Cuando una palabra ya se había enseñado antes, varias repeticiones se convirtieron
+  en fichas ocultas para evitar duplicados visibles en el cuaderno.
+
+Se editaron directamente, entre otros, los capítulos fuente originales 01.txt,
+31.txt y 38.txt. También se ajustaron fichas repetidas en varios archivos originales,
+como 08.txt, 23.txt, 31.txt, 32.txt, 33.txt, 36.txt, 38.txt y 40.txt.
+
+
+7. LONGITUD Y DISEÑO PEDAGÓGICO
+-------------------------------
+Se evitó convertir las lecciones nuevas en muros de texto. La estructura general
+de cada ampliación es:
+
+- Una explicación corta con una sola idea principal.
+- Un ejemplo central con traducción.
+- Un conjunto pequeño de palabras o formas relevantes.
+- Cuando corresponde, un texto breve de varias frases.
+- Seis ejercicios de reconocimiento, comprensión, traducción o completar.
+
+Las lecciones de lectura se reparten entre avisos, horarios, mensajes, reseñas,
+noticias, informes breves, FAQ, textos culturales, opiniones y propuestas. La
+dificultad crece desde localizar información explícita hasta reconstruir referencias,
+contrastar fuentes e inferir la postura del autor.
+
+
+8. ARCHIVOS Y ESTADO ACTUAL
+---------------------------
+Fuentes editables principales:
+
+- _herramientas/cursos/ko/01.txt–40.txt
+- _herramientas/cursos/ko/01a.txt–40a.txt
+- _herramientas/cursos/ko/capitulos.txt
+- _herramientas/cursos/ko/ESTADO.txt
+
+Salida compilada usada por la aplicación web:
+
+- Idiomas/cursos/ko/lessons/001.json–300.json
+- Idiomas/cursos/ko/lessons/capitulos.json
+- Idiomas/js/cursos.js
+
+ESTADO.txt se reescribió para reflejar el inventario actual, la distribución por
+niveles, la fecha de revisión, las fuentes curriculares, la ampliación realizada y
+el resultado de la compilación.
+
+capitulos.txt se actualizó para que el capítulo 1 mencione 받침, enlace y cambios
+de sonido, y para que el capítulo 30 refleje su bloque amplio de lectura de B1.
+
+Los archivos de planificación temporal y el generador provisional usados para
+construir la ampliación se eliminaron al terminar. Las fuentes definitivas son los
+40 archivos NN a.txt y los archivos originales corregidos.
+
+
+9. VALIDACIÓN FINAL
+-------------------
+Se regeneró el curso completo con el compilador del proyecto. El resultado final fue:
+
+ko: 300 lecciones, 40 capítulos, 2075 palabras, 2170 ejercicios, 0 avisos
+
+Esto confirma estructuralmente que:
+
+- Se generan las 300 lecciones esperadas.
+- Los 40 capítulos tienen definición.
+- Los ejercicios tienen opciones válidas y una respuesta correcta.
+- No quedan palabras de ejercicios sin ficha según las reglas del compilador.
+- No quedan repeticiones visibles detectadas por el compilador.
+- Todas las lecciones cumplen el mínimo de ejercicios.
+
+También se comprobó que las 158 lecciones suplementarias aparecen exactamente una
+vez en la salida compilada y que los rangos por nivel son correctos.
+
+
+10. FUENTES DE CONTRASTE CONSERVADAS
+-----------------------------------
+Las referencias utilizadas y conservadas en ESTADO.txt incluyen:
+
+- Nuri Sejong Hakdang:
+  https://nuri.iksi.or.kr/front/cms/contents/layout2/learningsejong/detail.do?csCmsMastrSeq=15229&menuSn=649
+
+- National Institute of Korean Language:
+  https://www.korean.go.kr/nkview/nklife/2018_2/28_0202.pdf
+  https://www.korean.go.kr/front/etcData/etcDataView.do?etc_seq=657&mn_id=46&pageIndex=8
+  https://www.korean.go.kr/front/etcData/etcDataView.do?etc_seq=660&mn_id=207
+
+- Korean Teaching and Learning Center, currículo internacional:
+  https://kcenter.korean.go.kr/kcenter/attach/download.do?attachSeq=63155
+
+- Consejo de Europa, MCER:
+  https://www.coe.int/en/web/common-european-framework-reference-languages/table-%201-cefr-3.3-common-reference-levels-global-scale
+  https://rm.coe.int/cefr-companion-volume-withnew-descriptors-2018/1680787989
+
+- University of Sheffield:
+  https://sheffield.ac.uk/las/modules/korean-language-3a-las260
+  https://sheffield.ac.uk/las/modules/korean-language-4a-las261
+
+- Ca' Foscari University of Venice:
+  https://www.unive.it/data/course/539388/programma
+  https://www.unive.it/data/insegnamento/539383/programma
+  https://www.unive.it/data/course/607587/programma
+
+- Otros materiales universitarios:
+  https://www.colorado.edu/linguistics/2021/05/03/choosing-verb-markers-korean
+  https://calper.la.psu.edu/wp-content/uploads/sites/21/2022/09/Korean_Noun_Modifiers_5.pdf
+  https://korean.sitehost.iu.edu/K102/L13C1G13_3.html
+  https://korean.sitehost.iu.edu/K202/L09C2G9_4.html
+
+
+11. ASPECTOS QUE CONVIENE REVISAR ANTES DE PUBLICAR
+---------------------------------------------------
+Aunque la compilación queda limpia, hay varias comprobaciones futuras recomendables:
+
+1. Hacer un recorrido visual y manual por una muestra amplia de lecciones dentro de
+   la interfaz, especialmente las transiciones 064→065, 136→137 y 216→217.
+
+2. Revisar manualmente una muestra de distractores generados. El compilador garantiza
+   que sean distintos y estructuralmente válidos, pero no puede medir por sí solo
+   toda su calidad pedagógica o naturalidad.
+
+3. Someter las estructuras más delicadas de B2 a una segunda lectura por una persona
+   con dominio avanzado o nativo de coreano. Se contrastaron con fuentes fiables,
+   pero una validación humana completa de 300 lecciones sigue siendo útil.
+
+4. La aplicación web principal en Idiomas/ ya contiene las 300 lecciones. La copia
+   de trabajo de la APK situada en _apk/www/ seguía conservando la instantánea
+   anterior durante la última comprobación. Antes de generar una APK hay que ejecutar
+   el flujo normal de copia de _apk/copiar.mjs y la sincronización de Capacitor. No se
+   reconstruyó Paglot-prueba.apk en este trabajo.
+
+5. No se hizo una campaña completa de pruebas visuales o funcionales de la aplicación.
+   La verificación realizada fue la compilación integral del curso y las comprobaciones
+   editoriales y estructurales descritas arriba.
+
+
+RESULTADO FINAL
+---------------
+El curso de coreano pasó de 142 a 300 lecciones. Ahora ofrece una progresión mucho
+más gradual desde la lectura inicial del hangul hasta la comprensión de textos de
+B2, con mayor cobertura de pronunciación, partículas, irregularidades, gramática,
+contrastes, lectura y estrategias de comprensión.
+
+La fuente editable, el catálogo de capítulos, los 300 JSON y el contador de la app
+web quedaron actualizados. La compilación final terminó con 0 avisos.

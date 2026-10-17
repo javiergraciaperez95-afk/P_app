@@ -5,55 +5,57 @@
  "palabras": {
   "voudrais": {
    "es": "quisiera, me gustaría",
-   "pron": "vu-DRÉ"
+   "pron": "vu-dre",
+   "oculta": true
   },
   "j'aimerais": {
    "es": "me gustaría",
-   "pron": "yé-me-RÉ"
+   "pron": "zhe-me-re"
   },
   "pourriez-vous": {
    "es": "¿podría usted?",
-   "pron": "pu-RIÉ-vu"
+   "pron": "pu-rye-vu"
   },
   "répéter": {
    "es": "repetir",
-   "pron": "re-pe-TÉ"
+   "pron": "re-pe-te"
   },
   "répétez": {
    "es": "repita (usted)",
-   "pron": "re-pe-TÉ"
+   "pron": "re-pe-te"
   },
   "répète": {
    "es": "repite (tú)",
-   "pron": "re-PÉT"
+   "pron": "re-pet"
   },
   "dommage": {
    "es": "qué pena",
-   "pron": "do-MAZH"
+   "pron": "do-mazh"
   },
   "information": {
    "es": "información",
-   "pron": "a(n)-for-ma-SIÓN"
+   "pron": "e(n)-for-ma-syo(n)"
   },
   "expliquer": {
    "es": "explicar",
-   "pron": "ek-sple-KÉ"
+   "pron": "eks-pli-ke"
   },
   "comprendre": {
    "es": "entender",
-   "pron": "ko(n)-PRA(N)DR"
+   "pron": "ko(n)-pra(n)dr"
   },
   "voyageur": {
    "es": "viajero",
-   "pron": "vua-ya-ZHÖR"
+   "pron": "vua-ya-zhör"
   },
   "renseignement": {
    "es": "dato, indicación",
-   "pron": "ra(n)-se-nie-MA(N)"
+   "pron": "ra(n)-se-nye-ma(n)"
   },
   "départ": {
    "es": "salida (de un tren)",
-   "pron": "de-PAR"
+   "pron": "de-par",
+   "oculta": true
   },
   "voie": {
    "es": "vía (de tren)",
@@ -120,7 +122,6 @@
    "tipo": "vocabulario",
    "titulo": "Vocabulario: pedir con educación",
    "palabras": [
-    "voudrais",
     "j'aimerais",
     "pourriez-vous",
     "répéter",
@@ -132,7 +133,6 @@
     "comprendre",
     "voyageur",
     "renseignement",
-    "départ",
     "voie"
    ]
   },
@@ -145,6 +145,10 @@
      "fr": "Bonjour, je voudrais un billet pour Lyon.",
      "es": "Buenos días, quisiera un billete para Lyon.",
      "analisis": [
+      [
+       "Bonjour",
+       "buenos días"
+      ],
       [
        "je voudrais",
        "quisiera"
@@ -165,8 +169,12 @@
      "es": "¿Solo ida o ida y vuelta?",
      "analisis": [
       [
-       "aller simple",
+       "Aller simple",
        "solo ida"
+      ],
+      [
+       "ou",
+       "o"
       ],
       [
        "aller-retour",
@@ -180,7 +188,7 @@
      "es": "Ida y vuelta, por favor.",
      "analisis": [
       [
-       "aller-retour",
+       "Aller-retour",
        "ida y vuelta"
       ],
       [
@@ -210,6 +218,10 @@
      "es": "Sí, veinte euros.",
      "analisis": [
       [
+       "Oui",
+       "sí"
+      ],
+      [
        "vingt euros",
        "veinte euros"
       ]
@@ -223,15 +235,57 @@
    "frases": [
     {
      "fr": "Paris : départ à 9 h 10, voie 2.",
-     "es": "París: salida a las 9:10, vía 2."
+     "es": "París: salida a las 9:10, vía 2.",
+     "analisis": [
+      [
+       "départ",
+       "salida"
+      ],
+      [
+       "à 9 h 10",
+       "a las 9:10"
+      ],
+      [
+       "voie 2",
+       "vía 2"
+      ]
+     ]
     },
     {
      "fr": "Lyon : départ à 9 h 25, voie 4.",
-     "es": "Lyon: salida a las 9:25, vía 4."
+     "es": "Lyon: salida a las 9:25, vía 4.",
+     "analisis": [
+      [
+       "départ",
+       "salida"
+      ],
+      [
+       "à 9 h 25",
+       "a las 9:25"
+      ],
+      [
+       "voie 4",
+       "vía 4"
+      ]
+     ]
     },
     {
      "fr": "Train pour Lyon : dix minutes de retard.",
-     "es": "Tren a Lyon: diez minutos de retraso."
+     "es": "Tren a Lyon: diez minutos de retraso.",
+     "analisis": [
+      [
+       "Train pour Lyon",
+       "tren a Lyon"
+      ],
+      [
+       "dix minutes",
+       "diez minutos"
+      ],
+      [
+       "de retard",
+       "de retraso"
+      ]
+     ]
     }
    ]
   },
@@ -408,14 +462,24 @@
    "id": "fr064-9"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «quisiera ir a Lyon»",
-   "respuestas": [
-    "je voudrais aller à Lyon",
-    "j'aimerais aller à Lyon"
-   ],
-   "explicacion": "«Voudrais» y «aimerais» son formas educadas.",
-   "id": "fr064-10"
+   "tipo": "test",
+   "pregunta": "¿Cómo formularías de manera educada la petición «quisiera ir a Lyon»?",
+   "id": "fr064-10",
+   "opciones": [
+    {
+     "texto": "Je voudrais aller à Lyon.",
+     "explicacion": "«Je voudrais» (o «j'aimerais») + infinitivo es la fórmula cortés por excelencia.",
+     "correcta": true
+    },
+    {
+     "texto": "Je veux aller à Lyon.",
+     "explicacion": "«Je veux» es gramaticalmente correcto pero demasiado directo o imperativo para una petición cortés."
+    },
+    {
+     "texto": "Je vais aller à Lyon.",
+     "explicacion": "«Je vais aller» expresa un futuro próximo («voy a ir»), no una petición de cortesía."
+    }
+   ]
   }
  ],
  "intro": "Hoy aprendemos a pedir con educación. La forma más educada es con el condicional."

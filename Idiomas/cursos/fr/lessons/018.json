@@ -5,11 +5,11 @@
  "palabras": {
   "j'aime": {
    "es": "me gusta",
-   "pron": "yem"
+   "pron": "zhem"
   },
-  "n'aime": {
-   "es": "no me gusta, no le gusta (ne + aime)",
-   "pron": "nem"
+  "n'aime pas": {
+   "es": "no me gusta; no le gusta",
+   "pron": "nem pa"
   },
   "aimes": {
    "es": "te gusta",
@@ -17,7 +17,7 @@
   },
   "j'adore": {
    "es": "me encanta",
-   "pron": "ya-DOR"
+   "pron": "zha-DOR"
   },
   "déteste": {
    "es": "odio; odia",
@@ -29,7 +29,7 @@
   },
   "fromage": {
    "es": "queso",
-   "pron": "fro-MASH"
+   "pron": "fro-MAZH"
   },
   "viande": {
    "es": "carne",
@@ -50,19 +50,24 @@
   "œufs": {
    "es": "huevos",
    "pron": "ö",
-   "consejo": "En singular, «un œuf», se pronuncia la f; en plural no se pronuncian ni la f ni la s."
+   "consejo": "En singular, «un œuf», se pronuncia la f; en plural, «œufs» se pronuncia sin la f ni la s finales. En «les œufs» se oye una z de enlace entre las dos palabras."
   },
   "pomme": {
    "es": "manzana",
    "pron": "pom"
   },
   "fruits": {
-   "es": "fruta",
+   "es": "frutas",
    "pron": "früí"
+  },
+  "général": {
+   "es": "general",
+   "pron": "zhe-ne-ral",
+   "oculta": true
   },
   "lait": {
    "es": "leche",
-   "pron": "le"
+   "pron": "lè"
   },
   "café": {
    "es": "café",
@@ -79,6 +84,10 @@
   "tous les matins": {
    "es": "todas las mañanas",
    "pron": "tu le ma-TE(N)"
+  },
+  "eau": {
+   "es": "agua",
+   "pron": "o"
   }
  },
  "bloques": [
@@ -86,54 +95,62 @@
    "tipo": "explicacion",
    "titulo": "Me gusta",
    "texto": [
-    "«Gustar» en francés es **aimer**, y funciona como en inglés: el que siente es el sujeto. **J'aime le café** (me gusta el café).",
+    "A diferencia del español, en francés la persona a quien le gusta algo es el sujeto, como en inglés: **J'aime le café** (me gusta el café).",
     "**J'adore** = me encanta. **Je n'aime pas** = no me gusta. **Je déteste** = odio.",
-    "Con estos verbos, lo que te gusta lleva siempre **le, la, les**: **J'aime le poisson**, **Je déteste les œufs**."
+    "Cuando el complemento es un sustantivo que expresa un gusto en general, se usa **le, la, les**: **J'aime le poisson**, **Je déteste les œufs**."
    ]
   },
   {
    "tipo": "explicacion",
-   "titulo": "Du, de la, des: una cantidad sin precisar",
+   "titulo": "Partitivos y plural indefinido",
    "texto": [
-    "Cuando comes o bebes «algo de» una cosa, el francés pone un artículo que en español no existe: el **partitivo**.",
-    "**du** pain (masculino), **de la** viande (femenino), **de l'**eau (ante vocal), **des** fruits (plural).",
-    "Compara: **J'aime le café** (el café en general) y **Je prends du café** (tomo café: una cantidad).",
-    "En negativo, todos se convierten en **de**: **Je ne prends pas de café**."
+    "Para una cantidad no precisa de un alimento no contable, se usan los partitivos **du, de la, de l'**: **du** pain (masculino), **de la** viande (femenino), **de l'**eau (antes de vocal).",
+    "Para varios elementos no especificados se usa el artículo plural **des**: **des fruits**. En español, estos artículos muchas veces se omiten.",
+    "Compara: **J'aime le café** (el café en general) y **Je prends du café** (tomo café: una cantidad)."
+   ]
+  },
+  {
+   "tipo": "explicacion",
+   "titulo": "Los artículos en negativo",
+   "texto": [
+    "En una negación simple, los partitivos y el plural indefinido suelen pasar a **de**: **Je ne prends pas de café**, **Je ne mange pas de fruits**.",
+    "En algunos contrastes y con **être** se conserva el partitivo: **Ce n'est pas du café, c'est du thé**.",
+    "Con **aimer**, se mantiene el artículo definido: **Je n'aime pas le café**."
    ]
   },
   {
    "tipo": "tabla",
-   "titulo": "Los partitivos",
+   "titulo": "Partitivos y plural indefinido",
    "filas": [
     [
-     "masculino",
+     "masculino no contable",
      "du",
      "du pain"
     ],
     [
-     "femenino",
+     "femenino no contable",
      "de la",
      "de la viande"
     ],
     [
-     "ante vocal",
+     "antes de vocal",
      "de l'",
      "de l'eau"
     ],
     [
-     "plural",
+     "plural no especificado",
      "des",
      "des fruits"
     ],
     [
-     "negación",
-     "pas de",
-     "pas de pain"
+     "negación simple",
+     "de / d'",
+     "pas de pain / pas d'eau"
     ]
    ],
    "columnas": [
-    "",
-    "Artículo",
+    "Uso",
+    "Forma",
     "Ejemplo"
    ]
   },
@@ -142,7 +159,7 @@
    "titulo": "Vocabulario: la comida",
    "palabras": [
     "j'aime",
-    "n'aime",
+    "n'aime pas",
     "aimes",
     "j'adore",
     "déteste",
@@ -159,7 +176,8 @@
     "café",
     "thé",
     "prends",
-    "tous les matins"
+    "tous les matins",
+    "eau"
    ]
   },
   {
@@ -213,7 +231,7 @@
     },
     {
      "quien": "Marc",
-     "fr": "Je prends du pain avec du fromage, et une pomme.",
+     "fr": "Je prends du pain avec du fromage et une pomme.",
      "es": "Tomo pan con queso y una manzana.",
      "analisis": [
       [
@@ -319,17 +337,17 @@
   },
   {
    "tipo": "test",
-   "pregunta": "¿Cuál es correcta?",
+   "pregunta": "En una negación simple, ¿cómo dices «no tomo café»?",
    "id": "fr018-3",
    "opciones": [
     {
      "texto": "Je ne prends pas de café.",
-     "explicacion": "En negativo, el partitivo es «de».",
+     "explicacion": "En una negación simple, el partitivo pasa a «de».",
      "correcta": true
     },
     {
      "texto": "Je ne prends pas du café.",
-     "explicacion": "Tras «pas» va «de»."
+     "explicacion": "En esta negación simple, se usa «de»; «du» puede mantenerse en algunos contrastes."
     },
     {
      "texto": "Je ne prends de café pas.",
@@ -345,7 +363,7 @@
    "opciones": [
     {
      "texto": "No me gusta la carne.",
-     "explicacion": "N'aime pas = no gustar.",
+     "explicacion": "La negación se forma con ne…pas; aquí se mantiene el artículo definido «la».",
      "correcta": true
     },
     {
@@ -382,17 +400,17 @@
   {
    "tipo": "huecos",
    "pregunta": "Completa la frase.",
-   "frase": "J'adore ___ fruits.",
+   "frase": "J'adore ___ fruits en général.",
    "id": "fr018-6",
    "opciones": [
     {
      "texto": "les",
-     "explicacion": "Con «adorer» va el artículo definido.",
+     "explicacion": "Para expresar un gusto general, con «adorer» va el artículo definido.",
      "correcta": true
     },
     {
      "texto": "des",
-     "explicacion": "Sería con «prendre» o «manger»."
+     "explicacion": "Aquí se habla de las frutas en general; «des» introduce una cantidad no especificada."
     },
     {
      "texto": "du",

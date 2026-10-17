@@ -3,7 +3,7 @@
 import { el, poner } from '../dom.js';
 import { t, tr, idioma } from '../i18n.js';
 import { CURSOS } from '../cursos.js';
-import { curso, hayCurso, elegirCurso } from '../curso.js';
+import { curso, hayCurso, elegirCurso, nombreCurso } from '../curso.js';
 import { dibujoDe } from '../tutor-sprite.js';
 import { sonar } from '../sonidos.js';
 import { VOCES, OTROS } from '../creditos.js';
@@ -28,7 +28,7 @@ function bandera(c) {
   return hueco;
 }
 
-const nombreEn = (c, i) => c.nombre[i] ?? c.nombre.en ?? c.nativo;
+const nombreEn = nombreCurso;
 
 export function pintarElegirCurso(contenedor) {
   const i = idioma();

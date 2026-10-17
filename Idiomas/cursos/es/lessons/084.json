@@ -4,20 +4,25 @@
   "titulo": { "en": "The city where I live" },
   "intro": { "en": "Que, donde and quien join a noun to more information." },
   "palabras": {
-    "que": { "en": "that, which, who", "pron": "ke", "cat": "pronoun" },
-    "donde": { "en": "where", "pron": "DON-de", "cat": "adverb" },
-    "quien": { "en": "who", "pron": "kyen", "cat": "pronoun", "nota": "After a preposition, a person often takes quien: con quien vivo." },
+    "que": { "en": "that, which, who", "pron": "ke", "cat": "pronoun", "nota": "The relative pronoun has no accent; qué in a question does." },
+    "donde": { "en": "where, in which (for a place)", "pron": "DON-de", "cat": "adverb", "nota": "The relative adverb has no accent; dónde in a question does." },
+    "quien": { "en": "who, whom", "pron": "kyen", "cat": "pronoun", "nota": "After a preposition, quien often refers to a person: con quien vivo. Plural: quienes." },
+    "quienes": { "en": "who, whom (plural)", "pron": "KYE-nes", "cat": "pronoun", "nota": "Plural of quien; relative quien/quienes has no accent." },
     "compré": { "en": "I bought", "pron": "kom-PRE", "cat": "verb" },
     "vivo": { "en": "I live", "pron": "BI-bo", "cat": "verb" },
     "pequeña": { "en": "small (feminine)", "pron": "pe-KE-nya", "cat": "adjective" },
-    "la amiga": { "en": "the friend (female)", "pron": "la a-MI-ga", "genero": "f" },
+    "la amiga": { "en": "the friend (female)", "pron": "la a-MI-ga", "cat": "noun", "genero": "f" },
+    "la ciudad": { "en": "the city", "pron": "la syu-DAD/THyu-DAD", "cat": "noun", "genero": "f" },
+    "el libro": { "en": "the book", "pron": "el LI-bro", "cat": "noun", "genero": "m" },
+    "el café": { "en": "the café, coffee shop", "pron": "el ka-FE", "cat": "noun", "genero": "m"},
+    "la plaza": { "en": "the square", "pron": "la PLA-sa/THa", "cat": "noun", "genero": "f" },
     "nuevo": { "en": "new", "pron": "NWE-bo", "cat": "adjective" }
   },
   "bloques": [
     {
       "tipo": "explicacion",
       "titulo": "Add a detail",
-      "texto": "**Que** works for things and for people.\n\n- El libro **que** compré es nuevo.\n- La amiga **que** vive aquí es Ana.\n\n**Donde** is for a place: la ciudad **donde** vivo.\n\nAfter a preposition, use **quien** for a person: la amiga **con quien** vivo."
+      "texto": "In an identifying clause, **que** works for things and people: el libro **que** compré; la amiga **que** vive aquí. Use **que**, not *quien*, as the subject in this pattern. Relative **que** has no accent.\n\n**Donde** means ‘where/in which’ for a place and replaces the place phrase, so it does not need another **en**: la ciudad **donde** vivo = la ciudad **en la que** vivo. Relative **donde** has no accent.\n\nAfter a preposition, **quien/quienes** can refer to a person: la amiga **con quien** vivo; las amigas **con quienes** vivo. These relative forms have no accent."
     },
     {
       "tipo": "dialogo",
@@ -67,7 +72,7 @@
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["que", "donde", "quien", "compré", "vivo", "pequeña", "la amiga", "nuevo"]
+      "palabras": ["que", "donde", "quien", "quienes", "compré", "vivo", "pequeña", "la amiga", "la ciudad", "el libro", "el café", "la plaza", "nuevo"]
     },
     {
       "tipo": "huecos",
@@ -96,7 +101,7 @@
       "audio": true,
       "opciones": {
         "que": {"en": "With no preposition and no comma, people take que."},
-        "quien": {"en": "Quien needs a preposition or a comma before it."},
+        "quien": {"en": "In this identifying clause, use que as the subject; bare quien does not fit."},
         "donde": {"en": "Donde is for places."}
       },
       "correcta": "que"
@@ -119,6 +124,19 @@
       "id": "b1-rel-m3",
       "pregunta": {"en": "Translate: «The book that I bought is new.»"},
       "respuestas": ["El libro que compré es nuevo"]
+    },
+    {
+      "tipo": "huecos",
+      "id": "b1-rel-plural",
+      "pregunta": {"en": "Complete: the friends I live with."},
+      "frase": "Las amigas con ___ vivo.",
+      "audio": true,
+      "opciones": {
+        "quienes": {"en": "Quienes agrees with the plural antecedent amigas."},
+        "quien": {"en": "Quien is singular."},
+        "donde": {"en": "Donde refers to a place."}
+      },
+      "correcta": "quienes"
     },
     {
       "tipo": "explicacion",

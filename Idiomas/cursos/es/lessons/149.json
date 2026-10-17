@@ -2,9 +2,11 @@
   "capitulo": 13,
   "titulo_es": "Aunque llueva",
   "titulo": {"en": "Even if it rains"},
-  "intro": {"en": "Although and even if are the same word in Spanish. The mood tells them apart."},
+  "intro": {"en": "Aunque can mean although or even if. Mood and context show how the speaker frames the concession."},
   "palabras": {
     "aunque": {"en": "although; even if", "pron": "AUN-ke", "cat": "connector"},
+    "sin embargo": {"en": "however", "pron": "sin em-BAR-go", "cat": "connector"},
+    "pero": {"en": "but", "pron": "PE-ro", "cat": "connector"},
     "a pesar de": {"en": "in spite of", "pron": "a pe-SAR de", "cat": "expression"},
     "a pesar de que": {"en": "in spite of the fact that", "pron": "a pe-SAR de ke", "cat": "expression"},
     "aun así": {"en": "even so", "pron": "aun a-SI", "cat": "expression"},
@@ -13,20 +15,23 @@
       "en": "but rather",
       "pron": "SI-no",
       "cat": "connector",
-      "nota": "After a negative, to correct it: no es rojo, sino azul."
+      "nota": "After a negative, sino replaces or corrects an element: no es rojo, sino azul. With a following conjugated clause, use sino que."
     },
-    "y eso que": {"en": "and that even though (colloquial)", "pron": "i E-so ke", "cat": "expression"},
-    "la excursión": {"en": "the outing, the trip", "pron": "la eks-kur-SYON", "genero": "f"},
-    "el abrigo": {"en": "the coat", "pron": "el a-BRI-go", "genero": "m"},
-    "nos mojamos": {"en": "we got wet", "pron": "nos mo-HA-mos", "cat": "verb"},
+    "sino que": {"en": "but rather (introducing a clause)", "pron": "SI-no ke", "cat": "connector"},
+    "y eso que": {"en": "and even though (colloquial; introduces a surprising fact)", "pron": "i E-so ke", "cat": "expression"},
+    "la excursión": {"en": "the outing, the trip", "pron": "la eks-kur-SYON", "cat": "noun", "genero": "f"},
+    "el abrigo": {"en": "the coat", "pron": "el a-BRI-go", "cat": "noun", "genero": "m"},
+    "el frío": {"en": "the cold", "pron": "el FRI-o", "cat": "noun", "genero": "m"},
+    "llover": {"en": "to rain", "pron": "yo-BER", "cat": "verb", "nota": "Llueva is the present subjunctive used for a possible condition."},
+    "mojarse": {"en": "to get wet", "pron": "mo-HAR-se", "cat": "verb", "nota": "Nos mojamos is the past form: we got wet."},
     "divertido": {"en": "fun", "pron": "di-ber-TI-do", "cat": "adjective"}
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "A fact, or a maybe"},
+      "titulo": {"en": "How the speaker frames it"},
       "texto": {
-        "en": "**Aunque** + **indicative** is although. The speaker gives it as a fact.\n\n- **Aunque llueve**, salgo. (it is raining)\n\n**Aunque** + **subjunctive** is even if. The speaker does not know, or does not care.\n\n- **Aunque llueva**, saldré. (it may rain)\n- — Es muy caro. — **Aunque sea** caro, lo quiero.\n\n**A pesar de** takes a noun or an infinitive: **a pesar de** la lluvia, **a pesar de** estar cansado. **A pesar de que** takes a clause.\n\n**Sin embargo** and **aun así** start a new sentence.\n\n**Pero** adds a contrast. **Sino** corrects a negative: no es español, **sino** mexicano. Before a verb it is **sino que**: no estudia, **sino que** trabaja.\n\n**Y eso que** is colloquial: suspendí, **y eso que** estudié mucho."
+        "en": "**Aunque** can introduce a factual or a possible concession; mood and context show how the speaker frames it. It does not map one-to-one onto “although” versus “even if.”\n\n- **Aunque está lloviendo**, salgo. (I present the rain as a current fact.)\n- **Aunque llueva**, saldré. (I'll go regardless of whether it rains.)\n- —Es muy caro. —**Aunque sea** caro, lo quiero. (The price is already part of the conversation.)\n\n**A pesar de** takes a noun or infinitive: **a pesar del frío**, **a pesar de** estar cansado. **A pesar de que** takes a clause, and its mood also depends on how the concession is framed: **a pesar de que haga frío**, iremos.\n\n**Sin embargo**, **aun así**, and **de todas formas** contrast with what came before; punctuation often sets them apart.\n\n**Pero** marks a contrast. After a negative, **sino** corrects or replaces an element: no es español, **sino** mexicano. With a following conjugated clause, use **sino que**: no estudia, **sino que** trabaja.\n\n**Y eso que** is colloquial and introduces a surprising fact: suspendí, **y eso que** estudié mucho."
       }
     },
     {
@@ -81,7 +86,7 @@
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {"tipo": "vocabulario", "palabras": ["aunque", "sin embargo", "pero", "a pesar de", "a pesar de que", "aun así", "de todas formas", "sino", "sino que", "y eso que", "la excursión", "el abrigo", "el frío", "llover", "mojarse", "divertido"]},
     {
       "tipo": "huecos",
       "id": "aunque-1",
@@ -89,7 +94,7 @@
       "frase": "Aunque ___ mañana, iré.",
       "audio": true,
       "opciones": {
-        "llueva": {"en": "Nobody knows yet: subjunctive."},
+        "llueva": {"en": "This frames the rain as a possible condition, not as a stated fact."},
         "llueve": {"en": "The indicative would state it as a fact."},
         "lloverá": {"en": "Aunque does not take the future here."}
       },
@@ -98,12 +103,12 @@
     {
       "tipo": "huecos",
       "id": "aunque-2",
-      "pregunta": {"en": "Complete: although I am tired, and I am, I'm going."},
+      "pregunta": {"en": "Use the indicative to present this as a new fact: although I am tired, I'm going."},
       "frase": "Aunque ___ cansado, voy.",
       "audio": true,
       "opciones": {
-        "estoy": {"en": "A fact: indicative."},
-        "esté": {"en": "The subjunctive would mean even if."},
+        "estoy": {"en": "The speaker presents tiredness as an asserted fact here."},
+        "esté": {"en": "The subjunctive can frame a concession as background or hypothetical; this prompt asks for a new asserted fact."},
         "estar": {"en": "Aunque needs a conjugated verb."}
       },
       "correcta": "estoy"
@@ -139,6 +144,32 @@
       "id": "aunque-5",
       "frase": "Aun así, lo pasamos muy bien",
       "traduccion": {"en": "Even so, we had a very good time."}
+    },
+    {
+      "tipo": "huecos",
+      "id": "aunque-6",
+      "pregunta": {"en": "Complete the correction: he doesn't study; rather, he works."},
+      "frase": "No estudia, ___ trabaja.",
+      "audio": true,
+      "opciones": {
+        "sino que": {"en": "Use sino que before a conjugated clause that replaces the negative statement."},
+        "sino": {"en": "Sino alone is used before a noun, adjective, or infinitive."},
+        "pero": {"en": "Pero contrasts ideas without correcting the first one."}
+      },
+      "correcta": "sino que"
+    },
+    {
+      "tipo": "huecos",
+      "id": "aunque-7",
+      "pregunta": {"en": "Complete: in spite of the fact that it is cold, we'll go."},
+      "frase": "A pesar ___ hace frío, iremos.",
+      "audio": true,
+      "opciones": {
+        "de que": {"en": "A pesar de que introduces a full clause."},
+        "de": {"en": "A pesar de can precede a noun or infinitive, not this finite clause."},
+        "que": {"en": "The standard expression includes de before que."}
+      },
+      "correcta": "de que"
     },
     {
       "tipo": "explicacion",

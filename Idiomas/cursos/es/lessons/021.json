@@ -2,14 +2,15 @@
   "capitulo": 3,
   "titulo_es": "Hay y está",
   "titulo": { "en": "There is, and it is located" },
-  "intro": { "en": "Hay says that something exists. Está says where a known thing is." },
+  "intro": { "en": "Hay says that something exists or is available. Está locates a specific person or thing." },
   "palabras": {
     "hay": { "en": "there is, there are", "pron": "ai", "cat": "verb", "nota": "Hay does not change for plural: hay un banco, hay dos bancos." },
-    "está": { "en": "it is (located)", "pron": "es-TA", "cat": "verb" },
+    "está": { "en": "he/she/it/usted is (located)", "pron": "es-TA", "cat": "verb" },
     "la farmacia": { "en": "the pharmacy", "pron": "la far-MA-thya", "genero": "f" },
     "el banco": { "en": "the bank", "pron": "el BAN-ko", "genero": "m" },
     "la plaza": { "en": "the square", "pron": "la PLA-tha", "genero": "f" },
     "al lado de": { "en": "next to", "pron": "al LA-do de", "cat": "expression" },
+    "del": { "en": "of the; from the (de + el)", "pron": "del", "cat": "contraction", "nota": "De + el contracts to del: al lado del banco." },
     "aquí": { "en": "here", "pron": "a-KI", "cat": "adverb" },
     "cerca": { "en": "near", "pron": "THER-ka", "cat": "adverb" }
   },
@@ -17,7 +18,7 @@
     {
       "tipo": "explicacion",
       "titulo": "Exists, or where",
-      "texto": "**Hay** introduces something new.\n\n- **Hay** una farmacia en la plaza.\n\n**Está** locates something you already know.\n\n- La farmacia **está** al lado del banco.\n\n**Hay** never becomes han for this meaning, and it stays the same in the plural."
+      "texto": "Use **hay** to say that something exists or is available, often with an indefinite noun:\n\n- **Hay** una farmacia en la plaza.\n\nUse **estar** to locate a specific person or thing:\n\n- La farmacia **está** al lado del banco.\n\n**Hay** stays the same with singular and plural nouns: **hay** una farmacia, **hay** dos farmacias. With **al lado de**, **de + el** contracts to **del**: al lado **del** banco."
     },
     {
       "tipo": "dialogo",
@@ -65,7 +66,7 @@
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["hay", "está", "la farmacia", "el banco", "la plaza", "al lado de", "aquí", "cerca"]
+      "palabras": ["hay", "está", "la farmacia", "el banco", "la plaza", "al lado de", "del", "aquí", "cerca"]
     },
     {
       "tipo": "huecos",
@@ -75,7 +76,7 @@
       "audio": true,
       "opciones": {
         "Hay": { "en": "Hay introduces something that exists." },
-        "Está": { "en": "Está needs a known subject: la farmacia está…" },
+        "Está": { "en": "Está locates a specific subject, as in la farmacia está…" },
         "Es": { "en": "Es would say what it is, not that it exists." }
       },
       "correcta": "Hay"
@@ -85,9 +86,9 @@
       "id": "a1-hay-lugar",
       "pregunta": { "en": "You already know which museum. Which sentence locates it?" },
       "opciones": {
-        "El museo está en la plaza": { "en": "The known museum takes está." },
-        "Hay un museo en la plaza": { "en": "That only says a museum exists there." },
-        "El museo es en la plaza": { "en": "Location uses estar, not ser." }
+        "El museo está en la plaza": { "en": "Use estar to locate a specific building: el museo está en la plaza." },
+        "Hay un museo en la plaza": { "en": "This says a museum exists there but does not locate the specific museum." },
+        "El museo es en la plaza": { "en": "Use estar for a building's location. Events usually use ser: La fiesta es en el parque." }
       },
       "correcta": "El museo está en la plaza"
     },
@@ -98,11 +99,24 @@
       "frase": "La farmacia ___ al lado del banco.",
       "audio": true,
       "opciones": {
-        "está": {"en": "A known thing is located with está."},
-        "hay": {"en": "Hay introduces something new, with un or una."},
-        "es": {"en": "Location takes estar."}
+        "está": {"en": "Use está to locate a specific person, place or thing."},
+        "hay": {"en": "Hay says that something exists or is available; está locates a specific thing."},
+        "es": {"en": "Use estar to locate the pharmacy; ser usually locates events."}
       },
       "correcta": "está"
+    },
+    {
+      "tipo": "huecos",
+      "id": "a1-hay-del",
+      "pregunta": {"en": "Complete: the pharmacy is next to the bank."},
+      "frase": "La farmacia está al lado ___ banco.",
+      "audio": true,
+      "opciones": {
+        "del": {"en": "De + el contracts to del."},
+        "de el": {"en": "Use the standard contraction del."},
+        "al": {"en": "Al is a + el; this phrase needs de."}
+      },
+      "correcta": "del"
     },
     {
       "tipo": "escribir",

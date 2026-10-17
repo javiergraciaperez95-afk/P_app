@@ -309,15 +309,22 @@ function interruptor(id, texto, nombreAjuste, alCambiar) {
 
 function seccionAjustes() {
   const idiomas = el('div', { class: 'filtros', role: 'group', 'aria-labelledby': 'titulo-idioma' },
-    IDIOMAS.map(i => {
-      const b = el('button', { type: 'button', class: 'boton boton-mini', lang: i.clave, 'aria-pressed': String(idioma() === i.clave) }, i.nombre);
-      b.addEventListener('click', () => {
-        sonar('clic');
-        cambiarIdioma(i.clave);
-      });
-      return b;
-    }));
-
+    [el('button', { type: 'button', class: 'boton boton-mini', 'aria-pressed': String(ajuste('idioma') === 'auto') }, t('ajustes.automatico')),
+      ...IDIOMAS.map(i => {
+        const b = el('button', {
+          type: 'button', class: 'boton boton-mini', lang: i.clave,
+          'aria-pressed': String(ajuste('idioma') !== 'auto' && idioma() === i.clave),
+        }, i.nombre);
+        b.addEventListener('click', () => {
+          sonar('clic');
+          cambiarIdioma(i.clave);
+        });
+        return b;
+      })]);
+  idiomas.firstElementChild.addEventListener('click', () => {
+    sonar('clic');
+    cambiarIdioma('auto');
+  });
   const tema = el('div', { class: 'filtros', role: 'group', 'aria-labelledby': 'titulo-tema' },
     [['auto', t('ajustes.automatico')], ['oscuro', t('ajustes.oscuro')], ['claro', t('ajustes.diurno')]].map(([valor, texto]) => {
       const b = el('button', { type: 'button', class: 'boton boton-mini', 'aria-pressed': String(ajuste('tema') === valor) }, texto);

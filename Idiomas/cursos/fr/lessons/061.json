@@ -5,31 +5,34 @@
  "palabras": {
   "avant": {
    "es": "antes",
-   "pron": "a-VA(N)"
+   "pron": "a-va(n)"
   },
   "après": {
    "es": "después",
-   "pron": "a-PRÉ"
+   "pron": "a-pre"
   },
   "rentre": {
    "es": "vuelvo a casa",
-   "pron": "ra(n)-TR"
+   "pron": "ra(n)tr"
   },
   "libre": {
-   "es": "libre",
-   "pron": "LI-br"
+   "es": "libre, disponible",
+   "pron": "li-br",
+   "oculta": true
   },
   "lis": {
    "es": "leo",
-   "pron": "li"
+   "pron": "li",
+   "oculta": true
   },
   "déjeuner": {
-   "es": "almorzar",
-   "pron": "de-zhe-NÉ"
+   "es": "almorzar, comer al mediodía",
+   "pron": "de-zhe-ne",
+   "oculta": true
   },
   "réveiller": {
    "es": "despertar",
-   "pron": "re-ve-IÉ"
+   "pron": "re-ve-ye"
   },
   "douche": {
    "es": "ducha",
@@ -37,11 +40,11 @@
   },
   "fin": {
    "es": "fin",
-   "pron": "fa(n)"
+   "pron": "fe(n)"
   },
   "début": {
    "es": "comienzo",
-   "pron": "de-BÜ"
+   "pron": "de-bü"
   }
  },
  "bloques": [
@@ -98,9 +101,6 @@
     "avant",
     "après",
     "rentre",
-    "libre",
-    "lis",
-    "déjeuner",
     "réveiller",
     "douche",
     "fin",
@@ -123,6 +123,10 @@
       [
        "tu prends",
        "tomas"
+      ],
+      [
+       "un café",
+       "un café"
       ]
      ]
     },
@@ -131,6 +135,14 @@
      "fr": "Oui, et après le travail, je rentre.",
      "es": "Sí, y después del trabajo, vuelvo a casa.",
      "analisis": [
+      [
+       "Oui",
+       "sí"
+      ],
+      [
+       "et",
+       "y"
+      ],
       [
        "après le travail",
        "después del trabajo"
@@ -147,12 +159,16 @@
      "es": "¿Cuando estás libre, lees?",
      "analisis": [
       [
-       "quand",
+       "Quand",
        "cuando"
       ],
       [
        "tu es libre",
        "estás libre"
+      ],
+      [
+       "tu lis",
+       "lees"
       ]
      ]
     },
@@ -161,6 +177,10 @@
      "fr": "Oui, je lis beaucoup.",
      "es": "Sí, leo mucho.",
      "analisis": [
+      [
+       "Oui",
+       "sí"
+      ],
       [
        "je lis",
        "leo"
@@ -306,13 +326,24 @@
    "id": "fr061-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «después del trabajo»",
-   "respuestas": [
-    "après le travail"
-   ],
-   "explicacion": "«Après» + sustantivo.",
-   "id": "fr061-8"
+   "tipo": "test",
+   "pregunta": "¿Cómo se dice «después del trabajo vuelvo a casa»?",
+   "id": "fr061-8",
+   "opciones": [
+    {
+     "texto": "Après le travail, je rentre.",
+     "explicacion": "«Après» se combina directamente con un sustantivo.",
+     "correcta": true
+    },
+    {
+     "texto": "Avant le travail, je rentre.",
+     "explicacion": "«Avant» significa «antes de»."
+    },
+    {
+     "texto": "Pendant le travail, je rentre.",
+     "explicacion": "«Pendant» significa «durante» y no tiene sentido lógico aquí."
+    }
+   ]
   }
  ],
  "intro": "Ahora ordenamos acciones con el cuándo: antes, después y cuando."

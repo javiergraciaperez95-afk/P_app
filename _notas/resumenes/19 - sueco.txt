@@ -1,0 +1,364 @@
+NOTA 19 — RESUMEN DEL TRABAJO REALIZADO EN EL CURSO DE SUECO
+Fecha de actualización: 16 de octubre de 2026
+
+OBJETIVO GENERAL
+
+Se revisó la estructura de la aplicación y el sistema con el que se escriben y compilan las lecciones. Después se investigaron contenidos y criterios para sueco de los niveles A1, A2, B1 y B2, se crearon esos bloques respetando el formato de la web y, finalmente, se auditó y amplió el curso hasta alcanzar 304 lecciones.
+
+1. REVISIÓN DE LA ESTRUCTURA DE LA APP
+
+- Se estudió cómo organiza la aplicación los cursos, capítulos, lecciones, vocabulario y ejercicios.
+- Se revisó el formato fuente situado en _herramientas/cursos/sv/.
+- Se comprobó cómo el compilador transforma los archivos .txt en archivos JSON dentro de Idiomas/cursos/sv/lessons/.
+- Se identificaron los bloques disponibles para crear explicaciones, tablas, diálogos, textos, vocabulario y ejercicios.
+- Los principales tipos de ejercicios usados por el curso son:
+  · preguntas de opción múltiple;
+  · traducción;
+  · completar huecos;
+  · ordenar palabras;
+  · escritura breve;
+  · comprensión auditiva mediante la voz sintetizada del dispositivo.
+- Se respetó la estructura existente de la página y no se modificó el funcionamiento general de la aplicación.
+
+2. INVESTIGACIÓN PREVIA
+
+Antes de crear y ampliar las lecciones se consultaron fuentes en internet para contrastar la progresión de contenidos. Entre las referencias usadas están:
+
+- El Companion Volume del Marco Común Europeo de Referencia para las Lenguas, del Consejo de Europa.
+- El plan oficial de estudios de SFI publicado por Skolverket.
+- La aclaración de Skolverket sobre la relación entre SFI y los niveles del MCER. SFI se utilizó como referencia temática, pero no se presentó como una equivalencia oficial exacta con A1, A2, B1 o B2.
+- Institutet för språk och folkminnen para cuestiones del alfabeto sueco, incluidas å, ä y ö.
+- Svenska Akademiens ordböcker para comprobar formas lingüísticas como samband/sambandet.
+- Konsumentverket para vocabulario y conceptos relacionados con suscripciones, permanencia y cancelación de contratos.
+- IMY para el vocabulario relacionado con consentimiento y datos personales.
+- Folkuniversitetet como referencia práctica complementaria, no oficial, sobre la combinación de conversación, pronunciación, lectura, escritura, gramática y cultura en B2.
+
+Las fuentes y enlaces están recogidos en el informe:
+_herramientas/cursos/sv/auditoria_curriculo_2026-10-14.md
+
+3. CREACIÓN INICIAL DE LOS NIVELES A1, A2, B1 Y B2
+
+Se fue construyendo el curso de sueco nivel por nivel siguiendo la estructura de las lecciones ya presente en la web:
+
+- A1: saludos, presentaciones, datos personales, familia, números, vivienda, rutina, tiempo, comida, compras, ropa, ciudad, transporte, ocio, clima, salud, ayuda, viajes y repaso.
+- A2: rutinas y planes, restaurante, compras y comparaciones, trabajo y estudios, vivienda, vecinos, salud, viajes, problemas, clima, tiempo libre, pasado, mensajes y repaso.
+- B1: experiencias, relatos, opiniones, argumentos, noticias, información, trabajo, futuro, sociedad, servicios, salud, estilo de vida, viajes, cultura, lectura, medioambiente, escritura y síntesis.
+- B2: debate social, análisis de fuentes, reuniones, comunicación profesional, estudios, conocimiento, salud, decisiones, cultura, interpretación, planificación social, encuentros culturales, economía, vida digital, argumentación y presentaciones.
+
+La primera versión completa tenía:
+
+- 124 lecciones;
+- 40 capítulos;
+- 806 ejercicios;
+- 1.741 fichas visibles de vocabulario contabilizadas por lección.
+
+4. AUDITORÍA CRÍTICA DEL CURSO
+
+Después de completar A1–B2 se realizó una auditoría del propio trabajo. Se revisaron los archivos fuente, los títulos, objetivos, explicaciones, diálogos, textos, traducciones, respuestas correctas, vocabulario y estructura generada.
+
+Las principales conclusiones fueron:
+
+- Los cuatro niveles tenían una base temática útil, pero 31 lecciones por nivel no daban suficiente espacio para cubrir con profundidad todas las competencias esperables.
+- El patrón de ejercicios era muy regular y tendía a respuestas cortas.
+- Faltaban más contenidos sistemáticos de pronunciación, gramática y estrategias de interacción.
+- Había poca práctica de producción extensa, negociación oral espontánea y revisión de textos largos.
+- El curso no incluye grabaciones naturales. La app puede usar la voz sueca sintetizada del dispositivo cuando está disponible.
+- El indicador audio: false se mantuvo porque el curso no trae archivos de audio grabados.
+- La comprensión auditiva sintetizada ayuda a practicar, pero no sustituye voces naturales, diferentes hablantes ni evaluación de pronunciación.
+- Se detectó que el número de fichas de vocabulario no equivale al número de palabras únicas, porque también aparecen formas flexionadas, expresiones y repeticiones entre lecciones.
+- Se dejó claro que terminar la compilación sin avisos garantiza coherencia estructural y cobertura de fichas, pero no constituye por sí solo una revisión lingüística completa.
+
+El resultado de esta auditoría se escribió en:
+_herramientas/cursos/sv/auditoria_curriculo_2026-10-14.md
+
+5. ERRORES CONCRETOS CORREGIDOS
+
+Se arreglaron varios problemas detectados durante la auditoría:
+
+- En el capítulo 33 se tradujo al español un objetivo que había quedado escrito en inglés.
+- En el capítulo 35 se sustituyó la mezcla de español y sueco de la introducción por una redacción correcta en español.
+- En el capítulo 35 se tradujo y aclaró una explicación que estaba enteramente en sueco.
+- En el capítulo 39 se tradujo al español otra explicación que estaba enteramente en sueco.
+- En el capítulo 38 se reemplazó la explicación confusa que hablaba de alternar “imperfecto y pretérito”. Ahora se explican por separado el preteritum y el perfekt suecos, sin presentarlos como equivalencias mecánicas de los tiempos españoles.
+- En el capítulo 34 se corrigió “en sambandet”. La ficha pasó a “ett samband = una relación, una conexión”.
+- En el capítulo 36 se corrigió “en trovärdig”. El adjetivo quedó registrado como “trovärdig = fiable, creíble”.
+- Se eliminaron falsas promesas de audio en dos introducciones de A1. “Escucha el saludo” y “Escucha expresiones cortas” se cambiaron por instrucciones de lectura y práctica compatibles con cualquier dispositivo.
+- Se conservó el uso de ejercicios de escucha sintetizada cuando la app y el dispositivo disponen de voz sueca.
+
+6. PLAN DE AMPLIACIÓN
+
+La auditoría propuso añadir 180 lecciones para alcanzar un total dentro del intervalo solicitado de 280 a 340 lecciones.
+
+El reparto elegido fue equilibrado:
+
+- A1: 31 iniciales + 45 nuevas = 76 lecciones.
+- A2: 31 iniciales + 45 nuevas = 76 lecciones.
+- B1: 31 iniciales + 45 nuevas = 76 lecciones.
+- B2: 31 iniciales + 45 nuevas = 76 lecciones.
+- Total: 304 lecciones.
+
+Las 180 lecciones nuevas se planificaron como 60 unidades temáticas de tres lecciones cada una:
+
+- 15 unidades temáticas nuevas para A1.
+- 15 unidades temáticas nuevas para A2.
+- 15 unidades temáticas nuevas para B1.
+- 15 unidades temáticas nuevas para B2.
+
+En los archivos fuente estas unidades se identifican con los números 41–100. Esos números no son 60 capítulos nuevos visibles en la web.
+
+7. INTEGRACIÓN EN LOS CAPÍTULOS EXISTENTES
+
+La web agrupa y muestra las lecciones por el número de capítulo. Si las unidades nuevas se hubieran dejado como capítulos visibles 41–100, todas habrían aparecido después del B2, aunque algunas pertenecieran a A1, A2 o B1.
+
+Para conservar la progresión pedagógica se tomó esta decisión:
+
+- mantener los 40 capítulos visibles originales;
+- conservar los identificadores y el contenido previo;
+- ubicar cada lección nueva dentro de un capítulo ya existente del mismo nivel y de temática relacionada;
+- mantener la secuencia visible A1, A2, B1 y B2.
+
+La organización final visible queda así:
+
+- capítulos 1–10: A1;
+- capítulos 11–20: A2;
+- capítulos 21–30: B1;
+- capítulos 31–40: B2.
+
+8. CONTENIDOS AÑADIDOS EN A1
+
+Se añadieron lecciones sobre:
+
+- å, ä y ö;
+- vocales largas y breves;
+- acento y ritmo;
+- deletreo;
+- teléfonos, precios y cantidades;
+- presentación de otras personas;
+- nacionalidades e idiomas;
+- formularios personales;
+- plurales;
+- formas indefinidas y definidas;
+- concordancia de adjetivos;
+- pronombres y presente;
+- preguntas e inte;
+- instrucciones breves;
+- horas, meses, fechas, calendarios y horarios;
+- muebles, objetos y preposiciones de lugar;
+- cantidades, envases, ingredientes y recetas;
+- tallas, colores, cambios de prendas y ropa según el clima;
+- señales, referencias, mapas y recorridos;
+- horarios de transporte, billetes y retrasos;
+- cuerpo, síntomas, citas y aclaraciones;
+- ocupaciones, tareas, horarios y ayuda en clase o el trabajo;
+- invitaciones, aceptación, rechazo, cambio de citas y mensajes;
+- integración y repaso de situaciones cotidianas.
+
+9. CONTENIDOS AÑADIDOS EN A2
+
+Se añadieron lecciones sobre:
+
+- anuncios de alquiler;
+- problemas de vivienda y reparaciones;
+- comparación de productos;
+- devoluciones y quejas sencillas;
+- preferencias alimentarias, ingredientes, alergias y recetas;
+- rutas, horarios, reservas y cambios de viaje;
+- planificación semanal y disponibilidad;
+- avisos de retraso y cambios de plan;
+- relatos sencillos en pasado;
+- orden cronológico de acontecimientos;
+- experiencias recientes y momentos pasados;
+- planes con ska y tänker;
+- condiciones sencillas y planes alternativos;
+- tareas laborales, instrucciones y cambios de turno;
+- información de cursos, requisitos y fechas;
+- solicitudes de información a docentes;
+- formularios, cartas, avisos y documentos administrativos;
+- duración de síntomas, indicaciones y hábitos;
+- relaciones, sentimientos, preferencias y desacuerdo cortés;
+- noticias breves, tablas, horarios y precios;
+- correos informales y solicitudes breves;
+- integración y repaso de situaciones de viaje.
+
+10. CONTENIDOS AÑADIDOS EN B1
+
+Se añadieron lecciones sobre:
+
+- relatos con contexto, acciones paralelas y reflexión final;
+- preteritum, perfekt y pluskvamperfekt en contexto;
+- orden de palabras en subordinadas;
+- posición de inte y otros adverbios;
+- preguntas indirectas;
+- oraciones de relativo con som;
+- pronombres y reducción de repeticiones;
+- obligación, posibilidad, consejo e hipótesis;
+- pasiva en noticias e instrucciones;
+- verbos con partículas, preposiciones y colocaciones;
+- comprensión de entrevistas y noticias;
+- idea principal, detalles y actitud;
+- instrucciones, normas, gráficos y artículos factuales;
+- conversaciones de varios turnos;
+- aclaración, reformulación, trabajo en grupo y acuerdos;
+- reclamaciones, informes y revisión de textos;
+- entrevistas laborales, proyectos, propuestas y resultados;
+- servicios públicos y gestiones administrativas;
+- relatos, cultura, costumbres y reseñas;
+- evaluación de publicaciones digitales;
+- adaptación de mensajes al destinatario;
+- integración y autoevaluación de B1.
+
+11. CONTENIDOS AÑADIDOS EN B2
+
+Se añadieron lecciones sobre:
+
+- ideas principales, objeciones, matices y dudas en entrevistas y debates;
+- artículos de opinión, crónicas, ensayos e instrucciones complejas;
+- orden de palabras en subordinadas largas;
+- adverbios, negación y preguntas indirectas;
+- pasiva, construcciones impersonales y nominalización;
+- verbos con partículas, colocaciones, preposiciones e idiomatismos;
+- estrategias para interrumpir, retomar y ceder la palabra;
+- desacuerdo matizado y reparación de malentendidos;
+- argumentos con datos, objeciones, moderación y síntesis;
+- atribución, paráfrasis y síntesis de fuentes;
+- separación entre hechos, interpretaciones y opiniones;
+- planificación y revisión de textos argumentativos;
+- reclamaciones formales, solicitudes profesionales y registro;
+- instituciones, costumbres y perspectiva intercultural;
+- reuniones de proyecto, gráficos, resultados e informes;
+- incertidumbre científica, límites de datos y medidas ambientales;
+- ironía, privacidad, tecnología y adaptación a distintos públicos;
+- integración final de B2 y autoevaluación.
+
+12. ESTRUCTURA DE LAS LECCIONES NUEVAS
+
+Las nuevas lecciones respetan el formato de la aplicación e incluyen normalmente:
+
+- un objetivo claro;
+- una explicación contextual;
+- vocabulario o una expresión clave;
+- ejemplos acumulativos dentro de la unidad;
+- un pequeño diálogo para pedir repetición, aclarar o comprobar la comprensión;
+- dos preguntas de opción múltiple;
+- una actividad de traducción;
+- una actividad de completar un hueco;
+- una actividad de ordenar palabras;
+- una actividad de escritura breve;
+- una actividad auditiva reproducida mediante síntesis de voz cuando el dispositivo dispone de una voz sueca.
+
+La secuencia de tres lecciones de cada unidad reutiliza progresivamente las expresiones introducidas anteriormente.
+
+13. ARCHIVOS CREADOS Y MODIFICADOS
+
+Fuentes del curso:
+
+- Se conservaron y corrigieron los archivos 01.txt–40.txt cuando fue necesario.
+- Se crearon los archivos 41.txt–100.txt en _herramientas/cursos/sv/ como fuentes de las 60 unidades temáticas nuevas.
+- Se actualizó _herramientas/cursos/sv/capitulos.txt conservando los 40 capítulos visibles.
+- Se creó _herramientas/cursos/sv/generar_extensiones.py para generar de forma reproducible las 180 lecciones nuevas a partir del plan temático.
+- Se actualizó _herramientas/cursos/sv/auditoria_curriculo_2026-10-14.md con el estado final, decisiones tomadas, resultados y limitaciones.
+
+Contenido generado para la web:
+
+- Se regeneraron los JSON de Idiomas/cursos/sv/lessons/.
+- Ahora existen las lecciones 001.json–304.json.
+- Se regeneró Idiomas/cursos/sv/lessons/capitulos.json con los 40 capítulos visibles.
+- Se actualizó el número de lecciones del curso sueco en Idiomas/js/cursos.js a 304.
+
+Compilador:
+
+- Se corrigió la ordenación de archivos fuente en _herramientas/cursos/compilar.py.
+- El orden anterior era lexicográfico y podía colocar 100.txt antes de 11.txt.
+- Ahora se ordena por la parte numérica del nombre y admite sufijos existentes en otros cursos, por ejemplo 23z.txt.
+- Este cambio evita desordenar el curso sueco al superar los 99 archivos y conserva la compatibilidad con otros cursos del proyecto.
+
+14. RESULTADO FINAL COMPROBADO
+
+La compilación final del curso sueco produjo:
+
+- 304 lecciones;
+- 40 capítulos visibles;
+- 76 lecciones en A1;
+- 76 lecciones en A2;
+- 76 lecciones en B1;
+- 76 lecciones en B2;
+- 1.931 fichas visibles de vocabulario contabilizadas por lección;
+- 2.066 ejercicios;
+- 0 avisos del compilador.
+
+Dentro de las 180 lecciones nuevas se comprobó la presencia de:
+
+- 180 explicaciones;
+- 180 listas de vocabulario;
+- 180 bloques de texto;
+- 180 diálogos;
+- 540 preguntas tipo test;
+- 180 ejercicios de traducción;
+- 180 ejercicios de huecos;
+- 180 ejercicios de ordenar;
+- 180 ejercicios de escritura;
+- 180 actividades con voz sintetizada.
+
+También se comprobó que:
+
+- la primera lección sigue perteneciendo al capítulo 1;
+- la última lección pertenece al capítulo 40;
+- el archivo de capítulos empieza en 1 y termina en 40;
+- el catálogo de la app declara 304 lecciones para sueco;
+- cada nivel suma exactamente 76 lecciones;
+- la compilación termina sin avisos de opciones incorrectas, ejercicios incompletos, capítulos sin título o palabras sin ficha.
+
+15. DECISIONES DE SEGURIDAD Y CONSERVACIÓN
+
+- No se alteraron otros cursos intencionadamente.
+- No se cambiaron las pantallas ni el diseño general de la aplicación.
+- No se eliminaron las lecciones originales.
+- No se renumeraron los capítulos existentes.
+- Las nuevas lecciones se incorporaron usando el mismo sistema fuente y el mismo compilador que utiliza el resto de la página.
+- Los temas médicos, legales, de consumo y privacidad se mantuvieron como práctica lingüística ficticia. No deben interpretarse como asesoramiento profesional.
+
+16. LIMITACIONES QUE SIGUEN PENDIENTES
+
+Aunque la ampliación mejora mucho la cobertura, todavía deben tenerse presentes estas limitaciones:
+
+- La voz usada en los ejercicios auditivos es sintética y depende del dispositivo.
+- No hay grabaciones naturales con distintos hablantes, velocidades, acentos o ruido ambiental.
+- La app no evalúa la pronunciación del alumno.
+- La app no registra turnos orales espontáneos.
+- La mayoría de las respuestas escritas siguen siendo breves.
+- No se evalúan ensayos largos con una rúbrica detallada.
+- Los textos y diálogos nuevos son material pedagógico creado para el curso; no son documentos auténticos completos tomados de organismos suecos.
+- Las actividades ayudan a practicar capacidades asociadas con el MCER, pero completar las lecciones no certifica oficialmente un nivel A1, A2, B1 o B2.
+- El dato de “palabras” del compilador cuenta fichas visibles por lección, no vocabulario único dominado por el estudiante.
+- Cero avisos del compilador significa que la estructura es coherente según sus reglas; no garantiza ausencia absoluta de errores lingüísticos o didácticos.
+
+17. PUNTOS IMPORTANTES PARA UNA FUTURA REVISIÓN
+
+Antes de seguir ampliando el curso convendría:
+
+- hacer una revisión lingüística humana o por un hablante avanzado/nativo de una muestra amplia de las 304 lecciones;
+- revisar especialmente la naturalidad de las expresiones nuevas y sus traducciones españolas;
+- comprobar la pronunciación de la voz sintetizada en Chrome, Edge y otros entornos compatibles;
+- revisar visualmente en la web varios capítulos de cada nivel;
+- valorar la incorporación futura de audio natural con licencia adecuada;
+- diseñar actividades más largas de escritura, mediación e interacción;
+- decidir si se quiere crear una evaluación diagnóstica y una evaluación final separadas para cada nivel;
+- estudiar una forma de distinguir lemas, formas flexionadas y expresiones en el glosario;
+- revisar periódicamente cualquier contenido factual de salud, consumo, instituciones o privacidad frente a fuentes oficiales actuales.
+
+18. ESTADO AL CERRAR ESTA NOTA
+
+El trabajo solicitado en esta conversación está implementado y compilado. El curso sueco dispone de una progresión A1–B2 con 304 lecciones, distribuida de forma equilibrada y adaptada a la estructura existente de la página. El informe de auditoría y el generador de extensiones permiten entender y reproducir las decisiones adoptadas.
+
+Archivos principales para la siguiente revisión:
+
+- _herramientas/cursos/sv/auditoria_curriculo_2026-10-14.md
+- _herramientas/cursos/sv/generar_extensiones.py
+- _herramientas/cursos/sv/capitulos.txt
+- _herramientas/cursos/sv/01.txt–100.txt
+- _herramientas/cursos/compilar.py
+- Idiomas/cursos/sv/lessons/001.json–304.json
+- Idiomas/cursos/sv/lessons/capitulos.json
+- Idiomas/js/cursos.js
+
+Fin de la nota 19.

@@ -5,35 +5,35 @@
  "palabras": {
   "seulement": {
    "es": "solamente",
-   "pron": "sö-lmaN"
+   "pron": "söl-ma(n)"
   },
   "seul": {
    "es": "solo (masculino)",
-   "pron": "sül"
+   "pron": "söl"
   },
   "seule": {
    "es": "sola",
-   "pron": "sül"
+   "pron": "söl"
   },
   "uniquement": {
    "es": "únicamente",
-   "pron": "ü-nik-MA(N)"
+   "pron": "ü-nik-ma(n)"
   },
   "bois": {
    "es": "bebo",
-   "pron": "bua"
+   "pron": "bwa"
   },
   "simplement": {
    "es": "simplemente",
-   "pron": "sa(n)pl-MA(N)"
+   "pron": "sa(n)-plö-ma(n)"
   },
   "exclusivement": {
    "es": "exclusivamente",
-   "pron": "ex-klü-siv-MA(N)"
+   "pron": "èks-klü-ziv-ma(n)"
   },
   "cuillère": {
    "es": "cuchara",
-   "pron": "kü-IÉR"
+   "pron": "küi-yèr"
   },
   "tasse": {
    "es": "taza",
@@ -45,11 +45,11 @@
   },
   "rien que": {
    "es": "solo, nada más que",
-   "pron": "riè(n) ke"
+   "pron": "rye(n) kö"
   },
   "une seule fois": {
    "es": "una sola vez",
-   "pron": "ün SÖL fua"
+   "pron": "ün söl fwa"
   }
  },
  "bloques": [
@@ -121,12 +121,12 @@
      "es": "¿Solo bebes agua?",
      "analisis": [
       [
-       "ne bois que",
-       "solo bebes"
+       "tu ne bois que",
+       "solo bebes (restricción con ne... que)"
       ],
       [
        "de l'eau",
-       "agua"
+       "agua (artículo partitivo)"
       ]
      ]
     },
@@ -136,12 +136,16 @@
      "es": "Sí, solo bebo agua y té.",
      "analisis": [
       [
+       "oui",
+       "sí"
+      ],
+      [
        "je ne bois que",
        "solo bebo"
       ],
       [
-       "du thé",
-       "té"
+       "de l'eau et du thé",
+       "agua y té (artículos partitivos)"
       ]
      ]
     },
@@ -151,12 +155,12 @@
      "es": "¿Solo comes fruta?",
      "analisis": [
       [
-       "ne manges que",
-       "solo comes"
+       "tu ne manges que",
+       "solo comes (restricción enfática)"
       ],
       [
        "des fruits",
-       "fruta"
+       "fruta (partitivo plural)"
       ]
      ]
     },
@@ -166,8 +170,16 @@
      "es": "No, solo como por la mañana.",
      "analisis": [
       [
+       "non",
+       "no"
+      ],
+      [
+       "je mange",
+       "como"
+      ],
+      [
        "seulement",
-       "solo"
+       "solamente (adverbio de limitación)"
       ],
       [
        "le matin",
@@ -262,21 +274,21 @@
   {
    "tipo": "traduccion",
    "pregunta": "¿Qué significa?",
-   "frase": "Je ne bois que de l'eau.",
+   "frase": "Tu ne bois rien que du thé.",
    "id": "fr092-5",
    "opciones": [
     {
-     "texto": "Solo bebo agua.",
-     "explicacion": "«Ne... que» = solo.",
+     "texto": "Solo bebes nada más que té.",
+     "explicacion": "«Rien que» refuerza el sentido exclusivo de «solo» o «nada más que».",
      "correcta": true
     },
     {
-     "texto": "No bebo agua.",
-     "explicacion": "Eso es negación."
+     "texto": "No bebes té.",
+     "explicacion": "«Rien que» no es una negación total, sino una restricción exclusiva."
     },
     {
-     "texto": "Bebo agua y más.",
-     "explicacion": "Eso es lo contrario."
+     "texto": "Bebes té y café.",
+     "explicacion": "La locución limita la bebida únicamente al té."
     }
    ]
   },
@@ -310,13 +322,24 @@
    "id": "fr092-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «solo como fruta»",
-   "respuestas": [
-    "je ne mange que des fruits"
-   ],
-   "explicacion": "«Ne... que» = solo.",
-   "id": "fr092-8"
+   "tipo": "test",
+   "pregunta": "¿Cuál de estas oraciones expresa correctamente una restricción con «seulement»?",
+   "id": "fr092-8",
+   "opciones": [
+    {
+     "texto": "Il mange seulement des fruits.",
+     "explicacion": "«Seulement» se coloca directamente tras el verbo conjugado sin necesidad de «ne».",
+     "correcta": true
+    },
+    {
+     "texto": "Il ne mange seulement des fruits.",
+     "explicacion": "No se debe combinar «ne» con «seulement» para expresar restricción afirmativa."
+    },
+    {
+     "texto": "Il seulement mange des fruits.",
+     "explicacion": "El adverbio «seulement» no se interpone habitualmente entre el pronombre sujeto y el verbo."
+    }
+   ]
   }
  ],
  "intro": "Ahora expresamos «solo» con «ne... que» y lo comparamos con «seulement»."

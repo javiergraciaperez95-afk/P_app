@@ -1,16 +1,16 @@
 {
   "capitulo": 2,
   "titulo_es": "Mi, tu, su",
-  "titulo": { "en": "My, your, his" },
-  "intro": { "en": "The family lesson already uses mi and mis. Here is the set: my, your, his, her, our. They sit before the noun and match the thing, not the owner." },
+  "titulo": { "en": "Spanish possessives" },
+  "intro": { "en": "Possessive determiners go before the noun. Mi, tu and su change for singular or plural nouns; nuestro changes for gender and number. They match the noun, not the owner." },
   "palabras": {
-    "mi": { "en": "my", "pron": "mi", "cat": "determiner", "nota": "Mi does not change for gender: mi hermano, mi hermana. The plural is mis." },
-    "mis": { "en": "my (plural)", "pron": "mis", "cat": "determiner" },
-    "tu": { "en": "your (of tú)", "pron": "tu", "cat": "determiner", "nota": "Tu with no accent means your. Tú with an accent means you." },
-    "tus": { "en": "your (plural)", "pron": "tus", "cat": "determiner" },
-    "tú": { "en": "you", "pron": "tu", "cat": "pronoun", "consejo": "The accent is the only difference from tu, your." },
-    "su": { "en": "his, her, your (usted), their", "pron": "su", "cat": "determiner", "nota": "Su does not say whether the owner is a man, a woman or several people. The sentence does." },
-    "sus": { "en": "his/her/your/their (plural)", "pron": "sus", "cat": "determiner" },
+    "mi": { "en": "my (before one noun)", "pron": "mi", "cat": "determiner", "nota": "Mi does not change for gender: mi hermano, mi hermana. Before plural nouns, use mis." },
+    "mis": { "en": "my (before plural nouns)", "pron": "mis", "cat": "determiner" },
+    "tu": { "en": "your (informal singular, before one noun)", "pron": "tu", "cat": "determiner", "nota": "Tu is the possessive determiner; tú is the subject pronoun. The accent distinguishes them." },
+    "tus": { "en": "your (informal singular, before plural nouns)", "pron": "tus", "cat": "determiner" },
+    "tú": { "en": "you (informal singular)", "pron": "tu", "cat": "pronoun", "consejo": "The accent distinguishes tú (you) from tu (your)." },
+    "su": { "en": "his, her, its, your (formal), their (before one noun)", "pron": "su", "cat": "determiner", "nota": "Su does not identify the owner; context may help. If it is unclear, name the person." },
+    "sus": { "en": "his, her, its, your (formal), their (before plural nouns)", "pron": "sus", "cat": "determiner" },
     "nuestro": { "en": "our (masculine)", "pron": "NWES-tro", "cat": "determiner" },
     "nuestra": { "en": "our (feminine)", "pron": "NWES-tra", "cat": "determiner" },
     "nuestros": { "en": "our (masculine plural)", "pron": "NWES-tros", "cat": "determiner" },
@@ -23,16 +23,16 @@
     {
       "tipo": "explicacion",
       "titulo": "Before the noun",
-      "texto": "**Mi, tu, su** do not show the gender of the thing.\n\n- **mi** hermana, **mi** hermano, **mis** hermanos\n- **tu** casa, **tus** libros\n- **su** clase, **sus** amigos\n\n**Nuestro** does show it, because it works like an adjective: **nuestro** profesor, **nuestra** clase, **nuestros** libros, **nuestras** mesas. It matches the noun, never the owner. Nuestra madre is feminine because madre is feminine, even if the owners are men.\n\n**Tu** is your. **Tú** is you. The accent is the whole difference.\n\n**Su** can mean his, her, your (usted) or their. If it is ambiguous, name the person: la casa de Ana."
+      "texto": "**Mi, tu, su** do not change for the gender of the noun; they change for singular or plural: **mi** hermana, **mi** hermano, **mis** hermanos; **tu** casa, **tus** libros; **su** clase, **sus** amigos.\n\n**Nuestro** changes for the noun's gender and number: **nuestro** profesor, **nuestra** clase, **nuestros** libros, **nuestras** mesas. It matches the noun, not the owner. **Nuestra madre** is feminine because **madre** is feminine, regardless of the owners' gender.\n\n**Tu** (no accent) is the possessive determiner 'your'; **tú** (with an accent) is the subject pronoun 'you.'\n\n**Su** can mean his, her, its, your (usted) or their. Context may identify the owner; if it is ambiguous, name the person: **la casa de Ana**."
     },
     {
       "tipo": "tabla",
       "titulo": "Match the thing",
-      "columnas": ["Owner", "One, any gender", "More than one", "Our"],
+      "columnas": ["Owner", "Singular noun", "Plural noun", "Our"],
       "filas": [
         ["I", "mi libro, mi casa", "mis libros", "—"],
-        ["you (tú)", "tu libro", "tus libros", "—"],
-        ["he, she, usted, they", "su libro", "sus libros", "—"],
+        ["you (informal)", "tu libro", "tus libros", "—"],
+        ["he, she, it, usted, ustedes, they", "su libro", "sus libros", "—"],
         ["we", "—", "—", "nuestro libro, nuestra casa"]
       ]
     },
@@ -117,14 +117,14 @@
       "opciones": {
         "Mi": { "en": "Mi is my. It does not become mía before the noun." },
         "Tu": { "en": "Tu is your." },
-        "Su": { "en": "Su is his, her, your or their." }
+        "Su": { "en": "Su can mean his, her, its, your (formal) or their." }
       },
       "correcta": "Mi"
     },
     {
       "tipo": "test",
       "id": "a1-pos-tu",
-      "pregunta": { "en": "Which word means your?" },
+      "pregunta": { "en": "Which word means your before a singular noun when speaking informally to one person?" },
       "opciones": {
         "tu": { "en": "Tu, with no accent, means your." },
         "tú": { "en": "Tú, with an accent, means you." },

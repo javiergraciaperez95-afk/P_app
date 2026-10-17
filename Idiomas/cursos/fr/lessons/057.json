@@ -5,11 +5,11 @@
  "palabras": {
   "pourquoi": {
    "es": "por qué",
-   "pron": "pur-KUÁ"
+   "pron": "pur-kua"
   },
   "parce que": {
    "es": "porque",
-   "pron": "par-SKÉ"
+   "pron": "pars-ke"
   },
   "donc": {
    "es": "así que, por eso",
@@ -17,7 +17,7 @@
   },
   "alors": {
    "es": "entonces, así que",
-   "pron": "a-LOR"
+   "pron": "a-lor"
   },
   "pleut": {
    "es": "llueve",
@@ -31,8 +31,9 @@
   },
   "viens": {
    "es": "vienes",
-   "pron": "via(n)",
-   "consejo": "Viene de «venir» (venir)."
+   "pron": "vie(n)",
+   "consejo": "Viene de «venir» (venir).",
+   "oculta": true
   },
   "car": {
    "es": "porque",
@@ -40,23 +41,23 @@
   },
   "cause": {
    "es": "causa",
-   "pron": "kos"
+   "pron": "koz"
   },
   "raison": {
    "es": "razón",
-   "pron": "re-ZÓN"
+   "pron": "re-zo(n)"
   },
   "exemple": {
    "es": "ejemplo",
-   "pron": "e-gza(n)-PL"
+   "pron": "eg-za(n)pl"
   },
   "ainsi": {
    "es": "así",
-   "pron": "a(n)-SÍ"
+   "pron": "e(n)-si"
   },
   "problème": {
    "es": "problema",
-   "pron": "pro-BLÉM"
+   "pron": "pro-blem"
   }
  },
  "bloques": [
@@ -122,7 +123,6 @@
     "alors",
     "pleut",
     "reste",
-    "viens",
     "car",
     "cause",
     "raison",
@@ -156,12 +156,16 @@
      "es": "Porque estoy cansado.",
      "analisis": [
       [
-       "parce que",
+       "Parce que",
        "porque"
       ],
       [
-       "je suis fatigué",
-       "estoy cansado"
+       "je suis",
+       "estoy"
+      ],
+      [
+       "fatigué",
+       "cansado"
       ]
      ]
     },
@@ -171,7 +175,11 @@
      "es": "De acuerdo. Pero deberías venir.",
      "analisis": [
       [
-       "mais",
+       "D'accord",
+       "de acuerdo"
+      ],
+      [
+       "Mais",
        "pero"
       ],
       [
@@ -186,7 +194,7 @@
      "es": "Llueve, así que me quedo en casa.",
      "analisis": [
       [
-       "il pleut",
+       "Il pleut",
        "llueve"
       ],
       [
@@ -196,6 +204,10 @@
       [
        "je reste",
        "me quedo"
+      ],
+      [
+       "à la maison",
+       "en casa"
       ]
      ]
     }
@@ -334,13 +346,24 @@
    "id": "fr057-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «¿por qué?»",
-   "respuestas": [
-    "pourquoi"
-   ],
-   "explicacion": "Es la pregunta del motivo.",
-   "id": "fr057-8"
+   "tipo": "test",
+   "pregunta": "¿Cuál es la diferencia de uso entre «pourquoi» y «parce que»?",
+   "id": "fr057-8",
+   "opciones": [
+    {
+     "texto": "«Pourquoi» introduce una pregunta de motivo y «parce que» introduce la respuesta explicativa.",
+     "explicacion": "«Pourquoi» significa «por qué» interrogativo, mientras que «parce que» es la conjunción causal «porque».",
+     "correcta": true
+    },
+    {
+     "texto": "«Pourquoi» se usa solo para responder y «parce que» solo para preguntar.",
+     "explicacion": "En francés se pregunta con «pourquoi» y se contesta con «parce que», nunca a la inversa."
+    },
+    {
+     "texto": "Ambas formas son intercambiables tanto en preguntas como en respuestas.",
+     "explicacion": "En francés «pourquoi» y «parce que» desempeñan funciones sintácticas distintas y no pueden intercambiarse libremente."
+    }
+   ]
   }
  ],
  "intro": "Hoy aprendemos a explicar por qué pasa algo. Son palabras muy cortas y muy útiles."

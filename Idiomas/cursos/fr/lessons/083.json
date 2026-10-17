@@ -9,47 +9,47 @@
   },
   "ouvrier": {
    "es": "obrero",
-   "pron": "u-vrié"
+   "pron": "u-vrye"
   },
   "ouvriers": {
    "es": "obreros",
-   "pron": "u-vrié"
+   "pron": "u-vrye"
   },
   "respecté": {
    "es": "respetado",
-   "pron": "res-pek-TÉ"
+   "pron": "rès-pèk-te"
   },
   "apprécié": {
    "es": "apreciado",
-   "pron": "a-pre-SIÉ"
+   "pron": "a-pre-sye"
   },
   "admiré": {
    "es": "admirado",
-   "pron": "ad-mi-RÉ"
+   "pron": "ad-mi-re"
   },
   "ministre": {
    "es": "ministro",
-   "pron": "mi-NÍS-tr"
+   "pron": "mi-nistr"
   },
   "gouvernement": {
    "es": "gobierno",
-   "pron": "gu-ver-ne-MA(N)"
+   "pron": "gu-vèr-ne-ma(n)"
   },
   "loi": {
    "es": "ley",
-   "pron": "luá"
+   "pron": "lua"
   },
   "bâtiment": {
    "es": "edificio",
-   "pron": "ba-ti-MA(N)"
+   "pron": "ba-ti-ma(n)"
   },
   "architecte": {
    "es": "arquitecto",
-   "pron": "ar-shi-TÉKT"
+   "pron": "ar-shi-tèkt"
   },
   "populaire": {
    "es": "popular",
-   "pron": "po-pü-LÉR"
+   "pron": "po-pü-lèr"
   }
  },
  "bloques": [
@@ -117,6 +117,14 @@
      "es": "Este puente está construido por obreros.",
      "analisis": [
       [
+       "Ce pont",
+       "este puente"
+      ],
+      [
+       "est construit",
+       "está construido"
+      ],
+      [
        "par des ouvriers",
        "por obreros"
       ]
@@ -127,6 +135,14 @@
      "fr": "Le bâtiment est construit par un architecte.",
      "es": "El edificio está construido por un arquitecto.",
      "analisis": [
+      [
+       "Le bâtiment",
+       "el edificio"
+      ],
+      [
+       "est construit",
+       "está construido"
+      ],
       [
        "par un architecte",
        "por un arquitecto"
@@ -139,6 +155,10 @@
      "es": "Es muy apreciado por todo el mundo.",
      "analisis": [
       [
+       "Il est très apprécié",
+       "es muy apreciado"
+      ],
+      [
        "de tout le monde",
        "por todo el mundo"
       ]
@@ -149,6 +169,10 @@
      "fr": "Oui, il est populaire.",
      "es": "Sí, es popular.",
      "analisis": [
+      [
+       "Oui",
+       "sí"
+      ],
       [
        "il est populaire",
        "es popular"
@@ -290,13 +314,24 @@
    "id": "fr083-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «lo admira un ministro»",
-   "respuestas": [
-    "il est admiré par un ministre"
-   ],
-   "explicacion": "«Par» + agente.",
-   "id": "fr083-8"
+   "tipo": "test",
+   "pregunta": "¿Cómo se formula en pasiva «el cuadro es admirado por todos»?",
+   "id": "fr083-8",
+   "opciones": [
+    {
+     "texto": "Le tableau est admiré de tout le monde.",
+     "explicacion": "Con verbos de sentimiento o estima («admirer», «aimer»), el agente se introduce tradicionalmente con «de».",
+     "correcta": true
+    },
+    {
+     "texto": "Le tableau a admiré tout le monde.",
+     "explicacion": "Eso es voz activa en passé composé («el cuadro ha admirado a todos»)."
+    },
+    {
+     "texto": "Le tableau est admiré par le monde entière.",
+     "explicacion": "Error gramatical y léxico frente al uso idiomático «admiré de tout le monde»."
+    }
+   ]
   }
  ],
  "intro": "Ahora decimos quién hace la acción: con «par» o con «de»."

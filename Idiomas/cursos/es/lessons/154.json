@@ -4,7 +4,7 @@
   "titulo": {"en": "Do you mind if I open it?"},
   "intro": {"en": "Asking for permission with more care, giving it, refusing it and saying what is forbidden."},
   "palabras": {
-    "el permiso": {"en": "permission", "pron": "el per-MI-so", "genero": "m"},
+    "el permiso": {"en": "permission", "pron": "el per-MI-so", "cat": "noun", "genero": "m"},
     "¿te importa que…?": {"en": "do you mind if…?", "pron": "te im-POR-ta ke", "cat": "expression", "nota": "Followed by the subjunctive."},
     "¿te molesta que…?": {
       "en": "does it bother you if…?",
@@ -22,9 +22,9 @@
     "me temo que no": {"en": "I'm afraid not", "pron": "me TE-mo ke no", "cat": "expression"},
     "en absoluto": {"en": "not at all", "pron": "en ab-so-LU-to", "cat": "expression"},
     "vale, pero…": {"en": "OK, but…", "pron": "BA-le PE-ro", "cat": "expression"},
-    "me da igual": {"en": "I don't care", "pron": "me da i-GWAL", "cat": "expression"},
-    "la norma": {"en": "the rule", "pron": "la NOR-ma", "genero": "f"},
-    "la multa": {"en": "the fine", "pron": "la MUL-ta", "genero": "f"},
+    "me da igual": {"en": "I don't mind; I don't care", "pron": "me da i-GWAL", "cat": "expression", "nota": "Depending on context, this can sound dismissive or defiant."},
+    "la norma": {"en": "the rule", "pron": "la NOR-ma", "cat": "noun", "genero": "f"},
+    "la multa": {"en": "the fine", "pron": "la MUL-ta", "cat": "noun", "genero": "f"},
     "respetar": {"en": "to respect, to obey", "pron": "res-pe-TAR", "cat": "verb"}
   },
   "bloques": [
@@ -32,7 +32,7 @@
       "tipo": "explicacion",
       "titulo": {"en": "Permission, with the subjunctive"},
       "texto": {
-        "en": "You already know **¿Puedo…?** and **¿Se puede…?** There are three more careful ways.\n\n1. **¿Te importa si** abro la ventana? With **si**, the indicative.\n\n2. **¿Te importa que** abra la ventana? With **que**, the subjunctive.\n\n3. **¿Me dejas** usar tu ordenador? / **¿Me dejas que** use tu ordenador?\n\nCareful with the answer. **¿Te importa…?** asks whether it bothers you, so permission is **No, no, en absoluto** or **Claro que no**. In practice people also say **Claro, ábrela**.\n\nGiving permission with a condition: **Vale, pero** solo un momento.\n\nRefusing: **Me temo que no.** **Lo siento, es que** tengo frío. **No se puede.**\n\nRules and signs:\n\n- **Está prohibido** fumar.\n- **No está permitido** entrar con perros.\n- **Se prohíbe** el paso.\n- **No** aparcar.\n- **No debes** hablar tan alto.\n\nA rule with a different subject takes the subjunctive: **está prohibido que** los niños **entren** solos.\n\nAnd the rebel's answer: **Me da igual que esté** prohibido."
+        "en": "You already know **¿Puedo…?** and **¿Se puede…?** Here are three other ways to ask.\n\n1. **¿Te importa si** abro la ventana? With **si**, use the indicative.\n\n2. **¿Te importa que** abra la ventana? With **que**, use the subjunctive.\n\n3. **¿Me dejas** usar tu ordenador? / **¿Me dejas que** use tu ordenador?\n\n**¿Te importa…?** asks whether the action bothers the other person. **No, no me importa** grants permission; **Sí, me importa** refuses it. To make the answer explicit, say **Claro, ábrela** or **No me importa, ábrela**.\n\nTo give permission with a condition: **Vale, pero** solo un momento. To refuse: **Me temo que no**, **Lo siento, es que** tengo frío, or **No se puede**.\n\nRules and signs:\n\n- **Está prohibido** fumar.\n- **No está permitido** entrar con perros.\n- **Se prohíbe** el paso.\n- **No** aparcar. (brief sign)\n- **No debes** hablar tan alto.\n\nWith a different subject, use the subjunctive after **está prohibido que**: *está prohibido que los niños **entren** solos*. **Respetar** la norma evita una **multa**.\n\n**Me da igual que esté prohibido** is a blunt, defiant response; **me da igual que** is followed here by the subjunctive."
       }
     },
     {
@@ -77,7 +77,7 @@
         {
           "quien": "Marta",
           "es": "¿Se puede comer aquí, en la mesa?",
-          "en": "Can you eat here, at your desk?",
+          "en": "Can you eat here, at the table?",
           "analisis": [["¿Se puede comer", "permission (general)"], ["aquí", "place"], ["en la mesa", "place"]]
         },
         {
@@ -95,11 +95,11 @@
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {"tipo": "vocabulario", "palabras": ["el permiso", "¿te importa que…?", "¿te molesta que…?", "¿me dejas…?", "dejar", "permitir", "prohibir", "está prohibido", "no está permitido", "se prohíbe", "me temo que no", "en absoluto", "vale, pero…", "me da igual", "la norma", "la multa", "respetar"]},
     {
       "tipo": "huecos",
       "id": "permiso-b1-1",
-      "pregunta": {"en": "Complete: do you mind if I sit here?"},
+      "pregunta": {"en": "Use que and the subjunctive: do you mind if I sit here?"},
       "frase": "¿Te importa que me ___ aquí?",
       "audio": true,
       "opciones": {
@@ -127,7 +127,7 @@
       "id": "permiso-b1-3",
       "pregunta": {"en": "Someone asks ¿Te importa que abra la ventana? Which answer gives permission?"},
       "opciones": {
-        "No, en absoluto.": {"en": "It does not bother you, so they can."},
+        "No, en absoluto.": {"en": "It does not bother you; permission is granted."},
         "Me temo que no.": {"en": "That refuses permission."},
         "Sí, me importa.": {"en": "That means it bothers you."}
       },
@@ -138,7 +138,7 @@
       "id": "permiso-b1-4",
       "frase": "No está permitido entrar con perros.",
       "opciones": [
-        {"texto": {"en": "You are not allowed to come in with dogs."}, "correcta": true},
+        {"texto": {"en": "You are not allowed to enter with dogs."}, "correcta": true},
         {"texto": {"en": "Dogs are not allowed to leave."}, "explicacion": {"en": "Entrar is to come in."}},
         {
           "texto": {"en": "It is permitted to come in with dogs."},

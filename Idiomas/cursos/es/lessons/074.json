@@ -2,44 +2,49 @@
   "capitulo": 8,
   "titulo_es": "Se lo doy",
   "titulo": {"en": "I give it to him"},
-  "intro": {"en": "Two pronouns together: the person first, the thing second. And le becomes se."},
+  "intro": {"en": "With two object pronouns, the indirect object comes first, followed by the direct object. Le/les becomes se before lo, la, los or las."},
   "palabras": {
     "me lo": {"en": "it to me", "pron": "me lo", "cat": "pronoun"},
     "te lo": {"en": "it to you", "pron": "te lo", "cat": "pronoun"},
     "se lo": {
-      "en": "it to him, her, them, you (usted)",
+      "en": "it to him/her/them or to you (usted/ustedes)",
       "pron": "se lo",
       "cat": "pronoun",
       "nota": "Le and les become se before lo, la, los, las."
     },
-    "se las": {"en": "them (feminine) to him, her, them", "pron": "se las", "cat": "pronoun"},
+    "se las": {"en": "them (feminine) to him/her/them or to you (usted/ustedes)", "pron": "se las", "cat": "pronoun"},
+    "se": {"en": "to him/her/them or to you (used for le/les before another object pronoun)", "pron": "se", "cat": "pronoun"},
+    "os lo": {"en": "it to you all (vosotros/as, mainly Spain)", "pron": "os lo", "cat": "pronoun"},
     "nos lo": {"en": "it to us", "pron": "nos lo", "cat": "pronoun"},
-    "el paraguas": {"en": "the umbrella", "pron": "el pa-RA-gwas", "genero": "m"},
-    "la llave": {"en": "the key", "pron": "la YA-be", "genero": "f"},
-    "las fotos": {"en": "the photos", "pron": "las FO-tos", "genero": "f"},
-    "devuelvo": {"en": "I give back", "pron": "de-BWEL-bo", "cat": "verb"},
-    "enseño": {"en": "I show", "pron": "en-SE-nyo", "cat": "verb"},
+    "el paraguas": {"en": "the umbrella", "pron": "el pa-RA-gwas", "cat": "noun", "genero": "m"},
+    "el libro": {"en": "the book", "pron": "el LI-bro", "cat": "noun", "genero": "m"},
+    "la llave": {"en": "the key", "pron": "la YA-be", "cat": "noun", "genero": "f"},
+    "las fotos": {"en": "the photos", "pron": "las FO-tos", "cat": "noun", "genero": "f"},
+    "el piso": {"en": "the apartment (often Spain; can also mean floor)", "pron": "el PI-so", "cat": "noun", "genero": "m"},
+    "devuelves": {"en": "you (tú) give back, return", "pron": "de-BWEL-bes", "cat": "verb"},
+    "enseña": {"en": "he/she/you formal shows", "pron": "en-SE-nya", "cat": "verb"},
     "mando": {"en": "I send", "pron": "MAN-do", "cat": "verb"},
     "ahora mismo": {"en": "right now", "pron": "a-O-ra MIS-mo", "cat": "expression"}
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Person first, thing second"},
+      "titulo": {"en": "Indirect object first, direct object second"},
       "texto": {
-        "en": "When both objects are pronouns, the order is fixed: **person + thing + verb**.\n\n- **Me lo** das. **Te la** presto. **Nos los** manda.\n\n**Le** and **les** cannot stand before lo, la, los, las. They turn into **se**.\n\n- Le doy el libro a Ana. → **Se lo** doy. (not le lo)\n- Les mando las fotos. → **Se las** mando.\n\nThis se can mean to him, to her, to them or to you. Add a él, a ella, a ustedes if it is not clear.\n\n**No** goes before both: **no se lo** doy."
+        "en": "When both objects are pronouns, the order is **indirect object + direct object**. With one conjugated verb, both go before it.\n\n- **Me lo** das. **Te la** presto. **Nos los** manda. **Os lo** doy.\n\nBefore **lo, la, los, las**, the indirect pronouns **le/les** change to **se**.\n\n- Le doy el libro a Ana. → **Se lo** doy. (not le lo)\n- Les mando las fotos. → **Se las** mando.\n\nThis **se** can mean to him, her, them, or you (**usted/ustedes**). Add **a él**, **a ella**, **a usted**, or **a ustedes** if it is not clear.\n\n**No** goes before both: **no se lo** doy."
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "From nouns to pronouns"},
-      "columnas": ["With a noun", "With two pronouns"],
+      "titulo": {"en": "Replace the direct object"},
+      "columnas": ["With a direct-object noun", "With two pronouns"],
       "filas": [
         ["Me das el libro.", "Me lo das."],
         ["Te presto la llave.", "Te la presto."],
         ["Le doy el libro a Ana.", "Se lo doy."],
         ["Les mando las fotos.", "Se las mando."],
-        ["Nos enseña el piso.", "Nos lo enseña."]
+        ["Nos enseña el piso.", "Nos lo enseña."],
+        ["Os doy el libro.", "Os lo doy."]
       ]
     },
     {
@@ -82,7 +87,7 @@
           "es": "Se las mando ahora mismo.",
           "en": "I'll send them to her right now.",
           "analisis": [["Se", "to her"], ["las", "them"], ["mando", "verb"], ["ahora mismo", "time"]],
-          "nota": "Le las is impossible. Le turns into se."
+          "nota": "In this pronoun pair, le changes to se before las."
         },
         {
           "quien": "Lucía",
@@ -114,8 +119,8 @@
       "audio": true,
       "opciones": {
         "la": {"en": "La llave is feminine."},
-        "lo": {"en": "Llave is feminine."},
-        "le": {"en": "The thing is a direct object: la."}
+        "lo": {"en": "La llave is feminine, so use la."},
+        "le": {"en": "Le would refer to the recipient; the key is the direct object, so use la."}
       },
       "correcta": "la"
     },
@@ -126,7 +131,7 @@
       "opciones": {
         "Sí, se las mando": {"en": "Les becomes se before las."},
         "Sí, les las mando": {"en": "Les cannot stand before las."},
-        "Sí, las se mando": {"en": "The person comes first: se las."}
+        "Sí, las se mando": {"en": "The indirect-object pronoun comes first: se las."}
       },
       "correcta": "Sí, se las mando"
     },

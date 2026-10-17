@@ -115,7 +115,7 @@ function textoHora(h) {
   return `${String(horas).padStart(2, '0')}:${minutos} · ${doce}${h % 1 ? ':30' : ''} ${horas < 12 ? 'am' : 'pm'}`;
 }
 
-function reloj({ paso, tablero, decir, completar, palabra, bien, mal }) {
+function reloj({ paso, tablero, decir, completar, palabra, bien, mal, ilustrado }) {
   const { luego, limpiar } = relojes();
   const tramos = paso.tramos;
   const [minimo, maximo] = [tramos[0].desde, tramos[tramos.length - 1].hasta];
@@ -128,6 +128,10 @@ function reloj({ paso, tablero, decir, completar, palabra, bien, mal }) {
   const hora = el('p', { class: 'reloj-hora' }, '--:--');
   const saludo = el('p', { class: 'reloj-saludo', lang: LANG }, '?');
   const cielo = el('div', { class: 'reloj-cielo' }, astro, hora, saludo, el('div', { class: 'reloj-suelo', 'aria-hidden': 'true' }));
+  if (ilustrado) cielo.prepend(el('div', { class: 'paisaje-pixel', 'aria-hidden': 'true' },
+    el('i', { class: 'paisaje-nube nube-uno' }), el('i', { class: 'paisaje-nube nube-dos' }),
+    el('div', { class: 'paisaje-pueblo' }, Array.from({ length: 5 }, (_, i) =>
+      el('i', { class: `paisaje-casa casa-${i}` }, el('b'), el('span'))))));
   const mando = el('input', { type: 'range', class: 'reloj-mando', min: String(minimo), max: String(maximo - 0.5), step: '0.5', value: String(minimo), 'aria-label': t('juego.reloj.mando') });
   const insignias = el('ul', { class: 'reloj-insignias' });
   const zona = el('div', { class: 'reloj-zona' });
@@ -259,7 +263,7 @@ function trocear(es, analisis) {
   return trozos;
 }
 
-function descifra({ paso, leccion, tablero, decir, completar, bien, mal }) {
+function descifra({ paso, leccion, tablero, decir, completar, bien, mal, ilustrado }) {
   const { luego, limpiar } = relojes();
   const frases = leccion.bloques[paso.bloque]?.frases ?? [];
   const chat = el('ol', { class: 'juego-chat' });
@@ -288,6 +292,8 @@ function descifra({ paso, leccion, tablero, decir, completar, bien, mal }) {
   function acabar() {
     if (repaso.length) {
       const frase = repaso.shift();
+      if (ilustrado) poner(chat, el('li', { class: 'juego-turno' },
+        el('p', { class: 'juego-linea', lang: LANG }, frase.es)));
       decir(t('juego.descifra.repaso', { es: frase.es }), 'pensando');
       oir(frase.es, decir);
       preguntarSignificado(frase, () => { poner(zona); luego(acabar, 900); });
@@ -340,8 +346,11 @@ function descifra({ paso, leccion, tablero, decir, completar, bien, mal }) {
     const li = el('li', { class: 'juego-turno' },
       frase.quien && el('span', { class: 'frase-quien' }, `${frase.quien}:`),
       linea, traduccion);
-    chat.append(li);
-    li.scrollIntoView({ block: 'nearest' });
+    if (ilustrado) poner(chat, li);
+    else {
+      chat.append(li);
+      li.scrollIntoView({ block: 'nearest' });
+    }
     oir(frase.es, decir);
   }
 
@@ -392,7 +401,7 @@ function rellena({ paso, tablero, decir, completar, bien, mal }) {
 // rol: la tutora hace de un personaje del diálogo y tú contestas por el otro
 // ---------------------------------------------------------------------------
 
-function rol({ paso, leccion, tablero, decir, completar, bien, mal }) {
+function rol({ paso, leccion, tablero, decir, completar, bien, mal, ilustrado }) {
   const { luego, limpiar } = relojes();
   const frases = leccion.bloques[paso.bloque]?.frases ?? [];
   const chat = el('ol', { class: 'juego-chat' });
@@ -405,11 +414,15 @@ function rol({ paso, leccion, tablero, decir, completar, bien, mal }) {
 
   function apuntar(frase, mia) {
     const li = el('li', { class: `juego-turno${mia ? ' mio' : ''}` },
-      el('span', { class: 'frase-quien' }, `${mia ? t('juego.rol.tu') : t('tutora.nombre')}:`),
+      el('span', { class: 'frase-quien' }, `${mia ? t('juego.rol.tu') : t('tutora.nombrePropio')}:`),
       el('p', { class: 'juego-linea', lang: LANG }, frase.es),
       el('p', { class: 'frase-trad' }, tr(frase.trad)));
     chat.append(li);
-    li.scrollIntoView({ block: 'nearest' });
+    if (ilustrado) {
+      // Cada intercambio conserva la pregunta y su respuesta, sin acumular altura.
+      if (!mia) while (chat.children.length > 1) chat.firstElementChild.remove();
+      while (chat.children.length > 2) chat.firstElementChild.remove();
+    } else li.scrollIntoView({ block: 'nearest' });
   }
 
   const repaso = []; // turnos fallados: { previa, buena }
@@ -547,9 +560,9 @@ function cartas({ paso, tablero, decir, completar, palabra, bien, mal }) {
 // parejas: unir cada palabra con su significado, en rondas cortas
 // ---------------------------------------------------------------------------
 
-function parejas({ paso, tablero, decir, completar, palabra, bien, mal }) {
+function parejas({ paso, tablero, decir, completar, palabra, bien, mal, ilustrado }) {
   const { luego, limpiar } = relojes();
-  const MAXIMO = 5;
+  const MAXIMO = ilustrado ? 3 : 5;
   const numRondas = Math.ceil(paso.palabras.length / MAXIMO);
   const tamano = Math.ceil(paso.palabras.length / numRondas);
   const rondas = Array.from({ length: numRondas }, (_, i) => paso.palabras.slice(i * tamano, (i + 1) * tamano));

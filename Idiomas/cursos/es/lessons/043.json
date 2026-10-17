@@ -2,22 +2,22 @@
   "capitulo": 5,
   "titulo_es": "Tengo que estudiar",
   "titulo": { "en": "I have to study" },
-  "intro": { "en": "Tengo que is a personal obligation. Hay que is for people in general." },
+  "intro": { "en": "Tengo que expresses a personal obligation; hay que expresses a general or unspecified obligation." },
   "palabras": {
     "tengo que": { "en": "I have to", "pron": "TEN-go ke", "cat": "expression" },
     "hay que": { "en": "one has to, it is necessary", "pron": "ai ke", "cat": "expression" },
     "porque": { "en": "because", "pron": "POR-ke", "cat": "conjunction" },
+    "por qué": { "en": "why", "pron": "por KE", "cat": "expression", "nota": "Use two words with an accent in questions; porque means because." },
     "estudiar": { "en": "to study", "pron": "es-tu-DYAR", "cat": "verb" },
     "el examen": { "en": "the exam", "pron": "el ek-SA-men", "genero": "m" },
     "mañana": { "en": "tomorrow", "pron": "ma-NYA-na", "cat": "adverb" },
-    "llegar": { "en": "to arrive", "pron": "ye-GAR", "cat": "verb" },
-    "temprano": { "en": "early", "pron": "tem-PRA-no", "cat": "adverb" }
+    "llegar": { "en": "to arrive", "pron": "ye-GAR", "cat": "verb" }
   },
   "bloques": [
     {
       "tipo": "explicacion",
       "titulo": "Have to",
-      "texto": "**Tener que** + infinitive says who has to do it: **tengo que** estudiar.\n\n**Hay que** + infinitive is general: **hay que** llegar a las nueve. There is no person.\n\n**Porque** gives the reason and usually follows the result: estudio **porque** mañana hay un examen."
+      "texto": "**Tener que** + infinitive says who has to do it: **tengo que** estudiar.\n\n**Hay que** + infinitive expresses a general or unspecified obligation; it does not say who has to do it: **hay que** llegar a las nueve.\n\nUse **porque** to introduce a reason: estudio **porque** mañana hay un examen. **¿Por qué?** (two words, with an accent) asks “why.”"
     },
     {
       "tipo": "dialogo",
@@ -58,13 +58,14 @@
             ["Hay que", "verb"],
             ["llegar", "infinitive"],
             ["a las nueve", "time"]
-          ]
+          ],
+          "nota": "The Spanish phrase does not name who must arrive; the context suggests the people taking the exam."
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["tengo que", "hay que", "porque", "estudiar", "el examen", "mañana", "llegar"]
+      "palabras": ["tengo que", "hay que", "porque", "por qué", "estudiar", "el examen", "mañana", "llegar"]
     },
     {
       "tipo": "huecos",
@@ -100,8 +101,19 @@
     },
     {
       "tipo": "test",
+      "id": "a1-obl-porque-por-que",
+      "pregunta": {"en": "Choose the expression that asks «why?»"},
+      "opciones": {
+        "por qué": {"en": "Two words, with an accent on qué, ask why."},
+        "porque": {"en": "One word without an accent introduces a reason: because."},
+        "porqué": {"en": "One word with an accent is a noun meaning the reason."}
+      },
+      "correcta": "por qué"
+    },
+    {
+      "tipo": "test",
       "id": "a1-obl-m2",
-      "pregunta": {"en": "Which sentence says who has to study?"},
+      "pregunta": {"en": "Which sentence says I have to study?"},
       "opciones": {
         "Tengo que estudiar": {"en": "Tener que names the person."},
         "Hay que estudiar": {"en": "Hay que is general."},

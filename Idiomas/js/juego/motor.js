@@ -14,7 +14,7 @@ import { normalizarPalabra } from '../lessons.js';
 import { ESCENAS as ESCENAS_A } from './escenas.js';
 import { ESCENAS_B } from './escenas-b.js';
 import { ESCENAS_C } from './escenas-c.js';
-import { LANG } from '../curso.js';
+import { LANG, curso } from '../curso.js';
 import { clave } from '../curso.js';
 import { ruta } from '../curso.js';
 import { salirDelJuego } from '../movil.js';
@@ -82,6 +82,8 @@ export function pintarJuego(contenedor, resultado, guion, { siguiente, alLibro, 
   // palabras: con el diccionario entero (para buscar cualquiera); propias: solo las de esta lección.
   const leccion = { ...resultado.leccion, propias: resultado.leccion.palabras, palabras: new Map([...diccionario, ...resultado.leccion.palabras]) };
   const pasos = guion.pasos;
+  // Acabado visual piloto: compartido por mecánica, activado primero en español 001.
+  const ilustrado = curso.id === 'es' && leccion.id === '001';
   const avance = leerAvance(leccion.id);
   avance.hechos = avance.hechos.filter(i => i < pasos.length);
   let actual = Math.min(avance.paso, pasos.length - 1);
@@ -204,15 +206,15 @@ export function pintarJuego(contenedor, resultado, guion, { siguiente, alLibro, 
     } }, `◀ ${t('menu.lecciones')}`),
     el('button', { type: 'button', class: 'boton boton-mini', onclick: alLibro }, t('juego.verLibro')),
     botonMusica,
-    el('p', { class: 'etiqueta-bloque' }, t('leccion.numero', { id: leccion.id })),
+    el('p', { class: 'etiqueta-bloque' }, t('leccion.numero', { id: leccion.numero_curso })),
     el('h1', { class: 'titulo-es', lang: LANG }, leccion.titulo_es));
 
   const escena = el('div', { class: 'caja juego-escena' },
     el('div', { class: 'juego-retrato' }, canvas),
-    el('div', { class: 'juego-bocadillo' }, el('p', { class: 'juego-quien' }, el('span', { class: 'tutora-nombre' }, t('tutora.nombre')), marcadorRacha), bocadillo, lector));
+    el('div', { class: 'juego-bocadillo' }, el('p', { class: 'juego-quien' }, el('span', { class: 'tutora-nombre' }, t('tutora.nombrePropio')), marcadorRacha), bocadillo, lector));
 
   poner(contenedor,
-    el('section', { class: 'juego' },
+    el('section', { class: `juego${ilustrado ? ' juego-ilustrado' : ''}` },
       cabecera, camino, etapa, escena, tablero,
       el('div', { class: 'juego-pie' }, atras, contador, adelante)));
 
@@ -242,7 +244,9 @@ export function pintarJuego(contenedor, resultado, guion, { siguiente, alLibro, 
       avance.hechos.push(actual);
       guardarAvance(leccion.id, avance);
       sonar('paso');
-      confeti(actual === pasos.length - 1 ? 110 : 36);
+      if (!sinAnimaciones && (!ilustrado || actual === pasos.length - 1)) {
+        confeti(actual === pasos.length - 1 ? 110 : 36);
+      }
     }
     pintarCamino();
     adelante.disabled = false;
@@ -280,7 +284,7 @@ export function pintarJuego(contenedor, resultado, guion, { siguiente, alLibro, 
     }
     if (paso.dice) decir(paso.dice, paso.cara ?? 'normal');
     limpiarEscena = crear({
-      paso, leccion, tablero, decir, completar, siguiente, alLibro, bien, mal, retrato,
+      paso, leccion, tablero, decir, completar, siguiente, alLibro, bien, mal, retrato, ilustrado,
       yaHecho: avance.hechos.includes(i),
       palabra: clave => leccion.palabras.get(normalizarPalabra(clave)) ?? null,
       reiniciar: () => {

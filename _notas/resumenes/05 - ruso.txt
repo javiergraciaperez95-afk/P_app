@@ -1,0 +1,35 @@
+RESUMEN DE TRABAJO — PROYECTO DE RUSO
+Archivo 5
+Fecha de actualización: 16 de octubre de 2026
+
+PROYECTO Y TRABAJO PEDAGÓGICO
+
+A lo largo de la conversación se revisó la organización del proyecto y la estructura de las lecciones de ruso. Después se hicieron auditorías de los niveles A1, A2, B1 y B2, comparando su contenido con fuentes lingüísticas y currículos de calidad, y señalando deficiencias.
+
+A continuación, se trabajó en mejorar las lecciones por nivel, con explicaciones y actividades más sólidas y de longitud moderada. También se hizo una autocrítica de la cobertura de A1–B2 y se planificó ampliar el curso hasta 325 lecciones, distribuidas por nivel. Más adelante se investigó y corrigió un problema por el cual la aplicación no mostraba todas las lecciones de ruso.
+
+REVISIÓN SISTEMÁTICA DE LOS ARCHIVOS DE LECCIONES RUSAS
+
+La tarea vigente consiste en revisar todos los archivos de Idiomas/cursos/ru/lessons, en el orden establecido y de uno en uno. Para cada archivo se inspecciona el JSON y el contenido, la coherencia de las explicaciones y traducciones, la integridad de los ejercicios y sus soluciones, las referencias de vocabulario, la compatibilidad con el cargador real de lecciones y posibles regresiones. Los errores claros se corrigen; las dudas de diseño o cambios de comportamiento se documentan.
+
+El progreso se conserva en Notas_archivos_noafectaalcodigo/informe_ruso.txt y Notas_archivos_noafectaalcodigo/review-progress.md. Al terminar toda la primera pasada y los reintentos debe generarse o actualizarse Notas_archivos_noafectaalcodigo/reviews/summary.md. No se han de modificar otros archivos dentro de Notas_archivos_noafectaalcodigo.
+
+La revisión presta atención a que las actividades no dependan de escucha o expresión oral que la aplicación no permite practicar. Cuando hay una frase escrita equivalente, los ejercicios con audio se convierten en ejercicios de lectura. Se emplean comprobaciones por archivo de UTF-8 estricto, JSON.parse y el cargador real Idiomas/js/lessons.js; también se comprueban IDs, respuestas correctas, campos de las actividades y vocabulario.
+
+ESTADO DEL PROGRESO REGISTRADO
+
+La primera pasada está completada y validada hasta Idiomas/cursos/ru/lessons/127.json. En esta continuación se completaron y registraron 124, 125, 126 y 127.
+
+Lección 124: se corrigió la explicación del aspecto de обсудить para no prometer que siempre se alcanza una solución; se explicó el uso conjunto de Давайте обсудим para plural y trato formal singular; se aclaró la concordancia de назначено con совещание y назначена con встреча; se armonizó la expresión del plazo; se corrigieron varias guías de acento; se mostró por escrito el antiguo ejercicio de audio y se corrigió un espacio antes de punto. Validación: 13 bloques, 8 actividades, tabla 4×3, 12 fichas visibles, cero audios y cargador sin avisos ni errores.
+
+Lección 125: se aclaró que уволиться es dejar voluntariamente el empleo y que увольнение puede ser un cese voluntario o un despido; se corrigieron las guías de pronunciación; собираться + infinitivo ahora se presenta como intención o plan, no necesariamente como acción inminente; se eliminaron glosas demasiado simples de aspecto perfectivo; se mostró por escrito el ejercicio de audio y se reformuló la introducción. Validación: 13 bloques, 8 actividades, tabla 4×3, 4 líneas de diálogo, 13 fichas visibles, cero audios y cargador limpio.
+
+Lección 126: se pasó la lección de escucha a lectura; se llenó el bloque de vocabulario (12 fichas visibles); se corrigió её como genitivo tras нет en Её сейчас нет; se aclararon el dativo ей, el imperativo formal/plural оставьте y el pasado plural/formal вы звонили; se corrigieron traducciones y el hueco final. Validación: 10 bloques, 7 actividades, 4 líneas bilingües, 12 fichas visibles, cero audios y cargador limpio.
+
+Lección 127: se hizo inequívoco un distractor que antes era una traducción válida; se hicieron visibles noticias, nadie, herido y la forma полиции en su contexto de genitivo; se añadió la concordancia masculina singular de никто; se mantuvieron las correcciones de по данным полиции, acento de событие y el enfoque de lectura. Validación: 13 bloques, 8 actividades, tabla 4×4, cuatro líneas bilingües, 17 fichas visibles, cero audios y cargador limpio.
+
+Un escaneo estricto actualizado de las lecciones 001–127 confirma 127 JSON parseables y 1047 IDs de actividad únicos, sin colisiones. Un registro anterior marcaba 017, 027, 030, 061 y 062 como JSON inválidos; ahora esos archivos pasan el parseo estricto, pero sus revisiones de contenido siguen pendientes para la pasada de reintento. También está anotada una discrepancia entre las lecciones 023 y 218 sobre el caso de на con medios de transporte; al llegar a 218 habrá que revisarla y documentarla.
+
+PUNTO EXACTO PARA RETOMAR
+
+El siguiente archivo de la primera pasada es Idiomas/cursos/ru/lessons/128.json. La lección 127 ya está corregida, validada, registrada en el informe y reflejada en review-progress.md. En la primera pasada aún no se ha creado el resumen final reviews/summary.md.

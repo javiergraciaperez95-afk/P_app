@@ -1,7 +1,7 @@
 {
   "capitulo": 13,
   "titulo_es": "Me dijo que sí",
-  "titulo": { "en": "She told me yes" },
+  "titulo": { "en": "She said yes" },
   "intro": { "en": "Reporting statements and questions: dijo que, preguntó si and preguntó dónde." },
   "palabras": {
     "dijo": { "en": "he/she said", "pron": "DI-ho", "cat": "verb" },
@@ -10,6 +10,7 @@
     "dónde": { "en": "where (question word)", "pron": "DON-de", "cat": "adverb" },
     "que": { "en": "that", "pron": "ke", "cat": "conjunction" },
     "si": { "en": "if, whether", "pron": "si", "cat": "conjunction", "nota": "Si with no accent means if. Sí with an accent means yes." },
+    "sí": { "en": "yes", "pron": "SI", "cat": "adverb" },
     "estaba": { "en": "he/she was, I was", "pron": "es-TA-ba", "cat": "verb" },
     "hablaba": { "en": "he/she spoke, I spoke", "pron": "a-BLA-ba", "cat": "verb" },
     "cansada": { "en": "tired (female)", "pron": "kan-SA-da", "cat": "adjective" }
@@ -18,7 +19,7 @@
     {
       "tipo": "explicacion",
       "titulo": "One step back in time",
-      "texto": "A statement becomes **dijo que**. A yes/no question becomes **preguntó si**. A question with a question word keeps that word, without question marks: **¿Dónde vives? → Me preguntó dónde vivía**.\n\nIf the reporting verb is in the past, the present often moves to the imperfect:\n\n- «Estoy cansada.» → Ana **dijo que estaba** cansada.\n- «¿Hablas español?» → Me **preguntó si hablaba** español.\n- «¿Dónde trabajas?» → Me **preguntó dónde trabajaba**.\n\nThis change is common, but it is not automatic in every context. If the information is still current, the present can remain: **Ana dice que está mejor**."
+      "texto": "A statement can be reported with **dijo que**. A yes/no question uses **preguntó si**. A question with a question word keeps that word, without question marks: **¿Dónde vives? → Me preguntó dónde vivía**.\n\nWhen the reporting verb is in the past, a present-tense verb often moves to the imperfect:\n\n- «Estoy cansada.» → Ana **dijo que estaba** cansada.\n- «¿Hablas español?» → Me **preguntó si hablaba** español.\n- «¿Dónde trabajas?» → Me **preguntó dónde trabajaba**.\n\nThis shift is common, but not automatic. If the information is still true now, the present may remain even after a past reporting verb: **Ana dijo que está mejor**."
     },
     {
       "tipo": "dialogo",
@@ -26,57 +27,51 @@
       "frases": [
         {
           "quien": "Lucía",
-          "es": "Ana dijo que estaba cansada.",
-          "en": "Ana said she was tired.",
-          "analisis": [
-            ["Ana", "subject"],
-            ["dijo que", "said that"],
-            ["estaba cansada", "she was tired"]
-          ]
+          "es": "¿Ana estaba cansada?",
+          "en": "Was Ana tired?",
+          "analisis": [["Ana", "subject"], ["estaba cansada", "verb"]]
         },
         {
           "quien": "Pablo",
-          "es": "Me preguntó si hablaba español.",
-          "en": "She asked me if I spoke Spanish.",
-          "analisis": [
-            ["Me preguntó", "she asked me"],
-            ["si hablaba", "if I spoke"],
-            ["español", "Spanish"]
-          ]
+          "es": "Le pregunté si estaba cansada. Me dijo que sí.",
+          "en": "I asked her if she was tired. She said yes.",
+          "analisis": [["Le pregunté", "I asked her"], ["si estaba cansada", "if she was tired"], ["Me dijo que sí", "she said yes"]]
         },
         {
           "quien": "Lucía",
-          "es": "Yo dije que sí.",
-          "en": "I said yes.",
-          "analisis": [
-            ["dije", "I said"],
-            ["que sí", "that yes"]
-          ]
+          "es": "¿Y te preguntó si hablabas español?",
+          "en": "And did she ask you if you spoke Spanish?",
+          "analisis": [["te preguntó", "she asked you"], ["si hablabas", "if you spoke"], ["español", "Spanish"]]
         },
         {
           "quien": "Pablo",
-          "es": "También me preguntó dónde vivía.",
-          "en": "She also asked me where I lived.",
-          "analisis": [
-            ["me preguntó", "she asked me"],
-            ["dónde", "where (question word)"],
-            ["vivía", "imperfect in reported question"]
-          ]
+          "es": "Sí. También me preguntó dónde vivía.",
+          "en": "Yes. She also asked me where I lived.",
+          "analisis": [["me preguntó", "she asked me"], ["dónde", "where (question word)"], ["vivía", "imperfect in reported question"]]
+        },
+        {
+          "quien": "Lucía",
+          "es": "¿Y qué le dijiste?",
+          "en": "And what did you tell her?",
+          "analisis": [["qué", "what (question word)"], ["le dijiste", "you told her"]]
         },
         {
           "quien": "Pablo",
+          "es": "Le dije que sí.",
+          "en": "I told her yes.",
+          "analisis": [["Le dije que sí", "I told her yes"]]
+        },
+        {
+          "quien": "Lucía",
           "es": "Ana dice que está mejor.",
           "en": "Ana says she is better.",
-          "analisis": [
-            ["dice que", "says that"],
-            ["está mejor", "she is better"]
-          ]
+          "analisis": [["dice que", "says that"], ["está mejor", "she is better"]]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["dijo", "me dijo", "preguntó", "que", "si", "estaba", "hablaba", "cansada"]
+      "palabras": ["dijo", "me dijo", "preguntó", "dónde", "que", "si", "sí", "estaba", "hablaba", "cansada"]
     },
     {
       "tipo": "huecos",
@@ -113,12 +108,12 @@
     {
       "tipo": "huecos",
       "id": "b1-dijo-m2",
-      "pregunta": {"en": "Complete: Ana says she is better, and it is still true."},
-      "frase": "Ana dice que ___ mejor.",
+      "pregunta": {"en": "Complete: Ana said she is better, and it is still true."},
+      "frase": "Ana dijo que ___ mejor.",
       "audio": true,
       "opciones": {
-        "está": {"en": "After dice, the present stays."},
-        "estaba": {"en": "Estaba would follow dijo."},
+        "está": {"en": "The present may remain when the information is still true."},
+        "estaba": {"en": "This is the usual backshift after dijo, but the message is still current."},
         "esté": {"en": "A report of information takes the indicative."}
       },
       "correcta": "está"

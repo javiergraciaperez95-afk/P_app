@@ -9,47 +9,127 @@
   },
   "admettre": {
    "es": "admitir",
-   "pron": "ad-MÉTR"
+   "pron": "ad-metr"
   },
   "admets": {
    "es": "admito",
-   "pron": "ad-MÉ"
+   "pron": "ad-me"
   },
   "admet": {
    "es": "admite",
-   "pron": "ad-MÉ"
+   "pron": "ad-me"
   },
   "concession": {
    "es": "concesión",
-   "pron": "ko(n)-se-SIÓN"
+   "pron": "ko(n)-se-syo(n)"
   },
   "accorder": {
    "es": "conceder",
-   "pron": "a-ko-DÉ"
+   "pron": "a-kor-de"
   },
   "concède": {
    "es": "concede",
-   "pron": "ko(n)-SÈD"
+   "pron": "ko(n)-sed"
   },
   "reconnaître": {
    "es": "reconocer",
-   "pron": "re-ko-NÉTR"
+   "pron": "rö-ko-netr"
   },
   "reconnais": {
    "es": "reconozco",
-   "pron": "re-ko-NÉ"
+   "pron": "rö-ko-ne"
   },
   "point": {
    "es": "punto",
-   "pron": "pua(n)"
+   "pron": "pwe(n)"
   },
   "malgré tout": {
    "es": "a pesar de todo",
-   "pron": "mal-GRÉ tu"
+   "pron": "mal-gre tu"
   },
   "au demeurant": {
    "es": "por lo demás",
-   "pron": "o de-me-RA(N)"
+   "pron": "o dö-mö-ra(n)"
+  },
+  "équipements": {
+   "es": "instalaciones",
+   "pron": "e-kip-ma(n)"
+  },
+  "besoins": {
+   "es": "necesidades",
+   "pron": "bö-zwe(n)"
+  },
+  "parcs": {
+   "es": "parques",
+   "pron": "park"
+  },
+  "clubs": {
+   "es": "clubes",
+   "pron": "klüb"
+  },
+  "gratuits": {
+   "es": "gratuitos",
+   "pron": "gra-tüi"
+  },
+  "sportifs": {
+   "es": "deportivos",
+   "pron": "spor-tif",
+   "oculta": true
+  },
+  "utiles": {
+   "es": "útiles",
+   "pron": "ü-til",
+   "oculta": true
+  },
+  "répondent": {
+   "es": "responden",
+   "pron": "re-po(n)d",
+   "oculta": true
+  },
+  "contrairement": {
+   "es": "a diferencia de",
+   "pron": "ko(n)-trer-ma(n)",
+   "oculta": true
+  },
+  "salles": {
+   "es": "salas",
+   "pron": "sal",
+   "oculta": true
+  },
+  "ouverts": {
+   "es": "abiertos",
+   "pron": "u-ver",
+   "oculta": true
+  },
+  "préfèrent": {
+   "es": "prefieren",
+   "pron": "pre-fer",
+   "oculta": true
+  },
+  "s'entraîner": {
+   "es": "entrenarse",
+   "pron": "sa(n)-tre-ne",
+   "oculta": true
+  },
+  "eux": {
+   "es": "ellos",
+   "pron": "ö",
+   "oculta": true
+  },
+  "permettent": {
+   "es": "permiten",
+   "pron": "per-met",
+   "oculta": true
+  },
+  "rencontrer": {
+   "es": "conocer, encontrarse",
+   "pron": "ra(n)-ko(n)-tre",
+   "oculta": true
+  },
+  "d'autres": {
+   "es": "otros",
+   "pron": "do-tr",
+   "oculta": true
   }
  },
  "bloques": [
@@ -133,6 +213,14 @@
       [
        "il est riche",
        "es rico"
+      ],
+      [
+       "mais",
+       "pero"
+      ],
+      [
+       "il est triste",
+       "está triste"
       ]
      ]
     },
@@ -144,6 +232,10 @@
       [
        "il est vrai que",
        "es verdad que"
+      ],
+      [
+       "Paul travaille beaucoup",
+       "Paul trabaja mucho"
       ]
      ]
     },
@@ -155,6 +247,10 @@
       [
        "je te concède",
        "te concedo"
+      ],
+      [
+       "ce point",
+       "ese punto"
       ]
      ]
     },
@@ -166,6 +262,10 @@
       [
        "je reconnais que",
        "reconozco que"
+      ],
+      [
+       "tu as raison",
+       "tienes razón"
       ]
      ]
     }
@@ -304,13 +404,197 @@
    "id": "fr109-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «es verdad que»",
-   "respuestas": [
-    "il est vrai que"
-   ],
-   "explicacion": "Concesión que reconoce un hecho.",
-   "id": "fr109-8"
+   "tipo": "test",
+   "pregunta": "¿Qué locución sirve para admitir un hecho antes de formular una objeción?",
+   "id": "fr109-8",
+   "opciones": [
+    {
+     "texto": "Il est vrai que",
+     "explicacion": "Locución concesiva que introduce una realidad constatada antes de contrastarla con «mais».",
+     "correcta": true
+    },
+    {
+     "texto": "À cause de",
+     "explicacion": "Locución preposicional causal que introduce un motivo desfavorable."
+    },
+    {
+     "texto": "Afin que",
+     "explicacion": "Conjunción subordinante final que exige subjuntivo."
+    }
+   ]
+  },
+  {
+   "tipo": "texto",
+   "titulo": "Le sport en ville",
+   "frases": [
+    {
+     "fr": "Certes, les équipements sportifs sont utiles, mais ils ne répondent pas aux besoins de tout le monde.",
+     "es": "Ciertamente, las instalaciones deportivas son útiles, pero no responden a las necesidades de todos.",
+     "analisis": [
+      [
+       "certes",
+       "ciertamente"
+      ],
+      [
+       "les équipements sportifs",
+       "las instalaciones deportivas"
+      ],
+      [
+       "sont utiles",
+       "son útiles"
+      ],
+      [
+       "mais",
+       "pero"
+      ],
+      [
+       "ils ne répondent pas",
+       "no responden"
+      ],
+      [
+       "aux besoins",
+       "a las necesidades"
+      ],
+      [
+       "de tout le monde",
+       "de todo el mundo"
+      ]
+     ]
+    },
+    {
+     "fr": "Contrairement aux grandes salles, les parcs sont gratuits et ouverts toute la journée.",
+     "es": "A diferencia de los grandes gimnasios, los parques son gratuitos y están abiertos todo el día.",
+     "analisis": [
+      [
+       "contrairement aux",
+       "a diferencia de las"
+      ],
+      [
+       "grandes salles",
+       "grandes salas"
+      ],
+      [
+       "les parcs",
+       "los parques"
+      ],
+      [
+       "sont gratuits",
+       "son gratuitos"
+      ],
+      [
+       "et ouverts",
+       "y abiertos"
+      ],
+      [
+       "toute la journée",
+       "todo el día"
+      ]
+     ]
+    },
+    {
+     "fr": "Pourtant, certains habitants préfèrent s'entraîner chez eux.",
+     "es": "Sin embargo, algunos habitantes prefieren entrenar en casa.",
+     "analisis": [
+      [
+       "pourtant",
+       "sin embargo"
+      ],
+      [
+       "certains habitants",
+       "algunos habitantes"
+      ],
+      [
+       "préfèrent",
+       "prefieren"
+      ],
+      [
+       "s'entraîner",
+       "entrenar, entrenarse"
+      ],
+      [
+       "chez eux",
+       "en su casa, en casa"
+      ]
+     ]
+    },
+    {
+     "fr": "En revanche, les clubs permettent de rencontrer d'autres personnes.",
+     "es": "En cambio, los clubes permiten conocer a otras personas.",
+     "analisis": [
+      [
+       "en revanche",
+       "en cambio"
+      ],
+      [
+       "les clubs",
+       "los clubes"
+      ],
+      [
+       "permettent de",
+       "permiten"
+      ],
+      [
+       "rencontrer",
+       "conocer, encontrarse con"
+      ],
+      [
+       "d'autres personnes",
+       "otras personas"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué ventaja de los parques menciona el texto?",
+   "id": "fr109-9",
+   "opciones": [
+    {
+     "texto": "Son gratuitos y abren todo el día.",
+     "explicacion": "La segunda frase da esas dos ventajas.",
+     "correcta": true
+    },
+    {
+     "texto": "Permiten conocer a otras personas.",
+     "explicacion": "Esa ventaja se atribuye a los clubes."
+    },
+    {
+     "texto": "Tienen más equipamientos que las salas.",
+     "explicacion": "No se afirma eso."
+    }
+   ]
+  },
+  {
+   "tipo": "test",
+   "pregunta": "¿Qué contraste introduce «en revanche»?",
+   "id": "fr109-10",
+   "opciones": [
+    {
+     "texto": "Los clubes facilitan conocer gente, frente a entrenar en casa.",
+     "explicacion": "Contrasta la preferencia de algunos con la función de los clubes.",
+     "correcta": true
+    },
+    {
+     "texto": "Los parques son gratuitos, frente a los equipos deportivos.",
+     "explicacion": "Esa relación no aparece."
+    },
+    {
+     "texto": "Todos prefieren los clubes.",
+     "explicacion": "El texto no dice que todos los prefieran."
+    }
+   ]
+  },
+  {
+   "tipo": "vocabulario",
+   "titulo": "Vocabulario",
+   "palabras": [
+    "équipements",
+    "besoins",
+    "parcs",
+    "clubs",
+    "gratuits"
+   ]
   }
  ],
  "intro": "Último paso: concesión. Reconoces algo y después das tu objeción."

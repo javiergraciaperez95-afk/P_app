@@ -5,70 +5,71 @@
  "palabras": {
   "avais": {
    "es": "tenías, habías",
-   "pron": "a-VÉ",
+   "pron": "a-ve",
    "consejo": "Forma de «avoir» en imperfecto."
   },
   "avait": {
    "es": "tenía, había",
-   "pron": "a-VÉ"
+   "pron": "a-ve"
   },
   "avions": {
    "es": "teníamos, habíamos",
-   "pron": "a-VIÓN"
+   "pron": "a-vyo(n)"
   },
   "aviez": {
    "es": "teníais, habíais",
-   "pron": "a-VIÉ"
+   "pron": "a-vye"
   },
   "avaient": {
    "es": "tenían, habían",
-   "pron": "a-VÉ"
+   "pron": "a-ve"
   },
   "j'avais": {
    "es": "tenía, había (yo)",
-   "pron": "ya-VÉ"
+   "pron": "zha-ve"
   },
   "parti": {
    "es": "ido, salido",
-   "pron": "par-TÍ",
+   "pron": "par-ti",
    "consejo": "Con «être» el participio concuerda con el sujeto."
   },
   "partie": {
    "es": "ida, salida (femenino)",
-   "pron": "par-TÍ"
+   "pron": "par-ti"
   },
   "partis": {
    "es": "idos",
-   "pron": "par-TÍ"
+   "pron": "par-ti"
   },
   "parties": {
-   "es": "idas",
-   "pron": "par-TÍ"
+   "es": "idas, salidas (femenino plural)",
+   "pron": "par-ti",
+   "oculta": true
   },
   "fini": {
    "es": "terminado",
-   "pron": "fi-NÍ"
+   "pron": "fi-ni"
   },
   "oublié": {
    "es": "olvidado",
-   "pron": "u-blie-YÉ"
+   "pron": "u-bli-ye"
   },
   "repas": {
    "es": "comida (el almuerzo o la cena)",
-   "pron": "re-PÁ"
+   "pron": "re-pa"
   },
   "rentré": {
    "es": "vuelto a casa",
-   "pron": "ra(n)-TRÉ",
+   "pron": "ra(n)-tre",
    "consejo": "Participio de «rentrer»."
   },
   "faim": {
    "es": "hambre",
-   "pron": "fa(n)"
+   "pron": "fe(n)"
   },
   "arrivée": {
    "es": "llegada",
-   "pron": "a-ri-VÉ"
+   "pron": "a-ri-ve"
   }
  },
  "bloques": [
@@ -142,7 +143,6 @@
     "parti",
     "partie",
     "partis",
-    "parties",
     "fini",
     "oublié",
     "repas",
@@ -165,6 +165,10 @@
        "cuando volví"
       ],
       [
+       "Léa",
+       "Léa"
+      ],
+      [
        "avait déjà mangé",
        "ya había comido"
       ]
@@ -176,12 +180,20 @@
      "es": "Sí, tenía hambre, así que comí.",
      "analisis": [
       [
+       "Oui",
+       "sí"
+      ],
+      [
        "j'avais faim",
        "tenía hambre"
       ],
       [
        "alors",
        "así que"
+      ],
+      [
+       "j'ai mangé",
+       "comí"
       ]
      ]
     },
@@ -191,7 +203,11 @@
      "es": "¿Y tu hermano? ¿Se había ido?",
      "analisis": [
       [
-       "il était parti",
+       "Et ton frère",
+       "y tu hermano"
+      ],
+      [
+       "Il était parti",
        "se había ido"
       ]
      ]
@@ -202,8 +218,16 @@
      "es": "No, todavía estaba aquí.",
      "analisis": [
       [
-       "était encore là",
-       "todavía estaba allí"
+       "Non",
+       "no"
+      ],
+      [
+       "il était",
+       "estaba"
+      ],
+      [
+       "encore là",
+       "todavía allí"
       ]
      ]
     }
@@ -342,13 +366,24 @@
    "id": "fr067-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «ella ya se había ido»",
-   "respuestas": [
-    "elle était déjà partie"
-   ],
-   "explicacion": "Con «être» el participio concuerda con el sujeto femenino.",
-   "id": "fr067-8"
+   "tipo": "test",
+   "pregunta": "¿Cuál es la forma correcta en plus-que-parfait para «ella ya se había ido»?",
+   "id": "fr067-8",
+   "opciones": [
+    {
+     "texto": "Elle était déjà partie.",
+     "explicacion": "Con el auxiliar «être», el participio «parti» concuerda en femenino singular con el sujeto «elle» («partie»).",
+     "correcta": true
+    },
+    {
+     "texto": "Elle avait déjà parti.",
+     "explicacion": "Los verbos de movimiento como «partir» se conjugan con «être», no con «avoir»."
+    },
+    {
+     "texto": "Elle était déjà parti.",
+     "explicacion": "Falta la «e» de concordancia de género con el sujeto femenino «elle»."
+    }
+   ]
   }
  ],
  "intro": "Subimos un escalón: el pasado de un pasado. Es el plus-que-parfait."

@@ -5,7 +5,7 @@
  "palabras": {
   "dire": {
    "es": "decir",
-   "pron": "DIR"
+   "pron": "dir"
   },
   "dit": {
    "es": "dijo",
@@ -13,51 +13,51 @@
   },
   "ajouter": {
    "es": "añadir",
-   "pron": "a-zhu-TÉ"
+   "pron": "a-zhu-te"
   },
   "affirmer": {
    "es": "afirmar",
-   "pron": "a-fir-MÉ"
+   "pron": "a-fir-me"
   },
   "affirmé": {
    "es": "afirmado",
-   "pron": "a-fir-MÉ"
+   "pron": "a-fir-me"
   },
   "promettre": {
    "es": "prometer",
-   "pron": "pro-MÉTR"
+   "pron": "pro-mètr"
   },
   "promis": {
    "es": "prometido",
-   "pron": "pro-MÍ"
+   "pron": "pro-mi"
   },
   "confirmer": {
    "es": "confirmar",
-   "pron": "ko(n)-fir-MÉ"
+   "pron": "ko(n)-fir-me"
   },
   "annoncer": {
    "es": "anunciar",
-   "pron": "a-no(n)-SÉ"
+   "pron": "a-no(n)-se"
   },
   "nier": {
    "es": "negar",
-   "pron": "ni-É"
+   "pron": "nye"
   },
   "avouer": {
    "es": "confesar",
-   "pron": "a-vu-É"
+   "pron": "a-vwe"
   },
   "pensait": {
    "es": "pensaba",
-   "pron": "pa(n)-SÉ"
+   "pron": "pa(n)-sè"
   },
   "viendrait": {
    "es": "vendría",
-   "pron": "via(n)-DRÉ"
+   "pron": "vye(n)-drè"
   },
   "viendra": {
    "es": "vendrá",
-   "pron": "via(n)-DRA"
+   "pron": "vye(n)-dra"
   }
  },
  "bloques": [
@@ -131,12 +131,12 @@
      "es": "Thomas dijo que Paul estaba cansado.",
      "analisis": [
       [
-       "a dit que",
-       "dijo que"
+       "Thomas a dit que",
+       "Thomas dijo que"
       ],
       [
-       "était fatigué",
-       "estaba cansado"
+       "Paul était fatigué",
+       "Paul estaba cansado"
       ]
      ]
     },
@@ -146,12 +146,12 @@
      "es": "Thomas prometió que Léa vendría.",
      "analisis": [
       [
-       "a promis que",
-       "prometió que"
+       "Thomas a promis que",
+       "Thomas prometió que"
       ],
       [
-       "viendrait",
-       "vendría"
+       "Léa viendrait",
+       "Léa vendría"
       ]
      ]
     },
@@ -161,12 +161,12 @@
      "es": "Afirmó que Paul estaba aquí.",
      "analisis": [
       [
-       "a affirmé que",
+       "Il a affirmé que",
        "afirmó que"
       ],
       [
-       "était ici",
-       "estaba aquí"
+       "Paul était ici",
+       "Paul estaba aquí"
       ]
      ]
     }
@@ -305,13 +305,24 @@
    "id": "fr088-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «Thomas dijo que tenía hambre»",
-   "respuestas": [
-    "Thomas a dit que Léa avait faim"
-   ],
-   "explicacion": "Presente de «avoir» → imperfecto.",
-   "id": "fr088-8"
+   "tipo": "test",
+   "pregunta": "¿Cómo se traslada al estilo indirecto en pasado la frase directa «Paul a faim» introducida por «Thomas a dit que...»?",
+   "id": "fr088-8",
+   "opciones": [
+    {
+     "texto": "Thomas a dit que Paul avait faim.",
+     "explicacion": "El presente de indicativo («a») pasa a imperfecto («avait») tras un verbo introductor en pasado.",
+     "correcta": true
+    },
+    {
+     "texto": "Thomas a dit que Paul a faim.",
+     "explicacion": "En estilo indirecto clásico en pasado, el presente se transforma en imperfecto («avait»)."
+    },
+    {
+     "texto": "Thomas a dit que Paul aura faim.",
+     "explicacion": "«Aura» es futuro simple, forma no correspondiente a la concordancia temporal requerida."
+    }
+   ]
   }
  ],
  "intro": "Hoy contamos lo que otra persona ha dicho, sin repetir sus palabras exactas. Es el estilo indirecto."

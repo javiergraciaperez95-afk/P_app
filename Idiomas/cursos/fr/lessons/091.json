@@ -9,19 +9,19 @@
   },
   "prêter": {
    "es": "prestar",
-   "pron": "pre-TÉ"
+   "pron": "prè-te"
   },
   "prêtes": {
    "es": "prestas",
-   "pron": "pre-T"
+   "pron": "prèt"
   },
   "prête": {
    "es": "presta",
-   "pron": "pret"
+   "pron": "prèt"
   },
   "rendre": {
    "es": "devolver",
-   "pron": "RA(N)DR"
+   "pron": "ra(n)dr"
   },
   "rends": {
    "es": "devuelves",
@@ -29,15 +29,15 @@
   },
   "offrir": {
    "es": "ofrecer, regalar",
-   "pron": "o-FRIR"
+   "pron": "o-frir"
   },
   "offre": {
    "es": "ofrece, regala",
-   "pron": "OFR"
+   "pron": "ofr"
   },
   "montrer": {
    "es": "mostrar",
-   "pron": "mo(n)-TRÉ"
+   "pron": "mo(n)-tre"
   },
   "montre": {
    "es": "muestra",
@@ -45,15 +45,15 @@
   },
   "envoyer": {
    "es": "enviar",
-   "pron": "a(n)-vua-YÉ"
+   "pron": "a(n)-vwa-ye"
   },
   "envoie": {
    "es": "envía",
-   "pron": "a(n)-VUÁ"
+   "pron": "a(n)-vwa"
   },
   "apporter": {
    "es": "traer",
-   "pron": "a-por-TÉ"
+   "pron": "a-por-te"
   }
  },
  "bloques": [
@@ -123,11 +123,11 @@
      "analisis": [
       [
        "tu me prêtes",
-       "me prestas"
+       "me prestas (pronombre me ante el verbo)"
       ],
       [
        "ton livre",
-       "tu libro"
+       "tu libro (posesivo masculino singular)"
       ]
      ]
     },
@@ -137,12 +137,16 @@
      "es": "Sí, te lo presto mañana.",
      "analisis": [
       [
-       "je te le prête",
-       "te lo presto"
+       "oui",
+       "sí"
       ],
       [
-       "le",
-       "lo"
+       "je te le prête",
+       "te lo presto (orden: persona te + cosa le)"
+      ],
+      [
+       "demain",
+       "mañana"
       ]
      ]
     },
@@ -152,8 +156,16 @@
      "es": "¿Y me lo devuelves mañana?",
      "analisis": [
       [
+       "et",
+       "y"
+      ],
+      [
        "tu me le rends",
-       "me lo devuelves"
+       "me lo devuelves (persona me + objeto le)"
+      ],
+      [
+       "demain",
+       "mañana"
       ]
      ]
     },
@@ -163,8 +175,12 @@
      "es": "Sí, te lo devuelvo.",
      "analisis": [
       [
+       "oui",
+       "sí"
+      ],
+      [
        "je te le rends",
-       "te lo devuelvo"
+       "te lo devuelvo (persona te + cosa le ante el verbo)"
       ]
      ]
     }
@@ -323,13 +339,24 @@
    "id": "fr091-8"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «se lo doy a ellos»",
-   "respuestas": [
-    "je le leur donne"
-   ],
-   "explicacion": "Cosa (le) + persona (leur).",
-   "id": "fr091-9"
+   "tipo": "test",
+   "pregunta": "¿Cuál es la forma correcta para «se lo doy a ellos»?",
+   "id": "fr091-9",
+   "opciones": [
+    {
+     "texto": "Je le leur donne.",
+     "explicacion": "Orden de pronombres de 3.ª persona: cosa directa (le) + personas indirectas (leur).",
+     "correcta": true
+    },
+    {
+     "texto": "Je leur le donne.",
+     "explicacion": "Orden incorrecto: con «lui» y «leur», el objeto directo (le/la/les) va primero."
+    },
+    {
+     "texto": "Je le les donne.",
+     "explicacion": "«Les» es pronombre directo; el indirecto plural es «leur»."
+    }
+   ]
   }
  ],
  "intro": "Hoy practicamos dos combinaciones frecuentes de pronombres y su orden."

@@ -5,26 +5,32 @@
   "intro": {"en": "The verb ir, the little words al and del, and how you get there."},
   "palabras": {
     "voy": {"en": "I go", "pron": "boi", "cat": "verb"},
-    "vas": {"en": "you go", "pron": "bas", "cat": "verb"},
-    "va": {"en": "he/she goes", "pron": "ba", "cat": "verb"},
+    "vas": {"en": "you go (tú/vos)", "pron": "bas", "cat": "verb"},
+    "va": {"en": "he/she/usted goes", "pron": "ba", "cat": "verb"},
     "vamos": {"en": "we go, let's go", "pron": "BA-mos", "cat": "verb"},
-    "van": {"en": "they go", "pron": "ban", "cat": "verb"},
+    "vais": {"en": "you all go (vosotros, familiar; Spain)", "pron": "bais", "cat": "verb"},
+    "van": {"en": "they/you all (ustedes) go", "pron": "ban", "cat": "verb"},
     "adónde": {"en": "where to", "pron": "a-DON-de", "cat": "question word"},
     "al": {
       "en": "to the (a + el)",
       "pron": "al",
       "cat": "preposition",
-      "nota": "A + el always joins: al. A + la stays: a la."
+      "nota": "A + the masculine article el contracts to al; a + la stays separate. Do not contract when the article belongs to a proper name: a El Salvador."
     },
-    "del": {"en": "from the, of the (de + el)", "pron": "del", "cat": "preposition"},
+    "del": {"en": "from the, of the (de + the masculine article el)", "pron": "del", "cat": "preposition", "nota": "De + the article el contracts to del; keep them separate when el is part of a proper name: de El Salvador."},
+    "el centro": {"en": "the town/city centre", "pron": "el THEN-tro (Spain); el SEN-tro (seseo)", "genero": "m"},
+    "la casa": {"en": "the house/home", "pron": "la KA-sa", "genero": "f"},
+    "la playa": {"en": "the beach", "pron": "la PLA-ya", "genero": "f"},
     "el metro": {"en": "the underground", "pron": "el ME-tro", "genero": "m"},
     "el autobús": {"en": "the bus", "pron": "el au-to-BUS", "genero": "m"},
+    "en tren": {"en": "by train", "pron": "en TREN", "cat": "expression"},
+    "en bici": {"en": "by bike (short for en bicicleta)", "pron": "en BI-thi (Spain); en BI-si (seseo)", "cat": "expression"},
     "en coche": {"en": "by car", "pron": "en KO-che", "cat": "expression"},
     "a pie": {
       "en": "on foot",
       "pron": "a pye",
       "cat": "expression",
-      "nota": "A pie is the one that takes a. Vehicles take en."
+      "nota": "Say a pie, but use en + transport in phrases such as en metro or en coche."
     },
     "vengo": {"en": "I come", "pron": "BEN-go", "cat": "verb"},
     "vienes": {"en": "you come", "pron": "BYE-nes", "cat": "verb"},
@@ -35,7 +41,7 @@
       "tipo": "explicacion",
       "titulo": {"en": "Ir, and how to get there"},
       "texto": {
-        "en": "**Ir** is irregular: voy, vas, va, vamos, vais, van. The place takes **a**: voy **a** casa, voy **a la** playa.\n\n**A + el** becomes **al**, and **de + el** becomes **del**: voy **al** centro, vengo **del** trabajo.\n\nTransport takes **en**: en metro, en autobús, en coche, en tren, en bici. Walking is **a pie**.\n\n**Venir** is vengo, vienes, viene, venimos, venís, vienen. Ir moves away from where the speaker is. Venir moves towards the speaker. So when a friend asks ¿Vienes?, the answer is **Sí, voy**, not vengo."
+        "en": "**Ir** is irregular: voy, vas, va, vamos, vais, van. Some speakers use **vos**; for example, **vos vas**. For a destination, use **a**: voy **a** casa, voy **a la** playa. Before the masculine article **el**, **a + el = al** and **de + el = del**: voy **al** centro, vengo **del** centro. Keep the article separate inside a proper name: **a El Salvador**.\n\nFor these transport phrases, use **en**: en metro, en autobús, en coche, en tren, en bici. Say **a pie** for walking.\n\n**Venir** is vengo, vienes, viene, venimos, venís, vienen; in voseo areas, **vos venís** is also used. **Ir** describes going from the current place toward a destination. **Venir** describes movement toward the speaker, listener or a place treated as the reference point. In this dialogue, Lucía is leaving her location to go to Pablo's destination, so she says **Sí, voy**; English often says “I'm coming.”"
       }
     },
     {
@@ -59,7 +65,7 @@
           "es": "Sí, voy contigo. ¿Cómo vamos?",
           "en": "Yes, I'm coming with you. How are we getting there?",
           "analisis": [["voy", "verb"], ["contigo", "with you"], ["¿Cómo", "question"], ["vamos", "verb"]],
-          "nota": "English says I'm coming. Spanish says voy, because you move away from where you are."
+          "nota": "Here Lucía says voy from her current location toward Pablo's destination, even though English often says “I'm coming”."
         },
         {
           "quien": "Pablo",
@@ -79,13 +85,13 @@
     {
       "tipo": "huecos",
       "id": "ir-centro-1",
-      "pregunta": {"en": "Complete: I'm going to the cinema."},
-      "frase": "Voy ___ cine.",
+      "pregunta": {"en": "Complete: I'm going to the town centre."},
+      "frase": "Voy ___ centro.",
       "audio": true,
       "opciones": {
         "al": {"en": "A and el join into al."},
-        "a el": {"en": "A and el always join: al."},
-        "a la": {"en": "Cine is masculine."}
+        "a el": {"en": "With the article here, write al rather than a el."},
+        "a la": {"en": "Centro is masculine."}
       },
       "correcta": "al"
     },
@@ -96,22 +102,35 @@
       "frase": "Vamos ___ coche.",
       "audio": true,
       "opciones": {
-        "en": {"en": "Vehicles take en."},
-        "a": {"en": "Only a pie takes a."},
-        "con": {"en": "Con would mean together with the car."}
+        "en": {"en": "For this transport phrase, use en coche."},
+        "a": {"en": "Use en coche; a pie is the fixed phrase for walking."},
+        "de": {"en": "De coche is not the usual phrase for travelling by car."}
       },
       "correcta": "en"
     },
     {
+      "tipo": "huecos",
+      "id": "ir-centro-del",
+      "pregunta": {"en": "Complete: I come from the town centre."},
+      "frase": "Vengo ___ centro.",
+      "audio": true,
+      "opciones": {
+        "del": {"en": "De + the article el contracts to del."},
+        "de el": {"en": "The article el contracts after de."},
+        "al": {"en": "Al means to the, not from the."}
+      },
+      "correcta": "del"
+    },
+    {
       "tipo": "test",
       "id": "ir-centro-3",
-      "pregunta": {"en": "A friend phones: «¿Vienes a la fiesta?» You are about to leave home. What do you answer?"},
+      "pregunta": {"en": "Complete with the first-person form of ir: «___ al centro»."},
       "opciones": {
-        "Sí, voy": {"en": "You move away from where you are, so Spanish uses ir."},
-        "Sí, vengo": {"en": "Vengo would mean you move towards the place where you are now."},
-        "Sí, vas": {"en": "Vas is the tú form."}
+        "Voy": {"en": "Voy is the first-person singular of ir."},
+        "Vengo": {"en": "Vengo is the first-person singular of venir."},
+        "Vas": {"en": "Vas is the familiar second-person form of ir."}
       },
-      "correcta": "Sí, voy"
+      "correcta": "Voy"
     },
     {
       "tipo": "escribir",

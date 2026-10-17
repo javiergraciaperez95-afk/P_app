@@ -2,22 +2,26 @@
   "capitulo": 8,
   "titulo_es": "Lo veo",
   "titulo": { "en": "I see it" },
-  "intro": { "en": "Lo, la, los and las replace a noun you have already mentioned." },
+  "intro": { "en": "Lo, la, los and las can replace a previously mentioned direct object; the pronoun matches its grammatical gender and number." },
   "palabras": {
-    "lo": { "en": "him, it (masculine)", "pron": "lo", "cat": "pronoun" },
-    "la": { "en": "her, it (feminine)", "pron": "la", "cat": "pronoun" },
-    "los": { "en": "them (masculine)", "pron": "los", "cat": "pronoun" },
-    "las": { "en": "them (feminine)", "pron": "las", "cat": "pronoun" },
+    "lo": { "en": "him/it (masculine direct object)", "pron": "lo", "cat": "pronoun" },
+    "la": { "en": "her/it (feminine direct object)", "pron": "la", "cat": "pronoun" },
+    "los": { "en": "them (masculine plural direct object)", "pron": "los", "cat": "pronoun" },
+    "las": { "en": "them (feminine plural direct object)", "pron": "las", "cat": "pronoun" },
     "veo": { "en": "I see", "pron": "BE-o", "cat": "verb" },
     "compro": { "en": "I buy", "pron": "KOM-pro", "cat": "verb" },
-    "el pan": { "en": "the bread", "pron": "el pan", "genero": "m" },
-    "a": { "en": "personal a", "pron": "a", "cat": "preposition", "nota": "A person who is the object takes a: veo a Pablo." }
+    "el pan": { "en": "the bread", "pron": "el pan", "cat": "noun", "genero": "m" },
+    "a": { "en": "personal a", "pron": "a", "cat": "preposition", "nota": "A specific person as direct object usually takes a before the noun: veo a Pablo." },
+    "le": { "en": "to him/her/you formal (usually indirect object)", "pron": "le", "cat": "pronoun", "nota": "Some varieties also accept le as a direct object for a masculine singular person; for a feminine person such as Ana, use la." },
+    "el libro": { "en": "the book", "pron": "el LI-bro", "cat": "noun", "genero": "m" },
+    "la casa": { "en": "the house", "pron": "la KA-sa", "cat": "noun", "genero": "f" },
+    "las llaves": { "en": "the keys", "pron": "las YA-bes", "cat": "noun", "genero": "f" }
   },
   "bloques": [
     {
       "tipo": "explicacion",
       "titulo": "Replace the noun",
-      "texto": "The pronoun goes **before** a conjugated verb and matches the noun.\n\n- el libro → **Lo** veo.\n- la casa → **La** veo.\n- los libros → **Los** compro.\n- las llaves → **Las** tengo.\n\nA person still takes **a** when the noun is there: veo **a** Pablo. Then: **lo** veo."
+      "texto": "In these simple present-tense examples, the pronoun goes **before** the conjugated verb and matches the direct object in grammatical gender and number.\n\n- el libro → **Lo** veo.\n- la casa → **La** veo.\n- los libros → **Los** compro.\n- las llaves → **Las** tengo.\n\nA specific person as a direct object usually takes personal **a** before the noun: veo **a** Pablo. When replaced by a pronoun, the **a** is not repeated: **Lo** veo. In **Las llaves las tengo yo**, the noun stays for emphasis and the pronoun repeats it."
     },
     {
       "tipo": "dialogo",
@@ -65,7 +69,7 @@
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["lo", "la", "los", "las", "veo", "compro", "el pan"]
+      "palabras": ["lo", "la", "los", "las", "veo", "compro", "el pan", "a", "le", "el libro", "la casa", "las llaves"]
     },
     {
       "tipo": "huecos",
@@ -83,8 +87,8 @@
     {
       "tipo": "ordenar",
       "id": "a2-lo-veo",
-      "frase": "Yo veo a Ana",
-      "traduccion": { "en": "I see Ana." }
+      "frase": "Yo la veo",
+      "traduccion": { "en": "I see her." }
     },
     {
       "tipo": "huecos",
@@ -95,7 +99,7 @@
       "opciones": {
         "La": {"en": "A woman as direct object: la."},
         "Lo": {"en": "Lo is masculine."},
-        "Le": {"en": "Le is the receiver, not the direct object."}
+        "Le": {"en": "For Ana as a feminine direct object, use la; le usually marks an indirect object."}
       },
       "correcta": "La"
     },

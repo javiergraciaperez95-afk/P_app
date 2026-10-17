@@ -1,0 +1,250 @@
+RESUMEN 14 — AUDITORÍA Y AMPLIACIÓN DEL CURSO DE VIETNAMITA A1–B2
+Fecha del resumen: 16-10-2026
+
+OBJETIVO GENERAL
+
+Durante esta conversación se estudió la organización del proyecto y, en particular, el funcionamiento del curso de vietnamita. Después se auditó, corrigió y amplió sucesivamente el contenido de los niveles A1, A2, B1 y B2.
+
+El trabajo tuvo dos partes principales:
+
+- Comparar lo que enseñaba el curso con los contenidos y descriptores esperables para cada nivel de vietnamita como lengua extranjera.
+- Editar las lecciones para reforzar las carencias encontradas, especialmente la comprensión lectora, sin convertir las lecciones en muros de texto.
+
+Por indicación expresa del usuario, la evaluación y las mejoras no se centraron en expresión escrita, expresión oral ni comprensión oral, porque la aplicación no permite practicar bien esas competencias.
+
+ESTUDIO INICIAL DEL PROYECTO
+
+Primero se revisó cómo está organizado el proyecto y cómo se cargan, validan y muestran las lecciones. Se estudió especialmente:
+
+- La carpeta Idiomas/cursos/vi/lessons/, que contiene los JSON del curso de vietnamita.
+- El archivo capitulos.json, que define los capítulos, títulos y descripciones.
+- Idiomas/js/lessons.js, responsable de descubrir, cargar, adaptar y revisar las lecciones.
+- Idiomas/js/app.js, que controla la navegación y determina cuál es la siguiente lección.
+- Idiomas/js/vistas/lecciones.js y vistas/leccion.js, que muestran la lista y el contenido de las lecciones.
+- Idiomas/js/cursos.js, donde aparece el número total de lecciones del curso.
+- Las herramientas de generación del bloque B1–B2 situadas en _herramientas/vi_b1b2/.
+
+Se comprobó que las lecciones se descubren mediante archivos numerados 001.json, 002.json, 003.json, etc., y que esos números también se usan para rutas y progreso guardado. Por ello, renumerar las 263 lecciones existentes habría podido alterar el progreso del alumnado.
+
+AUDITORÍAS PEDAGÓGICAS DE A1, A2, B1 Y B2
+
+Se realizó una auditoría separada de cada nivel. En cada una se comparó el curso con fuentes oficiales o universitarias y se redactó un informe de carencias.
+
+Las fuentes principales consultadas fueron:
+
+- Marco de competencia de vietnamita para extranjeros, Circular 17/2015/TT-BGDĐT del Ministerio de Educación y Formación de Vietnam:
+  https://vanban.chinhphu.vn/default.aspx?docid=181505&pageid=27160
+
+- Traducción detallada del marco vietnamita para extranjeros:
+  https://thuvienphapluat.vn/van-ban/Giao-duc/Circular-No-17-2015-TT-BGDDT-issuing-the-Vietnamese-language-ability-framework-for-foreigners-291798.aspx?tab=3
+
+- Investigación de la Universidad de Huế sobre dificultad textual y creación de un corpus de lecturas A2, B1 y B2:
+  https://jos.hueuni.edu.vn/index.php/hujos-ssh/article/view/7133
+
+- Investigación de la Universidad de Educación de Ciudad Ho Chi Minh sobre selección y distribución de gramática en materiales intermedios:
+  https://journal.hcmue.edu.vn/index.php/hcmuejos/article/view/3802?lang=en_US
+
+- Programa universitario de vietnamita de la Universidad Nacional de Vietnam, Hanoi:
+  https://www.ussh.vnu.edu.vn/vi/dao-tao/khung-nang-luc-tieng-viet-danh-cho-nguoi-nuoc-ngoai/chuong-trinh-boi-duong-theo-khung-nang-luc-tieng-viet-dung-cho-nguoi-nuoc-ngoai-21634.html
+
+La conclusión general de las auditorías fue que el curso tenía una base extensa de vocabulario y gramática, pero necesitaba reforzar de manera clara la lectura funcional, la variedad de géneros, la búsqueda de información, las inferencias, la lectura de datos y la comparación crítica de fuentes.
+
+En A1 faltaban suficientes textos funcionales muy sencillos: carteles, etiquetas, perfiles, postales, mensajes, menús y horarios.
+
+En A2 la carencia era mayor. Había muy pocos bloques de texto auténticamente útiles para entrenar lectura. Faltaban anuncios, recibos, normas, instrucciones, correos, citas, transporte, directorios y otros documentos cotidianos.
+
+En B1 ya existían algunas lecturas, pero faltaba variedad suficiente: cartas personales, noticias breves, instrucciones, avisos de servicio, ofertas, comparaciones, tablas, opinión y reseñas.
+
+En B2 había más lecturas, aunque todavía faltaban textos con condiciones y excepciones, comparación de fuentes, reclamaciones, informes con datos, divulgación científica, normas administrativas y lectura literaria con lenguaje figurado.
+
+PRIMERAS MEJORAS DE LOS NIVELES
+
+Tras cada auditoría, la tarea cambió de análisis a edición. Se reforzaron sucesivamente A1, A2, B1 y B2, procurando que las explicaciones y lecturas tuvieran una longitud moderada.
+
+Se revisaron contenidos gramaticales, vocabulario, lecturas, repasos y exámenes. Cuando fue necesario se dividió material, se añadieron actividades y se corrigieron formulaciones. En B2 se trabajó especialmente la comprensión de opiniones, avisos, cartas, reseñas y textos argumentativos.
+
+También se repararon errores de formato JSON encontrados durante las revisiones. Entre ellos hubo problemas de comas en varias lecciones B2. Posteriormente apareció otro error en la lección 252 y también fue corregido.
+
+INFORME GLOBAL A1–B2 Y AUTOAUDITORÍA
+
+Después de completar las primeras mejoras se redactó un informe global sobre los cambios realizados desde A1 hasta B2. Se estimó la cobertura de cada nivel, aunque posteriormente, durante la autoauditoría, se reconoció que los porcentajes iniciales no estaban suficientemente fundamentados y se retiraron como medida objetiva.
+
+La autoauditoría volvió a leer el curso con una actitud crítica y lo comparó de nuevo con las fuentes. Se detectó que la mejora anterior seguía dejando una debilidad estructural: la cantidad y diversidad de comprensión lectora todavía no era suficiente, especialmente en A2.
+
+También se detectó una afirmación inadecuada en el repaso B1. La lección 202 decía que el alumno podía entender una conversación normal y pedía leer expresiones en voz alta. Esa afirmación no estaba justificada por las competencias practicadas dentro de la app. Se sustituyó por una descripción centrada en reconocer opiniones, razones y relaciones entre ideas en textos claros.
+
+PLAN DE AMPLIACIÓN
+
+La autoauditoría propuso llevar el curso a un total situado entre 280 y 340 lecciones. Finalmente se eligió un total de 300, distribuidas así:
+
+- A1: 105 lecciones.
+- A2: 55 lecciones.
+- B1: 70 lecciones.
+- B2: 70 lecciones.
+
+La ampliación necesaria era de 37 lecciones:
+
+- 4 lecciones nuevas para A1.
+- 13 lecciones nuevas para A2.
+- 10 lecciones nuevas para B1.
+- 10 lecciones nuevas para B2.
+
+NUEVAS LECCIONES A1
+
+Se añadieron cuatro lecciones de comprensión lectora básica:
+
+1. Carteles, etiquetas y señales sencillas.
+2. Ficha personal y miniperfil.
+3. Postal y mensajes breves.
+4. Menú corto y horario de apertura.
+
+Estas lecciones trabajan nombres, lugares, relaciones familiares, precios, horarios y finalidad de mensajes cortos. Los textos se mantuvieron pequeños y directos.
+
+NUEVAS LECCIONES A2
+
+Se añadieron trece lecciones centradas en documentos cotidianos:
+
+1. Cartel de evento y horario.
+2. Comparación de anuncios de alojamiento.
+3. Lista de precios y recibo.
+4. Confirmación de pedido y problema de entrega.
+5. Normas de un edificio.
+6. Instrucciones de uso de una arrocera y advertencias.
+7. Correo personal con planes y sentimientos.
+8. Hilo de mensajes con petición, respuesta y confirmación.
+9. Cita médica e instrucciones previas.
+10. Pronóstico del tiempo y plan de viaje.
+11. Cambio de una ruta de autobús.
+12. Directorio de servicios del barrio.
+13. Repaso integrado de anuncios, normas, horarios y mensajes.
+
+Estas lecciones refuerzan la capacidad de localizar fechas, precios, cantidades, obligaciones, prohibiciones, condiciones, direcciones y pasos de un procedimiento.
+
+NUEVAS LECCIONES B1
+
+Se añadieron diez lecciones con textos claros sobre temas conocidos:
+
+1. Carta personal sobre una experiencia y una mudanza.
+2. Noticia local breve sobre tráfico e inundaciones.
+3. Instrucciones para obtener un carné de biblioteca.
+4. Aviso de mantenimiento de un servicio.
+5. Comparación de un anuncio de empleo y un curso.
+6. Comparación de dos planes de internet.
+7. Lectura de una tabla de visitantes de un museo.
+8. Artículo de opinión sobre aprendizaje en línea.
+9. Dos reseñas de una película.
+10. Lectura integrada B1 con convocatoria y mensajes.
+
+En este tramo se entrenan idea principal, causa y consecuencia, requisitos, plazos, comparación, postura, razones, recomendaciones y relación entre texto y datos.
+
+NUEVAS LECCIONES B2
+
+Se añadieron diez lecciones con mayor densidad y variedad textual:
+
+1. Comparación de dos noticias sobre una medida de tráfico.
+2. Procedimiento formal con condiciones, plazos y excepciones.
+3. Reclamación de un cliente y respuesta del servicio.
+4. Argumento con tesis, objeción, propuesta y condición final.
+5. Informe acompañado de una tabla de consumo eléctrico.
+6. Texto divulgativo sobre sueño y concentración, con resultados y limitaciones.
+7. Norma administrativa extensa sobre préstamo de equipos.
+8. Fragmento literario con imágenes y tono implícito.
+9. Comparación del alcance y la representatividad de dos fuentes.
+10. Prueba integrada B2 sobre un programa piloto de reciclaje.
+
+En B2 se trabajaron tesis, concesiones, condiciones, excepciones, alcance de conclusiones, distinción entre correlación y causalidad, unidades estadísticas, representatividad de muestras, lenguaje figurado y evaluación crítica de evidencia.
+
+FORMATO DE LAS 37 LECCIONES NUEVAS
+
+Las nuevas lecciones se guardaron como los archivos 264.json a 300.json dentro de Idiomas/cursos/vi/lessons/.
+
+Cada lección contiene normalmente:
+
+- Una estrategia breve de lectura.
+- Cinco palabras o expresiones clave.
+- Uno o varios textos divididos en frases manejables.
+- Traducción española para revisar después de intentar comprender.
+- Tres preguntas de comprensión con cuatro opciones.
+- Una única respuesta correcta y una explicación breve.
+
+Algunas lecciones B1 y B2 incorporan tablas para comprobar que el alumno distingue unidades, periodos, cantidades absolutas, promedios y porcentajes.
+
+ORDEN PEDAGÓGICO Y CONSERVACIÓN DEL PROGRESO
+
+Las 37 lecciones nuevas recibieron IDs internos 264–300. No se renumeraron las 263 lecciones anteriores porque sus IDs se utilizan en las rutas y en el progreso guardado.
+
+Para que las nuevas lecciones aparezcan dentro del nivel correspondiente y antes de su repaso final, se incorporó un campo orden_curso. La aplicación ordena ahora las lecciones de vietnamita por capítulo y por ese orden pedagógico.
+
+El número visible se calcula siguiendo la ruta ordenada, mientras que el ID interno permanece estable. De este modo:
+
+- Las lecciones nuevas de A1 aparecen antes del examen de A1.
+- Las de A2 aparecen antes del repaso final de A2.
+- Las de B1 aparecen antes del repaso y examen B1.
+- Las de B2 aparecen antes del repaso y examen B2.
+- El progreso anterior conserva sus identificadores originales.
+
+Los archivos de navegación modificados fueron:
+
+- Idiomas/js/app.js
+- Idiomas/js/lessons.js
+- Idiomas/js/vistas/lecciones.js
+- Idiomas/js/vistas/leccion.js
+
+METADATOS Y HERRAMIENTAS ACTUALIZADOS
+
+Se actualizó Idiomas/js/cursos.js para que el curso de vietnamita indique 300 lecciones.
+
+Se actualizaron las descripciones de los capítulos 15, 25, 37 y 49 en Idiomas/cursos/vi/lessons/capitulos.json para reflejar las nuevas lecturas.
+
+También se actualizaron las descripciones de los capítulos 37 y 49 en _herramientas/vi_b1b2/capitulos.txt, para evitar que una futura compilación restaure metadatos antiguos.
+
+La corrección del resumen B1 se reflejó tanto en Idiomas/cursos/vi/lessons/202.json como en su fuente _herramientas/vi_b1b2/fuente/202.txt.
+
+CORRECCIONES ADICIONALES
+
+Además de las nuevas lecciones, se hicieron estas correcciones relevantes:
+
+- Se eliminó del repaso B1 la afirmación de que el alumno ya entiende una conversación normal.
+- Se eliminó la recomendación obligatoria de leer las estructuras en voz alta.
+- Se reparó la sintaxis de la lección 252, que tenía comas sobrantes y no podía analizarse como JSON válido.
+- Se corrigió una formulación médica de la nueva lección 276 para presentar el ayuno como una instrucción concreta de esa cita, no como consejo médico general.
+- Se mejoró una colocación vietnamita de la lección 291: mức độ ùn tắc.
+- Se actualizó la descripción del capítulo 49, que antes estaba demasiado enfocada en escritura y no representaba las nuevas tareas de comprensión B2.
+
+VALIDACIÓN FINAL
+
+Al finalizar se hizo una comprobación completa de integridad del curso. El resultado fue:
+
+- 300 archivos de lección consecutivos, desde 001.json hasta 300.json.
+- 49 capítulos presentes.
+- 2.852 ejercicios con identificadores únicos.
+- Exactamente una respuesta correcta en cada ejercicio de opción múltiple.
+- Bloques de vocabulario correctamente vinculados con las fichas de palabras.
+- Tablas con el mismo número de columnas en todas sus filas.
+- Orden pedagógico correcto dentro de cada nivel.
+- Las nuevas lecturas aparecen antes de los repasos y exámenes finales.
+- Total del catálogo actualizado a 300.
+- Sintaxis válida en los cuatro módulos JavaScript modificados.
+
+El reparto final comprobado fue:
+
+- A1: capítulos 1–15, 105 lecciones.
+- A2: capítulos 16–25, 55 lecciones.
+- B1: capítulos 26–37, 70 lecciones.
+- B2: capítulos 38–49, 70 lecciones.
+
+LIMITACIONES Y ASUNTOS A REVISAR
+
+- No hubo revisión por un hablante nativo o docente universitario de vietnamita.
+- La clasificación pedagógica se apoya en el marco oficial y fuentes universitarias, pero no equivale a una certificación formal del nivel.
+- No se aplicó una fórmula automática de legibilidad a cada texto nuevo.
+- No se ejecutó la suite completa de pruebas del proyecto ni una prueba funcional integral en navegador.
+- Sí se validaron todos los JSON, los ejercicios, las tablas, los recuentos, el orden pedagógico y la sintaxis JavaScript modificada.
+- Las lecciones nuevas están concentradas en los capítulos finales de cada nivel, aunque aparecen antes de los repasos. En una revisión futura podría estudiarse su distribución entre más capítulos si se desea una alternancia todavía más gradual.
+- Los porcentajes de calidad mencionados en un informe anterior se consideraron apreciaciones subjetivas y no deben tratarse como mediciones objetivas.
+
+RESULTADO FINAL
+
+El curso de vietnamita quedó ampliado de 263 a 300 lecciones. La ampliación se centró en las carencias de comprensión lectora señaladas por las auditorías y mantuvo textos de longitud moderada.
+
+La estructura final conserva el progreso existente, integra las nuevas lecciones antes de los cierres de nivel y ofrece una progresión de lectura desde carteles y mensajes A1 hasta informes, normas, argumentos, fuentes y textos literarios B2.

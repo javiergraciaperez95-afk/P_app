@@ -9,11 +9,12 @@
   },
   "douter": {
    "es": "dudar",
-   "pron": "du-TÉ"
+   "pron": "du-te"
   },
   "pense": {
    "es": "pienso",
-   "pron": "pa(n)s"
+   "pron": "pa(n)s",
+   "oculta": true
   },
   "croire": {
    "es": "creer",
@@ -25,23 +26,23 @@
   },
   "possible": {
    "es": "posible",
-   "pron": "po-SIBL"
+   "pron": "po-sibl"
   },
   "impossible": {
    "es": "imposible",
-   "pron": "i(n)-po-SIBL"
+   "pron": "e(n)-po-sibl"
   },
   "probable": {
    "es": "probable",
-   "pron": "pro-BABL"
+   "pron": "pro-babl"
   },
   "certain": {
    "es": "seguro, cierto",
-   "pron": "ser-TA(N)"
+   "pron": "sèr-te(n)"
   },
   "certainement": {
    "es": "ciertamente",
-   "pron": "ser-ten-MA(N)"
+   "pron": "sèr-tèn-ma(n)"
   },
   "faux": {
    "es": "falso",
@@ -49,7 +50,7 @@
   },
   "incertain": {
    "es": "incierto",
-   "pron": "i(n)-ser-TA(N)"
+   "pron": "e(n)-sèr-te(n)"
   }
  },
  "bloques": [
@@ -105,7 +106,6 @@
    "palabras": [
     "doute",
     "douter",
-    "pense",
     "croire",
     "crois",
     "possible",
@@ -127,12 +127,12 @@
      "es": "No creo que Thomas esté allí.",
      "analisis": [
       [
-       "je ne pense pas que",
-       "no creo que"
+       "Je ne pense pas que",
+       "no creo que / no pienso que"
       ],
       [
-       "soit là",
-       "esté allí"
+       "Thomas soit là",
+       "Thomas esté allí"
       ]
      ]
     },
@@ -142,12 +142,12 @@
      "es": "Dudo que Léa esté enferma.",
      "analisis": [
       [
-       "je doute que",
+       "Je doute que",
        "dudo que"
       ],
       [
-       "soit malade",
-       "esté enferma"
+       "Léa soit malade",
+       "Léa esté enferma"
       ]
      ]
     },
@@ -157,12 +157,12 @@
      "es": "Es seguro que Thomas está allí.",
      "analisis": [
       [
-       "c'est certain que",
+       "C'est certain que",
        "es seguro que"
       ],
       [
-       "est là",
-       "está allí"
+       "Thomas est là",
+       "Thomas está allí"
       ]
      ]
     },
@@ -171,6 +171,10 @@
      "fr": "Oui, c'est probable.",
      "es": "Sí, es probable.",
      "analisis": [
+      [
+       "Oui",
+       "sí"
+      ],
       [
        "c'est probable",
        "es probable"
@@ -312,13 +316,24 @@
    "id": "fr080-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «dudo que tengas razón»",
-   "respuestas": [
-    "je doute que tu aies raison"
-   ],
-   "explicacion": "«Douter que» + subjuntivo.",
-   "id": "fr080-8"
+   "tipo": "test",
+   "pregunta": "¿Cómo se traduce «dudo que tengas razón»?",
+   "id": "fr080-8",
+   "opciones": [
+    {
+     "texto": "Je doute que tu aies raison.",
+     "explicacion": "«Douter que» expresa duda y exige subjuntivo («aies»).",
+     "correcta": true
+    },
+    {
+     "texto": "Je doute que tu as raison.",
+     "explicacion": "«Tu as» es presente de indicativo; tras duda se requiere subjuntivo."
+    },
+    {
+     "texto": "Je pense que tu aies raison.",
+     "explicacion": "«Penser que» en afirmativa expresa creencia o certeza y lleva indicativo («tu as»)."
+    }
+   ]
   }
  ],
  "intro": "Ahora las dudas, las opiniones y lo que es posible o seguro. Aquí conviene fijarse bien."

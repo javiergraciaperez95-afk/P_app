@@ -1,0 +1,179 @@
+RESUMEN DEL TRABAJO: CURSO DE GRIEGO MODERNO A1–B2
+Fecha: 16 de octubre de 2026
+
+1. OBJETIVO Y DESARROLLO DE LA CONVERSACIÓN
+
+El trabajo comenzó con una petición de revisar con calma cómo está estructurada la aplicación y cómo se construyen sus lecciones, sin programar todavía. Después se pidió crear progresivamente los niveles de griego moderno A1, A2, B1 y B2, consultando antes fuentes oficiales en internet y respetando la estructura de la web y el contenido ya existente.
+
+Una vez terminados esos cuatro niveles, se solicitó una auditoría crítica de todo el curso: revisar lo creado, contrastarlo de nuevo con fuentes oficiales, identificar errores y carencias, redactar un informe y proponer las lecciones necesarias para dejar el curso entre 280 y 340 lecciones. La propuesta resultante fijó el objetivo editorial en 300 lecciones.
+
+Finalmente se autorizó crear todas las lecciones que faltaban y arreglar los problemas encontrados. Ese trabajo quedó terminado y revisado.
+
+2. ESTRUCTURA DE LA APLICACIÓN QUE SE ESTUDIÓ
+
+Se revisaron los archivos publicados del curso, los textos fuente disponibles, los capítulos, el compilador y las partes de la aplicación que muestran y corrigen los ejercicios.
+
+La aplicación guarda las lecciones publicadas como JSON dentro de:
+- Idiomas/cursos/el/lessons/
+
+El formato de autoría admite explicaciones, fichas de vocabulario, diálogos, textos de lectura, preguntas de selección, traducciones, huecos, escuchas, ejercicios de ordenar y tareas de escritura. El compilador transforma los textos fuente en los JSON que consume la web y actualiza el número de lecciones del curso.
+
+También se comprobó cómo se guarda el progreso. Los identificadores antiguos de ejercicios se conservaron para no invalidar el progreso de usuarios que ya hubieran trabajado con las primeras 124 lecciones. Los ejercicios de las lecciones nuevas sí usan identificadores globales alineados con el número real de lección.
+
+3. INVESTIGACIÓN EN INTERNET Y CRITERIO PEDAGÓGICO
+
+Antes de ampliar y auditar el curso se consultaron fuentes oficiales del Centro de Lengua Griega y del Consejo de Europa:
+
+- A1 del Centro de Lengua Griega: https://www.greek-language.gr/certification/node/97.html
+- A2 del Centro de Lengua Griega: https://www.greek-language.gr/certification/node/98.html
+- B1 del Centro de Lengua Griega: https://www.greek-language.gr/certification/node/99.html
+- B2 del Centro de Lengua Griega: https://www.greek-language.gr/certification/node/101.html
+- Estructura de los exámenes: https://www.greek-language.gr/certification/node/119.html
+- Muestras B1: https://www.greek-language.gr/certification/node/142.html
+- Muestras B2: https://www.greek-language.gr/certification/node/149.html
+- Volumen complementario del MCER del Consejo de Europa: https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4
+
+Estas fuentes describen las competencias, géneros y tareas esperables por nivel, pero no fijan un número oficial de lecciones. El objetivo de 300 fue una decisión editorial para equilibrar comprensión oral y escrita, interacción, mediación, gramática, vocabulario y producción.
+
+4. AUDITORÍA DEL CURSO DE 124 LECCIONES
+
+Antes de la ampliación final, el curso tenía 124 lecciones y 40 capítulos:
+- A1: 31 lecciones.
+- A2: 31 lecciones.
+- B1: 31 lecciones.
+- B2: 31 lecciones.
+
+La auditoría encontró los siguientes problemas principales:
+
+- Los 31 ejercicios de huecos heredados de B1 tenían la respuesta correcta en griego, pero 62 distractores estaban en español. Eso hacía que la opción correcta resultara evidente y que el ejercicio no practicara realmente la lengua.
+- Las tareas abiertas de escritura de B1 y B2 se corregían contra una única respuesta modelo. Una respuesta válida con otra formulación podía marcarse como incorrecta.
+- La lectura independiente era muy escasa después de A1: A2 solo tenía dos bloques de texto, B1 no tenía ninguno y varias lecturas de B2 copiaban literalmente los diálogos.
+- La escucha repetía casi siempre el mismo formato de reconocer una frase y elegir su significado.
+- Los ejercicios seguían un patrón demasiado predecible.
+- Las 214 fichas visibles de vocabulario de B2 no incluían guía de pronunciación.
+- Los identificadores antiguos de ejercicios no coincidían con la numeración global de sus archivos, aunque el seguimiento de progreso combinaba lección y ejercicio y no se demostró una colisión real.
+- No había constancia de una revisión lingüística externa por una persona especialista o nativa.
+
+El informe completo se guardó en:
+- _herramientas/cursos/INFORME_AUDITORIA_GRIEGO_A1-B2.md
+
+5. PLAN DE AMPLIACIÓN Y LECCIONES CREADAS
+
+Se añadieron 176 lecciones y el curso pasó de 124 a 300:
+
+- A1: 36 lecciones nuevas; 67 en total.
+- A2: 42 lecciones nuevas; 73 en total.
+- B1: 46 lecciones nuevas; 77 en total.
+- B2: 52 lecciones nuevas; 83 en total.
+
+Cada lección nueva tiene un título único y seis ejercicios. La ampliación incluye lectura temática, escucha, comprensión, traducción, huecos con opciones griegas, ordenación y producción escrita autoevaluada.
+
+Las materias añadidas cubren, entre otras, pronunciación y escritura, petición de aclaraciones, formularios, horarios, vivienda, compras, salud, transporte, mensajes sociales, narración en pasado, reservas, trabajo, estudios, gestiones, noticias, convenciones sociales, reclamaciones, mediación, argumentación, fuentes, datos, registro, políticas públicas, informes, correspondencia profesional, presentaciones y síntesis.
+
+Las fuentes de la ampliación se guardan en:
+- _herramientas/cursos/ampliacion_griego/A1/el/
+- _herramientas/cursos/ampliacion_griego/A2/el/
+- _herramientas/cursos/ampliacion_griego/B1/el/
+- _herramientas/cursos/ampliacion_griego/B2/el/
+
+Se creó además un generador reproducible:
+- _herramientas/cursos/generar_ampliacion_griego.py
+
+6. CORRECCIONES APLICADAS AL CONTENIDO HEREDADO
+
+Se corrigieron los 31 ejercicios de huecos antiguos de B1. Todos sus distractores son ahora palabras o formas griegas; la comprobación final encontró cero opciones en español en esos ejercicios.
+
+Las 31 tareas abiertas heredadas de B1 y las 31 de B2 se cambiaron al formato de autoevaluación. Ahora la aplicación muestra criterios y una respuesta de ejemplo, pero no califica como errónea una formulación diferente.
+
+Las 31 lecciones heredadas de B2 recibieron textos de lectura independientes. Se eliminaron las lecturas que copiaban el diálogo y la revisión final no encontró frases repetidas exactamente entre diálogo y lectura en B2.
+
+Las 214 fichas visibles de vocabulario del B2 heredado recibieron una guía aproximada de pronunciación. La comprobación final encontró cero fichas visibles de B2 sin pronunciación.
+
+En los textos fuente antiguos de B1 y B2 se adaptaron las marcas de escritura abierta al nuevo formato autoevaluado. Los archivos originales publicados del resto de niveles no se renumeraron.
+
+7. CAMBIOS EN EL COMPILADOR Y EN LA APLICACIÓN
+
+El compilador se amplió para poder compilar fuentes separadas, continuar desde un número concreto y asignar identificadores globales a los ejercicios nuevos. También reconoce la nueva marca de escritura autoevaluada.
+
+Archivos principales modificados:
+- _herramientas/cursos/compilar.py
+- Idiomas/js/lessons.js
+- Idiomas/js/exercises.js
+- Idiomas/js/progress.js
+- Idiomas/css/styles.css
+- Idiomas/js/i18n/es.js
+- Idiomas/js/i18n/en.js
+
+La interfaz de escritura autoevaluada usa un área de texto y, tras enviar la respuesta, muestra criterios y un modelo posible con feedback neutral. Estas tareas cuentan como completadas e intentadas, pero no suman aciertos ni errores y no entran en la lista de ejercicios fallados.
+
+El índice del curso se actualizó para reflejar 300 lecciones en:
+- Idiomas/js/cursos.js
+
+8. MEJORA ADICIONAL TRAS LA PRIMERA COMPILACIÓN
+
+Durante la revisión final se detectó que, aunque los textos centrales cambiaban, varios diálogos y escuchas nuevos reutilizaban solo tres moldes por nivel y las explicaciones eran demasiado genéricas.
+
+Antes de cerrar el trabajo se corrigió esa debilidad:
+- Las 176 escuchas nuevas tienen contenido distinto por lección.
+- La escucha aparece antes del texto de lectura para evitar que la respuesta se revele de antemano.
+- Cada lectura nueva contiene tres frases relacionadas con el tema de la lección.
+- Los diálogos y las lecturas no repiten frases literalmente.
+- Las pautas didácticas cambian según el grupo temático y el nivel.
+- Las consignas de escritura se redactaron íntegramente en español para evitar una mezcla accidental de idiomas.
+- Los modelos de escritura usan contenido del tema concreto de la lección.
+- Los huecos se generan a partir de una palabra real de la frase y ofrecen dos distractores griegos diferentes.
+
+9. RESULTADO Y COMPROBACIONES FINALES
+
+El resultado publicado es:
+- 300 archivos JSON consecutivos, desde 001.json hasta 300.json.
+- 40 capítulos.
+- A1: 67 lecciones.
+- A2: 73 lecciones.
+- B1: 77 lecciones.
+- B2: 83 lecciones.
+- 176 títulos nuevos y 176 títulos únicos.
+- Seis ejercicios en cada lección nueva.
+- 176 tareas nuevas de escritura autoevaluada.
+- 238 tareas autoevaluadas en total al sumar las 62 tareas abiertas heredadas de B1 y B2.
+- 36 escuchas nuevas distintas en A1, 42 en A2, 46 en B1 y 52 en B2.
+- Tres frases de lectura en cada una de las 176 lecciones nuevas.
+- Cero opciones duplicadas en los bloques de ejercicio revisados.
+- Cero ejercicios nuevos con una cantidad incorrecta de respuestas válidas.
+- Cero distractores no griegos en los huecos B1 revisados.
+- Cero fichas visibles de B2 sin pronunciación.
+- Cero solapamientos exactos entre diálogo y lectura en las lecciones nuevas y en el B2 heredado.
+- La metadata del curso indica 300 lecciones.
+
+Se comprobó además la sintaxis de los archivos JavaScript modificados. No se ejecutó una batería completa de pruebas automáticas ni un recorrido manual integral de las 300 lecciones en el navegador; las comprobaciones finales fueron de compilación, estructura, contenido y coherencia estática.
+
+10. AVISOS Y TRABAJO EDITORIAL PENDIENTE
+
+La compilación final no produjo errores de estructura ni opciones repetidas, pero sí avisos léxicos. Los avisos señalan palabras usadas en textos o ejercicios que no disponen de una ficha individual, y algunas palabras clave que ya se habían enseñado antes:
+
+- Ampliación A1: 272 avisos; 256 palabras sin ficha y 16 palabras ya enseñadas.
+- Ampliación A2: 261 avisos; 239 palabras sin ficha y 22 palabras ya enseñadas.
+- Ampliación B1: 397 avisos; 387 palabras sin ficha y 10 palabras ya enseñadas.
+- Ampliación B2: 472 avisos; 457 palabras sin ficha y 15 palabras ya enseñadas.
+- Regeneración del B2 heredado: 93 palabras sin ficha.
+
+Cada frase de las nuevas lecciones tiene traducción al español y cada lección nueva incorpora al menos una ficha visible, pero todavía no existe una ficha guardable para todas las formas léxicas usadas. Conviene realizar una pasada específica de vocabulario antes de considerar el curso editorialmente cerrado.
+
+También sigue pendiente una revisión humana por una persona especialista o nativa en griego moderno. Esa revisión debería comprobar naturalidad, morfología, registro, traducciones y transliteraciones. La aplicación tampoco evalúa producción oral real; las actividades de escucha utilizan texto griego para el sistema de voz y selección de respuesta. Por ello todavía no debe afirmarse que el curso sustituye una preparación integral y validada para el examen oficial B2.
+
+11. RUTAS IMPORTANTES PARA CONTINUAR
+
+- Informe y catálogo de las 176 lecciones: _herramientas/cursos/INFORME_AUDITORIA_GRIEGO_A1-B2.md
+- Generador de la ampliación: _herramientas/cursos/generar_ampliacion_griego.py
+- Fuentes nuevas: _herramientas/cursos/ampliacion_griego/
+- Fuentes heredadas B1: _herramientas/cursos/el_b1/el/
+- Fuentes heredadas B2: _herramientas/cursos/el_b2/el/
+- Compilador: _herramientas/cursos/compilar.py
+- Lecciones publicadas: Idiomas/cursos/el/lessons/001.json–300.json
+- Índice de cursos: Idiomas/js/cursos.js
+- Interfaz de ejercicios: Idiomas/js/exercises.js
+- Gestión de progreso: Idiomas/js/progress.js
+
+ESTADO FINAL
+
+La creación y ampliación solicitadas están terminadas. El curso de griego moderno A1–B2 tiene 300 lecciones integradas y compiladas, y los errores funcionales principales de la auditoría se corrigieron. Antes de seguir ampliándolo o publicarlo como curso lingüísticamente validado, las dos prioridades son completar las fichas de vocabulario faltantes y encargar una revisión lingüística humana de los cuatro niveles.

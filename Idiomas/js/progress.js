@@ -105,8 +105,8 @@ export function registrarRespuesta(idLeccion, idEjercicio, acierto) {
   const l = leccion(idLeccion);
   const e = l.ejercicios[idEjercicio] ?? { intentos: 0, aciertos: 0, errores: 0, completado: false };
   e.intentos += 1;
-  if (acierto) e.aciertos += 1;
-  else e.errores += 1;
+  if (acierto === true) e.aciertos += 1;
+  else if (acierto === false) e.errores += 1;
   e.completado = true;
   e.ultimo = acierto;
   l.ejercicios[idEjercicio] = e;

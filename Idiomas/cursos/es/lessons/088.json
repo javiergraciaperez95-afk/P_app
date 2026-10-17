@@ -2,28 +2,31 @@
   "capitulo": 9,
   "titulo_es": "Me gustaría reservar",
   "titulo": {"en": "I'd like to book"},
-  "intro": {"en": "Polite requests with me gustaría, quisiera and podría, at a hotel desk."},
+  "intro": {"en": "Polite requests with me gustaría, quería, querría, quisiera and podría, at a hotel desk."},
   "palabras": {
     "me gustaría": {"en": "I would like", "pron": "me gus-ta-RI-a", "cat": "expression"},
+    "quería": {"en": "I wanted; I would like (polite request)", "pron": "ke-RI-a", "cat": "verb", "nota": "A common softened request: quería reservar una habitación."},
     "podría": {"en": "could you (usted); I could", "pron": "po-DRI-a", "cat": "verb"},
     "querría": {"en": "I would like", "pron": "ke-RRI-a", "cat": "verb"},
     "quisiera": {"en": "I would like (very polite)", "pron": "ki-SYE-ra", "cat": "verb"},
     "reservar": {"en": "to book", "pron": "re-ser-BAR", "cat": "verb"},
-    "la habitación": {"en": "the room", "pron": "la a-bi-ta-THYON", "genero": "f"},
+    "la habitación": {"en": "the room", "pron": "la a-bi-ta-SYON (seseo) / a-bi-ta-THYON (distinción)", "cat": "noun", "genero": "f"},
     "doble": {"en": "double", "pron": "DO-ble", "cat": "adjective"},
-    "individual": {"en": "single", "pron": "in-di-bi-DWAL", "cat": "adjective"},
-    "la noche": {"en": "the night", "pron": "la NO-che", "genero": "f"},
+    "individual": {"en": "single (for one guest)", "pron": "in-di-bi-DWAL", "cat": "adjective"},
+    "la noche": {"en": "the night", "pron": "la NO-che", "cat": "noun", "genero": "f"},
+    "la mesa": {"en": "the table (restaurant)", "pron": "la ME-sa", "cat": "noun", "genero": "f"},
+    "el desayuno": {"en": "the breakfast", "pron": "el de-sa-YU-no", "cat": "noun", "genero": "m"},
     "incluido": {"en": "included", "pron": "in-KLWI-do", "cat": "adjective"},
-    "la reserva": {"en": "the booking", "pron": "la re-SER-ba", "genero": "f"},
+    "la reserva": {"en": "the booking", "pron": "la re-SER-ba", "cat": "noun", "genero": "f"},
     "a nombre de": {"en": "in the name of", "pron": "a NOM-bre de", "cat": "expression"},
-    "el pasaporte": {"en": "the passport", "pron": "el pa-sa-POR-te", "genero": "m"}
+    "el pasaporte": {"en": "the passport", "pron": "el pa-sa-POR-te", "cat": "noun", "genero": "m"}
   },
   "bloques": [
     {
       "tipo": "explicacion",
       "titulo": {"en": "Softer than quiero"},
       "texto": {
-        "en": "**Quiero** is correct, but in a hotel, a bank or an office it sounds blunt. Spanish softens it with the conditional.\n\n- **Me gustaría** reservar una mesa.\n- **Querría** / **Quisiera** una habitación.\n\nA request to another person moves from puede to **podría**: ¿**Podría** ayudarme? ¿**Podría** darme su pasaporte?\n\nAll of these take an infinitive.\n\nAt the desk: una habitación **doble** or **individual**, **para** dos noches, con desayuno **incluido**. **Tengo una reserva a nombre de** Lucía Martín."
+        "en": "**Quiero** is correct and clear, but it is direct. To soften a request, use forms such as **me gustaría**, **quería**, **querría** or **quisiera**. **Quería** is especially common in everyday requests.\n\n- **Me gustaría** reservar una mesa.\n- **Quería** reservar una habitación.\n- **Querría** / **Quisiera** una habitación.\n\nFor a polite request to someone you address as **usted**, use **¿Podría + infinitive?**: ¿**Podría** ayudarme? ¿**Podría** darme su pasaporte?\n\nWhen these forms refer to an action, they take an infinitive. **Me gustaría**, **querría** and **quisiera** can also take a noun: **Quisiera una habitación**.\n\nAt the desk: una habitación **doble** or **individual**, **para** dos noches, con desayuno **incluido**. **Tengo una reserva a nombre de** Lucía Martín."
       }
     },
     {
@@ -71,13 +74,24 @@
     {
       "tipo": "test",
       "id": "gustaria-1",
-      "pregunta": {"en": "Which is the most polite way to ask for a room?"},
+      "pregunta": {"en": "Which is a polite way to ask for a room?"},
       "opciones": {
-        "Quisiera una habitación": {"en": "Quisiera is the softest form."},
+        "Quisiera una habitación": {"en": "Quisiera is a polite way to phrase the request."},
         "Quiero una habitación": {"en": "Correct, but direct."},
         "Dame una habitación": {"en": "A tú command is far too direct for a hotel desk."}
       },
       "correcta": "Quisiera una habitación"
+    },
+    {
+      "tipo": "test",
+      "id": "gustaria-6",
+      "pregunta": {"en": "At a hotel desk, which sentence uses the imperfect to soften a request?"},
+      "opciones": {
+        "Quería reservar una habitación.": {"en": "Quería can soften a request in this context."},
+        "Quise reservar una habitación, pero no había sitio.": {"en": "This describes a past attempt or wish."},
+        "Querré reservar una habitación.": {"en": "Querré is future: I will want to book a room."}
+      },
+      "correcta": "Quería reservar una habitación."
     },
     {
       "tipo": "huecos",

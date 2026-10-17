@@ -41,7 +41,7 @@ export function pintarPractica(app, { resultados }) {
       el('h2', {}, titulo),
       contador,
       lista.map(({ leccion, bloque }, i) => el('div', { class: 'practica-item' },
-        el('a', { class: 'aprox', href: `#/leccion/${leccion.id}` }, `${t('leccion.numero', { id: leccion.id })} · `, el('span', { lang: LANG }, leccion.titulo_es)),
+        el('a', { class: 'aprox', href: `#/leccion/${leccion.id}` }, `${t('leccion.numero', { id: leccion.numero_curso })} · `, el('span', { lang: LANG }, leccion.titulo_es)),
         crearEjercicio(bloque, leccion.id, i + 1, () => { hechos += 1; actualizar(); }))));
     actualizar();
     zona.querySelector('h2')?.scrollIntoView({ behavior: 'smooth', block: 'start' });

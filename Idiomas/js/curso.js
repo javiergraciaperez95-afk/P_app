@@ -18,8 +18,20 @@ function leerElegido() {
 
 const elegido = leerElegido();
 
+// Nombre propio de cada tutora, elegido según el idioma que se está aprendiendo.
+// Se mantienen en escritura local cuando existe, para que suenen naturales en cada curso.
+const NOMBRES_TUTORAS = {
+  en: 'Emily', es: 'Lucía', fr: 'Camille', de: 'Anna', ja: 'Yui',
+  it: 'Sofia', ko: '민지', zh: '小雨', pt: 'Inês', ru: 'Анна',
+  tr: 'Elif', nl: 'Sophie', sv: 'Elsa', el: 'Ελένη', pl: 'Zofia',
+  no: 'Nora', vi: 'Linh', id: 'Sari', da: 'Freja', ro: 'Ana', th: 'มะลิ',
+};
+
 /** false mientras no se ha elegido idioma: se enseña la pantalla «Elige el idioma». */
 export const hayCurso = Boolean(elegido);
+
+/** Nombre de la tutora del idioma elegido, o null antes de elegir un curso. */
+export const nombreTutora = NOMBRES_TUTORAS[elegido?.id] ?? null;
 
 export const curso = elegido ?? {
   id: '', carpeta: 'cursos/_ninguno', campo: 'es', lang: 'es', voz: 'es-ES', prefijo: 'idiomas', tabla: '',
@@ -35,8 +47,16 @@ export const clave = nombre => `${curso.prefijo}-${nombre}`;
 /** Ruta de un archivo de contenido de este curso. */
 export const ruta = archivo => `${curso.carpeta}/${archivo}`;
 
-/** Nombre del idioma del curso en el idioma de la interfaz («French», «francés», «tiếng Pháp»…). */
-export const nombreDelCurso = idioma => curso.nombre[idioma] ?? curso.nombre.en ?? curso.nativo;
+/** Nombre del idioma estudiado, adaptado al idioma de la interfaz cuando es posible. */
+export function nombreCurso(c, idioma) {
+  if (c.nombre[idioma]) return c.nombre[idioma];
+  if (idioma === 'fr' || idioma === 'ja' || idioma === 'it' || idioma === 'ko' || idioma === 'de' || idioma === 'ru' || idioma === 'id') {
+    try { return new Intl.DisplayNames([idioma], { type: 'language' }).of(c.lang) ?? c.nombre.en ?? c.nativo; }
+    catch { /* Un navigateur sans DisplayNames garde le nom existant. */ }
+  }
+  return c.nombre.en ?? c.nativo;
+}
+export const nombreDelCurso = idioma => nombreCurso(curso, idioma);
 
 /** El saludo del idioma sin signos, para frases como «¡Hola, Ana!». */
 export const saludo = curso.hola.replace(/^[¡¿\s]+|[!！.。\s]+$/gu, '');

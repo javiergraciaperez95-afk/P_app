@@ -3,10 +3,21 @@
 
 export const CLAVE_AJUSTES = 'idiomas-ajustes';
 const CLAVE_ANTIGUA = 'espanol-ajustes'; // de cuando la app era solo de español
+const IDIOMAS_INTERFAZ = new Set(['en', 'vi', 'zh', 'es', 'pt', 'fr', 'ja', 'it', 'ko', 'ru', 'de', 'id']);
+
+/** Idioma preferido por el navegador/WebView (en Capacitor, el del dispositivo Android). */
+export function idiomaDispositivo() {
+  const preferencias = [...(navigator.languages ?? []), navigator.language ?? ''];
+  for (const preferencia of preferencias) {
+    const codigo = preferencia.toLowerCase().replaceAll('_', '-').split('-')[0];
+    if (IDIOMAS_INTERFAZ.has(codigo)) return codigo;
+  }
+  return 'en';
+}
 
 const PREDETERMINADOS = {
-  // Idioma de la interfaz: el del dispositivo si es uno de los que hay; si no, inglés.
-  idioma: ['vi', 'zh', 'es', 'pt'].find(i => (navigator.language ?? '').toLowerCase().startsWith(i)) ?? 'en',
+  // Automático sigue el idioma del navegador/WebView hasta que la persona elija uno manualmente.
+  idioma: 'auto',
   tema: 'auto',       // auto · oscuro · claro
   efectos: true,      // sonidos 8-bit de la interfaz
   vozTutora: true,    // pitidos mientras habla la tutora

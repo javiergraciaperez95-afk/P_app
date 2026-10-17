@@ -15,7 +15,7 @@ export const TIPOS_EJERCICIO = ['test', 'traduccion', 'huecos', 'escribir', 'ord
 const TIPOS_OPCIONES = ['test', 'traduccion', 'huecos'];
 
 const CAMPOS = {
-  leccion: ['capitulo', 'titulo_es', 'titulo', 'intro', 'palabras', 'bloques'],
+  leccion: ['capitulo', 'numero_curso', 'orden_curso', 'titulo_es', 'titulo', 'intro', 'palabras', 'bloques'],
   palabra: ['en', 'vi', 'zh', 'tes', 'definida', 'femenino', 'pron', 'consejo', 'ipa', 'cat', 'genero', 'plural', 'nota', 'ejemplo', 'oculta'],
   explicacion: ['tipo', 'titulo', 'texto', 'tutora'],
   dialogo: ['tipo', 'titulo', 'frases', 'tutora'],
@@ -24,7 +24,7 @@ const CAMPOS = {
   tabla: ['tipo', 'titulo', 'columnas', 'filas', 'nota', 'tutora'],
   imagen: ['tipo', 'archivo', 'descripcion', 'pie', 'tutora'],
   ejercicio: ['tipo', 'id', 'audio', 'pregunta', 'frase', 'opciones', 'correcta', 'tutora'],
-  escribir: ['tipo', 'id', 'audio', 'pregunta', 'frase', 'respuestas', 'explicacion', 'tutora'],
+  escribir: ['tipo', 'id', 'audio', 'pregunta', 'frase', 'respuestas', 'explicacion', 'autoevaluacion', 'tutora'],
   ordenar: ['tipo', 'id', 'audio', 'pregunta', 'frase', 'traduccion', 'explicacion', 'tutora'],
 };
 
@@ -44,19 +44,31 @@ export async function descubrirLecciones() {
   for (let inicio = 1; huecosSeguidos < HUECOS_PERMITIDOS && inicio < 1000; inicio += LOTE) {
     const ids = Array.from({ length: LOTE }, (_, i) => idDeNumero(inicio + i));
     const lote = await Promise.all(ids.map(cargarLeccion));
+    // Si falla toda la tanda, probablemente no hay conexión. No conviertas esos fallos
+    // en huecos: eso hacía que tres respuestas de red fallidas ocultaran el resto del curso.
+    if (lote.every(resultado => resultado.noExiste && resultado.sinConexion)) {
+      sinConexion = true;
+      break;
+    }
     for (const resultado of lote) {
       if (huecosSeguidos >= HUECOS_PERMITIDOS) break;
       if (resultado.noExiste) {
-        if (resultado.sinConexion) sinConexion = true;
-        huecosSeguidos += 1;
+        if (resultado.sinConexion) {
+          sinConexion = true;
+          huecosSeguidos = 0;
+          encontradas.push({ ...resultado, noExiste: false, error: errorSimple(resultado.id, t('app.sinConexionTexto')) });
+        } else {
+          huecosSeguidos += 1;
+        }
       } else {
         huecosSeguidos = 0;
         encontradas.push(resultado);
       }
     }
   }
-  // Si no se ha encontrado nada porque no hay conexión, se avisa.
-  if (!encontradas.length && sinConexion) encontradas.sinConexion = true;
+  // Se conserva el aviso incluso si se cargó parte del curso: así la lista puede
+  // mostrar lo disponible y ofrecer recargar para recuperar las lecciones pendientes.
+  if (sinConexion) encontradas.sinConexion = true;
   return encontradas;
 }
 
@@ -343,6 +355,9 @@ export function revisarLeccion(id, json) {
       titulo_es: textoValido(json.titulo_es) ? json.titulo_es.trim() : `Lección ${id}`,
       titulo: traducible(json.titulo) ? json.titulo : '',
       capitulo: json.capitulo ?? null,
+      orden_curso: Number.isFinite(json.orden_curso) ? json.orden_curso : Number(id),
+      // El ID interno conserva rutas y progreso; numero_curso permite reordenar cursos sin romperlos.
+      numero_curso: Number.isInteger(json.numero_curso) && json.numero_curso > 0 ? json.numero_curso : Number(id),
       intro: traducible(json.intro) ? json.intro : null,
       palabras,
       bloques,
@@ -500,7 +515,8 @@ function revisarBloque(bloque, i, palabras, avisos) {
     if (!traducible(bloque.pregunta)) return fallo(t('rev.faltaPregunta'));
     return marcarId(bloque, {
       tipo, pregunta: bloque.pregunta, frase: textoValido(bloque.frase) ? bloque.frase : '',
-      respuestas, explicacion: bloque.explicacion ?? '', tutora: bloque.tutora ?? null,
+      respuestas, explicacion: bloque.explicacion ?? '', autoevaluacion: bloque.autoevaluacion === true,
+      tutora: bloque.tutora ?? null,
     });
   }
 
@@ -640,7 +656,13 @@ export async function cargarCapitulos() {
   if (!Array.isArray(lista)) {
     return { capitulos: [], error: { titulo: t('rev.noCarga', { nombre: t('rev.nombreCapitulos') }), detalles: [t('rev.listaCorchetes')] } };
   }
-  return { capitulos: lista.filter(esObjeto).map((c, i) => ({ ...c, numero: c.numero ?? i + 1 })) };
+  return {
+    capitulos: lista.filter(esObjeto).map((c, i) => ({
+      ...c,
+      titulo: c.titulo ?? c[`titulo_${curso.campo}`] ?? null,
+      numero: c.numero ?? i + 1,
+    })),
+  };
 }
 
 /**

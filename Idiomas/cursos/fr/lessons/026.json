@@ -5,11 +5,11 @@
  "palabras": {
   "je sais": {
    "es": "sé",
-   "pron": "ye se"
+   "pron": "zhe sè"
   },
   "tu sais": {
    "es": "sabes",
-   "pron": "tü se"
+   "pron": "tü sè"
   },
   "tu peux": {
    "es": "puedes",
@@ -21,7 +21,8 @@
   },
   "je veux": {
    "es": "quiero",
-   "pron": "ye vö"
+   "pron": "zhe vö",
+   "oculta": true
   },
   "peux": {
    "es": "puedo; puedes",
@@ -37,11 +38,11 @@
   },
   "nager": {
    "es": "nadar",
-   "pron": "na-YÉ"
+   "pron": "na-ZHÉ"
   },
   "je nage": {
    "es": "nado",
-   "pron": "ye nash"
+   "pron": "zhe nazh"
   },
   "conduire": {
    "es": "conducir",
@@ -73,11 +74,23 @@
   },
   "c'est vrai": {
    "es": "¿de verdad?; es verdad",
-   "pron": "se vre"
+   "pron": "sè vrè"
   },
   "pâtes": {
    "es": "pasta",
    "pron": "pat"
+  },
+  "pouvoir": {
+   "es": "poder",
+   "pron": "pu-VUAR"
+  },
+  "vouloir": {
+   "es": "querer",
+   "pron": "vu-LUAR"
+  },
+  "savoir": {
+   "es": "saber",
+   "pron": "sa-VUAR"
   }
  },
  "bloques": [
@@ -85,57 +98,64 @@
    "tipo": "explicacion",
    "titulo": "Tres verbos imprescindibles",
    "texto": [
-    "**Pouvoir** (poder), **vouloir** (querer) y **savoir** (saber) son irregulares. Detrás llevan un verbo en **infinitivo**: **Je peux venir** (puedo venir), **Je veux manger** (quiero comer), **Je sais nager** (sé nadar).",
-    "La negación abraza solo al primer verbo: **Je ne sais pas nager**."
+    "**Pouvoir** (poder), **vouloir** (querer) y **savoir** (saber) son irregulares. Cuando uno de ellos va seguido de otro verbo, este se pone en **infinitivo**: **Je peux venir** (puedo venir), **Je veux manger** (quiero comer), **Je sais nager** (sé nadar).",
+    "La negación rodea al verbo conjugado: **Je ne sais pas nager**."
    ]
   },
   {
    "tipo": "tabla",
-   "titulo": "«Pouvoir» y «vouloir»",
+   "titulo": "«Pouvoir», «vouloir» y «savoir»",
    "filas": [
     [
      "je",
      "peux",
-     "veux"
+     "veux",
+     "sais"
     ],
     [
      "tu",
      "peux",
-     "veux"
+     "veux",
+     "sais"
     ],
     [
      "il / elle / on",
      "peut",
-     "veut"
+     "veut",
+     "sait"
     ],
     [
      "nous",
      "pouvons",
-     "voulons"
+     "voulons",
+     "savons"
     ],
     [
      "vous",
      "pouvez",
-     "voulez"
+     "voulez",
+     "savez"
     ],
     [
      "ils / elles",
      "peuvent",
-     "veulent"
+     "veulent",
+     "savent"
     ]
    ],
    "columnas": [
     "Persona",
     "pouvoir (poder)",
-    "vouloir (querer)"
+    "vouloir (querer)",
+    "savoir (saber)"
    ]
   },
   {
    "tipo": "explicacion",
    "titulo": "Saber o poder",
    "texto": [
-    "Para una habilidad aprendida se usa **savoir**: **Je sais conduire** (sé conducir).",
-    "Para una posibilidad o un permiso se usa **pouvoir**: **Je peux ouvrir la fenêtre ?** (¿puedo abrir la ventana?).",
+    "Para conocimientos y habilidades aprendidas se usa **savoir**: **Je sais conduire** (sé conducir).",
+    "**Pouvoir** expresa capacidad, posibilidad o permiso: **Je peux ouvrir la fenêtre ?** (¿puedo abrir la ventana?).",
     "Para pedir un favor: **Tu peux m'aider ?** (¿puedes ayudarme?)."
    ]
   },
@@ -147,7 +167,6 @@
     "tu sais",
     "tu peux",
     "tu veux",
-    "je veux",
     "peux",
     "sait",
     "venir",
@@ -161,7 +180,10 @@
     "m'aider",
     "ouvrir",
     "c'est vrai",
-    "pâtes"
+    "pâtes",
+    "pouvoir",
+    "vouloir",
+    "savoir"
    ]
   },
   {
@@ -249,8 +271,12 @@
     {
      "quien": "Lucas",
      "fr": "Je voudrais des pâtes.",
-     "es": "Querría pasta.",
+     "es": "Me gustaría pasta.",
      "analisis": [
+      [
+       "Je voudrais",
+       "me gustaría (petición cortés)"
+      ],
       [
        "des pâtes",
        "pasta (en francés, plural)"
@@ -271,7 +297,7 @@
     },
     {
      "texto": "Je peux nager.",
-     "explicacion": "Eso es «puedo nadar» (tengo ocasión o permiso)."
+     "explicacion": "«Pouvoir» expresa capacidad, posibilidad o permiso; aquí se pregunta por la habilidad de nadar («savoir»)."
     },
     {
      "texto": "Je sais à nager.",

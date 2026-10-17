@@ -14,7 +14,7 @@
   },
   "ventre": {
    "es": "barriga, vientre",
-   "pron": "va(n)-TR"
+   "pron": "va(n)tr"
   },
   "gorge": {
    "es": "garganta",
@@ -35,11 +35,11 @@
   },
   "main": {
    "es": "mano",
-   "pron": "ma(n)"
+   "pron": "me(n)"
   },
   "mains": {
    "es": "manos",
-   "pron": "ma(n)"
+   "pron": "me(n)"
   },
   "bras": {
    "es": "brazo",
@@ -165,8 +165,12 @@
      "es": "Hola, ¿no estás bien?",
      "analisis": [
       [
+       "Bonjour",
+       "hola / buenos días"
+      ],
+      [
        "ça ne va pas",
-       "no estás bien (literal: eso no va bien)"
+       "¿no estás bien? (¿no te encuentras bien?)"
       ]
      ]
     },
@@ -176,8 +180,16 @@
      "es": "No, me duele la cabeza y la barriga.",
      "analisis": [
       [
+       "Non",
+       "no"
+      ],
+      [
        "j'ai mal à la tête",
        "me duele la cabeza"
+      ],
+      [
+       "et",
+       "y"
       ],
       [
        "j'ai mal au ventre",
@@ -192,11 +204,11 @@
      "analisis": [
       [
        "Vous avez mal",
-       "le duele (usted)"
+       "¿le duele a usted?"
       ],
       [
        "aux pieds",
-       "a los pies"
+       "en los pies / a los pies"
       ],
       [
        "aussi",
@@ -210,12 +222,16 @@
      "es": "No, los pies están bien.",
      "analisis": [
       [
+       "Non",
+       "no"
+      ],
+      [
        "les pieds",
        "los pies"
       ],
       [
        "vont bien",
-       "van bien (están bien)"
+       "están bien («van bien»)"
       ]
      ]
     }
@@ -354,13 +370,24 @@
    "id": "fr042-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «me duele el brazo»",
-   "respuestas": [
-    "j'ai mal au bras"
-   ],
-   "explicacion": "«Bras» es masculino: va con «au».",
-   "id": "fr042-8"
+   "tipo": "test",
+   "pregunta": "¿Cómo dices «me duele el brazo»?",
+   "id": "fr042-8",
+   "opciones": [
+    {
+     "texto": "J'ai mal au bras.",
+     "explicacion": "«Bras» es sustantivo masculino singular: à + le = «au».",
+     "correcta": true
+    },
+    {
+     "texto": "J'ai mal à la bras.",
+     "explicacion": "«Bras» no es femenino; requiere «au»."
+    },
+    {
+     "texto": "J'ai mal aux bras.",
+     "explicacion": "«Aux» se reserva para el plural («les bras»)."
+    }
+   ]
   }
  ],
  "intro": "Hoy hablamos del cuerpo y de cuándo algo duele. Es muy útil en la farmacia y en el médico."

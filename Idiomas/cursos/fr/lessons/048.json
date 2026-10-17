@@ -22,7 +22,7 @@
   },
   "ceinture": {
    "es": "cinturón",
-   "pron": "sa(n)-TÜR"
+   "pron": "se(n)-tür"
   },
   "chapeau": {
    "es": "sombrero",
@@ -34,7 +34,7 @@
   },
   "réduction": {
    "es": "descuento",
-   "pron": "re-dük-SIÓN"
+   "pron": "re-dük-sio(n)"
   },
   "facile": {
    "es": "fácil",
@@ -46,16 +46,17 @@
   },
   "élégant": {
    "es": "elegante",
-   "pron": "e-le-GA(N)"
+   "pron": "e-le-ga(n)"
   },
   "confortable": {
    "es": "cómodo",
-   "pron": "ko(n)-for-TÁBL"
+   "pron": "ko(n)-for-tabl"
   },
   "chère": {
    "es": "más barata, cara",
-   "pron": "SHÉR",
-   "consejo": "Forma femenina de «cher»."
+   "pron": "sher",
+   "consejo": "Forma femenina de «cher».",
+   "oculta": true
   }
  },
  "bloques": [
@@ -108,8 +109,7 @@
     "facile",
     "difficile",
     "élégant",
-    "confortable",
-    "chère"
+    "confortable"
    ]
   },
   {
@@ -121,6 +121,14 @@
      "fr": "Ce pull est plus cher que cette veste.",
      "es": "Este jersey es más caro que esta chaqueta.",
      "analisis": [
+      [
+       "Ce pull",
+       "este jersey"
+      ],
+      [
+       "est",
+       "es"
+      ],
       [
        "plus cher que",
        "más caro que"
@@ -137,12 +145,20 @@
      "es": "Sí, pero es igual de bonito.",
      "analisis": [
       [
-       "aussi joli",
-       "igual de bonito"
+       "Oui",
+       "sí"
       ],
       [
        "mais",
        "pero"
+      ],
+      [
+       "il est",
+       "es (él es)"
+      ],
+      [
+       "aussi joli",
+       "igual de bonito / tan bonito"
       ]
      ]
     },
@@ -151,6 +167,10 @@
      "fr": "Et le prix ?",
      "es": "¿Y el precio?",
      "analisis": [
+      [
+       "Et",
+       "y"
+      ],
       [
        "le prix",
        "el precio"
@@ -163,8 +183,12 @@
      "es": "La chaqueta es más barata.",
      "analisis": [
       [
-       "la veste",
+       "La veste",
        "la chaqueta"
+      ],
+      [
+       "est",
+       "es"
       ],
       [
        "moins chère",
@@ -180,15 +204,49 @@
    "frases": [
     {
      "fr": "Pull : 30 euros.",
-     "es": "Jersey: 30 euros."
+     "es": "Jersey: 30 euros.",
+     "analisis": [
+      [
+       "Pull",
+       "jersey"
+      ],
+      [
+       "30 euros",
+       "30 euros"
+      ]
+     ]
     },
     {
      "fr": "Veste : 45 euros.",
-     "es": "Chaqueta: 45 euros."
+     "es": "Chaqueta: 45 euros.",
+     "analisis": [
+      [
+       "Veste",
+       "chaqueta"
+      ],
+      [
+       "45 euros",
+       "45 euros"
+      ]
+     ]
     },
     {
      "fr": "Réduction sur la veste : 5 euros.",
-     "es": "Descuento en la chaqueta: 5 euros."
+     "es": "Descuento en la chaqueta: 5 euros.",
+     "analisis": [
+      [
+       "Réduction",
+       "descuento"
+      ],
+      [
+       "sur la veste",
+       "en la chaqueta"
+      ],
+      [
+       "5 euros",
+       "5 euros"
+      ]
+     ]
     }
    ]
   },
@@ -365,13 +423,24 @@
    "id": "fr048-9"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «es menos rápido que el tren»",
-   "respuestas": [
-    "il est moins rapide que le train"
-   ],
-   "explicacion": "«Moins» + adjetivo + «que».",
-   "id": "fr048-10"
+   "tipo": "test",
+   "pregunta": "¿Cómo se dice «Este jersey es tan cómodo como esa chaqueta»?",
+   "id": "fr048-10",
+   "opciones": [
+    {
+     "texto": "Ce pull est aussi confortable que cette veste.",
+     "explicacion": "«Aussi» + adjetivo + «que» expresa comparación de igualdad («tan... como»).",
+     "correcta": true
+    },
+    {
+     "texto": "Ce pull est plus confortable que cette veste.",
+     "explicacion": "«Plus... que» expresa superioridad («más cómodo que»), no igualdad."
+    },
+    {
+     "texto": "Ce pull est moins confortable que cette veste.",
+     "explicacion": "«Moins... que» expresa inferioridad («menos cómodo que»)."
+    }
+   ]
   }
  ],
  "intro": "Vamos de compras. Para comparar precios y cosas usamos plus, moins y aussi."

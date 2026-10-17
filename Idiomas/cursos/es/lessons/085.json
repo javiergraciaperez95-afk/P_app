@@ -4,18 +4,25 @@
   "titulo": {"en": "I feel like it, it interests me"},
   "intro": {"en": "More verbs that work like gustar, for invitations, interests and things that annoy you."},
   "palabras": {
-    "me apetece": {"en": "I feel like", "pron": "me a-pe-TE-the", "cat": "expression"},
+    "me apetece": {"en": "I feel like", "pron": "me a-pe-TE-se (seseo) / me a-pe-TE-the (distinción)", "cat": "expression", "nota": "Especially common in Spain; usage varies across Latin America."},
     "me interesa": {"en": "I'm interested in", "pron": "me in-te-RE-sa", "cat": "expression"},
     "me molesta": {"en": "it bothers me", "pron": "me mo-LES-ta", "cat": "expression"},
     "me importa": {"en": "I care about; I mind", "pron": "me im-POR-ta", "cat": "expression"},
     "me preocupa": {"en": "it worries me", "pron": "me pre-o-KU-pa", "cat": "expression"},
-    "me parece": {"en": "it seems to me", "pron": "me pa-RE-the", "cat": "expression"},
+    "me parece": {"en": "it seems to me", "pron": "me pa-RE-se (seseo) / me pa-RE-the (distinción)", "cat": "expression"},
     "me cae bien": {"en": "I like him/her (as a person)", "pron": "me KA-e byen", "cat": "expression"},
     "me cae mal": {"en": "I don't like him/her", "pron": "me KA-e mal", "cat": "expression"},
-    "me hace falta": {"en": "I need", "pron": "me A-the FAL-ta", "cat": "expression"},
+    "me hace falta": {"en": "I need", "pron": "me A-se (seseo) / me A-the (distinción) FAL-ta", "cat": "expression"},
     "te importa si": {"en": "do you mind if", "pron": "te im-POR-ta si", "cat": "expression"},
     "no me importa": {"en": "I don't mind", "pron": "no me im-POR-ta", "cat": "expression"},
-    "la política": {"en": "politics", "pron": "la po-LI-ti-ka", "genero": "f"},
+    "la política": {"en": "politics", "pron": "la po-LI-ti-ka", "cat": "noun", "genero": "f"},
+    "el idioma": {"en": "the language", "pron": "el i-DYO-ma", "cat": "noun", "genero": "m", "nota": "Plural: los idiomas."},
+    "el examen": {"en": "the exam", "pron": "el ek-SA-men", "cat": "noun", "genero": "m"},
+    "el diccionario": {"en": "the dictionary", "pron": "el dik-syo-NA-ryo", "cat": "noun", "genero": "m"},
+    "el ruido": {"en": "the noise", "pron": "el RWI-do", "cat": "noun", "genero": "m"},
+    "el vecino": {"en": "the neighbour", "pron": "el be-SI-no (seseo) / be-THI-no (distinción)", "cat": "noun", "genero": "m"},
+    "un café": {"en": "a coffee", "pron": "un ka-FE", "cat": "noun", "genero": "m"},
+    "el cine": {"en": "the cinema", "pron": "el SI-ne (seseo) / THI-ne (distinción)", "cat": "noun", "genero": "m"},
     "quedarme en casa": {"en": "to stay at home", "pron": "ke-DAR-me en KA-sa", "cat": "expression"}
   },
   "bloques": [
@@ -23,7 +30,7 @@
       "tipo": "explicacion",
       "titulo": {"en": "The gustar family"},
       "texto": {
-        "en": "These verbs agree with the thing, and the person is **me, te, le, nos, os, les**.\n\n- **apetecer**: ¿**te apetece** un café? ¿**te apetece** ir al cine?\n- **interesar**: me **interesan** los idiomas.\n- **molestar**: me **molesta** el ruido.\n- **importar**: no **me importa**. ¿**Te importa** esperar?\n- **preocupar**: me **preocupa** el examen.\n- **hacer falta**: me **hace falta** un diccionario.\n\nTo name the person, begin with **a**: **A Ana le** interesa la política. To say you like someone as a person, use **caer bien**: Ana **me cae bien**. **Me gusta Ana** can express liking and may imply attraction depending on context; it does not always mean that.\n\n**¿Te importa si** + present**?** asks permission: ¿te importa si abro la ventana?"
+        "en": "Like **gustar**, these verbs take an indirect-object pronoun for the person affected (**me, te, le, nos, os, les**) and agree with the thing or activity: me **interesa** la política / me **interesan** los idiomas; me **apetece** ir al cine. With **vosotros/as**, use **os** (mainly Spain); in much of Latin America, use **les** with **ustedes**.\n\n- **apetecer**: ¿**te apetece** un café? ¿**te apetece** ir al cine?\n- **molestar**: me **molesta** el ruido.\n- **importar**: no **me importa**. ¿**Te importa** esperar?\n- **preocupar**: me **preocupa** el examen.\n- **hacer falta**: me **hace falta** un diccionario; me **hacen falta** dos diccionarios.\n\nTo name the person affected, use **a + person** and keep the matching pronoun: **A Ana le** interesa la política. To say you like someone as a person, use **caer bien**: Ana **me cae bien**. **Me gusta Ana** can express liking and may imply attraction depending on context; it does not always mean that.\n\n**¿Te importa si + present-tense verb?** is a common way to ask permission: ¿Te importa si abro la ventana?"
       }
     },
     {
@@ -130,6 +137,19 @@
       "audio": true,
       "opciones": {"le": {"en": "A Ana: le."}, "la": {"en": "These verbs take le."}, "se": {"en": "Se is not used here."}},
       "correcta": "le"
+    },
+    {
+      "tipo": "huecos",
+      "id": "apetece-hacen-falta",
+      "pregunta": {"en": "Complete: I need two dictionaries."},
+      "frase": "Me ___ falta dos diccionarios.",
+      "audio": true,
+      "opciones": {
+        "hacen": {"en": "The thing needed is plural: dos diccionarios."},
+        "hace": {"en": "Hace agrees with a singular thing."},
+        "hago": {"en": "The verb agrees with the thing, not the person."}
+      },
+      "correcta": "hacen"
     },
     {
       "tipo": "ordenar",

@@ -5,11 +5,11 @@
  "palabras": {
   "quelqu'un": {
    "es": "alguien",
-   "pron": "kel-KÖ(N)"
+   "pron": "kel-kö(n)"
   },
   "quelque chose": {
    "es": "algo",
-   "pron": "kel-ke-SHOZ"
+   "pron": "kel-ke-shoz"
   },
   "tout": {
    "es": "todo",
@@ -26,11 +26,11 @@
   },
   "quelque part": {
    "es": "en algún sitio",
-   "pron": "kel-ke-PAR"
+   "pron": "kel-ke-par"
   },
   "autre": {
    "es": "otro",
-   "pron": "o-TR"
+   "pron": "o-tr"
   },
   "tous": {
    "es": "todos",
@@ -46,11 +46,11 @@
   },
   "quelque": {
    "es": "algún",
-   "pron": "kel-KE"
+   "pron": "kel-ke"
   },
   "aucun": {
    "es": "ninguno",
-   "pron": "o-KÖ(N)"
+   "pron": "o-kö(n)"
   }
  },
  "bloques": [
@@ -134,6 +134,10 @@
       [
        "quelqu'un",
        "alguien"
+      ],
+      [
+       "au bureau",
+       "en la oficina"
       ]
      ]
     },
@@ -142,6 +146,10 @@
      "fr": "Oui, tout le monde est là.",
      "es": "Sí, todo el mundo está ahí.",
      "analisis": [
+      [
+       "Oui",
+       "sí"
+      ],
       [
        "tout le monde",
        "todo el mundo"
@@ -158,6 +166,10 @@
      "es": "¿Quieres algo?",
      "analisis": [
       [
+       "Tu veux",
+       "quieres"
+      ],
+      [
        "quelque chose",
        "algo"
       ]
@@ -169,8 +181,16 @@
      "es": "Sí, un café, gracias.",
      "analisis": [
       [
+       "Oui",
+       "sí"
+      ],
+      [
        "un café",
        "un café"
+      ],
+      [
+       "merci",
+       "gracias"
       ]
      ]
     },
@@ -180,8 +200,12 @@
      "es": "A todo el mundo le gusta el café aquí.",
      "analisis": [
       [
+       "Tout le monde",
+       "todo el mundo"
+      ],
+      [
        "aime",
-       "le gusta"
+       "le gusta / ama"
       ],
       [
        "le café",
@@ -328,13 +352,24 @@
    "id": "fr052-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «algo»",
-   "respuestas": [
-    "quelque chose"
-   ],
-   "explicacion": "Se escribe con «quelque» y «chose».",
-   "id": "fr052-8"
+   "tipo": "test",
+   "pregunta": "¿Cuál es la forma correcta con el sujeto «tout le monde»?",
+   "id": "fr052-8",
+   "opciones": [
+    {
+     "texto": "Tout le monde aime cette ville.",
+     "explicacion": "«Tout le monde» gramaticalmente es tercera persona del singular («il/elle») y exige verbo en singular.",
+     "correcta": true
+    },
+    {
+     "texto": "Tout le monde aiment cette ville.",
+     "explicacion": "«Aiment» es la terminación de tercera persona del plural; «tout le monde» no concuerda en plural."
+    },
+    {
+     "texto": "Tout le monde sont d'accord ici.",
+     "explicacion": "El verbo debe ir en singular («est»), no en plural («sont»)."
+    }
+   ]
   }
  ],
  "intro": "Ahora hablamos de alguien, de algo y de todos. Son palabras que no niegan."

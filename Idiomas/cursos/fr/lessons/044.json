@@ -40,11 +40,11 @@
   },
   "rhume": {
    "es": "resfriado",
-   "pron": "rü-MÉ"
+   "pron": "rüm"
   },
   "toux": {
    "es": "tos",
-   "pron": "tü"
+   "pron": "tu"
   },
   "sirop": {
    "es": "jarabe",
@@ -63,8 +63,9 @@
    "pron": "sa(n)-TÉ"
   },
   "médecin": {
-   "es": "médico",
-   "pron": "med-SÁ(N)"
+   "es": "médico, médica",
+   "pron": "med-SE(N)",
+   "oculta": true
   },
   "prenez": {
    "es": "tome (usted), tomad",
@@ -128,7 +129,6 @@
     "comprimé",
     "repos",
     "santé",
-    "médecin",
     "prenez"
    ]
   },
@@ -158,11 +158,11 @@
      "analisis": [
       [
        "Vous avez",
-       "tiene"
+       "¿tiene usted?"
       ],
       [
        "de la fièvre",
-       "fiebre"
+       "fiebre (artículo partitivo)"
       ]
      ]
     },
@@ -184,11 +184,15 @@
      "analisis": [
       [
        "Je vous donne",
-       "le doy"
+       "le doy a usted"
       ],
       [
-       "le",
-       "lo (el medicamento)"
+       "un médicament",
+       "un medicamento"
+      ],
+      [
+       "Vous devez le prendre",
+       "debe tomarlo («le» pronombre antes del infinitivo)"
       ],
       [
        "trois fois par jour",
@@ -219,15 +223,53 @@
    "frases": [
     {
      "fr": "Vous avez mal à la gorge ?",
-     "es": "¿Le duele la garganta?"
+     "es": "¿Le duele la garganta?",
+     "analisis": [
+      [
+       "Vous avez mal",
+       "¿le duele?"
+      ],
+      [
+       "à la gorge",
+       "la garganta"
+      ]
+     ]
     },
     {
      "fr": "Prenez ce médicament trois fois par jour.",
-     "es": "Tome este medicamento tres veces al día."
+     "es": "Tome este medicamento tres veces al día.",
+     "analisis": [
+      [
+       "Prenez",
+       "tome (imperativo con vous)"
+      ],
+      [
+       "ce médicament",
+       "este medicamento"
+      ],
+      [
+       "trois fois par jour",
+       "tres veces al día"
+      ]
+     ]
     },
     {
      "fr": "Vous avez de la fièvre ? Prenez un rendez-vous chez le médecin.",
-     "es": "¿Tiene fiebre? Pida cita con el médico."
+     "es": "¿Tiene fiebre? Pida cita con el médico.",
+     "analisis": [
+      [
+       "Vous avez de la fièvre",
+       "¿tiene fiebre?"
+      ],
+      [
+       "Prenez un rendez-vous",
+       "pida cita"
+      ],
+      [
+       "chez le médecin",
+       "con el médico / en la consulta del médico"
+      ]
+     ]
     }
    ]
   },
@@ -404,13 +446,24 @@
    "id": "fr044-9"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «hay que tomarlo tres veces al día»",
-   "respuestas": [
-    "il faut le prendre trois fois par jour"
-   ],
-   "explicacion": "«Il faut» + infinitivo; el pronombre va delante del infinitivo.",
-   "id": "fr044-10"
+   "tipo": "test",
+   "pregunta": "¿Cómo se dice «hay que tomarlo tres veces al día»?",
+   "id": "fr044-10",
+   "opciones": [
+    {
+     "texto": "Il faut le prendre trois fois par jour.",
+     "explicacion": "«Il faut» + pronombre COD («le») + infinitivo («prendre»).",
+     "correcta": true
+    },
+    {
+     "texto": "Il faut prendre le trois fois par jour.",
+     "explicacion": "El pronombre debe situarse delante del infinitivo, nunca detrás."
+    },
+    {
+     "texto": "Il doit le prendre trois fois par jour.",
+     "explicacion": "Significaría «él debe tomarlo», no la fórmula impersonal «hay que»."
+    }
+   ]
   }
  ],
  "intro": "Ahora una consulta completa. Vas a usar lo del cuerpo y los pronombres."

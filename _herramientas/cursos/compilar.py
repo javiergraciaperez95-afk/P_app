@@ -35,7 +35,8 @@ Formato de una lección (una cosa por línea; «::» separa campos):
   HA Sentence with ___ :: pista                 hueco con audio (se oye la frase entera)
   A Sentence to hear :: pregunta                test de escucha (suena la frase)
   O Short sentence :: traducción :: explicación ordenar las palabras
-  X Pregunta :: respuesta | otra válida :: explicación     escribir la respuesta
+  X Pregunta :: respuesta | otra válida :: explicación     escribir la respuesta (corrección objetiva)
+  XM Pregunta :: modelo posible :: criterios               escribir y autoevaluar una respuesta abierta
 
 Avisa de: palabras de las frases sin ficha, trozos de análisis que no están en la frase,
 ejercicios sin una única opción buena y palabras repetidas.
@@ -46,6 +47,9 @@ Con «-v» detrás del curso se listan esas fichas automáticas.
 
 Con «--sin-lista» detrás del curso no se actualiza js/cursos.js (para cuando se escriben varios cursos
 a la vez: la lista la pone al día la compilación final, sin esa opción).
+
+Para fuentes separadas: --fuente <carpeta base> cambia la carpeta de entrada sin mover el destino.
+--ids-globales numera los identificadores de ejercicio desde el primer número indicado en desde.txt.
 """
 import json, re, sys, time
 from pathlib import Path
@@ -58,6 +62,12 @@ RAIZ = AQUI.parent.parent
 # Lo mismo que hace la app (vistas/leccion.js) para partir una frase en palabras.
 PALABRA = re.compile(r"[^\W_]+(?:['’\-][^\W_]+)*")
 MAX_EXPRESION = 5
+
+
+def orden_fuente(ruta):
+    """Orden numérico con sufijo opcional (p. ej. 23, 23z, 24)."""
+    m = re.match(r'(\d+)(.*)', ruta.stem)
+    return (int(m.group(1)), m.group(2)) if m else (float('inf'), ruta.stem)
 
 
 class Fallo(Exception):
@@ -89,11 +99,12 @@ def normal(texto):
     return ' '.join(texto.strip().lower().split())
 
 
-def leer(curso, campo):
+def leer(curso, campo, id_base=1, base=AQUI):
     """Devuelve (lecciones, nombres). Cada lección: (origen, dict, avisos)."""
-    carpeta = AQUI / curso
+    carpeta = base / curso
     lecciones, nombres = [], set()
-    for ruta in sorted(carpeta.glob('[0-9]*.txt')):
+    # Orden numérico: al crecer más allá de 99, el orden lexicográfico pondría 100.txt antes de 11.txt.
+    for ruta in sorted(carpeta.glob('[0-9]*.txt'), key=orden_fuente):
         leccion = palabras = pendientes = actual = None
         avisos = []
         k = 0
@@ -123,7 +134,7 @@ def leer(curso, campo):
                 continue
             if leccion is None:
                 raise Fallo(f'{donde}: falta la línea @ antes de esto')
-            num = len(lecciones) + 1
+            num = id_base + len(lecciones)
 
             def ejercicio(tipo, **campos):
                 nonlocal actual, k
@@ -197,12 +208,13 @@ def leer(curso, campo):
                 actual = None
                 leccion['bloques'].append({'tipo': 'ordenar', 'pregunta': 'Ordena las palabras.', 'frase': f, 'traduccion': tr,
                                            **({'explicacion': ex} if ex else {}), 'id': f'{curso}{num:03d}-{k}'})
-            elif marca == 'X':
+            elif marca in ('X', 'XM'):
                 q, r, ex = partes(resto, 3)
                 k += 1
                 actual = None
                 leccion['bloques'].append({'tipo': 'escribir', 'pregunta': q, 'respuestas': [x.strip() for x in r.split(' | ') if x.strip()],
-                                           **({'explicacion': ex} if ex else {}), 'id': f'{curso}{num:03d}-{k}'})
+                                           **({'explicacion': ex} if ex else {}), **({'autoevaluacion': True} if marca == 'XM' else {}),
+                                           'id': f'{curso}{num:03d}-{k}'})
             elif marca in ('+', '-') and actual and 'opciones' in actual:
                 texto, ex = partes(resto, 2)
                 o = {'texto': texto, 'explicacion': ex or ('Correcto.' if marca == '+' else 'No.')}
@@ -307,20 +319,27 @@ def main():
         sys.exit('Falta el curso: py -X utf8 compilar.py fr')
     curso = sys.argv[1]
     campo = 'ind' if curso == 'id' else curso
+    fuente = AQUI
+    if '--fuente' in sys.argv:
+        indice = sys.argv.index('--fuente')
+        if indice + 1 >= len(sys.argv):
+            sys.exit('Falta la ruta después de --fuente')
+        fuente = Path(sys.argv[indice + 1]).resolve()
     destino = RAIZ / 'Idiomas' / 'cursos' / curso / 'lessons'
-    if not (AQUI / curso).is_dir() or not destino.parent.is_dir():
+    if not (fuente / curso).is_dir() or not destino.parent.is_dir():
         sys.exit(f'No existe el curso «{curso}»')
+    primera = 1
+    if (fuente / curso / 'desde.txt').exists():
+        primera = int((fuente / curso / 'desde.txt').read_text(encoding='utf-8').split()[0])
     try:
-        lecciones, nombres = leer(curso, campo)
+        lecciones, nombres = leer(curso, campo, id_base=primera if '--ids-globales' in sys.argv else 1, base=fuente)
     except Fallo as e:
         sys.exit(f'ERROR {e}')
     if not lecciones:
         sys.exit('No hay lecciones')
 
     conocidas, vistas, avisos, automaticas = set(), {}, [], []
-    primera = 1
-    if (AQUI / curso / 'desde.txt').exists():
-        primera = int((AQUI / curso / 'desde.txt').read_text(encoding='utf-8').split()[0])
+    if primera > 1:
         for n in range(1, primera):
             vieja = json.loads((destino / f'{n:03d}.json').read_text(encoding='utf-8'))
             for w, ficha in vieja.get('palabras', {}).items():
@@ -331,7 +350,9 @@ def main():
         num = f'{i:03d}'
         for w, ficha in leccion['palabras'].items():
             antes = vistas.get(normal(w))
-            if antes and antes[1] == ficha['es']:
+            # Las fichas ocultas son apoyos de lectura que se repiten a propósito;
+            # no son tarjetas visibles duplicadas para el cuaderno.
+            if antes and antes[1] == ficha['es'] and not ficha.get('oculta'):
                 av.append(f'{num}: «{w}» ya se enseñó igual en la {antes[0]}')
             vistas.setdefault(normal(w), (num, ficha['es']))
             conocidas.add(normal(w))
@@ -369,7 +390,7 @@ def main():
 
     usados = {l['capitulo'] for _, l, _ in lecciones}
     caps = []
-    for linea in (AQUI / curso / 'capitulos.txt').read_text(encoding='utf-8').splitlines():
+    for linea in (fuente / curso / 'capitulos.txt').read_text(encoding='utf-8').splitlines():
         if linea.strip() and not linea.startswith('#'):
             c, titulo, es, desc = [x.strip() for x in linea.split('|')]
             if int(c) in usados:

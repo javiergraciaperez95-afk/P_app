@@ -4,8 +4,8 @@
  "titulo_es": "Lo tomo",
  "palabras": {
   "prendre": {
-   "es": "tomar",
-   "pron": "pran-DR"
+   "es": "tomar, coger",
+   "pron": "pra(n)dr"
   },
   "ordonnance": {
    "es": "receta médica",
@@ -17,11 +17,12 @@
   },
   "acheter": {
    "es": "comprar",
-   "pron": "ash-TÉ"
+   "pron": "ash-TÉ",
+   "oculta": true
   },
   "gâteaux": {
    "es": "pasteles",
-   "pron": "ga-TÓ",
+   "pron": "ga-TO",
    "consejo": "Plural de «gâteau»: la -x no se oye."
   },
   "boucherie": {
@@ -108,7 +109,6 @@
     "prendre",
     "ordonnance",
     "boulangerie",
-    "acheter",
     "gâteaux",
     "boucherie",
     "caisse",
@@ -130,7 +130,7 @@
      "analisis": [
       [
        "Vous voulez",
-       "usted quiere"
+       "¿quiere usted?"
       ],
       [
        "le médicament",
@@ -144,12 +144,12 @@
      "es": "Sí, lo tomo.",
      "analisis": [
       [
-       "je le prends",
-       "lo tomo"
+       "Oui",
+       "sí"
       ],
       [
-       "le",
-       "lo (sustituye a «médicament»)"
+       "je le prends",
+       "me lo llevo / lo tomo (pronombre «le» antes del verbo)"
       ]
      ]
     },
@@ -160,11 +160,11 @@
      "analisis": [
       [
        "Vous avez",
-       "tiene"
+       "¿tiene usted?"
       ],
       [
        "une ordonnance",
-       "una receta"
+       "una receta médica"
       ]
      ]
     },
@@ -174,16 +174,16 @@
      "es": "No, pero puedo pagarla.",
      "analisis": [
       [
+       "Non",
+       "no"
+      ],
+      [
+       "mais",
+       "pero"
+      ],
+      [
        "je peux la payer",
-       "puedo pagarla"
-      ],
-      [
-       "la",
-       "la (sustituye a la receta)"
-      ],
-      [
-       "payer",
-       "pagar"
+       "puedo pagarla («la» pronombre antes del infinitivo «payer»)"
       ]
      ]
     }
@@ -322,13 +322,24 @@
    "id": "fr043-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «los compro en la panadería»",
-   "respuestas": [
-    "je les achète à la boulangerie"
-   ],
-   "explicacion": "«Les» sustituye a un plural.",
-   "id": "fr043-8"
+   "tipo": "test",
+   "pregunta": "¿Cómo dices «los compro en la panadería» (refiriéndote a los pasteles)?",
+   "id": "fr043-8",
+   "opciones": [
+    {
+     "texto": "Je les achète à la boulangerie.",
+     "explicacion": "«Les» sustituye al complemento directo plural y se coloca antes del verbo conjugado.",
+     "correcta": true
+    },
+    {
+     "texto": "Je achète les à la boulangerie.",
+     "explicacion": "El pronombre de objeto directo no se coloca detrás del verbo conjugado."
+    },
+    {
+     "texto": "Je leur achète à la boulangerie.",
+     "explicacion": "«Leur» es pronombre de objeto indirecto (a ellos), no de objeto directo."
+    }
+   ]
   }
  ],
  "intro": "Ahora aprendemos a no repetir palabras. En vez de decir el nombre otra vez, usamos un pronombre."

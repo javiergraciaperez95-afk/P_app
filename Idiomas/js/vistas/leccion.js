@@ -238,7 +238,15 @@ function bloqueDialogo(b, leccion) {
   }
 
   const seccion = el('section', { class: 'caja dialogo' });
-  const alternar = el('button', { type: 'button', class: 'boton boton-mini ver-traducciones', 'aria-pressed': 'false' }, t('dialogo.ocultarTraducciones'));
+  // Los textos de lectura empiezan sin traducción para permitir una primera lectura autónoma.
+  // En los diálogos se conserva la ayuda en español visible, como antes.
+  const traduccionesOcultas = Boolean(b.esTexto);
+  seccion.classList.toggle('ocultar-traduccion', traduccionesOcultas);
+  const alternar = el('button', {
+    type: 'button',
+    class: 'boton boton-mini ver-traducciones',
+    'aria-pressed': String(traduccionesOcultas),
+  }, t(traduccionesOcultas ? 'dialogo.mostrarTraducciones' : 'dialogo.ocultarTraducciones'));
   alternar.addEventListener('click', () => {
     const ocultas = seccion.classList.toggle('ocultar-traduccion');
     alternar.setAttribute('aria-pressed', String(ocultas));
@@ -410,7 +418,7 @@ function pintarLibro(contenedor, resultado, siguiente, alJuego) {
   const propias = resultado.leccion.palabras;
   const leccion = { ...resultado.leccion, palabras: new Map([...diccionarioGlobal, ...propias]) };
   marcarAbierta(leccion.id);
-  origenActual = tTodos('leccion.numero', { id: leccion.id });
+  origenActual = tTodos('leccion.numero', { id: leccion.numero_curso });
 
   const progreso = el('p', { class: 'aprox' });
   const actualizar = () => {
@@ -422,7 +430,7 @@ function pintarLibro(contenedor, resultado, siguiente, alJuego) {
   const cabecera = el('header', { class: 'cabecera-leccion' },
     el('a', { class: 'boton boton-mini volver', href: '#/lecciones' }, `◀ ${t('menu.lecciones')}`),
     alJuego && el('button', { type: 'button', class: 'boton boton-mini boton-principal', onclick: alJuego }, t('juego.jugar')),
-    el('p', { class: 'etiqueta-bloque' }, t('leccion.numero', { id: leccion.id })),
+    el('p', { class: 'etiqueta-bloque' }, t('leccion.numero', { id: leccion.numero_curso })),
     el('h1', { class: 'titulo-es', lang: LANG }, leccion.titulo_es),
     leccion.titulo && el('p', { class: 'titulo-trad' }, tr(leccion.titulo)),
     progreso);

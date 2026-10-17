@@ -5,39 +5,39 @@
  "palabras": {
   "écrit": {
    "es": "escrito",
-   "pron": "e-KRÍ"
+   "pron": "e-kri"
   },
   "écrite": {
    "es": "escrita",
-   "pron": "e-KRÍT"
+   "pron": "e-krit"
   },
   "écrites": {
    "es": "escritas",
-   "pron": "e-KRÍT"
+   "pron": "e-krit"
   },
   "construit": {
    "es": "construido",
-   "pron": "ko(n)-STRUÍ"
+   "pron": "ko(n)-strüi"
   },
   "construite": {
    "es": "construida",
-   "pron": "ko(n)-STRUÍT"
+   "pron": "ko(n)-strüit"
   },
   "cuit": {
    "es": "cocido",
-   "pron": "kü"
+   "pron": "küi"
   },
   "vendu": {
    "es": "vendido",
-   "pron": "va(n)-DÜ"
+   "pron": "va(n)-dü"
   },
   "vendue": {
    "es": "vendida",
-   "pron": "va(n)-DÜ"
+   "pron": "va(n)-dü"
   },
   "vendus": {
    "es": "vendidos",
-   "pron": "va(n)-DÜ"
+   "pron": "va(n)-dü"
   },
   "lu": {
    "es": "leído",
@@ -49,27 +49,27 @@
   },
   "créé": {
    "es": "creado",
-   "pron": "kre-É"
+   "pron": "kre-e"
   },
   "créée": {
    "es": "creada",
-   "pron": "kre-É"
+   "pron": "kre-e"
   },
   "connu": {
    "es": "conocido",
-   "pron": "ko-NÜ"
+   "pron": "ko-nü"
   },
   "gâteau": {
    "es": "pastel",
-   "pron": "ga-TÓ"
+   "pron": "ga-to"
   },
   "chocolat": {
    "es": "chocolate",
-   "pron": "sho-ko-LÁ"
+   "pron": "sho-ko-la"
   },
   "fermée": {
    "es": "cerrada",
-   "pron": "fer-MÉ"
+   "pron": "fèr-me"
   }
  },
  "bloques": [
@@ -156,6 +156,10 @@
      "es": "¡Este pastel está hecho con chocolate!",
      "analisis": [
       [
+       "Ce gâteau",
+       "este pastel"
+      ],
+      [
        "est fait",
        "está hecho"
       ],
@@ -171,8 +175,8 @@
      "es": "¿Se vende en la panadería?",
      "analisis": [
       [
-       "il est vendu",
-       "se vende"
+       "Il est vendu",
+       "se vende / es vendido"
       ],
       [
        "à la boulangerie",
@@ -186,8 +190,12 @@
      "es": "Sí, está cocido esta mañana.",
      "analisis": [
       [
+       "Oui",
+       "sí"
+      ],
+      [
        "il est cuit",
-       "está cocido"
+       "está cocido / horneado"
       ],
       [
        "ce matin",
@@ -201,8 +209,16 @@
      "es": "Este libro está escrito por un autor muy conocido.",
      "analisis": [
       [
+       "Ce livre",
+       "este libro"
+      ],
+      [
        "est écrit",
        "está escrito"
+      ],
+      [
+       "par un auteur",
+       "por un autor"
       ],
       [
        "très connu",
@@ -345,13 +361,24 @@
    "id": "fr082-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «la carta está escrita»",
-   "respuestas": [
-    "la lettre est écrite"
-   ],
-   "explicacion": "El participio concuerda con «lettre», femenino.",
-   "id": "fr082-8"
+   "tipo": "test",
+   "pregunta": "¿Cómo se dice correctamente «la carta está escrita»?",
+   "id": "fr082-8",
+   "opciones": [
+    {
+     "texto": "La lettre est écrite.",
+     "explicacion": "El participio «écrit» concuerda en género femenino con «la lettre» («écrite»).",
+     "correcta": true
+    },
+    {
+     "texto": "La lettre est écrit.",
+     "explicacion": "Falta la concordancia de femenino en el participio («écrite»)."
+    },
+    {
+     "texto": "La lettre a écrit.",
+     "explicacion": "Eso indicaría voz activa («la carta ha escrito»), no pasiva."
+    }
+   ]
   }
  ],
  "intro": "Hoy la voz pasiva: cuando lo importante es lo que se hace, no quien lo hace."

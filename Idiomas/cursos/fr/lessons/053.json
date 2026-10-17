@@ -5,55 +5,55 @@
  "palabras": {
   "encore": {
    "es": "todavía, aún",
-   "pron": "a(n)-KOR"
+   "pron": "a(n)-kor"
   },
   "réunion": {
    "es": "reunión",
-   "pron": "re-ü-NIÓN"
+   "pron": "re-ü-nio(n)"
   },
   "collègue": {
-   "es": "compañero de trabajo",
-   "pron": "ko-LÉG"
+   "es": "compañero de trabajo, compañera de trabajo",
+   "pron": "ko-leg"
   },
   "horaires": {
    "es": "horarios",
-   "pron": "o-RÉR"
+   "pron": "o-rer"
   },
   "salaire": {
    "es": "sueldo",
-   "pron": "sa-LÉR"
+   "pron": "sa-ler"
   },
   "entreprise": {
    "es": "empresa",
-   "pron": "a(n)-tre-PRIZ"
+   "pron": "a(n)-tre-priz"
   },
   "gagner": {
    "es": "ganar",
-   "pron": "ga-NÉ"
+   "pron": "ga-nye"
   },
   "emploi": {
    "es": "empleo",
-   "pron": "a(n)-PLUÁ"
+   "pron": "a(n)-plua"
   },
   "congé": {
    "es": "permiso, vacaciones laborales",
-   "pron": "ko(n)-ZHÉ"
+   "pron": "ko(n)-zhe"
   },
   "retraite": {
    "es": "jubilación",
-   "pron": "re-TRÉT"
+   "pron": "re-tret"
   },
   "contrat": {
    "es": "contrato",
-   "pron": "ko(n)-TRÁ"
+   "pron": "ko(n)-tra"
   },
   "responsable": {
    "es": "responsable",
-   "pron": "res-po(n)-SÁBL"
+   "pron": "res-po(n)-sabl"
   },
   "journée": {
    "es": "jornada",
-   "pron": "zhur-NÉ"
+   "pron": "zhur-ne"
   }
  },
  "bloques": [
@@ -131,16 +131,24 @@
     },
     {
      "quien": "Thomas",
-     "fr": "Non, je n'ai pas de travail encore.",
+     "fr": "Non, je n'ai pas encore de travail.",
      "es": "No, todavía no tengo trabajo.",
      "analisis": [
       [
-       "n'ai pas de travail",
-       "no tengo trabajo"
+       "Non",
+       "no"
       ],
       [
-       "encore",
-       "todavía"
+       "je n'ai pas encore de travail",
+       "todavía no tengo trabajo"
+      ],
+      [
+       "pas encore",
+       "todavía no"
+      ],
+      [
+       "de travail",
+       "trabajo"
       ]
      ]
     },
@@ -149,6 +157,10 @@
      "fr": "Tu as une réunion lundi ?",
      "es": "¿Tienes una reunión el lunes?",
      "analisis": [
+      [
+       "Tu as",
+       "tienes"
+      ],
       [
        "une réunion",
        "una reunión"
@@ -165,8 +177,16 @@
      "es": "No, no tengo ninguna reunión.",
      "analisis": [
       [
-       "pas de réunion",
-       "ninguna reunión"
+       "Non",
+       "no"
+      ],
+      [
+       "je n'ai pas de réunion",
+       "no tengo reunión (ninguna reunión)"
+      ],
+      [
+       "pas de",
+       "ninguna"
       ]
      ]
     },
@@ -176,8 +196,12 @@
      "es": "¿Te gusta el trabajo?",
      "analisis": [
       [
-       "aimes",
+       "Tu aimes",
        "te gusta"
+      ],
+      [
+       "le travail",
+       "el trabajo"
       ]
      ]
     },
@@ -187,8 +211,8 @@
      "es": "¡Para nada!",
      "analisis": [
       [
-       "pas du tout",
-       "para nada"
+       "Pas du tout",
+       "para nada / en absoluto"
       ]
      ]
     }
@@ -327,13 +351,24 @@
    "id": "fr053-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «todavía no tengo reunión»",
-   "respuestas": [
-    "je n'ai pas encore de réunion"
-   ],
-   "explicacion": "«Pas encore» = todavía no.",
-   "id": "fr053-8"
+   "tipo": "test",
+   "pregunta": "¿Cómo expresas «No me gusta en absoluto este sueldo»?",
+   "id": "fr053-8",
+   "opciones": [
+    {
+     "texto": "Je n'aime pas du tout ce salaire.",
+     "explicacion": "«Pas du tout» se coloca tras el verbo para intensificar la negación («para nada» / «en absoluto»).",
+     "correcta": true
+    },
+    {
+     "texto": "Je n'aime pas encore ce salaire.",
+     "explicacion": "«Pas encore» significa «todavía no», no «para nada»."
+    },
+    {
+     "texto": "Je ne pas aime du tout ce salaire.",
+     "explicacion": "El adverbio negativo «pas» debe colocarse después del verbo conjugado («aime»)."
+    }
+   ]
   }
  ],
  "intro": "Último paso del capítulo: hablamos de tu trabajo con negaciones nuevas."

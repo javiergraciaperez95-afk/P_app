@@ -7,28 +7,30 @@
     "sin embargo": { "en": "however", "pron": "sin em-BAR-go", "cat": "connector" },
     "además": { "en": "besides, what's more", "pron": "a-de-MAS", "cat": "connector" },
     "por eso": { "en": "that's why, so", "pron": "por E-so", "cat": "connector" },
-    "aunque": { "en": "although, even though", "pron": "AUN-ke", "cat": "connector" },
+    "aunque": { "en": "although, even though; even if", "pron": "AUN-ke", "cat": "connector" },
     "en cambio": { "en": "on the other hand", "pron": "en KAM-byo", "cat": "connector" },
     "en resumen": { "en": "in short", "pron": "en re-SU-men", "cat": "connector" },
-    "creo": { "en": "I think", "pron": "KRE-o", "cat": "verb" },
-    "el centro": { "en": "the centre, downtown", "pron": "el THEN-tro", "genero": "m" }
+    "creer": { "en": "to think, believe", "pron": "kre-ER", "cat": "verb", "nota": "Creo is the first-person present form: I think/believe." },
+    "llover": { "en": "to rain", "pron": "yo-BER", "cat": "verb", "nota": "Llueva is the present subjunctive used in the possible-condition example." },
+    "el centro": { "en": "the centre, downtown", "pron": "el THEN-tro", "cat": "noun", "genero": "m" }
   },
   "bloques": [
     {
       "tipo": "explicacion",
       "titulo": "Join the ideas",
-      "texto": "These words do not change the verb by themselves.\n\n- **Además**, el café es barato.\n- Me gusta la ciudad. **Sin embargo**, es cara.\n- Vive lejos. **Por eso** llega tarde.\n- A Pablo le gusta el tren. **En cambio**, Lucía prefiere el autobús.\n\n**Aunque** plus the ordinary indicative states a fact: **aunque vivo** aquí, no conozco el centro. If aunque introduces something you doubt, it can take the subjunctive. For a fact, keep the indicative."
+      "texto": "Most of these connectors link ideas without changing the form of their verbs. **Aunque** can take the indicative or the subjunctive, depending on how the speaker presents the information.\n\n- **Además**, el café es barato.\n- Me gusta la ciudad. **Sin embargo**, es cara.\n- Vive lejos. **Por eso** llega tarde.\n- A Pablo le gusta el tren. **En cambio**, Lucía prefiere el autobús.\n\nUse the indicative when you present the concession as a fact or new information: **Aunque vivo** aquí, no conozco el centro. The subjunctive can present it as background/shared information or as a possibility: **Aunque llueva**, saldré. The choice reflects the speaker's point of view; it is not simply a matter of doubt."
     },
     {
       "tipo": "texto",
       "titulo": "A short opinion",
       "frases": [
         {
-          "es": "Me gusta vivir aquí.",
-          "en": "I like living here.",
+          "es": "Creo que es un buen lugar para vivir.",
+          "en": "I think it's a good place to live.",
           "analisis": [
-            ["Me gusta", "I like"],
-            ["vivir aquí", "living here"]
+            ["Creo que", "I think that"],
+            ["es un buen lugar", "it is a good place"],
+            ["para vivir", "to live"]
           ]
         },
         {
@@ -63,12 +65,12 @@
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["sin embargo", "además", "por eso", "aunque", "en cambio", "en resumen", "creo", "el centro"]
+      "palabras": ["sin embargo", "además", "por eso", "aunque", "en cambio", "en resumen", "creer", "llover", "el centro"]
     },
     {
       "tipo": "test",
       "id": "b2-con-poreo",
-      "pregunta": { "en": "Which connector gives the reason's result?" },
+      "pregunta": { "en": "Which connector introduces a result?" },
       "opciones": {
         "por eso": { "en": "Por eso means that's why." },
         "sin embargo": { "en": "Sin embargo introduces a contrast." },
@@ -81,6 +83,19 @@
       "id": "b2-con-aunque",
       "frase": "Aunque vivo aquí, no conozco el centro",
       "traduccion": { "en": "Although I live here, I don't know the centre." }
+    },
+    {
+      "tipo": "huecos",
+      "id": "b2-con-aunque-m0",
+      "pregunta": {"en": "Complete the possible condition: even if it rains, I will go out."},
+      "frase": "Aunque ___, saldré.",
+      "audio": true,
+      "opciones": {
+        "llueva": {"en": "The speaker presents rain as a possibility, not a stated fact."},
+        "llueve": {"en": "Use this when presenting the rain as a fact or new information."},
+        "llovió": {"en": "This is a completed past action."}
+      },
+      "correcta": "llueva"
     },
     {
       "tipo": "huecos",

@@ -5,51 +5,52 @@
  "palabras": {
   "été": {
    "es": "sido (participio de «être»)",
-   "pron": "e-TÉ"
+   "pron": "e-te",
+   "oculta": true
   },
   "ouverte": {
    "es": "abierta",
-   "pron": "u-VÉRT"
+   "pron": "u-vèrt"
   },
   "annoncé": {
    "es": "anunciado",
-   "pron": "a-no(n)-SÉ"
+   "pron": "a-no(n)-se"
   },
   "réparé": {
    "es": "reparado",
-   "pron": "re-pa-RÉ"
+   "pron": "re-pa-re"
   },
   "réparée": {
    "es": "reparada",
-   "pron": "re-pa-RÉ"
+   "pron": "re-pa-re"
   },
   "rénové": {
    "es": "renovado",
-   "pron": "re-no-VÉ"
+   "pron": "re-no-ve"
   },
   "terminé": {
    "es": "terminado",
-   "pron": "ter-mi-NÉ"
+   "pron": "tèr-mi-ne"
   },
   "terminée": {
    "es": "terminada",
-   "pron": "ter-mi-NÉ"
+   "pron": "tèr-mi-ne"
   },
   "terminés": {
    "es": "terminados",
-   "pron": "ter-mi-NÉ"
+   "pron": "tèr-mi-ne"
   },
   "prévu": {
    "es": "previsto",
-   "pron": "pre-VÜ"
+   "pron": "pre-vü"
   },
   "élu": {
    "es": "elegido",
-   "pron": "e-LÜ"
+   "pron": "e-lü"
   },
   "travaux": {
    "es": "obras",
-   "pron": "tra-VÓ"
+   "pron": "tra-vo"
   }
  },
  "bloques": [
@@ -97,7 +98,6 @@
    "tipo": "vocabulario",
    "titulo": "Vocabulario: noticias",
    "palabras": [
-    "été",
     "ouverte",
     "annoncé",
     "réparé",
@@ -121,8 +121,16 @@
      "es": "El museo fue abierto ayer.",
      "analisis": [
       [
+       "Le musée",
+       "el museo"
+      ],
+      [
        "a été ouvert",
-       "fue abierto"
+       "fue abierto / ha sido abierto"
+      ],
+      [
+       "hier",
+       "ayer"
       ]
      ]
     },
@@ -132,8 +140,16 @@
      "es": "¿El puente estará terminado mañana?",
      "analisis": [
       [
+       "Le pont",
+       "el puente"
+      ],
+      [
        "sera fini",
-       "estará terminado"
+       "estará terminado / será finalizado"
+      ],
+      [
+       "demain",
+       "mañana"
       ]
      ]
     },
@@ -143,8 +159,16 @@
      "es": "Sí, las obras están terminadas.",
      "analisis": [
       [
-       "les travaux sont terminés",
-       "las obras están terminadas"
+       "Oui",
+       "sí"
+      ],
+      [
+       "les travaux",
+       "las obras"
+      ],
+      [
+       "sont terminés",
+       "están terminadas"
       ]
      ]
     },
@@ -153,6 +177,10 @@
      "fr": "La route a été réparée ?",
      "es": "¿La carretera fue reparada?",
      "analisis": [
+      [
+       "La route",
+       "la carretera"
+      ],
       [
        "a été réparée",
        "fue reparada"
@@ -294,13 +322,24 @@
    "id": "fr084-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «la ruta ha sido reparada»",
-   "respuestas": [
-    "la route a été réparée"
-   ],
-   "explicacion": "El participio concuerda con «route», femenino.",
-   "id": "fr084-8"
+   "tipo": "test",
+   "pregunta": "¿Cuál es la forma correcta para «la carretera fue reparada»?",
+   "id": "fr084-8",
+   "opciones": [
+    {
+     "texto": "La route a été réparée.",
+     "explicacion": "«Passé composé» pasivo con concordancia de femenino en el participio («réparée»).",
+     "correcta": true
+    },
+    {
+     "texto": "La route a été réparé.",
+     "explicacion": "Falta la «e» final de concordancia con el sujeto femenino «la route»."
+    },
+    {
+     "texto": "La route est réparée hier.",
+     "explicacion": "Con un marcador temporal pasado («hier»), debe emplearse «a été réparée», no presente."
+    }
+   ]
   }
  ],
  "intro": "Último paso: la pasiva en pasado y en futuro, que es lo que más se oye en las noticias."

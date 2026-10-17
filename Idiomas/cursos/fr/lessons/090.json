@@ -5,51 +5,51 @@
  "palabras": {
   "conseillé": {
    "es": "aconsejado",
-   "pron": "ko(n)-se-IÉ"
+   "pron": "ko(n)-se-ye"
   },
   "ordonné": {
    "es": "ordenado",
-   "pron": "or-do-NÉ"
+   "pron": "or-do-ne"
   },
   "ordonner": {
    "es": "ordenar",
-   "pron": "or-do-NÉ"
+   "pron": "or-do-ne"
   },
   "recommandé": {
    "es": "recomendado",
-   "pron": "re-ko-ma(n)-DÉ"
+   "pron": "re-ko-ma(n)-de"
   },
   "recommander": {
    "es": "recomendar",
-   "pron": "re-ko-ma(n)-DÉ"
+   "pron": "re-ko-ma(n)-de"
   },
   "obligé": {
    "es": "obligado",
-   "pron": "o-bli-ZHÉ"
+   "pron": "o-bli-zhe"
   },
   "proposer": {
    "es": "proponer",
-   "pron": "pro-po-ZÉ"
+   "pron": "pro-po-ze"
   },
   "proposé": {
    "es": "propuesto",
-   "pron": "pro-po-ZÉ"
+   "pron": "pro-po-ze"
   },
   "menacer": {
    "es": "amenazar",
-   "pron": "me-na-SÉ"
+   "pron": "me-na-se"
   },
   "supplier": {
    "es": "suplicar",
-   "pron": "sü-pli-É"
+   "pron": "sü-pli-ye"
   },
   "ordre": {
    "es": "orden",
-   "pron": "ORDR"
+   "pron": "ordr"
   },
   "suggestion": {
    "es": "sugerencia",
-   "pron": "sü-ges-TIÓN"
+   "pron": "süg-zhès-tyo(n)"
   }
  },
  "bloques": [
@@ -121,8 +121,16 @@
      "es": "Thomas aconsejó a Paul dormir.",
      "analisis": [
       [
-       "a conseillé à Paul de dormir",
-       "aconsejó a Paul dormir"
+       "Thomas a conseillé",
+       "Thomas aconsejó"
+      ],
+      [
+       "à Paul",
+       "a Paul"
+      ],
+      [
+       "de dormir",
+       "dormir"
       ]
      ]
     },
@@ -132,8 +140,12 @@
      "es": "Thomas ordenó irse.",
      "analisis": [
       [
-       "a ordonné de partir",
-       "ordenó irse"
+       "Thomas a ordonné",
+       "Thomas ordenó"
+      ],
+      [
+       "de partir",
+       "irse / marcharse"
       ]
      ]
     },
@@ -143,8 +155,16 @@
      "es": "Propuso venir con nosotros.",
      "analisis": [
       [
-       "a proposé de venir",
-       "propuso venir"
+       "Il a proposé",
+       "propuso"
+      ],
+      [
+       "de venir",
+       "venir"
+      ],
+      [
+       "avec nous",
+       "con nosotros"
       ]
      ]
     },
@@ -154,8 +174,16 @@
      "es": "Pero recomendó quedarse en casa.",
      "analisis": [
       [
-       "a recommandé de rester",
-       "recomendó quedarse"
+       "Mais il a recommandé",
+       "pero recomendó"
+      ],
+      [
+       "de rester",
+       "quedarse"
+      ],
+      [
+       "à la maison",
+       "en casa"
       ]
      ]
     }
@@ -294,13 +322,24 @@
    "id": "fr090-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «le aconsejó dormir» (Thomas a Paul)",
-   "respuestas": [
-    "Thomas a conseillé à Paul de dormir"
-   ],
-   "explicacion": "«Conseiller à» + persona + «de» + infinitivo.",
-   "id": "fr090-8"
+   "tipo": "test",
+   "pregunta": "¿Cómo se construye correctamente «Thomas aconsejó a Paul dormir»?",
+   "id": "fr090-8",
+   "opciones": [
+    {
+     "texto": "Thomas a conseillé à Paul de dormir.",
+     "explicacion": "La estructura exige «conseiller à quelqu'un de + infinitivo».",
+     "correcta": true
+    },
+    {
+     "texto": "Thomas a conseillé Paul dormir.",
+     "explicacion": "Faltan las preposiciones «à» (ante la persona) y «de» (ante el infinitivo)."
+    },
+    {
+     "texto": "Thomas a conseillé que Paul dort.",
+     "explicacion": "Con infinitivo no se usa «que + indicativo»."
+    }
+   ]
   }
  ],
  "intro": "Último paso: decir lo que alguien nos pide, aconseja u ordena, sin hablar en directo."

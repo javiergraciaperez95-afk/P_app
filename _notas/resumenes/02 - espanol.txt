@@ -1,0 +1,105 @@
+RESUMEN DE CONTINUIDAD — AUDITORÍA SISTEMÁTICA DEL CURSO DE ESPAÑOL
+Fecha: 2026-10-16
+
+1. OBJETIVO Y ALCANCE
+
+El trabajo solicitado consiste en revisar únicamente el curso de español, dentro de Idiomas/cursos/es/lessons/, siguiendo seis fases: comprobar el número y la organización de unidades y lecciones; revisar el contenido general; redactar un informe; aplicar correcciones generales; revisar cada JSON secuencialmente; y comprobar que las lecciones se muestran correctamente en la aplicación/web.
+
+El curso debe mantenerse entre 284 y 357 lecciones, organizado en niveles A1, A2, B1 y B2. La revisión individual debe hacerse JSON por JSON, en orden numérico, validando estructura, traducciones, pronunciación, ayuda contextual, análisis sintáctico, ejercicios, referencias y ausencia de contenido inapropiado. Las comprobaciones de audio deben respetar que los ejercicios de escucha no se muestren si el dispositivo no tiene una voz disponible.
+
+2. TRABAJO PREVIO REALIZADO
+
+- Se estudió el formato real de Paglot antes de editar: Idiomas/js/lessons.js, Idiomas/js/vistas/lecciones.js, Idiomas/js/vistas/leccion.js, Idiomas/js/cursos.js y Idiomas/cursos/es/lessons/capitulos.json, además de lecciones de distintos puntos del curso.
+- Se comprobó que lessons.js reconoce los campos capitulo, numero_curso, orden_curso, titulo_es, titulo, intro, palabras y bloques.
+- Se comprobó que los bloques reconocidos incluyen explicacion, dialogo/texto, vocabulario, tabla, imagen y ejercicios test, traduccion, huecos, escribir y ordenar.
+- Se comprobó que el análisis sintáctico se muestra mediante el campo analisis de cada frase y que la ayuda del símbolo «?» se construye con la tutora de frase.
+- Se comprobó que la vista leccion.js oculta los bloques marcados soloOido cuando hayVoz() es falso y que los controles de audio llevan la clase con-voz para ocultarse sin voz.
+
+3. INVENTARIO Y PROGRESO
+
+- El inventario contiene 320 JSON de lecciones más capitulos.json: 321 archivos en total.
+- La numeración auditada es 001.json a 320.json, con el inventario completo generado antes de la revisión.
+- El archivo de seguimiento principal es Notas_archivos_noafectaalcodigo/informe_espanol.txt.
+- La revisión individual quedó registrada y validada desde 001.json hasta 180.json inclusive.
+- El informe contiene bloques ARCHIVO 1 DE 321 hasta ARCHIVO 180 DE 321 y el marcador final indica: «Último archivo completado: 180.json».
+- Antes del punto de control de la APK, ya estaban registrados como corregidos los primeros 15 JSON.
+
+4. CORRECCIONES RECIENTES COMPLETADAS
+
+176.json — «¿De qué trata?»
+- Se completó el glosario y la lista de vocabulario con 34 entradas concordantes.
+- Se añadieron categorías, géneros, pronunciaciones, notas y expresiones de cine/literatura.
+- Se mejoraron las explicaciones sobre géneros, argumento, versión original, subtítulos, doblaje, recomendaciones, subjuntivo, estreno, cartelera y taquilla.
+- Se corrigieron traducciones y análisis sintácticos del diálogo.
+- Se reformuló el ejercicio final para que «la película se estrena» significara «the film premieres or is released», evitando una descripción ambigua.
+- Validación: JSON válido en Node y PowerShell; cero avisos y errores del cargador; 34 términos concordantes; siete ejercicios con soluciones e IDs únicos; cero espacios finales.
+
+177.json — «La letra de la canción»
+- Se corrigió la pronunciación errónea «la both» de «la voz» a «la BOS».
+- Se aclaró la nota de «el músico» y su forma femenina «la música» para distinguir persona y música.
+- Se añadió «el director de orquesta» al glosario y a la lista de vocabulario.
+- Validación: JSON válido; cero avisos; 26 términos concordantes; seis ejercicios válidos; IDs únicos; cero espacios finales.
+
+178.json — «Estar informado»
+- Se añadieron fichas para «la radio», «la televisión», «internet», «la noticia», «la publicidad», «enterarse» y «el móvil», que aparecían en el contenido sin ayuda de vocabulario.
+- Se mantuvieron las formulaciones de opinión y subjuntivo y se completó la lista de vocabulario.
+- Validación: JSON válido; cero avisos; 30 términos concordantes; seis ejercicios válidos; IDs únicos; cero espacios finales.
+
+179.json — «Enganchados al móvil»
+- Se corrigió la pronunciación de «el celular» y se añadió una nota regional sobre su uso en América Latina.
+- Se añadieron 16 términos tecnológicos y de correo: wifi, clic, chatear, blog, enviar, reenviar, borrar, guardar, instalar, colgar, foto, apagar, correo electrónico, punto, guion y bar.
+- Se mejoró el análisis de «¿Me dejas tu cargador?» separando «me» como objeto indirecto y «dejas» como verbo.
+- Validación: JSON válido; cero avisos; 36 términos concordantes; seis ejercicios válidos; IDs únicos; cero espacios finales.
+
+180.json — «Llegar a fin de mes»
+- Se sustituyó una frase sobre el gobierno y la bajada de impuestos por un ejemplo apolítico sobre empresas, formación y mejora de habilidades, siguiendo la restricción de contenido neutral.
+- Se adaptó el análisis y el ejercicio de «para que» al subjuntivo «mejoren».
+- Se añadieron 14 expresiones y términos económicos: ganar un sueldo, pagar impuestos, pagar intereses, tener ahorros, precios, crecer, bajar, construcción, turismo, cada vez más/menos, por ciento, formación y habilidad.
+- Validación: JSON válido; cero avisos; 37 términos concordantes; seis ejercicios válidos; IDs únicos; cero espacios finales.
+
+5. PUNTO DE CONTROL DE LA APK
+
+- Se confirmó que las 15 primeras lecciones ya estaban registradas como corregidas antes de compilar.
+- Se ejecutó node copiar.mjs y npx cap sync android desde _apk. La sincronización terminó correctamente y copió la carpeta Idiomas a _apk/www y a los recursos Android.
+- La primera compilación falló por permisos en la caché global de Gradle y después por falta de un JDK 21 instalado.
+- Se resolvió la compilación usando el JDK disponible y objetivos Java compatibles en los archivos generados de Capacitor/dependencias locales del proyecto _apk. No se modificó el contenido del curso por este motivo.
+- Gradle terminó con BUILD SUCCESSFUL.
+- APK generada: _apk/android/app/build/outputs/apk/debug/app-debug.apk.
+- Se copió una referencia de control en _apk/Paglot-espanol-checkpoint.apk.
+- Tamaño verificado: 17 315 923 bytes.
+- SHA-256 verificado: 54BCCA527211538DA19F981C74618EAF4010B7A1F9AE16B2792C89BFB6918DB2.
+
+6. INTERRUPCIÓN ACTUAL Y CONTINUIDAD
+
+- La siguiente lección prevista era 181.json.
+- Se detectó que 181.json contenía contenido político explícito sobre democracia, partidos, elecciones y el sistema político de España, incompatible con la restricción posterior de mantener los textos completamente apolíticos.
+- Se inició una sustitución completa de 181.json por una lección neutral sobre organización y cooperación en equipo, conservando objetivos lingüísticos útiles como «para que + subjuntivo», propuestas, acuerdos y roles.
+- La operación de sustitución fue interrumpida después de eliminar el archivo original y antes de completar la nueva versión. Por tanto, 181.json necesita restaurarse inmediatamente antes de continuar: debe crearse una versión neutral, válida y completa, y luego validarse y registrarse como ARCHIVO 181 DE 321.
+- No se debe pasar a 182.json hasta que 181.json exista, sea parseable, pase revisarLeccion, tenga glosario/lista concordantes, ejercicios con solución e IDs únicos y quede registrado en informe_espanol.txt.
+
+7. VALIDACIÓN USADA EN CADA JSON
+
+Para cada lección completada se ejecutó:
+- Parseo con JSON.parse mediante Node.
+- Parseo adicional con ConvertFrom-Json de PowerShell.
+- revisarLeccion(id, datos) con navegador/localStorage/document simulados.
+- Revisión de cero avisos y cero bloques con error del cargador.
+- Cotejo bidireccional entre palabras del bloque vocabulario y claves de palabras.
+- Comprobación de en, pron, cat y género para sustantivos.
+- Comprobación de ejercicios, respuestas correctas, IDs únicos y campos de ordenar/traducción.
+- Búsqueda de espacios finales.
+
+8. ARCHIVOS QUE AÚN FALTAN
+
+- 181.json debe restaurarse y revisarse primero.
+- Después quedan 182.json hasta 320.json, en ese orden, sin saltos.
+- Al completar todos los JSON, debe actualizarse Notas_archivos_noafectaalcodigo/reviews/summary.md con todos los archivos revisados, corregidos, sin cambios, bloqueados, pruebas, resultados y trabajo pendiente.
+- La comprobación visual web lección por lección debe realizarse sin afirmar verificaciones que no se hayan ejecutado realmente.
+
+9. RESTRICCIONES DE CONTENIDO Y FORMATO
+
+- Mantener el curso limitado a español.
+- No introducir contenido político, sexista, racista, homófobo, delictivo ni susceptible de interpretación como discurso de odio.
+- No inventar tipos de bloque ni cambiar el formato que no reconoce la aplicación.
+- Mantener explicaciones y lecturas de longitud moderada, evitando muros de texto.
+- No modificar otros archivos de Notas_archivos_noafectaalcodigo salvo el informe de progreso y el summary final según la instrucción original.

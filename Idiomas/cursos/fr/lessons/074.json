@@ -5,43 +5,43 @@
  "palabras": {
   "lieu": {
    "es": "lugar",
-   "pron": "lié"
+   "pron": "lyö"
   },
   "moment": {
    "es": "momento",
-   "pron": "mo-MA(N)"
+   "pron": "mo-ma(n)"
   },
   "endroit": {
    "es": "lugar, sitio",
-   "pron": "a(n)-DRUÁ"
+   "pron": "a(n)-drua"
   },
   "situation": {
    "es": "situación",
-   "pron": "si-tü-a-SIÓN"
+   "pron": "si-tü-a-syo(n)"
   },
   "souvenir": {
    "es": "recuerdo",
-   "pron": "su-ve-NÍR"
+   "pron": "su-ve-nir"
   },
   "avis": {
    "es": "opinión",
-   "pron": "a-VÍ"
+   "pron": "a-vi"
   },
   "région": {
    "es": "región",
-   "pron": "re-ZHIÓN"
+   "pron": "re-zhyo(n)"
   },
   "rencontre": {
    "es": "encuentro",
-   "pron": "ra(n)-KO(N)TR"
+   "pron": "ra(n)-ko(n)tr"
   },
   "concours": {
    "es": "concurso",
-   "pron": "ko(n)-KÚR"
+   "pron": "ko(n)-kur"
   },
   "examen": {
    "es": "examen",
-   "pron": "e-gza-MA(N)"
+   "pron": "eg-za-me(n)"
   },
   "dont": {
    "es": "del que, de la que, de los que",
@@ -49,7 +49,8 @@
   },
   "où": {
    "es": "donde, en el que",
-   "pron": "u"
+   "pron": "u",
+   "oculta": true
   }
  },
  "bloques": [
@@ -103,8 +104,7 @@
     "rencontre",
     "concours",
     "examen",
-    "dont",
-    "où"
+    "dont"
    ]
   },
   {
@@ -116,6 +116,10 @@
      "fr": "C'est le restaurant où nous mangeons souvent.",
      "es": "Es el restaurante donde comemos a menudo.",
      "analisis": [
+      [
+       "C'est le restaurant",
+       "es el restaurante"
+      ],
       [
        "où nous mangeons",
        "donde comemos"
@@ -132,6 +136,10 @@
      "es": "Y es el momento en que todos comen.",
      "analisis": [
       [
+       "Et c'est le moment",
+       "y es el momento"
+      ],
+      [
        "où tout le monde mange",
        "en que todos comen"
       ]
@@ -143,6 +151,10 @@
      "es": "¡Es la película de la que todo el mundo habla!",
      "analisis": [
       [
+       "C'est le film",
+       "es la película"
+      ],
+      [
        "dont tout le monde parle",
        "de la que todo el mundo habla"
       ]
@@ -153,6 +165,14 @@
      "fr": "Oui, c'est un film très intéressant.",
      "es": "Sí, es una película muy interesante.",
      "analisis": [
+      [
+       "Oui",
+       "sí"
+      ],
+      [
+       "c'est un film",
+       "es una película"
+      ],
       [
        "très intéressant",
        "muy interesante"
@@ -294,13 +314,24 @@
    "id": "fr074-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «el tema del que hablo»",
-   "respuestas": [
-    "le sujet dont je parle"
-   ],
-   "explicacion": "«Dont» = del que, con «parler de».",
-   "id": "fr074-8"
+   "tipo": "test",
+   "pregunta": "¿Cuál es la opción correcta para traducir «el tema del que hablo»?",
+   "id": "fr074-8",
+   "opciones": [
+    {
+     "texto": "Le sujet dont je parle.",
+     "explicacion": "El verbo «parler de» exige la preposición «de», por lo que el pronombre relativo correspondiente es «dont».",
+     "correcta": true
+    },
+    {
+     "texto": "Le sujet que je parle de.",
+     "explicacion": "En francés no se pospone la preposición al final de la cláusula relativa ni se usa «que» con «de»."
+    },
+    {
+     "texto": "Le sujet où je parle.",
+     "explicacion": "«Où» es un pronombre de lugar o tiempo, no sustituye complementos introducidos por «de»."
+    }
+   ]
   }
  ],
  "intro": "Ahora unimos frases con lugar, momento o tema. Son otros dos pronombres."

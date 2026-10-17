@@ -1,0 +1,195 @@
+PAGLOT - ESTRUCTURA DE LA APP Y ARBOL DE CONTENIDOS
+====================================================
+Actualizado: 14 de octubre de 2026
+
+Este documento describe la organizacion actual del proyecto, las partes
+principales de Paglot y las rutas que forman su arbol de paginas.
+
+
+1. ESTRUCTURA DEL PROYECTO
+--------------------------
+
+Paglot/
+|-- Idiomas/                         Aplicacion web principal (PWA/SPA).
+|   |-- index.html                   Punto de entrada, cabecera, main y footer.
+|   |-- css/                         Estilos globales y estilos por vista.
+|   |-- assets/                      Logos, iconos, fuentes, sprites y recursos.
+|   |-- cursos/                      Contenido separado por idioma.
+|   |-- js/
+|   |   |-- app.js                   Arranque, router, cabecera y footer.
+|   |   |-- cursos.js                Catalogo de cursos generado desde el contenido.
+|   |   |-- curso.js                 Curso activo y sus preferencias.
+|   |   |-- lessons.js               Descubrimiento y carga de lecciones y frases.
+|   |   |-- exercises.js             Tipos de ejercicios reutilizados por los cursos.
+|   |   |-- progress.js              Progreso local y acceso a las tarjetas.
+|   |   |-- srs.js                   Repaso espaciado.
+|   |   |-- sync.js                  Cuenta, sesion y sincronizacion con Supabase.
+|   |   |-- ajustes.js                Tema, idioma y preferencias locales.
+|   |   |-- i18n.js, i18n/            Traducciones de la interfaz.
+|   |   |-- tutor.js                 Dialogo y comportamiento de la tutora.
+|   |   |-- tutor-sprite.js          Dibujo y animacion de tutoras pixel.
+|   |   |-- sonidos.js               Sonidos y lectura con la voz del dispositivo.
+|   |   |-- movil.js                 Integracion movil y boton atras de Android.
+|   |   |-- juego/                   Motor, escenas y efectos del modo juego.
+|   |   |-- vistas/                  Una funcion de renderizado por pagina o grupo.
+|   |-- manifest.webmanifest         Datos para instalar la PWA.
+|   |-- sw.js                        Service worker para recursos sin conexion.
+|   |-- LEEME.txt                    Guia propia de la app web.
+|
+|-- _apk/                            Proyecto Android de Capacitor.
+|   |-- capacitor.config.json       Identificador com.javiergp.idiomas y webDir www.
+|   |-- copiar.mjs                   Copia Idiomas/ a www/ y prepara el puente nativo.
+|   |-- puente.js                    Funciones de telefono expuestas a la web.
+|   |-- generar-apk.cmd              Flujo habitual para generar Paglot-prueba.apk.
+|   |-- www/                         Copia generada de Idiomas/, empaquetada por Capacitor.
+|   |-- android/                     Proyecto Gradle nativo de Android.
+|       |-- app/src/main/             Manifest, codigo nativo y recursos Android.
+|       |-- app/build/outputs/apk/    APK compilada.
+|
+|-- Paglot-prueba.apk                APK de prueba distribuida en la carpeta raiz.
+|-- _herramientas/                   Utilidades para montar cursos y preparar recursos.
+|-- _tutoras/                        Disenos, sprites y generadores de tutoras.
+|-- _audio/                          Herramientas y audios de trabajo antiguos.
+|-- _antiguas/                       Versiones anteriores independientes por idioma.
+|-- Para_lodriga/                    Configuracion y materiales de Supabase.
+|-- Muestras de voz/                 Pruebas de voces.
+|-- _copias/                         Copias manuales.
+|-- Abrir Paglot.cmd                 Lanzador local para el ordenador.
+|-- estructura.txt                  Mapa previo del proyecto.
+|-- notas_voces.txt                 Notas sobre voces y lectura.
+|-- progreso.html                   Pagina auxiliar de seguimiento.
+|-- estructura y arbol de paginas.txt  Este documento.
+
+
+2. COMO FUNCIONA LA APP
+-----------------------
+
+La aplicacion es una SPA: index.html carga js/app.js, que interpreta la ruta
+del hash (por ejemplo #/inicio) y pinta la vista dentro de <main id="app">.
+La cabecera y el footer son comunes y permanecen alrededor de las vistas.
+
+El programa de estudio es compartido por los idiomas. js/curso.js determina
+el curso seleccionado; js/lessons.js carga los datos de Idiomas/cursos/<codigo>/.
+js/exercises.js y el motor de juego gestionan actividades reutilizables. El
+progreso se guarda en el dispositivo y, si se configura e inicia una cuenta,
+puede sincronizarse mediante Supabase. La lectura utiliza voces disponibles
+en el navegador o dispositivo.
+
+La interfaz tiene traducciones en js/i18n/ para espanol, ingles, frances,
+aleman, italiano, portugues, japones, coreano, ruso, indonesio, vietnamita
+y chino. El contenido de las lecciones vive separado en cada curso.
+
+En Android, copiar.mjs actualiza _apk/www desde Idiomas. Capacitor integra esa
+copia con el proyecto Android de Gradle y puente.js conecta funciones nativas.
+generar-apk.cmd ejecuta la copia, cap sync, la compilacion debug y copia el
+resultado a Paglot-prueba.apk.
+
+
+3. ARBOL DE PAGINAS Y NAVEGACION
+-------------------------------
+
+Paglot
+|
+|-- Cabecera global
+|   |-- Inicio ...................... #/inicio
+|   |-- Entrar / Cuenta ............. #/entrar
+|   |-- Paglot Max .................. #/precios
+|   |-- Ajustes: idioma, sonido y tema claro/oscuro
+|
+|-- Paginas publicas
+|   |-- Inicio ...................... #/inicio
+|   |-- Entrar / recuperar cuenta ... #/entrar
+|   |-- Paglot Max y planes ......... #/precios
+|   |-- Sobre Paglot ................ #/sobre
+|   |-- Social ...................... #/social
+|   |-- Contacto .................... #/contacto
+|   |-- Producto (catalogo) ......... #/producto
+|   |   |-- Paglot Schools .......... #/escuelas
+|   |   |-- Paglot Empresas ......... #/empresas
+|   |   |-- Regala Paglot Max ....... #/regala-max
+|   |-- Tienda ...................... #/tienda
+|   |-- Guias comunitarias .......... #/guias
+|   |-- Preguntas frecuentes ........ #/faq
+|   |-- Laboratorio de ideas ........ #/laboratorio
+|   |-- Aviso legal y privacidad .... #/legal
+|   |-- Creditos .................... #/creditos
+|   |-- Elegir idioma ............... #/idiomas
+|   |-- Bienvenida inicial .......... #/bienvenida
+|
+|-- Area de aprendizaje (al elegir un idioma)
+|   |-- Lecciones ................... #/lecciones
+|   |   |-- Leccion concreta ........ #/leccion/<id>
+|   |-- Practica .................... #/practica
+|   |-- Frases ...................... #/frases
+|   |-- Cuaderno de palabras ........ #/cuaderno
+|   |-- Repaso espaciado ............ #/repaso
+|   |-- Perfil y progreso ........... #/perfil
+|   |-- Cambiar idioma .............. #/idiomas
+|
+|-- Footer comun
+    |-- Descubre: Sobre Paglot, Social, Guias comunitarias, Laboratorio
+    |-- Productos: Schools, Empresas, Paglot Max, Regalo, Tienda
+    |-- Ayuda: Contacto, FAQ, Legal, Creditos
+
+Sin curso seleccionado, la persona puede navegar por las paginas publicas,
+elegir un idioma o entrar en su cuenta. Al elegir un curso se habilitan las
+secciones de aprendizaje y cada una utiliza el contenido de ese curso.
+
+
+4. ARBOL DE CONTENIDOS EDUCATIVOS
+---------------------------------
+
+Idiomas/cursos/
+|-- <codigo-de-idioma>/              Un curso por idioma (21 en total).
+|   |-- lessons/
+|   |   |-- capitulos.json           Unidades, niveles y orden de lecciones.
+|   |   |-- 001.json                 Contenido completo de una leccion.
+|   |   |-- 002.json
+|   |   |-- ...
+|   |-- phrases/
+|   |   |-- frases.json              Frases reutilizables de ese idioma.
+|   |-- juegos/                      Actividades especificas del curso, si existen.
+|   |-- tutora.js                    Datos o dibujo propio de la tutora, si existe.
+|
+|-- es/   Espanol       303 lecciones; contiene el modo juego disponible.
+|-- en/   Ingles        163 lecciones.
+|-- fr/   Frances       132 lecciones.
+|-- de/   Aleman        125 lecciones.
+|-- it/   Italiano      137 lecciones.
+|-- pt/   Portugues     133 lecciones.
+|-- vi/   Vietnamita    263 lecciones.
+|-- da/   Danes         123 lecciones.
+|-- ja/   Japones       135 lecciones.
+|-- ko/   Coreano       142 lecciones.
+|-- ru/   Ruso          186 lecciones.
+|-- zh/   Chino           3 lecciones de muestra.
+|-- el/   Griego          3 lecciones de muestra.
+|-- id/   Indonesio       3 lecciones de muestra.
+|-- nl/   Neerlandes      3 lecciones de muestra.
+|-- no/   Noruego         3 lecciones de muestra.
+|-- pl/   Polaco          3 lecciones de muestra.
+|-- ro/   Rumano          3 lecciones de muestra.
+|-- sv/   Sueco           3 lecciones de muestra.
+|-- th/   Tailandes       3 lecciones de muestra.
+|-- tr/   Turco           3 lecciones de muestra.
+
+Las cantidades son el numero de archivos de leccion JSON presentes en cada
+carpeta al actualizar este mapa. El catalogo visible y el curso seleccionado
+se gestionan en js/cursos.js y js/curso.js; los cursos se montan con las
+herramientas del proyecto.
+
+Cada archivo de leccion contiene el material didactico y sus actividades en
+un formato que consume el motor comun. capitulos.json agrupa esos archivos
+para presentar el temario. phrases/frases.json alimenta la vista de frases.
+El modo juego tiene motor y escenas compartidos en js/juego/ y datos propios
+por curso cuando la carpeta juegos/ esta disponible.
+
+
+5. PAGINAS NUEVAS DE COMUNIDAD
+------------------------------
+
+Las rutas #/guias, #/faq y #/laboratorio se renderizan desde
+js/vistas/comunidad-extra.js y usan css/comunidad-extra.css. El Laboratorio
+permite proponer ideas y votar en la interfaz. En su estado actual los datos
+se guardan en el almacenamiento local del navegador, por lo que no forman
+todavia un tablero compartido entre usuarios.

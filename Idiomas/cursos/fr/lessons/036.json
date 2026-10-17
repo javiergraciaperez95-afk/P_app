@@ -5,12 +5,12 @@
  "palabras": {
   "autrefois": {
    "es": "antes, en otro tiempo",
-   "pron": "o-tre-FUÁ",
+   "pron": "o-trö-FUA",
    "consejo": "Se usa para empezar a contar algo del pasado."
   },
   "j'habitais": {
    "es": "vivía",
-   "pron": "ya-bi-TÉ",
+   "pron": "zha-bi-TÉ",
    "consejo": "Viene de «habiter» (vivir). Con «je» se escribe con apóstrofo."
   },
   "parlais": {
@@ -24,11 +24,11 @@
   },
   "parlions": {
    "es": "hablábamos",
-   "pron": "par-LIÓN",
+   "pron": "par-LIO(N)",
    "consejo": "«-ions» suena «ion»."
   },
   "parliez": {
-   "es": "hablabais",
+   "es": "hablabais; hablaban (ustedes)",
    "pron": "par-LIÉ",
    "consejo": "«-iez» suena «ié»."
   },
@@ -38,7 +38,7 @@
   },
   "j'étais": {
    "es": "era, estaba (yo)",
-   "pron": "yé-TÉ",
+   "pron": "zhe-TÉ",
    "consejo": "La raíz de «être» en imperfecto es «ét-»."
   },
   "étais": {
@@ -51,11 +51,11 @@
   },
   "étions": {
    "es": "éramos, estábamos",
-   "pron": "é-TIÓN"
+   "pron": "e-TIO(N)"
   },
   "étiez": {
-   "es": "erais, estabais",
-   "pron": "é-TIÉ"
+   "es": "erais, estabais; eran, estaban (ustedes)",
+   "pron": "e-TIÉ"
   },
   "étaient": {
    "es": "eran, estaban",
@@ -64,16 +64,17 @@
   "petite": {
    "es": "pequeña",
    "pron": "pe-TÍT",
-   "consejo": "Con una mujer o una niña, «petit» se vuelve «petite»."
+   "consejo": "Femenino de «petit».",
+   "oculta": true
   },
   "voisins": {
    "es": "vecinos",
-   "pron": "vua-ZÁN",
+   "pron": "vua-ZE(N)",
    "consejo": "Plural de «voisin» (vecino)."
   },
   "j'aimais": {
    "es": "me gustaba, quería (yo)",
-   "pron": "yé-MÉ",
+   "pron": "zhe-MÉ",
    "consejo": "Viene de «aimer» (gustar, querer)."
   },
   "mangeais": {
@@ -165,7 +166,6 @@
     "étions",
     "étiez",
     "étaient",
-    "petite",
     "voisins",
     "j'aimais",
     "mangeais"
@@ -181,8 +181,12 @@
      "es": "Antes, vivía en Lyon.",
      "analisis": [
       [
+       "Autrefois",
+       "antes / en otro tiempo"
+      ],
+      [
        "j'habitais",
-       "vivía"
+       "yo vivía (imparfait de habiter)"
       ],
       [
        "à Lyon",
@@ -200,12 +204,16 @@
        "cuando"
       ],
       [
-       "j'étais",
-       "era"
+       "j'étais petite",
+       "yo era pequeña (imparfait de être)"
       ],
       [
        "je parlais",
-       "hablaba"
+       "yo hablaba (imparfait de parler)"
+      ],
+      [
+       "beaucoup",
+       "mucho"
       ]
      ]
     },
@@ -215,12 +223,20 @@
      "es": "Yo era alto y me gustaba el deporte.",
      "analisis": [
       [
-       "j'étais",
-       "era"
+       "Moi",
+       "yo / a mí"
+      ],
+      [
+       "j'étais grand",
+       "yo era alto"
+      ],
+      [
+       "et",
+       "y"
       ],
       [
        "j'aimais",
-       "me gustaba"
+       "me gustaba (imparfait de aimer)"
       ],
       [
        "le sport",
@@ -234,8 +250,8 @@
      "es": "Éramos vecinos.",
      "analisis": [
       [
-       "nous étions",
-       "éramos"
+       "Nous étions",
+       "nosotros éramos (imparfait de être con nous)"
       ],
       [
        "voisins",
@@ -399,13 +415,24 @@
    "id": "fr036-8"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «yo vivía en Lyon»",
-   "respuestas": [
-    "j'habitais à Lyon"
-   ],
-   "explicacion": "Con «je» delante de vocal o «h» muda se escribe «j'».",
-   "id": "fr036-9"
+   "tipo": "test",
+   "pregunta": "¿Cómo se dice «yo vivía en Lyon»?",
+   "id": "fr036-9",
+   "opciones": [
+    {
+     "texto": "J'habitais à Lyon.",
+     "explicacion": "El imperfecto de «habiter» con «je» es «j'habitais» (con elisión «j'» ante «h»).",
+     "correcta": true
+    },
+    {
+     "texto": "J'habite à Lyon.",
+     "explicacion": "Eso es presente («vivo en Lyon»)."
+    },
+    {
+     "texto": "Je habitais à Lyon.",
+     "explicacion": "Delante de vocal o «h» muda, «je» se elide en «j'»."
+    }
+   ]
   }
  ],
  "intro": "Viajamos al pasado. Para contar cómo era algo o lo que hacías antes, usamos el imparfait."

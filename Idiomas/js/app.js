@@ -12,7 +12,7 @@ import { iniciarNube, usuarioActual, alCambiarNube } from './sync.js';
 import { tarjetas, alCambiar, hayProgreso } from './progress.js';
 import { tocaRepasar, esNueva } from './srs.js';
 import { decir } from './tutor.js';
-import { pintarLecciones } from './vistas/lecciones.js';
+import { agrupar, pintarLecciones } from './vistas/lecciones.js';
 import { pintarLeccion, cerrarFicha, ponerDiccionarioGlobal } from './vistas/leccion.js';
 import { pintarFrases } from './vistas/frases.js';
 import { pintarCuaderno } from './vistas/cuaderno.js';
@@ -27,6 +27,9 @@ import { pintarEntrar } from './vistas/entrar.js';
 import { pintarPrecios } from './vistas/precios.js';
 import { pintarBienvenida, bienvenidaVista } from './vistas/bienvenida.js';
 import { pintarPerdida } from './vistas/perdida.js';
+import { pintarSocial, pintarContacto, pintarProducto, pintarTienda } from './vistas/comunidad.js';
+import { pintarEscuelas, pintarEmpresas, pintarRegalo } from './vistas/productos.js';
+import { pintarGuias, pintarFaq, pintarLaboratorio } from './vistas/comunidad-extra.js';
 import { curso, hayCurso, nombreDelCurso } from './curso.js';
 import './movil.js';
 import './chispa.js';
@@ -65,7 +68,13 @@ const SECCIONES = [
 ];
 
 // Las pantallas generales de la app (no de un curso): llevan la marca de la app y no tienen menú de curso ni tutora.
-const PORTADAS = ['inicio', 'sobre', 'entrar', 'precios'];
+const OFERTAS = {
+  escuelas: { titulo: 'pagina.escuelas', pintar: pintarEscuelas },
+  empresas: { titulo: 'pagina.empresas', pintar: pintarEmpresas },
+  'regala-max': { titulo: 'pagina.regalo', pintar: pintarRegalo },
+};
+const PAGINAS_PUBLICAS = ['social', 'contacto', 'producto', 'tienda', 'guias', 'faq', 'laboratorio', ...Object.keys(OFERTAS)];
+const PORTADAS = ['inicio', 'sobre', 'entrar', 'precios', ...PAGINAS_PUBLICAS];
 
 const contenido = { resultados: [], capitulos: [], errorCapitulos: null, frases: null };
 let limpiarVista = null;
@@ -140,21 +149,72 @@ function pintarMarca() {
   subtitulo.parentElement.hidden = !deCurso;
   document.getElementById('marca').title = t('inicio.titulo');
   pintarNavegacion();
+  pintarPie();
   const boton = document.getElementById('btn-curso');
   boton.setAttribute('aria-label', t('cursos.cambiar'));
   boton.title = t('cursos.cambiar');
   boton.hidden = !hayCurso;
 }
 
-/** Los enlaces de la cabecera (Inicio · Entrar · Sobre Paglot): marca el de la pantalla abierta. */
+/** La cabecera se limita a Inicio, Entrar/Cuenta y Paglot Max. */
 function pintarNavegacion() {
   const aqui = location.hash.slice(2).split('/')[0] || (hayCurso ? 'lecciones' : 'inicio');
-  for (const a of document.querySelectorAll('#cabecera-nav a')) {
+  const etiquetas = [t('inicio.titulo'), t(usuarioActual() ? 'cuenta.titulo' : 'entrar.titulo'), 'Paglot Max'];
+  const rutas = ['inicio', 'entrar', 'precios'];
+  for (const [i, a] of [...document.querySelectorAll('#cabecera-nav a')].entries()) {
+    a.href = `#/${rutas[i]}`;
+    a.dataset.nav = rutas[i];
+    a.textContent = etiquetas[i];
     if (a.dataset.nav === aqui) a.setAttribute('aria-current', 'page');
     else a.removeAttribute('aria-current');
   }
-  // Con la sesión iniciada, «Entrar» pasa a llamarse «Cuenta».
-  document.getElementById('nav-entrar').textContent = t(usuarioActual() ? 'cuenta.titulo' : 'entrar.titulo');
+}
+
+/** Enlaces secundarios y legales: agrupados al pie para dejar respirar la cabecera. */
+function pintarPie() {
+  const textos = {
+    es: ['Descubre', 'Productos', 'Ayuda', 'Paglot Schools', 'Paglot Empresas', 'Regala Paglot Max', 'Tienda', 'Contacto', 'Aprender, a tu ritmo.', 'Inicio de Paglot', 'Hecho con píxeles y paciencia.'],
+    en: ['Explore', 'Products', 'Help', 'Paglot Schools', 'Paglot Business', 'Gift Paglot Max', 'Store', 'Contact', 'Learn at your own pace.', 'Paglot home', 'Made with pixels and patience.'],
+    fr: ['Découvrir', 'Produits', 'Aide', 'Paglot Écoles', 'Paglot Entreprises', 'Offrir Paglot Max', 'Boutique', 'Contact', 'Apprendre à votre rythme.', 'Accueil Paglot', 'Fait avec des pixels et de la patience.'],
+    de: ['Entdecken', 'Produkte', 'Hilfe', 'Paglot Schulen', 'Paglot Unternehmen', 'Paglot Max verschenken', 'Shop', 'Kontakt', 'Lernen im eigenen Tempo.', 'Paglot Startseite', 'Mit Pixeln und Geduld gemacht.'],
+    it: ['Scopri', 'Prodotti', 'Aiuto', 'Paglot Scuole', 'Paglot Aziende', 'Regala Paglot Max', 'Negozio', 'Contatti', 'Impara al tuo ritmo.', 'Home Paglot', 'Fatto di pixel e pazienza.'],
+    pt: ['Descubra', 'Produtos', 'Ajuda', 'Paglot Escolas', 'Paglot Empresas', 'Ofereça Paglot Max', 'Loja', 'Contacto', 'Aprenda ao seu ritmo.', 'Início da Paglot', 'Feito com pixels e paciência.'],
+    ja: ['Paglotについて', '製品', 'ヘルプ', 'Paglot 学校', 'Paglot 企業', 'Paglot Max を贈る', 'ショップ', 'お問い合わせ', '自分のペースで学ぼう。', 'Paglot ホーム', 'ピクセルと根気で作りました。'],
+    ko: ['Paglot 알아보기', '제품', '도움말', 'Paglot 학교', 'Paglot 기업', 'Paglot Max 선물하기', '스토어', '문의', '나만의 속도로 배워요.', 'Paglot 홈', '픽셀과 인내로 만들었습니다.'],
+    ru: ['О Paglot', 'Продукты', 'Помощь', 'Paglot для школ', 'Paglot для компаний', 'Подарить Paglot Max', 'Магазин', 'Контакты', 'Учитесь в своём темпе.', 'Главная Paglot', 'Сделано с пикселями и терпением.'],
+    id: ['Jelajahi', 'Produk', 'Bantuan', 'Paglot Sekolah', 'Paglot Bisnis', 'Hadiahkan Paglot Max', 'Toko', 'Kontak', 'Belajar dengan ritmemu.', 'Beranda Paglot', 'Dibuat dengan piksel dan kesabaran.'],
+    vi: ['Khám phá', 'Sản phẩm', 'Trợ giúp', 'Paglot Trường học', 'Paglot Doanh nghiệp', 'Tặng Paglot Max', 'Cửa hàng', 'Liên hệ', 'Học theo nhịp độ của bạn.', 'Trang chủ Paglot', 'Được tạo bằng pixel và sự kiên nhẫn.'],
+    zh: ['探索', '产品', '帮助', 'Paglot 学校', 'Paglot 企业', '赠送 Paglot Max', '商店', '联系', '按照自己的节奏学习。', 'Paglot 首页', '用像素和耐心制作。'],
+  }[idioma()] ?? ['Explore', 'Products', 'Help', 'Paglot Schools', 'Paglot Business', 'Gift Paglot Max', 'Store', 'Contact', 'Learn at your own pace.', 'Paglot home', 'Made with pixels and patience.'];
+  const [descubre, producto, ayuda, escuelas, empresas, regalo, tienda, contacto, lema, marcaAria, firma] = textos;
+  const titulos = { descubre, producto, ayuda };
+  for (const [clave, texto] of Object.entries(titulos)) {
+    const nodo = document.querySelector(`[data-pie-titulo="${clave}"]`);
+    if (nodo) nodo.textContent = texto;
+  }
+  const enlaces = {
+    sobre: t('sobre.titulo'), social: t('pagina.social'), escuelas, empresas, max: 'Paglot Max', regalo, tienda, contacto,
+    legal: t('legal.titulo'), creditos: t('creditos.titulo'),
+  };
+  for (const [clave, texto] of Object.entries(enlaces)) {
+    const nodo = document.querySelector(`[data-pie="${clave}"]`);
+    if (nodo) nodo.textContent = texto;
+  }
+  const extras = {
+    es: ['Guías comunitarias', 'FAQ', 'Laboratorio'], en: ['Community guidelines', 'FAQ', 'Idea Lab'],
+    fr: ['Guide communautaire', 'FAQ', 'Laboratoire'], de: ['Community-Leitlinien', 'FAQ', 'Ideenlabor'],
+    it: ['Linee guida della comunità', 'FAQ', 'Laboratorio'], pt: ['Diretrizes da comunidade', 'FAQ', 'Laboratório'],
+    ja: ['コミュニティガイド', 'FAQ', 'アイデアラボ'], ko: ['커뮤니티 가이드', 'FAQ', '아이디어 연구소'],
+    ru: ['Правила сообщества', 'FAQ', 'Лаборатория идей'], id: ['Panduan komunitas', 'FAQ', 'Lab ide'],
+    vi: ['Hướng dẫn cộng đồng', 'FAQ', 'Phòng ý tưởng'], zh: ['社区指南', '常见问题', '创意实验室'],
+  }[idioma()] ?? ['Community guidelines', 'FAQ', 'Idea Lab'];
+  ['guias', 'faq', 'laboratorio'].forEach(clave => {
+    const nodo = document.querySelector(`[data-pie="${clave}"]`);
+    if (nodo) nodo.textContent = clave === 'faq' ? t('pagina.faq') : extras[clave === 'guias' ? 0 : 2];
+  });
+  document.querySelector('[data-pie-lema]').textContent = lema;
+  document.querySelector('[data-pie-final]').textContent = firma;
+  document.querySelector('.pie-marca').setAttribute('aria-label', marcaAria);
 }
 alCambiarNube(pintarNavegacion);
 
@@ -165,11 +225,30 @@ const listaIdiomas = document.getElementById('lista-idiomas');
 
 function pintarSelectorIdioma() {
   const actual = IDIOMAS.find(i => i.clave === idioma());
-  poner(selectorIdioma, el('span', { lang: actual.clave }, actual.nombre), el('span', { class: 'sel-idioma-flecha', 'aria-hidden': 'true' }, '▾'));
-  poner(listaIdiomas, IDIOMAS.map(i => el('button', {
-    type: 'button', class: 'idioma-opcion', role: 'menuitemradio', lang: i.clave, 'aria-checked': String(i.clave === actual.clave),
-    onclick: () => { sonar('clic'); cerrarIdiomas(); cambiarIdioma(i.clave); },
-  }, el('span', { class: 'idioma-marca', 'aria-hidden': 'true' }, i.clave === actual.clave ? '✔' : ''), i.nombre)));
+  const automatico = ajuste('idioma') === 'auto';
+  poner(selectorIdioma,
+    el('span', { lang: actual.clave, class: 'sel-idioma-nombre' }, actual.nombre),
+    automatico ? el('span', { class: 'sel-idioma-auto', title: t('ajustes.automatico') }, 'AUTO') : null,
+    el('span', { class: 'sel-idioma-flecha', 'aria-hidden': 'true' }, '▾'));
+  selectorIdioma.title = automatico ? `${t('ajustes.automatico')} · ${actual.nombre}` : actual.nombre;
+  poner(listaIdiomas,
+    el('button', {
+      type: 'button', class: 'idioma-opcion idioma-automatico', role: 'menuitemradio',
+      'aria-checked': String(automatico), 'aria-label': `${t('ajustes.automatico')} · ${actual.nombre}`,
+      onclick: () => { sonar('clic'); cerrarIdiomas(); cambiarIdioma('auto'); },
+    },
+    el('span', { class: 'idioma-marca', 'aria-hidden': 'true' }, automatico ? '✓' : '↻'),
+    el('span', { class: 'idioma-opcion-nombre' }, t('ajustes.automatico')),
+    el('span', { class: 'idioma-opcion-detalle', lang: actual.clave }, actual.nombre)),
+    IDIOMAS.map(i => {
+      const seleccionado = !automatico && i.clave === actual.clave;
+      return el('button', {
+        type: 'button', class: 'idioma-opcion', role: 'menuitemradio', lang: i.clave,
+        'aria-checked': String(seleccionado),
+        onclick: () => { sonar('clic'); cerrarIdiomas(); cambiarIdioma(i.clave); },
+      }, el('span', { class: 'idioma-marca', 'aria-hidden': 'true' }, seleccionado ? '✓' : i.corto),
+      el('span', { class: 'idioma-opcion-nombre' }, i.nombre));
+    }));
 }
 
 function abrirIdiomas() {
@@ -191,14 +270,14 @@ selectorIdioma.addEventListener('click', () => {
   if (listaIdiomas.hidden) abrirIdiomas();
   else cerrarIdiomas();
 });
-// Se cierra al tocar fuera o con Escape; las flechas mueven por la lista.
+// Se cierra al tocar fuera o con Escape; las flechas respetan las dos columnas.
 document.addEventListener('click', e => { if (!e.target.closest('.idioma-menu')) cerrarIdiomas(); });
 listaIdiomas.addEventListener('keydown', e => {
   const opciones = [...listaIdiomas.children];
   const i = opciones.indexOf(document.activeElement);
   if (e.key === 'Escape') cerrarIdiomas({ foco: true });
-  else if (e.key === 'ArrowDown') opciones[(i + 1) % opciones.length].focus();
-  else if (e.key === 'ArrowUp') opciones[(i - 1 + opciones.length) % opciones.length].focus();
+  else if (e.key === 'ArrowDown' || e.key === 'ArrowRight') opciones[Math.min(opciones.length - 1, i + (e.key === 'ArrowDown' ? 2 : 1))].focus();
+  else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') opciones[Math.max(0, i - (e.key === 'ArrowUp' ? 2 : 1))].focus();
   else if (e.key === 'Tab') cerrarIdiomas();
   else return;
   if (e.key !== 'Tab') e.preventDefault();
@@ -255,7 +334,26 @@ let cursoCargado = false;
 function cargarCurso() {
   cargaDelCurso ??= (async () => {
     // Se espera a saber si el dispositivo tiene voz (segundo y medio como mucho): de eso depende qué ejercicios hay.
-    const [resultados, { capitulos, error }] = await Promise.all([descubrirLecciones(), cargarCapitulos(), prepararVoces()]);
+    const [cargadas, { capitulos, error }] = await Promise.all([descubrirLecciones(), cargarCapitulos(), prepararVoces()]);
+    // Los IDs internos conservan rutas y progreso; cada curso define su orden visible.
+    const resultados = curso.id === 'vi'
+      ? cargadas.sort((a, b) =>
+        (Number(a.leccion?.capitulo) || Number.MAX_SAFE_INTEGER) - (Number(b.leccion?.capitulo) || Number.MAX_SAFE_INTEGER)
+        || Number(a.leccion?.orden_curso ?? a.id) - Number(b.leccion?.orden_curso ?? b.id))
+      : curso.id === 'fr'
+        ? cargadas.sort((a, b) => Number(a.leccion?.numero_curso ?? a.id) - Number(b.leccion?.numero_curso ?? b.id))
+      : cargadas;
+    if (curso.id === 'vi') {
+      let numeroCurso = 0;
+      for (const resultado of resultados) if (resultado.leccion) resultado.leccion.numero_curso = ++numeroCurso;
+    }
+    // El ID del JSON conserva rutas y progreso; los números visibles siguen el orden que pinta la lista.
+    // Inglés, español y ruso están en edición aparte; se dejan con su numeración actual.
+    if (!['en', 'es', 'ru'].includes(curso.id)) {
+      agrupar(resultados, capitulos).flatMap(grupo => grupo.lecciones)
+        .filter(resultado => resultado.leccion)
+        .forEach((resultado, i) => { resultado.leccion.numero_curso = i + 1; });
+    }
     Object.assign(contenido, { resultados, capitulos, errorCapitulos: error ?? null, sinConexion: Boolean(resultados.sinConexion) });
     ponerDiccionarioGlobal(resultados);
     cursoCargado = true;
@@ -314,7 +412,7 @@ async function navegar({ cambioDeIdioma = false } = {}) {
     }
   } else if (seccion === 'lecciones') {
     titulo(t('menu.lecciones'));
-    if (contenido.sinConexion) avisoSinConexion();
+    if (contenido.sinConexion && !contenido.resultados.length) avisoSinConexion();
     else pintarLecciones(app, contenido);
   } else if (seccion === 'practica') {
     titulo(t('menu.practica'));
@@ -353,6 +451,23 @@ async function navegar({ cambioDeIdioma = false } = {}) {
   } else if (seccion === 'precios') {
     titulo(t('precios.titulo'));
     limpiarVista = pintarPrecios(app);
+  } else if (seccion === 'social') {
+    titulo(t('pagina.social')); limpiarVista = pintarSocial(app);
+  } else if (seccion === 'contacto') {
+    titulo(t('pagina.contacto')); pintarContacto(app);
+  } else if (seccion === 'producto') {
+    titulo(t('pagina.producto')); pintarProducto(app);
+  } else if (Object.hasOwn(OFERTAS, seccion)) {
+    titulo(t(OFERTAS[seccion].titulo));
+    limpiarVista = OFERTAS[seccion].pintar(app);
+  } else if (seccion === 'tienda') {
+    titulo(t('pagina.tienda')); limpiarVista = pintarTienda(app);
+  } else if (seccion === 'guias') {
+    titulo(t('pagina.guias')); pintarGuias(app);
+  } else if (seccion === 'faq') {
+    titulo(t('pagina.faq')); pintarFaq(app);
+  } else if (seccion === 'laboratorio') {
+    titulo(t('pagina.laboratorio')); pintarLaboratorio(app);
   } else if (seccion === 'bienvenida') {
     titulo(t('bienvenida.titulo'));
     limpiarVista = pintarBienvenida(app, contenido);
@@ -387,7 +502,7 @@ function avisoArchivoLocal() {
 function pintarSinCurso({ cambioDeIdioma = false } = {}) {
   limpiarVista?.();
   limpiarVista = null;
-  const vista = { '#/creditos': 'creditos', '#/idiomas': 'idiomas', '#/legal': 'legal', '#/sobre': 'sobre', '#/entrar': 'entrar', '#/precios': 'precios', '#/inicio': 'inicio' }[location.hash]
+  const vista = { '#/creditos': 'creditos', '#/idiomas': 'idiomas', '#/legal': 'legal', '#/sobre': 'sobre', '#/entrar': 'entrar', '#/precios': 'precios', '#/inicio': 'inicio', '#/social': 'social', '#/contacto': 'contacto', '#/producto': 'producto', '#/tienda': 'tienda', '#/guias': 'guias', '#/faq': 'faq', '#/laboratorio': 'laboratorio', '#/escuelas': 'escuelas', '#/empresas': 'empresas', '#/regala-max': 'regala-max' }[location.hash]
     // Lo que no es una ruta («#/algo») no es una página perdida: son, por ejemplo, los datos que traen los enlaces de los correos.
     ?? (location.hash.length > 2 && location.hash.startsWith('#/') ? 'perdida' : 'inicio');
   document.body.classList.toggle('en-inicio', PORTADAS.includes(vista));
@@ -407,6 +522,23 @@ function pintarSinCurso({ cambioDeIdioma = false } = {}) {
   } else if (vista === 'precios') {
     titulo(t('precios.titulo'));
     limpiarVista = pintarPrecios(app);
+  } else if (vista === 'social') {
+    titulo(t('pagina.social')); limpiarVista = pintarSocial(app);
+  } else if (vista === 'contacto') {
+    titulo(t('pagina.contacto')); pintarContacto(app);
+  } else if (vista === 'producto') {
+    titulo(t('pagina.producto')); pintarProducto(app);
+  } else if (Object.hasOwn(OFERTAS, vista)) {
+    titulo(t(OFERTAS[vista].titulo));
+    limpiarVista = OFERTAS[vista].pintar(app);
+  } else if (vista === 'tienda') {
+    titulo(t('pagina.tienda')); limpiarVista = pintarTienda(app);
+  } else if (vista === 'guias') {
+    titulo(t('pagina.guias')); pintarGuias(app);
+  } else if (vista === 'faq') {
+    titulo(t('pagina.faq')); pintarFaq(app);
+  } else if (vista === 'laboratorio') {
+    titulo(t('pagina.laboratorio')); pintarLaboratorio(app);
   } else if (vista === 'idiomas') {
     titulo(t('cursos.titulo'));
     pintarElegirCurso(app);

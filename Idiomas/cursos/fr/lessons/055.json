@@ -5,7 +5,8 @@
  "palabras": {
   "dois": {
    "es": "debo, debes",
-   "pron": "dua"
+   "pron": "dua",
+   "oculta": true
   },
   "doit": {
    "es": "debe",
@@ -13,44 +14,44 @@
   },
   "devons": {
    "es": "debemos",
-   "pron": "de-VÓN"
+   "pron": "de-vo(n)"
   },
   "fumer": {
    "es": "fumar",
-   "pron": "fü-MÉ"
+   "pron": "fü-me"
   },
   "arriver": {
    "es": "llegar",
-   "pron": "a-ri-VÉ"
+   "pron": "a-ri-ve"
   },
   "porter": {
    "es": "llevar, llevar puesto",
-   "pron": "por-TÉ"
+   "pron": "por-te"
   },
   "règle": {
    "es": "regla",
-   "pron": "ré-gl"
+   "pron": "re-gl"
   },
   "interdit": {
    "es": "prohibido",
-   "pron": "a(n)-te-DÍ",
+   "pron": "e(n)-ter-di",
    "consejo": "«Il est interdit de fumer» = prohibido fumar."
   },
   "respecter": {
    "es": "respetar",
-   "pron": "res-pek-TÉ"
+   "pron": "res-pek-te"
   },
   "attention": {
    "es": "atención",
-   "pron": "a-ta(n)-SIÓN"
+   "pron": "a-ta(n)-sio(n)"
   },
   "silence": {
    "es": "silencio",
-   "pron": "si-LA(N)S"
+   "pron": "si-la(n)s"
   },
   "éteindre": {
    "es": "apagar",
-   "pron": "e-TA(N)-dr"
+   "pron": "e-te(n)-dr"
   }
  },
  "bloques": [
@@ -105,7 +106,6 @@
    "tipo": "vocabulario",
    "titulo": "Vocabulario: reglas y obligaciones",
    "palabras": [
-    "dois",
     "doit",
     "devons",
     "fumer",
@@ -148,6 +148,10 @@
      "es": "¿Y debo llevar camisa?",
      "analisis": [
       [
+       "Et",
+       "y"
+      ],
+      [
        "je dois",
        "debo"
       ],
@@ -166,6 +170,14 @@
      "fr": "Oui, mais il ne faut pas fumer ici.",
      "es": "Sí, pero no hay que fumar aquí.",
      "analisis": [
+      [
+       "Oui",
+       "sí"
+      ],
+      [
+       "mais",
+       "pero"
+      ],
       [
        "il ne faut pas fumer",
        "no hay que fumar"
@@ -311,13 +323,24 @@
    "id": "fr055-7"
   },
   {
-   "tipo": "escribir",
-   "pregunta": "Escribe en francés: «debo llevar camisa»",
-   "respuestas": [
-    "je dois porter une chemise"
-   ],
-   "explicacion": "Con «je», «devoir» = dois.",
-   "id": "fr055-8"
+   "tipo": "test",
+   "pregunta": "¿Cómo expresas «Debemos respetar la regla»?",
+   "id": "fr055-8",
+   "opciones": [
+    {
+     "texto": "Nous devons respecter la règle.",
+     "explicacion": "Con el sujeto «nous», el verbo «devoir» se conjuga «devons» y va seguido del infinitivo «respecter».",
+     "correcta": true
+    },
+    {
+     "texto": "Nous dois respecter la règle.",
+     "explicacion": "«Dois» corresponde a las personas «je» o «tu»; con «nous» la forma correcta es «devons»."
+    },
+    {
+     "texto": "Nous devons respectons la règle.",
+     "explicacion": "Tras el verbo conjugado «devons», el segundo verbo debe ir en infinitivo («respecter»)."
+    }
+   ]
   }
  ],
  "intro": "Ahora decimos qué hay que hacer. Hay dos formas principales: «il faut» y «devoir»."

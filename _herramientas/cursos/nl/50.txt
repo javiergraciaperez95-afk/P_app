@@ -1,0 +1,138 @@
+N Rotterdam, Leiden, Breda, Toerist, Bewoner, Reiziger, Medewerker
+
+@ 20 | Een vertrektijd vinden | Consultar una hora de salida
+I Interpreta paneles horarios ferroviarios identificando destinos, andenes y puntualidad.
+E Paneles de transporte y ferrocarril :: En las estaciones de tren holandesas y belgas, los paneles de información indican la hora de salida («vertrek»), la hora prevista de llegada («aankomst») y la vía o andén asignado («spoor»). La indicación «rechtstreeks» significa que el tren es directo (sin transbordos). Si hay conexiones intermedias se indica el número de cambios de tren («overstap») y los minutos de demora («vertraging»).
+W vertrek = salida
+W aankomst = llegada
+W spoor = vía; andén
+W rechtstreeks = directo; sin transbordo
+w overstap = transbordo
+w vertraging = retraso; demora
+w rijdt = circula; va
+V Información de trenes
+T Texto breve
+- Trein naar Rotterdam: vertrek 10.14, spoor 5. = Tren a Rotterdam: salida 10:14, vía 5.
+  > Trein naar Rotterdam = tren a Rotterdam | vertrek 10.14 = salida a las 10:14 | spoor 5 = vía 5
+- Aankomst in Rotterdam: 11.02. = Llegada a Rotterdam: 11:02.
+  > Aankomst in Rotterdam = llegada a Rotterdam | 11.02 = a las 11:02
+- Trein naar Leiden: vertrek 10.22, spoor 2. = Tren a Leiden: salida 10:22, vía 2.
+  > Trein naar Leiden = tren a Leiden | vertrek 10.22 = salida a las 10:22 | spoor 2 = vía 2
+- De trein naar Rotterdam rijdt rechtstreeks. = El tren a Rotterdam va directo.
+  > De trein naar Rotterdam = el tren a Rotterdam | rijdt rechtstreeks = circula directo
+- De trein naar Leiden heeft één overstap en tien minuten vertraging. = El tren a Leiden tiene un transbordo y diez minutos de retraso.
+  > De trein naar Leiden = el tren a Leiden | heeft één overstap = tiene un transbordo | en = y | tien minuten vertraging = diez minutos de retraso
+Q ¿Qué término ferroviario designa la vía o andén de salida en neerlandés?
++ spoor :: «Spoor» (abreviado a veces como sp.) indica la vía del tren.
+- vertrek :: «Vertrek» es la hora o acción de salida, no el andén físico.
+- overstap :: «Overstap» es el transbordo o enlace entre dos convoyes.
+R Trein naar Rotterdam: vertrek 10.14, spoor 5. :: ¿Desde qué andén y a qué hora sale el tren a Rotterdam?
++ A las 10:14 desde la vía 5. :: «Vertrek 10.14» y «spoor 5» marcan la salida y la vía exactas.
+- A las 11:02 desde la vía 2. :: 11:02 es la hora de llegada a destino, no la de partida.
+- A las 10:22 desde la vía 1. :: 10:22 es la salida del tren con destino a Leiden.
+H Trein naar Rotterdam: ___ 10.14, spoor 5. :: Completa con la palabra técnica para la hora de partida.
++ vertrek :: «Vertrek» significa salida del convoy.
+- aankomst :: «Aankomst» indicaría la llegada a la estación.
+- overstap :: «Overstap» significaría transbordo.
+Q ¿Qué ventaja presenta el viaje en tren a Rotterdam respecto al de Leiden?
++ Circula directo sin necesidad de hacer ningún transbordo :: «Rijdt rechtstreeks» confirma trayecto sin enlaces.
+- Es completamente gratuito para los estudiantes :: No menciona tarifas gratuitas.
+- Dispone de vagón restaurante con comida caliente :: No informa sobre servicios a bordo.
+R De trein naar Leiden heeft één overstap en tien minuten vertraging. :: ¿Qué incidencia presenta el tren a Leiden?
++ Requiere un transbordo y acumula diez minutos de demora. :: «Één overstap» (un transbordo) y «tien minuten vertraging» (retraso).
+- Ha sido cancelado por obras en la infraestructura ferroviaria :: No está cancelado, solo sufre retraso y transbordo.
+- Llega con diez minutos de antelación sobre el horario previsto :: Lleva retraso («vertraging»), no adelanto.
+H Aankomst in Rotterdam: ___. :: Completa con la hora de llegada especificada en el panel.
++ 11.02 :: La hora prevista de llegada son las once y dos minutos.
+- 10.14 :: 10.14 es la hora de partida.
+- 10.22 :: 10.22 es la salida del tren hacia Leiden.
+O De trein naar Rotterdam rijdt rechtstreeks :: El tren a Rotterdam va directo. :: Sintagma nominal sujeto, verbo de desplazamiento y adverbio de modo.
+
+@ 20 | Een kaartje kopen | Comprar un billete
+I Compra billetes de tren en taquilla o máquina y aclara trayecto, andén y método de pago.
+E Billetes de transporte y pago :: Al adquirir un billete de tren se distingue entre «een enkele reis» (un viaje solo de ida) y «een retour» (un billete de ida y vuelta). En las ventanillas y máquinas de los Países Bajos y Flandes se suele pagar con tarjeta bancaria mediante la fórmula «Kan ik pinnen?» (¿puedo pagar con tarjeta?).
+W enkele reis = solo ida; billete de ida
+W retour = ida y vuelta; billete de vuelta
+w automaat = máquina expendedora; cajero
+w heenreis = viaje de ida
+w pinnen = pagar con tarjeta
+V Billetes de tren
+D En una situación cotidiana
+Reiziger: Een enkele reis naar Breda, alstublieft. = Un billete de ida a Breda, por favor.
+  > Een enkele reis = un billete de ida | naar Breda = a Breda | alstublieft = por favor
+Medewerker: Wilt u vandaag terug? = ¿Vuelve hoy?
+  > Wilt u = quiere usted | vandaag terug = hoy de vuelta; volver hoy
+Reiziger: Nee, alleen de heenreis. Kan ik pinnen? = No, solo la ida. ¿Puedo pagar con tarjeta?
+  > Nee = no | alleen de heenreis = solo el viaje de ida | Kan ik pinnen = ¿puedo pagar con tarjeta?
+Medewerker: Ja. De trein vertrekt van spoor drie. = Sí. El tren sale de la vía tres.
+  > Ja = sí | De trein vertrekt = el tren sale | van spoor drie = de la vía tres
+Reiziger: Dank u. Hoe laat vertrekt hij? = Gracias. ¿A qué hora sale?
+  > Dank u = gracias | Hoe laat = a qué hora | vertrekt hij = sale él
+Q ¿Qué modalidad de billete solicita el viajero en taquilla?
++ Un billete únicamente de ida :: «Een enkele reis» es un billete sencillo solo para la ida.
+- Un abono mensual ilimitado de transporte :: No pide abonos de larga duración.
+- Un billete combinado de ida y vuelta en el mismo día :: Ida y vuelta sería «een retour».
+R Wilt u vandaag terug? :: ¿Qué indaga el empleado de la estación antes de emitir el billete?
++ Si el pasajero tiene previsto regresar hoy para ofrecerle un billete de ida y vuelta. :: «Vandaag terug» pregunta si vuelve en el día.
+- Si el viajero dispone de tarjeta de crédito internacional :: La consulta sobre el pago surge después por iniciativa del viajero.
+- Si el pasajero necesita viajar en primera clase :: No pregunta por el tipo de clase del asiento.
+H Een ___ naar Breda, alstublieft. :: Completa con la locución de billete solo de ida.
++ enkele reis :: «Enkele reis» es el término estándar para billete de ida.
+- retour :: «Retour» es el billete de ida y vuelta.
+- vertraging :: «Vertraging» significa retraso.
+R Nee, alleen de heenreis. Kan ik pinnen? :: ¿Cómo desea abonar el billete el usuario?
++ Pagando con su tarjeta de débito o crédito bancaria. :: «Pinnen» es el verbo estándar para el pago electrónico con tarjeta.
+- En monedas metálicas en la máquina expendedora :: No paga con monedas, pregunta si puede usar tarjeta.
+- Canjeando un bono de descuento turístico :: No presenta ningún bono promocional.
+H De trein vertrekt van spoor ___. :: Completa con el número de andén indicado por el empleado.
++ drie :: El empleado le informa que sale de la vía tres («spoor drie»).
+- vijf :: Vía cinco era el andén del tren a Rotterdam.
+- twee :: Vía dos correspondía a Leiden.
+O Een enkele reis naar Breda, alstublieft :: Un billete de ida a Breda, por favor. :: Petición de billete con destino preposicional y fórmula de cortesía.
+
+@ 20 | De weg vragen | Pedir indicaciones
+I Pide y comprende indicaciones de orientación en la vía pública (giros, cruces y referencias).
+E Orientación y direcciones :: Para pedir una indicación en la calle se inicia con «Pardon, waar is...?» (disculpe, ¿dónde está...?). Las indicaciones básicas son «rechtdoor» (recto), «linksaf slaan» o «links» (a la izquierda), «rechtsaf slaan» o «rechts» (a la derecha). El verbo separable «oversteken» significa cruzar: «steek de straat over» (cruce la calle).
+W rechtsaf = a la derecha; hacia la derecha
+W linksaf = a la izquierda; hacia la izquierda
+w rechtdoor = todo recto
+w links = izquierda
+w rechts = derecha
+w pardon = perdón; disculpe
+w sla = gire; gira
+w ver = lejos; lejano
+w brug = puente
+w oversteken = cruzar
+V Orientación urbana
+D En una situación cotidiana
+Toerist: Pardon, waar is het station? = Perdone, ¿dónde está la estación?
+  > Pardon = perdone | waar is = dónde está | het station = la estación
+Bewoner: Ga rechtdoor tot de brug. = Siga recto hasta el puente.
+  > Ga rechtdoor = vaya recto | tot de brug = hasta el puente
+Toerist: En daarna? = ¿Y después?
+  > En daarna = ¿y después de eso?
+Bewoner: Sla rechtsaf en steek de straat over. = Gire a la derecha y cruce la calle.
+  > Sla rechtsaf = gire a la derecha | en steek = y cruce | de straat over = la calle (oversteken)
+Toerist: Is het ver? = ¿Está lejos?
+  > Is het ver = ¿está lejos?
+Q ¿Cómo se dice en neerlandés «gire a la derecha»?
++ Sla rechtsaf. :: Del verbo separable «afsaan» con la partícula direccional «rechtsaf».
+- Ga rechtdoor. :: Significa «vaya todo recto».
+- Sla linksaf. :: Significa «gire a la izquierda».
+R Ga rechtdoor tot de brug. :: ¿Cuál es el primer paso indicado por el vecino?
++ Caminar todo recto hasta llegar al puente. :: «Rechtdoor» es todo recto y «tot de brug» fija el puente como referencia.
+- Girar inmediatamente en la primera bocacalle a la izquierda :: Le indica no girar hasta alcanzar el puente.
+- Tomar el autobús urbano delante del edificio consistorial :: Le da indicaciones para ir a pie, no en autobús.
+H Sla ___ en steek de straat over. :: Completa con la dirección hacia la derecha.
++ rechtsaf :: «Rechtsaf» significa hacia la derecha.
+- linksaf :: El vecino le indica girar a la derecha («rechtsaf»), no a la izquierda.
+- rechtdoor :: Ya caminó recto antes; en este punto debe cambiar de dirección.
+R Sla rechtsaf en steek de straat over. :: ¿Qué dos acciones combinadas debe realizar tras el puente?
++ Girar a la derecha y cruzar la calzada. :: «Rechtsaf slaan» (girar a la derecha) y «de straat oversteken» (cruzar la calle).
+- Cruzar el puente y esperar frente al semáforo en rojo :: No menciona esperar ante ningún semáforo.
+- Doblar a la izquierda y entrar en el parque municipal :: No va a ningún parque municipal.
+H Pardon, waar is het ___? :: Completa con el edificio ferroviario por el que pregunta el turista.
++ station :: «Het station» es la estación de tren por la que indaga.
+- hotel :: No busca un hotel, sino la estación ferroviaria.
+- spoor :: «Spoor» es la vía del tren, pero en la calle busca la estación entera.
+O Ga rechtdoor tot de brug :: Siga recto hasta el puente. :: Instrucción en imperativo de movimiento continuado hasta un hito urbano.
