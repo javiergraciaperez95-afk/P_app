@@ -25,11 +25,14 @@
       "pron": "FWE-go",
       "cat": "interj"
     },
-    "la policía": {
-      "$f": "p.la policía",
-      "pron": "la po-li-SI-a (seseo) / po-li-THI-a (distinción)",
+    "el empleado": {
+      "$f": "p.el empleado",
+      "pron": "el em-ple-A-do",
       "cat": "sust",
-      "genero": "f"
+      "genero": "m",
+      "nota": {
+        "$t": "p.el empleado.nota"
+      }
     },
     "los bomberos": {
       "$f": "p.los bomberos",
@@ -49,9 +52,9 @@
       "cat": "sust",
       "genero": "f"
     },
-    "la comisaría": {
-      "$f": "p.la comisaría",
-      "pron": "la ko-mi-sa-RI-a",
+    "la oficina de objetos perdidos": {
+      "$f": "p.la oficina de objetos perdidos",
+      "pron": "la o-fi-SI-na de ob-HEK-tos per-DI-dos (seseo) / o-fi-THI-na de ob-HEK-tos per-DI-dos (distinción)",
       "cat": "sust",
       "genero": "f"
     },
@@ -61,15 +64,15 @@
       "cat": "sust",
       "genero": "m"
     },
-    "el robo": {
-      "$f": "p.el robo",
-      "pron": "el RO-bo",
+    "la pérdida": {
+      "$f": "p.la pérdida",
+      "pron": "la PER-di-da",
       "cat": "sust",
-      "genero": "m"
+      "genero": "f"
     },
-    "me han robado": {
-      "$f": "p.me han robado",
-      "pron": "me an ro-BA-do",
+    "he olvidado": {
+      "$f": "p.he olvidado",
+      "pron": "e ol-bi-DA-do",
       "cat": "expr"
     },
     "he perdido": {
@@ -115,35 +118,26 @@
       "pron": "ye-BAR",
       "cat": "verb"
     },
-    "alto/a": {
-      "$f": "p.alto/a",
-      "pron": "AL-to / AL-ta",
+    "grande": {
+      "$f": "p.grande",
+      "pron": "GRAN-de",
       "cat": "adj"
     },
-    "la chaqueta": {
-      "$f": "p.la chaqueta",
-      "pron": "la cha-KE-ta",
+    "el llavero": {
+      "$f": "p.el llavero",
+      "pron": "el ya-BE-ro",
       "cat": "sust",
-      "genero": "f"
+      "genero": "m"
     },
     "negro/a": {
       "$f": "p.negro/a",
       "pron": "NE-gro / NE-gra",
       "cat": "adj"
     },
-    "poner una denuncia": {
-      "$f": "p.poner una denuncia",
-      "pron": "po-NER U-na de-NUN-sya (seseo) / de-NUN-thya (distinción)",
+    "rellenar un formulario": {
+      "$f": "p.rellenar un formulario",
+      "pron": "re-ye-NAR un for-mu-LA-ryo",
       "cat": "expr"
-    },
-    "el ladrón": {
-      "$f": "p.el ladrón",
-      "pron": "el la-DRON",
-      "cat": "sust",
-      "genero": "m",
-      "nota": {
-        "$t": "p.el ladrón.nota"
-      }
     },
     "herido/a": {
       "$f": "p.herido/a",
@@ -177,13 +171,13 @@
           "quien": "Lucía",
           "analisis": [
             [
-              "Quiero poner una denuncia",
+              "Quiero rellenar un formulario",
               {
                 "$t": "a0"
               }
             ],
             [
-              "Me han robado",
+              "He perdido",
               {
                 "$t": "a0"
               }
@@ -198,7 +192,7 @@
         },
         {
           "$f": "b2.f1",
-          "quien": "Policía",
+          "quien": "Empleado",
           "analisis": [
             [
               "¿Dónde",
@@ -234,7 +228,7 @@
         },
         {
           "$f": "b2.f3",
-          "quien": "Policía",
+          "quien": "Empleado",
           "analisis": [
             [
               "¿Qué",
@@ -270,20 +264,8 @@
         },
         {
           "$f": "b2.f5",
-          "quien": "Policía",
+          "quien": "Empleado",
           "analisis": [
-            [
-              "¿Vio",
-              {
-                "$t": "a5"
-              }
-            ],
-            [
-              "al ladrón",
-              {
-                "$t": "a1"
-              }
-            ],
             [
               "¿Cómo",
               {
@@ -294,6 +276,12 @@
               "era",
               {
                 "$t": "a0"
+              }
+            ],
+            [
+              "el bolso",
+              {
+                "$t": "a6"
               }
             ]
           ]
@@ -309,9 +297,9 @@
               }
             ],
             [
-              "alto",
+              "negro",
               {
-                "$t": "a6"
+                "$t": "a7"
               }
             ],
             [
@@ -321,7 +309,7 @@
               }
             ],
             [
-              "una chaqueta negra",
+              "un llavero azul",
               {
                 "$t": "a1"
               }
@@ -397,7 +385,7 @@
         "$t": "b6.pregunta"
       },
       "opciones": {
-        "en la comisaría": {
+        "en la oficina de objetos perdidos": {
           "$t": "b6.o0.refuerzo"
         },
         "en urgencias": {
@@ -407,7 +395,7 @@
           "$t": "b6.o2.refuerzo"
         }
       },
-      "correcta": "en la comisaría"
+      "correcta": "en la oficina de objetos perdidos"
     },
     {
       "tipo": "huecos",
