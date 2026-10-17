@@ -16,12 +16,14 @@ final class Correo
     /**
      * Pone un correo en cola. Como mucho «correo_destino» correos por dirección y hora (plan, entrada 90):
      * los de más no se envían, en silencio (la respuesta a la app es la misma).
+     * Devuelve false si no se va a enviar.
      */
-    public static function enviar(string $para, string $plantilla, string $idioma, array $variables = []): void
+    public static function enviar(string $para, string $plantilla, string $idioma, array $variables = []): bool
     {
-        if (Limites::golpe('correo_destino', $para, false) > 0) return;
+        if (Limites::golpe('correo_destino', $para, false) > 0) return false;
         self::$cola[] = ['para' => $para, 'plantilla' => $plantilla] + Plantillas::componer($plantilla, $idioma, $variables)
             + ['enlace' => $variables['enlace'] ?? null];
+        return true;
     }
 
     /** El enlace de un correo: va a la app, con el token detrás de «#». */

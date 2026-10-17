@@ -23,6 +23,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON BASE.progreso           TO 'paglot_app'@
 GRANT SELECT, INSERT, UPDATE, DELETE ON BASE.progreso_historial TO 'paglot_app'@'HOST';
 GRANT SELECT, INSERT, UPDATE, DELETE ON BASE.limites            TO 'paglot_app'@'HOST';
 GRANT SELECT, INSERT, UPDATE, DELETE ON BASE.correos_pendientes TO 'paglot_app'@'HOST';
+GRANT SELECT, INSERT, UPDATE, DELETE ON BASE.codigos            TO 'paglot_app'@'HOST';
 GRANT INSERT                         ON BASE.eventos            TO 'paglot_app'@'HOST';
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON BASE.usuarios           TO 'paglot_tareas'@'HOST';
@@ -32,6 +33,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON BASE.progreso           TO 'paglot_tarea
 GRANT SELECT, INSERT, UPDATE, DELETE ON BASE.progreso_historial TO 'paglot_tareas'@'HOST';
 GRANT SELECT, INSERT, UPDATE, DELETE ON BASE.limites            TO 'paglot_tareas'@'HOST';
 GRANT SELECT, INSERT, UPDATE, DELETE ON BASE.correos_pendientes TO 'paglot_tareas'@'HOST';
+GRANT SELECT, INSERT, UPDATE, DELETE ON BASE.codigos            TO 'paglot_tareas'@'HOST';
 GRANT SELECT, INSERT, DELETE         ON BASE.eventos            TO 'paglot_tareas'@'HOST';
 
 FLUSH PRIVILEGES;

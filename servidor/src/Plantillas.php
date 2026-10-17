@@ -12,6 +12,12 @@ final class Plantillas
 {
     private const TEXTOS = [
         'es' => [
+            'codigo' => [
+                'asunto' => 'Tu código de Paglot: {codigo}',
+                'titulo' => 'Tu código',
+                'parrafos' => ['Escribe este código en la app para entrar. Si aún no tienes cuenta, se creará.', 'Vale durante {minutos} minutos. Si no lo has pedido tú, puedes ignorar este correo.'],
+                'destacado' => '{codigo}',
+            ],
             'confirmar' => [
                 'asunto' => 'Confirma tu cuenta de Paglot',
                 'titulo' => '¡Ya casi está!',
@@ -57,6 +63,12 @@ final class Plantillas
             ],
         ],
         'en' => [
+            'codigo' => [
+                'asunto' => 'Your Paglot code: {codigo}',
+                'titulo' => 'Your code',
+                'parrafos' => ['Type this code in the app to sign in. If you don’t have an account yet, it will be created.', 'It works for {minutos} minutes. If you didn’t ask for it, you can ignore this email.'],
+                'destacado' => '{codigo}',
+            ],
             'confirmar' => [
                 'asunto' => 'Confirm your Paglot account',
                 'titulo' => 'Almost there!',
@@ -119,7 +131,7 @@ final class Plantillas
         ],
     ];
 
-    public const NOMBRES = ['confirmar', 'ya_registrado', 'recuperar', 'contrasena_cambiada', 'correo_nuevo', 'correo_aviso', 'correo_cambiado', 'cuenta_borrada'];
+    public const NOMBRES = ['codigo', 'confirmar', 'ya_registrado', 'recuperar', 'contrasena_cambiada', 'correo_nuevo', 'correo_aviso', 'correo_cambiado', 'cuenta_borrada'];
 
     /**
      * Compone un correo: ['asunto', 'texto', 'html'].
@@ -147,6 +159,7 @@ final class Plantillas
 
         // --- Texto plano ---
         $lineas = [$poner($saludo, false), ''];
+        if (isset($p['destacado'])) { $lineas[] = '    ' . $poner($p['destacado'], false); $lineas[] = ''; }
         foreach ($p['parrafos'] as $parrafo) { $lineas[] = $poner($parrafo, false); $lineas[] = ''; }
         if (!isset($p['boton'])) $enlace = null;   // las plantillas de aviso no llevan botón
         if ($enlace !== null) { $lineas[] = $p['boton'] . ':'; $lineas[] = $enlace; $lineas[] = ''; }
@@ -160,6 +173,11 @@ final class Plantillas
         foreach ($p['parrafos'] as $parrafo) {
             $parrafos .= '<p style="margin:0 0 16px;font-size:16px;line-height:1.55;color:#f2ecf7;">' . $poner($parrafo, true) . '</p>';
         }
+        if (isset($p['destacado'])) {
+            // El código, grande y separado del texto, para leerlo de un vistazo y copiarlo bien.
+            $parrafos = '<p style="margin:0 0 20px;padding:16px;background:#15121d;border-radius:10px;text-align:center;font-size:34px;font-weight:800;letter-spacing:8px;color:#f4c84a;font-family:ui-monospace,Menlo,Consolas,monospace;">'
+                . $poner($p['destacado'], true) . '</p>' . $parrafos;
+        }
         $boton = '';
         if ($enlace !== null) {
             $href = self::e($enlace);
@@ -171,7 +189,7 @@ final class Plantillas
         }
         $html = '<!doctype html><html lang="' . self::e($idioma) . '"><head><meta charset="utf-8">'
             . '<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark">'
-            . '<title>' . self::e($p['asunto']) . '</title></head>'
+            . '<title>' . $poner($p['asunto'], true) . '</title></head>'
             . '<body style="margin:0;padding:0;background:#15121d;font-family:system-ui,-apple-system,\'Segoe UI\',Roboto,sans-serif;">'
             . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#15121d;"><tr><td align="center" style="padding:32px 16px;">'
             . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#231e30;border-radius:16px;border:2px solid #3b3256;">'

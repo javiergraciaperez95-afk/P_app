@@ -46,7 +46,7 @@ function peticiones_resend(): array
 prueba('todas las plantillas existen en español e inglés; los otros idiomas reciben inglés', function () {
     foreach (Plantillas::NOMBRES as $p) {
         foreach (['es', 'en'] as $idioma) {
-            $c = Plantillas::componer($p, $idioma, ['nombre' => 'Ana', 'enlace' => 'https://paglot.app/#/enlace/x/y', 'horas' => 48, 'minutos' => 60, 'correo' => 'a***@b.com']);
+            $c = Plantillas::componer($p, $idioma, ['nombre' => 'Ana', 'enlace' => 'https://paglot.app/#/enlace/x/y', 'horas' => 48, 'minutos' => 60, 'correo' => 'a***@b.com', 'codigo' => '123456']);
             verdad($c['asunto'] !== '' && str_contains($c['html'], '</html>') && str_contains($c['texto'], 'Paglot'), "{$p}/{$idioma} completa");
             verdad(!preg_match('/\{[a-z]+\}/', $c['texto'] . $c['html']), "{$p}/{$idioma}: sin marcadores sin cambiar");
         }

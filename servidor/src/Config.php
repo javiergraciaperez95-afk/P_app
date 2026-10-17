@@ -17,6 +17,8 @@ final class Config
         'token_confirmar'       => 48 * 3600,
         'token_recuperar'       => 3600,
         'token_correo'          => 24 * 3600,
+        'codigo_duracion'       => 600,          // el código de 6 cifras vale 10 minutos…
+        'codigo_intentos'       => 5,            // …y se gasta al 5.º fallo
         'contrasena_min'        => 8,
         'contrasena_max'        => 128,
         'nombre_max'            => 60,
@@ -41,6 +43,11 @@ final class Config
             'token_ip'        => [60, 900],    // enlaces de correo probados por IP
             'contrasena_usuario' => [5, 900],  // contraseña actual fallida (cambiarla, borrar…)
             'guardar'         => [30, 60],     // guardados de progreso por persona y curso
+            'codigo_correo'   => [5, 3600],    // códigos pedidos para un mismo correo
+            'codigo_ip'       => [30, 3600],   // códigos pedidos por IP
+            'codigo_entrar_ip' => [60, 900],   // códigos probados por IP
+            'codigo_fallo'    => [10, 3600],   // códigos fallidos por correo (espera creciente: 1 h, 2 h, 4 h…)
+            'google_ip'       => [60, 900],    // entradas con Google por IP
         ],
     ];
 

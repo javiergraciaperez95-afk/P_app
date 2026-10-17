@@ -146,7 +146,7 @@ function a_la_vez(array $peticiones): array
 /** Deja la base de pruebas vacía y el buzón limpio. Se hace antes de cada caso. */
 function limpiar(): void
 {
-    foreach (['eventos', 'limites', 'correos_pendientes', 'progreso_historial', 'progreso', 'tokens', 'sesiones', 'usuarios'] as $tabla) {
+    foreach (['eventos', 'limites', 'correos_pendientes', 'progreso_historial', 'progreso', 'tokens', 'codigos', 'sesiones', 'usuarios'] as $tabla) {
         Bd::ejecutar("DELETE FROM {$tabla}");
     }
     foreach (glob(buzon() . '/*.json') ?: [] as $archivo) unlink($archivo);

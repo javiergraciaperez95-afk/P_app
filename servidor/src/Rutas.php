@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Paglot;
 
+use Paglot\Api\Acceso;
 use Paglot\Api\Cuentas;
 use Paglot\Api\Perfil;
 
@@ -26,12 +27,16 @@ final class Rutas
             ['POST',   '/recuperar',           [Cuentas::class, 'recuperar'],       false],
             ['POST',   '/recuperar/nueva',     [Cuentas::class, 'nuevaContrasena'], false],
             ['POST',   '/yo/correo/confirmar', [Cuentas::class, 'confirmarCorreo'], false],
+            ['POST',   '/codigo',              [Acceso::class, 'codigo'],           false],
+            ['POST',   '/codigo/entrar',       [Acceso::class, 'codigoEntrar'],     false],
+            ['POST',   '/google',              [Acceso::class, 'google'],           false],
 
             ['GET',    '/yo',                  [Perfil::class, 'yo'],               true],
             ['PATCH',  '/yo',                  [Perfil::class, 'cambiar'],          true],
             ['DELETE', '/yo',                  [Perfil::class, 'borrar'],           true],
             ['POST',   '/yo/contrasena',       [Perfil::class, 'contrasena'],       true],
             ['POST',   '/yo/correo',           [Perfil::class, 'correo'],           true],
+            ['POST',   '/yo/google',           [Acceso::class, 'enlazarGoogle'],    true],
             ['GET',    '/yo/exportar',         [Perfil::class, 'exportar'],         true],
             ['GET',    '/sesiones',            [Perfil::class, 'sesiones'],         true],
             ['DELETE', '/sesiones/{id}',       [Perfil::class, 'cerrarSesion'],     true],

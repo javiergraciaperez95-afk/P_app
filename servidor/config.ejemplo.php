@@ -53,4 +53,11 @@ return [
 
     // Registro de errores (fuera de la carpeta pública).
     'registro_errores' => __DIR__ . '/registros/errores.log',
+
+    // «Continuar con Google». 'clientes': el ID de cliente WEB de Google Cloud (consola → APIs y servicios →
+    // Credenciales). La APK usa ese mismo ID. Vacío = el botón está apagado y /google responde 503.
+    'google' => [
+        'clientes' => [],
+        'claves_archivo' => null,   // solo para las pruebas
+    ],
 ];

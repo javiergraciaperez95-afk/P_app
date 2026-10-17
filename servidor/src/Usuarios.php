@@ -32,6 +32,8 @@ final class Usuarios
             'foto'       => $u['foto'] === null ? null : Foto::aUrl($u['foto']),
             'idioma'     => $u['idioma'],
             'confirmado' => $u['confirmado'] !== null,
+            'contrasena' => $u['hash'] !== '',                 // las cuentas de código o de Google no tienen
+            'google'     => ($u['google_sub'] ?? null) !== null,
             'creado'     => Tiempo::iso($u['creado']),
         ];
     }

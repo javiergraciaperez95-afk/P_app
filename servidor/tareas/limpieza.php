@@ -15,6 +15,7 @@ Bd::conectar(true);
 
 $pasos = [
     'sesiones caducadas'          => ['DELETE FROM sesiones WHERE caduca < ?', [Tiempo::bd()]],
+    'códigos caducados'           => ['DELETE FROM codigos WHERE caduca < ?', [Tiempo::bd()]],
     'enlaces caducados o usados'  => ['DELETE FROM tokens WHERE caduca < ? OR usado < ?', [Tiempo::bd(-86400), Tiempo::bd(-86400)]],
     'límites viejos'              => ['DELETE FROM limites WHERE inicio < ? AND (bloqueado_hasta IS NULL OR bloqueado_hasta < ?)', [Tiempo::bd(-2 * 86400), Tiempo::bd()]],
     'copias de progreso (14 días)' => ['DELETE FROM progreso_historial WHERE guardado < ?', [Tiempo::bd(-14 * 86400)]],

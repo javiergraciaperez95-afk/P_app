@@ -66,10 +66,11 @@ final class Perfil
     {
         $p->campos(['actual', 'nueva']);
         $u = $s['usuario'];
-        $actual = (string) $p->texto('actual');
+        // Sin contraseña (cuenta de código o de Google) se pone la primera: basta la sesión.
+        $actual = (string) $p->texto('actual', $u['hash'] !== '');
         $nueva = (string) $p->texto('nueva');
         self::verificar($p, $u, $actual);
-        if (Validar::nfc($nueva) === Validar::nfc($actual)) throw new ErrorApi(400, 'contrasena_igual');
+        if ($u['hash'] !== '' && Validar::nfc($nueva) === Validar::nfc($actual)) throw new ErrorApi(400, 'contrasena_igual');
         Contrasenas::validarNueva($nueva, $u['correo']);
         $huella = Contrasenas::huella($nueva);
 
@@ -195,6 +196,8 @@ final class Perfil
      */
     private static function verificar(Peticion $p, array $u, string $contrasena): void
     {
+        // Las cuentas sin contraseña (código o Google) no tienen nada que comprobar: basta la sesión.
+        if ($u['hash'] === '') return;
         Limites::comprobar('contrasena_usuario', $u['id']);
         $resultado = strlen($contrasena) > 4096 ? false : Contrasenas::comprobar($contrasena, $u['hash']);
         if ($resultado === false) {

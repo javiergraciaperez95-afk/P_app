@@ -12,7 +12,7 @@ SET NAMES utf8mb4;
 CREATE TABLE IF NOT EXISTS usuarios (
   id            CHAR(36)     NOT NULL,                       -- UUID (los de Supabase se conservan al migrar)
   correo        VARCHAR(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  hash          VARCHAR(255) NOT NULL,                       -- password_hash(): Argon2id; bcrypt si viene de Supabase
+  hash          VARCHAR(255) NOT NULL,                       -- password_hash(): Argon2id; bcrypt si viene de Supabase; '' = sin contraseña
   nombre        VARCHAR(60)  NOT NULL DEFAULT '',
   foto          BLOB         NULL,                           -- miniatura JPEG regenerada por el servidor (pocos KB)
   idioma        VARCHAR(8)   NOT NULL DEFAULT 'es',          -- idioma de la interfaz: el de los correos
@@ -23,6 +23,23 @@ CREATE TABLE IF NOT EXISTS usuarios (
   PRIMARY KEY (id),
   UNIQUE KEY correo (correo),
   KEY sin_confirmar (confirmado, creado)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Las cuentas que entran con Google llevan su identificador («sub» del token de Google), que nunca cambia
+-- aunque cambie el correo. Se añade aparte para que el archivo siga sirviendo en bases ya creadas.
+ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS google_sub VARCHAR(255) CHARACTER SET ascii COLLATE ascii_bin NULL AFTER hash;
+ALTER TABLE usuarios ADD UNIQUE KEY IF NOT EXISTS google_sub (google_sub);
+
+-- Códigos de 6 cifras para entrar sin contraseña: uno vigente por correo (el último que se ha pedido).
+-- Van por correo y no por cuenta: sirven también para crearla. Del código solo se guarda su huella con el secreto.
+CREATE TABLE IF NOT EXISTS codigos (
+  correo   VARCHAR(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  huella   CHAR(64)     CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  intentos TINYINT UNSIGNED NOT NULL DEFAULT 0,
+  creado   DATETIME(3)  NOT NULL,
+  caduca   DATETIME(3)  NOT NULL,
+  PRIMARY KEY (correo),
+  KEY caduca (caduca)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Sesiones abiertas. Del token solo se guarda su huella SHA-256: si se filtra la base, no sirven para entrar.

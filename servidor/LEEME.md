@@ -13,13 +13,15 @@ servidor/
   src/                  El código (fuera de la carpeta pública).
     Api.php, Rutas.php    Cada petición: CORS, la ruta, los errores. La tabla de rutas está en Rutas.php.
     Api/Cuentas.php       Lo que se hace sin sesión: registro, confirmar, entrar, recuperar.
+    Api/Acceso.php        Entrar sin contraseña: código de 6 cifras por correo y Google (crean la cuenta si no existe).
+    Google.php            Comprueba el token de Google (firma RS256 con sus claves públicas, aud, iss, caducidad).
     Api/Perfil.php        Lo que se hace con sesión: perfil, contraseña, correo, sesiones, progreso, borrar.
     Sesiones.php, Contrasenas.php, Limites.php, Validar.php, Foto.php, Progreso.php
     Correo.php, Plantillas.php   Envío (Resend, o archivos para probar) y los textos de los correos (es, en).
   bd/esquema.sql        Las tablas. bd/permisos.sql: los dos usuarios de la base y sus permisos.
   tareas/               limpieza.php (cada noche) y correos.php (cada 5 min): para cron.
   datos/                La lista de contraseñas comunes que se rechazan.
-  pruebas/              95 pruebas automáticas (pruebas/casos/), el marco y un Resend de mentira.
+  pruebas/              115 pruebas automáticas (pruebas/casos/), el marco y un Resend de mentira.
   local/                Scripts para el ordenador: preparar, arrancar, probar, analizar, parar. Y php.ini.
   config.ejemplo.php    Plantilla de config.php (config.php lleva las contraseñas y NO va a GitHub).
   phpstan.neon          Análisis estático (nivel 8, sin errores).
@@ -71,6 +73,11 @@ Para MariaDB.
   los enlaces anteriores dejan de valer (van atados a la contraseña). Se borran a los 7 días.
 - **Enlaces de los correos**: un solo uso, solo vale el último pedido. Confirmar dura 48 h, recuperar 1 h y cambiar de correo 24 h.
   Llevan el token detrás de `#` (`…/#/enlace/confirmar/TOKEN`), así no llega a ningún servidor ni a ningún registro.
+- **Código por correo**: 6 cifras, 10 minutos, se gasta al 5.º fallo y solo vale el último. Se guarda su HMAC, no el código.
+  Como mucho 5 códigos por correo y hora. Entrar con código (o con Google) en una cuenta SIN CONFIRMAR la confirma y le
+  QUITA la contraseña: esa contraseña la pudo poner cualquiera. Las cuentas sin contraseña (`hash` = '') ponen la primera
+  sin «actual» y borran sin contraseña (basta la sesión).
+- **Google**: se busca la cuenta por `google_sub` (no cambia aunque cambie el correo) y, si no, por correo (y se enlaza).
 - **Límites**: 5 contraseñas fallidas por correo y la espera se va doblando (15 min, 30, 60…). Nunca hay bloqueo para siempre.
   Los límites por IP son generosos (una clase entera sale por la misma IP) y con sesión se cuenta por persona.
 - **Progreso**: el mismo JSON que guarda la app (`js/progress.js`), una fila por persona y curso, con `version`.
@@ -99,6 +106,10 @@ Los errores llegan así: `{"error": "codigo", …}`.
 | `POST /recuperar` | no | `{correo}` | 202 siempre |
 | `POST /recuperar/nueva` | no | `{token, contrasena}` | `{token, caduca, usuario}`: cierra las demás sesiones |
 | `POST /yo/correo/confirmar` | no | `{token}` | `{usuario}` |
+| `POST /codigo` | no | `{correo, idioma?}` | 202 siempre (llega el código, haya o no cuenta) |
+| `POST /codigo/entrar` | no | `{correo, codigo, nombre?, idioma?}` | `{token, caduca, usuario, nueva}` · 400 `codigo_invalido` |
+| `POST /google` | no | `{credencial, idioma?}` | `{token, caduca, usuario, nueva}` · 401 `google_invalido` · 503 `google_desactivado` · 409 `google_enlazar` (el correo ya tiene cuenta y no es de Gmail ni de empresa de Google: entrar antes y usar `/yo/google`) |
+| `POST /yo/google` | sí | `{credencial}` | `{usuario}`: enlaza Google a la cuenta abierta · 409 `google_en_uso` |
 | `GET /yo` | sí | — | `{usuario}` |
 | `PATCH /yo` | sí | `{nombre?, foto?, idioma?}` (`foto: null` la quita) | `{usuario}` |
 | `DELETE /yo` | sí | `{contrasena}` | borra la cuenta y todo lo suyo |
@@ -124,20 +135,21 @@ Los errores llegan así: `{"error": "codigo", …}`.
 
 ## Lo que falta
 
-**Para conectar la app (paso 5 del plan)**: cambiar solo `Idiomas/js/sync.js`, manteniendo los nombres de sus funciones. Además:
-- `usuarioActual()` tiene que seguir dando `email` y `user_metadata.nombre/foto`: hay que adaptarlo desde `usuario`.
-- El guardado pasa a ser `PUT` con `version`: ante un 409 `conflicto`, juntar con `unirDatos` lo que trae y repetir.
-- Una pantalla para `#/enlace/{confirmar|recuperar|correo}/{token}`.
-- Cambiar la contraseña ahora pide la actual (falta ese campo), y borrar los datos de la nube pide la contraseña.
-- Los textos «mínimo 6 caracteres» pasan a 8, en los 12 idiomas, y hay que traducir los códigos de error nuevos.
+**La app ya está conectada** (17-10-2026): `Idiomas/js/sync.js` usa esta API; la dirección está en `Idiomas/js/config.js`
+(`API_URL`: en el ordenador, la local; publicada, vacía hasta que haya VPS, y entonces las cuentas no salen).
+Queda:
 - Las plantillas de correo están en español e inglés; los otros 10 idiomas reciben el inglés hasta que se escriban.
-- Quitar `js/vendor/supabase.js` y poner la dirección de la API en `config.js`.
+- Google: crear el proyecto en Google Cloud, el ID de cliente web en `config.php` (`google.clientes`) y en `config.js`
+  (`GOOGLE_CLIENTE`). Para la APK, además, el plugin `@capgo/capacitor-social-login` y un cliente Android con la huella
+  SHA-1 de la firma de la APK.
 
 **Para el servidor (paso 3)**: Nginx sirviendo solo `publico/` con `limit_req` y `client_max_body_size`, el `php.ini` de
 `local/php.ini` (con `open_basedir`), los dos usuarios de la base con `HOST = localhost`, cron para `tareas/`, `config.php`
 con `entorno: produccion`, Resend y `pwned: true`, y HTTPS.
 
 **Detalles que quedan anotados**:
+- La app aún no traduce `google_enlazar` ni `google_en_uso` (sale el código tal cual) y no tiene botón para enlazar Google.
+- Código de 6 cifras: además de 5 intentos por código, 10 fallos por hora y correo con espera creciente (1 h, 2 h, 4 h…).
 - Recuperar la contraseña escribe en la base solo si la cuenta existe: unos milisegundos de diferencia, frente a los
   cientos que tarda Argon2. Ahora no es un riesgo práctico.
 - Los avisos por correo aún no traen un enlace de «no he sido yo».

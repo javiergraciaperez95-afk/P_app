@@ -31,7 +31,7 @@ for BASE in paglot paglot_pruebas; do
       "$SERVIDOR/bd/permisos.sql" | bd_root
 done
 
-escribir_config() {  # $1 archivo, $2 base, $3 buzón, $4 registro de errores
+escribir_config() {  # $1 archivo, $2 base, $3 buzón, $4 registro de errores, $5 Google
   cat > "$1" <<EOF
 <?php
 // Generado por servidor/local/preparar.sh: configuración para ESTE ordenador. No va a GitHub.
@@ -59,11 +59,13 @@ return [
     'pwned' => false,
     'app_minima' => '1.0.0',
     'registro_errores' => $4,
+    // «Continuar con Google»: el ID de cliente web de Google Cloud. Vacío = apagado.
+    'google' => $5,
 ];
 EOF
 }
 
-escribir_config "$SERVIDOR/config.php" paglot "__DIR__ . '/buzon'" "__DIR__ . '/registros/errores.log'"
-escribir_config "$SERVIDOR/local/config.pruebas.php" paglot_pruebas "__DIR__ . '/pruebas-buzon'" "__DIR__ . '/pruebas-registros/errores.log'"
+escribir_config "$SERVIDOR/config.php" paglot "__DIR__ . '/buzon'" "__DIR__ . '/registros/errores.log'" "['clientes' => [], 'claves_archivo' => null]"
+escribir_config "$SERVIDOR/local/config.pruebas.php" paglot_pruebas "__DIR__ . '/pruebas-buzon'" "__DIR__ . '/pruebas-registros/errores.log'" "['clientes' => ['cliente-de-prueba.apps.googleusercontent.com'], 'claves_archivo' => __DIR__ . '/pruebas-google-claves.json']"
 
 echo "  ✔ Listo. Bases: paglot (para usar) y paglot_pruebas (la vacían las pruebas)."
