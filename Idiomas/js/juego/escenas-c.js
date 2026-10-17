@@ -62,7 +62,7 @@ function mando({ paso, tablero, decir, completar, bien, mal }) {
     botones.forEach(b => { b.trad.hidden = true; }); // solo se ve la traducción de la última (así cabe en pantalla)
     trad.hidden = false;
     boton.classList.add('vista');
-    sonar('clic');
+    sonar('elegir');
     if (vistos.has(i)) return;
     vistos.add(i);
     if (vistos.size < botones.length) return;
@@ -231,7 +231,7 @@ function letras({ paso, tablero, decir, completar, palabra, bien, mal }) {
         boton.disabled = true;
         n += 1;
         while (letrasEs[n] === ' ') n += 1;
-        if (n < letrasEs.length) { sonar('clic'); return; }
+        if (n < letrasEs.length) { sonar('escala', { valor: n / letrasEs.length }); return; }
         cola.shift();
         hechas += 1;
         oir(es, decir);
@@ -279,7 +279,7 @@ function rayuela({ paso, tablero, decir, completar, bien, mal, retrato }) {
   });
   const saltarA = (i, alLlegar) => {
     ocupada = true;
-    sonar('clic');
+    sonar('salto');
     tutora.ir(xDe(i), { luego, ms: 420, salto: true, alLlegar: () => { ocupada = false; alLlegar(); } });
   };
 
@@ -376,7 +376,7 @@ function velas({ paso, tablero, decir, completar, bien, mal }) {
   const tarta = el('div', { class: 'velas-tarta' }, fila, el('div', { class: 'velas-bizcocho', 'aria-hidden': 'true' }));
   const cuenta = el('p', { class: 'aprox' });
   const pintar = () => poner(fila, Array.from({ length: n }, () => el('i', { class: 'vela' })));
-  const cambiar = d => { if (parada) return; n = Math.max(0, Math.min(maximo, n + d)); pintar(); sonar('clic'); };
+  const cambiar = d => { if (parada) return; n = Math.max(0, Math.min(maximo, n + d)); pintar(); sonar(d > 0 ? 'marcar' : 'desmarcar'); };
 
   function nueva() {
     if (!cola.length) {
@@ -471,7 +471,7 @@ function telefono({ paso, tablero, decir, completar, bien, mal }) {
       }
       marcados.push(d);
       pintar();
-      sonar('clic');
+      sonar('marcar');
       if (marcados.length < r.numero.length) return;
       parada = true;
       cola.shift();
@@ -753,7 +753,7 @@ function explica({ paso, tablero, decir, completar, bien, mal }) {
       botones.forEach((b, k) => b.setAttribute('aria-pressed', String(k === i)));
       poner(frase, ...enLinea(pos.es));
       animar(frase, 'brinca');
-      sonar('clic');
+      sonar('elegir');
       oir(limpio(pos.es), decir);
       if (cola) return; // en las misiones no se enseña el significado
       poner(trad, ...enLinea(tr(pos.trad)));

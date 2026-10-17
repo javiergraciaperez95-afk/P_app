@@ -90,7 +90,7 @@ export function pintarGuias(root) {
     el('span', { class: 'lb-suelo', 'aria-hidden': 'true' }));
   poner(root, el('article', { class: 'laboratorio escena-web' }, sala));
   elenco.vigilar(sala);
-  despues(700, () => { vigilante.gesto('saludar'); vigilante.decir(t('lab.tutora.normas'), 3200); });
+  despues(700, () => { vigilante.gesto('saludar'); sonar('silbato'); vigilante.decir(t('lab.tutora.normas'), 3200); });
   return () => elenco.apagar();
 }
 
@@ -129,7 +129,7 @@ export function pintarLaboratorio(root) {
         'aria-label': t(votada ? 'comunidadExtra.retirarVoto' : 'comunidadExtra.votar', { idea: idea.texto, n: idea.votos }),
         onclick: () => {
           if (votos.has(idea.id)) { votos.delete(idea.id); idea.votos = Math.max(0, idea.votos - 1); sonar('quitar'); }
-          else { votos.add(idea.id); idea.votos += 1; sonar('guardar'); cientifica.gesto('aplaudir'); }
+          else { votos.add(idea.id); idea.votos += 1; sonar('gota'); despues(160, () => sonar('burbuja')); cientifica.gesto('aplaudir'); }
           const ok = guardar();
           pintarIdeas();
           lista.querySelector(`[data-id="${idea.id}"]`)?.classList.add('burbujea');
@@ -153,7 +153,7 @@ export function pintarLaboratorio(root) {
   entrada.addEventListener('input', () => {
     frascoMesa.style.setProperty('--nivel', `${Math.round(6 + 84 * Math.min(1, entrada.value.length / 180))}%`);
     frascoMesa.classList.add('burbujea');
-    if (Date.now() - ultimoBurbujeo > 2600) { ultimoBurbujeo = Date.now(); cientifica.gesto('escribir'); }
+    if (Date.now() - ultimoBurbujeo > 2600) { ultimoBurbujeo = Date.now(); cientifica.gesto('escribir'); sonar('burbuja'); }
   });
   const formulario = el('form', { class: 'lb-ficha', onsubmit: evento => {
     evento.preventDefault();
@@ -166,7 +166,8 @@ export function pintarLaboratorio(root) {
     frascoMesa.style.setProperty('--nivel', '6%');
     pintarIdeas();
     estado.textContent = ok ? t('comunidadExtra.ideaAddedYouCanNow') : t('comunidadExtra.theIdeaWasAddedBut');
-    sonar('paso');
+    sonar('pop');
+    despues(140, () => sonar('bien'));
     cientifica.gesto('celebrar');
     cientifica.decir(t('lab.tutora.nueva'), 2600);
   } },
@@ -200,7 +201,7 @@ export function pintarLaboratorio(root) {
   poner(root, el('article', { class: 'laboratorio escena-web' }, sala, estanteria));
   pintarIdeas();
   elenco.vigilar(sala);
-  despues(700, () => { cientifica.gesto('saludar'); cientifica.decir(t('lab.tutora.hola'), 3200); });
+  despues(700, () => { cientifica.gesto('saludar'); sonar('burbuja'); cientifica.decir(t('lab.tutora.hola'), 3200); });
   if (quieto) frascoMesa.classList.remove('burbujea');
   return () => elenco.apagar();
 }

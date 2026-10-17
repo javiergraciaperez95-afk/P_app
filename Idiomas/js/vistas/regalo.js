@@ -116,7 +116,8 @@ export function pintarRegalo(root) {
     caja.classList.toggle('abierta', abierta);
     caja.setAttribute('aria-expanded', String(abierta));
     if (abierta) {
-      sonar('paso');
+      sonar('pop');
+      if (!quieto) despues(120, () => sonar('confeti'));
       envolvedora.gesto('aplaudir');
       envolvedora.decir(t('productos.thereIsANewLanguage'), 3000);
       tendedora.reaccionar('sorprendida', 700);
@@ -135,7 +136,7 @@ export function pintarRegalo(root) {
   const nota = el('p', { class: 'rg-nota', role: 'status' }, t('productos.oneGiftAThousandConversations'));
   const comprar = el('button', { type: 'button', class: 'es-boton rg-comprar' }, t('productos.purchasingComingSoon'));
   comprar.addEventListener('click', () => {
-    sonar('clic');
+    sonar('duda');
     envolvedora.gesto('rascarse');
     envolvedora.decir(t('precios.prontoTutora'), 4200);
     nota.textContent = t('precios.prontoTutora');
@@ -159,7 +160,7 @@ export function pintarRegalo(root) {
     opciones.forEach((b, i) => b.setAttribute('aria-pressed', String(['mes', 'ano'][i] === clave)));
     caja.dataset.duracion = clave;
     if (!conGesto) return;
-    sonar('clic');
+    sonar(cambia ? 'papel' : 'elegir');
     if (!cambia) return;
     // se vuelve a envolver: la caja se cierra, cambia de tamaño y la tutora lo celebra
     abierta = false;
@@ -214,6 +215,7 @@ export function pintarRegalo(root) {
       el('h2', {}, titulo),
       el('p', {}, texto));
     postal.addEventListener('pointerenter', () => { if (!quieto) postal.classList.add('mece'); });
+    postal.addEventListener('click', () => { postal.classList.remove('mece'); void postal.offsetWidth; if (!quieto) postal.classList.add('mece'); sonar('papel'); });
     postal.addEventListener('animationend', () => postal.classList.remove('mece'));
     return postal;
   });

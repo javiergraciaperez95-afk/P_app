@@ -327,7 +327,7 @@ function descifra({ paso, leccion, tablero, decir, completar, bien, mal, ilustra
     function descubierto(boton) {
       if (boton.classList.contains('visto')) return;
       boton.classList.add('visto');
-      sonar('clic');
+      sonar('pop');
       pendientes -= 1;
       if (pendientes > 0) return;
       preguntarSignificado(frase, () => {
@@ -377,7 +377,7 @@ function rellena({ paso, tablero, decir, completar, bien, mal }) {
           if (opcion === hueco.correcta) {
             poner(grupo, el('strong', { class: 'hueco-lleno' }, opcion));
             pendientes -= 1;
-            if (pendientes > 0) { sonar('clic'); return; }
+            if (pendientes > 0) { sonar('moneda'); return; }
             bien(tablero.firstElementChild);
             decir(paso.bien, 'contenta');
             completar();

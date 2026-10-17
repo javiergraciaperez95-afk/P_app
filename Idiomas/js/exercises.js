@@ -223,12 +223,12 @@ export function crearEjercicio(bloque, idLeccion, numero, alResponder) {
         ? elegidas.map((i, k) => el('button', {
           type: 'button', class: 'pieza pieza-elegida', lang: LANG, disabled: resuelto,
           'aria-label': t('ej.quitarPalabra', { texto: palabras[i] }),
-          onclick: () => { elegidas.splice(k, 1); sonar('clic'); repintar(); },
+          onclick: () => { elegidas.splice(k, 1); sonar('desmarcar'); repintar(); },
         }, palabras[i]))
         : el('span', { class: 'aprox' }, t('ej.tocaEnOrden')));
       poner(banco, orden.map(i => el('button', {
         type: 'button', class: 'pieza', lang: LANG, disabled: resuelto || elegidas.includes(i),
-        onclick: () => { elegidas.push(i); sonar('clic'); repintar(); banco.querySelector('.pieza:not(:disabled)')?.focus(); },
+        onclick: () => { elegidas.push(i); sonar('elegir'); repintar(); banco.querySelector('.pieza:not(:disabled)')?.focus(); },
       }, palabras[i])));
       comprobar.disabled = resuelto || elegidas.length !== palabras.length;
       borrar.disabled = resuelto || !elegidas.length;

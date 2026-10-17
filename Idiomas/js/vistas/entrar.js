@@ -266,7 +266,7 @@ export function pintarEntrar(contenedor) {
       ver.setAttribute('aria-pressed', String(mostrar));
       ver.title = t(mostrar ? 'form.ocultar' : 'form.ver');
       ver.firstChild.textContent = ver.title;
-      sonar('clic');
+      sonar(mostrar ? 'abrir' : 'cerrar');
       c.entrada.focus();
       mirar();
     });
@@ -324,7 +324,7 @@ export function pintarEntrar(contenedor) {
   const barra = el('div', { class: 'en-pestanas', role: 'group', 'aria-label': t('cuenta.opciones') }, pestanas, el('span', { class: 'en-pestanas-marca', 'aria-hidden': 'true' }));
 
   function cambiar(nuevo, { conSonido = true } = {}) {
-    if (conSonido) sonar('clic');
+    if (conSonido) sonar('elegir');
     modo = nuevo;
     pintarFicha();
     if (modo === 'crear') { tFicha.decir(t('entrar.ficha')); tFicha.gesto('saludar'); tIzq.gesto('invitarDer'); }
@@ -366,7 +366,7 @@ export function pintarEntrar(contenedor) {
             const boton = el('button', { type: 'button', class: 'en-enlace' }, t('cuenta.reenviarConfirmacion'));
             boton.addEventListener('click', async () => {
               await reenviarConfirmacion(correo.entrada.value.trim()).catch(() => {});
-              sonar('bien');
+              sonar('volar');
               poner(reenvio, t('cuenta.enlaceEnviado'));
             });
             poner(reenvio, boton);
@@ -400,7 +400,7 @@ export function pintarEntrar(contenedor) {
     const correo = campo(t('form.correoCuenta'), { type: 'email', required: true, autocomplete: 'email', inputmode: 'email' }, 'sobre');
     return formulario([el('p', { class: 'en-nota' }, t('cuenta.recuperarTexto')), correo.nodo], t('cuenta.enviarEnlace'), async () => {
       await recuperarContrasena(correo.entrada.value.trim());
-      sonar('bien');
+      sonar('volar');
       tFicha.gesto('pulgar');
       tFicha.decir(t('cuenta.enlaceEnviadoTutora'), 5000);
       return t('cuenta.enlaceEnviado');
@@ -423,7 +423,7 @@ export function pintarEntrar(contenedor) {
     const cerrar = el('button', { type: 'button', class: 'en-enlace' }, t('cuenta.cerrarSesion'));
     cerrar.addEventListener('click', async () => {
       await salir();
-      sonar('clic');
+      sonar('puerta');
       tFicha.decir(t('cuenta.sesionCerradaTutora'));
     });
     return el('div', { class: 'en-dentro' },

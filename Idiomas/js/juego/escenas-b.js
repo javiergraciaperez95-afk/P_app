@@ -90,7 +90,7 @@ function conversa({ paso, leccion, tablero, decir, completar, bien, mal }) {
           f.quien && el('span', { class: 'frase-quien' }, `${f.quien}:`),
           el('p', { class: 'juego-linea', lang: LANG }, f.es)));
         oir(f.es, decir);
-        if (n < frases.length) { sonar('clic'); return; }
+        if (n < frases.length) { sonar('pop'); return; }
         bien(chat);
         if (paso.despues) decir(paso.despues, 'contenta');
         completar();
@@ -215,7 +215,7 @@ function maquina({ paso, tablero, decir, completar, bien, mal }) {
       pos[i] = (pos[i] + d + lista.length) % lista.length;
       palabra.textContent = lista[pos[i]];
       animar(palabra, 'entra');
-      sonar('clic');
+      sonar('boton');
     };
     const caja = el('div', { class: 'rueda' },
       el('button', { type: 'button', class: 'rueda-flecha', 'aria-label': t('juego.maquina.anterior'), onclick: () => girar(-1) }, '▲'),

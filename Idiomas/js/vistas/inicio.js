@@ -419,7 +419,7 @@ export function pintarInicio(contenedor) {
     publico.classList.add('aplaude');
     despues(1600, () => publico.classList.remove('aplaude'));
   };
-  modelo.figura.addEventListener('click', () => { sonar('saludo'); modelo.gesto('firma', true); aplauso(); });
+  modelo.figura.addEventListener('click', () => { sonar('saludo'); modelo.gesto('firma', true); aplauso(); despues(250, () => sonar('aplausos')); });
 
   const teatro = el('div', { class: 'teatro' },
     el('div', { class: 'teatro-marco' },

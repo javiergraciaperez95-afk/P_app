@@ -71,7 +71,7 @@ export function pintarSocial(root) {
       el('div', { class: 'rc-marco' }, pantalla),
       el('div', { class: 'rc-mandos', 'aria-hidden': 'true' }, el('span', { class: 'rc-palanca' }), el('span', { class: 'rc-botones' }, el('i', {}), el('i', {}))),
       el('div', { class: 'rc-instrucciones' }, el('h3', {}, red.titulo), el('p', {}, red.texto)),
-      el('a', { class: 'rc-ranura', href: ENLACES[red.id], target: '_blank', rel: 'noopener noreferrer', 'aria-label': t('social.abrirEnlace', { red: red.nombre }) },
+      el('a', { class: 'rc-ranura', 'data-sonido': 'ficha', href: ENLACES[red.id], target: '_blank', rel: 'noopener noreferrer', 'aria-label': t('social.abrirEnlace', { red: red.nombre }) },
         el('span', { class: 'rc-moneda', 'aria-hidden': 'true' }), el('span', {}, t('social.open'), red.nombre, ' ↗')),
       aviso);
     const m = { red, nodo, pantalla, letrero, aviso, actrices, reloj: null };
@@ -87,7 +87,7 @@ export function pintarSocial(root) {
     m.nodo.classList.add('activa');
     m.actrices.forEach((a, i) => { a.gesto(i ? 'saludarI' : m.red.gesto); if (deVerdad) a.reaccionar('contenta', 1600); });
     if (deVerdad) {
-      sonar('guardar');
+      sonar('arcade');
       m.letrero.textContent = m.red.respuesta;
       m.aviso.textContent = m.red.respuesta;
       encargada.reaccionar('contenta', 900);
@@ -113,7 +113,8 @@ export function pintarSocial(root) {
   elenco.vigilar(sala);
 
   // La bienvenida y, mientras nadie juega, la demostración de las máquinas por turnos.
-  despues(900, () => { encargada.gesto('saludar'); encargada.decir(t('social.encargada')[0], 3600); });
+  sonar('neon');
+  despues(900, () => { encargada.gesto('saludar'); sonar('saludo'); encargada.decir(t('social.encargada')[0], 3600); });
   if (!quieto) {
     let turno = 0;
     const demo = setInterval(() => {

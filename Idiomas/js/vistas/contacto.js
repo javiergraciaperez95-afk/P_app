@@ -132,7 +132,7 @@ export function pintarContacto(root) {
   });
   form.addEventListener('change', e => {
     if (e.target.name !== 'asunto') return;
-    sonar('guardar');
+    sonar('sello');
     escritora.gesto('asentir');
     e.target.closest('.ct-sello')?.classList.add('estampa');
     despues(500, () => e.target.closest('.ct-sello')?.classList.remove('estampa'));
@@ -158,14 +158,14 @@ export function pintarContacto(root) {
     // ¡al buzón!
     estado.className = 'ct-estado bien';
     estado.textContent = t('comunidad.formValidatedEmailDeliveryWill');
-    sonar('paso');
+    sonar(quieto ? 'buzon' : 'volar');
     escritora.gesto('celebrar');
     escritora.decir(t('contacto.enviada'), 2600);
     if (!quieto) {
       escena.classList.remove('vuela');
       void escena.offsetWidth;
       escena.classList.add('vuela');
-      despues(1500, () => { cartera.gesto('celebrar'); cartera.reaccionar('contenta', 1400); sonar('guardar'); });
+      despues(1500, () => { cartera.gesto('celebrar'); cartera.reaccionar('contenta', 1400); sonar('buzon'); });
       despues(3200, () => escena.classList.remove('vuela'));
     }
     form.reset();

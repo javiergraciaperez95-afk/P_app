@@ -156,7 +156,7 @@ export function pintarTienda(root) {
     aviso.textContent = t('tienda.addedToYourDemoBag');
     aviso.hidden = false;
     avisoReloj = setTimeout(() => { aviso.hidden = true; }, 2600);
-    sonar('guardar');
+    sonar('caja');
     tendera.gesto('aplaudir');
     for (const b of [cestaFachada, cestaFlotante]) { b.classList.remove('bota'); void b.offsetWidth; b.classList.add('bota'); }
   }
@@ -179,7 +179,7 @@ export function pintarTienda(root) {
     else linea.cantidad = Math.min(99, linea.cantidad + diferencia);
     contar();
     pintarCesta();
-    sonar(diferencia > 0 ? 'clic' : 'quitar');
+    sonar(diferencia > 0 ? 'moneda' : 'quitar');
     const filas = bolsa.querySelectorAll('.tn-linea');
     (filas[Math.min(indice, filas.length - 1)]?.querySelector('button') ?? bolsa.querySelector('.tn-cerrar')).focus();
   }
@@ -281,7 +281,7 @@ export function pintarTienda(root) {
   document.addEventListener('pointerdown', fueraDeIdiomas);
   const formatos = ['papel', 'pdf'].map(formato => el('button', {
     type: 'button', class: 'tn-formato', 'aria-pressed': String(formato === formatoLibro),
-    onclick: () => { formatoLibro = formato; actualizarLibro(); sonar('clic'); },
+    onclick: () => { formatoLibro = formato; actualizarLibro(); sonar('elegir'); },
   }, el('span', {}, formato === 'papel' ? t('tienda.printed') : 'PDF'), el('small', {}, euros(PRECIO_LIBRO[formato]))));
   function actualizarLibro(nuevosLibros = false) {
     const c = cursos.find(item => item.id === idiomaLibro);
@@ -336,10 +336,17 @@ export function pintarTienda(root) {
   const rejilla = el('ul', { class: 'tn-rejilla' });
   const contador = el('p', { class: 'tn-resultados', role: 'status', 'aria-live': 'polite' });
   const normalizar = texto => texto.toLocaleLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
-  const buscador = el('input', { type: 'search', placeholder: t('tienda.findYourNextLittleTreasure'), 'aria-label': t('tienda.searchTheCollection'), oninput: () => { busqueda = buscador.value; pintarCatalogo(); } });
+  const buscador = el('input', { type: 'search', placeholder: t('tienda.findYourNextLittleTreasure'), 'aria-label': t('tienda.searchTheCollection'), oninput: () => {
+    busqueda = buscador.value;
+    pintarCatalogo();
+    clearTimeout(buscando);
+    if (busqueda.trim()) buscando = setTimeout(() => sonar(rejilla.querySelector('.tn-producto') ? 'buscar' : 'nada'), 450);
+  } });
+  let buscando = null;
+  elenco.alApagar(() => clearTimeout(buscando));
   const ordenar = el('select', { 'aria-label': t('tienda.sortProducts'), onchange: () => { orden = ordenar.value; pintarCatalogo(); } },
     el('option', { value: 'coleccion' }, t('tienda.ourSelection')), el('option', { value: 'menor' }, t('tienda.priceLowToHigh')), el('option', { value: 'mayor' }, t('tienda.priceHighToLow')));
-  const filtros = categorias.map(([id, nombre]) => el('button', { type: 'button', class: 'tn-filtro', 'aria-pressed': String(id === categoria), onclick: () => { categoria = id; pintarCatalogo(); sonar('clic'); } }, nombre));
+  const filtros = categorias.map(([id, nombre]) => el('button', { type: 'button', class: 'tn-filtro', 'aria-pressed': String(id === categoria), onclick: () => { categoria = id; pintarCatalogo(); sonar('elegir'); } }, nombre));
   function pintarCatalogo() {
     const visibles = productos.filter(p => (categoria === 'todo' || p.categoria === categoria) && normalizar(`${p.nombre} ${p.texto}`).includes(normalizar(busqueda)));
     if (orden !== 'coleccion') visibles.sort((a, b) => (orden === 'menor' ? a.precio - b.precio : b.precio - a.precio));
@@ -381,6 +388,8 @@ export function pintarTienda(root) {
   pintarCatalogo();
   contar();
   elenco.vigilar(fachada);
+  // al entrar suena la campanilla de la puerta
+  despues(250, () => sonar('timbre'));
   despues(700, () => { tendera.gesto('saludar'); tendera.decir(t('tn.tutora.hola'), 3000); });
   return () => {
     document.removeEventListener('pointerdown', fueraDeIdiomas);

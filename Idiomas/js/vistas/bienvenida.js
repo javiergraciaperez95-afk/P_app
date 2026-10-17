@@ -401,7 +401,7 @@ export function pintarBienvenida(contenedor, { resultados }) {
       raiz.classList.add('camina');
       sprite.andando = true;
       spriteMini.andando = true;
-      sonar('paso');
+      sonar('pasos');
       await espera(PASEO);
       sprite.andando = false;
       spriteMini.andando = false;
@@ -461,8 +461,8 @@ export function pintarBienvenida(contenedor, { resultados }) {
       campo.readOnly = true;
       botones.hidden = true;
       carne.classList.add('sellado');
-      sonar('bien');
-      espera(quieto ? 0 : 260).then(() => fx.confeti(...centroDe(sello), 22, 0.8));
+      sonar('sello');
+      espera(quieto ? 0 : 260).then(() => { sonar('bien'); fx.confeti(...centroDe(sello), 22, 0.8); });
       sprite.reaccionar('contenta', 1200);
       sprite.gesto('aplaudir');
       await decir(dicho ? t('bienvenida.nombre.encantada', { nombre: dicho }) : t('bienvenida.nombre.misterio'), 'contenta');
@@ -505,7 +505,7 @@ export function pintarBienvenida(contenedor, { resultados }) {
       boton.classList.remove('pista');
       if (vistas.has(entrada)) { sonar('clic'); return; }
       vistas.add(entrada);
-      sonar('voltear');
+      sonar('papel');
       sprite.reaccionar('contenta', 600);
       glosas.append(el('li', { class: 'bv-glosa' },
         el('strong', { lang: LANG }, entrada.es), el('span', {}, tr(entrada.trad)), entrada.pron && el('em', {}, entrada.pron)));
@@ -537,10 +537,11 @@ export function pintarBienvenida(contenedor, { resultados }) {
       sello.disabled = true;
       sello.classList.remove('pista');
       sello.classList.add('estampa');
-      sonar('pagina');
+      sonar('sello');
       if (hayVoz()) pronunciar(ejemplo.frase.es);
       await espera(quieto ? 0 : 380);
       traduccion.hidden = false;
+      sonar('papel');
       fx.confeti(...centroDe(traduccion), 14, 0.6);
       sprite.gesto('pensar');
       await decir(t('frase.significa', { frase: ejemplo.frase.es, trad: tr(ejemplo.frase.trad) }), 'pensando');
@@ -580,7 +581,7 @@ export function pintarBienvenida(contenedor, { resultados }) {
         llegada = true;
         contador.textContent = '1';
         cuaderno.classList.add('bv-bote');
-        sonar('bien');
+        sonar('moneda');
         fx.confeti(...centroDe(cuaderno), 24);
         sprite.reaccionar('contenta', 1200);
         sprite.gesto('aplaudir');
@@ -630,7 +631,8 @@ export function pintarBienvenida(contenedor, { resultados }) {
           for (const b of flechas.children) b.disabled = true;
           if (opcion === correcta) {
             pulsado.classList.add('bv-acierto');
-            sonar('fin');
+            sonar('flecha');
+            espera(110).then(() => sonar('fin'));
             fx.confeti(...centroDe(pulsado), 40, 1.2);
             sprite.reaccionar('contenta', 1500);
             sprite.gesto('celebrar');
@@ -672,13 +674,17 @@ export function pintarBienvenida(contenedor, { resultados }) {
       el('div', { class: 'bv-botones' },
         empezar,
         el('button', { type: 'button', class: 'es-boton es-boton-papel', onclick: () => terminar('#/lecciones') }, t('bienvenida.fin.lecciones'))));
-    sonar('paso');
+    sonar('fanfarria');
     sprite.reaccionar('contenta', 1800);
     sprite.gesto('celebrar');
     // Fuegos artificiales: varias tandas de confeti por el cielo.
     const caja = raiz.getBoundingClientRect();
     for (let i = 0; i < 6; i++) {
-      espera(i * 300).then(() => encendida && fx.confeti(caja.left + caja.width * (0.12 + Math.random() * 0.76), caja.top + caja.height * (0.12 + Math.random() * 0.3), 30, 1.1));
+      espera(i * 300).then(() => {
+        if (!encendida) return;
+        if (i % 2 === 0) sonar('fuegos'); // un silbido cada dos tandas: seis seguidos serían demasiado
+        fx.confeti(caja.left + caja.width * (0.12 + Math.random() * 0.76), caja.top + caja.height * (0.12 + Math.random() * 0.3), 30, 1.1);
+      });
     }
     await decir(t('bienvenida.fin.dice'), 'contenta');
     empezar.classList.add('bv-listo');

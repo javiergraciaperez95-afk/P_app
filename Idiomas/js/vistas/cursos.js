@@ -177,6 +177,7 @@ export function pintarElegirCurso(contenedor) {
       sprite = dibujo.crearSprite(lienzo);
     } catch { /* sin dibujo: el programa sale igual */ }
     if (sprite) sprite.andando = true;
+    sonar('pasos');
     actriz.classList.remove('fuera-izq', 'fuera-der');
     await esperar(600);
     if (!encendida) return;
@@ -193,12 +194,13 @@ export function pintarElegirCurso(contenedor) {
     });
     if (pendiente) { const [m, d] = pendiente; pendiente = null; presentar(m, d); }
   }
-  const siguiente = () => { sonar('clic'); presentar((actual + 1) % CURSOS.length, 'der'); };
-  const anterior = () => { sonar('clic'); presentar((actual - 1 + CURSOS.length) % CURSOS.length, 'izq'); };
+  const siguiente = () => { sonar('flecha'); presentar((actual + 1) % CURSOS.length, 'der'); };
+  const anterior = () => { sonar('flecha'); presentar((actual - 1 + CURSOS.length) % CURSOS.length, 'izq'); };
 
   // ----- ¡Empezamos!: aplausos, la tutora lo celebra y se elige el curso -----
   function empezarCon(c) {
-    sonar('fin');
+    sonar('fanfarria');
+    despues(500, () => sonar('aplausos'));
     sprite?.gesto('celebrar');
     decir(t('idi.si'));
     teatro.classList.add('aplaude');

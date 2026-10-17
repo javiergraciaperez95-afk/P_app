@@ -200,7 +200,7 @@ export function pintarPrecios(contenedor) {
 
   // ----- «Muy pronto»: todavía no se cobra -----
   const pronto = (quien, nota) => () => {
-    sonar('clic');
+    sonar('duda');
     quien?.gesto('rascarse');
     quien?.decir(t('precios.prontoTutora'));
     if (nota) {
@@ -289,7 +289,7 @@ export function pintarPrecios(contenedor) {
   function cambiarPago(nuevo) {
     if (nuevo === pago) return;
     pago = nuevo;
-    sonar('voltear');
+    sonar(pago === 'ano' ? 'moneda' : 'elegir');
     pintarPreciosZona();
     if (pago === 'ano') { tMax.gesto('celebrar'); tMax.decir(t('pr.col.anual.titulo') + ': ' + t('pr.col.anual.texto')); } else tPlus.gesto('pulgar');
   }
@@ -513,7 +513,7 @@ export function pintarPrecios(contenedor) {
   const lacre = () => {
     const sello = el('span', { class: 'pr-lacre', 'aria-hidden': 'true' }, '♥');
     sello.addEventListener('click', () => {
-      sonar('guardar');
+      sonar('sello');
       sello.classList.remove('pr-otra-vez');
       void sello.offsetWidth;
       sello.classList.add('pr-otra-vez');
@@ -630,6 +630,12 @@ export function pintarPrecios(contenedor) {
     papel.style.setProperty('--alto', `${papel.scrollHeight}px`);
     seccionPromesas.classList.add('pr-visto');
     removeEventListener('scroll', mirarPergamino);
+    // se oye cómo se desenrolla, cómo cae cada sello (al ritmo del css) y la firma
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      sonar('papel');
+      seccionPromesas.querySelectorAll('.pr-lacre').forEach((_, n) => despues(1200 + n * 450 + 260, () => sonar('sello')));
+      despues(3600, () => sonar('tiza'));
+    }
   };
   addEventListener('scroll', mirarPergamino, { passive: true });
   apagar.push(() => removeEventListener('scroll', mirarPergamino));

@@ -59,7 +59,7 @@ export function pintarEmpresas(root) {
   const tramoDe = n => [...EMPRESAS.tramos].reverse().find(tr => n >= tr.desde) ?? EMPRESAS.tramos[0];
   const contactar = () => {
     try { sessionStorage.setItem('paglot-contacto-asunto', 'escuelas'); } catch { /* sin almacenamiento */ }
-    sonar('pagina');
+    sonar('buzon');
   };
 
   // =====================================================================
@@ -80,7 +80,7 @@ export function pintarEmpresas(root) {
         el('p', {}, t('emp.lema')),
         el('div', { class: 'of-botones' },
           el('a', { class: 'es-boton', href: '#/contacto', onclick: contactar }, t('emp.contactar')),
-          el('a', { class: 'es-boton es-boton-papel', href: '#emp-equipo', onclick: e => { e.preventDefault(); sonar('clic'); configurador.scrollIntoView({ behavior: quieto ? 'auto' : 'smooth', block: 'start' }); } }, t('emp.calcular'))),
+          el('a', { class: 'es-boton es-boton-papel', href: '#emp-equipo', onclick: e => { e.preventDefault(); sonar('flecha'); configurador.scrollIntoView({ behavior: quieto ? 'auto' : 'smooth', block: 'start' }); } }, t('emp.calcular'))),
         el('span', { class: 'of-rotuladores', 'aria-hidden': 'true' }, el('i', {}), el('i', {}), el('i', {})))),
     el('div', { class: 'of-mesa-escena' },
       ponente.figura,
@@ -116,11 +116,12 @@ export function pintarEmpresas(root) {
   const descuento = el('span', { class: 'of-descuento' });
   const planes = ['plus', 'max'].map(clave => el('button', {
     type: 'button', class: 'of-plan', 'aria-pressed': String(clave === plan),
-    onclick: () => { plan = clave; planes.forEach((b, i) => b.setAttribute('aria-pressed', String(['plus', 'max'][i] === plan))); calcular(numero.value); sonar('clic'); },
+    onclick: () => { plan = clave; planes.forEach((b, i) => b.setAttribute('aria-pressed', String(['plus', 'max'][i] === plan))); calcular(numero.value); sonar(clave === 'max' ? 'brindis' : 'elegir'); },
   }, t(`emp.plan.${clave}`)));
   const caras = CURSOS.filter(c => !c.proximamente).sort(() => Math.random() - 0.5).slice(0, 8);
   const sillas = caras.map(c => el('span', { class: 'of-silla' }, tutoraPintada(c)));
   const mas = el('span', { class: 'of-mas' });
+  let ocupadas = 0;
   const mesaGrande = el('div', { class: 'of-mesa-grande', 'aria-hidden': 'true' }, el('div', { class: 'of-sillas' }, sillas, mas), el('span', { class: 'of-tablero' }));
   function calcular(n, desde) {
     n = Math.max(5, Math.min(99999, Math.round(Number(n) || 5)));
@@ -131,10 +132,14 @@ export function pintarEmpresas(root) {
     precio.textContent = euros(porPersona);
     total.textContent = euros(Math.round(porPersona * n));
     descuento.textContent = t('esc.calc.descuento', { n: Math.round((plan === 'max' ? EMPRESAS.maxDescuento : tr.descuento) * 100) });
+    // cuando llega alguien nuevo a la mesa, se oye cómo se sienta
+    const sentadas = Math.min(n, sillas.length);
+    if (desde && sentadas > ocupadas) sonar('silla');
+    ocupadas = sentadas;
     sillas.forEach((s, i) => s.classList.toggle('ocupada', i < n));
     mas.textContent = n > sillas.length ? t('emp.calc.mas', { n: n - sillas.length }) : '';
   }
-  barra.addEventListener('input', () => { calcular(barra.value, barra); sonar('roce'); });
+  barra.addEventListener('input', () => calcular(barra.value, barra));
   numero.addEventListener('input', () => calcular(numero.value, numero));
   const configurador = el('section', { class: 'of-equipo', id: 'emp-equipo', 'aria-labelledby': 'of-calc-titulo' },
     el('div', { class: 'of-calc es-papel' },
@@ -156,7 +161,7 @@ export function pintarEmpresas(root) {
   const muestra = el('div', { class: 'of-muestra', 'aria-live': 'polite' });
   const botonesSector = SECTORES.map(clave => el('button', {
     type: 'button', class: 'of-sector', 'aria-pressed': 'false',
-    onclick: () => { elegirSector(clave); sonar('clic'); },
+    onclick: () => { elegirSector(clave); sonar('papel'); },
   }, dibujo(conContorno(ICONOS[clave]), 'of-sector-icono'), el('span', {}, t(`emp.s.${clave}`))));
   function elegirSector(clave) {
     botonesSector.forEach((b, i) => b.setAttribute('aria-pressed', String(SECTORES[i] === clave)));
@@ -210,7 +215,7 @@ export function pintarEmpresas(root) {
   poner(root, el('article', { class: 'empresas escena-web' }, sala, credenciales, configurador, sectores, plantilla, proceso, fin));
   elenco.vigilar(sala);
 
-  despues(700, () => { ponente.gesto('presentar'); ponente.decir(t('emp.tutora.hola'), 3000); });
+  despues(700, () => { ponente.gesto('presentar'); sonar('saludo'); ponente.decir(t('emp.tutora.hola'), 3000); });
   if (!quieto) {
     // en la reunión, de vez en cuando alguien asiente, apunta o levanta la mano
     let turno = 0;

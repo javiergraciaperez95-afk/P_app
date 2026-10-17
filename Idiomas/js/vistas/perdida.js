@@ -28,7 +28,7 @@ export function pintarPerdida(contenedor, detalle = '') {
     sprite = dibujo.crearSprite(canvas);
     sprite.expresion = 'confundida';
   }).catch(() => { tutora.hidden = true; });
-  tutora.addEventListener('click', () => { sonar('saludo'); sprite?.reaccionar('cosquillas', 900); globo.textContent = alAzar(frases); });
+  tutora.addEventListener('click', () => { sonar(alAzar(['saludo', 'cosquillas', 'sorpresa'])); sprite?.reaccionar('cosquillas', 900); globo.textContent = alAzar(frases); });
 
   poner(contenedor,
     el('section', { class: 'perdida' },

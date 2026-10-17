@@ -306,6 +306,7 @@ export function pintarSobre(contenedor) {
     guia.poner({ andando: false });
     guia.reaccionar('contenta', 900);
     guia.gesto('saludar');
+    sonar('saludo');
     guia.decir(t('sobre.hola'), 4200);
   };
   if (quieto) despues(500, saludar);
@@ -403,7 +404,7 @@ export function pintarSobre(contenedor) {
         const p = puertas.find(q => q.valor === e.target);
         if (dentro) {
           const n = puertas.indexOf(p);
-          despues(250 + n * 220, () => { p.curiosa.gesto('asomarse'); if (n === 1) sonar('abrir'); });
+          despues(250 + n * 220, () => { p.curiosa.gesto('asomarse'); if (n === 1) sonar('puerta'); });
         }
       }
     }, { threshold: [0, 0.7, 1] });
@@ -419,7 +420,7 @@ export function pintarSobre(contenedor) {
     let actual = 0;
     const botones = [0, 1, 2].map(i => el('button', {
       type: 'button', class: `casa-paso casa-paso-${i + 1}`, 'aria-pressed': String(i === 0),
-      onclick: () => { elegir(i); sonar('clic'); },
+      onclick: () => elegir(i),
     }, el('span', { class: 'casa-paso-numero', 'aria-hidden': 'true' }, String(i + 1).padStart(2, '0')), el('span', {}, t(`sobre.${clave}.paso${i + 1}`))));
     function elegir(i, conGesto = true) {
       actual = i;
@@ -449,6 +450,7 @@ export function pintarSobre(contenedor) {
     exploradora.figura);
   const botonesMision = pasos('mision', exploradora, (i, conGesto) => {
     mapa.style.setProperty('--paso', String(i));
+    if (conGesto) sonar('pasos');
     if (conGesto && !quieto) {
       exploradora.poner({ andando: true });
       despues(420, () => { exploradora.poner({ andando: false }); exploradora.reaccionar('contenta', 900); });
@@ -466,7 +468,7 @@ export function pintarSobre(contenedor) {
   const botonesMetodo = pasos('metodo', lectora, (i, conGesto) => {
     libro.style.setProperty('--paso', String(i));
     pagPaso.textContent = `${String(i + 1).padStart(2, '0')} · ${t(`sobre.metodo.paso${i + 1}`)}`;
-    if (conGesto) { lectora.gesto('hojear'); sonar('voltear'); }
+    if (conGesto) { lectora.gesto('hojear'); sonar('papel'); }
   });
   libro.append(
     el('div', { class: 'casa-marcas', role: 'group', 'aria-label': t('sobre.metodo.titulo') }, botonesMetodo),
@@ -490,6 +492,7 @@ export function pintarSobre(contenedor) {
   const botonesEficacia = pasos('eficacia', mecanica, (i, conGesto) => {
     maquina.dataset.paso = String(i);
     if (!conGesto) return;
+    sonar('engranaje');
     maquina.classList.remove('gira');
     void maquina.offsetWidth;
     maquina.classList.add('gira');
@@ -512,7 +515,7 @@ export function pintarSobre(contenedor) {
       el('h2', { id: 'sobre-tienda' }, t('sobre.tienda.titulo')),
       el('p', {}, t('sobre.tienda.p1')),
       el('p', {}, t('sobre.tienda.p2')),
-      el('a', { class: 'es-boton', href: '#/tienda', onclick: () => sonar('pagina') }, t('sobre.tienda.boton'))),
+      el('a', { class: 'es-boton', href: '#/tienda', onclick: () => sonar('timbre') }, t('sobre.tienda.boton'))),
     el('div', { class: 'casa-mostrador-escena' },
       dibujo(ESTANTERIA, 'casa-estanteria'),
       tendera.figura,
@@ -531,7 +534,7 @@ export function pintarSobre(contenedor) {
           el('h2', {}, t('sobre.contacto.titulo')),
           el('p', {}, t('sobre.contacto.texto'),
             TITULAR.correo && ' ', TITULAR.correo && el('a', { href: `mailto:${TITULAR.correo}` }, TITULAR.correo)),
-          el('a', { class: 'es-boton es-boton-papel', href: '#/contacto', onclick: () => sonar('pagina') }, t('sobre.contacto.boton')))),
+          el('a', { class: 'es-boton es-boton-papel', href: '#/contacto', onclick: () => sonar('buzon') }, t('sobre.contacto.boton')))),
       el('div', { class: 'casa-empezar' },
         el('h2', {}, t('sobre.fin.titulo')),
         el('p', { class: 'casa-empezar-botones' },
@@ -629,7 +632,7 @@ export function pintarSobre(contenedor) {
       const llega = quieto || cuadro.offsetTop + 24 <= pies;
       if (llega && !cuadro.classList.contains('encendido')) {
         cuadro.classList.add('encendido');
-        if (!primeraVez) { caminante.reaccionar('contenta', 800); sonar('roce'); }
+        if (!primeraVez) { caminante.reaccionar('contenta', 800); sonar('interruptor'); }
       } else if (!llega) cuadro.classList.remove('encendido');
     }
     primeraVez = false;

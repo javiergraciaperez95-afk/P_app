@@ -31,11 +31,11 @@ export function pintarFaq(root) {
   // ----- Todas las fichas -----
   const fichas = CAJONES.flatMap(cajon => cajon.preguntas.map(([n, href, clave]) => {
     const ficha = el('details', { class: 'fq-ficha', 'data-cajon': cajon.id },
-      el('summary', {}, el('span', { class: 'fq-ficha-numero', 'aria-hidden': 'true' }, String(n).padStart(3, '0')), el('span', { class: 'fq-pregunta' }, t(`faq.q${n}`))),
+      el('summary', { 'data-sonido': 'papel' }, el('span', { class: 'fq-ficha-numero', 'aria-hidden': 'true' }, String(n).padStart(3, '0')), el('span', { class: 'fq-pregunta' }, t(`faq.q${n}`))),
       el('div', { class: 'fq-respuesta' },
         el('p', {}, t(`faq.a${n}`)),
         href && el('a', { class: 'es-boton es-boton-papel', href, onclick: () => sonar('pagina') }, t(clave), ' →')));
-    ficha.addEventListener('toggle', () => { if (ficha.open) { sonar('voltear'); bibliotecaria.gesto('asentir'); } });
+    ficha.addEventListener('toggle', () => { if (ficha.open) bibliotecaria.gesto('asentir'); });
     return { ficha, cajon: cajon.id, texto: normalizar(`${t(`faq.q${n}`)} ${t(`faq.a${n}`)}`) };
   }));
 
@@ -49,6 +49,7 @@ export function pintarFaq(root) {
     mesa.classList.remove('llegan');
     void mesa.offsetWidth;
     mesa.classList.add('llegan');
+    return visibles.length;
   }
 
   // ----- El fichero: un cajón por tema -----
@@ -62,18 +63,23 @@ export function pintarFaq(root) {
       busqueda = '';
       buscador.value = '';
       cajones.forEach(b => b.setAttribute('aria-pressed', String(b === boton)));
-      sonar('abrir');
+      sonar('cajon');
       bibliotecaria.gesto('senalar');
       pintarFichas();
     });
     return boton;
   });
   const buscador = el('input', { type: 'search', class: 'fq-buscador', placeholder: t('faq.buscar'), 'aria-label': t('faq.buscar') });
+  // al dejar de escribir, la bibliotecaria «busca» en el fichero: suena el radar, o un «nada» si no hay fichas
+  let buscando = null;
   buscador.addEventListener('input', () => {
     busqueda = buscador.value;
     cajones.forEach(b => b.setAttribute('aria-pressed', String(!busqueda.trim() && b.classList.contains(`fq-cajon-${cajonAbierto}`))));
-    pintarFichas();
+    const encontradas = pintarFichas();
+    clearTimeout(buscando);
+    if (busqueda.trim()) buscando = setTimeout(() => sonar(encontradas ? 'buscar' : 'nada'), 450);
   });
+  elenco.alApagar(() => clearTimeout(buscando));
 
   const biblioteca = el('section', { class: 'fq-biblioteca' },
     el('span', { class: 'fq-estanterias', 'aria-hidden': 'true' }),

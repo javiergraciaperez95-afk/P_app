@@ -304,6 +304,13 @@ const EFECTOS = {
   pasos: ctx => [0, 0.17, 0.34].forEach((t0, i) => ruido(ctx, t0, 0.04, 0.05 - i * 0.008, { tipo: 'lowpass', f: 500 + i * 60 })),
   // Silbato del árbitro (o de la vigilante del laboratorio).
   silbato: ctx => { for (let i = 0; i < 6; i++) nota(ctx, i % 2 ? 2100 : 2240, i * 0.035, 0.04, 'sine', 0.035); },
+  // Aplausos del público: palmadas sueltas que se juntan y se apagan.
+  aplausos: ctx => {
+    for (let i = 0; i < 22; i++) {
+      const t0 = Math.random() * 1.1;
+      ruido(ctx, t0, 0.03, 0.05 * (1 - t0 / 1.4), { f: 1200 + Math.random() * 1400, q: 1.4 });
+    }
+  },
   // Tic-tac.
   reloj: ctx => { ruido(ctx, 0, 0.012, 0.05, { tipo: 'highpass', f: 3500 }); ruido(ctx, 0.25, 0.012, 0.04, { tipo: 'highpass', f: 2500 }); },
   // Zumbido del neón al encenderse.
@@ -324,6 +331,14 @@ const EFECTOS = {
     // bonus: dos notas que repiten
     ctx => melodia(ctx, [1047, 1568, 1047, 1568], 0.05, 0.05, 'square', 0.03),
   ]),
+  // Salto de personaje.
+  salto: ctx => barrido(ctx, 280, 900, 0, 0.13, 'square', 0.035),
+  // Ir completando algo por partes: cada parte suena una nota más alta (valor de 0 a 1).
+  escala: (ctx, { valor = 0.5 } = {}) => {
+    const f = 392 * 2 ** (Math.round(valor * 12) / 8);
+    nota(ctx, f, 0, 0.06, 'square', 0.032);
+    nota(ctx, f * 2, 0.05, 0.05, 'triangle', 0.025);
+  },
   // Pulsar un botón de una máquina: «pew» o «blip».
   boton: una('boton', [
     ctx => barrido(ctx, 1200, 400, 0, 0.07, 'square', 0.025),

@@ -1,0 +1,20 @@
+TIPO: palabras   (lee antes _herramientas/haiku/COMUN.txt)
+Cada tarea es una palabra o expresión española del vocabulario. «falta» dice qué rellenar.
+
+pron   Pronunciación aproximada para hablantes de inglés, con el acento del español de España:
+       sílabas separadas por guiones, la sílaba tónica en MAYÚSCULAS, cada palabra separada por
+       un espacio. Palabras átonas (el, la, de, que, me, te…) en minúscula.
+       Sonidos: j/ge/gi → h · ll/y → y · ñ → ny · c(e,i)/z → th · qu/c(a,o,u) → k · h muda (no se escribe)
+       · v → b · gu(e,i) → g · r suave entre vocales → r · rr y r inicial → rr.
+       Ejemplos: la camisa → la ka-MI-sa · llevo → YE-bo · gracias → GRA-thyas
+                 el conejo → el ko-NE-ho · a lo mejor → a lo me-HOR · buenos días → BWE-nos DI-as
+cat    UNO de estos códigos, nada más:
+       sust adj verb adv pron prep conj art num interj expr frase
+       (expr = expresión hecha de varias palabras; frase = una oración completa;
+        un conector como «sin embargo» es conj si es una palabra y expr si son varias;
+        un determinante o un interrogativo suelto como «cada», «qué» → adj o pron según se use)
+genero «m» o «f». Solo si la palabra es un sustantivo.
+Si «cat_actual» ya trae un código válido, respétalo.
+
+Resultado por tarea: { "leccion": "…", "palabra": "<la palabra, idéntica>", <solo los campos de «falta»> }
+Ejemplo: { "leccion": "120", "palabra": "el gallo", "pron": "el GA-yo", "cat": "sust", "genero": "m" }

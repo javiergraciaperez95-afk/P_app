@@ -162,7 +162,7 @@ function formularioCodigo(repintar) {
       const direccion = correo.entrada.value.trim();
       await pedirCodigo(direccion);
       correoDelCodigo = direccion;
-      sonar('bien');
+      sonar('volar');
       decir(t('cuenta.codigoEnviadoTutora'), 'contenta');
       repintar();
       document.getElementById('cuenta-codigo')?.focus();
@@ -174,12 +174,12 @@ function formularioCodigo(repintar) {
     'data-codigo': '1', class: 'campo-codigo',
   });
   const otroCorreo = el('button', { type: 'button', class: 'boton boton-mini' }, t('cuenta.otroCorreo'));
-  otroCorreo.addEventListener('click', () => { correoDelCodigo = ''; sonar('clic'); repintar(); });
+  otroCorreo.addEventListener('click', () => { correoDelCodigo = ''; sonar('elegir'); repintar(); });
   const reenviar = el('button', { type: 'button', class: 'boton boton-mini' }, t('cuenta.reenviar'));
   reenviar.addEventListener('click', async () => {
     try {
       await pedirCodigo(correoDelCodigo);
-      sonar('bien');
+      sonar('volar');
       decir(t('cuenta.codigoEnviadoTutora'), 'contenta');
     } catch (error) {
       decir(error.message, 'confundida');
@@ -323,7 +323,7 @@ export function seccionCuenta(pestana) {
         el('button', {
           type: 'button',
           class: 'boton',
-          onclick: async () => { await salir(); sonar('clic'); decir(t('cuenta.sesionCerradaTutora')); },
+          onclick: async () => { await salir(); sonar('puerta'); decir(t('cuenta.sesionCerradaTutora')); },
         }, t('cuenta.cerrarSesion'))),
       el('details', { class: 'plegable' },
         el('summary', {}, t(usuario.contrasena ? 'cuenta.cambiarContrasena' : 'cuenta.ponerContrasena')),
@@ -346,7 +346,7 @@ export function seccionCuenta(pestana) {
         'aria-pressed': String(pestanaCuenta === clave),
         onclick: () => {
           pestanaCuenta = clave;
-          sonar('clic');
+          sonar('elegir');
           pintar();
           seccion.querySelector('.cuenta-contrasena input')?.focus();
         },
@@ -426,13 +426,13 @@ function seccionAjustes() {
           'aria-pressed': String(ajuste('idioma') !== 'auto' && idioma() === i.clave),
         }, i.nombre);
         b.addEventListener('click', () => {
-          sonar('clic');
+          sonar('elegir');
           cambiarIdioma(i.clave);
         });
         return b;
       })]);
   idiomas.firstElementChild.addEventListener('click', () => {
-    sonar('clic');
+    sonar('elegir');
     cambiarIdioma('auto');
   });
   const tema = el('div', { class: 'filtros', role: 'group', 'aria-labelledby': 'titulo-tema' },
@@ -440,7 +440,7 @@ function seccionAjustes() {
       const b = el('button', { type: 'button', class: 'boton boton-mini', 'aria-pressed': String(ajuste('tema') === valor) }, texto);
       b.addEventListener('click', () => {
         cambiarAjuste('tema', valor);
-        sonar('clic');
+        sonar('interruptor');
         tema.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
       });
       return b;

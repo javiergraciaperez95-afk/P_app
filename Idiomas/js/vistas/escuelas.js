@@ -88,7 +88,7 @@ export function pintarEscuelas(root) {
   const unidad = Math.round(ESCUELAS.unidadMedida * escala);
   const contactar = () => {
     try { sessionStorage.setItem('paglot-contacto-asunto', 'escuelas'); } catch { /* sin almacenamiento */ }
-    sonar('pagina');
+    sonar('buzon');
   };
 
   // =====================================================================
@@ -99,7 +99,7 @@ export function pintarEscuelas(root) {
   maestra.alTocar = () => { maestra.gesto('senalar'); maestra.decir(t('esc.tutora.hola'), 2600); };
   const campana = el('button', { type: 'button', class: 'ce-campana', 'aria-label': t('esc.campana') });
   campana.addEventListener('click', () => {
-    sonar('saludo');
+    sonar('campana');
     campana.classList.remove('suena');
     void campana.offsetWidth;
     campana.classList.add('suena');
@@ -118,7 +118,7 @@ export function pintarEscuelas(root) {
         el('p', {}, t('esc.lema')),
         el('div', { class: 'ce-botones' },
           el('a', { class: 'es-boton', href: '#/contacto', onclick: contactar }, t('esc.contactar')),
-          el('a', { class: 'es-boton es-boton-papel', href: '#esc-calculadora', onclick: e => { e.preventDefault(); sonar('clic'); calculadora.scrollIntoView({ behavior: quieto ? 'auto' : 'smooth', block: 'start' }); } }, t('esc.verPrecios'))),
+          el('a', { class: 'es-boton es-boton-papel', href: '#esc-calculadora', onclick: e => { e.preventDefault(); sonar('tiza'); calculadora.scrollIntoView({ behavior: quieto ? 'auto' : 'smooth', block: 'start' }); } }, t('esc.verPrecios'))),
         el('span', { class: 'ce-pizarra-patas', 'aria-hidden': 'true' })),
       maestra.figura,
       el('div', { class: 'ce-alumnas' }, alumnas.map(a => a.figura))));
@@ -172,7 +172,7 @@ export function pintarEscuelas(root) {
     }
     while (pupitres > quiere) { aula.lastChild.remove(); pupitres--; }
   }
-  barra.addEventListener('input', () => { calcular(barra.value, barra); sonar('roce'); });
+  barra.addEventListener('input', () => calcular(barra.value, barra));
   numero.addEventListener('input', () => calcular(numero.value, numero));
   const calculadora = el('section', { class: 'ce-calculadora', id: 'esc-calculadora', 'aria-labelledby': 'ce-calc-titulo' },
     el('div', { class: 'ce-calc-panel es-papel' },
@@ -229,7 +229,7 @@ export function pintarEscuelas(root) {
   poner(root, el('article', { class: 'escuelas escena-web' }, secciones));
   elenco.vigilar(colegio);
 
-  despues(700, () => { maestra.gesto('saludar'); maestra.decir(t('esc.tutora.hola'), 3000); });
+  despues(700, () => { maestra.gesto('saludar'); sonar('saludo'); maestra.decir(t('esc.tutora.hola'), 3000); });
   // en el patio se juega: cada poco, una alumna hace algo
   if (!quieto) {
     let turno = 0;

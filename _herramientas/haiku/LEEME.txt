@@ -1,0 +1,8 @@
+TRABAJO POR LOTES CON HAIKU
+===========================
+1. node _herramientas/medir_faltas.mjs es --lotes      crea haiku/lotes/<tipo>/NNN.json
+2. Un agente Haiku por lote. Su mensaje es solo:
+     Lee _herramientas/haiku/<tipo>.txt y haz el lote _herramientas/haiku/lotes/<tipo>/NNN.json
+3. node _herramientas/meter_respuestas.mjs es           mete las respuestas válidas y avisa de las demás
+   La criba no se mete: se junta en haiku/criba_marcadas.json para que la revise Opus.
+Las respuestas van a haiku/respuestas/<tipo>/NNN.json. Un lote ya metido no se vuelve a meter.
