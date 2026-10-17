@@ -145,6 +145,7 @@ function pintarBotonOcultar() {
 }
 
 function ocultar(oculta) {
+  if (!oculta && caja.classList.contains('oculta')) gesto(['asomarse', 'saludar']);
   caja.classList.toggle('oculta', oculta);
   document.body.classList.toggle('tutora-oculta', oculta);
   pintarBotonOcultar();
@@ -154,6 +155,9 @@ function ocultar(oculta) {
 // ---------------------------------------------------------------------------
 // Tocar a la tutora
 // ---------------------------------------------------------------------------
+
+const alAzar = lista => lista[Math.floor(Math.random() * lista.length)];
+const gesto = nombres => sprite.gesto?.(nombres); // los dibujos antiguos no tienen animaciones
 
 let toques = 0;
 let ultimoToque = 0;
@@ -172,15 +176,18 @@ function tocar(zona) {
   ultimoToque = ahora;
   if (toques >= 4) {
     sprite.reaccionar('agobiada');
+    gesto('caerse');
     sonar('mal');
     decir(fraseNueva(t('tutora.alInsistir')), sprite.expresion);
     toques = 0;
   } else if (zona === 'cara') {
     sprite.reaccionar('cosquillas');
+    gesto(alAzar(['verguenza', 'vueltecita', 'guino']));
     sonar('risa');
     decir(fraseNueva(t('tutora.alTocarCara')), sprite.expresion);
   } else {
     sprite.reaccionar('cosquillas', 900);
+    gesto(alAzar(['vueltecita', 'firma']));
     sonar('pagina');
     decir(fraseNueva(t('tutora.alTocarCuerpo')), sprite.expresion);
   }
@@ -206,3 +213,97 @@ window.addEventListener('idioma-cambiado', () => {
   pintarBotonOcultar();
   ponerExpresion(sprite.expresion);
 });
+
+// ---------------------------------------------------------------------------
+// Lo que hace con el cuerpo: reacciona a lo que pasa, saluda al llegar y se entretiene si nadie hace nada
+// ---------------------------------------------------------------------------
+
+let aciertosSeguidos = 0;
+let fallosSeguidos = 0;
+let finVoz = null;
+
+/** Cuántas lecciones lleva hoy (contando esta): a la tercera se acaba el día de estudio y brinda. */
+function leccionesDeHoy() {
+  const hoy = new Date().toLocaleDateString('sv');
+  try {
+    const [dia, n] = (localStorage.getItem('idiomas-tutora-hoy') || '').split(':');
+    const total = (dia === hoy ? Number(n) || 0 : 0) + 1;
+    localStorage.setItem('idiomas-tutora-hoy', `${hoy}:${total}`);
+    return total;
+  } catch {
+    return 1;
+  }
+}
+
+// sonidos.js avisa de cada efecto que suena y de cuándo lee algo en voz alta.
+window.addEventListener('paglot-suceso', ({ detail }) => {
+  switch (detail.nombre) {
+    case 'bien':
+      fallosSeguidos = 0;
+      aciertosSeguidos = detail.racha ?? aciertosSeguidos + 1;
+      if (aciertosSeguidos >= 3 && aciertosSeguidos % 3 === 0) gesto(alAzar(['pulgar', 'guino', 'cruzarBrazos']));
+      else gesto(alAzar(['aplaudir', 'asentir']));
+      break;
+    case 'mal':
+      aciertosSeguidos = 0;
+      fallosSeguidos += 1;
+      // a la segunda, en vez de solo decirlo, señala dónde mirar
+      gesto(fallosSeguidos >= 2 ? 'senalar' : alAzar(['rascarse', 'negar']));
+      break;
+    case 'fin':
+      aciertosSeguidos = 0;
+      gesto(leccionesDeHoy() === 3 ? ['celebrar', 'brindar'] : ['celebrar', 'firma']);
+      break;
+    case 'guardar': gesto('escribir'); break;
+    case 'voltear': if (Math.random() < 0.4) gesto('taparseOjos'); break;
+    case 'pagina': if (Math.random() < 0.3) gesto('hojear'); break;
+    case 'saludo': gesto('saludar'); break;
+    case 'voz':
+      sprite.escuchando = detail.suena;
+      clearTimeout(finVoz);
+      if (detail.suena) finVoz = setTimeout(() => { sprite.escuchando = false; }, 20000);
+      break;
+    default:
+  }
+});
+
+// Al cambiar de pantalla: en el repaso te reta, en una lección hojea el libro y en las demás saluda (no a cada paso).
+let ultimoSaludo = Date.now();
+window.addEventListener('hashchange', () => {
+  aciertosSeguidos = 0;
+  fallosSeguidos = 0;
+  const ruta = location.hash.slice(2).split('/')[0];
+  if (ruta === 'repaso') gesto('cruzarBrazos');
+  else if (ruta === 'leccion') gesto('hojear');
+  else if (Date.now() - ultimoSaludo > 45000) { ultimoSaludo = Date.now(); gesto('saludar'); }
+});
+
+// Al abrir la app, y al volver a ella tras un rato, se asoma y saluda.
+gesto(['asomarse', 'saludar']);
+let ocultaDesde = 0;
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) { ocultaDesde = Date.now(); return; }
+  if (Date.now() - ocultaDesde > 60000) { ultimoSaludo = Date.now(); gesto(['asomarse', 'saludar']); }
+  actividad();
+});
+
+// Si nadie toca nada: de vez en cuando hace algo pequeño y, tras un buen rato, se duerme hasta que vuelvas.
+const ESPERAS = ['bostezo', 'estirarse', 'mirarLados', 'moverPie', 'mirarLados', 'pensar', 'firma'];
+let ultimaActividad = Date.now();
+let proximaEspera = 0;
+function actividad() {
+  ultimaActividad = Date.now();
+  if (sprite.dormida) {
+    sprite.dormida = false;
+    gesto('respingo');
+  }
+}
+for (const tipo of ['pointerdown', 'keydown', 'wheel', 'touchstart']) document.addEventListener(tipo, actividad, { passive: true, capture: true });
+setInterval(() => {
+  if (document.hidden || caja.classList.contains('oculta')) return;
+  const quieta = Date.now() - ultimaActividad;
+  if (quieta > 150000) { sprite.dormida = true; return; }
+  if (quieta < 25000 || Date.now() < proximaEspera || escribiendo || sprite.escuchando || sprite.ocupada?.()) return;
+  proximaEspera = Date.now() + 12000 + Math.random() * 13000;
+  gesto(alAzar(ESPERAS));
+}, 1000);

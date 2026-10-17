@@ -1,6 +1,7 @@
 // La tutora del curso elegido. Cada curso tiene la suya:
 // - casi todas son un diseño (cursos/<id>/tutora.js) sobre el personaje común de tutora-base.js;
-// - un curso puede traer su propio dibujo completo (cursos/<id>/tutor-sprite.js), como el de español.
+// - un curso puede traer su propio dibujo completo (cursos/<id>/tutor-sprite.js, con "sprite": "propio" en cursos.js),
+//   aunque ya ninguno lo hace: así todas reciben las animaciones del cuerpo de tutora-base.js.
 
 import { curso, hayCurso } from './curso.js';
 import { fabricar, EXPRESIONES_VALIDAS } from './tutora-base.js';

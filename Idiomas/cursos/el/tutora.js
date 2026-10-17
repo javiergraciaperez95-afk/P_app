@@ -12,6 +12,9 @@ export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, fal
       ribete: '#2f6fc4', falda: '#2f5fae', faldaD: '#20447f',
       oliva: '#8fbe5a', olivaD: '#56802f',
     },
+    // frappé al acabar el día y su gesto propio
+    bebida: { vaso: '#eef6f9', liquido: '#c9a27a', conPajita: true },
+    firma: 'baile',
     atras(sw) {
       // rizos: el borde de la melena entra y sale
       for (let k = 0, y = 12; y < 45; y += 3, k++) {

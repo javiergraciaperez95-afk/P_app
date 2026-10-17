@@ -13,6 +13,9 @@ export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, fal
       abrigo: '#dfeaf4', abrigoS: '#b7c9dc', cinto: '#2f3f7a',
       shoe: '#5a3a2a', shoeL: '#7d5540',
     },
+    // chocolate caliente al acabar el día y su gesto propio
+    bebida: { vaso: '#c0323c', liquido: '#6b3a22' },
+    firma: 'cadera',
     atras(sw) {
       // melena ondulada hasta la cintura
       B(5, 16, 2, 14, C.hair); B(5, 16, 1, 14, C.hairS);

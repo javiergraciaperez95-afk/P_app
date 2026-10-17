@@ -12,6 +12,9 @@ export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, fal
       corbata: '#27365e', cuadro: '#2f5a44', cuadroD: '#27365e', cuadroR: '#c0323c',
       diadema: '#27365e', diademaL: '#4a62a8', gafas: '#b88a2a',
     },
+    // té con leche al acabar el día y su gesto propio
+    bebida: { vaso: '#ffffff', liquido: '#c98b5a' },
+    firma: 'gafas',
     atras(sw) {
       B(6, 26, 6, 5, C.hair); B(5, 30, 7, 5, C.hair, sw); B(6, 35, 6, 3, C.hair, sw); B(7, 38, 4, 1, C.hair, sw);
       B(5, 30, 1, 5, C.hairS, sw); B(8, 31, 1, 5, C.hairL, sw);

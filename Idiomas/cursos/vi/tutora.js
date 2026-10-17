@@ -13,6 +13,9 @@ export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, fal
       book: '#2f6a50', bookD: '#1c4332', bookL: '#44906e', gold: '#f0cc62', goldD: '#c79a2a',
       shoe: '#3a2a44', shoeL: '#5b4569',
     },
+    // café con leche y hielo al acabar el día y su gesto propio
+    bebida: { vaso: '#eef6f9', liquido: '#9a6a42', conPajita: true },
+    firma: 'reverencia',
     atras(sw) {
       // melena muy larga y lisa, hasta la cintura; las puntas se mecen
       B(8, 32, 7, 15, C.hair); B(8, 32, 1, 15, C.hairS); B(11, 34, 1, 11, C.hairL);

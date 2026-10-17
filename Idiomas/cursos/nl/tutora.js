@@ -13,6 +13,9 @@ export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, fal
       tulipan: '#ff9ac4', tulipanD: '#e0609a', tallo: '#4a9a4a',
       shoe: '#3f6fb5', shoeL: '#6f9be0',
     },
+    // chocolate caliente al acabar el día y su gesto propio
+    bebida: { vaso: '#ff8c2a', liquido: '#6b3a22' },
+    firma: 'cadera',
     atras() { Bh(6, 16, 1, 12, C.hair); },
     piernas() { medias(C.vaquero); R(18, 52, 5, 3, C.shoe); R(25, 52, 5, 3, C.shoe); P(19, 52, C.shoeL); P(26, 52, C.shoeL); },
     cuerpo() {

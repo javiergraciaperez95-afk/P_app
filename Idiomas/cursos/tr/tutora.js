@@ -12,6 +12,9 @@ export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, fal
       jersey: '#2fb3ad', jerseyL: '#62d6cf', jerseyD: '#1d857f',
       falda: '#4a4d5c', faldaD: '#33354a', ojo: '#2456c9', ojoL: '#6aa8f5',
     },
+    // çay al acabar el día y su gesto propio
+    bebida: { vaso: '#eef6f9', liquido: '#c0462b' },
+    firma: 'manoPecho',
     atras(sw) {
       // melena con mucho volumen, en ondas, hasta la falda
       B(5, 14, 2, 16, C.hair); B(5, 14, 1, 16, C.hairS);

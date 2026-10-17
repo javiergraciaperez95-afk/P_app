@@ -11,6 +11,9 @@ export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, fal
       raya: '#44578f', panuelo: '#d63a45', panueloL: '#f0656e', panueloD: '#9c2330',
       menta: '#8fd4b0', mentaD: '#62ad88', cinto: '#6e4430',
     },
+    // café crème al acabar el día y su gesto propio
+    bebida: { vaso: '#ffffff', liquido: '#9a6a42' },
+    firma: 'beso',
     atras(sw) {
       // la melena se abre a los lados y acaba a la altura de la barbilla
       B(5, 20, 2, 10, C.hair); B(5, 20, 1, 10, C.hairS);

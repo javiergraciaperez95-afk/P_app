@@ -12,6 +12,9 @@ export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, fal
       piel: '#ffffff', pielS: '#cfd6e2', aro: '#aab2c2',
       falda: '#3a3f55', faldaD: '#272b3d', shoe: '#3a2a2a', shoeL: '#5a4444',
     },
+    // té al acabar el día y su gesto propio
+    bebida: { vaso: '#d8433a', liquido: '#b5562b' },
+    firma: 'reverencia',
     atras() {},
     piernas() { medias('#f4f6f5'); },
     cuerpo() {

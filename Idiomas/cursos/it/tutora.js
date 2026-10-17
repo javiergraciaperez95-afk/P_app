@@ -14,6 +14,9 @@ export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, fal
       marco: '#f4f6f5', lente: '#2b2d38', brillo: '#8fa0c0',
       shoe: '#f4f6f5', shoeL: '#ffffff',
     },
+    // espresso al acabar el día y su gesto propio
+    bebida: { vaso: '#ffffff', liquido: '#4a2a18' },
+    firma: 'beso',
     atras() { Bh(6, 16, 1, 12, C.hair); },
     piernas() { medias(C.skin, 53); },
     cuerpo() {

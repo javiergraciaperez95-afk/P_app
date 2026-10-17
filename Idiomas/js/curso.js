@@ -20,7 +20,7 @@ const elegido = leerElegido();
 
 // Nombre propio de cada tutora, elegido según el idioma que se está aprendiendo.
 // Se mantienen en escritura local cuando existe, para que suenen naturales en cada curso.
-const NOMBRES_TUTORAS = {
+export const NOMBRES_TUTORAS = {
   en: 'Emily', es: 'Lucía', fr: 'Camille', de: 'Anna', ja: 'Yui',
   it: 'Sofia', ko: '민지', zh: '小雨', pt: 'Inês', ru: 'Анна',
   tr: 'Elif', nl: 'Sophie', sv: 'Elsa', el: 'Ελένη', pl: 'Zofia',

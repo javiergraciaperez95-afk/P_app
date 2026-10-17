@@ -13,6 +13,9 @@ export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, fal
       falda: '#5a3a8a', faldaD: '#3f2866',
       orquidea: '#d28ff0', orquideaD: '#8a4fb8', centro: '#fff0a0',
     },
+    // té tailandés al acabar el día y su gesto propio
+    bebida: { vaso: '#eef6f9', liquido: '#f0a050', conPajita: true },
+    firma: 'wai',
     atras(sw) {
       Rh(6, 3, 5, 4, C.hair); Rh(3, 6, 5, 16, C.hair);
       Rh(3 + sw, 22, 4, 10, C.hair); Rh(4 + sw, 32, 3, 5, C.hair); Rh(5 + sw, 37, 2, 3, C.hair);

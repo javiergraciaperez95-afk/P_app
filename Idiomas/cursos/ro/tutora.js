@@ -11,6 +11,9 @@ export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, fal
       rojo: '#d63a45', rojoL: '#f0656e', rojoD: '#9c2330',
       falda: '#2b2d4a', faldaD: '#1c1d33', amarillo: '#f0c93a',
     },
+    // café al acabar el día y su gesto propio
+    bebida: { vaso: '#ffffff', liquido: '#6b4428' },
+    firma: 'beso',
     atras(sw) {
       B(6, 26, 7, 16, C.hair); B(6, 26, 1, 16, C.hairS); B(9, 30, 1, 11, C.hairL);
       B(6, 42, 6, 3, C.hair, sw); B(7, 45, 4, 1, C.hair, sw); B(6, 42, 1, 3, C.hairS, sw);

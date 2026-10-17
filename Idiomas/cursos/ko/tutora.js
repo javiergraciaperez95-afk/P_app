@@ -11,6 +11,9 @@ export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, fal
       cardigan: '#e8d8b8', cardiganS: '#c9b48f', lazo: '#b9474f', lazoD: '#7c2432',
       falda: '#8a6a55', faldaD: '#6b4f3f', pin1: '#ff7fa8', pin2: '#6fd0c0',
     },
+    // leche de plátano al acabar el día y su gesto propio
+    bebida: { vaso: '#f5e27a', liquido: '#fff4b0', conPajita: true },
+    firma: 'dedoCorazon',
     atras(sw) {
       B(8, 30, 5, 10, C.hair); B(8, 30, 1, 10, C.hairS); B(10, 31, 1, 8, C.hairL);
       B(9, 40, 4, 2, C.hair, sw); B(10, 42, 3, 1, C.hair, sw);

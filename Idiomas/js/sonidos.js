@@ -8,6 +8,9 @@ import { curso } from './curso.js';
 
 let audio = null;
 
+/** Avisa de lo que suena (aunque los efectos estén apagados): la tutora reacciona con el cuerpo. */
+const avisar = (nombre, datos = {}) => window.dispatchEvent(new CustomEvent('paglot-suceso', { detail: { nombre, ...datos } }));
+
 function contexto() {
   // El navegador no deja sonar nada hasta que la persona toca la página.
   if (navigator.userActivation && !navigator.userActivation.hasBeenActive) return null;
@@ -78,6 +81,7 @@ const EFECTOS = {
 
 /** Acierto en el modo juego: el arpegio sube un semitono con cada acierto seguido. */
 export function sonarAcierto(racha = 1) {
+  avisar('bien', { racha });
   if (!ajuste('efectos')) return;
   const ctx = contexto();
   if (!ctx) return;
@@ -138,6 +142,7 @@ export function ponerMusica(encender) {
 let ultimoSonido = -Infinity;
 
 export function sonar(nombre) {
+  avisar(nombre);
   if (nombre !== 'roce') ultimoSonido = performance.now();
   if (!ajuste('efectos')) return;
   const ctx = contexto();
@@ -289,6 +294,7 @@ function leer(lecturas, voz, { alEmpezar, alAcabar } = {}) {
   const error = e => {
     if (mio !== turno || ['interrupted', 'canceled'].includes(e?.error)) return;
     turno += 1;
+    avisar('voz', { suena: false });
     alAcabar?.();
     if (e?.error !== 'not-allowed') darPorPerdida();
   };
@@ -300,9 +306,9 @@ function leer(lecturas, voz, { alEmpezar, alAcabar } = {}) {
       f.lang = voz.lang;
       f.rate = ajuste('velocidadVoz') * (l.lento ? 0.6 : 1);
       f.pitch = l.tono ?? 1;
-      f.onstart = () => { haSonado = true; sinEmpezar = 0; if (k === 0 && mio === turno) alEmpezar?.(i); };
+      f.onstart = () => { haSonado = true; sinEmpezar = 0; if (mio === turno) avisar('voz', { suena: true }); if (k === 0 && mio === turno) alEmpezar?.(i); };
       f.onerror = error;
-      if (i === lecturas.length - 1 && k === trozos.length - 1) f.onend = () => { if (mio === turno) alAcabar?.(); };
+      if (i === lecturas.length - 1 && k === trozos.length - 1) f.onend = () => { if (mio === turno) { avisar('voz', { suena: false }); alAcabar?.(); } };
       voces.speak(f);
     });
   });
@@ -339,6 +345,7 @@ export function pronunciarSeguido(frases, avisos = {}) {
 
 export function callar() {
   turno += 1;
+  avisar('voz', { suena: false });
   voces?.cancel();
 }
 

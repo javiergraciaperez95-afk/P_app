@@ -11,6 +11,9 @@ export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, fal
       book: '#2f8f5a', bookD: '#1f6a40', bookL: '#4fb87a',
       azul: '#2f5fae', falda: '#e8b83a', faldaD: '#c0921f', aro: '#f3c94b',
     },
+    // café al acabar el día y su gesto propio
+    bebida: { vaso: '#ffffff', liquido: '#5a3520' },
+    firma: 'baile',
     atras() {
       // rizos cortos: una nube alrededor de la cabeza
       for (let k = 0, y = 7; y < 31; y += 3, k++) { Bh(4 + (k % 2), y, 5, 3, C.hair); Bh(4 + (k % 2), y + 2, 1, 1, C.hairS); Bh(6 + (k % 2), y + 1, 1, 1, C.hairL); }

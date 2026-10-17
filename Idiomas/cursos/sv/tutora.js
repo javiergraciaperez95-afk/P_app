@@ -12,6 +12,9 @@ export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, fal
       lazo: '#2f5fae', lazoL: '#6f9be0', boton: '#f3c94b',
       shoe: '#f4f6f5', shoeL: '#ffffff',
     },
+    // café al acabar el día y su gesto propio
+    bebida: { vaso: '#ffffff', liquido: '#6b4428' },
+    firma: 'pelo',
     atras() {},
     piernas() {
       R(18, 50, 5, 3, C.peto); R(25, 50, 5, 3, C.peto); R(18, 50, 1, 3, C.petoD); R(29, 50, 1, 3, C.petoD);

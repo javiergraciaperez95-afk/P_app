@@ -11,6 +11,9 @@ export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, fal
       jersey: '#c8383f', jerseyL: '#e85a60', jerseyD: '#96222c',
       bufanda: '#f4f6f5', bufandaS: '#cfd6de', falda: '#3d5088', faldaD: '#2a3a66',
     },
+    // café al acabar el día y su gesto propio
+    bebida: { vaso: '#ffffff', liquido: '#6b4428' },
+    firma: 'beso',
     atras() { Bh(6, 14, 1, 13, C.hair); },
     piernas() { medias(C.white, 52); },
     cuerpo() {

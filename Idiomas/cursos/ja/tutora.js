@@ -12,6 +12,9 @@ export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, fal
       falda: '#2b2b34', faldaL: '#464653', gafas: '#8a4a58',
       shoe: '#1f1f26', shoeL: '#44444f',
     },
+    // té matcha al acabar el día y su gesto propio
+    bebida: { vaso: '#d9cfb8', liquido: '#8fbf5a' },
+    firma: 'reverencia',
     atras(sw) {
       // coleta baja, que asoma por detrás de un hombro
       R(35, 30, 4, 10, C.hair); R(38, 30, 1, 10, C.hairS); R(36, 32, 1, 7, C.hairL);

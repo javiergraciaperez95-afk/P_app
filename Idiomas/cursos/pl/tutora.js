@@ -10,6 +10,9 @@ export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, fal
       book: '#e0902f', bookD: '#b06a1a', bookL: '#f8b85a', gold: '#fff0c0', goldD: '#f3c94b',
       rojo: '#d63a45', rojoD: '#9c2330', ambar: '#f0a030', ambarL: '#ffd070',
     },
+    // té con limón al acabar el día y su gesto propio
+    bebida: { vaso: '#eef6f9', liquido: '#e0a040' },
+    firma: 'baile',
     atras() {},
     piernas() { medias('#f4f6f5'); },
     cuerpo() {

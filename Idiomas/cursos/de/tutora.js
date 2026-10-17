@@ -11,6 +11,9 @@ export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, fal
       chaqueta: '#2f6b4a', chaquetaL: '#4a8f68', chaquetaD: '#1f4a33',
       falda: '#4a4d5c', faldaD: '#33354a', gafas: '#3d3340', goma: '#c0323c',
     },
+    // café al acabar el día y su gesto propio
+    bebida: { vaso: '#ffffff', liquido: '#6b4428' },
+    firma: 'cadera',
     atras(sw) {
       // coleta alta que cae hacia un lado
       Rh(37, 3, 5, 4, C.hair); Rh(40, 6, 5, 14, C.hair);

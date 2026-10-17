@@ -12,6 +12,9 @@ export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, fal
       batik: '#9a5530', batikD: '#6b3519', batikL: '#f0cf8a',
       sarong: '#4f2c1d', dibujo: '#c9973a', flor: '#fff8ea', florC: '#f3c94b',
     },
+    // té de jazmín al acabar el día y su gesto propio
+    bebida: { vaso: '#ffffff', liquido: '#d9b55a' },
+    firma: 'manoPecho',
     atras() {
       // moño bajo, a un lado
       Rh(39, 22, 4, 9, C.hair); Rh(38, 23, 6, 7, C.hair);
