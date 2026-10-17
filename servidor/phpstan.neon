@@ -1,0 +1,15 @@
+# Análisis estático (plan de seguridad, entrada 186): busca errores sin ejecutar el código.
+#   bash servidor/local/analizar.sh
+parameters:
+    level: 8
+    phpVersion: 80300   # el código tiene que funcionar desde PHP 8.3 (el de Ubuntu 24.04)
+    paths:
+        - src
+        - publico
+        - tareas
+    treatPhpDocTypesAsCertain: false
+    tmpDir: ../_herramientas/servidor_local/tmp/phpstan
+    ignoreErrors:
+        # Las filas de la base y los cuerpos JSON van como arrays sin describir campo a campo: describirlos
+        # todos con PHPDoc no evita ningún fallo que no cojan ya las pruebas. Todo lo demás del nivel 8 se cumple.
+        - identifier: missingType.iterableValue
