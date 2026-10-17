@@ -27,6 +27,7 @@ export function pintarLegal(contenedor) {
           dato('nombre', TITULAR.nombre), dato('nif', TITULAR.nif), dato('direccion', TITULAR.direccion), dato('correo', TITULAR.correo))),
       bloque('legal.datos.titulo', parrafo('legal.datos.sinCuenta'), parrafo('legal.datos.conCuenta'), parrafo('legal.datos.nada')),
       bloque('legal.uso.titulo', parrafo('legal.uso.texto')),
+      bloque('legal.region.titulo', parrafo('legal.region.texto')),
       bloque('legal.terceros.titulo', parrafo('legal.terceros.supabase'), parrafo('legal.terceros.voz')),
       bloque('legal.derechos.titulo', parrafo('legal.derechos.texto'), parrafo('legal.derechos.reclamar')),
       bloque('legal.cookies.titulo', parrafo('legal.cookies.texto'), parrafo('legal.cookies.borrar')),

@@ -1003,7 +1003,9 @@ html[data-voz="no"] .audio-texto.sin-voz-visible[hidden] { display: block !impor
 
 /* Modo «solo escuchar» en diálogos */
 .ocultar-espanol .frase-es,
-.ocultar-espanol .analisis-bloque { display: none; }
+.ocultar-espanol .analisis-bloque,
+.ocultar-espanol .lectura-parrafo,
+.ocultar-espanol .lectura-detalle { display: none; }
 
 
 /* Práctica y diccionario */
@@ -2275,125 +2277,7 @@ body.en-bienvenida .aviso-datos { display: none; }
   .perdida-busca { padding-top: 50px; margin-bottom: 8px; }
 }
 
-/* ===== Precios: un tablero a pantalla completa, sin desplazar =====
-   La pantalla empieza debajo de la cabecera (lo pone js/vistas/precios.js) y, si el contenido no cabe, se encoge. */
-body.en-precios { overflow-x: hidden; }
-body.en-precios main { max-width: none; padding: 0; }
-.px {
-  position: relative; width: 100%; min-height: calc(100vh - 74px); z-index: 1;
-  display: flex; justify-content: center; align-items: center; /* centrado también de arriba abajo cuando sobra sitio */
-  padding: 8px calc(12px + var(--borde-der)) calc(8px + var(--borde-abajo)) calc(12px + var(--borde-izq));
-  background-color: var(--fondo);
-  background-image: radial-gradient(var(--fondo-punto) 1.5px, transparent 1.6px);
-  background-size: 16px 16px;
-  overflow: hidden;
-}
-.px-contenido { position: relative; z-index: 1; width: min(760px, 100%); display: flex; flex-direction: column; gap: 10px; transform-origin: center; }
-
-/* Arriba: la tutora y lo que dice */
-.px-arriba { display: flex; align-items: flex-end; gap: 8px; }
-.px-tutora { --k: 2; flex: none; width: calc(48px * var(--k)); height: calc(64px * var(--k)); padding: 0; border: 0; background: none; cursor: pointer; overflow: hidden; -webkit-tap-highlight-color: transparent; }
-.px-tutora .sobre-salto { display: block; width: calc(48px * var(--k)); height: calc(64px * var(--k)); }
-.px-tutora-dibujo { display: block; width: 100%; height: 100%; image-rendering: pixelated; image-rendering: crisp-edges; }
-.px-globo { flex: 1; min-width: 0; min-height: 5.6em; margin-bottom: calc(var(--px) * 2); padding: 10px 14px; display: flex; flex-direction: column; }
-.px-texto { margin: 0; line-height: 1.4; }
-
-/* El tablero */
-.px-tablero { margin-bottom: calc(var(--px) * 2); padding: 12px; display: flex; flex-direction: column; gap: 10px; }
-.px-interruptor { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-.px-lado {
-  border: 0; padding: 12px 8px; cursor: pointer;
-  font-family: var(--fuente-pixel); font-weight: 700; font-size: 1.15rem; line-height: 1.15;
-  color: var(--texto-suave); background: var(--fondo); box-shadow: inset 0 0 0 3px var(--texto-suave);
-}
-.px-lado:hover { color: var(--texto); }
-.px-lado[aria-pressed="true"] { color: var(--fondo); background: var(--texto); box-shadow: inset 0 0 0 3px var(--linea); }
-.px-lado-oro[aria-pressed="true"] { color: #1a1424; background: var(--marca-oro); }
-.px-lado-oro[aria-pressed="false"] { animation: llamar 1.2s steps(4) infinite; color: var(--marca-oro); box-shadow: inset 0 0 0 3px var(--marca-oro); }
-
-.px-fila-precio { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; }
-.px-precio { margin: 0; min-width: 3.9em; font-size: clamp(2.1rem, 9vw, 3rem); font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
-.px-tablero[data-plan="completo"] .px-precio { color: var(--marca-oro); }
-.px-llega { animation: brotar .25s steps(4); }
-.px-junto { flex: 1; min-width: 6.5em; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
-.px-por { margin: 0; color: var(--texto-suave); line-height: 1.2; }
-.px-ahorro { padding: 0 6px; font-size: .82rem; font-weight: 700; color: var(--fondo); background: var(--verde); animation: brotar .25s steps(4); }
-.px-formas { margin: 0; }
-.px-tablero[data-plan="gratis"] .px-formas { visibility: hidden; }
-
-/* Medidores: diez cuadros que se llenan uno tras otro */
-.px-medidores { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
-.px-medidores li { display: grid; grid-template-columns: minmax(0, 1fr) auto 2.4em; align-items: center; gap: 10px; }
-.px-que { line-height: 1.2; }
-.px-barra { display: flex; gap: 3px; }
-.px-barra i {
-  width: 16px; height: 16px; background: var(--fondo); box-shadow: inset 0 0 0 2px var(--texto-suave);
-  transition: background-color 0s, box-shadow 0s; transition-delay: calc(var(--i) * 38ms);
-}
-.px-barra i.lleno { background: var(--verde); box-shadow: inset 0 0 0 2px var(--linea); }
-.px-tablero[data-plan="completo"] .px-barra i.lleno { background: var(--marca-oro); }
-.px-valor { font-weight: 700; font-size: 1.2rem; text-align: right; }
-.px-tablero[data-plan="completo"] .px-valor { color: var(--marca-oro); font-size: 1.7rem; line-height: 1; animation: brotar .3s steps(4) .4s backwards; }
-
-.px-incluye { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
-.px-incluye li { position: relative; padding: 1px 8px 1px 1.7em; font-size: .9rem; background: var(--panel-2); }
-.px-incluye li::before { content: "\2714"; position: absolute; left: .5em; color: var(--verde); }
-.px-incluye .px-ayuda { display: none; }
-.px-tablero[data-plan="completo"] .px-ayuda { display: block; color: #1a1424; background: var(--marca-oro); animation: brotar .3s steps(4); }
-.px-tablero[data-plan="completo"] .px-ayuda::before { content: "\2665"; color: var(--rojo); }
-.px-accion { display: flex; justify-content: flex-end; }
-.px-accion .boton { margin-bottom: 0; }
-
-/* La cinta de promesas */
-.px-cinta {
-  display: flex; align-items: center; gap: 10px; width: 100%; min-height: 3.2em; padding: 6px 12px; border: 0; cursor: pointer; overflow: hidden;
-  font: inherit; font-size: .93rem; line-height: 1.3; text-align: left; color: var(--texto); background: var(--panel-2);
-  box-shadow: inset 0 0 0 2px var(--texto-suave);
-}
-.px-cinta-corazon { flex: none; color: var(--rojo-claro); animation: latir .8s steps(2) infinite; }
-.px-entra { animation: subir .3s steps(5); }
-@keyframes subir { from { transform: translateY(1.6em); opacity: 0; } }
-
-/* El público, solo si sobra pantalla a los lados */
-.px-publico { position: absolute; bottom: 0; z-index: 1; display: none; border-bottom: 4px solid var(--linea); }
-.px-publico canvas { width: 96px; height: 120px; margin: 0 -6px; image-rendering: pixelated; image-rendering: crisp-edges; }
-.px-publico-izq { right: calc(50% + 410px); }
-.px-publico-der { left: calc(50% + 410px); }
-.px[data-plan="completo"] .px-publico canvas { animation: paso .3s infinite; }
-.px[data-plan="completo"] .px-publico canvas:nth-child(2) { animation-delay: -.15s; }
-@media (min-width: 1200px) and (min-height: 560px) { .px-publico { display: flex; } }
-
-/* Tamaños */
-@media (min-width: 760px) and (min-height: 880px) { .px-tutora { --k: 3; } .px-contenido { gap: 14px; } .px-tablero { gap: 14px; padding: 16px; } }
-@media (max-height: 780px), (max-width: 560px) { .px-tutora { height: 96px; } }   /* solo el busto */
-@media (max-width: 560px) {
-  .px-contenido { gap: 6px; }
-  .px-tutora { height: 70px; }
-  .px-globo { min-height: 6.2em; padding: 6px 10px; } /* sitio fijo para cuatro líneas: así el tablero no baila mientras escribe */
-  .px-texto, .px-que { font-size: .9rem; }
-  .px-tablero { padding: 10px; gap: 8px; }
-  .px-lado { padding: 9px 4px; font-size: 1rem; }
-  .px-medidores li { gap: 8px; grid-template-columns: minmax(0, 1fr) auto 2em; }
-  .px-barra { gap: 2px; }
-  .px-barra i { width: 11px; height: 11px; }
-  .px-incluye { gap: 4px; }
-  .px-incluye li { font-size: .8rem; }
-  .px-cinta { min-height: 3.4em; font-size: .85rem; }
-  /* en el móvil cada línea cuenta: lo que no se usa en el plan gratis no ocupa sitio, y todo va un punto más pequeño */
-  .px-tablero[data-plan="gratis"] .px-formas { display: none; }
-  .px-globo { min-height: 5.6em; }
-  .px-texto { font-size: .86rem; line-height: 1.35; }
-  .px-que { font-size: .84rem; }
-  .px-precio { font-size: 2rem; }
-  .px-lado { padding: 7px 4px; }
-  .px-incluye li { font-size: .76rem; padding: 0 6px 0 1.6em; }
-  .px-formas .boton-mini { min-height: 32px; padding: 2px 8px; }
-  .px-accion .boton { min-height: 40px; padding: 6px 14px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .px-lado-oro[aria-pressed="false"], .px-llega, .px-ahorro, .px-valor, .px-ayuda, .px-cinta-corazon, .px-entra, .px-publico canvas { animation: none !important; }
-  .px-barra i { transition-delay: 0s; }
-}
+/* ===== Precios: en css/precios.css ===== */
 
 /* Páginas públicas: contenido calmado, una idea principal por tarjeta y bordes pixel del sistema. */
 .comunidad { width: min(980px, 100%); margin: 0 auto; padding: 34px 0 48px; }
@@ -2639,3 +2523,25 @@ body.en-precios main { max-width: none; padding: 0; }
   .contacto-form .contacto-captcha { grid-template-columns: 1fr 78px; }
   .comunidad-hero { margin-bottom: 22px; }
 }
+
+/* Lectura por frases: texto corrido con un botón discreto tras cada frase */
+.lectura-bloque { padding: 10px 0; border-bottom: 2px dashed var(--panel-hover); }
+.lectura-bloque:last-child { border-bottom: 0; }
+.lectura-parrafo { font-size: 1.2rem; line-height: 1.7; color: var(--espanol); margin: 0; overflow-wrap: anywhere; }
+.lectura-frase { border-radius: 4px; transition: background .15s; }
+.lectura-frase.elegida,
+.lectura-frase.sonando { background: var(--panel-2); box-shadow: 0 2px 0 var(--oro); }
+.lectura-boton {
+  display: inline-grid; place-items: center;
+  width: 24px; height: 24px; margin: 0 2px; padding: 0;
+  vertical-align: middle;
+  border: 0; border-radius: 4px;
+  font-size: .8rem; color: var(--texto-suave); background: var(--panel-hover);
+  cursor: pointer; transition: transform .1s, background .15s;
+}
+.lectura-boton:hover { background: var(--oro); color: var(--fondo); }
+.lectura-boton:active { transform: scale(.9); }
+.lectura-boton[aria-expanded="true"] { background: var(--oro); color: var(--fondo); transform: rotate(90deg); }
+.lectura-detalle { margin-top: 8px; padding: 10px 12px; background: var(--panel-2); border-left: var(--px) solid var(--oro); }
+.lectura-detalle .frase-es { font-size: 1.1rem; }
+.frase-trad-lectura { margin: 2px 0 0; color: var(--texto-suave); }

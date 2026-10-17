@@ -1,4 +1,5 @@
-// El pie de la web: un escenario con el logotipo grande y cuatro tutoras que charlan entre ellas,
+// El pie de la web: un escenario con el logotipo grande y cuatro tutoras que charlan entre ellas delante de un
+// horizonte con monumentos de los países de los idiomas (de día, nubes y pájaros; de noche, luna, estrellas fugaces),
 // los enlaces secundarios en tres carteles y una franja final con el botón de volver arriba.
 // Solo se ve en las pantallas generales de la web (lo decide body.con-pie, en js/app.js): dentro de un curso no hay pie.
 
@@ -8,7 +9,10 @@ import { CURSOS } from './cursos.js';
 import { curso, hayCurso } from './curso.js';
 import { dibujoDe } from './tutor-sprite.js';
 import { sonar } from './sonidos.js';
+import { icono } from './iconos.js';
+import { horizonte, nubes, luna } from './vistas/inicio-decorado.js';
 
+const ICONOS_GRUPO = { descubre: 'libro', producto: 'corona', ayuda: 'frases' };
 const CUANTAS = 4;          // dos a cada lado del logotipo (en el móvil, en fila debajo)
 const CADA_ESCENA = 4200;   // milisegundos entre una escenita y la siguiente
 const DURA_GLOBO = 1900;
@@ -139,6 +143,18 @@ function despedida() {
 export function iniciarPie() {
   const pie = document.getElementById('pie-sitio');
   const lados = [pie.querySelector('[data-pie-tutoras="izq"]'), pie.querySelector('[data-pie-tutoras="der"]')];
+  // la guirnalda con las banderas de todos los idiomas, entre los carteles y la franja final
+  const guirnalda = el('div', { class: 'pie-guirnalda', 'aria-hidden': 'true' }, CURSOS.map((c, n) => {
+    const b = el('span', { class: 'pie-banderita', style: `--n:${n}` });
+    b.innerHTML = c.bandera; // dibujo fijo del catálogo local de cursos
+    return b;
+  }));
+  pie.querySelector('.pie-base').before(guirnalda);
+  pie.querySelector('[data-pie-anio]').before(el('img', { class: 'pie-base-logo', src: 'assets/favicon.svg', alt: '', width: 22, height: 22 }));
+
+  // el decorado, detrás de todo
+  const pajaros = el('div', { class: 'pie-pajaros', 'aria-hidden': 'true' }, el('i'), el('i'), el('i'));
+  pie.querySelector('.pie-escena').prepend(horizonte(), nubes(), luna(), pajaros, el('span', { class: 'pie-fugaz', 'aria-hidden': 'true' }));
   figuras = elegirTutoras().map((c, i) => {
     const canvas = el('canvas', { class: 'pie-tutora', width: 48, height: 64 });
     const globo = el('span', { class: 'pie-globo', lang: c.lang }, c.hola);
@@ -173,7 +189,7 @@ export function iniciarPie() {
 export function pintarPie() {
   for (const clave of ['descubre', 'producto', 'ayuda']) {
     const nodo = document.querySelector(`[data-pie-titulo="${clave}"]`);
-    if (nodo) nodo.textContent = t(`pie.${clave}`);
+    if (nodo) poner(nodo, icono(ICONOS_GRUPO[clave], 'icono pie-icono'), el('span', {}, t(`pie.${clave}`)));
   }
   const enlaces = {
     sobre: t('sobre.titulo'), social: t('pagina.social'), guias: t('pie.guias'), laboratorio: t('pie.laboratorio'),

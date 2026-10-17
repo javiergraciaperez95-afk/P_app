@@ -256,6 +256,8 @@ const subeYBaja = (p, desde, hasta) => (p < desde || p > hasta ? 0 : Math.sin(((
 // «prioridad»: una animación no corta a otra más importante (celebrar, caerse, asomarse).
 const ANIMACIONES = {
   saludar: { duracion: 2000, cuadro: (p, t) => ({ brazoD: p < 0.9 ? alterna(t, 220, 'arriba', 'arribaFuera') : 'arriba', mouth: 'smile' }) },
+  // lo mismo con la otra mano (para cuando la derecha está ocupada)
+  saludarI: { duracion: 2000, cuadro: (p, t) => ({ brazoI: p < 0.9 ? alterna(t, 220, 'arriba', 'arribaFuera') : 'arriba', mouth: 'smile' }) },
   aplaudir: { duracion: 1500, cuadro: (p, t) => { const b = alterna(t, 170, 'pecho', 'pechoJunto'); return { brazoI: b, brazoD: b, eyes: 'happy', mouth: 'open', fx: 'sparkle' }; } },
   // la tutora está a la derecha del cuadro de diálogo: señala hacia la izquierda y arriba, donde está el ejercicio
   senalar: { duracion: 2600, cuadro: (p, t) => ({ brazoI: alterna(t, 300, 'senalar', 'senalarCorto'), mira: { x: -1, y: -1 }, brow: 'flat', mouth: 'smirk' }) },
@@ -300,6 +302,8 @@ const ANIMACIONES = {
   asomarse: { duracion: 1300, prioridad: 2, cuadro: p => ({ temblor: Math.round((1 - suave(p / 0.7)) * 40), mira: { x: -1, y: 0 }, eyes: 'open', brow: 'flat' }) },
   cruzarBrazos: { duracion: 2600, cuadro: () => ({ brazoI: 'cruzadoArriba', brazoD: 'cruzadoAbajo', eyes: 'open', brow: 'smug', mouth: 'smirk' }) },
   taparseOjos: { duracion: 2600, cuadro: p => { const b = p < 0.55 ? 'cara' : 'caraEspia'; return { brazoI: b, brazoD: b, eyes: 'wide', brow: 'worry', mouth: 'flat' }; } },
+  // paseando (mientras sprite.andando): un paso cada 180 ms, botando un poco
+  caminar: { duracion: Infinity, cuadro: (p, t) => ({ piernaI: alterna(t, 180, 1, 0), piernaD: alterna(t, 180, 0, 1), salto: alterna(t, 180, 0, 1), eyes: 'open', mouth: 'smile', brow: 'flat' }) },
   correr: { duracion: 1600, cuadro: (p, t) => ({ piernaI: alterna(t, 120, 2, 0), piernaD: alterna(t, 120, 0, 2), salto: alterna(t, 120, 1, 0), eyes: 'wide', brow: 'worry', mouth: 'flat', fx: 'sweat' }) },
   brindar: {
     duracion: 3400,
@@ -359,7 +363,7 @@ ANIMACIONES.saltarBoton = {
 };
 export const SALTO_PISA = 0.55;
 
-export const ANIMACIONES_VALIDAS = Object.keys(ANIMACIONES).filter(n => !['dormir', 'escuchar'].includes(n));
+export const ANIMACIONES_VALIDAS = Object.keys(ANIMACIONES).filter(n => !['dormir', 'escuchar', 'caminar'].includes(n));
 
 // Mientras dura una expresión, el cuerpo la acompaña (sin animación encima).
 const POSTURAS = {
@@ -492,8 +496,9 @@ export function fabricar(disenar) {
 
   function crearSprite(canvas) {
     const ctx = canvas.getContext('2d');
-    // escuchando / dormida: posturas que duran mientras sigan en true
-    const sprite = { expresion: 'normal', hablando: false, escuchando: false, dormida: false };
+    // escuchando / dormida / andando: posturas que duran mientras sigan en true
+    // sujeta: 'I' o 'D' — sostiene algo en alto con esa mano (el palo de la pancarta) aunque haga otros gestos
+    const sprite = { expresion: 'normal', hablando: false, escuchando: false, dormida: false, andando: false, sujeta: null };
     let reaccion = null; // { expresion, hasta }
     let actual = null; // { nombre, inicio }
     let cola = [];
@@ -569,8 +574,14 @@ export function fabricar(disenar) {
         t = ahora - actual.inicio;
         cuerpo = anim.cuadro(t / anim.duracion, t);
       } else if (sprite.dormida) cuerpo = ANIMACIONES.dormir.cuadro(0, ahora);
+      else if (sprite.andando) cuerpo = ANIMACIONES.caminar.cuadro(0, ahora);
       else if (sprite.escuchando) cuerpo = ANIMACIONES.escuchar.cuadro(0, ahora);
       else cuerpo = POSTURAS[expresion]?.(ahora) ?? {};
+
+      if (sprite.sujeta) {
+        const mano = `brazo${sprite.sujeta}`;
+        if (!cuerpo[mano] || cuerpo[mano] === 'libro') cuerpo = { ...cuerpo, [mano]: 'alto' };
+      }
 
       if (ahora > proximoParpadeo) {
         finParpadeo = ahora + 160;

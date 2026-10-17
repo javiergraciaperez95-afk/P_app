@@ -17,7 +17,7 @@ export const TITULAR = {
   correo: '',     // correo de contacto para peticiones sobre los datos
 };
 // Fecha de la última vez que se cambió el aviso legal (cámbiala al tocar sus textos).
-export const LEGAL_ACTUALIZADO = '13-10-2026';
+export const LEGAL_ACTUALIZADO = '17-10-2026';
 
 // ----- Precios (pantalla #/precios). Todavía no se cobra nada ni se aplica el límite: es el plan. -----
 // Lecciones nuevas que se pueden empezar cada día en el plan gratis.
@@ -27,14 +27,30 @@ export const PRACTICAS_GRATIS_AL_DIA = 1;
 // Palabras que se pueden guardar a mano (con la estrella) en el plan gratis. Las de las lecciones terminadas no cuentan.
 export const CUADERNO_GRATIS = 50;
 // El repaso no se limita nunca: es lo que hace que lo estudiado se quede.
-// Precio en euros según el país (orientativo: el de verdad se pone en la tienda, en la moneda de cada país).
-// Un país que no esté en ninguna lista paga el escalón «medio».
-export const PRECIOS = {
-  alto: { mes: 3.99, ano: 29.99, siempre: 79.99, paises: ['US', 'GB', 'DE', 'FR', 'IT', 'NL', 'SE', 'NO', 'DK', 'JP', 'AU', 'CA', 'CH', 'AT', 'BE', 'IE', 'FI'] },
-  medio: { mes: 2.99, ano: 19.99, siempre: 54.99, paises: ['ES', 'PT', 'PL', 'KR', 'GR', 'RO', 'CZ', 'HU', 'CL', 'UY'] },
-  bajo: { mes: 1.49, ano: 9.99, siempre: 27.99, paises: ['BR', 'MX', 'TR', 'TH', 'AR', 'CO', 'PE', 'CN', 'RU', 'UA', 'MY', 'ZA'] },
-  minimo: { mes: 0.99, ano: 5.99, siempre: 15.99, paises: ['VN', 'ID', 'IN', 'PH', 'EG', 'NG', 'PK', 'BD'] },
+// Precios en euros por zona (según el poder adquisitivo; orientativos: el de verdad se pone en la tienda, en la moneda
+// de cada país). Plus: el plan barato, que solo paga los gastos. Max: todo + 6 libros del idioma (impresos en las zonas
+// A y B; en PDF en C y D, donde enviar papel no sale a cuenta). Un país que no esté en ninguna lista va a la zona B.
+// Plan de negocio: Documents/Paglot/Documentación/Paglot_Plan_de_Negocio.pdf
+export const ZONAS = {
+  A: {
+    plusMes: 2.49, plusAno: 14.99, familia: 24.99, fundadores: 39.99, maxMes: 34.99, maxAno: 399, libros: 'impresos',
+    paises: ['US', 'GB', 'DE', 'FR', 'IT', 'NL', 'SE', 'NO', 'DK', 'JP', 'AU', 'CA', 'CH', 'AT', 'BE', 'IE', 'FI', 'ES', 'KR', 'NZ', 'SG', 'IL', 'LU', 'IS'],
+  },
+  B: {
+    plusMes: 1.49, plusAno: 8.99, familia: 14.99, fundadores: 24.99, maxMes: 21.99, maxAno: 249, libros: 'impresos',
+    paises: ['PT', 'PL', 'GR', 'RO', 'CZ', 'HU', 'CL', 'UY', 'SK', 'SI', 'EE', 'LV', 'LT', 'HR', 'TW', 'SA', 'AE', 'QA', 'KW', 'BH', 'OM', 'CY', 'MT', 'HK'],
+  },
+  C: {
+    plusMes: 0.99, plusAno: 5.99, familia: 9.99, fundadores: 14.99, maxMes: 13.99, maxAno: 149, libros: 'pdf',
+    paises: ['MX', 'BR', 'TR', 'CN', 'TH', 'AR', 'CO', 'PE', 'RU', 'UA', 'MY', 'ZA', 'CR', 'DO', 'EC', 'GT', 'BG', 'RS', 'KZ', 'PA'],
+  },
+  D: {
+    plusMes: 0.49, plusAno: 2.99, familia: 4.99, fundadores: 7.99, maxMes: 8.99, maxAno: 99, libros: 'pdf',
+    paises: ['VN', 'ID', 'IN', 'PH', 'EG', 'NG', 'PK', 'BD', 'KE', 'MA', 'DZ', 'TN', 'LK', 'NP', 'GH', 'ET', 'TZ', 'UG', 'BO', 'VE'],
+  },
 };
+// Plazas del plan «Fundadores» (Plus para siempre con un solo pago).
+export const PLAZAS_FUNDADORES = 2000;
 
 // Adónde vuelven los enlaces de los correos (confirmar cuenta, cambiar contraseña) cuando la app va instalada
 // en un móvil. Tiene que estar también en Supabase → Authentication → URL Configuration → Redirect URLs.

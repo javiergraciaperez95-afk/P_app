@@ -8,6 +8,12 @@
    ===================================================================== */
 
 .pie-sitio { display: none; }
+/* Con poco contenido el pie no se queda a media pantalla: la página ocupa al menos toda la ventana y el pie va abajo del todo */
+body.con-pie { display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
+/* el pie es lo último de la página: sin el hueco que se deja abajo para la tutora (aquí no hay tutora), aunque se haya ocultado */
+body.con-pie, body.con-pie.tutora-oculta { padding-bottom: 0; }
+body.con-pie > main { flex: 1 0 auto; width: 100%; box-sizing: border-box; }
+body.con-pie > .pie-sitio { flex: none; }
 body.con-pie .pie-sitio {
   position: relative;
   display: block;
@@ -59,6 +65,92 @@ body.con-pie .pie-sitio {
   background-position: 6% 18%, 15% 52%, 27% 12%, 39% 40%, 63% 16%, 74% 46%, 86% 10%, 95% 38%;
   opacity: .6;
   animation: titilar 3.6s steps(2) infinite;
+}
+
+/* ----- El decorado del escenario: el horizonte del mundo, el cielo de día o de noche ----- */
+.pie-escena {
+  --i-horizonte: #fae2b6;
+  --i-horizonte-2: #fcebcb;
+  background: linear-gradient(var(--h-cielo) 0 50%, var(--i-horizonte) 50% 74%, var(--i-horizonte-2) 74%);
+}
+:root[data-tema="oscuro"] .pie-escena { --i-horizonte: #30234a; --i-horizonte-2: #3a2a56; }
+/* las estrellas, solo de noche */
+.pie-escena::before { display: none; }
+:root[data-tema="oscuro"] .pie-escena::before { display: block; }
+.pie-tutoras, .pie-marca { z-index: 1; }
+
+/* el horizonte: monumentos sobre colinas, apoyados en el suelo */
+.pie-horizonte { position: absolute; z-index: 0; left: 50%; bottom: 0; width: 1440px; height: 224px; transform: translateX(-50%); pointer-events: none; }
+.pie-horizonte-dibujo { display: block; width: 100%; height: 100%; }
+.pie-horizonte .o-a { fill: #e8b48c; }
+.pie-horizonte .o-b { fill: #d9a07a; }
+.pie-horizonte .o-w { fill: #f6d6ae; }
+.pie-horizonte .o-g { fill: #e6cf9e; }
+.pie-horizonte .o-h { fill: #bccb8c; }
+.pie-horizonte .o-k { fill: #c99470; }
+:root[data-tema="oscuro"] .pie-horizonte .o-a { fill: #1f1731; }
+:root[data-tema="oscuro"] .pie-horizonte .o-b { fill: #181127; }
+:root[data-tema="oscuro"] .pie-horizonte .o-w { fill: #ffd86b; }
+:root[data-tema="oscuro"] .pie-horizonte .o-g { fill: #241b38; }
+:root[data-tema="oscuro"] .pie-horizonte .o-h { fill: #1b2433; }
+:root[data-tema="oscuro"] .pie-horizonte .o-k { fill: #120d1a; }
+/* las aspas del molino, girando a saltos */
+.molino-aspas { position: absolute; width: 52px; height: 52px; margin: -26px 0 0 -26px; }
+.molino-aspas svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.molino-aspas .p-a { fill: #c99470; }
+:root[data-tema="oscuro"] .molino-aspas .p-a { fill: #2e2345; }
+.aspas-b { animation: rueda-a .8s steps(1) infinite; }
+.aspas-a { animation: rueda-b .8s steps(1) infinite; }
+
+/* la luna del pie (la de la portada, un poco más abajo) */
+.pie-escena .inicio-luna { top: 26px; }
+
+/* de día, unos pájaros que cruzan aleteando */
+.pie-pajaros { position: absolute; top: 38px; left: 0; display: flex; gap: 14px; animation: pajaros 38s steps(380) infinite; pointer-events: none; }
+.pie-pajaros i {
+  display: block;
+  width: 12px;
+  height: 6px;
+  background: #8a6a5a;
+  clip-path: polygon(0 0, 17% 0, 17% 33%, 33% 33%, 33% 67%, 67% 67%, 67% 33%, 83% 33%, 83% 0, 100% 0, 100% 33%, 83% 33%, 83% 67%, 67% 67%, 67% 100%, 33% 100%, 33% 67%, 17% 67%, 17% 33%, 0 33%);
+  animation: aleteo .5s steps(1) infinite;
+}
+.pie-pajaros i:nth-child(2) { margin-top: 10px; animation-delay: -.2s; }
+.pie-pajaros i:nth-child(3) { margin-top: 4px; animation-delay: -.35s; }
+@keyframes aleteo { 50% { clip-path: polygon(0 67%, 33% 67%, 33% 33%, 67% 33%, 67% 67%, 100% 67%, 100% 100%, 0 100%); } }
+@keyframes pajaros { from { transform: translateX(-80px); } to { transform: translateX(calc(100vw + 40px)); } }
+:root[data-tema="oscuro"] .pie-pajaros { display: none; }
+
+/* de noche, de vez en cuando, una estrella fugaz */
+.pie-fugaz {
+  position: absolute;
+  top: 24px;
+  left: 12%;
+  display: none;
+  width: 64px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #fff6c8);
+  transform: rotate(18deg);
+  opacity: 0;
+  animation: fugaz 9s steps(30) infinite;
+  pointer-events: none;
+}
+:root[data-tema="oscuro"] .pie-fugaz { display: block; }
+@keyframes fugaz {
+  0% { opacity: 1; transform: translate(0, 0) rotate(18deg); }
+  9% { opacity: 1; transform: translate(260px, 84px) rotate(18deg); }
+  10%, 100% { opacity: 0; transform: translate(280px, 90px) rotate(18deg); }
+}
+@media (max-width: 980px) {
+  .pie-horizonte { width: 1080px; height: 168px; }
+  .molino-aspas { width: 39px; height: 39px; margin: -19px 0 0 -19px; }
+}
+@media (max-width: 680px) {
+  .pie-horizonte { width: 720px; height: 112px; }
+  .molino-aspas { width: 26px; height: 26px; margin: -13px 0 0 -13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aspas-a, .aspas-b, .pie-pajaros, .pie-pajaros i, .pie-fugaz { animation: none; }
 }
 
 .pie-tutoras { position: relative; display: flex; align-items: flex-end; min-width: 0; }
@@ -130,7 +222,15 @@ body.con-pie .pie-sitio {
   text-shadow: 5px 5px 0 var(--h-sombra);
 }
 .pie-nombre span { color: var(--marca-oro); }
-.pie-lema { margin-top: 10px; color: var(--h-suave); font-weight: 700; font-size: 1rem; }
+.pie-lema {
+  margin-top: 12px;
+  padding: 3px 12px;
+  color: var(--h-tinta);
+  font-weight: 700;
+  font-size: 1rem;
+  background: var(--h-papel);
+  box-shadow: 0 -2px 0 0 var(--h-borde), 0 2px 0 0 var(--h-borde), -2px 0 0 0 var(--h-borde), 2px 0 0 0 var(--h-borde), 3px 4px 0 0 var(--h-sombra);
+}
 .pie-marca:focus-visible { outline: 3px dashed var(--h-rosa); outline-offset: -3px; }
 
 /* ----- El suelo donde se apoyan: línea de tinta, baldosas y la sombra que se deshace en cuadritos ----- */
@@ -251,6 +351,55 @@ body.con-pie .pie-sitio {
 .pie-subir:focus-visible { outline: 2px dashed var(--h-rosa); outline-offset: 4px; }
 .pie-subir-flecha { display: inline-block; color: var(--h-rosa); font-size: .8rem; }
 @keyframes pie-flecha { 50% { transform: translateY(-3px); } }
+
+/* ----- El último repaso: iconos en los carteles, guirnalda de banderas y franja de madera ----- */
+/* el título de cada cartel lleva su icono de píxeles, del color de su celo */
+.pie-grupo h2::before { content: none; }
+.pie-icono { flex: none; width: 22px; height: 22px; color: var(--celo); filter: drop-shadow(2px 2px 0 var(--h-sombra)); }
+.pie-grupo h2 { padding-bottom: 8px; margin-bottom: 8px; box-shadow: 0 2px 0 0 var(--h-papel-2); }
+/* los carteles se levantan un poco al pasar por ellos (y el celo con ellos) */
+.pie-grupo { transition: transform .12s steps(2); }
+.pie-grupo:hover { transform: translateY(-3px); }
+
+/* la guirnalda: una cuerda con las banderas de todos los idiomas, que se mecen a destiempo */
+.pie-guirnalda {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  max-width: 1120px;
+  margin: -8px auto 0;
+  padding: 0 20px 26px;
+}
+.pie-guirnalda::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--h-borde); opacity: .55; }
+.pie-banderita { display: inline-flex; margin-top: 2px; animation: banderita 2.4s steps(1) infinite; animation-delay: calc(var(--n) * -.17s); }
+.pie-banderita .bandera { width: 24px; height: 16px; box-shadow: 0 0 0 2px var(--h-borde), 2px 3px 0 1px var(--h-sombra); }
+@keyframes banderita { 50% { transform: translateY(2px); } }
+
+/* la franja final: tablones de madera, el logo junto al año y un corazón que late junto a la frase */
+.pie-base {
+  background:
+    linear-gradient(rgba(255, 255, 255, .12), rgba(255, 255, 255, .12)) 0 3px / 100% 3px no-repeat,
+    repeating-linear-gradient(90deg, transparent 0 94px, rgba(0, 0, 0, .14) 94px 96px),
+    var(--h-sombra);
+}
+.pie-base-logo { width: 22px; height: 22px; margin-right: -10px; image-rendering: pixelated; }
+.pie-firma { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.pie-firma::before {
+  content: "";
+  flex: none;
+  width: 14px;
+  height: 12px;
+  background: var(--h-rosa);
+  clip-path: polygon(0 17%, 14% 17%, 14% 0, 43% 0, 43% 17%, 57% 17%, 57% 0, 86% 0, 86% 17%, 100% 17%, 100% 50%, 86% 50%, 86% 67%, 71% 67%, 71% 83%, 57% 83%, 57% 100%, 43% 100%, 43% 83%, 29% 83%, 29% 67%, 14% 67%, 14% 50%, 0 50%);
+  animation: latido 1.2s steps(1) infinite;
+}
+@keyframes latido { 15%, 35% { transform: scale(1.25); } 25% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .pie-banderita, .pie-firma::before { animation: none; }
+  .pie-grupo { transition: none; }
+}
 
 /* ----- Menos sitio ----- */
 @media (max-width: 980px) {
