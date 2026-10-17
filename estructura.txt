@@ -63,6 +63,9 @@ js/                      EL PROGRAMA (común a todos los idiomas)
 cursos/                  EL CONTENIDO: una carpeta por idioma
    <código>/
       lessons/           001.json, 002.json… y capitulos.json
+      traducciones/      Lo que lee el alumno, en su idioma: <idioma>/001.json, 002.json…
+                         (esquema v2; ver _herramientas/ESQUEMA_V2.txt). Si falta un idioma,
+                         se usa el inglés.
       phrases/           Frases útiles
       juegos/            Modo juego (solo español)
       tutora.js          El dibujo de la tutora (se edita aquí mismo)
@@ -106,6 +109,13 @@ _herramientas/cursos/compilar.py   Convierte las fuentes cortas (_herramientas/c
 _herramientas/validar_lecciones.mjs   Revisa todas las lecciones con el mismo revisor de la app:
                                    node _herramientas/validar_lecciones.mjs        (todos los cursos)
                                    node _herramientas/validar_lecciones.mjs fr -v  (uno, con los avisos)
+_herramientas/ESQUEMA_V2.txt       La norma de las lecciones nuevas (esquema v2): qué campos son
+                                   obligatorios, cómo se escribe el análisis sintáctico y dónde van
+                                   las traducciones. Si algo no la cumple, no entra.
+_herramientas/validar_v2.mjs       Comprueba el esquema v2 sin excepciones (pronunciación, consejo,
+                                   sintaxis completa, los 11 idiomas, orden de bloques y ejercicios):
+                                   node _herramientas/validar_v2.mjs es
+                                   node _herramientas/validar_v2.mjs es 001 -v
 _herramientas/contar_lecciones.py  Pone al día en js/cursos.js cuántas lecciones tiene cada curso.
 _herramientas/logo/generar.py      Dibuja el logotipo de Paglot y saca todos los iconos (web y APK).
 _herramientas/vi_b1b2/             Borradores de las lecciones 144-263 de vietnamita.

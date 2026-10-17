@@ -2,7 +2,7 @@
 // El español va en «es»; las traducciones, en «en» (inglés) y «vi» (vietnamita).
 // Los demás textos (explicaciones, notas, preguntas…) pueden ser un texto o { "en": "…", "vi": "…" }.
 
-import { t } from './i18n.js';
+import { t, idioma } from './i18n.js';
 import { curso, ruta } from './curso.js';
 import { LANG } from './curso.js';
 import { hayVoz } from './sonidos.js';
@@ -14,12 +14,16 @@ const LOTE = 20;             // cuántos archivos se piden a la vez
 export const TIPOS_EJERCICIO = ['test', 'traduccion', 'huecos', 'escribir', 'ordenar'];
 const TIPOS_OPCIONES = ['test', 'traduccion', 'huecos'];
 
+/** Idiomas en los que puede estar traducido el contenido de una lección. */
+const IDIOMAS_CONTENIDO = ['en', 'vi', 'zh', 'es', 'pt', 'fr', 'ja', 'it', 'ko', 'ru', 'de', 'id'];
+
 const CAMPOS = {
   leccion: ['capitulo', 'numero_curso', 'orden_curso', 'titulo_es', 'titulo', 'intro', 'palabras', 'bloques'],
-  palabra: ['en', 'vi', 'zh', 'tes', 'definida', 'femenino', 'pron', 'consejo', 'ipa', 'cat', 'genero', 'plural', 'nota', 'ejemplo', 'oculta'],
+  palabra: ['en', 'vi', 'zh', 'es', 'pt', 'fr', 'ja', 'it', 'ko', 'ru', 'de', 'id', 'tes', 'definida', 'femenino', 'pron', 'consejo', 'ipa', 'cat', 'genero', 'plural', 'nota', 'ejemplo', 'oculta'],
   explicacion: ['tipo', 'titulo', 'texto', 'tutora'],
-  dialogo: ['tipo', 'titulo', 'frases', 'tutora'],
-  frase: ['quien', 'es', 'en', 'vi', 'zh', 'tes', 'literal', 'pron', 'nota', 'analisis', 'estructura'],
+  gramatica: ['tipo', 'titulo', 'texto', 'ejemplos', 'tutora'],
+  dialogo: ['tipo', 'titulo', 'frases', 'tutora', 'esTexto'],
+  frase: ['quien', 'es', 'trad', 'en', 'vi', 'zh', 'ko', 'ja', 'ru', 'de', 'fr', 'it', 'pt', 'id', 'tes', 'literal', 'pron', 'nota', 'analisis', 'estructura'],
   vocabulario: ['tipo', 'titulo', 'palabras', 'tutora'],
   tabla: ['tipo', 'titulo', 'columnas', 'filas', 'nota', 'tutora'],
   imagen: ['tipo', 'archivo', 'descripcion', 'pie', 'tutora'],
@@ -94,9 +98,18 @@ export async function cargarLeccion(id) {
 
   let json;
   try {
-    json = adaptar(JSON.parse(texto.replace(/^﻿/, '')));
+    json = JSON.parse(texto.replace(/^﻿/, ''));
   } catch (e) {
     return { id, archivo, error: explicarErrorDeFormato(id, texto, e) };
+  }
+
+  try {
+    // Esquema v2: estructura en este archivo y textos en traducciones/<idioma>/<id>.json.
+    // Se convierte a la forma antigua para que el resto del programa no cambie.
+    json = json && json.esquema === 2 ? await adaptarV2(json, id) : adaptar(json);
+  } catch (e) {
+    console.error(e);
+    return { id, archivo, error: errorSimple(id, t('rev.noEntiende')) };
   }
 
   try {
@@ -274,6 +287,205 @@ function adaptar(json) {
 }
 
 // ---------------------------------------------------------------------------
+// Lecciones de esquema v2 (ver _herramientas/ESQUEMA_V2.txt)
+// El archivo de la lección lleva SOLO la estructura (ni una frase de texto).
+// Todo el texto, incluido el del idioma que se estudia, está en
+// traducciones/<idioma>/<id>.json: 12 carpetas iguales, ninguna privilegiada.
+// ---------------------------------------------------------------------------
+
+/** Idioma de los textos que rodean la lección (los mismos que usa tr()). */
+function idiomaDeEntorno() {
+  return idioma() === curso.campo ? 'en' : idioma();
+}
+
+/** Idioma de las frases que se estudian: siempre el del curso. */
+const idiomaDelCurso = () => curso.campo;
+
+const catalogos = new Map();
+
+/** Lee un archivo de traducciones. Devuelve {} si no existe. */
+async function leerCatalogo(id, clave) {
+  const nombre = `${clave}/${id}`;
+  if (catalogos.has(nombre)) return catalogos.get(nombre);
+  const archivo = ruta(`traducciones/${clave}/${id}.json`);
+  let datos = {};
+  try {
+    const respuesta = await fetch(conVersion(archivo), { cache: 'no-cache' });
+    if (respuesta.ok) datos = JSON.parse((await respuesta.text()).replace(/^﻿/, ''));
+  } catch {
+    datos = {};
+  }
+  catalogos.set(nombre, datos);
+  return datos;
+}
+
+/**
+ * Texto traducible en la forma que entiende tr(): { idioma: texto }.
+ * Se juntan los dos catálogos y manda el primero. La misma función sirve para las
+ * explicaciones (idioma de entorno) y para lo que se estudia (idioma del curso).
+ */
+function textoTraducible(claveTexto, primero, segundo) {
+  const salida = {};
+  // Primero el catálogo de respaldo (inglés) y después el del alumno, que manda.
+  for (const fuente of [segundo, primero]) {
+    const v = fuente?.[claveTexto];
+    // El código del idioma se toma de la fuente donde aparece el texto.
+    if (typeof v === 'string' && v.trim()) salida[fuente.idioma] = v;
+  }
+  return salida;
+}
+
+async function adaptarV2(json, id) {
+  const entorno = idiomaDeEntorno();
+  const delCurso = idiomaDelCurso();
+
+  // Catálogo de la lección en el idioma del alumno (con el inglés detrás).
+  const propio = await leerCatalogo(id, entorno);
+  const ingles = entorno === 'en' ? {} : await leerCatalogo(id, 'en');
+  const textos = { ...ingles, ...propio, idioma: entorno };
+  /** Para lo que se estudia: se lee primero en el idioma del curso. */
+  const estudio = delCurso === entorno ? textos : { ...(await leerCatalogo(id, delCurso)), idioma: delCurso };
+
+  // Nombres de categorías y funciones: los del alumno, con los del inglés detrás.
+  const etiquetas = { ...(await leerCatalogo('_etiquetas', 'en')), ...(await leerCatalogo('_etiquetas', entorno)) };
+  const etq = (grupo, codigo) => etiquetas[`${grupo}.${codigo}`] ?? codigo;
+
+  /** Texto de ayuda: idioma del alumno, con el inglés detrás. */
+  const T = (claveTexto, original = '') => {
+    const salida = textoTraducible(claveTexto, textos, ingles);
+    return Object.keys(salida).length ? salida : { es: original };
+  };
+  /** Texto de ayuda que puede no existir (títulos de bloque, enunciados): null si falta. */
+  const OPCIONAL = claveTexto => {
+    const salida = textoTraducible(claveTexto, textos, ingles);
+    return Object.keys(salida).length ? salida : null;
+  };
+  /**
+   * Texto plano en el idioma del curso, sacado SOLO de su catálogo. Si falta se queda
+   * vacío y el revisor avisa: nunca se pone la traducción del alumno en su lugar.
+   */
+  const CURSO = claveTexto => {
+    const v = estudio[claveTexto];
+    return typeof v === 'string' ? v.trim() : '';
+  };
+  /** Traducción para el alumno, con el mismo criterio que tr(). */
+  const TRAD = claveTexto => {
+    const salida = textoTraducible(claveTexto, textos, null);
+    if (!Object.keys(salida).length) return null;
+    // «es» es el nombre interno del idioma que se estudia: la traducción al español va en «tes».
+    if (delCurso !== 'es' && salida.es !== undefined) {
+      salida.tes = salida.es;
+      delete salida.es;
+    }
+    return salida;
+  };
+  /**
+   * Frase que se estudia. El revisor de la app exige el texto del curso en el campo
+   * «es», que es el nombre interno del idioma que se estudia, y la traducción para el
+   * alumno en los campos de idioma que entiende traduccionDe() (en, vi, zh… y «tes»).
+   */
+  const ESTUDIO = claveTexto => ({ ...TRAD(claveTexto), es: CURSO(claveTexto) });
+
+  /** El análisis sintáctico v2 (unidades anidadas) a la lista plana que pinta la app. */
+  const aplanar = (unidades, salida = []) => {
+    for (const u of unidades ?? []) {
+      salida.push([u.texto, etq('sintaxis', u.funcion)]);
+      if (u.partes) aplanar(u.partes, salida);
+    }
+    return salida;
+  };
+
+  const palabras = {};
+  for (const [palabra, e] of Object.entries(json.palabras ?? {})) {
+    // Los nombres propios no llevan ficha: no se subrayan ni se guardan.
+    if (!e || e.propio) continue;
+    // La ficha se escribe en la forma que espera revisarPalabras(): el significado
+    // bajo el código de cada idioma, más los campos de la palabra.
+    const ficha = { ...T(`p.${palabra}.glosa`), pron: e.pron, cat: etq('cat', e.cat), consejo: T(`p.${palabra}.consejo`) };
+    if (e.genero) ficha.genero = e.genero;
+    if (e.ejemplo) ficha.ejemplo = e.ejemplo;
+    palabras[palabra] = ficha;
+  }
+
+  const bloques = (json.bloques ?? []).map(b => {
+    const titulo = OPCIONAL(`${b.id}.titulo`) ?? undefined;
+    if (b.tipo === 'explicacion' || b.tipo === 'gramatica') {
+      const bloque = { tipo: b.tipo, titulo, texto: T(`${b.id}.texto`) };
+      if (b.tipo === 'gramatica') {
+        bloque.ejemplos = (b.ejemplos ?? []).map((e, n) => ({
+          ...ESTUDIO(`${b.id}.e${n}.texto`),
+          trad: TRAD(`${b.id}.e${n}.texto`),
+          analisis: aplanar(e.sintaxis?.unidades),
+        }));
+      }
+      return bloque;
+    }
+    if (b.tipo === 'dialogo') {
+      return {
+        tipo: 'dialogo',
+        titulo,
+        frases: (b.frases ?? []).map((f, n) => ({
+          quien: f.quien,
+          // El revisor exige el texto del curso bajo «es»; la traducción para el
+          // alumno va en «trad», que es lo que pinta la vista.
+          ...ESTUDIO(`${b.id}.f${n}.texto`),
+          trad: TRAD(`${b.id}.f${n}.texto`),
+          analisis: aplanar(f.sintaxis?.unidades),
+          nota: [],
+        })),
+      };
+    }
+    if (b.tipo === 'texto') {
+      return {
+        tipo: 'texto',
+        esTexto: true,
+        titulo,
+        frases: (b.parrafos ?? []).map((p, n) => ({
+          ...ESTUDIO(`${b.id}.p${n}`),
+          trad: TRAD(`${b.id}.p${n}`),
+          nota: [],
+        })),
+      };
+    }
+    if (b.tipo === 'vocabulario') return { tipo: 'vocabulario', palabras: b.palabras ?? [] };
+    if (b.tipo === 'test' || b.tipo === 'huecos') {
+      const bloque = {
+        tipo: b.tipo,
+        opciones: (b.opciones ?? []).map((o, n) => ({
+          texto: CURSO(`${b.id}.o${n}`),
+          explicacion: T(`${b.id}.o${n}.refuerzo`),
+          correcta: o.correcta === true,
+        })),
+      };
+      const pregunta = OPCIONAL(`${b.id}.pregunta`);
+      if (pregunta) bloque.pregunta = pregunta;
+      if (b.tipo === 'huecos') bloque.frase = CURSO(`${b.id}.frase`);
+      return bloque;
+    }
+    if (b.tipo === 'ordenar') {
+      return {
+        tipo: 'ordenar',
+        frase: CURSO(`${b.id}.frase`),
+        traduccion: OPCIONAL(`${b.id}.traduccion`) ?? '',
+      };
+    }
+    if (b.tipo === 'escribir') {
+      return { tipo: 'escribir', pregunta: OPCIONAL(`${b.id}.pregunta`), respuestas: b.respuestas ?? [] };
+    }
+    return { tipo: b.tipo };
+  });
+
+  return {
+    capitulo: json.capitulo,
+    // «titulo_es» es el título en el idioma que se estudia: lo pide el revisor.
+    titulo_es: CURSO('titulo'),
+    titulo: T('titulo'),
+    intro: T('intro'),
+    palabras,
+    bloques,
+  };
+}
+// ---------------------------------------------------------------------------
 // Revisión del contenido
 // ---------------------------------------------------------------------------
 
@@ -290,10 +502,10 @@ function traducible(v) {
   return textoValido(v) || (esObjeto(v) && Object.values(v).some(textoValido));
 }
 
-/** Traducción de una frase o palabra: { en, vi } con lo que haya. Devuelve null si no hay ninguna. */
+/** Traducción de una frase o palabra: los idiomas que haya. Devuelve null si no hay ninguna. */
 function traduccionDe(objeto) {
   const trad = {};
-  for (const i of ['en', 'vi', 'zh']) if (traducible(objeto[i])) trad[i] = objeto[i];
+  for (const i of IDIOMAS_CONTENIDO) if (traducible(objeto[i])) trad[i] = objeto[i];
   if (traducible(objeto.tes)) trad.es = objeto.tes; // la traducción al español, en los cursos de otros idiomas
   return Object.keys(trad).length ? trad : null;
 }
@@ -444,6 +656,15 @@ function revisarBloque(bloque, i, palabras, avisos) {
     revisarCampos(bloque, CAMPOS.explicacion, donde, avisos);
     if (!traducible(bloque.texto) && !Array.isArray(bloque.texto)) return fallo(t('rev.faltaCampo', { campo: 'texto' }));
     return { tipo, titulo: bloque.titulo ?? null, texto: bloque.texto, tutora: bloque.tutora ?? null };
+  }
+
+  if (tipo === 'gramatica') {
+    revisarCampos(bloque, CAMPOS.gramatica, donde, avisos);
+    if (!traducible(bloque.texto)) return fallo(t('rev.faltaCampo', { campo: 'texto' }));
+    const ejemplos = (Array.isArray(bloque.ejemplos) ? bloque.ejemplos : [])
+      .filter(esObjeto)
+      .map(e => ({ ...e, trad: traduccionDe(e), notas: [], analisis: revisarAnalisis(e, donde, avisos) }));
+    return { tipo, titulo: bloque.titulo ?? null, texto: bloque.texto, ejemplos, tutora: bloque.tutora ?? null };
   }
 
   if (tipo === 'dialogo' || tipo === 'texto') {

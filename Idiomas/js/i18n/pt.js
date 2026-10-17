@@ -5,6 +5,7 @@
 const plural = (n, uno, varios) => (Number(n) === 1 ? uno : varios);
 
 export default {
+  'bloque.gramatica': 'Gramática',
   // ----- index.html -----
   'html.saltar': 'Pular para o conteúdo',
   'html.subtitulo': 'Lições de {L}',
@@ -675,6 +676,7 @@ export default {
   'inicio.f4.texto': 'Ouça cada frase em voz alta, treine o ouvido e pratique frases úteis para conversas de verdade.',
   'inicio.idiomasTitulo': 'Escolha entre {n} idiomas',
   'inicio.idiomasTexto': 'Cada idioma tem a sua própria tutora e o seu próprio progresso. Você pode estudar vários ao mesmo tempo.',
+  'inicio.tutoraDe': 'a tua tutora de {idioma}',
   'inicio.pie': 'Feito com pixels e paciência.',
 
   // ----- Aviso de almacenamiento, aviso legal y privacidad -----
@@ -1176,6 +1178,30 @@ export default {
   'pie.lema': 'Aprenda ao seu ritmo.',
   'pie.marca': 'Início da Paglot',
   'pie.firma': 'Feito com pixels e paciência.',
+  'pie.subir': 'Voltar ao topo',
   'pie.guias': 'Diretrizes da comunidade',
   'pie.laboratorio': 'Laboratório',
+  // cabecera (antes y después de iniciar sesión)
+  'cabecera.idiomas': 'Idiomas',
+  'cabecera.racha': 'Dias seguidos: {n}',
+  'cabecera.hola': 'Olá de novo, {nombre}!',
+  'cabecera.holaSinNombre': 'Olá de novo!',
+  'cabecera.pendientes': 'Para rever hoje: {n}',
+  'cabecera.alDia': 'Revisões em dia',
+  'cabecera.invitado': 'Estás como convidado: sem conta, o teu caderno e o teu progresso só ficam guardados neste dispositivo.',
+  'cabecera.invitadoCta': 'Criar conta grátis',
+  'cabecera.cerrarAviso': 'Fechar aviso',
+  'cabecera.menuCuenta': 'Menu da tua conta',
+  'cabecera.miCuenta': 'A minha conta',
+  'cabecera.miPerfil': 'O meu perfil',
+  'cabecera.nube.ok': 'Guardado na nuvem',
+  'cabecera.nube.guardando': 'A guardar na nuvem…',
+  'cabecera.nube.error': 'Sem ligação à nuvem',
+  'cabecera.nube.local': 'Só neste dispositivo',
+  'cabecera.cuadernoInvitado': 'Sem conta, o caderno só fica guardado neste dispositivo',
+  'cabecera.ponerFoto': 'Pôr foto de perfil',
+  'cabecera.cambiarFoto': 'Mudar foto de perfil',
+  'cabecera.quitarFoto': 'Tirar a foto',
+  'cabecera.guardandoFoto': 'A guardar a foto…',
+  'cabecera.fotoError': 'Não foi possível guardar a foto. Tenta outra vez.',
 };

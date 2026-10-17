@@ -3,6 +3,7 @@
 // En chino no hay plurales: casi todo son textos fijos con {datos}.
 
 export default {
+  'bloque.gramatica': '语法',
   // ----- index.html -----
   'html.saltar': '跳到正文',
   'html.subtitulo': '{L}课程',
@@ -1174,6 +1175,31 @@ export default {
   'pie.lema': '按照自己的节奏学习。',
   'pie.marca': 'Paglot 首页',
   'pie.firma': '用像素和耐心制作。',
+  'pie.subir': '回到顶部',
   'pie.guias': '社区指南',
   'pie.laboratorio': '创意实验室',
+  // cabecera (antes y después de iniciar sesión)
+  'cabecera.idiomas': '语言',
+  'cabecera.racha': '连续天数：{n}',
+  'cabecera.hola': '欢迎回来，{nombre}！',
+  'cabecera.holaSinNombre': '欢迎回来！',
+  'cabecera.pendientes': '今天要复习：{n}',
+  'cabecera.alDia': '复习已完成',
+  'cabecera.invitado': '你正以访客身份使用：没有账号时，笔记本和学习进度只保存在这台设备上。',
+  'cabecera.invitadoCta': '免费注册账号',
+  'cabecera.cerrarAviso': '关闭提示',
+  'cabecera.menuCuenta': '你的账号菜单',
+  'cabecera.miCuenta': '我的账号',
+  'cabecera.miPerfil': '我的资料',
+  'cabecera.nube.ok': '已保存到云端',
+  'cabecera.nube.guardando': '正在保存到云端…',
+  'cabecera.nube.error': '无法连接云端',
+  'cabecera.nube.local': '仅保存在本设备',
+  'cabecera.cuadernoInvitado': '没有账号时，笔记本只保存在这台设备上',
+  'cabecera.ponerFoto': '添加头像',
+  'cabecera.cambiarFoto': '更换头像',
+  'cabecera.quitarFoto': '移除头像',
+  'cabecera.guardandoFoto': '正在保存头像…',
+  'cabecera.fotoError': '头像保存失败，请再试一次。',
+  'inicio.tutoraDe': '你的{idioma}老师',
 };

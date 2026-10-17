@@ -1,142 +1,379 @@
 {
+  "esquema": 2,
+  "id": "006",
   "capitulo": 1,
-  "titulo_es": "Tú y usted",
-  "titulo": {"en": "Informal and formal you"},
-  "intro": {
-    "en": "For one person, tú and usted are common forms of address. Tú is familiar; usted is often more formal or distant. Usage varies, and some regions commonly use vos."
-  },
+  "nivel": "A1",
   "palabras": {
     "usted": {
-      "en": "you (formal, one person)",
       "pron": "us-TED",
-      "cat": "pronoun",
-      "nota": "Usted takes the same verb form as él/ella: usted es, usted está."
+      "cat": "pron"
     },
-    "ustedes": {"en": "you (more than one)", "pron": "us-TE-des", "cat": "pronoun"},
-    "el señor": {"en": "Mr, the gentleman", "pron": "el se-NYOR", "genero": "m"},
-    "la señora": {"en": "Mrs, the lady", "pron": "la se-NYO-ra", "genero": "f"},
-    "cómo está": {"en": "how are you (usted)", "pron": "KO-mo es-TA", "cat": "expression"},
-    "le presento a": {"en": "let me introduce ... to you (formal)", "pron": "le pre-SEN-to a", "cat": "expression"},
-    "te presento a": {"en": "let me introduce ... to you (informal)", "pron": "te pre-SEN-to a", "cat": "expression"},
-    "mucho gusto": {"en": "pleased to meet you", "pron": "MU-cho GUS-to", "cat": "expression"},
-    "igualmente": {"en": "likewise", "pron": "i-gwal-MEN-te", "cat": "adverb"},
-    "perdona": {"en": "excuse me, sorry (tú)", "pron": "per-DO-na", "cat": "expression"},
-    "perdone": {"en": "excuse me, sorry (usted)", "pron": "per-DO-ne", "cat": "expression"}
+    "ustedes": {
+      "pron": "us-TE-des",
+      "cat": "pron"
+    },
+    "el señor": {
+      "pron": "el se-NYOR",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la señora": {
+      "pron": "la se-NYO-ra",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "cómo está": {
+      "pron": "KO-mo es-TA",
+      "cat": "expr"
+    },
+    "le presento a": {
+      "pron": "le pre-SEN-to a",
+      "cat": "expr"
+    },
+    "te presento a": {
+      "pron": "te pre-SEN-to a",
+      "cat": "expr"
+    },
+    "mucho gusto": {
+      "pron": "MU-cho GUS-to",
+      "cat": "expr"
+    },
+    "igualmente": {
+      "pron": "i-gwal-MEN-te",
+      "cat": "expr"
+    },
+    "perdona": {
+      "pron": "per-DO-na",
+      "cat": "verb"
+    },
+    "perdone": {
+      "pron": "per-DO-ne",
+      "cat": "verb"
+    },
+    "Ana": {
+      "propio": true
+    },
+    "Lucía": {
+      "propio": true
+    },
+    "Ruiz": {
+      "propio": true
+    }
   },
   "bloques": [
     {
-      "tipo": "explicacion",
-      "titulo": {"en": "Addressing one person: tú and usted"},
-      "texto": {
-        "en": "**Tú** is common with friends, family and people you know well. **Usted** can add formality or distance. The choice depends on the person, setting and region; age alone does not decide it.\n\nThe verb changes with it. Tú takes the tú form; usted takes the same form as él and ella.\n\n- ¿Cómo **estás**? (tú)\n- ¿Cómo **está** usted?\n\nWhen addressing someone, say **señor Ruiz** or **señora Ruiz**. When speaking about them, use the article: **la señora Ruiz es mi jefa**.\n\nIn most of Spain, **vosotros** is common for informal groups and **ustedes** is generally formal. In the Canary Islands and much of Latin America, **ustedes** is used in both informal and formal settings. Some Latin American regions also use **vos** instead of **tú**. Usage varies."
-      }
+      "id": "b1",
+      "tipo": "explicacion"
     },
     {
-      "tipo": "tabla",
-      "titulo": {"en": "The same sentence, twice"},
-      "columnas": ["tú", "usted"],
-      "filas": [
-        ["¿Cómo estás?", "¿Cómo está?"],
-        ["¿Cómo te llamas?", "¿Cómo se llama?"],
-        ["¿Y tú?", "¿Y usted?"],
-        ["Perdona.", "Perdone."],
-        ["Te presento a Ana.", "Le presento a la señora Ruiz."]
-      ],
-      "nota": {
-        "en": "If you are unsure, **usted** can be a polite starting point in many settings; follow local habits and switch if invited. Someone may say «Puedes tutearme» (you can use tú with me)."
-      }
-    },
-    {
+      "id": "b2",
       "tipo": "dialogo",
-      "titulo": {"en": "At the office"},
       "frases": [
         {
-          "quien": "Pablo",
-          "es": "Buenos días, señora Ruiz. ¿Cómo está usted?",
-          "en": "Good morning, Mrs Ruiz. How are you?",
-          "analisis": [
-            ["Buenos días", "greeting"],
-            ["señora Ruiz", "name"],
-            ["¿Cómo", "question"],
-            ["está", "verb"],
-            ["usted", "subject"]
-          ]
+          "quien": "Ana",
+          "sintaxis": {
+            "oracion": "unimembre",
+            "unidades": [
+              {
+                "funcion": "INTERJ",
+                "texto": "Buenos días",
+                "nucleo": "días",
+                "partes": [
+                  {
+                    "funcion": "ADY",
+                    "texto": "Buenos"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "días"
+                  }
+                ]
+              },
+              {
+                "funcion": "VOC",
+                "texto": "señora Ruiz",
+                "nucleo": "señora",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "señora"
+                  },
+                  {
+                    "funcion": "APOS",
+                    "texto": "Ruiz"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "quien": "Sra. Ruiz",
-          "es": "Muy bien, gracias. ¿Y usted?",
-          "en": "Very well, thank you. And you?",
-          "analisis": [["Muy bien", "adverb"], ["gracias", "thanks"], ["¿Y usted?", "question"]]
+          "quien": "Señora Ruiz",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Cómo está",
+                "nucleo": "está",
+                "partes": [
+                  {
+                    "funcion": "CCM",
+                    "texto": "Cómo",
+                    "nucleo": "Cómo"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "está",
+                    "nucleo": "está"
+                  }
+                ]
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "usted",
+                "nucleo": "usted"
+              }
+            ]
+          }
         },
         {
-          "quien": "Pablo",
-          "es": "Bien. Le presento a Lucía.",
-          "en": "Fine. Let me introduce Lucía to you.",
-          "analisis": [["Le presento", "verb (I introduce to you)"], ["a Lucía", "object"]]
+          "quien": "Ana",
+          "sintaxis": {
+            "oracion": "unimembre",
+            "unidades": [
+              {
+                "funcion": "CCM",
+                "texto": "Muy bien",
+                "nucleo": "bien",
+                "partes": [
+                  {
+                    "funcion": "CUANT",
+                    "texto": "Muy"
+                  },
+                  {
+                    "funcion": "ADV",
+                    "texto": "bien"
+                  }
+                ]
+              },
+              {
+                "funcion": "INTERJ",
+                "texto": "gracias",
+                "nucleo": "gracias"
+              }
+            ]
+          }
         },
         {
-          "quien": "Sra. Ruiz",
-          "es": "Mucho gusto, Lucía.",
-          "en": "Pleased to meet you, Lucía.",
-          "analisis": [["Mucho gusto", "set phrase"]]
+          "quien": "Señora Ruiz",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Le presento a Lucía",
+                "nucleo": "presento",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "Le",
+                    "nucleo": "Le"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "presento",
+                    "nucleo": "presento"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "a Lucía",
+                    "nucleo": "Lucía",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "a"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "Lucía",
+                        "nucleo": "Lucía"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         },
-        {"quien": "Lucía", "es": "Igualmente.", "en": "Likewise.", "analisis": [["Igualmente", "adverb"]]}
+        {
+          "quien": "Ana",
+          "sintaxis": {
+            "oracion": "unimembre",
+            "unidades": [
+              {
+                "funcion": "ATRIB",
+                "texto": "Mucho gusto",
+                "nucleo": "gusto",
+                "partes": [
+                  {
+                    "funcion": "CUANT",
+                    "texto": "Mucho"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "gusto"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Señora Ruiz",
+          "sintaxis": {
+            "oracion": "unimembre",
+            "unidades": [
+              {
+                "funcion": "ATRIB",
+                "texto": "Igualmente",
+                "nucleo": "Igualmente"
+              }
+            ]
+          }
+        }
       ]
     },
-    {"tipo": "vocabulario"},
     {
+      "id": "b3",
+      "tipo": "vocabulario",
+      "palabras": [
+        "usted",
+        "ustedes",
+        "el señor",
+        "la señora",
+        "cómo está",
+        "le presento a",
+        "te presento a",
+        "mucho gusto",
+        "igualmente",
+        "perdona",
+        "perdone"
+      ]
+    },
+    {
+      "id": "b4",
+      "tipo": "gramatica",
+      "ejemplos": [
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Cómo estás",
+                "nucleo": "estás",
+                "partes": [
+                  {
+                    "funcion": "CCM",
+                    "texto": "Cómo",
+                    "nucleo": "Cómo"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "estás",
+                    "nucleo": "estás"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Cómo está",
+                "nucleo": "está",
+                "partes": [
+                  {
+                    "funcion": "CCM",
+                    "texto": "Cómo",
+                    "nucleo": "Cómo"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "está",
+                    "nucleo": "está"
+                  }
+                ]
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "usted",
+                "nucleo": "usted"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "b5",
+      "tipo": "texto",
+      "registro": "literario",
+      "parrafos": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "b6",
       "tipo": "test",
-      "id": "tu-usted-1",
-      "pregunta": {"en": "You need to get a stranger's attention politely. Which form can you use?"},
-      "opciones": {
-        "Perdone": {"en": "Perdone is the usted form."},
-        "Perdona": {"en": "Perdona is the familiar tú form; use it with people you address as tú."},
-        "Adiós": {"en": "Adiós is goodbye."}
-      },
-      "correcta": "Perdone"
-    },
-    {
-      "tipo": "huecos",
-      "id": "tu-usted-2",
-      "pregunta": {"en": "Complete the formal question."},
-      "frase": "¿Cómo ___ usted?",
-      "audio": true,
-      "opciones": {
-        "está": {"en": "Usted takes the same form as él and ella."},
-        "estás": {"en": "Estás goes with tú."},
-        "estoy": {"en": "Estoy goes with yo."}
-      },
-      "correcta": "está"
-    },
-    {
-      "tipo": "escribir",
-      "id": "tu-usted-3",
-      "pregunta": {"en": "Write the usted version of «¿Cómo te llamas?»"},
-      "respuestas": ["¿Cómo se llama?", "¿Cómo se llama usted?"],
-      "explicacion": {"en": "Te llamas becomes se llama."}
-    },
-    {
-      "tipo": "traduccion",
-      "id": "tu-usted-4",
-      "frase": "Mucho gusto.",
       "opciones": [
-        {"texto": {"en": "Pleased to meet you."}, "correcta": true},
-        {"texto": {"en": "Thank you very much."}, "explicacion": {"en": "That is muchas gracias."}},
-        {"texto": {"en": "I like it a lot."}, "explicacion": {"en": "That is me gusta mucho."}}
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
       ]
     },
     {
-      "tipo": "ordenar",
-      "id": "tu-usted-5",
-      "frase": "Le presento a la señora Ruiz",
-      "traduccion": {"en": "Let me introduce you to Mrs Ruiz."}
+      "id": "b7",
+      "tipo": "huecos",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
     },
     {
-      "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
-      "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Write the same three questions twice: once for a friend (tú) and once for someone in a formal setting (usted).\n\n**Speak (about 30 seconds).** Imagine greeting a close friend, a new client and someone who invites you to use tú. Choose a form that fits each relationship and setting."
-      }
+      "id": "b8",
+      "tipo": "ordenar"
+    },
+    {
+      "id": "b9",
+      "tipo": "escribir",
+      "respuestas": [
+        "¿Cómo se llama?",
+        "Cómo se llama"
+      ]
     }
   ]
 }

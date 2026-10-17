@@ -208,6 +208,20 @@ function bloqueExplicacion(b) {
     textoConFormato(Array.isArray(b.texto) ? b.texto.map(tr) : tr(b.texto)));
 }
 
+function bloqueGramatica(b) {
+  const caja = el('section', { class: 'caja explicacion gramatica' },
+    el('span', { class: 'etiqueta-bloque' }, t('bloque.gramatica')),
+    b.titulo && el('h2', { class: 'bloque-titulo' }, tr(b.titulo)),
+    textoConFormato(Array.isArray(b.texto) ? b.texto.map(tr) : tr(b.texto)));
+  for (const ejemplo of b.ejemplos ?? []) {
+    caja.append(el('div', { class: 'gramatica-ejemplo' },
+      el('p', { class: 'frase-es', lang: LANG }, ejemplo.es),
+      ejemplo.trad && el('p', { class: 'frase-trad' }, tr(ejemplo.trad)),
+      analisisDesplegable(ejemplo, `analisis-${++contadorAnalisis}`)));
+  }
+  return caja;
+}
+
 function bloqueDialogo(b, leccion) {
   const lista = el('ul', { class: 'frases' });
   let selloActivo = null;
@@ -445,6 +459,7 @@ function pintarLibro(contenedor, resultado, siguiente, alJuego) {
   const bloques = leccion.bloques.map(b => {
     if (b.error) return bloqueConError(b);
     if (b.tipo === 'explicacion') return bloqueExplicacion(b);
+    if (b.tipo === 'gramatica') return bloqueGramatica(b);
     if (b.tipo === 'dialogo') return bloqueDialogo(b, leccion);
     if (b.tipo === 'vocabulario') return bloqueVocabulario(b, leccion);
     if (b.tipo === 'tabla') return bloqueTabla(b);

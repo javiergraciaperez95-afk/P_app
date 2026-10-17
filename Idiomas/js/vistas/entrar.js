@@ -47,7 +47,8 @@ export function pintarEntrar(contenedor) {
   // En medio: la cuenta (entrar, crear, recuperar; o los datos de la sesión si ya se ha entrado).
   const hueco = el('div', {});
   const ponerCuenta = pestana => poner(hueco, seccionCuenta(pestana));
-  ponerCuenta();
+  // los dos botones de la cabecera: «Iniciar sesión» (#/entrar) y «Crear cuenta» (#/entrar/crear)
+  ponerCuenta(location.hash === '#/entrar/crear' ? 'crear' : 'entrar');
 
   // Abajo: seguir (con sesión) o seguir sin cuenta (con el aviso de la tutora antes).
   const avisa = tutora('entrar-avisa');

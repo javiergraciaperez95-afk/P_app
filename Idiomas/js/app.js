@@ -9,8 +9,9 @@ import { ajuste, aplicarTema, temaActual, cambiarAjuste } from './ajustes.js';
 import { t, tr, aplicarIdioma, IDIOMAS, idioma, cambiarIdioma } from './i18n.js';
 import { sonar, prepararVoces } from './sonidos.js';
 import { iniciarNube, usuarioActual, alCambiarNube } from './sync.js';
-import { tarjetas, alCambiar, hayProgreso } from './progress.js';
-import { tocaRepasar, esNueva } from './srs.js';
+import { alCambiar, hayProgreso } from './progress.js';
+import { pintarCabecera, pendientesDeHoy } from './cabecera.js';
+import { iniciarPie, pintarPie } from './pie.js';
 import { decir } from './tutor.js';
 import { agrupar, pintarLecciones } from './vistas/lecciones.js';
 import { pintarLeccion, cerrarFicha, ponerDiccionarioGlobal } from './vistas/leccion.js';
@@ -40,10 +41,17 @@ const controlesCabecera = document.querySelector('.cabecera-botones');
 const ajustesCabecera = document.createElement('details');
 ajustesCabecera.className = 'cabecera-ajustes';
 const abrirAjustes = document.createElement('summary');
+abrirAjustes.className = 'btn';
 const panelAjustes = document.createElement('div');
 panelAjustes.className = 'cabecera-ajustes-panel';
 ajustesCabecera.append(abrirAjustes, panelAjustes);
 const controlesAjustes = ['.idioma-menu', '#btn-sonido', '#btn-tema'].map(s => controlesCabecera.querySelector(s));
+// Sin sesión no hay avatar (con su «Mi perfil»): el perfil va dentro de Ajustes.
+const enlacePerfil = el('a', { class: 'btn ajustes-perfil', href: '#/perfil', onclick: () => { ajustesCabecera.open = false; } });
+const pintarEnlacePerfil = () => {
+  poner(enlacePerfil, icono('perfil'), t('menu.perfil'));
+  enlacePerfil.hidden = !hayCurso || Boolean(usuarioActual());
+};
 document.addEventListener('click', e => {
   if (!ajustesCabecera.contains(e.target)) ajustesCabecera.open = false;
 });
@@ -58,13 +66,12 @@ ajustesCabecera.addEventListener('toggle', () => {
   if (!ajustesCabecera.open) cerrarIdiomas();
 });
 
+// Solo tres pestañas, para que quepan sin deslizar el dedo. Práctica y Frases siguen existiendo (#/practica, #/frases)
+// hasta que su contenido pase al cuaderno; el perfil está en el menú del avatar (o en Ajustes, sin sesión).
 const SECCIONES = [
   { ruta: 'lecciones', icono: 'libro' },
-  { ruta: 'practica', icono: 'practica' },
-  { ruta: 'frases', icono: 'frases' },
   { ruta: 'cuaderno', icono: 'cuaderno' },
   { ruta: 'repaso', icono: 'repaso' },
-  { ruta: 'perfil', icono: 'perfil' },
 ];
 
 // Las pantallas generales (no de un curso): se pintan igual con curso elegido o sin él, no esperan a que lleguen
@@ -112,7 +119,11 @@ let rutaActual = 'lecciones';
 
 function pintarMenu() {
   poner(menu, el('ul', {}, SECCIONES.map(s => el('li', {},
-    el('a', { href: `#/${s.ruta}`, 'data-ruta': s.ruta, class: 'menu-enlace' }, icono(s.icono), el('span', {}, t(`menu.${s.ruta}`)))))));
+    el('a', { href: `#/${s.ruta}`, 'data-ruta': s.ruta, class: 'menu-enlace' }, icono(s.icono), el('span', {}, t(`menu.${s.ruta}`)),
+      // sin cuenta, el cuaderno solo se guarda en este dispositivo: lo dice un candadito
+      s.ruta === 'cuaderno' && !usuarioActual()
+        ? el('span', { class: 'menu-candado', title: t('cabecera.cuadernoInvitado') }, icono('candado'), el('span', { class: 'solo-lector' }, t('cabecera.cuadernoInvitado')))
+        : null)))));
   marcarMenu(rutaActual);
   pintarAvisoRepaso();
 }
@@ -121,8 +132,7 @@ function pintarMenu() {
 function pintarAvisoRepaso() {
   const enlace = menu.querySelector('a[data-ruta="repaso"]');
   if (!enlace) return;
-  const todas = tarjetas();
-  const n = todas.filter(c => tocaRepasar(c.srs)).length + Math.min(20, todas.filter(c => esNueva(c.srs)).length);
+  const n = pendientesDeHoy();
   enlace.querySelector('.menu-aviso')?.remove();
   enlace.setAttribute('aria-label', n ? t('menu.repasoPendientes', { n }) : t('menu.repaso'));
   if (n) enlace.append(el('span', { class: 'menu-aviso', 'aria-hidden': 'true' }, n > 99 ? '99+' : String(n)));
@@ -132,6 +142,13 @@ function marcarMenu(ruta) {
   for (const a of menu.querySelectorAll('a')) {
     if (a.dataset.ruta === ruta) a.setAttribute('aria-current', 'page');
     else a.removeAttribute('aria-current');
+  }
+  // En el móvil las pestañas se deslizan de lado: la de la pantalla actual se pone a la vista (sin mover la página).
+  const lista = menu.querySelector('ul');
+  const activa = menu.querySelector('a[aria-current="page"]');
+  if (lista && activa && lista.scrollWidth > lista.clientWidth) {
+    const desde = activa.getBoundingClientRect().left - lista.getBoundingClientRect().left;
+    lista.scrollLeft += desde - (lista.clientWidth - activa.offsetWidth) / 2;
   }
 }
 
@@ -156,18 +173,27 @@ function pintarBotonSonido() {
 function pintarMarca() {
   const dentro = !document.body.classList.contains('en-inicio');
   document.body.classList.toggle('en-estudio', dentro);
+  // El pie solo va en las pantallas de la web: portadas, créditos, aviso legal y la página perdida.
+  // Dentro de un curso (lecciones, cuaderno, repaso…) y al elegir idioma no se pinta.
+  const ruta = location.hash.startsWith('#/') ? location.hash.slice(2).split('/')[0] : '';
+  const perdidaSinCurso = !hayCurso && ruta && !esGeneral(ruta);
+  document.body.classList.toggle('con-pie', !dentro || ruta === 'creditos' || ruta === 'legal' || Boolean(perdidaSinCurso));
   ajustesCabecera.open = false;
   abrirAjustes.textContent = `⚙ ${t('ajustes.titulo')}`;
   if (dentro) {
     controlesCabecera.append(ajustesCabecera);
-    panelAjustes.append(...controlesAjustes);
+    panelAjustes.append(...controlesAjustes, enlacePerfil);
+    pintarEnlacePerfil();
   } else {
     controlesCabecera.append(...controlesAjustes);
     ajustesCabecera.remove();
   }
   const deCurso = hayCurso && !document.body.classList.contains('en-inicio');
   const nombre = document.getElementById('marca-nombre');
-  nombre.textContent = t('app.nombre');
+  // «Pa» + «glot» en dorado, como en el logotipo grande
+  const marca = t('app.nombre');
+  if (marca === 'Paglot') poner(nombre, 'Pa', el('span', { class: 'marca-glot' }, 'glot'));
+  else nombre.textContent = marca;
   nombre.removeAttribute('lang');
   document.getElementById('marca-bandera').innerHTML = deCurso ? curso.bandera : ''; // SVG del catálogo local de cursos.
   const subtitulo = document.getElementById('marca-subtitulo');
@@ -175,6 +201,7 @@ function pintarMarca() {
   subtitulo.parentElement.hidden = !deCurso;
   document.getElementById('marca').title = t('inicio.titulo');
   pintarNavegacion();
+  pintarCabecera();
   pintarPie();
   const boton = document.getElementById('btn-curso');
   boton.setAttribute('aria-label', t('cursos.cambiar'));
@@ -182,44 +209,26 @@ function pintarMarca() {
   boton.hidden = !hayCurso;
 }
 
-/** La cabecera se limita a Inicio, Entrar/Cuenta y Paglot Max. */
+/** La navegación de la web: Inicio, Idiomas y Paglot Max (la cuenta va aparte, en js/cabecera.js). */
 function pintarNavegacion() {
   const aqui = location.hash.slice(2).split('/')[0] || (hayCurso ? 'lecciones' : 'inicio');
-  const etiquetas = [t('inicio.titulo'), t(usuarioActual() ? 'cuenta.titulo' : 'entrar.titulo'), 'Paglot Max'];
-  const rutas = ['inicio', 'entrar', 'precios'];
+  const etiquetas = [t('inicio.titulo'), t('cabecera.idiomas'), 'Paglot Max'];
+  const rutas = ['inicio', 'idiomas', 'precios'];
   for (const [i, a] of [...document.querySelectorAll('#cabecera-nav a')].entries()) {
     a.href = `#/${rutas[i]}`;
     a.dataset.nav = rutas[i];
-    a.textContent = etiquetas[i];
+    poner(a, rutas[i] === 'precios' ? icono('corona', 'icono nav-corona') : null, etiquetas[i]);
     if (a.dataset.nav === aqui) a.setAttribute('aria-current', 'page');
     else a.removeAttribute('aria-current');
   }
 }
 
-/** Enlaces secundarios y legales: agrupados al pie para dejar respirar la cabecera. */
-function pintarPie() {
-  for (const clave of ['descubre', 'producto', 'ayuda']) {
-    const nodo = document.querySelector(`[data-pie-titulo="${clave}"]`);
-    if (nodo) nodo.textContent = t(`pie.${clave}`);
-  }
-  const enlaces = {
-    sobre: t('sobre.titulo'), social: t('pagina.social'), guias: t('pie.guias'), laboratorio: t('pie.laboratorio'),
-    escuelas: t('pie.escuelas'), empresas: t('pie.empresas'), max: 'Paglot Max', regalo: t('pie.regalo'), tienda: t('pie.tienda'),
-    contacto: t('pie.contacto'), faq: t('pagina.faq'), legal: t('legal.titulo'), creditos: t('creditos.titulo'),
-  };
-  for (const [clave, texto] of Object.entries(enlaces)) {
-    const nodo = document.querySelector(`[data-pie="${clave}"]`);
-    if (nodo) nodo.textContent = texto;
-  }
-  // Volver a ver la bienvenida solo tiene sentido con un curso elegido (es una lección de prueba de ese idioma).
-  const bienvenida = document.querySelector('[data-pie="bienvenida"]');
-  bienvenida.textContent = t('bienvenida.otraVez');
-  bienvenida.hidden = !hayCurso;
-  document.querySelector('[data-pie-lema]').textContent = t('pie.lema');
-  document.querySelector('[data-pie-final]').textContent = t('pie.firma');
-  document.querySelector('.pie-marca').setAttribute('aria-label', t('pie.marca'));
-}
-alCambiarNube(pintarNavegacion);
+// Al entrar o salir de la cuenta cambia el candadito del cuaderno (el resto de la cabecera lo repinta js/cabecera.js).
+let habiaSesion = null;
+alCambiarNube(() => {
+  const hay = Boolean(usuarioActual());
+  if (hay !== habiaSesion) { habiaSesion = hay; pintarEnlacePerfil(); if (hayCurso) pintarMenu(); }
+});
 
 // Selector de idioma de la cabecera (lo que no esté traducido sale en inglés).
 // Es un botón que despliega una lista propia (la del navegador no se puede vestir como el resto de la app).
@@ -231,6 +240,7 @@ function pintarSelectorIdioma() {
   const automatico = ajuste('idioma') === 'auto';
   poner(selectorIdioma,
     el('span', { lang: actual.clave, class: 'sel-idioma-nombre' }, actual.nombre),
+    el('span', { class: 'sel-idioma-corto', 'aria-hidden': 'true' }, actual.corto), // en pantallas medianas
     automatico ? el('span', { class: 'sel-idioma-auto', title: t('ajustes.automatico') }, 'AUTO') : null,
     el('span', { class: 'sel-idioma-flecha', 'aria-hidden': 'true' }, '▾'));
   selectorIdioma.title = automatico ? `${t('ajustes.automatico')} · ${actual.nombre}` : actual.nombre;
@@ -506,6 +516,7 @@ function quitarArranque() {
 
 async function iniciar() {
   aplicarIdioma();
+  iniciarPie();
   aplicarTema();
   pintarMarca();
   pintarBotonTema();

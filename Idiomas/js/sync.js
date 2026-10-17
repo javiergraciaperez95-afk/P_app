@@ -207,6 +207,18 @@ export async function cambiarContrasena(nueva) {
   avisar(nube.estado);
 }
 
+/**
+ * Pone (o quita, con null) la foto de perfil. Va en los datos de la cuenta, ya reducida a una miniatura
+ * (js/cabecera.js la deja en unos pocos KB): así sale en todos los dispositivos sin necesitar otro almacén.
+ */
+export async function cambiarFoto(foto) {
+  const c = await obtenerCliente();
+  const { data, error } = await c.auth.updateUser({ data: { foto: foto ?? null } });
+  if (error) throw new Error(textoDeError(error));
+  usuario = data.user ?? usuario;
+  avisar(nube.estado);
+}
+
 /** Borra la copia de la nube (los datos de este navegador se quedan). */
 export async function borrarDatosNube() {
   if (!usuario || !SUPABASE_TABLA) return;

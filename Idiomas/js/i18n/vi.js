@@ -3,6 +3,7 @@
 // En vietnamita no hay plurales: casi todo son textos fijos con {datos}.
 
 export default {
+  'bloque.gramatica': 'Ngữ pháp',
   // ----- index.html -----
   'html.saltar': 'Chuyển đến nội dung',
   'html.subtitulo': 'Bài học {L}',
@@ -1177,6 +1178,31 @@ export default {
   'pie.lema': 'Học theo nhịp độ của bạn.',
   'pie.marca': 'Trang chủ Paglot',
   'pie.firma': 'Được tạo bằng pixel và sự kiên nhẫn.',
+  'pie.subir': 'Lên đầu trang',
   'pie.guias': 'Hướng dẫn cộng đồng',
   'pie.laboratorio': 'Phòng ý tưởng',
+  // cabecera (antes y después de iniciar sesión)
+  'cabecera.idiomas': 'Ngôn ngữ',
+  'cabecera.racha': 'Số ngày liên tiếp: {n}',
+  'cabecera.hola': 'Chào mừng trở lại, {nombre}!',
+  'cabecera.holaSinNombre': 'Chào mừng trở lại!',
+  'cabecera.pendientes': 'Cần ôn hôm nay: {n}',
+  'cabecera.alDia': 'Đã ôn xong',
+  'cabecera.invitado': 'Bạn đang dùng với tư cách khách: không có tài khoản, sổ tay và tiến độ chỉ được lưu trên thiết bị này.',
+  'cabecera.invitadoCta': 'Tạo tài khoản miễn phí',
+  'cabecera.cerrarAviso': 'Đóng thông báo',
+  'cabecera.menuCuenta': 'Menu tài khoản',
+  'cabecera.miCuenta': 'Tài khoản của tôi',
+  'cabecera.miPerfil': 'Hồ sơ của tôi',
+  'cabecera.nube.ok': 'Đã lưu trên đám mây',
+  'cabecera.nube.guardando': 'Đang lưu lên đám mây…',
+  'cabecera.nube.error': 'Không kết nối được đám mây',
+  'cabecera.nube.local': 'Chỉ trên thiết bị này',
+  'cabecera.cuadernoInvitado': 'Không có tài khoản, sổ tay chỉ được lưu trên thiết bị này',
+  'cabecera.ponerFoto': 'Thêm ảnh đại diện',
+  'cabecera.cambiarFoto': 'Đổi ảnh đại diện',
+  'cabecera.quitarFoto': 'Gỡ ảnh',
+  'cabecera.guardandoFoto': 'Đang lưu ảnh…',
+  'cabecera.fotoError': 'Không lưu được ảnh. Hãy thử lại.',
+  'inicio.tutoraDe': 'gia sư {idioma} của bạn',
 };

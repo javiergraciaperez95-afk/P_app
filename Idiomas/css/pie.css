@@ -1,0 +1,294 @@
+/* =====================================================================
+   PIE DE LA WEB — el escenario de las tutoras
+   ---------------------------------------------------------------------
+   · Solo en las pantallas de la web (body.con-pie, lo pone js/app.js): dentro de un curso no hay pie.
+   · Arriba, el cielo de la cabecera con el logotipo grande y cuatro tutoras de pie sobre el suelo
+     (js/pie.js las pone a charlar); debajo, los enlaces en tres carteles y una franja final.
+   · Los colores (--h-*) son los de la cabecera: están en css/cabecera.css.
+   ===================================================================== */
+
+.pie-sitio { display: none; }
+body.con-pie .pie-sitio {
+  position: relative;
+  display: block;
+  margin-top: 64px;
+  color: var(--h-tinta);
+  background-color: var(--h-fondo);
+  background-image: repeating-conic-gradient(var(--h-trama) 0 25%, transparent 0 50%);
+  background-size: 8px 8px;
+  font-family: var(--h-texto);
+  font-synthesis-weight: none;
+}
+
+/* El remate de arriba: el mismo de la cabecera, del revés (cuadritos que se juntan en una línea de tinta) */
+.pie-sitio::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: -6px;
+  height: 6px;
+  background:
+    repeating-linear-gradient(90deg, var(--h-sombra) 0 4px, transparent 4px 8px) 0 0 / 100% 2px no-repeat,
+    linear-gradient(var(--h-sombra), var(--h-sombra)) 0 2px / 100% 2px no-repeat,
+    linear-gradient(var(--h-borde), var(--h-borde)) 0 4px / 100% 2px no-repeat;
+  pointer-events: none;
+}
+
+/* ----- El escenario: cielo con estrellitas, el logotipo en el centro y las tutoras a los lados ----- */
+.pie-escena {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-areas: "izq marca der";
+  align-items: end;
+  padding: 72px 16px 0;
+  overflow: clip;
+  background: var(--h-cielo);
+}
+.pie-escena::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--h-estrella), var(--h-estrella)), linear-gradient(var(--h-estrella), var(--h-estrella)),
+    linear-gradient(var(--h-estrella), var(--h-estrella)), linear-gradient(var(--h-estrella), var(--h-estrella)),
+    linear-gradient(var(--h-estrella), var(--h-estrella)), linear-gradient(var(--h-estrella), var(--h-estrella)),
+    linear-gradient(var(--h-estrella), var(--h-estrella)), linear-gradient(var(--h-estrella), var(--h-estrella));
+  background-repeat: no-repeat;
+  background-size: 4px 4px, 2px 2px, 4px 4px, 2px 2px, 4px 4px, 2px 2px, 4px 4px, 2px 2px;
+  background-position: 6% 18%, 15% 52%, 27% 12%, 39% 40%, 63% 16%, 74% 46%, 86% 10%, 95% 38%;
+  opacity: .6;
+  animation: titilar 3.6s steps(2) infinite;
+}
+
+.pie-tutoras { position: relative; display: flex; align-items: flex-end; min-width: 0; }
+.pie-tutoras[data-pie-tutoras="izq"] { grid-area: izq; justify-content: flex-end; }
+.pie-tutoras[data-pie-tutoras="der"] { grid-area: der; justify-content: flex-start; }
+.pie-figura { position: relative; flex: none; margin: 0 -8px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.pie-tutora { display: block; width: 144px; height: 192px; image-rendering: pixelated; image-rendering: crisp-edges; }
+
+/* El bocadillo: papel con borde de tinta y cola de cuadraditos (como el de la portada) */
+.pie-globo {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% - 18px);
+  z-index: 2;
+  padding: 5px 11px;
+  white-space: nowrap;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.3;
+  color: var(--h-tinta);
+  background: var(--h-papel);
+  box-shadow: 0 -3px 0 0 var(--h-borde), 0 3px 0 0 var(--h-borde), -3px 0 0 0 var(--h-borde), 3px 0 0 0 var(--h-borde),
+    3px 6px 0 0 var(--h-sombra), 6px 3px 0 0 var(--h-sombra);
+  transform: translateX(-50%) scale(0);
+  transform-origin: 50% 100%;
+  transition: transform .12s steps(3);
+  pointer-events: none;
+}
+.pie-globo::before, .pie-globo::after { content: ""; position: absolute; left: 50%; background: var(--h-papel); }
+.pie-globo::before { top: 100%; width: 12px; height: 6px; margin-left: -9px; box-shadow: -3px 0 0 0 var(--h-borde), 3px 0 0 0 var(--h-borde); }
+.pie-globo::after { top: calc(100% + 6px); width: 6px; height: 3px; margin-left: -9px; box-shadow: -3px 0 0 0 var(--h-borde), 3px 0 0 0 var(--h-borde), 0 3px 0 0 var(--h-borde), 6px -3px 0 0 var(--h-borde); }
+.pie-figura.habla .pie-globo { transform: translateX(-50%) scale(1); }
+
+/* ----- El logotipo, bien grande ----- */
+.pie-marca {
+  grid-area: marca;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 28px 22px;
+  color: var(--h-tinta);
+  text-align: center;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.pie-logo {
+  display: block;
+  width: 192px;
+  height: 192px;
+  image-rendering: pixelated;
+  filter: drop-shadow(5px 5px 0 var(--h-sombra));
+}
+.pie-marca:hover .pie-logo, .pie-logo.salta { animation: pie-logo-salta .6s steps(5); }
+@keyframes pie-logo-salta {
+  25% { transform: translateY(-14px) rotate(-5deg); }
+  55% { transform: translateY(0) rotate(4deg); }
+  75% { transform: translateY(-5px) rotate(0); }
+}
+.pie-nombre {
+  margin-top: 6px;
+  font-family: var(--fuente-pixel);
+  font-weight: 700;
+  font-size: clamp(3.6rem, 8vw, 6.8rem);
+  line-height: .95;
+  letter-spacing: .02em;
+  white-space: nowrap;
+  text-shadow: 5px 5px 0 var(--h-sombra);
+}
+.pie-nombre span { color: var(--marca-oro); }
+.pie-lema { margin-top: 10px; color: var(--h-suave); font-weight: 700; font-size: 1rem; }
+.pie-marca:focus-visible { outline: 3px dashed var(--h-rosa); outline-offset: -3px; }
+
+/* ----- El suelo donde se apoyan: línea de tinta, baldosas y la sombra que se deshace en cuadritos ----- */
+.pie-suelo {
+  height: 21px;
+  background:
+    linear-gradient(var(--h-borde), var(--h-borde)) 0 0 / 100% 3px no-repeat,
+    repeating-linear-gradient(90deg, var(--h-papel-2) 0 24px, var(--h-sombra) 24px 27px) 0 3px / 100% 12px no-repeat,
+    linear-gradient(var(--h-sombra), var(--h-sombra)) 0 15px / 100% 3px no-repeat,
+    repeating-linear-gradient(90deg, var(--h-sombra) 0 4px, transparent 4px 8px) 0 18px / 100% 3px no-repeat;
+}
+
+/* ----- Los enlaces: tres carteles de papel con su celo de colores ----- */
+.pie-interior { max-width: 1120px; margin: 0 auto; padding: 36px 20px 44px; }
+.pie-grupos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 26px; }
+.pie-grupo {
+  --celo: var(--h-rosa);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2px;
+  margin: 3px;
+  padding: 22px 18px 16px;
+  background: var(--h-papel);
+  box-shadow:
+    0 -3px 0 0 var(--h-borde), 0 3px 0 0 var(--h-borde), -3px 0 0 0 var(--h-borde), 3px 0 0 0 var(--h-borde),
+    3px 6px 0 0 var(--h-sombra), 6px 3px 0 0 var(--h-sombra);
+}
+.pie-grupo:nth-child(2) { --celo: var(--marca-oro); }
+.pie-grupo:nth-child(3) { --celo: var(--h-suave); }
+/* el trocito de celo que sujeta el cartel */
+.pie-grupo::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  width: 54px;
+  height: 14px;
+  margin-left: -27px;
+  background: var(--celo);
+  opacity: .8;
+  clip-path: polygon(0 3px, 3px 3px, 3px 0, calc(100% - 3px) 0, calc(100% - 3px) 3px, 100% 3px, 100% calc(100% - 3px), calc(100% - 3px) calc(100% - 3px), calc(100% - 3px) 100%, 3px 100%, 3px calc(100% - 3px), 0 calc(100% - 3px));
+}
+.pie-grupo h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  color: var(--h-tinta);
+  font: 700 1.15rem var(--fuente-pixel);
+}
+.pie-grupo h2::before { content: ""; flex: none; width: 9px; height: 9px; background: var(--celo); box-shadow: 2px 2px 0 var(--h-sombra); }
+.pie-grupo a {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 0 -8px;
+  padding: 5px 8px;
+  color: var(--h-suave);
+  font-weight: 600;
+  font-size: .92rem;
+  line-height: 1.3;
+  text-decoration: none;
+}
+.pie-grupo a[hidden] { display: none; }
+.pie-grupo a::before {
+  content: "▸";
+  display: inline-block;
+  width: 0;
+  overflow: hidden;
+  color: var(--h-rosa);
+  transition: width .15s steps(3);
+}
+.pie-grupo a:hover, .pie-grupo a:focus-visible { color: var(--h-tinta); background: var(--h-resalte); }
+.pie-grupo a:hover::before, .pie-grupo a:focus-visible::before { width: 1.1em; }
+.pie-grupo a:focus-visible { outline: 2px dashed var(--h-rosa); outline-offset: 0; }
+
+/* ----- La franja final ----- */
+.pie-base { background: var(--h-sombra); box-shadow: inset 0 3px 0 var(--h-borde); }
+.pie-base-interior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 15px 20px 12px;
+  padding-bottom: calc(12px + var(--borde-abajo, 0px));
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--h-tinta);
+}
+.pie-anio { font-family: var(--fuente-pixel); font-size: 1rem; }
+.pie-firma { flex: 1; text-align: center; }
+.pie-subir {
+  --b: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  margin: var(--b);
+  padding: 0 12px;
+  border: 0;
+  font: 700 .85rem var(--h-texto);
+  color: var(--h-tinta);
+  background: var(--h-papel-2);
+  cursor: pointer;
+  box-shadow:
+    0 calc(var(--b) * -1) 0 0 var(--h-borde), 0 var(--b) 0 0 var(--h-borde),
+    calc(var(--b) * -1) 0 0 0 var(--h-borde), var(--b) 0 0 0 var(--h-borde),
+    var(--b) calc(var(--b) * 2) 0 0 var(--h-borde), calc(var(--b) * 2) var(--b) 0 0 var(--h-borde);
+}
+.pie-subir:hover { background: var(--h-resalte); }
+.pie-subir:hover .pie-subir-flecha { animation: pie-flecha .6s steps(2) infinite; }
+.pie-subir:active { transform: translate(var(--b), var(--b)); }
+.pie-subir:focus-visible { outline: 2px dashed var(--h-rosa); outline-offset: 4px; }
+.pie-subir-flecha { display: inline-block; color: var(--h-rosa); font-size: .8rem; }
+@keyframes pie-flecha { 50% { transform: translateY(-3px); } }
+
+/* ----- Menos sitio ----- */
+@media (max-width: 980px) {
+  .pie-tutora { width: 96px; height: 128px; }
+  .pie-figura { margin: 0 -6px; }
+  .pie-escena { padding-top: 60px; }
+  .pie-globo { bottom: calc(100% - 12px); font-size: .95rem; }
+  .pie-logo { width: 144px; height: 144px; }
+  .pie-marca { padding: 0 16px 18px; }
+}
+/* En el móvil el logotipo va arriba y las cuatro tutoras, en fila, sobre el suelo */
+@media (max-width: 680px) {
+  .pie-escena {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "marca marca" "izq der";
+    padding-top: 30px;
+  }
+  .pie-marca { padding-bottom: 6px; }
+  .pie-tutoras { padding-top: 46px; }
+  .pie-nombre { font-size: clamp(3rem, 15vw, 4.4rem); }
+  .pie-grupos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pie-grupo:nth-child(3) { grid-column: 1 / -1; }
+  .pie-base-interior { justify-content: center; text-align: center; }
+  .pie-firma { flex-basis: 100%; order: -1; }
+}
+@media (max-width: 460px) {
+  .pie-interior { padding: 30px 16px 36px; }
+  .pie-grupos { grid-template-columns: 1fr; gap: 28px; }
+  .pie-figura { margin: 0 -10px; }
+  .pie-logo { width: 112px; height: 112px; }
+}
+@media (max-width: 400px) {
+  .pie-figura { margin: 0 -15px; }
+}
+
+:root:lang(vi) .pie-grupo h2, :root:lang(zh) .pie-grupo h2 { font-family: var(--h-texto); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pie-escena::before, .pie-marca:hover .pie-logo, .pie-logo.salta, .pie-subir:hover .pie-subir-flecha { animation: none; }
+  .pie-globo, .pie-grupo a::before { transition: none; }
+}

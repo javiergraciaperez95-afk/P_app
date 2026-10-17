@@ -4,6 +4,7 @@
 const plural = (n, uno, varios) => (Number(n) === 1 ? uno : varios);
 
 export default {
+  'bloque.gramatica': 'Grammar',
   'sobre.mision.titulo': 'Our mission',
   'sobre.mision.paso1': 'Start',
   'sobre.mision.paso2': 'Discover',
@@ -704,6 +705,7 @@ export default {
   'inicio.f4.texto': 'Hear every sentence aloud, train your ear and practise useful phrases for real conversations.',
   'inicio.idiomasTitulo': 'Choose from {n} languages',
   'inicio.idiomasTexto': 'Each language has its own tutor and its own progress. You can study several at once.',
+  'inicio.tutoraDe': 'your {idioma} tutor',
   'inicio.pie': 'Made with pixels and patience.',
 
   // ----- Aviso de almacenamiento, aviso legal y privacidad -----
@@ -1171,6 +1173,30 @@ export default {
   'pie.lema': 'Learn at your own pace.',
   'pie.marca': 'Paglot home',
   'pie.firma': 'Made with pixels and patience.',
+  'pie.subir': 'Back to top',
   'pie.guias': 'Community guidelines',
   'pie.laboratorio': 'Idea Lab',
+  // cabecera (antes y después de iniciar sesión)
+  'cabecera.idiomas': 'Languages',
+  'cabecera.racha': 'Days in a row: {n}',
+  'cabecera.hola': 'Welcome back, {nombre}!',
+  'cabecera.holaSinNombre': 'Welcome back!',
+  'cabecera.pendientes': 'To review today: {n}',
+  'cabecera.alDia': 'Reviews done',
+  'cabecera.invitado': 'You’re browsing as a guest: without an account, your notebook and progress are only saved on this device.',
+  'cabecera.invitadoCta': 'Create a free account',
+  'cabecera.cerrarAviso': 'Close notice',
+  'cabecera.menuCuenta': 'Your account menu',
+  'cabecera.miCuenta': 'My account',
+  'cabecera.miPerfil': 'My profile',
+  'cabecera.nube.ok': 'Saved in the cloud',
+  'cabecera.nube.guardando': 'Saving to the cloud…',
+  'cabecera.nube.error': 'Can’t reach the cloud',
+  'cabecera.nube.local': 'Only on this device',
+  'cabecera.cuadernoInvitado': 'Without an account, the notebook is only saved on this device',
+  'cabecera.ponerFoto': 'Add a profile photo',
+  'cabecera.cambiarFoto': 'Change profile photo',
+  'cabecera.quitarFoto': 'Remove photo',
+  'cabecera.guardandoFoto': 'Saving the photo…',
+  'cabecera.fotoError': 'The photo couldn’t be saved. Please try again.',
 };

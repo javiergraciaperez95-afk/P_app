@@ -1,154 +1,388 @@
 {
+  "esquema": 2,
+  "id": "005",
   "capitulo": 1,
-  "titulo_es": "Del once al cien",
-  "titulo": { "en": "From eleven to a hundred" },
-  "intro": { "en": "You already know 0 to 10. From 11, some numbers are new words and others join together. From 31 to 99, non-round numbers use y between the tens and units." },
+  "nivel": "A1",
   "palabras": {
-    "once": { "en": "eleven", "pron": "ON-the", "cat": "number" },
-    "doce": { "en": "twelve", "pron": "DO-the", "cat": "number" },
-    "trece": { "en": "thirteen", "pron": "TRE-the", "cat": "number" },
-    "catorce": { "en": "fourteen", "pron": "ka-TOR-the", "cat": "number" },
-    "quince": { "en": "fifteen", "pron": "KIN-the", "cat": "number" },
-    "dieciséis": { "en": "sixteen", "pron": "dye-thi-SEIS", "cat": "number", "nota": "Of dieciséis, diecisiete, dieciocho and diecinueve, only dieciséis carries a written accent." },
-    "veinte": { "en": "twenty", "pron": "BEIN-te", "cat": "number" },
-    "veintitrés": { "en": "twenty-three", "pron": "bein-ti-TRES", "cat": "number", "nota": "From 21 to 29 it is one word: veintiuno, veintidós, veintitrés. Only veintidós, veintitrés and veintiséis carry written accents." },
-    "treinta": { "en": "thirty", "pron": "TREIN-ta", "cat": "number" },
-    "cuarenta": { "en": "forty", "pron": "kwa-REN-ta", "cat": "number" },
-    "cincuenta": { "en": "fifty", "pron": "thin-KWEN-ta", "cat": "number" },
-    "cien": { "en": "a hundred", "pron": "thyen", "cat": "number", "nota": "Cien stands alone or before a noun: cien libros. Ciento is for 101 and above, later." },
-    "años": { "en": "years", "pron": "A-nyos", "genero": "m", "consejo": "The ñ in años is the ny sound." },
-    "cuántos": { "en": "how many", "pron": "KWAN-tos", "cat": "question" }
+    "once": {
+      "pron": "ON-the",
+      "cat": "num"
+    },
+    "doce": {
+      "pron": "DO-the",
+      "cat": "num"
+    },
+    "trece": {
+      "pron": "TRE-the",
+      "cat": "num"
+    },
+    "catorce": {
+      "pron": "ka-TOR-the",
+      "cat": "num"
+    },
+    "quince": {
+      "pron": "KIN-the",
+      "cat": "num"
+    },
+    "dieciséis": {
+      "pron": "dye-thi-SEIS",
+      "cat": "num"
+    },
+    "veinte": {
+      "pron": "BEYN-te",
+      "cat": "num"
+    },
+    "veintitrés": {
+      "pron": "beyn-ti-TRES",
+      "cat": "num"
+    },
+    "treinta": {
+      "pron": "TREYN-ta",
+      "cat": "num"
+    },
+    "cuarenta": {
+      "pron": "kwa-REN-ta",
+      "cat": "num"
+    },
+    "cincuenta": {
+      "pron": "thin-KWEN-ta",
+      "cat": "num"
+    },
+    "cien": {
+      "pron": "THYEN",
+      "cat": "num"
+    },
+    "años": {
+      "pron": "A-nyos",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "cuántos": {
+      "pron": "KWAN-tos",
+      "cat": "adj"
+    },
+    "Ana": {
+      "propio": true
+    },
+    "Leo": {
+      "propio": true
+    }
   },
   "bloques": [
     {
-      "tipo": "explicacion",
-      "titulo": "Three patterns after ten",
-      "texto": "11 to 15 are new words: **once, doce, trece, catorce, quince**.\n\n16 to 19 join diez with the unit. Only **dieciséis** has a written accent: **dieciséis, diecisiete, dieciocho, diecinueve**.\n\n21 to 29 are one word. Only **veintidós, veintitrés** and **veintiséis** have written accents; **veintiuno** does not. For numbers from 31 to 99 that are not exact tens, write the tens and units separately with **y**: **treinta y uno, cuarenta y dos, cincuenta y tres**.\n\nThe tens are **veinte, treinta, cuarenta, cincuenta, sesenta, setenta, ochenta** and **noventa**; **cien** is 100.\n\nThe pronunciation hints for c before e/i and z use the sound common in much of Spain; many Latin American varieties use an s sound instead."
+      "id": "b1",
+      "tipo": "explicacion"
     },
     {
-      "tipo": "tabla",
-      "titulo": "Where the accent goes",
-      "columnas": ["Number", "Spanish", "Watch"],
-      "filas": [
-        ["16", "dieciséis", "accent, one word"],
-        ["21", "veintiuno", "one word, no y"],
-        ["23", "veintitrés", "accent on the last part"],
-        ["31", "treinta y uno", "y starts here"],
-        ["100", "cien", "before a noun: cien libros"]
-      ]
-    },
-    {
+      "id": "b2",
       "tipo": "dialogo",
-      "titulo": "Age and the class",
       "frases": [
         {
-          "quien": "Pablo",
-          "es": "¿Cuántos años tienes?",
-          "en": "How old are you?",
-          "analisis": [
-            ["¿Cuántos años", "question"],
-            ["tienes", "verb"]
-          ]
+          "quien": "Leo",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Tengo veintitrés años",
+                "nucleo": "Tengo",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Tengo",
+                    "nucleo": "Tengo"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "veintitrés años",
+                    "nucleo": "años",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "veintitrés"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "años"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "quien": "Lucía",
-          "es": "Tengo veintitrés años.",
-          "en": "I am twenty-three.",
-          "analisis": [
-            ["Tengo", "verb"],
-            ["veintitrés años", "object"]
-          ]
+          "quien": "Ana",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Yo",
+                "nucleo": "Yo"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "tengo treinta y uno",
+                "nucleo": "tengo",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "tengo",
+                    "nucleo": "tengo"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "treinta y uno",
+                    "nucleo": "uno"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "quien": "Pablo",
-          "es": "Yo tengo treinta y uno.",
-          "en": "I am thirty-one.",
-          "analisis": [
-            ["Yo", "subject"],
-            ["tengo", "verb"],
-            ["treinta y uno", "object"]
-          ]
+          "quien": "Leo",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "En la clase hay treinta alumnos",
+                "nucleo": "hay",
+                "partes": [
+                  {
+                    "funcion": "CCL",
+                    "texto": "En la clase",
+                    "nucleo": "clase",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "En"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la clase",
+                        "nucleo": "clase",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "clase"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "hay",
+                    "nucleo": "hay"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "treinta alumnos",
+                    "nucleo": "alumnos",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "treinta"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "alumnos"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
-          "quien": "Lucía",
-          "es": "En la clase hay treinta alumnos.",
-          "en": "There are thirty students in the class.",
-          "analisis": [
-            ["En la clase", "place"],
-            ["hay", "verb"],
-            ["treinta alumnos", "object"]
-          ]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Y dieciséis son de Madrid.",
-          "en": "And sixteen are from Madrid.",
-          "analisis": [
-            ["dieciséis", "subject"],
-            ["son", "verb"],
-            ["de Madrid", "origin"]
-          ]
-        },
-        {
-          "quien": "Lucía",
-          "es": "En la mesa hay cien libros.",
-          "en": "There are a hundred books on the table.",
-          "analisis": [
-            ["En la mesa", "place"],
-            ["hay", "verb"],
-            ["cien libros", "object"]
-          ]
+          "quien": "Ana",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "En la mesa hay cien libros",
+                "nucleo": "hay",
+                "partes": [
+                  {
+                    "funcion": "CCL",
+                    "texto": "En la mesa",
+                    "nucleo": "mesa",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "En"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la mesa",
+                        "nucleo": "mesa",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "mesa"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "hay",
+                    "nucleo": "hay"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "cien libros",
+                    "nucleo": "libros",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "cien"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "libros"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },
     {
+      "id": "b3",
       "tipo": "vocabulario",
-      "palabras": ["once", "doce", "trece", "catorce", "quince", "dieciséis", "veinte", "veintitrés", "treinta", "cuarenta", "cincuenta", "cien", "años", "cuántos"]
+      "palabras": [
+        "once",
+        "doce",
+        "trece",
+        "catorce",
+        "quince",
+        "dieciséis",
+        "veinte",
+        "veintitrés",
+        "treinta",
+        "cuarenta",
+        "cincuenta",
+        "cien",
+        "años",
+        "cuántos"
+      ]
     },
     {
-      "tipo": "huecos",
-      "id": "a1-num-23",
-      "pregunta": { "en": "Complete: I am twenty-three." },
-      "frase": "Tengo ___ años.",
-      "audio": true,
-      "opciones": {
-        "veintitrés": { "en": "21 to 29 are one word, with an accent." },
-        "veinte y tres": { "en": "Y starts at thirty y uno." },
-        "treinta": { "en": "Treinta is thirty." }
-      },
-      "correcta": "veintitrés"
+      "id": "b4",
+      "tipo": "gramatica",
+      "ejemplos": [
+        {
+          "sintaxis": {
+            "oracion": "unimembre",
+            "unidades": [
+              {
+                "funcion": "ATRIB",
+                "texto": "Veintitrés",
+                "nucleo": "Veintitrés"
+              }
+            ]
+          }
+        },
+        {
+          "sintaxis": {
+            "oracion": "unimembre",
+            "unidades": [
+              {
+                "funcion": "ATRIB",
+                "texto": "Treinta y uno",
+                "nucleo": "uno",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Treinta"
+                  },
+                  {
+                    "funcion": "CONJ",
+                    "texto": "y"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "uno"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
     },
     {
+      "id": "b5",
+      "tipo": "texto",
+      "registro": "literario",
+      "parrafos": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "b6",
       "tipo": "test",
-      "id": "a1-num-31",
-      "pregunta": { "en": "How do you say 31?" },
-      "opciones": {
-        "treinta y uno": { "en": "From 31 to 99, tens and units stay separate, with y." },
-        "treintiuno": { "en": "The one-word form stops at 29." },
-        "veintiuno": { "en": "Veintiuno is 21." }
-      },
-      "correcta": "treinta y uno"
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
     },
     {
+      "id": "b7",
+      "tipo": "huecos",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b8",
+      "tipo": "ordenar"
+    },
+    {
+      "id": "b9",
       "tipo": "escribir",
-      "id": "a1-num-16",
-      "pregunta": { "en": "Write: I am sixteen. Keep the accent." },
-      "respuestas": ["Tengo dieciséis años", "Tengo dieciséis"],
-      "explicacion": { "en": "Dieciséis has an accent. Age is tengo + number + años." }
-    },
-    {
-      "tipo": "ordenar",
-      "id": "a1-num-treinta",
-      "frase": "En la clase hay treinta alumnos",
-      "traduccion": { "en": "There are thirty students in the class." }
-    },
-    {
-      "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
-      "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Write in words the ages of five people you know, and the number of your house, your bus and your shoe size.\n\n**Speak (about 30 seconds).** Count aloud in tens from ten to a hundred. Then say the ages of the people in your family."
-      }
+      "respuestas": [
+        "dieciséis"
+      ]
     }
   ]
 }
-

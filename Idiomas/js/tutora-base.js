@@ -128,6 +128,12 @@ const BRAZOS = {
   escribir2: [['m', 13, 37, 3, 3], ['a', 14, 40, 7, 3], ['s', 21, 40, 3, 3], ['lapiz', 23, 36, 1, 5]],
   beber: [['m', 13, 36, 3, 3], ['a', 14, 33, 3, 3], ['p', 15, 32, 3, 1], ['s', 16, 29, 3, 3, 1], ['vaso', 18, 25, 5, 6, 1]],
   beberBaja: [['m', 13, 37, 3, 3], ['a', 14, 36, 3, 3], ['s', 15, 33, 3, 3], ['vaso', 17, 30, 5, 6]],
+  // para el botón de la portada: empujar con la palma de lado, señalar hacia abajo e invitar con la mano
+  empuje: [['m', 11, 37, 3, 3], ['a', 7, 37, 4, 3], ['p', 6, 37, 1, 3], ['s', 3, 35, 3, 5]],
+  empuje2: [['m', 11, 36, 3, 3], ['a', 6, 36, 5, 3], ['p', 5, 36, 1, 3], ['s', 2, 34, 3, 5]],
+  abajo: [['m', 12, 37, 3, 3], ['a', 10, 40, 3, 3], ['p', 9, 43, 3, 1], ['s', 8, 44, 3, 3], ['f', 8, 47, 1, 2]],
+  abajo2: [['m', 12, 37, 3, 3], ['a', 9, 39, 4, 3], ['p', 8, 42, 3, 1], ['s', 7, 43, 3, 3], ['f', 7, 46, 1, 3]],
+  invitar: [['m', 12, 37, 3, 3], ['a', 9, 39, 3, 3], ['p', 8, 41, 3, 1], ['s', 4, 41, 4, 3]],
 };
 
 function brazo(postura, derecho) {
@@ -325,6 +331,34 @@ const ANIMACIONES = {
   wai: { duracion: 2200, cuadro: p => ({ brazoI: 'rezo', brazoD: 'rezo', hdy: p > 0.25 && p < 0.75 ? 2 : 0, eyes: p > 0.25 && p < 0.75 ? 'blink' : 'happy', mouth: 'smile', brow: 'flat' }) },
   dedoCorazon: { duracion: 1800, cuadro: () => ({ brazoD: 'pulgar', guino: true, eyes: 'open', mouth: 'smile', brow: 'flat', fx: 'corazon' }) },
 };
+// Las del botón de la portada, en dos versiones: «…Der» con el botón a su derecha (en el dibujo) y «…Izq» a su izquierda.
+// cuadro(p, t, lado, otro, x): lado/otro son 'brazoD'/'brazoI' y x hacia dónde mira (1 derecha, −1 izquierda).
+const HACIA_EL_BOTON = {
+  // empuja el botón con las dos manos… bueno, con la que llega: aprieta los ojos, suda y tiembla del esfuerzo
+  empujar: { duracion: 2200, cuadro: (p, t, lado, otro, x) => ({ [lado]: alterna(t, 180, 'empuje', 'empuje2'), [otro]: 'cadera', eyes: 'blink', brow: 'worry', mouth: 'flat', temblor: alterna(t, 90, 0, x), fx: 'sweat' }) },
+  // ¡tachán!: lo presenta con la mano abierta y la otra en alto
+  presentar: { duracion: 2000, cuadro: (p, t, lado, otro) => ({ [lado]: 'lado', [otro]: 'alto', salto: p < 0.15 ? 2 : 0, eyes: 'happy', mouth: 'open', brow: 'flat', fx: 'sparkle' }) },
+  // señala el botón, abajo a su lado, dando golpecitos con el dedo
+  senalarAbajo: { duracion: 2200, cuadro: (p, t, lado, otro, x) => ({ [lado]: alterna(t, 260, 'abajo', 'abajo2'), mira: { x, y: 1 }, hdx: x, mouth: 'smile', brow: 'flat' }) },
+  // invita a pulsarlo: la mano barre del botón hacia quien mira la pantalla
+  invitar: { duracion: 2400, cuadro: (p, t, lado, otro, x) => ({ [lado]: alterna(t, 400, 'invitar', 'lado'), mira: { x: Math.floor(t / 400) % 2 ? x : 0, y: 0 }, eyes: 'open', mouth: 'open', brow: 'flat' }) },
+};
+for (const [nombre, anim] of Object.entries(HACIA_EL_BOTON)) {
+  ANIMACIONES[`${nombre}Der`] = { duracion: anim.duracion, cuadro: (p, t) => anim.cuadro(p, t, 'brazoD', 'brazoI', 1) };
+  ANIMACIONES[`${nombre}Izq`] = { duracion: anim.duracion, cuadro: (p, t) => anim.cuadro(p, t, 'brazoI', 'brazoD', -1) };
+}
+// la que está encima del botón: se agacha, salta bien alto y cae de golpe (ahí se hunde el botón, a 0,55 de la animación)
+ANIMACIONES.saltarBoton = {
+  duracion: 1700, prioridad: 2,
+  cuadro: p => {
+    if (p < 0.15) return { salto: -1, brazoI: 'pecho', brazoD: 'pecho', eyes: 'blink', brow: 'flat', mouth: 'flat' };
+    if (p < 0.55) return { salto: Math.round(subeYBaja(p, 0.15, 0.55) * 11), brazoI: 'alto', brazoD: 'alto', eyes: 'happy', mouth: 'open', brow: 'flat' };
+    if (p < 0.68) return { salto: -2, brazoI: 'lado', brazoD: 'lado', eyes: 'blink', mouth: 'open', brow: 'flat' };
+    return { brazoD: 'pulgar', eyes: 'open', guino: true, mouth: 'smile', brow: 'flat', fx: 'sparkle' };
+  },
+};
+export const SALTO_PISA = 0.55;
+
 export const ANIMACIONES_VALIDAS = Object.keys(ANIMACIONES).filter(n => !['dormir', 'escuchar'].includes(n));
 
 // Mientras dura una expresión, el cuerpo la acompaña (sin animación encima).

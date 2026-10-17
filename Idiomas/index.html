@@ -32,10 +32,13 @@
   <link rel="stylesheet" href="css/fuentes.css?v=__VERSION__">
   <link rel="stylesheet" href="css/proteccion-texto.css?v=__VERSION__">
   <script src="js/proteccion-texto.js?v=__VERSION__"></script>
-  <link rel="stylesheet" href="css/styles.css?v=__VERSION__&h=28">
+  <link rel="stylesheet" href="css/styles.css?v=__VERSION__&h=29">
   <link rel="stylesheet" href="css/tienda.css?v=__VERSION__">
   <link rel="stylesheet" href="css/comunidad-extra.css?v=__VERSION__">
   <link rel="stylesheet" href="css/juego-ilustrado.css?v=__VERSION__">
+  <link rel="stylesheet" href="css/cabecera.css?v=__VERSION__">
+  <link rel="stylesheet" href="css/pie.css?v=__VERSION__">
+  <link rel="stylesheet" href="css/inicio.css?v=__VERSION__">
   <!-- Al publicar, __VERSION__ se cambia por el código de la versión (ver .github/workflows/static.yml),
        así el navegador descarga siempre los archivos nuevos en lugar de usar los antiguos guardados. -->
   <script type="importmap">
@@ -43,6 +46,8 @@
       "imports": {
         "./js/ajustes.js": "./js/ajustes.js?v=__VERSION__",
         "./js/app.js": "./js/app.js?v=__VERSION__",
+        "./js/cabecera.js": "./js/cabecera.js?v=__VERSION__",
+        "./js/pie.js": "./js/pie.js?v=__VERSION__",
         "./js/chispa.js": "./js/chispa.js?v=__VERSION__",
         "./js/comunes.js": "./js/comunes.js?v=__VERSION__",
         "./js/config.js": "./js/config.js?v=__VERSION__",
@@ -114,15 +119,17 @@
 <body class="arrancando">
   <a class="saltar" href="#app" data-t="html.saltar">Skip to content</a>
 
+  <!-- Dos cabeceras en una: body[data-sesion="invitado"|"usuario"]. Lo fijo lo pinta js/app.js; la cuenta y la cinta, js/cabecera.js. -->
   <header class="cabecera">
+    <div class="cabecera-fila">
     <a href="#/inicio" id="marca" class="marca">
-      <img class="marca-logo" src="assets/favicon.svg" alt="" width="32" height="32">
+      <img class="marca-logo" src="assets/favicon.svg" alt="" width="40" height="40">
       <span class="marca-textos"><span class="marca-titulo" id="marca-nombre"></span><small class="marca-curso" hidden><span id="marca-bandera" aria-hidden="true"></span><span id="marca-subtitulo"></span></small></span>
     </a>
     <nav id="cabecera-nav" class="cabecera-nav" data-t-aria="html.secciones">
       <a class="btn" href="#/inicio" data-nav="inicio">Inicio</a>
-      <a class="btn" href="#/entrar" data-nav="entrar" id="nav-entrar">Entrar</a>
-      <a class="btn" href="#/precios" data-nav="precios" id="nav-max">Paglot Max</a>
+      <a class="btn" href="#/idiomas" data-nav="idiomas">Idiomas</a>
+      <a class="btn nav-max" href="#/precios" data-nav="precios">Paglot Max</a>
     </nav>
     <nav id="menu" class="menu" data-t-aria="html.secciones"></nav>
     <span class="cabecera-botones">
@@ -134,6 +141,9 @@
       <button type="button" id="btn-sonido" class="btn btn-icono" aria-pressed="true" aria-label="Mute sounds">♪</button>
       <button type="button" id="btn-tema" class="btn btn-icono" aria-label="Switch to dark mode">☾</button>
     </span>
+    <div id="cabecera-cuenta" class="cabecera-cuenta"></div>
+    </div>
+    <div id="cabecera-cinta" class="cabecera-cinta" hidden></div>
   </header>
 
   <main id="app" tabindex="-1">
@@ -144,11 +154,17 @@
   </main>
 
   <footer id="pie-sitio" class="pie-sitio">
-    <div class="pie-interior">
+    <div class="pie-escena">
+      <div class="pie-tutoras" data-pie-tutoras="izq" aria-hidden="true"></div>
       <a class="pie-marca" href="#/inicio" aria-label="Paglot — Inicio">
-        <img src="assets/favicon.svg" alt="" width="36" height="36">
-        <span><strong>Paglot</strong><small data-pie-lema>Learn at your own pace</small></span>
+        <img class="pie-logo" src="assets/logo.svg" alt="" width="160" height="160">
+        <span class="pie-nombre" aria-hidden="true">Pa<span>glot</span></span>
+        <small class="pie-lema" data-pie-lema>Learn at your own pace</small>
       </a>
+      <div class="pie-tutoras" data-pie-tutoras="der" aria-hidden="true"></div>
+    </div>
+    <div class="pie-suelo" aria-hidden="true"></div>
+    <div class="pie-interior">
       <nav class="pie-grupos" aria-label="Paglot">
         <section class="pie-grupo">
           <h2 data-pie-titulo="descubre">Discover</h2>
@@ -175,7 +191,13 @@
         </section>
       </nav>
     </div>
-    <div class="pie-base"><span>© Paglot</span><span data-pie-final>Aprender, a tu ritmo.</span></div>
+    <div class="pie-base">
+      <div class="pie-base-interior">
+        <span class="pie-anio" data-pie-anio>© Paglot</span>
+        <span class="pie-firma" data-pie-final>Aprender, a tu ritmo.</span>
+        <button type="button" class="pie-subir" data-pie-subir>▲</button>
+      </div>
+    </div>
   </footer>
 
   <aside id="tutora" class="tutora" data-t-aria="tutora.nombre">
