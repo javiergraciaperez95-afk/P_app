@@ -1,205 +1,538 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "245",
   "capitulo": 21,
-  "titulo_es": "A continuación",
-  "titulo": {"en": "Next"},
-  "intro": {"en": "Speaking in public: opening a talk, moving from point to point, stressing what matters and closing."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "la exposición": {"en": "the talk, the presentation", "pron": "la eks-po-si-THYON", "genero": "f"},
-    "exponer": {"en": "to present, to set out", "pron": "eks-po-NER", "cat": "verb", "nota": "Like poner: expongo."},
-    "a continuación": {"en": "next", "pron": "a kon-ti-nwa-THYON", "cat": "adverb"},
-    "por lo que se refiere a": {"en": "as far as… is concerned", "pron": "por lo ke se re-FYE-re a", "cat": "preposition"},
-    "respecto a": {"en": "regarding", "pron": "res-PEK-to a", "cat": "preposition"},
-    "en relación con": {"en": "in relation to", "pron": "en re-la-THYON kon", "cat": "preposition"},
-    "por otra parte": {"en": "on the other hand, moreover", "pron": "por O-tra PAR-te", "cat": "connector"},
-    "tener en cuenta": {"en": "to bear in mind", "pron": "te-NER en KWEN-ta", "cat": "expression"},
-    "precisamente": {"en": "precisely", "pron": "pre-thi-sa-MEN-te", "cat": "adverb"},
-    "concretamente": {"en": "specifically", "pron": "kon-kre-ta-MEN-te", "cat": "adverb"},
-    "especialmente": {"en": "especially", "pron": "es-pe-thyal-MEN-te", "cat": "adverb"},
-    "como dijo": {"en": "as … said", "pron": "KO-mo DI-ho", "cat": "expression"},
-    "citar": {"en": "to quote", "pron": "thi-TAR", "cat": "verb"},
-    "para finalizar": {"en": "to finish", "pron": "PA-ra fi-na-li-THAR", "cat": "expression"},
-    "en suma": {"en": "in sum", "pron": "en SU-ma", "cat": "connector"},
-    "resumiendo": {"en": "to sum up", "pron": "re-su-MYEN-do", "cat": "expression"},
-    "el público": {"en": "the audience", "pron": "el PU-bli-ko", "genero": "m"},
-    "la diapositiva": {"en": "the slide", "pron": "la dya-po-si-TI-ba", "genero": "f"}
+    "la exposición": {
+      "$f": "p.la exposición",
+      "pron": "la eks-po-si-THYON",
+      "genero": "f"
+    },
+    "exponer": {
+      "$f": "p.exponer",
+      "pron": "eks-po-NER",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.exponer.nota"
+      }
+    },
+    "a continuación": {
+      "$f": "p.a continuación",
+      "pron": "a kon-ti-nwa-THYON",
+      "cat": "adv"
+    },
+    "por lo que se refiere a": {
+      "$f": "p.por lo que se refiere a",
+      "pron": "por lo ke se re-FYE-re a",
+      "cat": "prep"
+    },
+    "respecto a": {
+      "$f": "p.respecto a",
+      "pron": "res-PEK-to a",
+      "cat": "prep"
+    },
+    "en relación con": {
+      "$f": "p.en relación con",
+      "pron": "en re-la-THYON kon",
+      "cat": "prep"
+    },
+    "por otra parte": {
+      "$f": "p.por otra parte",
+      "pron": "por O-tra PAR-te",
+      "cat": "connector"
+    },
+    "tener en cuenta": {
+      "$f": "p.tener en cuenta",
+      "pron": "te-NER en KWEN-ta",
+      "cat": "expr"
+    },
+    "precisamente": {
+      "$f": "p.precisamente",
+      "pron": "pre-thi-sa-MEN-te",
+      "cat": "adv"
+    },
+    "concretamente": {
+      "$f": "p.concretamente",
+      "pron": "kon-kre-ta-MEN-te",
+      "cat": "adv"
+    },
+    "especialmente": {
+      "$f": "p.especialmente",
+      "pron": "es-pe-thyal-MEN-te",
+      "cat": "adv"
+    },
+    "como dijo": {
+      "$f": "p.como dijo",
+      "pron": "KO-mo DI-ho",
+      "cat": "expr"
+    },
+    "citar": {
+      "$f": "p.citar",
+      "pron": "thi-TAR",
+      "cat": "verb"
+    },
+    "para finalizar": {
+      "$f": "p.para finalizar",
+      "pron": "PA-ra fi-na-li-THAR",
+      "cat": "expr"
+    },
+    "en suma": {
+      "$f": "p.en suma",
+      "pron": "en SU-ma",
+      "cat": "connector"
+    },
+    "resumiendo": {
+      "$f": "p.resumiendo",
+      "pron": "re-su-MYEN-do",
+      "cat": "expr"
+    },
+    "el público": {
+      "$f": "p.el público",
+      "pron": "el PU-bli-ko",
+      "genero": "m"
+    },
+    "la diapositiva": {
+      "$f": "p.la diapositiva",
+      "pron": "la dya-po-si-TI-ba",
+      "genero": "f"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "A talk in four moves"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "**1. Opening.** Catch attention with a question, then announce your plan:\n\n- **¿Sabían ustedes que**…?\n- **Hoy voy a hablarles de**…\n- **En primer lugar**, explicaré… **A continuación**, veremos… **Por último**…\n\n**2. Moving on.**\n\n- **Pasamos a otro tema.**\n- **Ahora quisiera pasar a hablarles de**…\n- **Por lo que se refiere a** los precios… / **Respecto a**… / **En relación con**… / **En cuanto a**…\n- **Por otra parte**…\n\n**3. Stressing.**\n\n- **Hay que tener en cuenta que**…\n- **Especialmente**, **precisamente**, **concretamente**, **sobre todo**.\n- Quoting: **Como dijo** Machado, «se hace camino al andar».\n\n**4. Closing.**\n\n- **Para finalizar**… / **Para acabar**…\n- **Resumiendo**… / **En suma**… / **En conclusión**…\n- **Solo me queda por decir una cosa.**\n- **Muchas gracias por su atención. ¿Alguna pregunta?**\n\nIf someone interrupts: **Por favor, no me interrumpan.** **Ya termino.** And to hand over: **Usted primero, por favor.** **Adelante.**\n\nA talk uses **ustedes** even in Spain when the audience is not made up of friends."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "texto",
-      "titulo": {"en": "A talk about sleep"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
-          "es": "Buenas tardes. ¿Sabían ustedes que pasamos durmiendo casi un tercio de nuestra vida?",
-          "en": "Good afternoon. Did you know that we spend almost a third of our lives sleeping?",
+          "$f": "b2.f0",
           "analisis": [
-            ["Buenas tardes", "greeting"],
-            ["¿Sabían ustedes que", "opening question"],
-            ["pasamos durmiendo", "verb"],
-            ["casi un tercio de nuestra vida", "object"]
+            [
+              "Buenas tardes",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "¿Sabían ustedes que",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "pasamos durmiendo",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "casi un tercio de nuestra vida",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
-          "es": "Hoy voy a hablarles del sueño: en primer lugar explicaré para qué sirve y, a continuación, veremos por qué dormimos cada vez peor.",
-          "en": "Today I am going to talk to you about sleep: first I will explain what it is for and, next, we will see why we sleep worse and worse.",
+          "$f": "b2.f1",
           "analisis": [
-            ["Hoy voy a hablarles del sueño", "announcing the topic"],
-            ["en primer lugar", "order"],
-            ["explicaré", "verb"],
-            ["para qué sirve", "question"],
-            ["a continuación", "order"],
-            ["veremos", "verb"],
-            ["por qué dormimos cada vez peor", "question"]
+            [
+              "Hoy voy a hablarles del sueño",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "en primer lugar",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "explicaré",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "para qué sirve",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "a continuación",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "veremos",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "por qué dormimos cada vez peor",
+              {
+                "$t": "a6"
+              }
+            ]
           ]
         },
         {
-          "es": "Por lo que se refiere a los adultos, los médicos recomiendan entre siete y ocho horas.",
-          "en": "As far as adults are concerned, doctors recommend between seven and eight hours.",
+          "$f": "b2.f2",
           "analisis": [
-            ["Por lo que se refiere a los adultos", "topic"],
-            ["los médicos", "subject"],
-            ["recomiendan", "verb"],
-            ["entre siete y ocho horas", "object"]
+            [
+              "Por lo que se refiere a los adultos",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "los médicos",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "recomiendan",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "entre siete y ocho horas",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
-          "es": "Hay que tener en cuenta, sin embargo, que uno de cada tres españoles duerme menos de seis.",
-          "en": "It must be borne in mind, however, that one in three Spaniards sleeps less than six.",
+          "$f": "b2.f3",
           "analisis": [
-            ["Hay que tener en cuenta", "stressing"],
-            ["sin embargo", "contrast"],
-            ["uno de cada tres españoles", "subject"],
-            ["duerme", "verb"],
-            ["menos de seis", "object"]
+            [
+              "Hay que tener en cuenta",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "sin embargo",
+              {
+                "$t": "a10"
+              }
+            ],
+            [
+              "uno de cada tres españoles",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "duerme",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "menos de seis",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
-          "es": "El problema afecta especialmente a los jóvenes, y concretamente a quienes usan el móvil en la cama.",
-          "en": "The problem especially affects young people, and specifically those who use their phone in bed.",
+          "$f": "b2.f4",
           "analisis": [
-            ["El problema", "subject"],
-            ["afecta", "verb"],
-            ["especialmente", "stressing"],
-            ["a los jóvenes", "object"],
-            ["concretamente", "stressing"],
-            ["a quienes usan el móvil en la cama", "object"]
+            [
+              "El problema",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "afecta",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "especialmente",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "a los jóvenes",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "concretamente",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "a quienes usan el móvil en la cama",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
-          "es": "Como dijo un médico amigo mío, «el sueño no se recupera, se pierde».",
-          "en": "As a doctor friend of mine said, 'sleep is not recovered, it is lost'.",
+          "$f": "b2.f5",
           "analisis": [
-            ["Como dijo", "quoting"],
-            ["un médico amigo mío", "subject"],
-            ["el sueño", "subject"],
-            ["no se recupera", "verb"],
-            ["se pierde", "verb"]
+            [
+              "Como dijo",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "un médico amigo mío",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "el sueño",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "no se recupera",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "se pierde",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
-          "es": "Para finalizar, y resumiendo: dormir bien no es un lujo, sino una necesidad. Muchas gracias por su atención.",
-          "en": "To finish, and summing up: sleeping well is not a luxury but a necessity. Thank you very much for your attention.",
+          "$f": "b2.f6",
           "analisis": [
-            ["Para finalizar", "closing"],
-            ["resumiendo", "closing"],
-            ["dormir bien", "subject"],
-            ["no es un lujo", "verb"],
-            ["sino una necesidad", "correction"],
-            ["Muchas gracias por su atención", "thanks"]
+            [
+              "Para finalizar",
+              {
+                "$t": "a12"
+              }
+            ],
+            [
+              "resumiendo",
+              {
+                "$t": "a12"
+              }
+            ],
+            [
+              "dormir bien",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "no es un lujo",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "sino una necesidad",
+              {
+                "$t": "a13"
+              }
+            ],
+            [
+              "Muchas gracias por su atención",
+              {
+                "$t": "a14"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "test",
       "id": "presentacion-1",
-      "pregunta": {"en": "Which phrase announces the next part of a talk?"},
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
       "opciones": {
-        "A continuación…": {"en": "Next…"},
-        "Como dijo…": {"en": "That introduces a quotation."},
-        "En suma…": {"en": "That closes."}
+        "A continuación…": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "Como dijo…": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "En suma…": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "A continuación…"
     },
     {
       "tipo": "test",
       "id": "presentacion-2",
-      "pregunta": {"en": "According to the talk, how many Spaniards sleep less than six hours?"},
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
       "opciones": {
-        "One in three": {"en": "Uno de cada tres."},
-        "A third of young people": {"en": "The figure is about all Spaniards."},
-        "Seven or eight in ten": {"en": "Seven to eight is the number of hours recommended."}
+        "One in three": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "A third of young people": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "Seven or eight in ten": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "One in three"
     },
     {
       "tipo": "huecos",
       "id": "presentacion-3",
-      "pregunta": {"en": "Complete: it must be borne in mind that prices have gone up."},
-      "frase": "Hay que tener en ___ que los precios han subido.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "cuenta": {"en": "Tener en cuenta: to bear in mind."},
-        "cuento": {"en": "The phrase is tener en cuenta."},
-        "mente": {"en": "You can say tener en mente for a plan, but the set phrase here is tener en cuenta."}
+        "cuenta": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "cuento": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "mente": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "cuenta"
     },
     {
       "tipo": "traduccion",
       "id": "presentacion-4",
-      "frase": "Por lo que se refiere al precio…",
+      "frase": {
+        "$e": "b7.frase"
+      },
       "opciones": [
-        {"texto": {"en": "As far as the price is concerned…"}, "correcta": true},
         {
-          "texto": {"en": "Because he refers to the price…"},
-          "explicacion": {"en": "Por lo que se refiere a: as regards."}
+          "texto": {
+            "$t": "b7.o0"
+          },
+          "correcta": true
         },
-        {"texto": {"en": "For what the price is worth…"}, "explicacion": {"en": "The phrase introduces a topic."}}
+        {
+          "texto": {
+            "$t": "b7.o1"
+          },
+          "explicacion": {
+            "$t": "b7.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b7.o2"
+          },
+          "explicacion": {
+            "$t": "b7.o2.explicacion"
+          }
+        }
       ]
     },
     {
       "tipo": "test",
       "id": "presentacion-5",
-      "pregunta": {"en": "Which word narrows the focus to one exact case?"},
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
       "opciones": {
-        "concretamente": {"en": "Specifically."},
-        "por otra parte": {"en": "That adds a different point."},
-        "a continuación": {"en": "That announces what comes next."}
+        "concretamente": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "por otra parte": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "a continuación": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "concretamente"
     },
     {
       "tipo": "huecos",
       "id": "presentacion-6",
-      "pregunta": {"en": "Complete: sleeping well is not a luxury but a necessity."},
-      "frase": "Dormir bien no es un lujo, ___ una necesidad.",
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
+      "frase": {
+        "$e": "b9.frase"
+      },
       "audio": true,
       "opciones": {
-        "sino": {"en": "After a negation, sino corrects."},
-        "pero": {"en": "After no… the correction takes sino."},
-        "si no": {"en": "Written together here: sino."}
+        "sino": {
+          "$t": "b9.o0.refuerzo"
+        },
+        "pero": {
+          "$t": "b9.o1.refuerzo"
+        },
+        "si no": {
+          "$t": "b9.o2.refuerzo"
+        }
       },
       "correcta": "sino"
     },
     {
       "tipo": "ordenar",
       "id": "presentacion-7",
-      "frase": "Ahora quisiera pasar a hablarles de otro tema",
-      "traduccion": {"en": "Now I would like to move on to talk to you about another subject."}
+      "frase": {
+        "$e": "b10.frase"
+      },
+      "traduccion": {
+        "$t": "b10.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (150–180 words).** Write the outline and the opening and closing paragraphs of a five-minute talk on a subject you know well.\n\n**Speak (about 3 minutes).** Give that talk aloud in three to five minutes, standing up, with an opening question and a clear ending."
+        "$t": "b11.texto"
       }
     }
   ]

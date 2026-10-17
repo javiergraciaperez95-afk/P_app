@@ -1,131 +1,275 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "140",
   "capitulo": 13,
-  "titulo_es": "Se me olvidó",
-  "titulo": { "en": "I forgot" },
-  "intro": { "en": "Se me + verb frames an unintended event as something that happened to you." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "se me olvidó": { "en": "I forgot (it slipped my mind)", "pron": "se me ol-bi-DO", "cat": "expression" },
-    "se me cayeron": { "en": "I dropped them", "pron": "se me ka-YE-ron", "cat": "expression" },
-    "las llaves": { "en": "the keys", "pron": "las YA-bes", "cat": "noun", "genero": "f" },
-    "el nombre": { "en": "the name", "pron": "el NOM-bre", "cat": "noun", "genero": "m" },
-    "olvidar": { "en": "to forget", "pron": "ol-bi-DAR", "cat": "verb", "nota": "First-person preterite: olvidé. Se me olvidó frames the forgetting as something that happened to the speaker." },
-    "caer": { "en": "to fall", "pron": "ka-ER", "cat": "verb" },
-    "otra vez": { "en": "again", "pron": "O-tra BETH/BEHS", "cat": "expression" }
+    "se me olvidó": {
+      "$f": "p.se me olvidó",
+      "pron": "se me ol-bi-DO",
+      "cat": "expr"
+    },
+    "se me cayeron": {
+      "$f": "p.se me cayeron",
+      "pron": "se me ka-YE-ron",
+      "cat": "expr"
+    },
+    "las llaves": {
+      "$f": "p.las llaves",
+      "pron": "las YA-bes",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "el nombre": {
+      "$f": "p.el nombre",
+      "pron": "el NOM-bre",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "olvidar": {
+      "$f": "p.olvidar",
+      "pron": "ol-bi-DAR",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.olvidar.nota"
+      }
+    },
+    "caer": {
+      "$f": "p.caer",
+      "pron": "ka-ER",
+      "cat": "verb"
+    },
+    "otra vez": {
+      "$f": "p.otra vez",
+      "pron": "O-tra BETH/BEHS",
+      "cat": "expr"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "It happened to me",
-      "texto": "**Se + an indirect-object pronoun + verb** presents an unintended event as something that happened to a person.\n\n- **Se me olvidó** el nombre. (I forgot the name; it slipped my mind.)\n- **Se me cayeron** las llaves. (I dropped the keys; they fell accidentally.)\n\nThe affected thing is the grammatical **subject**, so the verb agrees with it: one name, **olvidó**; several keys, **cayeron**.\n\nThe dative pronouns **me, te, le, nos, os, les** identify who was affected."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "dialogo",
-      "titulo": "The keys",
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "Se me olvidó el nombre.",
-          "en": "I forgot the name.",
           "analisis": [
-            ["Se me olvidó", "it slipped my mind"],
-            ["el nombre", "the name"]
+            [
+              "Se me olvidó",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "el nombre",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "¿Otra vez?",
-          "en": "Again?",
-          "analisis": [["¿Otra vez?", "again"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Sí, y se me cayeron las llaves.",
-          "en": "Yes, and I dropped the keys.",
           "analisis": [
-            ["se me cayeron", "I dropped them (unintentionally)"],
-            ["las llaves", "the keys"]
+            [
+              "¿Otra vez?",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
-          "quien": "Pablo",
-          "es": "Yo olvidé el paraguas.",
-          "en": "I forgot the umbrella.",
-          "nota": "Without se me, olvidé is a plain statement.",
+          "$f": "b2.f2",
+          "quien": "Lucía",
           "analisis": [
-            ["olvidé", "I forgot"],
-            ["el paraguas", "the umbrella"]
+            [
+              "se me cayeron",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "las llaves",
+              {
+                "$t": "a4"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f3",
+          "quien": "Pablo",
+          "nota": {
+            "$t": "b2.f3.nota"
+          },
+          "analisis": [
+            [
+              "olvidé",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "el paraguas",
+              {
+                "$t": "a6"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["se me olvidó", "se me cayeron", "las llaves", "el nombre", "olvidar", "caer", "otra vez"]
+      "palabras": [
+        "se me olvidó",
+        "se me cayeron",
+        "las llaves",
+        "el nombre",
+        "olvidar",
+        "caer",
+        "otra vez"
+      ]
     },
     {
       "tipo": "huecos",
       "id": "b1-seme-cayeron",
-      "pregunta": { "en": "Complete: I dropped the keys." },
-      "frase": "Se me ___ las llaves.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "cayeron": { "en": "Las llaves is plural, so the verb is plural." },
-        "cayó": { "en": "Cayó is for one thing: se me cayó el vaso." },
-        "olvidó": { "en": "Olvidó means forgot, not dropped." }
+        "cayeron": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "cayó": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "olvidó": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "cayeron"
     },
     {
       "tipo": "escribir",
       "id": "b1-seme-nombre",
-      "pregunta": { "en": "Translate: «I forgot the name.» Use the accidental form." },
-      "respuestas": ["Se me olvidó el nombre"],
-      "explicacion": { "en": "Se me olvidó + the thing. The verb is singular because nombre is singular." }
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "respuestas": [
+        "Se me olvidó el nombre"
+      ],
+      "explicacion": {
+        "$t": "b5.explicacion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "b1-seme-m1",
-      "pregunta": {"en": "Complete: I forgot the keys. (they slipped my mind)"},
-      "frase": "Se me ___ las llaves.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "olvidaron": {"en": "The verb agrees with las llaves."},
-        "olvidó": {"en": "Llaves is plural."},
-        "olvidé": {"en": "With se me, the verb agrees with the thing."}
+        "olvidaron": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "olvidó": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "olvidé": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "olvidaron"
     },
     {
       "tipo": "huecos",
       "id": "b1-seme-m2",
-      "pregunta": {"en": "Complete: you dropped the glass."},
-      "frase": "Se ___ cayó el vaso.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "te": {"en": "It happened to you: te."},
-        "me": {"en": "Me would be I dropped it."},
-        "tu": {"en": "Tu is your."}
+        "te": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "me": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "tu": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "te"
     },
     {
       "tipo": "traduccion",
       "id": "b1-seme-m3",
-      "frase": "Se me cayeron las llaves.",
+      "frase": {
+        "$e": "b8.frase"
+      },
       "opciones": [
-        {"texto": {"en": "I dropped the keys."}, "correcta": true},
         {
-          "texto": {"en": "The keys fell on top of me."},
-          "explicacion": {"en": "The construction frames the drop as a mishap; it does not specify exactly where the keys fell from."}
+          "texto": {
+            "$t": "b8.o0"
+          },
+          "correcta": true
         },
-        {"texto": {"en": "I threw the keys away."}, "explicacion": {"en": "The phrase presents it as an accident."}}
+        {
+          "texto": {
+            "$t": "b8.o1"
+          },
+          "explicacion": {
+            "$t": "b8.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b8.o2"
+          },
+          "explicacion": {
+            "$t": "b8.o2.explicacion"
+          }
+        }
       ]
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write about a disastrous day in which things got lost, broken and forgotten, using se me…\n\n**Speak (about 2 minutes).** Apologise aloud for five small disasters, explaining that they were accidents."
+        "$t": "b9.texto"
       }
     }
   ]

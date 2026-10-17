@@ -1,173 +1,429 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "210",
   "capitulo": 19,
-  "titulo_es": "Serían las diez",
-  "titulo": {"en": "It must have been about ten"},
-  "intro": {"en": "Guessing about the past: the conditional, the two perfects, and deber de."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "serían": {"en": "it was probably (with times)", "pron": "se-RI-an", "cat": "verb"},
-    "tendría": {"en": "he/she probably had, was probably (age)", "pron": "ten-DRI-a", "cat": "verb"},
-    "estaría": {"en": "he/she was probably", "pron": "es-ta-RI-a", "cat": "verb"},
-    "habrá abierto": {"en": "he/she has probably opened", "pron": "a-BRA a-BYER-to", "cat": "verb"},
-    "habría llegado": {"en": "he/she had probably arrived", "pron": "a-BRI-a ye-GA-do", "cat": "verb"},
+    "serían": {
+      "$f": "p.serían",
+      "pron": "se-RI-an",
+      "cat": "verb"
+    },
+    "tendría": {
+      "$f": "p.tendría",
+      "pron": "ten-DRI-a",
+      "cat": "verb"
+    },
+    "estaría": {
+      "$f": "p.estaría",
+      "pron": "es-ta-RI-a",
+      "cat": "verb"
+    },
+    "habrá abierto": {
+      "$f": "p.habrá abierto",
+      "pron": "a-BRA a-BYER-to",
+      "cat": "verb"
+    },
+    "habría llegado": {
+      "$f": "p.habría llegado",
+      "pron": "a-BRI-a ye-GA-do",
+      "cat": "verb"
+    },
     "deber de": {
-      "en": "must (a supposition)",
+      "$f": "p.deber de",
       "pron": "de-BER de",
       "cat": "verb",
-      "nota": "Deber de plus infinitive is a guess. Deber alone is a duty."
+      "nota": {
+        "$t": "p.deber de.nota"
+      }
     },
-    "lo más probable es que": {"en": "most likely", "pron": "lo mas pro-BA-ble es ke", "cat": "expression"},
-    "a saber": {"en": "who knows", "pron": "a sa-BER", "cat": "expression"},
-    "vete a saber": {"en": "goodness knows", "pron": "BE-te a sa-BER", "cat": "expression"},
-    "el vecino": {"en": "the neighbour", "pron": "el be-THI-no", "genero": "m"},
-    "la escalera": {"en": "the stairs", "pron": "la es-ka-LE-ra", "genero": "f"},
-    "el viento": {"en": "the wind", "pron": "el BYEN-to", "genero": "m"}
+    "lo más probable es que": {
+      "$f": "p.lo más probable es que",
+      "pron": "lo mas pro-BA-ble es ke",
+      "cat": "expr"
+    },
+    "a saber": {
+      "$f": "p.a saber",
+      "pron": "a sa-BER",
+      "cat": "expr"
+    },
+    "vete a saber": {
+      "$f": "p.vete a saber",
+      "pron": "BE-te a sa-BER",
+      "cat": "expr"
+    },
+    "el vecino": {
+      "$f": "p.el vecino",
+      "pron": "el be-THI-no",
+      "genero": "m"
+    },
+    "la escalera": {
+      "$f": "p.la escalera",
+      "pron": "la es-ka-LE-ra",
+      "genero": "f"
+    },
+    "el viento": {
+      "$f": "p.el viento",
+      "pron": "el BYEN-to",
+      "genero": "m"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Four tenses for guessing"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "Each tense you use for a fact has a partner you use for a guess.\n\n- **Está** en casa. → **Estará** en casa. (about now)\n- **Ha salido.** → **Habrá salido.** (about the recent past)\n- **Estaba** / **estuvo** en casa. → **Estaría** en casa. (about the past)\n- **Había salido.** → **Habría salido.** (about a time before the past)\n\nSo: **serían** las diez cuando llegó. **Tendría** unos veinte años.\n\nOther tools:\n\n- **deber de** + infinitive: **debe de** estar enfermo; **debía de** ser el gato\n- **seguro que** + indicative\n- **lo más probable es que** + subjunctive\n- **a saber**, **vete a saber**, **quién sabe**: a saber dónde estará"
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "Fact and guess"},
-      "columnas": ["I know", "I suppose"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        }
+      ],
       "filas": [
-        ["Está en casa.", "Estará en casa."],
-        ["Ha salido.", "Habrá salido."],
-        ["Estaba en casa.", "Estaría en casa."],
-        ["Había salido.", "Habría salido."]
+        [
+          "Está en casa.",
+          "Estará en casa."
+        ],
+        [
+          "Ha salido.",
+          "Habrá salido."
+        ],
+        [
+          "Estaba en casa.",
+          "Estaría en casa."
+        ],
+        [
+          "Había salido.",
+          "Habría salido."
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "A noise in the night"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "Anoche oí un ruido en la escalera. Serían las tres.",
-          "en": "Last night I heard a noise on the stairs. It must have been about three.",
           "analisis": [
-            ["Anoche", "time"],
-            ["oí", "verb"],
-            ["un ruido", "object"],
-            ["en la escalera", "place"],
-            ["Serían las tres", "verb (guess about the past)"]
+            [
+              "Anoche",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "oí",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "un ruido",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "en la escalera",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "Serían las tres",
+              {
+                "$t": "a4"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f1",
           "quien": "Pablo",
-          "es": "Sería el vecino. Vuelve muy tarde.",
-          "en": "It was probably the neighbour. He gets back very late.",
-          "analisis": [["Sería", "verb (guess)"], ["el vecino", "who"], ["Vuelve", "verb"], ["muy tarde", "time"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "No, el vecino ya habría llegado. Vi su coche a las doce.",
-          "en": "No, the neighbour would already have arrived. I saw his car at twelve.",
           "analisis": [
-            ["el vecino", "subject"],
-            ["ya habría llegado", "verb (guess before a past point)"],
-            ["Vi", "verb"],
-            ["su coche", "object"],
-            ["a las doce", "time"]
+            [
+              "Sería",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "el vecino",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "Vuelve",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "muy tarde",
+              {
+                "$t": "a0"
+              }
+            ]
           ]
         },
         {
-          "quien": "Pablo",
-          "es": "Entonces debía de ser el gato.",
-          "en": "Then it must have been the cat.",
-          "analisis": [["Entonces", "then"], ["debía de ser", "verb (supposition)"], ["el gato", "what"]]
-        },
-        {
+          "$f": "b3.f2",
           "quien": "Lucía",
-          "es": "Y esta mañana la ventana estaba abierta. ¿Quién la habrá abierto?",
-          "en": "And this morning the window was open. Who can have opened it?",
           "analisis": [
-            ["esta mañana", "time"],
-            ["la ventana", "subject"],
-            ["estaba abierta", "verb"],
-            ["¿Quién", "question"],
-            ["la habrá abierto", "verb (guess about the recent past)"]
+            [
+              "el vecino",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "ya habría llegado",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "Vi",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "su coche",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "a las doce",
+              {
+                "$t": "a0"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f3",
           "quien": "Pablo",
-          "es": "A saber. Lo más probable es que fuera el viento.",
-          "en": "Who knows. Most likely it was the wind.",
           "analisis": [
-            ["A saber", "who knows"],
-            ["Lo más probable es que", "probability"],
-            ["fuera", "verb (past subjunctive)"],
-            ["el viento", "what"]
+            [
+              "Entonces",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "debía de ser",
+              {
+                "$t": "a10"
+              }
+            ],
+            [
+              "el gato",
+              {
+                "$t": "a11"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "esta mañana",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "la ventana",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "estaba abierta",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "¿Quién",
+              {
+                "$t": "a12"
+              }
+            ],
+            [
+              "la habrá abierto",
+              {
+                "$t": "a13"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f5",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "A saber",
+              {
+                "$t": "a14"
+              }
+            ],
+            [
+              "Lo más probable es que",
+              {
+                "$t": "a15"
+              }
+            ],
+            [
+              "fuera",
+              {
+                "$t": "a16"
+              }
+            ],
+            [
+              "el viento",
+              {
+                "$t": "a11"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "conjetura-1",
-      "pregunta": {"en": "Guess about the past: it must have been about ten when he arrived."},
-      "frase": "___ las diez cuando llegó.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "Serían": {"en": "The conditional is a guess about the past."},
-        "Serán": {"en": "Serán is a guess about now."},
-        "Eran": {"en": "Eran states it as a fact."}
+        "Serían": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "Serán": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "Eran": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "Serían"
     },
     {
       "tipo": "huecos",
       "id": "conjetura-2",
-      "pregunta": {"en": "Guess about now: he must be ill."},
-      "frase": "Debe ___ estar enfermo.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "de": {"en": "Deber de is a supposition."},
-        "que": {"en": "Que goes with tener."},
-        "a": {"en": "Deber does not take a."}
+        "de": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "que": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "a": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "de"
     },
     {
       "tipo": "test",
       "id": "conjetura-3",
-      "pregunta": {"en": "«Tendría unos veinte años cuando lo conocí.» It means…"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "He was probably about twenty": {"en": "A guess about the past."},
-        "He was about to turn twenty": {"en": "That would be iba a cumplir veinte años."},
-        "He will be twenty": {"en": "That is tendrá veinte años."}
+        "He was probably about twenty": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "He was about to turn twenty": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "He will be twenty": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "He was probably about twenty"
     },
     {
       "tipo": "huecos",
       "id": "conjetura-4",
-      "pregunta": {"en": "She hasn't brought the book. Guess: she has probably forgotten."},
-      "frase": "No ha traído el libro. Se le ___ olvidado.",
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "frase": {
+        "$e": "b8.frase"
+      },
       "audio": true,
       "opciones": {
-        "habrá": {"en": "A guess about the recent past: future perfect."},
-        "ha": {"en": "Ha olvidado states it as a fact."},
-        "haya": {"en": "Haya needs a trigger for the subjunctive."}
+        "habrá": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "ha": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "haya": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "habrá"
     },
     {
       "tipo": "ordenar",
       "id": "conjetura-5",
-      "frase": "¿Quién habrá abierto la ventana?",
-      "traduccion": {"en": "Who can have opened the window?"}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (150–180 words).** Reconstruct in writing what probably happened in an unexplained event, such as a robbery with no witnesses.\n\n**Speak (about 3 minutes).** Look at an old photograph and speculate aloud about when it was taken, who the people were and what they were doing."
+        "$t": "b10.texto"
       }
     }
   ]

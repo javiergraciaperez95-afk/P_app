@@ -1,168 +1,447 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "130",
   "capitulo": 12,
-  "titulo_es": "Estoy harto",
-  "titulo": {"en": "I'm fed up"},
-  "intro": {"en": "Stronger feelings: being fed up, not being able to stand something, not caring, and changing mood."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "estoy harto de": {"en": "I'm fed up with", "pron": "es-TOI AR-to de", "cat": "expression", "nota": "Use harta when the speaker is feminine: estoy harta de."},
-    "no soporto": {"en": "I can't stand", "pron": "no so-POR-to", "cat": "verb"},
-    "me da igual": {"en": "I don't care, it's all the same to me", "pron": "me da i-GWAL", "cat": "expression"},
-    "me pone de mal humor": {"en": "it puts me in a bad mood", "pron": "me PO-ne de mal u-MOR", "cat": "expression"},
-    "me pongo triste": {"en": "I get sad", "pron": "me PON-go TRIS-te", "cat": "expression"},
-    "me da pena": {"en": "it makes me sad, I feel sorry", "pron": "me da PE-na", "cat": "expression"},
-    "deprimido": {"en": "depressed, down", "pron": "de-pri-MI-do", "cat": "adjective"},
-    "estresado": {"en": "stressed", "pron": "es-tre-SA-do", "cat": "adjective"},
-    "asustado": {"en": "frightened", "pron": "a-sus-TA-do", "cat": "adjective"},
-    "enamorado de": {"en": "in love with", "pron": "e-na-mo-RA-do de", "cat": "adjective"},
-    "enfadarse con": {"en": "to get angry with", "pron": "en-fa-DAR-se kon", "cat": "verb"},
-    "aburrirse": {"en": "to get bored", "pron": "a-bu-RRIR-se", "cat": "verb"},
-    "deprimirse": {"en": "to become depressed, down", "pron": "de-pri-MIR-se", "cat": "verb"},
-    "llorar": {"en": "to cry", "pron": "yo-RAR", "cat": "verb"},
-    "no puedo más": {"en": "I can't take any more", "pron": "no PWE-do mas", "cat": "expression"},
-    "basta ya": {"en": "that's enough", "pron": "BAS-ta ya", "cat": "expression"},
-    "de buen humor": {"en": "in a good mood", "pron": "de bwen u-MOR", "cat": "expression"},
-    "el ánimo": {"en": "mood, spirits", "pron": "el A-ni-mo", "cat": "noun", "genero": "m"}
+    "estoy harto de": {
+      "$f": "p.estoy harto de",
+      "pron": "es-TOI AR-to de",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.estoy harto de.nota"
+      }
+    },
+    "no soporto": {
+      "$f": "p.no soporto",
+      "pron": "no so-POR-to",
+      "cat": "verb"
+    },
+    "me da igual": {
+      "$f": "p.me da igual",
+      "pron": "me da i-GWAL",
+      "cat": "expr"
+    },
+    "me pone de mal humor": {
+      "$f": "p.me pone de mal humor",
+      "pron": "me PO-ne de mal u-MOR",
+      "cat": "expr"
+    },
+    "me pongo triste": {
+      "$f": "p.me pongo triste",
+      "pron": "me PON-go TRIS-te",
+      "cat": "expr"
+    },
+    "me da pena": {
+      "$f": "p.me da pena",
+      "pron": "me da PE-na",
+      "cat": "expr"
+    },
+    "deprimido": {
+      "$f": "p.deprimido",
+      "pron": "de-pri-MI-do",
+      "cat": "adj"
+    },
+    "estresado": {
+      "$f": "p.estresado",
+      "pron": "es-tre-SA-do",
+      "cat": "adj"
+    },
+    "asustado": {
+      "$f": "p.asustado",
+      "pron": "a-sus-TA-do",
+      "cat": "adj"
+    },
+    "enamorado de": {
+      "$f": "p.enamorado de",
+      "pron": "e-na-mo-RA-do de",
+      "cat": "adj"
+    },
+    "enfadarse con": {
+      "$f": "p.enfadarse con",
+      "pron": "en-fa-DAR-se kon",
+      "cat": "verb"
+    },
+    "aburrirse": {
+      "$f": "p.aburrirse",
+      "pron": "a-bu-RRIR-se",
+      "cat": "verb"
+    },
+    "deprimirse": {
+      "$f": "p.deprimirse",
+      "pron": "de-pri-MIR-se",
+      "cat": "verb"
+    },
+    "llorar": {
+      "$f": "p.llorar",
+      "pron": "yo-RAR",
+      "cat": "verb"
+    },
+    "no puedo más": {
+      "$f": "p.no puedo más",
+      "pron": "no PWE-do mas",
+      "cat": "expr"
+    },
+    "basta ya": {
+      "$f": "p.basta ya",
+      "pron": "BAS-ta ya",
+      "cat": "expr"
+    },
+    "de buen humor": {
+      "$f": "p.de buen humor",
+      "pron": "de bwen u-MOR",
+      "cat": "expr"
+    },
+    "el ánimo": {
+      "$f": "p.el ánimo",
+      "pron": "el A-ni-mo",
+      "cat": "sust",
+      "genero": "m"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Saying how you really feel"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "**Estar harto de** takes a noun, an infinitive or **que** + subjunctive: estoy harta **del** ruido; estoy harto **de esperar**; estoy harto **de que llegues** tarde.\n\n**No soportar** also takes a noun, an infinitive or **que** + subjunctive: no soporto **el** calor; no soporto **esperar**; no soporto **que me griten**.\n\nAn infinitive can name an activity or what the person feeling does: **me pone de mal humor madrugar**, **me da pena irme**. Use **que** + subjunctive to react to a finite clause, especially someone else's action: **me pone de mal humor que hagan ruido**, **me da pena que te vayas**.\n\n**Me da igual** shows indifference: me da igual el precio; me da igual **que venga** o no.\n\nA change of mood can use **ponerse** or other pronominal verbs: **me pongo** triste, **me enfado**, **me aburro**, **me deprimo**.\n\nWhen it is too much: **¡No puedo más!** **¡Basta ya!**"
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "The neighbours"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "¡No puedo más! Estoy harta de que los vecinos hagan ruido.",
-          "en": "I can't take any more! I'm fed up with the neighbours making noise.",
           "analisis": [
-            ["¡No puedo más!", "exclamation"],
-            ["Estoy harta de que", "feeling"],
-            ["los vecinos", "subject"],
-            ["hagan ruido", "verb (subjunctive)"]
+            [
+              "¡No puedo más!",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "Estoy harta de que",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "los vecinos",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "hagan ruido",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "¿Otra vez? A mí me da igual, duermo muy bien.",
-          "en": "Again? I don't mind; I sleep very well.",
-          "analisis": [["A mí", "who"], ["me da igual", "indifference"], ["duermo", "verb"], ["muy bien", "how"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Pues yo no soporto que pongan música a las tres.",
-          "en": "Well, I can't stand them putting music on at three.",
           "analisis": [
-            ["yo", "subject"],
-            ["no soporto que", "feeling"],
-            ["pongan", "verb (subjunctive)"],
-            ["música", "object"],
-            ["a las tres", "time"]
+            [
+              "A mí",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "me da igual",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "duermo",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "muy bien",
+              {
+                "$t": "a7"
+              }
+            ]
           ]
         },
         {
-          "quien": "Pablo",
-          "es": "¿Has hablado con ellos?",
-          "en": "Have you spoken to them?",
-          "analisis": [["¿Has hablado", "verb"], ["con ellos", "with whom"]]
-        },
-        {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "Sí, y se enfadaron conmigo. Me pone de mal humor verlos.",
-          "en": "Yes, and they got angry with me. Seeing them puts me in a bad mood.",
           "analisis": [
-            ["se enfadaron", "verb"],
-            ["conmigo", "with whom"],
-            ["Me pone de mal humor", "feeling"],
-            ["verlos", "infinitive (activity)"]
+            [
+              "yo",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "no soporto que",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "pongan",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "música",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "a las tres",
+              {
+                "$t": "a9"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "Me da pena que estés así. ¿Buscamos otro piso?",
-          "en": "I'm sorry you're like this. Shall we look for another flat?",
           "analisis": [
-            ["Me da pena que", "feeling"],
-            ["estés", "verb (subjunctive)"],
-            ["así", "how"],
-            ["¿Buscamos", "verb"],
-            ["otro piso", "object"]
+            [
+              "¿Has hablado",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "con ellos",
+              {
+                "$t": "a10"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "se enfadaron",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "conmigo",
+              {
+                "$t": "a10"
+              }
+            ],
+            [
+              "Me pone de mal humor",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "verlos",
+              {
+                "$t": "a11"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Me da pena que",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "estés",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "así",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "¿Buscamos",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "otro piso",
+              {
+                "$t": "a8"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "sentimientos-b1-1",
-      "pregunta": {"en": "Complete: I'm fed up with waiting."},
-      "frase": "Estoy harto ___ esperar.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
-      "opciones": {"de": {"en": "Estar harto de."}, "con": {"en": "Estar harto takes de."}, "a": {"en": "Estar harto takes de."}},
+      "opciones": {
+        "de": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "con": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "a": {
+          "$t": "b4.o2.refuerzo"
+        }
+      },
       "correcta": "de"
     },
     {
       "tipo": "huecos",
       "id": "sentimientos-b1-2",
-      "pregunta": {"en": "Complete: I can't stand people shouting at me."},
-      "frase": "No soporto que me ___.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "griten": {"en": "Two subjects: que plus subjunctive."},
-        "gritan": {"en": "After no soporto que, the subjunctive."},
-        "gritar": {"en": "This clause needs a conjugated verb: griten."}
+        "griten": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "gritan": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "gritar": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "griten"
     },
     {
       "tipo": "huecos",
       "id": "sentimientos-b1-3",
-      "pregunta": {"en": "Complete with the infinitive: getting up early puts me in a bad mood."},
-      "frase": "Me pone de mal humor ___.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "madrugar": {"en": "Use the infinitive to name the activity: madrugar."},
-        "que madrugue": {"en": "This finite clause would say someone else gets up early."},
-        "madrugo": {"en": "Name the activity with the infinitive: madrugar."}
+        "madrugar": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "que madrugue": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "madrugo": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "madrugar"
     },
     {
       "tipo": "traduccion",
       "id": "sentimientos-b1-4",
-      "frase": "Me da igual.",
+      "frase": {
+        "$e": "b7.frase"
+      },
       "opciones": [
-        {"texto": {"en": "I don't care."}, "correcta": true},
-        {"texto": {"en": "It suits me the same."}, "explicacion": {"en": "Dar igual expresses indifference."}},
-        {"texto": {"en": "Give me the same."}, "explicacion": {"en": "Dar igual expresses indifference."}}
+        {
+          "texto": {
+            "$t": "b7.o0"
+          },
+          "correcta": true
+        },
+        {
+          "texto": {
+            "$t": "b7.o1"
+          },
+          "explicacion": {
+            "$t": "b7.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b7.o2"
+          },
+          "explicacion": {
+            "$t": "b7.o2.explicacion"
+          }
+        }
       ]
     },
     {
       "tipo": "test",
       "id": "sentimientos-b1-5",
-      "pregunta": {"en": "Which verb shows a change of mood?"},
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
       "opciones": {
-        "Me pongo triste": {"en": "Ponerse: to become."},
-        "Soy triste": {"en": "Ser describes character."},
-        "Tengo triste": {"en": "Tener needs a noun."}
+        "Me pongo triste": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "Soy triste": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "Tengo triste": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "Me pongo triste"
     },
     {
       "tipo": "ordenar",
       "id": "sentimientos-b1-6",
-      "frase": "Estoy harta de que hagan ruido",
-      "traduccion": {"en": "I'm fed up with them making noise."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write a complaint about something you are fed up with in your building or neighbourhood, and what you cannot stand.\n\n**Speak (about 2 minutes).** Complain aloud to a friend about three things that annoy you, and say what you do not mind."
+        "$t": "b10.texto"
       }
     }
   ]

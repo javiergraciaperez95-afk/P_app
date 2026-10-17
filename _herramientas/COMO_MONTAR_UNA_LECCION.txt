@@ -47,7 +47,8 @@ NO es una copia del archivo base, es el texto español que se estudia.
         { "quien": "Pablo", "sintaxis": { … } } ] },
     { "id": "b3", "tipo": "vocabulario", "palabras": ["hola", "adiós"] },
     { "id": "b4", "tipo": "gramatica", "ejemplos": [ { "sintaxis": { … } } ] },
-    { "id": "b5", "tipo": "texto", "registro": "literario", "parrafos": [0, 1] },
+    { "id": "b5", "tipo": "texto", "registro": "literario", "frases": [
+        { "parrafo": 0, "sintaxis": { … } }, …  (3 a 5 frases por párrafo) ] },
     { "id": "b6", "tipo": "test",    "opciones": [ { "correcta": true }, { "correcta": false }, { "correcta": false } ] },
     { "id": "b7", "tipo": "huecos",  "opciones": [ … ] },
     { "id": "b8", "tipo": "ordenar" },
@@ -84,10 +85,9 @@ los 12 archivos. Ejemplo real, en/001.json:
   "b4.e1.texto": "Good night.",
 
   "b5.titulo": "The first light",
-  "b5.p0": "The bakery on the corner opens before the sun…",
-  "b5.p1": "Outside, the first neighbours wait…",
+  "b5.f0.texto": "The bakery on the corner opens before the sun comes up.",
+  "b5.f1.texto": "When Lucía pushes the door, it smells of warm flour.",
 
-  "b5.p0": "…",
 
   "b6.titulo": "Which greeting?",
   "b6.pregunta": "It's ten in the morning. How do you greet your teacher?",
@@ -120,7 +120,7 @@ valores de las claves «de estudio» son el texto español original.
 4.1 DE ESTUDIO — la frase o palabra en ese idioma
     b2.f<n>.texto    cada frase del diálogo
     b4.e<n>.texto    cada ejemplo de gramática
-    b5.p<n>          cada párrafo del texto literario
+    b5.f<n>.texto    cada frase de la lectura (lleva «parrafo» y «sintaxis» en el esqueleto)
     b6.o<n>          el texto de cada opción
     b7.frase         la frase del hueco o del ejercicio de ordenar
     n empieza en 0.

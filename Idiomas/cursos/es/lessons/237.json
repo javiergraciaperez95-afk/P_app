@@ -1,182 +1,451 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "237",
   "capitulo": 21,
-  "titulo_es": "Deberías haberlo dicho",
-  "titulo": {"en": "You should have said so"},
-  "intro": {"en": "Reproaches about what was done, or not done, in the past: the conditional with haber and a participle."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "reprochar": {"en": "to reproach", "pron": "re-pro-CHAR", "cat": "verb"},
-    "el reproche": {"en": "the reproach", "pron": "el re-PRO-che", "genero": "m"},
-    "deberías haber…": {"en": "you should have…", "pron": "de-be-RI-as a-BER", "cat": "expression", "nota": "Followed by a participle."},
-    "tendrías que haber…": {"en": "you ought to have…", "pron": "ten-DRI-as ke a-BER", "cat": "expression"},
-    "podrías haber…": {"en": "you could have…", "pron": "po-DRI-as a-BER", "cat": "expression"},
-    "sentar mal": {
-      "en": "to upset, to go down badly",
-      "pron": "sen-TAR mal",
-      "cat": "expression",
-      "nota": "Me sienta fatal que no me llames."
+    "reprochar": {
+      "$f": "p.reprochar",
+      "pron": "re-pro-CHAR",
+      "cat": "verb"
     },
-    "fatal": {"en": "awful, terribly", "pron": "fa-TAL", "cat": "adjective"},
-    "no sé cómo has podido": {"en": "I don't know how you could", "pron": "no se KO-mo as po-DI-do", "cat": "expression"},
-    "¿a qué esperas para…?": {"en": "what are you waiting for to…?", "pron": "a ke es-PE-ras PA-ra", "cat": "expression"},
-    "tener la culpa": {"en": "to be to blame", "pron": "te-NER la KUL-pa", "cat": "expression"},
-    "echar la culpa a": {"en": "to blame", "pron": "e-CHAR la KUL-pa a", "cat": "expression"},
-    "echar en cara": {"en": "to throw in someone's face", "pron": "e-CHAR en KA-ra", "cat": "expression"},
-    "la falta de respeto": {"en": "the lack of respect", "pron": "la FAL-ta de res-PE-to", "genero": "f"},
-    "ni siquiera": {"en": "not even", "pron": "ni si-KYE-ra", "cat": "adverb"},
-    "dar explicaciones": {"en": "to explain oneself", "pron": "dar eks-pli-ka-THYO-nes", "cat": "expression"},
-    "justificarse": {"en": "to justify oneself", "pron": "hus-ti-fi-KAR-se", "cat": "verb"},
-    "al menos": {"en": "at least", "pron": "al ME-nos", "cat": "adverb"}
+    "el reproche": {
+      "$f": "p.el reproche",
+      "pron": "el re-PRO-che",
+      "genero": "m"
+    },
+    "deberías haber…": {
+      "$f": "p.deberías haber…",
+      "pron": "de-be-RI-as a-BER",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.deberías haber….nota"
+      }
+    },
+    "tendrías que haber…": {
+      "$f": "p.tendrías que haber…",
+      "pron": "ten-DRI-as ke a-BER",
+      "cat": "expr"
+    },
+    "podrías haber…": {
+      "$f": "p.podrías haber…",
+      "pron": "po-DRI-as a-BER",
+      "cat": "expr"
+    },
+    "sentar mal": {
+      "$f": "p.sentar mal",
+      "pron": "sen-TAR mal",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.sentar mal.nota"
+      }
+    },
+    "fatal": {
+      "$f": "p.fatal",
+      "pron": "fa-TAL",
+      "cat": "adj"
+    },
+    "no sé cómo has podido": {
+      "$f": "p.no sé cómo has podido",
+      "pron": "no se KO-mo as po-DI-do",
+      "cat": "expr"
+    },
+    "¿a qué esperas para…?": {
+      "$f": "p.¿a qué esperas para…?",
+      "pron": "a ke es-PE-ras PA-ra",
+      "cat": "expr"
+    },
+    "tener la culpa": {
+      "$f": "p.tener la culpa",
+      "pron": "te-NER la KUL-pa",
+      "cat": "expr"
+    },
+    "echar la culpa a": {
+      "$f": "p.echar la culpa a",
+      "pron": "e-CHAR la KUL-pa a",
+      "cat": "expr"
+    },
+    "echar en cara": {
+      "$f": "p.echar en cara",
+      "pron": "e-CHAR en KA-ra",
+      "cat": "expr"
+    },
+    "la falta de respeto": {
+      "$f": "p.la falta de respeto",
+      "pron": "la FAL-ta de res-PE-to",
+      "genero": "f"
+    },
+    "ni siquiera": {
+      "$f": "p.ni siquiera",
+      "pron": "ni si-KYE-ra",
+      "cat": "adv"
+    },
+    "dar explicaciones": {
+      "$f": "p.dar explicaciones",
+      "pron": "dar eks-pli-ka-THYO-nes",
+      "cat": "expr"
+    },
+    "justificarse": {
+      "$f": "p.justificarse",
+      "pron": "hus-ti-fi-KAR-se",
+      "cat": "verb"
+    },
+    "al menos": {
+      "$f": "p.al menos",
+      "pron": "al ME-nos",
+      "cat": "adv"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Looking back in anger"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "To criticise something happening now, you already have **me parece mal que** and **no está bien que** + subjunctive. At B2 they get stronger:\n\n- **Me parece fatal que** no **avises**.\n- **Me sienta fatal que** me **hables** así.\n- **Es horrible que** nadie **ayude**.\n\nThe new tool looks at the past. Take **deber**, **tener que** or **poder** in the conditional, add **haber** and a participle:\n\n- **Deberías haber** llamado. (You should have called.)\n- **Tendrías que haber**me avisado.\n- **Podrías haber**lo dicho antes. (You could have said so.)\n- **No deberías haber** venido.\n\nThe pronoun goes on **haber**: deberías **haberlo** dicho.\n\nWith **ya**, the reproach is that something is late: **Ya deberías haber** terminado.\n\nOther reproaches:\n\n- **No sé cómo has podido** hacerme esto.\n- **No entiendo cómo has podido** olvidarlo.\n- **¿A qué esperas para** pedir perdón?\n- **Ni siquiera** me has preguntado.\n\nWho is to blame: **tú tienes la culpa**; **no me eches la culpa a mí**; **siempre me lo echas en cara**."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "After the party"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Carla",
-          "es": "No sé cómo has podido irte de mi fiesta sin despedirte.",
-          "en": "I don't know how you could leave my party without saying goodbye.",
-          "analisis": [["No sé cómo has podido", "reproach"], ["irte de mi fiesta", "infinitive"], ["sin despedirte", "how"]]
-        },
-        {
-          "quien": "Miguel",
-          "es": "Lo siento. Es que me encontraba mal.",
-          "en": "I'm sorry. The thing is, I wasn't feeling well.",
-          "analisis": [["Lo siento", "apology"], ["Es que", "excuse"], ["me encontraba mal", "verb"]]
-        },
-        {
-          "quien": "Carla",
-          "es": "Pues podrías habérmelo dicho. Estuve una hora buscándote.",
-          "en": "Well, you could have told me. I spent an hour looking for you.",
           "analisis": [
-            ["podrías habérmelo dicho", "reproach (could have)"],
-            ["Estuve", "verb"],
-            ["una hora", "time"],
-            ["buscándote", "gerund"]
+            [
+              "No sé cómo has podido",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "irte de mi fiesta",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "sin despedirte",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Miguel",
-          "es": "Tienes razón. Debería haberte avisado, pero no quería molestarte.",
-          "en": "You're right. I should have let you know, but I didn't want to bother you.",
           "analisis": [
-            ["Tienes razón", "agreement"],
-            ["Debería haberte avisado", "admitting (should have)"],
-            ["no quería molestarte", "verb"]
+            [
+              "Lo siento",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "Es que",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "me encontraba mal",
+              {
+                "$t": "a5"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Carla",
-          "es": "Y ni siquiera me has llamado al día siguiente. Me sienta fatal que hagas esas cosas.",
-          "en": "And you didn't even call me the next day. It really upsets me that you do those things.",
           "analisis": [
-            ["ni siquiera", "not even"],
-            ["me has llamado", "verb"],
-            ["al día siguiente", "time"],
-            ["Me sienta fatal que", "feeling"],
-            ["hagas", "verb (subjunctive)"],
-            ["esas cosas", "object"]
+            [
+              "podrías habérmelo dicho",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "Estuve",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "una hora",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "buscándote",
+              {
+                "$t": "a8"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Miguel",
-          "es": "No me eches toda la culpa. Tú tampoco me escribiste.",
-          "en": "Don't put all the blame on me. You didn't write to me either.",
           "analisis": [
-            ["No me eches", "negative command"],
-            ["toda la culpa", "object"],
-            ["Tú tampoco", "subject"],
-            ["me escribiste", "verb"]
+            [
+              "Tienes razón",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "Debería haberte avisado",
+              {
+                "$t": "a10"
+              }
+            ],
+            [
+              "no quería molestarte",
+              {
+                "$t": "a5"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f4",
+          "quien": "Carla",
+          "analisis": [
+            [
+              "ni siquiera",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "me has llamado",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "al día siguiente",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "Me sienta fatal que",
+              {
+                "$t": "a12"
+              }
+            ],
+            [
+              "hagas",
+              {
+                "$t": "a13"
+              }
+            ],
+            [
+              "esas cosas",
+              {
+                "$t": "a14"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "quien": "Miguel",
+          "analisis": [
+            [
+              "No me eches",
+              {
+                "$t": "a15"
+              }
+            ],
+            [
+              "toda la culpa",
+              {
+                "$t": "a14"
+              }
+            ],
+            [
+              "Tú tampoco",
+              {
+                "$t": "a16"
+              }
+            ],
+            [
+              "me escribiste",
+              {
+                "$t": "a5"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "reprochar-1",
-      "pregunta": {"en": "Complete: you should have called me."},
-      "frase": "Deberías ___ llamado.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "haberme": {"en": "Conditional + haber + participle, with the pronoun on haber."},
-        "me has": {"en": "After deberías you need the infinitive haber."},
-        "habiéndome": {"en": "You need the infinitive, not the gerund."}
+        "haberme": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "me has": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "habiéndome": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "haberme"
     },
     {
       "tipo": "huecos",
       "id": "reprochar-2",
-      "pregunta": {"en": "Complete: you could have said so before."},
-      "frase": "Podrías haberlo ___ antes.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "dicho": {"en": "The participle of decir is dicho."},
-        "decido": {"en": "The participle of decir is irregular: dicho."},
-        "decir": {"en": "After haber, the participle."}
+        "dicho": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "decido": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "decir": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "dicho"
     },
     {
       "tipo": "test",
       "id": "reprochar-3",
-      "pregunta": {"en": "Ya deberías haber terminado means…"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "You should have finished by now.": {"en": "Ya adds the idea that it is late."},
-        "You must have finished already.": {"en": "That would be a guess: ya habrás terminado."},
-        "You should finish now.": {"en": "Haber terminado looks at the past."}
+        "You should have finished by now.": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "You must have finished already.": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "You should finish now.": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "You should have finished by now."
     },
     {
       "tipo": "traduccion",
       "id": "reprochar-4",
-      "frase": "No me eches la culpa.",
+      "frase": {
+        "$e": "b7.frase"
+      },
       "opciones": [
-        {"texto": {"en": "Don't blame me."}, "correcta": true},
-        {"texto": {"en": "Don't throw me out."}, "explicacion": {"en": "Echar la culpa a alguien: to blame someone."}},
-        {"texto": {"en": "Don't miss my fault."}, "explicacion": {"en": "Echar la culpa: to blame."}}
+        {
+          "texto": {
+            "$t": "b7.o0"
+          },
+          "correcta": true
+        },
+        {
+          "texto": {
+            "$t": "b7.o1"
+          },
+          "explicacion": {
+            "$t": "b7.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b7.o2"
+          },
+          "explicacion": {
+            "$t": "b7.o2.explicacion"
+          }
+        }
       ]
     },
     {
       "tipo": "huecos",
       "id": "reprochar-5",
-      "pregunta": {"en": "Complete: it upsets me that you don't tell me."},
-      "frase": "Me sienta mal que no me lo ___.",
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "frase": {
+        "$e": "b8.frase"
+      },
       "audio": true,
       "opciones": {
-        "cuentes": {"en": "A feeling takes the subjunctive."},
-        "cuentas": {"en": "After me sienta mal que, the subjunctive."},
-        "contarás": {"en": "After me sienta mal que, the subjunctive."}
+        "cuentes": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "cuentas": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "contarás": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "cuentes"
     },
     {
       "tipo": "escribir",
       "id": "reprochar-6",
-      "pregunta": {"en": "Write in Spanish: You should have come. (tú, deber)"},
-      "respuestas": ["Deberías haber venido"],
-      "explicacion": {"en": "Conditional of deber + haber + participle."}
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
+      "respuestas": [
+        "Deberías haber venido"
+      ],
+      "explicacion": {
+        "$t": "b9.explicacion"
+      }
     },
     {
       "tipo": "ordenar",
       "id": "reprochar-7",
-      "frase": "Ni siquiera me has preguntado cómo estoy",
-      "traduccion": {"en": "You haven't even asked me how I am."}
+      "frase": {
+        "$e": "b10.frase"
+      },
+      "traduccion": {
+        "$t": "b10.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (150–180 words).** Write a letter to a friend who has let you down, saying what they should have done.\n\n**Speak (about 3 minutes).** Talk aloud about your own mistakes: what you should have done and what you could have avoided."
+        "$t": "b11.texto"
       }
     }
   ]

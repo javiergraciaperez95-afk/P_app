@@ -1,139 +1,310 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "068",
   "capitulo": 7,
-  "titulo_es": "Ayer y antes",
-  "titulo": { "en": "Yesterday and back then" },
-  "intro": { "en": "The indefinido presents a bounded past event; the imperfect presents habits, ongoing actions, and background." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "ayer": { "en": "yesterday", "pron": "a-YER", "cat": "adverb" },
-    "antes": { "en": "back then, before", "pron": "AN-tes", "cat": "adverb" },
-    "compré": { "en": "I bought", "pron": "kom-PRE", "cat": "verb" },
-    "compraba": { "en": "I used to buy", "pron": "kom-PRA-ba", "cat": "verb" },
-    "llovió": { "en": "it rained", "pron": "yo-BYO", "cat": "verb" },
-    "llovía": { "en": "it was raining, it used to rain", "pron": "yo-BI-a", "cat": "verb" },
-    "el billete": { "en": "the ticket", "pron": "el bi-YE-te", "cat": "noun", "genero": "m" },
-    "todo el día": { "en": "all day", "pron": "TO-do el DI-a", "cat": "expression" },
-    "en tren": { "en": "by train", "pron": "en tren", "cat": "expression" },
-    "viajaba": { "en": "I used to travel", "pron": "bya-HA-ba", "cat": "verb" },
-    "salí": { "en": "I left", "pron": "sa-LI", "cat": "verb" }
+    "ayer": {
+      "$f": "p.ayer",
+      "pron": "a-YER",
+      "cat": "adv"
+    },
+    "antes": {
+      "$f": "p.antes",
+      "pron": "AN-tes",
+      "cat": "adv"
+    },
+    "compré": {
+      "$f": "p.compré",
+      "pron": "kom-PRE",
+      "cat": "verb"
+    },
+    "compraba": {
+      "$f": "p.compraba",
+      "pron": "kom-PRA-ba",
+      "cat": "verb"
+    },
+    "llovió": {
+      "$f": "p.llovió",
+      "pron": "yo-BYO",
+      "cat": "verb"
+    },
+    "llovía": {
+      "$f": "p.llovía",
+      "pron": "yo-BI-a",
+      "cat": "verb"
+    },
+    "el billete": {
+      "$f": "p.el billete",
+      "pron": "el bi-YE-te",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "todo el día": {
+      "$f": "p.todo el día",
+      "pron": "TO-do el DI-a",
+      "cat": "expr"
+    },
+    "en tren": {
+      "$f": "p.en tren",
+      "pron": "en tren",
+      "cat": "expr"
+    },
+    "viajaba": {
+      "$f": "p.viajaba",
+      "pron": "bya-HA-ba",
+      "cat": "verb"
+    },
+    "salí": {
+      "$f": "p.salí",
+      "pron": "sa-LI",
+      "cat": "verb"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "Once, or as a habit",
-      "texto": "The choice depends on how the speaker presents the past: as a bounded event or episode (**indefinido**), or as a habit, ongoing action, or background (**imperfecto**). A bounded event can happen once or several times.\n\n- Ayer **compré** un billete. (completed purchase)\n- Antes **viajaba** en tren. (habit)\n- **Llovía** cuando salí. (the rain was the background; salí is the event)"
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "dialogo",
-      "titulo": "The trip",
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "Ayer compré un billete.",
-          "en": "Yesterday I bought a ticket.",
           "analisis": [
-            ["Ayer", "yesterday"],
-            ["compré", "I bought (once)"],
-            ["un billete", "a ticket"]
+            [
+              "Ayer",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "compré",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "un billete",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Antes yo viajaba en tren.",
-          "en": "I used to travel by train.",
           "analisis": [
-            ["Antes", "back then"],
-            ["viajaba", "I used to travel"],
-            ["en tren", "by train"]
+            [
+              "Antes",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "viajaba",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "en tren",
+              {
+                "$t": "a5"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "Llovía cuando salí de casa.",
-          "en": "It was raining when I left home.",
           "analisis": [
-            ["Llovía", "background"],
-            ["cuando salí", "the finished event"],
-            ["de casa", "from home"]
+            [
+              "Llovía",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "cuando salí",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "de casa",
+              {
+                "$t": "a8"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "Ayer llovió todo el día.",
-          "en": "Yesterday it rained all day.",
-          "nota": "The speaker presents the rainfall as one complete episode within the finished day, so the indefinido fits.",
+          "nota": {
+            "$t": "b2.f3.nota"
+          },
           "analisis": [
-            ["Ayer", "yesterday"],
-            ["llovió", "it rained"],
-            ["todo el día", "all day"]
+            [
+              "Ayer",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "llovió",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "todo el día",
+              {
+                "$t": "a10"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["ayer", "antes", "compré", "compraba", "llovió", "llovía", "el billete", "todo el día", "en tren", "viajaba", "salí"]
+      "palabras": [
+        "ayer",
+        "antes",
+        "compré",
+        "compraba",
+        "llovió",
+        "llovía",
+        "el billete",
+        "todo el día",
+        "en tren",
+        "viajaba",
+        "salí"
+      ]
     },
     {
       "tipo": "test",
       "id": "a2-contraste-habito",
-      "pregunta": { "en": "Which sentence is a habit in the past?" },
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
       "opciones": {
-        "Antes viajaba en tren": { "en": "Antes plus the imperfect is a habit." },
-        "Ayer compré un billete": { "en": "It presents a completed purchase within a finished past time." },
-        "Ayer llovió todo el día": { "en": "The speaker presents the rainfall as a complete episode on a finished day." }
+        "Antes viajaba en tren": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "Ayer compré un billete": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "Ayer llovió todo el día": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "Antes viajaba en tren"
     },
     {
       "tipo": "huecos",
       "id": "a2-contraste-llovia",
-      "pregunta": { "en": "Complete: it was raining when I left." },
-      "frase": "___ cuando salí de casa.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "Llovía": { "en": "The rain is the background of another action." },
-        "Llovió": { "en": "Llovió would present the rain as a completed episode." },
-        "Llueve": { "en": "Llueve is the present." }
+        "Llovía": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "Llovió": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "Llueve": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "Llovía"
     },
     {
       "tipo": "huecos",
       "id": "a2-contraste-m1",
-      "pregunta": {"en": "Complete: yesterday I bought a ticket."},
-      "frase": "Ayer ___ un billete.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "compré": {"en": "Once, and finished: indefinido."},
-        "compraba": {"en": "Compraba would be a habit."},
-        "compro": {"en": "Compro is the present."}
+        "compré": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "compraba": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "compro": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "compré"
     },
     {
       "tipo": "huecos",
       "id": "a2-contraste-m2",
-      "pregunta": {"en": "Complete: I was having dinner when you called."},
-      "frase": "___ cuando llamaste.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "Cenaba": {"en": "The dinner is the background."},
-        "Cené": {"en": "Cené presents dinner as a completed event; cenaba sets it as ongoing when the call came."},
-        "Ceno": {"en": "Ceno is the present."}
+        "Cenaba": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "Cené": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "Ceno": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "Cenaba"
     },
     {
       "tipo": "ordenar",
       "id": "a2-contraste-m3",
-      "frase": "Antes viajaba mucho en tren",
-      "traduccion": {"en": "I used to travel a lot by train."}
+      "frase": {
+        "$e": "b8.frase"
+      },
+      "traduccion": {
+        "$t": "b8.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Tell a short anecdote: describe the situation with the imperfect and say what happened with the indefinido.\n\n**Speak (about 1 minute).** Tell aloud how you met your best friend or your partner: where you were, what was happening, what happened."
+        "$t": "b9.texto"
       }
     }
   ]

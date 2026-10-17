@@ -1,154 +1,435 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "071",
   "capitulo": 7,
-  "titulo_es": "Primero, luego, al final",
-  "titulo": {"en": "First, then, in the end"},
-  "intro": {"en": "The small words that turn a list of past actions into a story."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "primero": {"en": "first", "pron": "pri-ME-ro", "cat": "adverb"},
-    "luego": {"en": "then", "pron": "LWE-go", "cat": "adverb"},
-    "después": {"en": "afterwards", "pron": "des-PWES", "cat": "adverb"},
-    "más tarde": {"en": "later", "pron": "mas TAR-de", "cat": "expression"},
-    "al final": {"en": "in the end", "pron": "al fi-NAL", "cat": "expression"},
-    "por eso": {"en": "that's why, so", "pron": "por E-so", "cat": "connector"},
-    "además": {"en": "what's more", "pron": "a-de-MAS", "cat": "connector"},
-    "pero": {"en": "but", "pron": "PE-ro", "cat": "connector"},
-    "porque": {"en": "because", "pron": "POR-ke", "cat": "connector"},
-    "al principio": {"en": "at first", "pron": "al prin-SI-pyo/THI-pyo", "cat": "expression"},
-    "por suerte": {"en": "luckily", "pron": "por SWER-te", "cat": "expression"},
-    "por desgracia": {"en": "unfortunately", "pron": "por des-GRA-sya/des-GRA-thya", "cat": "expression"},
-    "el autobús": {"en": "the bus", "pron": "el au-to-BUS", "cat": "noun", "genero": "m"},
-    "la jefa": {"en": "the boss (female)", "pron": "la HE-fa", "cat": "noun", "genero": "f"},
-    "las llaves": {"en": "the keys", "pron": "las YA-bes", "cat": "noun", "genero": "f"},
-    "perdí": {"en": "I lost; I missed", "pron": "per-DI", "cat": "verb"},
-    "encontró": {"en": "he/she found", "pron": "en-kon-TRO", "cat": "verb"},
-    "el despertador": {"en": "the alarm clock", "pron": "el des-per-ta-DOR", "cat": "noun", "genero": "m"},
-    "la vecina": {"en": "the neighbour (female)", "pron": "la be-SI-na/be-THI-na", "cat": "noun", "genero": "f"}
+    "primero": {
+      "$f": "p.primero",
+      "pron": "pri-ME-ro",
+      "cat": "adv"
+    },
+    "luego": {
+      "$f": "p.luego",
+      "pron": "LWE-go",
+      "cat": "adv"
+    },
+    "después": {
+      "$f": "p.después",
+      "pron": "des-PWES",
+      "cat": "adv"
+    },
+    "más tarde": {
+      "$f": "p.más tarde",
+      "pron": "mas TAR-de",
+      "cat": "expr"
+    },
+    "al final": {
+      "$f": "p.al final",
+      "pron": "al fi-NAL",
+      "cat": "expr"
+    },
+    "por eso": {
+      "$f": "p.por eso",
+      "pron": "por E-so",
+      "cat": "connector"
+    },
+    "además": {
+      "$f": "p.además",
+      "pron": "a-de-MAS",
+      "cat": "connector"
+    },
+    "pero": {
+      "$f": "p.pero",
+      "pron": "PE-ro",
+      "cat": "connector"
+    },
+    "porque": {
+      "$f": "p.porque",
+      "pron": "POR-ke",
+      "cat": "connector"
+    },
+    "al principio": {
+      "$f": "p.al principio",
+      "pron": "al prin-SI-pyo/THI-pyo",
+      "cat": "expr"
+    },
+    "por suerte": {
+      "$f": "p.por suerte",
+      "pron": "por SWER-te",
+      "cat": "expr"
+    },
+    "por desgracia": {
+      "$f": "p.por desgracia",
+      "pron": "por des-GRA-sya/des-GRA-thya",
+      "cat": "expr"
+    },
+    "el autobús": {
+      "$f": "p.el autobús",
+      "pron": "el au-to-BUS",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la jefa": {
+      "$f": "p.la jefa",
+      "pron": "la HE-fa",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "las llaves": {
+      "$f": "p.las llaves",
+      "pron": "las YA-bes",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "perdí": {
+      "$f": "p.perdí",
+      "pron": "per-DI",
+      "cat": "verb"
+    },
+    "encontró": {
+      "$f": "p.encontró",
+      "pron": "en-kon-TRO",
+      "cat": "verb"
+    },
+    "el despertador": {
+      "$f": "p.el despertador",
+      "pron": "el des-per-ta-DOR",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la vecina": {
+      "$f": "p.la vecina",
+      "pron": "la be-SI-na/be-THI-na",
+      "cat": "sust",
+      "genero": "f"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Joining the events"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "To put events in order: **primero**, **luego**, **después**, **más tarde**, **al final**.\n\nTo give the reason, **porque** introduces the reason clause after the result: llegué tarde **porque** perdí el autobús. To give the result, **por eso** follows the reason: perdí el autobús. **Por eso,** llegué tarde. A full stop is a clear way to separate two complete sentences.\n\nTo add: **además**. To contrast: **pero**. To comment: **por suerte**, **por desgracia**. The events themselves are often in the **indefinido**. Sentence connectors such as **primero**, **por eso**, and **además** usually take a comma when they open a sentence; **porque** does not take a comma when its reason clause follows the result. Pronunciation varies: c/z before e/i may sound like s (seseo) or like the th in think (distinción)."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "texto",
-      "titulo": {"en": "A bad day"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
-          "es": "Ayer tuve un día horrible.",
-          "en": "Yesterday I had a horrible day.",
-          "analisis": [["Ayer", "time"], ["tuve", "verb"], ["un día horrible", "object"]]
-        },
-        {
-          "es": "Primero, no oí el despertador y me levanté tarde.",
-          "en": "First, I didn't hear the alarm clock and I got up late.",
+          "$f": "b2.f0",
           "analisis": [
-            ["Primero", "order"],
-            ["no oí", "verb"],
-            ["el despertador", "object"],
-            ["me levanté", "verb"],
-            ["tarde", "time"]
+            [
+              "Ayer",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "tuve",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "un día horrible",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
-          "es": "Luego perdí el autobús. Por eso, llegué tarde al trabajo.",
-          "en": "Then I missed the bus, so I got to work late.",
+          "$f": "b2.f1",
           "analisis": [
-            ["Luego", "order"],
-            ["perdí", "verb"],
-            ["el autobús", "object"],
-            ["por eso", "result"],
-            ["llegué tarde", "verb"],
-            ["al trabajo", "place"]
+            [
+              "Primero",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "no oí",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "el despertador",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "me levanté",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "tarde",
+              {
+                "$t": "a0"
+              }
+            ]
           ]
         },
         {
-          "es": "Después llamé a mi jefa, pero no contestó.",
-          "en": "Afterwards I called my boss, but she didn't answer.",
+          "$f": "b2.f2",
           "analisis": [
-            ["Después", "order"],
-            ["llamé", "verb"],
-            ["a mi jefa", "object"],
-            ["pero", "contrast"],
-            ["no contestó", "verb"]
+            [
+              "Luego",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "perdí",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "el autobús",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "por eso",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "llegué tarde",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "al trabajo",
+              {
+                "$t": "a5"
+              }
+            ]
           ]
         },
         {
-          "es": "Además, perdí las llaves de casa.",
-          "en": "What's more, I lost my house keys.",
-          "analisis": [["Además", "addition"], ["perdí", "verb"], ["las llaves de casa", "object"]]
+          "$f": "b2.f3",
+          "analisis": [
+            [
+              "Después",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "llamé",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "a mi jefa",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "pero",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "no contestó",
+              {
+                "$t": "a1"
+              }
+            ]
+          ]
         },
         {
-          "es": "Al final, por suerte, mi vecina las encontró.",
-          "en": "In the end, luckily, my neighbour found them.",
-          "analisis": [["Al final", "order"], ["por suerte", "comment"], ["mi vecina", "subject"], ["las encontró", "verb"]]
+          "$f": "b2.f4",
+          "analisis": [
+            [
+              "Además",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "perdí",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "las llaves de casa",
+              {
+                "$t": "a2"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "analisis": [
+            [
+              "Al final",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "por suerte",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "mi vecina",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "las encontró",
+              {
+                "$t": "a1"
+              }
+            ]
+          ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "primero-luego-1",
-      "pregunta": {"en": "Complete with the result: I missed the bus, so I arrived late."},
-      "frase": "Perdí el autobús; ___, llegué tarde.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "por eso": {"en": "Por eso introduces the result."},
-        "porque": {"en": "Porque introduces the reason."},
-        "pero": {"en": "Pero introduces a contrast."}
+        "por eso": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "porque": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "pero": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "por eso"
     },
     {
       "tipo": "huecos",
       "id": "primero-luego-2",
-      "pregunta": {"en": "Complete with the reason: I arrived late because I missed the bus."},
-      "frase": "Llegué tarde ___ perdí el autobús.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "porque": {"en": "Porque introduces the reason."},
-        "por eso": {"en": "Por eso introduces the result."},
-        "además": {"en": "Además adds another point."}
+        "porque": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "por eso": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "además": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "porque"
     },
     {
       "tipo": "test",
       "id": "primero-luego-3",
-      "pregunta": {"en": "Which one closes a story?"},
-      "opciones": {"al final": {"en": "In the end."}, "primero": {"en": "That opens it."}, "luego": {"en": "That continues it."}},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "opciones": {
+        "al final": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "primero": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "luego": {
+          "$t": "b6.o2.refuerzo"
+        }
+      },
       "correcta": "al final"
     },
     {
       "tipo": "test",
       "id": "primero-luego-4",
-      "pregunta": {"en": "«Por suerte» means…"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "luckily": {"en": "Suerte is luck."},
-        "unfortunately": {"en": "That is por desgracia."},
-        "by chance": {"en": "That means by chance, not luckily."}
+        "luckily": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "unfortunately": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "by chance": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "luckily"
     },
     {
       "tipo": "escribir",
       "id": "primero-luego-5",
-      "pregunta": {"en": "Translate: «First I got up late.»"},
-      "respuestas": ["Primero me levanté tarde", "Primero, me levanté tarde"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "Primero me levanté tarde",
+        "Primero, me levanté tarde"
+      ]
     },
     {
       "tipo": "ordenar",
       "id": "primero-luego-6",
-      "frase": "Al final, mi vecina encontró las llaves",
-      "traduccion": {"en": "In the end my neighbour found the keys."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write the story of a trip or a day out in order, using primero, luego, después, más tarde and al final.\n\n**Speak (about 1 minute).** Explain aloud, step by step, how you spent last Sunday."
+        "$t": "b10.texto"
       }
     }
   ]

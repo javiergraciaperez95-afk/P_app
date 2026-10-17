@@ -1,0 +1,892 @@
+id 027
+capitulo 3
+nivel A1
+
+palabras
+voy | boy | verb
+vas | bas | verb
+va | ba | verb
+vamos | BA-mos | verb
+van | ban | verb
+adónde | a-DON-de | adv
+al | al | expr
+del | del | expr
+el centro | el THEN-tro | sust | m
+la playa | la PLA-ya | sust | f
+en metro | en ME-tro | expr
+a pie | a PYE | expr
+
+bloques
+b1 explicacion
+b2 dialogo
+  Lucía | b [PRED:vas [CCL* ¿Adónde] [V* vas?]]
+  Pablo | b [PRED:Voy [V* Voy] [CCL:centro al centro.]]
+  Lucía | b [PRED:vamos [CCM* ¿Cómo] [V* vamos?]]
+  Pablo | u [CCM:metro En metro.]
+  Lucía | b [SUJ* Yo] [PRED:voy [CCM* siempre] [V* voy] [CCM:pie a pie.]]
+b3 vocabulario voy; vas; va; vamos; van; adónde; al; del; el centro; la playa; en metro; a pie
+b4 gramatica
+  b [PRED:Voy [V* Voy] [CCL:centro al centro.]]
+  b [PRED:Vamos [V* Vamos] [CCM:metro en metro.]]
+b5 texto
+  0 | b [SUJ:Lucía [N Lucía] [CONJ y] [N Pablo]] [PRED:van [V* van] [CCL:centro al centro] [CCT:sábado el sábado.]]
+  0 | b [PRED:Van [V* Van] [CCM:metro en metro] [CCC:es [CONJ porque] [DET el] [N autobús] [V* es] [ATRIB* lento.]]]
+  0 | b [SUJ:centro [DET El] [N centro]] [PRED:está [V* está] [CCL:playa cerca de la playa.]]
+  0 | b [PRED:hay [CCL* Allí] [V* hay] [CD:tiendas muchas tiendas y cafeterías.]]
+  1 | b [SUJ* Lucía] [PRED:quiere [V:quiere quiere comprar] [CD:regalo un regalo.]]
+  1 | b [SUJ* Pablo] [PRED:busca [V* busca] [CD:libro un libro] [CCL:librería en la librería.]]
+  1 | b [PRED:Toman [V* Toman] [CD:café un café con leche] [CCT* después.]]
+  1 | b [PRED:Vuelven [V* Vuelven] [CCL:casa a casa] [CCT:seis a las seis y media.]]
+b6 test 1 0 0
+b7 huecos 1 0 0
+b8 ordenar
+b9 escribir Voy al centro a pie
+
+== en
+titulo: Voy al centro
+intro: El verbo ir, las palabras al y del, y las formas de moverse por la ciudad.
+b1.titulo: El verbo ir
+b1.texto: "El verbo **ir** es irregular. Se conjuga así:\n\n- yo **voy**\n- tú **vas**\n- él / ella / usted **va**\n- nosotros **vamos**\n- vosotros **vais**\n- ellos **van**\n\nPara decir adónde vas se usa **a**:\n\n- Voy **a** la playa.\n- Voy **al** centro.\n\nFíjate: **a + el = al**. Y en plural, **a + los = a los**."
+b2.titulo: Por la calle
+b2.f0.texto: ¿Adónde vas?
+b2.f1.texto: Voy al centro.
+b2.f2.texto: ¿Cómo vamos?
+b2.f3.texto: En metro.
+b2.f4.texto: Yo siempre voy a pie.
+b3.titulo: Vocabulario
+b4.titulo: Al, del y cómo moverse
+b4.texto: "Dos contracciones que hay que dominar:\n\n- **a + el = al**: «Voy **al** centro».\n- **de + el = del**: «Vengo **del** trabajo».\n\nNunca se dice «a el» ni «de el».\n\nY para moverse:\n\n- **en metro**, **en autobús**, **en tren**, **en coche**, **en bici**\n- **a pie**, cuando vas andando"
+b4.e0.texto: Voy al centro.
+b4.e1.texto: Vamos en metro.
+b5.titulo: Un sábado en el centro
+b5.f0.texto: Lucía y Pablo van al centro el sábado.
+b5.f1.texto: Van en metro porque el autobús es lento.
+b5.f2.texto: El centro está cerca de la playa.
+b5.f3.texto: Allí hay muchas tiendas y cafeterías.
+b5.f4.texto: Lucía quiere comprar un regalo.
+b5.f5.texto: Pablo busca un libro en la librería.
+b5.f6.texto: Toman un café con leche después.
+b5.f7.texto: Vuelven a casa a las seis y media.
+b6.titulo: ¿Cómo van?
+b6.pregunta: ¿Cómo van Lucía y Pablo al centro?
+b6.o0: En metro.
+b6.o0.refuerzo: Correcto: el texto dice que van en metro.
+b6.o1: En autobús.
+b6.o1.refuerzo: El autobús es lento, por eso no lo toman.
+b6.o2: A pie.
+b6.o2.refuerzo: A pie va Lucía otros días, pero ese sábado van en metro.
+b7.titulo: Completa
+b7.pregunta: Completa con la forma correcta de «ir».
+b7.frase: Yo ___ al centro.
+b7.o0: voy
+b7.o0.refuerzo: Correcto: «voy» va con «yo».
+b7.o1: vas
+b7.o1.refuerzo: Incorrecto: «vas» va con «tú».
+b7.o2: va
+b7.o2.refuerzo: Incorrecto: «va» va con él, ella o usted.
+b8.titulo: Ordena las palabras
+b8.frase: Voy al centro en metro.
+b8.traduccion: I go to the centre by metro.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «I go to the centre on foot».
+p.voy.glosa: ir, con «yo»
+p.voy.consejo: La v se pronuncia como b: suena «boy».
+p.vas.glosa: ir, con «tú»
+p.vas.consejo: Se escribe con v, pero suena «bas».
+p.va.glosa: ir, con él, ella o usted
+p.va.consejo: Es muy corta: una sola sílaba.
+p.vamos.glosa: ir, con «nosotros»
+p.vamos.consejo: También sirve para proponer: «¡Vamos!».
+p.van.glosa: ir, con ellos o ustedes
+p.van.consejo: No confundir con «ban» de «bailar»: aquí es el verbo ir.
+p.adónde.glosa: a qué lugar
+p.adónde.consejo: Lleva tilde porque pregunta. Se escribe todo junto: adónde.
+p.al.glosa: a + el
+p.al.consejo: Nunca se escribe «a el»: siempre «al».
+p.del.glosa: de + el
+p.del.consejo: Nunca se escribe «de el»: siempre «del».
+p.el centro.glosa: la parte principal de la ciudad
+p.el centro.consejo: La c suena como th en España: THEN-tro.
+p.la playa.glosa: la arena junto al mar
+p.la playa.consejo: Se dice «en la playa» y «a la playa».
+p.en metro.glosa: con el tren subterráneo
+p.en metro.consejo: Para moverse se usa «en»: en metro, en tren, en coche.
+p.a pie.glosa: andando
+p.a pie.consejo: Siempre con la preposición «a»: nunca «en pie» para moverse.
+
+== es
+titulo: Voy al centro
+intro: El verbo ir, las palabras al y del, y las formas de moverse por la ciudad.
+b1.titulo: El verbo ir
+b1.texto: "El verbo **ir** es irregular. Se conjuga así:\n\n- yo **voy**\n- tú **vas**\n- él / ella / usted **va**\n- nosotros **vamos**\n- vosotros **vais**\n- ellos **van**\n\nPara decir adónde vas se usa **a**:\n\n- Voy **a** la playa.\n- Voy **al** centro.\n\nFíjate: **a + el = al**. Y en plural, **a + los = a los**."
+b2.titulo: Por la calle
+b3.titulo: Vocabulario
+b4.titulo: Al, del y cómo moverse
+b4.texto: "Dos contracciones que hay que dominar:\n\n- **a + el = al**: «Voy **al** centro».\n- **de + el = del**: «Vengo **del** trabajo».\n\nNunca se dice «a el» ni «de el».\n\nY para moverse:\n\n- **en metro**, **en autobús**, **en tren**, **en coche**, **en bici**\n- **a pie**, cuando vas andando"
+b5.titulo: Un sábado en el centro
+b6.titulo: ¿Cómo van?
+b6.pregunta: ¿Cómo van Lucía y Pablo al centro?
+b6.o0: En metro.
+b6.o0.refuerzo: Correcto: el texto dice que van en metro.
+b6.o1: En autobús.
+b6.o1.refuerzo: El autobús es lento, por eso no lo toman.
+b6.o2: A pie.
+b6.o2.refuerzo: A pie va Lucía otros días, pero ese sábado van en metro.
+b7.titulo: Completa
+b7.pregunta: Completa con la forma correcta de «ir».
+b7.frase: Yo ___ al centro.
+b7.o0: voy
+b7.o0.refuerzo: Correcto: «voy» va con «yo».
+b7.o1: vas
+b7.o1.refuerzo: Incorrecto: «vas» va con «tú».
+b7.o2: va
+b7.o2.refuerzo: Incorrecto: «va» va con él, ella o usted.
+b8.titulo: Ordena las palabras
+b8.frase: Voy al centro en metro.
+b8.traduccion: I go to the centre by metro.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «I go to the centre on foot».
+p.voy.glosa: ir, con «yo»
+p.voy.consejo: La v se pronuncia como b: suena «boy».
+p.vas.glosa: ir, con «tú»
+p.vas.consejo: Se escribe con v, pero suena «bas».
+p.va.glosa: ir, con él, ella o usted
+p.va.consejo: Es muy corta: una sola sílaba.
+p.vamos.glosa: ir, con «nosotros»
+p.vamos.consejo: También sirve para proponer: «¡Vamos!».
+p.van.glosa: ir, con ellos o ustedes
+p.van.consejo: No confundir con «ban» de «bailar»: aquí es el verbo ir.
+p.adónde.glosa: a qué lugar
+p.adónde.consejo: Lleva tilde porque pregunta. Se escribe todo junto: adónde.
+p.al.glosa: a + el
+p.al.consejo: Nunca se escribe «a el»: siempre «al».
+p.del.glosa: de + el
+p.del.consejo: Nunca se escribe «de el»: siempre «del».
+p.el centro.glosa: la parte principal de la ciudad
+p.el centro.consejo: La c suena como th en España: THEN-tro.
+p.la playa.glosa: la arena junto al mar
+p.la playa.consejo: Se dice «en la playa» y «a la playa».
+p.en metro.glosa: con el tren subterráneo
+p.en metro.consejo: Para moverse se usa «en»: en metro, en tren, en coche.
+p.a pie.glosa: andando
+p.a pie.consejo: Siempre con la preposición «a»: nunca «en pie» para moverse.
+
+== vi
+titulo: Voy al centro
+intro: El verbo ir, las palabras al y del, y las formas de moverse por la ciudad.
+b1.titulo: El verbo ir
+b1.texto: "El verbo **ir** es irregular. Se conjuga así:\n\n- yo **voy**\n- tú **vas**\n- él / ella / usted **va**\n- nosotros **vamos**\n- vosotros **vais**\n- ellos **van**\n\nPara decir adónde vas se usa **a**:\n\n- Voy **a** la playa.\n- Voy **al** centro.\n\nFíjate: **a + el = al**. Y en plural, **a + los = a los**."
+b2.titulo: Por la calle
+b2.f0.texto: ¿Adónde vas?
+b2.f1.texto: Voy al centro.
+b2.f2.texto: ¿Cómo vamos?
+b2.f3.texto: En metro.
+b2.f4.texto: Yo siempre voy a pie.
+b3.titulo: Vocabulario
+b4.titulo: Al, del y cómo moverse
+b4.texto: "Dos contracciones que hay que dominar:\n\n- **a + el = al**: «Voy **al** centro».\n- **de + el = del**: «Vengo **del** trabajo».\n\nNunca se dice «a el» ni «de el».\n\nY para moverse:\n\n- **en metro**, **en autobús**, **en tren**, **en coche**, **en bici**\n- **a pie**, cuando vas andando"
+b4.e0.texto: Voy al centro.
+b4.e1.texto: Vamos en metro.
+b5.titulo: Un sábado en el centro
+b5.f0.texto: Lucía y Pablo van al centro el sábado.
+b5.f1.texto: Van en metro porque el autobús es lento.
+b5.f2.texto: El centro está cerca de la playa.
+b5.f3.texto: Allí hay muchas tiendas y cafeterías.
+b5.f4.texto: Lucía quiere comprar un regalo.
+b5.f5.texto: Pablo busca un libro en la librería.
+b5.f6.texto: Toman un café con leche después.
+b5.f7.texto: Vuelven a casa a las seis y media.
+b6.titulo: ¿Cómo van?
+b6.pregunta: ¿Cómo van Lucía y Pablo al centro?
+b6.o0: En metro.
+b6.o0.refuerzo: Correcto: el texto dice que van en metro.
+b6.o1: En autobús.
+b6.o1.refuerzo: El autobús es lento, por eso no lo toman.
+b6.o2: A pie.
+b6.o2.refuerzo: A pie va Lucía otros días, pero ese sábado van en metro.
+b7.titulo: Completa
+b7.pregunta: Completa con la forma correcta de «ir».
+b7.frase: Yo ___ al centro.
+b7.o0: voy
+b7.o0.refuerzo: Correcto: «voy» va con «yo».
+b7.o1: vas
+b7.o1.refuerzo: Incorrecto: «vas» va con «tú».
+b7.o2: va
+b7.o2.refuerzo: Incorrecto: «va» va con él, ella o usted.
+b8.titulo: Ordena las palabras
+b8.frase: Voy al centro en metro.
+b8.traduccion: I go to the centre by metro.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «I go to the centre on foot».
+p.voy.glosa: ir, con «yo»
+p.voy.consejo: La v se pronuncia como b: suena «boy».
+p.vas.glosa: ir, con «tú»
+p.vas.consejo: Se escribe con v, pero suena «bas».
+p.va.glosa: ir, con él, ella o usted
+p.va.consejo: Es muy corta: una sola sílaba.
+p.vamos.glosa: ir, con «nosotros»
+p.vamos.consejo: También sirve para proponer: «¡Vamos!».
+p.van.glosa: ir, con ellos o ustedes
+p.van.consejo: No confundir con «ban» de «bailar»: aquí es el verbo ir.
+p.adónde.glosa: a qué lugar
+p.adónde.consejo: Lleva tilde porque pregunta. Se escribe todo junto: adónde.
+p.al.glosa: a + el
+p.al.consejo: Nunca se escribe «a el»: siempre «al».
+p.del.glosa: de + el
+p.del.consejo: Nunca se escribe «de el»: siempre «del».
+p.el centro.glosa: la parte principal de la ciudad
+p.el centro.consejo: La c suena como th en España: THEN-tro.
+p.la playa.glosa: la arena junto al mar
+p.la playa.consejo: Se dice «en la playa» y «a la playa».
+p.en metro.glosa: con el tren subterráneo
+p.en metro.consejo: Para moverse se usa «en»: en metro, en tren, en coche.
+p.a pie.glosa: andando
+p.a pie.consejo: Siempre con la preposición «a»: nunca «en pie» para moverse.
+
+== zh
+titulo: Voy al centro
+intro: El verbo ir, las palabras al y del, y las formas de moverse por la ciudad.
+b1.titulo: El verbo ir
+b1.texto: "El verbo **ir** es irregular. Se conjuga así:\n\n- yo **voy**\n- tú **vas**\n- él / ella / usted **va**\n- nosotros **vamos**\n- vosotros **vais**\n- ellos **van**\n\nPara decir adónde vas se usa **a**:\n\n- Voy **a** la playa.\n- Voy **al** centro.\n\nFíjate: **a + el = al**. Y en plural, **a + los = a los**."
+b2.titulo: Por la calle
+b2.f0.texto: ¿Adónde vas?
+b2.f1.texto: Voy al centro.
+b2.f2.texto: ¿Cómo vamos?
+b2.f3.texto: En metro.
+b2.f4.texto: Yo siempre voy a pie.
+b3.titulo: Vocabulario
+b4.titulo: Al, del y cómo moverse
+b4.texto: "Dos contracciones que hay que dominar:\n\n- **a + el = al**: «Voy **al** centro».\n- **de + el = del**: «Vengo **del** trabajo».\n\nNunca se dice «a el» ni «de el».\n\nY para moverse:\n\n- **en metro**, **en autobús**, **en tren**, **en coche**, **en bici**\n- **a pie**, cuando vas andando"
+b4.e0.texto: Voy al centro.
+b4.e1.texto: Vamos en metro.
+b5.titulo: Un sábado en el centro
+b5.f0.texto: Lucía y Pablo van al centro el sábado.
+b5.f1.texto: Van en metro porque el autobús es lento.
+b5.f2.texto: El centro está cerca de la playa.
+b5.f3.texto: Allí hay muchas tiendas y cafeterías.
+b5.f4.texto: Lucía quiere comprar un regalo.
+b5.f5.texto: Pablo busca un libro en la librería.
+b5.f6.texto: Toman un café con leche después.
+b5.f7.texto: Vuelven a casa a las seis y media.
+b6.titulo: ¿Cómo van?
+b6.pregunta: ¿Cómo van Lucía y Pablo al centro?
+b6.o0: En metro.
+b6.o0.refuerzo: Correcto: el texto dice que van en metro.
+b6.o1: En autobús.
+b6.o1.refuerzo: El autobús es lento, por eso no lo toman.
+b6.o2: A pie.
+b6.o2.refuerzo: A pie va Lucía otros días, pero ese sábado van en metro.
+b7.titulo: Completa
+b7.pregunta: Completa con la forma correcta de «ir».
+b7.frase: Yo ___ al centro.
+b7.o0: voy
+b7.o0.refuerzo: Correcto: «voy» va con «yo».
+b7.o1: vas
+b7.o1.refuerzo: Incorrecto: «vas» va con «tú».
+b7.o2: va
+b7.o2.refuerzo: Incorrecto: «va» va con él, ella o usted.
+b8.titulo: Ordena las palabras
+b8.frase: Voy al centro en metro.
+b8.traduccion: I go to the centre by metro.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «I go to the centre on foot».
+p.voy.glosa: ir, con «yo»
+p.voy.consejo: La v se pronuncia como b: suena «boy».
+p.vas.glosa: ir, con «tú»
+p.vas.consejo: Se escribe con v, pero suena «bas».
+p.va.glosa: ir, con él, ella o usted
+p.va.consejo: Es muy corta: una sola sílaba.
+p.vamos.glosa: ir, con «nosotros»
+p.vamos.consejo: También sirve para proponer: «¡Vamos!».
+p.van.glosa: ir, con ellos o ustedes
+p.van.consejo: No confundir con «ban» de «bailar»: aquí es el verbo ir.
+p.adónde.glosa: a qué lugar
+p.adónde.consejo: Lleva tilde porque pregunta. Se escribe todo junto: adónde.
+p.al.glosa: a + el
+p.al.consejo: Nunca se escribe «a el»: siempre «al».
+p.del.glosa: de + el
+p.del.consejo: Nunca se escribe «de el»: siempre «del».
+p.el centro.glosa: la parte principal de la ciudad
+p.el centro.consejo: La c suena como th en España: THEN-tro.
+p.la playa.glosa: la arena junto al mar
+p.la playa.consejo: Se dice «en la playa» y «a la playa».
+p.en metro.glosa: con el tren subterráneo
+p.en metro.consejo: Para moverse se usa «en»: en metro, en tren, en coche.
+p.a pie.glosa: andando
+p.a pie.consejo: Siempre con la preposición «a»: nunca «en pie» para moverse.
+
+== pt
+titulo: Voy al centro
+intro: El verbo ir, las palabras al y del, y las formas de moverse por la ciudad.
+b1.titulo: El verbo ir
+b1.texto: "El verbo **ir** es irregular. Se conjuga así:\n\n- yo **voy**\n- tú **vas**\n- él / ella / usted **va**\n- nosotros **vamos**\n- vosotros **vais**\n- ellos **van**\n\nPara decir adónde vas se usa **a**:\n\n- Voy **a** la playa.\n- Voy **al** centro.\n\nFíjate: **a + el = al**. Y en plural, **a + los = a los**."
+b2.titulo: Por la calle
+b2.f0.texto: ¿Adónde vas?
+b2.f1.texto: Voy al centro.
+b2.f2.texto: ¿Cómo vamos?
+b2.f3.texto: En metro.
+b2.f4.texto: Yo siempre voy a pie.
+b3.titulo: Vocabulario
+b4.titulo: Al, del y cómo moverse
+b4.texto: "Dos contracciones que hay que dominar:\n\n- **a + el = al**: «Voy **al** centro».\n- **de + el = del**: «Vengo **del** trabajo».\n\nNunca se dice «a el» ni «de el».\n\nY para moverse:\n\n- **en metro**, **en autobús**, **en tren**, **en coche**, **en bici**\n- **a pie**, cuando vas andando"
+b4.e0.texto: Voy al centro.
+b4.e1.texto: Vamos en metro.
+b5.titulo: Un sábado en el centro
+b5.f0.texto: Lucía y Pablo van al centro el sábado.
+b5.f1.texto: Van en metro porque el autobús es lento.
+b5.f2.texto: El centro está cerca de la playa.
+b5.f3.texto: Allí hay muchas tiendas y cafeterías.
+b5.f4.texto: Lucía quiere comprar un regalo.
+b5.f5.texto: Pablo busca un libro en la librería.
+b5.f6.texto: Toman un café con leche después.
+b5.f7.texto: Vuelven a casa a las seis y media.
+b6.titulo: ¿Cómo van?
+b6.pregunta: ¿Cómo van Lucía y Pablo al centro?
+b6.o0: En metro.
+b6.o0.refuerzo: Correcto: el texto dice que van en metro.
+b6.o1: En autobús.
+b6.o1.refuerzo: El autobús es lento, por eso no lo toman.
+b6.o2: A pie.
+b6.o2.refuerzo: A pie va Lucía otros días, pero ese sábado van en metro.
+b7.titulo: Completa
+b7.pregunta: Completa con la forma correcta de «ir».
+b7.frase: Yo ___ al centro.
+b7.o0: voy
+b7.o0.refuerzo: Correcto: «voy» va con «yo».
+b7.o1: vas
+b7.o1.refuerzo: Incorrecto: «vas» va con «tú».
+b7.o2: va
+b7.o2.refuerzo: Incorrecto: «va» va con él, ella o usted.
+b8.titulo: Ordena las palabras
+b8.frase: Voy al centro en metro.
+b8.traduccion: I go to the centre by metro.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «I go to the centre on foot».
+p.voy.glosa: ir, con «yo»
+p.voy.consejo: La v se pronuncia como b: suena «boy».
+p.vas.glosa: ir, con «tú»
+p.vas.consejo: Se escribe con v, pero suena «bas».
+p.va.glosa: ir, con él, ella o usted
+p.va.consejo: Es muy corta: una sola sílaba.
+p.vamos.glosa: ir, con «nosotros»
+p.vamos.consejo: También sirve para proponer: «¡Vamos!».
+p.van.glosa: ir, con ellos o ustedes
+p.van.consejo: No confundir con «ban» de «bailar»: aquí es el verbo ir.
+p.adónde.glosa: a qué lugar
+p.adónde.consejo: Lleva tilde porque pregunta. Se escribe todo junto: adónde.
+p.al.glosa: a + el
+p.al.consejo: Nunca se escribe «a el»: siempre «al».
+p.del.glosa: de + el
+p.del.consejo: Nunca se escribe «de el»: siempre «del».
+p.el centro.glosa: la parte principal de la ciudad
+p.el centro.consejo: La c suena como th en España: THEN-tro.
+p.la playa.glosa: la arena junto al mar
+p.la playa.consejo: Se dice «en la playa» y «a la playa».
+p.en metro.glosa: con el tren subterráneo
+p.en metro.consejo: Para moverse se usa «en»: en metro, en tren, en coche.
+p.a pie.glosa: andando
+p.a pie.consejo: Siempre con la preposición «a»: nunca «en pie» para moverse.
+
+== fr
+titulo: Voy al centro
+intro: El verbo ir, las palabras al y del, y las formas de moverse por la ciudad.
+b1.titulo: El verbo ir
+b1.texto: "El verbo **ir** es irregular. Se conjuga así:\n\n- yo **voy**\n- tú **vas**\n- él / ella / usted **va**\n- nosotros **vamos**\n- vosotros **vais**\n- ellos **van**\n\nPara decir adónde vas se usa **a**:\n\n- Voy **a** la playa.\n- Voy **al** centro.\n\nFíjate: **a + el = al**. Y en plural, **a + los = a los**."
+b2.titulo: Por la calle
+b2.f0.texto: ¿Adónde vas?
+b2.f1.texto: Voy al centro.
+b2.f2.texto: ¿Cómo vamos?
+b2.f3.texto: En metro.
+b2.f4.texto: Yo siempre voy a pie.
+b3.titulo: Vocabulario
+b4.titulo: Al, del y cómo moverse
+b4.texto: "Dos contracciones que hay que dominar:\n\n- **a + el = al**: «Voy **al** centro».\n- **de + el = del**: «Vengo **del** trabajo».\n\nNunca se dice «a el» ni «de el».\n\nY para moverse:\n\n- **en metro**, **en autobús**, **en tren**, **en coche**, **en bici**\n- **a pie**, cuando vas andando"
+b4.e0.texto: Voy al centro.
+b4.e1.texto: Vamos en metro.
+b5.titulo: Un sábado en el centro
+b5.f0.texto: Lucía y Pablo van al centro el sábado.
+b5.f1.texto: Van en metro porque el autobús es lento.
+b5.f2.texto: El centro está cerca de la playa.
+b5.f3.texto: Allí hay muchas tiendas y cafeterías.
+b5.f4.texto: Lucía quiere comprar un regalo.
+b5.f5.texto: Pablo busca un libro en la librería.
+b5.f6.texto: Toman un café con leche después.
+b5.f7.texto: Vuelven a casa a las seis y media.
+b6.titulo: ¿Cómo van?
+b6.pregunta: ¿Cómo van Lucía y Pablo al centro?
+b6.o0: En metro.
+b6.o0.refuerzo: Correcto: el texto dice que van en metro.
+b6.o1: En autobús.
+b6.o1.refuerzo: El autobús es lento, por eso no lo toman.
+b6.o2: A pie.
+b6.o2.refuerzo: A pie va Lucía otros días, pero ese sábado van en metro.
+b7.titulo: Completa
+b7.pregunta: Completa con la forma correcta de «ir».
+b7.frase: Yo ___ al centro.
+b7.o0: voy
+b7.o0.refuerzo: Correcto: «voy» va con «yo».
+b7.o1: vas
+b7.o1.refuerzo: Incorrecto: «vas» va con «tú».
+b7.o2: va
+b7.o2.refuerzo: Incorrecto: «va» va con él, ella o usted.
+b8.titulo: Ordena las palabras
+b8.frase: Voy al centro en metro.
+b8.traduccion: I go to the centre by metro.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «I go to the centre on foot».
+p.voy.glosa: ir, con «yo»
+p.voy.consejo: La v se pronuncia como b: suena «boy».
+p.vas.glosa: ir, con «tú»
+p.vas.consejo: Se escribe con v, pero suena «bas».
+p.va.glosa: ir, con él, ella o usted
+p.va.consejo: Es muy corta: una sola sílaba.
+p.vamos.glosa: ir, con «nosotros»
+p.vamos.consejo: También sirve para proponer: «¡Vamos!».
+p.van.glosa: ir, con ellos o ustedes
+p.van.consejo: No confundir con «ban» de «bailar»: aquí es el verbo ir.
+p.adónde.glosa: a qué lugar
+p.adónde.consejo: Lleva tilde porque pregunta. Se escribe todo junto: adónde.
+p.al.glosa: a + el
+p.al.consejo: Nunca se escribe «a el»: siempre «al».
+p.del.glosa: de + el
+p.del.consejo: Nunca se escribe «de el»: siempre «del».
+p.el centro.glosa: la parte principal de la ciudad
+p.el centro.consejo: La c suena como th en España: THEN-tro.
+p.la playa.glosa: la arena junto al mar
+p.la playa.consejo: Se dice «en la playa» y «a la playa».
+p.en metro.glosa: con el tren subterráneo
+p.en metro.consejo: Para moverse se usa «en»: en metro, en tren, en coche.
+p.a pie.glosa: andando
+p.a pie.consejo: Siempre con la preposición «a»: nunca «en pie» para moverse.
+
+== ja
+titulo: Voy al centro
+intro: El verbo ir, las palabras al y del, y las formas de moverse por la ciudad.
+b1.titulo: El verbo ir
+b1.texto: "El verbo **ir** es irregular. Se conjuga así:\n\n- yo **voy**\n- tú **vas**\n- él / ella / usted **va**\n- nosotros **vamos**\n- vosotros **vais**\n- ellos **van**\n\nPara decir adónde vas se usa **a**:\n\n- Voy **a** la playa.\n- Voy **al** centro.\n\nFíjate: **a + el = al**. Y en plural, **a + los = a los**."
+b2.titulo: Por la calle
+b2.f0.texto: ¿Adónde vas?
+b2.f1.texto: Voy al centro.
+b2.f2.texto: ¿Cómo vamos?
+b2.f3.texto: En metro.
+b2.f4.texto: Yo siempre voy a pie.
+b3.titulo: Vocabulario
+b4.titulo: Al, del y cómo moverse
+b4.texto: "Dos contracciones que hay que dominar:\n\n- **a + el = al**: «Voy **al** centro».\n- **de + el = del**: «Vengo **del** trabajo».\n\nNunca se dice «a el» ni «de el».\n\nY para moverse:\n\n- **en metro**, **en autobús**, **en tren**, **en coche**, **en bici**\n- **a pie**, cuando vas andando"
+b4.e0.texto: Voy al centro.
+b4.e1.texto: Vamos en metro.
+b5.titulo: Un sábado en el centro
+b5.f0.texto: Lucía y Pablo van al centro el sábado.
+b5.f1.texto: Van en metro porque el autobús es lento.
+b5.f2.texto: El centro está cerca de la playa.
+b5.f3.texto: Allí hay muchas tiendas y cafeterías.
+b5.f4.texto: Lucía quiere comprar un regalo.
+b5.f5.texto: Pablo busca un libro en la librería.
+b5.f6.texto: Toman un café con leche después.
+b5.f7.texto: Vuelven a casa a las seis y media.
+b6.titulo: ¿Cómo van?
+b6.pregunta: ¿Cómo van Lucía y Pablo al centro?
+b6.o0: En metro.
+b6.o0.refuerzo: Correcto: el texto dice que van en metro.
+b6.o1: En autobús.
+b6.o1.refuerzo: El autobús es lento, por eso no lo toman.
+b6.o2: A pie.
+b6.o2.refuerzo: A pie va Lucía otros días, pero ese sábado van en metro.
+b7.titulo: Completa
+b7.pregunta: Completa con la forma correcta de «ir».
+b7.frase: Yo ___ al centro.
+b7.o0: voy
+b7.o0.refuerzo: Correcto: «voy» va con «yo».
+b7.o1: vas
+b7.o1.refuerzo: Incorrecto: «vas» va con «tú».
+b7.o2: va
+b7.o2.refuerzo: Incorrecto: «va» va con él, ella o usted.
+b8.titulo: Ordena las palabras
+b8.frase: Voy al centro en metro.
+b8.traduccion: I go to the centre by metro.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «I go to the centre on foot».
+p.voy.glosa: ir, con «yo»
+p.voy.consejo: La v se pronuncia como b: suena «boy».
+p.vas.glosa: ir, con «tú»
+p.vas.consejo: Se escribe con v, pero suena «bas».
+p.va.glosa: ir, con él, ella o usted
+p.va.consejo: Es muy corta: una sola sílaba.
+p.vamos.glosa: ir, con «nosotros»
+p.vamos.consejo: También sirve para proponer: «¡Vamos!».
+p.van.glosa: ir, con ellos o ustedes
+p.van.consejo: No confundir con «ban» de «bailar»: aquí es el verbo ir.
+p.adónde.glosa: a qué lugar
+p.adónde.consejo: Lleva tilde porque pregunta. Se escribe todo junto: adónde.
+p.al.glosa: a + el
+p.al.consejo: Nunca se escribe «a el»: siempre «al».
+p.del.glosa: de + el
+p.del.consejo: Nunca se escribe «de el»: siempre «del».
+p.el centro.glosa: la parte principal de la ciudad
+p.el centro.consejo: La c suena como th en España: THEN-tro.
+p.la playa.glosa: la arena junto al mar
+p.la playa.consejo: Se dice «en la playa» y «a la playa».
+p.en metro.glosa: con el tren subterráneo
+p.en metro.consejo: Para moverse se usa «en»: en metro, en tren, en coche.
+p.a pie.glosa: andando
+p.a pie.consejo: Siempre con la preposición «a»: nunca «en pie» para moverse.
+
+== it
+titulo: Voy al centro
+intro: El verbo ir, las palabras al y del, y las formas de moverse por la ciudad.
+b1.titulo: El verbo ir
+b1.texto: "El verbo **ir** es irregular. Se conjuga así:\n\n- yo **voy**\n- tú **vas**\n- él / ella / usted **va**\n- nosotros **vamos**\n- vosotros **vais**\n- ellos **van**\n\nPara decir adónde vas se usa **a**:\n\n- Voy **a** la playa.\n- Voy **al** centro.\n\nFíjate: **a + el = al**. Y en plural, **a + los = a los**."
+b2.titulo: Por la calle
+b2.f0.texto: ¿Adónde vas?
+b2.f1.texto: Voy al centro.
+b2.f2.texto: ¿Cómo vamos?
+b2.f3.texto: En metro.
+b2.f4.texto: Yo siempre voy a pie.
+b3.titulo: Vocabulario
+b4.titulo: Al, del y cómo moverse
+b4.texto: "Dos contracciones que hay que dominar:\n\n- **a + el = al**: «Voy **al** centro».\n- **de + el = del**: «Vengo **del** trabajo».\n\nNunca se dice «a el» ni «de el».\n\nY para moverse:\n\n- **en metro**, **en autobús**, **en tren**, **en coche**, **en bici**\n- **a pie**, cuando vas andando"
+b4.e0.texto: Voy al centro.
+b4.e1.texto: Vamos en metro.
+b5.titulo: Un sábado en el centro
+b5.f0.texto: Lucía y Pablo van al centro el sábado.
+b5.f1.texto: Van en metro porque el autobús es lento.
+b5.f2.texto: El centro está cerca de la playa.
+b5.f3.texto: Allí hay muchas tiendas y cafeterías.
+b5.f4.texto: Lucía quiere comprar un regalo.
+b5.f5.texto: Pablo busca un libro en la librería.
+b5.f6.texto: Toman un café con leche después.
+b5.f7.texto: Vuelven a casa a las seis y media.
+b6.titulo: ¿Cómo van?
+b6.pregunta: ¿Cómo van Lucía y Pablo al centro?
+b6.o0: En metro.
+b6.o0.refuerzo: Correcto: el texto dice que van en metro.
+b6.o1: En autobús.
+b6.o1.refuerzo: El autobús es lento, por eso no lo toman.
+b6.o2: A pie.
+b6.o2.refuerzo: A pie va Lucía otros días, pero ese sábado van en metro.
+b7.titulo: Completa
+b7.pregunta: Completa con la forma correcta de «ir».
+b7.frase: Yo ___ al centro.
+b7.o0: voy
+b7.o0.refuerzo: Correcto: «voy» va con «yo».
+b7.o1: vas
+b7.o1.refuerzo: Incorrecto: «vas» va con «tú».
+b7.o2: va
+b7.o2.refuerzo: Incorrecto: «va» va con él, ella o usted.
+b8.titulo: Ordena las palabras
+b8.frase: Voy al centro en metro.
+b8.traduccion: I go to the centre by metro.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «I go to the centre on foot».
+p.voy.glosa: ir, con «yo»
+p.voy.consejo: La v se pronuncia como b: suena «boy».
+p.vas.glosa: ir, con «tú»
+p.vas.consejo: Se escribe con v, pero suena «bas».
+p.va.glosa: ir, con él, ella o usted
+p.va.consejo: Es muy corta: una sola sílaba.
+p.vamos.glosa: ir, con «nosotros»
+p.vamos.consejo: También sirve para proponer: «¡Vamos!».
+p.van.glosa: ir, con ellos o ustedes
+p.van.consejo: No confundir con «ban» de «bailar»: aquí es el verbo ir.
+p.adónde.glosa: a qué lugar
+p.adónde.consejo: Lleva tilde porque pregunta. Se escribe todo junto: adónde.
+p.al.glosa: a + el
+p.al.consejo: Nunca se escribe «a el»: siempre «al».
+p.del.glosa: de + el
+p.del.consejo: Nunca se escribe «de el»: siempre «del».
+p.el centro.glosa: la parte principal de la ciudad
+p.el centro.consejo: La c suena como th en España: THEN-tro.
+p.la playa.glosa: la arena junto al mar
+p.la playa.consejo: Se dice «en la playa» y «a la playa».
+p.en metro.glosa: con el tren subterráneo
+p.en metro.consejo: Para moverse se usa «en»: en metro, en tren, en coche.
+p.a pie.glosa: andando
+p.a pie.consejo: Siempre con la preposición «a»: nunca «en pie» para moverse.
+
+== ko
+titulo: Voy al centro
+intro: El verbo ir, las palabras al y del, y las formas de moverse por la ciudad.
+b1.titulo: El verbo ir
+b1.texto: "El verbo **ir** es irregular. Se conjuga así:\n\n- yo **voy**\n- tú **vas**\n- él / ella / usted **va**\n- nosotros **vamos**\n- vosotros **vais**\n- ellos **van**\n\nPara decir adónde vas se usa **a**:\n\n- Voy **a** la playa.\n- Voy **al** centro.\n\nFíjate: **a + el = al**. Y en plural, **a + los = a los**."
+b2.titulo: Por la calle
+b2.f0.texto: ¿Adónde vas?
+b2.f1.texto: Voy al centro.
+b2.f2.texto: ¿Cómo vamos?
+b2.f3.texto: En metro.
+b2.f4.texto: Yo siempre voy a pie.
+b3.titulo: Vocabulario
+b4.titulo: Al, del y cómo moverse
+b4.texto: "Dos contracciones que hay que dominar:\n\n- **a + el = al**: «Voy **al** centro».\n- **de + el = del**: «Vengo **del** trabajo».\n\nNunca se dice «a el» ni «de el».\n\nY para moverse:\n\n- **en metro**, **en autobús**, **en tren**, **en coche**, **en bici**\n- **a pie**, cuando vas andando"
+b4.e0.texto: Voy al centro.
+b4.e1.texto: Vamos en metro.
+b5.titulo: Un sábado en el centro
+b5.f0.texto: Lucía y Pablo van al centro el sábado.
+b5.f1.texto: Van en metro porque el autobús es lento.
+b5.f2.texto: El centro está cerca de la playa.
+b5.f3.texto: Allí hay muchas tiendas y cafeterías.
+b5.f4.texto: Lucía quiere comprar un regalo.
+b5.f5.texto: Pablo busca un libro en la librería.
+b5.f6.texto: Toman un café con leche después.
+b5.f7.texto: Vuelven a casa a las seis y media.
+b6.titulo: ¿Cómo van?
+b6.pregunta: ¿Cómo van Lucía y Pablo al centro?
+b6.o0: En metro.
+b6.o0.refuerzo: Correcto: el texto dice que van en metro.
+b6.o1: En autobús.
+b6.o1.refuerzo: El autobús es lento, por eso no lo toman.
+b6.o2: A pie.
+b6.o2.refuerzo: A pie va Lucía otros días, pero ese sábado van en metro.
+b7.titulo: Completa
+b7.pregunta: Completa con la forma correcta de «ir».
+b7.frase: Yo ___ al centro.
+b7.o0: voy
+b7.o0.refuerzo: Correcto: «voy» va con «yo».
+b7.o1: vas
+b7.o1.refuerzo: Incorrecto: «vas» va con «tú».
+b7.o2: va
+b7.o2.refuerzo: Incorrecto: «va» va con él, ella o usted.
+b8.titulo: Ordena las palabras
+b8.frase: Voy al centro en metro.
+b8.traduccion: I go to the centre by metro.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «I go to the centre on foot».
+p.voy.glosa: ir, con «yo»
+p.voy.consejo: La v se pronuncia como b: suena «boy».
+p.vas.glosa: ir, con «tú»
+p.vas.consejo: Se escribe con v, pero suena «bas».
+p.va.glosa: ir, con él, ella o usted
+p.va.consejo: Es muy corta: una sola sílaba.
+p.vamos.glosa: ir, con «nosotros»
+p.vamos.consejo: También sirve para proponer: «¡Vamos!».
+p.van.glosa: ir, con ellos o ustedes
+p.van.consejo: No confundir con «ban» de «bailar»: aquí es el verbo ir.
+p.adónde.glosa: a qué lugar
+p.adónde.consejo: Lleva tilde porque pregunta. Se escribe todo junto: adónde.
+p.al.glosa: a + el
+p.al.consejo: Nunca se escribe «a el»: siempre «al».
+p.del.glosa: de + el
+p.del.consejo: Nunca se escribe «de el»: siempre «del».
+p.el centro.glosa: la parte principal de la ciudad
+p.el centro.consejo: La c suena como th en España: THEN-tro.
+p.la playa.glosa: la arena junto al mar
+p.la playa.consejo: Se dice «en la playa» y «a la playa».
+p.en metro.glosa: con el tren subterráneo
+p.en metro.consejo: Para moverse se usa «en»: en metro, en tren, en coche.
+p.a pie.glosa: andando
+p.a pie.consejo: Siempre con la preposición «a»: nunca «en pie» para moverse.
+
+== ru
+titulo: Voy al centro
+intro: El verbo ir, las palabras al y del, y las formas de moverse por la ciudad.
+b1.titulo: El verbo ir
+b1.texto: "El verbo **ir** es irregular. Se conjuga así:\n\n- yo **voy**\n- tú **vas**\n- él / ella / usted **va**\n- nosotros **vamos**\n- vosotros **vais**\n- ellos **van**\n\nPara decir adónde vas se usa **a**:\n\n- Voy **a** la playa.\n- Voy **al** centro.\n\nFíjate: **a + el = al**. Y en plural, **a + los = a los**."
+b2.titulo: Por la calle
+b2.f0.texto: ¿Adónde vas?
+b2.f1.texto: Voy al centro.
+b2.f2.texto: ¿Cómo vamos?
+b2.f3.texto: En metro.
+b2.f4.texto: Yo siempre voy a pie.
+b3.titulo: Vocabulario
+b4.titulo: Al, del y cómo moverse
+b4.texto: "Dos contracciones que hay que dominar:\n\n- **a + el = al**: «Voy **al** centro».\n- **de + el = del**: «Vengo **del** trabajo».\n\nNunca se dice «a el» ni «de el».\n\nY para moverse:\n\n- **en metro**, **en autobús**, **en tren**, **en coche**, **en bici**\n- **a pie**, cuando vas andando"
+b4.e0.texto: Voy al centro.
+b4.e1.texto: Vamos en metro.
+b5.titulo: Un sábado en el centro
+b5.f0.texto: Lucía y Pablo van al centro el sábado.
+b5.f1.texto: Van en metro porque el autobús es lento.
+b5.f2.texto: El centro está cerca de la playa.
+b5.f3.texto: Allí hay muchas tiendas y cafeterías.
+b5.f4.texto: Lucía quiere comprar un regalo.
+b5.f5.texto: Pablo busca un libro en la librería.
+b5.f6.texto: Toman un café con leche después.
+b5.f7.texto: Vuelven a casa a las seis y media.
+b6.titulo: ¿Cómo van?
+b6.pregunta: ¿Cómo van Lucía y Pablo al centro?
+b6.o0: En metro.
+b6.o0.refuerzo: Correcto: el texto dice que van en metro.
+b6.o1: En autobús.
+b6.o1.refuerzo: El autobús es lento, por eso no lo toman.
+b6.o2: A pie.
+b6.o2.refuerzo: A pie va Lucía otros días, pero ese sábado van en metro.
+b7.titulo: Completa
+b7.pregunta: Completa con la forma correcta de «ir».
+b7.frase: Yo ___ al centro.
+b7.o0: voy
+b7.o0.refuerzo: Correcto: «voy» va con «yo».
+b7.o1: vas
+b7.o1.refuerzo: Incorrecto: «vas» va con «tú».
+b7.o2: va
+b7.o2.refuerzo: Incorrecto: «va» va con él, ella o usted.
+b8.titulo: Ordena las palabras
+b8.frase: Voy al centro en metro.
+b8.traduccion: I go to the centre by metro.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «I go to the centre on foot».
+p.voy.glosa: ir, con «yo»
+p.voy.consejo: La v se pronuncia como b: suena «boy».
+p.vas.glosa: ir, con «tú»
+p.vas.consejo: Se escribe con v, pero suena «bas».
+p.va.glosa: ir, con él, ella o usted
+p.va.consejo: Es muy corta: una sola sílaba.
+p.vamos.glosa: ir, con «nosotros»
+p.vamos.consejo: También sirve para proponer: «¡Vamos!».
+p.van.glosa: ir, con ellos o ustedes
+p.van.consejo: No confundir con «ban» de «bailar»: aquí es el verbo ir.
+p.adónde.glosa: a qué lugar
+p.adónde.consejo: Lleva tilde porque pregunta. Se escribe todo junto: adónde.
+p.al.glosa: a + el
+p.al.consejo: Nunca se escribe «a el»: siempre «al».
+p.del.glosa: de + el
+p.del.consejo: Nunca se escribe «de el»: siempre «del».
+p.el centro.glosa: la parte principal de la ciudad
+p.el centro.consejo: La c suena como th en España: THEN-tro.
+p.la playa.glosa: la arena junto al mar
+p.la playa.consejo: Se dice «en la playa» y «a la playa».
+p.en metro.glosa: con el tren subterráneo
+p.en metro.consejo: Para moverse se usa «en»: en metro, en tren, en coche.
+p.a pie.glosa: andando
+p.a pie.consejo: Siempre con la preposición «a»: nunca «en pie» para moverse.
+
+== de
+titulo: Voy al centro
+intro: El verbo ir, las palabras al y del, y las formas de moverse por la ciudad.
+b1.titulo: El verbo ir
+b1.texto: "El verbo **ir** es irregular. Se conjuga así:\n\n- yo **voy**\n- tú **vas**\n- él / ella / usted **va**\n- nosotros **vamos**\n- vosotros **vais**\n- ellos **van**\n\nPara decir adónde vas se usa **a**:\n\n- Voy **a** la playa.\n- Voy **al** centro.\n\nFíjate: **a + el = al**. Y en plural, **a + los = a los**."
+b2.titulo: Por la calle
+b2.f0.texto: ¿Adónde vas?
+b2.f1.texto: Voy al centro.
+b2.f2.texto: ¿Cómo vamos?
+b2.f3.texto: En metro.
+b2.f4.texto: Yo siempre voy a pie.
+b3.titulo: Vocabulario
+b4.titulo: Al, del y cómo moverse
+b4.texto: "Dos contracciones que hay que dominar:\n\n- **a + el = al**: «Voy **al** centro».\n- **de + el = del**: «Vengo **del** trabajo».\n\nNunca se dice «a el» ni «de el».\n\nY para moverse:\n\n- **en metro**, **en autobús**, **en tren**, **en coche**, **en bici**\n- **a pie**, cuando vas andando"
+b4.e0.texto: Voy al centro.
+b4.e1.texto: Vamos en metro.
+b5.titulo: Un sábado en el centro
+b5.f0.texto: Lucía y Pablo van al centro el sábado.
+b5.f1.texto: Van en metro porque el autobús es lento.
+b5.f2.texto: El centro está cerca de la playa.
+b5.f3.texto: Allí hay muchas tiendas y cafeterías.
+b5.f4.texto: Lucía quiere comprar un regalo.
+b5.f5.texto: Pablo busca un libro en la librería.
+b5.f6.texto: Toman un café con leche después.
+b5.f7.texto: Vuelven a casa a las seis y media.
+b6.titulo: ¿Cómo van?
+b6.pregunta: ¿Cómo van Lucía y Pablo al centro?
+b6.o0: En metro.
+b6.o0.refuerzo: Correcto: el texto dice que van en metro.
+b6.o1: En autobús.
+b6.o1.refuerzo: El autobús es lento, por eso no lo toman.
+b6.o2: A pie.
+b6.o2.refuerzo: A pie va Lucía otros días, pero ese sábado van en metro.
+b7.titulo: Completa
+b7.pregunta: Completa con la forma correcta de «ir».
+b7.frase: Yo ___ al centro.
+b7.o0: voy
+b7.o0.refuerzo: Correcto: «voy» va con «yo».
+b7.o1: vas
+b7.o1.refuerzo: Incorrecto: «vas» va con «tú».
+b7.o2: va
+b7.o2.refuerzo: Incorrecto: «va» va con él, ella o usted.
+b8.titulo: Ordena las palabras
+b8.frase: Voy al centro en metro.
+b8.traduccion: I go to the centre by metro.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «I go to the centre on foot».
+p.voy.glosa: ir, con «yo»
+p.voy.consejo: La v se pronuncia como b: suena «boy».
+p.vas.glosa: ir, con «tú»
+p.vas.consejo: Se escribe con v, pero suena «bas».
+p.va.glosa: ir, con él, ella o usted
+p.va.consejo: Es muy corta: una sola sílaba.
+p.vamos.glosa: ir, con «nosotros»
+p.vamos.consejo: También sirve para proponer: «¡Vamos!».
+p.van.glosa: ir, con ellos o ustedes
+p.van.consejo: No confundir con «ban» de «bailar»: aquí es el verbo ir.
+p.adónde.glosa: a qué lugar
+p.adónde.consejo: Lleva tilde porque pregunta. Se escribe todo junto: adónde.
+p.al.glosa: a + el
+p.al.consejo: Nunca se escribe «a el»: siempre «al».
+p.del.glosa: de + el
+p.del.consejo: Nunca se escribe «de el»: siempre «del».
+p.el centro.glosa: la parte principal de la ciudad
+p.el centro.consejo: La c suena como th en España: THEN-tro.
+p.la playa.glosa: la arena junto al mar
+p.la playa.consejo: Se dice «en la playa» y «a la playa».
+p.en metro.glosa: con el tren subterráneo
+p.en metro.consejo: Para moverse se usa «en»: en metro, en tren, en coche.
+p.a pie.glosa: andando
+p.a pie.consejo: Siempre con la preposición «a»: nunca «en pie» para moverse.
+
+== id
+titulo: Voy al centro
+intro: El verbo ir, las palabras al y del, y las formas de moverse por la ciudad.
+b1.titulo: El verbo ir
+b1.texto: "El verbo **ir** es irregular. Se conjuga así:\n\n- yo **voy**\n- tú **vas**\n- él / ella / usted **va**\n- nosotros **vamos**\n- vosotros **vais**\n- ellos **van**\n\nPara decir adónde vas se usa **a**:\n\n- Voy **a** la playa.\n- Voy **al** centro.\n\nFíjate: **a + el = al**. Y en plural, **a + los = a los**."
+b2.titulo: Por la calle
+b2.f0.texto: ¿Adónde vas?
+b2.f1.texto: Voy al centro.
+b2.f2.texto: ¿Cómo vamos?
+b2.f3.texto: En metro.
+b2.f4.texto: Yo siempre voy a pie.
+b3.titulo: Vocabulario
+b4.titulo: Al, del y cómo moverse
+b4.texto: "Dos contracciones que hay que dominar:\n\n- **a + el = al**: «Voy **al** centro».\n- **de + el = del**: «Vengo **del** trabajo».\n\nNunca se dice «a el» ni «de el».\n\nY para moverse:\n\n- **en metro**, **en autobús**, **en tren**, **en coche**, **en bici**\n- **a pie**, cuando vas andando"
+b4.e0.texto: Voy al centro.
+b4.e1.texto: Vamos en metro.
+b5.titulo: Un sábado en el centro
+b5.f0.texto: Lucía y Pablo van al centro el sábado.
+b5.f1.texto: Van en metro porque el autobús es lento.
+b5.f2.texto: El centro está cerca de la playa.
+b5.f3.texto: Allí hay muchas tiendas y cafeterías.
+b5.f4.texto: Lucía quiere comprar un regalo.
+b5.f5.texto: Pablo busca un libro en la librería.
+b5.f6.texto: Toman un café con leche después.
+b5.f7.texto: Vuelven a casa a las seis y media.
+b6.titulo: ¿Cómo van?
+b6.pregunta: ¿Cómo van Lucía y Pablo al centro?
+b6.o0: En metro.
+b6.o0.refuerzo: Correcto: el texto dice que van en metro.
+b6.o1: En autobús.
+b6.o1.refuerzo: El autobús es lento, por eso no lo toman.
+b6.o2: A pie.
+b6.o2.refuerzo: A pie va Lucía otros días, pero ese sábado van en metro.
+b7.titulo: Completa
+b7.pregunta: Completa con la forma correcta de «ir».
+b7.frase: Yo ___ al centro.
+b7.o0: voy
+b7.o0.refuerzo: Correcto: «voy» va con «yo».
+b7.o1: vas
+b7.o1.refuerzo: Incorrecto: «vas» va con «tú».
+b7.o2: va
+b7.o2.refuerzo: Incorrecto: «va» va con él, ella o usted.
+b8.titulo: Ordena las palabras
+b8.frase: Voy al centro en metro.
+b8.traduccion: I go to the centre by metro.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «I go to the centre on foot».
+p.voy.glosa: ir, con «yo»
+p.voy.consejo: La v se pronuncia como b: suena «boy».
+p.vas.glosa: ir, con «tú»
+p.vas.consejo: Se escribe con v, pero suena «bas».
+p.va.glosa: ir, con él, ella o usted
+p.va.consejo: Es muy corta: una sola sílaba.
+p.vamos.glosa: ir, con «nosotros»
+p.vamos.consejo: También sirve para proponer: «¡Vamos!».
+p.van.glosa: ir, con ellos o ustedes
+p.van.consejo: No confundir con «ban» de «bailar»: aquí es el verbo ir.
+p.adónde.glosa: a qué lugar
+p.adónde.consejo: Lleva tilde porque pregunta. Se escribe todo junto: adónde.
+p.al.glosa: a + el
+p.al.consejo: Nunca se escribe «a el»: siempre «al».
+p.del.glosa: de + el
+p.del.consejo: Nunca se escribe «de el»: siempre «del».
+p.el centro.glosa: la parte principal de la ciudad
+p.el centro.consejo: La c suena como th en España: THEN-tro.
+p.la playa.glosa: la arena junto al mar
+p.la playa.consejo: Se dice «en la playa» y «a la playa».
+p.en metro.glosa: con el tren subterráneo
+p.en metro.consejo: Para moverse se usa «en»: en metro, en tren, en coche.
+p.a pie.glosa: andando
+p.a pie.consejo: Siempre con la preposición «a»: nunca «en pie» para moverse.

@@ -1,159 +1,396 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "137",
   "capitulo": 12,
-  "titulo_es": "Busco un piso que tenga luz",
-  "titulo": {"en": "I'm looking for a flat with natural light"},
-  "intro": {"en": "Relative clauses usually use the indicative for a specific, identified referent and the subjunctive for an unspecified, sought or absent one."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "buscar": {"en": "to look for", "pron": "bus-KAR", "cat": "verb", "nota": "First-person singular: busco."},
-    "necesitar": {"en": "to need", "pron": "ne-the-si-TAR", "cat": "verb", "nota": "First-person singular: necesito."},
-    "alguien que": {"en": "someone who", "pron": "AL-gyen ke", "cat": "expression"},
-    "algo que": {"en": "something that", "pron": "AL-go ke", "cat": "expression"},
-    "un lugar donde": {"en": "a place where", "pron": "un lu-GAR DON-de", "cat": "expression"},
-    "no hay nadie que": {"en": "there is nobody who", "pron": "no ai NA-dye ke", "cat": "expression"},
-    "cualquier": {"en": "any", "pron": "kwal-KYER", "cat": "determiner"},
-    "la terraza": {"en": "the terrace", "pron": "la te-RRA-sa/THa", "cat": "noun", "genero": "f"},
-    "el jardín": {"en": "the garden", "pron": "el har-DIN", "cat": "noun", "genero": "m"},
-    "la luz": {"en": "the light", "pron": "la LUS/LUTH", "cat": "noun", "genero": "f"},
-    "tranquilo": {"en": "quiet", "pron": "tran-KI-lo", "cat": "adjective"},
-    "céntrico": {"en": "central", "pron": "SEN/THEN-tri-ko", "cat": "adjective"},
-    "permitir": {"en": "to allow", "pron": "per-mi-TIR", "cat": "verb"}
+    "buscar": {
+      "$f": "p.buscar",
+      "pron": "bus-KAR",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.buscar.nota"
+      }
+    },
+    "necesitar": {
+      "$f": "p.necesitar",
+      "pron": "ne-the-si-TAR",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.necesitar.nota"
+      }
+    },
+    "alguien que": {
+      "$f": "p.alguien que",
+      "pron": "AL-gyen ke",
+      "cat": "expr"
+    },
+    "algo que": {
+      "$f": "p.algo que",
+      "pron": "AL-go ke",
+      "cat": "expr"
+    },
+    "un lugar donde": {
+      "$f": "p.un lugar donde",
+      "pron": "un lu-GAR DON-de",
+      "cat": "expr"
+    },
+    "no hay nadie que": {
+      "$f": "p.no hay nadie que",
+      "pron": "no ai NA-dye ke",
+      "cat": "expr"
+    },
+    "cualquier": {
+      "$f": "p.cualquier",
+      "pron": "kwal-KYER",
+      "cat": "determiner"
+    },
+    "la terraza": {
+      "$f": "p.la terraza",
+      "pron": "la te-RRA-sa/THa",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "el jardín": {
+      "$f": "p.el jardín",
+      "pron": "el har-DIN",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la luz": {
+      "$f": "p.la luz",
+      "pron": "la LUS/LUTH",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "tranquilo": {
+      "$f": "p.tranquilo",
+      "pron": "tran-KI-lo",
+      "cat": "adj"
+    },
+    "céntrico": {
+      "$f": "p.céntrico",
+      "pron": "SEN/THEN-tri-ko",
+      "cat": "adj"
+    },
+    "permitir": {
+      "$f": "p.permitir",
+      "pron": "per-mi-TIR",
+      "cat": "verb"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Known, or only wanted"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "When the noun refers to a **specific, identified** person or thing, use the **indicative**.\n\n- Tengo un piso que **tiene** terraza.\n- Conozco a alguien que **habla** chino.\n\nWhen you search for or want an **unspecified** person or thing, use the **subjunctive**.\n\n- Busco un piso que **tenga** terraza.\n- Necesito a alguien que **hable** chino.\n- Quiero **algo que tenga** luz.\n- **Cualquier piso que tenga** terraza me sirve.\n- ¿Hay alguien que **sepa** la respuesta?\n\nIf its **existence is denied**, also use the subjunctive.\n\n- No hay nadie que **hable** chino.\n- No conozco ningún bar que **abra** hoy.\n\nThe same contrast applies with **donde**: vivo en un barrio donde **hay** parques; quiero vivir en un barrio donde **haya** parques. A question like **¿Conoces a alguien que alquile una habitación?** asks for any person who fits; with a specific known person, the indicative is also possible."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Flat hunting"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "Busco un piso que tenga terraza y que sea céntrico.",
-          "en": "I'm looking for a flat that has a terrace and is central.",
           "analisis": [
-            ["Busco", "verb"],
-            ["un piso", "object"],
-            ["que tenga", "verb (subjunctive)"],
-            ["terraza", "object"],
-            ["que sea", "verb (subjunctive)"],
-            ["céntrico", "description"]
+            [
+              "Busco",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "un piso",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "que tenga",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "terraza",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "que sea",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "céntrico",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Yo vivo en uno que tiene terraza, pero está lejos.",
-          "en": "I live in one that has a terrace, but it's far away.",
           "analisis": [
-            ["Yo", "subject"],
-            ["vivo", "verb"],
-            ["en uno", "place"],
-            ["que tiene", "verb (indicative)"],
-            ["terraza", "object"],
-            ["está lejos", "verb"]
+            [
+              "Yo",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "vivo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "en uno",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "que tiene",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "terraza",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "está lejos",
+              {
+                "$t": "a0"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "¿Conoces a alguien que alquile una habitación?",
-          "en": "Do you know anyone who rents out a room?",
           "analisis": [
-            ["¿Conoces", "verb"],
-            ["a alguien", "object"],
-            ["que alquile", "verb (subjunctive)"],
-            ["una habitación", "object"]
+            [
+              "¿Conoces",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "a alguien",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "que alquile",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "una habitación",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "No conozco a nadie que alquile nada.",
-          "en": "I don't know anyone who rents out anything.",
           "analisis": [
-            ["No", "negation"],
-            ["conozco", "verb"],
-            ["a nadie", "object"],
-            ["que alquile", "verb (subjunctive)"],
-            ["nada", "object"]
+            [
+              "No",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "conozco",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "a nadie",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "que alquile",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "nada",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f4",
           "quien": "Lucía",
-          "es": "Necesito un lugar donde permitan perros.",
-          "en": "I need a place where they allow dogs.",
           "analisis": [
-            ["Necesito", "verb"],
-            ["un lugar", "object"],
-            ["donde permitan", "verb (subjunctive)"],
-            ["perros", "object"]
+            [
+              "Necesito",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "un lugar",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "donde permitan",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "perros",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "relativo-subj-1",
-      "pregunta": {"en": "Complete: I'm looking for a flat that has a garden."},
-      "frase": "Busco un piso que ___ jardín.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "tenga": {"en": "The flat is unspecified; the subjunctive describes the kind being sought."},
-        "tiene": {"en": "Indicative tiene would describe a particular, identified flat."},
-        "tener": {"en": "Use a conjugated relative clause here: busco un piso que tenga jardín."}
+        "tenga": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "tiene": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "tener": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "tenga"
     },
     {
       "tipo": "huecos",
       "id": "relativo-subj-2",
-      "pregunta": {"en": "Complete: I have a friend who speaks Chinese."},
-      "frase": "Tengo un amigo que ___ chino.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "habla": {"en": "A real, known friend: indicative."},
-        "hable": {"en": "This describes the specific friend you have; use indicative habla."},
-        "hablar": {"en": "The clause describes this known friend: use the conjugated indicative habla."}
+        "habla": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "hable": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "hablar": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "habla"
     },
     {
       "tipo": "huecos",
       "id": "relativo-subj-3",
-      "pregunta": {"en": "Complete: there is nobody who knows it."},
-      "frase": "No hay nadie que lo ___.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "sepa": {"en": "Denied existence takes the subjunctive."},
-        "sabe": {"en": "After no hay nadie que, the subjunctive."},
-        "saber": {"en": "The negative antecedent calls for a subjunctive clause: sepa."}
+        "sepa": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "sabe": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "saber": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "sepa"
     },
     {
       "tipo": "test",
       "id": "relativo-subj-4",
-      "pregunta": {"en": "Why is «me guste» subjunctive in «Quiero un trabajo que me guste»?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "The job is unspecified; it is the kind the speaker wants": {"en": "The subjunctive describes any job that meets the desired condition."},
-        "It is a particular job that has already been identified": {"en": "A specific job would normally take the indicative: que me gusta."},
-        "The speaker is talking about a job in the past": {"en": "The sentence expresses a desired kind of job, not a past event."}
+        "The job is unspecified; it is the kind the speaker wants": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "It is a particular job that has already been identified": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "The speaker is talking about a job in the past": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "The job is unspecified; it is the kind the speaker wants"
     },
     {
       "tipo": "ordenar",
       "id": "relativo-subj-5",
-      "frase": "Necesito un lugar donde permitan perros",
-      "traduccion": {"en": "I need a place where they allow dogs."}
+      "frase": {
+        "$e": "b8.frase"
+      },
+      "traduccion": {
+        "$t": "b8.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write an advert describing the flat, the job or the travel companion you are looking for.\n\n**Speak (about 2 minutes).** Describe aloud your ideal home and then the one you actually have."
+        "$t": "b9.texto"
       }
     }
   ]

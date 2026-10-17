@@ -1,111 +1,393 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "164",
   "capitulo": 15,
-  "titulo_es": "Se me ha quemado la cena",
-  "titulo": {"en": "I've accidentally burnt dinner"},
-  "intro": {"en": "Cooking verbs, the kitchen, laying the table, and what goes wrong."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "asar": {"en": "to roast", "pron": "a-SAR", "cat": "verb"},
-    "cocer": {"en": "to cook in boiling water or steam", "pron": "ko-THER", "cat": "verb", "nota": {"en": "The stem changes from o to ue in forms such as cuezo and cuece, but not in cocemos."}},
-    "batir": {"en": "to beat, to whisk", "pron": "ba-TIR", "cat": "verb"},
-    "aliñar": {"en": "to dress (a salad)", "pron": "a-li-NYAR", "cat": "verb"},
-    "el horno": {"en": "the oven", "pron": "el OR-no", "cat": "noun", "genero": "m"},
-    "el cazo": {"en": "the small saucepan", "pron": "el KA-tho", "cat": "noun", "genero": "m"},
-    "el mantel": {"en": "the tablecloth", "pron": "el man-TEL", "cat": "noun", "genero": "m"},
-    "la servilleta": {"en": "the napkin", "pron": "la ser-bi-YE-ta", "cat": "noun", "genero": "f"},
-    "la copa": {"en": "the stemmed glass; wine glass", "pron": "la KO-pa", "cat": "noun", "genero": "f"},
-    "poner la mesa": {"en": "to lay the table", "pron": "po-NER la ME-sa", "cat": "expression"},
-    "quitar la mesa": {"en": "to clear the table", "pron": "ki-TAR la ME-sa", "cat": "expression"},
-    "el vinagre": {"en": "vinegar", "pron": "el bi-NA-gre", "cat": "noun", "genero": "m"},
-    "poco hecho": {"en": "rare, underdone", "pron": "PO-ko E-cho", "cat": "adjective"},
-    "muy hecho": {"en": "well done", "pron": "mwi E-cho", "cat": "adjective"},
-    "en su punto": {"en": "cooked just right", "pron": "en su PUN-to", "cat": "expression", "nota": {"en": "Used for food cooked to the preferred degree; the exact meaning depends on the dish and speaker."}},
-    "comida casera": {"en": "home-cooked food", "pron": "ko-MI-da ka-SE-ra", "cat": "noun", "genero": "f"},
-    "para llevar": {"en": "to take away", "pron": "PA-ra ye-BAR", "cat": "expression"},
-    "quemarse": {"en": "to burn", "pron": "ke-MAR-se", "cat": "verb"},
-    "probar": {"en": "to taste, to try", "pron": "pro-BAR", "cat": "verb"},
-    "freír": {"en": "to fry", "pron": "fre-IR", "cat": "verb"},
-    "hervir": {"en": "to boil; to cook in boiling liquid", "pron": "er-BIR", "cat": "verb"},
-    "hacer a la plancha": {"en": "to cook on a hot griddle", "pron": "a-THER a la PLAN-cha", "cat": "expression"},
-    "pelar": {"en": "to peel", "pron": "pe-LAR", "cat": "verb"},
-    "cortar": {"en": "to cut", "pron": "kor-TAR", "cat": "verb"},
-    "el plato": {"en": "the plate; the dish", "pron": "el PLA-to", "cat": "noun", "genero": "m"},
-    "el vaso": {"en": "the glass; tumbler", "pron": "el BA-so", "cat": "noun", "genero": "m"},
-    "los cubiertos": {"en": "the cutlery; silverware", "pron": "los ku-BYER-tos", "cat": "noun", "genero": "m"},
-    "soso": {"en": "bland; lacking salt", "pron": "SO-so", "cat": "adjective", "nota": {"en": "The adjective agrees with the food: soso, sosa, sosos, sosas."}}
+    "asar": {
+      "$f": "p.asar",
+      "pron": "a-SAR",
+      "cat": "verb"
+    },
+    "cocer": {
+      "$f": "p.cocer",
+      "pron": "ko-THER",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.cocer.nota"
+      }
+    },
+    "batir": {
+      "$f": "p.batir",
+      "pron": "ba-TIR",
+      "cat": "verb"
+    },
+    "aliñar": {
+      "$f": "p.aliñar",
+      "pron": "a-li-NYAR",
+      "cat": "verb"
+    },
+    "el horno": {
+      "$f": "p.el horno",
+      "pron": "el OR-no",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el cazo": {
+      "$f": "p.el cazo",
+      "pron": "el KA-tho",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el mantel": {
+      "$f": "p.el mantel",
+      "pron": "el man-TEL",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la servilleta": {
+      "$f": "p.la servilleta",
+      "pron": "la ser-bi-YE-ta",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "la copa": {
+      "$f": "p.la copa",
+      "pron": "la KO-pa",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "poner la mesa": {
+      "$f": "p.poner la mesa",
+      "pron": "po-NER la ME-sa",
+      "cat": "expr"
+    },
+    "quitar la mesa": {
+      "$f": "p.quitar la mesa",
+      "pron": "ki-TAR la ME-sa",
+      "cat": "expr"
+    },
+    "el vinagre": {
+      "$f": "p.el vinagre",
+      "pron": "el bi-NA-gre",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "poco hecho": {
+      "$f": "p.poco hecho",
+      "pron": "PO-ko E-cho",
+      "cat": "adj"
+    },
+    "muy hecho": {
+      "$f": "p.muy hecho",
+      "pron": "mwi E-cho",
+      "cat": "adj"
+    },
+    "en su punto": {
+      "$f": "p.en su punto",
+      "pron": "en su PUN-to",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.en su punto.nota"
+      }
+    },
+    "comida casera": {
+      "$f": "p.comida casera",
+      "pron": "ko-MI-da ka-SE-ra",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "para llevar": {
+      "$f": "p.para llevar",
+      "pron": "PA-ra ye-BAR",
+      "cat": "expr"
+    },
+    "quemarse": {
+      "$f": "p.quemarse",
+      "pron": "ke-MAR-se",
+      "cat": "verb"
+    },
+    "probar": {
+      "$f": "p.probar",
+      "pron": "pro-BAR",
+      "cat": "verb"
+    },
+    "freír": {
+      "$f": "p.freír",
+      "pron": "fre-IR",
+      "cat": "verb"
+    },
+    "hervir": {
+      "$f": "p.hervir",
+      "pron": "er-BIR",
+      "cat": "verb"
+    },
+    "hacer a la plancha": {
+      "$f": "p.hacer a la plancha",
+      "pron": "a-THER a la PLAN-cha",
+      "cat": "expr"
+    },
+    "pelar": {
+      "$f": "p.pelar",
+      "pron": "pe-LAR",
+      "cat": "verb"
+    },
+    "cortar": {
+      "$f": "p.cortar",
+      "pron": "kor-TAR",
+      "cat": "verb"
+    },
+    "el plato": {
+      "$f": "p.el plato",
+      "pron": "el PLA-to",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el vaso": {
+      "$f": "p.el vaso",
+      "pron": "el BA-so",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "los cubiertos": {
+      "$f": "p.los cubiertos",
+      "pron": "los ku-BYER-tos",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "soso": {
+      "$f": "p.soso",
+      "pron": "SO-so",
+      "cat": "adj",
+      "nota": {
+        "$t": "p.soso.nota"
+      }
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "In the kitchen"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "**Cooking:** **freír** in oil; **cocer** food in boiling water or steam; **hervir** a liquid or cook something in a boiling liquid; **asar** in the oven; **hacer a la plancha** on a hot griddle; **batir** eggs; **pelar**, **cortar**, **aliñar** a salad **con** oil, vinegar and salt; **probar**.\n\n**The table:** **poner la mesa** and **quitar la mesa**; **el mantel**, **la servilleta**, **el plato**, **el vaso**, **la copa**, **los cubiertos**.\n\n**Accidental events:** a common pattern is **se + me/te/le/nos/os/les + verb**: **se me ha quemado** la cena; **se me ha caído** un plato; **se me han olvidado** las servilletas. The affected thing is the subject, so the verb agrees with it. With **haber**, the participle stays unchanged: **han olvidado**, even when the subject is plural. This is a common way to describe an unintentional event, not a rule that every accident must use this pattern.\n\n**Formal recipe instructions:** usted commands include **pele** las patatas, **bata** los huevos and **añada** sal.\n\n**Meat doneness:** **poco hecha**, **en su punto**, **muy hecha**. The adjective agrees with **carne**; usage and preferred doneness terms can vary.\n\nIn a restaurant: **comida casera**; **¿para tomar aquí o para llevar?**"
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Dinner for six"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "¿Me ayudas? Vienen seis a cenar y se me ha quemado el pollo.",
-          "en": "Will you help me? Six people are coming for dinner and I've accidentally burnt the chicken.",
           "analisis": [
-            ["¿Me ayudas?", "verb"],
-            ["Vienen seis", "verb"],
-            ["a cenar", "purpose"],
-            ["se me ha quemado", "verb"],
-            ["el pollo", "subject"]
+            [
+              "¿Me ayudas?",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "Vienen seis",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "a cenar",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "se me ha quemado",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "el pollo",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Tranquila. Ponemos pescado en el horno. ¿Qué hago yo?",
-          "en": "Don't worry. We'll put some fish in the oven. What shall I do?",
           "analisis": [
-            ["Ponemos", "verb"],
-            ["pescado", "object"],
-            ["en el horno", "place"],
-            ["¿Qué", "question"],
-            ["hago", "verb"],
-            ["yo", "subject"]
+            [
+              "Ponemos",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "pescado",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "en el horno",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "¿Qué",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "hago",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "yo",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "Bate los huevos para la tortilla y aliña la ensalada.",
-          "en": "Whisk the eggs for the Spanish omelette and dress the salad.",
           "analisis": [
-            ["Bate", "command"],
-            ["los huevos", "object"],
-            ["para la tortilla", "purpose"],
-            ["aliña", "command"],
-            ["la ensalada", "object"]
+            [
+              "Bate",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "los huevos",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "para la tortilla",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "aliña",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "la ensalada",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "¿Con aceite y vinagre?",
-          "en": "With oil and vinegar?",
-          "analisis": [["¿Con aceite y vinagre?", "with what"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Sí. Y prueba la sopa, a ver si está sosa.",
-          "en": "Yes. And taste the soup to see if it's bland.",
-          "analisis": [["prueba", "command"], ["la sopa", "object"], ["a ver si", "to see if"], ["está sosa", "verb"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Está muy rica. Yo pongo la mesa: ¿dónde están el mantel y las copas?",
-          "en": "It's very tasty. I'll lay the table: where are the tablecloth and the glasses?",
           "analisis": [
-            ["Está", "verb"],
-            ["muy rica", "description"],
-            ["Yo", "subject"],
-            ["pongo la mesa", "verb"],
-            ["¿dónde", "question"],
-            ["están", "verb"],
-            ["el mantel y las copas", "subject"]
+            [
+              "¿Con aceite y vinagre?",
+              {
+                "$t": "a7"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "prueba",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "la sopa",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "a ver si",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "está sosa",
+              {
+                "$t": "a0"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Está",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "muy rica",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "Yo",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "pongo la mesa",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "¿dónde",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "están",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "el mantel y las copas",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         }
       ]
@@ -146,71 +428,135 @@
     {
       "tipo": "huecos",
       "id": "cocina-b1-1",
-      "pregunta": {"en": "Complete: I've burnt the dinner."},
-      "frase": "Se me ha ___ la cena.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "quemado": {"en": "With haber, the participle stays unchanged."},
-        "quemada": {"en": "The participle does not agree with la cena here."},
-        "quemar": {"en": "The compound tense needs a participle."}
+        "quemado": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "quemada": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "quemar": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "quemado"
     },
     {
       "tipo": "test",
       "id": "cocina-b1-2",
-      "pregunta": {"en": "How do you cook a chicken in the oven?"},
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
       "opciones": {
-        "asar": {"en": "To roast."},
-        "hervir": {"en": "That is in water."},
-        "aliñar": {"en": "That is to dress a salad."}
+        "asar": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "hervir": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "aliñar": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "asar"
     },
     {
       "tipo": "huecos",
       "id": "cocina-b1-3",
-      "pregunta": {"en": "Complete: I've forgotten the napkins."},
-      "frase": "Se me han ___ las servilletas.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "olvidado": {"en": "The participle after han."},
-        "olvidadas": {"en": "After han, the participle does not agree."},
-        "olvidan": {"en": "After han, the participle."}
+        "olvidado": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "olvidadas": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "olvidan": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "olvidado"
     },
     {
       "tipo": "test",
       "id": "cocina-b1-4",
-      "pregunta": {"en": "You prefer your steak well done. How do you order it?"},
-      "opciones": {"muy hecha": {"en": "Well done."}, "poco hecha": {"en": "That is rare."}, "cruda": {"en": "That is raw."}},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "opciones": {
+        "muy hecha": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "poco hecha": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "cruda": {
+          "$t": "b7.o2.refuerzo"
+        }
+      },
       "correcta": "muy hecha"
     },
     {
       "tipo": "traduccion",
       "id": "cocina-b1-5",
-      "frase": "¿Para tomar aquí o para llevar?",
+      "frase": {
+        "$e": "b8.frase"
+      },
       "opciones": [
-        {"texto": {"en": "To eat in or to take away?"}, "correcta": true},
         {
-          "texto": {"en": "To drink here or to carry?"},
-          "explicacion": {"en": "Tomar is to have, and para llevar is to take away."}
+          "texto": {
+            "$t": "b8.o0"
+          },
+          "correcta": true
         },
-        {"texto": {"en": "To take here or bring there?"}, "explicacion": {"en": "It is the question of a takeaway."}}
+        {
+          "texto": {
+            "$t": "b8.o1"
+          },
+          "explicacion": {
+            "$t": "b8.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b8.o2"
+          },
+          "explicacion": {
+            "$t": "b8.o2.explicacion"
+          }
+        }
       ]
     },
     {
       "tipo": "ordenar",
       "id": "cocina-b1-6",
-      "frase": "Bate los huevos y aliña la ensalada",
-      "traduccion": {"en": "Whisk the eggs and dress the salad."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write about a meal you cooked that was a success or a disaster.\n\n**Speak (about 2 minutes).** Explain aloud, step by step, how to cook your best dish."
+        "$t": "b10.texto"
       }
     }
   ]

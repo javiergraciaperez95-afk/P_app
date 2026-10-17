@@ -226,7 +226,21 @@ export function pintarPrecios(contenedor) {
   const porMax = el('p', { class: 'pr-por' });
   const lista = claves => el('ul', { class: 'pr-lista' }, claves.map(([clave, datos, marca]) => el('li', {}, t(clave, datos ?? undefined), marca ?? null)));
 
-  const peldano = (plan, tutora, cuerpo) => el('li', { class: `pr-peldano pr-${plan}` }, tutora.figura, el('div', { class: 'pr-bloque' }, cuerpo));
+  // En el móvil los tres planes van uno debajo de otro, recogidos: «Qué incluye» despliega la lista de cada uno.
+  const peldano = (plan, tutora, cuerpo) => {
+    const li = el('li', { class: `pr-peldano pr-${plan}` });
+    const ver = el('button', { type: 'button', class: 'pr-ver', 'aria-expanded': 'false' }, t('pr.verIncluye'));
+    ver.addEventListener('click', () => {
+      const abierto = li.classList.toggle('pr-abierto');
+      ver.setAttribute('aria-expanded', String(abierto));
+      sonar(abierto ? 'abrir' : 'cerrar');
+      if (abierto) tutora.gesto('presentarIzq');
+    });
+    const lista = cuerpo.find(n => n?.classList?.contains('pr-lista'));
+    cuerpo.splice(cuerpo.indexOf(lista), 0, ver);
+    poner(li, tutora.figura, el('div', { class: 'pr-bloque' }, cuerpo));
+    return li;
+  };
   const peldanoGratis = peldano('gratis', tGratis, [
     el('p', { class: 'pr-nombre' }, t('pr.gratis.nombre')),
     el('p', { class: 'pr-lema' }, t('pr.gratis.lema')),

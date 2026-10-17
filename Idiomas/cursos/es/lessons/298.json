@@ -1,85 +1,169 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "298",
   "capitulo": 19,
-  "titulo_es": "Si hubiera elegido otro camino",
-  "titulo": {"en": "If I had chosen another path"},
-  "intro": {"en": "Read mixed conditions in which the imagined cause and its result belong to different times."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "la beca": {"en": "the scholarship", "pron": "la BE-ka", "genero": "f"},
-    "la consecuencia": {"en": "the consequence", "pron": "la kon-se-KWEN-thya", "genero": "f"},
-    "arrepentirse de": {"en": "to regret", "pron": "a-rre-pen-TIR-se de", "cat": "verb"},
-    "el desenlace": {"en": "the outcome", "pron": "el de-sen-LA-the", "genero": "m"}
+    "la beca": {
+      "$f": "p.la beca",
+      "pron": "la BE-ka",
+      "genero": "f"
+    },
+    "la consecuencia": {
+      "$f": "p.la consecuencia",
+      "pron": "la kon-se-KWEN-thya",
+      "genero": "f"
+    },
+    "arrepentirse de": {
+      "$f": "p.arrepentirse de",
+      "pron": "a-rre-pen-TIR-se de",
+      "cat": "verb"
+    },
+    "el desenlace": {
+      "$f": "p.el desenlace",
+      "pron": "el de-sen-LA-the",
+      "genero": "m"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "The two parts can refer to different times"},
-      "texto": {"en": "A hypothetical **si** clause and its result do not always refer to the same time. This is common when someone imagines how a past decision affects the present, or how a lasting situation affected a past event.\n\n- **Past condition → present result:** *Si hubiera aceptado la beca, ahora viviría en otra ciudad.* I did not accept it; I do not live there now.\n- **Present condition → past result:** *Si fuera menos tímido, habría solicitado el puesto.* My present character is described as a reason for a past outcome.\n- **Past condition → future result:** *Si hubieras reservado antes, viajarías con nosotros mañana.*\n\nThe **si** clause uses the imperfect or pluperfect subjunctive. The result clause can use the conditional or conditional perfect, depending on its time reference. The usual three patterns are still useful; mixed patterns add a time contrast, they do not replace them."}
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "texto",
-      "titulo": {"en": "A decision, years later"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
-        {"es": "Cuando terminé el instituto, me ofrecieron una beca para estudiar en Granada.", "en": "When I finished secondary school, I was offered a scholarship to study in Granada."},
-        {"es": "La rechacé porque mi madre estaba enferma y pensé que debía quedarme en casa.", "en": "I turned it down because my mother was ill and I thought I should stay at home."},
-        {"es": "Con el tiempo, mi hermana volvió al pueblo y pudo ayudarla, mientras yo empecé a trabajar en una biblioteca.", "en": "In time, my sister returned to the town and was able to help her, while I started working in a library."},
-        {"es": "Si hubiera aceptado aquella beca, ahora viviría en otra ciudad y quizá tendría un trabajo distinto.", "en": "If I had accepted that scholarship, I would now live in another city and might have a different job."},
-        {"es": "Pero no creo que mi vida hubiera sido necesariamente mejor.", "en": "But I do not think my life would necessarily have been better."},
-        {"es": "Si fuera menos impaciente, habría tomado la decisión con más calma.", "en": "If I were less impatient, I would have made the decision more calmly."},
-        {"es": "Hoy no me arrepiento de haberme quedado, aunque todavía me pregunto qué habría pasado si me hubiera marchado.", "en": "Today I do not regret staying, although I still wonder what would have happened if I had left."}
+        {
+          "$f": "b2.f0"
+        },
+        {
+          "$f": "b2.f1"
+        },
+        {
+          "$f": "b2.f2"
+        },
+        {
+          "$f": "b2.f3"
+        },
+        {
+          "$f": "b2.f4"
+        },
+        {
+          "$f": "b2.f5"
+        },
+        {
+          "$f": "b2.f6"
+        }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "test",
       "id": "b2-mixtas-1",
-      "pregunta": {"en": "In «Si hubiera aceptado aquella beca, ahora viviría…», when is the condition?"},
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
       "opciones": {
-        "In the past, with a present result": {"en": "The result is marked by ahora viviría."},
-        "In the present, with a past result": {"en": "The condition uses hubiera aceptado."},
-        "In the future, with a future result": {"en": "Both clauses describe an unreal past choice and its present result."}
+        "In the past, with a present result": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "In the present, with a past result": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "In the future, with a future result": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "In the past, with a present result"
     },
     {
       "tipo": "test",
       "id": "b2-mixtas-2",
-      "pregunta": {"en": "What does «Si fuera menos impaciente, habría tomado la decisión con más calma» suggest?"},
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
       "opciones": {
-        "A present trait is linked to a different past outcome": {"en": "The condition describes the speaker; the result refers to the earlier decision."},
-        "The speaker has already become more patient": {"en": "The sentence imagines an alternative, not a confirmed change."},
-        "The decision will happen in the future": {"en": "Habría tomado refers to an unreal past result."}
+        "A present trait is linked to a different past outcome": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "The speaker has already become more patient": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "The decision will happen in the future": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "A present trait is linked to a different past outcome"
     },
     {
       "tipo": "huecos",
       "id": "b2-mixtas-3",
-      "pregunta": {"en": "Complete: If I had left earlier, I would be there now."},
-      "frase": "Si ___ antes, ahora estaría allí.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "opciones": {
-        "hubiera salido": {"en": "Past condition, present result."},
-        "saliera": {"en": "This would normally present an unreal present or future condition."},
-        "habría salido": {"en": "Do not use the conditional in this hypothetical si clause."}
+        "hubiera salido": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "saliera": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "habría salido": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "hubiera salido"
     },
     {
       "tipo": "huecos",
       "id": "b2-mixtas-4",
-      "pregunta": {"en": "Complete: If I were more organised, I would not have missed the appointment."},
-      "frase": "Si ___ más organizado, no habría perdido la cita.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "opciones": {
-        "fuera": {"en": "Present characteristic, past result."},
-        "hubiera sido": {"en": "This would place the condition in the past too."},
-        "sería": {"en": "The conditional does not go after si in this pattern."}
+        "fuera": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "hubiera sido": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "sería": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "fuera"
     },
     {
       "tipo": "ordenar",
       "id": "b2-mixtas-5",
-      "frase": "Si hubiera aceptado la beca, ahora viviría en otra ciudad",
-      "traduccion": {"en": "If I had accepted the scholarship, I would now live in another city."}
+      "frase": {
+        "$e": "b8.frase"
+      },
+      "traduccion": {
+        "$t": "b8.traduccion"
+      }
     }
   ]
 }

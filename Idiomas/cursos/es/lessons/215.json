@@ -1,173 +1,457 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "215",
   "capitulo": 20,
-  "titulo_es": "De ahí que",
-  "titulo": {"en": "Hence"},
-  "intro": {"en": "Formal result connectors, and the one of them that takes the subjunctive."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "de ahí que": {"en": "hence, that is why", "pron": "de a-I ke", "cat": "connector", "nota": "Always with the subjunctive."},
-    "de modo que": {"en": "so; so that", "pron": "de MO-do ke", "cat": "connector"},
-    "de manera que": {"en": "so; so that", "pron": "de ma-NE-ra ke", "cat": "connector"},
-    "por consiguiente": {"en": "consequently", "pron": "por kon-si-GYEN-te", "cat": "connector"},
-    "así pues": {"en": "so, thus", "pron": "a-SI pwes", "cat": "connector"},
-    "con lo cual": {"en": "which means that", "pron": "kon lo kwal", "cat": "expression"},
-    "por lo que": {"en": "so, for which reason", "pron": "por lo ke", "cat": "expression"},
-    "tal … que": {"en": "such … that", "pron": "tal ke", "cat": "expression"},
-    "hasta el punto de que": {"en": "to the point that", "pron": "AS-ta el PUN-to de ke", "cat": "expression"},
-    "luego": {"en": "therefore (in logic)", "pron": "LWE-go", "cat": "connector", "nota": "Pienso, luego existo."},
-    "las afueras": {"en": "the outskirts", "pron": "las a-FWE-ras", "genero": "f"},
-    "la demanda": {"en": "the demand", "pron": "la de-MAN-da", "genero": "f"},
-    "el sueldo": {"en": "the wage, the salary", "pron": "el SWEL-do", "genero": "m"}
+    "de ahí que": {
+      "$f": "p.de ahí que",
+      "pron": "de a-I ke",
+      "cat": "connector",
+      "nota": {
+        "$t": "p.de ahí que.nota"
+      }
+    },
+    "de modo que": {
+      "$f": "p.de modo que",
+      "pron": "de MO-do ke",
+      "cat": "connector"
+    },
+    "de manera que": {
+      "$f": "p.de manera que",
+      "pron": "de ma-NE-ra ke",
+      "cat": "connector"
+    },
+    "por consiguiente": {
+      "$f": "p.por consiguiente",
+      "pron": "por kon-si-GYEN-te",
+      "cat": "connector"
+    },
+    "así pues": {
+      "$f": "p.así pues",
+      "pron": "a-SI pwes",
+      "cat": "connector"
+    },
+    "con lo cual": {
+      "$f": "p.con lo cual",
+      "pron": "kon lo kwal",
+      "cat": "expr"
+    },
+    "por lo que": {
+      "$f": "p.por lo que",
+      "pron": "por lo ke",
+      "cat": "expr"
+    },
+    "tal … que": {
+      "$f": "p.tal … que",
+      "pron": "tal ke",
+      "cat": "expr"
+    },
+    "hasta el punto de que": {
+      "$f": "p.hasta el punto de que",
+      "pron": "AS-ta el PUN-to de ke",
+      "cat": "expr"
+    },
+    "luego": {
+      "$f": "p.luego",
+      "pron": "LWE-go",
+      "cat": "connector",
+      "nota": {
+        "$t": "p.luego.nota"
+      }
+    },
+    "las afueras": {
+      "$f": "p.las afueras",
+      "pron": "las a-FWE-ras",
+      "genero": "f"
+    },
+    "la demanda": {
+      "$f": "p.la demanda",
+      "pron": "la de-MAN-da",
+      "genero": "f"
+    },
+    "el sueldo": {
+      "$f": "p.el sueldo",
+      "pron": "el SWEL-do",
+      "genero": "m"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Results in formal Spanish"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "Almost all result connectors take the indicative: **por tanto**, **por consiguiente**, **así pues**, **con lo cual**, **por lo que**, **de modo que**, **de manera que**, and **luego** in a logical deduction.\n\nThe exception is **de ahí que** + **subjunctive**. It presents the result as something already known, which the first clause explains: está enfermo; **de ahí que** no **venga**.\n\n**De modo que** and **de manera que** change meaning with the mood.\n\n- + indicative, a result: llovió, **de modo que nos quedamos**.\n- + subjunctive, a purpose: habla **de modo que** todos te **entiendan**.\n\nResults from intensity: **tan / tanto … que**, **tal** + noun + **que** (tenía **tal** hambre **que**…), **de tal manera que**, **hasta el punto de que**."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "Connector and mood"},
-      "columnas": ["Connector", "Mood", "Example"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        },
+        {
+          "$t": "b2.c2"
+        }
+      ],
       "filas": [
-        ["por consiguiente", "indicative", "Suben los precios; por consiguiente, compramos menos."],
-        ["con lo cual", "indicative", "Perdí el tren, con lo cual llegué tarde."],
-        ["de ahí que", "subjunctive", "Está enfermo; de ahí que no venga."],
-        ["de modo que, result", "indicative", "Llovía, de modo que me quedé."],
-        ["de modo que, purpose", "subjunctive", "Habla de modo que te oigan."]
+        [
+          "por consiguiente",
+          "indicative",
+          "Suben los precios; por consiguiente, compramos menos."
+        ],
+        [
+          "con lo cual",
+          "indicative",
+          "Perdí el tren, con lo cual llegué tarde."
+        ],
+        [
+          "de ahí que",
+          "subjunctive",
+          "Está enfermo; de ahí que no venga."
+        ],
+        [
+          "de modo que, result",
+          "indicative",
+          "Llovía, de modo que me quedé."
+        ],
+        [
+          "de modo que, purpose",
+          "subjunctive",
+          "Habla de modo que te oigan."
+        ]
       ]
     },
     {
       "tipo": "texto",
-      "titulo": {"en": "Rents in the city centre"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
-          "es": "Los alquileres han subido mucho en el centro.",
-          "en": "Rents have gone up a lot in the centre.",
-          "analisis": [["Los alquileres", "subject"], ["han subido", "verb"], ["mucho", "how much"], ["en el centro", "place"]]
-        },
-        {
-          "es": "De ahí que muchos jóvenes se vayan a vivir a las afueras.",
-          "en": "Hence many young people are going to live on the outskirts.",
+          "$f": "b3.f0",
           "analisis": [
-            ["De ahí que", "result (known)"],
-            ["muchos jóvenes", "subject"],
-            ["se vayan", "verb (subjunctive)"],
-            ["a vivir", "purpose"],
-            ["a las afueras", "place"]
+            [
+              "Los alquileres",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "han subido",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "mucho",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "en el centro",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
-          "es": "Los sueldos, en cambio, no han subido; por consiguiente, se ahorra menos.",
-          "en": "Wages, on the other hand, have not gone up; consequently, people save less.",
+          "$f": "b3.f1",
           "analisis": [
-            ["Los sueldos", "subject"],
-            ["en cambio", "contrast"],
-            ["no han subido", "verb"],
-            ["por consiguiente", "result"],
-            ["se ahorra", "verb"],
-            ["menos", "how much"]
+            [
+              "De ahí que",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "muchos jóvenes",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "se vayan",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "a vivir",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "a las afueras",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
-          "es": "Hay tal demanda de pisos que se alquilan en un día.",
-          "en": "There is such demand for flats that they are let within a day.",
+          "$f": "b3.f2",
           "analisis": [
-            ["Hay", "verb"],
-            ["tal demanda de pisos que", "such … that"],
-            ["se alquilan", "verb"],
-            ["en un día", "time"]
+            [
+              "Los sueldos",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "en cambio",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "no han subido",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "por consiguiente",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "se ahorra",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "menos",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
-          "es": "Muchos dueños prefieren a los turistas, con lo cual hay menos pisos para los vecinos.",
-          "en": "Many owners prefer tourists, which means there are fewer flats for residents.",
+          "$f": "b3.f3",
           "analisis": [
-            ["Muchos dueños", "subject"],
-            ["prefieren", "verb"],
-            ["a los turistas", "object"],
-            ["con lo cual", "result"],
-            ["hay", "verb"],
-            ["menos pisos", "object"],
-            ["para los vecinos", "for whom"]
+            [
+              "Hay",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "tal demanda de pisos que",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "se alquilan",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "en un día",
+              {
+                "$t": "a10"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f4",
+          "analisis": [
+            [
+              "Muchos dueños",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "prefieren",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "a los turistas",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "con lo cual",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "hay",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "menos pisos",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "para los vecinos",
+              {
+                "$t": "a12"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "consecutivas-b2-1",
-      "pregunta": {"en": "Complete: he is ill; hence he isn't coming."},
-      "frase": "Está enfermo; de ahí que no ___.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "venga": {"en": "De ahí que always takes the subjunctive."},
-        "viene": {"en": "De ahí que is the exception among result connectors."},
-        "vendrá": {"en": "De ahí que does not take the future."}
+        "venga": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "viene": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "vendrá": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "venga"
     },
     {
       "tipo": "huecos",
       "id": "consecutivas-b2-2",
-      "pregunta": {"en": "Complete: I missed the train, which meant I arrived late."},
-      "frase": "Perdí el tren, con lo cual ___ tarde.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "llegué": {"en": "Con lo cual takes the indicative."},
-        "llegara": {"en": "Con lo cual states a real result."},
-        "llegue": {"en": "Con lo cual takes the indicative."}
+        "llegué": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "llegara": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "llegue": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "llegué"
     },
     {
       "tipo": "test",
       "id": "consecutivas-b2-3",
-      "pregunta": {"en": "«Habla de modo que todos te entiendan.» With the subjunctive, de modo que expresses…"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "a purpose: so that they understand": {"en": "The subjunctive turns it into a goal."},
-        "a result that has happened": {"en": "That would take the indicative."},
-        "a cause": {"en": "De modo que never gives a cause."}
+        "a purpose: so that they understand": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "a result that has happened": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "a cause": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "a purpose: so that they understand"
     },
     {
       "tipo": "huecos",
       "id": "consecutivas-b2-4",
-      "pregunta": {"en": "Complete: there was such noise that I couldn't sleep."},
-      "frase": "Había ___ ruido que no pude dormir.",
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "frase": {
+        "$e": "b8.frase"
+      },
       "audio": true,
       "opciones": {
-        "tal": {"en": "Tal plus a noun plus que."},
-        "tan": {"en": "Tan goes before adjectives and adverbs."},
-        "tales": {"en": "Ruido is singular."}
+        "tal": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "tan": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "tales": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "tal"
     },
     {
       "tipo": "test",
       "id": "consecutivas-b2-5",
-      "pregunta": {"en": "Which connector takes the subjunctive?"},
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
       "opciones": {
-        "de ahí que": {"en": "The one exception."},
-        "por consiguiente": {"en": "Indicative."},
-        "con lo cual": {"en": "Indicative."}
+        "de ahí que": {
+          "$t": "b9.o0.refuerzo"
+        },
+        "por consiguiente": {
+          "$t": "b9.o1.refuerzo"
+        },
+        "con lo cual": {
+          "$t": "b9.o2.refuerzo"
+        }
       },
       "correcta": "de ahí que"
     },
     {
       "tipo": "ordenar",
       "id": "consecutivas-b2-6",
-      "frase": "De ahí que muchos jóvenes se vayan",
-      "traduccion": {"en": "Hence many young people are leaving."}
+      "frase": {
+        "$e": "b10.frase"
+      },
+      "traduccion": {
+        "$t": "b10.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (150–180 words).** Write an analysis of a social problem, such as the fall in the birth rate: causes and consequences, with formal connectors.\n\n**Speak (about 3 minutes).** Explain aloud a chain of consequences in your country's recent history."
+        "$t": "b11.texto"
       }
     }
   ]

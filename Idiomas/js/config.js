@@ -53,3 +53,19 @@ export const ZONAS = {
 // Plazas del plan «Fundadores» (Plus para siempre con un solo pago).
 export const PLAZAS_FUNDADORES = 2000;
 
+// ----- Escuelas y empresas (#/escuelas, #/empresas): se factura directamente, sin pasar por las tiendas. -----
+// Plan: Documents/Paglot/Documentación/Paglot_Plan_Escuelas_y_Empresas.pdf. Precios sin IVA.
+// Las licencias son Plus anual de la zona con el descuento del tramo («desde» = alumnos o personas mínimas).
+// Lo que va en euros (cursos a medida) es el precio de la zona A: en las demás se escala igual que Plus.
+export const ESCUELAS = {
+  tramos: [{ desde: 20, descuento: 0.5 }, { desde: 100, descuento: 0.6 }, { desde: 500, descuento: 0.7 }],
+  unidadMedida: 450, // 10 lecciones con el temario del centro; la mitad si deja publicarla para todos
+};
+export const EMPRESAS = {
+  tramos: [{ desde: 5, descuento: 0.2 }, { desde: 25, descuento: 0.35 }, { desde: 100, descuento: 0.5 }],
+  maxDescuento: 0.3,  // Max Empresa, desde 5 personas
+  unidadSector: 900,  // 10 lecciones de su sector, con una lengua de explicación
+  unidadCedida: 540,  // si deja publicarla, sin datos internos
+  lenguaExtra: 150,   // cada lengua de explicación más
+};
+

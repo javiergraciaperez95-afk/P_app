@@ -1,125 +1,279 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "116",
   "capitulo": 11,
-  "titulo_es": "Se me da bien",
-  "titulo": { "en": "I'm good at it" },
-  "intro": { "en": "Se me da bien talks about a skill. The verb agrees with the skill, not with you." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "se me da bien": { "en": "I'm good at it", "pron": "se me da byen", "cat": "expression" },
-    "se me dan bien": { "en": "I'm good at them", "pron": "se me dan byen", "cat": "expression" },
-    "se me da mal": { "en": "I'm bad at it", "pron": "se me da mal", "cat": "expression" },
-    "las lenguas": { "en": "the languages", "pron": "las LEN-gwas", "cat": "noun", "genero": "f" },
-    "el inglés": { "en": "English", "pron": "el in-GLES", "cat": "noun", "genero": "m" },
-    "el francés": { "en": "French", "pron": "el fran-THES", "cat": "noun", "genero": "m" },
-    "cantar": { "en": "to sing", "pron": "kan-TAR", "cat": "verb" },
-    "a mí": { "en": "to me; as for me (emphasis or contrast)", "pron": "a MI", "cat": "expression" }
+    "se me da bien": {
+      "$f": "p.se me da bien",
+      "pron": "se me da byen",
+      "cat": "expr"
+    },
+    "se me dan bien": {
+      "$f": "p.se me dan bien",
+      "pron": "se me dan byen",
+      "cat": "expr"
+    },
+    "se me da mal": {
+      "$f": "p.se me da mal",
+      "pron": "se me da mal",
+      "cat": "expr"
+    },
+    "las lenguas": {
+      "$f": "p.las lenguas",
+      "pron": "las LEN-gwas",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "el inglés": {
+      "$f": "p.el inglés",
+      "pron": "el in-GLES",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el francés": {
+      "$f": "p.el francés",
+      "pron": "el fran-THES",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "cantar": {
+      "$f": "p.cantar",
+      "pron": "kan-TAR",
+      "cat": "verb"
+    },
+    "a mí": {
+      "$f": "p.a mí",
+      "pron": "a MI",
+      "cat": "expr"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "A skill",
-      "texto": "**Se me da bien** + one skill or activity. **Se me dan bien** + a plural skill or activity.\n\n- El inglés **se me da bien**.\n- Las lenguas **se me dan bien**.\n- Cantar **se me da mal**.\n\nChange **me** to **te**, **le**, **nos**, **os** or **les** to say who has the skill; the verb still agrees with the skill. **A mí** adds emphasis or contrast. The pronoun **me** already identifies the person."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "dialogo",
-      "titulo": "Languages",
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "¿Se te dan bien las lenguas?",
-          "en": "Are you good at languages?",
           "analisis": [
-            ["¿Se te dan bien", "verb"],
-            ["las lenguas", "subject"]
+            [
+              "¿Se te dan bien",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "las lenguas",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "El inglés se me da bien.",
-          "en": "I'm good at English.",
           "analisis": [
-            ["El inglés", "subject"],
-            ["se me da bien", "verb"]
+            [
+              "El inglés",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "se me da bien",
+              {
+                "$t": "a0"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "A mí no se me da bien el francés.",
-          "en": "I'm not good at French.",
           "analisis": [
-            ["A mí", "who"],
-            ["no se me da bien", "negation"],
-            ["el francés", "subject"]
+            [
+              "A mí",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "no se me da bien",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "el francés",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "Cantar se me da muy mal.",
-          "en": "I'm very bad at singing.",
           "analisis": [
-            ["Cantar", "subject"],
-            ["se me da", "verb"],
-            ["muy mal", "how"]
+            [
+              "Cantar",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "se me da",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "muy mal",
+              {
+                "$t": "a4"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["se me da bien", "se me dan bien", "se me da mal", "las lenguas", "el inglés", "el francés", "cantar", "a mí"]
+      "palabras": [
+        "se me da bien",
+        "se me dan bien",
+        "se me da mal",
+        "las lenguas",
+        "el inglés",
+        "el francés",
+        "cantar",
+        "a mí"
+      ]
     },
     {
       "tipo": "huecos",
       "id": "b1-habil-da",
-      "pregunta": { "en": "Complete: I'm good at English." },
-      "frase": "El inglés se me ___ bien.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "da": { "en": "El inglés is singular." },
-        "dan": { "en": "Dan is for a plural: las lenguas se me dan bien." },
-        "doy": { "en": "Doy is the ordinary present of dar for yo." }
+        "da": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "dan": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "doy": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "da"
     },
     {
       "tipo": "ordenar",
       "id": "b1-habil-ingles",
-      "frase": "El inglés se me da bien",
-      "traduccion": { "en": "I'm good at English." }
+      "frase": {
+        "$e": "b5.frase"
+      },
+      "traduccion": {
+        "$t": "b5.traduccion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "b1-habil-m1",
-      "pregunta": {"en": "Complete: I'm good at languages."},
-      "frase": "Las lenguas se me ___ bien.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "dan": {"en": "Las lenguas is plural."},
-        "da": {"en": "Da is for one thing."},
-        "doy": {"en": "The verb agrees with the skill, not with you."}
+        "dan": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "da": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "doy": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "dan"
     },
     {
       "tipo": "traduccion",
       "id": "b1-habil-m2",
-      "frase": "Cantar se me da mal.",
+      "frase": {
+        "$e": "b7.frase"
+      },
       "opciones": [
-        {"texto": {"en": "I'm bad at singing."}, "correcta": true},
-        {"texto": {"en": "Singing makes me ill."}, "explicacion": {"en": "Dársele mal is to be bad at something."}},
-        {"texto": {"en": "I sing badly on purpose."}, "explicacion": {"en": "The phrase is about ability."}}
+        {
+          "texto": {
+            "$t": "b7.o0"
+          },
+          "correcta": true
+        },
+        {
+          "texto": {
+            "$t": "b7.o1"
+          },
+          "explicacion": {
+            "$t": "b7.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b7.o2"
+          },
+          "explicacion": {
+            "$t": "b7.o2.explicacion"
+          }
+        }
       ]
     },
     {
       "tipo": "escribir",
       "id": "b1-habil-m3",
-      "pregunta": {"en": "Translate: «I'm good at English.»"},
-      "respuestas": ["El inglés se me da bien", "Se me da bien el inglés"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "El inglés se me da bien",
+        "Se me da bien el inglés"
+      ]
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write about your abilities: what you are good and bad at, what you find easy or hard, and something you learnt late.\n\n**Speak (about 2 minutes).** Present yourself for a job or a course: explain what you are good at and give an example of each skill."
+        "$t": "b9.texto"
       }
     }
   ]

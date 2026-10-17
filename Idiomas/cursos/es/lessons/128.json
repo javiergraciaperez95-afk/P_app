@@ -1,145 +1,350 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "128",
   "capitulo": 12,
-  "titulo_es": "Te aconsejo que descanses",
-  "titulo": {"en": "I advise you to rest"},
-  "intro": {"en": "Advising, asking, needing and ordering someone else to act all take que plus the subjunctive."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "te aconsejo que": {"en": "I advise you to", "pron": "te a-kon-SE-ho ke", "cat": "expression"},
-    "te recomiendo que": {"en": "I recommend that you", "pron": "te re-ko-MYEN-do ke", "cat": "expression"},
-    "te pido que": {"en": "I ask you to", "pron": "te PI-do ke", "cat": "expression"},
-    "te sugiero que": {"en": "I suggest that you", "pron": "te su-HYE-ro ke", "cat": "expression"},
-    "es mejor que": {"en": "it is better that", "pron": "es me-HOR ke", "cat": "expression"},
-    "necesito que": {"en": "I need (someone) to", "pron": "ne-the-SI-to ke", "cat": "expression"},
-    "te prohíbo que": {"en": "I forbid you to", "pron": "te pro-I-bo ke", "cat": "expression"},
-    "dile que": {"en": "tell him/her that", "pron": "DI-le ke", "cat": "expression"},
-    "agotado": {"en": "exhausted", "pron": "a-go-TA-do", "cat": "adjective"},
-    "apagar": {"en": "to switch off", "pron": "a-pa-GAR", "cat": "verb"},
-    "unos días libres": {"en": "a few days off", "pron": "U-nos DI-as LI-bres", "cat": "expression"}
+    "te aconsejo que": {
+      "$f": "p.te aconsejo que",
+      "pron": "te a-kon-SE-ho ke",
+      "cat": "expr"
+    },
+    "te recomiendo que": {
+      "$f": "p.te recomiendo que",
+      "pron": "te re-ko-MYEN-do ke",
+      "cat": "expr"
+    },
+    "te pido que": {
+      "$f": "p.te pido que",
+      "pron": "te PI-do ke",
+      "cat": "expr"
+    },
+    "te sugiero que": {
+      "$f": "p.te sugiero que",
+      "pron": "te su-HYE-ro ke",
+      "cat": "expr"
+    },
+    "es mejor que": {
+      "$f": "p.es mejor que",
+      "pron": "es me-HOR ke",
+      "cat": "expr"
+    },
+    "necesito que": {
+      "$f": "p.necesito que",
+      "pron": "ne-the-SI-to ke",
+      "cat": "expr"
+    },
+    "te prohíbo que": {
+      "$f": "p.te prohíbo que",
+      "pron": "te pro-I-bo ke",
+      "cat": "expr"
+    },
+    "dile que": {
+      "$f": "p.dile que",
+      "pron": "DI-le ke",
+      "cat": "expr"
+    },
+    "agotado": {
+      "$f": "p.agotado",
+      "pron": "a-go-TA-do",
+      "cat": "adj"
+    },
+    "apagar": {
+      "$f": "p.apagar",
+      "pron": "a-pa-GAR",
+      "cat": "verb"
+    },
+    "unos días libres": {
+      "$f": "p.unos días libres",
+      "pron": "U-nos DI-as LI-bres",
+      "cat": "expr"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Getting someone else to act"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "A finite clause about another person's action often uses **que + subjunctive** after advice, requests, needs and instructions.\n\n- **Te aconsejo que** descans**es**.\n- **Te pido que** me ayud**es**.\n- **Necesito que** veng**as**.\n- **Es mejor que** lo hag**as** hoy.\n\nThe same pattern appears with recomendar, sugerir, ordenar, permitir, dejar and prohibir.\n\nWith **necesitar**, use an infinitive when the same person needs to act: **necesito descansar**. If someone else is to act, use **que + subjunctive**: **necesito que descanses**. Some advice verbs also allow an infinitive for the person advised: **te aconsejo descansar**.\n\n**Decir** has two uses. With the indicative it reports information: dice que **viene**. With the subjunctive it can pass on an instruction: dice que **vengas**, he says you should come.\n\nOther ways to advise: **deberías** + infinitive, **¿por qué no…?**, **lo mejor es que** + subjunctive."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Too much work"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Pablo",
-          "es": "Estoy agotado. Duermo cuatro horas.",
-          "en": "I'm exhausted. I sleep four hours.",
-          "analisis": [["Estoy agotado", "verb"], ["Duermo", "verb"], ["cuatro horas", "time"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Te aconsejo que te tomes unos días libres.",
-          "en": "I advise you to take a few days off.",
-          "analisis": [["Te aconsejo que", "advice"], ["te tomes", "verb (subjunctive)"], ["unos días libres", "object"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Mi jefe me pide que trabaje los sábados.",
-          "en": "My boss asks me to work on Saturdays.",
           "analisis": [
-            ["Mi jefe", "subject"],
-            ["me pide que", "request"],
-            ["trabaje", "verb (subjunctive)"],
-            ["los sábados", "time"]
+            [
+              "Estoy agotado",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "Duermo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "cuatro horas",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Lucía",
-          "es": "Pues dile que no puedes. Es mejor que hables con él.",
-          "en": "Well, tell him you can't. It's better that you talk to him.",
           "analisis": [
-            ["dile que", "tell him that"],
-            ["no puedes", "verb (indicative: information)"],
-            ["Es mejor que", "judgement"],
-            ["hables", "verb (subjunctive)"],
-            ["con él", "with whom"]
+            [
+              "Te aconsejo que",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "te tomes",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "unos días libres",
+              {
+                "$t": "a4"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Pablo",
-          "es": "Mi médica dice que apague el móvil por la noche.",
-          "en": "My doctor says I should switch my phone off at night.",
           "analisis": [
-            ["Mi médica", "subject"],
-            ["dice que", "order passed on"],
-            ["apague", "verb (subjunctive)"],
-            ["el móvil", "object"],
-            ["por la noche", "time"]
+            [
+              "Mi jefe",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "me pide que",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "trabaje",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "los sábados",
+              {
+                "$t": "a1"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f3",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "dile que",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "no puedes",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "Es mejor que",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "hables",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "con él",
+              {
+                "$t": "a10"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f4",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Mi médica",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "dice que",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "apague",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "el móvil",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "por la noche",
+              {
+                "$t": "a1"
+              }
+            ]
           ],
-          "nota": "Dice que apago would report a fact. Dice que apague passes on an instruction."
+          "nota": {
+            "$t": "b2.f4.nota"
+          }
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "aconsejar-1",
-      "pregunta": {"en": "Complete: I advise you to rest."},
-      "frase": "Te aconsejo que ___.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "descanses": {"en": "Advice to another person: subjunctive."},
-        "descansas": {"en": "The indicative would state a fact, not advise."},
-        "descansar": {"en": "After que you need a conjugated verb."}
+        "descanses": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "descansas": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "descansar": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "descanses"
     },
     {
       "tipo": "huecos",
       "id": "aconsejar-2",
-      "pregunta": {"en": "Complete: I need you to come."},
-      "frase": "Necesito que ___.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "vengas": {"en": "Another person after necesito que: subjunctive."},
-        "vienes": {"en": "Vienes is the indicative."},
-        "venir": {"en": "The infinitive is for the same subject: necesito venir."}
+        "vengas": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "vienes": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "venir": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "vengas"
     },
     {
       "tipo": "test",
       "id": "aconsejar-3",
-      "pregunta": {"en": "«Dice que vengas.» What is being said?"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "He says you should come": {"en": "Decir plus subjunctive passes on an order."},
-        "He says you are coming": {"en": "That would be dice que vienes."},
-        "He says he is coming": {"en": "That would be dice que viene."}
+        "He says you should come": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "He says you are coming": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "He says he is coming": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "He says you should come"
     },
     {
       "tipo": "huecos",
       "id": "aconsejar-4",
-      "pregunta": {"en": "Complete, same subject: I need to rest."},
-      "frase": "Necesito ___.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "descansar": {"en": "Same subject: use the infinitive (necesito descansar)."},
-        "que descanse": {"en": "That would mean I need someone else to rest."},
-        "descanso": {"en": "With the same subject, use the infinitive; for someone else, say necesito que descanses."}
+        "descansar": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "que descanse": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "descanso": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "descansar"
     },
     {
       "tipo": "ordenar",
       "id": "aconsejar-5",
-      "frase": "Es mejor que hables con tu jefe",
-      "traduccion": {"en": "It's better that you talk to your boss."}
+      "frase": {
+        "$e": "b8.frase"
+      },
+      "traduccion": {
+        "$t": "b8.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Reply to a letter from a reader of a magazine who is stressed by work and asks for advice.\n\n**Speak (about 2 minutes).** Give a friend advice aloud about a trip to your country: what you recommend and what you advise against."
+        "$t": "b9.texto"
       }
     }
   ]

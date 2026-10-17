@@ -1,30 +1,32 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "296",
   "capitulo": 14,
-  "titulo_es": "¿Podría cambiar la reserva?",
   "titulo": {
-    "en": "Could I change the booking?"
+    "$t": "titulo"
   },
   "intro": {
-    "en": "Read a short exchange and notice how people ask for a change politely."
+    "$t": "intro"
   },
   "palabras": {
     "la reserva": {
-      "en": "the booking, reservation",
+      "$f": "p.la reserva",
       "pron": "la re-SER-ba",
       "genero": "f"
     },
     "disponible": {
-      "en": "available",
+      "$f": "p.disponible",
       "pron": "dis-po-NI-ble",
-      "cat": "adjective"
+      "cat": "adj"
     },
     "conservar": {
-      "en": "to keep",
+      "$f": "p.conservar",
       "pron": "kon-ser-BAR",
       "cat": "verb"
     },
     "el suplemento": {
-      "en": "the surcharge",
+      "$f": "p.el suplemento",
       "pron": "el su-ple-MEN-to",
       "genero": "m"
     }
@@ -33,45 +35,38 @@
     {
       "tipo": "explicacion",
       "titulo": {
-        "en": "A polite request has two parts"
+        "$t": "b1.titulo"
       },
       "texto": {
-        "en": "Use **¿Podría…?** or **¿Sería posible…?** to make a request more formal. Give the reason briefly, then say what you would prefer: **¿Podría cambiar la fecha? Me gustaría conservar la misma habitación**.\n\nThe other person can offer an option, explain a limit or ask a question. Check the details before agreeing: dates, price and what is included. These phrases are useful in a hotel, but the same pattern works for appointments and bookings."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "texto",
       "titulo": {
-        "en": "Changing a booking"
+        "$t": "b2.titulo"
       },
       "frases": [
         {
-          "es": "—Buenos días. ¿Podría ayudarme con una reserva?",
-          "en": "—Good morning. Could you help me with a booking?"
+          "$f": "b2.f0"
         },
         {
-          "es": "—Claro. ¿A nombre de quién está?",
-          "en": "—Of course. What name is it under?"
+          "$f": "b2.f1"
         },
         {
-          "es": "—A nombre de Elena Ruiz. Quería cambiar la fecha: en vez del viernes, llegaría el sábado.",
-          "en": "—Under Elena Ruiz. I wanted to change the date: instead of Friday, I would arrive on Saturday."
+          "$f": "b2.f2"
         },
         {
-          "es": "—Déjeme comprobarlo. La misma habitación está disponible, pero tendría que pagar un suplemento de veinte euros.",
-          "en": "—Let me check. The same room is available, but you would have to pay a surcharge of twenty euros."
+          "$f": "b2.f3"
         },
         {
-          "es": "—¿Podría decirme si el desayuno está incluido?",
-          "en": "—Could you tell me whether breakfast is included?"
+          "$f": "b2.f4"
         },
         {
-          "es": "—Sí, se conserva. Si le parece bien el precio, cambio la fecha ahora mismo.",
-          "en": "—Yes, it stays included. If the price is all right with you, I can change the date now."
+          "$f": "b2.f5"
         },
         {
-          "es": "—De acuerdo. Muchas gracias por comprobarlo.",
-          "en": "—All right. Thank you for checking."
+          "$f": "b2.f6"
         }
       ]
     },
@@ -82,17 +77,17 @@
       "tipo": "test",
       "id": "reserva-1",
       "pregunta": {
-        "en": "What change does Elena request?"
+        "$t": "b4.pregunta"
       },
       "opciones": {
         "To arrive on Saturday instead of Friday": {
-          "en": "She asks to move her arrival by one day."
+          "$t": "b4.o0.refuerzo"
         },
         "To change to a different room": {
-          "en": "She would like to keep the same room."
+          "$t": "b4.o1.refuerzo"
         },
         "To cancel breakfast": {
-          "en": "She asks whether breakfast is included."
+          "$t": "b4.o2.refuerzo"
         }
       },
       "correcta": "To arrive on Saturday instead of Friday"
@@ -101,17 +96,17 @@
       "tipo": "test",
       "id": "reserva-2",
       "pregunta": {
-        "en": "What extra cost does the change involve?"
+        "$t": "b5.pregunta"
       },
       "opciones": {
         "Twenty euros": {
-          "en": "The receptionist gives this amount."
+          "$t": "b5.o0.refuerzo"
         },
         "No extra cost": {
-          "en": "There is a surcharge."
+          "$t": "b5.o1.refuerzo"
         },
         "The price of breakfast": {
-          "en": "Breakfast remains included."
+          "$t": "b5.o2.refuerzo"
         }
       },
       "correcta": "Twenty euros"
@@ -120,17 +115,17 @@
       "tipo": "test",
       "id": "reserva-3",
       "pregunta": {
-        "en": "What does the receptionist mean by «Si le parece bien el precio»?"
+        "$t": "b6.pregunta"
       },
       "opciones": {
         "The change will happen if Elena accepts the price": {
-          "en": "The receptionist is checking that she agrees before changing the date."
+          "$t": "b6.o0.refuerzo"
         },
         "The price may change again tomorrow": {
-          "en": "No later price change is mentioned."
+          "$t": "b6.o1.refuerzo"
         },
         "Elena must pay for breakfast": {
-          "en": "The text says breakfast is included."
+          "$t": "b6.o2.refuerzo"
         }
       },
       "correcta": "The change will happen if Elena accepts the price"
@@ -139,18 +134,20 @@
       "tipo": "huecos",
       "id": "reserva-4",
       "pregunta": {
-        "en": "Complete the polite request: could you tell me?"
+        "$t": "b7.pregunta"
       },
-      "frase": "¿___ decirme si el desayuno está incluido?",
+      "frase": {
+        "$e": "b7.frase"
+      },
       "opciones": {
         "Podría": {
-          "en": "The conditional softens the request."
+          "$t": "b7.o0.refuerzo"
         },
         "Puedo": {
-          "en": "This asks whether I can do it."
+          "$t": "b7.o1.refuerzo"
         },
         "Pude": {
-          "en": "This is a past form."
+          "$t": "b7.o2.refuerzo"
         }
       },
       "correcta": "Podría"
@@ -158,9 +155,11 @@
     {
       "tipo": "ordenar",
       "id": "reserva-5",
-      "frase": "¿Sería posible cambiar la fecha de la reserva?",
+      "frase": {
+        "$e": "b8.frase"
+      },
       "traduccion": {
-        "en": "Would it be possible to change the booking date?"
+        "$t": "b8.traduccion"
       }
     }
   ]

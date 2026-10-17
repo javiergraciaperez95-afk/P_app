@@ -1,132 +1,299 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "072",
   "capitulo": 8,
-  "titulo_es": "Lo veo",
-  "titulo": { "en": "I see it" },
-  "intro": { "en": "Lo, la, los and las can replace a previously mentioned direct object; the pronoun matches its grammatical gender and number." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "lo": { "en": "him/it (masculine direct object)", "pron": "lo", "cat": "pronoun" },
-    "la": { "en": "her/it (feminine direct object)", "pron": "la", "cat": "pronoun" },
-    "los": { "en": "them (masculine plural direct object)", "pron": "los", "cat": "pronoun" },
-    "las": { "en": "them (feminine plural direct object)", "pron": "las", "cat": "pronoun" },
-    "veo": { "en": "I see", "pron": "BE-o", "cat": "verb" },
-    "compro": { "en": "I buy", "pron": "KOM-pro", "cat": "verb" },
-    "el pan": { "en": "the bread", "pron": "el pan", "cat": "noun", "genero": "m" },
-    "a": { "en": "personal a", "pron": "a", "cat": "preposition", "nota": "A specific person as direct object usually takes a before the noun: veo a Pablo." },
-    "le": { "en": "to him/her/you formal (usually indirect object)", "pron": "le", "cat": "pronoun", "nota": "Some varieties also accept le as a direct object for a masculine singular person; for a feminine person such as Ana, use la." },
-    "el libro": { "en": "the book", "pron": "el LI-bro", "cat": "noun", "genero": "m" },
-    "la casa": { "en": "the house", "pron": "la KA-sa", "cat": "noun", "genero": "f" },
-    "las llaves": { "en": "the keys", "pron": "las YA-bes", "cat": "noun", "genero": "f" }
+    "lo": {
+      "$f": "p.lo",
+      "pron": "lo",
+      "cat": "pron"
+    },
+    "la": {
+      "$f": "p.la",
+      "pron": "la",
+      "cat": "pron"
+    },
+    "los": {
+      "$f": "p.los",
+      "pron": "los",
+      "cat": "pron"
+    },
+    "las": {
+      "$f": "p.las",
+      "pron": "las",
+      "cat": "pron"
+    },
+    "veo": {
+      "$f": "p.veo",
+      "pron": "BE-o",
+      "cat": "verb"
+    },
+    "compro": {
+      "$f": "p.compro",
+      "pron": "KOM-pro",
+      "cat": "verb"
+    },
+    "el pan": {
+      "$f": "p.el pan",
+      "pron": "el pan",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "a": {
+      "$f": "p.a",
+      "pron": "a",
+      "cat": "prep",
+      "nota": {
+        "$t": "p.a.nota"
+      }
+    },
+    "le": {
+      "$f": "p.le",
+      "pron": "le",
+      "cat": "pron",
+      "nota": {
+        "$t": "p.le.nota"
+      }
+    },
+    "el libro": {
+      "$f": "p.el libro",
+      "pron": "el LI-bro",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la casa": {
+      "$f": "p.la casa",
+      "pron": "la KA-sa",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "las llaves": {
+      "$f": "p.las llaves",
+      "pron": "las YA-bes",
+      "cat": "sust",
+      "genero": "f"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "Replace the noun",
-      "texto": "In these simple present-tense examples, the pronoun goes **before** the conjugated verb and matches the direct object in grammatical gender and number.\n\n- el libro → **Lo** veo.\n- la casa → **La** veo.\n- los libros → **Los** compro.\n- las llaves → **Las** tengo.\n\nA specific person as a direct object usually takes personal **a** before the noun: veo **a** Pablo. When replaced by a pronoun, the **a** is not repeated: **Lo** veo. In **Las llaves las tengo yo**, the noun stays for emphasis and the pronoun repeats it."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "dialogo",
-      "titulo": "At the market",
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "¿Compras el pan?",
-          "en": "Are you buying the bread?",
           "analisis": [
-            ["¿Compras", "you buy"],
-            ["el pan", "object"]
+            [
+              "¿Compras",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "el pan",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Sí, lo compro.",
-          "en": "Yes, I'm buying it.",
           "analisis": [
-            ["lo", "it (the bread)"],
-            ["compro", "I buy"]
+            [
+              "lo",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "compro",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "Yo veo a Ana.",
-          "en": "I see Ana.",
           "analisis": [
-            ["veo", "I see"],
-            ["a Ana", "person as object"]
+            [
+              "veo",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "a Ana",
+              {
+                "$t": "a5"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "Las llaves las tengo yo.",
-          "en": "The keys, I have them.",
-          "nota": "The noun can stay, and the pronoun repeats it. Las agrees with llaves.",
+          "nota": {
+            "$t": "b2.f3.nota"
+          },
           "analisis": [
-            ["Las llaves", "the keys"],
-            ["las", "them"],
-            ["tengo", "I have"]
+            [
+              "Las llaves",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "las",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "tengo",
+              {
+                "$t": "a8"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["lo", "la", "los", "las", "veo", "compro", "el pan", "a", "le", "el libro", "la casa", "las llaves"]
+      "palabras": [
+        "lo",
+        "la",
+        "los",
+        "las",
+        "veo",
+        "compro",
+        "el pan",
+        "a",
+        "le",
+        "el libro",
+        "la casa",
+        "las llaves"
+      ]
     },
     {
       "tipo": "huecos",
       "id": "a2-lo-pan",
-      "pregunta": { "en": "Complete: yes, I buy it. (the bread)" },
-      "frase": "Sí, ___ compro.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "lo": { "en": "El pan is masculine singular." },
-        "la": { "en": "La would be a feminine noun." },
-        "los": { "en": "Los is plural." }
+        "lo": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "la": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "los": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "lo"
     },
     {
       "tipo": "ordenar",
       "id": "a2-lo-veo",
-      "frase": "Yo la veo",
-      "traduccion": { "en": "I see her." }
+      "frase": {
+        "$e": "b5.frase"
+      },
+      "traduccion": {
+        "$t": "b5.traduccion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "a2-lo-m1",
-      "pregunta": {"en": "Complete: I see her. (Ana)"},
-      "frase": "___ veo.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "La": {"en": "A woman as direct object: la."},
-        "Lo": {"en": "Lo is masculine."},
-        "Le": {"en": "For Ana as a feminine direct object, use la; le usually marks an indirect object."}
+        "La": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "Lo": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "Le": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "La"
     },
     {
       "tipo": "huecos",
       "id": "a2-lo-m2",
-      "pregunta": {"en": "Complete: I have them. (las llaves)"},
-      "frase": "___ tengo.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "Las": {"en": "Llaves is feminine plural."},
-        "Los": {"en": "Llaves is feminine."},
-        "La": {"en": "Llaves is plural."}
+        "Las": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "Los": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "La": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "Las"
     },
     {
       "tipo": "escribir",
       "id": "a2-lo-m3",
-      "pregunta": {"en": "Answer with a pronoun: «¿Compras el pan?» Yes, I'm buying it."},
-      "respuestas": ["Sí, lo compro", "Lo compro"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "Sí, lo compro",
+        "Lo compro"
+      ]
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write six questions about things in your home and answer them with lo, la, los, las: ¿Dónde tienes las llaves? Las tengo en…\n\n**Speak (about 1 minute).** Answer aloud without repeating the noun: ¿Ves la tele? ¿Lees el periódico? ¿Conoces a mis padres?"
+        "$t": "b9.texto"
       }
     }
   ]

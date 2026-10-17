@@ -51,7 +51,7 @@ no entra. Lo comprueba `_herramientas/validar_v2.mjs` y no admite excepciones.
    DE ESTUDIO (la frase/palabra en ese idioma)
       b2.f<n>.texto   cada frase del diálogo
       b4.e<n>.texto   cada ejemplo de gramática
-      b5.p<n>         cada párrafo del texto literario
+      b5.f<n>.texto   cada frase de la lectura (con su análisis, como el diálogo)
       b6.o<n>         el texto de cada opción
       b7.frase        la frase del hueco o del ejercicio de ordenar
       En el idioma del curso va el texto tal cual; en los demás, su traducción.
@@ -112,7 +112,16 @@ no entra. Lo comprueba `_herramientas/validar_v2.mjs` y no admite excepciones.
    b2  dialogo       Frases con «quien», «texto» y «sintaxis».
    b3  vocabulario   Lista de claves de «palabras».
    b4  gramatica     Explicación gramatical + «ejemplos» (con sintaxis).
-   b5  texto         Literario, «registro»: "literario", exactamente 2 párrafos en «parrafos».
+   b5  texto         Lectura literaria, «registro»: "literario", por FRASES:
+                       "frases": [ { "parrafo": 0, "sintaxis": { … } }, …, { "parrafo": 1, "sintaxis": { … } } ]
+                     - 2 párrafos: cada frase lleva "parrafo": 0 o 1, primero todas las del 0;
+                     - de 3 a 5 frases por párrafo (de 6 a 10 en total);
+                     - cada frase con «sintaxis», que se comprueba igual que en el diálogo;
+                     - sin «quien» ni «texto»: el texto está en b5.f<n>.texto de los catálogos;
+                     - cada párrafo (la suma de sus frases) mide al menos 120 caracteres útiles.
+                     La app lo enseña como texto corrido; tras cada frase hay un botón que
+                     abre su traducción y su análisis. El formato antiguo («parrafos»: [0, 1],
+                     claves b5.p0 y b5.p1) aún se acepta con un aviso: hay que pasarlo a frases.
    b6… ejercicios    test / huecos / ordenar / escribir.
 
    Cada bloque lleva "id": "b1", "b2"… y las traducciones usan ese id.
@@ -151,3 +160,27 @@ no entra. Lo comprueba `_herramientas/validar_v2.mjs` y no admite excepciones.
    ni juicios sobre grupos de personas.
    Personajes variados y cotidianos; situaciones neutras (una panadería, una clase,
    un portal, un mercado).
+
+
+9. LECCIONES FLEXIBLES (paso intermedio)
+----------------------------------------
+   Escrito el 17 de octubre de 2026. Las 272 lecciones antiguas se pasaron a catálogos con
+   `node _herramientas/a_flexible.mjs es` SIN rehacer sus bloques. Llevan:
+
+     "esquema": 2, "flexible": true
+
+   Conservan los bloques antiguos (tabla, traduccion, análisis plano…), pero cada texto está en
+   traducciones/<idioma>/NNN.json y en la lección queda una referencia:
+
+     {"$t": "b3.texto"}     texto de ayuda (explicación, pregunta, refuerzo, nota, etiqueta)
+     "$f": "b2.f0"          dentro de una frase o palabra: su texto en cada idioma
+     {"$e": "b6.frase"}     texto en el idioma del curso (la frase de un hueco o de ordenar)
+
+   Las claves de las etiquetas del análisis son a0, a1… (una por etiqueta y lección).
+   Se quedan en la lección, porque son datos del ejercicio: las opciones (su texto), «correcta»,
+   «respuestas», los textos del análisis, las claves de «palabras» y las celdas de las tablas.
+
+   Para traducir una flexible basta con crear traducciones/<idioma>/NNN.json con las MISMAS
+   claves que traducciones/en/NNN.json. Lo que falte se ve en inglés.
+   El validador solo comprueba que cada referencia tenga texto y que no sobren claves.
+   Cuando una lección se reescriba de verdad, se quita «flexible» y cumple el punto 1 a 8.

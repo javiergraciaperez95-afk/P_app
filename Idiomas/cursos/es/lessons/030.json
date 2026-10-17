@@ -1,158 +1,1207 @@
 {
+  "esquema": 2,
+  "id": "030",
   "capitulo": 4,
-  "titulo_es": "Quiero, puedo, prefiero",
-  "titulo": {"en": "I want, I can, I prefer"},
-  "intro": {"en": "In the present tense, many common verbs change a vowel in the stem in some forms."},
+  "nivel": "A1",
   "palabras": {
-    "quiero": {"en": "I want", "pron": "KYE-ro", "cat": "verb"},
-    "quieres": {"en": "you want", "pron": "KYE-res", "cat": "verb"},
-    "queremos": {"en": "we want", "pron": "ke-RE-mos", "cat": "verb", "nota": "Nosotros and vosotros keep the original vowel."},
-    "puedo": {"en": "I can", "pron": "PWE-do", "cat": "verb"},
-    "puedes": {"en": "you can", "pron": "PWE-des", "cat": "verb"},
-    "podemos": {"en": "we can", "pron": "po-DE-mos", "cat": "verb"},
-    "prefiero": {"en": "I prefer", "pron": "pre-FYE-ro", "cat": "verb"},
-    "pido": {"en": "I ask for, I order", "pron": "PI-do", "cat": "verb", "nota": "The stressed forms change e to i (pido); nosotros keeps e (pedimos)."},
-    "duermo": {"en": "I sleep", "pron": "DWER-mo", "cat": "verb"},
-    "vuelvo": {"en": "I come back", "pron": "BWEL-bo", "cat": "verb"},
-    "empieza": {"en": "it starts", "pron": "em-PYE-tha", "cat": "verb"},
-    "cierra": {"en": "it closes", "pron": "THYE-rra", "cat": "verb"},
-    "el cine": {"en": "the cinema", "pron": "el THI-ne", "genero": "m"},
-    "la tienda": {"en": "the shop; the store", "pron": "la TYEN-da", "genero": "f"},
-    "esta noche": {"en": "tonight", "pron": "ES-ta NO-che", "cat": "expression"}
+    "quiero": {
+      "pron": "KYE-ro",
+      "cat": "verb"
+    },
+    "quieres": {
+      "pron": "KYE-res",
+      "cat": "verb"
+    },
+    "queremos": {
+      "pron": "ke-RE-mos",
+      "cat": "verb"
+    },
+    "puedo": {
+      "pron": "PWE-do",
+      "cat": "verb"
+    },
+    "puedes": {
+      "pron": "PWE-des",
+      "cat": "verb"
+    },
+    "podemos": {
+      "pron": "po-DE-mos",
+      "cat": "verb"
+    },
+    "prefiero": {
+      "pron": "pre-FYE-ro",
+      "cat": "verb"
+    },
+    "pido": {
+      "pron": "PI-do",
+      "cat": "verb"
+    },
+    "duermo": {
+      "pron": "DWER-mo",
+      "cat": "verb"
+    },
+    "vuelvo": {
+      "pron": "BWEL-bo",
+      "cat": "verb"
+    },
+    "empieza": {
+      "pron": "em-PYE-tha",
+      "cat": "verb"
+    },
+    "cierra": {
+      "pron": "THYE-rra",
+      "cat": "verb"
+    },
+    "el cine": {
+      "pron": "el THI-ne",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la tienda": {
+      "pron": "la TYEN-da",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "esta noche": {
+      "pron": "ES-ta NO-che",
+      "cat": "expr"
+    },
+    "Lucía": {
+      "propio": true
+    },
+    "Pablo": {
+      "propio": true
+    }
   },
   "bloques": [
     {
-      "tipo": "explicacion",
-      "titulo": {"en": "The vowel changes under stress"},
-      "texto": {
-        "en": "The stem is what remains after removing -ar, -er or -ir. In these present-tense verbs, the vowel changes in the forms where it is stressed.\n\n- **e → ie**: querer, preferir, empezar, cerrar, entender, pensar → qu**ie**ro\n- **o → ue**: poder, dormir, volver, costar, encontrar → p**ue**do\n- **e → i**: pedir, repetir, servir → p**i**do\n\nThe change appears in **yo, tú, él/ella/usted** and **ellos/ellas/ustedes**. In **nosotros** and **vosotros**, the stress falls on the ending, so the stem vowel stays: queremos, podemos, pedimos. For example, **pido** changes e to i, but **pedimos** does not.\n\n**Jugar** changes u to ue in the same stressed forms: juego, juegas. **Querer** and **poder** take an infinitive: quiero ir, ¿puedes venir?\n\nIn most of Latin America, use **ustedes** instead of **vosotros**: ustedes pueden. Pronunciation: c before e/i is /θ/ in much of Spain and /s/ in Latin America and other seseo regions."
-      }
+      "id": "b1",
+      "tipo": "explicacion"
     },
     {
-      "tipo": "tabla",
-      "titulo": {"en": "Three patterns"},
-      "columnas": ["Person", "querer", "poder", "pedir"],
-      "filas": [
-        ["yo", "quiero", "puedo", "pido"],
-        ["tú", "quieres", "puedes", "pides"],
-        ["él / ella / usted", "quiere", "puede", "pide"],
-        ["nosotros", "queremos", "podemos", "pedimos"],
-        ["vosotros/as (Spain)", "queréis", "podéis", "pedís"],
-        ["ellos / ellas / ustedes", "quieren", "pueden", "piden"]
-      ]
-    },
-    {
+      "id": "b2",
       "tipo": "dialogo",
-      "titulo": {"en": "The cinema"},
       "frases": [
         {
           "quien": "Lucía",
-          "es": "¿Quieres ir al cine esta noche?",
-          "en": "Do you want to go to the cinema tonight?",
-          "analisis": [["¿Quieres", "verb"], ["ir al cine", "object"], ["esta noche", "time"]]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "¿Quieres ir al cine esta noche?",
+                "nucleo": "Quieres",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "¿Quieres",
+                    "nucleo": "¿Quieres"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "ir al cine",
+                    "nucleo": "ir",
+                    "partes": [
+                      {
+                        "funcion": "INF",
+                        "texto": "ir"
+                      },
+                      {
+                        "funcion": "CCL",
+                        "texto": "al cine",
+                        "nucleo": "cine",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "al"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "cine",
+                            "nucleo": "cine"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "esta noche?",
+                    "nucleo": "noche",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "esta"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "noche?"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "No puedo. Vuelvo tarde del trabajo.",
-          "en": "I can't. I get back late from work.",
-          "analisis": [["No", "negation"], ["puedo", "verb"], ["Vuelvo", "verb"], ["tarde", "time"], ["del trabajo", "place"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "¿Y mañana? La película empieza a las ocho.",
-          "en": "And tomorrow? The film starts at eight.",
-          "analisis": [["La película", "subject"], ["empieza", "verb"], ["a las ocho", "time"]]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "No puedo hoy.",
+                "nucleo": "puedo",
+                "partes": [
+                  {
+                    "funcion": "NEG",
+                    "texto": "No"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "puedo",
+                    "nucleo": "puedo"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "hoy.",
+                    "nucleo": "hoy."
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "Prefiero el sábado. Los sábados duermo más.",
-          "en": "I prefer Saturday. On Saturdays I sleep more.",
-          "analisis": [
-            ["Prefiero", "verb"],
-            ["el sábado", "object"],
-            ["Los sábados", "time"],
-            ["duermo", "verb"],
-            ["más", "how much"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Vuelvo tarde del trabajo.",
+                "nucleo": "Vuelvo",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Vuelvo",
+                    "nucleo": "Vuelvo"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "tarde",
+                    "nucleo": "tarde"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "del trabajo.",
+                    "nucleo": "trabajo",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "del"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "trabajo.",
+                        "nucleo": "trabajo."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Lucía",
-          "es": "Vale. Podemos ir el sábado.",
-          "en": "OK. We can go on Saturday.",
-          "analisis": [["Podemos", "verb"], ["ir", "infinitive"], ["el sábado", "time"]]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "La película",
+                "nucleo": "película",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "La"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "película"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "empieza a las ocho.",
+                "nucleo": "empieza",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "empieza",
+                    "nucleo": "empieza"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "a las ocho.",
+                    "nucleo": "ocho",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "a"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "las ocho.",
+                        "nucleo": "ocho",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "las"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "ocho."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Pablo",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Prefiero salir el sábado.",
+                "nucleo": "Prefiero",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Prefiero",
+                    "nucleo": "Prefiero"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "salir",
+                    "nucleo": "salir",
+                    "partes": [
+                      {
+                        "funcion": "INF",
+                        "texto": "salir"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "el sábado.",
+                    "nucleo": "sábado",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "el"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "sábado."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Podemos ir al cine el sábado.",
+                "nucleo": "Podemos",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Podemos",
+                    "nucleo": "Podemos"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "ir al cine",
+                    "nucleo": "ir",
+                    "partes": [
+                      {
+                        "funcion": "INF",
+                        "texto": "ir"
+                      },
+                      {
+                        "funcion": "CCL",
+                        "texto": "al cine",
+                        "nucleo": "cine",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "al"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "cine",
+                            "nucleo": "cine"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "el sábado.",
+                    "nucleo": "sábado",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "el"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "sábado."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },
-    {"tipo": "vocabulario"},
     {
-      "tipo": "huecos",
-      "id": "querer-poder-1",
-      "pregunta": {"en": "Complete: we want to go to the cinema."},
-      "frase": "Nosotros ___ ir al cine.",
-      "audio": true,
-      "opciones": {
-        "queremos": {"en": "In nosotros the stress is on the ending, so the e stays."},
-        "quieremos": {"en": "The vowel only changes when the stress falls on it."},
-        "quieren": {"en": "Quieren is for ellos or ustedes."}
-      },
-      "correcta": "queremos"
+      "id": "b3",
+      "tipo": "vocabulario",
+      "palabras": [
+        "quiero",
+        "quieres",
+        "queremos",
+        "puedo",
+        "puedes",
+        "podemos",
+        "prefiero",
+        "pido",
+        "duermo",
+        "vuelvo",
+        "empieza",
+        "cierra",
+        "el cine",
+        "la tienda",
+        "esta noche"
+      ]
     },
     {
-      "tipo": "huecos",
-      "id": "querer-poder-2",
-      "pregunta": {"en": "Complete: I can't today."},
-      "frase": "Hoy no ___.",
-      "audio": true,
-      "opciones": {
-        "puedo": {"en": "Poder: o becomes ue in yo."},
-        "podo": {"en": "The o changes to ue under stress."},
-        "puede": {"en": "Puede is for él, ella or usted."}
-      },
-      "correcta": "puedo"
+      "id": "b4",
+      "tipo": "gramatica",
+      "ejemplos": [
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Quiero comprar entradas para el cine.",
+                "nucleo": "Quiero",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Quiero",
+                    "nucleo": "Quiero"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "comprar entradas",
+                    "nucleo": "comprar",
+                    "partes": [
+                      {
+                        "funcion": "INF",
+                        "texto": "comprar"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "entradas",
+                        "nucleo": "entradas"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCF",
+                    "texto": "para el cine.",
+                    "nucleo": "cine",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "para"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "el cine.",
+                        "nucleo": "cine",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "cine."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "La tienda",
+                "nucleo": "tienda",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "La"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "tienda"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "cierra a las nueve de la noche.",
+                "nucleo": "cierra",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "cierra",
+                    "nucleo": "cierra"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "a las nueve de la noche.",
+                    "nucleo": "nueve",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "a"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "las nueve de la noche.",
+                        "nucleo": "nueve",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "las"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "nueve"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "de la noche.",
+                            "nucleo": "noche",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "de"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "la noche.",
+                                "nucleo": "noche",
+                                "partes": [
+                                  {
+                                    "funcion": "DET",
+                                    "texto": "la"
+                                  },
+                                  {
+                                    "funcion": "N",
+                                    "texto": "noche."
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
     },
     {
-      "tipo": "huecos",
-      "id": "querer-poder-3",
-      "pregunta": {"en": "Complete: the shop closes at nine."},
-      "frase": "La tienda ___ a las nueve.",
-      "audio": true,
-      "opciones": {
-        "cierra": {"en": "Cerrar: e becomes ie."},
-        "cerra": {"en": "The e changes to ie under stress."},
-        "cierran": {"en": "Cierran is plural."}
-      },
-      "correcta": "cierra"
+      "id": "b5",
+      "tipo": "texto",
+      "registro": "literario",
+      "frases": [
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Muchos jóvenes alegres",
+                "nucleo": "jóvenes",
+                "partes": [
+                  {
+                    "funcion": "CUANT",
+                    "texto": "Muchos"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "jóvenes"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "alegres",
+                    "nucleo": "alegres"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "quieren ver películas interesantes en el gran cine.",
+                "nucleo": "quieren",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "quieren",
+                    "nucleo": "quieren"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "ver películas interesantes",
+                    "nucleo": "ver",
+                    "partes": [
+                      {
+                        "funcion": "INF",
+                        "texto": "ver"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "películas interesantes",
+                        "nucleo": "películas",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "películas"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "interesantes",
+                            "nucleo": "interesantes"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en el gran cine.",
+                    "nucleo": "cine",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "el gran cine.",
+                        "nucleo": "cine",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "gran",
+                            "nucleo": "gran"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "cine."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "La función principal de la tarde",
+                "nucleo": "función",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "La"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "función"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "principal",
+                    "nucleo": "principal"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "de la tarde",
+                    "nucleo": "tarde",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la tarde",
+                        "nucleo": "tarde",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "tarde"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "empieza siempre a las siete en punto.",
+                "nucleo": "empieza",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "empieza",
+                    "nucleo": "empieza"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "siempre",
+                    "nucleo": "siempre"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "a las siete en punto.",
+                    "nucleo": "siete",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "a"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "las siete en punto.",
+                        "nucleo": "siete",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "las"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "siete"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "en punto.",
+                            "nucleo": "punto",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "en"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "punto.",
+                                "nucleo": "punto."
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Mi amigo simpático",
+                "nucleo": "amigo",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Mi"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "amigo"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "simpático",
+                    "nucleo": "simpático"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "prefiere reservar dos entradas buenas con anticipación.",
+                "nucleo": "prefiere",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "prefiere",
+                    "nucleo": "prefiere"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "reservar dos entradas buenas",
+                    "nucleo": "reservar",
+                    "partes": [
+                      {
+                        "funcion": "INF",
+                        "texto": "reservar"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "dos entradas buenas",
+                        "nucleo": "entradas",
+                        "partes": [
+                          {
+                            "funcion": "CUANT",
+                            "texto": "dos"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "entradas"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "buenas",
+                            "nucleo": "buenas"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "con anticipación.",
+                    "nucleo": "anticipación",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "anticipación.",
+                        "nucleo": "anticipación."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "La pequeña tienda de la esquina",
+                "nucleo": "tienda",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "La"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "pequeña",
+                    "nucleo": "pequeña"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "tienda"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "de la esquina",
+                    "nucleo": "esquina",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la esquina",
+                        "nucleo": "esquina",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "esquina"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "cierra sus puertas a las nueve.",
+                "nucleo": "cierra",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "cierra",
+                    "nucleo": "cierra"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "sus puertas",
+                    "nucleo": "puertas",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "sus"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "puertas"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "a las nueve.",
+                    "nucleo": "nueve",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "a"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "las nueve.",
+                        "nucleo": "nueve",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "las"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "nueve."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Pablo",
+                "nucleo": "Pablo"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "vuelve a casa cansado después de una larga jornada.",
+                "nucleo": "vuelve",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "vuelve",
+                    "nucleo": "vuelve"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "a casa",
+                    "nucleo": "casa",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "a"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "casa",
+                        "nucleo": "casa"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CPVO",
+                    "texto": "cansado",
+                    "nucleo": "cansado"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "después de una larga jornada.",
+                    "nucleo": "después",
+                    "partes": [
+                      {
+                        "funcion": "ADV",
+                        "texto": "después",
+                        "nucleo": "después"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "de una larga jornada.",
+                        "nucleo": "jornada",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "de"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "una larga jornada.",
+                            "nucleo": "jornada",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "una"
+                              },
+                              {
+                                "funcion": "ADY",
+                                "texto": "larga",
+                                "nucleo": "larga"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "jornada."
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Él",
+                "nucleo": "Él"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "duerme tranquilamente muchas horas durante el fin de semana.",
+                "nucleo": "duerme",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "duerme",
+                    "nucleo": "duerme"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "tranquilamente",
+                    "nucleo": "tranquilamente"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "muchas horas",
+                    "nucleo": "horas",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "muchas"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "horas"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "durante el fin de semana.",
+                    "nucleo": "fin",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "durante"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "el fin de semana.",
+                        "nucleo": "fin",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "fin"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "de semana.",
+                            "nucleo": "semana",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "de"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "semana.",
+                                "nucleo": "semana."
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
     },
     {
-      "tipo": "huecos",
-      "id": "querer-pedir-1",
-      "pregunta": {"en": "Complete: I order a tea."},
-      "frase": "Yo ___ un té.",
-      "opciones": {
-        "pido": {"en": "Pedir changes e to i in this stressed form."},
-        "piedo": {"en": "This verb uses e to i, not e to ie."},
-        "pide": {"en": "Pide is the él/ella/usted form."}
-      },
-      "correcta": "pido"
+      "id": "b6",
+      "tipo": "test",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
     },
     {
+      "id": "b7",
+      "tipo": "huecos",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b8",
+      "tipo": "ordenar"
+    },
+    {
+      "id": "b9",
       "tipo": "escribir",
-      "id": "querer-poder-4",
-      "pregunta": {"en": "Translate: «Can you come?» (to a friend)"},
-      "respuestas": ["¿Puedes venir?"]
-    },
-    {
-      "tipo": "ordenar",
-      "id": "querer-poder-5",
-      "frase": "La película empieza a las ocho",
-      "traduccion": {"en": "The film starts at eight."}
-    },
-    {
-      "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
-      "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Write what you want to do, can do and prefer to do this weekend.\n\n**Speak (about 30 seconds).** Say aloud three things you want, three you can do and three you prefer, giving a short reason with porque."
-      }
+      "respuestas": [
+        "Prefiero el sábado",
+        "Prefiero el sábado."
+      ]
     }
   ]
 }

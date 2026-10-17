@@ -1,156 +1,395 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "127",
   "capitulo": 12,
-  "titulo_es": "Ojalá haga sol",
-  "titulo": {"en": "I hope it's sunny"},
-  "intro": {"en": "Hopes and good wishes: ojalá, espero que, and the short wishes that begin with que."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
     "ojalá": {
-      "en": "I hope, if only",
+      "$f": "p.ojalá",
       "pron": "o-ha-LA",
-      "cat": "interjection",
-      "nota": "A wish expression of Arabic origin; it takes the subjunctive. This lesson practices the present."
+      "cat": "interj",
+      "nota": {
+        "$t": "p.ojalá.nota"
+      }
     },
-    "que te mejores": {"en": "get well soon", "pron": "ke te me-HO-res", "cat": "expression"},
-    "que aproveche": {"en": "enjoy your meal", "pron": "ke a-pro-BE-che", "cat": "expression"},
-    "que tengas suerte": {"en": "good luck", "pron": "ke TEN-gas SWER-te", "cat": "expression"},
-    "que lo pases bien": {"en": "have a good time", "pron": "ke lo PA-ses byen", "cat": "expression"},
-    "que descanses": {"en": "sleep well, rest well", "pron": "ke des-KAN-ses", "cat": "expression"},
-    "que cumplas muchos más": {"en": "many happy returns", "pron": "ke KUM-plas MU-chos mas", "cat": "expression"},
-    "esperar que": {"en": "to hope that", "pron": "es-pe-RAR ke", "cat": "expression", "nota": "Esperar que + subjunctive: espero que vengas. With the same subject, the usual pattern is an infinitive: espero venir."},
-    "enhorabuena": {"en": "congratulations (on an achievement)", "pron": "e-no-ra-BWE-na", "cat": "interjection"},
-    "felicidades": {"en": "congratulations; happy birthday", "pron": "fe-li-thi-DA-des", "cat": "interjection"},
-    "aprobar": {"en": "to pass (an exam)", "pron": "a-pro-BAR", "cat": "verb", "nota": "The stem changes o → ue: apruebo; subjunctive forms include apruebe and apruebes."}
+    "que te mejores": {
+      "$f": "p.que te mejores",
+      "pron": "ke te me-HO-res",
+      "cat": "expr"
+    },
+    "que aproveche": {
+      "$f": "p.que aproveche",
+      "pron": "ke a-pro-BE-che",
+      "cat": "expr"
+    },
+    "que tengas suerte": {
+      "$f": "p.que tengas suerte",
+      "pron": "ke TEN-gas SWER-te",
+      "cat": "expr"
+    },
+    "que lo pases bien": {
+      "$f": "p.que lo pases bien",
+      "pron": "ke lo PA-ses byen",
+      "cat": "expr"
+    },
+    "que descanses": {
+      "$f": "p.que descanses",
+      "pron": "ke des-KAN-ses",
+      "cat": "expr"
+    },
+    "que cumplas muchos más": {
+      "$f": "p.que cumplas muchos más",
+      "pron": "ke KUM-plas MU-chos mas",
+      "cat": "expr"
+    },
+    "esperar que": {
+      "$f": "p.esperar que",
+      "pron": "es-pe-RAR ke",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.esperar que.nota"
+      }
+    },
+    "enhorabuena": {
+      "$f": "p.enhorabuena",
+      "pron": "e-no-ra-BWE-na",
+      "cat": "interj"
+    },
+    "felicidades": {
+      "$f": "p.felicidades",
+      "pron": "fe-li-thi-DA-des",
+      "cat": "interj"
+    },
+    "aprobar": {
+      "$f": "p.aprobar",
+      "pron": "a-pro-BAR",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.aprobar.nota"
+      }
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Hoping and wishing"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "**Ojalá** + present subjunctive expresses a hope about now or the future: **ojalá haga** sol, **ojalá apruebes**. Other subjunctive tenses can express different wishes.\n\n**Espero que** + subjunctive expresses hope about someone or something else: espero que **vengas**. With the same subject, the usual pattern is the infinitive: espero **venir**.\n\nA standalone **que** + subjunctive can express a wish without saying **espero**:\n\n- ¡**Que te mejores**! to someone ill\n- ¡**Que aproveche**! to people eating\n- ¡**Que tengas** suerte! · ¡**Que tengas** buen viaje!\n- ¡**Que lo pases** bien! · ¡**Que descanses**!\n\n**Felicidades** works for a birthday and other congratulations. **Enhorabuena** is also used for achievements: an exam, a job, or a new baby."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "What to say"},
-      "columnas": ["Situation", "Wish"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        }
+      ],
       "filas": [
-        ["someone is ill", "¡Que te mejores!"],
-        ["someone is about to eat", "¡Que aproveche!"],
-        ["someone has an exam", "¡Que tengas suerte!"],
-        ["someone is going to a party", "¡Que lo pases bien!"],
-        ["someone is going to bed", "¡Que descanses!"],
-        ["a birthday", "¡Que cumplas muchos más!"]
+        [
+          "someone is ill",
+          "¡Que te mejores!"
+        ],
+        [
+          "someone is about to eat",
+          "¡Que aproveche!"
+        ],
+        [
+          "someone has an exam",
+          "¡Que tengas suerte!"
+        ],
+        [
+          "someone is going to a party",
+          "¡Que lo pases bien!"
+        ],
+        [
+          "someone is going to bed",
+          "¡Que descanses!"
+        ],
+        [
+          "a birthday",
+          "¡Que cumplas muchos más!"
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "The driving test"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "Mañana tengo el examen de conducir.",
-          "en": "Tomorrow I have my driving test.",
-          "analisis": [["Mañana", "time"], ["tengo", "verb"], ["el examen de conducir", "object"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "¡Que tengas suerte! Ojalá apruebes.",
-          "en": "Good luck! I hope you pass.",
-          "analisis": [["¡Que tengas suerte!", "wish"], ["Ojalá", "hope"], ["apruebes", "verb (subjunctive)"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Gracias. Ojalá no llueva.",
-          "en": "Thanks. I hope it doesn't rain.",
-          "analisis": [["Ojalá", "hope"], ["no", "negation"], ["llueva", "verb (subjunctive)"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Espero que el examinador sea simpático.",
-          "en": "I hope the examiner is nice.",
           "analisis": [
-            ["Espero que", "hope"],
-            ["el examinador", "subject"],
-            ["sea", "verb (subjunctive)"],
-            ["simpático", "description"]
+            [
+              "Mañana",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "tengo",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "el examen de conducir",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
-          "quien": "Lucía",
-          "es": "Yo espero no estar nerviosa. Me voy a dormir.",
-          "en": "I hope I'm not nervous. I'm off to bed.",
+          "$f": "b3.f1",
+          "quien": "Pablo",
           "analisis": [
-            ["Yo", "subject"],
-            ["espero", "verb"],
-            ["no estar", "infinitive (same subject)"],
-            ["nerviosa", "description"],
-            ["Me voy a dormir", "verb"]
-          ],
-          "nota": "The same person hopes and is nervous, so the infinitive: espero no estar."
+            [
+              "¡Que tengas suerte!",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "Ojalá",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "apruebes",
+              {
+                "$t": "a5"
+              }
+            ]
+          ]
         },
-        {"quien": "Pablo", "es": "¡Que descanses!", "en": "Sleep well!", "analisis": [["¡Que descanses!", "wish"]]}
+        {
+          "$f": "b3.f2",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Ojalá",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "no",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "llueva",
+              {
+                "$t": "a5"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f3",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Espero que",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "el examinador",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "sea",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "simpático",
+              {
+                "$t": "a8"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Yo",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "espero",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "no estar",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "nerviosa",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "Me voy a dormir",
+              {
+                "$t": "a1"
+              }
+            ]
+          ],
+          "nota": {
+            "$t": "b3.f4.nota"
+          }
+        },
+        {
+          "$f": "b3.f5",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "¡Que descanses!",
+              {
+                "$t": "a3"
+              }
+            ]
+          ]
+        }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "ojala-1",
-      "pregunta": {"en": "Complete: I hope it's sunny tomorrow."},
-      "frase": "Ojalá ___ sol mañana.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "haga": {"en": "Ojalá always takes the subjunctive."},
-        "hace": {"en": "Ojalá cannot take the indicative."},
-        "hará": {"en": "Hará is future indicative; use a subjunctive after ojalá."}
+        "haga": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "hace": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "hará": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "haga"
     },
     {
       "tipo": "test",
       "id": "ojala-2",
-      "pregunta": {"en": "Your friend has the flu. What do you say?"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "¡Que te mejores!": {"en": "Get well soon."},
-        "¡Que aproveche!": {"en": "That is for people eating."},
-        "¡Enhorabuena!": {"en": "That congratulates an achievement."}
+        "¡Que te mejores!": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "¡Que aproveche!": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "¡Enhorabuena!": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "¡Que te mejores!"
     },
     {
       "tipo": "huecos",
       "id": "ojala-3",
-      "pregunta": {"en": "Complete, same subject: I hope to arrive on time."},
-      "frase": "Espero ___ a tiempo.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "llegar": {"en": "The same subject takes the infinitive."},
-        "que llegue": {"en": "With the same subject, the usual pattern is an infinitive."},
-        "llego": {"en": "Llego is present indicative; with the same subject, use the infinitive."}
+        "llegar": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "que llegue": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "llego": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "llegar"
     },
     {
       "tipo": "test",
       "id": "ojala-4",
-      "pregunta": {"en": "People are sitting down to eat. What do you say as you pass?"},
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
       "opciones": {
-        "¡Que aproveche!": {"en": "Enjoy your meal."},
-        "¡Que descanses!": {"en": "That is for someone going to rest."},
-        "¡Que cumplas muchos más!": {"en": "That is for a birthday."}
+        "¡Que aproveche!": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "¡Que descanses!": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "¡Que cumplas muchos más!": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "¡Que aproveche!"
     },
     {
       "tipo": "ordenar",
       "id": "ojala-5",
-      "frase": "Espero que tengas buen viaje",
-      "traduccion": {"en": "I hope you have a good trip."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write your wishes for a friend who is starting a new job, and for yourself for the coming year.\n\n**Speak (about 2 minutes).** Say goodbye aloud to five people in different situations, with a suitable wish: Que te mejores, que tengas buen viaje…"
+        "$t": "b10.texto"
       }
     }
   ]

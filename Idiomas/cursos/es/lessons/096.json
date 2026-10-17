@@ -1,148 +1,363 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "096",
   "capitulo": 9,
-  "titulo_es": "Por teléfono",
-  "titulo": {"en": "On the phone"},
-  "intro": {"en": "Set phrases for answering, asking for someone and leaving a message."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
     "diga": {
-      "en": "hello?; go ahead (a conventional phone greeting in Spain)",
+      "$f": "p.diga",
       "pron": "DI-ga",
       "cat": "verb",
-      "nota": "Formal singular imperative of decir, used as a set phone greeting. Also ¿Dígame? or ¿Sí? In parts of Latin America, common greetings include ¿Aló? and ¿Bueno?; usage varies by country."
+      "nota": {
+        "$t": "p.diga.nota"
+      }
     },
-    "de parte de quién": {"en": "may I ask who's calling?", "pron": "de PAR-te de kyen", "cat": "expression"},
-    "soy yo": {"en": "speaking, it's me", "pron": "soi yo", "cat": "expression"},
-    "un momento": {"en": "one moment", "pron": "un mo-MEN-to", "cat": "expression"},
-    "ahora se pone": {"en": "he/she will be on the phone in a moment", "pron": "a-O-ra se PO-ne", "cat": "expression"},
-    "no está": {"en": "he/she isn't here", "pron": "no es-TA", "cat": "expression"},
-    "dejar un recado": {"en": "to leave a message", "pron": "de-HAR un re-KA-do", "cat": "expression"},
-    "más tarde": {"en": "later", "pron": "mas TAR-de", "cat": "expression"},
-    "se ha equivocado": {"en": "you've dialled the wrong number (formal; literally, you've made a mistake)", "pron": "se a e-ki-bo-KA-do", "cat": "expression"},
-    "está comunicando": {"en": "the line is busy (British English: engaged)", "pron": "es-TA ko-mu-ni-KAN-do", "cat": "expression"},
-    "colgar": {"en": "to hang up (the phone)", "pron": "kol-GAR", "cat": "verb"},
-    "la llamada": {"en": "the call", "pron": "la ya-MA-da", "cat": "noun", "genero": "f"}
+    "de parte de quién": {
+      "$f": "p.de parte de quién",
+      "pron": "de PAR-te de kyen",
+      "cat": "expr"
+    },
+    "soy yo": {
+      "$f": "p.soy yo",
+      "pron": "soi yo",
+      "cat": "expr"
+    },
+    "un momento": {
+      "$f": "p.un momento",
+      "pron": "un mo-MEN-to",
+      "cat": "expr"
+    },
+    "ahora se pone": {
+      "$f": "p.ahora se pone",
+      "pron": "a-O-ra se PO-ne",
+      "cat": "expr"
+    },
+    "no está": {
+      "$f": "p.no está",
+      "pron": "no es-TA",
+      "cat": "expr"
+    },
+    "dejar un recado": {
+      "$f": "p.dejar un recado",
+      "pron": "de-HAR un re-KA-do",
+      "cat": "expr"
+    },
+    "más tarde": {
+      "$f": "p.más tarde",
+      "pron": "mas TAR-de",
+      "cat": "expr"
+    },
+    "se ha equivocado": {
+      "$f": "p.se ha equivocado",
+      "pron": "se a e-ki-bo-KA-do",
+      "cat": "expr"
+    },
+    "está comunicando": {
+      "$f": "p.está comunicando",
+      "pron": "es-TA ko-mu-ni-KAN-do",
+      "cat": "expr"
+    },
+    "colgar": {
+      "$f": "p.colgar",
+      "pron": "kol-GAR",
+      "cat": "verb"
+    },
+    "la llamada": {
+      "$f": "p.la llamada",
+      "pron": "la ya-MA-da",
+      "cat": "sust",
+      "genero": "f"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Phone phrases"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "You can answer **¿Diga?**, **¿Dígame?** or **¿Sí?** In this phone greeting, **diga/dígame** are polite imperatives of decir.\n\nTo ask for someone: **¿Está Ana?** or **¿Puedo hablar con Ana?** More polite/formal: **¿Me puede poner con el señor Ruiz?** If the person is available, they may answer **Un momento; ahora se pone.**\n\nThey may ask **¿De parte de quién?** Identify yourself with **ser**: **Soy Pablo** or **Soy yo**. In this phrase, use **soy**, not **estoy**.\n\nIf the person is not there: **No está. ¿Quiere dejar un recado?** If you mean Ana, say **La llamo más tarde**; for a man, **Lo llamo más tarde**.\n\nIf the caller has dialled the wrong number, say **Se ha equivocado**. If the line is in use, you may hear **Está comunicando**."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "A call"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
-        {"quien": "Madre", "es": "¿Diga?", "en": "Hello?", "analisis": [["¿Diga?", "phone greeting"]]},
         {
-          "quien": "Pablo",
-          "es": "Hola, ¿está Lucía?",
-          "en": "Hello, is Lucía there?",
-          "analisis": [["¿está", "verb"], ["Lucía", "subject"]]
-        },
-        {
+          "$f": "b2.f0",
           "quien": "Madre",
-          "es": "¿De parte de quién?",
-          "en": "Who's calling?",
-          "analisis": [["¿De parte de quién?", "question"]]
+          "analisis": [
+            [
+              "¿Diga?",
+              {
+                "$t": "a0"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Soy Pablo, un amigo de la universidad.",
-          "en": "It's Pablo, a friend from university.",
-          "analisis": [["Soy", "verb"], ["Pablo", "who"], ["un amigo de la universidad", "description"]]
+          "analisis": [
+            [
+              "¿está",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "Lucía",
+              {
+                "$t": "a2"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Madre",
-          "es": "Lo siento, no está. ¿Quieres dejar un recado?",
-          "en": "I'm sorry, she isn't here. Do you want to leave a message?",
-          "analisis": [["Lo siento", "apology"], ["no está", "verb"], ["¿Quieres", "verb"], ["dejar un recado", "object"]]
+          "analisis": [
+            [
+              "¿De parte de quién?",
+              {
+                "$t": "a3"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "No, gracias. La llamo más tarde.",
-          "en": "No, thanks. I'll call her later.",
-          "analisis": [["La", "her"], ["llamo", "verb"], ["más tarde", "time"]]
+          "analisis": [
+            [
+              "Soy",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "Pablo",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "un amigo de la universidad",
+              {
+                "$t": "a5"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f4",
+          "quien": "Madre",
+          "analisis": [
+            [
+              "Lo siento",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "no está",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "¿Quieres",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "dejar un recado",
+              {
+                "$t": "a7"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "La",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "llamo",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "más tarde",
+              {
+                "$t": "a9"
+              }
+            ]
+          ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "test",
       "id": "telefono-1",
-      "pregunta": {"en": "You answer the phone in Spain. What do you say?"},
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
       "opciones": {
-        "¿Diga?": {"en": "The standard way to answer."},
-        "¿Quién eres?": {"en": "That is abrupt: who are you?"},
-        "¿De parte de quién?": {"en": "That comes later, to ask who is calling."}
+        "¿Diga?": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "¿Quién eres?": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "¿De parte de quién?": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "¿Diga?"
     },
     {
       "tipo": "huecos",
       "id": "telefono-2",
-      "pregunta": {"en": "Complete: who's calling?"},
-      "frase": "¿De ___ de quién?",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "parte": {"en": "De parte de quién is the set phrase."},
-        "lado": {"en": "Lado is side."},
-        "llamada": {"en": "Llamada is the call itself."}
+        "parte": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "lado": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "llamada": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "parte"
     },
     {
       "tipo": "test",
       "id": "telefono-3",
-      "pregunta": {"en": "On the phone, how do you say «It's Pablo»?"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "Soy Pablo": {"en": "Spanish identifies the caller with ser."},
-        "Estoy Pablo": {"en": "Identity takes ser, never estar."},
-        "Este es Pablo": {"en": "That introduces a third person, not yourself."}
+        "Soy Pablo": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "Estoy Pablo": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "Este es Pablo": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "Soy Pablo"
     },
     {
       "tipo": "traduccion",
       "id": "telefono-4",
-      "frase": "Se ha equivocado.",
+      "frase": {
+        "$e": "b7.frase"
+      },
       "opciones": [
-        {"texto": {"en": "You have the wrong number."}, "correcta": true},
-        {"texto": {"en": "He has hung up."}, "explicacion": {"en": "That is ha colgado."}},
-        {"texto": {"en": "It's engaged."}, "explicacion": {"en": "That is está comunicando."}}
+        {
+          "texto": {
+            "$t": "b7.o0"
+          },
+          "correcta": true
+        },
+        {
+          "texto": {
+            "$t": "b7.o1"
+          },
+          "explicacion": {
+            "$t": "b7.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b7.o2"
+          },
+          "explicacion": {
+            "$t": "b7.o2.explicacion"
+          }
+        }
       ]
     },
     {
       "tipo": "escribir",
       "id": "telefono-5",
-      "pregunta": {"en": "Translate: «Is Ana there?»"},
-      "respuestas": ["¿Está Ana?"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "¿Está Ana?"
+      ]
     },
     {
       "tipo": "ordenar",
       "id": "telefono-6",
-      "frase": "¿Quieres dejar un recado?",
-      "traduccion": {"en": "Do you want to leave a message?"}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "telefono-7",
-      "pregunta": {"en": "Ana is not here. Complete: I'll call her later."},
-      "frase": "Ana no está. ___ llamo más tarde.",
+      "pregunta": {
+        "$t": "b10.pregunta"
+      },
+      "frase": {
+        "$e": "b10.frase"
+      },
       "audio": true,
       "opciones": {
-        "La": {"en": "La refers to Ana, the person being called."},
-        "Le": {"en": "Here llamar takes a direct object; use la for Ana."},
-        "Lo": {"en": "Lo is the masculine direct-object form."}
+        "La": {
+          "$t": "b10.o0.refuerzo"
+        },
+        "Le": {
+          "$t": "b10.o1.refuerzo"
+        },
+        "Lo": {
+          "$t": "b10.o2.refuerzo"
+        }
       },
       "correcta": "La"
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write a phone conversation in which you ask for someone who is not there and leave a message.\n\n**Speak (about 1 minute).** Practise aloud answering the phone, asking who is calling and taking a message."
+        "$t": "b11.texto"
       }
     }
   ]

@@ -1,143 +1,350 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "075",
   "capitulo": 8,
-  "titulo_es": "Dámelo",
-  "titulo": {"en": "Give it to me"},
-  "intro": {"en": "Where pronouns go with an infinitive, a gerund and a command."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "dime": {"en": "tell me", "pron": "DI-me", "cat": "verb"},
+    "dime": {
+      "$f": "p.dime",
+      "pron": "DI-me",
+      "cat": "verb"
+    },
     "dámelo": {
-      "en": "give it to me",
+      "$f": "p.dámelo",
       "pron": "DA-me-lo",
       "cat": "verb",
-      "nota": "Verb + me + lo, written as one word with an accent."
+      "nota": {
+        "$t": "p.dámelo.nota"
+      }
     },
-    "llámame": {"en": "call me", "pron": "YA-ma-me", "cat": "verb"},
-    "ayúdame": {"en": "help me", "pron": "a-YU-da-me", "cat": "verb"},
-    "pásame": {"en": "pass me", "pron": "PA-sa-me", "cat": "verb"},
-    "siéntate": {"en": "sit down", "pron": "SYEN-ta-te", "cat": "verb"},
-    "espérame": {"en": "wait for me", "pron": "es-PE-ra-me", "cat": "verb"},
-    "la sal": {"en": "the salt", "pron": "la sal", "cat": "noun", "genero": "f"},
-    "el libro": {"en": "the book", "pron": "el LI-bro", "cat": "noun", "genero": "m"},
-    "un momento": {"en": "a moment", "pron": "un mo-MEN-to", "cat": "expression"},
-    "enseguida": {"en": "straight away", "pron": "en-se-GI-da", "cat": "adverb"},
-    "bonito": {"en": "pretty, lovely", "pron": "bo-NI-to", "cat": "adjective"}
+    "llámame": {
+      "$f": "p.llámame",
+      "pron": "YA-ma-me",
+      "cat": "verb"
+    },
+    "ayúdame": {
+      "$f": "p.ayúdame",
+      "pron": "a-YU-da-me",
+      "cat": "verb"
+    },
+    "pásame": {
+      "$f": "p.pásame",
+      "pron": "PA-sa-me",
+      "cat": "verb"
+    },
+    "siéntate": {
+      "$f": "p.siéntate",
+      "pron": "SYEN-ta-te",
+      "cat": "verb"
+    },
+    "espérame": {
+      "$f": "p.espérame",
+      "pron": "es-PE-ra-me",
+      "cat": "verb"
+    },
+    "la sal": {
+      "$f": "p.la sal",
+      "pron": "la sal",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "el libro": {
+      "$f": "p.el libro",
+      "pron": "el LI-bro",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "un momento": {
+      "$f": "p.un momento",
+      "pron": "un mo-MEN-to",
+      "cat": "expr"
+    },
+    "enseguida": {
+      "$f": "p.enseguida",
+      "pron": "en-se-GI-da",
+      "cat": "adv"
+    },
+    "bonito": {
+      "$f": "p.bonito",
+      "pron": "bo-NI-to",
+      "cat": "adj"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Before the verb or attached"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "In an affirmative statement with one conjugated verb, object pronouns go **before** it: **lo** compro. Negative commands also put them before the verb: **no me llames**.\n\nWith common two-verb constructions followed by an infinitive or gerund, there are often two positions: before the conjugated verb or attached to the infinitive/gerund.\n\n- **Lo** quiero ver = quiero ver**lo**.\n- **Lo** estoy haciendo = estoy haciéndo**lo**.\n\nThe pronoun does not go between the two verbs (*quiero lo ver). Learn these placements first with common patterns such as **querer + infinitive**, **ir a + infinitive** and **estar + gerund**.\n\nWith an **affirmative command**, attach the pronoun as one word: di**me**, lláma**me**, dá**melo**, siénta**te**. An accent may be needed to keep the original stress: llama → ll**á**mame; da → d**á**melo; haciendo → haci**é**ndolo. With a negative command, put it before the verb: **no me llames**."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "Two positions"},
-      "columnas": ["Before the conjugated verb", "Attached to the infinitive, gerund, or command"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        }
+      ],
       "filas": [
-        ["Lo quiero ver.", "Quiero verlo."],
-        ["Te voy a llamar.", "Voy a llamarte."],
-        ["Lo estoy haciendo.", "Estoy haciéndolo."],
-        ["—", "Llámame."],
-        ["—", "Dámelo."]
+        [
+          "Lo quiero ver.",
+          "Quiero verlo."
+        ],
+        [
+          "Te voy a llamar.",
+          "Voy a llamarte."
+        ],
+        [
+          "Lo estoy haciendo.",
+          "Estoy haciéndolo."
+        ],
+        [
+          "—",
+          "Llámame."
+        ],
+        [
+          "—",
+          "Dámelo."
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "At the table"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "Pásame la sal, por favor.",
-          "en": "Pass me the salt, please.",
-          "analisis": [["Pásame", "verb + me"], ["la sal", "object"], ["por favor", "politeness"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Un momento, estoy usándola.",
-          "en": "Just a moment, I'm using it.",
-          "analisis": [["Un momento", "time"], ["estoy usándola", "verb + la"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "¿Tienes el libro de Ana? Quiero verlo.",
-          "en": "Do you have Ana's book? I want to see it.",
-          "analisis": [["¿Tienes", "verb"], ["el libro de Ana", "object"], ["Quiero verlo", "verb + lo"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Sí. Siéntate y te lo enseño.",
-          "en": "Yes. Sit down and I'll show it to you.",
-          "analisis": [["Siéntate", "verb + te"], ["te lo", "it to you"], ["enseño", "verb"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Es muy bonito. Dime, ¿puedes prestármelo?",
-          "en": "It's lovely. Tell me, can you lend it to me?",
           "analisis": [
-            ["Es", "verb"],
-            ["muy bonito", "description"],
-            ["Dime", "verb + me"],
-            ["¿puedes prestármelo?", "verb + me + lo"]
+            [
+              "Pásame",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "la sal",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "por favor",
+              {
+                "$t": "a2"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f1",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Un momento",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "estoy usándola",
+              {
+                "$t": "a4"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f2",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "¿Tienes",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "el libro de Ana",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "Quiero verlo",
+              {
+                "$t": "a6"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f3",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Siéntate",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "te lo",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "enseño",
+              {
+                "$t": "a5"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Es",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "muy bonito",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "Dime",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "¿puedes prestármelo?",
+              {
+                "$t": "a10"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "damelo-1",
-      "pregunta": {"en": "Complete the command: call me tomorrow."},
-      "frase": "___ mañana.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "Llámame": {"en": "With an affirmative command the pronoun goes on the end."},
-        "Me llama": {"en": "Me llama means he or she calls me."},
-        "Me llamas": {"en": "Me llamas is a statement: you call me."}
+        "Llámame": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "Me llama": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "Me llamas": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "Llámame"
     },
     {
       "tipo": "test",
       "id": "damelo-2",
-      "pregunta": {"en": "Which sentence is NOT possible?"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "Quiero lo comprar": {"en": "The pronoun cannot sit between the two verbs."},
-        "Lo quiero comprar": {"en": "This one is fine: before the conjugated verb."},
-        "Quiero comprarlo": {"en": "This one is fine: on the end of the infinitive."}
+        "Quiero lo comprar": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "Lo quiero comprar": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "Quiero comprarlo": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "Quiero lo comprar"
     },
     {
       "tipo": "huecos",
       "id": "damelo-3",
-      "pregunta": {"en": "Complete: I'm doing it."},
-      "frase": "Estoy ___.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "haciéndolo": {"en": "The pronoun joins the gerund, and the accent keeps the stress."},
-        "lo haciendo": {"en": "The pronoun goes before estoy or on the end of the gerund."},
-        "hacerlo": {"en": "In the progressive construction estar + action, use the gerund."}
+        "haciéndolo": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "lo haciendo": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "hacerlo": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "haciéndolo"
     },
     {
       "tipo": "escribir",
       "id": "damelo-4",
-      "pregunta": {"en": "Write as one word: «give it to me» (tú; it = el libro)."},
-      "respuestas": ["Dámelo"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "Dámelo"
+      ]
     },
     {
       "tipo": "ordenar",
       "id": "damelo-5",
-      "frase": "Siéntate y te lo enseño",
-      "traduccion": {"en": "Sit down and I'll show it to you."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write ten orders you might give at home, with the pronouns attached: dámelo, ponlo aquí, dímelo.\n\n**Speak (about 1 minute).** Give instructions aloud to someone helping you cook or tidy up: Pásame eso, ponlo ahí, tráemela."
+        "$t": "b10.texto"
       }
     }
   ]

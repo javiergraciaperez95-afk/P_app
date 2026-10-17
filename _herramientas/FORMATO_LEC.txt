@@ -1,0 +1,56 @@
+FORMATO .lec — una lección completa en un solo archivo
+=====================================================
+Ubicación:  _herramientas/fuente/<curso>/NNN.lec
+Compilar:   node _herramientas/lec.mjs compilar es 041 042      (escribe 13 JSON y ejecuta validar_v2)
+Probar:     node _herramientas/lec.mjs probar es                (ida y vuelta de las lecciones v2, no escribe)
+Importar:   node _herramientas/lec.mjs descompilar es 041       (crea el .lec desde JSON ya hechos)
+
+CABECERA
+  id 041
+  capitulo 8
+  nivel A2
+
+PALABRAS (una por línea, separadas por « | »)
+  el piso | el PI-so | sust | m
+  Lucía | propio
+
+BLOQUES (en este orden: b1..b9)
+  b1 explicacion
+  b2 dialogo
+    Lucía | b [SUJ* Yo] [PRED [V vivo] [CCL [PREP en] [TERM [DET un] [N piso]]]]
+  b3 vocabulario el piso; el salón; pequeño
+  b4 gramatica
+    b [SUJ [DET El] [N* piso]] [PRED [V es] [ATRIB pequeño.]]
+  b5 texto
+    0 | b ...            (0 o 1 = párrafo; de 3 a 5 frases por párrafo)
+  b6 test 1 0 0          (1 = opción correcta)
+  b7 huecos 0 1 0
+  b8 ordenar
+  b9 escribir El piso es pequeño || El piso es pequeño.
+
+ÁRBOL
+  [FUNC palabras]        hoja
+  [FUNC hijo hijo]       rama (el texto de la rama se calcula solo)
+  [FUNC* palabras]       hoja con núcleo = su texto (para el 'nucleo' del JSON)
+  [FUNC:nucleo ...]      núcleo explícito (los espacios se escriben _)
+  b / u                  bimembre / unimembre. Con SUJ el sujeto es expreso; sin SUJ, omitido.
+  La puntuación va pegada a la palabra: [N salón,]  [CD sofá.]
+  Para que bN.fM.texto en español salga EXACTO, la puntuación del texto debe ir en las hojas.
+  Si el texto español debe ser otro, al final:  b [...] => texto exacto
+
+IDIOMAS
+  == es          (opcional: en el idioma del curso las frases analizadas NO se escriben, salen del árbol)
+  titulo: ...
+  intro: ...
+  b1.titulo: ...
+  == en
+  titulo: ...
+  b2.f0.texto: ...        (aquí sí: la traducción de cada frase analizada)
+  Las claves van en cualquier orden; el compilador las ordena.
+  Un valor con salto de línea o que empiece por comillas se escribe como cadena JSON: "línea 1\nlínea 2"
+  Hacen falta los 12 idiomas: en es vi zh pt fr ja it ko ru de id
+
+QUÉ COMPRUEBA SOLO EL COMPILADOR
+  - claves repetidas, idiomas desconocidos, corchetes sin cerrar, hojas mezcladas con ramas
+  - que cada hoja lleve una función conocida (lo confirma luego validar_v2)
+  - que no falte ningún idioma

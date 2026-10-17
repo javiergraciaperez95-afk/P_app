@@ -1,30 +1,32 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "295",
   "capitulo": 12,
-  "titulo_es": "Me gustaría que vinieras",
   "titulo": {
-    "en": "I would like you to come"
+    "$t": "titulo"
   },
   "intro": {
-    "en": "Use the imperfect subjunctive after a wish or request in the conditional."
+    "$t": "intro"
   },
   "palabras": {
     "me gustaría que": {
-      "en": "I would like someone to",
+      "$f": "p.me gustaría que",
       "pron": "me gus-ta-RI-a ke",
-      "cat": "expression"
+      "cat": "expr"
     },
     "quisiera que": {
-      "en": "I would like someone to; I wish someone would",
+      "$f": "p.quisiera que",
       "pron": "ki-SYE-ra ke",
-      "cat": "expression"
+      "cat": "expr"
     },
     "vinieras": {
-      "en": "you came / would come",
+      "$f": "p.vinieras",
       "pron": "bi-NYE-ras",
       "cat": "verb"
     },
     "la sugerencia": {
-      "en": "the suggestion",
+      "$f": "p.la sugerencia",
       "pron": "la su-he-REN-thya",
       "genero": "f"
     }
@@ -33,20 +35,24 @@
     {
       "tipo": "explicacion",
       "titulo": {
-        "en": "A wish about someone else"
+        "$t": "b1.titulo"
       },
       "texto": {
-        "en": "With verbs of desire or request, use **que + subjunctive** when the subordinate clause has a different subject: **Quiero que vengas**; **Me gustaría que vinieras**. When both clauses have the same subject, use the infinitive: **Me gustaría viajar**. A change of subject by itself does not choose the subjunctive; the meaning and the expression that introduces the clause matter. Compare **Creo que viene** with **No creo que venga**. Form the imperfect subjunctive from the third-person plural of the preterite: **hablaron → hablara**, **comieron → comiera**, **vivieron → viviera**. The **-ra** forms are common; **-se** forms also exist (**viniese**). The past-looking form does not necessarily describe a past event: after **gustaría**, it can express a present or future wish."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
       "titulo": {
-        "en": "Same person or another person?"
+        "$t": "b2.titulo"
       },
       "columnas": [
-        "One subject: infinitive",
-        "Different subjects: que + subjunctive"
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        }
       ],
       "filas": [
         [
@@ -66,60 +72,50 @@
     {
       "tipo": "dialogo",
       "titulo": {
-        "en": "A family lunch"
+        "$t": "b3.titulo"
       },
       "frases": [
         {
-          "quien": "Nora",
-          "es": "Me gustaría que vinieras a comer el domingo.",
-          "en": "I would like you to come for lunch on Sunday."
+          "$f": "b3.f0",
+          "quien": "Nora"
         },
         {
-          "quien": "Leo",
-          "es": "Me encantaría, pero trabajo por la mañana.",
-          "en": "I'd love to, but I work in the morning."
+          "$f": "b3.f1",
+          "quien": "Leo"
         },
         {
-          "quien": "Nora",
-          "es": "Quisiera que conocieras a mi hermana. Llega el sábado.",
-          "en": "I would like you to meet my sister. She arrives on Saturday."
+          "$f": "b3.f2",
+          "quien": "Nora"
         },
         {
-          "quien": "Leo",
-          "es": "Si pudiera cambiar el turno, iría sin problema.",
-          "en": "If I could change my shift, I would go without a problem."
+          "$f": "b3.f3",
+          "quien": "Leo"
         }
       ]
     },
     {
       "tipo": "texto",
       "titulo": {
-        "en": "A better work schedule"
+        "$t": "b4.titulo"
       },
       "frases": [
         {
-          "es": "Marcos trabaja en un restaurante y casi siempre recibe sus horarios con pocos días de antelación.",
-          "en": "Marcos works in a restaurant and almost always gets his schedule only a few days in advance."
+          "$f": "b4.f0"
         },
         {
-          "es": "Le gustaría que su encargada los publicara una semana antes.",
-          "en": "He would like his manager to post them a week earlier."
+          "$f": "b4.f1"
         },
         {
-          "es": "Su compañera Inés preferiría que el equipo tuviera dos días seguidos libres una vez al mes.",
-          "en": "His colleague Inés would prefer the team to have two days off in a row once a month."
+          "$f": "b4.f2"
         },
         {
-          "es": "No piden vacaciones más largas: quieren organizarse con tiempo.",
-          "en": "They are not asking for longer holidays: they want to plan ahead."
+          "$f": "b4.f3"
         },
         {
-          "es": "Si hablaran con la encargada, quizá encontrarían una solución.",
-          "en": "If they spoke to their manager, they might find a solution."
+          "$f": "b4.f4"
         },
         {
-          "es": "El viernes van a pedir una reunión breve.",
-          "en": "On Friday they are going to ask for a short meeting."
+          "$f": "b4.f5"
         }
       ]
     },
@@ -130,18 +126,20 @@
       "tipo": "huecos",
       "id": "deseos-imperfecto-1",
       "pregunta": {
-        "en": "Complete: I would like you to come."
+        "$t": "b6.pregunta"
       },
-      "frase": "Me gustaría que ___.",
+      "frase": {
+        "$e": "b6.frase"
+      },
       "opciones": {
         "vinieras": {
-          "en": "A different subject after me gustaría que takes the subjunctive."
+          "$t": "b6.o0.refuerzo"
         },
         "venir": {
-          "en": "Use an infinitive when both clauses have the same subject."
+          "$t": "b6.o1.refuerzo"
         },
         "vendrías": {
-          "en": "The conditional does not follow que here."
+          "$t": "b6.o2.refuerzo"
         }
       },
       "correcta": "vinieras"
@@ -150,18 +148,20 @@
       "tipo": "huecos",
       "id": "deseos-imperfecto-2",
       "pregunta": {
-        "en": "Complete: I would like to travel."
+        "$t": "b7.pregunta"
       },
-      "frase": "Me gustaría ___.",
+      "frase": {
+        "$e": "b7.frase"
+      },
       "opciones": {
         "viajar": {
-          "en": "The same person has the wish and would travel."
+          "$t": "b7.o0.refuerzo"
         },
         "que viajara": {
-          "en": "This would need a different subject, such as que ella viajara."
+          "$t": "b7.o1.refuerzo"
         },
         "viajaría": {
-          "en": "The infinitive follows me gustaría when the subject is the same."
+          "$t": "b7.o2.refuerzo"
         }
       },
       "correcta": "viajar"
@@ -170,17 +170,17 @@
       "tipo": "test",
       "id": "deseos-imperfecto-3",
       "pregunta": {
-        "en": "Which form completes the request: quisiera que ustedes ___ más temprano?"
+        "$t": "b8.pregunta"
       },
       "opciones": {
         "llegaran": {
-          "en": "The imperfect subjunctive agrees with ustedes."
+          "$t": "b8.o0.refuerzo"
         },
         "llegarían": {
-          "en": "The conditional is not used after que in this request."
+          "$t": "b8.o1.refuerzo"
         },
         "lleguen": {
-          "en": "This is present subjunctive; the main verb is quisiera."
+          "$t": "b8.o2.refuerzo"
         }
       },
       "correcta": "llegaran"
@@ -189,17 +189,17 @@
       "tipo": "test",
       "id": "deseos-imperfecto-lectura-1",
       "pregunta": {
-        "en": "Why do Marcos and Inés want a change?"
+        "$t": "b9.pregunta"
       },
       "opciones": {
         "To plan their lives further ahead": {
-          "en": "They want more notice of their schedules."
+          "$t": "b9.o0.refuerzo"
         },
         "To take longer holidays": {
-          "en": "The text says they are not asking for longer holidays."
+          "$t": "b9.o1.refuerzo"
         },
         "To leave the restaurant": {
-          "en": "They plan to request a meeting."
+          "$t": "b9.o2.refuerzo"
         }
       },
       "correcta": "To plan their lives further ahead"
@@ -207,9 +207,11 @@
     {
       "tipo": "ordenar",
       "id": "deseos-imperfecto-4",
-      "frase": "Preferiría que me avisaras con tiempo",
+      "frase": {
+        "$e": "b10.frase"
+      },
       "traduccion": {
-        "en": "I would prefer you to let me know in advance."
+        "$t": "b10.traduccion"
       }
     }
   ]

@@ -1,179 +1,446 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "220",
   "capitulo": 20,
-  "titulo_es": "Dice que viene, dice que venga",
-  "titulo": {"en": "She says he's coming, she says he should come"},
-  "intro": {"en": "Verbs with two meanings. The mood after que tells you which one is meant."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "decir que": {"en": "to say that; to tell (someone) to", "pron": "de-THIR ke", "cat": "verb"},
-    "sentir que": {"en": "to sense that; to be sorry that", "pron": "sen-TIR ke", "cat": "verb"},
-    "insistir en que": {"en": "to maintain that; to demand that", "pron": "in-sis-TIR en ke", "cat": "verb"},
-    "recordar que": {"en": "to remind that; to remind to", "pron": "re-kor-DAR ke", "cat": "verb"},
-    "comprender que": {"en": "to realise that; to find it natural that", "pron": "kom-pren-DER ke", "cat": "verb"},
-    "el hecho de que": {"en": "the fact that", "pron": "el E-cho de ke", "cat": "expression"},
-    "no digo que": {"en": "I'm not saying that", "pron": "no DI-go ke", "cat": "expression"},
-    "no significa que": {"en": "it doesn't mean that", "pron": "no sig-ni-FI-ka ke", "cat": "expression"},
-    "preocuparse": {"en": "to worry", "pron": "pre-o-ku-PAR-se", "cat": "verb"},
-    "confiar en": {"en": "to trust", "pron": "kon-FYAR en", "cat": "verb"},
-    "entre vosotras": {"en": "between you (two women)", "pron": "EN-tre bo-SO-tras", "cat": "expression"}
+    "decir que": {
+      "$f": "p.decir que",
+      "pron": "de-THIR ke",
+      "cat": "verb"
+    },
+    "sentir que": {
+      "$f": "p.sentir que",
+      "pron": "sen-TIR ke",
+      "cat": "verb"
+    },
+    "insistir en que": {
+      "$f": "p.insistir en que",
+      "pron": "in-sis-TIR en ke",
+      "cat": "verb"
+    },
+    "recordar que": {
+      "$f": "p.recordar que",
+      "pron": "re-kor-DAR ke",
+      "cat": "verb"
+    },
+    "comprender que": {
+      "$f": "p.comprender que",
+      "pron": "kom-pren-DER ke",
+      "cat": "verb"
+    },
+    "el hecho de que": {
+      "$f": "p.el hecho de que",
+      "pron": "el E-cho de ke",
+      "cat": "expr"
+    },
+    "no digo que": {
+      "$f": "p.no digo que",
+      "pron": "no DI-go ke",
+      "cat": "expr"
+    },
+    "no significa que": {
+      "$f": "p.no significa que",
+      "pron": "no sig-ni-FI-ka ke",
+      "cat": "expr"
+    },
+    "preocuparse": {
+      "$f": "p.preocuparse",
+      "pron": "pre-o-ku-PAR-se",
+      "cat": "verb"
+    },
+    "confiar en": {
+      "$f": "p.confiar en",
+      "pron": "kon-FYAR en",
+      "cat": "verb"
+    },
+    "entre vosotras": {
+      "$f": "p.entre vosotras",
+      "pron": "EN-tre bo-SO-tras",
+      "cat": "expr"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "One verb, two readings"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "With **decir, insistir en, recordar, escribir** and **repetir**:\n\n- + indicative, they pass on **information**: insiste en que **es** verdad.\n- + subjunctive, they pass on an **order**: insiste en que **vayamos**.\n\n**Sentir**: siento que **hay** un problema (I sense it); siento que **haya** un problema (I am sorry about it).\n\n**Comprender** and **entender**: comprendo que **estás** cansado (I can see it); comprendo que **estés** cansado (I find it natural).\n\nA verb of saying or thinking in the **negative** takes the subjunctive: **no digo que sea** fácil. **No creo que venga.** A negative command and a question keep the indicative: **no creas que es** fácil. ¿**No crees que es** fácil?\n\n**El hecho de que** usually takes the subjunctive: el hecho de que **sea** caro no importa."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "Two readings"},
-      "columnas": ["Verb", "With the indicative", "With the subjunctive"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        },
+        {
+          "$t": "b2.c2"
+        }
+      ],
       "filas": [
-        ["decir", "to say that", "to tell someone to"],
-        ["insistir en", "to maintain that", "to demand that"],
-        ["sentir", "to sense that", "to be sorry that"],
-        ["comprender", "to realise that", "to find it natural that"],
-        ["recordar", "to remind that", "to remind to"]
+        [
+          "decir",
+          "to say that",
+          "to tell someone to"
+        ],
+        [
+          "insistir en",
+          "to maintain that",
+          "to demand that"
+        ],
+        [
+          "sentir",
+          "to sense that",
+          "to be sorry that"
+        ],
+        [
+          "comprender",
+          "to realise that",
+          "to find it natural that"
+        ],
+        [
+          "recordar",
+          "to remind that",
+          "to remind to"
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Mothers"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "Mi madre dice que hace frío y que me ponga el abrigo.",
-          "en": "My mother says it's cold and that I should put my coat on.",
           "analisis": [
-            ["Mi madre", "subject"],
-            ["dice que", "verb"],
-            ["hace frío", "verb (indicative: information)"],
-            ["que me ponga", "verb (subjunctive: order)"],
-            ["el abrigo", "object"]
+            [
+              "Mi madre",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "dice que",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "hace frío",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "que me ponga",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "el abrigo",
+              {
+                "$t": "a4"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f1",
           "quien": "Pablo",
-          "es": "Siento que algo va mal entre vosotras.",
-          "en": "I sense that something is wrong between you two.",
           "analisis": [
-            ["Siento que", "I sense"],
-            ["algo", "subject"],
-            ["va mal", "verb (indicative)"],
-            ["entre vosotras", "between whom"]
+            [
+              "Siento que",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "algo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "va mal",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "entre vosotras",
+              {
+                "$t": "a7"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f2",
           "quien": "Lucía",
-          "es": "No digo que sea fácil vivir con ella.",
-          "en": "I'm not saying it's easy to live with her.",
-          "analisis": [["No digo que", "negated speech"], ["sea fácil", "verb (subjunctive)"], ["vivir con ella", "subject"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Siento que tengáis problemas.",
-          "en": "I'm sorry you're having problems.",
-          "analisis": [["Siento que", "I'm sorry"], ["tengáis", "verb (subjunctive)"], ["problemas", "object"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Comprendo que se preocupe, pero insiste en que la llame cada día.",
-          "en": "I find it natural that she worries, but she insists that I call her every day.",
           "analisis": [
-            ["Comprendo que", "I find it natural"],
-            ["se preocupe", "verb (subjunctive)"],
-            ["insiste en que", "she demands"],
-            ["la llame", "verb (subjunctive)"],
-            ["cada día", "time"]
+            [
+              "No digo que",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "sea fácil",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "vivir con ella",
+              {
+                "$t": "a0"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f3",
           "quien": "Pablo",
-          "es": "El hecho de que insista no significa que no confíe en ti.",
-          "en": "The fact that she insists doesn't mean she doesn't trust you.",
           "analisis": [
-            ["El hecho de que", "the fact that"],
-            ["insista", "verb (subjunctive)"],
-            ["no significa que", "negated"],
-            ["no confíe", "verb (subjunctive)"],
-            ["en ti", "whom"]
+            [
+              "Siento que",
+              {
+                "$t": "a10"
+              }
+            ],
+            [
+              "tengáis",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "problemas",
+              {
+                "$t": "a4"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Comprendo que",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "se preocupe",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "insiste en que",
+              {
+                "$t": "a12"
+              }
+            ],
+            [
+              "la llame",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "cada día",
+              {
+                "$t": "a13"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f5",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "El hecho de que",
+              {
+                "$t": "a14"
+              }
+            ],
+            [
+              "insista",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "no significa que",
+              {
+                "$t": "a15"
+              }
+            ],
+            [
+              "no confíe",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "en ti",
+              {
+                "$t": "a16"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "test",
       "id": "modo-cambia-1",
-      "pregunta": {"en": "«Insiste en que vayamos.» What is she doing?"},
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
       "opciones": {
-        "She demands that we go": {"en": "The subjunctive makes it an order."},
-        "She maintains that we are going": {"en": "That would be insiste en que vamos."},
-        "She doubts that we are going": {"en": "Insistir does not express doubt."}
+        "She demands that we go": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "She maintains that we are going": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "She doubts that we are going": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "She demands that we go"
     },
     {
       "tipo": "huecos",
       "id": "modo-cambia-2",
-      "pregunta": {"en": "Complete: I'm sorry you are ill."},
-      "frase": "Siento que ___ enfermo.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "estés": {"en": "Sentir as to be sorry takes the subjunctive."},
-        "estás": {"en": "Siento que estás would mean I sense that you are."},
-        "estar": {"en": "After que you need a conjugated verb."}
+        "estés": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "estás": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "estar": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "estés"
     },
     {
       "tipo": "huecos",
       "id": "modo-cambia-3",
-      "pregunta": {"en": "Complete: I'm not saying it's easy."},
-      "frase": "No digo que ___ fácil.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "sea": {"en": "A negated verb of saying takes the subjunctive."},
-        "es": {"en": "After no digo que, the subjunctive."},
-        "será": {"en": "After no digo que, the subjunctive."}
+        "sea": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "es": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "será": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "sea"
     },
     {
       "tipo": "huecos",
       "id": "modo-cambia-4",
-      "pregunta": {"en": "Complete, as information: she says it's cold."},
-      "frase": "Dice que ___ frío.",
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "frase": {
+        "$e": "b8.frase"
+      },
       "audio": true,
       "opciones": {
-        "hace": {"en": "Information takes the indicative."},
-        "haga": {"en": "The subjunctive would turn it into an order."},
-        "hacer": {"en": "After que you need a conjugated verb."}
+        "hace": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "haga": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "hacer": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "hace"
     },
     {
       "tipo": "test",
       "id": "modo-cambia-5",
-      "pregunta": {"en": "Which sentence correctly keeps the indicative after a negative?"},
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
       "opciones": {
-        "No creas que es fácil": {"en": "A negative command with creer keeps the indicative."},
-        "No creo que es fácil": {"en": "After no creo que, the subjunctive: sea."},
-        "No digo que es fácil": {"en": "After no digo que, the subjunctive: sea."}
+        "No creas que es fácil": {
+          "$t": "b9.o0.refuerzo"
+        },
+        "No creo que es fácil": {
+          "$t": "b9.o1.refuerzo"
+        },
+        "No digo que es fácil": {
+          "$t": "b9.o2.refuerzo"
+        }
       },
       "correcta": "No creas que es fácil"
     },
     {
       "tipo": "ordenar",
       "id": "modo-cambia-6",
-      "frase": "El hecho de que insista no significa nada",
-      "traduccion": {"en": "The fact that she insists doesn't mean anything."}
+      "frase": {
+        "$e": "b10.frase"
+      },
+      "traduccion": {
+        "$t": "b10.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (150–180 words).** Write the minutes of a meeting, distinguishing what people stated from what they asked others to do.\n\n**Speak (about 3 minutes).** Report aloud a family argument: who said what and who told whom to do what."
+        "$t": "b11.texto"
       }
     }
   ]

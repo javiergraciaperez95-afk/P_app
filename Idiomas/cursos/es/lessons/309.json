@@ -1,65 +1,76 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "309",
   "capitulo": 7,
-  "titulo_es": "Tres pasados en una historia",
   "titulo": {
-    "en": "Three past tenses in a story"
+    "$t": "titulo"
   },
   "intro": {
-    "en": "Use context to notice completed events, background and experiences connected to the present."
+    "$t": "intro"
   },
   "palabras": {
-    "de pequeño": "as a child",
-    "conserje": "caretaker or concierge",
-    "de repente": "suddenly",
-    "desde entonces": "since then",
-    "época": "period or era",
-    "recordar": "to remember",
-    "llover": "to rain",
-    "reunión": "reunion"
+    "de pequeño": {
+      "$f": "p.de pequeño"
+    },
+    "conserje": {
+      "$f": "p.conserje"
+    },
+    "de repente": {
+      "$f": "p.de repente"
+    },
+    "desde entonces": {
+      "$f": "p.desde entonces"
+    },
+    "época": {
+      "$f": "p.época"
+    },
+    "recordar": {
+      "$f": "p.recordar"
+    },
+    "llover": {
+      "$f": "p.llover"
+    },
+    "reunión": {
+      "$f": "p.reunión"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
       "titulo": {
-        "en": "Event, background and present connection"
+        "$t": "b1.titulo"
       },
       "texto": {
-        "en": "The **indefinido** commonly moves a finished story forward: **Llegué a las ocho**. The **imperfecto** describes a background, habit or ongoing situation: **Llovía**. The **perfecto** often presents an experience or period connected to the present: **Esta semana he leído dos libros**. This last choice varies across Spanish-speaking regions; some speakers use the simple past in contexts where others use the perfect. The examples here use a common Spain-oriented contrast, not a rule for every region."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "texto",
       "titulo": {
-        "en": "A visit to the old school"
+        "$t": "b2.titulo"
       },
       "frases": [
         {
-          "es": "Esta semana he vuelto a mi antiguo colegio por primera vez en muchos años.",
-          "en": "This week I have returned to my old school for the first time in many years."
+          "$f": "b2.f0"
         },
         {
-          "es": "Cuando era pequeño, iba allí andando con mi hermana porque vivíamos cerca.",
-          "en": "When I was little, I used to walk there with my sister because we lived nearby."
+          "$f": "b2.f1"
         },
         {
-          "es": "Ayer llegué temprano y esperé en la puerta. Llovía, pero el conserje me reconoció.",
-          "en": "Yesterday I arrived early and waited at the door. It was raining, but the caretaker recognised me."
+          "$f": "b2.f2"
         },
         {
-          "es": "De repente, salió mi antigua profesora. Hablamos un rato y recordamos el último curso.",
-          "en": "Suddenly, my former teacher came out. We talked for a while and remembered the final school year."
+          "$f": "b2.f3"
         },
         {
-          "es": "En el patio seguían los mismos árboles, pero ya eran mucho más altos que en mi último curso.",
-          "en": "The same trees were still in the playground, but they were much taller than in my final school year."
+          "$f": "b2.f4"
         },
         {
-          "es": "Al despedirnos, mi profesora me dijo que varios antiguos alumnos querían organizar una reunión para el verano.",
-          "en": "As we said goodbye, my teacher told me that several former students wanted to organise a reunion for the summer."
+          "$f": "b2.f5"
         },
         {
-          "es": "Desde entonces he pensado mucho en aquella época.",
-          "en": "Since then I have thought a lot about that time."
+          "$f": "b2.f6"
         }
       ]
     },
@@ -79,11 +90,15 @@
     {
       "tipo": "tabla",
       "titulo": {
-        "en": "What does each tense do here?"
+        "$t": "b4.titulo"
       },
       "columnas": [
-        "Example",
-        "Use"
+        {
+          "$t": "b4.c0"
+        },
+        {
+          "$t": "b4.c1"
+        }
       ],
       "filas": [
         [
@@ -100,60 +115,88 @@
         ]
       ],
       "nota": {
-        "en": "The perfect and simple past can be distributed differently across regions."
+        "$t": "b4.nota"
       }
     },
     {
       "tipo": "test",
       "pregunta": {
-        "en": "Which sentence describes the background weather?"
+        "$t": "b5.pregunta"
       },
       "opciones": {
-        "Llovía.": "Correct. Read the context carefully.",
-        "Llegué temprano.": "Check the information in the text or rule.",
-        "He vuelto al colegio.": "This option does not fit the context."
+        "Llovía.": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "Llegué temprano.": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "He vuelto al colegio.": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "Llovía."
     },
     {
       "tipo": "test",
       "pregunta": {
-        "en": "Which event happened suddenly?"
+        "$t": "b6.pregunta"
       },
       "opciones": {
-        "The former teacher came out.": "Correct. Read the context carefully.",
-        "The narrator walked to school as a child.": "Check the information in the text or rule.",
-        "The week began.": "This option does not fit the context."
+        "The former teacher came out.": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "The narrator walked to school as a child.": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "The week began.": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "The former teacher came out."
     },
     {
       "tipo": "huecos",
-      "frase": "Cuando era pequeño, ____ allí andando.",
+      "frase": {
+        "$e": "b7.frase"
+      },
       "opciones": {
-        "iba": "Correct.",
-        "fui": "Check the tense or meaning.",
-        "he ido": "This form does not fit the sentence."
+        "iba": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "fui": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "he ido": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "iba"
     },
     {
       "tipo": "test",
       "pregunta": {
-        "en": "What does the final sentence say about the narrator?"
+        "$t": "b8.pregunta"
       },
       "opciones": {
-        "The visit has stayed on their mind since then.": "Correct. Read the context carefully.",
-        "They have never returned to the school.": "Check the information in the text or rule.",
-        "They forgot their former teacher.": "This option does not fit the context."
+        "The visit has stayed on their mind since then.": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "They have never returned to the school.": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "They forgot their former teacher.": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "The visit has stayed on their mind since then."
     },
     {
       "tipo": "ordenar",
-      "frase": "Ayer llegué temprano y esperé en la puerta.",
+      "frase": {
+        "$e": "b9.frase"
+      },
       "traduccion": {
-        "en": "Yesterday I arrived early and waited at the door."
+        "$t": "b9.traduccion"
       }
     }
   ]

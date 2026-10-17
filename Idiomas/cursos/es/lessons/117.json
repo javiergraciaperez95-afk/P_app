@@ -1,132 +1,289 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "117",
   "capitulo": 11,
-  "titulo_es": "Me da vergüenza",
-  "titulo": { "en": "I'm embarrassed" },
-  "intro": { "en": "Feelings often use dar or poner, with the person as me, te or le." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "me da vergüenza": { "en": "I'm embarrassed", "pron": "me da ber-GWEN-tha", "cat": "expression" },
-    "me da miedo": { "en": "it frightens me", "pron": "me da MYE-do", "cat": "expression" },
-    "me pone nervioso/a": { "en": "it makes me nervous (the adjective agrees with the person)", "pron": "me PO-ne ner-BYO-so/sa", "cat": "expression" },
-    "alegrar": { "en": "to make glad; to please", "pron": "a-le-GRAR", "cat": "verb" },
-    "hablar": { "en": "to speak", "pron": "a-BLAR", "cat": "verb" },
-    "el examen": { "en": "the exam", "pron": "el ek-SA-men", "cat": "noun", "genero": "m" },
-    "en público": { "en": "in public", "pron": "en PU-bli-ko", "cat": "expression" },
-    "ver": { "en": "to see", "pron": "BER", "cat": "verb" },
-    "a mí": { "en": "to me; as for me (emphasis or contrast)", "pron": "a MI", "cat": "expression" }
+    "me da vergüenza": {
+      "$f": "p.me da vergüenza",
+      "pron": "me da ber-GWEN-tha",
+      "cat": "expr"
+    },
+    "me da miedo": {
+      "$f": "p.me da miedo",
+      "pron": "me da MYE-do",
+      "cat": "expr"
+    },
+    "me pone nervioso/a": {
+      "$f": "p.me pone nervioso/a",
+      "pron": "me PO-ne ner-BYO-so/sa",
+      "cat": "expr"
+    },
+    "alegrar": {
+      "$f": "p.alegrar",
+      "pron": "a-le-GRAR",
+      "cat": "verb"
+    },
+    "hablar": {
+      "$f": "p.hablar",
+      "pron": "a-BLAR",
+      "cat": "verb"
+    },
+    "el examen": {
+      "$f": "p.el examen",
+      "pron": "el ek-SA-men",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "en público": {
+      "$f": "p.en público",
+      "pron": "en PU-bli-ko",
+      "cat": "expr"
+    },
+    "ver": {
+      "$f": "p.ver",
+      "pron": "BER",
+      "cat": "verb"
+    },
+    "a mí": {
+      "$f": "p.a mí",
+      "pron": "a MI",
+      "cat": "expr"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "The feeling comes to you",
-      "texto": "The thing or action is the subject. The person who feels the emotion is an indirect object: **me**, **te**, **le**, **nos**, **os** or **les**.\n\n- **Me da vergüenza** hablar en clase.\n- **Me da miedo** el examen.\n- Hablar en público **me pone nerviosa** / **nervioso**. With **poner**, the adjective agrees with the person who feels nervous.\n\nIn **Me alegra verte**, **verte** (seeing you) is the subject: that action makes me glad. **A mí** can add emphasis or contrast."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "dialogo",
-      "titulo": "Before speaking",
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "Me da vergüenza hablar en clase.",
-          "en": "I'm embarrassed to speak in class.",
           "analisis": [
-            ["Me da vergüenza", "verb"],
-            ["hablar en clase", "subject"]
+            [
+              "Me da vergüenza",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "hablar en clase",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "A mí me da miedo el examen.",
-          "en": "The exam frightens me.",
           "analisis": [
-            ["A mí", "who"],
-            ["me da miedo", "verb"],
-            ["el examen", "subject"]
+            [
+              "A mí",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "me da miedo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "el examen",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "Hablar en público me pone nerviosa.",
-          "en": "Speaking in public makes me nervous.",
           "analisis": [
-            ["Hablar en público", "subject"],
-            ["me pone nerviosa", "verb"]
+            [
+              "Hablar en público",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "me pone nerviosa",
+              {
+                "$t": "a0"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "Me alegra verte.",
-          "en": "I'm glad to see you.",
           "analisis": [
-            ["Me alegra", "verb"],
-            ["verte", "object"]
+            [
+              "Me alegra",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "verte",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["me da vergüenza", "me da miedo", "me pone nervioso/a", "alegrar", "hablar", "el examen", "en público", "ver", "a mí"]
+      "palabras": [
+        "me da vergüenza",
+        "me da miedo",
+        "me pone nervioso/a",
+        "alegrar",
+        "hablar",
+        "el examen",
+        "en público",
+        "ver",
+        "a mí"
+      ]
     },
     {
       "tipo": "huecos",
       "id": "b1-emo-verguenza",
-      "pregunta": { "en": "Complete: I'm embarrassed to speak in class." },
-      "frase": "Me da ___ hablar en clase.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "vergüenza": { "en": "Vergüenza is embarrassment." },
-        "miedo": { "en": "Miedo is fear." },
-        "hambre": { "en": "Hambre is hunger: tengo hambre." }
+        "vergüenza": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "miedo": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "hambre": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "vergüenza"
     },
     {
       "tipo": "ordenar",
       "id": "b1-emo-hablar",
-      "frase": "Me da vergüenza hablar en clase",
-      "traduccion": { "en": "I'm embarrassed to speak in class." }
+      "frase": {
+        "$e": "b5.frase"
+      },
+      "traduccion": {
+        "$t": "b5.traduccion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "b1-emo-m1",
-      "pregunta": {"en": "Complete: the exam frightens me."},
-      "frase": "Me da ___ el examen.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "miedo": {"en": "Dar miedo: to frighten."},
-        "vergüenza": {"en": "That is embarrassment."},
-        "hambre": {"en": "Hunger goes with tener."}
+        "miedo": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "vergüenza": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "hambre": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "miedo"
     },
     {
       "tipo": "huecos",
       "id": "b1-emo-m2",
-      "pregunta": {"en": "Complete, said by a man: speaking in public makes me nervous."},
-      "frase": "Hablar en público me ___ nervioso.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "pone": {"en": "Poner takes an adjective: me pone nervioso."},
-        "da": {"en": "Dar takes a noun: me da miedo."},
-        "es": {"en": "Ser does not express this change."}
+        "pone": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "da": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "es": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "pone"
     },
     {
       "tipo": "traduccion",
       "id": "b1-emo-m3",
-      "frase": "Me alegra verte.",
+      "frase": {
+        "$e": "b8.frase"
+      },
       "opciones": [
-        {"texto": {"en": "I'm glad to see you."}, "correcta": true},
-        {"texto": {"en": "I'm glad you saw me."}, "explicacion": {"en": "Verte is to see you."}},
-        {"texto": {"en": "It cheers you up to see me."}, "explicacion": {"en": "Me is the person who is glad."}}
+        {
+          "texto": {
+            "$t": "b8.o0"
+          },
+          "correcta": true
+        },
+        {
+          "texto": {
+            "$t": "b8.o1"
+          },
+          "explicacion": {
+            "$t": "b8.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b8.o2"
+          },
+          "explicacion": {
+            "$t": "b8.o2.explicacion"
+          }
+        }
       ]
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write about things that embarrass, frighten, annoy or bore you, and explain why.\n\n**Speak (about 2 minutes).** Tell an anecdote about a moment when you felt very embarrassed or very afraid."
+        "$t": "b9.texto"
       }
     }
   ]

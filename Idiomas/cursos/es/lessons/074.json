@@ -1,157 +1,422 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "074",
   "capitulo": 8,
-  "titulo_es": "Se lo doy",
-  "titulo": {"en": "I give it to him"},
-  "intro": {"en": "With two object pronouns, the indirect object comes first, followed by the direct object. Le/les becomes se before lo, la, los or las."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "me lo": {"en": "it to me", "pron": "me lo", "cat": "pronoun"},
-    "te lo": {"en": "it to you", "pron": "te lo", "cat": "pronoun"},
-    "se lo": {
-      "en": "it to him/her/them or to you (usted/ustedes)",
-      "pron": "se lo",
-      "cat": "pronoun",
-      "nota": "Le and les become se before lo, la, los, las."
+    "me lo": {
+      "$f": "p.me lo",
+      "pron": "me lo",
+      "cat": "pron"
     },
-    "se las": {"en": "them (feminine) to him/her/them or to you (usted/ustedes)", "pron": "se las", "cat": "pronoun"},
-    "se": {"en": "to him/her/them or to you (used for le/les before another object pronoun)", "pron": "se", "cat": "pronoun"},
-    "os lo": {"en": "it to you all (vosotros/as, mainly Spain)", "pron": "os lo", "cat": "pronoun"},
-    "nos lo": {"en": "it to us", "pron": "nos lo", "cat": "pronoun"},
-    "el paraguas": {"en": "the umbrella", "pron": "el pa-RA-gwas", "cat": "noun", "genero": "m"},
-    "el libro": {"en": "the book", "pron": "el LI-bro", "cat": "noun", "genero": "m"},
-    "la llave": {"en": "the key", "pron": "la YA-be", "cat": "noun", "genero": "f"},
-    "las fotos": {"en": "the photos", "pron": "las FO-tos", "cat": "noun", "genero": "f"},
-    "el piso": {"en": "the apartment (often Spain; can also mean floor)", "pron": "el PI-so", "cat": "noun", "genero": "m"},
-    "devuelves": {"en": "you (tú) give back, return", "pron": "de-BWEL-bes", "cat": "verb"},
-    "enseña": {"en": "he/she/you formal shows", "pron": "en-SE-nya", "cat": "verb"},
-    "mando": {"en": "I send", "pron": "MAN-do", "cat": "verb"},
-    "ahora mismo": {"en": "right now", "pron": "a-O-ra MIS-mo", "cat": "expression"}
+    "te lo": {
+      "$f": "p.te lo",
+      "pron": "te lo",
+      "cat": "pron"
+    },
+    "se lo": {
+      "$f": "p.se lo",
+      "pron": "se lo",
+      "cat": "pron",
+      "nota": {
+        "$t": "p.se lo.nota"
+      }
+    },
+    "se las": {
+      "$f": "p.se las",
+      "pron": "se las",
+      "cat": "pron"
+    },
+    "se": {
+      "$f": "p.se",
+      "pron": "se",
+      "cat": "pron"
+    },
+    "os lo": {
+      "$f": "p.os lo",
+      "pron": "os lo",
+      "cat": "pron"
+    },
+    "nos lo": {
+      "$f": "p.nos lo",
+      "pron": "nos lo",
+      "cat": "pron"
+    },
+    "el paraguas": {
+      "$f": "p.el paraguas",
+      "pron": "el pa-RA-gwas",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el libro": {
+      "$f": "p.el libro",
+      "pron": "el LI-bro",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la llave": {
+      "$f": "p.la llave",
+      "pron": "la YA-be",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "las fotos": {
+      "$f": "p.las fotos",
+      "pron": "las FO-tos",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "el piso": {
+      "$f": "p.el piso",
+      "pron": "el PI-so",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "devuelves": {
+      "$f": "p.devuelves",
+      "pron": "de-BWEL-bes",
+      "cat": "verb"
+    },
+    "enseña": {
+      "$f": "p.enseña",
+      "pron": "en-SE-nya",
+      "cat": "verb"
+    },
+    "mando": {
+      "$f": "p.mando",
+      "pron": "MAN-do",
+      "cat": "verb"
+    },
+    "ahora mismo": {
+      "$f": "p.ahora mismo",
+      "pron": "a-O-ra MIS-mo",
+      "cat": "expr"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Indirect object first, direct object second"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "When both objects are pronouns, the order is **indirect object + direct object**. With one conjugated verb, both go before it.\n\n- **Me lo** das. **Te la** presto. **Nos los** manda. **Os lo** doy.\n\nBefore **lo, la, los, las**, the indirect pronouns **le/les** change to **se**.\n\n- Le doy el libro a Ana. → **Se lo** doy. (not le lo)\n- Les mando las fotos. → **Se las** mando.\n\nThis **se** can mean to him, her, them, or you (**usted/ustedes**). Add **a él**, **a ella**, **a usted**, or **a ustedes** if it is not clear.\n\n**No** goes before both: **no se lo** doy."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "Replace the direct object"},
-      "columnas": ["With a direct-object noun", "With two pronouns"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        }
+      ],
       "filas": [
-        ["Me das el libro.", "Me lo das."],
-        ["Te presto la llave.", "Te la presto."],
-        ["Le doy el libro a Ana.", "Se lo doy."],
-        ["Les mando las fotos.", "Se las mando."],
-        ["Nos enseña el piso.", "Nos lo enseña."],
-        ["Os doy el libro.", "Os lo doy."]
+        [
+          "Me das el libro.",
+          "Me lo das."
+        ],
+        [
+          "Te presto la llave.",
+          "Te la presto."
+        ],
+        [
+          "Le doy el libro a Ana.",
+          "Se lo doy."
+        ],
+        [
+          "Les mando las fotos.",
+          "Se las mando."
+        ],
+        [
+          "Nos enseña el piso.",
+          "Nos lo enseña."
+        ],
+        [
+          "Os doy el libro.",
+          "Os lo doy."
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "The umbrella"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "¿Me prestas el paraguas?",
-          "en": "Will you lend me the umbrella?",
-          "analisis": [["¿Me", "to me"], ["prestas", "verb"], ["el paraguas", "object"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Sí, te lo presto. ¿Cuándo me lo devuelves?",
-          "en": "Yes, I'll lend it to you. When will you give it back to me?",
           "analisis": [
-            ["te", "to you"],
-            ["lo", "it"],
-            ["presto", "verb"],
-            ["¿Cuándo", "question"],
-            ["me lo", "it to me"],
-            ["devuelves", "verb"]
+            [
+              "¿Me",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "prestas",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "el paraguas",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
-          "quien": "Lucía",
-          "es": "Mañana. ¿Y las fotos de la fiesta? ¿Se las mandas a Ana?",
-          "en": "Tomorrow. And the party photos? Will you send them to Ana?",
+          "$f": "b3.f1",
+          "quien": "Pablo",
           "analisis": [
-            ["Mañana", "time"],
-            ["las fotos de la fiesta", "object"],
-            ["¿Se las", "them to her"],
-            ["mandas", "verb"],
-            ["a Ana", "to whom"]
+            [
+              "te",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "lo",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "presto",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "¿Cuándo",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "me lo",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "devuelves",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
-          "quien": "Pablo",
-          "es": "Se las mando ahora mismo.",
-          "en": "I'll send them to her right now.",
-          "analisis": [["Se", "to her"], ["las", "them"], ["mando", "verb"], ["ahora mismo", "time"]],
-          "nota": "In this pronoun pair, le changes to se before las."
+          "$f": "b3.f2",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Mañana",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "las fotos de la fiesta",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "¿Se las",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "mandas",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "a Ana",
+              {
+                "$t": "a9"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b3.f3",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Se",
+              {
+                "$t": "a10"
+              }
+            ],
+            [
+              "las",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "mando",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "ahora mismo",
+              {
+                "$t": "a7"
+              }
+            ]
+          ],
+          "nota": {
+            "$t": "b3.f3.nota"
+          }
+        },
+        {
+          "$f": "b3.f4",
           "quien": "Lucía",
-          "es": "Y la llave se la doy a tu hermano.",
-          "en": "And I'll give the key to your brother.",
-          "analisis": [["la llave", "object"], ["se la", "it to him"], ["doy", "verb"], ["a tu hermano", "to whom"]]
+          "analisis": [
+            [
+              "la llave",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "se la",
+              {
+                "$t": "a12"
+              }
+            ],
+            [
+              "doy",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "a tu hermano",
+              {
+                "$t": "a9"
+              }
+            ]
+          ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "se-lo-1",
-      "pregunta": {"en": "Complete: I give it to Ana. (the book)"},
-      "frase": "___ lo doy.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "Se": {"en": "Le becomes se before lo."},
-        "Le": {"en": "Le lo is not possible."},
-        "La": {"en": "The receiver comes first, and it is se."}
+        "Se": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "Le": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "La": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "Se"
     },
     {
       "tipo": "huecos",
       "id": "se-lo-2",
-      "pregunta": {"en": "Complete: will you lend it to me? (the key)"},
-      "frase": "¿Me ___ prestas?",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "la": {"en": "La llave is feminine."},
-        "lo": {"en": "La llave is feminine, so use la."},
-        "le": {"en": "Le would refer to the recipient; the key is the direct object, so use la."}
+        "la": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "lo": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "le": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "la"
     },
     {
       "tipo": "test",
       "id": "se-lo-3",
-      "pregunta": {"en": "«¿Les mandas las fotos a tus padres?» Which answer is right?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "Sí, se las mando": {"en": "Les becomes se before las."},
-        "Sí, les las mando": {"en": "Les cannot stand before las."},
-        "Sí, las se mando": {"en": "The indirect-object pronoun comes first: se las."}
+        "Sí, se las mando": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "Sí, les las mando": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "Sí, las se mando": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "Sí, se las mando"
     },
     {
       "tipo": "escribir",
       "id": "se-lo-4",
-      "pregunta": {"en": "Rewrite with two pronouns: «Te presto el paraguas.»"},
-      "respuestas": ["Te lo presto"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "Te lo presto"
+      ]
     },
     {
       "tipo": "ordenar",
       "id": "se-lo-5",
-      "frase": "Se las mando ahora mismo",
-      "traduccion": {"en": "I'll send them to her right now."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write five short exchanges like this: ¿Le das el libro a Ana? Sí, se lo doy mañana.\n\n**Speak (about 1 minute).** Answer aloud with two pronouns: ¿Me prestas tu coche? ¿Le explicas la lección a tu hermano?"
+        "$t": "b10.texto"
       }
     }
   ]

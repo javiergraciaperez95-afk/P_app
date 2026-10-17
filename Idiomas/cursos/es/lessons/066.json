@@ -1,151 +1,395 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "066",
   "capitulo": 7,
-  "titulo_es": "Hoy he comido, ayer comí",
-  "titulo": {"en": "Today I've eaten, yesterday I ate"},
-  "intro": {"en": "Two common ways to talk about past events; time expressions help, and usage varies by region."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "esta mañana": {"en": "this morning", "pron": "ES-ta ma-NYA-na", "cat": "expression"},
-    "esta semana": {"en": "this week", "pron": "ES-ta se-MA-na", "cat": "expression"},
-    "este año": {"en": "this year", "pron": "ES-te A-nyo", "cat": "expression"},
-    "alguna vez": {"en": "ever", "pron": "al-GU-na bes/beth", "cat": "expression"},
-    "nunca": {"en": "never", "pron": "NUN-ka", "cat": "adverb"},
-    "todavía no": {"en": "not yet", "pron": "to-da-BI-a no", "cat": "expression"},
-    "ya": {"en": "already, yet", "pron": "ya", "cat": "adverb"},
-    "el mes pasado": {"en": "last month", "pron": "el mes pa-SA-do", "cat": "expression"},
-    "hace un año": {"en": "a year ago", "pron": "A-se/A-the un A-nyo", "cat": "expression"},
-    "ayer": {"en": "yesterday", "pron": "a-YER", "cat": "adverb"},
-    "anoche": {"en": "last night", "pron": "a-NO-che", "cat": "adverb"},
-    "el lunes pasado": {"en": "last Monday", "pron": "el LU-nes pa-SA-do", "cat": "expression"},
-    "la semana pasada": {"en": "last week", "pron": "la se-MA-na pa-SA-da", "cat": "expression"},
-    "el año pasado": {"en": "last year", "pron": "el A-nyo pa-SA-do", "cat": "expression"},
-    "el otro día": {"en": "the other day (recently)", "pron": "el O-tro DI-a", "cat": "expression"},
-    "he ido": {"en": "I have gone, I have been", "pron": "e I-do", "cat": "verb"},
-    "fui": {"en": "I went", "pron": "fwi", "cat": "verb"},
-    "últimamente": {"en": "lately", "pron": "UL-ti-ma-men-te", "cat": "adverb"}
+    "esta mañana": {
+      "$f": "p.esta mañana",
+      "pron": "ES-ta ma-NYA-na",
+      "cat": "expr"
+    },
+    "esta semana": {
+      "$f": "p.esta semana",
+      "pron": "ES-ta se-MA-na",
+      "cat": "expr"
+    },
+    "este año": {
+      "$f": "p.este año",
+      "pron": "ES-te A-nyo",
+      "cat": "expr"
+    },
+    "alguna vez": {
+      "$f": "p.alguna vez",
+      "pron": "al-GU-na bes/beth",
+      "cat": "expr"
+    },
+    "nunca": {
+      "$f": "p.nunca",
+      "pron": "NUN-ka",
+      "cat": "adv"
+    },
+    "todavía no": {
+      "$f": "p.todavía no",
+      "pron": "to-da-BI-a no",
+      "cat": "expr"
+    },
+    "ya": {
+      "$f": "p.ya",
+      "pron": "ya",
+      "cat": "adv"
+    },
+    "el mes pasado": {
+      "$f": "p.el mes pasado",
+      "pron": "el mes pa-SA-do",
+      "cat": "expr"
+    },
+    "hace un año": {
+      "$f": "p.hace un año",
+      "pron": "A-se/A-the un A-nyo",
+      "cat": "expr"
+    },
+    "ayer": {
+      "$f": "p.ayer",
+      "pron": "a-YER",
+      "cat": "adv"
+    },
+    "anoche": {
+      "$f": "p.anoche",
+      "pron": "a-NO-che",
+      "cat": "adv"
+    },
+    "el lunes pasado": {
+      "$f": "p.el lunes pasado",
+      "pron": "el LU-nes pa-SA-do",
+      "cat": "expr"
+    },
+    "la semana pasada": {
+      "$f": "p.la semana pasada",
+      "pron": "la se-MA-na pa-SA-da",
+      "cat": "expr"
+    },
+    "el año pasado": {
+      "$f": "p.el año pasado",
+      "pron": "el A-nyo pa-SA-do",
+      "cat": "expr"
+    },
+    "el otro día": {
+      "$f": "p.el otro día",
+      "pron": "el O-tro DI-a",
+      "cat": "expr"
+    },
+    "he ido": {
+      "$f": "p.he ido",
+      "pron": "e I-do",
+      "cat": "verb"
+    },
+    "fui": {
+      "$f": "p.fui",
+      "pron": "fwi",
+      "cat": "verb"
+    },
+    "últimamente": {
+      "$f": "p.últimamente",
+      "pron": "UL-ti-ma-men-te",
+      "cat": "adv"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Is the time still open?"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "A common pattern in much of Spain is to use the **perfecto** with a time period that includes now, or to ask about experience without a finished date.\n\n- **He desayunado** esta mañana. (The morning is treated as part of today.)\n- ¿**Has estado** alguna vez en Perú?\n\nWith a clearly finished time, the **indefinido** is the usual choice in this Spain-oriented pattern: ayer, anoche, el lunes pasado, en 2019, hace un año.\n\n- **Ayer desayuné** té.\n- —¿Has estado en Perú? —Sí, **fui** en 2019.\n\nThis is a useful Spain-oriented guideline, not a universal rule: many speakers in Latin America and some in Spain also use the indefinido for events in today or this week. You will hear regional variation. Pronunciation also varies: c and z before e or i may sound like s (seseo) or like the th in think (distinción)."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "Time words"},
-      "columnas": ["Perfecto often used with (Spain pattern)", "Indefinido often used with (finished time)"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        }
+      ],
       "filas": [
-        ["hoy, esta mañana", "ayer, anoche"],
-        ["esta semana, este año", "la semana pasada, el año pasado"],
-        ["alguna vez, nunca", "en 2019, hace un año"],
-        ["ya, todavía no", "el lunes pasado, el otro día"]
+        [
+          "hoy, esta mañana",
+          "ayer, anoche"
+        ],
+        [
+          "esta semana, este año",
+          "la semana pasada, el año pasado"
+        ],
+        [
+          "alguna vez, nunca",
+          "en 2019, hace un año"
+        ],
+        [
+          "ya, todavía no",
+          "el lunes pasado, el otro día"
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Travel"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "¿Has estado alguna vez en Perú?",
-          "en": "Have you ever been to Peru?",
-          "analisis": [["¿Has estado", "verb"], ["alguna vez", "time"], ["en Perú", "place"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Sí, fui el año pasado.",
-          "en": "Yes, I went last year.",
-          "analisis": [["fui", "verb"], ["el año pasado", "time"]],
-          "nota": "The answer names a finished time, so it switches to the indefinido."
-        },
-        {
-          "quien": "Lucía",
-          "es": "Yo nunca he ido. Este año he viajado poco.",
-          "en": "I've never been. This year I haven't travelled much.",
           "analisis": [
-            ["Yo", "subject"],
-            ["nunca", "time"],
-            ["he ido", "verb"],
-            ["Este año", "time"],
-            ["he viajado", "verb"],
-            ["poco", "how much"]
+            [
+              "¿Has estado",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "alguna vez",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "en Perú",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f1",
           "quien": "Pablo",
-          "es": "¿Has comido ya?",
-          "en": "Have you eaten yet?",
-          "analisis": [["¿Has comido", "verb"], ["ya", "time"]]
+          "analisis": [
+            [
+              "fui",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "el año pasado",
+              {
+                "$t": "a1"
+              }
+            ]
+          ],
+          "nota": {
+            "$t": "b3.f1.nota"
+          }
         },
         {
+          "$f": "b3.f2",
           "quien": "Lucía",
-          "es": "Todavía no. Ayer comí a las cuatro.",
-          "en": "Not yet. Yesterday I had lunch at four.",
-          "analisis": [["Todavía no", "time"], ["Ayer", "time"], ["comí", "verb"], ["a las cuatro", "time"]]
+          "analisis": [
+            [
+              "Yo",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "nunca",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "he ido",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "Este año",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "he viajado",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "poco",
+              {
+                "$t": "a4"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f3",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "¿Has comido",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "ya",
+              {
+                "$t": "a1"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Todavía no",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "Ayer",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "comí",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "a las cuatro",
+              {
+                "$t": "a1"
+              }
+            ]
+          ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "perf-indef-1",
-      "pregunta": {"en": "Complete, as in Spain: this morning I had coffee."},
-      "frase": "Esta mañana ___ café.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "he tomado": {"en": "In this Spain-oriented pattern, the perfecto is common because this morning is part of today."},
-        "tomé": {"en": "In this Spain-oriented pattern, a period that includes today commonly takes the perfecto."},
-        "tomaba": {"en": "The imperfect would be a habit or a background."}
+        "he tomado": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "tomé": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "tomaba": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "he tomado"
     },
     {
       "tipo": "huecos",
       "id": "perf-indef-2",
-      "pregunta": {"en": "Complete: last week I went to the doctor."},
-      "frase": "La semana pasada ___ al médico.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "fui": {"en": "La semana pasada is a closed period."},
-        "he ido": {"en": "The perfecto needs a period that is still open."},
-        "voy": {"en": "Voy is the present."}
+        "fui": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "he ido": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "voy": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "fui"
     },
     {
       "tipo": "test",
       "id": "perf-indef-3",
-      "pregunta": {"en": "Which expression names a finished time?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "hace un año": {"en": "It names a time before now."},
-        "esta semana": {"en": "This week includes the present."},
-        "todavía no": {"en": "It means not yet; it does not name a finished time."}
+        "hace un año": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "esta semana": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "todavía no": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "hace un año"
     },
     {
       "tipo": "test",
       "id": "perf-indef-4",
-      "pregunta": {"en": "Following the Spain-oriented pattern, which answer uses the expected tense with a finished year?"},
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
       "opciones": {
-        "Sí, estuve en 2019": {"en": "The indefinido is expected here with a finished year in this pattern."},
-        "Sí, he estado en 2019": {"en": "The perfect is less expected here in this Spain-oriented pattern."},
-        "Sí, estoy en 2019": {"en": "Estoy is the present."}
+        "Sí, estuve en 2019": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "Sí, he estado en 2019": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "Sí, estoy en 2019": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "Sí, estuve en 2019"
     },
     {
       "tipo": "ordenar",
       "id": "perf-indef-5",
-      "frase": "Este año he viajado muy poco",
-      "traduccion": {"en": "This year I have travelled very little."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write two paragraphs: what you have done today, and what you did the same day last week.\n\n**Speak (about 1 minute).** Compare aloud this week with last week, choosing between he hecho and hice."
+        "$t": "b10.texto"
       }
     }
   ]

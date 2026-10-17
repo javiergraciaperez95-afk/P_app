@@ -1,46 +1,80 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "304",
   "capitulo": 1,
-  "titulo_es": "Letras y sonidos frecuentes",
   "titulo": {
-    "en": "Letters and common sounds"
+    "$t": "titulo"
   },
   "intro": {
-    "en": "Learn a few spelling and sound patterns that help you read Spanish words. Pronunciation varies by region."
+    "$t": "intro"
   },
   "palabras": {
-    "vocal": "vowel",
-    "letra": "letter",
-    "sonido": "sound",
-    "hache": "letter h",
-    "eñe": "letter ñ",
-    "erre": "letter r",
-    "barco": "boat",
-    "vaso": "glass",
-    "pero": "but",
-    "perro": "dog",
-    "gente": "people",
-    "queso": "cheese",
-    "casa": "house",
-    "caza": "hunt"
+    "vocal": {
+      "$f": "p.vocal"
+    },
+    "letra": {
+      "$f": "p.letra"
+    },
+    "sonido": {
+      "$f": "p.sonido"
+    },
+    "hache": {
+      "$f": "p.hache"
+    },
+    "eñe": {
+      "$f": "p.eñe"
+    },
+    "erre": {
+      "$f": "p.erre"
+    },
+    "barco": {
+      "$f": "p.barco"
+    },
+    "vaso": {
+      "$f": "p.vaso"
+    },
+    "pero": {
+      "$f": "p.pero"
+    },
+    "perro": {
+      "$f": "p.perro"
+    },
+    "gente": {
+      "$f": "p.gente"
+    },
+    "queso": {
+      "$f": "p.queso"
+    },
+    "casa": {
+      "$f": "p.casa"
+    },
+    "caza": {
+      "$f": "p.caza"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
       "titulo": {
-        "en": "A few useful patterns"
+        "$t": "b1.titulo"
       },
       "texto": {
-        "en": "Spanish has five vowel letters, and their sounds stay clear in unstressed syllables. The letter **h** is silent. **Ñ** is a separate letter, as in **año**. **B** and **v** usually represent the same sound in Spanish, although their spelling differs. Between vowels, **r** is a short tap in **pero**, while **rr** is a trill in **perro**. Before **e** and **i**, **c** is pronounced like /s/ in many varieties and like the sound in English *think* in much of central and northern Spain. **Z** follows the same regional pattern. The sound of **g** changes in **gente** and **gato**; **j** has the strong sound in **jamón**. Learn spellings with examples, and treat regional pronunciation as variation, not as an error."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
       "titulo": {
-        "en": "Letter and example"
+        "$t": "b2.titulo"
       },
       "columnas": [
-        "Letter or pair",
-        "Example"
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        }
       ],
       "filas": [
         [
@@ -69,26 +103,23 @@
         ]
       ],
       "nota": {
-        "en": "The pronunciation of c and z varies by region."
+        "$t": "b2.nota"
       }
     },
     {
       "tipo": "texto",
       "titulo": {
-        "en": "Read the words"
+        "$t": "b3.titulo"
       },
       "frases": [
         {
-          "es": "El perro corre por la calle.",
-          "en": "The dog runs along the street."
+          "$f": "b3.f0"
         },
         {
-          "es": "La gente compra queso.",
-          "en": "People buy cheese."
+          "$f": "b3.f1"
         },
         {
-          "es": "Mi hermana cumple años en junio.",
-          "en": "My sister has a birthday in June."
+          "$f": "b3.f2"
         }
       ]
     },
@@ -114,54 +145,82 @@
     {
       "tipo": "test",
       "pregunta": {
-        "en": "Which letter is silent in the Spanish word «hola»?"
+        "$t": "b5.pregunta"
       },
       "opciones": {
-        "h": "Correct. Read the context carefully.",
-        "l": "Check the information in the text or rule.",
-        "a": "This option does not fit the context."
+        "h": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "l": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "a": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "h"
     },
     {
       "tipo": "test",
       "pregunta": {
-        "en": "Which spelling means «dog»?"
+        "$t": "b6.pregunta"
       },
       "opciones": {
-        "perro": "Correct. Read the context carefully.",
-        "pero": "Check the information in the text or rule.",
-        "pelo": "This option does not fit the context."
+        "perro": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "pero": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "pelo": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "perro"
     },
     {
       "tipo": "test",
       "pregunta": {
-        "en": "Which statement about c before e or i is accurate?"
+        "$t": "b7.pregunta"
       },
       "opciones": {
-        "Its pronunciation varies by region.": "Correct. Read the context carefully.",
-        "It always sounds like English «k».": "Check the information in the text or rule.",
-        "It is silent in every variety.": "This option does not fit the context."
+        "Its pronunciation varies by region.": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "It always sounds like English «k».": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "It is silent in every variety.": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "Its pronunciation varies by region."
     },
     {
       "tipo": "huecos",
-      "frase": "Mi ____ cumple años hoy. (sister)",
+      "frase": {
+        "$e": "b8.frase"
+      },
       "opciones": {
-        "hermana": "Correct.",
-        "hermána": "Check the tense or meaning.",
-        "ermana": "This form does not fit the sentence."
+        "hermana": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "hermána": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "ermana": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "hermana"
     },
     {
       "tipo": "ordenar",
-      "frase": "El perro come queso.",
+      "frase": {
+        "$e": "b9.frase"
+      },
       "traduccion": {
-        "en": "The dog eats cheese."
+        "$t": "b9.traduccion"
       }
     }
   ]

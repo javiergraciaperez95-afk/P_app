@@ -1,168 +1,437 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "286",
   "capitulo": 26,
-  "titulo_es": "Vale, venga, qué va",
-  "titulo": {"en": "OK, come on, no way"},
-  "intro": {"en": "The Spanish people actually speak with friends in Spain, and where not to use it."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "vale": {"en": "OK", "pron": "BA-le", "cat": "interjection"},
-    "venga": {"en": "come on; right, bye", "pron": "BEN-ga", "cat": "interjection"},
-    "qué va": {"en": "no way, not at all", "pron": "ke ba", "cat": "interjection"},
-    "ni idea": {"en": "no idea", "pron": "ni i-DE-a", "cat": "expression"},
-    "me da igual": {"en": "I don't mind, I don't care", "pron": "me da i-GWAL", "cat": "expression"},
-    "tía": {"en": "mate (to a woman)", "pron": "TI-a", "genero": "f", "nota": "Tío to a man. Informal, Spain."},
+    "vale": {
+      "$f": "p.vale",
+      "pron": "BA-le",
+      "cat": "interj"
+    },
+    "venga": {
+      "$f": "p.venga",
+      "pron": "BEN-ga",
+      "cat": "interj"
+    },
+    "qué va": {
+      "$f": "p.qué va",
+      "pron": "ke ba",
+      "cat": "interj"
+    },
+    "ni idea": {
+      "$f": "p.ni idea",
+      "pron": "ni i-DE-a",
+      "cat": "expr"
+    },
+    "me da igual": {
+      "$f": "p.me da igual",
+      "pron": "me da i-GWAL",
+      "cat": "expr"
+    },
+    "tía": {
+      "$f": "p.tía",
+      "pron": "TI-a",
+      "genero": "f",
+      "nota": {
+        "$t": "p.tía.nota"
+      }
+    },
     "mola": {
-      "en": "it's cool, I like it",
+      "$f": "p.mola",
       "pron": "MO-la",
       "cat": "verb",
-      "nota": "Molar works like gustar. Informal, Spain."
+      "nota": {
+        "$t": "p.mola.nota"
+      }
     },
-    "guay": {"en": "cool", "pron": "gwai", "cat": "adjective"},
-    "qué rollo": {"en": "what a drag", "pron": "ke RO-yo", "cat": "expression"},
-    "estar hecho polvo": {"en": "to be shattered", "pron": "es-TAR E-cho POL-bo", "cat": "expression"},
-    "flipar": {"en": "to be amazed", "pron": "fli-PAR", "cat": "verb"},
-    "un montón": {"en": "loads, a lot", "pron": "un mon-TON", "cat": "expression"},
-    "la pasta": {"en": "money (slang)", "pron": "la PAS-ta", "genero": "f"},
-    "el curro": {"en": "the job (slang)", "pron": "el KU-rro", "genero": "m", "nota": "The verb is currar."},
-    "el finde": {"en": "the weekend (short for fin de semana)", "pron": "el FIN-de", "genero": "m"}
+    "guay": {
+      "$f": "p.guay",
+      "pron": "gwai",
+      "cat": "adj"
+    },
+    "qué rollo": {
+      "$f": "p.qué rollo",
+      "pron": "ke RO-yo",
+      "cat": "expr"
+    },
+    "estar hecho polvo": {
+      "$f": "p.estar hecho polvo",
+      "pron": "es-TAR E-cho POL-bo",
+      "cat": "expr"
+    },
+    "flipar": {
+      "$f": "p.flipar",
+      "pron": "fli-PAR",
+      "cat": "verb"
+    },
+    "un montón": {
+      "$f": "p.un montón",
+      "pron": "un mon-TON",
+      "cat": "expr"
+    },
+    "la pasta": {
+      "$f": "p.la pasta",
+      "pron": "la PAS-ta",
+      "genero": "f"
+    },
+    "el curro": {
+      "$f": "p.el curro",
+      "pron": "el KU-rro",
+      "genero": "m",
+      "nota": {
+        "$t": "p.el curro.nota"
+      }
+    },
+    "el finde": {
+      "$f": "p.el finde",
+      "pron": "el FIN-de",
+      "genero": "m"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Talking with friends"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "- to agree or close: **vale**, **venga**, **hecho**\n- to deny: **qué va**, **para nada**, **ni hablar**\n- not to know or care: **ni idea**, **yo qué sé**, **me da igual**\n- to react: **¡Anda!** **¡No me digas!** **¡Qué fuerte!** **¡Qué rollo!** **¡Qué guay!**\n- to address someone: **tío**, **tía**, and **hombre** or **mujer** for emphasis\n- to say a lot: **un montón**, **mogollón**\n\nSlang verbs: **currar** (trabajar), **molar** (gustar), **flipar** (to be amazed), **pillar** (to catch, to get).\n\nSlang nouns: **la pasta** (el dinero), **el curro** (el trabajo).\n\nSpanish also shortens words: **el finde**, **la peli**, **el profe**, **el boli**, **el cole**.\n\nAll of this is for friends and family. In an interview, an email or with a stranger, use the neutral word."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "Colloquial and neutral"},
-      "columnas": ["Colloquial", "Neutral"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        }
+      ],
       "filas": [
-        ["currar", "trabajar"],
-        ["la pasta", "el dinero"],
-        ["mola", "me gusta"],
-        ["flipar", "sorprenderse mucho"],
-        ["un montón", "mucho"],
-        ["el finde", "el fin de semana"],
-        ["estar hecho polvo", "estar muy cansado"]
+        [
+          "currar",
+          "trabajar"
+        ],
+        [
+          "la pasta",
+          "el dinero"
+        ],
+        [
+          "mola",
+          "me gusta"
+        ],
+        [
+          "flipar",
+          "sorprenderse mucho"
+        ],
+        [
+          "un montón",
+          "mucho"
+        ],
+        [
+          "el finde",
+          "el fin de semana"
+        ],
+        [
+          "estar hecho polvo",
+          "estar muy cansado"
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "A new job"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Pablo",
-          "es": "¿Qué tal el curro nuevo, tía?",
-          "en": "How's the new job, mate?",
-          "analisis": [["¿Qué tal", "question"], ["el curro nuevo", "subject"], ["tía", "address"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Mola un montón, pero estoy hecha polvo.",
-          "en": "It's really cool, but I'm shattered.",
-          "analisis": [["Mola", "verb"], ["un montón", "how much"], ["estoy hecha polvo", "idiom"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "¿Pagan bien?",
-          "en": "Do they pay well?",
-          "analisis": [["¿Pagan", "verb"], ["bien", "how"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "¡Qué va! Poca pasta. Pero me da igual.",
-          "en": "No way! Not much money. But I don't care.",
-          "analisis": [["¡Qué va!", "denial"], ["Poca pasta", "object"], ["me da igual", "set phrase"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "¿Y quedamos el finde?",
-          "en": "And shall we meet up at the weekend?",
-          "analisis": [["¿Y quedamos", "verb"], ["el finde", "time"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Ni idea. Te digo algo el viernes. ¡Venga, hasta luego!",
-          "en": "No idea. I'll let you know on Friday. Right, see you!",
           "analisis": [
-            ["Ni idea", "set phrase"],
-            ["Te digo algo", "verb"],
-            ["el viernes", "time"],
-            ["¡Venga", "closing"],
-            ["hasta luego", "farewell"]
+            [
+              "¿Qué tal",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "el curro nuevo",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "tía",
+              {
+                "$t": "a2"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f1",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Mola",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "un montón",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "estoy hecha polvo",
+              {
+                "$t": "a5"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f2",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "¿Pagan",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "bien",
+              {
+                "$t": "a6"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f3",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "¡Qué va!",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "Poca pasta",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "me da igual",
+              {
+                "$t": "a9"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f4",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "¿Y quedamos",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "el finde",
+              {
+                "$t": "a10"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f5",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Ni idea",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "Te digo algo",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "el viernes",
+              {
+                "$t": "a10"
+              }
+            ],
+            [
+              "¡Venga",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "hasta luego",
+              {
+                "$t": "a12"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "traduccion",
       "id": "coloquial-1",
-      "frase": "Estoy hecho polvo.",
+      "frase": {
+        "$e": "b5.frase"
+      },
       "opciones": [
-        {"texto": {"en": "I'm shattered."}, "correcta": true},
-        {"texto": {"en": "I'm covered in dust."}, "explicacion": {"en": "The idiom means exhausted."}},
-        {"texto": {"en": "I'm broke."}, "explicacion": {"en": "That is estoy sin blanca."}}
+        {
+          "texto": {
+            "$t": "b5.o0"
+          },
+          "correcta": true
+        },
+        {
+          "texto": {
+            "$t": "b5.o1"
+          },
+          "explicacion": {
+            "$t": "b5.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b5.o2"
+          },
+          "explicacion": {
+            "$t": "b5.o2.explicacion"
+          }
+        }
       ]
     },
     {
       "tipo": "test",
       "id": "coloquial-2",
-      "pregunta": {"en": "A friend asks «¿Pizza o pasta?» You do not mind. What do you say?"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "Me da igual": {"en": "It's all the same to me."},
-        "Qué va": {"en": "That denies something."},
-        "Ni idea": {"en": "That says you do not know."}
+        "Me da igual": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "Qué va": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "Ni idea": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "Me da igual"
     },
     {
       "tipo": "test",
       "id": "coloquial-3",
-      "pregunta": {"en": "Which word is slang for «trabajar»?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "currar": {"en": "El curro is the job."},
-        "molar": {"en": "Molar is to be cool."},
-        "flipar": {"en": "Flipar is to be amazed."}
+        "currar": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "molar": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "flipar": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "currar"
     },
     {
       "tipo": "test",
       "id": "coloquial-4",
-      "pregunta": {"en": "Where would «¡Qué va, tío!» be out of place?"},
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
       "opciones": {
-        "In a job interview": {"en": "Too informal for that."},
-        "With friends in a bar": {"en": "That is exactly where you hear it."},
-        "Chatting with your brother": {"en": "That is fine."}
+        "In a job interview": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "With friends in a bar": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "Chatting with your brother": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "In a job interview"
     },
     {
       "tipo": "huecos",
       "id": "coloquial-5",
-      "pregunta": {"en": "Complete, colloquially: I really like this song."},
-      "frase": "Esta canción me ___ un montón.",
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
+      "frase": {
+        "$e": "b9.frase"
+      },
       "audio": true,
       "opciones": {
-        "mola": {"en": "Molar works like gustar."},
-        "curra": {"en": "Currar is to work."},
-        "queda": {"en": "Quedar is to meet or to be left."}
+        "mola": {
+          "$t": "b9.o0.refuerzo"
+        },
+        "curra": {
+          "$t": "b9.o1.refuerzo"
+        },
+        "queda": {
+          "$t": "b9.o2.refuerzo"
+        }
       },
       "correcta": "mola"
     },
     {
       "tipo": "ordenar",
       "id": "coloquial-6",
-      "frase": "Mola un montón, pero estoy hecha polvo",
-      "traduccion": {"en": "It's really cool, but I'm shattered."}
+      "frase": {
+        "$e": "b10.frase"
+      },
+      "traduccion": {
+        "$t": "b10.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (150–180 words).** Rewrite a formal dialogue in colloquial Spanish, and then the other way round.\n\n**Speak (about 3 minutes).** Tell the same story aloud twice: to a close friend and to your boss."
+        "$t": "b11.texto"
       }
     }
   ]

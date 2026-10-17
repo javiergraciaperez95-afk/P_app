@@ -76,7 +76,10 @@ function clavesDeEstudio(j) {
   for (const b of j.bloques ?? []) {
     if (b.tipo === 'dialogo') for (const [n] of (b.frases ?? []).entries()) claves.add(`${b.id}.f${n}.texto`);
     if (b.tipo === 'gramatica') for (const [n] of (b.ejemplos ?? []).entries()) claves.add(`${b.id}.e${n}.texto`);
-    if (b.tipo === 'texto') for (const [n] of (b.parrafos ?? []).entries()) claves.add(`${b.id}.p${n}`);
+    // La lectura va por frases (con análisis), cada una marcada con su «parrafo».
+    // Las lecciones antiguas con «parrafos»: [0, 1] siguen valiendo hasta que se rehagan.
+    if (b.tipo === 'texto' && Array.isArray(b.frases)) for (const [n] of b.frases.entries()) claves.add(`${b.id}.f${n}.texto`);
+    else if (b.tipo === 'texto') for (const [n] of (b.parrafos ?? []).entries()) claves.add(`${b.id}.p${n}`);
     if (b.tipo === 'test' || b.tipo === 'huecos') for (const [n] of (b.opciones ?? []).entries()) claves.add(`${b.id}.o${n}`);
     if (b.tipo === 'huecos' || b.tipo === 'ordenar') claves.add(`${b.id}.frase`);
   }
@@ -159,6 +162,37 @@ function revisarSintaxis(s, frase, donde) {
 // ---------------------------------------------------------------------------
 // Revisión de una lección
 // ---------------------------------------------------------------------------
+/**
+ * Lecciones flexibles (punto 9 de ESQUEMA_V2.txt): solo se comprueba que cada referencia tenga
+ * su texto y que los catálogos no traigan claves sueltas. Los bloques son los de siempre.
+ */
+function revisarFlexible(curso, id, j, catalogoCurso) {
+  const donde = `${curso}/${id} (flexible)`;
+  if (j.id !== id) error(donde, `«id» debe ser "${id}"`);
+  const leer = idioma => {
+    const r = join(RAIZ, 'cursos', curso, 'traducciones', idioma, `${id}.json`);
+    try { return existsSync(r) ? JSON.parse(readFileSync(r, 'utf8').replace(/^﻿/, '')) : null; } catch { error(donde, `traducciones/${idioma} no es JSON válido`); return null; }
+  };
+  const en = leer('en') ?? {};
+  const usadas = new Set(['idioma', 'leccion', 'titulo']);
+  const andar = o => {
+    if (Array.isArray(o)) return o.forEach(andar);
+    if (!o || typeof o !== 'object') return;
+    if (typeof o.$t === 'string') { usadas.add(o.$t); if (!en[o.$t]?.trim()) error(donde, `falta «${o.$t}» en traducciones/en`); }
+    if (typeof o.$e === 'string') { usadas.add(o.$e); if (!catalogoCurso[o.$e]?.trim()) error(donde, `falta «${o.$e}» en traducciones/${curso}`); }
+    if (typeof o.$f === 'string') { usadas.add(o.$f); if (!en[o.$f]?.trim() && !catalogoCurso[o.$f]?.trim()) error(donde, `«${o.$f}» no tiene texto`); }
+    Object.values(o).forEach(andar);
+  };
+  andar(j);
+  if (!catalogoCurso.titulo?.trim()) error(donde, `falta «titulo» en traducciones/${curso}`);
+  for (const idioma of IDIOMAS) {
+    const c = leer(idioma);
+    if (!c) continue;
+    for (const k of Object.keys(c)) if (!usadas.has(k)) error(donde, `traducciones/${idioma}: clave suelta «${k}»`);
+    for (const [k, v] of Object.entries(c)) if (typeof v === 'string' && v.includes('\\n')) aviso(donde, `traducciones/${idioma} «${k}» lleva un \\n escrito`);
+  }
+}
+
 function revisarLeccion(curso, id, capitulos, catalogoCurso) {
   const donde = `${curso}/${id}`;
   const ruta = join(RAIZ, 'cursos', curso, 'lessons', `${id}.json`);
@@ -168,6 +202,7 @@ function revisarLeccion(curso, id, capitulos, catalogoCurso) {
   catch (e) { return error(donde, `JSON no válido: ${e.message}`); }
 
   if (j.esquema !== 2) return error(donde, `«esquema» debe ser 2 (es ${JSON.stringify(j.esquema)})`);
+  if (j.flexible) return revisarFlexible(curso, id, j, catalogoCurso);
   if (j.id !== id) error(donde, `«id» debe ser "${id}"`);
   if (!['A1', 'A2', 'B1', 'B2'].includes(j.nivel)) error(donde, `«nivel» debe ser A1, A2, B1 o B2 (es ${JSON.stringify(j.nivel)})`);
 
@@ -248,7 +283,27 @@ function revisarLeccion(curso, id, capitulos, catalogoCurso) {
     }
     if (b.tipo === 'texto') {
       if (b.registro !== 'literario') error(donde, `${b.id}: «registro» debe ser "literario"`);
-      if (!Array.isArray(b.parrafos) || b.parrafos.length !== 2) error(donde, `${b.id}: el texto debe tener exactamente 2 párrafos`);
+      if (Array.isArray(b.frases)) {
+        if (b.parrafos !== undefined) error(donde, `${b.id}: lleva «frases» y «parrafos» a la vez: sobra «parrafos»`);
+        // 2 párrafos (0 y 1), en orden, de 3 a 5 frases cada uno.
+        const marcas = b.frases.map(f => f.parrafo);
+        if (marcas.some(m => m !== 0 && m !== 1)) error(donde, `${b.id}: cada frase lleva «parrafo»: 0 o 1`);
+        else if (marcas.some((m, i) => i && m < marcas[i - 1])) error(donde, `${b.id}: las frases del párrafo 0 van antes que las del 1`);
+        for (const n of [0, 1]) {
+          const cuantas = marcas.filter(m => m === n).length;
+          if (cuantas < 3 || cuantas > 5) error(donde, `${b.id}: el párrafo ${n} tiene ${cuantas} frases (de 3 a 5)`);
+        }
+        for (const [n, f] of b.frases.entries()) {
+          frases++;
+          if (f.texto !== undefined) error(donde, `${b.id}.f${n}: la frase lleva «texto»`);
+          if (f.quien !== undefined) error(donde, `${b.id}.f${n}: la lectura no lleva «quien»`);
+          revisarSintaxis(f.sintaxis, catalogoCurso[`${b.id}.f${n}.texto`] ?? '', `${donde} ${b.id}.f${n}`);
+        }
+      } else if (!Array.isArray(b.parrafos) || b.parrafos.length !== 2) {
+        error(donde, `${b.id}: el texto lleva «frases» (con «parrafo» y «sintaxis»)`);
+      } else {
+        aviso(donde, `${b.id}: lectura en formato antiguo («parrafos»): pásala a «frases» con análisis`);
+      }
     }
     if (b.tipo === 'vocabulario') {
       if (!Array.isArray(b.palabras) || !b.palabras.length) error(donde, `${b.id}: la lista de vocabulario está vacía`);
@@ -314,10 +369,13 @@ function revisarLeccion(curso, id, capitulos, catalogoCurso) {
     const MINIMO_PARRAFO = 120;
     for (const b of j.bloques ?? []) {
       if (b.tipo === 'texto') {
-        for (const [n] of (b.parrafos ?? []).entries()) {
-          const p = t[`${b.id}.p${n}`];
+        // Cada párrafo es la suma de sus frases (o el texto entero, en el formato antiguo).
+        const parrafos = Array.isArray(b.frases)
+          ? [0, 1].map(n => b.frases.map((f, k) => [f, k]).filter(([f]) => f.parrafo === n).map(([, k]) => t[`${b.id}.f${k}.texto`] ?? '').join(' '))
+          : (b.parrafos ?? []).map((_, n) => t[`${b.id}.p${n}`]);
+        for (const [n, p] of parrafos.entries()) {
           if (typeof p === 'string' && pesoParrafo(p) < MINIMO_PARRAFO) {
-            error(etiqueta, `${b.id}.p${n}: párrafo demasiado corto (${pesoParrafo(p)} de ${MINIMO_PARRAFO})`);
+            error(etiqueta, `${b.id} párrafo ${n}: demasiado corto (${pesoParrafo(p)} de ${MINIMO_PARRAFO})`);
           }
         }
       }

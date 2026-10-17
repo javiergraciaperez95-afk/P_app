@@ -1,124 +1,254 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "046",
   "capitulo": 5,
-  "titulo_es": "Hace frío",
-  "titulo": { "en": "It's cold" },
-  "intro": { "en": "Learn common ways to describe weather: hace frío, llueve or nieva, and está nublado." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "hace frío": { "en": "it's cold", "pron": "A-the FRI-o", "cat": "expression", "nota": "Hace plus a noun: frío, calor or sol. The /θ/ guide reflects much of Spain; in seseante varieties, c before e sounds /s/." },
-    "hace calor": { "en": "it's hot", "pron": "A-the ka-LOR", "cat": "expression" },
-    "hace sol": { "en": "it's sunny", "pron": "A-the sol", "cat": "expression" },
-    "llueve": { "en": "it rains", "pron": "YWE-be", "cat": "verb" },
-    "nieva": { "en": "it snows", "pron": "NYE-ba", "cat": "verb" },
-    "está nublado": { "en": "it's cloudy", "pron": "es-TA nu-BLA-do", "cat": "expression" },
-    "qué tiempo": { "en": "what's the weather like?", "pron": "ke TYEM-po", "cat": "expression" },
-    "hoy": { "en": "today", "pron": "oy", "cat": "adverb" }
+    "hace frío": {
+      "$f": "p.hace frío",
+      "pron": "A-the FRI-o",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.hace frío.nota"
+      }
+    },
+    "hace calor": {
+      "$f": "p.hace calor",
+      "pron": "A-the ka-LOR",
+      "cat": "expr"
+    },
+    "hace sol": {
+      "$f": "p.hace sol",
+      "pron": "A-the sol",
+      "cat": "expr"
+    },
+    "llueve": {
+      "$f": "p.llueve",
+      "pron": "YWE-be",
+      "cat": "verb"
+    },
+    "nieva": {
+      "$f": "p.nieva",
+      "pron": "NYE-ba",
+      "cat": "verb"
+    },
+    "está nublado": {
+      "$f": "p.está nublado",
+      "pron": "es-TA nu-BLA-do",
+      "cat": "expr"
+    },
+    "qué tiempo": {
+      "$f": "p.qué tiempo",
+      "pron": "ke TYEM-po",
+      "cat": "expr"
+    },
+    "hoy": {
+      "$f": "p.hoy",
+      "pron": "oy",
+      "cat": "adv"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "Three patterns",
-      "texto": "Ask **¿Qué tiempo hace?**\n\n- **Hace** frío, calor or sol.\n- **Llueve** (it rains) or **nieva** (it snows).\n- **Está nublado** (it is cloudy).\n\nFor the basic weather expression “It’s cold,” use **Hace frío**. **Está frío** describes an item’s temperature: **El café está frío**.\n\nUse the present to describe the weather now: **Hoy hace sol**."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "dialogo",
-      "titulo": "At the window",
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "¿Qué tiempo hace?",
-          "en": "What's the weather like?",
           "analisis": [
-            ["¿Qué tiempo", "question"],
-            ["hace", "verb"]
+            [
+              "¿Qué tiempo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "hace",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Hace frío y llueve.",
-          "en": "It's cold and it's raining.",
           "analisis": [
-            ["Hace frío", "verb"],
-            ["llueve", "verb"]
+            [
+              "Hace frío",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "llueve",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "En verano hace sol.",
-          "en": "It's sunny in summer.",
           "analisis": [
-            ["En verano", "time"],
-            ["hace sol", "verb"]
+            [
+              "En verano",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "hace sol",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "Hoy está nublado.",
-          "en": "Today it's cloudy.",
           "analisis": [
-            ["Hoy", "time"],
-            ["está nublado", "verb"]
+            [
+              "Hoy",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "está nublado",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-    "palabras": ["hace frío", "hace calor", "hace sol", "llueve", "nieva", "está nublado", "qué tiempo", "hoy"]
+      "palabras": [
+        "hace frío",
+        "hace calor",
+        "hace sol",
+        "llueve",
+        "nieva",
+        "está nublado",
+        "qué tiempo",
+        "hoy"
+      ]
     },
     {
       "tipo": "huecos",
       "id": "a1-tiempo-hace",
-      "pregunta": { "en": "Complete: it's cold." },
-      "frase": "___ frío.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "Hace": { "en": "Weather of this kind uses hace." },
-        "Está": { "en": "For the basic weather expression, use hace frío. Está frío describes an item’s temperature." },
-        "Es": { "en": "Ser is not the weather verb." }
+        "Hace": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "Está": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "Es": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "Hace"
     },
     {
       "tipo": "ordenar",
       "id": "a1-tiempo-llueve",
-      "frase": "Hace frío y llueve",
-      "traduccion": { "en": "It's cold and it's raining." }
+      "frase": {
+        "$e": "b5.frase"
+      },
+      "traduccion": {
+        "$t": "b5.traduccion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "a1-tiempo-m1",
-      "pregunta": {"en": "Complete: it's cloudy."},
-      "frase": "___ nublado.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "Está": {"en": "Nublado goes with estar."},
-        "Hace": {"en": "Hace takes a noun: frío, calor, sol."},
-        "Es": {"en": "The weather does not use ser."}
+        "Está": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "Hace": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "Es": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "Está"
     },
     {
       "tipo": "test",
       "id": "a1-tiempo-m2",
-      "pregunta": {"en": "The coffee is cold now. Which sentence?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "El café está frío": {"en": "A thing is cold with estar."},
-        "El café hace frío": {"en": "Hace frío is only for the weather."},
-        "El café es frío": {"en": "For its temperature now, estar is the natural choice."}
+        "El café está frío": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "El café hace frío": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "El café es frío": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "El café está frío"
     },
     {
       "tipo": "escribir",
       "id": "a1-tiempo-m3",
-      "pregunta": {"en": "Translate: «It's hot.» (the weather)"},
-      "respuestas": ["Hace calor"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "Hace calor"
+      ]
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Describe the weather today and the weather in each season where you live.\n\n**Speak (about 30 seconds).** Give a short weather report aloud for today and tomorrow."
+        "$t": "b9.texto"
       }
     }
   ]

@@ -1,128 +1,267 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "054",
   "capitulo": 6,
-  "titulo_es": "Me duele la cabeza",
-  "titulo": { "en": "My head hurts" },
-  "intro": { "en": "Use **doler** to say what hurts. The verb agrees with the body part, not with the person who feels the pain." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "me duele": { "en": "it hurts (me)", "pron": "me DWE-le", "cat": "verb" },
-    "me duelen": { "en": "they hurt (me)", "pron": "me DWE-len", "cat": "verb" },
-    "la cabeza": { "en": "the head", "pron": "la ka-BE-tha", "genero": "f" },
-    "los ojos": { "en": "the eyes", "pron": "los O-hos", "genero": "m" },
-    "el estómago": { "en": "the stomach", "pron": "el es-TO-ma-go", "genero": "m" },
-    "fiebre": { "en": "a fever", "pron": "FYE-bre", "genero": "f" },
-    "la farmacia": { "en": "the pharmacy", "pron": "la far-MA-thya", "genero": "f" },
-    "cerca": { "en": "near, nearby", "pron": "THER-ka", "cat": "adverb" }
+    "me duele": {
+      "$f": "p.me duele",
+      "pron": "me DWE-le",
+      "cat": "verb"
+    },
+    "me duelen": {
+      "$f": "p.me duelen",
+      "pron": "me DWE-len",
+      "cat": "verb"
+    },
+    "la cabeza": {
+      "$f": "p.la cabeza",
+      "pron": "la ka-BE-tha",
+      "genero": "f"
+    },
+    "los ojos": {
+      "$f": "p.los ojos",
+      "pron": "los O-hos",
+      "genero": "m"
+    },
+    "el estómago": {
+      "$f": "p.el estómago",
+      "pron": "el es-TO-ma-go",
+      "genero": "m"
+    },
+    "fiebre": {
+      "$f": "p.fiebre",
+      "pron": "FYE-bre",
+      "genero": "f"
+    },
+    "la farmacia": {
+      "$f": "p.la farmacia",
+      "pron": "la far-MA-thya",
+      "genero": "f"
+    },
+    "cerca": {
+      "$f": "p.cerca",
+      "pron": "THER-ka",
+      "cat": "adv"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "What hurts",
-      "texto": "Use the definite article with a body part: **el**, **la**, **los** or **las**.\n\n**Doler** changes **o** to **ue** in these forms: **duele** with one body part and **duelen** with more than one. The body part is the subject, so it controls the verb: **Me duele la cabeza**; **me duelen los ojos**. **Me** identifies the person who feels the pain.\n\n**Tengo fiebre** is a different pattern: **tener + symptom**. **Tengo dolor de cabeza** is also common.\n\n**Pronunciation:** these guides use the pronunciation of much of Spain for **c** before **e/i** and **z** (/θ/). Seseante varieties pronounce these letters as /s/."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "dialogo",
-      "titulo": "Not well",
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "Me duele la cabeza.",
-          "en": "My head hurts.",
           "analisis": [
-            ["Me duele", "verb"],
-            ["la cabeza", "subject"]
+            [
+              "Me duele",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "la cabeza",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "¿Tienes fiebre?",
-          "en": "Do you have a fever?",
           "analisis": [
-            ["¿Tienes", "verb"],
-            ["fiebre", "object"]
+            [
+              "¿Tienes",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "fiebre",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "No, pero me duelen los ojos.",
-          "en": "No, but my eyes hurt.",
           "analisis": [
-            ["No", "negation"],
-            ["me duelen", "verb"],
-            ["los ojos", "subject"]
+            [
+              "No",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "me duelen",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "los ojos",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "Hay una farmacia cerca.",
-          "en": "There is a pharmacy nearby.",
           "analisis": [
-            ["Hay", "verb"],
-            ["una farmacia", "object"],
-            ["cerca", "place"]
+            [
+              "Hay",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "una farmacia",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "cerca",
+              {
+                "$t": "a4"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["me duele", "me duelen", "la cabeza", "los ojos", "el estómago", "fiebre", "la farmacia", "cerca"]
+      "palabras": [
+        "me duele",
+        "me duelen",
+        "la cabeza",
+        "los ojos",
+        "el estómago",
+        "fiebre",
+        "la farmacia",
+        "cerca"
+      ]
     },
     {
       "tipo": "huecos",
       "id": "a1-salud-duele",
-      "pregunta": { "en": "Complete: my head hurts." },
-      "frase": "Me ___ la cabeza.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "duele": { "en": "La cabeza is singular." },
-        "duelen": { "en": "Duelen is for a plural: los ojos." },
-        "dolor": { "en": "Dolor is a noun: tengo dolor de cabeza." }
+        "duele": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "duelen": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "dolor": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "duele"
     },
     {
       "tipo": "ordenar",
       "id": "a1-salud-cabeza",
-      "frase": "Me duele la cabeza",
-      "traduccion": { "en": "My head hurts." }
+      "frase": {
+        "$e": "b5.frase"
+      },
+      "traduccion": {
+        "$t": "b5.traduccion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "a1-salud-m1",
-      "pregunta": {"en": "Complete: my eyes hurt."},
-      "frase": "Me ___ los ojos.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "duelen": {"en": "Los ojos is plural."},
-        "duele": {"en": "Duele is for one thing."},
-        "dolor": {"en": "Dolor is the noun."}
+        "duelen": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "duele": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "dolor": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "duelen"
     },
     {
       "tipo": "huecos",
       "id": "a1-salud-m2",
-      "pregunta": {"en": "Complete: I have a fever."},
-      "frase": "___ fiebre.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "Tengo": {"en": "A symptom takes tener."},
-        "Me duele": {"en": "Doler needs a part of the body."},
-        "Estoy": {"en": "Estar needs an adjective."}
+        "Tengo": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "Me duele": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "Estoy": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "Tengo"
     },
     {
       "tipo": "escribir",
       "id": "a1-salud-m3",
-      "pregunta": {"en": "Translate: «My stomach hurts.»"},
-      "respuestas": ["Me duele el estómago"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "Me duele el estómago"
+      ]
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Write a dialogue with a doctor: you explain what hurts and the doctor tells you what to do.\n\n**Speak (about 30 seconds).** Explain aloud to a pharmacist how you feel and what hurts, and ask for something."
+        "$t": "b9.texto"
       }
     }
   ]

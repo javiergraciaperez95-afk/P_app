@@ -1,170 +1,490 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "045",
   "capitulo": 5,
-  "titulo_es": "¿Qué día es hoy?",
-  "titulo": {"en": "What day is it today?"},
-  "intro": {"en": "Days, months, seasons, and the small words that go with dates."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "el lunes": {"en": "Monday", "pron": "el LU-nes", "genero": "m", "nota": "Days have no capital letter."},
-    "el martes": {"en": "Tuesday", "pron": "el MAR-tes", "genero": "m"},
-    "el miércoles": {"en": "Wednesday", "pron": "el MYER-ko-les", "genero": "m"},
-    "el jueves": {"en": "Thursday", "pron": "el HWE-bes", "genero": "m"},
-    "el viernes": {"en": "Friday", "pron": "el BYER-nes", "genero": "m"},
-    "el sábado": {"en": "Saturday", "pron": "el SA-ba-do", "genero": "m"},
-    "el domingo": {"en": "Sunday", "pron": "el do-MIN-go", "genero": "m"},
-    "enero": {"en": "January", "pron": "e-NE-ro", "genero": "m", "nota": "Months have no capital letter."},
-    "febrero": {"en": "February", "pron": "fe-BRE-ro", "genero": "m"},
-    "marzo": {"en": "March", "pron": "MAR-tho", "genero": "m", "nota": "The /θ/ guide is used in much of Spain; in seseante varieties, z sounds like /s/."},
-    "abril": {"en": "April", "pron": "a-BRIL", "genero": "m"},
-    "mayo": {"en": "May", "pron": "MA-yo", "genero": "m"},
-    "junio": {"en": "June", "pron": "HU-nyo", "genero": "m"},
-    "julio": {"en": "July", "pron": "HU-lyo", "genero": "m"},
-    "agosto": {"en": "August", "pron": "a-GOS-to", "genero": "m"},
-    "septiembre": {"en": "September", "pron": "sep-TYEM-bre", "genero": "m", "nota": "Setiembre is also a valid form."},
-    "octubre": {"en": "October", "pron": "ok-TU-bre", "genero": "m"},
-    "noviembre": {"en": "November", "pron": "no-BYEM-bre", "genero": "m"},
-    "diciembre": {"en": "December", "pron": "di-THYEM-bre", "genero": "m"},
-    "la primavera": {"en": "spring", "pron": "la pri-ma-BE-ra", "genero": "f"},
-    "el verano": {"en": "summer", "pron": "el be-RA-no", "genero": "m"},
-    "el otoño": {"en": "autumn", "pron": "el o-TO-nyo", "genero": "m"},
-    "el invierno": {"en": "winter", "pron": "el in-BYER-no", "genero": "m"},
-    "el cumpleaños": {"en": "the birthday", "pron": "el kum-ple-A-nyos", "genero": "m", "nota": "Singular, even with the final s."},
-    "la fecha": {"en": "the date", "pron": "la FE-cha", "genero": "f"},
-    "hoy": {"en": "today", "pron": "oi", "cat": "adverb"}
+    "el lunes": {
+      "$f": "p.el lunes",
+      "pron": "el LU-nes",
+      "genero": "m",
+      "nota": {
+        "$t": "p.el lunes.nota"
+      }
+    },
+    "el martes": {
+      "$f": "p.el martes",
+      "pron": "el MAR-tes",
+      "genero": "m"
+    },
+    "el miércoles": {
+      "$f": "p.el miércoles",
+      "pron": "el MYER-ko-les",
+      "genero": "m"
+    },
+    "el jueves": {
+      "$f": "p.el jueves",
+      "pron": "el HWE-bes",
+      "genero": "m"
+    },
+    "el viernes": {
+      "$f": "p.el viernes",
+      "pron": "el BYER-nes",
+      "genero": "m"
+    },
+    "el sábado": {
+      "$f": "p.el sábado",
+      "pron": "el SA-ba-do",
+      "genero": "m"
+    },
+    "el domingo": {
+      "$f": "p.el domingo",
+      "pron": "el do-MIN-go",
+      "genero": "m"
+    },
+    "enero": {
+      "$f": "p.enero",
+      "pron": "e-NE-ro",
+      "genero": "m",
+      "nota": {
+        "$t": "p.enero.nota"
+      }
+    },
+    "febrero": {
+      "$f": "p.febrero",
+      "pron": "fe-BRE-ro",
+      "genero": "m"
+    },
+    "marzo": {
+      "$f": "p.marzo",
+      "pron": "MAR-tho",
+      "genero": "m",
+      "nota": {
+        "$t": "p.marzo.nota"
+      }
+    },
+    "abril": {
+      "$f": "p.abril",
+      "pron": "a-BRIL",
+      "genero": "m"
+    },
+    "mayo": {
+      "$f": "p.mayo",
+      "pron": "MA-yo",
+      "genero": "m"
+    },
+    "junio": {
+      "$f": "p.junio",
+      "pron": "HU-nyo",
+      "genero": "m"
+    },
+    "julio": {
+      "$f": "p.julio",
+      "pron": "HU-lyo",
+      "genero": "m"
+    },
+    "agosto": {
+      "$f": "p.agosto",
+      "pron": "a-GOS-to",
+      "genero": "m"
+    },
+    "septiembre": {
+      "$f": "p.septiembre",
+      "pron": "sep-TYEM-bre",
+      "genero": "m",
+      "nota": {
+        "$t": "p.septiembre.nota"
+      }
+    },
+    "octubre": {
+      "$f": "p.octubre",
+      "pron": "ok-TU-bre",
+      "genero": "m"
+    },
+    "noviembre": {
+      "$f": "p.noviembre",
+      "pron": "no-BYEM-bre",
+      "genero": "m"
+    },
+    "diciembre": {
+      "$f": "p.diciembre",
+      "pron": "di-THYEM-bre",
+      "genero": "m"
+    },
+    "la primavera": {
+      "$f": "p.la primavera",
+      "pron": "la pri-ma-BE-ra",
+      "genero": "f"
+    },
+    "el verano": {
+      "$f": "p.el verano",
+      "pron": "el be-RA-no",
+      "genero": "m"
+    },
+    "el otoño": {
+      "$f": "p.el otoño",
+      "pron": "el o-TO-nyo",
+      "genero": "m"
+    },
+    "el invierno": {
+      "$f": "p.el invierno",
+      "pron": "el in-BYER-no",
+      "genero": "m"
+    },
+    "el cumpleaños": {
+      "$f": "p.el cumpleaños",
+      "pron": "el kum-ple-A-nyos",
+      "genero": "m",
+      "nota": {
+        "$t": "p.el cumpleaños.nota"
+      }
+    },
+    "la fecha": {
+      "$f": "p.la fecha",
+      "pron": "la FE-cha",
+      "genero": "f"
+    },
+    "hoy": {
+      "$f": "p.hoy",
+      "pron": "oi",
+      "cat": "adv"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Saying the date"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "The week: lunes, martes, miércoles, jueves, viernes, sábado, domingo.\n\nThe year: enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre. In Spanish, weekdays, months and seasons are lowercase.\n\n**¿Qué día es hoy?** usually asks for the day of the week. **¿Qué fecha es hoy?** asks for the calendar date.\n\nFor an event date, use **el** + number + **de** + month: **Mi cumpleaños es el tres de mayo**. When stating today's date after **ser**, the article is commonly omitted: **Hoy es doce de marzo**. The year follows **de**: **Mi cumpleaños es el 3 de mayo de 2025**. The first day is **el uno de enero**.\n\nFor a particular Monday, say **el lunes**; for every Monday, **los lunes**. Neither takes a preposition here.\n\nMonths, seasons and years take **en**: en agosto, en verano, en 2020. The dialogue follows Spain and the Northern Hemisphere. In countries with four seasons, summer and winter fall at opposite times of year across the hemispheres."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "El or en"},
-      "columnas": ["Spanish", "English"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        }
+      ],
       "filas": [
-        ["el lunes", "on Monday"],
-        ["los lunes", "on Mondays"],
-        ["el 3 de mayo", "on 3 May"],
-        ["en mayo", "in May"],
-        ["en verano", "in summer"],
-        ["en 2020", "in 2020"]
+        [
+          "el lunes",
+          "on Monday"
+        ],
+        [
+          "los lunes",
+          "on Mondays"
+        ],
+        [
+          "el 3 de mayo",
+          "on 3 May"
+        ],
+        [
+          "en mayo",
+          "in May"
+        ],
+        [
+          "en verano",
+          "in summer"
+        ],
+        [
+          "en 2020",
+          "in 2020"
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Birthdays"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "¿Qué día es hoy?",
-          "en": "What day is it today?",
-          "analisis": [["¿Qué día", "question"], ["es", "verb"], ["hoy", "time"]]
+          "analisis": [
+            [
+              "¿Qué día",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "es",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "hoy",
+              {
+                "$t": "a2"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b3.f1",
           "quien": "Pablo",
-          "es": "Hoy es martes, doce de marzo.",
-          "en": "Today is Tuesday the twelfth of March.",
-          "analisis": [["Hoy", "time"], ["es", "verb"], ["martes", "day"], ["doce de marzo", "date"]]
+          "analisis": [
+            [
+              "Hoy",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "es",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "martes",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "doce de marzo",
+              {
+                "$t": "a4"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b3.f2",
           "quien": "Lucía",
-          "es": "¿Cuándo es tu cumpleaños?",
-          "en": "When is your birthday?",
-          "analisis": [["¿Cuándo", "question"], ["es", "verb"], ["tu cumpleaños", "subject"]]
+          "analisis": [
+            [
+              "¿Cuándo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "es",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "tu cumpleaños",
+              {
+                "$t": "a5"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b3.f3",
           "quien": "Pablo",
-          "es": "El tres de agosto. Siempre es en verano.",
-          "en": "On the third of August. It's always in summer.",
-          "analisis": [["El tres de agosto", "date"], ["Siempre", "time"], ["es", "verb"], ["en verano", "time"]]
+          "analisis": [
+            [
+              "El tres de agosto",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "Siempre",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "es",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "en verano",
+              {
+                "$t": "a2"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b3.f4",
           "quien": "Lucía",
-          "es": "Mi cumpleaños es el uno de enero, en invierno.",
-          "en": "My birthday is on the first of January, in winter.",
-          "analisis": [["Mi cumpleaños", "subject"], ["es", "verb"], ["el uno de enero", "date"], ["en invierno", "time"]]
+          "analisis": [
+            [
+              "Mi cumpleaños",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "es",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "el uno de enero",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "en invierno",
+              {
+                "$t": "a2"
+              }
+            ]
+          ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "fechas-1",
-      "pregunta": {"en": "Complete: my birthday is on 3 August."},
-      "frase": "Mi cumpleaños es ___ tres de agosto.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "el": {"en": "A date takes el."},
-        "en": {"en": "En goes with months, seasons and years."},
-        "a": {"en": "A goes with clock times: a las tres."}
+        "el": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "en": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "a": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "el"
     },
     {
       "tipo": "huecos",
       "id": "fechas-2",
-      "pregunta": {"en": "Complete: I always travel in summer."},
-      "frase": "Siempre viajo ___ verano.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "en": {"en": "Seasons take en."},
-        "el": {"en": "El verano is the noun. In summer is en verano."},
-        "a": {"en": "A is not used with seasons."}
+        "en": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "el": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "a": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "en"
     },
     {
       "tipo": "test",
       "id": "fechas-dia-o-fecha",
-      "pregunta": {"en": "Which question asks for the full calendar date?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "¿Qué fecha es hoy?": {"en": "Fecha asks for the calendar date."},
-        "¿Qué día es hoy?": {"en": "This asks for the day of the week."},
-        "¿En qué mes estamos?": {"en": "This asks only which month it is."}
+        "¿Qué fecha es hoy?": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "¿Qué día es hoy?": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "¿En qué mes estamos?": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "¿Qué fecha es hoy?"
     },
     {
       "tipo": "test",
       "id": "fechas-3",
-      "pregunta": {"en": "Which date is written the Spanish way?"},
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
       "opciones": {
-        "el 12 de marzo": {"en": "Day, then de, then the month, with no capital."},
-        "el marzo 12": {"en": "The day comes first."},
-        "en 12 de Marzo": {"en": "A date takes el, and months have no capital letter."}
+        "el 12 de marzo": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "el marzo 12": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "en 12 de Marzo": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "el 12 de marzo"
     },
     {
       "tipo": "test",
       "id": "fechas-4",
-      "pregunta": {"en": "You work every Monday. Which sentence?"},
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
       "opciones": {
-        "Los lunes trabajo": {"en": "Los lunes is every Monday."},
-        "En lunes trabajo": {"en": "Days take el or los, not en."},
-        "Lunes trabajo": {"en": "The day needs its article."}
+        "Los lunes trabajo": {
+          "$t": "b9.o0.refuerzo"
+        },
+        "En lunes trabajo": {
+          "$t": "b9.o1.refuerzo"
+        },
+        "Lunes trabajo": {
+          "$t": "b9.o2.refuerzo"
+        }
       },
       "correcta": "Los lunes trabajo"
     },
     {
       "tipo": "escribir",
       "id": "fechas-5",
-      "pregunta": {"en": "Translate: «Today is Monday.»"},
-      "respuestas": ["Hoy es lunes"]
+      "pregunta": {
+        "$t": "b10.pregunta"
+      },
+      "respuestas": [
+        "Hoy es lunes"
+      ]
     },
     {
       "tipo": "ordenar",
       "id": "fechas-6",
-      "frase": "Mi cumpleaños es en diciembre",
-      "traduccion": {"en": "My birthday is in December."}
+      "frase": {
+        "$e": "b11.frase"
+      },
+      "traduccion": {
+        "$t": "b11.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b12.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Write today's date in full, your birthday and four important dates in your year.\n\n**Speak (about 30 seconds).** Say aloud today's date, the birthdays in your family and what you do on each day of the week."
+        "$t": "b12.texto"
       }
     }
   ]

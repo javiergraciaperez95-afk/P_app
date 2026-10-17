@@ -1,163 +1,397 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "205",
   "capitulo": 19,
-  "titulo_es": "Espero que hayas llegado bien",
-  "titulo": {"en": "I hope you got there safely"},
-  "intro": {"en": "The perfect subjunctive: haya plus the participle, for something that should already have happened."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "haya": {"en": "I have, he/she has (subjunctive auxiliary)", "pron": "A-ya", "cat": "verb"},
-    "hayas": {"en": "you have (subjunctive auxiliary)", "pron": "A-yas", "cat": "verb"},
-    "hayamos": {"en": "we have (subjunctive auxiliary)", "pron": "a-YA-mos", "cat": "verb"},
-    "hayan": {"en": "they have (subjunctive auxiliary)", "pron": "A-yan", "cat": "verb"},
-    "me extraña que": {"en": "I find it odd that", "pron": "me eks-TRA-nya ke", "cat": "expression"},
-    "me alegro de que": {"en": "I'm glad that", "pron": "me a-LE-gro de ke", "cat": "expression"},
-    "no creo que": {"en": "I don't think that", "pron": "no KRE-o ke", "cat": "expression"},
-    "gracias por haber venido": {"en": "thank you for coming (having come)", "pron": "GRA-thyas por a-BER be-NI-do", "cat": "expression"},
-    "el vuelo": {"en": "the flight", "pron": "el BWE-lo", "genero": "m"},
-    "el mensaje": {"en": "the message", "pron": "el men-SA-he", "genero": "m"},
-    "descansar": {"en": "to rest", "pron": "des-kan-SAR", "cat": "verb"}
+    "haya": {
+      "$f": "p.haya",
+      "pron": "A-ya",
+      "cat": "verb"
+    },
+    "hayas": {
+      "$f": "p.hayas",
+      "pron": "A-yas",
+      "cat": "verb"
+    },
+    "hayamos": {
+      "$f": "p.hayamos",
+      "pron": "a-YA-mos",
+      "cat": "verb"
+    },
+    "hayan": {
+      "$f": "p.hayan",
+      "pron": "A-yan",
+      "cat": "verb"
+    },
+    "me extraña que": {
+      "$f": "p.me extraña que",
+      "pron": "me eks-TRA-nya ke",
+      "cat": "expr"
+    },
+    "me alegro de que": {
+      "$f": "p.me alegro de que",
+      "pron": "me a-LE-gro de ke",
+      "cat": "expr"
+    },
+    "no creo que": {
+      "$f": "p.no creo que",
+      "pron": "no KRE-o ke",
+      "cat": "expr"
+    },
+    "gracias por haber venido": {
+      "$f": "p.gracias por haber venido",
+      "pron": "GRA-thyas por a-BER be-NI-do",
+      "cat": "expr"
+    },
+    "el vuelo": {
+      "$f": "p.el vuelo",
+      "pron": "el BWE-lo",
+      "genero": "m"
+    },
+    "el mensaje": {
+      "$f": "p.el mensaje",
+      "pron": "el men-SA-he",
+      "genero": "m"
+    },
+    "descansar": {
+      "$f": "p.descansar",
+      "pron": "des-kan-SAR",
+      "cat": "verb"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Haya plus the participle"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "The perfect subjunctive is **haya, hayas, haya, hayamos, hayáis, hayan** + participle.\n\nIt means what he llegado means, in every place where the subjunctive is needed.\n\n- Ha llegado. → **Espero que haya llegado.**\n- Has aprobado. → **Me alegro de que hayas aprobado.**\n- No ha llamado. → **¡Qué raro que no haya llamado!**\n- Han salido. → **No creo que hayan salido.**\n\nCompare: espero que **llegues** bien (the journey is still ahead) and espero que **hayas llegado** bien (it should be over by now).\n\nIn a time clause about the future it marks what will be finished first: **cuando hayas terminado**, avísame.\n\nAfter gracias por, the matching form is the compound infinitive: gracias por **haber venido**."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "Indicative to subjunctive"},
-      "columnas": ["Indicative", "Subjunctive"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        }
+      ],
       "filas": [
-        ["Ha llegado.", "Espero que haya llegado."],
-        ["Has aprobado.", "Me alegro de que hayas aprobado."],
-        ["No ha llamado.", "Qué raro que no haya llamado."],
-        ["Han salido.", "No creo que hayan salido."]
+        [
+          "Ha llegado.",
+          "Espero que haya llegado."
+        ],
+        [
+          "Has aprobado.",
+          "Me alegro de que hayas aprobado."
+        ],
+        [
+          "No ha llamado.",
+          "Qué raro que no haya llamado."
+        ],
+        [
+          "Han salido.",
+          "No creo que hayan salido."
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Waiting for news"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "¿Sabes algo de Ana? Me extraña que no haya llamado.",
-          "en": "Any news from Ana? I find it odd that she hasn't called.",
           "analisis": [
-            ["¿Sabes algo de Ana?", "question"],
-            ["Me extraña que", "feeling"],
-            ["no haya llamado", "verb (perfect subjunctive)"]
+            [
+              "¿Sabes algo de Ana?",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "Me extraña que",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "no haya llamado",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f1",
           "quien": "Pablo",
-          "es": "No creo que haya llegado todavía. El vuelo era largo.",
-          "en": "I don't think she's arrived yet. The flight was long.",
           "analisis": [
-            ["No creo que", "doubt"],
-            ["haya llegado", "verb (perfect subjunctive)"],
-            ["todavía", "yet"],
-            ["El vuelo", "subject"],
-            ["era largo", "verb"]
+            [
+              "No creo que",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "haya llegado",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "todavía",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "El vuelo",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "era largo",
+              {
+                "$t": "a6"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f2",
           "quien": "Lucía",
-          "es": "Espero que no haya tenido problemas.",
-          "en": "I hope she hasn't had any problems.",
-          "analisis": [["Espero que", "hope"], ["no haya tenido", "verb (perfect subjunctive)"], ["problemas", "object"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Mira, un mensaje: «Ya estoy en el hotel.»",
-          "en": "Look, a message: «I'm at the hotel now.»",
-          "analisis": [["Mira", "command"], ["un mensaje", "object"], ["Ya estoy", "verb"], ["en el hotel", "place"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "¡Qué bien! Me alegro de que haya llegado bien.",
-          "en": "Great! I'm glad she's arrived safely.",
           "analisis": [
-            ["¡Qué bien!", "reaction"],
-            ["Me alegro de que", "feeling"],
-            ["haya llegado", "verb (perfect subjunctive)"],
-            ["bien", "how"]
+            [
+              "Espero que",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "no haya tenido",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "problemas",
+              {
+                "$t": "a8"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f3",
           "quien": "Pablo",
-          "es": "Dile que nos llame cuando haya descansado.",
-          "en": "Tell her to call us when she's rested.",
           "analisis": [
-            ["Dile que", "tell her to"],
-            ["nos llame", "verb (subjunctive)"],
-            ["cuando haya descansado", "verb (perfect subjunctive)"]
+            [
+              "Mira",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "un mensaje",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "Ya estoy",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "en el hotel",
+              {
+                "$t": "a10"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "¡Qué bien!",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "Me alegro de que",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "haya llegado",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "bien",
+              {
+                "$t": "a12"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f5",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Dile que",
+              {
+                "$t": "a13"
+              }
+            ],
+            [
+              "nos llame",
+              {
+                "$t": "a14"
+              }
+            ],
+            [
+              "cuando haya descansado",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "haya-llegado-1",
-      "pregunta": {"en": "Complete: I hope you have arrived safely."},
-      "frase": "Espero que ___ llegado bien.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "hayas": {"en": "After espero que, the auxiliary is in the subjunctive."},
-        "has": {"en": "After espero que, the subjunctive: hayas."},
-        "habías": {"en": "Habías is the pluperfect indicative."}
+        "hayas": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "has": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "habías": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "hayas"
     },
     {
       "tipo": "huecos",
       "id": "haya-llegado-2",
-      "pregunta": {"en": "Complete: how odd that he hasn't called."},
-      "frase": "¡Qué raro que no ___ llamado!",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "haya": {"en": "A reaction takes the subjunctive."},
-        "ha": {"en": "After qué raro que, the subjunctive."},
-        "hay": {"en": "Hay means there is."}
+        "haya": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "ha": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "hay": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "haya"
     },
     {
       "tipo": "test",
       "id": "haya-llegado-3",
-      "pregunta": {"en": "When do you say «Espero que hayas llegado bien» and not «Espero que llegues bien»?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "When the journey should already be over": {"en": "The perfect looks back at it."},
-        "Before the journey starts": {"en": "Then it is espero que llegues bien."},
-        "When you do not care": {"en": "Both are friendly wishes."}
+        "When the journey should already be over": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "Before the journey starts": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "When you do not care": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "When the journey should already be over"
     },
     {
       "tipo": "huecos",
       "id": "haya-llegado-4",
-      "pregunta": {"en": "Complete: let me know when you have finished."},
-      "frase": "Avísame cuando ___ terminado.",
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "frase": {
+        "$e": "b8.frase"
+      },
       "audio": true,
       "opciones": {
-        "hayas": {"en": "A future cuando takes the subjunctive."},
-        "has": {"en": "That would describe a habit."},
-        "habrás": {"en": "The future cannot follow cuando."}
+        "hayas": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "has": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "habrás": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "hayas"
     },
     {
       "tipo": "ordenar",
       "id": "haya-llegado-5",
-      "frase": "Me alegro de que hayas aprobado",
-      "traduccion": {"en": "I'm glad you have passed."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (150–180 words).** Write a message to a friend who has just moved abroad: your hopes and your reactions to what they have done.\n\n**Speak (about 3 minutes).** React aloud to recent news about friends: Me alegro de que hayas…, es una pena que no haya…"
+        "$t": "b10.texto"
       }
     }
   ]

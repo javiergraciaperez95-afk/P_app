@@ -1,131 +1,297 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "047",
   "capitulo": 5,
-  "titulo_es": "Habla más despacio",
-  "titulo": { "en": "Speak more slowly" },
-  "intro": { "en": "The affirmative tú command for giving an informal instruction." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "habla": { "en": "speak (tú command)", "pron": "A-bla", "cat": "verb" },
-    "come": { "en": "eat (tú command)", "pron": "KO-me", "cat": "verb" },
-    "escribe": { "en": "write (tú command)", "pron": "es-KRI-be", "cat": "verb" },
-    "ven": { "en": "come (tú command)", "pron": "ben", "cat": "verb", "nota": "Venir has the irregular tú command ven." },
-    "haz": { "en": "do, make (tú command)", "pron": "ath", "cat": "verb", "nota": "Hacer has the irregular tú command haz. The /θ/ guide reflects much of Spain; in seseante varieties, z sounds like /s/." },
-    "más despacio": { "en": "more slowly", "pron": "mas des-PA-thyo", "cat": "expression", "nota": "The /θ/ guide for c reflects much of Spain; in seseante varieties, c before i sounds like /s/." },
-    "mira": { "en": "look (tú command)", "pron": "MI-ra", "cat": "verb" },
-    "repite": { "en": "repeat (tú command)", "pron": "re-PI-te", "cat": "verb" },
-    "por favor": { "en": "please", "pron": "por fa-BOR", "cat": "expression" },
-    "no hables": { "en": "don't speak", "pron": "no A-bles", "cat": "verb", "nota": "A negative tú command uses the present subjunctive: habla, but no hables." }
+    "habla": {
+      "$f": "p.habla",
+      "pron": "A-bla",
+      "cat": "verb"
+    },
+    "come": {
+      "$f": "p.come",
+      "pron": "KO-me",
+      "cat": "verb"
+    },
+    "escribe": {
+      "$f": "p.escribe",
+      "pron": "es-KRI-be",
+      "cat": "verb"
+    },
+    "ven": {
+      "$f": "p.ven",
+      "pron": "ben",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.ven.nota"
+      }
+    },
+    "haz": {
+      "$f": "p.haz",
+      "pron": "ath",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.haz.nota"
+      }
+    },
+    "más despacio": {
+      "$f": "p.más despacio",
+      "pron": "mas des-PA-thyo",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.más despacio.nota"
+      }
+    },
+    "mira": {
+      "$f": "p.mira",
+      "pron": "MI-ra",
+      "cat": "verb"
+    },
+    "repite": {
+      "$f": "p.repite",
+      "pron": "re-PI-te",
+      "cat": "verb"
+    },
+    "por favor": {
+      "$f": "p.por favor",
+      "pron": "por fa-BOR",
+      "cat": "expr"
+    },
+    "no hables": {
+      "$f": "p.no hables",
+      "pron": "no A-bles",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.no hables.nota"
+      }
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "The tú command",
-      "texto": "For a regular verb, a positive instruction to **tú** uses the same form as **él/ella** in the present.\n\n- hablar → **habla**\n- comer → **come**\n- escribir → **escribe**\n\nUseful positive forms include **ven** (come), **haz** (do, make), **mira** (look) and **repite** (repeat). **Ven** and **haz** are irregular and are best learned as whole words. To soften an informal request, add **por favor**.\n\nA negative tú command uses **no + present subjunctive**: the positive **habla** becomes **no hables**. This lesson focuses on positive tú commands and introduces this one common negative pattern; other command forms come later."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "dialogo",
-      "titulo": "In class",
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "Habla más despacio, por favor.",
-          "en": "Speak more slowly, please.",
           "analisis": [
-            ["Habla", "command"],
-            ["más despacio", "more slowly"],
-            ["por favor", "please"]
+            [
+              "Habla",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "más despacio",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "por favor",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Repite la palabra, por favor.",
-          "en": "Repeat the word, please.",
           "analisis": [
-            ["Repite", "command"],
-            ["la palabra", "the word"],
-            ["por favor", "please"]
+            [
+              "Repite",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "la palabra",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "por favor",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "Ven a la pizarra.",
-          "en": "Come to the board.",
           "analisis": [
-            ["Ven", "command (come)"],
-            ["a la pizarra", "to the board"]
+            [
+              "Ven",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "a la pizarra",
+              {
+                "$t": "a5"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "Escribe tu nombre aquí.",
-          "en": "Write your name here.",
           "analisis": [
-            ["Escribe", "command"],
-            ["tu nombre", "your name"],
-            ["aquí", "here"]
+            [
+              "Escribe",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "tu nombre",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "aquí",
+              {
+                "$t": "a7"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["habla", "come", "escribe", "ven", "haz", "mira", "repite", "más despacio", "por favor", "no hables"]
+      "palabras": [
+        "habla",
+        "come",
+        "escribe",
+        "ven",
+        "haz",
+        "mira",
+        "repite",
+        "más despacio",
+        "por favor",
+        "no hables"
+      ]
     },
     {
       "tipo": "huecos",
       "id": "a2-imp-habla",
-      "pregunta": { "en": "Complete the command: speak more slowly." },
-      "frase": "___ más despacio, por favor.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "Habla": { "en": "The affirmative tú command of hablar is habla." },
-        "Hablas": { "en": "Hablas is the normal present, not the command." },
-        "Hables": { "en": "Hables is the negative form: no hables." }
+        "Habla": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "Hablas": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "Hables": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "Habla"
     },
     {
       "tipo": "ordenar",
       "id": "a2-imp-ven",
-      "frase": "Ven a la pizarra",
-      "traduccion": { "en": "Come to the board." }
+      "frase": {
+        "$e": "b5.frase"
+      },
+      "traduccion": {
+        "$t": "b5.traduccion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "a2-imptu-m1",
-      "pregunta": {"en": "Complete the command: write your name."},
-      "frase": "___ tu nombre.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "Escribe": {"en": "The tú command looks like the él form."},
-        "Escribes": {"en": "That is a statement: you write."},
-        "Escribas": {"en": "Escribas is for the negative: no escribas."}
+        "Escribe": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "Escribes": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "Escribas": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "Escribe"
     },
     {
       "tipo": "huecos",
       "id": "a2-imptu-m2",
-      "pregunta": {"en": "Complete: don't speak so fast."},
-      "frase": "No ___ tan rápido.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "hables": {"en": "The negative command changes the vowel."},
-        "habla": {"en": "Habla is only the affirmative command."},
-        "hablas": {"en": "That is a statement: you don't speak."}
+        "hables": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "habla": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "hablas": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "hables"
     },
     {
       "tipo": "escribir",
       "id": "a2-imptu-m3",
-      "pregunta": {"en": "Write the tú command of «venir»."},
-      "respuestas": ["ven"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "ven"
+      ]
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Write the instructions to do something simple, such as making tea or getting to your house, using commands.\n\n**Speak (about 30 seconds).** Give aloud ten polite commands to a friend who is visiting your home: pasa, siéntate, toma…"
+        "$t": "b9.texto"
       }
     }
   ]

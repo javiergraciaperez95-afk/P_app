@@ -1,140 +1,329 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "059",
   "capitulo": 7,
-  "titulo_es": "Ayer trabajé",
-  "titulo": { "en": "I worked yesterday" },
-  "intro": { "en": "The pretérito indefinido is for a finished action in the past." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "ayer": { "en": "yesterday", "pron": "a-YER", "cat": "adverb" },
-    "trabajé": { "en": "I worked", "pron": "tra-ba-HE", "cat": "verb" },
-    "trabajaste": { "en": "you worked", "pron": "tra-ba-HAS-te", "cat": "verb" },
-    "trabajó": { "en": "he/she worked", "pron": "tra-ba-HO", "cat": "verb" },
-    "compré": { "en": "I bought", "pron": "kom-PRE", "cat": "verb" },
-    "hablé": { "en": "I spoke", "pron": "a-BLE", "cat": "verb" },
-    "el sábado": { "en": "Saturday", "pron": "el SA-ba-do", "cat": "noun" },
-    "un libro": { "en": "a book", "pron": "un LI-bro", "genero": "m" },
-    "trabajar": { "en": "to work", "cat": "verb" },
-    "comprar": { "en": "to buy", "cat": "verb" },
-    "hablar": { "en": "to speak, to talk", "cat": "verb" },
-    "hacer": { "en": "to do, to make", "cat": "verb" },
-    "hiciste": { "en": "you (tú) did; from hacer", "cat": "verb" },
-    "conmigo": { "en": "with me", "cat": "expression" }
+    "ayer": {
+      "$f": "p.ayer",
+      "pron": "a-YER",
+      "cat": "adv"
+    },
+    "trabajé": {
+      "$f": "p.trabajé",
+      "pron": "tra-ba-HE",
+      "cat": "verb"
+    },
+    "trabajaste": {
+      "$f": "p.trabajaste",
+      "pron": "tra-ba-HAS-te",
+      "cat": "verb"
+    },
+    "trabajó": {
+      "$f": "p.trabajó",
+      "pron": "tra-ba-HO",
+      "cat": "verb"
+    },
+    "compré": {
+      "$f": "p.compré",
+      "pron": "kom-PRE",
+      "cat": "verb"
+    },
+    "hablé": {
+      "$f": "p.hablé",
+      "pron": "a-BLE",
+      "cat": "verb"
+    },
+    "el sábado": {
+      "$f": "p.el sábado",
+      "pron": "el SA-ba-do",
+      "cat": "sust"
+    },
+    "un libro": {
+      "$f": "p.un libro",
+      "pron": "un LI-bro",
+      "genero": "m"
+    },
+    "trabajar": {
+      "$f": "p.trabajar",
+      "cat": "verb"
+    },
+    "comprar": {
+      "$f": "p.comprar",
+      "cat": "verb"
+    },
+    "hablar": {
+      "$f": "p.hablar",
+      "cat": "verb"
+    },
+    "hacer": {
+      "$f": "p.hacer",
+      "cat": "verb"
+    },
+    "hiciste": {
+      "$f": "p.hiciste",
+      "cat": "verb"
+    },
+    "conmigo": {
+      "$f": "p.conmigo",
+      "cat": "expr"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "A finished action",
-      "texto": "For **-ar** verbs, the indefinido endings are **-é, -aste, -ó, -amos, -asteis, -aron**.\n\n- Ayer **trabajé**.\n- El sábado **compraste** un libro.\n- Ana **habló** con Pablo.\n\nThe accent on **-é** and **-ó** matters: **hablo** is present; **habló** is past. **Trabajamos** has the same form in the present and the past, so the time expression or context makes the meaning clear.\n\n**-asteis** is used with **vosotros/as**, mainly in Spain. Where speakers use **ustedes** instead, the ending is **-aron**, as with **ellos/ellas**."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "tabla",
-      "titulo": "Trabajar, yesterday",
-      "columnas": ["Person", "trabaj-"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        }
+      ],
       "filas": [
-        ["yo", "trabajé"],
-        ["tú", "trabajaste"],
-        ["él / ella", "trabajó"],
-        ["nosotros", "trabajamos"],
-        ["vosotros", "trabajasteis"],
-        ["ellos / ustedes", "trabajaron"]
+        [
+          "yo",
+          "trabajé"
+        ],
+        [
+          "tú",
+          "trabajaste"
+        ],
+        [
+          "él / ella",
+          "trabajó"
+        ],
+        [
+          "nosotros",
+          "trabajamos"
+        ],
+        [
+          "vosotros",
+          "trabajasteis"
+        ],
+        [
+          "ellos / ustedes",
+          "trabajaron"
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": "After the weekend",
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "¿Qué hiciste ayer?",
-          "en": "What did you do yesterday?",
-          "nota": "Hiciste is irregular. The regular pattern is in Pablo's answer.",
+          "nota": {
+            "$t": "b3.f0.nota"
+          },
           "analisis": [
-            ["¿Qué", "what"],
-            ["hiciste", "you did"],
-            ["ayer", "yesterday"]
+            [
+              "¿Qué",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "hiciste",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "ayer",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f1",
           "quien": "Pablo",
-          "es": "Trabajé y compré un libro.",
-          "en": "I worked and I bought a book.",
           "analisis": [
-            ["Trabajé", "I worked"],
-            ["compré", "I bought"],
-            ["un libro", "object"]
+            [
+              "Trabajé",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "compré",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "un libro",
+              {
+                "$t": "a5"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f2",
           "quien": "Lucía",
-          "es": "Ana habló conmigo el sábado.",
-          "en": "Ana spoke with me on Saturday.",
           "analisis": [
-            ["Ana", "subject"],
-            ["habló", "she spoke"],
-            ["el sábado", "on Saturday"]
+            [
+              "Ana",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "habló",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "el sábado",
+              {
+                "$t": "a8"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["ayer", "trabajé", "trabajaste", "trabajó", "compré", "hablé", "el sábado", "un libro", "trabajar", "comprar", "hablar", "hacer", "hiciste", "conmigo"]
+      "palabras": [
+        "ayer",
+        "trabajé",
+        "trabajaste",
+        "trabajó",
+        "compré",
+        "hablé",
+        "el sábado",
+        "un libro",
+        "trabajar",
+        "comprar",
+        "hablar",
+        "hacer",
+        "hiciste",
+        "conmigo"
+      ]
     },
     {
       "tipo": "huecos",
       "id": "a2-ind-compre",
-      "pregunta": { "en": "Complete: yesterday I bought a book." },
-      "frase": "Ayer ___ un libro.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "compré": { "en": "A finished action, yo: compré." },
-        "compro": { "en": "Compro is the present." },
-        "compras": { "en": "Compras is the present of tú." }
+        "compré": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "compro": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "compras": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "compré"
     },
     {
       "tipo": "ordenar",
       "id": "a2-ind-trabaje",
-      "frase": "Ayer trabajé en casa",
-      "traduccion": { "en": "Yesterday I worked at home." }
+      "frase": {
+        "$e": "b6.frase"
+      },
+      "traduccion": {
+        "$t": "b6.traduccion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "a2-ind-m1",
-      "pregunta": {"en": "Complete: Ana spoke with Pablo."},
-      "frase": "Ana ___ con Pablo.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "habló": {"en": "The accent on ó marks the past."},
-        "hablo": {"en": "Hablo is I speak."},
-        "hablé": {"en": "Hablé is I spoke."}
+        "habló": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "hablo": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "hablé": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "habló"
     },
     {
       "tipo": "huecos",
       "id": "a2-ind-m2",
-      "pregunta": {"en": "Complete: yesterday you bought a book."},
-      "frase": "Ayer ___ un libro.",
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "frase": {
+        "$e": "b8.frase"
+      },
       "audio": true,
       "opciones": {
-        "compraste": {"en": "Tú: -aste."},
-        "compras": {"en": "Compras is the present."},
-        "compró": {"en": "Compró is él or ella."}
+        "compraste": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "compras": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "compró": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "compraste"
     },
     {
       "tipo": "escribir",
       "id": "a2-ind-m3",
-      "pregunta": {"en": "Translate: «Yesterday I worked.»"},
-      "respuestas": ["Ayer trabajé", "Trabajé ayer"]
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
+      "respuestas": [
+        "Ayer trabajé",
+        "Trabajé ayer"
+      ]
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write what you did yesterday, from morning to night.\n\n**Speak (about 1 minute).** Tell someone about yesterday without notes. Then ask them three questions about their day."
+        "$t": "b10.texto"
       }
     }
   ]

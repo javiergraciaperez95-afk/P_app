@@ -1,147 +1,335 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "125",
   "capitulo": 12,
-  "titulo_es": "Quiero que vengas",
-  "titulo": { "en": "I want you to come" },
-  "intro": { "en": "With verbs like querer and esperar, a different subject after que takes the subjunctive." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "querer que": { "en": "to want someone to", "pron": "ke-RER ke", "cat": "expression", "nota": "Querer que + a different subject takes the subjunctive: quiero que vengas." },
-    "venir": { "en": "to come", "pron": "be-NIR", "cat": "verb", "nota": "Present subjunctive tú form: vengas." },
-    "hablar": { "en": "to speak; to talk", "pron": "a-BLAR", "cat": "verb", "nota": "Present subjunctive tú form: hables." },
-    "estar": { "en": "to be (state or location)", "pron": "es-TAR", "cat": "verb", "nota": "Present subjunctive tú form: estés." },
-    "esperar que": { "en": "to hope that", "pron": "es-pe-RAR ke", "cat": "expression", "nota": "Esperar que + a different subject takes the subjunctive: espero que estés bien." },
-    "la fiesta": { "en": "the party", "pron": "la FYES-ta", "cat": "noun", "genero": "f" },
-    "más despacio": { "en": "more slowly", "pron": "mas des-PA-thyo", "cat": "expression" },
-    "comer": { "en": "to eat", "pron": "ko-MER", "cat": "verb" },
-    "vivir": { "en": "to live", "pron": "bi-BIR", "cat": "verb" }
+    "querer que": {
+      "$f": "p.querer que",
+      "pron": "ke-RER ke",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.querer que.nota"
+      }
+    },
+    "venir": {
+      "$f": "p.venir",
+      "pron": "be-NIR",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.venir.nota"
+      }
+    },
+    "hablar": {
+      "$f": "p.hablar",
+      "pron": "a-BLAR",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.hablar.nota"
+      }
+    },
+    "estar": {
+      "$f": "p.estar",
+      "pron": "es-TAR",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.estar.nota"
+      }
+    },
+    "esperar que": {
+      "$f": "p.esperar que",
+      "pron": "es-pe-RAR ke",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.esperar que.nota"
+      }
+    },
+    "la fiesta": {
+      "$f": "p.la fiesta",
+      "pron": "la FYES-ta",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "más despacio": {
+      "$f": "p.más despacio",
+      "pron": "mas des-PA-thyo",
+      "cat": "expr"
+    },
+    "comer": {
+      "$f": "p.comer",
+      "pron": "ko-MER",
+      "cat": "verb"
+    },
+    "vivir": {
+      "$f": "p.vivir",
+      "pron": "bi-BIR",
+      "cat": "verb"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "Same person, or another person",
-      "texto": "With **querer** or **esperar**, use the infinitive when the same person does both actions: **quiero venir**. If the subject changes after **que**, use the present subjunctive: **quiero que vengas**, **espero que estés** bien.\n\nFor regular verbs, the subjunctive endings switch vowels: **-ar → e** (hablar → **hable**); **-er/-ir → a** (comer → **coma**, vivir → **viva**). The tú form is **hables**."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "tabla",
-      "titulo": "Hablar, present subjunctive",
-      "columnas": ["Person", "hablar"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        }
+      ],
       "filas": [
-        ["yo", "hable"],
-        ["tú", "hables"],
-        ["él / ella / usted", "hable"],
-        ["nosotros/as", "hablemos"],
-        ["vosotros/as", "habléis"],
-        ["ellos / ellas / ustedes", "hablen"]
+        [
+          "yo",
+          "hable"
+        ],
+        [
+          "tú",
+          "hables"
+        ],
+        [
+          "él / ella / usted",
+          "hable"
+        ],
+        [
+          "nosotros/as",
+          "hablemos"
+        ],
+        [
+          "vosotros/as",
+          "habléis"
+        ],
+        [
+          "ellos / ellas / ustedes",
+          "hablen"
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": "The party",
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "Quiero que vengas a la fiesta.",
-          "en": "I want you to come to the party.",
           "analisis": [
-            ["Quiero", "I want"],
-            ["que vengas", "that you come"],
-            ["a la fiesta", "to the party"]
+            [
+              "Quiero",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "que vengas",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "a la fiesta",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f1",
           "quien": "Pablo",
-          "es": "Quiero venir, pero trabajo.",
-          "en": "I want to come, but I'm working.",
-          "nota": "Same subject, so the infinitive: quiero venir.",
+          "nota": {
+            "$t": "b3.f1.nota"
+          },
           "analisis": [
-            ["Quiero venir", "I want to come"],
-            ["pero trabajo", "but I work"]
+            [
+              "Quiero venir",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "pero trabajo",
+              {
+                "$t": "a4"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f2",
           "quien": "Lucía",
-          "es": "Espero que estés bien.",
-          "en": "I hope you're well.",
           "analisis": [
-            ["Espero que", "I hope that"],
-            ["estés bien", "you are well"]
+            [
+              "Espero que",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "estés bien",
+              {
+                "$t": "a6"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f3",
           "quien": "Pablo",
-          "es": "Habla más despacio. Quiero que hables despacio.",
-          "en": "Speak more slowly. I want you to speak slowly.",
           "analisis": [
-            ["Habla", "command"],
-            ["Quiero que hables", "I want you to speak"]
+            [
+              "Habla",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "Quiero que hables",
+              {
+                "$t": "a8"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["querer que", "venir", "hablar", "estar", "esperar que", "la fiesta", "más despacio", "comer", "vivir"]
+      "palabras": [
+        "querer que",
+        "venir",
+        "hablar",
+        "estar",
+        "esperar que",
+        "la fiesta",
+        "más despacio",
+        "comer",
+        "vivir"
+      ]
     },
     {
       "tipo": "test",
       "id": "b1-subj-mismo",
-      "pregunta": { "en": "You want to come yourself. Which sentence?" },
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
       "opciones": {
-        "Quiero venir": { "en": "Same person: infinitive." },
-        "Quiero que venga": { "en": "That asks someone else to come." },
-        "Quiero que vengas": { "en": "That asks tú to come." }
+        "Quiero venir": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "Quiero que venga": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "Quiero que vengas": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "Quiero venir"
     },
     {
       "tipo": "huecos",
       "id": "b1-subj-vengas",
-      "pregunta": { "en": "Complete: I want you to come." },
-      "frase": "Quiero que ___ a la fiesta.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "vengas": { "en": "Another person after quiero que: subjunctive." },
-        "vienes": { "en": "Vienes is the ordinary present." },
-        "venir": { "en": "The infinitive is only when the subject does not change." }
+        "vengas": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "vienes": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "venir": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "vengas"
     },
     {
       "tipo": "huecos",
       "id": "b1-subj-m1",
-      "pregunta": {"en": "Complete: I hope you are well."},
-      "frase": "Espero que ___ bien.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "estés": {"en": "Espero que plus another person: subjunctive."},
-        "estás": {"en": "Espero que expresses a hope, so use the subjunctive for the other person's action."},
-        "estar": {"en": "The infinitive is for the same subject."}
+        "estés": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "estás": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "estar": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "estés"
     },
     {
       "tipo": "huecos",
       "id": "b1-subj-m2",
-      "pregunta": {"en": "Complete: I want you to speak slowly."},
-      "frase": "Quiero que ___ despacio.",
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "frase": {
+        "$e": "b8.frase"
+      },
       "audio": true,
       "opciones": {
-        "hables": {"en": "Hablar: the subjunctive swaps a for e."},
-        "hablas": {"en": "Hablas is the indicative."},
-        "hablar": {"en": "The infinitive is for the same subject."}
+        "hables": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "hablas": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "hablar": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "hables"
     },
     {
       "tipo": "escribir",
       "id": "b1-subj-m3",
-      "pregunta": {"en": "Translate: «I want you to come.» (tú)"},
-      "respuestas": ["Quiero que vengas"]
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
+      "respuestas": [
+        "Quiero que vengas"
+      ]
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write what you want, need and hope other people will do: your family, your boss, your neighbours.\n\n**Speak (about 2 minutes).** Say aloud what you want for yourself (quiero + infinitive) and what you want from others (quiero que…)."
+        "$t": "b10.texto"
       }
     }
   ]

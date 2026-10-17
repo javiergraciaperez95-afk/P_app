@@ -1,148 +1,1064 @@
 {
+  "esquema": 2,
+  "id": "031",
   "capitulo": 4,
-  "titulo_es": "Me gusta",
-  "titulo": { "en": "I like it" },
-  "intro": { "en": "With gustar, the thing liked is the subject, so the verb agrees with it. A pronoun before the verb shows who likes it." },
+  "nivel": "A1",
   "palabras": {
-    "me gusta": { "en": "I like (one thing)", "pron": "me GUS-ta", "cat": "verb" },
-    "me gustan": { "en": "I like (more than one)", "pron": "me GUS-tan", "cat": "verb" },
-    "te gusta": { "en": "you like one thing (informal, singular)", "pron": "te GUS-ta", "cat": "verb" },
-    "a mí": { "en": "as for me (emphasis)", "pron": "a MI", "cat": "expression" },
-    "no": { "en": "not, no", "pron": "no", "cat": "adverb" },
-    "el café": { "en": "coffee", "pron": "el ka-FE", "genero": "m" },
-    "el té": { "en": "tea", "pron": "el te", "genero": "m" },
-    "los libros": { "en": "the books", "pron": "los LI-bros", "genero": "m" },
-    "también": { "en": "also, too", "pron": "tam-BYEN", "cat": "adverb" },
-    "mucho": { "en": "a lot, much", "pron": "MU-cho", "cat": "adverb" }
+    "me gusta": {
+      "pron": "me GUS-ta",
+      "cat": "expr"
+    },
+    "me gustan": {
+      "pron": "me GUS-tan",
+      "cat": "expr"
+    },
+    "te gusta": {
+      "pron": "te GUS-ta",
+      "cat": "expr"
+    },
+    "a mí": {
+      "pron": "a MI",
+      "cat": "expr"
+    },
+    "no": {
+      "pron": "no",
+      "cat": "adv"
+    },
+    "el café": {
+      "pron": "el ka-FE",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el té": {
+      "pron": "el te",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "los libros": {
+      "pron": "los LI-bros",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "también": {
+      "pron": "tam-BYEN",
+      "cat": "adv"
+    },
+    "mucho": {
+      "pron": "MU-cho",
+      "cat": "adv"
+    },
+    "Lucía": {
+      "propio": true
+    },
+    "Pablo": {
+      "propio": true
+    }
   },
   "bloques": [
     {
-      "tipo": "explicacion",
-      "titulo": "Gustar agrees with the thing",
-      "texto": "**Gustar** agrees with the thing you like, not the person who likes it.\n\n- Me **gusta** el café. (one thing)\n- Me **gustan** los libros. (plural subject)\n\nPut **no** before the pronoun: **No** me gusta el café. The pronoun before gustar shows who likes it.\n\n**A mí** adds emphasis or contrast; **me** still marks who likes the books. **Me gustan los libros** is complete without **A mí**."
+      "id": "b1",
+      "tipo": "explicacion"
     },
     {
-      "tipo": "tabla",
-      "titulo": "Pronouns with gustar",
-      "columnas": ["Who likes it?", "One thing", "Several things"],
-      "filas": [
-        ["I", "me gusta", "me gustan"],
-        ["you (tú)", "te gusta", "te gustan"],
-        ["he / she / usted", "le gusta", "le gustan"],
-        ["we", "nos gusta", "nos gustan"],
-        ["you all, informal (vosotros/as; Spain)", "os gusta", "os gustan"],
-        ["they / you all (ustedes; common in Latin America)", "les gusta", "les gustan"]
-      ]
-    },
-    {
+      "id": "b2",
       "tipo": "dialogo",
-      "titulo": "At the café",
       "frases": [
         {
           "quien": "Lucía",
-          "es": "¿Te gusta el café?",
-          "en": "Do you like coffee?",
-          "analisis": [
-            ["¿Te gusta", "does it please you"],
-            ["el café", "subject (the thing)"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "¿Te gusta",
+                "nucleo": "gusta",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "¿Te",
+                    "nucleo": "¿Te"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "gusta",
+                    "nucleo": "gusta"
+                  }
+                ]
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "el café?",
+                "nucleo": "café",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "el"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "café?"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "Sí, me gusta mucho.",
-          "en": "Yes, I like it a lot.",
-          "analisis": [
-            ["me gusta", "I like it"],
-            ["mucho", "a lot"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Sí, me gusta mucho.",
+                "nucleo": "gusta",
+                "partes": [
+                  {
+                    "funcion": "ADV",
+                    "texto": "Sí,"
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "me",
+                    "nucleo": "me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "gusta",
+                    "nucleo": "gusta"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "mucho.",
+                    "nucleo": "mucho."
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Lucía",
-          "es": "A mí también me gusta el café. Me gustan los libros.",
-          "en": "I like coffee too. I like books.",
-          "nota": "A mí adds emphasis or contrast; me is still required. Me gustan los libros is also a complete sentence.",
-          "analisis": [
-            ["A mí", "adds emphasis or contrast"],
-            ["también", "also"],
-            ["me gusta el café", "I like coffee too"],
-            ["Me gustan", "verb agrees with plural subject"],
-            ["los libros", "subject"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "A mí también me gusta",
+                "nucleo": "gusta",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "A mí",
+                    "nucleo": "mí",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "A"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "mí",
+                        "nucleo": "mí"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "ADV",
+                    "texto": "también"
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "me",
+                    "nucleo": "me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "gusta",
+                    "nucleo": "gusta"
+                  }
+                ]
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "el café.",
+                "nucleo": "café",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "el"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "café."
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "También me gustan",
+                "nucleo": "gustan",
+                "partes": [
+                  {
+                    "funcion": "ADV",
+                    "texto": "También"
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "me",
+                    "nucleo": "me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "gustan",
+                    "nucleo": "gustan"
+                  }
+                ]
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "los libros.",
+                "nucleo": "libros",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "los"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "libros."
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "No me gusta el té.",
-          "en": "I don't like tea.",
-          "analisis": [
-            ["No", "negation"],
-            ["me gusta", "I like"],
-            ["el té", "subject"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "No me gusta",
+                "nucleo": "gusta",
+                "partes": [
+                  {
+                    "funcion": "NEG",
+                    "texto": "No"
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "me",
+                    "nucleo": "me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "gusta",
+                    "nucleo": "gusta"
+                  }
+                ]
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "el té.",
+                "nucleo": "té",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "el"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "té."
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "A mí me gusta",
+                "nucleo": "gusta",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "A mí",
+                    "nucleo": "mí",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "A"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "mí",
+                        "nucleo": "mí"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "me",
+                    "nucleo": "me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "gusta",
+                    "nucleo": "gusta"
+                  }
+                ]
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "el té verde.",
+                "nucleo": "té",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "el"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "té"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "verde.",
+                    "nucleo": "verde."
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },
     {
+      "id": "b3",
       "tipo": "vocabulario",
-      "palabras": ["me gusta", "me gustan", "te gusta", "a mí", "no", "el café", "el té", "los libros", "también", "mucho"]
+      "palabras": [
+        "me gusta",
+        "me gustan",
+        "te gusta",
+        "a mí",
+        "no",
+        "el café",
+        "el té",
+        "los libros",
+        "también",
+        "mucho"
+      ]
     },
     {
+      "id": "b4",
+      "tipo": "gramatica",
+      "ejemplos": [
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Me gusta",
+                "nucleo": "gusta",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "Me",
+                    "nucleo": "Me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "gusta",
+                    "nucleo": "gusta"
+                  }
+                ]
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "el café con leche.",
+                "nucleo": "café",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "el"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "café"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "con leche.",
+                    "nucleo": "leche",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "leche.",
+                        "nucleo": "leche."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Me gustan",
+                "nucleo": "gustan",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "Me",
+                    "nucleo": "Me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "gustan",
+                    "nucleo": "gustan"
+                  }
+                ]
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "los libros de aventuras.",
+                "nucleo": "libros",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "los"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "libros"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "de aventuras.",
+                    "nucleo": "aventuras",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "aventuras.",
+                        "nucleo": "aventuras."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "b5",
+      "tipo": "texto",
+      "registro": "literario",
+      "frases": [
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "A muchos lectores tranquilos les gusta",
+                "nucleo": "gusta",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "A muchos lectores tranquilos",
+                    "nucleo": "lectores",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "A"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "muchos lectores tranquilos",
+                        "nucleo": "lectores",
+                        "partes": [
+                          {
+                            "funcion": "CUANT",
+                            "texto": "muchos"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "lectores"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "tranquilos",
+                            "nucleo": "tranquilos"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "les",
+                    "nucleo": "les"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "gusta",
+                    "nucleo": "gusta"
+                  }
+                ]
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "el café caliente por la mañana.",
+                "nucleo": "café",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "el"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "café"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "caliente",
+                    "nucleo": "caliente"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "por la mañana.",
+                    "nucleo": "mañana",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "por"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la mañana.",
+                        "nucleo": "mañana",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "mañana."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "A Lucía le gustan mucho",
+                "nucleo": "gustan",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "A Lucía",
+                    "nucleo": "Lucía",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "A"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "Lucía",
+                        "nucleo": "Lucía"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "le",
+                    "nucleo": "le"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "gustan",
+                    "nucleo": "gustan"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "mucho"
+                  }
+                ]
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "los libros antiguos de historia.",
+                "nucleo": "libros",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "los"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "libros"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "antiguos",
+                    "nucleo": "antiguos"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "de historia.",
+                    "nucleo": "historia",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "historia.",
+                        "nucleo": "historia."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Ella",
+                "nucleo": "Ella"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "pasa horas agradables en la biblioteca pública del barrio.",
+                "nucleo": "pasa",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "pasa",
+                    "nucleo": "pasa"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "horas agradables",
+                    "nucleo": "horas",
+                    "partes": [
+                      {
+                        "funcion": "N",
+                        "texto": "horas"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "agradables",
+                        "nucleo": "agradables"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en la biblioteca pública del barrio.",
+                    "nucleo": "biblioteca",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la biblioteca pública del barrio.",
+                        "nucleo": "biblioteca",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "biblioteca"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "pública",
+                            "nucleo": "pública"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "del barrio.",
+                            "nucleo": "barrio",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "del"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "barrio.",
+                                "nucleo": "barrio."
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "A Pablo no le gusta",
+                "nucleo": "gusta",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "A Pablo",
+                    "nucleo": "Pablo",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "A"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "Pablo",
+                        "nucleo": "Pablo"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "NEG",
+                    "texto": "no"
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "le",
+                    "nucleo": "le"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "gusta",
+                    "nucleo": "gusta"
+                  }
+                ]
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "el té negro con limón.",
+                "nucleo": "té",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "el"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "té"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "negro",
+                    "nucleo": "negro"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "con limón.",
+                    "nucleo": "limón",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "limón.",
+                        "nucleo": "limón."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Él",
+                "nucleo": "Él"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "prefiere tomar infusiones suaves de frutas naturales.",
+                "nucleo": "prefiere",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "prefiere",
+                    "nucleo": "prefiere"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "tomar infusiones suaves de frutas naturales.",
+                    "nucleo": "tomar",
+                    "partes": [
+                      {
+                        "funcion": "INF",
+                        "texto": "tomar"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "infusiones suaves de frutas naturales.",
+                        "nucleo": "infusiones",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "infusiones"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "suaves",
+                            "nucleo": "suaves"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "de frutas naturales.",
+                            "nucleo": "frutas",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "de"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "frutas naturales.",
+                                "nucleo": "frutas",
+                                "partes": [
+                                  {
+                                    "funcion": "N",
+                                    "texto": "frutas"
+                                  },
+                                  {
+                                    "funcion": "ADY",
+                                    "texto": "naturales.",
+                                    "nucleo": "naturales."
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Los dos compañeros",
+                "nucleo": "compañeros",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Los"
+                  },
+                  {
+                    "funcion": "CUANT",
+                    "texto": "dos"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "compañeros"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "comparten gustos parecidos en su tiempo libre.",
+                "nucleo": "comparten",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "comparten",
+                    "nucleo": "comparten"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "gustos parecidos",
+                    "nucleo": "gustos",
+                    "partes": [
+                      {
+                        "funcion": "N",
+                        "texto": "gustos"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "parecidos",
+                        "nucleo": "parecidos"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en su tiempo libre.",
+                    "nucleo": "tiempo",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "su tiempo libre.",
+                        "nucleo": "tiempo",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "su"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "tiempo"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "libre.",
+                            "nucleo": "libre."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "b6",
+      "tipo": "test",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b7",
       "tipo": "huecos",
-      "id": "a1-gusta-plural",
-      "pregunta": { "en": "Complete: I like the books." },
-      "frase": "Me ___ los libros.",
-      "audio": true,
-      "opciones": {
-        "gustan": { "en": "Los libros is plural, so gustan." },
-        "gusta": { "en": "Gusta is for one thing: me gusta el café." },
-        "gusto": { "en": "Gustar does not take a yo ending here." }
-      },
-      "correcta": "gustan"
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
     },
     {
+      "id": "b8",
+      "tipo": "ordenar"
+    },
+    {
+      "id": "b9",
       "tipo": "escribir",
-      "id": "a1-gusta-escribir",
-      "pregunta": { "en": "Translate: «I like coffee.»" },
-      "respuestas": ["Me gusta el café"],
-      "explicacion": { "en": "One thing: me gusta + el café." }
-    },
-    {
-      "tipo": "huecos",
-      "id": "a1-gusta-m1",
-      "pregunta": {"en": "Complete: Lucía likes coffee."},
-      "frase": "A Lucía le ___ el café.",
-      "audio": true,
-      "opciones": {
-        "gusta": {"en": "The coffee is one thing, so use gusta."},
-        "gustan": {"en": "Gustan goes with a plural subject."},
-        "gusto": {"en": "Gustar does not take a yo ending here."}
-      },
-      "correcta": "gusta"
-    },
-    {
-      "tipo": "huecos",
-      "id": "a1-gusta-m2",
-      "pregunta": {"en": "Complete: I don't like tea."},
-      "frase": "___ me gusta el té.",
-      "audio": true,
-      "opciones": {
-        "No": {"en": "No goes before me."},
-        "Nada": {"en": "Nada comes after the verb: no me gusta nada."},
-        "Ni": {"en": "Ni joins two negatives."}
-      },
-      "correcta": "No"
-    },
-    {
-      "tipo": "ordenar",
-      "id": "a1-gusta-m3",
-      "frase": "A mí me gustan los libros",
-      "traduccion": {"en": "I like books."}
-    },
-    {
-      "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
-      "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Write about the things and activities you like and do not like. Use me gusta and me gustan.\n\n**Speak (about 30 seconds).** Talk about your likes and dislikes, then ask an imaginary friend: ¿Y a ti?"
-      }
+      "respuestas": [
+        "Me gusta el café",
+        "Me gusta el café."
+      ]
     }
   ]
 }

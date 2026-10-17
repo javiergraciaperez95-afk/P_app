@@ -1,175 +1,430 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "138",
   "capitulo": 12,
-  "titulo_es": "No me lo digas",
-  "titulo": {"en": "Don't tell me"},
-  "intro": {"en": "A practical overview of tú, usted, nosotros, vosotros and ustedes commands, including negatives and pronoun placement."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "no me lo digas": {"en": "don't tell me", "pron": "no me lo DI-gas", "cat": "expression"},
-    "ten": {"en": "have, hold (tú)", "pron": "ten", "cat": "verb"},
-    "pon": {"en": "put (tú)", "pron": "pon", "cat": "verb"},
-    "haz": {"en": "do, make (tú command)", "pron": "as/ATH", "cat": "verb"},
-    "sal": {"en": "go out, leave (tú)", "pron": "sal", "cat": "verb"},
-    "di": {"en": "say, tell (tú)", "pron": "di", "cat": "verb"},
-    "ve": {"en": "go (tú)", "pron": "be", "cat": "verb"},
-    "ven": {"en": "come (tú command)", "pron": "ben", "cat": "verb"},
-    "sé": {"en": "be (tú)", "pron": "se", "cat": "verb"},
-    "venga": {
-      "en": "come on",
-      "pron": "BEN-ga",
-      "cat": "interjection",
-      "nota": "Venga, vamos, anda, mira and oye can also work as conversational markers, depending on context."
+    "no me lo digas": {
+      "$f": "p.no me lo digas",
+      "pron": "no me lo DI-gas",
+      "cat": "expr"
     },
-    "no te preocupes": {"en": "don't worry (tú)", "pron": "no te pre-o-KU-pes", "cat": "expression"},
-    "pasad": {"en": "come in (vosotros)", "pron": "pa-SAD", "cat": "verb"},
-    "ten cuidado": {"en": "be careful (tú)", "pron": "ten kwi-DA-do", "cat": "expression"},
-    "la noticia": {"en": "the news, the piece of news", "pron": "la no-TI-thya/sya", "cat": "noun", "genero": "f"}
+    "ten": {
+      "$f": "p.ten",
+      "pron": "ten",
+      "cat": "verb"
+    },
+    "pon": {
+      "$f": "p.pon",
+      "pron": "pon",
+      "cat": "verb"
+    },
+    "haz": {
+      "$f": "p.haz",
+      "pron": "as/ATH",
+      "cat": "verb"
+    },
+    "sal": {
+      "$f": "p.sal",
+      "pron": "sal",
+      "cat": "verb"
+    },
+    "di": {
+      "$f": "p.di",
+      "pron": "di",
+      "cat": "verb"
+    },
+    "ve": {
+      "$f": "p.ve",
+      "pron": "be",
+      "cat": "verb"
+    },
+    "ven": {
+      "$f": "p.ven",
+      "pron": "ben",
+      "cat": "verb"
+    },
+    "sé": {
+      "$f": "p.sé",
+      "pron": "se",
+      "cat": "verb"
+    },
+    "venga": {
+      "$f": "p.venga",
+      "pron": "BEN-ga",
+      "cat": "interj",
+      "nota": {
+        "$t": "p.venga.nota"
+      }
+    },
+    "no te preocupes": {
+      "$f": "p.no te preocupes",
+      "pron": "no te pre-o-KU-pes",
+      "cat": "expr"
+    },
+    "pasad": {
+      "$f": "p.pasad",
+      "pron": "pa-SAD",
+      "cat": "verb"
+    },
+    "ten cuidado": {
+      "$f": "p.ten cuidado",
+      "pron": "ten kwi-DA-do",
+      "cat": "expr"
+    },
+    "la noticia": {
+      "$f": "p.la noticia",
+      "pron": "la no-TI-thya/sya",
+      "cat": "sust",
+      "genero": "f"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "The whole system"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "**Affirmative tú** usually matches the third-person singular present indicative: habla, come, escribe. Eight common irregular forms are **di, haz, ve, pon, sal, sé, ten, ven**.\n\nIn the simple form, **affirmative vosotros** changes the infinitive's final -r to -d: habla**d**, come**d**, veni**d**.\n\n**Usted, ustedes** and **nosotros** use present-subjunctive forms: hable, hablen, hablemos. For 'let's go', Spanish commonly uses **vamos**.\n\nNegative commands use **no + present subjunctive**: **no hables, no hable, no hablemos, no habléis, no hablen**.\n\nPronouns go **after** an affirmative command and **before** a negative one.\n\n- **Dímelo.** → **No me lo digas.**\n- **Siéntese.** → **No se siente.**\n\nIn conversation, forms such as **venga**, **vamos**, **anda**, **mira** and **oye** can also work as discourse markers; their command meanings depend on context."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "Affirmative and negative"},
-      "columnas": ["", "Affirmative", "Negative"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        "",
+        {
+          "$t": "b2.c1"
+        },
+        {
+          "$t": "b2.c2"
+        }
+      ],
       "filas": [
-        ["tú", "habla / di / ven", "no hables / no digas / no vengas"],
-        ["usted", "hable / diga / venga", "no hable / no diga / no venga"],
-        ["nosotros", "hablemos / digamos / vengamos", "no hablemos / no digamos / no vengamos"],
-        ["vosotros", "hablad / decid / venid", "no habléis / no digáis / no vengáis"],
-        ["ustedes", "hablen / digan / vengan", "no hablen / no digan / no vengan"]
+        [
+          "tú",
+          "habla / di / ven",
+          "no hables / no digas / no vengas"
+        ],
+        [
+          "usted",
+          "hable / diga / venga",
+          "no hable / no diga / no venga"
+        ],
+        [
+          "nosotros",
+          "hablemos / digamos / vengamos",
+          "no hablemos / no digamos / no vengamos"
+        ],
+        [
+          "vosotros",
+          "hablad / decid / venid",
+          "no habléis / no digáis / no vengáis"
+        ],
+        [
+          "ustedes",
+          "hablen / digan / vengan",
+          "no hablen / no digan / no vengan"
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Big news"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "Ven, siéntate. Tengo una noticia.",
-          "en": "Come, sit down. I have some news.",
-          "analisis": [["Ven", "command (tú)"], ["siéntate", "command + te"], ["Tengo", "verb"], ["una noticia", "object"]]
+          "analisis": [
+            [
+              "Ven",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "siéntate",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "Tengo",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "una noticia",
+              {
+                "$t": "a3"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b3.f1",
           "quien": "Pablo",
-          "es": "¡No me lo digas! ¿Te vas a Chile?",
-          "en": "Don't tell me! Are you going to Chile?",
           "analisis": [
-            ["¡No", "negation"],
-            ["me lo", "it to me"],
-            ["digas", "verb (subjunctive)"],
-            ["¿Te vas", "verb"],
-            ["a Chile", "place"]
+            [
+              "¡No",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "me lo",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "digas",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "¿Te vas",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "a Chile",
+              {
+                "$t": "a7"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f2",
           "quien": "Lucía",
-          "es": "Sí. Pero no se lo digas a nadie todavía.",
-          "en": "Yes. But don't tell anyone yet.",
           "analisis": [
-            ["no", "negation"],
-            ["se lo", "it to anyone"],
-            ["digas", "verb"],
-            ["a nadie", "to whom"],
-            ["todavía", "time"]
+            [
+              "no",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "se lo",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "digas",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "a nadie",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "todavía",
+              {
+                "$t": "a10"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f3",
           "quien": "Pablo",
-          "es": "No te preocupes. Ten cuidado allí, y sé feliz.",
-          "en": "Don't worry. Be careful there, and be happy.",
           "analisis": [
-            ["No te preocupes", "negative command"],
-            ["Ten cuidado", "command"],
-            ["allí", "place"],
-            ["sé feliz", "command"]
+            [
+              "No te preocupes",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "Ten cuidado",
+              {
+                "$t": "a12"
+              }
+            ],
+            [
+              "allí",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "sé feliz",
+              {
+                "$t": "a12"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f4",
           "quien": "Lucía",
-          "es": "Venga, no te pongas triste. Vamos a celebrarlo.",
-          "en": "Come on, don't get sad. Let's celebrate.",
           "analisis": [
-            ["Venga", "filler"],
-            ["no te pongas", "negative command"],
-            ["triste", "description"],
-            ["Vamos a celebrarlo", "let's"]
+            [
+              "Venga",
+              {
+                "$t": "a13"
+              }
+            ],
+            [
+              "no te pongas",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "triste",
+              {
+                "$t": "a14"
+              }
+            ],
+            [
+              "Vamos a celebrarlo",
+              {
+                "$t": "a15"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "imperativo-total-1",
-      "pregunta": {"en": "Complete: don't tell me."},
-      "frase": "No me lo ___.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "digas": {"en": "A negative command takes the subjunctive."},
-        "dices": {"en": "That is a statement: you don't tell me."},
-        "di": {"en": "Di is the affirmative command."}
+        "digas": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "dices": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "di": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "digas"
     },
     {
       "tipo": "huecos",
       "id": "imperativo-total-2",
-      "pregunta": {"en": "Complete, using tú: be careful."},
-      "frase": "___ cuidado.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "Ten": {"en": "Tener: the tú command is ten."},
-        "Tiene": {"en": "Tiene is the present of él or usted."},
-        "Tengas": {"en": "Tengas only appears in the negative: no tengas."}
+        "Ten": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "Tiene": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "Tengas": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "Ten"
     },
     {
       "tipo": "test",
       "id": "imperativo-total-3",
-      "pregunta": {"en": "Where do the pronouns go in a negative command?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "Before the verb, after no: no me lo digas": {"en": "The negative marker comes first, followed by the pronouns and then the verb."},
-        "At the end of the verb": {"en": "That placement goes with affirmative commands; negative commands put pronouns before the verb."},
-        "Before no": {"en": "The pronouns follow no and come before the verb: no me lo digas."}
+        "Before the verb, after no: no me lo digas": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "At the end of the verb": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "Before no": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "Before the verb, after no: no me lo digas"
     },
     {
       "tipo": "huecos",
       "id": "imperativo-total-4",
-      "pregunta": {"en": "Complete, with vosotros: come in, please."},
-      "frase": "___, por favor.",
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "frase": {
+        "$e": "b8.frase"
+      },
       "audio": true,
       "opciones": {
-        "Pasad": {"en": "The -r of the infinitive becomes -d."},
-        "Pasáis": {"en": "That is a statement: you come in."},
-        "Pasen": {"en": "Pasen is for ustedes."}
+        "Pasad": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "Pasáis": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "Pasen": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "Pasad"
     },
     {
       "tipo": "escribir",
       "id": "imperativo-total-5",
-      "pregunta": {"en": "Make it negative: «Dímelo.»"},
-      "respuestas": ["No me lo digas"]
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
+      "respuestas": [
+        "No me lo digas"
+      ]
     },
     {
       "tipo": "ordenar",
       "id": "imperativo-total-6",
-      "frase": "No se lo digas a nadie todavía",
-      "traduccion": {"en": "Don't tell anyone yet."}
+      "frase": {
+        "$e": "b10.frase"
+      },
+      "traduccion": {
+        "$t": "b10.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write ten rules for a new employee or a new flatmate: five things to do and five not to do.\n\n**Speak (about 2 minutes).** Give a friend instructions aloud for looking after your pet or your plants, with dos and don'ts."
+        "$t": "b11.texto"
       }
     }
   ]

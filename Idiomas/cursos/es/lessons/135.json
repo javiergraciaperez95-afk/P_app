@@ -1,172 +1,401 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "135",
   "capitulo": 12,
-  "titulo_es": "Antes de que salgas",
-  "titulo": {"en": "Before you leave"},
-  "intro": {"en": "Future time clauses use the subjunctive; antes de que always does. With the same subject, antes de and después de take an infinitive."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
     "antes de que": {
-      "en": "before (someone does)",
+      "$f": "p.antes de que",
       "pron": "AN-tes de ke",
       "cat": "connector",
-      "nota": "Use the subjunctive in the clause introduced by antes de que."
+      "nota": {
+        "$t": "p.antes de que.nota"
+      }
     },
-    "después de que": {"en": "after (someone does)", "pron": "des-PWES de ke", "cat": "connector"},
-    "hasta que": {"en": "until", "pron": "AS-ta ke", "cat": "connector"},
-    "en cuanto": {"en": "as soon as", "pron": "en KWAN-to", "cat": "connector"},
-    "tan pronto como": {"en": "as soon as", "pron": "tan PRON-to KO-mo", "cat": "connector"},
-    "mientras": {"en": "while", "pron": "MYEN-tras", "cat": "connector"},
-    "antes de": {"en": "before (doing)", "pron": "AN-tes de", "cat": "preposition"},
-    "después de": {"en": "after (doing)", "pron": "des-PWES de", "cat": "preposition"},
-    "avísame": {"en": "let me know", "pron": "a-BI-sa-me", "cat": "expression"},
-    "terminar": {"en": "to finish", "pron": "ter-mi-NAR", "cat": "verb"},
-    "la cena": {"en": "dinner", "pron": "la SE-na/THE-na", "cat": "noun", "genero": "f"},
-    "la luz": {"en": "the light", "pron": "la LUS/LUTH", "cat": "noun", "genero": "f"}
+    "después de que": {
+      "$f": "p.después de que",
+      "pron": "des-PWES de ke",
+      "cat": "connector"
+    },
+    "hasta que": {
+      "$f": "p.hasta que",
+      "pron": "AS-ta ke",
+      "cat": "connector"
+    },
+    "en cuanto": {
+      "$f": "p.en cuanto",
+      "pron": "en KWAN-to",
+      "cat": "connector"
+    },
+    "tan pronto como": {
+      "$f": "p.tan pronto como",
+      "pron": "tan PRON-to KO-mo",
+      "cat": "connector"
+    },
+    "mientras": {
+      "$f": "p.mientras",
+      "pron": "MYEN-tras",
+      "cat": "connector"
+    },
+    "antes de": {
+      "$f": "p.antes de",
+      "pron": "AN-tes de",
+      "cat": "prep"
+    },
+    "después de": {
+      "$f": "p.después de",
+      "pron": "des-PWES de",
+      "cat": "prep"
+    },
+    "avísame": {
+      "$f": "p.avísame",
+      "pron": "a-BI-sa-me",
+      "cat": "expr"
+    },
+    "terminar": {
+      "$f": "p.terminar",
+      "pron": "ter-mi-NAR",
+      "cat": "verb"
+    },
+    "la cena": {
+      "$f": "p.la cena",
+      "pron": "la SE-na/THE-na",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "la luz": {
+      "$f": "p.la luz",
+      "pron": "la LUS/LUTH",
+      "cat": "sust",
+      "genero": "f"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Not yet, or already"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "With **cuando, hasta que, en cuanto, tan pronto como** and **después de que**, choose the mood according to whether the event is factual or still pending.\n\n- A future event that has not happened yet: **subjunctive**. **Te espero hasta que llegues. En cuanto termine, te llamo.**\n- A habit or a completed past event: **indicative**. **Siempre espero hasta que llega. En cuanto terminó, me llamó.**\n\n**Antes de que** takes the subjunctive: **Llámame antes de que salgas**. With the same subject, use **antes de / después de + infinitive**: **Antes de salir, apago la luz. Después de cenar, leo.**\n\n**Mientras + indicative** describes two actions happening at the same time: **Mientras cocino, escucho música**. With the subjunctive, **mientras** can mean ‘as long as’: **Puedes usar el coche mientras tengas permiso**."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "Future against habit or past"},
-      "columnas": ["Not yet: subjunctive", "Habit or past: indicative"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        }
+      ],
       "filas": [
-        ["Cuando llegues, cenamos.", "Cuando llego, ceno."],
-        ["En cuanto termine, te llamo.", "En cuanto terminó, me llamó."],
-        ["Te espero hasta que vengas.", "Esperé hasta que vino."]
+        [
+          "Cuando llegues, cenamos.",
+          "Cuando llego, ceno."
+        ],
+        [
+          "En cuanto termine, te llamo.",
+          "En cuanto terminó, me llamó."
+        ],
+        [
+          "Te espero hasta que vengas.",
+          "Esperé hasta que vino."
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Dinner"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "Avísame antes de que salgas de casa.",
-          "en": "Let me know before you leave home.",
           "analisis": [
-            ["Avísame", "command + me"],
-            ["antes de que", "connector"],
-            ["salgas", "verb (subjunctive)"],
-            ["de casa", "place"]
+            [
+              "Avísame",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "antes de que",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "salgas",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "de casa",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f1",
           "quien": "Pablo",
-          "es": "Vale. En cuanto termine la reunión, te llamo.",
-          "en": "OK. As soon as the meeting finishes, I'll call you.",
           "analisis": [
-            ["En cuanto", "connector"],
-            ["termine", "verb (subjunctive)"],
-            ["la reunión", "subject"],
-            ["te llamo", "verb"]
+            [
+              "En cuanto",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "termine",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "la reunión",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "te llamo",
+              {
+                "$t": "a5"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f2",
           "quien": "Lucía",
-          "es": "No empiezo la cena hasta que llegues.",
-          "en": "I won't start dinner until you arrive.",
           "analisis": [
-            ["No", "negation"],
-            ["empiezo", "verb"],
-            ["la cena", "object"],
-            ["hasta que", "connector"],
-            ["llegues", "verb (subjunctive)"]
+            [
+              "No",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "empiezo",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "la cena",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "hasta que",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "llegues",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f3",
           "quien": "Pablo",
-          "es": "Ayer esperaste hasta que llegué, y eran las once.",
-          "en": "Yesterday you waited until I arrived, and it was eleven.",
           "analisis": [
-            ["Ayer", "time"],
-            ["esperaste", "verb"],
-            ["hasta que", "connector"],
-            ["llegué", "verb (indicative: past)"],
-            ["eran las once", "time"]
+            [
+              "Ayer",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "esperaste",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "hasta que",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "llegué",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "eran las once",
+              {
+                "$t": "a8"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f4",
           "quien": "Lucía",
-          "es": "Pues hoy, después de cenar, vemos una película.",
-          "en": "Well today, after dinner, we'll watch a film.",
           "analisis": [
-            ["hoy", "time"],
-            ["después de cenar", "infinitive (same subject)"],
-            ["vemos", "verb"],
-            ["una película", "object"]
+            [
+              "hoy",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "después de cenar",
+              {
+                "$t": "a10"
+              }
+            ],
+            [
+              "vemos",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "una película",
+              {
+                "$t": "a7"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "antes-de-que-1",
-      "pregunta": {"en": "Complete: call me before you leave."},
-      "frase": "Llámame antes de que ___.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "salgas": {"en": "Antes de que always takes the subjunctive."},
-        "sales": {"en": "Antes de que never takes the indicative."},
-        "salir": {"en": "Antes de que introduces a finite clause here: salgas."}
+        "salgas": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "sales": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "salir": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "salgas"
     },
     {
       "tipo": "huecos",
       "id": "antes-de-que-2",
-      "pregunta": {"en": "Complete: I'll wait until you arrive."},
-      "frase": "Te espero hasta que ___.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "llegues": {"en": "It has not happened yet: subjunctive."},
-        "llegas": {"en": "A future arrival takes the subjunctive."},
-        "llegaste": {"en": "Llegaste is the past."}
+        "llegues": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "llegas": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "llegaste": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "llegues"
     },
     {
       "tipo": "huecos",
       "id": "antes-de-que-3",
-      "pregunta": {"en": "Complete: yesterday I waited until he arrived."},
-      "frase": "Ayer esperé hasta que ___.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "llegó": {"en": "It already happened: indicative."},
-        "llegue": {"en": "The present subjunctive looks forward, not back."},
-        "llegará": {"en": "For this future arrival after hasta que, use the subjunctive: llegues."}
+        "llegó": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "llegue": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "llegará": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "llegó"
     },
     {
       "tipo": "huecos",
       "id": "antes-de-que-4",
-      "pregunta": {"en": "Complete, same subject: before going out, I switch off the light."},
-      "frase": "Antes de ___, apago la luz.",
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "frase": {
+        "$e": "b8.frase"
+      },
       "audio": true,
       "opciones": {
-        "salir": {"en": "With the same subject, use antes de + infinitive."},
-        "que salga": {"en": "That would need a different subject."},
-        "salgo": {"en": "After antes de, the infinitive."}
+        "salir": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "que salga": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "salgo": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "salir"
     },
     {
       "tipo": "ordenar",
       "id": "antes-de-que-5",
-      "frase": "En cuanto termine la reunión, te llamo",
-      "traduccion": {"en": "As soon as the meeting finishes, I'll call you."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write the instructions you leave for someone who is going to look after your home: before, after, until.\n\n**Speak (about 2 minutes).** Tell a friend aloud what they must do before, during and after an important interview."
+        "$t": "b10.texto"
       }
     }
   ]

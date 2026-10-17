@@ -1,180 +1,590 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "097",
   "capitulo": 9,
-  "titulo_es": "Busco piso",
-  "titulo": {"en": "Looking for a flat"},
-  "intro": {"en": "Reading an advert and asking the landlord the questions that matter."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "el alquiler": {"en": "the rent", "pron": "el al-ki-LER", "cat": "noun", "genero": "m"},
-    "alquilar": {"en": "to rent", "pron": "al-ki-LAR", "cat": "verb"},
-    "compartir": {"en": "to share", "pron": "kom-par-TIR", "cat": "verb"},
-    "amueblado": {"en": "furnished (feminine: amueblada)", "pron": "a-mwe-BLA-do", "cat": "adjective"},
-    "exterior": {
-      "en": "exterior-facing (windows open onto an outdoor area)",
-      "pron": "eks-te-RYOR",
-      "cat": "adjective",
-      "nota": "An exterior flat has windows facing outside, often onto a street; an interior flat usually faces a courtyard or another interior space."
+    "el alquiler": {
+      "$f": "p.el alquiler",
+      "pron": "el al-ki-LER",
+      "cat": "sust",
+      "genero": "m"
     },
-    "luminoso": {"en": "bright", "pron": "lu-mi-NO-so", "cat": "adjective"},
-    "la calefacción": {"en": "the heating", "pron": "la ka-le-fak-SYON (seseo) / la ka-le-fak-THYON (distinción)", "cat": "noun", "genero": "f"},
-    "el ascensor": {"en": "the lift (US: elevator)", "pron": "el as-SEN-SOR (seseo) / el as-THEN-SOR (distinción)", "cat": "noun", "genero": "m"},
-    "los gastos": {"en": "the charges; the expenses", "pron": "los GAS-tos", "cat": "noun", "genero": "m"},
-    "la fianza": {"en": "the security deposit", "pron": "la FYAN-sa (seseo) / la FYAN-tha (distinción)", "cat": "noun", "genero": "f"},
-    "el contrato": {"en": "the contract", "pron": "el kon-TRA-to", "cat": "noun", "genero": "m"},
-    "el dueño": {"en": "the owner; the landlord (feminine: dueña)", "pron": "el DWE-nyo", "cat": "noun", "genero": "m"},
-    "al mes": {"en": "per month", "pron": "al mes", "cat": "expression"},
-    "el compañero de piso": {"en": "the flatmate (feminine: compañera de piso)", "pron": "el kom-pa-NYE-ro de PI-so", "cat": "noun", "genero": "m"},
-    "el piso": {"en": "the flat (Spain); the floor or storey", "pron": "el PI-so", "cat": "noun", "genero": "m", "nota": "In Spain, piso commonly means a flat; it can also mean a floor or storey. Apartment or departamento is common in many Latin American varieties."},
-    "la habitación": {"en": "the room; the bedroom (in a flat advert)", "pron": "la a-bi-ta-SYON (seseo) / la a-bi-ta-THYON (distinción)", "cat": "noun", "genero": "f"},
-    "el anuncio": {"en": "the advert; the listing", "pron": "el a-NUN-syo (seseo) / el a-NUN-thyo (distinción)", "cat": "noun", "genero": "m"},
-    "libre": {"en": "available (for a rental); free", "pron": "LI-bre", "cat": "adjective"},
-    "tranquilo": {"en": "quiet (feminine: tranquila)", "pron": "tran-KI-lo", "cat": "adjective"},
-    "la zona": {"en": "the area; the neighbourhood", "pron": "la SO-na (seseo) / la THO-na (distinción)", "cat": "noun", "genero": "f"}
+    "alquilar": {
+      "$f": "p.alquilar",
+      "pron": "al-ki-LAR",
+      "cat": "verb"
+    },
+    "compartir": {
+      "$f": "p.compartir",
+      "pron": "kom-par-TIR",
+      "cat": "verb"
+    },
+    "amueblado": {
+      "$f": "p.amueblado",
+      "pron": "a-mwe-BLA-do",
+      "cat": "adj"
+    },
+    "exterior": {
+      "$f": "p.exterior",
+      "pron": "eks-te-RYOR",
+      "cat": "adj",
+      "nota": {
+        "$t": "p.exterior.nota"
+      }
+    },
+    "luminoso": {
+      "$f": "p.luminoso",
+      "pron": "lu-mi-NO-so",
+      "cat": "adj"
+    },
+    "la calefacción": {
+      "$f": "p.la calefacción",
+      "pron": "la ka-le-fak-SYON (seseo) / la ka-le-fak-THYON (distinción)",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "el ascensor": {
+      "$f": "p.el ascensor",
+      "pron": "el as-SEN-SOR (seseo) / el as-THEN-SOR (distinción)",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "los gastos": {
+      "$f": "p.los gastos",
+      "pron": "los GAS-tos",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la fianza": {
+      "$f": "p.la fianza",
+      "pron": "la FYAN-sa (seseo) / la FYAN-tha (distinción)",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "el contrato": {
+      "$f": "p.el contrato",
+      "pron": "el kon-TRA-to",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el dueño": {
+      "$f": "p.el dueño",
+      "pron": "el DWE-nyo",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "al mes": {
+      "$f": "p.al mes",
+      "pron": "al mes",
+      "cat": "expr"
+    },
+    "el compañero de piso": {
+      "$f": "p.el compañero de piso",
+      "pron": "el kom-pa-NYE-ro de PI-so",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el piso": {
+      "$f": "p.el piso",
+      "pron": "el PI-so",
+      "cat": "sust",
+      "genero": "m",
+      "nota": {
+        "$t": "p.el piso.nota"
+      }
+    },
+    "la habitación": {
+      "$f": "p.la habitación",
+      "pron": "la a-bi-ta-SYON (seseo) / la a-bi-ta-THYON (distinción)",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "el anuncio": {
+      "$f": "p.el anuncio",
+      "pron": "el a-NUN-syo (seseo) / el a-NUN-thyo (distinción)",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "libre": {
+      "$f": "p.libre",
+      "pron": "LI-bre",
+      "cat": "adj"
+    },
+    "tranquilo": {
+      "$f": "p.tranquilo",
+      "pron": "tran-KI-lo",
+      "cat": "adj"
+    },
+    "la zona": {
+      "$f": "p.la zona",
+      "pron": "la SO-na (seseo) / la THO-na (distinción)",
+      "cat": "sust",
+      "genero": "f"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Ser, estar and tener for a flat"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "Example advert: **Se alquila** piso luminoso de dos habitaciones, **amueblado**, **exterior** y con **ascensor**. 750 € **al mes**; **gastos no incluidos**. Fianza: un mes. The call and reading below refer to this same flat.\n\nThree verbs help describe it.\n\n- **Es** luminoso, grande, tranquilo. (what it is like)\n- **Está** amueblado, reformado, cerca del metro. (its condition or location)\n- **Tiene** dos habitaciones, calefacción, ascensor. (what it has)\n\nUseful questions: **¿Cuántas habitaciones tiene?** **¿Están incluidos los gastos?** **¿De cuánto es la fianza?** **¿Puedo verlo?** **Gastos incluidos/no incluidos** tells you whether specified charges are covered; ask which ones, since this depends on the advert and contract.\n\n**Alquilar** means to rent. **Un piso para compartir** is a flat to share; another resident is **un compañero/una compañera de piso**. In Spain, **el piso** commonly means a flat; it can also mean a floor or storey: vivo en un piso, en el tercer piso."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Calling the landlord"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "Buenos días, llamo por el piso del anuncio. ¿Todavía está libre?",
-          "en": "Good morning, I'm calling about the flat. Is it still free?",
-          "analisis": [["llamo", "verb"], ["por el piso del anuncio", "reason"], ["¿Todavía", "still"], ["está libre", "verb"]]
-        },
-        {
-          "quien": "Dueño",
-          "es": "Sí. Tiene dos habitaciones y es muy luminoso.",
-          "en": "Yes. It has two bedrooms and it's very bright.",
-          "analisis": [["Tiene", "verb"], ["dos habitaciones", "object"], ["es", "verb"], ["muy luminoso", "description"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "¿Está amueblado? ¿Tiene ascensor?",
-          "en": "Is it furnished? Does it have a lift?",
-          "analisis": [["¿Está amueblado?", "verb"], ["¿Tiene", "verb"], ["ascensor", "object"]]
-        },
-        {
-          "quien": "Dueño",
-          "es": "Está amueblado y tiene ascensor. Es un tercer piso.",
-          "en": "It's furnished and has a lift. It's on the third floor.",
           "analisis": [
-            ["Está amueblado", "verb"],
-            ["tiene ascensor", "verb and object"],
-            ["Es", "verb"],
-            ["un tercer piso", "what"]
+            [
+              "llamo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "por el piso del anuncio",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "¿Todavía",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "está libre",
+              {
+                "$t": "a0"
+              }
+            ]
           ]
         },
         {
-          "quien": "Lucía",
-          "es": "¿Cuánto es el alquiler? ¿Están incluidos los gastos?",
-          "en": "How much is the rent? Are the charges included?",
-          "analisis": [["¿Cuánto", "question"], ["es", "verb"], ["el alquiler", "subject"], ["¿Están incluidos los gastos?", "question"]]
-        },
-        {
+          "$f": "b2.f1",
           "quien": "Dueño",
-          "es": "Setecientos cincuenta euros al mes. Los gastos no están incluidos.",
-          "en": "Seven hundred and fifty euros a month. The charges are not included.",
-          "analisis": [["Setecientos cincuenta euros", "amount"], ["al mes", "per month"], ["Los gastos no están incluidos", "condition"]]
+          "analisis": [
+            [
+              "Tiene",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "dos habitaciones",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "es",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "muy luminoso",
+              {
+                "$t": "a4"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "¿De cuánto es la fianza?",
-          "en": "How much is the security deposit?",
-          "analisis": [["¿De cuánto", "question"], ["es", "verb"], ["la fianza", "subject"]]
+          "analisis": [
+            [
+              "¿Está amueblado?",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "¿Tiene",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "ascensor",
+              {
+                "$t": "a3"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Dueño",
-          "es": "La fianza es de un mes de alquiler.",
-          "en": "The deposit is one month's rent.",
-          "analisis": [["La fianza", "subject"], ["es", "verb"], ["de un mes de alquiler", "amount"]]
+          "analisis": [
+            [
+              "Está amueblado",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "tiene ascensor",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "Es",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "un tercer piso",
+              {
+                "$t": "a6"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "¿Cuánto",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "es",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "el alquiler",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "¿Están incluidos los gastos?",
+              {
+                "$t": "a7"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "quien": "Dueño",
+          "analisis": [
+            [
+              "Setecientos cincuenta euros",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "al mes",
+              {
+                "$t": "a10"
+              }
+            ],
+            [
+              "Los gastos no están incluidos",
+              {
+                "$t": "a11"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f6",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "¿De cuánto",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "es",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "la fianza",
+              {
+                "$t": "a8"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f7",
+          "quien": "Dueño",
+          "analisis": [
+            [
+              "La fianza",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "es",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "de un mes de alquiler",
+              {
+                "$t": "a9"
+              }
+            ]
+          ]
         }
       ]
     },
     {
       "tipo": "texto",
-      "titulo": {"en": "A flat advert"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
-        {"es": "Se alquila piso exterior y luminoso de 2 habitaciones, amueblado y con ascensor.", "en": "Exterior-facing, bright two-bedroom flat for rent, furnished and with a lift.", "analisis": [["Se alquila", "for rent"], ["piso exterior y luminoso", "flat description"], ["2 habitaciones", "two bedrooms"], ["amueblado", "furnished"], ["con ascensor", "with a lift"]]},
-        {"es": "Zona tranquila, cerca del metro. Tercer piso.", "en": "Quiet area, near the metro. Third floor.", "analisis": [["Zona tranquila", "area"], ["cerca del metro", "near the metro"], ["Tercer piso", "floor"]]},
-        {"es": "750 € al mes. Gastos no incluidos. Fianza: un mes.", "en": "€750 per month. Charges not included. Deposit: one month's rent.", "analisis": [["750 € al mes", "monthly rent"], ["no incluidos", "not included"], ["Fianza", "deposit"]]}
+        {
+          "$f": "b3.f0",
+          "analisis": [
+            [
+              "Se alquila",
+              {
+                "$t": "a12"
+              }
+            ],
+            [
+              "piso exterior y luminoso",
+              {
+                "$t": "a13"
+              }
+            ],
+            [
+              "2 habitaciones",
+              {
+                "$t": "a14"
+              }
+            ],
+            [
+              "amueblado",
+              {
+                "$t": "a15"
+              }
+            ],
+            [
+              "con ascensor",
+              {
+                "$t": "a16"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f1",
+          "analisis": [
+            [
+              "Zona tranquila",
+              {
+                "$t": "a17"
+              }
+            ],
+            [
+              "cerca del metro",
+              {
+                "$t": "a18"
+              }
+            ],
+            [
+              "Tercer piso",
+              {
+                "$t": "a19"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f2",
+          "analisis": [
+            [
+              "750 € al mes",
+              {
+                "$t": "a20"
+              }
+            ],
+            [
+              "no incluidos",
+              {
+                "$t": "a21"
+              }
+            ],
+            [
+              "Fianza",
+              {
+                "$t": "a22"
+              }
+            ]
+          ]
+        }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "piso-1",
-      "pregunta": {"en": "Complete: the flat is furnished."},
-      "frase": "El piso ___ amueblado.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "está": {"en": "Estar describes the furnished condition of this flat."},
-        "es": {"en": "Use estar here to describe the flat's current furnished condition."},
-        "tiene": {"en": "Tiene needs a noun: tiene muebles."}
+        "está": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "es": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "tiene": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "está"
     },
     {
       "tipo": "huecos",
       "id": "piso-2",
-      "pregunta": {"en": "Complete: 750 euros a month."},
-      "frase": "Setecientos cincuenta euros ___ mes.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "al": {"en": "Per month is al mes."},
-        "en": {"en": "In a month would be en un mes."},
-        "de": {"en": "De mes is not used for a rate."}
+        "al": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "en": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "de": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "al"
     },
     {
       "tipo": "test",
       "id": "piso-3",
-      "pregunta": {"en": "«Gastos incluidos» means…"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "The listed charges are included in the rent": {"en": "Gastos incluidos means the specified charges are covered; check which ones."},
-        "The listed charges are not part of the rent": {"en": "That would be gastos no incluidos or gastos aparte."},
-        "The deposit is included": {"en": "The deposit is la fianza."}
+        "The listed charges are included in the rent": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "The listed charges are not part of the rent": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "The deposit is included": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "The listed charges are included in the rent"
     },
     {
       "tipo": "test",
       "id": "piso-lectura-1",
-      "pregunta": {"en": "How much is the monthly rent in the advert?"},
-      "opciones": {"750 euros": {"en": "Read the price line."}, "700 euros": {"en": "That is not the amount shown in this advert."}, "One month's rent": {"en": "That is the deposit."}},
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "opciones": {
+        "750 euros": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "700 euros": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "One month's rent": {
+          "$t": "b8.o2.refuerzo"
+        }
+      },
       "correcta": "750 euros"
     },
     {
       "tipo": "test",
       "id": "piso-lectura-2",
-      "pregunta": {"en": "Which statement is true according to the advert?"},
-      "opciones": {"The listed charges are not included": {"en": "The advert says gastos no incluidos."}, "The flat has no lift": {"en": "It says con ascensor."}, "The deposit is two months": {"en": "It says fianza: un mes."}},
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
+      "opciones": {
+        "The listed charges are not included": {
+          "$t": "b9.o0.refuerzo"
+        },
+        "The flat has no lift": {
+          "$t": "b9.o1.refuerzo"
+        },
+        "The deposit is two months": {
+          "$t": "b9.o2.refuerzo"
+        }
+      },
       "correcta": "The listed charges are not included"
     },
     {
       "tipo": "escribir",
       "id": "piso-4",
-      "pregunta": {"en": "Translate: «Does it have a lift?»"},
-      "respuestas": ["¿Tiene ascensor?"]
+      "pregunta": {
+        "$t": "b10.pregunta"
+      },
+      "respuestas": [
+        "¿Tiene ascensor?"
+      ]
     },
     {
       "tipo": "ordenar",
       "id": "piso-5",
-      "frase": "¿Cuánto es el alquiler al mes?",
-      "traduccion": {"en": "How much is the rent per month?"}
+      "frase": {
+        "$e": "b11.frase"
+      },
+      "traduccion": {
+        "$t": "b11.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b12.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write an advert for the flat you are looking for, and the questions you would ask the owner.\n\n**Speak (about 1 minute).** Phone aloud about a flat: ask about the price, the rooms, the area and when you can see it."
+        "$t": "b12.texto"
       }
     }
   ]

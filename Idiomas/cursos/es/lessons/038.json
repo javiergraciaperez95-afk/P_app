@@ -1,144 +1,1271 @@
 {
+  "esquema": 2,
+  "id": "038",
   "capitulo": 5,
-  "titulo_es": "Me levanto a las siete",
-  "titulo": { "en": "I get up at seven" },
-  "intro": { "en": "Days, how often, and the morning routine." },
+  "nivel": "A1",
   "palabras": {
-    "el lunes": { "en": "Monday", "pron": "el LU-nes", "genero": "m", "nota": "Weekdays do not take a capital letter." },
-    "el sábado": { "en": "Saturday", "pron": "el SA-ba-do", "genero": "m" },
-    "siempre": { "en": "always", "pron": "SYEM-pre", "cat": "adverb" },
-    "a veces": { "en": "sometimes", "pron": "a BE-thes", "cat": "expression", "nota": "The pronunciation with /θ/ is used in much of Spain; in seseante varieties, the c sounds like /s/." },
-    "nunca": { "en": "never", "pron": "NUN-ka", "cat": "adverb" },
-    "me levanto": { "en": "I get up", "pron": "me le-BAN-to", "cat": "verb", "nota": "With yo, the reflexive pronoun is me: yo me levanto." },
-    "temprano": { "en": "early", "pron": "tem-PRA-no", "cat": "adverb" },
-    "desayuno": { "en": "I have breakfast", "pron": "de-sa-YU-no", "cat": "verb" },
-    "duermo": { "en": "I sleep", "pron": "DUER-mo", "cat": "verb" },
-    "en casa": { "en": "at home", "pron": "en KA-sa", "cat": "expression" },
-    "me ducho": { "en": "I take a shower", "pron": "me DU-cho", "cat": "verb" },
-    "me visto": { "en": "I get dressed", "pron": "me BIS-to", "cat": "verb" }
+    "el lunes": {
+      "pron": "el LU-nes",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el sábado": {
+      "pron": "el SA-ba-do",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "siempre": {
+      "pron": "SYEM-pre",
+      "cat": "adv"
+    },
+    "a veces": {
+      "pron": "a BE-thes",
+      "cat": "expr"
+    },
+    "nunca": {
+      "pron": "NUN-ka",
+      "cat": "adv"
+    },
+    "me levanto": {
+      "pron": "me le-BAN-to",
+      "cat": "verb"
+    },
+    "temprano": {
+      "pron": "tem-PRA-no",
+      "cat": "adv"
+    },
+    "desayuno": {
+      "pron": "de-sa-YU-no",
+      "cat": "verb"
+    },
+    "duermo": {
+      "pron": "DWER-mo",
+      "cat": "verb"
+    },
+    "en casa": {
+      "pron": "en KA-sa",
+      "cat": "expr"
+    },
+    "me ducho": {
+      "pron": "me DU-cho",
+      "cat": "verb"
+    },
+    "me visto": {
+      "pron": "me BIS-to",
+      "cat": "verb"
+    },
+    "Lucía": {
+      "propio": true
+    },
+    "Pablo": {
+      "propio": true
+    }
   },
   "bloques": [
     {
-      "tipo": "explicacion",
-      "titulo": "A normal day",
-      "texto": "For one day, use **el**: **el lunes**. For a routine, use **los**: **los sábados**. Weekdays are not capitalized.\n\nHow often: **siempre**, **a veces**, **nunca**. Before the verb, **nunca** is enough: **Nunca me levanto temprano**. After the verb, keep **no**: **No me levanto nunca temprano**.\n\nWith **yo**, many routine verbs use the reflexive pronoun **me**: **me levanto**, me ducho, me visto."
+      "id": "b1",
+      "tipo": "explicacion"
     },
     {
+      "id": "b2",
       "tipo": "dialogo",
-      "titulo": "The week",
       "frases": [
         {
           "quien": "Lucía",
-          "es": "Me levanto a las siete.",
-          "en": "I get up at seven.",
-          "analisis": [
-            ["Me levanto", "verb"],
-            ["a las siete", "time"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Me levanto a las siete de la mañana.",
+                "nucleo": "levanto",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "Me",
+                    "nucleo": "Me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "levanto",
+                    "nucleo": "levanto"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "a las siete de la mañana.",
+                    "nucleo": "siete",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "a"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "las siete de la mañana.",
+                        "nucleo": "siete",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "las"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "siete"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "de la mañana.",
+                            "nucleo": "mañana",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "de"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "la mañana.",
+                                "nucleo": "mañana",
+                                "partes": [
+                                  {
+                                    "funcion": "DET",
+                                    "texto": "la"
+                                  },
+                                  {
+                                    "funcion": "N",
+                                    "texto": "mañana."
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "Yo nunca me levanto temprano.",
-          "en": "I never get up early.",
-          "analisis": [
-            ["nunca", "negation"],
-            ["me levanto", "verb"],
-            ["temprano", "early"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Yo",
+                "nucleo": "Yo",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Yo"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "nunca me levanto temprano.",
+                "nucleo": "levanto",
+                "partes": [
+                  {
+                    "funcion": "NEG",
+                    "texto": "nunca",
+                    "nucleo": "nunca"
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "me",
+                    "nucleo": "me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "levanto",
+                    "nucleo": "levanto"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "temprano.",
+                    "nucleo": "temprano."
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Lucía",
-          "es": "Los sábados duermo más.",
-          "en": "On Saturdays I sleep more.",
-          "analisis": [
-            ["Los sábados", "time"],
-            ["duermo", "verb"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Los sábados duermo más en mi cama.",
+                "nucleo": "duermo",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "Los sábados",
+                    "nucleo": "sábados",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "Los"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "sábados"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "duermo",
+                    "nucleo": "duermo"
+                  },
+                  {
+                    "funcion": "CCC",
+                    "texto": "más",
+                    "nucleo": "más"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en mi cama.",
+                    "nucleo": "cama",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "mi cama.",
+                        "nucleo": "cama",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "mi"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "cama."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "A veces desayuno en casa.",
-          "en": "Sometimes I have breakfast at home.",
-          "analisis": [
-            ["A veces", "sometimes"],
-            ["desayuno", "verb"],
-            ["en casa", "place"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "A veces desayuno en casa con tranquilidad.",
+                "nucleo": "desayuno",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "A veces",
+                    "nucleo": "veces"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "desayuno",
+                    "nucleo": "desayuno"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en casa",
+                    "nucleo": "casa",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "casa",
+                        "nucleo": "casa"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "con tranquilidad.",
+                    "nucleo": "tranquilidad",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "tranquilidad.",
+                        "nucleo": "tranquilidad."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Siempre me ducho con agua caliente.",
+                "nucleo": "ducho",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "Siempre",
+                    "nucleo": "Siempre"
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "me",
+                    "nucleo": "me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "ducho",
+                    "nucleo": "ducho"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "con agua caliente.",
+                    "nucleo": "agua",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "agua caliente.",
+                        "nucleo": "agua",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "agua"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "caliente.",
+                            "nucleo": "caliente."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Pablo",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Luego me visto rápido para salir.",
+                "nucleo": "visto",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "Luego",
+                    "nucleo": "Luego"
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "me",
+                    "nucleo": "me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "visto",
+                    "nucleo": "visto"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "rápido",
+                    "nucleo": "rápido"
+                  },
+                  {
+                    "funcion": "CCF",
+                    "texto": "para salir.",
+                    "nucleo": "salir",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "para"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "salir.",
+                        "nucleo": "salir."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },
     {
+      "id": "b3",
       "tipo": "vocabulario",
-      "palabras": ["el lunes", "el sábado", "siempre", "a veces", "nunca", "me levanto", "temprano", "desayuno", "duermo", "en casa", "me ducho", "me visto"]
+      "palabras": [
+        "el lunes",
+        "el sábado",
+        "siempre",
+        "a veces",
+        "nunca",
+        "me levanto",
+        "temprano",
+        "desayuno",
+        "duermo",
+        "en casa",
+        "me ducho",
+        "me visto"
+      ]
     },
     {
-      "tipo": "huecos",
-      "id": "a1-hab-me",
-      "pregunta": { "en": "Complete: I get up at seven." },
-      "frase": "___ levanto a las siete.",
-      "audio": true,
-      "opciones": {
-        "Me": { "en": "With yo, use me: me levanto." },
-        "Te": { "en": "Te is for tú." },
-        "Se": { "en": "Se is for él, ella or usted." }
-      },
-      "correcta": "Me"
+      "id": "b4",
+      "tipo": "gramatica",
+      "ejemplos": [
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Los lunes me levanto a las siete.",
+                "nucleo": "levanto",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "Los lunes",
+                    "nucleo": "lunes",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "Los"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "lunes"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "me",
+                    "nucleo": "me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "levanto",
+                    "nucleo": "levanto"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "a las siete.",
+                    "nucleo": "siete",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "a"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "las siete.",
+                        "nucleo": "siete",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "las"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "siete."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Ella",
+                "nucleo": "Ella",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Ella"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "nunca desayuna en la cama.",
+                "nucleo": "desayuna",
+                "partes": [
+                  {
+                    "funcion": "NEG",
+                    "texto": "nunca",
+                    "nucleo": "nunca"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "desayuna",
+                    "nucleo": "desayuna"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en la cama.",
+                    "nucleo": "cama",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la cama.",
+                        "nucleo": "cama",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "cama."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
     },
     {
-      "tipo": "ordenar",
-      "id": "a1-hab-sabado",
-      "frase": "Los sábados duermo más",
-      "traduccion": { "en": "On Saturdays I sleep more." }
+      "id": "b5",
+      "tipo": "texto",
+      "registro": "literario",
+      "frases": [
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "mi alarma",
+                "nucleo": "alarma",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "mi"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "alarma"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "suena muy temprano por la mañana los lunes.",
+                "nucleo": "suena",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "suena",
+                    "nucleo": "suena"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "muy temprano",
+                    "nucleo": "temprano",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "muy"
+                      },
+                      {
+                        "funcion": "ADV",
+                        "texto": "temprano",
+                        "nucleo": "temprano"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "por la mañana",
+                    "nucleo": "mañana",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "por"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la mañana",
+                        "nucleo": "mañana",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "mañana"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "los lunes.",
+                    "nucleo": "lunes",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "los"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "lunes."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Me levanto a las siete en punto y voy directo al cuarto de baño.",
+                "nucleo": "levanto",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "Me",
+                    "nucleo": "Me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "levanto",
+                    "nucleo": "levanto"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "a las siete en punto",
+                    "nucleo": "siete",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "a"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "las siete en punto",
+                        "nucleo": "siete",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "las"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "siete"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "en punto",
+                            "nucleo": "punto"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CONJ",
+                    "texto": "y"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "voy",
+                    "nucleo": "voy"
+                  },
+                  {
+                    "funcion": "CPVO",
+                    "texto": "directo",
+                    "nucleo": "directo"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "al cuarto de baño.",
+                    "nucleo": "cuarto",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "al"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "cuarto de baño.",
+                        "nucleo": "cuarto",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "cuarto"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "de baño.",
+                            "nucleo": "baño",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "de"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "baño.",
+                                "nucleo": "baño."
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Allí me ducho con jabón aromático y me visto con ropa cómoda de trabajo.",
+                "nucleo": "ducho",
+                "partes": [
+                  {
+                    "funcion": "CCL",
+                    "texto": "Allí",
+                    "nucleo": "Allí"
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "me",
+                    "nucleo": "me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "ducho",
+                    "nucleo": "ducho"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "con jabón aromático",
+                    "nucleo": "jabón",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "jabón aromático",
+                        "nucleo": "jabón",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "jabón"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "aromático",
+                            "nucleo": "aromático"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CONJ",
+                    "texto": "y"
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "me",
+                    "nucleo": "me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "visto",
+                    "nucleo": "visto"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "con ropa cómoda de trabajo.",
+                    "nucleo": "ropa",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "ropa cómoda de trabajo.",
+                        "nucleo": "ropa",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "ropa"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "cómoda",
+                            "nucleo": "cómoda"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "de trabajo.",
+                            "nucleo": "trabajo",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "de"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "trabajo.",
+                                "nucleo": "trabajo."
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "En la cocina desayuno café con leche y dos tostadas con mermelada dulce.",
+                "nucleo": "desayuno",
+                "partes": [
+                  {
+                    "funcion": "CCL",
+                    "texto": "En la cocina",
+                    "nucleo": "cocina",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "En"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la cocina",
+                        "nucleo": "cocina",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "cocina"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "desayuno",
+                    "nucleo": "desayuno"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "café con leche",
+                    "nucleo": "café",
+                    "partes": [
+                      {
+                        "funcion": "N",
+                        "texto": "café"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "con leche",
+                        "nucleo": "leche",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "con"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "leche",
+                            "nucleo": "leche"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CONJ",
+                    "texto": "y"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "dos tostadas con mermelada dulce.",
+                    "nucleo": "tostadas",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "dos"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "tostadas"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "con mermelada dulce.",
+                        "nucleo": "mermelada",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "con"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "mermelada dulce.",
+                            "nucleo": "mermelada",
+                            "partes": [
+                              {
+                                "funcion": "N",
+                                "texto": "mermelada"
+                              },
+                              {
+                                "funcion": "CN",
+                                "texto": "dulce.",
+                                "nucleo": "dulce."
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "mi rutina diaria",
+                "nucleo": "rutina",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "mi"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "rutina"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "diaria",
+                    "nucleo": "diaria"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "cambia de forma completa los fines de semana.",
+                "nucleo": "cambia",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "cambia",
+                    "nucleo": "cambia"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "de forma completa",
+                    "nucleo": "forma",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "forma completa",
+                        "nucleo": "forma",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "forma"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "completa",
+                            "nucleo": "completa"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "los fines de semana.",
+                    "nucleo": "fines",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "los"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "fines"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "de semana.",
+                        "nucleo": "semana",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "de"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "semana.",
+                            "nucleo": "semana."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Duermo muchas horas más y nunca salgo de casa antes del mediodía.",
+                "nucleo": "Duermo",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Duermo",
+                    "nucleo": "Duermo"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "muchas horas más",
+                    "nucleo": "horas",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "muchas"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "horas"
+                      },
+                      {
+                        "funcion": "ADV",
+                        "texto": "más",
+                        "nucleo": "más"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CONJ",
+                    "texto": "y"
+                  },
+                  {
+                    "funcion": "NEG",
+                    "texto": "nunca",
+                    "nucleo": "nunca"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "salgo",
+                    "nucleo": "salgo"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "de casa",
+                    "nucleo": "casa",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "casa",
+                        "nucleo": "casa"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "antes del mediodía.",
+                    "nucleo": "antes",
+                    "partes": [
+                      {
+                        "funcion": "ADV",
+                        "texto": "antes"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "del mediodía.",
+                        "nucleo": "mediodía",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "del"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "mediodía.",
+                            "nucleo": "mediodía."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
     },
     {
-      "tipo": "huecos",
-      "id": "a1-hab-m1",
-      "pregunta": {"en": "Complete: I never get up early."},
-      "frase": "___ me levanto temprano.",
-      "audio": true,
-      "opciones": {
-        "Nunca": {"en": "Nunca is never."},
-        "Siempre": {"en": "Siempre is always."},
-        "A veces": {"en": "A veces is sometimes."}
-      },
-      "correcta": "Nunca"
-    },
-    {
-      "tipo": "huecos",
-      "id": "a1-hab-negacion-posverbal",
-      "pregunta": {"en": "Complete the negative sentence: I never get up early."},
-      "frase": "No me levanto ___ temprano.",
-      "audio": true,
-      "opciones": {
-        "nunca": {"en": "When nunca follows the verb, keep no before the verb."},
-        "siempre": {"en": "Siempre means always."},
-        "a veces": {"en": "A veces means sometimes."}
-      },
-      "correcta": "nunca"
-    },
-    {
+      "id": "b6",
       "tipo": "test",
-      "id": "a1-hab-m2",
-      "pregunta": {"en": "How do you say «on Mondays»?"},
-      "opciones": {
-        "los lunes": {"en": "The plural article, and no preposition."},
-        "en lunes": {"en": "Days take el or los, not en."},
-        "los Lunes": {"en": "Days have no capital letter."}
-      },
-      "correcta": "los lunes"
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
     },
     {
+      "id": "b7",
+      "tipo": "huecos",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b8",
+      "tipo": "ordenar"
+    },
+    {
+      "id": "b9",
       "tipo": "escribir",
-      "id": "a1-hab-m3",
-      "pregunta": {"en": "Translate: «I get up at seven.»"},
-      "respuestas": ["Me levanto a las siete"]
-    },
-    {
-      "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
-      "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Describe a normal weekday from the moment you get up until you go to bed, with the times.\n\n**Speak (about 30 seconds).** Tell your daily routine aloud without notes. Then ask an imaginary friend three questions about theirs."
-      }
+      "respuestas": [
+        "Me levanto a las siete",
+        "Me levanto a las siete."
+      ]
     }
   ]
 }

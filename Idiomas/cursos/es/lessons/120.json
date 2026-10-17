@@ -1,167 +1,447 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "120",
   "capitulo": 11,
-  "titulo_es": "¿Dónde estará?",
-  "titulo": {"en": "Where can she be?"},
-  "intro": {"en": "Spanish uses the future tense to make a guess about the present."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "estar": {"en": "to be (state or location)", "pron": "es-TAR", "cat": "verb", "nota": "The future estará can express a guess about now: estará en casa = she is probably at home."},
-    "ser": {"en": "to be (identity or time)", "pron": "SER", "cat": "verb", "nota": "The future serán can express a guess about now: serán las diez = it is probably ten."},
-    "tener": {"en": "to have", "pron": "te-NER", "cat": "verb", "nota": "The future tendrá can express a guess about now: tendrá unos treinta años = he/she is probably about thirty."},
-    "haber": {"en": "there is/are (impersonal; hay)", "pron": "a-BER", "cat": "verb", "nota": "Impersonal habrá can express a guess about now: habrá un atasco = there is probably a traffic jam."},
-    "a lo mejor": {"en": "maybe", "pron": "a lo me-HOR", "cat": "expression", "nota": "A lo mejor normally takes the indicative: a lo mejor está en casa."},
-    "seguramente": {
-      "en": "probably",
-      "pron": "se-gu-ra-MEN-te",
-      "cat": "adverb",
-      "nota": "In this lesson, it means probably, not absolute certainty."
+    "estar": {
+      "$f": "p.estar",
+      "pron": "es-TAR",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.estar.nota"
+      }
     },
-    "supongo que": {"en": "I suppose that", "pron": "su-PON-go ke", "cat": "expression"},
-    "me imagino que": {"en": "I imagine that", "pron": "me i-ma-HI-no ke", "cat": "expression"},
-    "ni idea": {"en": "no idea", "pron": "ni i-DE-a", "cat": "expression"},
-    "el atasco": {"en": "the traffic jam", "pron": "el a-TAS-ko", "cat": "noun", "genero": "m"},
-    "la batería": {"en": "the battery", "pron": "la ba-te-RI-a", "cat": "noun", "genero": "f"},
-    "tranquila": {"en": "calm, don't worry (to a woman)", "pron": "tran-KI-la", "cat": "adjective"},
-    "unos": {"en": "about (with numbers)", "pron": "U-nos", "cat": "determiner"}
+    "ser": {
+      "$f": "p.ser",
+      "pron": "SER",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.ser.nota"
+      }
+    },
+    "tener": {
+      "$f": "p.tener",
+      "pron": "te-NER",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.tener.nota"
+      }
+    },
+    "haber": {
+      "$f": "p.haber",
+      "pron": "a-BER",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.haber.nota"
+      }
+    },
+    "a lo mejor": {
+      "$f": "p.a lo mejor",
+      "pron": "a lo me-HOR",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.a lo mejor.nota"
+      }
+    },
+    "seguramente": {
+      "$f": "p.seguramente",
+      "pron": "se-gu-ra-MEN-te",
+      "cat": "adv",
+      "nota": {
+        "$t": "p.seguramente.nota"
+      }
+    },
+    "supongo que": {
+      "$f": "p.supongo que",
+      "pron": "su-PON-go ke",
+      "cat": "expr"
+    },
+    "me imagino que": {
+      "$f": "p.me imagino que",
+      "pron": "me i-ma-HI-no ke",
+      "cat": "expr"
+    },
+    "ni idea": {
+      "$f": "p.ni idea",
+      "pron": "ni i-DE-a",
+      "cat": "expr"
+    },
+    "el atasco": {
+      "$f": "p.el atasco",
+      "pron": "el a-TAS-ko",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la batería": {
+      "$f": "p.la batería",
+      "pron": "la ba-te-RI-a",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "tranquila": {
+      "$f": "p.tranquila",
+      "pron": "tran-KI-la",
+      "cat": "adj"
+    },
+    "unos": {
+      "$f": "p.unos",
+      "pron": "U-nos",
+      "cat": "determiner"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "The future as a guess"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "The future can express a guess about **now**, when you do not know for sure.\n\n- ¿Dónde está Ana? — **Estará** en casa. (She is probably at home.)\n- ¿Qué hora es? — **Serán** las diez.\n- ¿Cuántos años tiene? — **Tendrá unos** treinta.\n\nIn a question it can mean ‘I wonder’: **¿Quién será? ¿Dónde estarán mis llaves?**\n\nCompare **Está en casa** (I state it as a fact) and **Estará en casa** (I am guessing). You can also say **A lo mejor está en casa** or **Supongo que está en casa**. With **seguramente**, the indicative is common, but the subjunctive is also possible and can present the guess as less likely: **Seguramente está / esté en casa**."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "Fact and guess"},
-      "columnas": ["I know", "I guess"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        }
+      ],
       "filas": [
-        ["Está en casa.", "Estará en casa."],
-        ["Son las diez.", "Serán las diez."],
-        ["Tiene treinta años.", "Tendrá unos treinta años."],
-        ["Hay un atasco.", "Habrá un atasco."]
+        [
+          "Está en casa.",
+          "Estará en casa."
+        ],
+        [
+          "Son las diez.",
+          "Serán las diez."
+        ],
+        [
+          "Tiene treinta años.",
+          "Tendrá unos treinta años."
+        ],
+        [
+          "Hay un atasco.",
+          "Habrá un atasco."
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Ana is late"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "Son las nueve y Ana no ha llegado. ¿Dónde estará?",
-          "en": "It's nine and Ana hasn't arrived. Where can she be?",
           "analisis": [
-            ["Son las nueve", "time"],
-            ["Ana", "subject"],
-            ["no ha llegado", "verb"],
-            ["¿Dónde", "question"],
-            ["estará", "verb (guess)"]
+            [
+              "Son las nueve",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "Ana",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "no ha llegado",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "¿Dónde",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "estará",
+              {
+                "$t": "a4"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f1",
           "quien": "Pablo",
-          "es": "Me imagino que estará en un atasco. A lo mejor ha salido tarde.",
-          "en": "I imagine she's in a traffic jam. Maybe she left late.",
           "analisis": [
-            ["Me imagino que", "guess"],
-            ["Estará", "verb (guess)"],
-            ["en un atasco", "place"],
-            ["A lo mejor", "maybe"],
-            ["ha salido", "verb"],
-            ["tarde", "time"]
+            [
+              "Me imagino que",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "Estará",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "en un atasco",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "A lo mejor",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "ha salido",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "tarde",
+              {
+                "$t": "a0"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f2",
           "quien": "Lucía",
-          "es": "No contesta al teléfono. Ni idea.",
-          "en": "She isn't answering the phone. No idea.",
-          "analisis": [["No", "negation"], ["contesta", "verb"], ["al teléfono", "object"], ["Ni idea", "expression"]]
+          "analisis": [
+            [
+              "No",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "contesta",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "al teléfono",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "Ni idea",
+              {
+                "$t": "a10"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b3.f3",
           "quien": "Pablo",
-          "es": "No tendrá batería. Tranquila.",
-          "en": "Her battery must be dead. Don't worry.",
-          "analisis": [["No tendrá", "verb (guess)"], ["batería", "object"], ["Tranquila", "calm"]]
+          "analisis": [
+            [
+              "No tendrá",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "batería",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "Tranquila",
+              {
+                "$t": "a11"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b3.f4",
           "quien": "Lucía",
-          "es": "Llaman a la puerta. ¿Quién será?",
-          "en": "Someone's at the door. Who can it be?",
-          "analisis": [["Llaman", "verb"], ["a la puerta", "place"], ["¿Quién", "question"], ["será", "verb (guess)"]]
+          "analisis": [
+            [
+              "Llaman",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "a la puerta",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "¿Quién",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "será",
+              {
+                "$t": "a4"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b3.f5",
           "quien": "Pablo",
-          "es": "Será ella.",
-          "en": "That must be her.",
-          "analisis": [["Será", "verb (guess)"], ["ella", "who"]]
+          "analisis": [
+            [
+              "Será",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "ella",
+              {
+                "$t": "a12"
+              }
+            ]
+          ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "futuro-prob-1",
-      "pregunta": {"en": "You have no watch and you guess: it must be about ten."},
-      "frase": "___ las diez.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "Serán": {"en": "The future turns it into a guess."},
-        "Son": {"en": "Son las diez states a fact."},
-        "Eran": {"en": "Eran is the past."}
+        "Serán": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "Son": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "Eran": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "Serán"
     },
     {
       "tipo": "test",
       "id": "futuro-prob-2",
-      "pregunta": {"en": "«Tendrá unos cuarenta años» means…"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "He is probably about forty": {"en": "The future is a guess about now."},
-        "He will turn forty": {"en": "That would be cumplirá cuarenta años."},
-        "He was forty": {"en": "That would be tenía cuarenta años."}
+        "He is probably about forty": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "He will turn forty": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "He was forty": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "He is probably about forty"
     },
     {
       "tipo": "huecos",
       "id": "futuro-prob-3",
-      "pregunta": {"en": "Complete: maybe she is at home."},
-      "frase": "A lo mejor ___ en casa.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "está": {"en": "A lo mejor takes the indicative."},
-        "esté": {"en": "A lo mejor normally takes the indicative."},
-        "estar": {"en": "It needs a conjugated verb."}
+        "está": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "esté": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "estar": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "está"
     },
     {
       "tipo": "traduccion",
       "id": "futuro-prob-4",
-      "frase": "Seguramente llegará tarde.",
+      "frase": {
+        "$e": "b8.frase"
+      },
       "opciones": [
-        {"texto": {"en": "He will probably arrive late."}, "correcta": true},
         {
-          "texto": {"en": "He will definitely arrive late."},
-          "explicacion": {"en": "Seguramente expresses probability here, not a guarantee."}
+          "texto": {
+            "$t": "b8.o0"
+          },
+          "correcta": true
         },
         {
-          "texto": {"en": "He arrived late safely."},
-          "explicacion": {"en": "Seguramente is about probability, not safety."}
+          "texto": {
+            "$t": "b8.o1"
+          },
+          "explicacion": {
+            "$t": "b8.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b8.o2"
+          },
+          "explicacion": {
+            "$t": "b8.o2.explicacion"
+          }
         }
       ]
     },
     {
       "tipo": "ordenar",
       "id": "futuro-prob-5",
-      "frase": "¿Quién será a estas horas?",
-      "traduccion": {"en": "Who can it be at this hour?"}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** A friend has not come to an appointment. Write six guesses about where they are and what has happened.\n\n**Speak (about 2 minutes).** Look at a photo of strangers and guess aloud who they are, how old they are and what they do."
+        "$t": "b10.texto"
       }
     }
   ]

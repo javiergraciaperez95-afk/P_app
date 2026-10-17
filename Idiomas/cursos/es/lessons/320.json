@@ -1,65 +1,76 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "320",
   "capitulo": 26,
-  "titulo_es": "Una noticia en varias variedades",
   "titulo": {
-    "en": "One news item in several varieties"
+    "$t": "titulo"
   },
   "intro": {
-    "en": "Compare three fictional versions of the same local news item and notice regional vocabulary and forms of address."
+    "$t": "intro"
   },
   "palabras": {
-    "variedad": "variety",
-    "ustedes": "you plural",
-    "vosotros": "you plural (Spain)",
-    "vos": "you singular (voseo)",
-    "autobús": "bus",
-    "línea": "route or line",
-    "colectivo": "bus (used in Argentina and nearby varieties)",
-    "hoy": "today"
+    "variedad": {
+      "$f": "p.variedad"
+    },
+    "ustedes": {
+      "$f": "p.ustedes"
+    },
+    "vosotros": {
+      "$f": "p.vosotros"
+    },
+    "vos": {
+      "$f": "p.vos"
+    },
+    "autobús": {
+      "$f": "p.autobús"
+    },
+    "línea": {
+      "$f": "p.línea"
+    },
+    "colectivo": {
+      "$f": "p.colectivo"
+    },
+    "hoy": {
+      "$f": "p.hoy"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
       "titulo": {
-        "en": "Use context to identify forms"
+        "$t": "b1.titulo"
       },
       "texto": {
-        "en": "Many speakers in Spain use **vosotros** for an informal group; **ustedes** is usual across much of the Americas and also appears in parts of Spain. **Vos** is used in several American regions, with forms that vary. Bus vocabulary also varies: **autobús**, **camión** and **colectivo** are used in different places, but usage can differ by city and context. The examples below are fictional and show broad clues, not rules for every speaker or country."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "texto",
       "titulo": {
-        "en": "A local news item in three varieties"
+        "$t": "b2.titulo"
       },
       "frases": [
         {
-          "es": "Madrid: El ayuntamiento ha abierto hoy una nueva línea de autobús. ¿Vosotros habéis visto el aviso? La parada está junto al mercado.",
-          "en": "Madrid: The town council has opened a new bus route today. Have you all seen the notice? The stop is next to the market."
+          "$f": "b2.f0"
         },
         {
-          "es": "Ciudad de México: Hoy abrieron una nueva ruta de autobús. ¿Ustedes ya la probaron? La parada está junto al mercado.",
-          "en": "Mexico City: They opened a new bus route today. Have you all tried it yet? The stop is next to the market."
+          "$f": "b2.f1"
         },
         {
-          "es": "Buenos Aires: Hoy inauguraron una nueva línea de colectivo. ¿Vos ya la probaste? La parada está junto al mercado.",
-          "en": "Buenos Aires: They opened a new bus route today. Have you tried it yet? The stop is next to the market."
+          "$f": "b2.f2"
         },
         {
-          "es": "Los tres textos informan de una novedad parecida, pero no usan exactamente las mismas palabras ni las mismas formas de tratamiento. El contexto permite reconocer que hablan de una nueva línea de transporte.",
-          "en": "The three texts report a similar development, but they do not use exactly the same words or forms of address. The context makes it clear that they are talking about a new transport route."
+          "$f": "b2.f3"
         },
         {
-          "es": "En la primera versión, «ha abierto» presenta la novedad como cercana al momento actual; las otras dos emplean formas simples del pasado para contar lo ocurrido hoy.",
-          "en": "In the first version, «ha abierto» presents the development as connected to the present; the other two use simple past forms to report what happened today."
+          "$f": "b2.f4"
         },
         {
-          "es": "Las tres preguntas se dirigen al lector, pero cada una muestra una forma distinta de tratamiento; «ustedes» no siempre indica formalidad.",
-          "en": "All three questions address the reader, but each shows a different form of address; «ustedes» does not always indicate formality."
+          "$f": "b2.f5"
         },
         {
-          "es": "La elección verbal puede variar según la zona y el contexto, así que una sola frase no basta para describir cómo habla toda una comunidad.",
-          "en": "Verb choice can vary by region and context, so one sentence is not enough to describe how an entire community speaks."
+          "$f": "b2.f6"
         }
       ]
     },
@@ -79,66 +90,100 @@
     {
       "tipo": "test",
       "pregunta": {
-        "en": "Which message uses «vosotros»?"
+        "$t": "b4.pregunta"
       },
       "opciones": {
-        "The Madrid message.": "Correct. Read the context carefully.",
-        "The Mexico City message.": "Check the information in the text or rule.",
-        "The Buenos Aires message.": "This option does not fit the context."
+        "The Madrid message.": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "The Mexico City message.": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "The Buenos Aires message.": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "The Madrid message."
     },
     {
       "tipo": "test",
       "pregunta": {
-        "en": "Which form of address appears in the Buenos Aires message?"
+        "$t": "b5.pregunta"
       },
       "opciones": {
-        "vos": "Correct. Read the context carefully.",
-        "ustedes": "Check the information in the text or rule.",
-        "vosotros": "This option does not fit the context."
+        "vos": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "ustedes": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "vosotros": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "vos"
     },
     {
       "tipo": "test",
       "pregunta": {
-        "en": "What new service do all three reports describe?"
+        "$t": "b6.pregunta"
       },
       "opciones": {
-        "A new public transport route.": "Correct. Read the information in all three messages.",
-        "A new market.": "Check the information in the text.",
-        "A train cancellation.": "This option does not fit the context."
+        "A new public transport route.": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "A new market.": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "A train cancellation.": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "A new public transport route."
     },
     {
       "tipo": "huecos",
-      "frase": "¿Ustedes ya la ____?",
+      "frase": {
+        "$e": "b7.frase"
+      },
       "opciones": {
-        "probaron": "Correct.",
-        "habéis probado": "Check the subject and the variety in this sentence.",
-        "probaste": "This form does not fit ustedes."
+        "probaron": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "habéis probado": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "probaste": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "probaron"
     },
     {
       "tipo": "test",
       "pregunta": {
-        "en": "Which statement best describes the examples?"
+        "$t": "b8.pregunta"
       },
       "opciones": {
-        "They show regional patterns, not a rule for every speaker.": "Correct. Read the context carefully.",
-        "Only the Madrid forms are correct Spanish.": "Check the information in the text or rule.",
-        "Every country in the Americas uses vos.": "This option does not fit the context."
+        "They show regional patterns, not a rule for every speaker.": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "Only the Madrid forms are correct Spanish.": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "Every country in the Americas uses vos.": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "They show regional patterns, not a rule for every speaker."
     },
     {
       "tipo": "ordenar",
-      "frase": "Los tres textos hablan de una nueva línea de transporte.",
+      "frase": {
+        "$e": "b9.frase"
+      },
       "traduccion": {
-        "en": "The three texts are about a new transport route."
+        "$t": "b9.traduccion"
       }
     }
   ]

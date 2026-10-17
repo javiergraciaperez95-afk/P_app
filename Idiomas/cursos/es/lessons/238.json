@@ -1,190 +1,485 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "238",
   "capitulo": 21,
-  "titulo_es": "¡Ánimo, tú puedes!",
-  "titulo": {"en": "Cheer up, you can do it!"},
-  "intro": {"en": "Calming someone down, comforting them, encouraging them and offering your help."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "tranquilizar": {"en": "to calm, to reassure", "pron": "tran-ki-li-THAR", "cat": "verb"},
-    "tranquilizarse": {"en": "to calm down", "pron": "tran-ki-li-THAR-se", "cat": "verb"},
-    "calmarse": {"en": "to calm down", "pron": "kal-MAR-se", "cat": "verb"},
-    "relajarse": {"en": "to relax", "pron": "re-la-HAR-se", "cat": "verb"},
-    "consolar": {"en": "to comfort", "pron": "kon-so-LAR", "cat": "verb", "nota": "O becomes ue: consuelo."},
-    "no te pongas así": {"en": "don't get like that", "pron": "no te PON-gas a-SI", "cat": "expression"},
-    "todo saldrá bien": {"en": "everything will turn out fine", "pron": "TO-do sal-DRA byen", "cat": "expression"},
-    "todo tiene solución": {"en": "there's a solution for everything", "pron": "TO-do TYE-ne so-lu-THYON", "cat": "expression"},
-    "arreglarse": {"en": "to sort itself out", "pron": "a-rre-GLAR-se", "cat": "verb"},
-    "¡ánimo!": {"en": "cheer up!, come on!", "pron": "A-ni-mo", "cat": "interjection"},
-    "animar": {"en": "to encourage, to cheer up", "pron": "a-ni-MAR", "cat": "verb"},
-    "rendirse": {"en": "to give up", "pron": "ren-DIR-se", "cat": "verb", "nota": "E becomes i: no te rindas."},
-    "tú puedes": {"en": "you can do it", "pron": "tu PWE-des", "cat": "expression"},
-    "atreverse": {"en": "to dare", "pron": "a-tre-BER-se", "cat": "verb"},
-    "temer": {"en": "to fear", "pron": "te-MER", "cat": "verb"},
-    "conseguir": {"en": "to manage, to achieve", "pron": "kon-se-GIR", "cat": "verb", "nota": "E becomes i: lo conseguirás."},
-    "deja que te ayude": {"en": "let me help you", "pron": "DE-ha ke te a-YU-de", "cat": "expression"},
-    "seguir intentándolo": {"en": "to keep trying", "pron": "se-GIR in-ten-TAN-do-lo", "cat": "expression"}
+    "tranquilizar": {
+      "$f": "p.tranquilizar",
+      "pron": "tran-ki-li-THAR",
+      "cat": "verb"
+    },
+    "tranquilizarse": {
+      "$f": "p.tranquilizarse",
+      "pron": "tran-ki-li-THAR-se",
+      "cat": "verb"
+    },
+    "calmarse": {
+      "$f": "p.calmarse",
+      "pron": "kal-MAR-se",
+      "cat": "verb"
+    },
+    "relajarse": {
+      "$f": "p.relajarse",
+      "pron": "re-la-HAR-se",
+      "cat": "verb"
+    },
+    "consolar": {
+      "$f": "p.consolar",
+      "pron": "kon-so-LAR",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.consolar.nota"
+      }
+    },
+    "no te pongas así": {
+      "$f": "p.no te pongas así",
+      "pron": "no te PON-gas a-SI",
+      "cat": "expr"
+    },
+    "todo saldrá bien": {
+      "$f": "p.todo saldrá bien",
+      "pron": "TO-do sal-DRA byen",
+      "cat": "expr"
+    },
+    "todo tiene solución": {
+      "$f": "p.todo tiene solución",
+      "pron": "TO-do TYE-ne so-lu-THYON",
+      "cat": "expr"
+    },
+    "arreglarse": {
+      "$f": "p.arreglarse",
+      "pron": "a-rre-GLAR-se",
+      "cat": "verb"
+    },
+    "¡ánimo!": {
+      "$f": "p.¡ánimo!",
+      "pron": "A-ni-mo",
+      "cat": "interj"
+    },
+    "animar": {
+      "$f": "p.animar",
+      "pron": "a-ni-MAR",
+      "cat": "verb"
+    },
+    "rendirse": {
+      "$f": "p.rendirse",
+      "pron": "ren-DIR-se",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.rendirse.nota"
+      }
+    },
+    "tú puedes": {
+      "$f": "p.tú puedes",
+      "pron": "tu PWE-des",
+      "cat": "expr"
+    },
+    "atreverse": {
+      "$f": "p.atreverse",
+      "pron": "a-tre-BER-se",
+      "cat": "verb"
+    },
+    "temer": {
+      "$f": "p.temer",
+      "pron": "te-MER",
+      "cat": "verb"
+    },
+    "conseguir": {
+      "$f": "p.conseguir",
+      "pron": "kon-se-GIR",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.conseguir.nota"
+      }
+    },
+    "deja que te ayude": {
+      "$f": "p.deja que te ayude",
+      "pron": "DE-ha ke te a-YU-de",
+      "cat": "expr"
+    },
+    "seguir intentándolo": {
+      "$f": "p.seguir intentándolo",
+      "pron": "se-GIR in-ten-TAN-do-lo",
+      "cat": "expr"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Words for a bad moment"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "**Calming.** Reflexive imperatives: **Tranquilízate.** **Cálmate.** **Relájate.** Or just the adjective: **Tranquilo, hombre.** **Tranquila, mujer.** Here **hombre** and **mujer** add warmth, nothing else.\n\nNegative commands, with the subjunctive: **No te preocupes.** **No llores.** **No te pongas así.**\n\n**Comforting.** The future and **seguro que**:\n\n- **Ya está.** **Ya ha pasado.**\n- **Seguro que no es nada.**\n- **Seguro que todo se arreglará.**\n- **Todo saldrá bien.**\n- **Todo tiene solución.**\n\n**Encouraging.**\n\n- **¡Venga!** **¡Vamos!** **¡Ánimo!** **¡Anímate!**\n- **No tengas miedo de** preguntar.\n- **No hay nada que temer.**\n- **Sigue intentándolo.**\n- **No te rindas.**\n- **Tú puedes.** **Lo conseguirás.**\n- **¡Atrévete!**\n\n**Offering help.** At B1: **¿Quieres que te ayude?** Now also:\n\n- **¿Te echo una mano?**\n- **¿Necesitas que** te **lleve**?\n- **Deja que te ayude.** / **Déjame que te ayude.**\n- **Déjame a mí.** (when you take over)\n- **Permita que la ayude.** (formal)"
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Before the driving test"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Inés",
-          "es": "No puedo, de verdad. Voy a suspender otra vez.",
-          "en": "I can't, really. I'm going to fail again.",
-          "analisis": [["No puedo", "verb"], ["de verdad", "emphasis"], ["Voy a suspender", "verb"], ["otra vez", "again"]]
-        },
-        {
-          "quien": "Abuelo",
-          "es": "Tranquila, mujer. No te pongas así. Seguro que todo saldrá bien.",
-          "en": "Calm down, dear. Don't get like that. I'm sure everything will turn out fine.",
           "analisis": [
-            ["Tranquila, mujer", "calming"],
-            ["No te pongas así", "negative command"],
-            ["Seguro que", "certainty"],
-            ["todo saldrá bien", "verb (future)"]
+            [
+              "No puedo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "de verdad",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "Voy a suspender",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "otra vez",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
-          "quien": "Inés",
-          "es": "Es que la última vez me puse tan nerviosa que se me caló el coche tres veces.",
-          "en": "The thing is, last time I got so nervous that I stalled the car three times.",
+          "$f": "b2.f1",
+          "quien": "Abuelo",
           "analisis": [
-            ["Es que", "reason"],
-            ["la última vez", "time"],
-            ["me puse tan nerviosa que", "result"],
-            ["se me caló el coche", "verb"],
-            ["tres veces", "how often"]
+            [
+              "Tranquila, mujer",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "No te pongas así",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "Seguro que",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "todo saldrá bien",
+              {
+                "$t": "a6"
+              }
+            ]
           ]
         },
         {
-          "quien": "Abuelo",
-          "es": "Ya ha pasado. Has practicado mucho y conduces muy bien. No hay nada que temer.",
-          "en": "That's over. You've practised a lot and you drive very well. There's nothing to fear.",
+          "$f": "b2.f2",
+          "quien": "Inés",
           "analisis": [
-            ["Ya ha pasado", "comfort"],
-            ["Has practicado mucho", "verb"],
-            ["conduces muy bien", "verb"],
-            ["No hay nada que temer", "encouragement"]
+            [
+              "Es que",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "la última vez",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "me puse tan nerviosa que",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "se me caló el coche",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "tres veces",
+              {
+                "$t": "a10"
+              }
+            ]
           ]
         },
         {
-          "quien": "Inés",
-          "es": "¿Y si vuelvo a suspender?",
-          "en": "And what if I fail again?",
-          "analisis": [["¿Y si", "what if"], ["vuelvo a suspender", "verb"]]
+          "$f": "b2.f3",
+          "quien": "Abuelo",
+          "analisis": [
+            [
+              "Ya ha pasado",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "Has practicado mucho",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "conduces muy bien",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "No hay nada que temer",
+              {
+                "$t": "a12"
+              }
+            ]
+          ]
         },
         {
-          "quien": "Abuelo",
-          "es": "Pues sigues intentándolo. No te rindas. ¡Ánimo, que tú puedes! Deja que te lleve yo al examen.",
-          "en": "Then you keep trying. Don't give up. Come on, you can do it! Let me take you to the test.",
+          "$f": "b2.f4",
+          "quien": "Inés",
           "analisis": [
-            ["sigues intentándolo", "verb"],
-            ["No te rindas", "negative command"],
-            ["Ánimo", "encouragement"],
-            ["tú puedes", "encouragement"],
-            ["Deja que", "offer"],
-            ["te lleve", "verb (subjunctive)"],
-            ["yo", "subject"],
-            ["al examen", "place"]
+            [
+              "¿Y si",
+              {
+                "$t": "a13"
+              }
+            ],
+            [
+              "vuelvo a suspender",
+              {
+                "$t": "a0"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "quien": "Abuelo",
+          "analisis": [
+            [
+              "sigues intentándolo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "No te rindas",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "Ánimo",
+              {
+                "$t": "a12"
+              }
+            ],
+            [
+              "tú puedes",
+              {
+                "$t": "a12"
+              }
+            ],
+            [
+              "Deja que",
+              {
+                "$t": "a14"
+              }
+            ],
+            [
+              "te lleve",
+              {
+                "$t": "a15"
+              }
+            ],
+            [
+              "yo",
+              {
+                "$t": "a16"
+              }
+            ],
+            [
+              "al examen",
+              {
+                "$t": "a17"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "animar-1",
-      "pregunta": {"en": "Complete: don't give up."},
-      "frase": "No te ___.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "rindas": {"en": "A negative command takes the subjunctive: e becomes i."},
-        "rindes": {"en": "A negative command takes the subjunctive."},
-        "rendir": {"en": "You need a conjugated verb."}
+        "rindas": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "rindes": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "rendir": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "rindas"
     },
     {
       "tipo": "huecos",
       "id": "animar-2",
-      "pregunta": {"en": "Complete: let me help you."},
-      "frase": "Deja que te ___.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "ayude": {"en": "Dejar que takes the subjunctive."},
-        "ayudo": {"en": "Dejar que takes the subjunctive."},
-        "ayudar": {"en": "With que you need a conjugated verb."}
+        "ayude": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "ayudo": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "ayudar": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "ayude"
     },
     {
       "tipo": "test",
       "id": "animar-3",
-      "pregunta": {"en": "In Tranquilo, hombre, the word hombre…"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "adds warmth": {"en": "It is a friendly filler, not a description."},
-        "means the listener must be a man": {"en": "Mujer is used the same way for women, but both are just fillers."},
-        "is an insult": {"en": "It is friendly."}
+        "adds warmth": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "means the listener must be a man": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "is an insult": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "adds warmth"
     },
     {
       "tipo": "traduccion",
       "id": "animar-4",
-      "frase": "Seguro que todo se arreglará.",
+      "frase": {
+        "$e": "b7.frase"
+      },
       "opciones": [
-        {"texto": {"en": "I'm sure everything will sort itself out."}, "correcta": true},
         {
-          "texto": {"en": "It is safe to repair everything."},
-          "explicacion": {"en": "Seguro que: I'm sure that. Arreglarse: to sort itself out."}
+          "texto": {
+            "$t": "b7.o0"
+          },
+          "correcta": true
         },
         {
-          "texto": {"en": "Everything will surely be tidied."},
-          "explicacion": {"en": "Arreglarse here is about a problem."}
+          "texto": {
+            "$t": "b7.o1"
+          },
+          "explicacion": {
+            "$t": "b7.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b7.o2"
+          },
+          "explicacion": {
+            "$t": "b7.o2.explicacion"
+          }
         }
       ]
     },
     {
       "tipo": "test",
       "id": "animar-5",
-      "pregunta": {"en": "You take a heavy bag from someone's hands. You say…"},
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
       "opciones": {
-        "Déjame a mí.": {"en": "Let me."},
-        "No te pongas así.": {"en": "That calms someone who is upset."},
-        "Atrévete.": {"en": "That encourages someone to dare."}
+        "Déjame a mí.": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "No te pongas así.": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "Atrévete.": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "Déjame a mí."
     },
     {
       "tipo": "test",
       "id": "animar-6",
-      "pregunta": {"en": "Which phrase encourages someone to take a risk?"},
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
       "opciones": {
-        "¡Atrévete!": {"en": "Dare to!"},
-        "Ya ha pasado.": {"en": "That comforts after something bad."},
-        "Cálmate.": {"en": "That calms."}
+        "¡Atrévete!": {
+          "$t": "b9.o0.refuerzo"
+        },
+        "Ya ha pasado.": {
+          "$t": "b9.o1.refuerzo"
+        },
+        "Cálmate.": {
+          "$t": "b9.o2.refuerzo"
+        }
       },
       "correcta": "¡Atrévete!"
     },
     {
       "tipo": "ordenar",
       "id": "animar-7",
-      "frase": "No tengas miedo de preguntar",
-      "traduccion": {"en": "Don't be afraid to ask."}
+      "frase": {
+        "$e": "b10.frase"
+      },
+      "traduccion": {
+        "$t": "b10.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (150–180 words).** Write a message of encouragement to a friend who has failed an important exam.\n\n**Speak (about 3 minutes).** Calm down and encourage aloud a friend who is very nervous before an interview."
+        "$t": "b11.texto"
       }
     }
   ]

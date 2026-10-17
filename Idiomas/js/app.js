@@ -363,11 +363,13 @@ let cargaDelCurso = null;
 let cursoCargado = false;
 function cargarCurso() {
   cargaDelCurso ??= (async () => {
-    // Se espera a saber si el dispositivo tiene voz (segundo y medio como mucho): de eso depende qué ejercicios hay.
+    // La voz del dispositivo se prepara a la vez (tarda hasta segundo y medio); solo la esperan las pantallas
+    // cuyos ejercicios dependen de ella (ver navegar). Si aparece más tarde, «voz-cambiada» repinta la pantalla.
     // Con índice (indice/lecciones.json) basta un archivo para la lista; cada lección se carga al abrirla.
     // Sin índice (un curso al que aún no se le ha generado) se descargan todas, como antes.
     const diccionario = cargarDiccionario();
-    const [indice, { capitulos, error }] = await Promise.all([cargarIndice(), cargarCapitulos(), prepararVoces()]);
+    contenido.voces = prepararVoces();
+    const [indice, { capitulos, error }] = await Promise.all([cargarIndice(), cargarCapitulos()]);
     const cargadas = indice ?? await descubrirLecciones();
     contenido.diccionario = diccionario.then(mapa => {
       if (mapa) ponerDiccionario(mapa);
@@ -455,6 +457,12 @@ async function navegar({ cambioDeIdioma = false } = {}) {
   if (!cursoCargado && !esGeneral(seccion)) {
     poner(app, el('div', { class: 'arranque' }, el('img', { class: 'arranque-logo', src: 'assets/logo.svg', alt: t('html.cargando'), width: 128, height: 128 })));
     await cargarCurso();
+    if (estePase !== pase) return;
+  }
+
+  // Lo que se practica depende de si hay voz: esas pantallas esperan a saberlo (Cuaderno, Repaso o Perfil, no).
+  if (['lecciones', 'leccion', 'practica'].includes(seccion)) {
+    await contenido.voces;
     if (estePase !== pase) return;
   }
 

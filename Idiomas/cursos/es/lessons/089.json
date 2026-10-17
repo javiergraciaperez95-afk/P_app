@@ -1,171 +1,462 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "089",
   "capitulo": 9,
-  "titulo_es": "Siga todo recto",
-  "titulo": {"en": "Go straight on"},
-  "intro": {"en": "Usted and ustedes commands for directions, plus negative tú and usted commands."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "siga": {"en": "carry on, continue (usted)", "pron": "SI-ga", "cat": "verb"},
-    "gire": {"en": "turn (usted)", "pron": "HI-re", "cat": "verb"},
-    "cruce": {"en": "cross (usted)", "pron": "KRU-se (seseo) / KRU-the (distinción)", "cat": "verb"},
-    "tome": {"en": "take (usted)", "pron": "TO-me", "cat": "verb"},
+    "siga": {
+      "$f": "p.siga",
+      "pron": "SI-ga",
+      "cat": "verb"
+    },
+    "gire": {
+      "$f": "p.gire",
+      "pron": "HI-re",
+      "cat": "verb"
+    },
+    "cruce": {
+      "$f": "p.cruce",
+      "pron": "KRU-se (seseo) / KRU-the (distinción)",
+      "cat": "verb"
+    },
+    "tome": {
+      "$f": "p.tome",
+      "pron": "TO-me",
+      "cat": "verb"
+    },
     "coja": {
-      "en": "take (usted)",
+      "$f": "p.coja",
       "pron": "KO-ha",
       "cat": "verb",
-      "nota": "Coger is common in Spain and parts of Latin America; in some countries it has a vulgar sexual meaning. Tomar is a broadly understood choice for directions."
+      "nota": {
+        "$t": "p.coja.nota"
+      }
     },
-    "todo recto": {"en": "straight on (also todo derecho)", "pron": "TO-do REK-to", "cat": "expression"},
-    "la primera calle": {"en": "the first street", "pron": "la pri-ME-ra KA-ye", "cat": "noun", "genero": "f"},
-    "la esquina": {"en": "the corner", "pron": "la es-KI-na", "cat": "noun", "genero": "f"},
-    "el semáforo": {"en": "the traffic lights", "pron": "el se-MA-fo-ro", "cat": "noun", "genero": "m"},
-    "la estación": {"en": "the station", "pron": "la es-ta-SYON (seseo) / es-ta-THYON (distinción)", "cat": "noun", "genero": "f"},
-    "la plaza": {"en": "the square", "pron": "la PLA-sa (seseo) / PLA-tha (distinción)", "cat": "noun", "genero": "f"},
-    "a la derecha": {"en": "to the right", "pron": "a la de-RE-cha", "cat": "expression"},
-    "a la izquierda": {"en": "to the left", "pron": "a la is-KYER-da", "cat": "expression"},
-    "hasta": {"en": "as far as, until", "pron": "AS-ta", "cat": "preposition"},
-    "al final de": {"en": "at the end of", "pron": "al fi-NAL de", "cat": "expression"},
-    "no se preocupe": {"en": "don't worry (usted)", "pron": "no se pre-o-KU-pe", "cat": "expression"}
+    "todo recto": {
+      "$f": "p.todo recto",
+      "pron": "TO-do REK-to",
+      "cat": "expr"
+    },
+    "la primera calle": {
+      "$f": "p.la primera calle",
+      "pron": "la pri-ME-ra KA-ye",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "la esquina": {
+      "$f": "p.la esquina",
+      "pron": "la es-KI-na",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "el semáforo": {
+      "$f": "p.el semáforo",
+      "pron": "el se-MA-fo-ro",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la estación": {
+      "$f": "p.la estación",
+      "pron": "la es-ta-SYON (seseo) / es-ta-THYON (distinción)",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "la plaza": {
+      "$f": "p.la plaza",
+      "pron": "la PLA-sa (seseo) / PLA-tha (distinción)",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "a la derecha": {
+      "$f": "p.a la derecha",
+      "pron": "a la de-RE-cha",
+      "cat": "expr"
+    },
+    "a la izquierda": {
+      "$f": "p.a la izquierda",
+      "pron": "a la is-KYER-da",
+      "cat": "expr"
+    },
+    "hasta": {
+      "$f": "p.hasta",
+      "pron": "AS-ta",
+      "cat": "prep"
+    },
+    "al final de": {
+      "$f": "p.al final de",
+      "pron": "al fi-NAL de",
+      "cat": "expr"
+    },
+    "no se preocupe": {
+      "$f": "p.no se preocupe",
+      "pron": "no se pre-o-KU-pe",
+      "cat": "expr"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "The usted command"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "The affirmative **usted** command uses the present subjunctive:\n\n- **-ar → -e**: girar → **gire**, tomar → **tome**.\n- **-er/-ir → -a**: comer → **coma**, subir → **suba**.\n\nMany forms follow the **yo** present stem: seguir (**sigo**) → **siga**, coger (**cojo**) → **coja**, venir (**vengo**) → **venga**, hacer (**hago**) → **haga**. Some common forms are irregular in other ways: ir → **vaya**. Spelling can change to keep the sound: cruzar → **cruce**.\n\nFor **ustedes**, add **-n**: **sigan**, **giren**. In much of Latin America, **ustedes** is also the usual informal plural; in most of Spain, the informal plural is **vosotros** (**seguid**, **girad**).\n\nNegative commands also use the present subjunctive: **no gire** (usted), **no gires** (tú). Do not use the affirmative **gira** after **no**.\n\nAttach pronouns to an affirmative command (**siéntese**) and place them before a negative command (**no se siente**). Add a written accent when needed: sentarse → **siéntese**."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "Tú, usted and ustedes"},
-      "columnas": ["Infinitive", "tú", "usted", "ustedes"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        },
+        {
+          "$t": "b2.c2"
+        },
+        {
+          "$t": "b2.c3"
+        }
+      ],
       "filas": [
-        ["girar", "gira", "gire", "giren"],
-        ["tomar", "toma", "tome", "tomen"],
-        ["seguir", "sigue", "siga", "sigan"],
-        ["cruzar", "cruza", "cruce", "crucen"],
-        ["coger", "coge", "coja", "cojan"]
+        [
+          "girar",
+          "gira",
+          "gire",
+          "giren"
+        ],
+        [
+          "tomar",
+          "toma",
+          "tome",
+          "tomen"
+        ],
+        [
+          "seguir",
+          "sigue",
+          "siga",
+          "sigan"
+        ],
+        [
+          "cruzar",
+          "cruza",
+          "cruce",
+          "crucen"
+        ],
+        [
+          "coger",
+          "coge",
+          "coja",
+          "cojan"
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "To the station"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "Perdone, ¿para ir a la estación?",
-          "en": "Excuse me, how do I get to the station?",
-          "analisis": [["Perdone", "politeness"], ["¿para ir", "purpose"], ["a la estación", "place"]]
-        },
-        {
-          "quien": "Señor",
-          "es": "Siga todo recto hasta el semáforo.",
-          "en": "Go straight on as far as the traffic lights.",
-          "analisis": [["Siga", "command (usted)"], ["todo recto", "direction"], ["hasta el semáforo", "limit"]]
-        },
-        {"quien": "Lucía", "es": "¿Y después?", "en": "And then?", "analisis": [["después", "time"]]},
-        {
-          "quien": "Señor",
-          "es": "Gire a la derecha y tome la primera calle a la izquierda.",
-          "en": "Turn right and take the first street on the left.",
           "analisis": [
-            ["Gire", "command"],
-            ["a la derecha", "direction"],
-            ["tome", "command"],
-            ["la primera calle", "object"],
-            ["a la izquierda", "direction"]
+            [
+              "Perdone",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "¿para ir",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "a la estación",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
-          "quien": "Lucía",
-          "es": "¿Está muy lejos?",
-          "en": "Is it very far?",
-          "analisis": [["¿Está", "verb"], ["muy lejos", "distance"]]
+          "$f": "b3.f1",
+          "quien": "Señor",
+          "analisis": [
+            [
+              "Siga",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "todo recto",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "hasta el semáforo",
+              {
+                "$t": "a5"
+              }
+            ]
+          ]
         },
         {
-          "quien": "Señor",
-          "es": "No se preocupe. Cruce la plaza y está al final de la calle.",
-          "en": "Don't worry. Cross the square and it's at the end of the street.",
+          "$f": "b3.f2",
+          "quien": "Lucía",
           "analisis": [
-            ["No se preocupe", "negative command"],
-            ["Cruce", "command"],
-            ["la plaza", "object"],
-            ["está", "verb"],
-            ["al final de la calle", "place"]
+            [
+              "después",
+              {
+                "$t": "a6"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f3",
+          "quien": "Señor",
+          "analisis": [
+            [
+              "Gire",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "a la derecha",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "tome",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "la primera calle",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "a la izquierda",
+              {
+                "$t": "a4"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "¿Está",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "muy lejos",
+              {
+                "$t": "a10"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f5",
+          "quien": "Señor",
+          "analisis": [
+            [
+              "No se preocupe",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "Cruce",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "la plaza",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "está",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "al final de la calle",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "siga-recto-1",
-      "pregunta": {"en": "Complete, with usted: turn left."},
-      "frase": "___ a la izquierda.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "Gire": {"en": "-ar verbs take -e in the usted command."},
-        "Gira": {"en": "Gira is the tú command."},
-        "Giro": {"en": "Giro is I turn."}
+        "Gire": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "Gira": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "Giro": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "Gire"
     },
     {
       "tipo": "huecos",
       "id": "siga-recto-2",
-      "pregunta": {"en": "Complete, with usted: go straight on."},
-      "frase": "___ todo recto.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "Siga": {"en": "Seguir: sigo → siga."},
-        "Sigue": {"en": "Sigue is the tú command."},
-        "Sega": {"en": "The command is built on sigo: siga."}
+        "Siga": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "Sigue": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "Sega": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "Siga"
     },
     {
       "tipo": "test",
       "id": "siga-recto-3",
-      "pregunta": {"en": "Which is the negative tú command of girar?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "no gires": {"en": "A negative tú command uses the present subjunctive: girar → no gires."},
-        "no giras": {"en": "That is a statement: you don't turn."},
-        "no gira": {"en": "That is a present-tense statement, not a negative command."}
+        "no gires": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "no giras": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "no gira": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "no gires"
     },
     {
       "tipo": "traduccion",
       "id": "siga-recto-4",
-      "frase": "Tome la primera calle a la derecha.",
+      "frase": {
+        "$e": "b8.frase"
+      },
       "opciones": [
-        {"texto": {"en": "Take the first street on the right."}, "correcta": true},
-        {"texto": {"en": "Take the first street on the left."}, "explicacion": {"en": "Derecha is right."}},
-        {"texto": {"en": "It's the first street on the right."}, "explicacion": {"en": "Tome is a command: take."}}
+        {
+          "texto": {
+            "$t": "b8.o0"
+          },
+          "correcta": true
+        },
+        {
+          "texto": {
+            "$t": "b8.o1"
+          },
+          "explicacion": {
+            "$t": "b8.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b8.o2"
+          },
+          "explicacion": {
+            "$t": "b8.o2.explicacion"
+          }
+        }
       ]
     },
     {
       "tipo": "ordenar",
       "id": "siga-recto-5",
-      "frase": "Siga todo recto hasta el semáforo",
-      "traduccion": {"en": "Go straight on as far as the traffic lights."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "siga-recto-6",
-      "pregunta": {"en": "Complete the negative command for usted: don't cross the street here."},
-      "frase": "No ___ la calle aquí, por favor.",
+      "pregunta": {
+        "$t": "b10.pregunta"
+      },
+      "frase": {
+        "$e": "b10.frase"
+      },
       "opciones": {
-        "cruce": {"en": "The negative usted command uses the present subjunctive."},
-        "cruza": {"en": "Cruza is the affirmative tú command."},
-        "cruces": {"en": "Cruces is the negative tú form."}
+        "cruce": {
+          "$t": "b10.o0.refuerzo"
+        },
+        "cruza": {
+          "$t": "b10.o1.refuerzo"
+        },
+        "cruces": {
+          "$t": "b10.o2.refuerzo"
+        }
       },
       "correcta": "cruce"
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Give a visitor directions from the station to the square, using usted.\n\n**Speak (about 1 minute).** Give directions to someone who asks how to get from the station to the square."
+        "$t": "b11.texto"
       }
     }
   ]

@@ -1,137 +1,355 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "139",
   "capitulo": 13,
-  "titulo_es": "Lo que quiero decir",
-  "titulo": {"en": "What I mean"},
-  "intro": {"en": "Lo que, el que and lo plus an adjective: three small tools for longer sentences."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "lo que": {"en": "what, the thing that", "pron": "lo ke", "cat": "pronoun"},
-    "el que": {"en": "the one that (masculine)", "pron": "el ke", "cat": "pronoun"},
-    "la que": {"en": "the one that (feminine)", "pron": "la ke", "cat": "pronoun"},
-    "los que": {"en": "those who, the ones that", "pron": "los ke", "cat": "pronoun"},
-    "las que": {"en": "those who, the ones that (feminine)", "pron": "las ke", "cat": "pronoun"},
-    "lo bueno": {"en": "the good thing", "pron": "lo BWE-no", "cat": "expression"},
-    "lo malo": {"en": "the bad thing", "pron": "lo MA-lo", "cat": "expression"},
-    "lo importante": {"en": "the important thing", "pron": "lo im-por-TAN-te", "cat": "expression"},
-    "lo mejor": {"en": "the best thing", "pron": "lo me-HOR", "cat": "expression"},
-    "lo mismo": {"en": "the same thing", "pron": "lo MIS-mo", "cat": "expression"},
-    "todo lo que": {"en": "everything that", "pron": "TO-do lo ke", "cat": "expression"},
-    "la razón por la que": {"en": "the reason why", "pron": "la ra-THON/SÓN por la ke", "cat": "expression"},
-    "quiere decir": {"en": "it means", "pron": "KYE-re de-THIR/SIR", "cat": "expression"}
+    "lo que": {
+      "$f": "p.lo que",
+      "pron": "lo ke",
+      "cat": "pron"
+    },
+    "el que": {
+      "$f": "p.el que",
+      "pron": "el ke",
+      "cat": "pron"
+    },
+    "la que": {
+      "$f": "p.la que",
+      "pron": "la ke",
+      "cat": "pron"
+    },
+    "los que": {
+      "$f": "p.los que",
+      "pron": "los ke",
+      "cat": "pron"
+    },
+    "las que": {
+      "$f": "p.las que",
+      "pron": "las ke",
+      "cat": "pron"
+    },
+    "lo bueno": {
+      "$f": "p.lo bueno",
+      "pron": "lo BWE-no",
+      "cat": "expr"
+    },
+    "lo malo": {
+      "$f": "p.lo malo",
+      "pron": "lo MA-lo",
+      "cat": "expr"
+    },
+    "lo importante": {
+      "$f": "p.lo importante",
+      "pron": "lo im-por-TAN-te",
+      "cat": "expr"
+    },
+    "lo mejor": {
+      "$f": "p.lo mejor",
+      "pron": "lo me-HOR",
+      "cat": "expr"
+    },
+    "lo mismo": {
+      "$f": "p.lo mismo",
+      "pron": "lo MIS-mo",
+      "cat": "expr"
+    },
+    "todo lo que": {
+      "$f": "p.todo lo que",
+      "pron": "TO-do lo ke",
+      "cat": "expr"
+    },
+    "la razón por la que": {
+      "$f": "p.la razón por la que",
+      "pron": "la ra-THON/SÓN por la ke",
+      "cat": "expr"
+    },
+    "quiere decir": {
+      "$f": "p.quiere decir",
+      "pron": "KYE-re de-THIR/SIR",
+      "cat": "expr"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Lo que, el que, lo bueno"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "**Lo que** means “what / the thing that” when there is no noun for it to agree with: **lo que** quiero es descansar. Me gusta **lo que** haces. **Todo lo que** dices es verdad. In a direct question, use **qué**: ¿Qué quieres?\n\n**El que, la que, los que, las que** can replace a noun already mentioned or refer to a person or thing without naming it; the plural forms can refer to groups: este libro es **el que** quiero; **los que** llegan tarde no entran. The article agrees with the person or thing it refers to.\n\nThe pattern **article + que** is one option after a preposition; the article agrees with its antecedent: la chica **con la que** hablé, la razón **por la que** no voy, el día **en el que** nací.\n\n**Lo** + adjective names a quality or idea: **lo bueno**, **lo malo**, **lo importante**, **lo mejor**. Lo bueno **es que** es barato."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "An email from work"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "No entiendo lo que dice este correo.",
-          "en": "I don't understand what this email says.",
-          "analisis": [["No", "negation"], ["entiendo", "verb"], ["lo que dice", "object"], ["este correo", "subject"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Lo que quiere decir es que hay una reunión.",
-          "en": "What it means is that there's a meeting.",
-          "analisis": [["Lo que quiere decir", "subject"], ["es que", "verb"], ["hay", "verb"], ["una reunión", "object"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "¿Y los que no pueden ir?",
-          "en": "And those who can't go?",
-          "analisis": [["los que", "those who"], ["no pueden ir", "verb"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Lo bueno es que se puede ver en casa.",
-          "en": "The good thing is that you can watch it at home.",
-          "analisis": [["Lo bueno", "subject"], ["es que", "verb"], ["se puede ver", "verb"], ["en casa", "place"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Lo malo es que es a las ocho. Esa es la razón por la que no voy.",
-          "en": "The bad thing is that it's at eight. That's the reason why I'm not going.",
           "analisis": [
-            ["Lo malo", "subject"],
-            ["es que", "verb"],
-            ["a las ocho", "time"],
-            ["la razón por la que", "the reason why"],
-            ["no voy", "verb"]
+            [
+              "No",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "entiendo",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "lo que dice",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "este correo",
+              {
+                "$t": "a3"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f1",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Lo que quiere decir",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "es que",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "hay",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "una reunión",
+              {
+                "$t": "a2"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f2",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "los que",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "no pueden ir",
+              {
+                "$t": "a1"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f3",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Lo bueno",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "es que",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "se puede ver",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "en casa",
+              {
+                "$t": "a5"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Lo malo",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "es que",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "a las ocho",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "la razón por la que",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "no voy",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "lo-que-1",
-      "pregunta": {"en": "Complete: what I want is to rest."},
-      "frase": "___ quiero es descansar.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "Lo que": {"en": "What, as a statement, is lo que."},
-        "Qué": {"en": "Qué opens a question."},
-        "El que": {"en": "El que points at a masculine noun."}
+        "Lo que": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "Qué": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "El que": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "Lo que"
     },
     {
       "tipo": "huecos",
       "id": "lo-que-2",
-      "pregunta": {"en": "Complete: this book is the one I want."},
-      "frase": "Este libro es ___ quiero.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "el que": {"en": "It points back at el libro."},
-        "lo que": {"en": "Lo que is for an idea, not a named noun."},
-        "la que": {"en": "Libro is masculine."}
+        "el que": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "lo que": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "la que": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "el que"
     },
     {
       "tipo": "huecos",
       "id": "lo-que-3",
-      "pregunta": {"en": "Complete: the good thing is that it's cheap."},
-      "frase": "___ bueno es que es barato.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "Lo": {"en": "Lo plus adjective: the good thing."},
-        "El": {"en": "El bueno is the good one, a person or thing."},
-        "La": {"en": "La buena is the good one, feminine."}
+        "Lo": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "El": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "La": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "Lo"
     },
     {
       "tipo": "huecos",
       "id": "lo-que-4",
-      "pregunta": {"en": "Complete: the girl I spoke with."},
-      "frase": "La chica con ___ hablé.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "la que": {"en": "In this article + que pattern, the article agrees with chica: la que."},
-        "lo que": {"en": "Lo que is neuter; it does not agree in gender with chica."},
-        "el que": {"en": "Chica is feminine."}
+        "la que": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "lo que": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "el que": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "la que"
     },
     {
       "tipo": "ordenar",
       "id": "lo-que-5",
-      "frase": "Todo lo que dices es verdad",
-      "traduccion": {"en": "Everything you say is true."}
+      "frase": {
+        "$e": "b8.frase"
+      },
+      "traduccion": {
+        "$t": "b8.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write about what you like most and least about your town, your job and your language: Lo que más me gusta es…\n\n**Speak (about 2 minutes).** Explain aloud what surprised you most when you started learning Spanish."
+        "$t": "b9.texto"
       }
     }
   ]

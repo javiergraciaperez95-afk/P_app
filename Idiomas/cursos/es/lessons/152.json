@@ -1,179 +1,512 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "152",
   "capitulo": 13,
-  "titulo_es": "La mayoría de la gente",
-  "titulo": {"en": "Most people"},
-  "intro": {"en": "Talking about proportions and percentages, with an equality comparison."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "la mayoría de": {"en": "most of, the majority of", "pron": "la ma-yo-RI-a de", "cat": "expression"},
-    "la mitad de": {"en": "half of", "pron": "la mi-TAD de", "cat": "expression"},
-    "un tercio de": {"en": "a third of", "pron": "un TER-thyo de", "cat": "expression"},
-    "una cuarta parte de": {"en": "a quarter of", "pron": "U-na KWAR-ta PAR-te de", "cat": "expression"},
-    "el veinte por ciento": {"en": "twenty per cent", "pron": "el BEIN-te por THYEN-to", "cat": "expression"},
-    "casi todos": {"en": "almost all", "pron": "KA-si TO-dos", "cat": "expression"},
-    "muy pocos": {"en": "very few", "pron": "mwi PO-kos", "cat": "expression"},
-    "uno de cada tres": {"en": "one in three", "pron": "U-no de KA-da tres", "cat": "expression"},
-    "igual de": {"en": "just as (+ adjective)", "pron": "i-GWAL de", "cat": "expression"},
-    "la encuesta": {"en": "the survey", "pron": "la en-KWES-ta", "cat": "noun", "genero": "f"},
-    "el resultado": {"en": "the result", "pron": "el re-sul-TA-do", "cat": "noun", "genero": "m"},
-    "según": {"en": "according to", "pron": "se-GUN", "cat": "preposition"},
-    "aumentar": {"en": "to increase", "pron": "au-men-TAR", "cat": "verb"},
-    "disminuir": {"en": "to decrease", "pron": "dis-mi-NWIR", "cat": "verb"},
-    "subir": {"en": "to go up; to rise", "pron": "su-BIR", "cat": "verb"},
-    "bajar": {"en": "to go down; to fall", "pron": "ba-HAR", "cat": "verb"},
-    "el doble de": {"en": "twice as much/many as", "pron": "el DO-ble de", "cat": "expression"},
-    "un montón de": {"en": "loads of", "pron": "un mon-TON de", "cat": "expression"},
-    "en cambio": {"en": "on the other hand", "pron": "en KAM-byo", "cat": "expression"},
-    "nadie": {"en": "nobody; no one", "pron": "NA-dye", "cat": "pronoun"}
+    "la mayoría de": {
+      "$f": "p.la mayoría de",
+      "pron": "la ma-yo-RI-a de",
+      "cat": "expr"
+    },
+    "la mitad de": {
+      "$f": "p.la mitad de",
+      "pron": "la mi-TAD de",
+      "cat": "expr"
+    },
+    "un tercio de": {
+      "$f": "p.un tercio de",
+      "pron": "un TER-thyo de",
+      "cat": "expr"
+    },
+    "una cuarta parte de": {
+      "$f": "p.una cuarta parte de",
+      "pron": "U-na KWAR-ta PAR-te de",
+      "cat": "expr"
+    },
+    "el veinte por ciento": {
+      "$f": "p.el veinte por ciento",
+      "pron": "el BEIN-te por THYEN-to",
+      "cat": "expr"
+    },
+    "casi todos": {
+      "$f": "p.casi todos",
+      "pron": "KA-si TO-dos",
+      "cat": "expr"
+    },
+    "muy pocos": {
+      "$f": "p.muy pocos",
+      "pron": "mwi PO-kos",
+      "cat": "expr"
+    },
+    "uno de cada tres": {
+      "$f": "p.uno de cada tres",
+      "pron": "U-no de KA-da tres",
+      "cat": "expr"
+    },
+    "igual de": {
+      "$f": "p.igual de",
+      "pron": "i-GWAL de",
+      "cat": "expr"
+    },
+    "la encuesta": {
+      "$f": "p.la encuesta",
+      "pron": "la en-KWES-ta",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "el resultado": {
+      "$f": "p.el resultado",
+      "pron": "el re-sul-TA-do",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "según": {
+      "$f": "p.según",
+      "pron": "se-GUN",
+      "cat": "prep"
+    },
+    "aumentar": {
+      "$f": "p.aumentar",
+      "pron": "au-men-TAR",
+      "cat": "verb"
+    },
+    "disminuir": {
+      "$f": "p.disminuir",
+      "pron": "dis-mi-NWIR",
+      "cat": "verb"
+    },
+    "subir": {
+      "$f": "p.subir",
+      "pron": "su-BIR",
+      "cat": "verb"
+    },
+    "bajar": {
+      "$f": "p.bajar",
+      "pron": "ba-HAR",
+      "cat": "verb"
+    },
+    "el doble de": {
+      "$f": "p.el doble de",
+      "pron": "el DO-ble de",
+      "cat": "expr"
+    },
+    "un montón de": {
+      "$f": "p.un montón de",
+      "pron": "un mon-TON de",
+      "cat": "expr"
+    },
+    "en cambio": {
+      "$f": "p.en cambio",
+      "pron": "en KAM-byo",
+      "cat": "expr"
+    },
+    "nadie": {
+      "$f": "p.nadie",
+      "pron": "NA-dye",
+      "cat": "pron"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Describing a group"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "- **La mayoría de** + plural group: **la mayoría de los jóvenes**. The verb may agree with *mayoría* (**vive**) or with the people in the group (**viven**).\n- Fractions: **la mitad de**, **un tercio de**, **una cuarta parte de** + group or amount.\n- Put a determiner before a percentage: **el 20 %**, **un 20 %**, **este 20 %**. The text uses **el** for its specified survey figure. With a plural group after **de**, the verb can be singular or plural: *el 20 % va/van al gimnasio*.\n- **Uno de cada tres** means one in every three; use **una** with an all-feminine group. Also: **casi todos**, **muy pocos**, **nadie**.\n\nIn conversation, **un montón de** means loads of. To describe figures, use **aumentar/disminuir** or **subir/bajar**. For a comparison, say **el doble de** or **la mitad de** + an amount.\n\n**Igual de** + adjective/adverb + **que** compares equal degrees: *Es igual de alto que su padre*; *leen igual de poco que las mujeres*. It is similar to **tan … como**. To name a source, use **según**: *según la encuesta*."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "texto",
-      "titulo": {"en": "A survey about free time"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
-          "es": "Según una encuesta reciente, la mayoría de los españoles pasa más de tres horas al día delante de una pantalla.",
-          "en": "According to a recent survey, most Spaniards spend more than three hours a day in front of a screen.",
+          "$f": "b2.f0",
           "analisis": [
-            ["Según una encuesta reciente", "source"],
-            ["la mayoría de los españoles", "subject"],
-            ["pasa", "verb"],
-            ["más de tres horas al día", "time"],
-            ["delante de una pantalla", "place"]
+            [
+              "Según una encuesta reciente",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "la mayoría de los españoles",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "pasa",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "más de tres horas al día",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "delante de una pantalla",
+              {
+                "$t": "a4"
+              }
+            ]
           ]
         },
         {
-          "es": "Casi todos tienen móvil, y uno de cada tres lo mira nada más despertarse.",
-          "en": "Almost all of them have a mobile, and one in three looks at it as soon as they wake up.",
+          "$f": "b2.f1",
           "analisis": [
-            ["Casi todos", "subject"],
-            ["tienen", "verb"],
-            ["móvil", "object"],
-            ["uno de cada tres", "subject"],
-            ["lo mira", "verb"],
-            ["nada más despertarse", "time"]
+            [
+              "Casi todos",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "tienen",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "móvil",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "uno de cada tres",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "lo mira",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "nada más despertarse",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
-          "es": "La mitad de los jóvenes hace deporte cada semana.",
-          "en": "Half of young people exercise every week.",
-          "analisis": [["La mitad de los jóvenes", "subject"], ["hace deporte", "verb"], ["cada semana", "frequency"]]
-        },
-        {
-          "es": "En cambio, solo el veinte por ciento de los mayores de sesenta años va al gimnasio.",
-          "en": "On the other hand, only twenty per cent of people over sixty go to the gym.",
+          "$f": "b2.f2",
           "analisis": [
-            ["En cambio", "contrast"],
-            ["solo el veinte por ciento", "subject"],
-            ["de los mayores de sesenta años", "of whom"],
-            ["va", "verb"],
-            ["al gimnasio", "place"]
+            [
+              "La mitad de los jóvenes",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "hace deporte",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "cada semana",
+              {
+                "$t": "a6"
+              }
+            ]
           ]
         },
         {
-          "es": "Los hombres leen igual de poco que las mujeres: menos de un libro al mes.",
-          "en": "Men read just as little as women: less than a book a month.",
+          "$f": "b2.f3",
           "analisis": [
-            ["Los hombres", "subject"],
-            ["leen", "verb"],
-            ["igual de poco que las mujeres", "comparison"],
-            ["menos de un libro al mes", "amount"]
+            [
+              "En cambio",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "solo el veinte por ciento",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "de los mayores de sesenta años",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "va",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "al gimnasio",
+              {
+                "$t": "a4"
+              }
+            ]
           ]
         },
         {
-          "es": "Muy pocos dicen que tienen tiempo libre suficiente.",
-          "en": "Very few say they have enough free time.",
-          "analisis": [["Muy pocos", "subject"], ["dicen que", "verb"], ["tienen", "verb"], ["tiempo libre suficiente", "object"]]
+          "$f": "b2.f4",
+          "analisis": [
+            [
+              "Los hombres",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "leen",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "igual de poco que las mujeres",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "menos de un libro al mes",
+              {
+                "$t": "a10"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "analisis": [
+            [
+              "Muy pocos",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "dicen que",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "tienen",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "tiempo libre suficiente",
+              {
+                "$t": "a5"
+              }
+            ]
+          ]
         }
       ]
     },
-    {"tipo": "vocabulario", "palabras": ["la mayoría de", "la mitad de", "un tercio de", "una cuarta parte de", "el veinte por ciento", "casi todos", "muy pocos", "uno de cada tres", "igual de", "la encuesta", "el resultado", "según", "aumentar", "disminuir", "subir", "bajar", "el doble de", "un montón de", "en cambio", "nadie"]},
+    {
+      "tipo": "vocabulario",
+      "palabras": [
+        "la mayoría de",
+        "la mitad de",
+        "un tercio de",
+        "una cuarta parte de",
+        "el veinte por ciento",
+        "casi todos",
+        "muy pocos",
+        "uno de cada tres",
+        "igual de",
+        "la encuesta",
+        "el resultado",
+        "según",
+        "aumentar",
+        "disminuir",
+        "subir",
+        "bajar",
+        "el doble de",
+        "un montón de",
+        "en cambio",
+        "nadie"
+      ]
+    },
     {
       "tipo": "huecos",
       "id": "mayoria-1",
-      "pregunta": {"en": "Complete: most young people live with their parents."},
-      "frase": "La mayoría ___ los jóvenes vive con sus padres.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
-      "opciones": {"de": {"en": "La mayoría de."}, "que": {"en": "La mayoría takes de."}, "en": {"en": "La mayoría takes de."}},
+      "opciones": {
+        "de": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "que": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "en": {
+          "$t": "b4.o2.refuerzo"
+        }
+      },
       "correcta": "de"
     },
     {
       "tipo": "huecos",
       "id": "mayoria-2",
-      "pregunta": {"en": "Use the definite article for this previously identified survey figure."},
-      "frase": "___ veinte por ciento de los alumnos.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "El": {"en": "Use el for this definite, specified figure."},
-        "Un": {"en": "Un is possible in other contexts, but the prompt asks for the definite article."},
-        "Los": {"en": "The percentage is singular; use the definite article el."}
+        "El": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "Un": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "Los": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "El"
     },
     {
       "tipo": "huecos",
       "id": "mayoria-3",
-      "pregunta": {"en": "Complete: he is just as tall as his father."},
-      "frase": "Es igual ___ alto que su padre.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "de": {"en": "Igual de plus adjective plus que."},
-        "tan": {"en": "Tan goes with como."},
-        "que": {"en": "Que comes after the adjective."}
+        "de": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "tan": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "que": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "de"
     },
     {
       "tipo": "test",
       "id": "mayoria-4",
-      "pregunta": {"en": "According to the survey, what proportion of young people exercise each week?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "Half of them": {"en": "La mitad de los jóvenes."},
-        "Almost all of them": {"en": "Casi todos is about mobiles."},
-        "Twenty per cent": {"en": "That figure is for people over sixty."}
+        "Half of them": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "Almost all of them": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "Twenty per cent": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "Half of them"
     },
     {
       "tipo": "traduccion",
       "id": "mayoria-5",
-      "frase": "uno de cada tres",
+      "frase": {
+        "$e": "b8.frase"
+      },
       "opciones": [
-        {"texto": {"en": "one in three"}, "correcta": true},
-        {"texto": {"en": "one after three"}, "explicacion": {"en": "De cada is out of every."}},
-        {"texto": {"en": "three at a time"}, "explicacion": {"en": "De cada is out of every."}}
+        {
+          "texto": {
+            "$t": "b8.o0"
+          },
+          "correcta": true
+        },
+        {
+          "texto": {
+            "$t": "b8.o1"
+          },
+          "explicacion": {
+            "$t": "b8.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b8.o2"
+          },
+          "explicacion": {
+            "$t": "b8.o2.explicacion"
+          }
+        }
       ]
     },
     {
       "tipo": "ordenar",
       "id": "mayoria-6",
-      "frase": "Muy pocos tienen tiempo libre suficiente",
-      "traduccion": {"en": "Very few have enough free time."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "mayoria-7",
-      "pregunta": {"en": "Use plural agreement with «los estudiantes»."},
-      "frase": "El veinte por ciento de los estudiantes ___ cada día.",
+      "pregunta": {
+        "$t": "b10.pregunta"
+      },
+      "frase": {
+        "$e": "b10.frase"
+      },
       "audio": true,
       "opciones": {
-        "entrenan": {"en": "The plural verb agrees with the students; singular agreement with el veinte por ciento is also possible."},
-        "entrena": {"en": "This agrees with el veinte por ciento as a whole, but the prompt asks for plural agreement."},
-        "entrenas": {"en": "Use third person to agree with el veinte por ciento or los estudiantes."}
+        "entrenan": {
+          "$t": "b10.o0.refuerzo"
+        },
+        "entrena": {
+          "$t": "b10.o1.refuerzo"
+        },
+        "entrenas": {
+          "$t": "b10.o2.refuerzo"
+        }
       },
       "correcta": "entrenan"
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write a paragraph describing the habits of people in your country, using la mayoría, la mitad, uno de cada… and percentages.\n\n**Speak (about 2 minutes).** Present aloud the results of a real or invented survey among your friends."
+        "$t": "b11.texto"
       }
     }
   ]

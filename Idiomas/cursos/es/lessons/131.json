@@ -1,133 +1,288 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "131",
   "capitulo": 12,
-  "titulo_es": "No creo que esté",
-  "titulo": { "en": "I don't think she is" },
-  "intro": { "en": "With creer, the usual pattern is indicative after creo que and subjunctive after no creo que." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "creo que": { "en": "I think that", "pron": "KRE-o ke", "cat": "expression" },
-    "no creo que": { "en": "I don't think that", "pron": "no KRE-o ke", "cat": "expression" },
-    "está": { "en": "is (indicative)", "pron": "es-TA", "cat": "verb", "nota": "Third-person singular of estar." },
-    "esté": { "en": "be (subjunctive)", "pron": "es-TE", "cat": "verb", "nota": "Third-person singular subjunctive of estar." },
-    "viene": { "en": "comes, is coming (indicative)", "pron": "BYE-ne", "cat": "verb", "nota": "Third-person singular of venir." },
-    "venga": { "en": "come (subjunctive)", "pron": "BEN-ga", "cat": "verb", "nota": "Third-person singular subjunctive of venir." },
-    "en casa": { "en": "at home", "pron": "en KA-sa", "cat": "expression" },
-    "mañana": { "en": "tomorrow", "pron": "ma-NYA-na", "cat": "adverb" }
+    "creo que": {
+      "$f": "p.creo que",
+      "pron": "KRE-o ke",
+      "cat": "expr"
+    },
+    "no creo que": {
+      "$f": "p.no creo que",
+      "pron": "no KRE-o ke",
+      "cat": "expr"
+    },
+    "está": {
+      "$f": "p.está",
+      "pron": "es-TA",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.está.nota"
+      }
+    },
+    "esté": {
+      "$f": "p.esté",
+      "pron": "es-TE",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.esté.nota"
+      }
+    },
+    "viene": {
+      "$f": "p.viene",
+      "pron": "BYE-ne",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.viene.nota"
+      }
+    },
+    "venga": {
+      "$f": "p.venga",
+      "pron": "BEN-ga",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.venga.nota"
+      }
+    },
+    "en casa": {
+      "$f": "p.en casa",
+      "pron": "en KA-sa",
+      "cat": "expr"
+    },
+    "mañana": {
+      "$f": "p.mañana",
+      "pron": "ma-NYA-na",
+      "cat": "adv"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "Belief and doubt",
-      "texto": "With **creer**, an affirmative belief usually takes the indicative.\n\n- **Creo que** Ana **está** en casa.\n- **Creo que viene** mañana.\n\nA negative belief normally takes the present subjunctive.\n\n- **No creo que esté** en casa.\n- **No creo que venga**.\n\nThe verb forms change: **está → esté**; **viene → venga**."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "dialogo",
-      "titulo": "Where is Ana?",
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "Creo que Ana está en casa.",
-          "en": "I think Ana is at home.",
           "analisis": [
-            ["Creo que", "I think that"],
-            ["Ana", "subject"],
-            ["está", "verb"]
+            [
+              "Creo que",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "Ana",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "está",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "No creo que esté en casa.",
-          "en": "I don't think she is at home.",
           "analisis": [
-            ["No creo que", "negation"],
-            ["esté", "verb"]
+            [
+              "No creo que",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "esté",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "Creo que viene mañana.",
-          "en": "I think she is coming tomorrow.",
           "analisis": [
-            ["Creo que", "I think that"],
-            ["viene", "verb"],
-            ["mañana", "time"]
+            [
+              "Creo que",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "viene",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "mañana",
+              {
+                "$t": "a4"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "No creo que venga.",
-          "en": "I don't think she will come.",
           "analisis": [
-            ["No creo que", "negation"],
-            ["venga", "verb"]
+            [
+              "No creo que",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "venga",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["creo que", "no creo que", "está", "esté", "viene", "venga", "en casa", "mañana"]
+      "palabras": [
+        "creo que",
+        "no creo que",
+        "está",
+        "esté",
+        "viene",
+        "venga",
+        "en casa",
+        "mañana"
+      ]
     },
     {
       "tipo": "huecos",
       "id": "b1-creo-este",
-      "pregunta": { "en": "Complete: I don't think she is at home." },
-      "frase": "No creo que ___ en casa.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "esté": { "en": "After no creo que, use the subjunctive." },
-        "está": { "en": "Está fits creo que, not no creo que." },
-        "estar": { "en": "The infinitive does not follow creo que." }
+        "esté": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "está": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "estar": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "esté"
     },
     {
       "tipo": "test",
       "id": "b1-creo-si",
-      "pregunta": { "en": "You think it is true. Which sentence?" },
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
       "opciones": {
-        "Creo que está en casa": { "en": "A positive belief uses the indicative." },
-        "No creo que esté en casa": { "en": "That denies the belief." },
-        "Quiero que esté en casa": { "en": "That is a wish, not a belief." }
+        "Creo que está en casa": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "No creo que esté en casa": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "Quiero que esté en casa": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "Creo que está en casa"
     },
     {
       "tipo": "huecos",
       "id": "b1-creo-m1",
-      "pregunta": {"en": "Complete: I think she is coming tomorrow."},
-      "frase": "Creo que ___ mañana.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "viene": {"en": "A positive belief takes the indicative."},
-        "venga": {"en": "Venga follows no creo que."},
-        "venir": {"en": "This sentence states a belief about Ana, so use the conjugated indicative viene."}
+        "viene": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "venga": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "venir": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "viene"
     },
     {
       "tipo": "huecos",
       "id": "b1-creo-m2",
-      "pregunta": {"en": "Complete: I don't think she will come."},
-      "frase": "No creo que ___.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "venga": {"en": "A negative belief takes the subjunctive."},
-        "viene": {"en": "Viene follows creo que."},
-        "vendrá": {"en": "After no creo que, the subjunctive."}
+        "venga": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "viene": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "vendrá": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "venga"
     },
     {
       "tipo": "escribir",
       "id": "b1-creo-m3",
-      "pregunta": {"en": "Translate: «I don't think she is at home.»"},
-      "respuestas": ["No creo que esté en casa"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "No creo que esté en casa"
+      ]
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write your opinion on a statement such as 'Children should not have mobile phones', with points for and against.\n\n**Speak (about 2 minutes).** Discuss a statement aloud, agreeing in part and disagreeing in part: Creo que…, pero no creo que…"
+        "$t": "b9.texto"
       }
     }
   ]

@@ -1,147 +1,359 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "143",
   "capitulo": 13,
-  "titulo_es": "Me dijo que sí",
-  "titulo": { "en": "She said yes" },
-  "intro": { "en": "Reporting statements and questions: dijo que, preguntó si and preguntó dónde." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "dijo": { "en": "he/she said", "pron": "DI-ho", "cat": "verb" },
-    "me dijo": { "en": "he/she told me", "pron": "me DI-ho", "cat": "verb" },
-    "preguntó": { "en": "he/she asked", "pron": "pre-gun-TO", "cat": "verb" },
-    "dónde": { "en": "where (question word)", "pron": "DON-de", "cat": "adverb" },
-    "que": { "en": "that", "pron": "ke", "cat": "conjunction" },
-    "si": { "en": "if, whether", "pron": "si", "cat": "conjunction", "nota": "Si with no accent means if. Sí with an accent means yes." },
-    "sí": { "en": "yes", "pron": "SI", "cat": "adverb" },
-    "estaba": { "en": "he/she was, I was", "pron": "es-TA-ba", "cat": "verb" },
-    "hablaba": { "en": "he/she spoke, I spoke", "pron": "a-BLA-ba", "cat": "verb" },
-    "cansada": { "en": "tired (female)", "pron": "kan-SA-da", "cat": "adjective" }
+    "dijo": {
+      "$f": "p.dijo",
+      "pron": "DI-ho",
+      "cat": "verb"
+    },
+    "me dijo": {
+      "$f": "p.me dijo",
+      "pron": "me DI-ho",
+      "cat": "verb"
+    },
+    "preguntó": {
+      "$f": "p.preguntó",
+      "pron": "pre-gun-TO",
+      "cat": "verb"
+    },
+    "dónde": {
+      "$f": "p.dónde",
+      "pron": "DON-de",
+      "cat": "adv"
+    },
+    "que": {
+      "$f": "p.que",
+      "pron": "ke",
+      "cat": "conj"
+    },
+    "si": {
+      "$f": "p.si",
+      "pron": "si",
+      "cat": "conj",
+      "nota": {
+        "$t": "p.si.nota"
+      }
+    },
+    "sí": {
+      "$f": "p.sí",
+      "pron": "SI",
+      "cat": "adv"
+    },
+    "estaba": {
+      "$f": "p.estaba",
+      "pron": "es-TA-ba",
+      "cat": "verb"
+    },
+    "hablaba": {
+      "$f": "p.hablaba",
+      "pron": "a-BLA-ba",
+      "cat": "verb"
+    },
+    "cansada": {
+      "$f": "p.cansada",
+      "pron": "kan-SA-da",
+      "cat": "adj"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "One step back in time",
-      "texto": "A statement can be reported with **dijo que**. A yes/no question uses **preguntó si**. A question with a question word keeps that word, without question marks: **¿Dónde vives? → Me preguntó dónde vivía**.\n\nWhen the reporting verb is in the past, a present-tense verb often moves to the imperfect:\n\n- «Estoy cansada.» → Ana **dijo que estaba** cansada.\n- «¿Hablas español?» → Me **preguntó si hablaba** español.\n- «¿Dónde trabajas?» → Me **preguntó dónde trabajaba**.\n\nThis shift is common, but not automatic. If the information is still true now, the present may remain even after a past reporting verb: **Ana dijo que está mejor**."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "dialogo",
-      "titulo": "What Ana said",
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "¿Ana estaba cansada?",
-          "en": "Was Ana tired?",
-          "analisis": [["Ana", "subject"], ["estaba cansada", "verb"]]
+          "analisis": [
+            [
+              "Ana",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "estaba cansada",
+              {
+                "$t": "a1"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Le pregunté si estaba cansada. Me dijo que sí.",
-          "en": "I asked her if she was tired. She said yes.",
-          "analisis": [["Le pregunté", "I asked her"], ["si estaba cansada", "if she was tired"], ["Me dijo que sí", "she said yes"]]
+          "analisis": [
+            [
+              "Le pregunté",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "si estaba cansada",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "Me dijo que sí",
+              {
+                "$t": "a4"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "¿Y te preguntó si hablabas español?",
-          "en": "And did she ask you if you spoke Spanish?",
-          "analisis": [["te preguntó", "she asked you"], ["si hablabas", "if you spoke"], ["español", "Spanish"]]
+          "analisis": [
+            [
+              "te preguntó",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "si hablabas",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "español",
+              {
+                "$t": "a7"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "Sí. También me preguntó dónde vivía.",
-          "en": "Yes. She also asked me where I lived.",
-          "analisis": [["me preguntó", "she asked me"], ["dónde", "where (question word)"], ["vivía", "imperfect in reported question"]]
+          "analisis": [
+            [
+              "me preguntó",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "dónde",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "vivía",
+              {
+                "$t": "a10"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f4",
           "quien": "Lucía",
-          "es": "¿Y qué le dijiste?",
-          "en": "And what did you tell her?",
-          "analisis": [["qué", "what (question word)"], ["le dijiste", "you told her"]]
+          "analisis": [
+            [
+              "qué",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "le dijiste",
+              {
+                "$t": "a12"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f5",
           "quien": "Pablo",
-          "es": "Le dije que sí.",
-          "en": "I told her yes.",
-          "analisis": [["Le dije que sí", "I told her yes"]]
+          "analisis": [
+            [
+              "Le dije que sí",
+              {
+                "$t": "a13"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f6",
           "quien": "Lucía",
-          "es": "Ana dice que está mejor.",
-          "en": "Ana says she is better.",
-          "analisis": [["dice que", "says that"], ["está mejor", "she is better"]]
+          "analisis": [
+            [
+              "dice que",
+              {
+                "$t": "a14"
+              }
+            ],
+            [
+              "está mejor",
+              {
+                "$t": "a15"
+              }
+            ]
+          ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["dijo", "me dijo", "preguntó", "dónde", "que", "si", "sí", "estaba", "hablaba", "cansada"]
+      "palabras": [
+        "dijo",
+        "me dijo",
+        "preguntó",
+        "dónde",
+        "que",
+        "si",
+        "sí",
+        "estaba",
+        "hablaba",
+        "cansada"
+      ]
     },
     {
       "tipo": "huecos",
       "id": "b1-dijo-si",
-      "pregunta": { "en": "Complete: she asked me if I spoke Spanish." },
-      "frase": "Me preguntó ___ hablaba español.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "si": { "en": "A yes/no question is reported with si." },
-        "que": { "en": "Que introduces a statement: dijo que." },
-        "qué": { "en": "Qué with an accent means what, not whether." }
+        "si": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "que": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "qué": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "si"
     },
     {
       "tipo": "ordenar",
       "id": "b1-dijo-cansada",
-      "frase": "Ana dijo que estaba cansada",
-      "traduccion": { "en": "Ana said she was tired." }
+      "frase": {
+        "$e": "b5.frase"
+      },
+      "traduccion": {
+        "$t": "b5.traduccion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "b1-dijo-m1",
-      "pregunta": {"en": "Complete: Ana said she was tired."},
-      "frase": "Ana dijo que ___ cansada.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "estaba": {"en": "After dijo, the present steps back to the imperfect."},
-        "está": {"en": "Está fits after dice."},
-        "esté": {"en": "A report of information takes the indicative."}
+        "estaba": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "está": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "esté": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "estaba"
     },
     {
       "tipo": "huecos",
       "id": "b1-dijo-m2",
-      "pregunta": {"en": "Complete: Ana said she is better, and it is still true."},
-      "frase": "Ana dijo que ___ mejor.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "está": {"en": "The present may remain when the information is still true."},
-        "estaba": {"en": "This is the usual backshift after dijo, but the message is still current."},
-        "esté": {"en": "A report of information takes the indicative."}
+        "está": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "estaba": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "esté": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "está"
     },
     {
       "tipo": "huecos",
       "id": "b1-pregunto-donde",
-      "pregunta": { "en": "Complete: she asked me where I lived." },
-      "frase": "Me preguntó ___ vivía.",
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "frase": {
+        "$e": "b8.frase"
+      },
       "audio": true,
       "opciones": {
-        "dónde": { "en": "Keep the question word and its written accent." },
-        "donde": { "en": "Without an accent it does not introduce this indirect question." },
-        "si": { "en": "Si reports a yes/no question." }
+        "dónde": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "donde": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "si": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "dónde"
     },
     {
       "tipo": "escribir",
       "id": "b1-dijo-m3",
-      "pregunta": {"en": "Translate: «She asked me if I spoke Spanish.»"},
-      "respuestas": ["Me preguntó si hablaba español"]
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
+      "respuestas": [
+        "Me preguntó si hablaba español"
+      ]
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write a summary of a conversation you had this week: what you were told, asked and requested.\n\n**Speak (about 2 minutes).** Pass on aloud three messages that people have left for a friend."
+        "$t": "b10.texto"
       }
     }
   ]

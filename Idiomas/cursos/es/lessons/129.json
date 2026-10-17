@@ -1,144 +1,353 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "129",
   "capitulo": 12,
-  "titulo_es": "Me alegra que estés aquí",
-  "titulo": {"en": "I'm glad you're here"},
-  "intro": {"en": "A feeling about someone else's action normally takes the subjunctive, even when the fact is true."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "me alegro de que": {"en": "I'm glad that", "pron": "me a-LE-gro de ke", "cat": "expression"},
-    "qué pena que": {"en": "what a pity that", "pron": "ke PE-na ke", "cat": "expression"},
-    "siento que": {"en": "I'm sorry that", "pron": "SYEN-to ke", "cat": "expression"},
-    "me molesta que": {"en": "it bothers me that", "pron": "me mo-LES-ta ke", "cat": "expression"},
-    "me encanta que": {"en": "I love it that", "pron": "me en-KAN-ta ke", "cat": "expression"},
-    "me sorprende que": {"en": "it surprises me that", "pron": "me sor-PREN-de ke", "cat": "expression"},
-    "me da miedo que": {"en": "I'm afraid that", "pron": "me da MYE-do ke", "cat": "expression"},
-    "me extraña que": {"en": "I find it odd that", "pron": "me eks-TRA-nya ke", "cat": "expression"},
-    "qué bien que": {"en": "how great that", "pron": "ke byen ke", "cat": "expression"},
-    "qué raro que": {"en": "how strange that", "pron": "ke RA-ro ke", "cat": "expression"},
-    "puntual": {"en": "punctual", "pron": "pun-TWAL", "cat": "adjective"}
+    "me alegro de que": {
+      "$f": "p.me alegro de que",
+      "pron": "me a-LE-gro de ke",
+      "cat": "expr"
+    },
+    "qué pena que": {
+      "$f": "p.qué pena que",
+      "pron": "ke PE-na ke",
+      "cat": "expr"
+    },
+    "siento que": {
+      "$f": "p.siento que",
+      "pron": "SYEN-to ke",
+      "cat": "expr"
+    },
+    "me molesta que": {
+      "$f": "p.me molesta que",
+      "pron": "me mo-LES-ta ke",
+      "cat": "expr"
+    },
+    "me encanta que": {
+      "$f": "p.me encanta que",
+      "pron": "me en-KAN-ta ke",
+      "cat": "expr"
+    },
+    "me sorprende que": {
+      "$f": "p.me sorprende que",
+      "pron": "me sor-PREN-de ke",
+      "cat": "expr"
+    },
+    "me da miedo que": {
+      "$f": "p.me da miedo que",
+      "pron": "me da MYE-do ke",
+      "cat": "expr"
+    },
+    "me extraña que": {
+      "$f": "p.me extraña que",
+      "pron": "me eks-TRA-nya ke",
+      "cat": "expr"
+    },
+    "qué bien que": {
+      "$f": "p.qué bien que",
+      "pron": "ke byen ke",
+      "cat": "expr"
+    },
+    "qué raro que": {
+      "$f": "p.qué raro que",
+      "pron": "ke RA-ro ke",
+      "cat": "expr"
+    },
+    "puntual": {
+      "$f": "p.puntual",
+      "pron": "pun-TWAL",
+      "cat": "adj"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Feeling plus que"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "When the main clause expresses a **feeling** and the following finite clause has a **different subject**, its verb normally takes the subjunctive.\n\n- **Me alegro de que estés** aquí.\n- ¡**Qué pena que** no **puedas** venir!\n- **Me molesta que fumen**.\n- **Me extraña que** no **llame**.\n\nThe fact can be real. You are here; they do smoke. The subjunctive appears because the sentence is a reaction to the fact, not a report of it.\n\nWhen the same person experiences the feeling and does the action, use an infinitive with expressions such as these: **me alegro de estar** aquí, **siento llegar** tarde, **me molesta esperar**.\n\nOther feeling expressions work similarly: me gusta que, me encanta que, me da miedo que, me pone nervioso que."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "A late guest"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "¡Qué bien que estés aquí!",
-          "en": "How great that you're here!",
-          "analisis": [["¡Qué bien que", "feeling"], ["estés", "verb (subjunctive)"], ["aquí", "place"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Siento que Ana no pueda venir.",
-          "en": "I'm sorry Ana can't come.",
-          "analisis": [["Siento que", "feeling"], ["Ana", "subject"], ["no pueda venir", "verb (subjunctive)"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Sí, qué pena. Me extraña que no llame.",
-          "en": "Yes, what a pity. I find it odd that she doesn't call.",
-          "analisis": [["qué pena", "feeling"], ["Me extraña que", "feeling"], ["no llame", "verb (subjunctive)"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "A mí me molesta que la gente llegue tarde.",
-          "en": "It bothers me when people arrive late.",
           "analisis": [
-            ["A mí", "who"],
-            ["me molesta que", "feeling"],
-            ["la gente", "subject"],
-            ["llegue", "verb (subjunctive)"],
-            ["tarde", "time"]
+            [
+              "¡Qué bien que",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "estés",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "aquí",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
-          "quien": "Lucía",
-          "es": "Y a mí me encanta que tú seas tan puntual.",
-          "en": "And I love it that you're so punctual.",
+          "$f": "b2.f1",
+          "quien": "Pablo",
           "analisis": [
-            ["me encanta que", "feeling"],
-            ["tú", "subject"],
-            ["seas", "verb (subjunctive)"],
-            ["tan puntual", "description"]
+            [
+              "Siento que",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "Ana",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "no pueda venir",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "qué pena",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "Me extraña que",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "no llame",
+              {
+                "$t": "a1"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "Me alegro de estar aquí.",
-          "en": "I'm glad to be here.",
-          "analisis": [["Me alegro de", "feeling"], ["estar aquí", "infinitive (same subject)"]]
+          "analisis": [
+            [
+              "A mí",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "me molesta que",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "la gente",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "llegue",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "tarde",
+              {
+                "$t": "a5"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "me encanta que",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "tú",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "seas",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "tan puntual",
+              {
+                "$t": "a6"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Me alegro de",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "estar aquí",
+              {
+                "$t": "a7"
+              }
+            ]
+          ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "alegra-que-1",
-      "pregunta": {"en": "Complete: I'm glad you are here."},
-      "frase": "Me alegro de que ___ aquí.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "estés": {"en": "A feeling about someone else takes the subjunctive."},
-        "estás": {"en": "Even a true fact takes the subjunctive after a feeling."},
-        "estar": {"en": "The infinitive is for the same subject."}
+        "estés": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "estás": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "estar": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "estés"
     },
     {
       "tipo": "huecos",
       "id": "alegra-que-2",
-      "pregunta": {"en": "Complete: what a pity you can't come."},
-      "frase": "¡Qué pena que no ___ venir!",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "puedas": {"en": "Qué pena que takes the subjunctive."},
-        "puedes": {"en": "After qué pena que, the subjunctive."},
-        "poder": {"en": "This clause refers to tú, so use the conjugated subjunctive puedas."}
+        "puedas": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "puedes": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "poder": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "puedas"
     },
     {
       "tipo": "huecos",
       "id": "alegra-que-3",
-      "pregunta": {"en": "Complete, same subject: I'm sorry to be late."},
-      "frase": "Siento ___ tarde.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "llegar": {"en": "Same subject: use the infinitive (siento llegar)."},
-        "que llegue": {"en": "That would be about someone else."},
-        "llego": {"en": "With the same subject, use the infinitive (siento llegar)."}
+        "llegar": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "que llegue": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "llego": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "llegar"
     },
     {
       "tipo": "test",
       "id": "alegra-que-4",
-      "pregunta": {"en": "Why does «Me molesta que fumen» take the subjunctive?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "It reacts with a feeling to what others do": {"en": "The feeling is the trigger."},
-        "The smoking is uncertain": {"en": "The smoking can be real. The feeling is the trigger."},
-        "It talks about the past": {"en": "It is in the present."}
+        "It reacts with a feeling to what others do": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "The smoking is uncertain": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "It talks about the past": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "It reacts with a feeling to what others do"
     },
     {
       "tipo": "ordenar",
       "id": "alegra-que-5",
-      "frase": "Me extraña que Ana no llame",
-      "traduccion": {"en": "I find it odd that Ana doesn't call."}
+      "frase": {
+        "$e": "b8.frase"
+      },
+      "traduccion": {
+        "$t": "b8.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write a message to a friend reacting to three pieces of news: one good, one bad and one surprising.\n\n**Speak (about 2 minutes).** React aloud to what people tell you: a wedding, an illness, a new job, a move abroad."
+        "$t": "b9.texto"
       }
     }
   ]

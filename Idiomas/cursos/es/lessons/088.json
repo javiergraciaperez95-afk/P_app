@@ -1,141 +1,357 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "088",
   "capitulo": 9,
-  "titulo_es": "Me gustaría reservar",
-  "titulo": {"en": "I'd like to book"},
-  "intro": {"en": "Polite requests with me gustaría, quería, querría, quisiera and podría, at a hotel desk."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "me gustaría": {"en": "I would like", "pron": "me gus-ta-RI-a", "cat": "expression"},
-    "quería": {"en": "I wanted; I would like (polite request)", "pron": "ke-RI-a", "cat": "verb", "nota": "A common softened request: quería reservar una habitación."},
-    "podría": {"en": "could you (usted); I could", "pron": "po-DRI-a", "cat": "verb"},
-    "querría": {"en": "I would like", "pron": "ke-RRI-a", "cat": "verb"},
-    "quisiera": {"en": "I would like (very polite)", "pron": "ki-SYE-ra", "cat": "verb"},
-    "reservar": {"en": "to book", "pron": "re-ser-BAR", "cat": "verb"},
-    "la habitación": {"en": "the room", "pron": "la a-bi-ta-SYON (seseo) / a-bi-ta-THYON (distinción)", "cat": "noun", "genero": "f"},
-    "doble": {"en": "double", "pron": "DO-ble", "cat": "adjective"},
-    "individual": {"en": "single (for one guest)", "pron": "in-di-bi-DWAL", "cat": "adjective"},
-    "la noche": {"en": "the night", "pron": "la NO-che", "cat": "noun", "genero": "f"},
-    "la mesa": {"en": "the table (restaurant)", "pron": "la ME-sa", "cat": "noun", "genero": "f"},
-    "el desayuno": {"en": "the breakfast", "pron": "el de-sa-YU-no", "cat": "noun", "genero": "m"},
-    "incluido": {"en": "included", "pron": "in-KLWI-do", "cat": "adjective"},
-    "la reserva": {"en": "the booking", "pron": "la re-SER-ba", "cat": "noun", "genero": "f"},
-    "a nombre de": {"en": "in the name of", "pron": "a NOM-bre de", "cat": "expression"},
-    "el pasaporte": {"en": "the passport", "pron": "el pa-sa-POR-te", "cat": "noun", "genero": "m"}
+    "me gustaría": {
+      "$f": "p.me gustaría",
+      "pron": "me gus-ta-RI-a",
+      "cat": "expr"
+    },
+    "quería": {
+      "$f": "p.quería",
+      "pron": "ke-RI-a",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.quería.nota"
+      }
+    },
+    "podría": {
+      "$f": "p.podría",
+      "pron": "po-DRI-a",
+      "cat": "verb"
+    },
+    "querría": {
+      "$f": "p.querría",
+      "pron": "ke-RRI-a",
+      "cat": "verb"
+    },
+    "quisiera": {
+      "$f": "p.quisiera",
+      "pron": "ki-SYE-ra",
+      "cat": "verb"
+    },
+    "reservar": {
+      "$f": "p.reservar",
+      "pron": "re-ser-BAR",
+      "cat": "verb"
+    },
+    "la habitación": {
+      "$f": "p.la habitación",
+      "pron": "la a-bi-ta-SYON (seseo) / a-bi-ta-THYON (distinción)",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "doble": {
+      "$f": "p.doble",
+      "pron": "DO-ble",
+      "cat": "adj"
+    },
+    "individual": {
+      "$f": "p.individual",
+      "pron": "in-di-bi-DWAL",
+      "cat": "adj"
+    },
+    "la noche": {
+      "$f": "p.la noche",
+      "pron": "la NO-che",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "la mesa": {
+      "$f": "p.la mesa",
+      "pron": "la ME-sa",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "el desayuno": {
+      "$f": "p.el desayuno",
+      "pron": "el de-sa-YU-no",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "incluido": {
+      "$f": "p.incluido",
+      "pron": "in-KLWI-do",
+      "cat": "adj"
+    },
+    "la reserva": {
+      "$f": "p.la reserva",
+      "pron": "la re-SER-ba",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "a nombre de": {
+      "$f": "p.a nombre de",
+      "pron": "a NOM-bre de",
+      "cat": "expr"
+    },
+    "el pasaporte": {
+      "$f": "p.el pasaporte",
+      "pron": "el pa-sa-POR-te",
+      "cat": "sust",
+      "genero": "m"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Softer than quiero"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "**Quiero** is correct and clear, but it is direct. To soften a request, use forms such as **me gustaría**, **quería**, **querría** or **quisiera**. **Quería** is especially common in everyday requests.\n\n- **Me gustaría** reservar una mesa.\n- **Quería** reservar una habitación.\n- **Querría** / **Quisiera** una habitación.\n\nFor a polite request to someone you address as **usted**, use **¿Podría + infinitive?**: ¿**Podría** ayudarme? ¿**Podría** darme su pasaporte?\n\nWhen these forms refer to an action, they take an infinitive. **Me gustaría**, **querría** and **quisiera** can also take a noun: **Quisiera una habitación**.\n\nAt the desk: una habitación **doble** or **individual**, **para** dos noches, con desayuno **incluido**. **Tengo una reserva a nombre de** Lucía Martín."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "At the hotel"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Recepcionista",
-          "es": "Buenas tardes. ¿En qué puedo ayudarle?",
-          "en": "Good afternoon. How can I help you?",
-          "analisis": [["Buenas tardes", "greeting"], ["¿En qué", "question"], ["puedo ayudarle", "verb"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Me gustaría reservar una habitación doble para dos noches.",
-          "en": "I'd like to book a double room for two nights.",
           "analisis": [
-            ["Me gustaría", "verb"],
-            ["reservar", "infinitive"],
-            ["una habitación doble", "object"],
-            ["para dos noches", "time"]
+            [
+              "Buenas tardes",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "¿En qué",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "puedo ayudarle",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
-          "quien": "Recepcionista",
-          "es": "Muy bien. ¿A nombre de quién?",
-          "en": "Very good. In whose name?",
-          "analisis": [["¿A nombre de quién?", "question"]]
-        },
-        {
+          "$f": "b2.f1",
           "quien": "Lucía",
-          "es": "De Lucía Martín. ¿Está incluido el desayuno?",
-          "en": "Lucía Martín. Is breakfast included?",
-          "analisis": [["De Lucía Martín", "name"], ["¿Está incluido", "verb"], ["el desayuno", "subject"]]
+          "analisis": [
+            [
+              "Me gustaría",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "reservar",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "una habitación doble",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "para dos noches",
+              {
+                "$t": "a5"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Recepcionista",
-          "es": "Sí. ¿Podría darme su pasaporte, por favor?",
-          "en": "Yes. Could you give me your passport, please?",
-          "analisis": [["¿Podría", "verb"], ["darme", "infinitive + me"], ["su pasaporte", "object"], ["por favor", "politeness"]]
+          "analisis": [
+            [
+              "¿A nombre de quién?",
+              {
+                "$t": "a1"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f3",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "De Lucía Martín",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "¿Está incluido",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "el desayuno",
+              {
+                "$t": "a7"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f4",
+          "quien": "Recepcionista",
+          "analisis": [
+            [
+              "¿Podría",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "darme",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "su pasaporte",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "por favor",
+              {
+                "$t": "a9"
+              }
+            ]
+          ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "test",
       "id": "gustaria-1",
-      "pregunta": {"en": "Which is a polite way to ask for a room?"},
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
       "opciones": {
-        "Quisiera una habitación": {"en": "Quisiera is a polite way to phrase the request."},
-        "Quiero una habitación": {"en": "Correct, but direct."},
-        "Dame una habitación": {"en": "A tú command is far too direct for a hotel desk."}
+        "Quisiera una habitación": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "Quiero una habitación": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "Dame una habitación": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "Quisiera una habitación"
     },
     {
       "tipo": "test",
       "id": "gustaria-6",
-      "pregunta": {"en": "At a hotel desk, which sentence uses the imperfect to soften a request?"},
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
       "opciones": {
-        "Quería reservar una habitación.": {"en": "Quería can soften a request in this context."},
-        "Quise reservar una habitación, pero no había sitio.": {"en": "This describes a past attempt or wish."},
-        "Querré reservar una habitación.": {"en": "Querré is future: I will want to book a room."}
+        "Quería reservar una habitación.": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "Quise reservar una habitación, pero no había sitio.": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "Querré reservar una habitación.": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "Quería reservar una habitación."
     },
     {
       "tipo": "huecos",
       "id": "gustaria-2",
-      "pregunta": {"en": "Complete the formal request: could you help me?"},
-      "frase": "¿___ ayudarme?",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "Podría": {"en": "The conditional of poder makes the request polite."},
-        "Puedo": {"en": "Puedo is I can."},
-        "Podré": {"en": "Podré is I will be able to."}
+        "Podría": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "Puedo": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "Podré": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "Podría"
     },
     {
       "tipo": "huecos",
       "id": "gustaria-3",
-      "pregunta": {"en": "Complete: I'd like to book a table."},
-      "frase": "Me ___ reservar una mesa.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "gustaría": {"en": "Me gustaría is I would like."},
-        "gusta": {"en": "Me gusta reservar is a general liking, not a request."},
-        "gustaba": {"en": "Gustaba looks at the past."}
+        "gustaría": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "gusta": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "gustaba": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "gustaría"
     },
     {
       "tipo": "escribir",
       "id": "gustaria-4",
-      "pregunta": {"en": "Translate: «I have a booking.»"},
-      "respuestas": ["Tengo una reserva"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "Tengo una reserva"
+      ]
     },
     {
       "tipo": "ordenar",
       "id": "gustaria-5",
-      "frase": "Me gustaría reservar una habitación doble",
-      "traduccion": {"en": "I'd like to book a double room."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write an email to a hotel to book a room: dates, people, type of room and a question about the price.\n\n**Speak (about 1 minute).** Phone a restaurant aloud and book a table politely, using quería and me gustaría."
+        "$t": "b10.texto"
       }
     }
   ]

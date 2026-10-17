@@ -1,141 +1,356 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "077",
   "capitulo": 8,
-  "titulo_es": "Más grande que",
-  "titulo": { "en": "Bigger than" },
-  "intro": { "en": "Comparing two things with más, menos and tan." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "más": { "en": "more", "pron": "mas", "cat": "adverb" },
-    "menos": { "en": "less", "pron": "ME-nos", "cat": "adverb" },
-    "que": { "en": "than", "pron": "ke", "cat": "conjunction" },
-    "tan": { "en": "as", "pron": "tan", "cat": "adverb" },
-    "como": { "en": "as", "pron": "KO-mo", "cat": "conjunction" },
-    "grande": { "en": "big", "pron": "GRAN-de", "cat": "adjective" },
-    "caro": { "en": "expensive (feminine cara)", "pron": "KA-ro", "cat": "adjective" },
-    "cara": { "en": "expensive (feminine form)", "pron": "KA-ra", "cat": "adjective" },
-    "alta": { "en": "tall (feminine form)", "pron": "AL-ta", "cat": "adjective" },
-    "bueno": { "en": "good", "pron": "BWE-no", "cat": "adjective" },
-    "malo": { "en": "bad", "pron": "MA-lo", "cat": "adjective" },
-    "café": { "en": "coffee", "pron": "ka-FE", "cat": "noun", "genero": "m" },
-    "mejor": { "en": "better", "pron": "me-HOR", "cat": "adjective", "nota": "Mejor is the irregular comparative of bueno." },
-    "peor": { "en": "worse", "pron": "pe-OR", "cat": "adjective", "nota": "Peor is the irregular comparative of malo." },
-    "mayor": { "en": "older", "pron": "ma-YOR", "cat": "adjective", "nota": "Mayor que is the usual age comparison; más viejo que is also grammatical." },
-    "menor": { "en": "younger, smaller", "pron": "me-NOR", "cat": "adjective", "nota": "Menor is the irregular comparative used for age or size." }
+    "más": {
+      "$f": "p.más",
+      "pron": "mas",
+      "cat": "adv"
+    },
+    "menos": {
+      "$f": "p.menos",
+      "pron": "ME-nos",
+      "cat": "adv"
+    },
+    "que": {
+      "$f": "p.que",
+      "pron": "ke",
+      "cat": "conj"
+    },
+    "tan": {
+      "$f": "p.tan",
+      "pron": "tan",
+      "cat": "adv"
+    },
+    "como": {
+      "$f": "p.como",
+      "pron": "KO-mo",
+      "cat": "conj"
+    },
+    "grande": {
+      "$f": "p.grande",
+      "pron": "GRAN-de",
+      "cat": "adj"
+    },
+    "caro": {
+      "$f": "p.caro",
+      "pron": "KA-ro",
+      "cat": "adj"
+    },
+    "cara": {
+      "$f": "p.cara",
+      "pron": "KA-ra",
+      "cat": "adj"
+    },
+    "alta": {
+      "$f": "p.alta",
+      "pron": "AL-ta",
+      "cat": "adj"
+    },
+    "bueno": {
+      "$f": "p.bueno",
+      "pron": "BWE-no",
+      "cat": "adj"
+    },
+    "malo": {
+      "$f": "p.malo",
+      "pron": "MA-lo",
+      "cat": "adj"
+    },
+    "café": {
+      "$f": "p.café",
+      "pron": "ka-FE",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "mejor": {
+      "$f": "p.mejor",
+      "pron": "me-HOR",
+      "cat": "adj",
+      "nota": {
+        "$t": "p.mejor.nota"
+      }
+    },
+    "peor": {
+      "$f": "p.peor",
+      "pron": "pe-OR",
+      "cat": "adj",
+      "nota": {
+        "$t": "p.peor.nota"
+      }
+    },
+    "mayor": {
+      "$f": "p.mayor",
+      "pron": "ma-YOR",
+      "cat": "adj",
+      "nota": {
+        "$t": "p.mayor.nota"
+      }
+    },
+    "menor": {
+      "$f": "p.menor",
+      "pron": "me-NOR",
+      "cat": "adj",
+      "nota": {
+        "$t": "p.menor.nota"
+      }
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "Three patterns",
-      "texto": "- Madrid es **más grande que** Granada.\n- Este café es **menos caro que** el otro.\n- Ana es **tan alta como** Pablo.\n\nFor these comparative meanings, use **mejor** (better), **peor** (worse), **mayor** (older) or **menor** (younger) instead of **más + adjective**: mejor que, peor que, mayor que, menor que."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "dialogo",
-      "titulo": "Two cities",
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "Madrid es más grande que Granada.",
-          "en": "Madrid is bigger than Granada.",
           "analisis": [
-            ["Madrid", "subject"],
-            ["es", "verb ser"],
-            ["más grande que", "bigger than"],
-            ["Granada", "the other city"]
+            [
+              "Madrid",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "es",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "más grande que",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "Granada",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Granada es menos cara que Madrid.",
-          "en": "Granada is less expensive than Madrid.",
           "analisis": [
-            ["Granada", "subject"],
-            ["es", "verb ser"],
-            ["menos cara que", "less expensive than"],
-            ["Madrid", "the other city"]
+            [
+              "Granada",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "es",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "menos cara que",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "Madrid",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "Mi hermana es mayor que yo.",
-          "en": "My sister is older than me.",
           "analisis": [
-            ["Mi hermana", "subject"],
-            ["es mayor que", "is older than"],
-            ["yo", "me"]
+            [
+              "Mi hermana",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "es mayor que",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "yo",
+              {
+                "$t": "a6"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "Este café es tan bueno como el otro.",
-          "en": "This coffee is as good as the other one.",
           "analisis": [
-            ["Este café", "subject"],
-            ["tan bueno como", "as good as"],
-            ["el otro", "the other one"]
+            [
+              "Este café",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "tan bueno como",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "el otro",
+              {
+                "$t": "a8"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["más", "menos", "que", "tan", "como", "grande", "caro", "cara", "alta", "bueno", "malo", "café", "mejor", "peor", "mayor", "menor"]
+      "palabras": [
+        "más",
+        "menos",
+        "que",
+        "tan",
+        "como",
+        "grande",
+        "caro",
+        "cara",
+        "alta",
+        "bueno",
+        "malo",
+        "café",
+        "mejor",
+        "peor",
+        "mayor",
+        "menor"
+      ]
     },
     {
       "tipo": "huecos",
       "id": "a2-comp-mas",
-      "pregunta": { "en": "Complete: Madrid is bigger than Granada." },
-      "frase": "Madrid es ___ grande que Granada.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "más": { "en": "Más … que means more … than." },
-        "tan": { "en": "Tan goes with como: tan grande como." },
-        "muy": { "en": "Muy means very. It does not compare two things." }
+        "más": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "tan": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "muy": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "más"
     },
     {
       "tipo": "escribir",
       "id": "a2-comp-mayor",
-      "pregunta": { "en": "Translate: «My sister is older than me.»" },
-      "respuestas": ["Mi hermana es mayor que yo", "Mi hermana es más vieja que yo"],
-      "explicacion": { "en": "Mayor que is the usual neutral age comparison. Más viejo que is also grammatical." }
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "respuestas": [
+        "Mi hermana es mayor que yo",
+        "Mi hermana es más vieja que yo"
+      ],
+      "explicacion": {
+        "$t": "b5.explicacion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "a2-comp-m1",
-      "pregunta": {"en": "Complete: Ana is as tall as Pablo."},
-      "frase": "Ana es ___ alta como Pablo.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "tan": {"en": "Tan … como: as … as."},
-        "más": {"en": "Más goes with que."},
-        "tanto": {"en": "Before an adjective it is tan."}
+        "tan": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "más": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "tanto": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "tan"
     },
     {
       "tipo": "huecos",
       "id": "a2-comp-m2",
-      "pregunta": {"en": "Complete: this coffee is better than the other one."},
-      "frase": "Este café es ___ que el otro.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "mejor": {"en": "The comparative of bueno is mejor."},
-        "más bueno": {"en": "The usual comparative is mejor."},
-        "más mejor": {"en": "Mejor never takes más."}
+        "mejor": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "más bueno": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "más mejor": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "mejor"
     },
     {
       "tipo": "ordenar",
       "id": "a2-comp-m3",
-      "frase": "Granada es menos cara que Madrid",
-      "traduccion": {"en": "Granada is less expensive than Madrid."}
+      "frase": {
+        "$e": "b8.frase"
+      },
+      "traduccion": {
+        "$t": "b8.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Compare two cities, two people and two jobs that you know.\n\n**Speak (about 1 minute).** Compare aloud your town with the capital of your country: size, price, weather, people."
+        "$t": "b9.texto"
       }
     }
   ]

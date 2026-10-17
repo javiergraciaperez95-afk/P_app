@@ -1,145 +1,391 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "076",
   "capitulo": 8,
-  "titulo_es": "Es mío",
-  "titulo": {"en": "It's mine"},
-  "intro": {"en": "Mine, yours, hers. And how Spanish says the red one without a word for one."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "mío": {"en": "mine", "pron": "MI-o", "cat": "pronoun", "nota": "It agrees with the possessed noun, not the owner: mío, mía, míos, mías."},
-    "mía": {"en": "mine (feminine singular)", "pron": "MI-a", "cat": "pronoun"},
-    "mías": {"en": "mine (feminine plural)", "pron": "MI-as", "cat": "pronoun"},
-    "tuyo": {"en": "yours (tú)", "pron": "TU-yo", "cat": "pronoun"},
-    "tuya": {"en": "yours (feminine singular)", "pron": "TU-ya", "cat": "pronoun"},
-    "suyo": {"en": "his, hers, yours (usted), theirs", "pron": "SU-yo", "cat": "pronoun"},
-    "de quién": {"en": "whose", "pron": "de KYEN", "cat": "question word"},
-    "el tuyo": {"en": "yours (masculine singular; replaces a noun)", "pron": "el TU-yo", "cat": "pronoun"},
-    "un amigo mío": {"en": "a friend of mine", "pron": "un a-MI-go MI-o", "cat": "expression"},
-    "el móvil": {"en": "the mobile phone (móvil in Spain; celular in many Latin American varieties)", "pron": "el MO-bil", "cat": "noun", "genero": "m"},
-    "la chaqueta": {"en": "the jacket", "pron": "la cha-KE-ta", "cat": "noun", "genero": "f"},
-    "las gafas": {"en": "the glasses", "pron": "las GA-fas", "cat": "noun", "genero": "f"},
-    "la roja": {
-      "en": "the red one (feminine)",
-      "pron": "la RO-ha",
-      "cat": "expression",
-      "nota": "Drop the noun and keep the article: el rojo, la grande."
+    "mío": {
+      "$f": "p.mío",
+      "pron": "MI-o",
+      "cat": "pron",
+      "nota": {
+        "$t": "p.mío.nota"
+      }
     },
-    "la de Ana": {"en": "the one belonging to Ana", "pron": "la de A-na", "cat": "expression"}
+    "mía": {
+      "$f": "p.mía",
+      "pron": "MI-a",
+      "cat": "pron"
+    },
+    "mías": {
+      "$f": "p.mías",
+      "pron": "MI-as",
+      "cat": "pron"
+    },
+    "tuyo": {
+      "$f": "p.tuyo",
+      "pron": "TU-yo",
+      "cat": "pron"
+    },
+    "tuya": {
+      "$f": "p.tuya",
+      "pron": "TU-ya",
+      "cat": "pron"
+    },
+    "suyo": {
+      "$f": "p.suyo",
+      "pron": "SU-yo",
+      "cat": "pron"
+    },
+    "de quién": {
+      "$f": "p.de quién",
+      "pron": "de KYEN",
+      "cat": "question word"
+    },
+    "el tuyo": {
+      "$f": "p.el tuyo",
+      "pron": "el TU-yo",
+      "cat": "pron"
+    },
+    "un amigo mío": {
+      "$f": "p.un amigo mío",
+      "pron": "un a-MI-go MI-o",
+      "cat": "expr"
+    },
+    "el móvil": {
+      "$f": "p.el móvil",
+      "pron": "el MO-bil",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la chaqueta": {
+      "$f": "p.la chaqueta",
+      "pron": "la cha-KE-ta",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "las gafas": {
+      "$f": "p.las gafas",
+      "pron": "las GA-fas",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "la roja": {
+      "$f": "p.la roja",
+      "pron": "la RO-ha",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.la roja.nota"
+      }
+    },
+    "la de Ana": {
+      "$f": "p.la de Ana",
+      "pron": "la de A-na",
+      "cat": "expr"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Mine and yours"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "Stressed possessives can follow **ser**, appear after a noun, or combine with an article to replace a noun. They agree with the possessed noun, not the owner. Forms by owner: yo → **mío/a/os/as**; tú → **tuyo/a/os/as**; nosotros/as → **nuestro/a/os/as**; vosotros/as → **vuestro/a/os/as** (mainly Spain); él/ella/usted/ellos/ellas/ustedes → **suyo/a/os/as**.\n\n- Este móvil es **mío**. Las gafas son **mías**.\n- ¿**De quién** es? — Es **de Ana**. / Es **suyo**.\n\nWith an article, they replace the noun: mi chaqueta es negra, ¿y **la tuya**? — **La mía** es azul. After a noun, they mean of mine: un amigo **mío**, una idea **tuya**.\n\n**Suyo/a/os/as** can mean his, hers, theirs, or yours (usted/ustedes). Say **de él**, **de ella**, **de ellos**, **de ellas**, or **de usted/ustedes** if you need to clarify.\n\nSpanish uses the article and leaves out the noun in “the red one”: **el rojo**, **la grande**, **el de Ana**, **los de ayer**."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "Three positions"},
-      "columnas": ["Before the noun", "After ser", "Replacing the noun"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        },
+        {
+          "$t": "b2.c2"
+        }
+      ],
       "filas": [
-        ["mi libro", "es mío", "el mío"],
-        ["tu casa", "es tuya", "la tuya"],
-        ["su móvil", "es suyo", "el suyo"],
-        ["nuestras llaves", "son nuestras", "las nuestras"]
+        [
+          "mi libro",
+          "es mío",
+          "el mío"
+        ],
+        [
+          "tu casa",
+          "es tuya",
+          "la tuya"
+        ],
+        [
+          "su móvil",
+          "es suyo",
+          "el suyo"
+        ],
+        [
+          "nuestras llaves",
+          "son nuestras",
+          "las nuestras"
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Lost property"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "¿De quién es este móvil?",
-          "en": "Whose is this phone?",
-          "analisis": [["¿De quién", "question"], ["es", "verb"], ["este móvil", "subject"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Es mío. El tuyo está en la mesa.",
-          "en": "It's mine. Yours is on the table.",
-          "analisis": [["Es", "verb"], ["mío", "whose"], ["El tuyo", "subject"], ["está", "verb"], ["en la mesa", "place"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "¿Y esta chaqueta? ¿Es de Ana?",
-          "en": "And this jacket? Is it Ana's?",
-          "analisis": [["esta chaqueta", "subject"], ["¿Es", "verb"], ["de Ana", "whose"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "No, la de Ana es la roja. Esa es de un amigo mío.",
-          "en": "No, Ana's is the red one. That one belongs to a friend of mine.",
           "analisis": [
-            ["la de Ana", "subject"],
-            ["es", "verb"],
-            ["la roja", "which one"],
-            ["Esa", "subject"],
-            ["de un amigo mío", "whose"]
+            [
+              "¿De quién",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "es",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "este móvil",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f1",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Es",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "mío",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "El tuyo",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "está",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "en la mesa",
+              {
+                "$t": "a4"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f2",
           "quien": "Lucía",
-          "es": "Y estas gafas son mías.",
-          "en": "And these glasses are mine.",
-          "analisis": [["estas gafas", "subject"], ["son", "verb"], ["mías", "whose"]]
+          "analisis": [
+            [
+              "esta chaqueta",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "¿Es",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "de Ana",
+              {
+                "$t": "a3"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f3",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "la de Ana",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "es",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "la roja",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "Esa",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "de un amigo mío",
+              {
+                "$t": "a3"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "estas gafas",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "son",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "mías",
+              {
+                "$t": "a3"
+              }
+            ]
+          ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "mio-tuyo-1",
-      "pregunta": {"en": "Complete: the glasses are mine."},
-      "frase": "Las gafas son ___.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "mías": {"en": "Gafas is feminine plural."},
-        "mía": {"en": "Gafas is plural."},
-        "mis": {"en": "Mis goes before a noun: mis gafas."}
+        "mías": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "mía": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "mis": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "mías"
     },
     {
       "tipo": "huecos",
       "id": "mio-tuyo-2",
-      "pregunta": {"en": "Complete: my jacket is black. And yours?"},
-      "frase": "Mi chaqueta es negra. ¿Y la ___?",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "tuya": {"en": "La tuya replaces tu chaqueta."},
-        "tu": {"en": "Tu needs a noun after it."},
-        "tuyo": {"en": "Chaqueta is feminine."}
+        "tuya": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "tu": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "tuyo": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "tuya"
     },
     {
       "tipo": "test",
       "id": "mio-tuyo-3",
-      "pregunta": {"en": "How do you say «the red one» for la chaqueta?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "la roja": {"en": "Article plus adjective, and no noun."},
-        "la una roja": {"en": "For the red one, use the article and adjective: la roja."},
-        "roja la": {"en": "The article comes first."}
+        "la roja": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "la una roja": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "roja la": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "la roja"
     },
     {
       "tipo": "escribir",
       "id": "mio-tuyo-4",
-      "pregunta": {"en": "Translate: «It's mine.» (el móvil)"},
-      "respuestas": ["Es mío"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "Es mío"
+      ]
     },
     {
       "tipo": "ordenar",
       "id": "mio-tuyo-5",
-      "frase": "Esa chaqueta es de un amigo mío",
-      "traduccion": {"en": "That jacket belongs to a friend of mine."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write a dialogue between two flatmates sorting out whose things are whose.\n\n**Speak (about 1 minute).** Pick up objects around you and say whose they are: Es mío, es tuyo, es de mi hermana, es suyo."
+        "$t": "b10.texto"
       }
     }
   ]

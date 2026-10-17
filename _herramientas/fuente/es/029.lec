@@ -1,0 +1,854 @@
+id 029
+capitulo 4
+nivel A1
+
+palabras
+un café | un ka-FE | expr
+un té | un TE | expr
+el agua | el A-gwa | sust | f
+con leche | kon LE-che | expr
+quiero | KYE-ro | verb
+por favor | por fa-BOR | expr
+cuánto es | KWAN-to es | expr
+los euros | los E-u-ros | sust | m
+aquí tiene | a-KI TYE-ne | expr
+gracias | GRA-thyas | interj
+
+bloques
+b1 explicacion
+b2 dialogo
+  Camarero | u [INTERJ:días Buenos días.]
+  Camarero | b [PRED:quiere [CD* ¿Qué] [V* quiere?]]
+  Clienta | u [CD:café Un café con leche,] [VOC:favor por favor.]
+  Clienta | b [PRED:es [CD* ¿Cuánto] [V* es?]]
+  Camarero | u [ATRIB:euros Dos euros.]
+  Clienta | u [INTERJ* Gracias.]
+b3 vocabulario un café; un té; el agua; con leche; quiero; por favor; cuánto es; los euros; aquí tiene; gracias
+b4 gramatica
+  b [PRED:Quiero [V* Quiero] [CD:café un café.]]
+  b [PRED:quiere [CD* ¿Qué] [V* quiere]] [SUJ* usted?]
+b5 texto
+  0 | b [PRED:Es [V* Es] [ATRIB* sábado] [CCT:mañana por la mañana.]]
+  0 | b [SUJ* Lucía] [PRED:entra [V* entra] [CCL:cafetería en una cafetería pequeña.]]
+  0 | b [PRED:Hay [V* Hay] [CD:gente mucha gente] [CONJ y] [V* huele] [CRV:café a café.]]
+  0 | b [SUJ:camarera [DET La] [N camarera]] [PRED:acerca [V:acerca se acerca] [CCL:mesa a su mesa.]]
+  1 | b [SUJ:camarera [DET La] [N camarera]] [PRED:pregunta [CI* le] [V* pregunta] [CD:quiere qué quiere.]]
+  1 | b [SUJ* Lucía] [PRED:pide [V* pide] [CD:café un café con leche y un té.]]
+  1 | b [SUJ:café [DET El] [N café]] [PRED:cuesta [V* cuesta] [CD:euros dos euros.]]
+  1 | b [SUJ* Lucía] [PRED:paga [V* paga] [CONJ y] [V* da] [CD:gracias las gracias.]]
+b6 test 1 0 0
+b7 huecos 1 0 0
+b8 ordenar
+b9 escribir ¿Cuánto es? || Cuánto es
+
+== en
+titulo: En la cafetería
+intro: Pedir en una cafetería, preguntar el precio y dar las gracias.
+b1.titulo: Pedir algo
+b1.texto: "Para pedir en una cafetería hay dos fórmulas que funcionan siempre:\n\n- **Quiero** un café, **por favor**.\n- **Ponme** un té, **por favor**.\n\nY si quieres ser más educado con el camarero:\n\n- **¿Me trae un café, por favor?**\n\nEl camarero suele hablar de **usted**: «¿Qué **quiere**?», no «¿qué quieres?»."
+b2.titulo: En la barra
+b2.f0.texto: Buenos días.
+b2.f1.texto: ¿Qué quiere?
+b2.f2.texto: Un café con leche, por favor.
+b2.f3.texto: ¿Cuánto es?
+b2.f4.texto: Dos euros.
+b2.f5.texto: Gracias.
+b3.titulo: Vocabulario
+b4.titulo: Quiero y quiere
+b4.texto: "El verbo **querer** cambia según quién habla:\n\n- yo **quiero**\n- tú **quieres**\n- usted / él / ella **quiere**\n\nEl cliente dice «**quiero** un café**», y el camarero pregunta «¿qué **quiere**?». La forma con -e es la de usted.\n\nY la fórmula completa para pedir: **Quiero** + lo que sea + **por favor**."
+b4.e0.texto: Quiero un café.
+b4.e1.texto: ¿Qué quiere usted?
+b5.titulo: Un sábado en la cafetería
+b5.f0.texto: Es sábado por la mañana.
+b5.f1.texto: Lucía entra en una cafetería pequeña.
+b5.f2.texto: Hay mucha gente y huele a café.
+b5.f3.texto: La camarera se acerca a su mesa.
+b5.f4.texto: La camarera le pregunta qué quiere.
+b5.f5.texto: Lucía pide un café con leche y un té.
+b5.f6.texto: El café cuesta dos euros.
+b5.f7.texto: Lucía paga y da las gracias.
+b6.titulo: ¿Qué pide?
+b6.pregunta: ¿Qué pide Lucía?
+b6.o0: Un café con leche y un té.
+b6.o0.refuerzo: Correcto: es lo que pide en el texto.
+b6.o1: Solo un café.
+b6.o1.refuerzo: Casi: también pide un té.
+b6.o2: Agua.
+b6.o2.refuerzo: En el texto no se habla de agua.
+b7.titulo: Completa
+b7.pregunta: Completa el pedido.
+b7.frase: ___ un café, por favor.
+b7.o0: Quiero
+b7.o0.refuerzo: Correcto: «quiero» va con «yo».
+b7.o1: Quiere
+b7.o1.refuerzo: Incorrecto: «quiere» es para usted, él o ella.
+b7.o2: Quieren
+b7.o2.refuerzo: Incorrecto: «quieren» es para ellos.
+b8.titulo: Ordena las palabras
+b8.frase: Un café con leche, por favor.
+b8.traduccion: A coffee with milk, please.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «How much is it?».
+p.un café.glosa: la bebida caliente de color oscuro
+p.un café.consejo: «Un café» es solo; si lo quieres con leche, di «un café con leche».
+p.un té.glosa: la bebida hecha con hojas
+p.un té.consejo: Lleva tilde en la e: TE.
+p.el agua.glosa: la bebida transparente
+p.el agua.consejo: Es femenina, pero lleva «el» porque empieza por a tónica: «el agua».
+p.con leche.glosa: con leche añadida
+p.con leche.consejo: Se dice «café con leche», no «café con la leche».
+p.quiero.glosa: querer, con «yo»
+p.quiero.consejo: La forma más sencilla de pedir. Detrás va lo que quieres.
+p.por favor.glosa: fórmula de cortesía
+p.por favor.consejo: Se pone al final, separado con coma: «un té, por favor».
+p.cuánto es.glosa: preguntar el precio
+p.cuánto es.consejo: Lleva tilde en «cuán». También vale «¿cuánto cuesta?».
+p.los euros.glosa: la moneda de España
+p.los euros.consejo: Se dice «dos euros», pero «un euro».
+p.aquí tiene.glosa: aquí está lo que ha pedido
+p.aquí tiene.consejo: Fórmula de usted. Con «tú» sería «aquí tienes».
+p.gracias.glosa: palabra para agradecer
+p.gracias.consejo: Se responde «de nada». La c suena como th en España: GRA-thyas.
+
+== es
+titulo: En la cafetería
+intro: Pedir en una cafetería, preguntar el precio y dar las gracias.
+b1.titulo: Pedir algo
+b1.texto: "Para pedir en una cafetería hay dos fórmulas que funcionan siempre:\n\n- **Quiero** un café, **por favor**.\n- **Ponme** un té, **por favor**.\n\nY si quieres ser más educado con el camarero:\n\n- **¿Me trae un café, por favor?**\n\nEl camarero suele hablar de **usted**: «¿Qué **quiere**?», no «¿qué quieres?»."
+b2.titulo: En la barra
+b3.titulo: Vocabulario
+b4.titulo: Quiero y quiere
+b4.texto: "El verbo **querer** cambia según quién habla:\n\n- yo **quiero**\n- tú **quieres**\n- usted / él / ella **quiere**\n\nEl cliente dice «**quiero** un café**», y el camarero pregunta «¿qué **quiere**?». La forma con -e es la de usted.\n\nY la fórmula completa para pedir: **Quiero** + lo que sea + **por favor**."
+b5.titulo: Un sábado en la cafetería
+b6.titulo: ¿Qué pide?
+b6.pregunta: ¿Qué pide Lucía?
+b6.o0: Un café con leche y un té.
+b6.o0.refuerzo: Correcto: es lo que pide en el texto.
+b6.o1: Solo un café.
+b6.o1.refuerzo: Casi: también pide un té.
+b6.o2: Agua.
+b6.o2.refuerzo: En el texto no se habla de agua.
+b7.titulo: Completa
+b7.pregunta: Completa el pedido.
+b7.frase: ___ un café, por favor.
+b7.o0: Quiero
+b7.o0.refuerzo: Correcto: «quiero» va con «yo».
+b7.o1: Quiere
+b7.o1.refuerzo: Incorrecto: «quiere» es para usted, él o ella.
+b7.o2: Quieren
+b7.o2.refuerzo: Incorrecto: «quieren» es para ellos.
+b8.titulo: Ordena las palabras
+b8.frase: Un café con leche, por favor.
+b8.traduccion: A coffee with milk, please.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «How much is it?».
+p.un café.glosa: la bebida caliente de color oscuro
+p.un café.consejo: «Un café» es solo; si lo quieres con leche, di «un café con leche».
+p.un té.glosa: la bebida hecha con hojas
+p.un té.consejo: Lleva tilde en la e: TE.
+p.el agua.glosa: la bebida transparente
+p.el agua.consejo: Es femenina, pero lleva «el» porque empieza por a tónica: «el agua».
+p.con leche.glosa: con leche añadida
+p.con leche.consejo: Se dice «café con leche», no «café con la leche».
+p.quiero.glosa: querer, con «yo»
+p.quiero.consejo: La forma más sencilla de pedir. Detrás va lo que quieres.
+p.por favor.glosa: fórmula de cortesía
+p.por favor.consejo: Se pone al final, separado con coma: «un té, por favor».
+p.cuánto es.glosa: preguntar el precio
+p.cuánto es.consejo: Lleva tilde en «cuán». También vale «¿cuánto cuesta?».
+p.los euros.glosa: la moneda de España
+p.los euros.consejo: Se dice «dos euros», pero «un euro».
+p.aquí tiene.glosa: aquí está lo que ha pedido
+p.aquí tiene.consejo: Fórmula de usted. Con «tú» sería «aquí tienes».
+p.gracias.glosa: palabra para agradecer
+p.gracias.consejo: Se responde «de nada». La c suena como th en España: GRA-thyas.
+
+== vi
+titulo: En la cafetería
+intro: Pedir en una cafetería, preguntar el precio y dar las gracias.
+b1.titulo: Pedir algo
+b1.texto: "Para pedir en una cafetería hay dos fórmulas que funcionan siempre:\n\n- **Quiero** un café, **por favor**.\n- **Ponme** un té, **por favor**.\n\nY si quieres ser más educado con el camarero:\n\n- **¿Me trae un café, por favor?**\n\nEl camarero suele hablar de **usted**: «¿Qué **quiere**?», no «¿qué quieres?»."
+b2.titulo: En la barra
+b2.f0.texto: Buenos días.
+b2.f1.texto: ¿Qué quiere?
+b2.f2.texto: Un café con leche, por favor.
+b2.f3.texto: ¿Cuánto es?
+b2.f4.texto: Dos euros.
+b2.f5.texto: Gracias.
+b3.titulo: Vocabulario
+b4.titulo: Quiero y quiere
+b4.texto: "El verbo **querer** cambia según quién habla:\n\n- yo **quiero**\n- tú **quieres**\n- usted / él / ella **quiere**\n\nEl cliente dice «**quiero** un café**», y el camarero pregunta «¿qué **quiere**?». La forma con -e es la de usted.\n\nY la fórmula completa para pedir: **Quiero** + lo que sea + **por favor**."
+b4.e0.texto: Quiero un café.
+b4.e1.texto: ¿Qué quiere usted?
+b5.titulo: Un sábado en la cafetería
+b5.f0.texto: Es sábado por la mañana.
+b5.f1.texto: Lucía entra en una cafetería pequeña.
+b5.f2.texto: Hay mucha gente y huele a café.
+b5.f3.texto: La camarera se acerca a su mesa.
+b5.f4.texto: La camarera le pregunta qué quiere.
+b5.f5.texto: Lucía pide un café con leche y un té.
+b5.f6.texto: El café cuesta dos euros.
+b5.f7.texto: Lucía paga y da las gracias.
+b6.titulo: ¿Qué pide?
+b6.pregunta: ¿Qué pide Lucía?
+b6.o0: Un café con leche y un té.
+b6.o0.refuerzo: Correcto: es lo que pide en el texto.
+b6.o1: Solo un café.
+b6.o1.refuerzo: Casi: también pide un té.
+b6.o2: Agua.
+b6.o2.refuerzo: En el texto no se habla de agua.
+b7.titulo: Completa
+b7.pregunta: Completa el pedido.
+b7.frase: ___ un café, por favor.
+b7.o0: Quiero
+b7.o0.refuerzo: Correcto: «quiero» va con «yo».
+b7.o1: Quiere
+b7.o1.refuerzo: Incorrecto: «quiere» es para usted, él o ella.
+b7.o2: Quieren
+b7.o2.refuerzo: Incorrecto: «quieren» es para ellos.
+b8.titulo: Ordena las palabras
+b8.frase: Un café con leche, por favor.
+b8.traduccion: A coffee with milk, please.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «How much is it?».
+p.un café.glosa: la bebida caliente de color oscuro
+p.un café.consejo: «Un café» es solo; si lo quieres con leche, di «un café con leche».
+p.un té.glosa: la bebida hecha con hojas
+p.un té.consejo: Lleva tilde en la e: TE.
+p.el agua.glosa: la bebida transparente
+p.el agua.consejo: Es femenina, pero lleva «el» porque empieza por a tónica: «el agua».
+p.con leche.glosa: con leche añadida
+p.con leche.consejo: Se dice «café con leche», no «café con la leche».
+p.quiero.glosa: querer, con «yo»
+p.quiero.consejo: La forma más sencilla de pedir. Detrás va lo que quieres.
+p.por favor.glosa: fórmula de cortesía
+p.por favor.consejo: Se pone al final, separado con coma: «un té, por favor».
+p.cuánto es.glosa: preguntar el precio
+p.cuánto es.consejo: Lleva tilde en «cuán». También vale «¿cuánto cuesta?».
+p.los euros.glosa: la moneda de España
+p.los euros.consejo: Se dice «dos euros», pero «un euro».
+p.aquí tiene.glosa: aquí está lo que ha pedido
+p.aquí tiene.consejo: Fórmula de usted. Con «tú» sería «aquí tienes».
+p.gracias.glosa: palabra para agradecer
+p.gracias.consejo: Se responde «de nada». La c suena como th en España: GRA-thyas.
+
+== zh
+titulo: En la cafetería
+intro: Pedir en una cafetería, preguntar el precio y dar las gracias.
+b1.titulo: Pedir algo
+b1.texto: "Para pedir en una cafetería hay dos fórmulas que funcionan siempre:\n\n- **Quiero** un café, **por favor**.\n- **Ponme** un té, **por favor**.\n\nY si quieres ser más educado con el camarero:\n\n- **¿Me trae un café, por favor?**\n\nEl camarero suele hablar de **usted**: «¿Qué **quiere**?», no «¿qué quieres?»."
+b2.titulo: En la barra
+b2.f0.texto: Buenos días.
+b2.f1.texto: ¿Qué quiere?
+b2.f2.texto: Un café con leche, por favor.
+b2.f3.texto: ¿Cuánto es?
+b2.f4.texto: Dos euros.
+b2.f5.texto: Gracias.
+b3.titulo: Vocabulario
+b4.titulo: Quiero y quiere
+b4.texto: "El verbo **querer** cambia según quién habla:\n\n- yo **quiero**\n- tú **quieres**\n- usted / él / ella **quiere**\n\nEl cliente dice «**quiero** un café**», y el camarero pregunta «¿qué **quiere**?». La forma con -e es la de usted.\n\nY la fórmula completa para pedir: **Quiero** + lo que sea + **por favor**."
+b4.e0.texto: Quiero un café.
+b4.e1.texto: ¿Qué quiere usted?
+b5.titulo: Un sábado en la cafetería
+b5.f0.texto: Es sábado por la mañana.
+b5.f1.texto: Lucía entra en una cafetería pequeña.
+b5.f2.texto: Hay mucha gente y huele a café.
+b5.f3.texto: La camarera se acerca a su mesa.
+b5.f4.texto: La camarera le pregunta qué quiere.
+b5.f5.texto: Lucía pide un café con leche y un té.
+b5.f6.texto: El café cuesta dos euros.
+b5.f7.texto: Lucía paga y da las gracias.
+b6.titulo: ¿Qué pide?
+b6.pregunta: ¿Qué pide Lucía?
+b6.o0: Un café con leche y un té.
+b6.o0.refuerzo: Correcto: es lo que pide en el texto.
+b6.o1: Solo un café.
+b6.o1.refuerzo: Casi: también pide un té.
+b6.o2: Agua.
+b6.o2.refuerzo: En el texto no se habla de agua.
+b7.titulo: Completa
+b7.pregunta: Completa el pedido.
+b7.frase: ___ un café, por favor.
+b7.o0: Quiero
+b7.o0.refuerzo: Correcto: «quiero» va con «yo».
+b7.o1: Quiere
+b7.o1.refuerzo: Incorrecto: «quiere» es para usted, él o ella.
+b7.o2: Quieren
+b7.o2.refuerzo: Incorrecto: «quieren» es para ellos.
+b8.titulo: Ordena las palabras
+b8.frase: Un café con leche, por favor.
+b8.traduccion: A coffee with milk, please.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «How much is it?».
+p.un café.glosa: la bebida caliente de color oscuro
+p.un café.consejo: «Un café» es solo; si lo quieres con leche, di «un café con leche».
+p.un té.glosa: la bebida hecha con hojas
+p.un té.consejo: Lleva tilde en la e: TE.
+p.el agua.glosa: la bebida transparente
+p.el agua.consejo: Es femenina, pero lleva «el» porque empieza por a tónica: «el agua».
+p.con leche.glosa: con leche añadida
+p.con leche.consejo: Se dice «café con leche», no «café con la leche».
+p.quiero.glosa: querer, con «yo»
+p.quiero.consejo: La forma más sencilla de pedir. Detrás va lo que quieres.
+p.por favor.glosa: fórmula de cortesía
+p.por favor.consejo: Se pone al final, separado con coma: «un té, por favor».
+p.cuánto es.glosa: preguntar el precio
+p.cuánto es.consejo: Lleva tilde en «cuán». También vale «¿cuánto cuesta?».
+p.los euros.glosa: la moneda de España
+p.los euros.consejo: Se dice «dos euros», pero «un euro».
+p.aquí tiene.glosa: aquí está lo que ha pedido
+p.aquí tiene.consejo: Fórmula de usted. Con «tú» sería «aquí tienes».
+p.gracias.glosa: palabra para agradecer
+p.gracias.consejo: Se responde «de nada». La c suena como th en España: GRA-thyas.
+
+== pt
+titulo: En la cafetería
+intro: Pedir en una cafetería, preguntar el precio y dar las gracias.
+b1.titulo: Pedir algo
+b1.texto: "Para pedir en una cafetería hay dos fórmulas que funcionan siempre:\n\n- **Quiero** un café, **por favor**.\n- **Ponme** un té, **por favor**.\n\nY si quieres ser más educado con el camarero:\n\n- **¿Me trae un café, por favor?**\n\nEl camarero suele hablar de **usted**: «¿Qué **quiere**?», no «¿qué quieres?»."
+b2.titulo: En la barra
+b2.f0.texto: Buenos días.
+b2.f1.texto: ¿Qué quiere?
+b2.f2.texto: Un café con leche, por favor.
+b2.f3.texto: ¿Cuánto es?
+b2.f4.texto: Dos euros.
+b2.f5.texto: Gracias.
+b3.titulo: Vocabulario
+b4.titulo: Quiero y quiere
+b4.texto: "El verbo **querer** cambia según quién habla:\n\n- yo **quiero**\n- tú **quieres**\n- usted / él / ella **quiere**\n\nEl cliente dice «**quiero** un café**», y el camarero pregunta «¿qué **quiere**?». La forma con -e es la de usted.\n\nY la fórmula completa para pedir: **Quiero** + lo que sea + **por favor**."
+b4.e0.texto: Quiero un café.
+b4.e1.texto: ¿Qué quiere usted?
+b5.titulo: Un sábado en la cafetería
+b5.f0.texto: Es sábado por la mañana.
+b5.f1.texto: Lucía entra en una cafetería pequeña.
+b5.f2.texto: Hay mucha gente y huele a café.
+b5.f3.texto: La camarera se acerca a su mesa.
+b5.f4.texto: La camarera le pregunta qué quiere.
+b5.f5.texto: Lucía pide un café con leche y un té.
+b5.f6.texto: El café cuesta dos euros.
+b5.f7.texto: Lucía paga y da las gracias.
+b6.titulo: ¿Qué pide?
+b6.pregunta: ¿Qué pide Lucía?
+b6.o0: Un café con leche y un té.
+b6.o0.refuerzo: Correcto: es lo que pide en el texto.
+b6.o1: Solo un café.
+b6.o1.refuerzo: Casi: también pide un té.
+b6.o2: Agua.
+b6.o2.refuerzo: En el texto no se habla de agua.
+b7.titulo: Completa
+b7.pregunta: Completa el pedido.
+b7.frase: ___ un café, por favor.
+b7.o0: Quiero
+b7.o0.refuerzo: Correcto: «quiero» va con «yo».
+b7.o1: Quiere
+b7.o1.refuerzo: Incorrecto: «quiere» es para usted, él o ella.
+b7.o2: Quieren
+b7.o2.refuerzo: Incorrecto: «quieren» es para ellos.
+b8.titulo: Ordena las palabras
+b8.frase: Un café con leche, por favor.
+b8.traduccion: A coffee with milk, please.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «How much is it?».
+p.un café.glosa: la bebida caliente de color oscuro
+p.un café.consejo: «Un café» es solo; si lo quieres con leche, di «un café con leche».
+p.un té.glosa: la bebida hecha con hojas
+p.un té.consejo: Lleva tilde en la e: TE.
+p.el agua.glosa: la bebida transparente
+p.el agua.consejo: Es femenina, pero lleva «el» porque empieza por a tónica: «el agua».
+p.con leche.glosa: con leche añadida
+p.con leche.consejo: Se dice «café con leche», no «café con la leche».
+p.quiero.glosa: querer, con «yo»
+p.quiero.consejo: La forma más sencilla de pedir. Detrás va lo que quieres.
+p.por favor.glosa: fórmula de cortesía
+p.por favor.consejo: Se pone al final, separado con coma: «un té, por favor».
+p.cuánto es.glosa: preguntar el precio
+p.cuánto es.consejo: Lleva tilde en «cuán». También vale «¿cuánto cuesta?».
+p.los euros.glosa: la moneda de España
+p.los euros.consejo: Se dice «dos euros», pero «un euro».
+p.aquí tiene.glosa: aquí está lo que ha pedido
+p.aquí tiene.consejo: Fórmula de usted. Con «tú» sería «aquí tienes».
+p.gracias.glosa: palabra para agradecer
+p.gracias.consejo: Se responde «de nada». La c suena como th en España: GRA-thyas.
+
+== fr
+titulo: En la cafetería
+intro: Pedir en una cafetería, preguntar el precio y dar las gracias.
+b1.titulo: Pedir algo
+b1.texto: "Para pedir en una cafetería hay dos fórmulas que funcionan siempre:\n\n- **Quiero** un café, **por favor**.\n- **Ponme** un té, **por favor**.\n\nY si quieres ser más educado con el camarero:\n\n- **¿Me trae un café, por favor?**\n\nEl camarero suele hablar de **usted**: «¿Qué **quiere**?», no «¿qué quieres?»."
+b2.titulo: En la barra
+b2.f0.texto: Buenos días.
+b2.f1.texto: ¿Qué quiere?
+b2.f2.texto: Un café con leche, por favor.
+b2.f3.texto: ¿Cuánto es?
+b2.f4.texto: Dos euros.
+b2.f5.texto: Gracias.
+b3.titulo: Vocabulario
+b4.titulo: Quiero y quiere
+b4.texto: "El verbo **querer** cambia según quién habla:\n\n- yo **quiero**\n- tú **quieres**\n- usted / él / ella **quiere**\n\nEl cliente dice «**quiero** un café**», y el camarero pregunta «¿qué **quiere**?». La forma con -e es la de usted.\n\nY la fórmula completa para pedir: **Quiero** + lo que sea + **por favor**."
+b4.e0.texto: Quiero un café.
+b4.e1.texto: ¿Qué quiere usted?
+b5.titulo: Un sábado en la cafetería
+b5.f0.texto: Es sábado por la mañana.
+b5.f1.texto: Lucía entra en una cafetería pequeña.
+b5.f2.texto: Hay mucha gente y huele a café.
+b5.f3.texto: La camarera se acerca a su mesa.
+b5.f4.texto: La camarera le pregunta qué quiere.
+b5.f5.texto: Lucía pide un café con leche y un té.
+b5.f6.texto: El café cuesta dos euros.
+b5.f7.texto: Lucía paga y da las gracias.
+b6.titulo: ¿Qué pide?
+b6.pregunta: ¿Qué pide Lucía?
+b6.o0: Un café con leche y un té.
+b6.o0.refuerzo: Correcto: es lo que pide en el texto.
+b6.o1: Solo un café.
+b6.o1.refuerzo: Casi: también pide un té.
+b6.o2: Agua.
+b6.o2.refuerzo: En el texto no se habla de agua.
+b7.titulo: Completa
+b7.pregunta: Completa el pedido.
+b7.frase: ___ un café, por favor.
+b7.o0: Quiero
+b7.o0.refuerzo: Correcto: «quiero» va con «yo».
+b7.o1: Quiere
+b7.o1.refuerzo: Incorrecto: «quiere» es para usted, él o ella.
+b7.o2: Quieren
+b7.o2.refuerzo: Incorrecto: «quieren» es para ellos.
+b8.titulo: Ordena las palabras
+b8.frase: Un café con leche, por favor.
+b8.traduccion: A coffee with milk, please.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «How much is it?».
+p.un café.glosa: la bebida caliente de color oscuro
+p.un café.consejo: «Un café» es solo; si lo quieres con leche, di «un café con leche».
+p.un té.glosa: la bebida hecha con hojas
+p.un té.consejo: Lleva tilde en la e: TE.
+p.el agua.glosa: la bebida transparente
+p.el agua.consejo: Es femenina, pero lleva «el» porque empieza por a tónica: «el agua».
+p.con leche.glosa: con leche añadida
+p.con leche.consejo: Se dice «café con leche», no «café con la leche».
+p.quiero.glosa: querer, con «yo»
+p.quiero.consejo: La forma más sencilla de pedir. Detrás va lo que quieres.
+p.por favor.glosa: fórmula de cortesía
+p.por favor.consejo: Se pone al final, separado con coma: «un té, por favor».
+p.cuánto es.glosa: preguntar el precio
+p.cuánto es.consejo: Lleva tilde en «cuán». También vale «¿cuánto cuesta?».
+p.los euros.glosa: la moneda de España
+p.los euros.consejo: Se dice «dos euros», pero «un euro».
+p.aquí tiene.glosa: aquí está lo que ha pedido
+p.aquí tiene.consejo: Fórmula de usted. Con «tú» sería «aquí tienes».
+p.gracias.glosa: palabra para agradecer
+p.gracias.consejo: Se responde «de nada». La c suena como th en España: GRA-thyas.
+
+== ja
+titulo: En la cafetería
+intro: Pedir en una cafetería, preguntar el precio y dar las gracias.
+b1.titulo: Pedir algo
+b1.texto: "Para pedir en una cafetería hay dos fórmulas que funcionan siempre:\n\n- **Quiero** un café, **por favor**.\n- **Ponme** un té, **por favor**.\n\nY si quieres ser más educado con el camarero:\n\n- **¿Me trae un café, por favor?**\n\nEl camarero suele hablar de **usted**: «¿Qué **quiere**?», no «¿qué quieres?»."
+b2.titulo: En la barra
+b2.f0.texto: Buenos días.
+b2.f1.texto: ¿Qué quiere?
+b2.f2.texto: Un café con leche, por favor.
+b2.f3.texto: ¿Cuánto es?
+b2.f4.texto: Dos euros.
+b2.f5.texto: Gracias.
+b3.titulo: Vocabulario
+b4.titulo: Quiero y quiere
+b4.texto: "El verbo **querer** cambia según quién habla:\n\n- yo **quiero**\n- tú **quieres**\n- usted / él / ella **quiere**\n\nEl cliente dice «**quiero** un café**», y el camarero pregunta «¿qué **quiere**?». La forma con -e es la de usted.\n\nY la fórmula completa para pedir: **Quiero** + lo que sea + **por favor**."
+b4.e0.texto: Quiero un café.
+b4.e1.texto: ¿Qué quiere usted?
+b5.titulo: Un sábado en la cafetería
+b5.f0.texto: Es sábado por la mañana.
+b5.f1.texto: Lucía entra en una cafetería pequeña.
+b5.f2.texto: Hay mucha gente y huele a café.
+b5.f3.texto: La camarera se acerca a su mesa.
+b5.f4.texto: La camarera le pregunta qué quiere.
+b5.f5.texto: Lucía pide un café con leche y un té.
+b5.f6.texto: El café cuesta dos euros.
+b5.f7.texto: Lucía paga y da las gracias.
+b6.titulo: ¿Qué pide?
+b6.pregunta: ¿Qué pide Lucía?
+b6.o0: Un café con leche y un té.
+b6.o0.refuerzo: Correcto: es lo que pide en el texto.
+b6.o1: Solo un café.
+b6.o1.refuerzo: Casi: también pide un té.
+b6.o2: Agua.
+b6.o2.refuerzo: En el texto no se habla de agua.
+b7.titulo: Completa
+b7.pregunta: Completa el pedido.
+b7.frase: ___ un café, por favor.
+b7.o0: Quiero
+b7.o0.refuerzo: Correcto: «quiero» va con «yo».
+b7.o1: Quiere
+b7.o1.refuerzo: Incorrecto: «quiere» es para usted, él o ella.
+b7.o2: Quieren
+b7.o2.refuerzo: Incorrecto: «quieren» es para ellos.
+b8.titulo: Ordena las palabras
+b8.frase: Un café con leche, por favor.
+b8.traduccion: A coffee with milk, please.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «How much is it?».
+p.un café.glosa: la bebida caliente de color oscuro
+p.un café.consejo: «Un café» es solo; si lo quieres con leche, di «un café con leche».
+p.un té.glosa: la bebida hecha con hojas
+p.un té.consejo: Lleva tilde en la e: TE.
+p.el agua.glosa: la bebida transparente
+p.el agua.consejo: Es femenina, pero lleva «el» porque empieza por a tónica: «el agua».
+p.con leche.glosa: con leche añadida
+p.con leche.consejo: Se dice «café con leche», no «café con la leche».
+p.quiero.glosa: querer, con «yo»
+p.quiero.consejo: La forma más sencilla de pedir. Detrás va lo que quieres.
+p.por favor.glosa: fórmula de cortesía
+p.por favor.consejo: Se pone al final, separado con coma: «un té, por favor».
+p.cuánto es.glosa: preguntar el precio
+p.cuánto es.consejo: Lleva tilde en «cuán». También vale «¿cuánto cuesta?».
+p.los euros.glosa: la moneda de España
+p.los euros.consejo: Se dice «dos euros», pero «un euro».
+p.aquí tiene.glosa: aquí está lo que ha pedido
+p.aquí tiene.consejo: Fórmula de usted. Con «tú» sería «aquí tienes».
+p.gracias.glosa: palabra para agradecer
+p.gracias.consejo: Se responde «de nada». La c suena como th en España: GRA-thyas.
+
+== it
+titulo: En la cafetería
+intro: Pedir en una cafetería, preguntar el precio y dar las gracias.
+b1.titulo: Pedir algo
+b1.texto: "Para pedir en una cafetería hay dos fórmulas que funcionan siempre:\n\n- **Quiero** un café, **por favor**.\n- **Ponme** un té, **por favor**.\n\nY si quieres ser más educado con el camarero:\n\n- **¿Me trae un café, por favor?**\n\nEl camarero suele hablar de **usted**: «¿Qué **quiere**?», no «¿qué quieres?»."
+b2.titulo: En la barra
+b2.f0.texto: Buenos días.
+b2.f1.texto: ¿Qué quiere?
+b2.f2.texto: Un café con leche, por favor.
+b2.f3.texto: ¿Cuánto es?
+b2.f4.texto: Dos euros.
+b2.f5.texto: Gracias.
+b3.titulo: Vocabulario
+b4.titulo: Quiero y quiere
+b4.texto: "El verbo **querer** cambia según quién habla:\n\n- yo **quiero**\n- tú **quieres**\n- usted / él / ella **quiere**\n\nEl cliente dice «**quiero** un café**», y el camarero pregunta «¿qué **quiere**?». La forma con -e es la de usted.\n\nY la fórmula completa para pedir: **Quiero** + lo que sea + **por favor**."
+b4.e0.texto: Quiero un café.
+b4.e1.texto: ¿Qué quiere usted?
+b5.titulo: Un sábado en la cafetería
+b5.f0.texto: Es sábado por la mañana.
+b5.f1.texto: Lucía entra en una cafetería pequeña.
+b5.f2.texto: Hay mucha gente y huele a café.
+b5.f3.texto: La camarera se acerca a su mesa.
+b5.f4.texto: La camarera le pregunta qué quiere.
+b5.f5.texto: Lucía pide un café con leche y un té.
+b5.f6.texto: El café cuesta dos euros.
+b5.f7.texto: Lucía paga y da las gracias.
+b6.titulo: ¿Qué pide?
+b6.pregunta: ¿Qué pide Lucía?
+b6.o0: Un café con leche y un té.
+b6.o0.refuerzo: Correcto: es lo que pide en el texto.
+b6.o1: Solo un café.
+b6.o1.refuerzo: Casi: también pide un té.
+b6.o2: Agua.
+b6.o2.refuerzo: En el texto no se habla de agua.
+b7.titulo: Completa
+b7.pregunta: Completa el pedido.
+b7.frase: ___ un café, por favor.
+b7.o0: Quiero
+b7.o0.refuerzo: Correcto: «quiero» va con «yo».
+b7.o1: Quiere
+b7.o1.refuerzo: Incorrecto: «quiere» es para usted, él o ella.
+b7.o2: Quieren
+b7.o2.refuerzo: Incorrecto: «quieren» es para ellos.
+b8.titulo: Ordena las palabras
+b8.frase: Un café con leche, por favor.
+b8.traduccion: A coffee with milk, please.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «How much is it?».
+p.un café.glosa: la bebida caliente de color oscuro
+p.un café.consejo: «Un café» es solo; si lo quieres con leche, di «un café con leche».
+p.un té.glosa: la bebida hecha con hojas
+p.un té.consejo: Lleva tilde en la e: TE.
+p.el agua.glosa: la bebida transparente
+p.el agua.consejo: Es femenina, pero lleva «el» porque empieza por a tónica: «el agua».
+p.con leche.glosa: con leche añadida
+p.con leche.consejo: Se dice «café con leche», no «café con la leche».
+p.quiero.glosa: querer, con «yo»
+p.quiero.consejo: La forma más sencilla de pedir. Detrás va lo que quieres.
+p.por favor.glosa: fórmula de cortesía
+p.por favor.consejo: Se pone al final, separado con coma: «un té, por favor».
+p.cuánto es.glosa: preguntar el precio
+p.cuánto es.consejo: Lleva tilde en «cuán». También vale «¿cuánto cuesta?».
+p.los euros.glosa: la moneda de España
+p.los euros.consejo: Se dice «dos euros», pero «un euro».
+p.aquí tiene.glosa: aquí está lo que ha pedido
+p.aquí tiene.consejo: Fórmula de usted. Con «tú» sería «aquí tienes».
+p.gracias.glosa: palabra para agradecer
+p.gracias.consejo: Se responde «de nada». La c suena como th en España: GRA-thyas.
+
+== ko
+titulo: En la cafetería
+intro: Pedir en una cafetería, preguntar el precio y dar las gracias.
+b1.titulo: Pedir algo
+b1.texto: "Para pedir en una cafetería hay dos fórmulas que funcionan siempre:\n\n- **Quiero** un café, **por favor**.\n- **Ponme** un té, **por favor**.\n\nY si quieres ser más educado con el camarero:\n\n- **¿Me trae un café, por favor?**\n\nEl camarero suele hablar de **usted**: «¿Qué **quiere**?», no «¿qué quieres?»."
+b2.titulo: En la barra
+b2.f0.texto: Buenos días.
+b2.f1.texto: ¿Qué quiere?
+b2.f2.texto: Un café con leche, por favor.
+b2.f3.texto: ¿Cuánto es?
+b2.f4.texto: Dos euros.
+b2.f5.texto: Gracias.
+b3.titulo: Vocabulario
+b4.titulo: Quiero y quiere
+b4.texto: "El verbo **querer** cambia según quién habla:\n\n- yo **quiero**\n- tú **quieres**\n- usted / él / ella **quiere**\n\nEl cliente dice «**quiero** un café**», y el camarero pregunta «¿qué **quiere**?». La forma con -e es la de usted.\n\nY la fórmula completa para pedir: **Quiero** + lo que sea + **por favor**."
+b4.e0.texto: Quiero un café.
+b4.e1.texto: ¿Qué quiere usted?
+b5.titulo: Un sábado en la cafetería
+b5.f0.texto: Es sábado por la mañana.
+b5.f1.texto: Lucía entra en una cafetería pequeña.
+b5.f2.texto: Hay mucha gente y huele a café.
+b5.f3.texto: La camarera se acerca a su mesa.
+b5.f4.texto: La camarera le pregunta qué quiere.
+b5.f5.texto: Lucía pide un café con leche y un té.
+b5.f6.texto: El café cuesta dos euros.
+b5.f7.texto: Lucía paga y da las gracias.
+b6.titulo: ¿Qué pide?
+b6.pregunta: ¿Qué pide Lucía?
+b6.o0: Un café con leche y un té.
+b6.o0.refuerzo: Correcto: es lo que pide en el texto.
+b6.o1: Solo un café.
+b6.o1.refuerzo: Casi: también pide un té.
+b6.o2: Agua.
+b6.o2.refuerzo: En el texto no se habla de agua.
+b7.titulo: Completa
+b7.pregunta: Completa el pedido.
+b7.frase: ___ un café, por favor.
+b7.o0: Quiero
+b7.o0.refuerzo: Correcto: «quiero» va con «yo».
+b7.o1: Quiere
+b7.o1.refuerzo: Incorrecto: «quiere» es para usted, él o ella.
+b7.o2: Quieren
+b7.o2.refuerzo: Incorrecto: «quieren» es para ellos.
+b8.titulo: Ordena las palabras
+b8.frase: Un café con leche, por favor.
+b8.traduccion: A coffee with milk, please.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «How much is it?».
+p.un café.glosa: la bebida caliente de color oscuro
+p.un café.consejo: «Un café» es solo; si lo quieres con leche, di «un café con leche».
+p.un té.glosa: la bebida hecha con hojas
+p.un té.consejo: Lleva tilde en la e: TE.
+p.el agua.glosa: la bebida transparente
+p.el agua.consejo: Es femenina, pero lleva «el» porque empieza por a tónica: «el agua».
+p.con leche.glosa: con leche añadida
+p.con leche.consejo: Se dice «café con leche», no «café con la leche».
+p.quiero.glosa: querer, con «yo»
+p.quiero.consejo: La forma más sencilla de pedir. Detrás va lo que quieres.
+p.por favor.glosa: fórmula de cortesía
+p.por favor.consejo: Se pone al final, separado con coma: «un té, por favor».
+p.cuánto es.glosa: preguntar el precio
+p.cuánto es.consejo: Lleva tilde en «cuán». También vale «¿cuánto cuesta?».
+p.los euros.glosa: la moneda de España
+p.los euros.consejo: Se dice «dos euros», pero «un euro».
+p.aquí tiene.glosa: aquí está lo que ha pedido
+p.aquí tiene.consejo: Fórmula de usted. Con «tú» sería «aquí tienes».
+p.gracias.glosa: palabra para agradecer
+p.gracias.consejo: Se responde «de nada». La c suena como th en España: GRA-thyas.
+
+== ru
+titulo: En la cafetería
+intro: Pedir en una cafetería, preguntar el precio y dar las gracias.
+b1.titulo: Pedir algo
+b1.texto: "Para pedir en una cafetería hay dos fórmulas que funcionan siempre:\n\n- **Quiero** un café, **por favor**.\n- **Ponme** un té, **por favor**.\n\nY si quieres ser más educado con el camarero:\n\n- **¿Me trae un café, por favor?**\n\nEl camarero suele hablar de **usted**: «¿Qué **quiere**?», no «¿qué quieres?»."
+b2.titulo: En la barra
+b2.f0.texto: Buenos días.
+b2.f1.texto: ¿Qué quiere?
+b2.f2.texto: Un café con leche, por favor.
+b2.f3.texto: ¿Cuánto es?
+b2.f4.texto: Dos euros.
+b2.f5.texto: Gracias.
+b3.titulo: Vocabulario
+b4.titulo: Quiero y quiere
+b4.texto: "El verbo **querer** cambia según quién habla:\n\n- yo **quiero**\n- tú **quieres**\n- usted / él / ella **quiere**\n\nEl cliente dice «**quiero** un café**», y el camarero pregunta «¿qué **quiere**?». La forma con -e es la de usted.\n\nY la fórmula completa para pedir: **Quiero** + lo que sea + **por favor**."
+b4.e0.texto: Quiero un café.
+b4.e1.texto: ¿Qué quiere usted?
+b5.titulo: Un sábado en la cafetería
+b5.f0.texto: Es sábado por la mañana.
+b5.f1.texto: Lucía entra en una cafetería pequeña.
+b5.f2.texto: Hay mucha gente y huele a café.
+b5.f3.texto: La camarera se acerca a su mesa.
+b5.f4.texto: La camarera le pregunta qué quiere.
+b5.f5.texto: Lucía pide un café con leche y un té.
+b5.f6.texto: El café cuesta dos euros.
+b5.f7.texto: Lucía paga y da las gracias.
+b6.titulo: ¿Qué pide?
+b6.pregunta: ¿Qué pide Lucía?
+b6.o0: Un café con leche y un té.
+b6.o0.refuerzo: Correcto: es lo que pide en el texto.
+b6.o1: Solo un café.
+b6.o1.refuerzo: Casi: también pide un té.
+b6.o2: Agua.
+b6.o2.refuerzo: En el texto no se habla de agua.
+b7.titulo: Completa
+b7.pregunta: Completa el pedido.
+b7.frase: ___ un café, por favor.
+b7.o0: Quiero
+b7.o0.refuerzo: Correcto: «quiero» va con «yo».
+b7.o1: Quiere
+b7.o1.refuerzo: Incorrecto: «quiere» es para usted, él o ella.
+b7.o2: Quieren
+b7.o2.refuerzo: Incorrecto: «quieren» es para ellos.
+b8.titulo: Ordena las palabras
+b8.frase: Un café con leche, por favor.
+b8.traduccion: A coffee with milk, please.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «How much is it?».
+p.un café.glosa: la bebida caliente de color oscuro
+p.un café.consejo: «Un café» es solo; si lo quieres con leche, di «un café con leche».
+p.un té.glosa: la bebida hecha con hojas
+p.un té.consejo: Lleva tilde en la e: TE.
+p.el agua.glosa: la bebida transparente
+p.el agua.consejo: Es femenina, pero lleva «el» porque empieza por a tónica: «el agua».
+p.con leche.glosa: con leche añadida
+p.con leche.consejo: Se dice «café con leche», no «café con la leche».
+p.quiero.glosa: querer, con «yo»
+p.quiero.consejo: La forma más sencilla de pedir. Detrás va lo que quieres.
+p.por favor.glosa: fórmula de cortesía
+p.por favor.consejo: Se pone al final, separado con coma: «un té, por favor».
+p.cuánto es.glosa: preguntar el precio
+p.cuánto es.consejo: Lleva tilde en «cuán». También vale «¿cuánto cuesta?».
+p.los euros.glosa: la moneda de España
+p.los euros.consejo: Se dice «dos euros», pero «un euro».
+p.aquí tiene.glosa: aquí está lo que ha pedido
+p.aquí tiene.consejo: Fórmula de usted. Con «tú» sería «aquí tienes».
+p.gracias.glosa: palabra para agradecer
+p.gracias.consejo: Se responde «de nada». La c suena como th en España: GRA-thyas.
+
+== de
+titulo: En la cafetería
+intro: Pedir en una cafetería, preguntar el precio y dar las gracias.
+b1.titulo: Pedir algo
+b1.texto: "Para pedir en una cafetería hay dos fórmulas que funcionan siempre:\n\n- **Quiero** un café, **por favor**.\n- **Ponme** un té, **por favor**.\n\nY si quieres ser más educado con el camarero:\n\n- **¿Me trae un café, por favor?**\n\nEl camarero suele hablar de **usted**: «¿Qué **quiere**?», no «¿qué quieres?»."
+b2.titulo: En la barra
+b2.f0.texto: Buenos días.
+b2.f1.texto: ¿Qué quiere?
+b2.f2.texto: Un café con leche, por favor.
+b2.f3.texto: ¿Cuánto es?
+b2.f4.texto: Dos euros.
+b2.f5.texto: Gracias.
+b3.titulo: Vocabulario
+b4.titulo: Quiero y quiere
+b4.texto: "El verbo **querer** cambia según quién habla:\n\n- yo **quiero**\n- tú **quieres**\n- usted / él / ella **quiere**\n\nEl cliente dice «**quiero** un café**», y el camarero pregunta «¿qué **quiere**?». La forma con -e es la de usted.\n\nY la fórmula completa para pedir: **Quiero** + lo que sea + **por favor**."
+b4.e0.texto: Quiero un café.
+b4.e1.texto: ¿Qué quiere usted?
+b5.titulo: Un sábado en la cafetería
+b5.f0.texto: Es sábado por la mañana.
+b5.f1.texto: Lucía entra en una cafetería pequeña.
+b5.f2.texto: Hay mucha gente y huele a café.
+b5.f3.texto: La camarera se acerca a su mesa.
+b5.f4.texto: La camarera le pregunta qué quiere.
+b5.f5.texto: Lucía pide un café con leche y un té.
+b5.f6.texto: El café cuesta dos euros.
+b5.f7.texto: Lucía paga y da las gracias.
+b6.titulo: ¿Qué pide?
+b6.pregunta: ¿Qué pide Lucía?
+b6.o0: Un café con leche y un té.
+b6.o0.refuerzo: Correcto: es lo que pide en el texto.
+b6.o1: Solo un café.
+b6.o1.refuerzo: Casi: también pide un té.
+b6.o2: Agua.
+b6.o2.refuerzo: En el texto no se habla de agua.
+b7.titulo: Completa
+b7.pregunta: Completa el pedido.
+b7.frase: ___ un café, por favor.
+b7.o0: Quiero
+b7.o0.refuerzo: Correcto: «quiero» va con «yo».
+b7.o1: Quiere
+b7.o1.refuerzo: Incorrecto: «quiere» es para usted, él o ella.
+b7.o2: Quieren
+b7.o2.refuerzo: Incorrecto: «quieren» es para ellos.
+b8.titulo: Ordena las palabras
+b8.frase: Un café con leche, por favor.
+b8.traduccion: A coffee with milk, please.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «How much is it?».
+p.un café.glosa: la bebida caliente de color oscuro
+p.un café.consejo: «Un café» es solo; si lo quieres con leche, di «un café con leche».
+p.un té.glosa: la bebida hecha con hojas
+p.un té.consejo: Lleva tilde en la e: TE.
+p.el agua.glosa: la bebida transparente
+p.el agua.consejo: Es femenina, pero lleva «el» porque empieza por a tónica: «el agua».
+p.con leche.glosa: con leche añadida
+p.con leche.consejo: Se dice «café con leche», no «café con la leche».
+p.quiero.glosa: querer, con «yo»
+p.quiero.consejo: La forma más sencilla de pedir. Detrás va lo que quieres.
+p.por favor.glosa: fórmula de cortesía
+p.por favor.consejo: Se pone al final, separado con coma: «un té, por favor».
+p.cuánto es.glosa: preguntar el precio
+p.cuánto es.consejo: Lleva tilde en «cuán». También vale «¿cuánto cuesta?».
+p.los euros.glosa: la moneda de España
+p.los euros.consejo: Se dice «dos euros», pero «un euro».
+p.aquí tiene.glosa: aquí está lo que ha pedido
+p.aquí tiene.consejo: Fórmula de usted. Con «tú» sería «aquí tienes».
+p.gracias.glosa: palabra para agradecer
+p.gracias.consejo: Se responde «de nada». La c suena como th en España: GRA-thyas.
+
+== id
+titulo: En la cafetería
+intro: Pedir en una cafetería, preguntar el precio y dar las gracias.
+b1.titulo: Pedir algo
+b1.texto: "Para pedir en una cafetería hay dos fórmulas que funcionan siempre:\n\n- **Quiero** un café, **por favor**.\n- **Ponme** un té, **por favor**.\n\nY si quieres ser más educado con el camarero:\n\n- **¿Me trae un café, por favor?**\n\nEl camarero suele hablar de **usted**: «¿Qué **quiere**?», no «¿qué quieres?»."
+b2.titulo: En la barra
+b2.f0.texto: Buenos días.
+b2.f1.texto: ¿Qué quiere?
+b2.f2.texto: Un café con leche, por favor.
+b2.f3.texto: ¿Cuánto es?
+b2.f4.texto: Dos euros.
+b2.f5.texto: Gracias.
+b3.titulo: Vocabulario
+b4.titulo: Quiero y quiere
+b4.texto: "El verbo **querer** cambia según quién habla:\n\n- yo **quiero**\n- tú **quieres**\n- usted / él / ella **quiere**\n\nEl cliente dice «**quiero** un café**», y el camarero pregunta «¿qué **quiere**?». La forma con -e es la de usted.\n\nY la fórmula completa para pedir: **Quiero** + lo que sea + **por favor**."
+b4.e0.texto: Quiero un café.
+b4.e1.texto: ¿Qué quiere usted?
+b5.titulo: Un sábado en la cafetería
+b5.f0.texto: Es sábado por la mañana.
+b5.f1.texto: Lucía entra en una cafetería pequeña.
+b5.f2.texto: Hay mucha gente y huele a café.
+b5.f3.texto: La camarera se acerca a su mesa.
+b5.f4.texto: La camarera le pregunta qué quiere.
+b5.f5.texto: Lucía pide un café con leche y un té.
+b5.f6.texto: El café cuesta dos euros.
+b5.f7.texto: Lucía paga y da las gracias.
+b6.titulo: ¿Qué pide?
+b6.pregunta: ¿Qué pide Lucía?
+b6.o0: Un café con leche y un té.
+b6.o0.refuerzo: Correcto: es lo que pide en el texto.
+b6.o1: Solo un café.
+b6.o1.refuerzo: Casi: también pide un té.
+b6.o2: Agua.
+b6.o2.refuerzo: En el texto no se habla de agua.
+b7.titulo: Completa
+b7.pregunta: Completa el pedido.
+b7.frase: ___ un café, por favor.
+b7.o0: Quiero
+b7.o0.refuerzo: Correcto: «quiero» va con «yo».
+b7.o1: Quiere
+b7.o1.refuerzo: Incorrecto: «quiere» es para usted, él o ella.
+b7.o2: Quieren
+b7.o2.refuerzo: Incorrecto: «quieren» es para ellos.
+b8.titulo: Ordena las palabras
+b8.frase: Un café con leche, por favor.
+b8.traduccion: A coffee with milk, please.
+b9.titulo: Escribe
+b9.pregunta: Escribe en español: «How much is it?».
+p.un café.glosa: la bebida caliente de color oscuro
+p.un café.consejo: «Un café» es solo; si lo quieres con leche, di «un café con leche».
+p.un té.glosa: la bebida hecha con hojas
+p.un té.consejo: Lleva tilde en la e: TE.
+p.el agua.glosa: la bebida transparente
+p.el agua.consejo: Es femenina, pero lleva «el» porque empieza por a tónica: «el agua».
+p.con leche.glosa: con leche añadida
+p.con leche.consejo: Se dice «café con leche», no «café con la leche».
+p.quiero.glosa: querer, con «yo»
+p.quiero.consejo: La forma más sencilla de pedir. Detrás va lo que quieres.
+p.por favor.glosa: fórmula de cortesía
+p.por favor.consejo: Se pone al final, separado con coma: «un té, por favor».
+p.cuánto es.glosa: preguntar el precio
+p.cuánto es.consejo: Lleva tilde en «cuán». También vale «¿cuánto cuesta?».
+p.los euros.glosa: la moneda de España
+p.los euros.consejo: Se dice «dos euros», pero «un euro».
+p.aquí tiene.glosa: aquí está lo que ha pedido
+p.aquí tiene.consejo: Fórmula de usted. Con «tú» sería «aquí tienes».
+p.gracias.glosa: palabra para agradecer
+p.gracias.consejo: Se responde «de nada». La c suena como th en España: GRA-thyas.

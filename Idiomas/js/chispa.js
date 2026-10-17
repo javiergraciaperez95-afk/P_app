@@ -2,12 +2,15 @@
 // - Al pasar el ratón por encima: un saltito mínimo y un sonido muy, muy suave.
 // - Al pulsar: un rebote, unas chispas de píxeles donde se ha tocado y un «bip» (si la pieza no suena ya por su cuenta).
 // Se hace aquí, de una vez para toda la app, escuchando en el documento: las pantallas no tienen que saber nada.
+// - Cada pieza puede pedir su propio sonido con data-sonido="campana" (los nombres están en sonidos.js); si no,
+//   se adivina por lo que es: un desplegable se abre o se cierra, una casilla se marca, una opción se elige…
+// - Al escribir suena un golpecito de máquina de escribir y las barras deslizantes suben de nota con el valor.
 // El aspecto está en css/styles.css (clases «rozado», «pulsado» y «chispa»).
 
-import { sonar, sonoHace } from './sonidos.js';
+import { sonar, sonoHace, haySonido } from './sonidos.js';
 
 // Lo que se considera «pulsable».
-const PULSABLE = 'a[href], button, select, summary, label.campo-casilla, .boton, .btn, .inicio-figura, .sobre-actriz, [role="button"]';
+const PULSABLE = 'a[href], button, select, summary, label.campo-casilla, .boton, .btn, .inicio-figura, .sobre-actriz, .es-tutora, [role="button"]';
 const quieto = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 function pulsableDe(nodo) {
@@ -37,7 +40,7 @@ document.addEventListener('pointerover', e => {
   rozada = pieza;
   if (!pieza) return;
   // Las tutoras no se mueven al pasar por encima (queda raro): solo suenan. Al pulsarlas sí reaccionan.
-  if (!pieza.matches('.inicio-figura, .sobre-actriz')) animar(pieza, 'rozado');
+  if (!pieza.matches('.inicio-figura, .sobre-actriz, .es-tutora')) animar(pieza, 'rozado');
   sonar('roce');
 });
 
@@ -69,6 +72,54 @@ document.addEventListener('click', e => {
   const caja = pieza.getBoundingClientRect();
   const conPuntero = e.clientX || e.clientY;
   chispas(conPuntero ? e.clientX : caja.left + caja.width / 2, conPuntero ? e.clientY : caja.top + caja.height / 2);
-  // Muchas piezas ya hacen su propio sonido al pulsarlas; las que no, hacen un «bip».
-  if (sonoHace() > 80) sonar('clic');
+  // Muchas piezas ya hacen su propio sonido al pulsarlas; las que no, suenan según lo que son.
+  const sonido = sonoHace() > 80 && sonidoDe(pieza, e.target);
+  if (sonido) sonar(sonido);
+});
+
+/** El sonido que le toca a una pieza que no suena por su cuenta. */
+function sonidoDe(pieza, objetivo) {
+  const pedido = objetivo.closest?.('[data-sonido]')?.dataset.sonido;
+  if (pedido && haySonido(pedido)) return pedido;
+  // el clic llega antes de que el desplegable cambie: si ahora está abierto, se va a cerrar
+  if (pieza.matches('summary')) return pieza.parentElement?.open ? 'cerrar' : 'abrir';
+  if (pieza.matches('select')) return 'abrir';
+  // en una etiqueta, el clic que cuenta es el que llega a la casilla (ya marcada o desmarcada)
+  if (objetivo.matches?.('input[type="radio"]')) return 'elegir';
+  if (objetivo.matches?.('input[type="checkbox"]')) return objetivo.checked ? 'marcar' : 'desmarcar';
+  if (pieza.matches('label') && pieza.querySelector('input')) return null;
+  if (pieza.hasAttribute('aria-expanded')) return pieza.getAttribute('aria-expanded') === 'true' ? 'cerrar' : 'abrir';
+  if (pieza.hasAttribute('aria-pressed') || pieza.getAttribute('role') === 'tab') return 'elegir';
+  if (pieza.matches('a[target="_blank"]')) return 'abrir';
+  if (pieza.matches('a[href^="#/"]')) return 'pagina';
+  return 'clic';
+}
+
+// ----- Escribir y deslizar -----
+const ESCRIBIBLE = 'textarea, input:not([type]), input[type="text"], input[type="email"], input[type="search"], input[type="password"], input[type="number"], input[type="tel"], input[type="url"], [contenteditable="true"]';
+let ultimaTecla = 0;
+let ultimaBarra = 0;
+document.addEventListener('input', e => {
+  const campo = e.target;
+  if (!(campo instanceof Element) || campo.closest('[data-sin-efectos]')) return;
+  const ahora = performance.now();
+  if (campo.matches('input[type="range"]')) {
+    if (ahora - ultimaBarra < 45) return;
+    ultimaBarra = ahora;
+    const min = Number(campo.min) || 0;
+    const max = Number(campo.max) || 100;
+    sonar('deslizar', { valor: (Number(campo.value) - min) / (max - min || 1) });
+    return;
+  }
+  if (!campo.matches(ESCRIBIBLE) || ahora - ultimaTecla < 35) return;
+  ultimaTecla = ahora;
+  const tipo = e.inputType ?? '';
+  if (tipo.startsWith('delete')) sonar('borrar');
+  else if (e.data === ' ') sonar('espacio');
+  else if (tipo.startsWith('insert')) sonar('tecla');
+});
+
+// Los desplegables nativos: al cambiar de opción suena como una opción elegida.
+document.addEventListener('change', e => {
+  if (e.target instanceof HTMLSelectElement && !e.target.closest('[data-sin-efectos]') && sonoHace() > 80) sonar('elegir');
 });

@@ -1,138 +1,323 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "067",
   "capitulo": 7,
-  "titulo_es": "Cuando era niño",
-  "titulo": { "en": "When I was a child" },
-  "intro": { "en": "The imperfect describes past habits, ongoing actions, and background." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "era": { "en": "I/he/she/you formal was; used to be", "pron": "E-ra", "cat": "verb" },
-    "tenía": { "en": "I/he/she/you formal had; used to have", "pron": "te-NI-a", "cat": "verb" },
-    "vivía": { "en": "I/he/she/you formal lived; used to live", "pron": "bi-BI-a", "cat": "verb" },
-    "iba": { "en": "I/he/she/you formal went; used to go", "pron": "I-ba", "cat": "verb" },
-    "íbamos": { "en": "we went; used to go (imperfect of ir)", "pron": "I-ba-mos", "cat": "verb" },
-    "veía": { "en": "I/he/she/you formal saw; used to see", "pron": "be-I-a", "cat": "verb" },
-    "cuando": { "en": "when", "pron": "KWAN-do", "cat": "conjunction" },
-    "niño": { "en": "child, boy", "pron": "NI-nyo", "cat": "noun", "genero": "m" },
-    "niña": { "en": "girl, child (feminine)", "pron": "NI-nya", "cat": "noun", "genero": "f" },
-    "antes": { "en": "before, in the past", "pron": "AN-tes", "cat": "adverb" },
-    "siempre": { "en": "always", "pron": "SYEM-pre", "cat": "adverb" }
+    "era": {
+      "$f": "p.era",
+      "pron": "E-ra",
+      "cat": "verb"
+    },
+    "tenía": {
+      "$f": "p.tenía",
+      "pron": "te-NI-a",
+      "cat": "verb"
+    },
+    "vivía": {
+      "$f": "p.vivía",
+      "pron": "bi-BI-a",
+      "cat": "verb"
+    },
+    "iba": {
+      "$f": "p.iba",
+      "pron": "I-ba",
+      "cat": "verb"
+    },
+    "íbamos": {
+      "$f": "p.íbamos",
+      "pron": "I-ba-mos",
+      "cat": "verb"
+    },
+    "veía": {
+      "$f": "p.veía",
+      "pron": "be-I-a",
+      "cat": "verb"
+    },
+    "cuando": {
+      "$f": "p.cuando",
+      "pron": "KWAN-do",
+      "cat": "conj"
+    },
+    "niño": {
+      "$f": "p.niño",
+      "pron": "NI-nyo",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "niña": {
+      "$f": "p.niña",
+      "pron": "NI-nya",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "antes": {
+      "$f": "p.antes",
+      "pron": "AN-tes",
+      "cat": "adv"
+    },
+    "siempre": {
+      "$f": "p.siempre",
+      "pron": "SYEM-pre",
+      "cat": "adv"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "Background, not a single event",
-      "texto": "The **imperfecto** describes habits, ongoing actions, and background in the past. It presents a situation without focusing on its beginning or end; that situation may have ended later.\n\n- Cuando **era** niño, **vivía** en Lima.\n- **Tenía** un perro.\n- Siempre **iba** al parque.\n\nRegular endings, in this order — yo, tú, él/ella/usted, nosotros/as, vosotros/as, ellos/ellas/ustedes: **-ar** verbs use -aba, -abas, -aba, -ábamos, -abais, -aban; **-er/-ir** verbs use -ía, -ías, -ía, -íamos, -íais, -ían. The vosotros/as forms are used mainly in Spain; with ustedes, use the third-person plural. The three common irregular verbs are **ser** (era, eras, era, éramos, erais, eran), **ir** (iba, ibas, iba, íbamos, ibais, iban), and **ver** (veía, veías, veía, veíamos, veíais, veían)."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "tabla",
-      "titulo": "Four useful verbs in the imperfect",
-      "columnas": ["Infinitive", "yo / él, ella, usted"],
-      "filas": [
-        ["ser", "era"],
-        ["tener", "tenía"],
-        ["ir", "iba"],
-        ["vivir", "vivía"]
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        }
       ],
-      "nota": "The yo form matches él, ella, and usted: yo era, él era, ella era, usted era."
+      "filas": [
+        [
+          "ser",
+          "era"
+        ],
+        [
+          "tener",
+          "tenía"
+        ],
+        [
+          "ir",
+          "iba"
+        ],
+        [
+          "vivir",
+          "vivía"
+        ]
+      ],
+      "nota": {
+        "$t": "b2.nota"
+      }
     },
     {
       "tipo": "dialogo",
-      "titulo": "Childhood",
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Pablo",
-          "es": "Cuando era niño, vivía en Lima.",
-          "en": "When I was a child, I lived in Lima.",
           "analisis": [
-            ["Cuando", "when"],
-            ["era niño", "I was a child"],
-            ["vivía", "I lived"],
-            ["en Lima", "place"]
+            [
+              "Cuando",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "era niño",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "vivía",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "en Lima",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f1",
           "quien": "Lucía",
-          "es": "¿Tenías hermanos?",
-          "en": "Did you have brothers or sisters?",
           "analisis": [
-            ["¿Tenías", "did you have"],
-            ["hermanos", "siblings"]
+            [
+              "¿Tenías",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "hermanos",
+              {
+                "$t": "a5"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f2",
           "quien": "Pablo",
-          "es": "Sí, tenía una hermana.",
-          "en": "Yes, I had a sister.",
           "analisis": [
-            ["tenía", "I had"],
-            ["una hermana", "a sister"]
+            [
+              "tenía",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "una hermana",
+              {
+                "$t": "a7"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f3",
           "quien": "Lucía",
-          "es": "Antes yo siempre iba al parque.",
-          "en": "I always used to go to the park.",
           "analisis": [
-            ["Antes", "in the past"],
-            ["siempre", "always"],
-            ["iba", "I used to go"],
-            ["al parque", "to the park"]
+            [
+              "Antes",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "siempre",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "iba",
+              {
+                "$t": "a10"
+              }
+            ],
+            [
+              "al parque",
+              {
+                "$t": "a11"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["era", "tenía", "vivía", "iba", "íbamos", "veía", "cuando", "niño", "niña", "antes", "siempre"]
+      "palabras": [
+        "era",
+        "tenía",
+        "vivía",
+        "iba",
+        "íbamos",
+        "veía",
+        "cuando",
+        "niño",
+        "niña",
+        "antes",
+        "siempre"
+      ]
     },
     {
       "tipo": "huecos",
       "id": "a2-imp-era",
-      "pregunta": { "en": "Complete: when I was a child." },
-      "frase": "Cuando ___ niño, vivía en Lima.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "era": { "en": "A description in the past uses the imperfect: era." },
-        "fui": { "en": "The indefinido presents a bounded event; era is usual for this childhood description." },
-        "soy": { "en": "Soy is the present." }
+        "era": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "fui": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "soy": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "era"
     },
     {
       "tipo": "ordenar",
       "id": "a2-imp-parque",
-      "frase": "Siempre iba al parque",
-      "traduccion": { "en": "I always used to go to the park." }
+      "frase": {
+        "$e": "b6.frase"
+      },
+      "traduccion": {
+        "$t": "b6.traduccion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "a2-impf-m1",
-      "pregunta": {"en": "Complete: I used to have a dog."},
-      "frase": "___ un perro.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "Tenía": {"en": "A past situation with no end: imperfect."},
-        "Tuve": {"en": "Tuve would present having the dog as a bounded event or period."},
-        "Tengo": {"en": "Tengo is the present."}
+        "Tenía": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "Tuve": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "Tengo": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "Tenía"
     },
     {
       "tipo": "huecos",
       "id": "a2-impf-m2",
-      "pregunta": {"en": "Complete: we always went to the park."},
-      "frase": "Siempre ___ al parque.",
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "frase": {
+        "$e": "b8.frase"
+      },
       "audio": true,
       "opciones": {
-        "íbamos": {"en": "A habit in the past: imperfect of ir."},
-        "fuimos": {"en": "Fuimos presents a completed trip; siempre marks a repeated past habit here."},
-        "vamos": {"en": "Vamos is the present."}
+        "íbamos": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "fuimos": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "vamos": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "íbamos"
     },
     {
       "tipo": "escribir",
       "id": "a2-impf-m3",
-      "pregunta": {"en": "Translate: «When I was a child, I lived in Lima.»"},
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
       "respuestas": [
         "Cuando era niño, vivía en Lima",
         "Cuando era niña, vivía en Lima",
@@ -142,9 +327,11 @@
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Describe your childhood: where you lived, what you were like, what you used to do.\n\n**Speak (about 1 minute).** Tell someone what your school was like and what you used to do after class."
+        "$t": "b10.texto"
       }
     }
   ]

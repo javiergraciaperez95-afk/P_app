@@ -1,181 +1,448 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "221",
   "capitulo": 20,
-  "titulo_es": "Dijo que lo había hecho",
-  "titulo": {"en": "She said she had done it"},
-  "intro": {"en": "Reported speech in full: how every tense steps back, and what happens to questions, times and places."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "comentó que": {"en": "he/she mentioned that", "pron": "ko-men-TO ke", "cat": "expression"},
-    "explicó que": {"en": "he/she explained that", "pron": "eks-pli-KO ke", "cat": "expression"},
-    "añadió que": {"en": "he/she added that", "pron": "a-nya-DYO ke", "cat": "expression"},
-    "aseguró que": {"en": "he/she assured (me) that", "pron": "a-se-gu-RO ke", "cat": "expression"},
-    "prometió que": {"en": "he/she promised that", "pron": "pro-me-TYO ke", "cat": "expression"},
-    "preguntó si": {"en": "he/she asked whether", "pron": "pre-gun-TO si", "cat": "expression"},
-    "negó que": {"en": "he/she denied that", "pron": "ne-GO ke", "cat": "expression", "nota": "Negar que takes the subjunctive."},
-    "advirtió que": {"en": "he/she warned that", "pron": "ad-bir-TYO ke", "cat": "expression"},
-    "el día anterior": {"en": "the day before", "pron": "el DI-a an-te-RYOR", "cat": "expression"},
-    "al día siguiente": {"en": "the next day", "pron": "al DI-a si-GYEN-te", "cat": "expression"},
-    "la semana anterior": {"en": "the week before", "pron": "la se-MA-na an-te-RYOR", "cat": "expression"},
-    "el currículum": {"en": "the CV", "pron": "el ku-RRI-ku-lum", "genero": "m"}
+    "comentó que": {
+      "$f": "p.comentó que",
+      "pron": "ko-men-TO ke",
+      "cat": "expr"
+    },
+    "explicó que": {
+      "$f": "p.explicó que",
+      "pron": "eks-pli-KO ke",
+      "cat": "expr"
+    },
+    "añadió que": {
+      "$f": "p.añadió que",
+      "pron": "a-nya-DYO ke",
+      "cat": "expr"
+    },
+    "aseguró que": {
+      "$f": "p.aseguró que",
+      "pron": "a-se-gu-RO ke",
+      "cat": "expr"
+    },
+    "prometió que": {
+      "$f": "p.prometió que",
+      "pron": "pro-me-TYO ke",
+      "cat": "expr"
+    },
+    "preguntó si": {
+      "$f": "p.preguntó si",
+      "pron": "pre-gun-TO si",
+      "cat": "expr"
+    },
+    "negó que": {
+      "$f": "p.negó que",
+      "pron": "ne-GO ke",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.negó que.nota"
+      }
+    },
+    "advirtió que": {
+      "$f": "p.advirtió que",
+      "pron": "ad-bir-TYO ke",
+      "cat": "expr"
+    },
+    "el día anterior": {
+      "$f": "p.el día anterior",
+      "pron": "el DI-a an-te-RYOR",
+      "cat": "expr"
+    },
+    "al día siguiente": {
+      "$f": "p.al día siguiente",
+      "pron": "al DI-a si-GYEN-te",
+      "cat": "expr"
+    },
+    "la semana anterior": {
+      "$f": "p.la semana anterior",
+      "pron": "la se-MA-na an-te-RYOR",
+      "cat": "expr"
+    },
+    "el currículum": {
+      "$f": "p.el currículum",
+      "pron": "el ku-RRI-ku-lum",
+      "genero": "m"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "One step back"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "When the reporting verb is in the past, the tense of what was said moves back.\n\n- present → imperfect: «Trabajo.» → dijo que **trabajaba**\n- perfecto, indefinido → pluperfect: «He comido.» «Comí.» → dijo que **había comido**\n- future → conditional: «Iré.» → dijo que **iría**\n- command, present subjunctive → past subjunctive: «Ven.» → dijo que **fuera**\n\nThe imperfect, the pluperfect and the conditional stay as they are.\n\nA yes/no question takes **si**. Other questions keep their question word, with its accent: «¿Dónde vives?» → me preguntó **dónde vivía**.\n\nTime and place move too: hoy → **ese día**; ayer → **el día anterior**; mañana → **al día siguiente**; aquí → **allí**.\n\nVary the verb: comentar, explicar, añadir, asegurar, prometer, advertir, reconocer. **Negar que** takes the subjunctive."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "Direct and reported"},
-      "columnas": ["Direct", "Reported after a past verb"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        }
+      ],
       "filas": [
-        ["«Trabajo aquí.»", "Dijo que trabajaba allí."],
-        ["«He terminado.»", "Dijo que había terminado."],
-        ["«Fui ayer.»", "Dijo que había ido el día anterior."],
-        ["«Iré mañana.»", "Dijo que iría al día siguiente."],
-        ["«¿Dónde vives?»", "Me preguntó dónde vivía."],
-        ["«Llámame.»", "Me pidió que lo llamara."]
+        [
+          "«Trabajo aquí.»",
+          "Dijo que trabajaba allí."
+        ],
+        [
+          "«He terminado.»",
+          "Dijo que había terminado."
+        ],
+        [
+          "«Fui ayer.»",
+          "Dijo que había ido el día anterior."
+        ],
+        [
+          "«Iré mañana.»",
+          "Dijo que iría al día siguiente."
+        ],
+        [
+          "«¿Dónde vives?»",
+          "Me preguntó dónde vivía."
+        ],
+        [
+          "«Llámame.»",
+          "Me pidió que lo llamara."
+        ]
       ]
     },
     {
       "tipo": "texto",
-      "titulo": {"en": "What Marta told me"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
-          "es": "Ayer hablé con Marta.",
-          "en": "Yesterday I spoke to Marta.",
-          "analisis": [["Ayer", "time"], ["hablé", "verb"], ["con Marta", "with whom"]]
-        },
-        {
-          "es": "Me comentó que había dejado su trabajo la semana anterior.",
-          "en": "She mentioned that she had left her job the week before.",
+          "$f": "b3.f0",
           "analisis": [
-            ["Me comentó que", "reporting verb"],
-            ["había dejado", "verb (pluperfect, from «he dejado»)"],
-            ["su trabajo", "object"],
-            ["la semana anterior", "time"]
+            [
+              "Ayer",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "hablé",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "con Marta",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
-          "es": "Explicó que estaba cansada y que necesitaba un cambio.",
-          "en": "She explained that she was tired and needed a change.",
+          "$f": "b3.f1",
           "analisis": [
-            ["Explicó que", "reporting verb"],
-            ["estaba cansada", "verb (imperfect, from «estoy»)"],
-            ["necesitaba", "verb (imperfect)"],
-            ["un cambio", "object"]
+            [
+              "Me comentó que",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "había dejado",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "su trabajo",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "la semana anterior",
+              {
+                "$t": "a0"
+              }
+            ]
           ]
         },
         {
-          "es": "Aseguró que encontraría algo mejor muy pronto.",
-          "en": "She assured me that she would find something better very soon.",
+          "$f": "b3.f2",
           "analisis": [
-            ["Aseguró que", "reporting verb"],
-            ["encontraría", "verb (conditional, from «encontraré»)"],
-            ["algo mejor", "object"],
-            ["muy pronto", "time"]
+            [
+              "Explicó que",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "estaba cansada",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "necesitaba",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "un cambio",
+              {
+                "$t": "a5"
+              }
+            ]
           ]
         },
         {
-          "es": "Me preguntó si conocía alguna empresa y dónde podía enviar su currículum.",
-          "en": "She asked me whether I knew any company and where she could send her CV.",
+          "$f": "b3.f3",
           "analisis": [
-            ["Me preguntó si", "reported question"],
-            ["conocía", "verb"],
-            ["alguna empresa", "object"],
-            ["dónde", "question word"],
-            ["podía enviar", "verb"],
-            ["su currículum", "object"]
+            [
+              "Aseguró que",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "encontraría",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "algo mejor",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "muy pronto",
+              {
+                "$t": "a0"
+              }
+            ]
           ]
         },
         {
-          "es": "Al final me pidió que no se lo contara a nadie.",
-          "en": "In the end she asked me not to tell anyone.",
+          "$f": "b3.f4",
           "analisis": [
-            ["Al final", "time"],
-            ["me pidió que", "reported request"],
-            ["no se lo contara", "verb (past subjunctive)"],
-            ["a nadie", "to whom"]
+            [
+              "Me preguntó si",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "conocía",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "alguna empresa",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "dónde",
+              {
+                "$t": "a10"
+              }
+            ],
+            [
+              "podía enviar",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "su currículum",
+              {
+                "$t": "a5"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f5",
+          "analisis": [
+            [
+              "Al final",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "me pidió que",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "no se lo contara",
+              {
+                "$t": "a12"
+              }
+            ],
+            [
+              "a nadie",
+              {
+                "$t": "a13"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "indirecto-b2-1",
-      "pregunta": {"en": "Report: «Iré mañana.»"},
-      "frase": "Dijo que ___ al día siguiente.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "iría": {"en": "The future becomes the conditional."},
-        "irá": {"en": "After dijo, the future steps back."},
-        "fuera": {"en": "The past subjunctive would report an order."}
+        "iría": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "irá": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "fuera": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "iría"
     },
     {
       "tipo": "huecos",
       "id": "indirecto-b2-2",
-      "pregunta": {"en": "Report: «He terminado.»"},
-      "frase": "Dijo que ___ terminado.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "había": {"en": "The perfect becomes the pluperfect."},
-        "ha": {"en": "After dijo, the perfect steps back."},
-        "habría": {"en": "Habría terminado would report «habré terminado»."}
+        "había": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "ha": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "habría": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "había"
     },
     {
       "tipo": "huecos",
       "id": "indirecto-b2-3",
-      "pregunta": {"en": "Report: «¿Dónde vives?»"},
-      "frase": "Me preguntó dónde ___.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "vivía": {"en": "The present becomes the imperfect."},
-        "vives": {"en": "After preguntó, the present steps back."},
-        "viviera": {"en": "A reported question keeps the indicative."}
+        "vivía": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "vives": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "viviera": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "vivía"
     },
     {
       "tipo": "test",
       "id": "indirecto-b2-4",
-      "pregunta": {"en": "«Mañana», reported a week later, becomes…"},
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
       "opciones": {
-        "al día siguiente": {"en": "The next day."},
-        "el día anterior": {"en": "That is ayer, reported."},
-        "ese día": {"en": "That is hoy, reported."}
+        "al día siguiente": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "el día anterior": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "ese día": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "al día siguiente"
     },
     {
       "tipo": "huecos",
       "id": "indirecto-b2-5",
-      "pregunta": {"en": "Complete: she denied that it was true."},
-      "frase": "Negó que ___ verdad.",
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
+      "frase": {
+        "$e": "b9.frase"
+      },
       "audio": true,
       "opciones": {
-        "fuera": {"en": "Negar que takes the subjunctive."},
-        "era": {"en": "Negar que takes the subjunctive."},
-        "sería": {"en": "Negar que takes the subjunctive."}
+        "fuera": {
+          "$t": "b9.o0.refuerzo"
+        },
+        "era": {
+          "$t": "b9.o1.refuerzo"
+        },
+        "sería": {
+          "$t": "b9.o2.refuerzo"
+        }
       },
       "correcta": "fuera"
     },
     {
       "tipo": "ordenar",
       "id": "indirecto-b2-6",
-      "frase": "Me preguntó dónde podía enviar su currículum",
-      "traduccion": {"en": "She asked me where she could send her CV."}
+      "frase": {
+        "$e": "b10.frase"
+      },
+      "traduccion": {
+        "$t": "b10.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (150–180 words).** Write a summary of an interview you have read or heard, in reported speech in the past.\n\n**Speak (about 3 minutes).** Tell aloud what a friend told you last week about their plans, their problems and their past."
+        "$t": "b11.texto"
       }
     }
   ]

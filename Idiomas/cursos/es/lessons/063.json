@@ -1,154 +1,413 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "063",
   "capitulo": 7,
-  "titulo_es": "Pidió y durmió",
-  "titulo": {"en": "She ordered and she slept"},
-  "intro": {"en": "Some -ir verbs change a vowel in the indefinido, but only in él and ellos."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "pidió": {"en": "he/she asked for, ordered", "pron": "pi-DYO", "cat": "verb"},
-    "pidieron": {"en": "they asked for", "pron": "pi-DYE-ron", "cat": "verb"},
-    "durmió": {"en": "he/she slept", "pron": "dur-MYO", "cat": "verb"},
-    "murió": {"en": "he/she died", "pron": "mu-RYO", "cat": "verb"},
-    "nació": {"en": "he/she/usted was born", "pron": "na-THYO", "cat": "verb", "consejo": "In much of Spain, c before e/i and z are /θ/; in seseante varieties, they are /s/."},
-    "leyó": {"en": "he/she read", "pron": "le-YO", "cat": "verb", "nota": "An i between two vowels becomes y: leyó, leyeron."},
-    "oyó": {"en": "he/she heard", "pron": "o-YO", "cat": "verb"},
-    "se divirtieron": {"en": "they had fun", "pron": "se di-bir-TYE-ron", "cat": "verb"},
-    "prefirió": {"en": "he/she preferred", "pron": "pre-fi-RYO", "cat": "verb"},
-    "el abuelo": {"en": "the grandfather", "pron": "el a-BWE-lo", "genero": "m"},
-    "la novela": {"en": "the novel", "pron": "la no-BE-la", "genero": "f"},
-    "un café": {"en": "a coffee", "genero": "m"},
-    "la noticia": {"en": "the news / a news story", "genero": "f"}
+    "pidió": {
+      "$f": "p.pidió",
+      "pron": "pi-DYO",
+      "cat": "verb"
+    },
+    "pidieron": {
+      "$f": "p.pidieron",
+      "pron": "pi-DYE-ron",
+      "cat": "verb"
+    },
+    "durmió": {
+      "$f": "p.durmió",
+      "pron": "dur-MYO",
+      "cat": "verb"
+    },
+    "murió": {
+      "$f": "p.murió",
+      "pron": "mu-RYO",
+      "cat": "verb"
+    },
+    "nació": {
+      "$f": "p.nació",
+      "pron": "na-THYO",
+      "cat": "verb",
+      "consejo": {
+        "$t": "p.nació.consejo"
+      }
+    },
+    "leyó": {
+      "$f": "p.leyó",
+      "pron": "le-YO",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.leyó.nota"
+      }
+    },
+    "oyó": {
+      "$f": "p.oyó",
+      "pron": "o-YO",
+      "cat": "verb"
+    },
+    "se divirtieron": {
+      "$f": "p.se divirtieron",
+      "pron": "se di-bir-TYE-ron",
+      "cat": "verb"
+    },
+    "prefirió": {
+      "$f": "p.prefirió",
+      "pron": "pre-fi-RYO",
+      "cat": "verb"
+    },
+    "el abuelo": {
+      "$f": "p.el abuelo",
+      "pron": "el a-BWE-lo",
+      "genero": "m"
+    },
+    "la novela": {
+      "$f": "p.la novela",
+      "pron": "la no-BE-la",
+      "genero": "f"
+    },
+    "un café": {
+      "$f": "p.un café",
+      "genero": "m"
+    },
+    "la noticia": {
+      "$f": "p.la noticia",
+      "genero": "f"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Only the third person changes"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "Some **-ir** verbs with a vowel change in the present change it again in the indefinido, only in the third person: **él/ella/usted** and **ellos/ellas/ustedes**.\n\n- **e → i**: pedir → pedí, pediste, **pidió**, pedimos, pedisteis, **pidieron**. The same pattern appears in sentir, preferir, repetir, servir, divertirse and vestirse.\n- **o → u**: dormir → dormí, **durmió**, **durmieron**; morir → **murió**, **murieron**.\n\nThe changes above are a pattern of certain **-ir** verbs. Other verbs can have separate irregular preterite forms: **pensar → pensó**, **volver → volvió**, but **poder → pudo**.\n\nWhen the stem ends in a vowel, the **i** of the ending becomes **y** in the third person: leer → **leyó/leyeron**; oír → **oyó/oyeron**; caer → **cayó/cayeron**; construir → **construyó/construyeron**.\n\nA short biography often reports life events with this tense: **nació** en 1950, **murió** en 2010. **-isteis** is the vosotros/as form, used mainly in Spain; where speakers use **ustedes**, the third-person plural form is used."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "Where the change falls"},
-      "columnas": ["Person", "pedir", "dormir", "leer"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        },
+        {
+          "$t": "b2.c2"
+        },
+        {
+          "$t": "b2.c3"
+        }
+      ],
       "filas": [
-        ["yo", "pedí", "dormí", "leí"],
-        ["tú", "pediste", "dormiste", "leíste"],
-        ["él / ella / usted", "pidió", "durmió", "leyó"],
-        ["nosotros/as", "pedimos", "dormimos", "leímos"],
-        ["vosotros/as", "pedisteis", "dormisteis", "leísteis"],
-        ["ellos / ellas / ustedes", "pidieron", "durmieron", "leyeron"]
+        [
+          "yo",
+          "pedí",
+          "dormí",
+          "leí"
+        ],
+        [
+          "tú",
+          "pediste",
+          "dormiste",
+          "leíste"
+        ],
+        [
+          "él / ella / usted",
+          "pidió",
+          "durmió",
+          "leyó"
+        ],
+        [
+          "nosotros/as",
+          "pedimos",
+          "dormimos",
+          "leímos"
+        ],
+        [
+          "vosotros/as",
+          "pedisteis",
+          "dormisteis",
+          "leísteis"
+        ],
+        [
+          "ellos / ellas / ustedes",
+          "pidieron",
+          "durmieron",
+          "leyeron"
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "A grandfather"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "Mi abuelo nació en Cuba y murió en Madrid.",
-          "en": "My grandfather was born in Cuba and died in Madrid.",
           "analisis": [
-            ["Mi abuelo", "subject"],
-            ["nació", "verb"],
-            ["en Cuba", "place"],
-            ["murió", "verb"],
-            ["en Madrid", "place"]
+            [
+              "Mi abuelo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "nació",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "en Cuba",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "murió",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "en Madrid",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f1",
           "quien": "Pablo",
-          "es": "¿Leyó muchas novelas?",
-          "en": "Did he read many novels?",
-          "analisis": [["¿Leyó", "verb"], ["muchas novelas", "object"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Sí. Anoche mi hermano pidió su libro favorito.",
-          "en": "Yes. Last night my brother asked for his favourite book.",
-          "analisis": [["Anoche", "time"], ["mi hermano", "subject"], ["pidió", "verb"], ["su libro favorito", "object"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "¿Durmió bien después?",
-          "en": "Did he sleep well afterwards?",
-          "analisis": [["¿Durmió", "verb"], ["bien", "how"], ["después", "time"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "No. Los niños se divirtieron, pero no durmieron nada.",
-          "en": "No. The children had fun, but they didn't sleep at all.",
           "analisis": [
-            ["Los niños", "subject"],
-            ["se divirtieron", "verb"],
-            ["no", "negation"],
-            ["durmieron", "verb"],
-            ["nada", "degree"]
+            [
+              "¿Leyó",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "muchas novelas",
+              {
+                "$t": "a3"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f2",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Anoche",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "mi hermano",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "pidió",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "su libro favorito",
+              {
+                "$t": "a3"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f3",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "¿Durmió",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "bien",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "después",
+              {
+                "$t": "a4"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Los niños",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "se divirtieron",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "no",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "durmieron",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "nada",
+              {
+                "$t": "a7"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "indef-cambio-1",
-      "pregunta": {"en": "Complete: she ordered a coffee."},
-      "frase": "___ un café.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "Pidió": {"en": "Pedir changes e to i in the third person."},
-        "Pedió": {"en": "Él needs the i: pidió."},
-        "Pedí": {"en": "Pedí is yo."}
+        "Pidió": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "Pedió": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "Pedí": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "Pidió"
     },
     {
       "tipo": "huecos",
       "id": "indef-cambio-2",
-      "pregunta": {"en": "Complete: I slept well."},
-      "frase": "___ bien.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "Dormí": {"en": "Yo does not change: dormí."},
-        "Durmí": {"en": "Only él and ellos take the u."},
-        "Durmió": {"en": "Durmió is él or ella."}
+        "Dormí": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "Durmí": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "Durmió": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "Dormí"
     },
     {
       "tipo": "huecos",
       "id": "indef-cambio-3",
-      "pregunta": {"en": "Complete: they read the news."},
-      "frase": "___ la noticia.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "Leyeron": {"en": "Between vowels the i becomes y."},
-        "Leieron": {"en": "Spanish writes y between the two vowels."},
-        "Leyó": {"en": "Leyó is one person."}
+        "Leyeron": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "Leieron": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "Leyó": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "Leyeron"
     },
     {
       "tipo": "test",
       "id": "indef-cambio-4",
-      "pregunta": {"en": "Which verb keeps its vowel in the indefinido?"},
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
       "opciones": {
-        "volver → volvió": {"en": "-er verbs keep the vowel."},
-        "dormir → dormió": {"en": "Dormir changes: durmió."},
-        "pedir → pedió": {"en": "Pedir changes: pidió."}
+        "volver → volvió": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "dormir → dormió": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "pedir → pedió": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "volver → volvió"
     },
     {
       "tipo": "ordenar",
       "id": "indef-cambio-5",
-      "frase": "Mi abuelo nació en Cuba",
-      "traduccion": {"en": "My grandfather was born in Cuba."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write about a dinner in a restaurant from the point of view of the waiter: what each person ordered, repeated, preferred.\n\n**Speak (about 1 minute).** Tell aloud how you slept last night, what you had for breakfast and what the others at home did."
+        "$t": "b10.texto"
       }
     }
   ]

@@ -1,148 +1,371 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "118",
   "capitulo": 11,
-  "titulo_es": "Me parece que…",
-  "titulo": {"en": "It seems to me that…"},
-  "intro": {"en": "Giving an opinion, asking for one, and agreeing or disagreeing."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "me parece que": {"en": "I think that, it seems to me that", "pron": "me pa-RE-the ke", "cat": "expression"},
-    "qué te parece": {"en": "what do you think of it", "pron": "ke te pa-RE-the", "cat": "expression"},
-    "estoy de acuerdo": {"en": "I agree", "pron": "es-TOI de a-KWER-do", "cat": "expression"},
-    "no estoy de acuerdo": {"en": "I disagree", "pron": "no es-TOI de a-KWER-do", "cat": "expression"},
-    "tienes razón": {"en": "you are right", "pron": "TYE-nes ra-THON", "cat": "expression"},
-    "pienso que": {"en": "I think that", "pron": "PYEN-so ke", "cat": "expression"},
-    "en mi opinión": {"en": "in my opinion", "pron": "en mi o-pi-NYON", "cat": "expression"},
-    "depender": {"en": "to depend (depende = it depends)", "pron": "de-pen-DER", "cat": "verb"},
-    "por supuesto": {"en": "of course", "pron": "por su-PWES-to", "cat": "expression"},
-    "qué va": {"en": "no way; not at all", "pron": "ke ba", "cat": "interjection", "nota": "Informal and emphatic; used especially in Spain."},
-    "es verdad": {"en": "it's true", "pron": "es ber-DAD", "cat": "expression"},
-    "yo creo que no": {"en": "I don't think so", "pron": "yo KRE-o ke no", "cat": "expression"},
-    "puede ser": {"en": "maybe; it could be", "pron": "PWE-de ser", "cat": "expression"},
-    "sí, pero": {"en": "yes, but", "pron": "si PE-ro", "cat": "expression"}
+    "me parece que": {
+      "$f": "p.me parece que",
+      "pron": "me pa-RE-the ke",
+      "cat": "expr"
+    },
+    "qué te parece": {
+      "$f": "p.qué te parece",
+      "pron": "ke te pa-RE-the",
+      "cat": "expr"
+    },
+    "estoy de acuerdo": {
+      "$f": "p.estoy de acuerdo",
+      "pron": "es-TOI de a-KWER-do",
+      "cat": "expr"
+    },
+    "no estoy de acuerdo": {
+      "$f": "p.no estoy de acuerdo",
+      "pron": "no es-TOI de a-KWER-do",
+      "cat": "expr"
+    },
+    "tienes razón": {
+      "$f": "p.tienes razón",
+      "pron": "TYE-nes ra-THON",
+      "cat": "expr"
+    },
+    "pienso que": {
+      "$f": "p.pienso que",
+      "pron": "PYEN-so ke",
+      "cat": "expr"
+    },
+    "en mi opinión": {
+      "$f": "p.en mi opinión",
+      "pron": "en mi o-pi-NYON",
+      "cat": "expr"
+    },
+    "depender": {
+      "$f": "p.depender",
+      "pron": "de-pen-DER",
+      "cat": "verb"
+    },
+    "por supuesto": {
+      "$f": "p.por supuesto",
+      "pron": "por su-PWES-to",
+      "cat": "expr"
+    },
+    "qué va": {
+      "$f": "p.qué va",
+      "pron": "ke ba",
+      "cat": "interj",
+      "nota": {
+        "$t": "p.qué va.nota"
+      }
+    },
+    "es verdad": {
+      "$f": "p.es verdad",
+      "pron": "es ber-DAD",
+      "cat": "expr"
+    },
+    "yo creo que no": {
+      "$f": "p.yo creo que no",
+      "pron": "yo KRE-o ke no",
+      "cat": "expr"
+    },
+    "puede ser": {
+      "$f": "p.puede ser",
+      "pron": "PWE-de ser",
+      "cat": "expr"
+    },
+    "sí, pero": {
+      "$f": "p.sí, pero",
+      "pron": "si PE-ro",
+      "cat": "expr"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Opinions"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "To give an opinion: **creo que**, **pienso que**, **me parece que**, **para mí**, **en mi opinión**. In affirmative statements, these phrases are usually followed by the indicative. Negative opinion phrases often use the subjunctive.\n\n**Parecer** works like gustar: **me parece** caro, **me parecen** caros.\n\nTo ask: **¿Qué te parece?** **¿Qué opinas?** **¿Tú qué crees?**\n\nTo agree: **Estoy de acuerdo (contigo).** **Tienes razón.** **Es verdad.** **Por supuesto.**\n\nTo disagree: **No estoy de acuerdo.** **Yo creo que no.** **¡Qué va!** (informal and emphatic).\n\nIn between: **Depende.** **Puede ser.** **Sí, pero…**\n\nWatch the verbs: **estar** de acuerdo and **tener** razón. Not soy de acuerdo, not estoy razón."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "The new flat"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "¿Qué te parece el piso nuevo?",
-          "en": "What do you think of the new flat?",
-          "analisis": [["¿Qué", "question"], ["te parece", "verb"], ["el piso nuevo", "subject"]]
+          "analisis": [
+            [
+              "¿Qué",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "te parece",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "el piso nuevo",
+              {
+                "$t": "a2"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Me parece un poco caro.",
-          "en": "It seems a bit expensive to me.",
-          "analisis": [["Me parece", "verb"], ["un poco caro", "description"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Yo pienso que el barrio es muy bueno.",
-          "en": "I think the neighbourhood is very good.",
           "analisis": [
-            ["Yo", "subject"],
-            ["pienso que", "opinion"],
-            ["el barrio", "subject"],
-            ["es", "verb"],
-            ["muy bueno", "description"]
+            [
+              "Me parece",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "un poco caro",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Yo",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "pienso que",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "el barrio",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "es",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "muy bueno",
+              {
+                "$t": "a3"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "Tienes razón, pero las habitaciones me parecen pequeñas.",
-          "en": "You're right, but the bedrooms seem small to me.",
           "analisis": [
-            ["Tienes razón", "agreement"],
-            ["las habitaciones", "subject"],
-            ["me parecen", "verb"],
-            ["pequeñas", "description"]
+            [
+              "Tienes razón",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "las habitaciones",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "me parecen",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "pequeñas",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f4",
           "quien": "Lucía",
-          "es": "No estoy de acuerdo. Para mí, son perfectas.",
-          "en": "I don't agree. For me, they're perfect.",
           "analisis": [
-            ["No", "negation"],
-            ["estoy de acuerdo", "verb"],
-            ["Para mí", "opinion"],
-            ["son", "verb"],
-            ["perfectas", "description"]
+            [
+              "No",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "estoy de acuerdo",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "Para mí",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "son",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "perfectas",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
-        {"quien": "Pablo", "es": "Bueno, depende.", "en": "Well, it depends.", "analisis": [["depende", "verb"]]}
+        {
+          "$f": "b2.f5",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "depende",
+              {
+                "$t": "a1"
+              }
+            ]
+          ]
+        }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "parecer-1",
-      "pregunta": {"en": "Complete: the bedrooms seem small to me."},
-      "frase": "Las habitaciones me ___ pequeñas.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "parecen": {"en": "Las habitaciones is plural."},
-        "parece": {"en": "Parece is for one thing."},
-        "parezco": {"en": "Parezco is I seem."}
+        "parecen": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "parece": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "parezco": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "parecen"
     },
     {
       "tipo": "huecos",
       "id": "parecer-2",
-      "pregunta": {"en": "Complete: I agree."},
-      "frase": "___ de acuerdo.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "Estoy": {"en": "Agreement takes estar."},
-        "Soy": {"en": "It is estar de acuerdo, never ser."},
-        "Tengo": {"en": "Tener goes with razón."}
+        "Estoy": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "Soy": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "Tengo": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "Estoy"
     },
     {
       "tipo": "huecos",
       "id": "parecer-3",
-      "pregunta": {"en": "Complete: you are right."},
-      "frase": "___ razón.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "Tienes": {"en": "Spanish has reason: tener razón."},
-        "Eres": {"en": "Razón goes with tener."},
-        "Estás": {"en": "Razón goes with tener."}
+        "Tienes": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "Eres": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "Estás": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "Tienes"
     },
     {
       "tipo": "test",
       "id": "parecer-4",
-      "pregunta": {"en": "Which phrase disagrees?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "Yo creo que no": {"en": "I don't think so."},
-        "Es verdad": {"en": "That agrees: it's true."},
-        "Por supuesto": {"en": "That agrees: of course."}
+        "Yo creo que no": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "Es verdad": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "Por supuesto": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "Yo creo que no"
     },
     {
       "tipo": "ordenar",
       "id": "parecer-5",
-      "frase": "¿Qué te parece el piso nuevo?",
-      "traduccion": {"en": "What do you think of the new flat?"}
+      "frase": {
+        "$e": "b8.frase"
+      },
+      "traduccion": {
+        "$t": "b8.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Give your opinion on a topic in your town, such as traffic, prices or noise. Use creo que, me parece que, para mí and en mi opinión.\n\n**Speak (about 2 minutes).** Give your opinion aloud on three recent news stories and say whether you agree with what others think."
+        "$t": "b9.texto"
       }
     }
   ]

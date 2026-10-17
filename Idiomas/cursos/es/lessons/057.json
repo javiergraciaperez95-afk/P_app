@@ -1,127 +1,294 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "057",
   "capitulo": 7,
-  "titulo_es": "Voy a viajar",
-  "titulo": { "en": "I'm going to travel" },
-  "intro": { "en": "Ir a plus an infinitive is the easiest way to talk about a plan." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "voy": { "en": "I go", "pron": "boy", "cat": "verb" },
-    "vas": { "en": "you go", "pron": "bas", "cat": "verb" },
-    "va": { "en": "he/she goes", "pron": "ba", "cat": "verb" },
-    "vamos": { "en": "we go", "pron": "BA-mos", "cat": "verb" },
-    "a": { "en": "to", "pron": "a", "cat": "preposition" },
-    "viajar": { "en": "to travel", "pron": "bya-HAR", "cat": "verb" },
-    "mañana": { "en": "tomorrow", "pron": "ma-NYA-na", "cat": "adverb" },
-    "el próximo": { "en": "next (masculine singular form)", "pron": "el PROK-si-mo", "cat": "expression", "nota": "Changes to próxima, próximos or próximas to agree with the noun." },
-    "el mes": { "en": "the month", "pron": "el mes", "cat": "noun", "genero": "m" },
-    "hacer": { "en": "to do, to make", "pron": "a-SER", "cat": "verb" },
-    "llover": { "en": "to rain", "cat": "verb" },
-    "vais": { "en": "you plural go (vosotros/as, used mainly in Spain)", "pron": "BAIS", "cat": "verb" },
-    "van": { "en": "they / you plural go (ellos, ellas, ustedes)", "pron": "ban", "cat": "verb" }
+    "voy": {
+      "$f": "p.voy",
+      "pron": "boy",
+      "cat": "verb"
+    },
+    "vas": {
+      "$f": "p.vas",
+      "pron": "bas",
+      "cat": "verb"
+    },
+    "va": {
+      "$f": "p.va",
+      "pron": "ba",
+      "cat": "verb"
+    },
+    "vamos": {
+      "$f": "p.vamos",
+      "pron": "BA-mos",
+      "cat": "verb"
+    },
+    "a": {
+      "$f": "p.a",
+      "pron": "a",
+      "cat": "prep"
+    },
+    "viajar": {
+      "$f": "p.viajar",
+      "pron": "bya-HAR",
+      "cat": "verb"
+    },
+    "mañana": {
+      "$f": "p.mañana",
+      "pron": "ma-NYA-na",
+      "cat": "adv"
+    },
+    "el próximo": {
+      "$f": "p.el próximo",
+      "pron": "el PROK-si-mo",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.el próximo.nota"
+      }
+    },
+    "el mes": {
+      "$f": "p.el mes",
+      "pron": "el mes",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "hacer": {
+      "$f": "p.hacer",
+      "pron": "a-SER",
+      "cat": "verb"
+    },
+    "llover": {
+      "$f": "p.llover",
+      "cat": "verb"
+    },
+    "vais": {
+      "$f": "p.vais",
+      "pron": "BAIS",
+      "cat": "verb"
+    },
+    "van": {
+      "$f": "p.van",
+      "pron": "ban",
+      "cat": "verb"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "A plan",
-      "texto": "**Ir a** + infinitive means going to do something.\n\n- **Voy a** viajar.\n- **Vas a** estudiar.\n- **Vamos a** comer.\n\nIr itself is irregular: voy, vas, va, vamos, vais, van. The second verb never changes: it stays the infinitive."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "dialogo",
-      "titulo": "Tomorrow",
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "¿Qué vas a hacer mañana?",
-          "en": "What are you going to do tomorrow?",
           "analisis": [
-            ["¿Qué", "question (what)"],
-            ["vas a hacer", "going to do"],
-            ["mañana", "tomorrow"]
+            [
+              "¿Qué",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "vas a hacer",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "mañana",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Voy a viajar a Granada.",
-          "en": "I'm going to travel to Granada.",
           "analisis": [
-            ["Voy a viajar", "I'm going to travel"],
-            ["a Granada", "destination"]
+            [
+              "Voy a viajar",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "a Granada",
+              {
+                "$t": "a4"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "Nosotros vamos a estudiar.",
-          "en": "We're going to study.",
           "analisis": [
-            ["Nosotros", "subject"],
-            ["vamos a estudiar", "we're going to study"]
+            [
+              "Nosotros",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "vamos a estudiar",
+              {
+                "$t": "a6"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "El próximo mes va a llover poco.",
-          "en": "It's going to rain little next month.",
-          "nota": "Va a llover is an impersonal plan: it's going to rain.",
+          "nota": {
+            "$t": "b2.f3.nota"
+          },
           "analisis": [
-            ["El próximo mes", "when"],
-            ["va a llover", "it's going to rain"]
+            [
+              "El próximo mes",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "va a llover",
+              {
+                "$t": "a8"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["voy", "vas", "va", "vamos", "vais", "van", "a", "viajar", "hacer", "mañana", "el próximo", "el mes", "llover"]
+      "palabras": [
+        "voy",
+        "vas",
+        "va",
+        "vamos",
+        "vais",
+        "van",
+        "a",
+        "viajar",
+        "hacer",
+        "mañana",
+        "el próximo",
+        "el mes",
+        "llover"
+      ]
     },
     {
       "tipo": "huecos",
       "id": "a2-ira-voy",
-      "pregunta": { "en": "Complete: I'm going to travel." },
-      "frase": "___ a viajar.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "Voy": { "en": "Yo uses voy." },
-        "Vas": { "en": "Vas is for tú." },
-        "Vamos": { "en": "Vamos is for nosotros." }
+        "Voy": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "Vas": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "Vamos": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "Voy"
     },
     {
       "tipo": "ordenar",
       "id": "a2-ira-granada",
-      "frase": "Voy a viajar a Granada",
-      "traduccion": { "en": "I'm going to travel to Granada." }
+      "frase": {
+        "$e": "b5.frase"
+      },
+      "traduccion": {
+        "$t": "b5.traduccion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "a2-ira-m1",
-      "pregunta": {"en": "Complete: we are going to eat."},
-      "frase": "___ a comer.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
-      "opciones": {"Vamos": {"en": "Nosotros: vamos."}, "Voy": {"en": "Voy is yo."}, "Van": {"en": "Van is ellos or ustedes."}},
+      "opciones": {
+        "Vamos": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "Voy": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "Van": {
+          "$t": "b6.o2.refuerzo"
+        }
+      },
       "correcta": "Vamos"
     },
     {
       "tipo": "test",
       "id": "a2-ira-m2",
-      "pregunta": {"en": "In «Voy a estudiar», which verb changes with the person?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "voy": {"en": "Only ir is conjugated."},
-        "estudiar": {"en": "The second verb stays in the infinitive."},
-        "both": {"en": "Only ir changes."}
+        "voy": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "estudiar": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "both": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "voy"
     },
     {
       "tipo": "escribir",
       "id": "a2-ira-m3",
-      "pregunta": {"en": "Translate: «I'm going to study tomorrow.»"},
-      "respuestas": ["Voy a estudiar mañana", "Mañana voy a estudiar"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "Voy a estudiar mañana",
+        "Mañana voy a estudiar"
+      ]
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write your plans for next weekend and for your next holiday, using voy a.\n\n**Speak (about 1 minute).** Tell someone what you are going to do tomorrow, hour by hour."
+        "$t": "b9.texto"
       }
     }
   ]

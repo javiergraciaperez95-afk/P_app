@@ -1,7 +1,0 @@
-<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;overflow:hidden}iframe{border:0;display:block}</style></head><body>
-<script>
-const q=new URLSearchParams(location.search);const w=+q.get('w')||1280,h=+q.get('h')||900,tema=q.get('tema')||'claro';
-const f=document.createElement('iframe');f.width=w;f.height=h;f.src='index.html#/precios';document.body.append(f);
-f.onload=()=>{const d=f.contentDocument;setInterval(()=>{d.documentElement.dataset.tema=tema;d.querySelectorAll('.aviso-datos').forEach(x=>x.remove());},100);
-setTimeout(()=>{const o=document.createElement("pre");o.id="estado";const a=d.querySelector('.pr-arriba');const e=d.querySelector('.pr-escalera');o.textContent=JSON.stringify({zoom:getComputedStyle(a).zoom,esc:[e.scrollWidth,e.clientWidth,e.scrollLeft],peld:[...d.querySelectorAll('.pr-peldano')].map(p=>{const r=p.getBoundingClientRect();return [Math.round(r.left),Math.round(r.width),Math.round(r.top),Math.round(r.height)]}),pag:d.documentElement.scrollWidth});document.body.append(o);},5000);};
-</script></body></html>

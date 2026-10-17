@@ -1,157 +1,451 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "121",
   "capitulo": 11,
-  "titulo_es": "Pienso ir",
-  "titulo": {"en": "I'm planning to go"},
-    "intro": {"en": "Plans from decided to tentative, plus ways to talk about finding out and being able to do something."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
     "pensar": {
-      "en": "to think",
+      "$f": "p.pensar",
       "pron": "pen-SAR",
       "cat": "verb",
-      "nota": "Pensar + infinitive expresses an intention: pienso hacer un máster."
+      "nota": {
+        "$t": "p.pensar.nota"
+      }
     },
-    "tener previsto": {"en": "to have something planned; to plan to", "pron": "te-NER pre-BIS-to", "cat": "expression", "nota": "Tener previsto + infinitive: tengo previsto alquilarlo."},
-    "tener la intención de": {"en": "to intend to", "pron": "te-NER la in-ten-THYON de", "cat": "expression", "nota": "Tener la intención de + infinitive."},
-    "pensar en": {"en": "to think about; to consider", "pron": "pen-SAR en", "cat": "verb", "nota": "Estar pensando en + infinitive presents a plan still under consideration: estoy pensando en ir."},
-    "a ver si": {"en": "let's see if, I hope to", "pron": "a ber si", "cat": "expression"},
-    "enterarse de que": {"en": "to find out that; to hear that", "pron": "en-te-RAR-se de ke", "cat": "verb", "nota": "The dialogue uses me he enterado de que."},
-    "ser capaz de": {"en": "to be able to; to be capable of", "pron": "ser ka-PATH de", "cat": "expression", "nota": "With an infinitive: ser capaz de hacerlo. Negated, it can mean being unable to bring oneself to do something."},
-    "seguramente": {"en": "probably", "pron": "se-gu-ra-MEN-te", "cat": "adverb"},
-    "en principio": {"en": "in principle, as things stand", "pron": "en prin-THI-pyo", "cat": "expression"},
-    "si todo va bien": {"en": "if all goes well", "pron": "si TO-do ba byen", "cat": "expression"},
-    "el máster": {"en": "the master's degree", "pron": "el MAS-ter", "cat": "noun", "genero": "m"},
-    "mudarse": {"en": "to move house", "pron": "mu-DAR-se", "cat": "verb"},
-    "en el extranjero": {"en": "abroad", "pron": "en el eks-tran-HE-ro", "cat": "expression"},
-    "alquilar": {"en": "to rent", "pron": "al-ki-LAR", "cat": "verb", "nota": "Context shows whether someone rents a place or rents it out."},
-    "el piso": {"en": "the flat; the apartment", "pron": "el PI-so", "cat": "noun", "genero": "m"}
+    "tener previsto": {
+      "$f": "p.tener previsto",
+      "pron": "te-NER pre-BIS-to",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.tener previsto.nota"
+      }
+    },
+    "tener la intención de": {
+      "$f": "p.tener la intención de",
+      "pron": "te-NER la in-ten-THYON de",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.tener la intención de.nota"
+      }
+    },
+    "pensar en": {
+      "$f": "p.pensar en",
+      "pron": "pen-SAR en",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.pensar en.nota"
+      }
+    },
+    "a ver si": {
+      "$f": "p.a ver si",
+      "pron": "a ber si",
+      "cat": "expr"
+    },
+    "enterarse de que": {
+      "$f": "p.enterarse de que",
+      "pron": "en-te-RAR-se de ke",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.enterarse de que.nota"
+      }
+    },
+    "ser capaz de": {
+      "$f": "p.ser capaz de",
+      "pron": "ser ka-PATH de",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.ser capaz de.nota"
+      }
+    },
+    "seguramente": {
+      "$f": "p.seguramente",
+      "pron": "se-gu-ra-MEN-te",
+      "cat": "adv"
+    },
+    "en principio": {
+      "$f": "p.en principio",
+      "pron": "en prin-THI-pyo",
+      "cat": "expr"
+    },
+    "si todo va bien": {
+      "$f": "p.si todo va bien",
+      "pron": "si TO-do ba byen",
+      "cat": "expr"
+    },
+    "el máster": {
+      "$f": "p.el máster",
+      "pron": "el MAS-ter",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "mudarse": {
+      "$f": "p.mudarse",
+      "pron": "mu-DAR-se",
+      "cat": "verb"
+    },
+    "en el extranjero": {
+      "$f": "p.en el extranjero",
+      "pron": "en el eks-tran-HE-ro",
+      "cat": "expr"
+    },
+    "alquilar": {
+      "$f": "p.alquilar",
+      "pron": "al-ki-LAR",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.alquilar.nota"
+      }
+    },
+    "el piso": {
+      "$f": "p.el piso",
+      "pron": "el PI-so",
+      "cat": "sust",
+      "genero": "m"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "From a firm plan to a vague one"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "These expressions can show how settled a plan is, though context matters.\n\n- decided plan: **voy a** + infinitive or **tener previsto** + infinitive. Voy a mudarme en mayo.\n- intention: **pensar** + infinitive or **tener la intención de** + infinitive. Pienso hacer un máster.\n- still under consideration: **estar pensando en** + infinitive.\n- hope: **a ver si** + present. A ver si encuentro algo.\n\n**En principio** and **si todo va bien** leave room for change. **Seguramente** means probably.\n\n**Enterarse de que** means to find out or hear that: **me he enterado de que** te vas. ¿**Te has enterado**?\n\n**Ser capaz de** + infinitive means to be able to do something. In a negative sentence, it can also suggest being unable to bring oneself to do it: no **soy capaz de** decírselo."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Next year"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "Me he enterado de que dejas el trabajo.",
-          "en": "I've heard you're leaving your job.",
-          "analisis": [["Me he enterado de que", "finding out"], ["dejas", "verb"], ["el trabajo", "object"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Sí. Pienso hacer un máster en el extranjero.",
-          "en": "Yes. I'm planning to do a master's abroad.",
-          "analisis": [["Pienso hacer", "intention"], ["un máster", "object"], ["en el extranjero", "place"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "¿Ya sabes dónde?",
-          "en": "Do you know where yet?",
-          "analisis": [["¿Ya", "already"], ["sabes", "verb"], ["dónde", "question"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Estoy pensando en ir a Lisboa. En principio, en septiembre.",
-          "en": "I'm thinking of going to Lisbon. For now, in September.",
           "analisis": [
-            ["Estoy pensando en", "open plan"],
-            ["ir a Lisboa", "infinitive"],
-            ["En principio", "reservation"],
-            ["en septiembre", "time"]
-          ]
-        },
-        {"quien": "Lucía", "es": "¿Y tu piso?", "en": "And your flat?", "analisis": [["tu piso", "topic"]]},
-        {
-          "quien": "Pablo",
-          "es": "Tengo previsto alquilarlo. A ver si encuentro a alguien pronto.",
-          "en": "I plan to rent it out. I hope I can find someone soon.",
-          "analisis": [
-            ["Tengo previsto", "plan"],
-            ["alquilarlo", "infinitive + lo"],
-            ["A ver si", "hope"],
-            ["encuentro", "verb"],
-            ["a alguien", "object"],
-            ["pronto", "time"]
+            [
+              "Me he enterado de que",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "dejas",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "el trabajo",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Pienso hacer",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "un máster",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "en el extranjero",
+              {
+                "$t": "a4"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "Yo no sería capaz de dejarlo todo.",
-          "en": "I wouldn't be able to leave everything behind.",
-          "analisis": [["Yo", "subject"], ["no sería capaz de", "verb"], ["dejarlo todo", "infinitive"]]
+          "analisis": [
+            [
+              "¿Ya",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "sabes",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "dónde",
+              {
+                "$t": "a6"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f3",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Estoy pensando en",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "ir a Lisboa",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "En principio",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "en septiembre",
+              {
+                "$t": "a10"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "tu piso",
+              {
+                "$t": "a11"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Tengo previsto",
+              {
+                "$t": "a12"
+              }
+            ],
+            [
+              "alquilarlo",
+              {
+                "$t": "a13"
+              }
+            ],
+            [
+              "A ver si",
+              {
+                "$t": "a14"
+              }
+            ],
+            [
+              "encuentro",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "a alguien",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "pronto",
+              {
+                "$t": "a10"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f6",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Yo",
+              {
+                "$t": "a15"
+              }
+            ],
+            [
+              "no sería capaz de",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "dejarlo todo",
+              {
+                "$t": "a8"
+              }
+            ]
+          ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "planes-intenciones-1",
-      "pregunta": {"en": "Complete: I'm planning to study abroad."},
-      "frase": "___ estudiar en el extranjero.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "Pienso": {"en": "Pensar plus infinitive is an intention."},
-        "Pienso en": {"en": "Pensar en is to think about something."},
-        "Pienso que": {"en": "Pensar que introduces an opinion."}
+        "Pienso": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "Pienso en": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "Pienso que": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "Pienso"
     },
     {
       "tipo": "huecos",
       "id": "planes-intenciones-2",
-      "pregunta": {"en": "Complete: I'm thinking of moving."},
-      "frase": "Estoy pensando ___ mudarme.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
-      "opciones": {"en": {"en": "Estar pensando en."}, "de": {"en": "The phrase takes en."}, "a": {"en": "The phrase takes en."}},
+      "opciones": {
+        "en": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "de": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "a": {
+          "$t": "b5.o2.refuerzo"
+        }
+      },
       "correcta": "en"
     },
     {
       "tipo": "traduccion",
       "id": "planes-intenciones-3",
-      "frase": "Me he enterado de que te vas.",
+      "frase": {
+        "$e": "b6.frase"
+      },
       "opciones": [
-          {"texto": {"en": "I've heard that you're leaving."}, "correcta": true},
-        {"texto": {"en": "I've understood that you're leaving."}, "explicacion": {"en": "Enterarse is to find out."}},
-        {"texto": {"en": "I've decided that you should leave."}, "explicacion": {"en": "Enterarse is to find out."}}
+        {
+          "texto": {
+            "$t": "b6.o0"
+          },
+          "correcta": true
+        },
+        {
+          "texto": {
+            "$t": "b6.o1"
+          },
+          "explicacion": {
+            "$t": "b6.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b6.o2"
+          },
+          "explicacion": {
+            "$t": "b6.o2.explicacion"
+          }
+        }
       ]
     },
     {
       "tipo": "huecos",
       "id": "planes-intenciones-4",
-      "pregunta": {"en": "Complete: I'm not capable of telling him."},
-      "frase": "No soy capaz ___ decírselo.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
-      "opciones": {"de": {"en": "Ser capaz de."}, "a": {"en": "Ser capaz takes de."}, "para": {"en": "Ser capaz takes de."}},
+      "opciones": {
+        "de": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "a": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "para": {
+          "$t": "b7.o2.refuerzo"
+        }
+      },
       "correcta": "de"
     },
     {
       "tipo": "test",
       "id": "planes-intenciones-5",
-      "pregunta": {"en": "Which sentence is the least certain?"},
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
       "opciones": {
-        "A ver si voy": {"en": "Let's see if I go: only a hope."},
-        "Voy a ir": {"en": "That is decided."},
-        "Tengo previsto ir": {"en": "That is planned."}
+        "A ver si voy": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "Voy a ir": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "Tengo previsto ir": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "A ver si voy"
     },
     {
       "tipo": "ordenar",
       "id": "planes-intenciones-6",
-      "frase": "Tengo previsto alquilar el piso",
-      "traduccion": {"en": "I plan to rent out the flat."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write about your intentions for the coming months: what you plan to do, what you have arranged and what you hope to manage.\n\n**Speak (about 2 minutes).** Tell a friend what you intend to change in your life this year and how."
+        "$t": "b10.texto"
       }
     }
   ]

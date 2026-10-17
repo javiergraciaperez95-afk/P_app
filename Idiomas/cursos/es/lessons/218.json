@@ -1,181 +1,438 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "218",
   "capitulo": 20,
-  "titulo_es": "El cual, cuyo, quienes",
-  "titulo": {"en": "Which, whose, who"},
-  "intro": {"en": "Relative pronouns for careful Spanish: after prepositions, after commas, and whose."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "el cual": {"en": "which, who (formal)", "pron": "el kwal", "cat": "pronoun", "nota": "La cual, los cuales, las cuales."},
-    "lo cual": {"en": "which (a whole idea)", "pron": "lo kwal", "cat": "pronoun"},
+    "el cual": {
+      "$f": "p.el cual",
+      "pron": "el kwal",
+      "cat": "pron",
+      "nota": {
+        "$t": "p.el cual.nota"
+      }
+    },
+    "lo cual": {
+      "$f": "p.lo cual",
+      "pron": "lo kwal",
+      "cat": "pron"
+    },
     "cuyo": {
-      "en": "whose",
+      "$f": "p.cuyo",
       "pron": "KU-yo",
       "cat": "determiner",
-      "nota": "Cuyo agrees with the thing owned, not with the owner: cuya, cuyos, cuyas."
+      "nota": {
+        "$t": "p.cuyo.nota"
+      }
     },
-    "quienes": {"en": "who, those who", "pron": "KYE-nes", "cat": "pronoun"},
-    "en el que": {"en": "in which", "pron": "en el ke", "cat": "expression"},
-    "para la que": {"en": "for which, for whom", "pron": "PA-ra la ke", "cat": "expression"},
-    "con quien": {"en": "with whom", "pron": "kon kyen", "cat": "expression"},
-    "el premio": {"en": "the prize", "pron": "el PRE-myo", "genero": "m"},
-    "fundar": {"en": "to found", "pron": "fun-DAR", "cat": "verb"},
-    "el sector": {"en": "the sector", "pron": "el sek-TOR", "genero": "m"},
-    "el discurso": {"en": "the speech", "pron": "el dis-KUR-so", "genero": "m"},
-    "orgulloso": {"en": "proud", "pron": "or-gu-YO-so", "cat": "adjective"}
+    "quienes": {
+      "$f": "p.quienes",
+      "pron": "KYE-nes",
+      "cat": "pron"
+    },
+    "en el que": {
+      "$f": "p.en el que",
+      "pron": "en el ke",
+      "cat": "expr"
+    },
+    "para la que": {
+      "$f": "p.para la que",
+      "pron": "PA-ra la ke",
+      "cat": "expr"
+    },
+    "con quien": {
+      "$f": "p.con quien",
+      "pron": "kon kyen",
+      "cat": "expr"
+    },
+    "el premio": {
+      "$f": "p.el premio",
+      "pron": "el PRE-myo",
+      "genero": "m"
+    },
+    "fundar": {
+      "$f": "p.fundar",
+      "pron": "fun-DAR",
+      "cat": "verb"
+    },
+    "el sector": {
+      "$f": "p.el sector",
+      "pron": "el sek-TOR",
+      "genero": "m"
+    },
+    "el discurso": {
+      "$f": "p.el discurso",
+      "pron": "el dis-KUR-so",
+      "genero": "m"
+    },
+    "orgulloso": {
+      "$f": "p.orgulloso",
+      "pron": "or-gu-YO-so",
+      "cat": "adj"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Beyond que"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "**After a preposition**, the relative needs an article: **el que, la que, los que, las que**. More formally, **el cual, la cual, los cuales, las cuales**. For people, also **quien, quienes**.\n\n- la empresa **en la que** trabajo · la empresa **para la cual** trabajo\n- el amigo **con quien** vivo · el amigo **con el que** vivo\n\n**Between commas**, the clause only adds information, and que, quien or el cual are all possible: mi jefa, **que** / **quien** / **la cual** vive en Roma, viene mañana.\n\n**Lo cual** and **lo que** pick up a whole idea: llegó tarde, **lo cual** me molestó.\n\n**Cuyo** is whose. It agrees with the thing owned and takes no article: el autor **cuya** novela leí; los vecinos **cuyos** hijos conoces.\n\n**Quien** with no noun before it means whoever: **quien** quiera venir, que venga."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "Which relative"},
-      "columnas": ["Relative", "Where", "Example"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        },
+        {
+          "$t": "b2.c2"
+        }
+      ],
       "filas": [
-        ["que", "the default", "El libro que leí."],
-        ["el / la que, el / la cual", "after a preposition", "La casa en la que vivo."],
-        ["quien, quienes", "people: after a preposition or a comma", "El amigo con quien vivo."],
-        ["lo cual, lo que", "a whole idea", "Llegó tarde, lo cual me molestó."],
-        ["cuyo, cuya", "whose", "El autor cuya novela leí."]
+        [
+          "que",
+          "the default",
+          "El libro que leí."
+        ],
+        [
+          "el / la que, el / la cual",
+          "after a preposition",
+          "La casa en la que vivo."
+        ],
+        [
+          "quien, quienes",
+          "people: after a preposition or a comma",
+          "El amigo con quien vivo."
+        ],
+        [
+          "lo cual, lo que",
+          "a whole idea",
+          "Llegó tarde, lo cual me molestó."
+        ],
+        [
+          "cuyo, cuya",
+          "whose",
+          "El autor cuya novela leí."
+        ]
       ]
     },
     {
       "tipo": "texto",
-      "titulo": {"en": "A prize"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
-          "es": "La empresa para la que trabajo ha ganado un premio.",
-          "en": "The company I work for has won a prize.",
+          "$f": "b3.f0",
           "analisis": [
-            ["La empresa", "subject"],
-            ["para la que trabajo", "relative clause"],
-            ["ha ganado", "verb"],
-            ["un premio", "object"]
+            [
+              "La empresa",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "para la que trabajo",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "ha ganado",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "un premio",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
-          "es": "Su directora, quien fundó la empresa hace diez años, lo recogió ayer.",
-          "en": "Its director, who founded the company ten years ago, collected it yesterday.",
+          "$f": "b3.f1",
           "analisis": [
-            ["Su directora", "subject"],
-            ["quien fundó la empresa", "relative clause (extra information)"],
-            ["hace diez años", "time"],
-            ["lo recogió", "verb"],
-            ["ayer", "time"]
+            [
+              "Su directora",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "quien fundó la empresa",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "hace diez años",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "lo recogió",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "ayer",
+              {
+                "$t": "a5"
+              }
+            ]
           ]
         },
         {
-          "es": "Es una mujer cuyas ideas han cambiado el sector.",
-          "en": "She is a woman whose ideas have changed the sector.",
+          "$f": "b3.f2",
           "analisis": [
-            ["Es", "verb"],
-            ["una mujer", "what"],
-            ["cuyas ideas", "whose ideas"],
-            ["han cambiado", "verb"],
-            ["el sector", "object"]
+            [
+              "Es",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "una mujer",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "cuyas ideas",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "han cambiado",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "el sector",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
-          "es": "No dio ningún discurso, lo cual sorprendió a todos.",
-          "en": "She gave no speech, which surprised everyone.",
+          "$f": "b3.f3",
           "analisis": [
-            ["No dio", "verb"],
-            ["ningún discurso", "object"],
-            ["lo cual", "which (the whole idea)"],
-            ["sorprendió", "verb"],
-            ["a todos", "object"]
+            [
+              "No dio",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "ningún discurso",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "lo cual",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "sorprendió",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "a todos",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
-          "es": "Los empleados con los que hablé estaban muy orgullosos.",
-          "en": "The employees I spoke to were very proud.",
+          "$f": "b3.f4",
           "analisis": [
-            ["Los empleados", "subject"],
-            ["con los que hablé", "relative clause"],
-            ["estaban", "verb"],
-            ["muy orgullosos", "description"]
+            [
+              "Los empleados",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "con los que hablé",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "estaban",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "muy orgullosos",
+              {
+                "$t": "a9"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "relativos-b2-1",
-      "pregunta": {"en": "Complete: the company I work for."},
-      "frase": "La empresa para ___ trabajo.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "la que": {"en": "After para, the relative keeps its article."},
-        "que": {"en": "After para the article is needed."},
-        "lo que": {"en": "Lo que cannot refer to la empresa."}
+        "la que": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "que": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "lo que": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "la que"
     },
     {
       "tipo": "huecos",
       "id": "relativos-b2-2",
-      "pregunta": {"en": "Complete: the author whose novels I read."},
-      "frase": "El autor ___ novelas leo.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "cuyas": {"en": "It agrees with novelas."},
-        "cuyo": {"en": "It agrees with the thing owned: novelas."},
-        "que sus": {"en": "Standard Spanish uses cuyas."}
+        "cuyas": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "cuyo": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "que sus": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "cuyas"
     },
     {
       "tipo": "huecos",
       "id": "relativos-b2-3",
-      "pregunta": {"en": "Complete: he arrived late, which annoyed me."},
-      "frase": "Llegó tarde, ___ me molestó.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "lo cual": {"en": "It refers to the whole idea."},
-        "el cual": {"en": "El cual would need a masculine noun."},
-        "cuyo": {"en": "Cuyo means whose."}
+        "lo cual": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "el cual": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "cuyo": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "lo cual"
     },
     {
       "tipo": "test",
       "id": "relativos-b2-4",
-      "pregunta": {"en": "In «Mi jefa, que vive en Roma, viene mañana», what do the commas tell you?"},
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
       "opciones": {
-        "The clause only adds information about my one boss": {"en": "Between commas it is extra."},
-        "I have several bosses, and this is the one in Rome": {"en": "That would be written without commas."},
-        "The sentence is a question": {"en": "Commas do not make a question."}
+        "The clause only adds information about my one boss": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "I have several bosses, and this is the one in Rome": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "The sentence is a question": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "The clause only adds information about my one boss"
     },
     {
       "tipo": "huecos",
       "id": "relativos-b2-5",
-      "pregunta": {"en": "Complete: the friend I live with."},
-      "frase": "El amigo con ___ vivo.",
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
+      "frase": {
+        "$e": "b9.frase"
+      },
       "audio": true,
       "opciones": {
-        "quien": {"en": "A person after a preposition: quien."},
-        "cuyo": {"en": "Cuyo means whose."},
-        "lo que": {"en": "Lo que cannot refer to a person."}
+        "quien": {
+          "$t": "b9.o0.refuerzo"
+        },
+        "cuyo": {
+          "$t": "b9.o1.refuerzo"
+        },
+        "lo que": {
+          "$t": "b9.o2.refuerzo"
+        }
       },
       "correcta": "quien"
     },
     {
       "tipo": "ordenar",
       "id": "relativos-b2-6",
-      "frase": "Es una mujer cuyas ideas han cambiado el sector",
-      "traduccion": {"en": "She is a woman whose ideas have changed the sector."}
+      "frase": {
+        "$e": "b10.frase"
+      },
+      "traduccion": {
+        "$t": "b10.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (150–180 words).** Write a formal description of a company or an institution using cuyo, el cual, en el que, quienes.\n\n**Speak (about 3 minutes).** Describe aloud three people and three places with long relative clauses: la persona con la que…, el lugar en el que…"
+        "$t": "b11.texto"
       }
     }
   ]

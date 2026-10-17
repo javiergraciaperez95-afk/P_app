@@ -1,77 +1,91 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "306",
   "capitulo": 6,
-  "titulo_es": "Leer lo que necesitas",
   "titulo": {
-    "en": "Reading what you need"
+    "$t": "titulo"
   },
   "intro": {
-    "en": "Use short everyday texts to find a time, a price, a place or a simple instruction."
+    "$t": "intro"
   },
   "palabras": {
-    "abierto": "open",
-    "cerrado": "closed",
-    "horario": "schedule",
-    "andén": "platform",
-    "menú": "menu",
-    "precio": "price",
-    "salida": "departure",
-    "mensaje": "message"
+    "abierto": {
+      "$f": "p.abierto"
+    },
+    "cerrado": {
+      "$f": "p.cerrado"
+    },
+    "horario": {
+      "$f": "p.horario"
+    },
+    "andén": {
+      "$f": "p.andén"
+    },
+    "menú": {
+      "$f": "p.menú"
+    },
+    "precio": {
+      "$f": "p.precio"
+    },
+    "salida": {
+      "$f": "p.salida"
+    },
+    "mensaje": {
+      "$f": "p.mensaje"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
       "titulo": {
-        "en": "Look for key information"
+        "$t": "b1.titulo"
       },
       "texto": {
-        "en": "A short notice often gives one main piece of information: a time, place, price or rule. Read the heading and numbers first, then check the words around them. You do not need to understand every word to find a departure time or choose an item from a menu."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "texto",
       "titulo": {
-        "en": "At the station"
+        "$t": "b2.titulo"
       },
       "frases": [
         {
-          "es": "Tren a Toledo: salida 10:25, andén 3.",
-          "en": "Train to Toledo: departure 10:25, platform 3."
+          "$f": "b2.f0"
         }
       ]
     },
     {
       "tipo": "texto",
       "titulo": {
-        "en": "A notice on the door"
+        "$t": "b3.titulo"
       },
       "frases": [
         {
-          "es": "Abierto de lunes a sábado, de 9:00 a 18:00. Cerrado los domingos.",
-          "en": "Open Monday to Saturday, 9:00 to 18:00. Closed on Sundays."
+          "$f": "b3.f0"
         }
       ]
     },
     {
       "tipo": "texto",
       "titulo": {
-        "en": "A café menu"
+        "$t": "b4.titulo"
       },
       "frases": [
         {
-          "es": "Menú del día: sopa, tortilla o ensalada. Agua incluida. Precio: 12 euros.",
-          "en": "Set menu: soup, Spanish omelette or salad. Water included. Price: 12 euros."
+          "$f": "b4.f0"
         }
       ]
     },
     {
       "tipo": "texto",
       "titulo": {
-        "en": "A message"
+        "$t": "b5.titulo"
       },
       "frases": [
         {
-          "es": "Hola, llego a las seis. Te espero delante del museo.",
-          "en": "Hi, I arrive at six. I will wait for you in front of the museum."
+          "$f": "b5.f0"
         }
       ]
     },
@@ -91,36 +105,54 @@
     {
       "tipo": "test",
       "pregunta": {
-        "en": "Which platform does the train to Toledo leave from?"
+        "$t": "b7.pregunta"
       },
       "opciones": {
-        "Platform 3.": "Correct. Read the context carefully.",
-        "Platform 10.": "Check the information in the text or rule.",
-        "The notice does not say.": "This option does not fit the context."
+        "Platform 3.": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "Platform 10.": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "The notice does not say.": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "Platform 3."
     },
     {
       "tipo": "test",
       "pregunta": {
-        "en": "When is the café open?"
+        "$t": "b8.pregunta"
       },
       "opciones": {
-        "Monday to Saturday, from 9:00 to 18:00.": "Correct. Read the context carefully.",
-        "Every day, from 9:00 to 18:00.": "Check the information in the text or rule.",
-        "Only on Sundays.": "This option does not fit the context."
+        "Monday to Saturday, from 9:00 to 18:00.": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "Every day, from 9:00 to 18:00.": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "Only on Sundays.": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "Monday to Saturday, from 9:00 to 18:00."
     },
     {
       "tipo": "test",
       "pregunta": {
-        "en": "What is included in the set menu?"
+        "$t": "b9.pregunta"
       },
       "opciones": {
-        "Water.": "Correct. Read the context carefully.",
-        "Coffee.": "Check the information in the text or rule.",
-        "Dessert.": "This option does not fit the context."
+        "Water.": {
+          "$t": "b9.o0.refuerzo"
+        },
+        "Coffee.": {
+          "$t": "b9.o1.refuerzo"
+        },
+        "Dessert.": {
+          "$t": "b9.o2.refuerzo"
+        }
       },
       "correcta": "Water."
     }

@@ -1,57 +1,70 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "312",
   "capitulo": 17,
-  "titulo_es": "Opiniones en un foro",
   "titulo": {
-    "en": "Opinions in a forum"
+    "$t": "titulo"
   },
   "intro": {
-    "en": "Identify a writer’s view, supporting reasons, a concession and a response."
+    "$t": "intro"
   },
   "palabras": {
-    "foro": "forum",
-    "ventaja": "advantage",
-    "mejora": "improvement",
-    "concesión": "concession",
-    "propuesta": "proposal",
-    "aunque": "although",
-    "por una parte": "on the one hand",
-    "sin embargo": "however"
+    "foro": {
+      "$f": "p.foro"
+    },
+    "ventaja": {
+      "$f": "p.ventaja"
+    },
+    "mejora": {
+      "$f": "p.mejora"
+    },
+    "concesión": {
+      "$f": "p.concesión"
+    },
+    "propuesta": {
+      "$f": "p.propuesta"
+    },
+    "aunque": {
+      "$f": "p.aunque"
+    },
+    "por una parte": {
+      "$f": "p.por una parte"
+    },
+    "sin embargo": {
+      "$f": "p.sin embargo"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
       "titulo": {
-        "en": "Separate the view from its support"
+        "$t": "b1.titulo"
       },
       "texto": {
-        "en": "A forum post may state a view, give a reason, acknowledge a drawback and suggest a response. Connectors help you follow the relationship: **aunque** introduces a concession; **sin embargo** marks contrast; **por eso** introduces a consequence. A reason is not automatically evidence: notice whether the writer gives an example, a source or only a personal impression."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "texto",
       "titulo": {
-        "en": "A fictional forum discussion"
+        "$t": "b2.titulo"
       },
       "frases": [
         {
-          "es": "Lucía: En mi barrio han reducido las plazas de aparcamiento para ampliar las aceras. Al principio me molestó, porque suelo llevar a mi padre a sus citas médicas.",
-          "en": "Lucía: In my neighbourhood they have reduced parking spaces to widen the pavements. At first I was annoyed because I often drive my father to medical appointments."
+          "$f": "b2.f0"
         },
         {
-          "es": "Sin embargo, ahora hay una zona breve para dejar pasajeros y resulta más fácil caminar con una silla de ruedas. Es una mejora, aunque deberían vigilar que la zona no esté ocupada durante horas.",
-          "en": "However, there is now a short-stay drop-off area and it is easier to walk with a wheelchair. It is an improvement, although they should make sure the area is not occupied for hours."
+          "$f": "b2.f1"
         },
         {
-          "es": "Raúl: Estoy de acuerdo con que las aceras sean accesibles, pero no creo que quitar plazas resuelva por sí solo el tráfico. Mi propuesta es que el autobús pase con más frecuencia, para que algunas personas puedan dejar el coche en casa.",
-          "en": "Raúl: I agree that pavements should be accessible, but I do not think removing parking spaces alone will solve traffic. My proposal is for the bus to run more often, so that some people can leave the car at home."
+          "$f": "b2.f2"
         },
         {
-          "es": "Para decidirlo, el ayuntamiento debería publicar datos sobre el uso de la zona y consultar a quienes viven allí.",
-          "en": "To make a decision, the council should publish data on how the area is used and consult the people who live there."
+          "$f": "b2.f3"
         },
         {
-          "es": "Lucía responde que, por una parte, la accesibilidad beneficia a todo el barrio; por otra, hace falta revisar si la zona de carga se respeta.",
-          "en": "Lucía replies that, on the one hand, accessibility benefits the whole neighbourhood; on the other, it is necessary to check whether the loading area is respected."
+          "$f": "b2.f4"
         }
       ]
     },
@@ -71,84 +84,114 @@
     {
       "tipo": "test",
       "pregunta": {
-        "en": "What is Lucía’s overall view of the change?"
+        "$t": "b4.pregunta"
       },
       "opciones": {
-        "She sees an improvement but wants the drop-off area monitored.": "Correct. Read the context carefully.",
-        "She wants all parking restored immediately.": "Check the information in the text or rule.",
-        "She thinks the change has no effect on access.": "This option does not fit the context."
+        "She sees an improvement but wants the drop-off area monitored.": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "She wants all parking restored immediately.": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "She thinks the change has no effect on access.": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "She sees an improvement but wants the drop-off area monitored."
     },
     {
       "tipo": "test",
       "pregunta": {
-        "en": "Which issue does Raúl say is not solved by removing parking spaces alone?"
+        "$t": "b5.pregunta"
       },
       "opciones": {
-        "Traffic.": "Correct. Read the context carefully.",
-        "Wheelchair access.": "Check the information in the text or rule.",
-        "The council’s budget.": "This option does not fit the context."
+        "Traffic.": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "Wheelchair access.": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "The council’s budget.": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "Traffic."
     },
     {
       "tipo": "test",
       "pregunta": {
-        "en": "What does «aunque» introduce in Lucía’s post?"
+        "$t": "b6.pregunta"
       },
       "opciones": {
-        "A concession or qualification.": "Correct. Read the context carefully.",
-        "A new time in the past.": "Check the information in the text or rule.",
-        "A direct quotation.": "This option does not fit the context."
+        "A concession or qualification.": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "A new time in the past.": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "A direct quotation.": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "A concession or qualification."
     },
     {
       "tipo": "huecos",
-      "frase": "Estoy de acuerdo, ____ quitar plazas no basta.",
+      "frase": {
+        "$e": "b7.frase"
+      },
       "opciones": {
-        "pero": "Correct.",
-        "por eso": "Check the tense or meaning.",
-        "además de": "This form does not fit the sentence."
+        "pero": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "por eso": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "además de": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "pero"
     },
     {
       "tipo": "traduccion",
-      "frase": "Al principio me molestó; sin embargo, ahora veo una ventaja.",
+      "frase": {
+        "$e": "b8.frase"
+      },
       "opciones": [
         {
           "texto": {
-            "en": "At first it annoyed me; however, now I see an advantage."
+            "$t": "b8.o0"
           },
           "correcta": true
         },
         {
           "texto": {
-            "en": "I was never annoyed and I see no advantage."
+            "$t": "b8.o1"
           },
           "correcta": false,
           "explicacion": {
-            "en": "Check the meaning of the Spanish sentence."
+            "$t": "b8.o1.explicacion"
           }
         },
         {
           "texto": {
-            "en": "It annoyed me because I saw an advantage."
+            "$t": "b8.o2"
           },
           "correcta": false,
           "explicacion": {
-            "en": "Check the meaning of the Spanish sentence."
+            "$t": "b8.o2.explicacion"
           }
         }
       ]
     },
     {
       "tipo": "ordenar",
-      "frase": "El ayuntamiento debería publicar datos antes de decidir.",
+      "frase": {
+        "$e": "b9.frase"
+      },
       "traduccion": {
-        "en": "The council should publish data before deciding."
+        "$t": "b9.traduccion"
       }
     }
   ]

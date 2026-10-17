@@ -1,147 +1,393 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "073",
   "capitulo": 8,
-  "titulo_es": "Le doy un regalo",
-  "titulo": {"en": "I give her a present"},
-  "intro": {"en": "Me, te, le, nos, os, les show who receives something or benefits from an action."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
     "le": {
-      "en": "to him, to her, to you (usted)",
+      "$f": "p.le",
       "pron": "le",
-      "cat": "pronoun",
-      "nota": "Le is the same for a man and a woman."
+      "cat": "pron",
+      "nota": {
+        "$t": "p.le.nota"
+      }
     },
-    "les": {"en": "to them, to you all (ustedes)", "pron": "les", "cat": "pronoun"},
-    "os": {"en": "to you all (vosotros/as, mainly Spain)", "pron": "os", "cat": "pronoun"},
-    "me": {"en": "to me", "pron": "me", "cat": "pronoun"},
-    "te": {"en": "to you", "pron": "te", "cat": "pronoun"},
-    "nos": {"en": "to us", "pron": "nos", "cat": "pronoun"},
-    "regalo": {"en": "I give (yo form of regalar)", "pron": "re-GA-lo", "cat": "verb"},
-    "un regalo": {"en": "a gift, a present", "pron": "un re-GA-lo", "cat": "noun", "genero": "m"},
-    "doy": {"en": "I give", "pron": "doy", "cat": "verb"},
-    "digo": {"en": "I say, I tell", "pron": "DI-go", "cat": "verb"},
-    "presto": {"en": "I lend", "pron": "PRES-to", "cat": "verb"},
-    "cuento": {"en": "I tell", "pron": "KWEN-to", "cat": "verb"},
-    "pregunto": {"en": "I ask", "pron": "pre-GUN-to", "cat": "verb"},
-    "la verdad": {"en": "the truth", "pron": "la ber-DAD", "cat": "noun", "genero": "f"},
-    "las flores": {"en": "the flowers", "pron": "las FLO-res", "cat": "noun", "genero": "f"},
-    "los padres": {"en": "the parents", "pron": "los PA-dres", "cat": "noun", "genero": "m"},
-    "claro": {"en": "of course", "pron": "KLA-ro", "cat": "interjection"}
+    "les": {
+      "$f": "p.les",
+      "pron": "les",
+      "cat": "pron"
+    },
+    "os": {
+      "$f": "p.os",
+      "pron": "os",
+      "cat": "pron"
+    },
+    "me": {
+      "$f": "p.me",
+      "pron": "me",
+      "cat": "pron"
+    },
+    "te": {
+      "$f": "p.te",
+      "pron": "te",
+      "cat": "pron"
+    },
+    "nos": {
+      "$f": "p.nos",
+      "pron": "nos",
+      "cat": "pron"
+    },
+    "regalo": {
+      "$f": "p.regalo",
+      "pron": "re-GA-lo",
+      "cat": "verb"
+    },
+    "un regalo": {
+      "$f": "p.un regalo",
+      "pron": "un re-GA-lo",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "doy": {
+      "$f": "p.doy",
+      "pron": "doy",
+      "cat": "verb"
+    },
+    "digo": {
+      "$f": "p.digo",
+      "pron": "DI-go",
+      "cat": "verb"
+    },
+    "presto": {
+      "$f": "p.presto",
+      "pron": "PRES-to",
+      "cat": "verb"
+    },
+    "cuento": {
+      "$f": "p.cuento",
+      "pron": "KWEN-to",
+      "cat": "verb"
+    },
+    "pregunto": {
+      "$f": "p.pregunto",
+      "pron": "pre-GUN-to",
+      "cat": "verb"
+    },
+    "la verdad": {
+      "$f": "p.la verdad",
+      "pron": "la ber-DAD",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "las flores": {
+      "$f": "p.las flores",
+      "pron": "las FLO-res",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "los padres": {
+      "$f": "p.los padres",
+      "pron": "los PA-dres",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "claro": {
+      "$f": "p.claro",
+      "pron": "KLA-ro",
+      "cat": "interj"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "The person who receives"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "The indirect object often identifies who receives or benefits from an action. Its pronouns are **me, te, le, nos, os, les**, and in these examples they go before the conjugated verb. **Os** is used with **vosotros/as**, mainly in Spain; with **ustedes**, use **les**.\n\n- **Le** doy un regalo.\n- ¿**Me** prestas tu libro?\n\nWith many recipient constructions, the pronoun appears even when the person is named: **Le** doy un regalo **a Ana**; **les** escribo **a los padres de Ana**. This is clitic doubling; its use varies by verb and construction, so do not assume every verb behaves identically.\n\n**A él**, **a ella** or **a usted** can clarify who **le** refers to. Compare: **la** veo (I see her, direct object) and **le** escribo (I write to her, indirect object). Common verbs include dar, regalar, prestar, decir, contar, preguntar, escribir, enviar, pedir, traer and comprar."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "A birthday"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "Mañana es el cumpleaños de Ana. ¿Qué le regalas?",
-          "en": "Tomorrow is Ana's birthday. What are you giving her?",
           "analisis": [
-            ["Mañana", "time"],
-            ["es", "verb"],
-            ["el cumpleaños de Ana", "subject"],
-            ["¿Qué", "question"],
-            ["le", "to her"],
-            ["regalas", "verb"]
+            [
+              "Mañana",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "es",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "el cumpleaños de Ana",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "¿Qué",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "le",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "regalas",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Le regalo unas flores. ¿Y tú?",
-          "en": "I'm giving her some flowers. And you?",
-          "analisis": [["Le", "to her"], ["regalo", "verb"], ["unas flores", "object"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Yo le doy un libro. ¿Me prestas veinte euros?",
-          "en": "I'm giving her a book. Will you lend me twenty euros?",
           "analisis": [
-            ["Yo", "subject"],
-            ["le", "to her"],
-            ["doy", "verb"],
-            ["un libro", "object"],
-            ["¿Me", "to me"],
-            ["prestas", "verb"],
-            ["veinte euros", "object"]
+            [
+              "Le",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "regalo",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "unas flores",
+              {
+                "$t": "a5"
+              }
+            ]
           ]
         },
         {
-          "quien": "Pablo",
-          "es": "Claro. ¿Les escribes a los padres de Ana?",
-          "en": "Of course. Will you write to Ana's parents?",
-          "analisis": [["Claro", "of course"], ["¿Les", "to them"], ["escribes", "verb"], ["a los padres de Ana", "to whom"]],
-          "nota": "Les and a los padres de Ana refer to the same people."
+          "$f": "b2.f2",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Yo",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "le",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "doy",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "un libro",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "¿Me",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "prestas",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "veinte euros",
+              {
+                "$t": "a5"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f3",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Claro",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "¿Les",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "escribes",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "a los padres de Ana",
+              {
+                "$t": "a9"
+              }
+            ]
+          ],
+          "nota": {
+            "$t": "b2.f3.nota"
+          }
+        },
+        {
+          "$f": "b2.f4",
           "quien": "Lucía",
-          "es": "Sí, les escribo hoy.",
-          "en": "Yes, I'll write to them today.",
-          "analisis": [["les", "to them"], ["escribo", "verb"], ["hoy", "time"]]
+          "analisis": [
+            [
+              "les",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "escribo",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "hoy",
+              {
+                "$t": "a0"
+              }
+            ]
+          ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "le-les-1",
-      "pregunta": {"en": "Complete: I give Ana a book."},
-      "frase": "___ doy un libro a Ana.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "Le": {"en": "The receiver takes le, for a man or a woman."},
-        "La": {"en": "La is a direct object. The receiver takes le."},
-        "Les": {"en": "Les is for several people."}
+        "Le": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "La": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "Les": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "Le"
     },
     {
       "tipo": "huecos",
       "id": "le-les-2",
-      "pregunta": {"en": "Complete: I write to my parents."},
-      "frase": "___ escribo a mis padres.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "Les": {"en": "Mis padres receive the letter: les."},
-        "Le": {"en": "Le is for one person."},
-        "Los": {"en": "Los is a direct object. The receivers take les."}
+        "Les": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "Le": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "Los": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "Les"
     },
     {
       "tipo": "test",
       "id": "le-les-3",
-      "pregunta": {"en": "Which sentence asks a friend to lend you something?"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "¿Me prestas tu libro?": {"en": "Me is the receiver: the speaker (me)."},
-        "¿Te presto mi libro?": {"en": "That offers your own book."},
-        "¿Le prestas tu libro?": {"en": "That asks about lending to someone else."}
+        "¿Me prestas tu libro?": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "¿Te presto mi libro?": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "¿Le prestas tu libro?": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "¿Me prestas tu libro?"
     },
     {
       "tipo": "escribir",
       "id": "le-les-4",
-      "pregunta": {"en": "Translate: «I tell her the truth.»"},
-      "respuestas": ["Le digo la verdad", "Le cuento la verdad"]
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "respuestas": [
+        "Le digo la verdad",
+        "Le cuento la verdad"
+      ]
     },
     {
       "tipo": "ordenar",
       "id": "le-les-5",
-      "frase": "¿Me prestas veinte euros, por favor?",
-      "traduccion": {"en": "Will you lend me twenty euros, please?"}
+      "frase": {
+        "$e": "b8.frase"
+      },
+      "traduccion": {
+        "$t": "b8.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write what you give, say, write or lend to six different people, using le and les.\n\n**Speak (about 1 minute).** Say aloud what you are going to give each person in your family for their birthday."
+        "$t": "b9.texto"
       }
     }
   ]

@@ -1,152 +1,336 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "146",
   "capitulo": 13,
-  "titulo_es": "En resumen",
-  "titulo": { "en": "In short" },
-  "intro": { "en": "Connectors that hold a longer opinion together." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "sin embargo": { "en": "however", "pron": "sin em-BAR-go", "cat": "connector" },
-    "además": { "en": "besides, what's more", "pron": "a-de-MAS", "cat": "connector" },
-    "por eso": { "en": "that's why, so", "pron": "por E-so", "cat": "connector" },
-    "aunque": { "en": "although, even though; even if", "pron": "AUN-ke", "cat": "connector" },
-    "en cambio": { "en": "on the other hand", "pron": "en KAM-byo", "cat": "connector" },
-    "en resumen": { "en": "in short", "pron": "en re-SU-men", "cat": "connector" },
-    "creer": { "en": "to think, believe", "pron": "kre-ER", "cat": "verb", "nota": "Creo is the first-person present form: I think/believe." },
-    "llover": { "en": "to rain", "pron": "yo-BER", "cat": "verb", "nota": "Llueva is the present subjunctive used in the possible-condition example." },
-    "el centro": { "en": "the centre, downtown", "pron": "el THEN-tro", "cat": "noun", "genero": "m" }
+    "sin embargo": {
+      "$f": "p.sin embargo",
+      "pron": "sin em-BAR-go",
+      "cat": "connector"
+    },
+    "además": {
+      "$f": "p.además",
+      "pron": "a-de-MAS",
+      "cat": "connector"
+    },
+    "por eso": {
+      "$f": "p.por eso",
+      "pron": "por E-so",
+      "cat": "connector"
+    },
+    "aunque": {
+      "$f": "p.aunque",
+      "pron": "AUN-ke",
+      "cat": "connector"
+    },
+    "en cambio": {
+      "$f": "p.en cambio",
+      "pron": "en KAM-byo",
+      "cat": "connector"
+    },
+    "en resumen": {
+      "$f": "p.en resumen",
+      "pron": "en re-SU-men",
+      "cat": "connector"
+    },
+    "creer": {
+      "$f": "p.creer",
+      "pron": "kre-ER",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.creer.nota"
+      }
+    },
+    "llover": {
+      "$f": "p.llover",
+      "pron": "yo-BER",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.llover.nota"
+      }
+    },
+    "el centro": {
+      "$f": "p.el centro",
+      "pron": "el THEN-tro",
+      "cat": "sust",
+      "genero": "m"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "Join the ideas",
-      "texto": "Most of these connectors link ideas without changing the form of their verbs. **Aunque** can take the indicative or the subjunctive, depending on how the speaker presents the information.\n\n- **Además**, el café es barato.\n- Me gusta la ciudad. **Sin embargo**, es cara.\n- Vive lejos. **Por eso** llega tarde.\n- A Pablo le gusta el tren. **En cambio**, Lucía prefiere el autobús.\n\nUse the indicative when you present the concession as a fact or new information: **Aunque vivo** aquí, no conozco el centro. The subjunctive can present it as background/shared information or as a possibility: **Aunque llueva**, saldré. The choice reflects the speaker's point of view; it is not simply a matter of doubt."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "texto",
-      "titulo": "A short opinion",
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
-          "es": "Creo que es un buen lugar para vivir.",
-          "en": "I think it's a good place to live.",
+          "$f": "b2.f0",
           "analisis": [
-            ["Creo que", "I think that"],
-            ["es un buen lugar", "it is a good place"],
-            ["para vivir", "to live"]
+            [
+              "Creo que",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "es un buen lugar",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "para vivir",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
-          "es": "Sin embargo, la ciudad es cara.",
-          "en": "However, the city is expensive.",
+          "$f": "b2.f1",
           "analisis": [
-            ["Sin embargo", "however"],
-            ["la ciudad", "the city"],
-            ["es cara", "is expensive"]
+            [
+              "Sin embargo",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "la ciudad",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "es cara",
+              {
+                "$t": "a5"
+              }
+            ]
           ]
         },
         {
-          "es": "Además, aunque vivo aquí, no conozco el centro.",
-          "en": "Besides, although I live here, I don't know the centre.",
+          "$f": "b2.f2",
           "analisis": [
-            ["Además", "besides"],
-            ["aunque vivo aquí", "although I live here"],
-            ["no conozco", "I don't know"],
-            ["el centro", "the centre"]
+            [
+              "Además",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "aunque vivo aquí",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "no conozco",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "el centro",
+              {
+                "$t": "a9"
+              }
+            ]
           ]
         },
         {
-          "es": "Por eso quiero caminar más.",
-          "en": "That's why I want to walk more.",
+          "$f": "b2.f3",
           "analisis": [
-            ["Por eso", "that's why"],
-            ["quiero caminar", "I want to walk"],
-            ["más", "more"]
+            [
+              "Por eso",
+              {
+                "$t": "a10"
+              }
+            ],
+            [
+              "quiero caminar",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "más",
+              {
+                "$t": "a12"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["sin embargo", "además", "por eso", "aunque", "en cambio", "en resumen", "creer", "llover", "el centro"]
+      "palabras": [
+        "sin embargo",
+        "además",
+        "por eso",
+        "aunque",
+        "en cambio",
+        "en resumen",
+        "creer",
+        "llover",
+        "el centro"
+      ]
     },
     {
       "tipo": "test",
       "id": "b2-con-poreo",
-      "pregunta": { "en": "Which connector introduces a result?" },
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
       "opciones": {
-        "por eso": { "en": "Por eso means that's why." },
-        "sin embargo": { "en": "Sin embargo introduces a contrast." },
-        "además": { "en": "Además adds another point." }
+        "por eso": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "sin embargo": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "además": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "por eso"
     },
     {
       "tipo": "ordenar",
       "id": "b2-con-aunque",
-      "frase": "Aunque vivo aquí, no conozco el centro",
-      "traduccion": { "en": "Although I live here, I don't know the centre." }
+      "frase": {
+        "$e": "b5.frase"
+      },
+      "traduccion": {
+        "$t": "b5.traduccion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "b2-con-aunque-m0",
-      "pregunta": {"en": "Complete the possible condition: even if it rains, I will go out."},
-      "frase": "Aunque ___, saldré.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "llueva": {"en": "The speaker presents rain as a possibility, not a stated fact."},
-        "llueve": {"en": "Use this when presenting the rain as a fact or new information."},
-        "llovió": {"en": "This is a completed past action."}
+        "llueva": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "llueve": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "llovió": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "llueva"
     },
     {
       "tipo": "huecos",
       "id": "b2-con-m1",
-      "pregunta": {"en": "Complete with a contrast: I like the city. However, it is expensive."},
-      "frase": "Me gusta la ciudad. ___, es cara.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "Sin embargo": {"en": "It introduces a contrast."},
-        "Por eso": {"en": "That would give a result."},
-        "Además": {"en": "That would add a point in the same direction."}
+        "Sin embargo": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "Por eso": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "Además": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "Sin embargo"
     },
     {
       "tipo": "huecos",
       "id": "b2-con-m2",
-      "pregunta": {"en": "Complete with a result: he lives far away. That's why he arrives late."},
-      "frase": "Vive lejos. ___ llega tarde.",
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "frase": {
+        "$e": "b8.frase"
+      },
       "audio": true,
       "opciones": {
-        "Por eso": {"en": "It gives the result."},
-        "Sin embargo": {"en": "That would be a contrast."},
-        "Aunque": {"en": "Aunque needs a second clause."}
+        "Por eso": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "Sin embargo": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "Aunque": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "Por eso"
     },
     {
       "tipo": "huecos",
       "id": "b2-con-m3",
-      "pregunta": {"en": "Complete: Pablo likes the train. Lucía, on the other hand, prefers the bus."},
-      "frase": "A Pablo le gusta el tren. ___, Lucía prefiere el autobús.",
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
+      "frase": {
+        "$e": "b9.frase"
+      },
       "audio": true,
       "opciones": {
-        "En cambio": {"en": "It contrasts two people."},
-        "Por eso": {"en": "That would give a result."},
-        "En resumen": {"en": "That would sum up."}
+        "En cambio": {
+          "$t": "b9.o0.refuerzo"
+        },
+        "Por eso": {
+          "$t": "b9.o1.refuerzo"
+        },
+        "En resumen": {
+          "$t": "b9.o2.refuerzo"
+        }
       },
       "correcta": "En cambio"
     },
     {
       "tipo": "ordenar",
       "id": "b2-con-m4",
-      "frase": "En resumen, me gusta vivir aquí",
-      "traduccion": {"en": "In short, I like living here."}
+      "frase": {
+        "$e": "b10.frase"
+      },
+      "traduccion": {
+        "$t": "b10.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write a short, organised text giving your opinion on working from home: introduction, two arguments and a conclusion.\n\n**Speak (about 2 minutes).** Give a two-minute talk on the advantages and disadvantages of living in a big city, with clear connectors."
+        "$t": "b11.texto"
       }
     }
   ]

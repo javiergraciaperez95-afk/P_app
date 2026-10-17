@@ -1,30 +1,32 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "299",
   "capitulo": 21,
-  "titulo_es": "Respuesta a su reclamación",
   "titulo": {
-    "en": "Reply to your complaint"
+    "$t": "titulo"
   },
   "intro": {
-    "en": "Read formal correspondence, follow its purpose and conditions, and recognise cautious wording."
+    "$t": "intro"
   },
   "palabras": {
     "la reclamación": {
-      "en": "the complaint; the claim",
+      "$f": "p.la reclamación",
       "pron": "la rre-kla-ma-THYON",
       "genero": "f"
     },
     "el justificante": {
-      "en": "the receipt; proof of payment",
+      "$f": "p.el justificante",
       "pron": "el hus-ti-fi-KAN-te",
       "genero": "m"
     },
     "tramitar": {
-      "en": "to process",
+      "$f": "p.tramitar",
       "pron": "tra-mi-TAR",
       "cat": "verb"
     },
     "el plazo": {
-      "en": "the deadline; time limit",
+      "$f": "p.el plazo",
       "pron": "el PLA-tho",
       "genero": "m"
     }
@@ -33,49 +35,41 @@
     {
       "tipo": "explicacion",
       "titulo": {
-        "en": "Read the purpose and the conditions"
+        "$t": "b1.titulo"
       },
       "texto": {
-        "en": "Formal messages often follow a predictable path: identify the matter, explain the decision or next step, list any conditions, and close politely. Expressions such as **en relación con**, **se ha recibido** and **quedamos a su disposición** signal a formal register. Pay attention to what the writer promises and what is still pending. A conditional such as **podría** may soften a proposal; it does not necessarily confirm that the action will happen. In the fictional message below, the thirty-day review period is invented for practice; actual deadlines depend on the service and applicable rules. The examples practise reading formal correspondence and do not replace an actual contract or official decision."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "texto",
       "titulo": {
-        "en": "The travel agency replies"
+        "$t": "b2.titulo"
       },
       "frases": [
         {
-          "es": "Estimada señora Ruiz:",
-          "en": "Dear Ms Ruiz:"
+          "$f": "b2.f0"
         },
         {
-          "es": "En relación con la reclamación que presentó el 4 de mayo por la cancelación de su viaje, le confirmamos que hemos recibido el formulario y el justificante de pago.",
-          "en": "Regarding the complaint you submitted on 4 May about the cancellation of your trip, we confirm that we have received the form and proof of payment."
+          "$f": "b2.f1"
         },
         {
-          "es": "En este ejemplo ficticio, la documentación se ha remitido al departamento correspondiente, que dispone de un plazo interno de treinta días para revisar el expediente.",
-          "en": "In this fictional example, the documents have been sent to the relevant department, which has an internal period of thirty days to review the case."
+          "$f": "b2.f2"
         },
         {
-          "es": "Si fuera necesario aportar algún dato adicional, nos pondríamos en contacto con usted por correo electrónico.",
-          "en": "If it were necessary to provide any additional information, we would contact you by email."
+          "$f": "b2.f3"
         },
         {
-          "es": "Una vez concluida la revisión, le comunicaremos la decisión y, si procede, le explicaremos cómo se calculará el reembolso.",
-          "en": "Once the review is complete, we will inform you of the decision and, if applicable, explain how the refund will be calculated."
+          "$f": "b2.f4"
         },
         {
-          "es": "Esta respuesta confirma la recepción de su reclamación, pero no implica que se haya aprobado el reembolso.",
-          "en": "This reply confirms receipt of your complaint, but it does not mean that the refund has been approved."
+          "$f": "b2.f5"
         },
         {
-          "es": "Quedamos a su disposición para cualquier consulta y le saludamos atentamente.",
-          "en": "We remain available for any questions and send our kind regards."
+          "$f": "b2.f6"
         },
         {
-          "es": "Departamento de Atención al Cliente",
-          "en": "Customer Service Department"
+          "$f": "b2.f7"
         }
       ]
     },
@@ -86,17 +80,17 @@
       "tipo": "test",
       "id": "b2-reclamacion-1",
       "pregunta": {
-        "en": "What has the agency confirmed?"
+        "$t": "b4.pregunta"
       },
       "opciones": {
         "It has received the complaint and documents": {
-          "en": "The message confirms receipt, not the outcome."
+          "$t": "b4.o0.refuerzo"
         },
         "It has approved the refund": {
-          "en": "The final decision is still pending."
+          "$t": "b4.o1.refuerzo"
         },
         "It has rejected the complaint": {
-          "en": "No decision has been communicated."
+          "$t": "b4.o2.refuerzo"
         }
       },
       "correcta": "It has received the complaint and documents"
@@ -105,17 +99,17 @@
       "tipo": "test",
       "id": "b2-reclamacion-2",
       "pregunta": {
-        "en": "What does «si procede» mean here?"
+        "$t": "b5.pregunta"
       },
       "opciones": {
         "If it is appropriate or applicable": {
-          "en": "The refund explanation depends on the review."
+          "$t": "b5.o0.refuerzo"
         },
         "Because the refund is guaranteed": {
-          "en": "The text does not guarantee a refund."
+          "$t": "b5.o1.refuerzo"
         },
         "Before the review begins": {
-          "en": "The phrase introduces a condition."
+          "$t": "b5.o2.refuerzo"
         }
       },
       "correcta": "If it is appropriate or applicable"
@@ -124,18 +118,20 @@
       "tipo": "huecos",
       "id": "b2-reclamacion-3",
       "pregunta": {
-        "en": "Complete: regarding the complaint you submitted…"
+        "$t": "b6.pregunta"
       },
-      "frase": "___ la reclamación que presentó…",
+      "frase": {
+        "$e": "b6.frase"
+      },
       "opciones": {
         "En relación con": {
-          "en": "A formal way to introduce the matter."
+          "$t": "b6.o0.refuerzo"
         },
         "Por culpa de": {
-          "en": "This assigns blame."
+          "$t": "b6.o1.refuerzo"
         },
         "A pesar de": {
-          "en": "This expresses concession."
+          "$t": "b6.o2.refuerzo"
         }
       },
       "correcta": "En relación con"
@@ -144,17 +140,17 @@
       "tipo": "test",
       "id": "b2-reclamacion-4",
       "pregunta": {
-        "en": "Why does the writer use «nos pondríamos en contacto»?"
+        "$t": "b7.pregunta"
       },
       "opciones": {
         "It presents a possible future step politely": {
-          "en": "The contact depends on whether more information is needed."
+          "$t": "b7.o0.refuerzo"
         },
         "It says the agency already contacted her": {
-          "en": "The conditional does not report a completed action."
+          "$t": "b7.o1.refuerzo"
         },
         "It confirms that the case is closed": {
-          "en": "The review is still in progress."
+          "$t": "b7.o2.refuerzo"
         }
       },
       "correcta": "It presents a possible future step politely"
@@ -162,9 +158,11 @@
     {
       "tipo": "ordenar",
       "id": "b2-reclamacion-5",
-      "frase": "Quedamos a su disposición para cualquier consulta",
+      "frase": {
+        "$e": "b8.frase"
+      },
       "traduccion": {
-        "en": "We remain available for any questions."
+        "$t": "b8.traduccion"
       }
     }
   ]

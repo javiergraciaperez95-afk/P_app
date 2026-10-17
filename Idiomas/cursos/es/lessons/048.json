@@ -1,181 +1,417 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "048",
   "capitulo": 6,
-  "titulo_es": "En la tienda",
-  "titulo": { "en": "In the shop" },
-  "intro": { "en": "Asking the price and saying what you want." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "quiero": { "en": "I want", "pron": "KYE-ro", "cat": "verb", "consejo": "In stressed present forms, e changes to ie: quiero, quieres, quiere, quieren. In queremos and queréis it stays e." },
-    "cuesta": { "en": "it costs", "pron": "KWES-ta", "cat": "verb" },
-    "cuestan": { "en": "they cost", "pron": "KWES-tan", "cat": "verb" },
-    "cuánto": { "en": "how much", "pron": "KWAN-to", "cat": "question word" },
-    "esta": { "en": "this (feminine)", "pron": "ES-ta", "cat": "determiner", "nota": "Esta with no accent means this. Está with an accent is the verb." },
-    "camisa": { "en": "shirt", "pron": "ka-MI-sa", "genero": "f" },
-    "euros": { "en": "euros", "pron": "EW-ros", "cat": "noun" },
-    "caro": { "en": "expensive (masculine)", "pron": "KA-ro", "cat": "adjective" },
-    "cara": { "en": "expensive (feminine)", "pron": "KA-ra", "cat": "adjective", "nota": "It matches the noun: el libro es caro, la camisa es cara." },
-    "barato": { "en": "cheap (masculine)", "pron": "ba-RA-to", "cat": "adjective" },
-    "barata": { "en": "cheap (feminine)", "pron": "ba-RA-ta", "cat": "adjective" },
-    "lo": { "en": "it (masculine object pronoun)", "pron": "lo", "cat": "pronoun" },
-    "la": { "en": "it (feminine object pronoun)", "pron": "la", "cat": "pronoun" },
-    "los": { "en": "them (masculine or mixed object pronoun)", "pron": "los", "cat": "pronoun" },
-    "las": { "en": "them (feminine object pronoun)", "pron": "las", "cat": "pronoun" },
-    "quiero la azul": { "en": "I want the blue one", "pron": "KYE-ro la a-THUL", "cat": "expression", "nota": "The /θ/ guide for z reflects much of Spain; in seseante varieties, z sounds like /s/." }
+    "quiero": {
+      "$f": "p.quiero",
+      "pron": "KYE-ro",
+      "cat": "verb",
+      "consejo": {
+        "$t": "p.quiero.consejo"
+      }
+    },
+    "cuesta": {
+      "$f": "p.cuesta",
+      "pron": "KWES-ta",
+      "cat": "verb"
+    },
+    "cuestan": {
+      "$f": "p.cuestan",
+      "pron": "KWES-tan",
+      "cat": "verb"
+    },
+    "cuánto": {
+      "$f": "p.cuánto",
+      "pron": "KWAN-to",
+      "cat": "question word"
+    },
+    "esta": {
+      "$f": "p.esta",
+      "pron": "ES-ta",
+      "cat": "determiner",
+      "nota": {
+        "$t": "p.esta.nota"
+      }
+    },
+    "camisa": {
+      "$f": "p.camisa",
+      "pron": "ka-MI-sa",
+      "genero": "f"
+    },
+    "euros": {
+      "$f": "p.euros",
+      "pron": "EW-ros",
+      "cat": "sust"
+    },
+    "caro": {
+      "$f": "p.caro",
+      "pron": "KA-ro",
+      "cat": "adj"
+    },
+    "cara": {
+      "$f": "p.cara",
+      "pron": "KA-ra",
+      "cat": "adj",
+      "nota": {
+        "$t": "p.cara.nota"
+      }
+    },
+    "barato": {
+      "$f": "p.barato",
+      "pron": "ba-RA-to",
+      "cat": "adj"
+    },
+    "barata": {
+      "$f": "p.barata",
+      "pron": "ba-RA-ta",
+      "cat": "adj"
+    },
+    "lo": {
+      "$f": "p.lo",
+      "pron": "lo",
+      "cat": "pron"
+    },
+    "la": {
+      "$f": "p.la",
+      "pron": "la",
+      "cat": "pron"
+    },
+    "los": {
+      "$f": "p.los",
+      "pron": "los",
+      "cat": "pron"
+    },
+    "las": {
+      "$f": "p.las",
+      "pron": "las",
+      "cat": "pron"
+    },
+    "quiero la azul": {
+      "$f": "p.quiero la azul",
+      "pron": "KYE-ro la a-THUL",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.quiero la azul.nota"
+      }
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "How much is it?",
-      "texto": "**¿Cuánto cuesta?** is for one thing. **¿Cuánto cuestan?** is for more than one.\n\n**Quiero** esta camisa. In present forms with a stressed stem, **querer** changes **e** to **ie**: **quiero, quieres, quiere, quieren**. In **queremos** and **queréis**, the **e** stays unchanged.\n\n**La azul** means “the blue one” when the noun is clear. Here **la** is the article and **camisa** is understood; in **la quiero**, **la** is an object pronoun.\n\nReplace a known thing with **lo/la** (singular) or **los/las** (plural): **¿Quieres el libro? Sí, lo quiero. ¿Quieres la camisa? Sí, la quiero. ¿Quieres los zapatos? Sí, los quiero. ¿Quieres las camisas? Sí, las quiero.** In these simple present sentences, put the pronoun before the conjugated verb.\n\nPrices: cuesta veinte **euros**. The adjective matches the noun: la camisa es **cara**, el libro es **caro**. The opposite is **barato** or **barata**."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "dialogo",
-      "titulo": "A shirt",
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "¿Cuánto cuesta esta camisa?",
-          "en": "How much is this shirt?",
           "analisis": [
-            ["¿Cuánto", "how much"],
-            ["cuesta", "verb (it costs)"],
-            ["esta camisa", "this shirt"]
+            [
+              "¿Cuánto",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "cuesta",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "esta camisa",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Cuesta veinte euros.",
-          "en": "It costs twenty euros.",
           "analisis": [
-            ["Cuesta", "verb"],
-            ["veinte euros", "the price"]
+            [
+              "Cuesta",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "veinte euros",
+              {
+                "$t": "a4"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "Es un poco cara. Quiero la azul.",
-          "en": "It's a bit expensive. I want the blue one.",
           "analisis": [
-            ["Es", "verb ser"],
-            ["cara", "adjective (expensive)"],
-            ["Quiero", "verb (I want)"],
-            ["la azul", "the blue one"]
+            [
+              "Es",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "cara",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "Quiero",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "la azul",
+              {
+                "$t": "a8"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "La azul cuesta quince euros.",
-          "en": "The blue one costs fifteen euros.",
           "analisis": [
-            ["La azul", "subject"],
-            ["cuesta", "verb"],
-            ["quince euros", "the price"]
+            [
+              "La azul",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "cuesta",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "quince euros",
+              {
+                "$t": "a4"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["quiero", "cuesta", "cuestan", "cuánto", "esta", "camisa", "euros", "caro", "cara", "barato", "barata", "lo", "la", "los", "las", "quiero la azul"]
+      "palabras": [
+        "quiero",
+        "cuesta",
+        "cuestan",
+        "cuánto",
+        "esta",
+        "camisa",
+        "euros",
+        "caro",
+        "cara",
+        "barato",
+        "barata",
+        "lo",
+        "la",
+        "los",
+        "las",
+        "quiero la azul"
+      ]
     },
     {
       "tipo": "texto",
-      "titulo": "A price label",
+      "titulo": {
+        "$t": "b4.titulo"
+      },
       "frases": [
-        { "es": "CAMISETA AZUL · 12 €", "en": "Blue T-shirt · €12" },
-        { "es": "CAMISA BLANCA · 18 €", "en": "White shirt · €18" },
-        { "es": "PREGUNTA EN CAJA", "en": "Ask at the till" }
+        {
+          "$f": "b4.f0"
+        },
+        {
+          "$f": "b4.f1"
+        },
+        {
+          "$f": "b4.f2"
+        }
       ]
     },
     {
       "tipo": "test",
       "id": "a1-tienda-lectura-precio",
-      "pregunta": { "en": "Which item costs 18 euros?" },
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
       "opciones": {
-        "La camisa blanca": { "en": "The label gives the white shirt a price of 18 euros." },
-        "La camiseta azul": { "en": "The blue T-shirt costs 12 euros." },
-        "Los dos artículos": { "en": "The prices are different." }
+        "La camisa blanca": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "La camiseta azul": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "Los dos artículos": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "La camisa blanca"
     },
     {
       "tipo": "huecos",
       "id": "a1-tienda-cuestan",
-      "pregunta": { "en": "Complete: how much are the books?" },
-      "frase": "¿Cuánto ___ los libros?",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "cuestan": { "en": "Los libros is plural." },
-        "cuesta": { "en": "Cuesta is for one thing." },
-        "quiero": { "en": "Quiero means I want." }
+        "cuestan": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "cuesta": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "quiero": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "cuestan"
     },
     {
       "tipo": "escribir",
       "id": "a1-tienda-escribir",
-      "pregunta": { "en": "Translate: «How much does it cost?»" },
-      "respuestas": ["¿Cuánto cuesta?", "Cuánto cuesta"],
-      "explicacion": { "en": "One thing: ¿cuánto cuesta?" }
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "respuestas": [
+        "¿Cuánto cuesta?",
+        "Cuánto cuesta"
+      ],
+      "explicacion": {
+        "$t": "b7.explicacion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "a1-tienda-m1",
-      "pregunta": {"en": "Complete: the shirt is expensive."},
-      "frase": "La camisa es ___.",
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "frase": {
+        "$e": "b8.frase"
+      },
       "audio": true,
       "opciones": {
-        "cara": {"en": "Camisa is feminine."},
-        "caro": {"en": "Camisa is feminine."},
-        "caras": {"en": "Camisa is singular."}
+        "cara": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "caro": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "caras": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "cara"
     },
     {
       "tipo": "huecos",
       "id": "a1-tienda-m2",
-      "pregunta": {"en": "Complete: I want this shirt."},
-      "frase": "___ esta camisa.",
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
+      "frase": {
+        "$e": "b9.frase"
+      },
       "audio": true,
       "opciones": {
-        "Quiero": {"en": "Querer: e becomes ie."},
-        "Quero": {"en": "The e changes to ie."},
-        "Quiere": {"en": "Quiere is él, ella or usted."}
+        "Quiero": {
+          "$t": "b9.o0.refuerzo"
+        },
+        "Quero": {
+          "$t": "b9.o1.refuerzo"
+        },
+        "Quiere": {
+          "$t": "b9.o2.refuerzo"
+        }
       },
       "correcta": "Quiero"
     },
     {
       "tipo": "test",
       "id": "a1-tienda-pronombre",
-      "pregunta": { "en": "You mean «I want the book». Which sentence is correct?" },
+      "pregunta": {
+        "$t": "b10.pregunta"
+      },
       "opciones": {
-        "Lo quiero": { "en": "Libro is masculine; lo goes before quiero." },
-        "La quiero": { "en": "La is feminine and does not refer to libro." },
-        "Quiero lo": { "en": "In this basic pattern, the pronoun comes before the conjugated verb." }
+        "Lo quiero": {
+          "$t": "b10.o0.refuerzo"
+        },
+        "La quiero": {
+          "$t": "b10.o1.refuerzo"
+        },
+        "Quiero lo": {
+          "$t": "b10.o2.refuerzo"
+        }
       },
       "correcta": "Lo quiero"
     },
     {
       "tipo": "test",
       "id": "a1-tienda-pronombre-plural",
-      "pregunta": { "en": "You mean «I want the shirts». Which sentence is correct?" },
+      "pregunta": {
+        "$t": "b11.pregunta"
+      },
       "opciones": {
-        "Las quiero": { "en": "Camisas is feminine plural, so use las." },
-        "Lo quiero": { "en": "Lo is masculine singular." },
-        "La quiero": { "en": "La is feminine singular." }
+        "Las quiero": {
+          "$t": "b11.o0.refuerzo"
+        },
+        "Lo quiero": {
+          "$t": "b11.o1.refuerzo"
+        },
+        "La quiero": {
+          "$t": "b11.o2.refuerzo"
+        }
       },
       "correcta": "Las quiero"
     },
     {
       "tipo": "ordenar",
       "id": "a1-tienda-m3",
-      "frase": "¿Cuánto cuesta esta camisa?",
-      "traduccion": {"en": "How much is this shirt?"}
+      "frase": {
+        "$e": "b12.frase"
+      },
+      "traduccion": {
+        "$t": "b12.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b13.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Write a dialogue in a shop: asking for something, the price, and paying.\n\n**Speak (about 30 seconds).** Play the customer aloud: ask whether they have something, how much it costs, and say you will take it or not."
+        "$t": "b13.texto"
       }
     }
   ]

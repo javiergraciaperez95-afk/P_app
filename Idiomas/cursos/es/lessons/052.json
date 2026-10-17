@@ -1,173 +1,436 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "052",
   "capitulo": 6,
-  "titulo_es": "Cien, mil, un millón",
-  "titulo": {"en": "A hundred, a thousand, a million"},
-  "intro": {"en": "Big numbers for prices, years and populations, and first, second, third."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "cien": {"en": "one hundred", "pron": "THYEN", "cat": "number", "nota": "The /θ/ guide reflects much of Spain; in seseante varieties, c before i sounds like /s/."},
-    "ciento": {"en": "a hundred (before another number)", "pron": "THYEN-to", "cat": "number"},
+    "cien": {
+      "$f": "p.cien",
+      "pron": "THYEN",
+      "cat": "num",
+      "nota": {
+        "$t": "p.cien.nota"
+      }
+    },
+    "ciento": {
+      "$f": "p.ciento",
+      "pron": "THYEN-to",
+      "cat": "num"
+    },
     "doscientos": {
-      "en": "two hundred",
+      "$f": "p.doscientos",
       "pron": "dos-THYEN-tos",
-      "cat": "number",
-      "nota": "Hundreds match the noun: doscientas personas."
+      "cat": "num",
+      "nota": {
+        "$t": "p.doscientos.nota"
+      }
     },
-    "quinientos": {"en": "five hundred", "pron": "ki-NYEN-tos", "cat": "number", "nota": "Irregular: not cincocientos."},
-    "setecientos": {"en": "seven hundred", "pron": "se-te-THYEN-tos", "cat": "number", "nota": "Not sietecientos."},
-    "novecientos": {"en": "nine hundred", "pron": "no-be-THYEN-tos", "cat": "number", "nota": "Not nuevecientos."},
+    "quinientos": {
+      "$f": "p.quinientos",
+      "pron": "ki-NYEN-tos",
+      "cat": "num",
+      "nota": {
+        "$t": "p.quinientos.nota"
+      }
+    },
+    "setecientos": {
+      "$f": "p.setecientos",
+      "pron": "se-te-THYEN-tos",
+      "cat": "num",
+      "nota": {
+        "$t": "p.setecientos.nota"
+      }
+    },
+    "novecientos": {
+      "$f": "p.novecientos",
+      "pron": "no-be-THYEN-tos",
+      "cat": "num",
+      "nota": {
+        "$t": "p.novecientos.nota"
+      }
+    },
     "mil": {
-      "en": "a thousand",
+      "$f": "p.mil",
       "pron": "mil",
-      "cat": "number",
-      "nota": "Never un mil. Dos mil, tres mil: mil does not change."
+      "cat": "num",
+      "nota": {
+        "$t": "p.mil.nota"
+      }
     },
-    "un millón": {"en": "a million", "pron": "un mi-YON", "genero": "m", "nota": "It takes de before a noun: un millón de euros."},
-    "millones": {"en": "millions", "pron": "mi-YO-nes", "cat": "number", "nota": "Plural of millón; before a noun use de: tres millones de habitantes."},
+    "un millón": {
+      "$f": "p.un millón",
+      "pron": "un mi-YON",
+      "genero": "m",
+      "nota": {
+        "$t": "p.un millón.nota"
+      }
+    },
+    "millones": {
+      "$f": "p.millones",
+      "pron": "mi-YO-nes",
+      "cat": "num",
+      "nota": {
+        "$t": "p.millones.nota"
+      }
+    },
     "primero": {
-      "en": "first",
+      "$f": "p.primero",
       "pron": "pri-ME-ro",
-      "cat": "adjective",
-      "nota": "Primer before a masculine noun: el primer piso."
+      "cat": "adj",
+      "nota": {
+        "$t": "p.primero.nota"
+      }
     },
-    "segundo": {"en": "second", "pron": "se-GUN-do", "cat": "adjective"},
+    "segundo": {
+      "$f": "p.segundo",
+      "pron": "se-GUN-do",
+      "cat": "adj"
+    },
     "tercero": {
-      "en": "third",
+      "$f": "p.tercero",
       "pron": "ter-THE-ro",
-      "cat": "adjective",
-      "nota": "Tercer before a masculine noun: el tercer día."
+      "cat": "adj",
+      "nota": {
+        "$t": "p.tercero.nota"
+      }
     },
-    "el piso": {"en": "the floor, the flat", "pron": "el PI-so", "genero": "m"},
-    "el habitante": {"en": "the inhabitant", "pron": "el a-bi-TAN-te", "genero": "m"},
-    "el año": {"en": "the year", "pron": "el A-nyo", "genero": "m"}
+    "el piso": {
+      "$f": "p.el piso",
+      "pron": "el PI-so",
+      "genero": "m"
+    },
+    "el habitante": {
+      "$f": "p.el habitante",
+      "pron": "el a-bi-TAN-te",
+      "genero": "m"
+    },
+    "el año": {
+      "$f": "p.el año",
+      "pron": "el A-nyo",
+      "genero": "m"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "From a hundred up"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "100 on its own or before a noun is **cien**: **cien euros**. From 101 to 199, use **ciento**: **ciento uno**, **ciento veinte**.\n\nThe hundreds are one word and agree with the noun: doscientos, trescientos, cuatrocientos, **quinientos**, seiscientos, **setecientos**, ochocientos, **novecientos**. Doscient**as** páginas.\n\n**Y** only goes between tens and units: ciento treinta **y** cinco. Never ciento y cinco.\n\n**Mil** is a thousand. Years are read as ordinary numbers: 1999 is mil novecientos noventa y nueve; 2025 is dos mil veinticinco.\n\nIn Spain, decimals are commonly written with a comma (2,5). The RAE recommends not using a point to group thousands: write **1000**; for longer numbers, use spaces, as in **1 000 000**.\n\n**Segundo** does not shorten: **el segundo piso**. **Primero** and **tercero** shorten to **primer** and **tercer** before a masculine singular noun: **el primer piso**, **el tercer día**. They keep the feminine forms **primera/tercera**: **la primera vez**."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "Read them aloud"},
-      "columnas": ["Number", "Spanish"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        }
+      ],
       "filas": [
-        ["100", "cien"],
-        ["101", "ciento uno"],
-        ["250", "doscientos cincuenta"],
-        ["500", "quinientos"],
-        ["735", "setecientos treinta y cinco"],
-        ["1000", "mil"],
-        ["2025", "dos mil veinticinco"],
-        ["1 000 000", "un millón"]
+        [
+          "100",
+          "cien"
+        ],
+        [
+          "101",
+          "ciento uno"
+        ],
+        [
+          "250",
+          "doscientos cincuenta"
+        ],
+        [
+          "500",
+          "quinientos"
+        ],
+        [
+          "735",
+          "setecientos treinta y cinco"
+        ],
+        [
+          "1000",
+          "mil"
+        ],
+        [
+          "2025",
+          "dos mil veinticinco"
+        ],
+        [
+          "1 000 000",
+          "un millón"
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Big cities"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "¿Cuántos habitantes tiene tu ciudad?",
-          "en": "How many inhabitants does your city have?",
-          "analisis": [["¿Cuántos habitantes", "question"], ["tiene", "verb"], ["tu ciudad", "subject"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Unos quinientos mil.",
-          "en": "About five hundred thousand.",
-          "analisis": [["Unos", "about"], ["quinientos mil", "number"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Madrid tiene más de tres millones de habitantes.",
-          "en": "Madrid has more than three million inhabitants.",
-          "analisis": [["Madrid", "subject"], ["tiene", "verb"], ["más de", "more than"], ["tres millones", "number"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Vivo aquí desde el año dos mil diez.",
-          "en": "I have lived here since 2010.",
-          "analisis": [["Vivo", "verb"], ["aquí", "place"], ["desde", "since"], ["el año dos mil diez", "time"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Yo vivo en el primer piso y pago setecientos euros.",
-          "en": "I live on the first floor and I pay seven hundred euros.",
           "analisis": [
-            ["Yo", "subject"],
-            ["vivo", "verb"],
-            ["en el primer piso", "place"],
-            ["pago", "verb"],
-            ["setecientos euros", "object"]
+            [
+              "¿Cuántos habitantes",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "tiene",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "tu ciudad",
+              {
+                "$t": "a2"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f1",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Unos",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "quinientos mil",
+              {
+                "$t": "a4"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f2",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Madrid",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "tiene",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "más de",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "tres millones",
+              {
+                "$t": "a4"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f3",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Vivo",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "aquí",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "desde",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "el año dos mil diez",
+              {
+                "$t": "a8"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Yo",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "vivo",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "en el primer piso",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "pago",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "setecientos euros",
+              {
+                "$t": "a9"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "cien-mil-1",
-      "pregunta": {"en": "Complete: a hundred and twenty euros."},
-      "frase": "___ veinte euros.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "Ciento": {"en": "Cien becomes ciento before another number."},
-        "Cien": {"en": "Cien stands alone or before a noun."},
-        "Ciento y": {"en": "Y only goes between tens and units."}
+        "Ciento": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "Cien": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "Ciento y": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "Ciento"
     },
     {
       "tipo": "test",
       "id": "cien-mil-2",
-      "pregunta": {"en": "How do you say 500?"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "quinientos": {"en": "Five hundred is irregular: quinientos."},
-        "cincocientos": {"en": "The form is quinientos."},
-        "cinco cientos": {"en": "The hundreds are one word, and 500 is quinientos."}
+        "quinientos": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "cincocientos": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "cinco cientos": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "quinientos"
     },
     {
       "tipo": "huecos",
       "id": "cien-mil-3",
-      "pregunta": {"en": "Complete: two hundred people."},
-      "frase": "___ personas.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "Doscientas": {"en": "Personas is feminine, and the hundreds agree."},
-        "Doscientos": {"en": "Personas is feminine."},
-        "Dos cien": {"en": "The hundreds are one word: doscientas."}
+        "Doscientas": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "Doscientos": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "Dos cien": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "Doscientas"
     },
     {
       "tipo": "escribir",
       "id": "cien-mil-4",
-      "pregunta": {"en": "Write in words: 1000 euros."},
-      "respuestas": ["mil euros"],
-      "explicacion": {"en": "A thousand is mil, never un mil."}
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "mil euros"
+      ],
+      "explicacion": {
+        "$t": "b8.explicacion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "cien-mil-5",
-      "pregunta": {"en": "Complete: the first floor."},
-      "frase": "Vivo en el ___ piso.",
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
+      "frase": {
+        "$e": "b9.frase"
+      },
       "audio": true,
       "opciones": {
-        "primer": {"en": "Primero loses the -o before a masculine noun."},
-        "primero": {"en": "Before a masculine noun it shortens to primer."},
-        "primera": {"en": "Piso is masculine."}
+        "primer": {
+          "$t": "b9.o0.refuerzo"
+        },
+        "primero": {
+          "$t": "b9.o1.refuerzo"
+        },
+        "primera": {
+          "$t": "b9.o2.refuerzo"
+        }
       },
       "correcta": "primer"
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Write in words six big numbers that matter to you: a year, a price, a population, a distance.\n\n**Speak (about 30 seconds).** Say aloud the year you were born, this year, the price of a car and the population of your country."
+        "$t": "b10.texto"
       }
     }
   ]

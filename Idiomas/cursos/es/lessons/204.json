@@ -1,158 +1,386 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "204",
   "capitulo": 19,
-  "titulo_es": "Me dijo que lo llamara",
-  "titulo": {"en": "He told me to call him"},
-  "intro": {"en": "Reporting an order, a request or a piece of advice that was given in the past."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "me pidió que": {"en": "he/she asked me to", "pron": "me pi-DYO ke", "cat": "expression"},
-    "me aconsejó que": {"en": "he/she advised me to", "pron": "me a-kon-se-HO ke", "cat": "expression"},
-    "me ordenó que": {"en": "he/she ordered me to", "pron": "me or-de-NO ke", "cat": "expression"},
-    "me rogó que": {"en": "he/she begged me to", "pron": "me ro-GO ke", "cat": "expression"},
-    "me recomendó que": {"en": "he/she recommended that I", "pron": "me re-ko-men-DO ke", "cat": "expression"},
-    "me prohibió que": {"en": "he/she forbade me to", "pron": "me proi-BYO ke", "cat": "expression"},
-    "insistió en que": {"en": "he/she insisted that", "pron": "in-sis-TYO en ke", "cat": "expression"},
-    "al día siguiente": {"en": "the next day", "pron": "al DI-a si-GYEN-te", "cat": "expression"},
-    "aquel día": {"en": "that day", "pron": "a-KEL DI-a", "cat": "expression"},
-    "entregar": {"en": "to hand in", "pron": "en-tre-GAR", "cat": "verb"},
-    "el informe": {"en": "the report", "pron": "el in-FOR-me", "genero": "m"},
-    "contento": {"en": "pleased, happy", "pron": "kon-TEN-to", "cat": "adjective"}
+    "me pidió que": {
+      "$f": "p.me pidió que",
+      "pron": "me pi-DYO ke",
+      "cat": "expr"
+    },
+    "me aconsejó que": {
+      "$f": "p.me aconsejó que",
+      "pron": "me a-kon-se-HO ke",
+      "cat": "expr"
+    },
+    "me ordenó que": {
+      "$f": "p.me ordenó que",
+      "pron": "me or-de-NO ke",
+      "cat": "expr"
+    },
+    "me rogó que": {
+      "$f": "p.me rogó que",
+      "pron": "me ro-GO ke",
+      "cat": "expr"
+    },
+    "me recomendó que": {
+      "$f": "p.me recomendó que",
+      "pron": "me re-ko-men-DO ke",
+      "cat": "expr"
+    },
+    "me prohibió que": {
+      "$f": "p.me prohibió que",
+      "pron": "me proi-BYO ke",
+      "cat": "expr"
+    },
+    "insistió en que": {
+      "$f": "p.insistió en que",
+      "pron": "in-sis-TYO en ke",
+      "cat": "expr"
+    },
+    "al día siguiente": {
+      "$f": "p.al día siguiente",
+      "pron": "al DI-a si-GYEN-te",
+      "cat": "expr"
+    },
+    "aquel día": {
+      "$f": "p.aquel día",
+      "pron": "a-KEL DI-a",
+      "cat": "expr"
+    },
+    "entregar": {
+      "$f": "p.entregar",
+      "pron": "en-tre-GAR",
+      "cat": "verb"
+    },
+    "el informe": {
+      "$f": "p.el informe",
+      "pron": "el in-FOR-me",
+      "genero": "m"
+    },
+    "contento": {
+      "$f": "p.contento",
+      "pron": "kon-TEN-to",
+      "cat": "adj"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Orders in reported speech"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "A command, once it is reported in the past, becomes **que + past subjunctive**.\n\n- «Llámame.» → Me dijo que lo **llamara**.\n- «No vengas.» → Me pidió que no **fuera**.\n- «Entregue el informe.» → Me ordenó que **entregara** el informe.\n\nThe mood tells information from orders.\n\n- Me dijo que **venía**. (he was coming: information)\n- Me dijo que **viniera**. (I should come: an order)\n\nIf the reporting verb is in the present, the present subjunctive is enough: dice que lo **llames**.\n\nOther words move too: hoy → **aquel día**, mañana → **al día siguiente**, aquí → **allí**, este → **ese**, venir → **ir**, traer → **llevar**."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "Direct and reported"},
-      "columnas": ["Direct", "Reported"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        }
+      ],
       "filas": [
-        ["«Llámame.»", "Me dijo que lo llamara."],
-        ["«No digas nada.»", "Me pidió que no dijera nada."],
-        ["«Ven mañana.»", "Me dijo que fuera al día siguiente."],
-        ["«Tengan cuidado.»", "Nos aconsejó que tuviéramos cuidado."]
+        [
+          "«Llámame.»",
+          "Me dijo que lo llamara."
+        ],
+        [
+          "«No digas nada.»",
+          "Me pidió que no dijera nada."
+        ],
+        [
+          "«Ven mañana.»",
+          "Me dijo que fuera al día siguiente."
+        ],
+        [
+          "«Tengan cuidado.»",
+          "Nos aconsejó que tuviéramos cuidado."
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "What the boss said"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "¿Qué te dijo el jefe ayer?",
-          "en": "What did the boss say to you yesterday?",
-          "analisis": [["¿Qué", "question"], ["te dijo", "verb"], ["el jefe", "subject"], ["ayer", "time"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Me pidió que entregara el informe hoy.",
-          "en": "He asked me to hand in the report today.",
           "analisis": [
-            ["Me pidió que", "request reported"],
-            ["entregara", "verb (past subjunctive)"],
-            ["el informe", "object"],
-            ["hoy", "time"]
+            [
+              "¿Qué",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "te dijo",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "el jefe",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "ayer",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
-          "quien": "Lucía",
-          "es": "¿Y nada más?",
-          "en": "And nothing else?",
-          "analisis": [["nada más", "nothing else"]]
-        },
-        {
+          "$f": "b3.f1",
           "quien": "Pablo",
-          "es": "Me dijo que estaba contento y que no me preocupara.",
-          "en": "He told me he was pleased and that I shouldn't worry.",
           "analisis": [
-            ["Me dijo que", "report"],
-            ["estaba contento", "verb (indicative: information)"],
-            ["que no me preocupara", "verb (past subjunctive: order)"]
+            [
+              "Me pidió que",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "entregara",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "el informe",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "hoy",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f2",
           "quien": "Lucía",
-          "es": "A mí me aconsejó que hablara menos en las reuniones.",
-          "en": "He advised me to talk less in meetings.",
           "analisis": [
-            ["A mí", "who"],
-            ["me aconsejó que", "advice reported"],
-            ["hablara", "verb (past subjunctive)"],
-            ["menos", "how much"],
-            ["en las reuniones", "place"]
+            [
+              "nada más",
+              {
+                "$t": "a7"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f3",
           "quien": "Pablo",
-          "es": "Pues a mí me rogó que no llegara tarde.",
-          "en": "Well, he begged me not to be late.",
-          "analisis": [["me rogó que", "request reported"], ["no llegara", "verb (past subjunctive)"], ["tarde", "time"]]
+          "analisis": [
+            [
+              "Me dijo que",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "estaba contento",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "que no me preocupara",
+              {
+                "$t": "a10"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "A mí",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "me aconsejó que",
+              {
+                "$t": "a12"
+              }
+            ],
+            [
+              "hablara",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "menos",
+              {
+                "$t": "a13"
+              }
+            ],
+            [
+              "en las reuniones",
+              {
+                "$t": "a14"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f5",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "me rogó que",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "no llegara",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "tarde",
+              {
+                "$t": "a3"
+              }
+            ]
+          ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "dijo-que-llamara-1",
-      "pregunta": {"en": "Report it: «Llámame.» He told me to call him."},
-      "frase": "Me dijo que lo ___.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "llamara": {"en": "A reported order takes the past subjunctive."},
-        "llamaba": {"en": "Llamaba would report information: that he was calling."},
-        "llame": {"en": "Llame follows the present: dice que lo llame."}
+        "llamara": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "llamaba": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "llame": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "llamara"
     },
     {
       "tipo": "test",
       "id": "dijo-que-llamara-2",
-      "pregunta": {"en": "«Me dijo que venía.» What did he say?"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "That he was coming": {"en": "The indicative reports information."},
-        "That I should come": {"en": "That would be me dijo que viniera."},
-        "That he had come": {"en": "That would be me dijo que había venido."}
+        "That he was coming": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "That I should come": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "That he had come": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "That he was coming"
     },
     {
       "tipo": "huecos",
       "id": "dijo-que-llamara-3",
-      "pregunta": {"en": "Report it: «No digas nada.»"},
-      "frase": "Me pidió que no ___ nada.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "dijera": {"en": "Decir: dijeron → dijera."},
-        "dije": {"en": "Dije is the indefinido, yo."},
-        "digo": {"en": "Digo is the present."}
+        "dijera": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "dije": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "digo": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "dijera"
     },
     {
       "tipo": "test",
       "id": "dijo-que-llamara-4",
-      "pregunta": {"en": "«Ven mañana», said last week. How do you report «mañana»?"},
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
       "opciones": {
-        "al día siguiente": {"en": "Mañana becomes the next day."},
-        "mañana": {"en": "That would point at tomorrow from today."},
-        "ayer": {"en": "Ayer is yesterday."}
+        "al día siguiente": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "mañana": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "ayer": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "al día siguiente"
     },
     {
       "tipo": "ordenar",
       "id": "dijo-que-llamara-5",
-      "frase": "Me pidió que entregara el informe",
-      "traduccion": {"en": "He asked me to hand in the report."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (150–180 words).** Write an email to a colleague passing on the instructions your boss gave in a meeting.\n\n**Speak (about 3 minutes).** Report aloud a conversation in which you were given advice and orders: Me dijo que…, me pidió que…"
+        "$t": "b10.texto"
       }
     }
   ]

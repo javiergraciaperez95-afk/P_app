@@ -1,0 +1,807 @@
+id 021
+capitulo 3
+nivel A1
+
+palabras
+hay | ai | verb
+está | es-TA | verb
+la farmacia | la far-MA-thya | sust | f
+el banco | el BAN-ko | sust | m
+la plaza | la PLA-tha | sust | f
+al lado de | al LA-do de | expr
+del | del | art
+aquí | a-KI | adv
+cerca | THER-ka | adv
+Lucía | propio
+Pablo | propio
+
+bloques
+b1 explicacion
+b2 dialogo
+  Lucía | b [PRED:Hay [V* ¿Hay] [CD:farmacia [DET una] [N farmacia]] [CCL* aquí?]]
+  Pablo | b [PRED:Hay [V* Hay] [CD:farmacia [DET una] [N farmacia]] [CCL:plaza [PREP en] [TERM:plaza [DET la] [N plaza.]]]]
+  Lucía | b [PRED:está [CCL* ¿Dónde] [V* está]] [SUJ:farmacia [DET la] [N farmacia?]]
+  Pablo | b [SUJ:farmacia [DET La] [N farmacia]] [PRED:está [V* está] [CCL:lado [PREP al] [TERM* lado] [CN:banco [PREP del] [TERM* banco.]]]]
+  Lucía | b [PRED:Está [V* ¿Está] [CCL* cerca]] [SUJ:banco [DET el] [N banco?]]
+  Pablo | b [SUJ:banco [DET El] [N banco]] [PRED:está [V* está] [CCL:cerca [CUANT muy] [ADV* cerca.]]]
+b3 vocabulario hay; está; la farmacia; el banco; la plaza; al lado de; del; aquí; cerca
+b4 gramatica
+  b [PRED:Hay [V* Hay] [CD:farmacia [DET una] [N farmacia]] [CCL:plaza [PREP en] [TERM:plaza [DET la] [N plaza.]]]]
+  b [SUJ:farmacia [DET La] [N farmacia]] [PRED:está [V* está] [CCL:lado [PREP al] [TERM* lado] [CN:banco [PREP del] [TERM* banco.]]]]
+b5 texto
+  0 | b [PRED:hay [CCL:centro [PREP En] [TERM:centro [DET el] [N centro] [ADY* histórico] [CN:ciudad [PREP de] [TERM:ciudad [DET la] [N ciudad]]]]] [V* hay] [CD:plaza [DET una] [N plaza] [ADY* hermosa.]]]
+  0 | b [SUJ:vecinos [CUANT Muchos] [N vecinos] [ADY* tranquilos]] [PRED:caminan [V* caminan] [CCL:alrededor [ADV* alrededor] [CN:fuente [PREP de] [TERM:fuente [DET la] [N fuente.]]]]]
+  0 | b [PRED:Hay [V* Hay] [CD:árboles [CUANT varios] [N árboles] [ADY* grandes] [CONJ y] [DET una] [ADY* pequeña] [N farmacia.]]]
+  1 | b [SUJ:banco [DET El] [N banco] [ADY* principal]] [PRED:está [V* está] [CCL:lado [PREP al] [TERM* lado] [CN:parque [PREP del] [TERM:parque [N parque] [ADY* verde.]]]]]
+  1 | b [SUJ:farmacia [DET La] [N farmacia] [ADY* moderna]] [PRED:está [V* está] [CCT* siempre] [ATRIB* abierta] [CCF:público [PREP para] [TERM:público [DET el] [N público.]]]]
+  1 | b [SUJ:clientes [DET Los] [N clientes]] [PRED:compran [V* compran] [CD* medicinas] [CCM:tranquilidad [PREP con] [TERM:tranquilidad [CUANT mucha] [N tranquilidad.]]]]
+b6 test 1 0 0
+b7 huecos 1 0 0
+b8 ordenar
+b9 escribir Hay un banco aquí || Aquí hay un banco
+
+== en
+titulo: There is, and it is located
+intro: Learn the distinction between hay (existence or availability) and está (locating a specific item).
+b1.titulo: Existence and location: hay vs. está
+b1.texto: "Use **hay** to state that something exists or is available, often with indefinite articles: *Hay una farmacia aquí*, *Hay dos bancos*.\\n\\nUse **está** to pinpoint the location of a specific, known person or object: *La farmacia está al lado del banco*.\\n\\n**Hay** remains unchanged for singular and plural nouns.\\n\\nWith **al lado de**, de + el obligatorily contracts to **del**: *al lado del banco*."
+b2.titulo: In the square
+b2.f0.texto: ¿Hay una farmacia aquí?
+b2.f1.texto: Hay una farmacia en la plaza.
+b2.f2.texto: ¿Dónde está la farmacia?
+b2.f3.texto: La farmacia está al lado del banco.
+b2.f4.texto: ¿Está cerca el banco?
+b2.f5.texto: El banco está muy cerca.
+b4.e0.texto: Hay una farmacia en la plaza.
+b4.e1.texto: La farmacia está al lado del banco.
+b5.f0.texto: En el centro histórico de la ciudad hay una plaza hermosa.
+b5.f1.texto: Muchos vecinos tranquilos caminan alrededor de la fuente.
+b5.f2.texto: Hay varios árboles grandes y una pequeña farmacia.
+b5.f3.texto: El banco principal está al lado del parque verde.
+b5.f4.texto: La farmacia moderna está siempre abierta para el público.
+b5.f5.texto: Los clientes compran medicinas con mucha tranquilidad.
+b6.o0: El museo está en la plaza
+b6.o1: Hay un museo en la plaza
+b6.o2: El museo es en la plaza
+b7.frase: ___ una farmacia en la plaza.
+b7.o0: Hay
+b7.o1: Está
+b7.o2: Es
+b8.frase: La farmacia está al lado del banco.
+b3.titulo: Vocabulary
+b4.titulo: Using hay and estar
+b4.texto: "Compare:\\n- **Hay** una farmacia en la plaza (states that one exists).\\n- La farmacia **está** al lado del banco (locates that specific pharmacy)."
+b5.titulo: The town square
+b6.titulo: Choose the correct option
+b6.pregunta: Which sentence locates a specific, known museum?
+b6.o0.refuerzo: Correct: use the definite article and estar to locate a specific building.
+b6.o1.refuerzo: Incorrect: «hay un museo» states existence in general.
+b6.o2.refuerzo: Incorrect: ser is not used for the physical location of buildings.
+b7.titulo: Fill in the blank
+b7.pregunta: Complete to state that a pharmacy exists.
+b7.o0.refuerzo: Correct: use «hay» to introduce an indefinite item that exists.
+b7.o1.refuerzo: Incorrect: «está» requires a specific, determined subject.
+b7.o2.refuerzo: Incorrect: «es» serves to define or classify, not to express existence.
+b8.titulo: Put the words in order
+b8.traduccion: The pharmacy is next to the bank.
+b9.titulo: Write the sentence
+b9.pregunta: Write in Spanish: «There is a bank here».
+p.hay.glosa: there is, there are
+p.hay.consejo: Impersonal form of haber stating existence or availability.
+p.está.glosa: is (located)
+p.está.consejo: Third person singular of estar locating a specific subject.
+p.la farmacia.glosa: the pharmacy
+p.la farmacia.consejo: Shop where medical prescriptions and drugs are dispensed.
+p.el banco.glosa: the bank
+p.el banco.consejo: Financial institution or banking building.
+p.la plaza.glosa: the square
+p.la plaza.consejo: Open public square in a town or city.
+p.al lado de.glosa: next to, beside
+p.al lado de.consejo: Locution denoting immediate lateral proximity.
+p.del.glosa: of the (contraction de + el)
+p.del.consejo: Mandatory contraction of preposition de and masculine article el.
+p.aquí.glosa: here
+p.aquí.consejo: Adverb denoting the location close to the speaker.
+p.cerca.glosa: near, nearby
+p.cerca.consejo: Adverb of place indicating short distance.
+
+== es
+titulo: Hay y está
+intro: Aprende la diferencia entre hay (existencia o disponibilidad) y está (localización concreta de un sujeto).
+b1.titulo: Existencia y localización: hay frente a está
+b1.texto: "Usamos **hay** para expresar la existencia o presencia de algo (a menudo con artículo indeterminado o sin artículo): *Hay una farmacia aquí*, *Hay dos bancos*.\\n\\nUsamos **está** para situar un elemento específico o ya conocido (con artículo determinado o nombre propio): *La farmacia está al lado del banco*.\\n\\nLa forma **hay** es invariable en singular y plural.\\n\\nCon la expresión **al lado de**, la preposición de y el artículo el se contraen obligatoriamente en **del**: *al lado del banco*."
+b2.titulo: En la plaza
+b6.o0: El museo está en la plaza
+b6.o1: Hay un museo en la plaza
+b6.o2: El museo es en la plaza
+b7.frase: ___ una farmacia en la plaza.
+b7.o0: Hay
+b7.o1: Está
+b7.o2: Es
+b8.frase: La farmacia está al lado del banco.
+b3.titulo: Vocabulario
+b4.titulo: Uso de hay y estar
+b4.texto: "Compara:\\n- **Hay** una farmacia en la plaza (informa de su existencia).\\n- La farmacia **está** al lado del banco (indica dónde se sitúa esa farmacia en concreto)."
+b5.titulo: La plaza del pueblo
+b6.titulo: Elige la opción correcta
+b6.pregunta: ¿Qué frase localiza un museo concreto ya conocido?
+b6.o0.refuerzo: Correcto: usamos el artículo determinado y estar para ubicar un edificio concreto.
+b6.o1.refuerzo: Incorrecto: «hay un museo» indica existencia general, no ubica uno específico.
+b6.o2.refuerzo: Incorrecto: ser no se usa para ubicar edificios físicos.
+b7.titulo: Completa la frase
+b7.pregunta: Completa para expresar la existencia de una farmacia.
+b7.o0.refuerzo: Correcto: usamos «hay» para presentar la existencia de un elemento indeterminado.
+b7.o1.refuerzo: Incorrecto: «está» requiere un sujeto determinado o conocido.
+b7.o2.refuerzo: Incorrecto: «es» sirve para definir o clasificar, no para existencia.
+b8.titulo: Ordena las palabras
+b8.traduccion: La farmacia está al lado del banco.
+b9.titulo: Escribe la frase
+b9.pregunta: Escribe en español: «Hay un banco aquí».
+p.hay.glosa: hay
+p.hay.consejo: Forma impersonal del verbo haber para denotar existencia o presencia.
+p.está.glosa: está
+p.está.consejo: Forma de estar para situar un elemento específico en el espacio.
+p.la farmacia.glosa: la farmacia
+p.la farmacia.consejo: Establecimiento donde se dispensan y venden medicamentos.
+p.el banco.glosa: el banco
+p.el banco.consejo: Entidad financiera o edificio bancario.
+p.la plaza.glosa: la plaza
+p.la plaza.consejo: Espacio público ancho y abierto en una población.
+p.al lado de.glosa: al lado de
+p.al lado de.consejo: Locución que indica proximidad lateral o contigüidad.
+p.del.glosa: del
+p.del.consejo: Contracción obligatoria de la preposición de y el artículo el.
+p.aquí.glosa: aquí
+p.aquí.consejo: Adverbio que señala el lugar próximo al hablante.
+p.cerca.glosa: cerca
+p.cerca.consejo: Adverbio que indica escasa distancia espacial.
+
+== vi
+titulo: Có và nằm ở
+intro: Học sự khác biệt giữa hay (sự tồn tại, có sẵn) và está (vị trí cụ thể của một đối tượng).
+b1.titulo: Tồn tại và vị trí: hay so với está
+b1.texto: "Chúng ta dùng **hay** để nói rằng có một vật tồn tại hoặc có sẵn: *Hay una farmacia aquí* (Có một hiệu thuốc ở đây), *Hay dos bancos*.\\n\\nChúng ta dùng **está** để xác định vị trí của một đối tượng cụ thể hoặc đã biết: *La farmacia está al lado del banco* (Hiệu thuốc ở cạnh ngân hàng).\\n\\n**Hay** không đổi ở cả số ít và số nhiều.\\n\\nVới cụm từ **al lado de**, de + el bắt buộc rút gọn thành **del**: *al lado del banco*."
+b2.titulo: Tại quảng trường
+b2.f0.texto: ¿Hay una farmacia aquí?
+b2.f1.texto: Hay una farmacia en la plaza.
+b2.f2.texto: ¿Dónde está la farmacia?
+b2.f3.texto: La farmacia está al lado del banco.
+b2.f4.texto: ¿Está cerca el banco?
+b2.f5.texto: El banco está muy cerca.
+b4.e0.texto: Hay una farmacia en la plaza.
+b4.e1.texto: La farmacia está al lado del banco.
+b5.f0.texto: En el centro histórico de la ciudad hay una plaza hermosa.
+b5.f1.texto: Muchos vecinos tranquilos caminan alrededor de la fuente.
+b5.f2.texto: Hay varios árboles grandes y una pequeña farmacia.
+b5.f3.texto: El banco principal está al lado del parque verde.
+b5.f4.texto: La farmacia moderna está siempre abierta para el público.
+b5.f5.texto: Los clientes compran medicinas con mucha tranquilidad.
+b6.o0: El museo está en la plaza
+b6.o1: Hay un museo en la plaza
+b6.o2: El museo es en la plaza
+b7.frase: ___ una farmacia en la plaza.
+b7.o0: Hay
+b7.o1: Está
+b7.o2: Es
+b8.frase: La farmacia está al lado del banco.
+b3.titulo: Từ vựng
+b4.titulo: Cách dùng hay và estar
+b4.texto: "So sánh:\\n- **Hay** una farmacia en la plaza (thông báo có một hiệu thuốc ở quảng trường).\\n- La farmacia **está** al lado del banco (nêu vị trí cụ thể của hiệu thuốc đó)."
+b5.titulo: Quảng trường thị trấn
+b6.titulo: Chọn phương án đúng
+b6.pregunta: Câu nào xác định vị trí của một bảo tàng cụ thể đã biết?
+b6.o0.refuerzo: Chính xác: dùng mạo từ xác định và estar để định vị một công trình cụ thể.
+b6.o1.refuerzo: Sai: «hay un museo» chỉ nêu sự tồn tại chung.
+b6.o2.refuerzo: Sai: ser không dùng cho vị trí vật lý của công trình.
+b7.titulo: Điền vào chỗ trống
+b7.pregunta: Điền từ để diễn đạt sự tồn tại của một hiệu thuốc.
+b7.o0.refuerzo: Chính xác: dùng «hay» để giới thiệu sự tồn tại của một sự vật bất định.
+b7.o1.refuerzo: Sai: «está» đòi hỏi một chủ ngữ xác định.
+b7.o2.refuerzo: Sai: «es» dùng để định nghĩa hoặc phân loại.
+b8.titulo: Sắp xếp các từ
+b8.traduccion: Hiệu thuốc ở cạnh ngân hàng.
+b9.titulo: Viết câu hoàn chỉnh
+b9.pregunta: Viết bằng tiếng Tây Ban Nha: «Có một ngân hàng ở đây».
+p.hay.glosa: có (tồn tại)
+p.hay.consejo: Dạng vô nhân xưng của động từ haber để chỉ sự tồn tại.
+p.está.glosa: ở, nằm ở
+p.está.consejo: Dạng của estar dùng định vị một chủ ngữ xác định.
+p.la farmacia.glosa: hiệu thuốc
+p.la farmacia.consejo: Cửa hàng bán và cấp phát thuốc chữa bệnh.
+p.el banco.glosa: ngân hàng
+p.el banco.consejo: Tổ chức tài chính hoặc tòa nhà ngân hàng.
+p.la plaza.glosa: quảng trường
+p.la plaza.consejo: Khu đất trống công cộng rộng lớn trong đô thị.
+p.al lado de.glosa: bên cạnh, sát cạnh
+p.al lado de.consejo: Cụm từ chỉ sự gần kề ngay sát bên.
+p.del.glosa: của (rút gọn de + el)
+p.del.consejo: Dạng rút gọn bắt buộc của giới từ de và mạo từ el.
+p.aquí.glosa: ở đây
+p.aquí.consejo: Phó từ chỉ nơi chốn gần người nói.
+p.cerca.glosa: gần
+p.cerca.consejo: Phó từ chỉ khoảng cách ngắn.
+
+== zh
+titulo: 有与位于
+intro: 学习 hay（表示存在或有无）与 está（表示具体人或事物的空间方位）之间的区别。
+b1.titulo: 存在与方位：hay 与 está 的区别
+b1.texto: "我们使用 **hay** 表示某物客观存在或有无，通常伴随不定冠词或无冠词：*Hay una farmacia aquí*（这里有一家药店）、*Hay dos bancos*（有两家银行）。\\n\\n我们使用 **está** 表示某个已知的具体人或建筑物的所在方位：*La farmacia está al lado del banco*（药店在银行旁边）。\\n\\n**Hay** 单复数同形，形式不发生变化。\\n\\n在短语 **al lado de** 中，介词 de 与阳性单数定冠词 el 必须缩合为 **del**：*al lado del banco*。"
+b2.titulo: 在广场上
+b2.f0.texto: ¿Hay una farmacia aquí?
+b2.f1.texto: Hay una farmacia en la plaza.
+b2.f2.texto: ¿Dónde está la farmacia?
+b2.f3.texto: La farmacia está al lado del banco.
+b2.f4.texto: ¿Está cerca el banco?
+b2.f5.texto: El banco está muy cerca.
+b4.e0.texto: Hay una farmacia en la plaza.
+b4.e1.texto: La farmacia está al lado del banco.
+b5.f0.texto: En el centro histórico de la ciudad hay una plaza hermosa.
+b5.f1.texto: Muchos vecinos tranquilos caminan alrededor de la fuente.
+b5.f2.texto: Hay varios árboles grandes y una pequeña farmacia.
+b5.f3.texto: El banco principal está al lado del parque verde.
+b5.f4.texto: La farmacia moderna está siempre abierta para el público.
+b5.f5.texto: Los clientes compran medicinas con mucha tranquilidad.
+b6.o0: El museo está en la plaza
+b6.o1: Hay un museo en la plaza
+b6.o2: El museo es en la plaza
+b7.frase: ___ una farmacia en la plaza.
+b7.o0: Hay
+b7.o1: Está
+b7.o2: Es
+b8.frase: La farmacia está al lado del banco.
+b3.titulo: 词汇
+b4.titulo: hay 与 estar 的用法比较
+b4.texto: "对比学习：\\n- **Hay** una farmacia en la plaza（告知广场上存在一家药店）。\\n- La farmacia **está** al lado del banco（指出具体那家药店位于何处）。"
+b5.titulo: 小镇广场
+b6.titulo: 选择正确选项
+b6.pregunta: 哪个句子准确指出了一座已知具体博物馆的地理方位？
+b6.o0.refuerzo: 正确：使用定冠词和 estar 明确指定具体建筑的地理位置。
+b6.o1.refuerzo: 错误：“hay un museo”仅陈述一般性存在。
+b6.o2.refuerzo: 错误：ser 不能用来指示建筑物的物理位置。
+b7.titulo: 填空题
+b7.pregunta: 请选用恰当的动词陈述药店的存在。
+b7.o0.refuerzo: 正确：使用 «hay» 引入不特定客观事物的存在。
+b7.o1.refuerzo: 错误：«está» 需要搭配确指的主语。
+b7.o2.refuerzo: 错误：«es» 用于定义或分类，不表示存在。
+b8.titulo: 连词成句
+b8.traduccion: 药店在银行旁边。
+b9.titulo: 书写句子
+b9.pregunta: 用西班牙语写出：“这里有一家银行。”
+p.hay.glosa: 有，存在
+p.hay.consejo: 动词 haber 的无人称形式，表示客观存在。
+p.está.glosa: 在，位于
+p.está.consejo: 动词 estar 用于说明特定对象的具体空间位置。
+p.la farmacia.glosa: 药店
+p.la farmacia.consejo: 配发并售卖药物药品的营业场所。
+p.el banco.glosa: 银行
+p.el banco.consejo: 办理存贷款等金融业务的建筑物或机构。
+p.la plaza.glosa: 广场
+p.la plaza.consejo: 城镇中宽阔开敞的公共室外空间。
+p.al lado de.glosa: 在……旁边
+p.al lado de.consejo: 表示两侧相邻或相傍近旁的介词短语。
+p.del.glosa: del（de + el 的缩合形式）
+p.del.consejo: 介词 de 与阳性定冠词 el 的强制缩合。
+p.aquí.glosa: 这里
+p.aquí.consejo: 指示离说话人较近位置的地点副词。
+p.cerca.glosa: 近，附近
+p.cerca.consejo: 表示空间距离较短的地点副词。
+
+== pt
+titulo: Há e está
+intro: Aprenda a diferença entre hay (existência ou disponibilidade) e está (localização de um sujeito específico).
+b1.titulo: Existência e localização: hay versus está
+b1.texto: "Usamos **hay** para indicar que algo existe ou está disponível: *Hay una farmacia aquí*, *Hay dos bancos*.\\n\\nUsamos **está** para localizar um elemento específico ou já conhecido: *La farmacia está al lado del banco*.\\n\\n**Hay** não varia entre singular e plural.\\n\\nCom a locução **al lado de**, de + el contrai-se obrigatoriamente em **del**: *al lado del banco*."
+b2.titulo: Na praça
+b2.f0.texto: ¿Hay una farmacia aquí?
+b2.f1.texto: Hay una farmacia en la plaza.
+b2.f2.texto: ¿Dónde está la farmacia?
+b2.f3.texto: La farmacia está al lado del banco.
+b2.f4.texto: ¿Está cerca el banco?
+b2.f5.texto: El banco está muy cerca.
+b4.e0.texto: Hay una farmacia en la plaza.
+b4.e1.texto: La farmacia está al lado del banco.
+b5.f0.texto: En el centro histórico de la ciudad hay una plaza hermosa.
+b5.f1.texto: Muchos vecinos tranquilos caminan alrededor de la fuente.
+b5.f2.texto: Hay varios árboles grandes y una pequeña farmacia.
+b5.f3.texto: El banco principal está al lado del parque verde.
+b5.f4.texto: La farmacia moderna está siempre abierta para el público.
+b5.f5.texto: Los clientes compran medicinas con mucha tranquilidad.
+b6.o0: El museo está en la plaza
+b6.o1: Hay un museo en la plaza
+b6.o2: El museo es en la plaza
+b7.frase: ___ una farmacia en la plaza.
+b7.o0: Hay
+b7.o1: Está
+b7.o2: Es
+b8.frase: La farmacia está al lado del banco.
+b3.titulo: Vocabulário
+b4.titulo: Uso de hay e estar
+b4.texto: "Compare:\\n- **Hay** una farmacia en la plaza (informa sobre a existência).\\n- La farmacia **está** al lado del banco (indica a localização precisa)."
+b5.titulo: A praça da cidade
+b6.titulo: Escolha a opção correta
+b6.pregunta: Qual frase localiza um museu específico e já conhecido?
+b6.o0.refuerzo: Correto: usamos artigo definido e estar para localizar um edifício concreto.
+b6.o1.refuerzo: Incorreto: «hay un museo» indica existência geral.
+b6.o2.refuerzo: Incorreto: ser não se usa para localizar edifícios físicos.
+b7.titulo: Preencha a lacuna
+b7.pregunta: Complete para expressar a existência de uma farmácia.
+b7.o0.refuerzo: Correto: usamos «hay» para introduzir a existência de algo indeterminado.
+b7.o1.refuerzo: Incorreto: «está» exige um sujeito determinado ou específico.
+b7.o2.refuerzo: Incorreto: «es» serve para definir ou caracterizar.
+b8.titulo: Ordene as palavras
+b8.traduccion: A farmácia fica ao lado do banco.
+b9.titulo: Escreva a frase
+b9.pregunta: Escreva em espanhol: «Há um banco aqui».
+p.hay.glosa: há, tem (existência)
+p.hay.consejo: Forma impessoal de haber para expressar existência.
+p.está.glosa: está, fica
+p.está.consejo: Forma de estar para localizar algo específico.
+p.la farmacia.glosa: a farmácia
+p.la farmacia.consejo: Estabelecimento comercial que vende remédios.
+p.el banco.glosa: o banco
+p.el banco.consejo: Instituição financeira.
+p.la plaza.glosa: a praça
+p.la plaza.consejo: Espaço público aberto numa cidade.
+p.al lado de.glosa: ao lado de
+p.al lado de.consejo: Locução que indica proximidade contígua.
+p.del.glosa: do (de + el)
+p.del.consejo: Contração obrigatória de de e el.
+p.aquí.glosa: aqui
+p.aquí.consejo: Advérbio que indica o lugar próximo a quem fala.
+p.cerca.glosa: perto
+p.cerca.consejo: Advérbio de pouca distância.
+
+== fr
+titulo: Il y a, et c’est situé
+intro: Apprenez la différence entre hay (existence ou disponibilité) et está (localisation précise).
+b1.titulo: Existence et localisation : hay et está
+b1.texto: "On emploie **hay** pour signaler qu’une chose existe ou est disponible : *Hay una farmacia aquí*, *Hay dos bancos*.\\n\\nOn utilise **está** pour localiser un élément précis ou déjà connu : *La farmacia está al lado del banco*.\\n\\n**Hay** est invariable au singulier comme au pluriel.\\n\\nAvec **al lado de**, de + el se contracte obligatoirement en **del** : *al lado del banco*."
+b2.titulo: Sur la place
+b2.f0.texto: ¿Hay una farmacia aquí?
+b2.f1.texto: Hay una farmacia en la plaza.
+b2.f2.texto: ¿Dónde está la farmacia?
+b2.f3.texto: La farmacia está al lado del banco.
+b2.f4.texto: ¿Está cerca el banco?
+b2.f5.texto: El banco está muy cerca.
+b4.e0.texto: Hay una farmacia en la plaza.
+b4.e1.texto: La farmacia está al lado del banco.
+b5.f0.texto: En el centro histórico de la ciudad hay una plaza hermosa.
+b5.f1.texto: Muchos vecinos tranquilos caminan alrededor de la fuente.
+b5.f2.texto: Hay varios árboles grandes y una pequeña farmacia.
+b5.f3.texto: El banco principal está al lado del parque verde.
+b5.f4.texto: La farmacia moderna está siempre abierta para el público.
+b5.f5.texto: Los clientes compran medicinas con mucha tranquilidad.
+b6.o0: El museo está en la plaza
+b6.o1: Hay un museo en la plaza
+b6.o2: El museo es en la plaza
+b7.frase: ___ una farmacia en la plaza.
+b7.o0: Hay
+b7.o1: Está
+b7.o2: Es
+b8.frase: La farmacia está al lado del banco.
+b3.titulo: Vocabulaire
+b4.titulo: Emploi de hay et estar
+b4.texto: "Comparez :\\n- **Hay** una farmacia en la plaza (signale son existence).\\n- La farmacia **está** al lado del banco (indique où elle se trouve précisément)."
+b5.titulo: La place du village
+b6.titulo: Choisissez la bonne option
+b6.pregunta: Quelle phrase localise un musée précis déjà connu ?
+b6.o0.refuerzo: Correct : on utilise l’article défini et estar pour situer un bâtiment précis.
+b6.o1.refuerzo: Incorrect : «hay un museo» indique seulement une existence générale.
+b6.o2.refuerzo: Incorrect : ser ne s’emploie pas pour situer des bâtiments.
+b7.titulo: Complétez la phrase
+b7.pregunta: Complétez pour exprimer l’existence d’une pharmacie.
+b7.o0.refuerzo: Correct : on utilise «hay» pour introduire l’existence d’un élément indéterminé.
+b7.o1.refuerzo: Incorrect : «está» exige un sujet déterminé ou déjà identifié.
+b7.o2.refuerzo: Incorrect : «es» sert à définir ou qualifier.
+b8.titulo: Remettez les mots dans l’ordre
+b8.traduccion: La pharmacie est à côté de la banque.
+b9.titulo: Écrivez la phrase
+b9.pregunta: Écrivez en espagnol : «Il y a une banque ici».
+p.hay.glosa: il y a
+p.hay.consejo: Forme impersonnelle du verbe haber indiquant l’existence.
+p.está.glosa: est (situé)
+p.está.consejo: Forme de estar pour situer un sujet déterminé dans l’espace.
+p.la farmacia.glosa: la pharmacie
+p.la farmacia.consejo: Officine vendant des médicaments.
+p.el banco.glosa: la banque
+p.el banco.consejo: Établissement financier ou bancaire.
+p.la plaza.glosa: la place
+p.la plaza.consejo: Espace public ouvert dans une agglomération.
+p.al lado de.glosa: à côté de
+p.al lado de.consejo: Locution marquant la proximité immédiate.
+p.del.glosa: du (de + el)
+p.del.consejo: Contraction obligatoire de de et el.
+p.aquí.glosa: ici
+p.aquí.consejo: Adverbe désignant le lieu où se trouve le locuteur.
+p.cerca.glosa: près, à proximité
+p.cerca.consejo: Adverbe indiquant une faible distance.
+
+== ja
+titulo: 「ある（存在）」と「ある（位置）」
+intro: hay（存在や有無）と está（特定のものがある場所）の違いを学びます。
+b1.titulo: 存在と所在：hay と está の違い
+b1.texto: "何かが存在することや利用可能であることを述べるときは **hay** を使います：*Hay una farmacia aquí*（ここに薬局があります）、*Hay dos bancos*（銀行が2軒あります）。\\n\\n特定の、すでに話題に上っているものや人物の所在を示すときは **está** を使います：*La farmacia está al lado del banco*（その薬局は銀行の隣にあります）。\\n\\n**hay** は単数でも複数でも形が変わりません。\\n\\n**al lado de**（〜の隣に）では、de ＋ el が必ず **del** に縮約されます：*al lado del banco*。"
+b2.titulo: 広場にて
+b2.f0.texto: ¿Hay una farmacia aquí?
+b2.f1.texto: Hay una farmacia en la plaza.
+b2.f2.texto: ¿Dónde está la farmacia?
+b2.f3.texto: La farmacia está al lado del banco.
+b2.f4.texto: ¿Está cerca el banco?
+b2.f5.texto: El banco está muy cerca.
+b4.e0.texto: Hay una farmacia en la plaza.
+b4.e1.texto: La farmacia está al lado del banco.
+b5.f0.texto: En el centro histórico de la ciudad hay una plaza hermosa.
+b5.f1.texto: Muchos vecinos tranquilos caminan alrededor de la fuente.
+b5.f2.texto: Hay varios árboles grandes y una pequeña farmacia.
+b5.f3.texto: El banco principal está al lado del parque verde.
+b5.f4.texto: La farmacia moderna está siempre abierta para el público.
+b5.f5.texto: Los clientes compran medicinas con mucha tranquilidad.
+b6.o0: El museo está en la plaza
+b6.o1: Hay un museo en la plaza
+b6.o2: El museo es en la plaza
+b7.frase: ___ una farmacia en la plaza.
+b7.o0: Hay
+b7.o1: Está
+b7.o2: Es
+b8.frase: La farmacia está al lado del banco.
+b3.titulo: 単語
+b4.titulo: hay と estar の使い分け
+b4.texto: "比較してみましょう：\\n- **Hay** una farmacia en la plaza（広場に薬局があることを伝える）。\\n- La farmacia **está** al lado del banco（その薬局が具体的にどこにあるかを伝える）。"
+b5.titulo: 町の広場
+b6.titulo: 正しい選択肢を選ぼう
+b6.pregunta: 特定の博物館の所在を表している文はどれですか？
+b6.o0.refuerzo: 正解：定冠詞とともに estar を用いて特定の建物の位置を示します。
+b6.o1.refuerzo: 不正解：「hay un museo」は一般的な存在を表すにすぎません。
+b6.o2.refuerzo: 不正解：建物の物理的な所在に ser は使えません。
+b7.titulo: 空欄を埋めよう
+b7.pregunta: 薬局の存在を表す適切な語を選んでください。
+b7.o0.refuerzo: 正解：不特定のものの存在を導入するときは «hay» を使います。
+b7.o1.refuerzo: 不正解：«está» は特定された主語を必要とします。
+b7.o2.refuerzo: 不正解：«es» は定義や性質を表します。
+b8.titulo: 語順を整えよう
+b8.traduccion: その薬局は銀行の隣にあります。
+b9.titulo: 文を書こう
+b9.pregunta: スペイン語で書いてください：「ここに銀行があります」。
+p.hay.glosa: 〜がある、いる
+p.hay.consejo: 存在や有無を表す動詞 haber の非人称形です。
+p.está.glosa: 〜にある、いる（位置）
+p.está.consejo: 特定の主語が位置する場所を示す動詞 estar の活用形です。
+p.la farmacia.glosa: 薬局
+p.la farmacia.consejo: 医薬品を調剤・販売する施設です。
+p.el banco.glosa: 銀行
+p.el banco.consejo: 金融機関またはその建物です。
+p.la plaza.glosa: 広場
+p.la plaza.consejo: 街の中の開放された公共スペースです。
+p.al lado de.glosa: 〜の隣に
+p.al lado de.consejo: すぐ隣の位置関係を表す連語表現です。
+p.del.glosa: 〜の（de ＋ el の縮約）
+p.del.consejo: 前置詞 de と男性定冠詞 el の義務的縮約形です。
+p.aquí.glosa: ここ、ここに
+p.aquí.consejo: 話し手の近くの場所を示す副詞です。
+p.cerca.glosa: 近くに
+p.cerca.consejo: 距離が短いことを表す場所の副詞です。
+
+== it
+titulo: C’è ed è situato
+intro: Impara la differenza tra hay (esistenza o disponibilità) ed está (collocazione precisa di un elemento).
+b1.titulo: Esistenza e collocazione: hay ed está
+b1.texto: "Usiamo **hay** per esprimere l’esistenza o disponibilità di qualcosa: *Hay una farmacia aquí*, *Hay dos bancos*.\\n\\nUsiamo **está** per collocare nello spazio una persona o cosa specifica: *La farmacia está al lado del banco*.\\n\\n**Hay** è invariabile sia al singolare che al plurale.\\n\\nCon l’espressione **al lado de**, de + el si contrae obbligatoriamente in **del**: *al lado del banco*."
+b2.titulo: Nella piazza
+b2.f0.texto: ¿Hay una farmacia aquí?
+b2.f1.texto: Hay una farmacia en la plaza.
+b2.f2.texto: ¿Dónde está la farmacia?
+b2.f3.texto: La farmacia está al lado del banco.
+b2.f4.texto: ¿Está cerca el banco?
+b2.f5.texto: El banco está muy cerca.
+b4.e0.texto: Hay una farmacia en la plaza.
+b4.e1.texto: La farmacia está al lado del banco.
+b5.f0.texto: En el centro histórico de la ciudad hay una plaza hermosa.
+b5.f1.texto: Muchos vecinos tranquilos caminan alrededor de la fuente.
+b5.f2.texto: Hay varios árboles grandes y una pequeña farmacia.
+b5.f3.texto: El banco principal está al lado del parque verde.
+b5.f4.texto: La farmacia moderna está siempre abierta para el público.
+b5.f5.texto: Los clientes compran medicinas con mucha tranquilidad.
+b6.o0: El museo está en la plaza
+b6.o1: Hay un museo en la plaza
+b6.o2: El museo es en la plaza
+b7.frase: ___ una farmacia en la plaza.
+b7.o0: Hay
+b7.o1: Está
+b7.o2: Es
+b8.frase: La farmacia está al lado del banco.
+b3.titulo: Vocabolario
+b4.titulo: Uso di hay ed estar
+b4.texto: "Confronta:\\n- **Hay** una farmacia en la plaza (ne indica l’esistenza).\\n- La farmacia **está** al lado del banco (ne indica l’ubicazione specifica)."
+b5.titulo: La piazza del paese
+b6.titulo: Scegli l’opzione corretta
+b6.pregunta: Quale frase colloca nello spazio un museo specifico già noto?
+b6.o0.refuerzo: Corretto: usiamo l’articolo determinativo ed estar per ubicare un edificio specifico.
+b6.o1.refuerzo: Errato: «hay un museo» esprime solo esistenza generica.
+b6.o2.refuerzo: Errato: ser non si usa per collocare edifici nello spazio.
+b7.titulo: Completa la frase
+b7.pregunta: Completa per esprimere l’esistenza di una farmacia.
+b7.o0.refuerzo: Corretto: usiamo «hay» per introdurre l’esistenza di qualcosa di indeterminato.
+b7.o1.refuerzo: Errato: «está» richiede un soggetto determinato.
+b7.o2.refuerzo: Errato: «es» serve a definire o classificare.
+b8.titulo: Ordina le parole
+b8.traduccion: La farmacia è accanto alla banca.
+b9.titulo: Scrivi la frase
+b9.pregunta: Scrivi in spagnolo: «C’è una banca qui».
+p.hay.glosa: c’è, ci sono
+p.hay.consejo: Forma impersonale del verbo haber per esprimere esistenza.
+p.está.glosa: è, si trova
+p.está.consejo: Forma di estar per localizzare un elemento specifico.
+p.la farmacia.glosa: la farmacia
+p.la farmacia.consejo: Esercizio che vende farmaci e medicinali.
+p.el banco.glosa: la banca
+p.el banco.consejo: Istituto di credito o edificio bancario.
+p.la plaza.glosa: la piazza
+p.la plaza.consejo: Ampio spazio pubblico urbano.
+p.al lado de.glosa: accanto a
+p.al lado de.consejo: Locuzione indicante contiguità spaziale.
+p.del.glosa: del (de + el)
+p.del.consejo: Contrazione obbligatoria di de ed el.
+p.aquí.glosa: qui
+p.aquí.consejo: Avverbio di luogo indicante vicinanza a chi parla.
+p.cerca.glosa: vicino
+p.cerca.consejo: Avverbio indicante breve distanza.
+
+== ko
+titulo: 있음(존재)과 있음(위치)
+intro: hay(존재나 유무)와 está(특정한 대상의 위치)의 차이점을 배웁니다.
+b1.titulo: 존재와 위치: hay와 está
+b1.texto: "어떤 대상의 존재나 유무를 나타낼 때는 **hay**를 씁니다: *Hay una farmacia aquí*(여기에 약국이 있습니다), *Hay dos bancos*(은행이 두 곳 있습니다).\\n\\n특정하거나 이미 알고 있는 대상의 공간적 위치를 나타낼 때는 **está**를 씁니다: *La farmacia está al lado del banco*(그 약국은 은행 옆에 있습니다).\\n\\n**hay**는 단수와 복수 모두 형태가 변하지 않습니다.\\n\\n**al lado de**(~ 옆에) 표현에서 de와 el은 반드시 **del**로 축약됩니다: *al lado del banco*."
+b2.titulo: 광장에서
+b2.f0.texto: ¿Hay una farmacia aquí?
+b2.f1.texto: Hay una farmacia en la plaza.
+b2.f2.texto: ¿Dónde está la farmacia?
+b2.f3.texto: La farmacia está al lado del banco.
+b2.f4.texto: ¿Está cerca el banco?
+b2.f5.texto: El banco está muy cerca.
+b4.e0.texto: Hay una farmacia en la plaza.
+b4.e1.texto: La farmacia está al lado del banco.
+b5.f0.texto: En el centro histórico de la ciudad hay una plaza hermosa.
+b5.f1.texto: Muchos vecinos tranquilos caminan alrededor de la fuente.
+b5.f2.texto: Hay varios árboles grandes y una pequeña farmacia.
+b5.f3.texto: El banco principal está al lado del parque verde.
+b5.f4.texto: La farmacia moderna está siempre abierta para el público.
+b5.f5.texto: Los clientes compran medicinas con mucha tranquilidad.
+b6.o0: El museo está en la plaza
+b6.o1: Hay un museo en la plaza
+b6.o2: El museo es en la plaza
+b7.frase: ___ una farmacia en la plaza.
+b7.o0: Hay
+b7.o1: Está
+b7.o2: Es
+b8.frase: La farmacia está al lado del banco.
+b3.titulo: 어휘
+b4.titulo: hay와 estar의 용법
+b4.texto: "비교해 보세요:\\n- **Hay** una farmacia en la plaza(광장에 약국이 존재함을 알림).\\n- La farmacia **está** al lado del banco(그 약국이 구체적으로 어디에 위치하는지 알림)."
+b5.titulo: 마을 광장
+b6.titulo: 알맞은 선택지를 고르세요
+b6.pregunta: 이미 알고 있는 특정 박물관의 위치를 나타낸 문장은 무엇인가요?
+b6.o0.refuerzo: 정답: 정관사와 estar를 사용하여 특정 건물의 위치를 나타냅니다.
+b6.o1.refuerzo: 오답: «hay un museo»는 일반적인 존재를 나타낼 뿐입니다.
+b6.o2.refuerzo: 오답: 건물의 물리적 위치에 ser는 쓰지 않습니다.
+b7.titulo: 빈칸 채우기
+b7.pregunta: 약국의 존재를 나타내도록 빈칸을 완성하세요.
+b7.o0.refuerzo: 정답: 부정 대상의 존재를 도입할 때는 «hay»를 씁니다.
+b7.o1.refuerzo: 오답: «está»는 특정한 주어가 필요합니다.
+b7.o2.refuerzo: 오답: «es»는 정의나 성질을 나타냅니다.
+b8.titulo: 단어 배열하기
+b8.traduccion: 약국은 은행 옆에 있습니다.
+b9.titulo: 문장 쓰기
+b9.pregunta: 스페인어로 쓰세요: «여기에 은행이 하나 있습니다».
+p.hay.glosa: 있다 (존재)
+p.hay.consejo: 사물의 존재나 유무를 나타내는 haber의 비인칭 형태입니다.
+p.está.glosa: 있다 (위치)
+p.está.consejo: 특정 대상의 위치를 나타내는 estar의 3인칭 단수형입니다.
+p.la farmacia.glosa: 약국
+p.la farmacia.consejo: 의약품을 조제하고 판매하는 상점입니다.
+p.el banco.glosa: 은행
+p.el banco.consejo: 금융 업무를 보는 기관 또는 건물입니다.
+p.la plaza.glosa: 광장
+p.la plaza.consejo: 도시의 탁 트인 공공 공간입니다.
+p.al lado de.glosa: ~ 옆에
+p.al lado de.consejo: 바로 옆에 인접해 있음을 나타내는 표현입니다.
+p.del.glosa: ~의 (de + el의 축약형)
+p.del.consejo: 전치사 de와 남성 정관사 el의 필수 축약형입니다.
+p.aquí.glosa: 여기, 여기에
+p.aquí.consejo: 화자가 있는 가까운 장소를 가리키는 부사입니다.
+p.cerca.glosa: 가까이, 근처에
+p.cerca.consejo: 거리가 가까움을 나타내는 부사입니다.
+
+== ru
+titulo: Есть и находится
+intro: Изучите разницу между hay (наличие или существование) и está (конкретное местонахождение).
+b1.titulo: Наличие и местоположение: hay и está
+b1.texto: "Мы используем **hay**, чтобы сообщить о наличии или существовании чего-либо: *Hay una farmacia aquí*, *Hay dos bancos*.\\n\\nМы используем **está**, чтобы указать местоположение конкретного, известного предмета: *La farmacia está al lado del banco*.\\n\\nФорма **hay** неизменна для единственного и множественного числа.\\n\\nВ выражении **al lado de** предлог de и артикль el обязательно сливаются в **del**: *al lado del banco*."
+b2.titulo: На площади
+b2.f0.texto: ¿Hay una farmacia aquí?
+b2.f1.texto: Hay una farmacia en la plaza.
+b2.f2.texto: ¿Dónde está la farmacia?
+b2.f3.texto: La farmacia está al lado del banco.
+b2.f4.texto: ¿Está cerca el banco?
+b2.f5.texto: El banco está muy cerca.
+b4.e0.texto: Hay una farmacia en la plaza.
+b4.e1.texto: La farmacia está al lado del banco.
+b5.f0.texto: En el centro histórico de la ciudad hay una plaza hermosa.
+b5.f1.texto: Muchos vecinos tranquilos caminan alrededor de la fuente.
+b5.f2.texto: Hay varios árboles grandes y una pequeña farmacia.
+b5.f3.texto: El banco principal está al lado del parque verde.
+b5.f4.texto: La farmacia moderna está siempre abierta para el público.
+b5.f5.texto: Los clientes compran medicinas con mucha tranquilidad.
+b6.o0: El museo está en la plaza
+b6.o1: Hay un museo en la plaza
+b6.o2: El museo es en la plaza
+b7.frase: ___ una farmacia en la plaza.
+b7.o0: Hay
+b7.o1: Está
+b7.o2: Es
+b8.frase: La farmacia está al lado del banco.
+b3.titulo: Словарный запас
+b4.titulo: Употребление hay и estar
+b4.texto: "Сравните:\\n- **Hay** una farmacia en la plaza (сообщает о наличии аптеки).\\n- La farmacia **está** al lado del banco (указывает, где именно она находится)."
+b5.titulo: Городская площадь
+b6.titulo: Выберите правильный вариант
+b6.pregunta: Какое предложение указывает местоположение конкретного музея?
+b6.o0.refuerzo: Правильно: определённый артикль и estar указывают точное местоположение здания.
+b6.o1.refuerzo: Неверно: «hay un museo» сообщает лишь об общем наличии.
+b6.o2.refuerzo: Неверно: ser не используется для указания местоположения зданий.
+b7.titulo: Заполните пропуск
+b7.pregunta: Дополните предложение для выражения наличия аптеки.
+b7.o0.refuerzo: Правильно: «hay» используется для выражения наличия неопределённого объекта.
+b7.o1.refuerzo: Неверно: «está» требует определённого, конкретного подлежащего.
+b7.o2.refuerzo: Неверно: «es» служит для определения или классификации.
+b8.titulo: Расставьте слова по порядку
+b8.traduccion: Аптека находится рядом с банком.
+b9.titulo: Напишите предложение
+b9.pregunta: Напишите по-испански: «Здесь есть банк».
+p.hay.glosa: есть, имеется
+p.hay.consejo: Безличная форма глагола haber для обозначения наличия.
+p.está.glosa: находится
+p.está.consejo: Форма estar для указания конкретного местоположения.
+p.la farmacia.glosa: аптека
+p.la farmacia.consejo: Учреждение, где продают медикаменты.
+p.el banco.glosa: банк
+p.el banco.consejo: Финансовое учреждение или здание банка.
+p.la plaza.glosa: площадь
+p.la plaza.consejo: Открытое общественное городское пространство.
+p.al lado de.glosa: рядом с, около
+p.al lado de.consejo: Выражение непосредственной пространственной близости.
+p.del.glosa: слияние de + el
+p.del.consejo: Обязательное слияние предлога de и артикля el.
+p.aquí.glosa: здесь, тут
+p.aquí.consejo: Наречие места рядом с говорящим.
+p.cerca.glosa: близко, рядом
+p.cerca.consejo: Наречие короткого расстояния.
+
+== de
+titulo: Es gibt und es befindet sich
+intro: Lerne den Unterschied zwischen hay (Existenz oder Verfügbarkeit) und está (konkrete Lage).
+b1.titulo: Existenz und Lage: hay im Vergleich zu está
+b1.texto: "Wir verwenden **hay**, um auszudrücken, dass etwas existiert oder vorhanden ist: *Hay una farmacia aquí*, *Hay dos bancos*.\\n\\nWir verwenden **está**, um einen bestimmten, bereits bekannten Gegenstand räumlich zu verorten: *La farmacia está al lado del banco*.\\n\\n**Hay** bleibt im Singular und Plural unverändert.\\n\\nBei **al lado de** verschmelzen de + el verbindlich zu **del**: *al lado del banco*."
+b2.titulo: Auf dem Platz
+b2.f0.texto: ¿Hay una farmacia aquí?
+b2.f1.texto: Hay una farmacia en la plaza.
+b2.f2.texto: ¿Dónde está la farmacia?
+b2.f3.texto: La farmacia está al lado del banco.
+b2.f4.texto: ¿Está cerca el banco?
+b2.f5.texto: El banco está muy cerca.
+b4.e0.texto: Hay una farmacia en la plaza.
+b4.e1.texto: La farmacia está al lado del banco.
+b5.f0.texto: En el centro histórico de la ciudad hay una plaza hermosa.
+b5.f1.texto: Muchos vecinos tranquilos caminan alrededor de la fuente.
+b5.f2.texto: Hay varios árboles grandes y una pequeña farmacia.
+b5.f3.texto: El banco principal está al lado del parque verde.
+b5.f4.texto: La farmacia moderna está siempre abierta para el público.
+b5.f5.texto: Los clientes compran medicinas con mucha tranquilidad.
+b6.o0: El museo está en la plaza
+b6.o1: Hay un museo en la plaza
+b6.o2: El museo es en la plaza
+b7.frase: ___ una farmacia en la plaza.
+b7.o0: Hay
+b7.o1: Está
+b7.o2: Es
+b8.frase: La farmacia está al lado del banco.
+b3.titulo: Wortschatz
+b4.titulo: Verwendung von hay und estar
+b4.texto: "Vergleiche:\\n- **Hay** una farmacia en la plaza (nennt das Vorhandensein).\\n- La farmacia **está** al lado del banco (gibt die genaue Lage an)."
+b5.titulo: Der Stadtplatz
+b6.titulo: Wähle die richtige Option
+b6.pregunta: Welcher Satz verortet ein bestimmtes, bekanntes Museum?
+b6.o0.refuerzo: Richtig: Bestimmter Artikel + estar gibt die Lage eines konkreten Gebäudes an.
+b6.o1.refuerzo: Falsch: «hay un museo» nennt nur das allgemeine Vorhandensein.
+b6.o2.refuerzo: Falsch: ser steht nicht für die Lage physischer Bauwerke.
+b7.titulo: Setze das passende Wort ein
+b7.pregunta: Vervollständige, um das Vorhandensein einer Apotheke zu nennen.
+b7.o0.refuerzo: Richtig: Wir verwenden «hay» für unbestimmte Existenzangaben.
+b7.o1.refuerzo: Falsch: «está» erfordert ein bestimmtes Subjekt.
+b7.o2.refuerzo: Falsch: «es» dient der Wesensbestimmung, nicht der Existenz.
+b8.titulo: Bringe die Wörter in die richtige Reihenfolge
+b8.traduccion: Die Apotheke befindet sich neben der Bank.
+b9.titulo: Schreibe den Satz
+b9.pregunta: Schreibe auf Spanisch: «Hier gibt es eine Bank».
+p.hay.glosa: es gibt
+p.hay.consejo: Unpersönliche Form von haber für Existenz und Verfügbarkeit.
+p.está.glosa: befindet sich, ist
+p.está.consejo: Form von estar zur räumlichen Lagebestimmung.
+p.la farmacia.glosa: die Apotheke
+p.la farmacia.consejo: Geschäft zur Abgabe von Arzneimitteln.
+p.el banco.glosa: die Bank
+p.el banco.consejo: Geldinstitut oder Bankgebäude.
+p.la plaza.glosa: der Platz
+p.la plaza.consejo: Freier öffentlicher Platz in einer Stadt.
+p.al lado de.glosa: neben
+p.al lado de.consejo: Ausdruck für unmittelbare Nachbarschaft.
+p.del.glosa: vom, des (de + el)
+p.del.consejo: Verschmelzung von Präposition de und Artikel el.
+p.aquí.glosa: hier
+p.aquí.consejo: Ortsadverb für die unmittelbare Nähe des Sprechers.
+p.cerca.glosa: in der Nähe, nah
+p.cerca.consejo: Ortsadverb für geringe Entfernung.
+
+== id
+titulo: Ada dan terletak
+intro: Pelajari perbedaan antara hay (keberadaan atau ketersediaan) dan está (lokasi suatu hal tertentu).
+b1.titulo: Keberadaan dan letak: hay vs está
+b1.texto: "Kita menggunakan **hay** untuk menyatakan bahwa sesuatu ada atau tersedia: *Hay una farmacia aquí* (Ada apotek di sini), *Hay dos bancos*.\\n\\nKita menggunakan **está** untuk menunjukkan lokasi suatu benda atau orang tertentu yang sudah diketahui: *La farmacia está al lado del banco* (Apotek itu ada di sebelah bank).\\n\\n**Hay** bentuknya tidak berubah untuk tunggal maupun jamak.\\n\\nDengan ungkapan **al lado de**, gabungan de + el wajib dilebur menjadi **del**: *al lado del banco*."
+b2.titulo: Di alun-alun
+b2.f0.texto: ¿Hay una farmacia aquí?
+b2.f1.texto: Hay una farmacia en la plaza.
+b2.f2.texto: ¿Dónde está la farmacia?
+b2.f3.texto: La farmacia está al lado del banco.
+b2.f4.texto: ¿Está cerca el banco?
+b2.f5.texto: El banco está muy cerca.
+b4.e0.texto: Hay una farmacia en la plaza.
+b4.e1.texto: La farmacia está al lado del banco.
+b5.f0.texto: En el centro histórico de la ciudad hay una plaza hermosa.
+b5.f1.texto: Muchos vecinos tranquilos caminan alrededor de la fuente.
+b5.f2.texto: Hay varios árboles grandes y una pequeña farmacia.
+b5.f3.texto: El banco principal está al lado del parque verde.
+b5.f4.texto: La farmacia moderna está siempre abierta para el público.
+b5.f5.texto: Los clientes compran medicinas con mucha tranquilidad.
+b6.o0: El museo está en la plaza
+b6.o1: Hay un museo en la plaza
+b6.o2: El museo es en la plaza
+b7.frase: ___ una farmacia en la plaza.
+b7.o0: Hay
+b7.o1: Está
+b7.o2: Es
+b8.frase: La farmacia está al lado del banco.
+b3.titulo: Kosakata
+b4.titulo: Penggunaan hay dan estar
+b4.texto: "Bandingkan:\\n- **Hay** una farmacia en la plaza (memberi tahu keberadaannya).\\n- La farmacia **está** al lado del banco (menunjukkan letak spesifiknya)."
+b5.titulo: Alun-alun kota
+b6.titulo: Pilih opsi yang benar
+b6.pregunta: Kalimat mana yang menunjukkan letak museum tertentu yang sudah diketahui?
+b6.o0.refuerzo: Benar: gunakan artikel tentu dan estar untuk menentukan lokasi bangunan tertentu.
+b6.o1.refuerzo: Salah: «hay un museo» hanya menyatakan keberadaan secara umum.
+b6.o2.refuerzo: Salah: ser tidak digunakan untuk lokasi fisik bangunan.
+b7.titulo: Isi bagian yang kosong
+b7.pregunta: Lengkapi untuk menyatakan keberadaan sebuah apotek.
+b7.o0.refuerzo: Benar: gunakan «hay» untuk menyatakan keberadaan benda tak tentu.
+b7.o1.refuerzo: Salah: «está» membutuhkan subjek yang sudah tertentu.
+b7.o2.refuerzo: Salah: «es» digunakan untuk mendefinisikan atau mengklasifikasikan.
+b8.titulo: Urutkan kata-kata berikut
+b8.traduccion: Apotek itu berada di sebelah bank.
+b9.titulo: Tulis kalimatnya
+b9.pregunta: Tulis dalam bahasa Spanyol: «Ada bank di sini».
+p.hay.glosa: ada (keberadaan)
+p.hay.consejo: Bentuk impersonal dari haber untuk menyatakan keberadaan.
+p.está.glosa: berada, terletak
+p.está.consejo: Bentuk estar untuk menentukan lokasi objek tertentu.
+p.la farmacia.glosa: apotek
+p.la farmacia.consejo: Tempat peracikan dan penjualan obat-obatan.
+p.el banco.glosa: bank
+p.el banco.consejo: Lembaga keuangan atau gedung bank.
+p.la plaza.glosa: alun-alun, lapangan
+p.la plaza.consejo: Ruang publik terbuka di perkotaan.
+p.al lado de.glosa: di sebelah, di samping
+p.al lado de.consejo: Ungkapan yang menunjukkan letak berdampingan langsung.
+p.del.glosa: dari (peleburan de + el)
+p.del.consejo: Peleburan wajib dari preposisi de dan artikel el.
+p.aquí.glosa: di sini
+p.aquí.consejo: Kata keterangan tempat yang dekat dengan pembicara.
+p.cerca.glosa: dekat
+p.cerca.consejo: Kata keterangan jarak pendek.

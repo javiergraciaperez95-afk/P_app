@@ -1,167 +1,475 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "092",
   "capitulo": 9,
-  "titulo_es": "Una vida sana",
-  "titulo": {"en": "A healthy life"},
-  "intro": {"en": "Giving health advice with obligation, infinitive patterns, ¿Por qué no...? and tú commands."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "sano/a": {"en": "healthy", "pron": "SA-no / SA-na", "cat": "adjective"},
-    "la salud": {"en": "health", "pron": "la sa-LUD", "cat": "noun", "genero": "f"},
-    "hacer ejercicio": {"en": "to exercise", "pron": "a-SER e-her-SI-syo (seseo) / a-THER e-her-THI-thyo (distinción)", "cat": "expression"},
-    "la dieta": {"en": "the diet", "pron": "la DYE-ta", "cat": "noun", "genero": "f"},
-    "engordar": {"en": "to put on weight", "pron": "en-gor-DAR", "cat": "verb"},
-    "adelgazar": {"en": "to lose weight", "pron": "a-del-ga-SAR (seseo) / a-del-ga-THAR (distinción)", "cat": "verb"},
-    "el estrés": {"en": "stress", "pron": "el es-TRES", "cat": "noun", "genero": "m"},
-    "relajarse": {"en": "to relax", "pron": "re-la-HAR-se", "cat": "verb"},
-    "la alergia": {"en": "the allergy", "pron": "la a-LER-hya", "cat": "noun", "genero": "f"},
-    "es bueno": {"en": "it is good to", "pron": "es BWE-no", "cat": "expression"},
-    "es malo": {"en": "it is bad to", "pron": "es MA-lo", "cat": "expression"},
-    "debes": {"en": "you must, you should", "pron": "DE-bes", "cat": "verb"},
-    "lo mejor es": {"en": "the best thing is", "pron": "lo me-HOR es", "cat": "expression"},
-    "dejar de fumar": {"en": "to give up smoking", "pron": "de-HAR de fu-MAR", "cat": "expression"},
-    "el azúcar": {"en": "sugar", "pron": "el a-SU-kar (seseo) / a-THU-kar (distinción)", "cat": "noun", "genero": "m", "nota": "Often masculine; azúcar can also be feminine, especially when an adjective agrees with it: azúcar blanca."},
-    "la grasa": {"en": "fat", "pron": "la GRA-sa", "cat": "noun", "genero": "f"},
-    "el agua": {"en": "the water (feminine noun)", "pron": "el A-gwa", "cat": "noun", "genero": "f", "nota": "Feminine: el is used before the stressed initial a, but adjectives stay feminine: mucha agua."},
-    "el café": {"en": "the coffee", "pron": "el ka-FE", "cat": "noun", "genero": "m"},
-    "dormir": {"en": "to sleep", "pron": "dor-MIR", "cat": "verb"},
-    "la fruta": {"en": "the fruit", "pron": "la FRU-ta", "cat": "noun", "genero": "f"},
-    "el gimnasio": {"en": "the gym", "pron": "el him-NA-syo", "cat": "noun", "genero": "m"},
-    "lo suficiente": {"en": "enough", "pron": "lo su-fi-SYEN-te (seseo) / su-fi-THYEN-te (distinción)", "cat": "expression"},
-    "desayunar": {"en": "to have breakfast", "pron": "de-sa-yu-NAR", "cat": "verb"},
-    "cansado/a": {"en": "tired", "pron": "kan-SA-do / kan-SA-da", "cat": "adjective"}
+    "sano/a": {
+      "$f": "p.sano/a",
+      "pron": "SA-no / SA-na",
+      "cat": "adj"
+    },
+    "la salud": {
+      "$f": "p.la salud",
+      "pron": "la sa-LUD",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "hacer ejercicio": {
+      "$f": "p.hacer ejercicio",
+      "pron": "a-SER e-her-SI-syo (seseo) / a-THER e-her-THI-thyo (distinción)",
+      "cat": "expr"
+    },
+    "la dieta": {
+      "$f": "p.la dieta",
+      "pron": "la DYE-ta",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "engordar": {
+      "$f": "p.engordar",
+      "pron": "en-gor-DAR",
+      "cat": "verb"
+    },
+    "adelgazar": {
+      "$f": "p.adelgazar",
+      "pron": "a-del-ga-SAR (seseo) / a-del-ga-THAR (distinción)",
+      "cat": "verb"
+    },
+    "el estrés": {
+      "$f": "p.el estrés",
+      "pron": "el es-TRES",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "relajarse": {
+      "$f": "p.relajarse",
+      "pron": "re-la-HAR-se",
+      "cat": "verb"
+    },
+    "la alergia": {
+      "$f": "p.la alergia",
+      "pron": "la a-LER-hya",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "es bueno": {
+      "$f": "p.es bueno",
+      "pron": "es BWE-no",
+      "cat": "expr"
+    },
+    "es malo": {
+      "$f": "p.es malo",
+      "pron": "es MA-lo",
+      "cat": "expr"
+    },
+    "debes": {
+      "$f": "p.debes",
+      "pron": "DE-bes",
+      "cat": "verb"
+    },
+    "lo mejor es": {
+      "$f": "p.lo mejor es",
+      "pron": "lo me-HOR es",
+      "cat": "expr"
+    },
+    "dejar de fumar": {
+      "$f": "p.dejar de fumar",
+      "pron": "de-HAR de fu-MAR",
+      "cat": "expr"
+    },
+    "el azúcar": {
+      "$f": "p.el azúcar",
+      "pron": "el a-SU-kar (seseo) / a-THU-kar (distinción)",
+      "cat": "sust",
+      "genero": "m",
+      "nota": {
+        "$t": "p.el azúcar.nota"
+      }
+    },
+    "la grasa": {
+      "$f": "p.la grasa",
+      "pron": "la GRA-sa",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "el agua": {
+      "$f": "p.el agua",
+      "pron": "el A-gwa",
+      "cat": "sust",
+      "genero": "f",
+      "nota": {
+        "$t": "p.el agua.nota"
+      }
+    },
+    "el café": {
+      "$f": "p.el café",
+      "pron": "el ka-FE",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "dormir": {
+      "$f": "p.dormir",
+      "pron": "dor-MIR",
+      "cat": "verb"
+    },
+    "la fruta": {
+      "$f": "p.la fruta",
+      "pron": "la FRU-ta",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "el gimnasio": {
+      "$f": "p.el gimnasio",
+      "pron": "el him-NA-syo",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "lo suficiente": {
+      "$f": "p.lo suficiente",
+      "pron": "lo su-fi-SYEN-te (seseo) / su-fi-THYEN-te (distinción)",
+      "cat": "expr"
+    },
+    "desayunar": {
+      "$f": "p.desayunar",
+      "pron": "de-sa-yu-NAR",
+      "cat": "verb"
+    },
+    "cansado/a": {
+      "$f": "p.cansado/a",
+      "pron": "kan-SA-do / kan-SA-da",
+      "cat": "adj"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Advice"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "Several ways to give advice use an **infinitive**:\n\n- **Tienes que** hacer más ejercicio. (You have to.)\n- **Debes** comer menos azúcar y menos grasa. (You should.)\n- **Hay que** dormir **lo suficiente**. (General necessity.)\n- **Es bueno** relajarse. **Es malo** fumar. **Es importante** desayunar.\n- **Lo mejor es** beber agua. **Debes dejar de fumar.**\n\n**¿Por qué no + present tense?** makes a suggestion: **¿Por qué no vienes al gimnasio?** Unlike the patterns above, the verb is conjugated.\n\nKeep two negatives distinct: **No tienes que** correr means you are not required to run; **no debes** fumar advises against it or forbids it, depending on context.\n\nYou can also use a tú command: **come** más fruta, **bebe** agua, **duerme** más, **no fumes**. Words for the topic: **llevar una vida sana**, **estar a dieta**, **tener alergia a**, **engordar**, **adelgazar**. **Agua** is feminine: **el agua**, but **mucha agua**."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Always tired"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Pablo",
-          "es": "Estoy siempre cansado y duermo poco.",
-          "en": "I'm always tired and I don't sleep much.",
-          "analisis": [["Estoy", "verb"], ["siempre", "frequency"], ["cansado", "description"], ["duermo poco", "sleep" ]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Tienes que hacer más ejercicio. ¿Tienes mucho estrés?",
-          "en": "You have to exercise more. Are you very stressed?",
-          "analisis": [["Tienes que hacer", "verb"], ["más ejercicio", "object"], ["¿Tienes", "verb"], ["mucho estrés", "state"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Sí, tengo mucho estrés.",
-          "en": "Yes, I'm under a lot of stress.",
-          "analisis": [["tengo", "verb"], ["mucho estrés", "state"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Es bueno relajarse antes de dormir. Y debes comer menos azúcar.",
-          "en": "It's good to relax before going to sleep. And you should eat less sugar.",
           "analisis": [
-            ["Es bueno", "judgement"],
-            ["relajarse", "infinitive"],
-            ["antes de dormir", "time"],
-            ["debes comer", "verb"],
-            ["menos azúcar", "object"]
+            [
+              "Estoy",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "siempre",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "cansado",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "duermo poco",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
-        {"quien": "Pablo", "es": "¿Y el café?", "en": "And coffee?", "analisis": [["el café", "subject"]]},
         {
+          "$f": "b2.f1",
           "quien": "Lucía",
-          "es": "Lo mejor es beber agua. ¿Por qué no vienes conmigo al gimnasio?",
-          "en": "The best thing is to drink water. Why don't you come to the gym with me?",
           "analisis": [
-            ["Lo mejor es", "judgement"],
-            ["beber agua", "infinitive"],
-            ["¿Por qué no", "suggestion"],
-            ["vienes", "verb"],
-            ["conmigo", "with me"],
-            ["al gimnasio", "place"]
+            [
+              "Tienes que hacer",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "más ejercicio",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "¿Tienes",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "mucho estrés",
+              {
+                "$t": "a5"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f2",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "tengo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "mucho estrés",
+              {
+                "$t": "a5"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f3",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Es bueno",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "relajarse",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "antes de dormir",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "debes comer",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "menos azúcar",
+              {
+                "$t": "a4"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f4",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "el café",
+              {
+                "$t": "a9"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Lo mejor es",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "beber agua",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "¿Por qué no",
+              {
+                "$t": "a10"
+              }
+            ],
+            [
+              "vienes",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "conmigo",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "al gimnasio",
+              {
+                "$t": "a12"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "vida-sana-1",
-      "pregunta": {"en": "Complete: it's good to drink water."},
-      "frase": "Es bueno ___ agua.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "beber": {"en": "After es bueno, the infinitive."},
-        "bebe": {"en": "Bebe is a command or the él form."},
-        "bebes": {"en": "After es bueno, the infinitive."}
+        "beber": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "bebe": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "bebes": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "beber"
     },
     {
       "tipo": "huecos",
       "id": "vida-sana-2",
-      "pregunta": {"en": "Complete the general advice: people need to sleep enough."},
-      "frase": "___ que dormir lo suficiente.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "Hay": {"en": "Hay que expresses a general necessity."},
-        "Debes": {"en": "Deber takes no que."},
-        "Es": {"en": "The phrase is hay que."}
+        "Hay": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "Debes": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "Es": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "Hay"
     },
     {
       "tipo": "huecos",
       "id": "vida-sana-3",
-      "pregunta": {"en": "Complete: you should eat less."},
-      "frase": "Debes ___ menos.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "comer": {"en": "Deber plus infinitive."},
-        "comes": {"en": "After debes, the infinitive."},
-        "que comer": {"en": "Deber takes no que."}
+        "comer": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "comes": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "que comer": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "comer"
     },
     {
       "tipo": "test",
       "id": "vida-sana-4",
-      "pregunta": {"en": "Which verb means to lose weight?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "adelgazar": {"en": "From delgado, slim."},
-        "engordar": {"en": "That is to put on weight."},
-        "relajarse": {"en": "That is to relax."}
+        "adelgazar": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "engordar": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "relajarse": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "adelgazar"
     },
     {
       "tipo": "test",
       "id": "vida-sana-obligacion-1",
-      "pregunta": {"en": "Which sentence says that running is not required?"},
-      "opciones": {"No tienes que correr": {"en": "No tener que means there is no obligation."}, "No debes correr": {"en": "This advises against running or says you must not run."}, "Tienes que correr": {"en": "This expresses an obligation."}},
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "opciones": {
+        "No tienes que correr": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "No debes correr": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "Tienes que correr": {
+          "$t": "b8.o2.refuerzo"
+        }
+      },
       "correcta": "No tienes que correr"
     },
     {
       "tipo": "escribir",
       "id": "vida-sana-5",
-      "pregunta": {"en": "Translate: «You have to exercise.» (tú)"},
-      "respuestas": ["Tienes que hacer ejercicio"]
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
+      "respuestas": [
+        "Tienes que hacer ejercicio"
+      ]
     },
     {
       "tipo": "ordenar",
       "id": "vida-sana-6",
-      "frase": "Lo mejor es beber mucha agua",
-      "traduccion": {"en": "The best thing is to drink a lot of water."}
+      "frase": {
+        "$e": "b10.frase"
+      },
+      "traduccion": {
+        "$t": "b10.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write your advice for a healthy life: food, sleep, exercise and stress.\n\n**Speak (about 1 minute).** Say aloud what you do to stay healthy and what you should change."
+        "$t": "b11.texto"
       }
     }
   ]

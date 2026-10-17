@@ -1,166 +1,441 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "281",
   "capitulo": 26,
-  "titulo_es": "Des-, in-, -ción, -dad",
-  "titulo": {"en": "Building words"},
-  "intro": {"en": "Prefixes and endings that let you understand, and make, words you have never seen."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "deshacer": {"en": "to undo", "pron": "de-sa-THER", "cat": "verb"},
-    "desordenado": {"en": "untidy", "pron": "de-sor-de-NA-do", "cat": "adjective"},
-    "increíble": {"en": "incredible", "pron": "in-kre-I-ble", "cat": "adjective"},
-    "imposible": {"en": "impossible", "pron": "im-po-SI-ble", "cat": "adjective", "nota": "In- becomes im- before b and p."},
-    "rehacer": {"en": "to redo, to remake", "pron": "re-a-THER", "cat": "verb"},
-    "la felicidad": {"en": "happiness", "pron": "la fe-li-thi-DAD", "genero": "f"},
-    "la información": {"en": "information", "pron": "la in-for-ma-THYON", "genero": "f"},
-    "el conocimiento": {"en": "knowledge", "pron": "el ko-no-thi-MYEN-to", "genero": "m"},
-    "la belleza": {"en": "beauty", "pron": "la be-YE-tha", "genero": "f"},
-    "amable": {"en": "kind", "pron": "a-MA-ble", "cat": "adjective"},
-    "peligroso": {"en": "dangerous", "pron": "pe-li-GRO-so", "cat": "adjective"},
-    "trabajador": {"en": "hard-working", "pron": "tra-ba-ha-DOR", "cat": "adjective"},
-    "la panadería": {"en": "the bakery", "pron": "la pa-na-de-RI-a", "genero": "f"}
+    "deshacer": {
+      "$f": "p.deshacer",
+      "pron": "de-sa-THER",
+      "cat": "verb"
+    },
+    "desordenado": {
+      "$f": "p.desordenado",
+      "pron": "de-sor-de-NA-do",
+      "cat": "adj"
+    },
+    "increíble": {
+      "$f": "p.increíble",
+      "pron": "in-kre-I-ble",
+      "cat": "adj"
+    },
+    "imposible": {
+      "$f": "p.imposible",
+      "pron": "im-po-SI-ble",
+      "cat": "adj",
+      "nota": {
+        "$t": "p.imposible.nota"
+      }
+    },
+    "rehacer": {
+      "$f": "p.rehacer",
+      "pron": "re-a-THER",
+      "cat": "verb"
+    },
+    "la felicidad": {
+      "$f": "p.la felicidad",
+      "pron": "la fe-li-thi-DAD",
+      "genero": "f"
+    },
+    "la información": {
+      "$f": "p.la información",
+      "pron": "la in-for-ma-THYON",
+      "genero": "f"
+    },
+    "el conocimiento": {
+      "$f": "p.el conocimiento",
+      "pron": "el ko-no-thi-MYEN-to",
+      "genero": "m"
+    },
+    "la belleza": {
+      "$f": "p.la belleza",
+      "pron": "la be-YE-tha",
+      "genero": "f"
+    },
+    "amable": {
+      "$f": "p.amable",
+      "pron": "a-MA-ble",
+      "cat": "adj"
+    },
+    "peligroso": {
+      "$f": "p.peligroso",
+      "pron": "pe-li-GRO-so",
+      "cat": "adj"
+    },
+    "trabajador": {
+      "$f": "p.trabajador",
+      "pron": "tra-ba-ha-DOR",
+      "cat": "adj"
+    },
+    "la panadería": {
+      "$f": "p.la panadería",
+      "pron": "la pa-na-de-RI-a",
+      "genero": "f"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Prefixes and endings"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "**Prefixes** change the meaning.\n\n- **des-** undoes or reverses: hacer → **des**hacer, ordenado → **des**ordenado, conocido → **des**conocido\n- **in-, im-, i-** means not: útil → **in**útil, posible → **im**posible, legal → **i**legal\n- **re-** means again: hacer → **re**hacer, leer → **re**leer\n\n**Endings** change the kind of word.\n\n- nouns: informar → la informa**ción**; feliz → la felici**dad**; conocer → el conoci**miento**; bello → la bell**eza**\n- adjectives: amar → am**able**; creer → cre**íble**; peligro → peligr**oso**; trabajar → trabaja**dor**\n- shops and trades: pan → la panad**ería**, el panad**ero**\n\nThe ending also gives you the gender. **-ción, -sión, -dad, -tad, -tud** are feminine. **-miento, -aje, -or** are masculine."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "From one word to another"},
-      "columnas": ["Base", "Derived", "Pattern"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        },
+        {
+          "$t": "b2.c2"
+        }
+      ],
       "filas": [
-        ["hacer", "deshacer", "des- + verb"],
-        ["posible", "imposible", "im- before p"],
-        ["informar", "la información", "-ción, feminine"],
-        ["feliz", "la felicidad", "-dad, feminine"],
-        ["conocer", "el conocimiento", "-miento, masculine"],
-        ["peligro", "peligroso", "-oso"],
-        ["pan", "la panadería", "-ería, a shop"]
+        [
+          "hacer",
+          "deshacer",
+          "des- + verb"
+        ],
+        [
+          "posible",
+          "imposible",
+          "im- before p"
+        ],
+        [
+          "informar",
+          "la información",
+          "-ción, feminine"
+        ],
+        [
+          "feliz",
+          "la felicidad",
+          "-dad, feminine"
+        ],
+        [
+          "conocer",
+          "el conocimiento",
+          "-miento, masculine"
+        ],
+        [
+          "peligro",
+          "peligroso",
+          "-oso"
+        ],
+        [
+          "pan",
+          "la panadería",
+          "-ería, a shop"
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "An untidy room"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "Tu habitación está muy desordenada. Es increíble.",
-          "en": "Your room is very untidy. It's incredible.",
           "analisis": [
-            ["Tu habitación", "subject"],
-            ["está", "verb"],
-            ["muy desordenada", "description"],
-            ["increíble", "description"]
+            [
+              "Tu habitación",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "está",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "muy desordenada",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "increíble",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f1",
           "quien": "Pablo",
-          "es": "Es imposible ordenarla. No tengo tiempo.",
-          "en": "It's impossible to tidy it. I don't have time.",
-          "analisis": [["Es imposible", "verb"], ["ordenarla", "infinitive + la"], ["No tengo", "verb"], ["tiempo", "object"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "La felicidad empieza por una cama hecha.",
-          "en": "Happiness starts with a made bed.",
-          "analisis": [["La felicidad", "subject"], ["empieza", "verb"], ["por una cama hecha", "with what"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "¿Esa información es de un libro?",
-          "en": "Is that information from a book?",
-          "analisis": [["¿Esa información", "subject"], ["es", "verb"], ["de un libro", "origin"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Es conocimiento popular. Yo rehago la cama y tú bajas a la panadería.",
-          "en": "It's popular wisdom. I'll remake the bed and you go down to the bakery.",
           "analisis": [
-            ["Es", "verb"],
-            ["conocimiento popular", "what"],
-            ["Yo", "subject"],
-            ["rehago", "verb"],
-            ["la cama", "object"],
-            ["tú", "subject"],
-            ["bajas", "verb"],
-            ["a la panadería", "place"]
+            [
+              "Es imposible",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "ordenarla",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "No tengo",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "tiempo",
+              {
+                "$t": "a4"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f2",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "La felicidad",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "empieza",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "por una cama hecha",
+              {
+                "$t": "a5"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f3",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "¿Esa información",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "es",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "de un libro",
+              {
+                "$t": "a6"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Es",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "conocimiento popular",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "Yo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "rehago",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "la cama",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "tú",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "bajas",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "a la panadería",
+              {
+                "$t": "a8"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "test",
       "id": "formacion-1",
-      "pregunta": {"en": "What is the opposite of «posible»?"},
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
       "opciones": {
-        "imposible": {"en": "In- becomes im- before p."},
-        "inposible": {"en": "Before p the prefix is im-."},
-        "desposible": {"en": "Des- goes with verbs and participles, not with posible."}
+        "imposible": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "inposible": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "desposible": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "imposible"
     },
     {
       "tipo": "test",
       "id": "formacion-2",
-      "pregunta": {"en": "Which ending tells you a noun is feminine?"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "-ción, as in información": {"en": "Nouns in -ción are always feminine."},
-        "-miento, as in conocimiento": {"en": "Nouns in -miento are masculine."},
-        "-aje, as in viaje": {"en": "Nouns in -aje are masculine."}
+        "-ción, as in información": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "-miento, as in conocimiento": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "-aje, as in viaje": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "-ción, as in información"
     },
     {
       "tipo": "huecos",
       "id": "formacion-3",
-      "pregunta": {"en": "Complete with the noun from «feliz»."},
-      "frase": "La ___ no se compra.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "felicidad": {"en": "Feliz → felicidad: z becomes c."},
-        "felizmente": {"en": "That is the adverb: happily."},
-        "felicitación": {"en": "That is a congratulation."}
+        "felicidad": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "felizmente": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "felicitación": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "felicidad"
     },
     {
       "tipo": "test",
       "id": "formacion-4",
-      "pregunta": {"en": "Where do you buy «pan»?"},
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
       "opciones": {
-        "en la panadería": {"en": "-ería names the shop."},
-        "en el panadero": {"en": "El panadero is the baker."},
-        "en la panera": {"en": "La panera is the bread basket."}
+        "en la panadería": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "en el panadero": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "en la panera": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "en la panadería"
     },
     {
       "tipo": "huecos",
       "id": "formacion-5",
-      "pregunta": {"en": "Complete: to do something again is to…"},
-      "frase": "Hacer algo otra vez es ___.",
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
+      "frase": {
+        "$e": "b9.frase"
+      },
       "audio": true,
       "opciones": {
-        "rehacerlo": {"en": "Re- means again."},
-        "deshacerlo": {"en": "Des- undoes it."},
-        "prehacerlo": {"en": "Pre- means before, and this verb does not exist."}
+        "rehacerlo": {
+          "$t": "b9.o0.refuerzo"
+        },
+        "deshacerlo": {
+          "$t": "b9.o1.refuerzo"
+        },
+        "prehacerlo": {
+          "$t": "b9.o2.refuerzo"
+        }
       },
       "correcta": "rehacerlo"
     },
     {
       "tipo": "escribir",
       "id": "formacion-6",
-      "pregunta": {"en": "Write the opposite of «ordenado», using a prefix."},
-      "respuestas": ["desordenado"]
+      "pregunta": {
+        "$t": "b10.pregunta"
+      },
+      "respuestas": [
+        "desordenado"
+      ]
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (150–180 words).** Take ten adjectives or verbs and write the nouns and opposites formed from them, then use them in a short formal text.\n\n**Speak (about 3 minutes).** Explain aloud how five long Spanish words are built, part by part."
+        "$t": "b11.texto"
       }
     }
   ]

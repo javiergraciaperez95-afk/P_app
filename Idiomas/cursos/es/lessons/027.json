@@ -1,155 +1,131 @@
 {
+  "esquema": 2,
+  "id": "027",
   "capitulo": 3,
-  "titulo_es": "Voy al centro",
-  "titulo": {"en": "I'm going into town"},
-  "intro": {"en": "The verb ir, the little words al and del, and how you get there."},
+  "nivel": "A1",
   "palabras": {
-    "voy": {"en": "I go", "pron": "boi", "cat": "verb"},
-    "vas": {"en": "you go (tú/vos)", "pron": "bas", "cat": "verb"},
-    "va": {"en": "he/she/usted goes", "pron": "ba", "cat": "verb"},
-    "vamos": {"en": "we go, let's go", "pron": "BA-mos", "cat": "verb"},
-    "vais": {"en": "you all go (vosotros, familiar; Spain)", "pron": "bais", "cat": "verb"},
-    "van": {"en": "they/you all (ustedes) go", "pron": "ban", "cat": "verb"},
-    "adónde": {"en": "where to", "pron": "a-DON-de", "cat": "question word"},
-    "al": {
-      "en": "to the (a + el)",
-      "pron": "al",
-      "cat": "preposition",
-      "nota": "A + the masculine article el contracts to al; a + la stays separate. Do not contract when the article belongs to a proper name: a El Salvador."
-    },
-    "del": {"en": "from the, of the (de + the masculine article el)", "pron": "del", "cat": "preposition", "nota": "De + the article el contracts to del; keep them separate when el is part of a proper name: de El Salvador."},
-    "el centro": {"en": "the town/city centre", "pron": "el THEN-tro (Spain); el SEN-tro (seseo)", "genero": "m"},
-    "la casa": {"en": "the house/home", "pron": "la KA-sa", "genero": "f"},
-    "la playa": {"en": "the beach", "pron": "la PLA-ya", "genero": "f"},
-    "el metro": {"en": "the underground", "pron": "el ME-tro", "genero": "m"},
-    "el autobús": {"en": "the bus", "pron": "el au-to-BUS", "genero": "m"},
-    "en tren": {"en": "by train", "pron": "en TREN", "cat": "expression"},
-    "en bici": {"en": "by bike (short for en bicicleta)", "pron": "en BI-thi (Spain); en BI-si (seseo)", "cat": "expression"},
-    "en coche": {"en": "by car", "pron": "en KO-che", "cat": "expression"},
-    "a pie": {
-      "en": "on foot",
-      "pron": "a pye",
-      "cat": "expression",
-      "nota": "Say a pie, but use en + transport in phrases such as en metro or en coche."
-    },
-    "vengo": {"en": "I come", "pron": "BEN-go", "cat": "verb"},
-    "vienes": {"en": "you come", "pron": "BYE-nes", "cat": "verb"},
-    "contigo": {"en": "with you", "pron": "kon-TI-go", "cat": "pronoun"}
+    "voy": { "pron": "boy", "cat": "verb" },
+    "vas": { "pron": "bas", "cat": "verb" },
+    "va": { "pron": "ba", "cat": "verb" },
+    "vamos": { "pron": "BA-mos", "cat": "verb" },
+    "van": { "pron": "ban", "cat": "verb" },
+    "adónde": { "pron": "a-DON-de", "cat": "adv" },
+    "al": { "pron": "al", "cat": "expr" },
+    "del": { "pron": "del", "cat": "expr" },
+    "el centro": { "pron": "el THEN-tro", "cat": "sust", "genero": "m" },
+    "la playa": { "pron": "la PLA-ya", "cat": "sust", "genero": "f" },
+    "en metro": { "pron": "en ME-tro", "cat": "expr" },
+    "a pie": { "pron": "a PYE", "cat": "expr" }
   },
   "bloques": [
+    { "id": "b1", "tipo": "explicacion" },
     {
-      "tipo": "explicacion",
-      "titulo": {"en": "Ir, and how to get there"},
-      "texto": {
-        "en": "**Ir** is irregular: voy, vas, va, vamos, vais, van. Some speakers use **vos**; for example, **vos vas**. For a destination, use **a**: voy **a** casa, voy **a la** playa. Before the masculine article **el**, **a + el = al** and **de + el = del**: voy **al** centro, vengo **del** centro. Keep the article separate inside a proper name: **a El Salvador**.\n\nFor these transport phrases, use **en**: en metro, en autobús, en coche, en tren, en bici. Say **a pie** for walking.\n\n**Venir** is vengo, vienes, viene, venimos, venís, vienen; in voseo areas, **vos venís** is also used. **Ir** describes going from the current place toward a destination. **Venir** describes movement toward the speaker, listener or a place treated as the reference point. In this dialogue, Lucía is leaving her location to go to Pablo's destination, so she says **Sí, voy**; English often says “I'm coming.”"
-      }
-    },
-    {
+      "id": "b2",
       "tipo": "dialogo",
-      "titulo": {"en": "Into town"},
       "frases": [
-        {
-          "quien": "Lucía",
-          "es": "¿Adónde vas?",
-          "en": "Where are you going?",
-          "analisis": [["¿Adónde", "question"], ["vas", "verb"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Voy al centro. ¿Vienes?",
-          "en": "I'm going to the centre. Are you coming?",
-          "analisis": [["Voy", "verb"], ["al centro", "place"], ["¿Vienes?", "verb"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Sí, voy contigo. ¿Cómo vamos?",
-          "en": "Yes, I'm coming with you. How are we getting there?",
-          "analisis": [["voy", "verb"], ["contigo", "with you"], ["¿Cómo", "question"], ["vamos", "verb"]],
-          "nota": "Here Lucía says voy from her current location toward Pablo's destination, even though English often says “I'm coming”."
-        },
-        {
-          "quien": "Pablo",
-          "es": "En metro. El autobús va muy lento.",
-          "en": "By underground. The bus goes very slowly.",
-          "analisis": [["En metro", "how"], ["El autobús", "subject"], ["va", "verb"], ["muy lento", "how"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Yo siempre voy a pie.",
-          "en": "I always go on foot.",
-          "analisis": [["Yo", "subject"], ["siempre", "time"], ["voy", "verb"], ["a pie", "how"]]
-        }
+        { "quien": "Lucía", "sintaxis": { "oracion": "bimembre", "sujeto": "omitido", "unidades": [
+          { "funcion": "PRED", "texto": "Adónde vas", "nucleo": "vas", "partes": [
+            { "funcion": "CCL", "texto": "Adónde", "nucleo": "Adónde" },
+            { "funcion": "V", "texto": "vas", "nucleo": "vas" } ] } ] } },
+        { "quien": "Pablo", "sintaxis": { "oracion": "bimembre", "sujeto": "omitido", "unidades": [
+          { "funcion": "PRED", "texto": "Voy al centro", "nucleo": "Voy", "partes": [
+            { "funcion": "V", "texto": "Voy", "nucleo": "Voy" },
+            { "funcion": "CCL", "texto": "al centro", "nucleo": "centro" } ] } ] } },
+        { "quien": "Lucía", "sintaxis": { "oracion": "bimembre", "sujeto": "omitido", "unidades": [
+          { "funcion": "PRED", "texto": "Cómo vamos", "nucleo": "vamos", "partes": [
+            { "funcion": "CCM", "texto": "Cómo", "nucleo": "Cómo" },
+            { "funcion": "V", "texto": "vamos", "nucleo": "vamos" } ] } ] } },
+        { "quien": "Pablo", "sintaxis": { "oracion": "unimembre", "unidades": [
+          { "funcion": "CCM", "texto": "En metro", "nucleo": "metro" } ] } },
+        { "quien": "Lucía", "sintaxis": { "oracion": "bimembre", "sujeto": "expreso", "unidades": [
+          { "funcion": "SUJ", "texto": "Yo", "nucleo": "Yo" },
+          { "funcion": "PRED", "texto": "siempre voy a pie", "nucleo": "voy", "partes": [
+            { "funcion": "CCM", "texto": "siempre", "nucleo": "siempre" },
+            { "funcion": "V", "texto": "voy", "nucleo": "voy" },
+            { "funcion": "CCM", "texto": "a pie", "nucleo": "pie" } ] } ] } }
       ]
     },
-    {"tipo": "vocabulario"},
     {
-      "tipo": "huecos",
-      "id": "ir-centro-1",
-      "pregunta": {"en": "Complete: I'm going to the town centre."},
-      "frase": "Voy ___ centro.",
-      "audio": true,
-      "opciones": {
-        "al": {"en": "A and el join into al."},
-        "a el": {"en": "With the article here, write al rather than a el."},
-        "a la": {"en": "Centro is masculine."}
-      },
-      "correcta": "al"
+      "id": "b3",
+      "tipo": "vocabulario",
+      "palabras": ["voy", "vas", "va", "vamos", "van", "adónde", "al", "del", "el centro", "la playa", "en metro", "a pie"]
     },
     {
-      "tipo": "huecos",
-      "id": "ir-centro-2",
-      "pregunta": {"en": "Complete: we go by car."},
-      "frase": "Vamos ___ coche.",
-      "audio": true,
-      "opciones": {
-        "en": {"en": "For this transport phrase, use en coche."},
-        "a": {"en": "Use en coche; a pie is the fixed phrase for walking."},
-        "de": {"en": "De coche is not the usual phrase for travelling by car."}
-      },
-      "correcta": "en"
+      "id": "b4",
+      "tipo": "gramatica",
+      "ejemplos": [
+        { "sintaxis": { "oracion": "bimembre", "sujeto": "omitido", "unidades": [
+          { "funcion": "PRED", "texto": "Voy al centro", "nucleo": "Voy", "partes": [
+            { "funcion": "V", "texto": "Voy", "nucleo": "Voy" },
+            { "funcion": "CCL", "texto": "al centro", "nucleo": "centro" } ] } ] } },
+        { "sintaxis": { "oracion": "bimembre", "sujeto": "omitido", "unidades": [
+          { "funcion": "PRED", "texto": "Vamos en metro", "nucleo": "Vamos", "partes": [
+            { "funcion": "V", "texto": "Vamos", "nucleo": "Vamos" },
+            { "funcion": "CCM", "texto": "en metro", "nucleo": "metro" } ] } ] } }
+      ]
     },
     {
-      "tipo": "huecos",
-      "id": "ir-centro-del",
-      "pregunta": {"en": "Complete: I come from the town centre."},
-      "frase": "Vengo ___ centro.",
-      "audio": true,
-      "opciones": {
-        "del": {"en": "De + the article el contracts to del."},
-        "de el": {"en": "The article el contracts after de."},
-        "al": {"en": "Al means to the, not from the."}
-      },
-      "correcta": "del"
+      "id": "b5",
+      "tipo": "texto",
+      "registro": "literario",
+      "frases": [
+        { "parrafo": 0, "sintaxis": { "oracion": "bimembre", "sujeto": "expreso", "unidades": [
+          { "funcion": "SUJ", "texto": "Lucía y Pablo", "nucleo": "Lucía", "partes": [
+            { "funcion": "N", "texto": "Lucía" },
+            { "funcion": "CONJ", "texto": "y" },
+            { "funcion": "N", "texto": "Pablo" } ] },
+          { "funcion": "PRED", "texto": "van al centro el sábado", "nucleo": "van", "partes": [
+            { "funcion": "V", "texto": "van", "nucleo": "van" },
+            { "funcion": "CCL", "texto": "al centro", "nucleo": "centro" },
+            { "funcion": "CCT", "texto": "el sábado", "nucleo": "sábado" } ] } ] } },
+        { "parrafo": 0, "sintaxis": { "oracion": "bimembre", "sujeto": "omitido", "unidades": [
+          { "funcion": "PRED", "texto": "Van en metro porque el autobús es lento", "nucleo": "Van", "partes": [
+            { "funcion": "V", "texto": "Van", "nucleo": "Van" },
+            { "funcion": "CCM", "texto": "en metro", "nucleo": "metro" },
+            { "funcion": "CCC", "texto": "porque el autobús es lento", "nucleo": "es", "partes": [
+              { "funcion": "CONJ", "texto": "porque" },
+              { "funcion": "DET", "texto": "el" },
+              { "funcion": "N", "texto": "autobús" },
+              { "funcion": "V", "texto": "es", "nucleo": "es" },
+              { "funcion": "ATRIB", "texto": "lento", "nucleo": "lento" } ] } ] } ] } },
+        { "parrafo": 0, "sintaxis": { "oracion": "bimembre", "sujeto": "expreso", "unidades": [
+          { "funcion": "SUJ", "texto": "El centro", "nucleo": "centro", "partes": [
+            { "funcion": "DET", "texto": "El" },
+            { "funcion": "N", "texto": "centro" } ] },
+          { "funcion": "PRED", "texto": "está cerca de la playa", "nucleo": "está", "partes": [
+            { "funcion": "V", "texto": "está", "nucleo": "está" },
+            { "funcion": "CCL", "texto": "cerca de la playa", "nucleo": "playa" } ] } ] } },
+        { "parrafo": 0, "sintaxis": { "oracion": "bimembre", "sujeto": "omitido", "unidades": [
+          { "funcion": "PRED", "texto": "Allí hay muchas tiendas y cafeterías", "nucleo": "hay", "partes": [
+            { "funcion": "CCL", "texto": "Allí", "nucleo": "Allí" },
+            { "funcion": "V", "texto": "hay", "nucleo": "hay" },
+            { "funcion": "CD", "texto": "muchas tiendas y cafeterías", "nucleo": "tiendas" } ] } ] } },
+        { "parrafo": 1, "sintaxis": { "oracion": "bimembre", "sujeto": "expreso", "unidades": [
+          { "funcion": "SUJ", "texto": "Lucía", "nucleo": "Lucía" },
+          { "funcion": "PRED", "texto": "quiere comprar un regalo", "nucleo": "quiere", "partes": [
+            { "funcion": "V", "texto": "quiere comprar", "nucleo": "quiere" },
+            { "funcion": "CD", "texto": "un regalo", "nucleo": "regalo" } ] } ] } },
+        { "parrafo": 1, "sintaxis": { "oracion": "bimembre", "sujeto": "expreso", "unidades": [
+          { "funcion": "SUJ", "texto": "Pablo", "nucleo": "Pablo" },
+          { "funcion": "PRED", "texto": "busca un libro en la librería", "nucleo": "busca", "partes": [
+            { "funcion": "V", "texto": "busca", "nucleo": "busca" },
+            { "funcion": "CD", "texto": "un libro", "nucleo": "libro" },
+            { "funcion": "CCL", "texto": "en la librería", "nucleo": "librería" } ] } ] } },
+        { "parrafo": 1, "sintaxis": { "oracion": "bimembre", "sujeto": "omitido", "unidades": [
+          { "funcion": "PRED", "texto": "Toman un café con leche después", "nucleo": "Toman", "partes": [
+            { "funcion": "V", "texto": "Toman", "nucleo": "Toman" },
+            { "funcion": "CD", "texto": "un café con leche", "nucleo": "café" },
+            { "funcion": "CCT", "texto": "después", "nucleo": "después" } ] } ] } },
+        { "parrafo": 1, "sintaxis": { "oracion": "bimembre", "sujeto": "omitido", "unidades": [
+          { "funcion": "PRED", "texto": "Vuelven a casa a las seis y media", "nucleo": "Vuelven", "partes": [
+            { "funcion": "V", "texto": "Vuelven", "nucleo": "Vuelven" },
+            { "funcion": "CCL", "texto": "a casa", "nucleo": "casa" },
+            { "funcion": "CCT", "texto": "a las seis y media", "nucleo": "seis" } ] } ] } }
+      ]
     },
-    {
-      "tipo": "test",
-      "id": "ir-centro-3",
-      "pregunta": {"en": "Complete with the first-person form of ir: «___ al centro»."},
-      "opciones": {
-        "Voy": {"en": "Voy is the first-person singular of ir."},
-        "Vengo": {"en": "Vengo is the first-person singular of venir."},
-        "Vas": {"en": "Vas is the familiar second-person form of ir."}
-      },
-      "correcta": "Voy"
-    },
-    {
-      "tipo": "escribir",
-      "id": "ir-centro-4",
-      "pregunta": {"en": "Translate: «I go on foot.»"},
-      "respuestas": ["Voy a pie", "Yo voy a pie"]
-    },
-    {
-      "tipo": "ordenar",
-      "id": "ir-centro-5",
-      "frase": "El autobús va al centro",
-      "traduccion": {"en": "The bus goes to the centre."}
-    },
-    {
-      "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
-      "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Write how you go to five places you visit every week: on foot, by bus, by car…\n\n**Speak (about 30 seconds).** Explain aloud how you get from home to work or school, step by step."
-      }
-    }
+    { "id": "b6", "tipo": "test", "opciones": [{ "correcta": true }, { "correcta": false }, { "correcta": false }] },
+    { "id": "b7", "tipo": "huecos", "opciones": [{ "correcta": true }, { "correcta": false }, { "correcta": false }] },
+    { "id": "b8", "tipo": "ordenar" },
+    { "id": "b9", "tipo": "escribir", "respuestas": ["Voy al centro a pie"] }
   ]
 }

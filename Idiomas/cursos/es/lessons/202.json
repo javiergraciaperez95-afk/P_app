@@ -1,129 +1,271 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "202",
   "capitulo": 19,
-  "titulo_es": "Quería que vinieras",
-  "titulo": { "en": "I wanted you to come" },
-  "intro": { "en": "A wish in the past uses the imperfect subjunctive." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "quería": { "en": "I wanted, he/she wanted", "pron": "ke-RI-a", "cat": "verb" },
-    "vinieras": { "en": "you came (past subjunctive)", "pron": "bi-NYE-ras", "cat": "verb" },
-    "hablaras": { "en": "you spoke (past subjunctive)", "pron": "a-BLA-ras", "cat": "verb" },
-    "pidió": { "en": "he/she asked, requested", "pron": "pi-DYO", "cat": "verb" },
-    "llamara": { "en": "I/he/she called (past subjunctive)", "pron": "ya-MA-ra", "cat": "verb" },
-    "que": { "en": "that", "pron": "ke", "cat": "conjunction" },
-    "ayer": { "en": "yesterday", "pron": "a-YER", "cat": "adverb" }
+    "quería": {
+      "$f": "p.quería",
+      "pron": "ke-RI-a",
+      "cat": "verb"
+    },
+    "vinieras": {
+      "$f": "p.vinieras",
+      "pron": "bi-NYE-ras",
+      "cat": "verb"
+    },
+    "hablaras": {
+      "$f": "p.hablaras",
+      "pron": "a-BLA-ras",
+      "cat": "verb"
+    },
+    "pidió": {
+      "$f": "p.pidió",
+      "pron": "pi-DYO",
+      "cat": "verb"
+    },
+    "llamara": {
+      "$f": "p.llamara",
+      "pron": "ya-MA-ra",
+      "cat": "verb"
+    },
+    "que": {
+      "$f": "p.que",
+      "pron": "ke",
+      "cat": "conj"
+    },
+    "ayer": {
+      "$f": "p.ayer",
+      "pron": "a-YER",
+      "cat": "adv"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "The wish was in the past",
-      "texto": "Present wish: quiero que **vengas**.\n\nPast wish: quería que **vinieras**.\n\nTake the **ellos** form of the indefinido, drop **-ron**, add **-ra**: hablaron → habla**ra**, vinieron → vinie**ra**, pidieron → pidie**ra**.\n\nMe **pidió que llamara**. The request was in the past, so the second verb is past too."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "dialogo",
-      "titulo": "Yesterday's plan",
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "Quería que vinieras ayer.",
-          "en": "I wanted you to come yesterday.",
           "analisis": [
-            ["Quería", "I wanted"],
-            ["que vinieras", "that you came"],
-            ["ayer", "yesterday"]
+            [
+              "Quería",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "que vinieras",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "ayer",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Quería venir, pero trabajé.",
-          "en": "I wanted to come, but I worked.",
-          "nota": "Same person: infinitive, even in the past. Quería venir.",
+          "nota": {
+            "$t": "b2.f1.nota"
+          },
           "analisis": [
-            ["Quería venir", "I wanted to come"],
-            ["pero trabajé", "but I worked"]
+            [
+              "Quería venir",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "pero trabajé",
+              {
+                "$t": "a4"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "Ana me pidió que llamara.",
-          "en": "Ana asked me to call.",
           "analisis": [
-            ["Ana", "subject"],
-            ["me pidió", "asked me"],
-            ["que llamara", "that I called"]
+            [
+              "Ana",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "me pidió",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "que llamara",
+              {
+                "$t": "a7"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "Quería que hablaras con ella.",
-          "en": "I wanted you to speak with her.",
           "analisis": [
-            ["Quería", "I wanted"],
-            ["que hablaras", "that you spoke"],
-            ["con ella", "with her"]
+            [
+              "Quería",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "que hablaras",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "con ella",
+              {
+                "$t": "a9"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["quería", "vinieras", "hablaras", "pidió", "llamara", "que", "ayer"]
+      "palabras": [
+        "quería",
+        "vinieras",
+        "hablaras",
+        "pidió",
+        "llamara",
+        "que",
+        "ayer"
+      ]
     },
     {
       "tipo": "huecos",
       "id": "b2-imp-vinieras",
-      "pregunta": { "en": "Complete: I wanted you to come." },
-      "frase": "Quería que ___ ayer.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "vinieras": { "en": "A past wish about tú uses the imperfect subjunctive." },
-        "vengas": { "en": "Vengas is the present subjunctive: quiero que vengas." },
-        "vienes": { "en": "Vienes is the ordinary present." }
+        "vinieras": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "vengas": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "vienes": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "vinieras"
     },
     {
       "tipo": "ordenar",
       "id": "b2-imp-pidio",
-      "frase": "Ana me pidió que llamara",
-      "traduccion": { "en": "Ana asked me to call." }
+      "frase": {
+        "$e": "b5.frase"
+      },
+      "traduccion": {
+        "$t": "b5.traduccion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "b2-impsub-m1",
-      "pregunta": {"en": "Complete: Ana asked me to call."},
-      "frase": "Ana me pidió que ___.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "llamara": {"en": "A past request takes the past subjunctive."},
-        "llame": {"en": "Llame follows a present: me pide que llame."},
-        "llamé": {"en": "Llamé is the indicative."}
+        "llamara": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "llame": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "llamé": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "llamara"
     },
     {
       "tipo": "huecos",
       "id": "b2-impsub-m2",
-      "pregunta": {"en": "Complete, same person: I wanted to come."},
-      "frase": "Quería ___.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "venir": {"en": "One subject: infinitive."},
-        "que viniera": {"en": "That would be about someone else."},
-        "vinieras": {"en": "Without que, the infinitive."}
+        "venir": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "que viniera": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "vinieras": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "venir"
     },
     {
       "tipo": "escribir",
       "id": "b2-impsub-m3",
-      "pregunta": {"en": "Translate: «I wanted you to come.» (tú)"},
-      "respuestas": ["Quería que vinieras", "Quería que vinieses"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "Quería que vinieras",
+        "Quería que vinieses"
+      ]
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (150–180 words).** Write about what your parents and teachers wanted, asked or forbade you to do when you were a child.\n\n**Speak (about 3 minutes).** Tell aloud about a job or a course in which you were asked to do things you did not expect."
+        "$t": "b9.texto"
       }
     }
   ]

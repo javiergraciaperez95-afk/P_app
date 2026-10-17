@@ -1,207 +1,553 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "278",
   "capitulo": 25,
-  "titulo_es": "Más allá de las nubes",
-  "titulo": {"en": "Beyond the clouds"},
+  "titulo": {
+    "$t": "titulo"
+  },
   "intro": {
-    "en": "The solar system, the night sky and space exploration, plus the horoscope that everyone reads and nobody believes."
+    "$t": "intro"
   },
   "palabras": {
-    "el universo": {"en": "the universe", "pron": "el u-ni-BER-so", "genero": "m"},
-    "la galaxia": {"en": "the galaxy", "pron": "la ga-LAK-sya", "genero": "f"},
-    "el planeta": {"en": "the planet", "pron": "el pla-NE-ta", "genero": "m", "nota": "Masculine, although it ends in -a."},
-    "la estrella": {"en": "the star", "pron": "la es-TRE-ya", "genero": "f"},
-    "el cometa": {"en": "the comet", "pron": "el ko-ME-ta", "genero": "m"},
-    "la constelación": {"en": "the constellation", "pron": "la kons-te-la-THYON", "genero": "f"},
-    "el eclipse": {"en": "the eclipse", "pron": "el e-KLIP-se", "genero": "m"},
-    "la luna llena": {"en": "the full moon", "pron": "la LU-na YE-na", "genero": "f"},
-    "la órbita": {"en": "the orbit", "pron": "la OR-bi-ta", "genero": "f"},
-    "girar": {"en": "to turn, to revolve", "pron": "hi-RAR", "cat": "verb"},
-    "brillar": {"en": "to shine", "pron": "bri-YAR", "cat": "verb"},
-    "el amanecer": {"en": "dawn, sunrise", "pron": "el a-ma-ne-THER", "genero": "m"},
-    "el atardecer": {"en": "dusk, sunset", "pron": "el a-tar-de-THER", "genero": "m"},
-    "ponerse el sol": {"en": "to set (the sun)", "pron": "po-NER-se el sol", "cat": "expression"},
-    "el telescopio": {"en": "the telescope", "pron": "el te-les-KO-pyo", "genero": "m"},
-    "la nave espacial": {"en": "the spaceship", "pron": "la NA-be es-pa-THYAL", "genero": "f"},
-    "el lanzamiento": {"en": "the launch", "pron": "el lan-tha-MYEN-to", "genero": "m"},
-    "la gravedad": {"en": "gravity", "pron": "la gra-be-DAD", "genero": "f"},
-    "el signo del zodiaco": {"en": "the star sign", "pron": "el SIG-no del tho-DYA-ko", "genero": "m"},
-    "el horóscopo": {"en": "the horoscope", "pron": "el o-ROS-ko-po", "genero": "m"},
-    "el año luz": {"en": "the light year", "pron": "el A-nyo luth", "genero": "m"}
+    "el universo": {
+      "$f": "p.el universo",
+      "pron": "el u-ni-BER-so",
+      "genero": "m"
+    },
+    "la galaxia": {
+      "$f": "p.la galaxia",
+      "pron": "la ga-LAK-sya",
+      "genero": "f"
+    },
+    "el planeta": {
+      "$f": "p.el planeta",
+      "pron": "el pla-NE-ta",
+      "genero": "m",
+      "nota": {
+        "$t": "p.el planeta.nota"
+      }
+    },
+    "la estrella": {
+      "$f": "p.la estrella",
+      "pron": "la es-TRE-ya",
+      "genero": "f"
+    },
+    "el cometa": {
+      "$f": "p.el cometa",
+      "pron": "el ko-ME-ta",
+      "genero": "m"
+    },
+    "la constelación": {
+      "$f": "p.la constelación",
+      "pron": "la kons-te-la-THYON",
+      "genero": "f"
+    },
+    "el eclipse": {
+      "$f": "p.el eclipse",
+      "pron": "el e-KLIP-se",
+      "genero": "m"
+    },
+    "la luna llena": {
+      "$f": "p.la luna llena",
+      "pron": "la LU-na YE-na",
+      "genero": "f"
+    },
+    "la órbita": {
+      "$f": "p.la órbita",
+      "pron": "la OR-bi-ta",
+      "genero": "f"
+    },
+    "girar": {
+      "$f": "p.girar",
+      "pron": "hi-RAR",
+      "cat": "verb"
+    },
+    "brillar": {
+      "$f": "p.brillar",
+      "pron": "bri-YAR",
+      "cat": "verb"
+    },
+    "el amanecer": {
+      "$f": "p.el amanecer",
+      "pron": "el a-ma-ne-THER",
+      "genero": "m"
+    },
+    "el atardecer": {
+      "$f": "p.el atardecer",
+      "pron": "el a-tar-de-THER",
+      "genero": "m"
+    },
+    "ponerse el sol": {
+      "$f": "p.ponerse el sol",
+      "pron": "po-NER-se el sol",
+      "cat": "expr"
+    },
+    "el telescopio": {
+      "$f": "p.el telescopio",
+      "pron": "el te-les-KO-pyo",
+      "genero": "m"
+    },
+    "la nave espacial": {
+      "$f": "p.la nave espacial",
+      "pron": "la NA-be es-pa-THYAL",
+      "genero": "f"
+    },
+    "el lanzamiento": {
+      "$f": "p.el lanzamiento",
+      "pron": "el lan-tha-MYEN-to",
+      "genero": "m"
+    },
+    "la gravedad": {
+      "$f": "p.la gravedad",
+      "pron": "la gra-be-DAD",
+      "genero": "f"
+    },
+    "el signo del zodiaco": {
+      "$f": "p.el signo del zodiaco",
+      "pron": "el SIG-no del tho-DYA-ko",
+      "genero": "m"
+    },
+    "el horóscopo": {
+      "$f": "p.el horóscopo",
+      "pron": "el o-ROS-ko-po",
+      "genero": "m"
+    },
+    "el año luz": {
+      "$f": "p.el año luz",
+      "pron": "el A-nyo luth",
+      "genero": "m"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "The sky in Spanish"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "**What is up there.** **El universo** contains **galaxias**; ours is **la Vía Láctea**. **El sistema solar** has eight **planetas**: Mercurio, Venus, **la Tierra**, Marte, Júpiter, Saturno, Urano and Neptuno. Note the capital: **la Tierra** is the planet, **la tierra** is soil or land.\n\n**Movement.** La Tierra **gira alrededor del** Sol y **sobre sí misma**. La Luna **está en órbita**. Las estrellas **brillan**.\n\n**The Sun.** **El sol sale** and **se pone**. The moments: **el amanecer** and **el atardecer**; **al amanecer**, **al anochecer**. These are infinitives used as nouns, and also verbs: **amanece** a las siete.\n\n**The Moon.** **Luna llena**, **luna nueva**, **cuarto creciente**, **cuarto menguante**. **Un eclipse de sol** or **de luna**, **total** or **parcial**.\n\n**The night sky.** **Una constelación**, like **la Osa Mayor**. **Una estrella fugaz** (a shooting star). **Un cometa**. Distances are measured in **años luz**.\n\n**Exploration.** **Un astrónomo** uses **un telescopio**. **Un astronauta** travels in **una nave espacial** after **el lanzamiento** of **un cohete**. **Una estación espacial.** **Un satélite.** **La gravedad.**\n\n**Astrology.** Not the same as **la astronomía**. **¿De qué signo eres? Soy** leo. The signs take no capital when they describe a person: **es** capricornio.\n\n**Idioms.** **Estar en la luna** (to be miles away). **Pedir la luna** (to ask for the impossible). **Ver las estrellas** (to see stars, with pain). **Nacer con estrella** (to be born lucky)."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "texto",
-      "titulo": {"en": "A total eclipse"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
-          "es": "El 12 de agosto de 2026, por primera vez en más de un siglo, un eclipse total de sol pudo verse desde la península ibérica.",
-          "en": "On 12 August 2026, for the first time in more than a century, a total eclipse of the sun could be seen from the Iberian Peninsula.",
+          "$f": "b2.f0",
           "analisis": [
-            ["El 12 de agosto de 2026", "time"],
-            ["por primera vez en más de un siglo", "time"],
-            ["un eclipse total de sol", "subject"],
-            ["pudo verse", "verb"],
-            ["desde la península ibérica", "place"]
+            [
+              "El 12 de agosto de 2026",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "por primera vez en más de un siglo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "un eclipse total de sol",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "pudo verse",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "desde la península ibérica",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
-          "es": "Un eclipse así se produce cuando la Luna se coloca exactamente entre la Tierra y el Sol y lo tapa por completo.",
-          "en": "Such an eclipse happens when the Moon places itself exactly between the Earth and the Sun and covers it completely.",
+          "$f": "b2.f1",
           "analisis": [
-            ["Un eclipse así", "subject"],
-            ["se produce", "verb"],
-            ["cuando la Luna se coloca", "time"],
-            ["exactamente entre la Tierra y el Sol", "place"],
-            ["lo tapa por completo", "verb"]
+            [
+              "Un eclipse así",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "se produce",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "cuando la Luna se coloca",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "exactamente entre la Tierra y el Sol",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "lo tapa por completo",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
-          "es": "Es una casualidad extraordinaria: el Sol es cuatrocientas veces mayor que la Luna, pero está cuatrocientas veces más lejos.",
-          "en": "It is an extraordinary coincidence: the Sun is four hundred times bigger than the Moon, but it is four hundred times further away.",
+          "$f": "b2.f2",
           "analisis": [
-            ["Es", "verb"],
-            ["una casualidad extraordinaria", "what"],
-            ["el Sol", "subject"],
-            ["es cuatrocientas veces mayor que la Luna", "comparison"],
-            ["está cuatrocientas veces más lejos", "comparison"]
+            [
+              "Es",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "una casualidad extraordinaria",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "el Sol",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "es cuatrocientas veces mayor que la Luna",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "está cuatrocientas veces más lejos",
+              {
+                "$t": "a5"
+              }
+            ]
           ]
         },
         {
-          "es": "Durante algo más de un minuto se hizo de noche poco antes del atardecer, bajó la temperatura y brillaron algunas estrellas.",
-          "en": "For a little over a minute night fell shortly before sunset, the temperature dropped and some stars shone.",
+          "$f": "b2.f3",
           "analisis": [
-            ["Durante algo más de un minuto", "how long"],
-            ["se hizo de noche", "verb"],
-            ["poco antes del atardecer", "time"],
-            ["bajó la temperatura", "verb"],
-            ["brillaron", "verb"],
-            ["algunas estrellas", "subject"]
+            [
+              "Durante algo más de un minuto",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "se hizo de noche",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "poco antes del atardecer",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "bajó la temperatura",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "brillaron",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "algunas estrellas",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
-          "es": "Los pájaros dejaron de cantar, como si de verdad hubiera llegado la noche.",
-          "en": "The birds stopped singing, as if night had really come.",
+          "$f": "b2.f4",
           "analisis": [
-            ["Los pájaros", "subject"],
-            ["dejaron de cantar", "verb"],
-            ["como si", "comparison"],
-            ["de verdad", "really"],
-            ["hubiera llegado la noche", "verb (pluperfect subjunctive)"]
+            [
+              "Los pájaros",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "dejaron de cantar",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "como si",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "de verdad",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "hubiera llegado la noche",
+              {
+                "$t": "a8"
+              }
+            ]
           ]
         },
         {
-          "es": "Los astrónomos habían insistido en que nadie mirara al Sol sin gafas especiales, por breve que fuera el momento.",
-          "en": "Astronomers had insisted that nobody should look at the Sun without special glasses, however brief the moment might be.",
+          "$f": "b2.f5",
           "analisis": [
-            ["Los astrónomos", "subject"],
-            ["habían insistido en que", "verb"],
-            ["nadie mirara al Sol", "verb (imperfect subjunctive)"],
-            ["sin gafas especiales", "how"],
-            ["por breve que fuera el momento", "concession (subjunctive)"]
+            [
+              "Los astrónomos",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "habían insistido en que",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "nadie mirara al Sol",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "sin gafas especiales",
+              {
+                "$t": "a10"
+              }
+            ],
+            [
+              "por breve que fuera el momento",
+              {
+                "$t": "a11"
+              }
+            ]
           ]
         },
         {
-          "es": "Quienes lo vieron cuentan que entendieron por qué, durante miles de años, los eclipses dieron tanto miedo.",
-          "en": "Those who saw it say they understood why, for thousands of years, eclipses were so frightening.",
+          "$f": "b2.f6",
           "analisis": [
-            ["Quienes lo vieron", "subject"],
-            ["cuentan que", "verb"],
-            ["entendieron por qué", "verb"],
-            ["durante miles de años", "time"],
-            ["los eclipses", "subject"],
-            ["dieron tanto miedo", "verb"]
+            [
+              "Quienes lo vieron",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "cuentan que",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "entendieron por qué",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "durante miles de años",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "los eclipses",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "dieron tanto miedo",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "test",
       "id": "universo-1",
-      "pregunta": {"en": "According to the text, why can the Moon cover the Sun exactly?"},
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
       "opciones": {
-        "The Sun is 400 times bigger but 400 times further away": {"en": "Una casualidad extraordinaria."},
-        "The Moon is bigger than the Sun": {"en": "It is four hundred times smaller."},
-        "The Earth stops turning": {"en": "The text does not say that."}
+        "The Sun is 400 times bigger but 400 times further away": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "The Moon is bigger than the Sun": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "The Earth stops turning": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "The Sun is 400 times bigger but 400 times further away"
     },
     {
       "tipo": "test",
       "id": "universo-2",
-      "pregunta": {"en": "According to the text, what did the birds do?"},
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
       "opciones": {
-        "They stopped singing": {"en": "Dejaron de cantar, como si hubiera llegado la noche."},
-        "They flew away": {"en": "The text does not say that."},
-        "They sang louder": {"en": "They fell silent."}
+        "They stopped singing": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "They flew away": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "They sang louder": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "They stopped singing"
     },
     {
       "tipo": "huecos",
       "id": "universo-3",
-      "pregunta": {"en": "Complete: the Earth revolves around the Sun."},
-      "frase": "La Tierra ___ alrededor del Sol.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "gira": {"en": "Girar: to revolve."},
-        "brilla": {"en": "Brillar is to shine."},
-        "se pone": {"en": "Ponerse is to set, said of the Sun."}
+        "gira": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "brilla": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "se pone": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "gira"
     },
     {
       "tipo": "test",
       "id": "universo-4",
-      "pregunta": {"en": "Siempre estás en la luna means…"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "You are always miles away": {"en": "Estar en la luna: to be distracted."},
-        "You always ask for too much": {"en": "That is pedir la luna."},
-        "You are always lucky": {"en": "That is nacer con estrella."}
+        "You are always miles away": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "You always ask for too much": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "You are always lucky": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "You are always miles away"
     },
     {
       "tipo": "huecos",
       "id": "universo-5",
-      "pregunta": {"en": "Complete: however brief it was…"},
-      "frase": "Por breve que ___, nadie debía mirar.",
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "frase": {
+        "$e": "b8.frase"
+      },
       "audio": true,
       "opciones": {
-        "fuera": {"en": "Por + adjective + que takes the subjunctive."},
-        "era": {"en": "Por… que takes the subjunctive."},
-        "sería": {"en": "Por… que takes the subjunctive."}
+        "fuera": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "era": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "sería": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "fuera"
     },
     {
       "tipo": "traduccion",
       "id": "universo-6",
-      "frase": "El sol se pone a las nueve.",
+      "frase": {
+        "$e": "b9.frase"
+      },
       "opciones": [
-        {"texto": {"en": "The sun sets at nine."}, "correcta": true},
-        {"texto": {"en": "The sun gets dressed at nine."}, "explicacion": {"en": "Ponerse, of the sun: to set."}},
-        {"texto": {"en": "The sun rises at nine."}, "explicacion": {"en": "To rise is salir."}}
+        {
+          "texto": {
+            "$t": "b9.o0"
+          },
+          "correcta": true
+        },
+        {
+          "texto": {
+            "$t": "b9.o1"
+          },
+          "explicacion": {
+            "$t": "b9.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b9.o2"
+          },
+          "explicacion": {
+            "$t": "b9.o2.explicacion"
+          }
+        }
       ]
     },
     {
       "tipo": "ordenar",
       "id": "universo-7",
-      "frase": "Al amanecer todavía brillaban algunas estrellas",
-      "traduccion": {"en": "At dawn a few stars were still shining."}
+      "frase": {
+        "$e": "b10.frase"
+      },
+      "traduccion": {
+        "$t": "b10.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (150–180 words).** Write the account of a natural phenomenon you have seen: an eclipse, a storm, a starry sky.\n\n**Speak (about 3 minutes).** Debate aloud: is space exploration worth the money?"
+        "$t": "b11.texto"
       }
     }
   ]

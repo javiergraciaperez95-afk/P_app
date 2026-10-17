@@ -66,6 +66,9 @@ js/                      EL PROGRAMA (común a todos los idiomas)
 cursos/                  EL CONTENIDO: una carpeta por idioma
    <código>/
       lessons/           001.json, 002.json… y capitulos.json
+      indice/            lecciones.json y diccionario.json: lo que la app lee al arrancar (la lista y
+                         todas las palabras). Cada lección se descarga al abrirla. Se generan con
+                         _herramientas/generar_indices.mjs; «Abrir Paglot.cmd» y la APK lo hacen solos.
       traducciones/      Lo que lee el alumno, en su idioma: <idioma>/001.json, 002.json…
                          (esquema v2; ver _herramientas/ESQUEMA_V2.txt). Si falta un idioma,
                          se usa el inglés.

@@ -1,128 +1,276 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "050",
   "capitulo": 6,
-  "titulo_es": "¿Qué llevas?",
-  "titulo": { "en": "What are you wearing?" },
-  "intro": { "en": "Clothes, colours, and the verb llevar." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "llevo": { "en": "I wear, I am wearing", "pron": "YE-bo", "cat": "verb" },
-    "la camisa": { "en": "the shirt", "pron": "la ka-MI-sa", "genero": "f" },
-    "los pantalones": { "en": "the trousers", "pron": "los pan-ta-LO-nes", "genero": "m", "nota": "This noun is plural: los pantalones. Its plural verb form is me quedan." },
-    "blanco": { "en": "white (masculine)", "pron": "BLAN-ko", "cat": "adjective" },
-    "blanca": { "en": "white (feminine)", "pron": "BLAN-ka", "cat": "adjective" },
-    "negro": { "en": "black (masculine)", "pron": "NE-gro", "cat": "adjective", "nota": "Masculine plural: negros." },
-    "negra": { "en": "black (feminine)", "pron": "NE-gra", "cat": "adjective" },
-    "me queda": { "en": "it fits me, it suits me", "pron": "me KE-da", "cat": "verb", "nota": "With a plural clothing item, use me quedan." }
+    "llevo": {
+      "$f": "p.llevo",
+      "pron": "YE-bo",
+      "cat": "verb"
+    },
+    "la camisa": {
+      "$f": "p.la camisa",
+      "pron": "la ka-MI-sa",
+      "genero": "f"
+    },
+    "los pantalones": {
+      "$f": "p.los pantalones",
+      "pron": "los pan-ta-LO-nes",
+      "genero": "m",
+      "nota": {
+        "$t": "p.los pantalones.nota"
+      }
+    },
+    "blanco": {
+      "$f": "p.blanco",
+      "pron": "BLAN-ko",
+      "cat": "adj"
+    },
+    "blanca": {
+      "$f": "p.blanca",
+      "pron": "BLAN-ka",
+      "cat": "adj"
+    },
+    "negro": {
+      "$f": "p.negro",
+      "pron": "NE-gro",
+      "cat": "adj",
+      "nota": {
+        "$t": "p.negro.nota"
+      }
+    },
+    "negra": {
+      "$f": "p.negra",
+      "pron": "NE-gra",
+      "cat": "adj"
+    },
+    "me queda": {
+      "$f": "p.me queda",
+      "pron": "me KE-da",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.me queda.nota"
+      }
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "Clothes agree",
-      "texto": "**Llevar** describes what you have on: **llevo** una camisa blanca.\n\nColour adjectives agree with the clothing noun in gender and number: **camisa blanca/negra** is feminine singular; **pantalones negros** is masculine plural. **Pantalones** is plural, so the verb is plural too: **me quedan bien estos pantalones**.\n\n**Me queda** bien goes with one item; **me quedan** bien goes with more than one. The verb agrees with the item of clothing, not with **me**."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "dialogo",
-      "titulo": "This morning",
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "¿Qué llevas hoy?",
-          "en": "What are you wearing today?",
           "analisis": [
-            ["¿Qué", "question"],
-            ["llevas", "verb"],
-            ["hoy", "time"]
+            [
+              "¿Qué",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "llevas",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "hoy",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Llevo una camisa blanca.",
-          "en": "I'm wearing a white shirt.",
           "analisis": [
-            ["Llevo", "verb"],
-            ["una camisa blanca", "object"]
+            [
+              "Llevo",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "una camisa blanca",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "Me quedan bien estos pantalones.",
-          "en": "These trousers fit me well.",
           "analisis": [
-            ["Me quedan", "verb"],
-            ["estos pantalones", "subject"]
+            [
+              "Me quedan",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "estos pantalones",
+              {
+                "$t": "a4"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "La camisa negra es más elegante.",
-          "en": "The black shirt is more elegant.",
           "analisis": [
-            ["La camisa negra", "subject"],
-            ["es", "verb"],
-            ["más elegante", "adjective"]
+            [
+              "La camisa negra",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "es",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "más elegante",
+              {
+                "$t": "a5"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["llevo", "la camisa", "los pantalones", "blanco", "blanca", "negro", "negra", "me queda"]
+      "palabras": [
+        "llevo",
+        "la camisa",
+        "los pantalones",
+        "blanco",
+        "blanca",
+        "negro",
+        "negra",
+        "me queda"
+      ]
     },
     {
       "tipo": "huecos",
       "id": "a1-ropa-llevo",
-      "pregunta": { "en": "Complete: I am wearing black trousers." },
-      "frase": "___ unos pantalones negros.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "Llevo": { "en": "With yo, use llevo." },
-        "Llevas": { "en": "Llevas is for tú." },
-        "Lleva": { "en": "Lleva is for él or ella." }
+        "Llevo": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "Llevas": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "Lleva": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "Llevo"
     },
     {
       "tipo": "ordenar",
       "id": "a1-ropa-camisa",
-      "frase": "Llevo una camisa blanca",
-      "traduccion": { "en": "I'm wearing a white shirt." }
+      "frase": {
+        "$e": "b5.frase"
+      },
+      "traduccion": {
+        "$t": "b5.traduccion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "a1-ropa-m1",
-      "pregunta": {"en": "Complete: black trousers."},
-      "frase": "Llevo unos pantalones ___.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "negros": {"en": "Pantalones is masculine plural."},
-        "negro": {"en": "Pantalones is plural."},
-        "negras": {"en": "Pantalones is masculine."}
+        "negros": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "negro": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "negras": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "negros"
     },
     {
       "tipo": "huecos",
       "id": "a1-ropa-m2",
-      "pregunta": {"en": "Complete: these trousers fit me well."},
-      "frase": "Me ___ bien estos pantalones.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "quedan": {"en": "Pantalones is plural."},
-        "queda": {"en": "Queda is for one thing."},
-        "quedo": {"en": "The verb agrees with the trousers, not with you."}
+        "quedan": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "queda": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "quedo": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "quedan"
     },
     {
       "tipo": "escribir",
       "id": "a1-ropa-m3",
-      "pregunta": {"en": "Translate: «I'm wearing a white shirt.»"},
-      "respuestas": ["Llevo una camisa blanca"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "Llevo una camisa blanca"
+      ]
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Describe what you are wearing today and what you wear for work or for a party.\n\n**Speak (about 30 seconds).** Describe aloud what three people around you, or in a photo, are wearing."
+        "$t": "b9.texto"
       }
     }
   ]

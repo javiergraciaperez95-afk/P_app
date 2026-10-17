@@ -1,169 +1,441 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "049",
   "capitulo": 6,
-  "titulo_es": "Las tiendas",
-  "titulo": {"en": "Shops"},
-  "intro": {"en": "Where to buy what, and whether the shop is open."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "la panadería": {"en": "the bakery", "pron": "la pa-na-de-RI-a", "genero": "f"},
-    "la frutería": {"en": "the greengrocer's", "pron": "la fru-te-RI-a", "genero": "f"},
-    "la carnicería": {"en": "the butcher's", "pron": "la kar-ni-the-RI-a", "genero": "f"},
-    "la pescadería": {"en": "the fishmonger's", "pron": "la pes-ka-de-RI-a", "genero": "f"},
-    "el mercado": {"en": "the market", "pron": "el mer-KA-do", "genero": "m"},
-    "la librería": {"en": "the bookshop", "pron": "la li-bre-RI-a", "genero": "f"},
-    "el quiosco": {"en": "the newsstand", "pron": "el KYOS-ko", "genero": "m"},
-    "la zapatería": {"en": "the shoe shop", "pron": "la tha-pa-te-RI-a", "genero": "f", "nota": "The /θ/ guide reflects much of Spain; c before e/i and z sound like /s/ in seseante varieties."},
-    "abierto": {"en": "open (masculine)", "pron": "a-BYER-to", "cat": "adjective", "nota": "Feminine: abierta."},
-    "cerrado": {"en": "closed (masculine)", "pron": "the-RRA-do", "cat": "adjective", "nota": "Feminine: cerrada."},
-    "abre": {"en": "it opens", "pron": "A-bre", "cat": "verb"},
-    "cierra": {"en": "it closes", "pron": "THYE-rra", "cat": "verb"},
-    "comprar": {"en": "to buy", "pron": "kom-PRAR", "cat": "verb"},
-    "vender": {"en": "to sell", "pron": "ben-DER", "cat": "verb"},
-    "el dependiente": {"en": "the shop assistant", "pron": "el de-pen-DYEN-te", "genero": "m", "nota": "Feminine: la dependienta."},
-    "necesito": {"en": "I need", "pron": "ne-the-SI-to", "cat": "verb"}
+    "la panadería": {
+      "$f": "p.la panadería",
+      "pron": "la pa-na-de-RI-a",
+      "genero": "f"
+    },
+    "la frutería": {
+      "$f": "p.la frutería",
+      "pron": "la fru-te-RI-a",
+      "genero": "f"
+    },
+    "la carnicería": {
+      "$f": "p.la carnicería",
+      "pron": "la kar-ni-the-RI-a",
+      "genero": "f"
+    },
+    "la pescadería": {
+      "$f": "p.la pescadería",
+      "pron": "la pes-ka-de-RI-a",
+      "genero": "f"
+    },
+    "el mercado": {
+      "$f": "p.el mercado",
+      "pron": "el mer-KA-do",
+      "genero": "m"
+    },
+    "la librería": {
+      "$f": "p.la librería",
+      "pron": "la li-bre-RI-a",
+      "genero": "f"
+    },
+    "el quiosco": {
+      "$f": "p.el quiosco",
+      "pron": "el KYOS-ko",
+      "genero": "m"
+    },
+    "la zapatería": {
+      "$f": "p.la zapatería",
+      "pron": "la tha-pa-te-RI-a",
+      "genero": "f",
+      "nota": {
+        "$t": "p.la zapatería.nota"
+      }
+    },
+    "abierto": {
+      "$f": "p.abierto",
+      "pron": "a-BYER-to",
+      "cat": "adj",
+      "nota": {
+        "$t": "p.abierto.nota"
+      }
+    },
+    "cerrado": {
+      "$f": "p.cerrado",
+      "pron": "the-RRA-do",
+      "cat": "adj",
+      "nota": {
+        "$t": "p.cerrado.nota"
+      }
+    },
+    "abre": {
+      "$f": "p.abre",
+      "pron": "A-bre",
+      "cat": "verb"
+    },
+    "cierra": {
+      "$f": "p.cierra",
+      "pron": "THYE-rra",
+      "cat": "verb"
+    },
+    "comprar": {
+      "$f": "p.comprar",
+      "pron": "kom-PRAR",
+      "cat": "verb"
+    },
+    "vender": {
+      "$f": "p.vender",
+      "pron": "ben-DER",
+      "cat": "verb"
+    },
+    "el dependiente": {
+      "$f": "p.el dependiente",
+      "pron": "el de-pen-DYEN-te",
+      "genero": "m",
+      "nota": {
+        "$t": "p.el dependiente.nota"
+      }
+    },
+    "necesito": {
+      "$f": "p.necesito",
+      "pron": "ne-the-SI-to",
+      "cat": "verb"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Shops in -ería"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "Many shops are named after what they sell, with **-ería**: pan → **panadería**, fruta → **frutería**, carne → **carnicería**, pescado → **pescadería**, libro → **librería**, zapato → **zapatería**.\n\nTo ask where you can buy something, say **¿Dónde puedo comprar pan?** (“Where can I buy bread?”). To ask whether a shop sells something, say **¿Venden pescado aquí?** (“Do you sell fish here?”).\n\nOpening hours use **abrir** and **cerrar**: **abre** a las nueve y **cierra** a las dos. For a shop’s state, use **estar**: **la panadería está abierta**, **el mercado está cerrado**. The adjective agrees with the shop.\n\nSome small shops in parts of Spain close for a midday break, but hours vary by place and business. Check the posted schedule."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Closed"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "Necesito pan y fruta. ¿Dónde puedo comprar?",
-          "en": "I need bread and fruit. Where can I buy some?",
-          "analisis": [["Necesito", "verb"], ["pan y fruta", "object"], ["¿Dónde", "question"], ["puedo comprar", "verb"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Hay una panadería en esta calle, pero ahora está cerrada.",
-          "en": "There's a bakery on this street, but it's closed now.",
           "analisis": [
-            ["Hay", "verb"],
-            ["una panadería", "object"],
-            ["en esta calle", "place"],
-            ["ahora", "time"],
-            ["está cerrada", "verb"]
+            [
+              "Necesito",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "pan y fruta",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "¿Dónde",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "puedo comprar",
+              {
+                "$t": "a0"
+              }
+            ]
           ]
         },
         {
-          "quien": "Lucía",
-          "es": "¿A qué hora abre?",
-          "en": "What time does it open?",
-          "analisis": [["¿A qué hora", "question"], ["abre", "verb"]]
-        },
-        {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Abre a las cinco. La frutería está abierta.",
-          "en": "It opens at five. The greengrocer's is open.",
-          "analisis": [["Abre", "verb"], ["a las cinco", "time"], ["La frutería", "subject"], ["está abierta", "verb"]]
+          "analisis": [
+            [
+              "Hay",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "una panadería",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "en esta calle",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "ahora",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "está cerrada",
+              {
+                "$t": "a0"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "¿Venden pescado allí?",
-          "en": "Do they sell fish there?",
-          "analisis": [["¿Venden", "verb"], ["pescado", "object"], ["allí", "place"]]
+          "analisis": [
+            [
+              "¿A qué hora",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "abre",
+              {
+                "$t": "a0"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "No. El pescado está en la pescadería del mercado.",
-          "en": "No. The fish is at the fishmonger's in the market.",
-          "analisis": [["El pescado", "subject"], ["está", "verb"], ["en la pescadería del mercado", "place"]]
+          "analisis": [
+            [
+              "Abre",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "a las cinco",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "La frutería",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "está abierta",
+              {
+                "$t": "a0"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "¿Venden",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "pescado",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "allí",
+              {
+                "$t": "a3"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "El pescado",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "está",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "en la pescadería del mercado",
+              {
+                "$t": "a3"
+              }
+            ]
+          ]
         }
       ]
     },
     {
       "tipo": "texto",
-      "titulo": "Opening hours",
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
-        { "es": "PANADERÍA LUNA", "en": "Luna Bakery" },
-        { "es": "Lunes–viernes: 09:00–14:00 y 17:00–20:00", "en": "Monday–Friday: 9:00–14:00 and 17:00–20:00" },
-        { "es": "Sábado: 09:00–14:00", "en": "Saturday: 9:00–14:00" },
-        { "es": "Domingo: cerrado", "en": "Sunday: closed" }
+        {
+          "$f": "b3.f0"
+        },
+        {
+          "$f": "b3.f1"
+        },
+        {
+          "$f": "b3.f2"
+        },
+        {
+          "$f": "b3.f3"
+        }
       ]
     },
     {
       "tipo": "test",
       "id": "a1-tiendas-lectura-horario",
-      "pregunta": { "en": "Which day is the bakery closed all day?" },
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
       "opciones": {
-        "On Sunday": { "en": "The schedule says «Domingo: cerrado»." },
-        "On Saturday morning": { "en": "It is open until 14:00 on Saturday." },
-        "Every weekday at 09:00": { "en": "It opens at 09:00 on weekdays." }
+        "On Sunday": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "On Saturday morning": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "Every weekday at 09:00": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "On Sunday"
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "test",
       "id": "tiendas-1",
-      "pregunta": {"en": "Where do you buy meat?"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "en la carnicería": {"en": "From carne."},
-        "en la panadería": {"en": "That sells bread."},
-        "en la librería": {"en": "That sells books."}
+        "en la carnicería": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "en la panadería": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "en la librería": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "en la carnicería"
     },
     {
       "tipo": "huecos",
       "id": "tiendas-2",
-      "pregunta": {"en": "Complete: the shop is closed."},
-      "frase": "La tienda ___ cerrada.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "está": {"en": "Open and closed are states: estar."},
-        "es": {"en": "A state takes estar."},
-        "hay": {"en": "Hay means there is."}
+        "está": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "es": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "hay": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "está"
     },
     {
       "tipo": "huecos",
       "id": "tiendas-3",
-      "pregunta": {"en": "Complete: it opens at nine."},
-      "frase": "___ a las nueve.",
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "frase": {
+        "$e": "b8.frase"
+      },
       "audio": true,
       "opciones": {
-        "Abre": {"en": "The verb: it opens."},
-        "Abierto": {"en": "Abierto is the adjective."},
-        "Abro": {"en": "Abro is I open."}
+        "Abre": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "Abierto": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "Abro": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "Abre"
     },
     {
       "tipo": "test",
       "id": "tiendas-4",
-      "pregunta": {"en": "Where do you buy a book?"},
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
       "opciones": {
-        "en la librería": {"en": "A bookshop."},
-        "en la biblioteca": {"en": "There you borrow books."},
-        "en el quiosco": {"en": "That sells newspapers and magazines."}
+        "en la librería": {
+          "$t": "b9.o0.refuerzo"
+        },
+        "en la biblioteca": {
+          "$t": "b9.o1.refuerzo"
+        },
+        "en el quiosco": {
+          "$t": "b9.o2.refuerzo"
+        }
       },
       "correcta": "en la librería"
     },
     {
       "tipo": "escribir",
       "id": "tiendas-5",
-      "pregunta": {"en": "Translate: «I need bread.»"},
-      "respuestas": ["Necesito pan"]
+      "pregunta": {
+        "$t": "b10.pregunta"
+      },
+      "respuestas": [
+        "Necesito pan"
+      ]
     },
     {
       "tipo": "ordenar",
       "id": "tiendas-6",
-      "frase": "¿A qué hora abre la panadería?",
-      "traduccion": {"en": "What time does the bakery open?"}
+      "frase": {
+        "$e": "b11.frase"
+      },
+      "traduccion": {
+        "$t": "b11.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b12.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Write where you buy ten different things: bread, medicine, stamps, shoes…\n\n**Speak (about 30 seconds).** Tell someone aloud about the shops in your street and what you buy in each."
+        "$t": "b12.texto"
       }
     }
   ]

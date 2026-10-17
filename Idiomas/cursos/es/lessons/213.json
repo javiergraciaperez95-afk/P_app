@@ -1,164 +1,402 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "213",
   "capitulo": 20,
-  "titulo_es": "Es decir, o sea",
-  "titulo": {"en": "That is, I mean"},
-  "intro": {"en": "Markers for saying it again, correcting yourself, giving an example and changing the subject."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "es decir": {"en": "that is to say", "pron": "es de-THIR", "cat": "expression"},
-    "o sea": {"en": "I mean, in other words", "pron": "o SE-a", "cat": "expression"},
-    "en otras palabras": {"en": "in other words", "pron": "en O-tras pa-LA-bras", "cat": "expression"},
-    "mejor dicho": {"en": "or rather", "pron": "me-HOR DI-cho", "cat": "expression"},
-    "en concreto": {"en": "specifically", "pron": "en kon-KRE-to", "cat": "expression"},
-    "de hecho": {"en": "in fact", "pron": "de E-cho", "cat": "expression"},
-    "en realidad": {
-      "en": "actually, in reality",
-      "pron": "en re-a-li-DAD",
-      "cat": "expression",
-      "nota": "En realidad corrects an impression. Actualmente means currently."
+    "es decir": {
+      "$f": "p.es decir",
+      "pron": "es de-THIR",
+      "cat": "expr"
     },
-    "por cierto": {"en": "by the way", "pron": "por THYER-to", "cat": "expression"},
-    "a propósito": {"en": "by the way; on purpose", "pron": "a pro-PO-si-to", "cat": "expression"},
-    "en fin": {"en": "anyway, well", "pron": "en fin", "cat": "expression"},
-    "pues": {"en": "well, so", "pron": "pwes", "cat": "connector"},
-    "ya": {"en": "I see, right", "pron": "ya", "cat": "interjection"}
+    "o sea": {
+      "$f": "p.o sea",
+      "pron": "o SE-a",
+      "cat": "expr"
+    },
+    "en otras palabras": {
+      "$f": "p.en otras palabras",
+      "pron": "en O-tras pa-LA-bras",
+      "cat": "expr"
+    },
+    "mejor dicho": {
+      "$f": "p.mejor dicho",
+      "pron": "me-HOR DI-cho",
+      "cat": "expr"
+    },
+    "en concreto": {
+      "$f": "p.en concreto",
+      "pron": "en kon-KRE-to",
+      "cat": "expr"
+    },
+    "de hecho": {
+      "$f": "p.de hecho",
+      "pron": "de E-cho",
+      "cat": "expr"
+    },
+    "en realidad": {
+      "$f": "p.en realidad",
+      "pron": "en re-a-li-DAD",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.en realidad.nota"
+      }
+    },
+    "por cierto": {
+      "$f": "p.por cierto",
+      "pron": "por THYER-to",
+      "cat": "expr"
+    },
+    "a propósito": {
+      "$f": "p.a propósito",
+      "pron": "a pro-PO-si-to",
+      "cat": "expr"
+    },
+    "en fin": {
+      "$f": "p.en fin",
+      "pron": "en fin",
+      "cat": "expr"
+    },
+    "pues": {
+      "$f": "p.pues",
+      "pron": "pwes",
+      "cat": "connector"
+    },
+    "ya": {
+      "$f": "p.ya",
+      "pron": "ya",
+      "cat": "interj"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Steering the conversation"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "- to explain again: **es decir**, **o sea**, **en otras palabras**, **dicho de otro modo**\n- to correct yourself: **mejor dicho**, **bueno**, **digo**\n- to give an example: **por ejemplo**, **en concreto**\n- to back up what you said with a fact: **de hecho**\n- to set the record straight: **en realidad**\n- to change the subject: **por cierto**, **a propósito**\n- to wrap up, a little resigned: **en fin**, **total**\n\nIn speech, **pues**, **bueno**, **a ver**, **mira** and **vamos** buy time and soften what follows.\n\nThree false friends live here. **Actualmente** is currently. Actually is **en realidad** or **de hecho**. **Eventualmente** is possibly, not in the end."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Changing jobs"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "Estoy pensando en dejar el trabajo. Bueno, mejor dicho, en cambiar de empresa.",
-          "en": "I'm thinking of leaving my job. Well, or rather, of changing companies.",
           "analisis": [
-            ["Estoy pensando en", "verb"],
-            ["dejar el trabajo", "object"],
-            ["mejor dicho", "correction"],
-            ["en cambiar de empresa", "object"]
+            [
+              "Estoy pensando en",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "dejar el trabajo",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "mejor dicho",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "en cambiar de empresa",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "O sea, que no estás contenta.",
-          "en": "In other words, you're not happy.",
-          "analisis": [["O sea", "reformulation"], ["que no estás contenta", "verb"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "En realidad me gusta lo que hago. De hecho, me encanta.",
-          "en": "Actually I like what I do. In fact, I love it.",
           "analisis": [
-            ["En realidad", "setting it straight"],
-            ["me gusta", "verb"],
-            ["lo que hago", "subject"],
-            ["De hecho", "reinforcement"],
-            ["me encanta", "verb"]
-          ]
-        },
-        {"quien": "Pablo", "es": "¿Entonces?", "en": "So?", "analisis": [["¿Entonces?", "question"]]},
-        {
-          "quien": "Lucía",
-          "es": "El problema es el horario; es decir, trabajo todos los fines de semana.",
-          "en": "The problem is the hours; that is, I work every weekend.",
-          "analisis": [
-            ["El problema", "subject"],
-            ["es", "verb"],
-            ["el horario", "what"],
-            ["es decir", "reformulation"],
-            ["trabajo", "verb"],
-            ["todos los fines de semana", "time"]
+            [
+              "O sea",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "que no estás contenta",
+              {
+                "$t": "a0"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "En realidad",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "me gusta",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "lo que hago",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "De hecho",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "me encanta",
+              {
+                "$t": "a0"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "Ya. Por cierto, en mi empresa buscan a alguien.",
-          "en": "I see. By the way, at my company they're looking for someone.",
           "analisis": [
-            ["Ya", "I see"],
-            ["Por cierto", "change of subject"],
-            ["en mi empresa", "place"],
-            ["buscan", "verb"],
-            ["a alguien", "object"]
+            [
+              "¿Entonces?",
+              {
+                "$t": "a7"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "El problema",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "es",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "el horario",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "es decir",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "trabajo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "todos los fines de semana",
+              {
+                "$t": "a9"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Ya",
+              {
+                "$t": "a10"
+              }
+            ],
+            [
+              "Por cierto",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "en mi empresa",
+              {
+                "$t": "a12"
+              }
+            ],
+            [
+              "buscan",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "a alguien",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "test",
       "id": "reformular-1",
-      "pregunta": {"en": "You want to correct what you have just said. Which marker?"},
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
       "opciones": {
-        "mejor dicho": {"en": "Or rather."},
-        "de hecho": {"en": "That backs up what you said."},
-        "por cierto": {"en": "That changes the subject."}
+        "mejor dicho": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "de hecho": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "por cierto": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "mejor dicho"
     },
     {
       "tipo": "test",
       "id": "reformular-2",
-      "pregunta": {"en": "Which one means «actually», setting an impression straight?"},
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
       "opciones": {
-        "en realidad": {"en": "In reality, actually."},
-        "actualmente": {"en": "That means currently."},
-        "por ejemplo": {"en": "That introduces an example."}
+        "en realidad": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "actualmente": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "por ejemplo": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "en realidad"
     },
     {
       "tipo": "test",
       "id": "reformular-3",
-      "pregunta": {"en": "Which one changes the subject?"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "por cierto": {"en": "By the way."},
-        "es decir": {"en": "That explains again."},
-        "en concreto": {"en": "That makes it specific."}
+        "por cierto": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "es decir": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "en concreto": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "por cierto"
     },
     {
       "tipo": "huecos",
       "id": "reformular-4",
-      "pregunta": {"en": "Complete: she's very good. In fact, she's the best."},
-      "frase": "Es muy buena. ___, es la mejor.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "De hecho": {"en": "It backs up the first statement with a stronger one."},
-        "Por cierto": {"en": "That would change the subject."},
-        "Por ejemplo": {"en": "That would introduce an example."}
+        "De hecho": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "Por cierto": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "Por ejemplo": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "De hecho"
     },
     {
       "tipo": "traduccion",
       "id": "reformular-5",
-      "frase": "O sea, que no vienes.",
+      "frase": {
+        "$e": "b8.frase"
+      },
       "opciones": [
-        {"texto": {"en": "So, in other words, you're not coming."}, "correcta": true},
-        {"texto": {"en": "Or maybe you're not coming."}, "explicacion": {"en": "O sea is not about doubt."}},
-        {"texto": {"en": "Unless you come."}, "explicacion": {"en": "O sea rewords what was said."}}
+        {
+          "texto": {
+            "$t": "b8.o0"
+          },
+          "correcta": true
+        },
+        {
+          "texto": {
+            "$t": "b8.o1"
+          },
+          "explicacion": {
+            "$t": "b8.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b8.o2"
+          },
+          "explicacion": {
+            "$t": "b8.o2.explicacion"
+          }
+        }
       ]
     },
     {
       "tipo": "ordenar",
       "id": "reformular-6",
-      "frase": "En realidad me gusta lo que hago",
-      "traduccion": {"en": "Actually I like what I do."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (150–180 words).** Explain a technical idea from your job or studies to someone who knows nothing about it, reformulating and giving examples.\n\n**Speak (about 3 minutes).** Explain aloud a difficult concept twice: first in formal terms, then in everyday words."
+        "$t": "b10.texto"
       }
     }
   ]

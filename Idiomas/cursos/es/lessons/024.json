@@ -1,141 +1,1167 @@
 {
+  "esquema": 2,
+  "id": "024",
   "capitulo": 3,
-  "titulo_es": "En casa",
-  "titulo": { "en": "At home" },
-  "intro": { "en": "Rooms and where things are: on, under, in. Pronunciation guide: in much of Spain, c before i/e sounds like English th; in much of Latin America it sounds like s." },
+  "nivel": "A1",
   "palabras": {
-    "la cocina": { "en": "the kitchen", "pron": "la ko-THI-na", "genero": "f" },
-    "el dormitorio": { "en": "the bedroom", "pron": "el dor-mi-TO-ryo", "genero": "m" },
-    "el baño": { "en": "the bathroom", "pron": "el BA-nyo", "genero": "m" },
-    "el libro": { "en": "the book", "pron": "el LEE-bro", "genero": "m" },
-    "la mesa": { "en": "the table", "pron": "la ME-sa", "genero": "f" },
-    "la silla": { "en": "the chair", "pron": "la SI-ya", "genero": "f" },
-    "pequeña": { "en": "small (feminine; masculine pequeño)", "pron": "pe-KE-nya", "cat": "adjective" },
-    "encima de": { "en": "on top of", "pron": "en-THI-ma de", "cat": "expression" },
-    "debajo de": { "en": "under", "pron": "de-BA-ho de", "cat": "expression" },
-    "las llaves": { "en": "the keys", "pron": "las YA-bes", "genero": "f" }
+    "la cocina": {
+      "pron": "la ko-THI-na",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "el dormitorio": {
+      "pron": "el dor-mi-TO-ryo",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el baño": {
+      "pron": "el BA-nyo",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el libro": {
+      "pron": "el LI-bro",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la mesa": {
+      "pron": "la ME-sa",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "la silla": {
+      "pron": "la SI-ya",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "las llaves": {
+      "pron": "las YA-bes",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "pequeño": {
+      "pron": "pe-KE-nyo",
+      "cat": "adj"
+    },
+    "pequeña": {
+      "pron": "pe-KE-nya",
+      "cat": "adj"
+    },
+    "encima de": {
+      "pron": "en-THI-ma de",
+      "cat": "expr"
+    },
+    "debajo de": {
+      "pron": "de-BA-ho de",
+      "cat": "expr"
+    },
+    "Lucía": {
+      "propio": true
+    },
+    "Pablo": {
+      "propio": true
+    }
   },
   "bloques": [
     {
-      "tipo": "explicacion",
-      "titulo": "Rooms and objects",
-      "texto": "A flat has **la cocina**, **el dormitorio** and **el baño**.\n\nTo say where something is, use **estar** plus a place phrase. The verb matches the subject: **está** for one thing, **están** for several.\n\n- El libro **está encima de** la mesa.\n- Las llaves **están debajo de** la silla.\n\nIn the dialogue, **ser** describes the kitchen's size: **La cocina es pequeña**. The adjective matches the noun: **pequeña** is feminine like **cocina**."
+      "id": "b1",
+      "tipo": "explicacion"
     },
     {
+      "id": "b2",
       "tipo": "dialogo",
-      "titulo": "Looking for the keys",
       "frases": [
         {
           "quien": "Lucía",
-          "es": "La cocina es pequeña.",
-          "en": "The kitchen is small.",
-          "analisis": [
-            ["La cocina", "subject"],
-            ["es", "verb"],
-            ["pequeña", "adjective"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "La cocina",
+                "nucleo": "cocina",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "La"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "cocina"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "es pequeña.",
+                "nucleo": "es",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "pequeña.",
+                    "nucleo": "pequeña."
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "El libro está encima de la mesa.",
-          "en": "The book is on the table.",
-          "analisis": [
-            ["El libro", "subject"],
-            ["está", "verb"],
-            ["encima de la mesa", "place"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "El libro",
+                "nucleo": "libro",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "El"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "libro"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "está encima de la mesa.",
+                "nucleo": "está",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "está",
+                    "nucleo": "está"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "encima de la mesa.",
+                    "nucleo": "encima",
+                    "partes": [
+                      {
+                        "funcion": "ADV",
+                        "texto": "encima",
+                        "nucleo": "encima"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "de la mesa.",
+                        "nucleo": "mesa",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "de"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "la mesa.",
+                            "nucleo": "mesa",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "la"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "mesa."
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Lucía",
-          "es": "¿Y las llaves?",
-          "en": "And the keys?",
-          "analisis": [
-            ["las llaves", "object"]
-          ]
+          "sintaxis": {
+            "oracion": "unimembre",
+            "unidades": [
+              {
+                "funcion": "VOC",
+                "texto": "¿Y las llaves?",
+                "nucleo": "llaves",
+                "partes": [
+                  {
+                    "funcion": "CONJ",
+                    "texto": "¿Y"
+                  },
+                  {
+                    "funcion": "DET",
+                    "texto": "las"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "llaves?"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "Están debajo de la silla.",
-          "en": "They are under the chair.",
-          "analisis": [
-            ["Están", "verb"],
-            ["debajo de la silla", "place"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Están debajo de la silla.",
+                "nucleo": "Están",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Están",
+                    "nucleo": "Están"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "debajo de la silla.",
+                    "nucleo": "debajo",
+                    "partes": [
+                      {
+                        "funcion": "ADV",
+                        "texto": "debajo",
+                        "nucleo": "debajo"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "de la silla.",
+                        "nucleo": "silla",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "de"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "la silla.",
+                            "nucleo": "silla",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "la"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "silla."
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "¿Dónde está",
+                "nucleo": "está",
+                "partes": [
+                  {
+                    "funcion": "CCL",
+                    "texto": "¿Dónde",
+                    "nucleo": "¿Dónde"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "está",
+                    "nucleo": "está"
+                  }
+                ]
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "el baño?",
+                "nucleo": "baño",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "el"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "baño?"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Pablo",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "El baño",
+                "nucleo": "baño",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "El"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "baño"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "está al lado del dormitorio.",
+                "nucleo": "está",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "está",
+                    "nucleo": "está"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "al lado del dormitorio.",
+                    "nucleo": "lado",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "al"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "lado",
+                        "nucleo": "lado"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "del dormitorio.",
+                        "nucleo": "dormitorio",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "del"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "dormitorio.",
+                            "nucleo": "dormitorio."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },
     {
+      "id": "b3",
       "tipo": "vocabulario",
-      "palabras": ["la cocina", "el dormitorio", "el baño", "el libro", "la mesa", "la silla", "pequeña", "encima de", "debajo de", "las llaves"]
+      "palabras": [
+        "la cocina",
+        "el dormitorio",
+        "el baño",
+        "el libro",
+        "la mesa",
+        "la silla",
+        "las llaves",
+        "pequeño",
+        "pequeña",
+        "encima de",
+        "debajo de"
+      ]
     },
     {
-      "tipo": "huecos",
-      "id": "a1-casa-encima",
-      "pregunta": { "en": "Complete: the book is on the table." },
-      "frase": "El libro está ___ de la mesa.",
-      "audio": true,
-      "opciones": {
-        "encima": { "en": "Encima de means on top of." },
-        "debajo": { "en": "Debajo de means under." },
-        "dentro": { "en": "Dentro de means inside." }
-      },
-      "correcta": "encima"
+      "id": "b4",
+      "tipo": "gramatica",
+      "ejemplos": [
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "El libro",
+                "nucleo": "libro",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "El"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "libro"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "está encima de la mesa.",
+                "nucleo": "está",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "está",
+                    "nucleo": "está"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "encima de la mesa.",
+                    "nucleo": "encima",
+                    "partes": [
+                      {
+                        "funcion": "ADV",
+                        "texto": "encima",
+                        "nucleo": "encima"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "de la mesa.",
+                        "nucleo": "mesa",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "de"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "la mesa.",
+                            "nucleo": "mesa",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "la"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "mesa."
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Las llaves",
+                "nucleo": "llaves",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Las"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "llaves"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "están debajo de la silla.",
+                "nucleo": "están",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "están",
+                    "nucleo": "están"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "debajo de la silla.",
+                    "nucleo": "debajo",
+                    "partes": [
+                      {
+                        "funcion": "ADV",
+                        "texto": "debajo",
+                        "nucleo": "debajo"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "de la silla.",
+                        "nucleo": "silla",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "de"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "la silla.",
+                            "nucleo": "silla",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "la"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "silla."
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
     },
     {
-      "tipo": "ordenar",
-      "id": "a1-casa-llaves",
-      "frase": "Las llaves están debajo de la silla",
-      "traduccion": { "en": "The keys are under the chair." }
+      "id": "b5",
+      "tipo": "texto",
+      "registro": "literario",
+      "frases": [
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Nuestra casa acogedora",
+                "nucleo": "casa",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Nuestra"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "casa"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "acogedora",
+                    "nucleo": "acogedora"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "tiene una cocina pequeña y dos dormitorios amplios.",
+                "nucleo": "tiene",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "tiene",
+                    "nucleo": "tiene"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "una cocina pequeña y dos dormitorios amplios.",
+                    "nucleo": "cocina",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "una"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "cocina"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "pequeña",
+                        "nucleo": "pequeña"
+                      },
+                      {
+                        "funcion": "CONJ",
+                        "texto": "y"
+                      },
+                      {
+                        "funcion": "CUANT",
+                        "texto": "dos"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "dormitorios"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "amplios.",
+                        "nucleo": "amplios."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "El libro nuevo de lectura",
+                "nucleo": "libro",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "El"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "libro"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "nuevo",
+                    "nucleo": "nuevo"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "de lectura",
+                    "nucleo": "lectura",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "lectura",
+                        "nucleo": "lectura"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "siempre está encima de la mesa grande.",
+                "nucleo": "está",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "siempre",
+                    "nucleo": "siempre"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "está",
+                    "nucleo": "está"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "encima de la mesa grande.",
+                    "nucleo": "encima",
+                    "partes": [
+                      {
+                        "funcion": "ADV",
+                        "texto": "encima",
+                        "nucleo": "encima"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "de la mesa grande.",
+                        "nucleo": "mesa",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "de"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "la mesa grande.",
+                            "nucleo": "mesa",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "la"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "mesa"
+                              },
+                              {
+                                "funcion": "ADY",
+                                "texto": "grande.",
+                                "nucleo": "grande."
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "En el salón luminoso hay plantas hermosas y una silla cómoda.",
+                "nucleo": "hay",
+                "partes": [
+                  {
+                    "funcion": "CCL",
+                    "texto": "En el salón luminoso",
+                    "nucleo": "salón",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "En"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "el salón luminoso",
+                        "nucleo": "salón",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "salón"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "luminoso",
+                            "nucleo": "luminoso"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "hay",
+                    "nucleo": "hay"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "plantas hermosas y una silla cómoda.",
+                    "nucleo": "plantas",
+                    "partes": [
+                      {
+                        "funcion": "N",
+                        "texto": "plantas"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "hermosas",
+                        "nucleo": "hermosas"
+                      },
+                      {
+                        "funcion": "CONJ",
+                        "texto": "y"
+                      },
+                      {
+                        "funcion": "DET",
+                        "texto": "una"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "silla"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "cómoda.",
+                        "nucleo": "cómoda."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Las llaves metálicas de la puerta",
+                "nucleo": "llaves",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Las"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "llaves"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "metálicas",
+                    "nucleo": "metálicas"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "de la puerta",
+                    "nucleo": "puerta",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la puerta",
+                        "nucleo": "puerta",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "puerta"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "están debajo de la pequeña silla.",
+                "nucleo": "están",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "están",
+                    "nucleo": "están"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "debajo de la pequeña silla.",
+                    "nucleo": "debajo",
+                    "partes": [
+                      {
+                        "funcion": "ADV",
+                        "texto": "debajo",
+                        "nucleo": "debajo"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "de la pequeña silla.",
+                        "nucleo": "silla",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "de"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "la pequeña silla.",
+                            "nucleo": "silla",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "la"
+                              },
+                              {
+                                "funcion": "ADY",
+                                "texto": "pequeña",
+                                "nucleo": "pequeña"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "silla."
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Mi hermano tranquilo",
+                "nucleo": "hermano",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Mi"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "hermano"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "tranquilo",
+                    "nucleo": "tranquilo"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "descansa en el dormitorio principal por la tarde.",
+                "nucleo": "descansa",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "descansa",
+                    "nucleo": "descansa"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en el dormitorio principal",
+                    "nucleo": "dormitorio",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "el dormitorio principal",
+                        "nucleo": "dormitorio",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "dormitorio"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "principal",
+                            "nucleo": "principal"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "por la tarde.",
+                    "nucleo": "tarde",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "por"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la tarde.",
+                        "nucleo": "tarde",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "tarde."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Esta vivienda bonita",
+                "nucleo": "vivienda",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Esta"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "vivienda"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "bonita",
+                    "nucleo": "bonita"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "ofrece mucha paz a toda la familia.",
+                "nucleo": "ofrece",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "ofrece",
+                    "nucleo": "ofrece"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "mucha paz",
+                    "nucleo": "paz",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "mucha"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "paz"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "a toda la familia.",
+                    "nucleo": "familia",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "a"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "toda la familia.",
+                        "nucleo": "familia",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "toda"
+                          },
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "familia."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
     },
     {
-      "tipo": "huecos",
-      "id": "a1-casa-m1",
-      "pregunta": {"en": "Complete: the keys are under the chair."},
-      "frase": "Las llaves ___ debajo de la silla.",
-      "audio": true,
-      "opciones": {
-        "están": {"en": "Several things: están."},
-        "está": {"en": "Llaves is plural."},
-        "son": {"en": "Location takes estar."}
-      },
-      "correcta": "están"
-    },
-    {
-      "tipo": "huecos",
-      "id": "a1-casa-ser-estar",
-      "pregunta": { "en": "Choose ser to describe the kitchen." },
-      "frase": "La cocina ___ pequeña.",
-      "audio": true,
-      "opciones": {
-        "es": { "en": "Ser describes its size." },
-        "está": { "en": "Estar is used here for location." },
-        "son": { "en": "The subject is singular." }
-      },
-      "correcta": "es"
-    },
-    {
+      "id": "b6",
       "tipo": "test",
-      "id": "a1-casa-m2",
-      "pregunta": {"en": "Where do you cook?"},
-      "opciones": {
-        "en la cocina": {"en": "The kitchen."},
-        "en el baño": {"en": "That is the bathroom."},
-        "en el dormitorio": {"en": "That is the bedroom."}
-      },
-      "correcta": "en la cocina"
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
     },
     {
+      "id": "b7",
+      "tipo": "huecos",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b8",
+      "tipo": "ordenar"
+    },
+    {
+      "id": "b9",
       "tipo": "escribir",
-      "id": "a1-casa-m3",
-      "pregunta": {"en": "Translate: «The book is on the table.»"},
-      "respuestas": ["El libro está encima de la mesa", "El libro está en la mesa"]
-    },
-    {
-      "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
-      "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Describe your home: how many rooms it has, what they are like and which one you like best.\n\n**Speak (about 30 seconds).** Give an imaginary guest a tour of your home, room by room."
-      }
+      "respuestas": [
+        "El libro está encima de la mesa",
+        "El libro está encima de la mesa."
+      ]
     }
   ]
 }

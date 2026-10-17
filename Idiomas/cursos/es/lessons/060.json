@@ -1,152 +1,379 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "060",
   "capitulo": 7,
-  "titulo_es": "Comí y viví",
-  "titulo": {"en": "I ate and I lived"},
-  "intro": {"en": "The indefinido of -er and -ir verbs, and the time words that call for it."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "comí": {"en": "I ate", "pron": "ko-MI", "cat": "verb"},
-    "comiste": {"en": "you ate", "pron": "ko-MIS-te", "cat": "verb"},
-    "comió": {"en": "he/she ate", "pron": "ko-MYO", "cat": "verb"},
-    "viví": {"en": "I lived", "pron": "bi-BI", "cat": "verb"},
+    "comí": {
+      "$f": "p.comí",
+      "pron": "ko-MI",
+      "cat": "verb"
+    },
+    "comiste": {
+      "$f": "p.comiste",
+      "pron": "ko-MIS-te",
+      "cat": "verb"
+    },
+    "comió": {
+      "$f": "p.comió",
+      "pron": "ko-MYO",
+      "cat": "verb"
+    },
+    "viví": {
+      "$f": "p.viví",
+      "pron": "bi-BI",
+      "cat": "verb"
+    },
     "salimos": {
-      "en": "we went out, we left",
+      "$f": "p.salimos",
       "pron": "sa-LI-mos",
       "cat": "verb",
-      "nota": "In -ir verbs, nosotros is the same in the present and the indefinido."
+      "nota": {
+        "$t": "p.salimos.nota"
+      }
     },
-    "volvieron": {"en": "they came back", "pron": "bol-BYE-ron", "cat": "verb"},
-    "escribí": {"en": "I wrote", "pron": "es-kri-BI", "cat": "verb"},
-    "anoche": {"en": "last night", "pron": "a-NO-che", "cat": "adverb"},
-    "la semana pasada": {"en": "last week", "pron": "la se-MA-na pa-SA-da", "cat": "expression"},
-    "el año pasado": {"en": "last year", "pron": "el A-nyo pa-SA-do", "cat": "expression"},
+    "volvieron": {
+      "$f": "p.volvieron",
+      "pron": "bol-BYE-ron",
+      "cat": "verb"
+    },
+    "escribí": {
+      "$f": "p.escribí",
+      "pron": "es-kri-BI",
+      "cat": "verb"
+    },
+    "anoche": {
+      "$f": "p.anoche",
+      "pron": "a-NO-che",
+      "cat": "adv"
+    },
+    "la semana pasada": {
+      "$f": "p.la semana pasada",
+      "pron": "la se-MA-na pa-SA-da",
+      "cat": "expr"
+    },
+    "el año pasado": {
+      "$f": "p.el año pasado",
+      "pron": "el A-nyo pa-SA-do",
+      "cat": "expr"
+    },
     "hace dos días": {
-      "en": "two days ago",
+      "$f": "p.hace dos días",
       "pron": "A-the dos DI-as",
-      "cat": "expression",
-      "nota": "Hace plus a period of time means ago."
+      "cat": "expr",
+      "nota": {
+        "$t": "p.hace dos días.nota"
+      }
     },
-    "anteayer": {"en": "the day before yesterday", "pron": "an-te-a-YER", "cat": "adverb"}
+    "anteayer": {
+      "$f": "p.anteayer",
+      "pron": "an-te-a-YER",
+      "cat": "adv"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "One set of endings for -er and -ir"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "Regular **-er** and **-ir** verbs share these indefinido endings: **-í, -iste, -ió, -imos, -isteis, -ieron**.\n\n- comer: comí, comiste, comió, comimos, comisteis, comieron\n- vivir: viví, viviste, vivió, vivimos, vivisteis, vivieron\n\nRegular present-tense vowel changes in **-ar/-er** verbs do not carry over: **vuelvo → volví**, **pienso → pensé**. Common irregular preterites have their own forms; some **-ir** verbs change their stem in the third person (**dormir → durmió**, **pedir → pidieron**).\n\nIn the **yo** form of **-car/-gar/-zar** verbs, the spelling changes to preserve the sound: **buscar → busqué**, **llegar → llegué**, **empezar → empecé**.\n\nUse this tense for events in a completed past period, often with markers such as **ayer**, **anoche**, **anteayer**, **el lunes pasado**, **la semana pasada**, **el año pasado**, **en 2019** and **hace dos días**.\n\nFor **-ir** verbs, the **nosotros/as** form is the same in the present and the indefinido: **vivimos**. Context or a time expression makes the tense clear. **-isteis** is used with **vosotros/as**, mainly in Spain; where speakers use **ustedes**, **-ieron** is used, as with **ellos/ellas**."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "Comer and vivir"},
-      "columnas": ["Person", "comer", "vivir"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        },
+        {
+          "$t": "b2.c2"
+        }
+      ],
       "filas": [
-        ["yo", "comí", "viví"],
-        ["tú", "comiste", "viviste"],
-        ["él / ella / usted", "comió", "vivió"],
-        ["nosotros", "comimos", "vivimos"],
-        ["vosotros", "comisteis", "vivisteis"],
-        ["ellos / ustedes", "comieron", "vivieron"]
+        [
+          "yo",
+          "comí",
+          "viví"
+        ],
+        [
+          "tú",
+          "comiste",
+          "viviste"
+        ],
+        [
+          "él / ella / usted",
+          "comió",
+          "vivió"
+        ],
+        [
+          "nosotros",
+          "comimos",
+          "vivimos"
+        ],
+        [
+          "vosotros",
+          "comisteis",
+          "vivisteis"
+        ],
+        [
+          "ellos / ustedes",
+          "comieron",
+          "vivieron"
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Last night"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "¿Qué hiciste anoche?",
-          "en": "What did you do last night?",
-          "analisis": [["¿Qué", "question"], ["hiciste", "verb"], ["anoche", "time"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Salí con Ana. Comimos en un restaurante peruano.",
-          "en": "I went out with Ana. We ate at a Peruvian restaurant.",
-          "analisis": [["Salí", "verb"], ["con Ana", "with whom"], ["Comimos", "verb"], ["en un restaurante peruano", "place"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "¿Volvisteis tarde?",
-          "en": "Did you get back late?",
-          "analisis": [["¿Volvisteis", "verb"], ["tarde", "time"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "No, volvimos a las once.",
-          "en": "No, we got back at eleven.",
-          "analisis": [["volvimos", "verb"], ["a las once", "time"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Yo escribí a mi hermana. Vivió aquí hace dos años.",
-          "en": "I wrote to my sister. She lived here two years ago.",
           "analisis": [
-            ["Yo", "subject"],
-            ["escribí", "verb"],
-            ["a mi hermana", "to whom"],
-            ["Vivió", "verb"],
-            ["aquí", "place"],
-            ["hace dos años", "time"]
+            [
+              "¿Qué",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "hiciste",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "anoche",
+              {
+                "$t": "a2"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f1",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Salí",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "con Ana",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "Comimos",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "en un restaurante peruano",
+              {
+                "$t": "a4"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f2",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "¿Volvisteis",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "tarde",
+              {
+                "$t": "a2"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f3",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "volvimos",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "a las once",
+              {
+                "$t": "a2"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Yo",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "escribí",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "a mi hermana",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "Vivió",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "aquí",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "hace dos años",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "indef-er-ir-1",
-      "pregunta": {"en": "Complete: yesterday I ate at home."},
-      "frase": "Ayer ___ en casa.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "comí": {"en": "-er verbs take -í in yo."},
-        "comé": {"en": "-é is the ending of -ar verbs."},
-        "como": {"en": "Como is the present."}
+        "comí": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "comé": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "como": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "comí"
     },
     {
       "tipo": "huecos",
       "id": "indef-er-ir-2",
-      "pregunta": {"en": "Complete: they came back last week."},
-      "frase": "___ la semana pasada.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "Volvieron": {"en": "Volver keeps its o in the indefinido."},
-        "Vuelvieron": {"en": "The o only changes in the present."},
-        "Volvió": {"en": "Volvió is one person."}
+        "Volvieron": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "Vuelvieron": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "Volvió": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "Volvieron"
     },
     {
       "tipo": "test",
       "id": "indef-er-ir-3",
-      "pregunta": {"en": "How do you say «two days ago»?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "hace dos días": {"en": "Hace goes before the period of time."},
-        "dos días hace": {"en": "Hace comes first."},
-        "desde dos días": {"en": "Desde means since."}
+        "hace dos días": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "dos días hace": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "desde dos días": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "hace dos días"
     },
     {
       "tipo": "escribir",
       "id": "indef-er-ir-4",
-      "pregunta": {"en": "Write the yo form of llegar in the indefinido."},
-      "respuestas": ["llegué"],
-      "explicacion": {"en": "The u keeps the hard g sound before é."}
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "llegué"
+      ],
+      "explicacion": {
+        "$t": "b8.explicacion"
+      }
     },
     {
       "tipo": "ordenar",
       "id": "indef-er-ir-5",
-      "frase": "Comimos en un restaurante peruano",
-      "traduccion": {"en": "We ate at a Peruvian restaurant."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write about a day out you remember: where you went, what you ate, what you saw.\n\n**Speak (about 1 minute).** Tell aloud what you ate, drank, read and wrote last week."
+        "$t": "b10.texto"
       }
     }
   ]

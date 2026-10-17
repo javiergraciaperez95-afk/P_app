@@ -1,135 +1,346 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "103",
   "capitulo": 9,
-  "titulo_es": "¿Se puede?",
-  "titulo": {"en": "May I?"},
-  "intro": {"en": "Asking for permission, giving it, refusing it kindly, and reading the signs that forbid things."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "se puede": {"en": "may I come in; is it allowed", "pron": "se PWE-de", "cat": "expression"},
-    "poder": {"en": "to be able to; can/may", "pron": "po-DER", "cat": "verb"},
-    "te importa si": {"en": "do you mind if", "pron": "te im-POR-ta si", "cat": "expression"},
-    "claro que sí": {"en": "of course", "pron": "KLA-ro ke si", "cat": "expression"},
-    "por supuesto": {"en": "of course", "pron": "por su-PWES-to", "cat": "expression"},
-    "adelante": {"en": "go ahead, come in", "pron": "a-de-LAN-te", "cat": "interjection"},
-    "cómo no": {"en": "of course", "pron": "KO-mo no", "cat": "expression"},
-    "está prohibido": {"en": "it is forbidden", "pron": "es-TA proi-BI-do", "cat": "expression"},
-    "no se puede": {"en": "you can't, it is not allowed", "pron": "no se PWE-de", "cat": "expression"},
-    "pasar": {"en": "to come in", "pron": "pa-SAR", "cat": "verb"},
-    "hacer fotos": {"en": "to take photos", "pron": "a-SER FO-tos (seseo) / a-THER FO-tos (distinción)", "cat": "expression", "nota": "Tomar fotos is also common in many Latin American varieties."},
-    "aparcar": {"en": "to park", "pron": "a-par-KAR", "cat": "verb", "nota": "Estacionar is also common in many Latin American varieties."},
-    "fumar": {"en": "to smoke", "pron": "fu-MAR", "cat": "verb"},
-    "molestar": {"en": "to disturb", "pron": "mo-les-TAR", "cat": "verb"}
+    "se puede": {
+      "$f": "p.se puede",
+      "pron": "se PWE-de",
+      "cat": "expr"
+    },
+    "poder": {
+      "$f": "p.poder",
+      "pron": "po-DER",
+      "cat": "verb"
+    },
+    "te importa si": {
+      "$f": "p.te importa si",
+      "pron": "te im-POR-ta si",
+      "cat": "expr"
+    },
+    "claro que sí": {
+      "$f": "p.claro que sí",
+      "pron": "KLA-ro ke si",
+      "cat": "expr"
+    },
+    "por supuesto": {
+      "$f": "p.por supuesto",
+      "pron": "por su-PWES-to",
+      "cat": "expr"
+    },
+    "adelante": {
+      "$f": "p.adelante",
+      "pron": "a-de-LAN-te",
+      "cat": "interj"
+    },
+    "cómo no": {
+      "$f": "p.cómo no",
+      "pron": "KO-mo no",
+      "cat": "expr"
+    },
+    "está prohibido": {
+      "$f": "p.está prohibido",
+      "pron": "es-TA proi-BI-do",
+      "cat": "expr"
+    },
+    "no se puede": {
+      "$f": "p.no se puede",
+      "pron": "no se PWE-de",
+      "cat": "expr"
+    },
+    "pasar": {
+      "$f": "p.pasar",
+      "pron": "pa-SAR",
+      "cat": "verb"
+    },
+    "hacer fotos": {
+      "$f": "p.hacer fotos",
+      "pron": "a-SER FO-tos (seseo) / a-THER FO-tos (distinción)",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.hacer fotos.nota"
+      }
+    },
+    "aparcar": {
+      "$f": "p.aparcar",
+      "pron": "a-par-KAR",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.aparcar.nota"
+      }
+    },
+    "fumar": {
+      "$f": "p.fumar",
+      "pron": "fu-MAR",
+      "cat": "verb"
+    },
+    "molestar": {
+      "$f": "p.molestar",
+      "pron": "mo-les-TAR",
+      "cat": "verb"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Permission"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "To ask:\n\n- **¿Puedo + infinitive?** ¿Puedo abrir la ventana?\n- **¿Se puede + infinitive?** ¿Se puede aparcar aquí? At a door, **¿Se puede?** can mean May I come in?\n- **¿Te importa si + present indicative?** With formal **usted**: **¿Le importa si…?** Another option is **¿Te molesta si…?**\n\nCommon ways to say yes include **Claro que sí**, **Por supuesto**, **Cómo no** and **Adelante**. With someone you address as **tú**, you can also say **Pasa, pasa** or give a command: **Ábrela.**\n\nTo refuse kindly, give a reason: **Lo siento, es que…** or **Lo siento, pero está prohibido.**\n\nSigns: **Prohibido fumar.** **No se puede aparcar.** **No pasar.**"
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "The director's office"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
-        {"quien": "Lucía", "es": "¿Se puede?", "en": "May I come in?", "analisis": [["¿Se puede?", "permission"]]},
         {
-          "quien": "Director",
-          "es": "Sí, pasa, pasa.",
-          "en": "Yes, come in, come in.",
-          "analisis": [["pasa, pasa", "command (tú)"]]
-        },
-        {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "¿Puedo abrir la ventana? Hace calor.",
-          "en": "Can I open the window? It's hot.",
-          "analisis": [["¿Puedo abrir", "verb"], ["la ventana", "object"], ["Hace calor", "verb"]]
+          "analisis": [
+            [
+              "¿Se puede?",
+              {
+                "$t": "a0"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Director",
-          "es": "Claro que sí. Ábrela.",
-          "en": "Of course. Open it.",
-          "analisis": [["Claro que sí", "permission"], ["Ábrela", "command + la"]]
+          "analisis": [
+            [
+              "pasa, pasa",
+              {
+                "$t": "a1"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "¿Le importa si hago una foto del despacho?",
-          "en": "Do you mind if I take a photo of the office?",
-          "analisis": [["¿Le importa si", "permission (usted)"], ["hago", "verb"], ["una foto del despacho", "object"]]
+          "analisis": [
+            [
+              "¿Puedo abrir",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "la ventana",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "Hace calor",
+              {
+                "$t": "a2"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Director",
-          "es": "Lo siento, pero aquí está prohibido hacer fotos.",
-          "en": "I'm sorry, but taking photos is forbidden here.",
-          "analisis": [["Lo siento", "apology"], ["aquí", "place"], ["está prohibido", "verb"], ["hacer fotos", "infinitive"]]
+          "analisis": [
+            [
+              "Claro que sí",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "Ábrela",
+              {
+                "$t": "a4"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "¿Le importa si",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "hago",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "una foto del despacho",
+              {
+                "$t": "a3"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "quien": "Director",
+          "analisis": [
+            [
+              "Lo siento",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "aquí",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "está prohibido",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "hacer fotos",
+              {
+                "$t": "a8"
+              }
+            ]
+          ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "test",
       "id": "se-puede-1",
-      "pregunta": {"en": "You knock on a door and look in. What do you say?"},
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
       "opciones": {
-        "¿Se puede?": {"en": "May I come in?"},
-        "¿Se pone?": {"en": "That asks if someone is coming to the phone."},
-        "¿Puedes?": {"en": "That asks whether the other person can."}
+        "¿Se puede?": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "¿Se pone?": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "¿Puedes?": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "¿Se puede?"
     },
     {
       "tipo": "huecos",
       "id": "se-puede-2",
-      "pregunta": {"en": "Complete: do you mind if I open the window?"},
-      "frase": "¿Te importa ___ abro la ventana?",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "si": {"en": "¿Te importa si…?"},
-        "que": {"en": "With que the verb would be subjunctive: que abra."},
-        "de": {"en": "Importar does not take de here."}
+        "si": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "que": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "de": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "si"
     },
     {
       "tipo": "huecos",
       "id": "se-puede-3",
-      "pregunta": {"en": "Complete: smoking is forbidden."},
-      "frase": "Está prohibido ___.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "fumar": {"en": "After está prohibido, the infinitive."},
-        "fumo": {"en": "After está prohibido, the infinitive."},
-        "fumando": {"en": "After está prohibido, the infinitive."}
+        "fumar": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "fumo": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "fumando": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "fumar"
     },
     {
       "tipo": "test",
       "id": "se-puede-4",
-      "pregunta": {"en": "Which is a kind way to refuse?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "Lo siento, es que…": {"en": "An apology and a reason."},
-        "No.": {"en": "On its own it is abrupt."},
-        "Adelante": {"en": "That gives permission."}
+        "Lo siento, es que…": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "No.": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "Adelante": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "Lo siento, es que…"
     },
     {
       "tipo": "escribir",
       "id": "se-puede-5",
-      "pregunta": {"en": "Translate: «Can I come in?»"},
-      "respuestas": ["¿Puedo pasar?", "¿Puedo entrar?", "¿Se puede?"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "¿Puedo pasar?",
+        "¿Puedo entrar?",
+        "¿Se puede?"
+      ]
     },
     {
       "tipo": "ordenar",
       "id": "se-puede-6",
-      "frase": "Aquí está prohibido hacer fotos",
-      "traduccion": {"en": "Taking photos is forbidden here."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write the rules of a place you know: a library, a gym, a flat. What you can and cannot do.\n\n**Speak (about 1 minute).** Ask permission aloud for five things in someone else's home, and give or refuse permission yourself."
+        "$t": "b10.texto"
       }
     }
   ]

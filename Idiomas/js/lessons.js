@@ -160,7 +160,9 @@ export async function cargarLeccion(id) {
   try {
     // Esquema v2: estructura en este archivo y textos en traducciones/<idioma>/<id>.json.
     // Se convierte a la forma antigua para que el resto del programa no cambie.
-    json = json && json.esquema === 2 ? await adaptarV2(json, id) : adaptar(json);
+    // Las «flexibles» son lecciones antiguas pasadas a catálogos sin rehacer sus bloques.
+    if (json && json.esquema === 2) json = json.flexible ? await adaptarFlexible(json, id) : await adaptarV2(json, id);
+    else json = adaptar(json);
   } catch (e) {
     console.error(e);
     return { id, archivo, error: errorSimple(id, t('rev.noEntiende')) };
@@ -387,6 +389,56 @@ function textoTraducible(claveTexto, primero, segundo) {
     if (typeof v === 'string' && v.trim()) salida[fuente.idioma] = v;
   }
   return salida;
+}
+
+/**
+ * Lecciones v2 «flexibles» (ver _herramientas/ESQUEMA_V2.txt, punto 9): la forma antigua, con
+ * cada texto cambiado por una referencia a los catálogos.
+ *   {"$t": clave}        texto de ayuda → { en, <idioma del alumno> }
+ *   {"$f": clave, …}     frase que se estudia → se le añaden el texto del curso y sus traducciones
+ *   {"$e": clave}        texto en el idioma del curso (la frase de un hueco o de ordenar)
+ *   ["texto", {"$t"…}]   análisis: la etiqueta también es texto de ayuda
+ *   cat                  código del catálogo cerrado → nombre en el idioma del alumno
+ * Devuelve la lección en la forma antigua, que el resto del programa ya entiende.
+ */
+async function adaptarFlexible(json, id) {
+  const entorno = idiomaDeEntorno();
+  const delCurso = idiomaDelCurso();
+  const ingles = await leerCatalogo(id, 'en');
+  const propio = entorno === 'en' ? {} : await leerCatalogo(id, entorno);
+  const estudio = await leerCatalogo(id, delCurso);
+  const etiquetas = { ...(await leerCatalogo('_etiquetas', 'en')), ...(await leerCatalogo('_etiquetas', entorno)) };
+
+  const ayuda = clave => {
+    const salida = {};
+    if (textoValido(ingles[clave])) salida.en = ingles[clave];
+    if (textoValido(propio[clave])) salida[entorno] = propio[clave];
+    return salida;
+  };
+  const andar = (o, dentroDe) => {
+    if (Array.isArray(o)) return o.map(x => andar(x, dentroDe));
+    if (!esObjeto(o)) return o;
+    if (typeof o.$t === 'string' && Object.keys(o).length === 1) return ayuda(o.$t);
+    if (typeof o.$e === 'string' && Object.keys(o).length === 1) return estudio[o.$e] ?? '';
+    const salida = {};
+    for (const [k, v] of Object.entries(o)) {
+      if (k === '$f') continue;
+      // En «palabras» y «opciones» las claves son palabras del curso: se dejan tal cual.
+      const literales = dentroDe === 'palabras' || dentroDe === 'opciones';
+      salida[k] = k === 'cat' && typeof v === 'string' && !literales ? (etiquetas[`cat.${v}`] ?? v) : andar(v, literales ? '' : k);
+    }
+    if (typeof o.$f === 'string') {
+      Object.assign(salida, ayuda(o.$f));
+      if (textoValido(estudio[o.$f])) salida[delCurso] = estudio[o.$f];
+    }
+    return salida;
+  };
+  const leccion = andar(json, '');
+  delete leccion.esquema;
+  delete leccion.flexible;
+  delete leccion.id;
+  if (textoValido(estudio.titulo)) leccion[`titulo_${delCurso}`] = estudio.titulo;
+  return adaptar(leccion);
 }
 
 async function adaptarV2(json, id) {

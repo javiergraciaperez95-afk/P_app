@@ -1,198 +1,509 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "078",
   "capitulo": 8,
-  "titulo_es": "Tanto como",
-  "titulo": {"en": "As much as"},
-  "intro": {"en": "Comparing amounts and equality: more books than, as many hours as, as hot as, more than a hundred, the same as."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "tan": {"en": "as (before an adjective or adverb, in tan…como)", "pron": "tan", "cat": "adverb"},
-    "tanto como": {"en": "as much as", "pron": "TAN-to KO-mo", "cat": "expression"},
+    "tan": {
+      "$f": "p.tan",
+      "pron": "tan",
+      "cat": "adv"
+    },
+    "tanto como": {
+      "$f": "p.tanto como",
+      "pron": "TAN-to KO-mo",
+      "cat": "expr"
+    },
     "tantas horas como": {
-      "en": "as many hours as",
+      "$f": "p.tantas horas como",
       "pron": "TAN-tas O-ras KO-mo",
-      "cat": "expression",
-      "nota": "Tanto agrees with the noun: tanto, tanta, tantos, tantas."
+      "cat": "expr",
+      "nota": {
+        "$t": "p.tantas horas como.nota"
+      }
     },
-    "más de": {"en": "more than (+ a number)", "pron": "mas de", "cat": "expression"},
-    "menos de": {"en": "less than (+ a number)", "pron": "ME-nos de", "cat": "expression"},
+    "más de": {
+      "$f": "p.más de",
+      "pron": "mas de",
+      "cat": "expr"
+    },
+    "menos de": {
+      "$f": "p.menos de",
+      "pron": "ME-nos de",
+      "cat": "expr"
+    },
     "el mismo": {
-      "en": "the same",
+      "$f": "p.el mismo",
       "pron": "el MIS-mo",
-      "cat": "adjective",
-      "nota": "It agrees: la misma, los mismos, las mismas."
+      "cat": "adj",
+      "nota": {
+        "$t": "p.el mismo.nota"
+      }
     },
-    "igual que": {"en": "the same as", "pron": "i-GWAL ke", "cat": "expression"},
-    "diferente de": {"en": "different from", "pron": "di-fe-REN-te de", "cat": "expression"},
-    "parecido a": {"en": "similar to", "pron": "pa-re-SI-do/THI-do a", "cat": "expression"},
-    "el doble": {"en": "double, twice as much", "pron": "el DO-ble", "cat": "noun", "genero": "m"},
-    "la mitad": {"en": "half", "pron": "la mi-TAD", "cat": "noun", "genero": "f"},
-    "ganar": {"en": "to earn", "pron": "ga-NAR", "cat": "verb"},
-    "gastar": {"en": "to spend", "pron": "gas-TAR", "cat": "verb"},
-    "el precio": {"en": "the price", "pron": "el PRE-syo/THyo", "cat": "noun", "genero": "m"},
-    "el horario": {"en": "the schedule, timetable", "pron": "el o-RA-ryo", "cat": "noun", "genero": "m"},
-    "el piso": {"en": "the apartment/flat (often Spain; also floor)", "pron": "el PI-so", "cat": "noun", "genero": "m"},
-    "el euro": {"en": "the euro", "pron": "el EW-ro", "cat": "noun", "genero": "m"},
-    "el café": {"en": "the coffee", "pron": "el ka-FE", "cat": "noun", "genero": "m"},
-    "caliente": {"en": "hot", "pron": "ka-LYEN-te", "cat": "adjective"},
-    "el té": {"en": "the tea", "pron": "el te", "cat": "noun", "genero": "m"},
-    "al mes": {"en": "per month", "pron": "al mes", "cat": "expression"}
+    "igual que": {
+      "$f": "p.igual que",
+      "pron": "i-GWAL ke",
+      "cat": "expr"
+    },
+    "diferente de": {
+      "$f": "p.diferente de",
+      "pron": "di-fe-REN-te de",
+      "cat": "expr"
+    },
+    "parecido a": {
+      "$f": "p.parecido a",
+      "pron": "pa-re-SI-do/THI-do a",
+      "cat": "expr"
+    },
+    "el doble": {
+      "$f": "p.el doble",
+      "pron": "el DO-ble",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la mitad": {
+      "$f": "p.la mitad",
+      "pron": "la mi-TAD",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "ganar": {
+      "$f": "p.ganar",
+      "pron": "ga-NAR",
+      "cat": "verb"
+    },
+    "gastar": {
+      "$f": "p.gastar",
+      "pron": "gas-TAR",
+      "cat": "verb"
+    },
+    "el precio": {
+      "$f": "p.el precio",
+      "pron": "el PRE-syo/THyo",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el horario": {
+      "$f": "p.el horario",
+      "pron": "el o-RA-ryo",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el piso": {
+      "$f": "p.el piso",
+      "pron": "el PI-so",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el euro": {
+      "$f": "p.el euro",
+      "pron": "el EW-ro",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el café": {
+      "$f": "p.el café",
+      "pron": "el ka-FE",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "caliente": {
+      "$f": "p.caliente",
+      "pron": "ka-LYEN-te",
+      "cat": "adj"
+    },
+    "el té": {
+      "$f": "p.el té",
+      "pron": "el te",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "al mes": {
+      "$f": "p.al mes",
+      "pron": "al mes",
+      "cat": "expr"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Comparing quantities"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "With **nouns**: **más** / **menos** + noun + **que**: tengo **más** libros **que** tú.\n\nAs much, as many: **tanto, tanta, tantos, tantas** + noun + **como**. It agrees with the noun: **tantas** horas **como** tú.\n\nWith **adjectives or adverbs**: **tan + adjective/adverb + como**: el café está **tan caliente como** el té. **Tan** does not change; the adjective agrees with the noun when its form allows it.\n\nWith **verbs**: trabaja **más que** yo; gana **menos que** yo; no gasto **tanto como** tú. Here **tanto** does not agree with a noun.\n\nBefore a **number**, than is **de**, not que: **más de** cien euros, **menos de** mil.\n\nFor the same person or thing: **el mismo** horario **que** tú; **tengo la misma profesora que** tú.\n\nAlso: **igual que**, **diferente de**, **parecido a**, **el doble**, **la mitad**. Pronunciation varies: c before i may sound like s (seseo) or like the th in think (distinción)."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
-      "titulo": {"en": "Five patterns"},
-      "columnas": ["Pattern", "Example"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        }
+      ],
       "filas": [
-        ["más / menos + noun + que", "Tengo más libros que tú."],
-        ["tanto/a/os/as + noun + como", "Trabajo tantas horas como tú."],
-        ["tan + adjective/adverb + como", "El café está tan caliente como el té."],
-        ["verb + más / menos que, tanto como", "Gana menos que yo."],
-        ["más / menos de + number", "Cuesta más de cien euros."]
+        [
+          "más / menos + noun + que",
+          "Tengo más libros que tú."
+        ],
+        [
+          "tanto/a/os/as + noun + como",
+          "Trabajo tantas horas como tú."
+        ],
+        [
+          "tan + adjective/adverb + como",
+          "El café está tan caliente como el té."
+        ],
+        [
+          "verb + más / menos que, tanto como",
+          "Gana menos que yo."
+        ],
+        [
+          "más / menos de + number",
+          "Cuesta más de cien euros."
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Work and money"},
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "¿Trabajas tantas horas como tu hermano?",
-          "en": "Do you work as many hours as your brother?",
-          "analisis": [["¿Trabajas", "verb"], ["tantas horas como", "as many hours as"], ["tu hermano", "comparison"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "No, él trabaja más que yo, pero gana menos.",
-          "en": "No, he works more than me, but he earns less.",
           "analisis": [
-            ["él", "subject"],
-            ["trabaja", "verb"],
-            ["más que yo", "comparison"],
-            ["gana", "verb"],
-            ["menos", "how much"]
+            [
+              "¿Trabajas",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "tantas horas como",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "tu hermano",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
-          "quien": "Lucía",
-          "es": "¿Cuánto gana?",
-          "en": "How much does he earn?",
-          "analisis": [["¿Cuánto", "question"], ["gana", "verb"]]
-        },
-        {
+          "$f": "b3.f1",
           "quien": "Pablo",
-          "es": "Menos de mil euros. Yo gano el doble que él.",
-          "en": "Less than a thousand euros. I earn twice as much as he does.",
-          "analisis": [["Menos de mil euros", "amount"], ["Yo", "subject"], ["gano", "verb"], ["el doble que él", "twice as much as he does"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Yo tengo el mismo horario que tú, pero no gasto tanto como tú.",
-          "en": "I have the same hours as you, but I don't spend as much as you.",
           "analisis": [
-            ["Yo", "subject"],
-            ["tengo", "verb"],
-            ["el mismo horario que tú", "comparison"],
-            ["no gasto", "verb"],
-            ["tanto como tú", "comparison"]
+            [
+              "él",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "trabaja",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "más que yo",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "gana",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "menos",
+              {
+                "$t": "a4"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f2",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "¿Cuánto",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "gana",
+              {
+                "$t": "a0"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f3",
           "quien": "Pablo",
-          "es": "Es que mi piso cuesta más de ochocientos euros al mes.",
-          "en": "The thing is, my flat costs more than eight hundred euros a month.",
-          "analisis": [["Es que", "excuse"], ["mi piso", "subject"], ["cuesta", "verb"], ["más de ochocientos euros al mes", "monthly amount"]]
+          "analisis": [
+            [
+              "Menos de mil euros",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "Yo",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "gano",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "el doble que él",
+              {
+                "$t": "a7"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Yo",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "tengo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "el mismo horario que tú",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "no gasto",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "tanto como tú",
+              {
+                "$t": "a2"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b3.f5",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Es que",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "mi piso",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "cuesta",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "más de ochocientos euros al mes",
+              {
+                "$t": "a9"
+              }
+            ]
+          ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "tanto-como-1",
-      "pregunta": {"en": "Complete: I have as many books as you."},
-      "frase": "Tengo ___ libros como tú.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "tantos": {"en": "It agrees with libros."},
-        "tan": {"en": "Tan goes before adjectives."},
-        "tanto": {"en": "Libros is plural."}
+        "tantos": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "tan": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "tanto": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "tantos"
     },
     {
       "tipo": "huecos",
       "id": "tanto-como-2",
-      "pregunta": {"en": "Complete: it costs more than a hundred euros."},
-      "frase": "Cuesta más ___ cien euros.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "de": {"en": "Before a number, than is de."},
-        "que": {"en": "Que is used when you compare two things."},
-        "como": {"en": "Como goes with tan and tanto."}
+        "de": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "que": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "como": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "de"
     },
     {
       "tipo": "huecos",
       "id": "tanto-como-3",
-      "pregunta": {"en": "Complete: I work as much as you."},
-      "frase": "Trabajo tanto ___ tú.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "como": {"en": "Tanto … como."},
-        "que": {"en": "Que goes with más and menos."},
-        "de": {"en": "De goes before numbers."}
+        "como": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "que": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "de": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "como"
     },
     {
       "tipo": "huecos",
       "id": "tanto-como-4",
-      "pregunta": {"en": "Complete: we have the same teacher. (la profesora)"},
-      "frase": "Tenemos ___ misma profesora.",
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "frase": {
+        "$e": "b8.frase"
+      },
       "audio": true,
       "opciones": {
-        "la": {"en": "Profesora is feminine."},
-        "el": {"en": "Profesora is feminine."},
-        "lo": {"en": "Lo mismo is the same thing, with no noun."}
+        "la": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "el": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "lo": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "la"
     },
     {
       "tipo": "huecos",
       "id": "tanto-como-5",
-      "pregunta": {"en": "Complete: the coffee is as hot as the tea."},
-      "frase": "El café está ___ caliente como el té.",
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
+      "frase": {
+        "$e": "b9.frase"
+      },
       "audio": true,
       "opciones": {
-        "tan": {"en": "Tan goes before an adjective in tan…como."},
-        "tanto": {"en": "Tanto compares quantities or goes with a verb."},
-        "tanta": {"en": "Tanta agrees with a feminine noun."}
+        "tan": {
+          "$t": "b9.o0.refuerzo"
+        },
+        "tanto": {
+          "$t": "b9.o1.refuerzo"
+        },
+        "tanta": {
+          "$t": "b9.o2.refuerzo"
+        }
       },
       "correcta": "tan"
     },
     {
       "tipo": "escribir",
       "id": "tanto-como-6",
-      "pregunta": {"en": "Translate: «He works more than me.»"},
-      "respuestas": ["Trabaja más que yo", "Él trabaja más que yo"]
+      "pregunta": {
+        "$t": "b10.pregunta"
+      },
+      "respuestas": [
+        "Trabaja más que yo",
+        "Él trabaja más que yo"
+      ]
     },
     {
       "tipo": "ordenar",
       "id": "tanto-como-7",
-      "frase": "No gasto tanto como tú",
-      "traduccion": {"en": "I don't spend as much as you."}
+      "frase": {
+        "$e": "b11.frase"
+      },
+      "traduccion": {
+        "$t": "b11.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b12.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write comparisons of equality about you and a friend: Trabajo tanto como…, tengo tantos… como…\n\n**Speak (about 1 minute).** Compare aloud life now and life ten years ago using tan… como and tanto… como."
+        "$t": "b12.texto"
       }
     }
   ]

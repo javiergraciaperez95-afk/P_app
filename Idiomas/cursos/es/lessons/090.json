@@ -1,166 +1,438 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "090",
   "capitulo": 9,
-  "titulo_es": "Tomar el metro",
-  "titulo": {"en": "Taking the underground"},
-  "intro": {"en": "Getting around a city: lines, stops, changing and getting off."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "la parada": {"en": "the stop", "pron": "la pa-RA-da", "cat": "noun", "genero": "f"},
-    "la línea": {"en": "the line", "pron": "la LI-ne-a", "cat": "noun", "genero": "f"},
-    "el metro": {"en": "the underground, subway", "pron": "el ME-tro", "cat": "noun", "genero": "m"},
-    "el autobús": {"en": "the bus", "pron": "el au-to-BUS", "cat": "noun", "genero": "m"},
-    "el billete": {"en": "the ticket (el boleto in many Latin American countries)", "pron": "el bi-YE-te", "cat": "noun", "genero": "m"},
-    "el centro": {"en": "the city centre", "pron": "el SEN-tro (seseo) / THEN-tro (distinción)", "cat": "noun", "genero": "m"},
-    "costar": {"en": "to cost", "pron": "kos-TAR", "cat": "verb"},
+    "la parada": {
+      "$f": "p.la parada",
+      "pron": "la pa-RA-da",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "la línea": {
+      "$f": "p.la línea",
+      "pron": "la LI-ne-a",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "el metro": {
+      "$f": "p.el metro",
+      "pron": "el ME-tro",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el autobús": {
+      "$f": "p.el autobús",
+      "pron": "el au-to-BUS",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el billete": {
+      "$f": "p.el billete",
+      "pron": "el bi-YE-te",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el centro": {
+      "$f": "p.el centro",
+      "pron": "el SEN-tro (seseo) / THEN-tro (distinción)",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "costar": {
+      "$f": "p.costar",
+      "pron": "kos-TAR",
+      "cat": "verb"
+    },
     "coger": {
-      "en": "to take, to catch",
+      "$f": "p.coger",
       "pron": "ko-HER",
       "cat": "verb",
-      "nota": "Common in Spain and parts of Latin America; in several countries it is also a vulgar word for sexual intercourse. When in doubt, use tomar."
+      "nota": {
+        "$t": "p.coger.nota"
+      }
     },
-    "bajarse": {"en": "to get off", "pron": "ba-HAR-se", "cat": "verb"},
-    "subir": {"en": "to get on; to go up", "pron": "su-BIR", "cat": "verb"},
-    "cambiar de línea": {"en": "to change lines", "pron": "kam-BYAR de LI-ne-a", "cat": "expression"},
-    "el abono": {"en": "the travel pass", "pron": "el a-BO-no", "cat": "noun", "genero": "m"},
-    "el taxi": {"en": "the taxi", "pron": "el TAK-si", "cat": "noun", "genero": "m"},
-    "la moto": {"en": "the motorbike", "pron": "la MO-to", "cat": "noun", "genero": "f", "nota": "Feminine: it is short for la motocicleta."},
-    "la bicicleta": {"en": "the bicycle", "pron": "la bi-si-KLE-ta (seseo) / bi-thi-KLE-ta (distinción)", "cat": "noun", "genero": "f"},
-    "el barco": {"en": "the boat, the ship", "pron": "el BAR-ko", "cat": "noun", "genero": "m"},
-    "el avión": {"en": "the plane", "pron": "el a-BYON", "cat": "noun", "genero": "m"},
-    "el conductor": {"en": "the driver", "pron": "el kon-duk-TOR", "cat": "noun", "genero": "m"},
-    "la carretera": {"en": "the road", "pron": "la ka-rre-TE-ra", "cat": "noun", "genero": "f"},
-    "el aeropuerto": {"en": "the airport", "pron": "el a-e-ro-PWER-to", "cat": "noun", "genero": "m"},
-    "rápido": {"en": "fast", "pron": "RA-pi-do", "cat": "adjective"}
+    "bajarse": {
+      "$f": "p.bajarse",
+      "pron": "ba-HAR-se",
+      "cat": "verb"
+    },
+    "subir": {
+      "$f": "p.subir",
+      "pron": "su-BIR",
+      "cat": "verb"
+    },
+    "cambiar de línea": {
+      "$f": "p.cambiar de línea",
+      "pron": "kam-BYAR de LI-ne-a",
+      "cat": "expr"
+    },
+    "el abono": {
+      "$f": "p.el abono",
+      "pron": "el a-BO-no",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el taxi": {
+      "$f": "p.el taxi",
+      "pron": "el TAK-si",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la moto": {
+      "$f": "p.la moto",
+      "pron": "la MO-to",
+      "cat": "sust",
+      "genero": "f",
+      "nota": {
+        "$t": "p.la moto.nota"
+      }
+    },
+    "la bicicleta": {
+      "$f": "p.la bicicleta",
+      "pron": "la bi-si-KLE-ta (seseo) / bi-thi-KLE-ta (distinción)",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "el barco": {
+      "$f": "p.el barco",
+      "pron": "el BAR-ko",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el avión": {
+      "$f": "p.el avión",
+      "pron": "el a-BYON",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el conductor": {
+      "$f": "p.el conductor",
+      "pron": "el kon-duk-TOR",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la carretera": {
+      "$f": "p.la carretera",
+      "pron": "la ka-rre-TE-ra",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "el aeropuerto": {
+      "$f": "p.el aeropuerto",
+      "pron": "el a-e-ro-PWER-to",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "rápido": {
+      "$f": "p.rápido",
+      "pron": "RA-pi-do",
+      "cat": "adj"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Public transport"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "Use **tomar** or **coger** + a transport noun: **tomar el metro**, **tomar el autobús**, **tomar un taxi**. **Coger** is common in Spain and parts of Latin America; see the regional note. To say how you travel, use **ir en**: **vas en** metro, avión or barco.\n\nYou **subes al** autobús and **te bajas del** autobús. **¿Dónde me bajo?** — **En** la última parada.\n\nUseful questions:\n\n- **¿Qué línea va al aeropuerto?**\n- **¿Cuántas paradas son?**\n- **¿Cuánto tarda?**\n- **¿Cuánto cuesta el billete?**\n- **¿Tengo que cambiar de línea?**\n\n**Tener que + infinitive** expresses what you need to do: tienes que cambiar **de línea en** Sol. An **abono** is a transport pass; its validity period can vary."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "To the airport"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "Perdona, ¿qué línea va al aeropuerto?",
-          "en": "Excuse me, which line goes to the airport?",
-          "analisis": [["Perdona", "politeness"], ["¿qué línea", "question"], ["va", "verb"], ["al aeropuerto", "place"]]
+          "analisis": [
+            [
+              "Perdona",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "¿qué línea",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "va",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "al aeropuerto",
+              {
+                "$t": "a3"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Chico",
-          "es": "La línea ocho. Pero tienes que cambiar de línea en Nuevos Ministerios.",
-          "en": "Line eight. But you have to change lines at Nuevos Ministerios.",
-          "analisis": [["La línea ocho", "line"], ["tienes que cambiar de línea", "verb"], ["en Nuevos Ministerios", "place"]]
+          "analisis": [
+            [
+              "La línea ocho",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "tienes que cambiar de línea",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "en Nuevos Ministerios",
+              {
+                "$t": "a3"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "¿Cuántas paradas son?",
-          "en": "How many stops is it?",
-          "analisis": [["¿Cuántas paradas", "question"], ["son", "verb"]]
+          "analisis": [
+            [
+              "¿Cuántas paradas",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "son",
+              {
+                "$t": "a2"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Chico",
-          "es": "Seis. Tarda unos veinte minutos.",
-          "en": "Six. It takes about twenty minutes.",
-          "analisis": [["Seis", "number"], ["Tarda", "verb"], ["unos veinte minutos", "time"]]
+          "analisis": [
+            [
+              "Seis",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "Tarda",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "unos veinte minutos",
+              {
+                "$t": "a6"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f4",
           "quien": "Lucía",
-          "es": "¿Dónde me bajo?",
-          "en": "Where do I get off?",
-          "analisis": [["¿Dónde", "question"], ["me bajo", "verb"]]
+          "analisis": [
+            [
+              "¿Dónde",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "me bajo",
+              {
+                "$t": "a2"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f5",
           "quien": "Chico",
-          "es": "En la última parada. Es más rápido que el taxi.",
-          "en": "At the last stop. It's faster than a taxi.",
-          "analisis": [["En la última parada", "place"], ["Es", "verb"], ["más rápido que el taxi", "comparison"]]
+          "analisis": [
+            [
+              "En la última parada",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "Es",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "más rápido que el taxi",
+              {
+                "$t": "a7"
+              }
+            ]
+          ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "metro-1",
-      "pregunta": {"en": "Complete: you have to get off at the third stop."},
-      "frase": "Tienes que ___ en la tercera parada.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "bajarte": {"en": "Bajarse: to get off."},
-        "subirte": {"en": "Subirse is to get on."},
-        "cambiarte": {"en": "Cambiarse is to change clothes."}
+        "bajarte": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "subirte": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "cambiarte": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "bajarte"
     },
     {
       "tipo": "huecos",
       "id": "metro-2",
-      "pregunta": {"en": "Complete: I go by plane."},
-      "frase": "Voy ___ avión.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "en": {"en": "Vehicles take en."},
-        "a": {"en": "A is used in phrases such as a pie, but not with avión here."},
-        "por": {"en": "Use en to say how you travel: voy en avión."}
+        "en": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "a": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "por": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "en"
     },
     {
       "tipo": "test",
       "id": "metro-3",
-      "pregunta": {"en": "«¿Cuánto tarda?» asks…"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "how long it takes": {"en": "Tardar: to take time."},
-        "how much it costs": {"en": "That is ¿Cuánto cuesta?"},
-        "how far it is": {"en": "That is ¿A qué distancia está?"}
+        "how long it takes": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "how much it costs": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "how far it is": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "how long it takes"
     },
     {
       "tipo": "huecos",
       "id": "metro-4",
-      "pregunta": {"en": "Complete: I take the underground."},
-      "frase": "Tomo ___ metro.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "el": {"en": "Tomar el metro."},
-        "al": {"en": "Tomar takes no preposition here."},
-        "en": {"en": "Use ir en metro, but tomar el metro."}
+        "el": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "al": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "en": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "el"
     },
     {
       "tipo": "escribir",
       "id": "metro-5",
-      "pregunta": {"en": "Translate: «Which line goes to the centre?»"},
-      "respuestas": ["¿Qué línea va al centro?"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "¿Qué línea va al centro?"
+      ]
     },
     {
       "tipo": "ordenar",
       "id": "metro-6",
-      "frase": "Tienes que cambiar de línea",
-      "traduccion": {"en": "You have to change lines."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "metro-7",
-      "pregunta": {"en": "Ask how much the ticket costs."},
-      "frase": "¿Cuánto ___ el billete?",
+      "pregunta": {
+        "$t": "b10.pregunta"
+      },
+      "frase": {
+        "$e": "b10.frase"
+      },
       "opciones": {
-        "cuesta": {"en": "Costar agrees with the singular noun el billete."},
-        "tarda": {"en": "Tardar asks how long it takes."},
-        "cuestan": {"en": "The subject el billete is singular."}
+        "cuesta": {
+          "$t": "b10.o0.refuerzo"
+        },
+        "tarda": {
+          "$t": "b10.o1.refuerzo"
+        },
+        "cuestan": {
+          "$t": "b10.o2.refuerzo"
+        }
       },
       "correcta": "cuesta"
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Explain in writing how to get from the airport to the centre of your city by public transport.\n\n**Speak (about 1 minute).** Ask aloud at a ticket office: which line, where to change, how much, how long."
+        "$t": "b11.texto"
       }
     }
   ]

@@ -1,0 +1,1132 @@
+id 019
+capitulo 2
+nivel A1
+
+palabras
+el nombre | el NOM-bre | sust | m
+el apellido | el a-pe-YI-do | sust | m
+los apellidos | los a-pe-YI-dos | sust | m
+la dirección | la di-rek-THYON | sust | f
+la calle | la KA-ye | sust | f
+el número | el NU-me-ro | sust | m
+el código postal | el KO-di-go pos-TAL | sust | m
+el correo electrónico | el ko-RRE-o e-lek-TRO-ni-ko | sust | m
+el teléfono | el te-LE-fo-no | sust | m
+el punto | el PUN-to | sust | m
+la edad | la e-DAD | sust | f
+la fecha de nacimiento | la FE-cha de na-thi-MYEN-to | sust | f
+la nacionalidad | la na-thyo-na-li-DAD | sust | f
+chilena | chi-LE-na | adj
+chileno | chi-LE-no | adj
+la profesión | la pro-fe-SYON | sust | f
+el estado civil | el es-TA-do thi-BIL | sust | m
+la firma | la FIR-ma | sust | f
+firmar | fir-MAR | verb
+rellenar | re-ye-NAR | verb
+el formulario | el for-mu-LA-ryo | sust | m
+la arroba | la a-RRO-ba | sust | f
+Recepcionista | propio
+Lucía | propio
+
+bloques
+b1 explicacion
+b2 dialogo
+  Recepcionista | b [PRED:es [ATRIB* ¿Cuál] [V* es]] [SUJ:nombre [DET su] [N nombre?]]
+  Lucía | b [SUJ:nombre [DET Mi] [N nombre]] [PRED:es [V* es] [ATRIB* Lucía.]]
+  Recepcionista | b [PRED:es [ATRIB* ¿Cuál] [V* es]] [SUJ:dirección [DET su] [N dirección?]]
+  Lucía | b [PRED:Vivo [V* Vivo] [CCL:calle [PREP en] [TERM:calle [DET la] [N calle] [ADY* Mayor.]]]]
+  Recepcionista | b [PRED:es [ATRIB* ¿Cuál] [V* es]] [SUJ:teléfono [DET su] [N teléfono?]]
+  Recepcionista | b [PRED:Firme [V* Firme] [CCL* aquí.]]
+b3 vocabulario el nombre; el apellido; los apellidos; la dirección; la calle; el número; el código postal; el correo electrónico; el teléfono; el punto; la edad; la fecha de nacimiento; la nacionalidad; chilena; chileno; la profesión; el estado civil; la firma; firmar; rellenar; el formulario; la arroba
+b4 gramatica
+  b [PRED:es [ATRIB* ¿Cuál] [V* es]] [SUJ:dirección [DET tu] [N dirección?]]
+  b [PRED:es [ATRIB* ¿Cuál] [V* es]] [SUJ:número [DET su] [N número?]]
+b5 texto
+  0 | b [SUJ* Lucía] [PRED:rellena [V* rellena] [CCM:cuidado [PREP con] [TERM* cuidado]] [CD:formulario [DET el] [N formulario] [ADY* oficial] [CN:inscripción [PREP de] [TERM* inscripción.]]]]
+  0 | b [SUJ* Ella] [PRED:escribe [V* escribe] [CD:nombre [DET su] [N nombre] [ADY* completo] [CONJ y] [DET sus] [CUANT dos] [N apellidos]] [CCL:hoja [PREP en] [TERM:hoja [DET la] [N hoja.]]]]
+  0 | b [SUJ:estudiante [DET La] [ADY* joven] [N estudiante]] [PRED:indica [V* indica] [CD:nacionalidad [DET su] [N nacionalidad] [ADY* chilena]] [CCM:orgullo [PREP con] [TERM* orgullo.]]]
+  1 | b [SUJ:recepcionista [DET El] [N recepcionista] [ADY* atento]] [PRED:revisa [V* revisa] [CD:datos [DET los] [N datos] [CN:ficha [PREP de] [TERM:ficha [DET la] [N ficha.]]]]]
+  1 | b [SUJ* Él] [PRED:comprueba [V* comprueba] [CD:número [DET el] [N número] [CN:teléfono [PREP de] [TERM* teléfono]]] [CCM:rapidez [PREP con] [TERM* rapidez.]]]
+  1 | b [SUJ* Lucía] [PRED:añade [V* añade] [CD:firma [DET su] [N firma] [ADY* clara]] [CCL:documento [PREP en] [TERM:documento [DET el] [N documento] [ADY* nuevo.]]]]
+b6 test 1 0 0
+b7 huecos 1 0 0
+b8 ordenar
+b9 escribir ¿Cuál es tu dirección? || Cual es tu direccion
+
+== en
+titulo: Your details, please
+intro: Learn essential vocabulary for completing forms and providing personal information.
+b1.titulo: Forms and personal details
+b1.texto: "Forms typically ask for: **nombre**, **apellidos**, **dirección**, **teléfono**, **correo electrónico**, **fecha de nacimiento**, and **firma**.\\n\\nFormal questions (usted): *¿Cómo se llama?*, *¿Cuál es su apellido?*, *¿Cuál es su dirección?* Informal questions (tú): *¿Cómo te llamas?*, *¿Cuál es tu dirección?*\\n\\nIn Spanish, we use **cuál** with ser to ask for specific identification details.\\n\\nIn email addresses, @ is pronounced **arroba** and . is **punto**."
+b2.titulo: At reception
+b2.f0.texto: ¿Cuál es su nombre?
+b2.f1.texto: Mi nombre es Lucía.
+b2.f2.texto: ¿Cuál es su dirección?
+b2.f3.texto: Vivo en la calle Mayor.
+b2.f4.texto: ¿Cuál es su teléfono?
+b2.f5.texto: Firme aquí.
+b4.e0.texto: ¿Cuál es tu dirección?
+b4.e1.texto: ¿Cuál es su número?
+b5.f0.texto: Lucía rellena con cuidado el formulario oficial de inscripción.
+b5.f1.texto: Ella escribe su nombre completo y sus dos apellidos en la hoja.
+b5.f2.texto: La joven estudiante indica su nacionalidad chilena con orgullo.
+b5.f3.texto: El recepcionista atento revisa los datos de la ficha.
+b5.f4.texto: Él comprueba el número de teléfono con rapidez.
+b5.f5.texto: Lucía añade su firma clara en el documento nuevo.
+b6.o0: apellido
+b6.o1: nombre
+b6.o2: dirección
+b7.frase: Vivo ___ la calle Mayor.
+b7.o0: en
+b7.o1: a
+b7.o2: de
+b8.frase: ¿Cuál es tu dirección?
+b3.titulo: Vocabulary
+b4.titulo: Questions with cuál for personal details
+b4.texto: "To ask for specific identifying details like an address or phone number, use **cuál** with **ser**:\\n- *¿Cuál es tu dirección?*\\n- *¿Cuál es su número?*"
+b5.titulo: The registration form
+b6.titulo: Choose the correct option
+b6.pregunta: The question «¿Cuál es su apellido?» asks for your…
+b6.o0.refuerzo: Correct: apellido refers to the family surname.
+b6.o1.refuerzo: Incorrect: a given name is referred to simply as «nombre».
+b6.o2.refuerzo: Incorrect: an address is referred to as «dirección».
+b7.titulo: Fill in the blank
+b7.pregunta: Complete with the correct preposition of place.
+b7.o0.refuerzo: Correct: we use «vivir en» to state where someone lives.
+b7.o1.refuerzo: Incorrect: «a» marks motion or direction.
+b7.o2.refuerzo: Incorrect: «de» indicates origin or possession.
+b8.titulo: Put the words in order
+b8.traduccion: What is your address?
+b9.titulo: Write the sentence
+b9.pregunta: Write in Spanish: «What is your address?».
+p.el nombre.glosa: the given name, first name
+p.el nombre.consejo: A person’s individual first name on an official document.
+p.el apellido.glosa: the surname, last name
+p.el apellido.consejo: Family name that follows the given name.
+p.los apellidos.glosa: the surnames
+p.los apellidos.consejo: Both family surnames customary in Spanish-speaking countries.
+p.la dirección.glosa: the address
+p.la dirección.consejo: Residential or physical location details.
+p.la calle.glosa: the street
+p.la calle.consejo: Public urban thoroughfare between buildings.
+p.el número.glosa: the number
+p.el número.consejo: Street number of a property or phone number.
+p.el código postal.glosa: the postal code, ZIP code
+p.el código postal.consejo: Numerical code facilitating mail delivery.
+p.el correo electrónico.glosa: the email address
+p.el correo electrónico.consejo: Electronic digital mail address.
+p.el teléfono.glosa: the telephone, phone number
+p.el teléfono.consejo: Telephone contact number.
+p.el punto.glosa: the dot, full stop
+p.el punto.consejo: Punctuation dot in web and email addresses.
+p.la edad.glosa: the age
+p.la edad.consejo: Number of years lived since birth.
+p.la fecha de nacimiento.glosa: the date of birth
+p.la fecha de nacimiento.consejo: Day, month, and year a person was born.
+p.la nacionalidad.glosa: the nationality
+p.la nacionalidad.consejo: Legal membership of a particular nation or state.
+p.chilena.glosa: Chilean (female)
+p.chilena.consejo: Native or national of Chile in the feminine singular.
+p.chileno.glosa: Chilean (male)
+p.chileno.consejo: Native or national of Chile in the masculine singular.
+p.la profesión.glosa: the profession, job
+p.la profesión.consejo: One’s occupation or remunerated career.
+p.el estado civil.glosa: the marital status
+p.el estado civil.consejo: Legal status such as single, married, etc.
+p.la firma.glosa: the signature
+p.la firma.consejo: Handwritten name validating an official document.
+p.firmar.glosa: to sign
+p.firmar.consejo: To put one’s signature on an official document.
+p.rellenar.glosa: to fill in, complete (a form)
+p.rellenar.consejo: To complete blank fields on an official form.
+p.el formulario.glosa: the form
+p.el formulario.consejo: Document with blank spaces to fill in required details.
+p.la arroba.glosa: the @ sign
+p.la arroba.consejo: The at-symbol (@) used in email addresses.
+
+== es
+titulo: Sus datos, por favor
+intro: Aprende el vocabulario para completar formularios y responder preguntas sobre datos personales.
+b1.titulo: Formularios y datos personales
+b1.texto: "En trámites y recepciones se solicitan habitualmente: **nombre**, **apellidos**, **dirección**, **teléfono**, **correo electrónico**, **fecha de nacimiento** y **firma**.\\n\\nPara preguntar de forma formal (usted): *¿Cómo se llama?*, *¿Cuál es su apellido?*, *¿Cuál es su dirección?* Con trato informal (tú): *¿Cómo te llamas?*, *¿Cuál es tu dirección?*\\n\\nEn español usamos **cuál** con ser para pedir datos concretos identificativos.\\n\\nEn direcciones de correo electrónico, el símbolo @ se lee **arroba** y el punto se dice **punto**."
+b2.titulo: En la recepción
+b6.o0: apellido
+b6.o1: nombre
+b6.o2: dirección
+b7.frase: Vivo ___ la calle Mayor.
+b7.o0: en
+b7.o1: a
+b7.o2: de
+b8.frase: ¿Cuál es tu dirección?
+b3.titulo: Vocabulario
+b4.titulo: Preguntas con cuál para datos personales
+b4.texto: "Para solicitar información de identificación específica como teléfono, dirección o nombre usamos **cuál** con el verbo **ser**:\\n- *¿Cuál es tu dirección?*\\n- *¿Cuál es su número?*"
+b5.titulo: La ficha de inscripción
+b6.titulo: Elige la opción correcta
+b6.pregunta: La pregunta «¿Cuál es su apellido?» pide tu…
+b6.o0.refuerzo: Correcto: apellido se refiere al nombre de familia.
+b6.o1.refuerzo: Incorrecto: el nombre de pila se denomina simplemente «nombre».
+b6.o2.refuerzo: Incorrecto: el domicilio se denomina «dirección».
+b7.titulo: Completa la frase
+b7.pregunta: Completa con la preposición correcta de lugar.
+b7.o0.refuerzo: Correcto: usamos «vivir en» para indicar el lugar donde se reside.
+b7.o1.refuerzo: Incorrecto: la preposición «a» indica movimiento o destino.
+b7.o2.refuerzo: Incorrecto: «de» indica procedencia u origen.
+b8.titulo: Ordena las palabras
+b8.traduccion: ¿Cuál es tu dirección?
+b9.titulo: Escribe la frase
+b9.pregunta: Escribe en español: «¿Cuál es tu dirección?».
+p.el nombre.glosa: el nombre
+p.el nombre.consejo: Nombre de pila de una persona en un registro.
+p.el apellido.glosa: el apellido
+p.el apellido.consejo: Nombre de familia que sigue al nombre de pila.
+p.los apellidos.glosa: los apellidos
+p.los apellidos.consejo: Conjunto de los dos apellidos habituales en el mundo hispanohablante.
+p.la dirección.glosa: la dirección
+p.la dirección.consejo: Domicilio o señas de una vivienda o lugar.
+p.la calle.glosa: la calle
+p.la calle.consejo: Vía pública urbana entre edificios.
+p.el número.glosa: el número
+p.el número.consejo: Cifra que identifica el inmueble o teléfono.
+p.el código postal.glosa: el código postal
+p.el código postal.consejo: Combinación numérica que facilita la distribución postal.
+p.el correo electrónico.glosa: el correo electrónico
+p.el correo electrónico.consejo: Dirección digital de mensajería electrónica.
+p.el teléfono.glosa: el teléfono
+p.el teléfono.consejo: Número de contacto telefónico.
+p.el punto.glosa: el punto
+p.el punto.consejo: Signo ortográfico y de lectura en direcciones web o correos.
+p.la edad.glosa: la edad
+p.la edad.consejo: Tiempo vivido por una persona desde su nacimiento.
+p.la fecha de nacimiento.glosa: la fecha de nacimiento
+p.la fecha de nacimiento.consejo: Día, mes y año en que nació una persona.
+p.la nacionalidad.glosa: la nacionalidad
+p.la nacionalidad.consejo: Vínculo jurídico y político con un Estado.
+p.chilena.glosa: chilena
+p.chilena.consejo: Natural de Chile en género femenino.
+p.chileno.glosa: chileno
+p.chileno.consejo: Natural de Chile en género masculino.
+p.la profesión.glosa: la profesión
+p.la profesión.consejo: Ocupación o actividad laboral remunerada.
+p.el estado civil.glosa: el estado civil
+p.el estado civil.consejo: Condición jurídica de una persona (soltero, casado, etc.).
+p.la firma.glosa: la firma
+p.la firma.consejo: Rúbrica o nombre escrito de puño y letra para validar un documento.
+p.firmar.glosa: firmar
+p.firmar.consejo: Poner la firma propia en un documento oficial.
+p.rellenar.glosa: rellenar
+p.rellenar.consejo: Escribir los datos requeridos en los espacios de un formulario.
+p.el formulario.glosa: el formulario
+p.el formulario.consejo: Documento con espacios en blanco para consignar datos.
+p.la arroba.glosa: la arroba
+p.la arroba.consejo: Símbolo @ utilizado en las direcciones de correo electrónico.
+
+== vi
+titulo: Xin vui lòng cho biết thông tin của bạn
+intro: Học từ vựng để điền các biểu mẫu và trả lời các câu hỏi về thông tin cá nhân.
+b1.titulo: Biểu mẫu và thông tin cá nhân
+b1.texto: "Trên các biểu mẫu, người ta thường yêu cầu: **nombre** (tên), **apellidos** (họ), **dirección** (địa chỉ), **teléfono** (điện thoại), **correo electrónico** (email), **fecha de nacimiento** (ngày sinh) và **firma** (chữ ký).\\n\\nCâu hỏi lịch sự (usted): *¿Cómo se llama?*, *¿Cuál es su apellido?*, *¿Cuál es su dirección?* Câu hỏi thân mật (tú): *¿Cómo te llamas?*, *¿Cuál es tu dirección?*\\n\\nTrong tiếng Tây Ban Nha, dùng **cuál** với động từ ser để hỏi thông tin nhận dạng cụ thể.\\n\\nTrong địa chỉ email, ký tự @ đọc là **arroba** và dấu chấm đọc là **punto**."
+b2.titulo: Tại quầy lễ tân
+b2.f0.texto: ¿Cuál es su nombre?
+b2.f1.texto: Mi nombre es Lucía.
+b2.f2.texto: ¿Cuál es su dirección?
+b2.f3.texto: Vivo en la calle Mayor.
+b2.f4.texto: ¿Cuál es su teléfono?
+b2.f5.texto: Firme aquí.
+b4.e0.texto: ¿Cuál es tu dirección?
+b4.e1.texto: ¿Cuál es su número?
+b5.f0.texto: Lucía rellena con cuidado el formulario oficial de inscripción.
+b5.f1.texto: Ella escribe su nombre completo y sus dos apellidos en la hoja.
+b5.f2.texto: La joven estudiante indica su nacionalidad chilena con orgullo.
+b5.f3.texto: El recepcionista atento revisa los datos de la ficha.
+b5.f4.texto: Él comprueba el número de teléfono con rapidez.
+b5.f5.texto: Lucía añade su firma clara en el documento nuevo.
+b6.o0: apellido
+b6.o1: nombre
+b6.o2: dirección
+b7.frase: Vivo ___ la calle Mayor.
+b7.o0: en
+b7.o1: a
+b7.o2: de
+b8.frase: ¿Cuál es tu dirección?
+b3.titulo: Từ vựng
+b4.titulo: Hỏi thông tin cá nhân với cuál
+b4.texto: "Để hỏi thông tin nhận dạng cụ thể như địa chỉ hoặc số điện thoại, dùng **cuál** với **ser**:\\n- *¿Cuál es tu dirección?*\\n- *¿Cuál es su número?*"
+b5.titulo: Phiếu đăng ký
+b6.titulo: Chọn phương án đúng
+b6.pregunta: Câu hỏi «¿Cuál es su apellido?» hỏi về…
+b6.o0.refuerzo: Chính xác: apellido chỉ họ của một người.
+b6.o1.refuerzo: Sai: tên gọi trong tiếng Tây Ban Nha là «nombre».
+b6.o2.refuerzo: Sai: địa chỉ nơi ở là «dirección».
+b7.titulo: Điền vào chỗ trống
+b7.pregunta: Điền giới từ chỉ nơi chốn thích hợp.
+b7.o0.refuerzo: Chính xác: dùng «vivir en» để chỉ nơi cư trú.
+b7.o1.refuerzo: Sai: giới từ «a» chỉ phương hướng hoặc đích đến.
+b7.o2.refuerzo: Sai: «de» chỉ nguồn gốc hoặc xuất xứ.
+b8.titulo: Sắp xếp các từ
+b8.traduccion: Địa chỉ của bạn là gì?
+b9.titulo: Viết câu hoàn chỉnh
+b9.pregunta: Viết bằng tiếng Tây Ban Nha: «Địa chỉ của bạn là gì?».
+p.el nombre.glosa: tên (gọi)
+p.el nombre.consejo: Tên riêng của một người trên giấy tờ.
+p.el apellido.glosa: họ
+p.el apellido.consejo: Tên họ gia đình đi sau tên riêng.
+p.los apellidos.glosa: các họ (số nhiều)
+p.los apellidos.consejo: Hai họ truyền thống (họ cha và họ mẹ) trong văn hóa nói tiếng Tây Ban Nha.
+p.la dirección.glosa: địa chỉ
+p.la dirección.consejo: Địa chỉ nơi cư trú hoặc địa điểm.
+p.la calle.glosa: đường phố, phố
+p.la calle.consejo: Đường phố công cộng trong đô thị.
+p.el número.glosa: số nhà, con số
+p.el número.consejo: Số nhà hoặc số điện thoại.
+p.el código postal.glosa: mã bưu điện, mã bưu chính
+p.el código postal.consejo: Mã số khu vực để gửi thư bưu chính.
+p.el correo electrónico.glosa: thư điện tử, email
+p.el correo electrónico.consejo: Địa chỉ thư điện tử.
+p.el teléfono.glosa: điện thoại, số điện thoại
+p.el teléfono.consejo: Số điện thoại liên lạc.
+p.el punto.glosa: dấu chấm
+p.el punto.consejo: Dấu chấm trong địa chỉ trang web hoặc email.
+p.la edad.glosa: tuổi
+p.la edad.consejo: Số năm đã sống tính từ khi sinh ra.
+p.la fecha de nacimiento.glosa: ngày tháng năm sinh
+p.la fecha de nacimiento.consejo: Ngày, tháng và năm một người chào đời.
+p.la nacionalidad.glosa: quốc tịch
+p.la nacionalidad.consejo: Mối quan hệ pháp lý với một quốc gia.
+p.chilena.glosa: người Chile (nữ)
+p.chilena.consejo: Phụ nữ mang quốc tịch hoặc gốc Chile.
+p.chileno.glosa: người Chile (nam)
+p.chileno.consejo: Nam giới mang quốc tịch hoặc gốc Chile.
+p.la profesión.glosa: nghề nghiệp
+p.la profesión.consejo: Công việc hoặc hoạt động chuyên môn có hưởng lương.
+p.el estado civil.glosa: tình trạng hôn nhân
+p.el estado civil.consejo: Tình trạng pháp lý như độc thân, đã kết hôn.
+p.la firma.glosa: chữ ký
+p.la firma.consejo: Chữ ký viết tay để xác nhận tính pháp lý của giấy tờ.
+p.firmar.glosa: ký tên
+p.firmar.consejo: Đặt chữ ký của mình lên văn bản chính thức.
+p.rellenar.glosa: điền vào (biểu mẫu)
+p.rellenar.consejo: Điền các thông tin cần thiết vào chỗ trống.
+p.el formulario.glosa: mẫu đơn, tờ khai
+p.el formulario.consejo: Văn bản có các ô trống để ghi thông tin.
+p.la arroba.glosa: ký tự a còng (@)
+p.la arroba.consejo: Ký hiệu @ dùng trong địa chỉ thư điện tử.
+
+== zh
+titulo: 请提供您的个人信息
+intro: 学习填写表格及在登记处回答个人信息问题所需的核心词汇。
+b1.titulo: 表格与个人信息
+b1.texto: "在办理手续或填表时，通常需要填写：**nombre**（名字）、**apellidos**（姓氏）、**dirección**（住址）、**teléfono**（电话）、**correo electrónico**（电子邮箱）、**fecha de nacimiento**（出生日期）与 **firma**（签名）。\\n\\n尊称提问（usted）：*¿Cómo se llama?*、*¿Cuál es su apellido?*、*¿Cuál es su dirección?* 熟人提问（tú）：*¿Cómo te llamas?*、*¿Cuál es tu dirección?*\\n\\n在西班牙语中，我们用 **cuál** 与动词 ser 搭配询问具体身份信息。\\n\\n在电子邮箱地址中，符号 @ 读作 **arroba**，点号 . 读作 **punto**。"
+b2.titulo: 在前台接待处
+b2.f0.texto: ¿Cuál es su nombre?
+b2.f1.texto: Mi nombre es Lucía.
+b2.f2.texto: ¿Cuál es su dirección?
+b2.f3.texto: Vivo en la calle Mayor.
+b2.f4.texto: ¿Cuál es su teléfono?
+b2.f5.texto: Firme aquí.
+b4.e0.texto: ¿Cuál es tu dirección?
+b4.e1.texto: ¿Cuál es su número?
+b5.f0.texto: Lucía rellena con cuidado el formulario oficial de inscripción.
+b5.f1.texto: Ella escribe su nombre completo y sus dos apellidos en la hoja.
+b5.f2.texto: La joven estudiante indica su nacionalidad chilena con orgullo.
+b5.f3.texto: El recepcionista atento revisa los datos de la ficha.
+b5.f4.texto: Él comprueba el número de teléfono con rapidez.
+b5.f5.texto: Lucía añade su firma clara en el documento nuevo.
+b6.o0: apellido
+b6.o1: nombre
+b6.o2: dirección
+b7.frase: Vivo ___ la calle Mayor.
+b7.o0: en
+b7.o1: a
+b7.o2: de
+b8.frase: ¿Cuál es tu dirección?
+b3.titulo: 词汇
+b4.titulo: 用 cuál 询问个人信息
+b4.texto: "询问地址或电话号码等具体身份数据时，使用 **cuál** 搭配动词 **ser**：\\n- *¿Cuál es tu dirección?*（你的住址是什么？）\\n- *¿Cuál es su número?*（您的号码是多少？）"
+b5.titulo: 登记注册表
+b6.titulo: 选择正确选项
+b6.pregunta: 问句 «¿Cuál es su apellido?» 询问的是你的…
+b6.o0.refuerzo: 正确：apellido 指家族姓氏。
+b6.o1.refuerzo: 错误：名字在西语中称为 «nombre»。
+b6.o2.refuerzo: 错误：住址在西语中称为 «dirección»。
+b7.titulo: 填空题
+b7.pregunta: 请填入恰当的表示地点的介词。
+b7.o0.refuerzo: 正确：表达居住在某地点时使用短语 «vivir en»。
+b7.o1.refuerzo: 错误：介词 «a» 表示运动方向或目的地。
+b7.o2.refuerzo: 错误：介词 «de» 表示来源或产地。
+b8.titulo: 连词成句
+b8.traduccion: 你的地址是什么？
+b9.titulo: 书写句子
+b9.pregunta: 用西班牙语写出：“你的地址是什么？”
+p.el nombre.glosa: 名字
+p.el nombre.consejo: 表格中指个人的名字（非姓氏）。
+p.el apellido.glosa: 姓氏
+p.el apellido.consejo: 紧接在名字后面的家族姓氏。
+p.los apellidos.glosa: 复数姓氏
+p.los apellidos.consejo: 西班牙语文化区惯常包含父姓与母姓的双姓。
+p.la dirección.glosa: 住址，地址
+p.la dirección.consejo: 住所或机构的物理方位信息。
+p.la calle.glosa: 街道
+p.la calle.consejo: 城市中的公共道路。
+p.el número.glosa: 号码，门牌号
+p.el número.consejo: 门牌号或电话号码中的数字。
+p.el código postal.glosa: 邮政编码
+p.el código postal.consejo: 用于邮件分拣投递的邮政数字代号。
+p.el correo electrónico.glosa: 电子邮件
+p.el correo electrónico.consejo: 电子邮箱通讯地址。
+p.el teléfono.glosa: 电话，电话号码
+p.el teléfono.consejo: 电话联络号码。
+p.el punto.glosa: 点号
+p.el punto.consejo: 网址或邮箱地址中的英文点号。
+p.la edad.glosa: 年龄
+p.la edad.consejo: 自出生以来的年岁。
+p.la fecha de nacimiento.glosa: 出生日期
+p.la fecha de nacimiento.consejo: 包含出生年、月、日的具体日期。
+p.la nacionalidad.glosa: 国籍
+p.la nacionalidad.consejo: 与国家的法律和政治隶属关系。
+p.chilena.glosa: 智利的（阴性）
+p.chilena.consejo: 智利国籍或原籍的女性。
+p.chileno.glosa: 智利的（阳性）
+p.chileno.consejo: 智利国籍或原籍的男性。
+p.la profesión.glosa: 职业
+p.la profesión.consejo: 从事的有偿工作或专业。
+p.el estado civil.glosa: 婚姻状况
+p.el estado civil.consejo: 未婚、已婚等法律身份。
+p.la firma.glosa: 签名
+p.la firma.consejo: 用于确认官方文件的手写签名。
+p.firmar.glosa: 签名，签署
+p.firmar.consejo: 在正式文件上签署姓名。
+p.rellenar.glosa: 填写（表格）
+p.rellenar.consejo: 在表格空白处填写所需信息。
+p.el formulario.glosa: 表格
+p.el formulario.consejo: 包含待填空白项的官方单据。
+p.la arroba.glosa: 艾特符号（@）
+p.la arroba.consejo: 电子邮箱地址中使用的 @ 符号。
+
+== pt
+titulo: Seus dados, por favor
+intro: Aprenda o vocabulário para preencher formulários e fornecer dados pessoais.
+b1.titulo: Formulários e dados pessoais
+b1.texto: "Em formulários, costuma-se pedir: **nombre**, **apellidos**, **dirección**, **teléfono**, **correo electrónico**, **fecha de nacimiento** e **firma**.\\n\\nPerguntas formais (usted): *¿Cómo se llama?*, *¿Cuál es su apellido?*, *¿Cuál es su dirección?* Perguntas informais (tú): *¿Cómo te llamas?*, *¿Cuál es tu dirección?*\\n\\nEm espanhol, usamos **cuál** com ser para pedir dados específicos de identificação.\\n\\nEm endereços de e-mail, o símbolo @ é lido **arroba** e o ponto é **punto**."
+b2.titulo: Na recepção
+b2.f0.texto: ¿Cuál es su nombre?
+b2.f1.texto: Mi nombre es Lucía.
+b2.f2.texto: ¿Cuál es su dirección?
+b2.f3.texto: Vivo en la calle Mayor.
+b2.f4.texto: ¿Cuál es su teléfono?
+b2.f5.texto: Firme aquí.
+b4.e0.texto: ¿Cuál es tu dirección?
+b4.e1.texto: ¿Cuál es su número?
+b5.f0.texto: Lucía rellena con cuidado el formulario oficial de inscripción.
+b5.f1.texto: Ella escribe su nombre completo y sus dos apellidos en la hoja.
+b5.f2.texto: La joven estudiante indica su nacionalidad chilena con orgullo.
+b5.f3.texto: El recepcionista atento revisa los datos de la ficha.
+b5.f4.texto: Él comprueba el número de teléfono con rapidez.
+b5.f5.texto: Lucía añade su firma clara en el documento nuevo.
+b6.o0: apellido
+b6.o1: nombre
+b6.o2: dirección
+b7.frase: Vivo ___ la calle Mayor.
+b7.o0: en
+b7.o1: a
+b7.o2: de
+b8.frase: ¿Cuál es tu dirección?
+b3.titulo: Vocabulário
+b4.titulo: Perguntas com cuál para dados pessoais
+b4.texto: "Para solicitar dados específicos de identificação como endereço ou telefone, usamos **cuál** com **ser**:\\n- *¿Cuál es tu dirección?*\\n- *¿Cuál es su número?*"
+b5.titulo: A ficha de inscrição
+b6.titulo: Escolha a opção correta
+b6.pregunta: A pergunta «¿Cuál es su apellido?» pede seu…
+b6.o0.refuerzo: Correto: apellido refere-se ao sobrenome de família.
+b6.o1.refuerzo: Incorreto: o primeiro nome chama-se «nombre».
+b6.o2.refuerzo: Incorreto: o endereço chama-se «dirección».
+b7.titulo: Preencha a lacuna
+b7.pregunta: Complete com a preposição de lugar correta.
+b7.o0.refuerzo: Correto: usamos «vivir en» para indicar onde se reside.
+b7.o1.refuerzo: Incorreto: a preposição «a» indica movimento ou destino.
+b7.o2.refuerzo: Incorreto: «de» indica procedência ou origem.
+b8.titulo: Ordene as palavras
+b8.traduccion: Qual é o seu endereço?
+b9.titulo: Escreva a frase
+b9.pregunta: Escreva em espanhol: «Qual é o seu endereço?».
+p.el nombre.glosa: o nome (próprio)
+p.el nombre.consejo: Primeiro nome de uma pessoa.
+p.el apellido.glosa: o sobrenome
+p.el apellido.consejo: Nome de família que se segue ao primeiro nome.
+p.los apellidos.glosa: os sobrenomes
+p.los apellidos.consejo: Conjunto dos dois sobrenomes habituais no mundo hispanofalante.
+p.la dirección.glosa: o endereço
+p.la dirección.consejo: Localização da residência ou domicílio.
+p.la calle.glosa: a rua
+p.la calle.consejo: Via pública urbana.
+p.el número.glosa: o número
+p.el número.consejo: Número de residência ou de telefone.
+p.el código postal.glosa: o código postal, CEP
+p.el código postal.consejo: Código numérico de entrega postal.
+p.el correo electrónico.glosa: o e-mail
+p.el correo electrónico.consejo: Endereço eletrônico de mensagens.
+p.el teléfono.glosa: o telefone
+p.el teléfono.consejo: Número de contato telefônico.
+p.el punto.glosa: o ponto
+p.el punto.consejo: Sinal gráfico ponto em e-mails e endereços virtuais.
+p.la edad.glosa: a idade
+p.la edad.consejo: Anos vividos desde o nascimento.
+p.la fecha de nacimiento.glosa: a data de nascimento
+p.la fecha de nacimiento.consejo: Dia, mês e ano em que uma pessoa nasceu.
+p.la nacionalidad.glosa: a nacionalidade
+p.la nacionalidad.consejo: Vínculo jurídico com uma nação.
+p.chilena.glosa: chilena
+p.chilena.consejo: Natural do Chile no feminino singular.
+p.chileno.glosa: chileno
+p.chileno.consejo: Natural do Chile no masculino singular.
+p.la profesión.glosa: a profissão
+p.la profesión.consejo: Ocupação ou atividade profissional remunerada.
+p.el estado civil.glosa: o estado civil
+p.el estado civil.consejo: Condição jurídica (solteiro, casado, etc.).
+p.la firma.glosa: a assinatura
+p.la firma.consejo: Assinatura manuscrita para validar documentos.
+p.firmar.glosa: assinar
+p.firmar.consejo: Pôr a assinatura em um documento oficial.
+p.rellenar.glosa: preencher
+p.rellenar.consejo: Completar os campos de um formulário.
+p.el formulario.glosa: o formulário
+p.el formulario.consejo: Documento com lacunas para preenchimento de dados.
+p.la arroba.glosa: o arroba
+p.la arroba.consejo: Símbolo @ usado em endereços de correio eletrônico.
+
+== fr
+titulo: Vos coordonnées, s’il vous plaît
+intro: Apprenez le vocabulaire pour remplir des formulaires et donner vos coordonnées.
+b1.titulo: Formulaires et données personnelles
+b1.texto: "Dans les formulaires, on demande souvent : **nombre**, **apellidos**, **dirección**, **teléfono**, **correo electrónico**, **fecha de nacimiento** et **firma**.\\n\\nQuestions formelles (usted) : *¿Cómo se llama?*, *¿Cuál es su apellido?*, *¿Cuál es su dirección?* Questions familières (tú) : *¿Cómo te llamas?*, *¿Cuál es tu dirección?*\\n\\nEn espagnol, on emploie **cuál** avec ser pour demander une information précise.\\n\\nDans les adresses courriel, @ se lit **arroba** et le point se dit **punto**."
+b2.titulo: À la réception
+b2.f0.texto: ¿Cuál es su nombre?
+b2.f1.texto: Mi nombre es Lucía.
+b2.f2.texto: ¿Cuál es su dirección?
+b2.f3.texto: Vivo en la calle Mayor.
+b2.f4.texto: ¿Cuál es su teléfono?
+b2.f5.texto: Firme aquí.
+b4.e0.texto: ¿Cuál es tu dirección?
+b4.e1.texto: ¿Cuál es su número?
+b5.f0.texto: Lucía rellena con cuidado el formulario oficial de inscripción.
+b5.f1.texto: Ella escribe su nombre completo y sus dos apellidos en la hoja.
+b5.f2.texto: La joven estudiante indica su nacionalidad chilena con orgullo.
+b5.f3.texto: El recepcionista atento revisa los datos de la ficha.
+b5.f4.texto: Él comprueba el número de teléfono con rapidez.
+b5.f5.texto: Lucía añade su firma clara en el documento nuevo.
+b6.o0: apellido
+b6.o1: nombre
+b6.o2: dirección
+b7.frase: Vivo ___ la calle Mayor.
+b7.o0: en
+b7.o1: a
+b7.o2: de
+b8.frase: ¿Cuál es tu dirección?
+b3.titulo: Vocabulaire
+b4.titulo: Questions avec cuál pour les données personnelles
+b4.texto: "Pour demander une information précise d’identification comme une adresse ou un téléphone, on emploie **cuál** avec **ser** :\\n- *¿Cuál es tu dirección?*\\n- *¿Cuál es su número?*"
+b5.titulo: La fiche d’inscription
+b6.titulo: Choisissez la bonne option
+b6.pregunta: La question «¿Cuál es su apellido?» demande votre…
+b6.o0.refuerzo: Correct : apellido désigne le nom de famille.
+b6.o1.refuerzo: Incorrect : le prénom est désigné par «nombre».
+b6.o2.refuerzo: Incorrect : l’adresse est désignée par «dirección».
+b7.titulo: Complétez la phrase
+b7.pregunta: Complétez avec la bonne préposition de lieu.
+b7.o0.refuerzo: Correct : on utilise «vivir en» pour indiquer le lieu de résidence.
+b7.o1.refuerzo: Incorrect : la préposition «a» indique un mouvement ou une direction.
+b7.o2.refuerzo: Incorrect : «de» exprime la provenance ou l’origine.
+b8.titulo: Remettez les mots dans l’ordre
+b8.traduccion: Quelle est ton adresse ?
+b9.titulo: Écrivez la phrase
+b9.pregunta: Écrivez en espagnol : «Quelle est ton adresse ?».
+p.el nombre.glosa: le prénom
+p.el nombre.consejo: Prénom d’une personne sur un document officiel.
+p.el apellido.glosa: le nom de famille
+p.el apellido.consejo: Nom de famille patronymique.
+p.los apellidos.glosa: les noms de famille
+p.los apellidos.consejo: Ensemble des deux noms de famille usuels dans le monde hispanique.
+p.la dirección.glosa: l’adresse
+p.la dirección.consejo: Coordonnées du domicile ou d’un lieu.
+p.la calle.glosa: la rue
+p.la calle.consejo: Voie urbaine de circulation.
+p.el número.glosa: le numéro
+p.el número.consejo: Numéro d’immeuble ou de téléphone.
+p.el código postal.glosa: le code postal
+p.el código postal.consejo: Code facilitant l’acheminement postal.
+p.el correo electrónico.glosa: l’adresse courriel
+p.el correo electrónico.consejo: Adresse électronique de messagerie.
+p.el teléfono.glosa: le téléphone
+p.el teléfono.consejo: Numéro de contact téléphonique.
+p.el punto.glosa: le point
+p.el punto.consejo: Point typographique dans les courriels et adresses web.
+p.la edad.glosa: l’âge
+p.la edad.consejo: Nombre d’années vécues par une personne.
+p.la fecha de nacimiento.glosa: la date de naissance
+p.la fecha de nacimiento.consejo: Jour, mois et année de naissance.
+p.la nacionalidad.glosa: la nationalité
+p.la nacionalidad.consejo: Lien juridique rattachant une personne à un État.
+p.chilena.glosa: chilienne
+p.chilena.consejo: Originaire du Chili au féminin singulier.
+p.chileno.glosa: chilien
+p.chileno.consejo: Originaire du Chili au masculin singulier.
+p.la profesión.glosa: la profession
+p.la profesión.consejo: Métier ou activité professionnelle rémunérée.
+p.el estado civil.glosa: l’état civil
+p.el estado civil.consejo: Statut légal (célibataire, marié, etc.).
+p.la firma.glosa: la signature
+p.la firma.consejo: Mention manuscrite validant un document.
+p.firmar.glosa: signer
+p.firmar.consejo: Apposer sa signature sur un document officiel.
+p.rellenar.glosa: remplir (un formulaire)
+p.rellenar.consejo: Compléter les cases vides d’un formulaire.
+p.el formulario.glosa: le formulaire
+p.el formulario.consejo: Document comportant des champs à remplir.
+p.la arroba.glosa: l’arobase
+p.la arroba.consejo: Symbole @ employé dans les adresses courriel.
+
+== ja
+titulo: お客様の情報をお願いします
+intro: 各種手続きの用紙への記入や、受付での個人情報に関する受け答えに必要な表現を学びます。
+b1.titulo: 記入用紙と個人情報
+b1.texto: "申請用紙では通常、次のような項目が求められます：**nombre**（名）、**apellidos**（姓）、**dirección**（住所）、**teléfono**（電話）、**correo electrónico**（Eメール）、**fecha de nacimiento**（生年月日）、**firma**（署名）。\\n\\n丁寧な質問（usted）：*¿Cómo se llama?*、*¿Cuál es su apellido?*、*¿Cuál es su dirección?* 親しい質問（tú）：*¿Cómo te llamas?*、*¿Cuál es tu dirección?*\\n\\nスペイン語では、電話番号や住所などの具体的な識別情報を尋ねる際に **cuál** と動詞 ser を用います。\\n\\nメールアドレスの @ は **arroba**、ドット . は **punto** と読みます。"
+b2.titulo: 受付にて
+b2.f0.texto: ¿Cuál es su nombre?
+b2.f1.texto: Mi nombre es Lucía.
+b2.f2.texto: ¿Cuál es su dirección?
+b2.f3.texto: Vivo en la calle Mayor.
+b2.f4.texto: ¿Cuál es su teléfono?
+b2.f5.texto: Firme aquí.
+b4.e0.texto: ¿Cuál es tu dirección?
+b4.e1.texto: ¿Cuál es su número?
+b5.f0.texto: Lucía rellena con cuidado el formulario oficial de inscripción.
+b5.f1.texto: Ella escribe su nombre completo y sus dos apellidos en la hoja.
+b5.f2.texto: La joven estudiante indica su nacionalidad chilena con orgullo.
+b5.f3.texto: El recepcionista atento revisa los datos de la ficha.
+b5.f4.texto: Él comprueba el número de teléfono con rapidez.
+b5.f5.texto: Lucía añade su firma clara en el documento nuevo.
+b6.o0: apellido
+b6.o1: nombre
+b6.o2: dirección
+b7.frase: Vivo ___ la calle Mayor.
+b7.o0: en
+b7.o1: a
+b7.o2: de
+b8.frase: ¿Cuál es tu dirección?
+b3.titulo: 単語
+b4.titulo: 個人情報を尋ねる cuál
+b4.texto: "住所や電話番号などの特定の情報を尋ねる際は、**cuál** と **ser** を使います：\\n- *¿Cuál es tu dirección?*（君の住所はどこですか？）\\n- *¿Cuál es su número?*（お客様の番号は何番ですか？）"
+b5.titulo: 登録用紙の記入
+b6.titulo: 正しい選択肢を選ぼう
+b6.pregunta: 「¿Cuál es su apellido?」という質問は何を尋ねていますか？
+b6.o0.refuerzo: 正解：apellido は家族の苗字（姓）を指します。
+b6.o1.refuerzo: 不正解：下の名前は「nombre」と言います。
+b6.o2.refuerzo: 不正解：住所は「dirección」と言います。
+b7.titulo: 空欄を埋めよう
+b7.pregunta: 場所を表す適切な前置詞を入れてください。
+b7.o0.refuerzo: 正解：居住地を表すときは「vivir en」を用います。
+b7.o1.refuerzo: 不正解：前置詞「a」は方向や移動先を表します。
+b7.o2.refuerzo: 不正解：「de」は出身や起点を示します。
+b8.titulo: 語順を整えよう
+b8.traduccion: 君の住所はどこですか？
+b9.titulo: 文を書こう
+b9.pregunta: スペイン語で書いてください：「君の住所はどこですか？」。
+p.el nombre.glosa: 名前、名
+p.el nombre.consejo: 書類上で個人のファーストネームを指します。
+p.el apellido.glosa: 苗字、姓
+p.el apellido.consejo: 名に続く家族の姓です。
+p.los apellidos.glosa: 姓（複数）
+p.los apellidos.consejo: スペイン語圏で一般的な父母双方の二つの姓です。
+p.la dirección.glosa: 住所
+p.la dirección.consejo: 住居や所在地の住所です。
+p.la calle.glosa: 通り、街路
+p.la calle.consejo: 市街地の道路を表す女性名詞です。
+p.el número.glosa: 番号、番地
+p.el número.consejo: 番地や電話番号を表す数字です。
+p.el código postal.glosa: 郵便番号
+p.el código postal.consejo: 郵便配達用の地域コードです。
+p.el correo electrónico.glosa: 電子メール
+p.el correo electrónico.consejo: Eメールアドレスを指します。
+p.el teléfono.glosa: 電話番号
+p.el teléfono.consejo: 連絡先となる電話番号です。
+p.el punto.glosa: ドット、点
+p.el punto.consejo: メールやウェブアドレスの「.」です。
+p.la edad.glosa: 年齢
+p.la edad.consejo: 生まれてからの年数です。
+p.la fecha de nacimiento.glosa: 生年月日
+p.la fecha de nacimiento.consejo: 誕生した年月日です。
+p.la nacionalidad.glosa: 国籍
+p.la nacionalidad.consejo: 国家との法的な所属関係です。
+p.chilena.glosa: チリ人の（女性）
+p.chilena.consejo: チリ出身の女性を指します。
+p.chileno.glosa: チリ人の（男性）
+p.chileno.consejo: チリ出身の男性を指します。
+p.la profesión.glosa: 職業
+p.la profesión.consejo: 仕事や専門職を指します。
+p.el estado civil.glosa: 婚姻状況
+p.el estado civil.consejo: 独身や既婚などの身分関係です。
+p.la firma.glosa: 署名、サイン
+p.la firma.consejo: 書類を承認するための直筆サインです。
+p.firmar.glosa: 署名する
+p.firmar.consejo: 公的書類に自筆でサインすることです。
+p.rellenar.glosa: 記入する
+p.rellenar.consejo: 用紙の空欄に必要事項を書き込むことです。
+p.el formulario.glosa: 記入用紙、申請用紙
+p.el formulario.consejo: 必要事項を書き込む公的な用紙です。
+p.la arroba.glosa: アットマーク（@）
+p.la arroba.consejo: メールアドレスで使われる記号 @ です。
+
+== it
+titulo: I suoi dati, per favore
+intro: Impara il vocabolario per compilare moduli e fornire dati personali.
+b1.titulo: Moduli e dati personali
+b1.texto: "Nei moduli si richiede solitamente: **nombre**, **apellidos**, **dirección**, **teléfono**, **correo electrónico**, **fecha de nacimiento** e **firma**.\\n\\nDomande formali (usted): *¿Cómo se llama?*, *¿Cuál es su apellido?*, *¿Cuál es su dirección?* Domande informali (tú): *¿Cómo te llamas?*, *¿Cuál es tu dirección?*\\n\\nIn spagnolo usiamo **cuál** con ser per richiedere dati specifici di identificazione.\\n\\nNegli indirizzi e-mail, il simbolo @ si legge **arroba** e il punto si dice **punto**."
+b2.titulo: Alla reception
+b2.f0.texto: ¿Cuál es su nombre?
+b2.f1.texto: Mi nombre es Lucía.
+b2.f2.texto: ¿Cuál es su dirección?
+b2.f3.texto: Vivo en la calle Mayor.
+b2.f4.texto: ¿Cuál es su teléfono?
+b2.f5.texto: Firme aquí.
+b4.e0.texto: ¿Cuál es tu dirección?
+b4.e1.texto: ¿Cuál es su número?
+b5.f0.texto: Lucía rellena con cuidado el formulario oficial de inscripción.
+b5.f1.texto: Ella escribe su nombre completo y sus dos apellidos en la hoja.
+b5.f2.texto: La joven estudiante indica su nacionalidad chilena con orgullo.
+b5.f3.texto: El recepcionista atento revisa los datos de la ficha.
+b5.f4.texto: Él comprueba el número de teléfono con rapidez.
+b5.f5.texto: Lucía añade su firma clara en el documento nuevo.
+b6.o0: apellido
+b6.o1: nombre
+b6.o2: dirección
+b7.frase: Vivo ___ la calle Mayor.
+b7.o0: en
+b7.o1: a
+b7.o2: de
+b8.frase: ¿Cuál es tu dirección?
+b3.titulo: Vocabolario
+b4.titulo: Domande con cuál per i dati personali
+b4.texto: "Per chiedere informazioni specifiche come indirizzo o numero telefonico usiamo **cuál** con **ser**:\\n- *¿Cuál es tu dirección?*\\n- *¿Cuál es su número?*"
+b5.titulo: Il modulo d’iscrizione
+b6.titulo: Scegli l’opzione corretta
+b6.pregunta: La domanda «¿Cuál es su apellido?» chiede il tuo…
+b6.o0.refuerzo: Corretto: apellido indica il cognome di famiglia.
+b6.o1.refuerzo: Errato: il nome proprio si chiama «nombre».
+b6.o2.refuerzo: Errato: il recapito o domicilio è «dirección».
+b7.titulo: Completa la frase
+b7.pregunta: Completa con la preposizione di luogo corretta.
+b7.o0.refuerzo: Corretto: usiamo «vivir en» per indicare il luogo di residenza.
+b7.o1.refuerzo: Errato: la preposizione «a» indica moto a luogo o destinazione.
+b7.o2.refuerzo: Errato: «de» esprime provenienza o origine.
+b8.titulo: Ordina le parole
+b8.traduccion: Qual è il tuo indirizzo?
+b9.titulo: Scrivi la frase
+b9.pregunta: Scrivi in spagnolo: «Qual è il tuo indirizzo?».
+p.el nombre.glosa: il nome (di battesimo)
+p.el nombre.consejo: Nome proprio di una persona in un registro.
+p.el apellido.glosa: il cognome
+p.el apellido.consejo: Nome di famiglia che segue il nome proprio.
+p.los apellidos.glosa: i cognomi
+p.los apellidos.consejo: I due cognomi consueti nel mondo ispanico.
+p.la dirección.glosa: l’indirizzo
+p.la dirección.consejo: Recapito e domicilio di un’abitazione.
+p.la calle.glosa: la via, la strada
+p.la calle.consejo: Via urbana di transito.
+p.el número.glosa: il numero
+p.el número.consejo: Numero civico o telefonico.
+p.el código postal.glosa: il codice postale, CAP
+p.el código postal.consejo: Codice numerico per lo smistamento postale.
+p.el correo electrónico.glosa: l’indirizzo e-mail
+p.el correo electrónico.consejo: Indirizzo di posta elettronica.
+p.el teléfono.glosa: il telefono
+p.el teléfono.consejo: Numero di contatto telefonico.
+p.el punto.glosa: il punto
+p.el punto.consejo: Segno grafico punto negli indirizzi web o e-mail.
+p.la edad.glosa: l’età
+p.la edad.consejo: Anni vissuti dalla nascita.
+p.la fecha de nacimiento.glosa: la data di nascita
+p.la fecha de nacimiento.consejo: Giorno, mese e anno di nascita.
+p.la nacionalidad.glosa: la nazionalità
+p.la nacionalidad.consejo: Appartenenza giuridica a uno Stato.
+p.chilena.glosa: cilena
+p.chilena.consejo: Originaria del Cile al femminile singolare.
+p.chileno.glosa: cileno
+p.chileno.consejo: Originario del Cile al maschile singolare.
+p.la profesión.glosa: la professione
+p.la profesión.consejo: Mestiere o occupazione lavorativa retribuita.
+p.el estado civil.glosa: lo stato civile
+p.el estado civil.consejo: Condizione anagrafica (celibe, sposato, ecc.).
+p.la firma.glosa: la firma
+p.la firma.consejo: Sottoscrizione autografa di un documento.
+p.firmar.glosa: firmare
+p.firmar.consejo: Apporre la propria firma su un documento ufficiale.
+p.rellenar.glosa: compilare
+p.rellenar.consejo: Inserire i dati negli spazi bianchi di un modulo.
+p.el formulario.glosa: il modulo
+p.el formulario.consejo: Documento cartaceo o digitale da compilare.
+p.la arroba.glosa: la chiocciola (@)
+p.la arroba.consejo: Simbolo @ utilizzato negli indirizzi di posta elettronica.
+
+== ko
+titulo: 인적 사항을 적어 주세요
+intro: 신청서 작성과 접수처에서 개인 정보를 묻고 답하는 데 필요한 어휘를 배웁니다.
+b1.titulo: 신청서와 개인 정보
+b1.texto: "양식에서는 대개 다음 항목을 요구합니다: **nombre**(이름), **apellidos**(성), **dirección**(주소), **teléfono**(전화번호), **correo electrónico**(이메일), **fecha de nacimiento**(생년월일), **firma**(서명).\\n\\n정중한 질문(usted): *¿Cómo se llama?*, *¿Cuál es su apellido?*, *¿Cuál es su dirección?* 격식 없는 질문(tú): *¿Cómo te llamas?*, *¿Cuál es tu dirección?*\\n\\n스페인어에서는 주소나 전화번호 같은 구체적인 식별 정보를 물을 때 **cuál**과 ser 동사를 사용합니다.\\n\\n이메일 주소에서 @는 **arroba**, 점(.)은 **punto**라고 읽습니다."
+b2.titulo: 접수처에서
+b2.f0.texto: ¿Cuál es su nombre?
+b2.f1.texto: Mi nombre es Lucía.
+b2.f2.texto: ¿Cuál es su dirección?
+b2.f3.texto: Vivo en la calle Mayor.
+b2.f4.texto: ¿Cuál es su teléfono?
+b2.f5.texto: Firme aquí.
+b4.e0.texto: ¿Cuál es tu dirección?
+b4.e1.texto: ¿Cuál es su número?
+b5.f0.texto: Lucía rellena con cuidado el formulario oficial de inscripción.
+b5.f1.texto: Ella escribe su nombre completo y sus dos apellidos en la hoja.
+b5.f2.texto: La joven estudiante indica su nacionalidad chilena con orgullo.
+b5.f3.texto: El recepcionista atento revisa los datos de la ficha.
+b5.f4.texto: Él comprueba el número de teléfono con rapidez.
+b5.f5.texto: Lucía añade su firma clara en el documento nuevo.
+b6.o0: apellido
+b6.o1: nombre
+b6.o2: dirección
+b7.frase: Vivo ___ la calle Mayor.
+b7.o0: en
+b7.o1: a
+b7.o2: de
+b8.frase: ¿Cuál es tu dirección?
+b3.titulo: 어휘
+b4.titulo: 개인 정보를 묻는 cuál
+b4.texto: "주소나 전화번호 같은 특정 정보를 물어볼 때는 **cuál**과 **ser**를 씁니다:\\n- *¿Cuál es tu dirección?*(네 주소는 무엇이니?)\\n- *¿Cuál es su número?*(고객님의 번호는 무엇인가요?)"
+b5.titulo: 등록 신청서 작성
+b6.titulo: 알맞은 선택지를 고르세요
+b6.pregunta: «¿Cuál es su apellido?»라는 질문은 무엇을 묻고 있나요?
+b6.o0.refuerzo: 정답: apellido는 가족의 성을 뜻합니다.
+b6.o1.refuerzo: 오답: 이름은 스페인어로 «nombre»라고 합니다.
+b6.o2.refuerzo: 오답: 주소는 «dirección»이라고 합니다.
+b7.titulo: 빈칸 채우기
+b7.pregunta: 알맞은 장소의 전치사를 넣으세요.
+b7.o0.refuerzo: 정답: 거주하는 장소를 나타낼 때는 «vivir en»을 씁니다.
+b7.o1.refuerzo: 오답: 전치사 «a»는 이동 방향이나 목적지를 나타냅니다.
+b7.o2.refuerzo: 오답: «de»는 출신이나 기점을 나타냅니다.
+b8.titulo: 단어 배열하기
+b8.traduccion: 네 주소는 무엇이니?
+b9.titulo: 문장 쓰기
+b9.pregunta: 스페인어로 쓰세요: «네 주소는 무엇이니?».
+p.el nombre.glosa: 이름
+p.el nombre.consejo: 서류상 개인의 이름을 뜻합니다.
+p.el apellido.glosa: 성
+p.el apellido.consejo: 이름 뒤에 붙는 가족의 성입니다.
+p.los apellidos.glosa: 성 (복수)
+p.los apellidos.consejo: 스페인어권에서 일반적인 부계와 모계의 두 성입니다.
+p.la dirección.glosa: 주소
+p.la dirección.consejo: 거주지나 건물의 주소입니다.
+p.la calle.glosa: 거리, 길
+p.la calle.consejo: 도시의 공공 도로를 가리키는 여성 명사입니다.
+p.el número.glosa: 번호, 번지수
+p.el número.consejo: 건물 번지수나 전화번호의 숫자입니다.
+p.el código postal.glosa: 우편번호
+p.el código postal.consejo: 우편 배달용 지역 식별 번호입니다.
+p.el correo electrónico.glosa: 이메일 주소
+p.el correo electrónico.consejo: 전자우편 주소입니다.
+p.el teléfono.glosa: 전화번호
+p.el teléfono.consejo: 연락처 전화번호입니다.
+p.el punto.glosa: 점, 도트
+p.el punto.consejo: 웹이나 이메일 주소의 마침표 기호입니다.
+p.la edad.glosa: 나이
+p.la edad.consejo: 출생 후 살아온 연수입니다.
+p.la fecha de nacimiento.glosa: 생년월일
+p.la fecha de nacimiento.consejo: 태어난 날짜, 월, 연도입니다.
+p.la nacionalidad.glosa: 국적
+p.la nacionalidad.consejo: 특정 국가와의 법적 소속 관계입니다.
+p.chilena.glosa: 칠레 사람 (여성)
+p.chilena.consejo: 칠레 국적의 여성을 뜻합니다.
+p.chileno.glosa: 칠레 사람 (남성)
+p.chileno.consejo: 칠레 국적의 남성을 뜻합니다.
+p.la profesión.glosa: 직업
+p.la profesión.consejo: 생계를 위한 전문적 직무나 일입니다.
+p.el estado civil.glosa: 혼인 여부, 신분 상태
+p.el estado civil.consejo: 미혼, 기혼 등의 법적 상태입니다.
+p.la firma.glosa: 서명, 사인
+p.la firma.consejo: 서류의 효력을 인정하기 위한 자필 서명입니다.
+p.firmar.glosa: 서명하다
+p.firmar.consejo: 공식 서류에 자필로 사인하는 행위입니다.
+p.rellenar.glosa: 작성하다, 기입하다
+p.rellenar.consejo: 양식의 빈칸을 채우는 것입니다.
+p.el formulario.glosa: 신청서, 서식
+p.el formulario.consejo: 정보를 적어 넣도록 만든 공식 문서입니다.
+p.la arroba.glosa: 골뱅이표 (@)
+p.la arroba.consejo: 이메일 주소에 쓰이는 @ 기호입니다.
+
+== ru
+titulo: Ваши данные, пожалуйста
+intro: Изучите лексику для заполнения анкет и сообщения личных данных.
+b1.titulo: Анкеты и личные данные
+b1.texto: "В бланках и анкетах обычно запрашивают: **nombre**, **apellidos**, **dirección**, **teléfono**, **correo electrónico**, **fecha de nacimiento** и **firma**.\\n\\nВежливые вопросы (usted): *¿Cómo se llama?*, *¿Cuál es su apellido?*, *¿Cuál es su dirección?* Неформальные вопросы (tú): *¿Cómo te llamas?*, *¿Cuál es tu dirección?*\\n\\nВ испанском языке с глаголом ser используют **cuál** для запроса конкретных идентификационных данных.\\n\\nВ адресах электронной почты знак @ произносится **arroba**, а точка — **punto**."
+b2.titulo: У стойки регистрации
+b2.f0.texto: ¿Cuál es su nombre?
+b2.f1.texto: Mi nombre es Lucía.
+b2.f2.texto: ¿Cuál es su dirección?
+b2.f3.texto: Vivo en la calle Mayor.
+b2.f4.texto: ¿Cuál es su teléfono?
+b2.f5.texto: Firme aquí.
+b4.e0.texto: ¿Cuál es tu dirección?
+b4.e1.texto: ¿Cuál es su número?
+b5.f0.texto: Lucía rellena con cuidado el formulario oficial de inscripción.
+b5.f1.texto: Ella escribe su nombre completo y sus dos apellidos en la hoja.
+b5.f2.texto: La joven estudiante indica su nacionalidad chilena con orgullo.
+b5.f3.texto: El recepcionista atento revisa los datos de la ficha.
+b5.f4.texto: Él comprueba el número de teléfono con rapidez.
+b5.f5.texto: Lucía añade su firma clara en el documento nuevo.
+b6.o0: apellido
+b6.o1: nombre
+b6.o2: dirección
+b7.frase: Vivo ___ la calle Mayor.
+b7.o0: en
+b7.o1: a
+b7.o2: de
+b8.frase: ¿Cuál es tu dirección?
+b3.titulo: Словарный запас
+b4.titulo: Вопросы с cuál для личных данных
+b4.texto: "Чтобы спросить о конкретных данных (адрес, телефон или фамилия), используем **cuál** с глаголом **ser**:\\n- *¿Cuál es tu dirección?*\\n- *¿Cuál es su número?*"
+b5.titulo: Регистрационная анкета
+b6.titulo: Выберите правильный вариант
+b6.pregunta: Вопрос «¿Cuál es su apellido?» спрашивает вашу…
+b6.o0.refuerzo: Правильно: apellido означает фамилию.
+b6.o1.refuerzo: Неверно: личное имя называется «nombre».
+b6.o2.refuerzo: Неверно: адрес проживания называется «dirección».
+b7.titulo: Заполните пропуск
+b7.pregunta: Вставьте подходящий предлог места.
+b7.o0.refuerzo: Правильно: мы используем «vivir en» для указания места проживания.
+b7.o1.refuerzo: Неверно: предлог «a» указывает на направление движения.
+b7.o2.refuerzo: Неверно: «de» указывает на происхождение или исходную точку.
+b8.titulo: Расставьте слова по порядку
+b8.traduccion: Какой у тебя адрес?
+b9.titulo: Напишите предложение
+b9.pregunta: Напишите по-испански: «Какой у тебя адрес?».
+p.el nombre.glosa: имя
+p.el nombre.consejo: Личное имя человека в документах.
+p.el apellido.glosa: фамилия
+p.el apellido.consejo: Семейное имя, следующее за личным именем.
+p.los apellidos.glosa: фамилии
+p.los apellidos.consejo: Две фамилии (отцовская и материнская), принятые в испаноязычных странах.
+p.la dirección.glosa: адрес
+p.la dirección.consejo: Почтовый адрес или место проживания.
+p.la calle.glosa: улица
+p.la calle.consejo: Городская улица.
+p.el número.glosa: номер
+p.el número.consejo: Номер дома или телефона.
+p.el código postal.glosa: почтовый индекс
+p.el código postal.consejo: Цифровой код почтового отделения.
+p.el correo electrónico.glosa: электронная почта
+p.el correo electrónico.consejo: Адрес электронной почты.
+p.el teléfono.glosa: телефон
+p.el teléfono.consejo: Контактный номер телефона.
+p.el punto.glosa: точка
+p.el punto.consejo: Знак точки в электронных адресах.
+p.la edad.glosa: возраст
+p.la edad.consejo: Число прожитых лет от рождения.
+p.la fecha de nacimiento.glosa: дата рождения
+p.la fecha de nacimiento.consejo: День, месяц и год рождения.
+p.la nacionalidad.glosa: гражданство, национальность
+p.la nacionalidad.consejo: Правовая принадлежность к государству.
+p.chilena.glosa: чилийка
+p.chilena.consejo: Уроженка Чили в женском роде.
+p.chileno.glosa: чилиец
+p.chileno.consejo: Уроженец Чили в мужском роде.
+p.la profesión.glosa: профессия
+p.la profesión.consejo: Род занятий или трудовой деятельности.
+p.el estado civil.glosa: семейное положение
+p.el estado civil.consejo: Юридический статус (холост, женат и т.д.).
+p.la firma.glosa: подпись
+p.la firma.consejo: Собственноручная подпись на документе.
+p.firmar.glosa: подписывать
+p.firmar.consejo: Поставить личную подпись на официальном бланке.
+p.rellenar.glosa: заполнять
+p.rellenar.consejo: Вносить данные в графы бланка.
+p.el formulario.glosa: бланк, анкета
+p.el formulario.consejo: Официальный документ с графами для заполнения.
+p.la arroba.glosa: знак «собака» (@)
+p.la arroba.consejo: Символ @ в адресах электронной почты.
+
+== de
+titulo: Ihre Angaben, bitte
+intro: Lerne den Wortschatz zum Ausfüllen von Formularen und zur Angabe persönlicher Daten.
+b1.titulo: Formulare und persönliche Angaben
+b1.texto: "Auf Formularen wird häufig gefragt nach: **nombre**, **apellidos**, **dirección**, **teléfono**, **correo electrónico**, **fecha de nacimiento** und **firma**.\\n\\nHöfliche Fragen (usted): *¿Cómo se llama?*, *¿Cuál es su apellido?*, *¿Cuál es su dirección?* Vertrauliche Fragen (tú): *¿Cómo te llamas?*, *¿Cuál es tu dirección?*\\n\\nIm Spanischen verwenden wir **cuál** mit ser, um nach konkreten Identitätsdaten zu fragen.\\n\\nIn E-Mail-Adressen heißt das Zeichen @ **arroba** und der Punkt heißt **punto**."
+b2.titulo: Am Empfang
+b2.f0.texto: ¿Cuál es su nombre?
+b2.f1.texto: Mi nombre es Lucía.
+b2.f2.texto: ¿Cuál es su dirección?
+b2.f3.texto: Vivo en la calle Mayor.
+b2.f4.texto: ¿Cuál es su teléfono?
+b2.f5.texto: Firme aquí.
+b4.e0.texto: ¿Cuál es tu dirección?
+b4.e1.texto: ¿Cuál es su número?
+b5.f0.texto: Lucía rellena con cuidado el formulario oficial de inscripción.
+b5.f1.texto: Ella escribe su nombre completo y sus dos apellidos en la hoja.
+b5.f2.texto: La joven estudiante indica su nacionalidad chilena con orgullo.
+b5.f3.texto: El recepcionista atento revisa los datos de la ficha.
+b5.f4.texto: Él comprueba el número de teléfono con rapidez.
+b5.f5.texto: Lucía añade su firma clara en el documento nuevo.
+b6.o0: apellido
+b6.o1: nombre
+b6.o2: dirección
+b7.frase: Vivo ___ la calle Mayor.
+b7.o0: en
+b7.o1: a
+b7.o2: de
+b8.frase: ¿Cuál es tu dirección?
+b3.titulo: Wortschatz
+b4.titulo: Fragen mit cuál nach persönlichen Daten
+b4.texto: "Um nach bestimmten Identifikationsdaten wie Adresse oder Telefonnummer zu fragen, verwenden wir **cuál** mit **ser**:\\n- *¿Cuál es tu dirección?*\\n- *¿Cuál es su número?*"
+b5.titulo: Das Anmeldeformular
+b6.titulo: Wähle die richtige Option
+b6.pregunta: Die Frage «¿Cuál es su apellido?» fragt nach deinem…
+b6.o0.refuerzo: Richtig: apellido bezeichnet den Familiennamen.
+b6.o1.refuerzo: Falsch: Der Vorname heißt auf Spanisch «nombre».
+b6.o2.refuerzo: Falsch: Die Wohnadresse heißt «dirección».
+b7.titulo: Setze das passende Wort ein
+b7.pregunta: Vervollständige mit der richtigen Ortspräposition.
+b7.o0.refuerzo: Richtig: Wir verwenden «vivir en», um den Wohnort anzugeben.
+b7.o1.refuerzo: Falsch: Die Präposition «a» bezeichnet eine Richtung oder Bewegung.
+b7.o2.refuerzo: Falsch: «de» bezeichnet die Herkunft oder den Ursprung.
+b8.titulo: Bringe die Wörter in die richtige Reihenfolge
+b8.traduccion: Wie ist deine Adresse?
+b9.titulo: Schreibe den Satz
+b9.pregunta: Schreibe auf Spanisch: «Wie ist deine Adresse?».
+p.el nombre.glosa: der Vorname
+p.el nombre.consejo: Der persönliche Vorname einer Person.
+p.el apellido.glosa: der Nachname, Familienname
+p.el apellido.consejo: Der Familienname nach dem Vornamen.
+p.los apellidos.glosa: die Nachnamen
+p.los apellidos.consejo: Die in der spanischsprachigen Welt üblichen zwei Nachnamen.
+p.la dirección.glosa: die Adresse, Anschrift
+p.la dirección.consejo: Wohnort- oder Postanschrift.
+p.la calle.glosa: die Straße
+p.la calle.consejo: Städtischer Verkehrsweg.
+p.el número.glosa: die Hausnummer, Telefonnummer
+p.el número.consejo: Identifikationsnummer von Haus oder Telefon.
+p.el código postal.glosa: die Postleitzahl
+p.el código postal.consejo: Nummerncode zur Postzustellung.
+p.el correo electrónico.glosa: die E-Mail-Adresse
+p.el correo electrónico.consejo: Elektronische Postadresse.
+p.el teléfono.glosa: das Telefon, die Telefonnummer
+p.el teléfono.consejo: Telefonische Kontaktnummer.
+p.el punto.glosa: der Punkt
+p.el punto.consejo: Satzzeichen Punkt in Web- und E-Mail-Adressen.
+p.la edad.glosa: das Alter
+p.la edad.consejo: Jahre seit der Geburt.
+p.la fecha de nacimiento.glosa: das Geburtsdatum
+p.la fecha de nacimiento.consejo: Tag, Monat und Jahr der Geburt.
+p.la nacionalidad.glosa: die Staatsangehörigkeit
+p.la nacionalidad.consejo: Rechtliche Zugehörigkeit zu einem Staat.
+p.chilena.glosa: chilenisch (weiblich)
+p.chilena.consejo: Aus Chile stammende Person im Femininum.
+p.chileno.glosa: chilenisch (männlich)
+p.chileno.consejo: Aus Chile stammende Person im Maskulinum.
+p.la profesión.glosa: der Beruf
+p.la profesión.consejo: Berufliche Tätigkeit oder Beschäftigung.
+p.el estado civil.glosa: der Familienstand
+p.el estado civil.consejo: Rechtlicher Personenstand (ledig, verheiratet etc.).
+p.la firma.glosa: die Unterschrift
+p.la firma.consejo: Handschriftlicher Namenszug zur Bestätigung.
+p.firmar.glosa: unterschreiben
+p.firmar.consejo: Die eigene Unterschrift unter ein Dokument setzen.
+p.rellenar.glosa: ausfüllen
+p.rellenar.consejo: Felder in einem Formular ausfüllen.
+p.el formulario.glosa: das Formular
+p.el formulario.consejo: Dokument mit auszufüllenden Feldern.
+p.la arroba.glosa: das At-Zeichen (@)
+p.la arroba.consejo: Das Zeichen @ in E-Mail-Adressen.
+
+== id
+titulo: Data Anda, silakan
+intro: Pelajari kosakata untuk mengisi formulir dan menjawab pertanyaan data pribadi.
+b1.titulo: Formulir dan data pribadi
+b1.texto: "Pada formulir, biasanya diminta: **nombre** (nama depan), **apellidos** (nama belakang/marga), **dirección** (alamat), **teléfono** (telepon), **correo electrónico** (email), **fecha de nacimiento** (tanggal lahir), dan **firma** (tanda tangan).\\n\\nPertanyaan formal (usted): *¿Cómo se llama?*, *¿Cuál es su apellido?*, *¿Cuál es su dirección?* Pertanyaan informal (tú): *¿Cómo te llamas?*, *¿Cuál es tu dirección?*\\n\\nDalam bahasa Spanyol, gunakan **cuál** dengan kata kerja ser untuk menanyakan data identitas tertentu.\\n\\nDalam alamat email, tanda @ dibaca **arroba** dan titik dibaca **punto**."
+b2.titulo: Di bagian resepsionis
+b2.f0.texto: ¿Cuál es su nombre?
+b2.f1.texto: Mi nombre es Lucía.
+b2.f2.texto: ¿Cuál es su dirección?
+b2.f3.texto: Vivo en la calle Mayor.
+b2.f4.texto: ¿Cuál es su teléfono?
+b2.f5.texto: Firme aquí.
+b4.e0.texto: ¿Cuál es tu dirección?
+b4.e1.texto: ¿Cuál es su número?
+b5.f0.texto: Lucía rellena con cuidado el formulario oficial de inscripción.
+b5.f1.texto: Ella escribe su nombre completo y sus dos apellidos en la hoja.
+b5.f2.texto: La joven estudiante indica su nacionalidad chilena con orgullo.
+b5.f3.texto: El recepcionista atento revisa los datos de la ficha.
+b5.f4.texto: Él comprueba el número de teléfono con rapidez.
+b5.f5.texto: Lucía añade su firma clara en el documento nuevo.
+b6.o0: apellido
+b6.o1: nombre
+b6.o2: dirección
+b7.frase: Vivo ___ la calle Mayor.
+b7.o0: en
+b7.o1: a
+b7.o2: de
+b8.frase: ¿Cuál es tu dirección?
+b3.titulo: Kosakata
+b4.titulo: Pertanyaan dengan cuál untuk data pribadi
+b4.texto: "Untuk menanyakan data tertentu seperti alamat atau nomor telepon, gunakan **cuál** dengan **ser**:\\n- *¿Cuál es tu dirección?*\\n- *¿Cuál es su número?*"
+b5.titulo: Formulir pendaftaran
+b6.titulo: Pilih opsi yang benar
+b6.pregunta: Pertanyaan «¿Cuál es su apellido?» menanyakan tentang…
+b6.o0.refuerzo: Benar: apellido mengacu pada nama keluarga atau marga.
+b6.o1.refuerzo: Salah: nama depan dalam bahasa Spanyol disebut «nombre».
+b6.o2.refuerzo: Salah: alamat tempat tinggal disebut «dirección».
+b7.titulo: Isi bagian yang kosong
+b7.pregunta: Lengkapi dengan kata depan tempat yang benar.
+b7.o0.refuerzo: Benar: kita memakai «vivir en» untuk menyatakan tempat tinggal.
+b7.o1.refuerzo: Salah: kata depan «a» menunjukkan arah pergerakan atau tujuan.
+b7.o2.refuerzo: Salah: «de» menunjukkan asal usul atau kepemilikan.
+b8.titulo: Urutkan kata-kata berikut
+b8.traduccion: Apa alamatmu?
+b9.titulo: Tulis kalimatnya
+b9.pregunta: Tulis dalam bahasa Spanyol: «Apa alamatmu?».
+p.el nombre.glosa: nama (depan)
+p.el nombre.consejo: Nama pribadi seseorang pada dokumen resmi.
+p.el apellido.glosa: nama keluarga, marga
+p.el apellido.consejo: Nama keluarga yang mengikuti nama depan.
+p.los apellidos.glosa: nama keluarga (jamak)
+p.los apellidos.consejo: Dua nama keluarga yang lazim digunakan di negara berbahasa Spanyol.
+p.la dirección.glosa: alamat
+p.la dirección.consejo: Lokasi tempat tinggal atau domisili.
+p.la calle.glosa: jalan
+p.la calle.consejo: Jalan umum di perkotaan.
+p.el número.glosa: nomor
+p.el número.consejo: Nomor rumah atau nomor telepon.
+p.el código postal.glosa: kode pos
+p.el código postal.consejo: Kode angka untuk pengiriman pos.
+p.el correo electrónico.glosa: email, surel
+p.el correo electrónico.consejo: Alamat surat elektronik.
+p.el teléfono.glosa: telepon, nomor telepon
+p.el teléfono.consejo: Nomor kontak telepon.
+p.el punto.glosa: titik
+p.el punto.consejo: Tanda titik pada alamat web atau email.
+p.la edad.glosa: usia, umur
+p.la edad.consejo: Jumlah tahun yang telah dijalani sejak lahir.
+p.la fecha de nacimiento.glosa: tanggal lahir
+p.la fecha de nacimiento.consejo: Hari, bulan, dan tahun kelahiran.
+p.la nacionalidad.glosa: kewarganegaraan
+p.la nacionalidad.consejo: Status hukum keterikatan pada suatu negara.
+p.chilena.glosa: orang Chili (wanita)
+p.chilena.consejo: Warga negara Chili bergender feminin.
+p.chileno.glosa: orang Chili (pria)
+p.chileno.consejo: Warga negara Chili bergender maskulin.
+p.la profesión.glosa: profesi, pekerjaan
+p.la profesión.consejo: Pekerjaan atau keahlian berpenghasilan.
+p.el estado civil.glosa: status pernikahan
+p.el estado civil.consejo: Status hukum seperti lajang, menikah, dll.
+p.la firma.glosa: tanda tangan
+p.la firma.consejo: Tanda tangan resmi pada dokumen.
+p.firmar.glosa: menandatangani
+p.firmar.consejo: Membubuhkan tanda tangan pada dokumen resmi.
+p.rellenar.glosa: mengisi (formulir)
+p.rellenar.consejo: Melengkapi kolom-kolom pada formulir.
+p.el formulario.glosa: formulir
+p.el formulario.consejo: Dokumen dengan kolom kosong untuk diisi data.
+p.la arroba.glosa: simbol at (@)
+p.la arroba.consejo: Tanda @ pada alamat email.

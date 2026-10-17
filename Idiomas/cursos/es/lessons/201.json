@@ -1,50 +1,52 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "201",
   "capitulo": 19,
-  "titulo_es": "Repaso: hipótesis de presente",
   "titulo": {
-    "en": "Review: present hypotheses"
+    "$t": "titulo"
   },
   "intro": {
-    "en": "A hypothetical if uses the imperfect subjunctive and the conditional."
+    "$t": "intro"
   },
   "palabras": {
     "si": {
-      "en": "if",
+      "$f": "p.si",
       "pron": "si",
-      "cat": "conjunction"
+      "cat": "conj"
     },
     "tuviera": {
-      "en": "I/he/she had (hypothetical)",
+      "$f": "p.tuviera",
       "pron": "tu-BYE-ra",
       "cat": "verb"
     },
     "fuera": {
-      "en": "I/he/she were",
+      "$f": "p.fuera",
       "pron": "FWE-ra",
       "cat": "verb"
     },
     "viajaría": {
-      "en": "I/he/she would travel",
+      "$f": "p.viajaría",
       "pron": "bya-ha-RI-a",
       "cat": "verb"
     },
     "hablaría": {
-      "en": "I/he/she would speak",
+      "$f": "p.hablaría",
       "pron": "a-bla-RI-a",
       "cat": "verb"
     },
     "tendría": {
-      "en": "I/he/she would have",
+      "$f": "p.tendría",
       "pron": "ten-DRI-a",
       "cat": "verb"
     },
     "tiempo": {
-      "en": "time",
+      "$f": "p.tiempo",
       "pron": "TYEM-po",
       "genero": "m"
     },
     "dinero": {
-      "en": "money",
+      "$f": "p.dinero",
       "pron": "di-NE-ro",
       "genero": "m"
     }
@@ -52,78 +54,100 @@
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "Real, or imagined",
-      "texto": "A real possibility stays in the ordinary present.\n\n- **Si tengo** tiempo, voy.\n\nAn imagined present uses the imperfect subjunctive and the conditional.\n\n- **Si tuviera** tiempo, **viajaría**.\n- **Si fuera** tú, **hablaría** con ella.\n\nThe conditional ending is **-ía** on the infinitive: hablaría, comería, viviría. Ir and tener change: **iría**, **tendría**."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "dialogo",
-      "titulo": "If",
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "Si tengo tiempo, voy al cine.",
-          "en": "If I have time, I go to the cinema.",
           "analisis": [
             [
               "Si tengo tiempo",
-              "real condition"
+              {
+                "$t": "a0"
+              }
             ],
             [
               "voy al cine",
-              "I go to the cinema"
+              {
+                "$t": "a1"
+              }
             ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Si tuviera tiempo, viajaría.",
-          "en": "If I had time, I would travel.",
           "analisis": [
             [
               "Si tuviera tiempo",
-              "hypothetical"
+              {
+                "$t": "a2"
+              }
             ],
             [
               "viajaría",
-              "I would travel"
+              {
+                "$t": "a3"
+              }
             ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "Si tuviera dinero, tendría una casa.",
-          "en": "If I had money, I would have a house.",
           "analisis": [
             [
               "Si tuviera dinero",
-              "if I had money"
+              {
+                "$t": "a4"
+              }
             ],
             [
               "tendría",
-              "I would have"
+              {
+                "$t": "a5"
+              }
             ],
             [
               "una casa",
-              "a house"
+              {
+                "$t": "a6"
+              }
             ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "Si yo fuera tú, hablaría con ella.",
-          "en": "If I were you, I would speak to her.",
           "analisis": [
             [
               "Si yo fuera tú",
-              "if I were you"
+              {
+                "$t": "a7"
+              }
             ],
             [
               "hablaría",
-              "I would speak"
+              {
+                "$t": "a8"
+              }
             ],
             [
               "con ella",
-              "with her"
+              {
+                "$t": "a9"
+              }
             ]
           ]
         }
@@ -146,17 +170,17 @@
       "tipo": "test",
       "id": "b2-si-hipotesis",
       "pregunta": {
-        "en": "Which sentence is only imagined?"
+        "$t": "b4.pregunta"
       },
       "opciones": {
         "Si tuviera tiempo, viajaría": {
-          "en": "Tuviera plus the conditional is hypothetical."
+          "$t": "b4.o0.refuerzo"
         },
         "Si tengo tiempo, voy": {
-          "en": "That is a real, possible plan."
+          "$t": "b4.o1.refuerzo"
         },
         "Cuando tengo tiempo, leo": {
-          "en": "That is a habit."
+          "$t": "b4.o2.refuerzo"
         }
       },
       "correcta": "Si tuviera tiempo, viajaría"
@@ -165,19 +189,21 @@
       "tipo": "huecos",
       "id": "b2-si-viajaria",
       "pregunta": {
-        "en": "Complete the imagined result."
+        "$t": "b5.pregunta"
       },
-      "frase": "Si tuviera tiempo, ___.",
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
         "viajaría": {
-          "en": "The result of an imagined if is the conditional."
+          "$t": "b5.o0.refuerzo"
         },
         "viajo": {
-          "en": "Viajo is the real present."
+          "$t": "b5.o1.refuerzo"
         },
         "viajé": {
-          "en": "Viajé is the past."
+          "$t": "b5.o2.refuerzo"
         }
       },
       "correcta": "viajaría"
@@ -186,19 +212,21 @@
       "tipo": "huecos",
       "id": "b2-si-m1",
       "pregunta": {
-        "en": "Complete: if I were you, I'd speak to her."
+        "$t": "b6.pregunta"
       },
-      "frase": "Si yo ___ tú, hablaría con ella.",
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
         "fuera": {
-          "en": "An imagined condition: past subjunctive."
+          "$t": "b6.o0.refuerzo"
         },
         "era": {
-          "en": "Era is the indicative."
+          "$t": "b6.o1.refuerzo"
         },
         "sería": {
-          "en": "Si is never followed by the conditional."
+          "$t": "b6.o2.refuerzo"
         }
       },
       "correcta": "fuera"
@@ -207,19 +235,21 @@
       "tipo": "huecos",
       "id": "b2-si-m2",
       "pregunta": {
-        "en": "Complete the real condition: if I have time, I go."
+        "$t": "b7.pregunta"
       },
-      "frase": "Si ___ tiempo, voy.",
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
         "tengo": {
-          "en": "A real condition takes the present."
+          "$t": "b7.o0.refuerzo"
         },
         "tuviera": {
-          "en": "Tuviera would need a conditional after it."
+          "$t": "b7.o1.refuerzo"
         },
         "tendría": {
-          "en": "Si is never followed by the conditional."
+          "$t": "b7.o2.refuerzo"
         }
       },
       "correcta": "tengo"
@@ -228,7 +258,7 @@
       "tipo": "escribir",
       "id": "b2-si-m3",
       "pregunta": {
-        "en": "Translate: «If I had money, I would travel.»"
+        "$t": "b8.pregunta"
       },
       "respuestas": [
         "Si tuviera dinero, viajaría",
@@ -238,10 +268,10 @@
     {
       "tipo": "explicacion",
       "titulo": {
-        "en": "Your turn: write and speak"
+        "$t": "b9.titulo"
       },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (150–180 words).** Write what you would do if you won a large sum of money, if you could live anywhere and if you had one more free day a week.\n\n**Speak (about 3 minutes).** Answer aloud: what would you change if you were mayor of your town? Give at least five measures and their effects."
+        "$t": "b9.texto"
       }
     }
   ]

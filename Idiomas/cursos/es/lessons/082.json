@@ -1,172 +1,429 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "082",
   "capitulo": 8,
-  "titulo_es": "Todo, otro, cada, mismo",
-  "titulo": {"en": "All, another, each, same"},
-  "intro": {"en": "Four very common words that do not behave like their English partners."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "todo": {"en": "all; everything", "pron": "TO-do", "cat": "determiner"},
-    "todos los días": {"en": "every day", "pron": "TO-dos los DI-as", "cat": "expression"},
-    "toda la semana": {"en": "the whole week", "pron": "TO-da la se-MA-na", "cat": "expression"},
-    "otro": {"en": "another, other", "pron": "O-tro", "cat": "determiner", "nota": "It agrees with the noun. In general modern Spanish, use otro/otra without un/una."},
-    "otra cosa": {"en": "something else", "pron": "O-tra KO-sa", "cat": "expression"},
-    "cada": {"en": "each, every", "pron": "KA-da", "cat": "determiner", "nota": "It never changes."},
-    "cada uno": {"en": "each one", "pron": "KA-da U-no", "cat": "expression"},
-    "varios": {"en": "several", "pron": "BA-ryos", "cat": "determiner"},
-    "algunos": {"en": "some", "pron": "al-GU-nos", "cat": "determiner"},
-    "los demás": {"en": "the others, the rest", "pron": "los de-MAS", "cat": "pronoun"},
-    "todo el mundo": {"en": "everybody", "pron": "TO-do el MUN-do", "cat": "expression", "nota": "It takes a singular verb."},
-    "mismo": {"en": "same", "pron": "MIS-mo", "cat": "adjective", "nota": "It agrees with the noun: mismo, misma, mismos, mismas."},
-    "lo mismo": {"en": "the same (thing)", "pron": "lo MIS-mo", "cat": "expression"},
-    "el café": {"en": "the coffee", "pron": "el ka-FE", "cat": "noun", "genero": "m"},
-    "la mañana": {"en": "the morning", "pron": "la ma-NYA-na", "cat": "noun", "genero": "f"},
-    "la tostada": {"en": "the piece of toast", "pron": "la tos-TA-da", "cat": "noun", "genero": "f"},
-    "probar": {"en": "to try, to taste", "pron": "pro-BAR", "cat": "verb"}
+    "todo": {
+      "$f": "p.todo",
+      "pron": "TO-do",
+      "cat": "determiner"
+    },
+    "todos los días": {
+      "$f": "p.todos los días",
+      "pron": "TO-dos los DI-as",
+      "cat": "expr"
+    },
+    "toda la semana": {
+      "$f": "p.toda la semana",
+      "pron": "TO-da la se-MA-na",
+      "cat": "expr"
+    },
+    "otro": {
+      "$f": "p.otro",
+      "pron": "O-tro",
+      "cat": "determiner",
+      "nota": {
+        "$t": "p.otro.nota"
+      }
+    },
+    "otra cosa": {
+      "$f": "p.otra cosa",
+      "pron": "O-tra KO-sa",
+      "cat": "expr"
+    },
+    "cada": {
+      "$f": "p.cada",
+      "pron": "KA-da",
+      "cat": "determiner",
+      "nota": {
+        "$t": "p.cada.nota"
+      }
+    },
+    "cada uno": {
+      "$f": "p.cada uno",
+      "pron": "KA-da U-no",
+      "cat": "expr"
+    },
+    "varios": {
+      "$f": "p.varios",
+      "pron": "BA-ryos",
+      "cat": "determiner"
+    },
+    "algunos": {
+      "$f": "p.algunos",
+      "pron": "al-GU-nos",
+      "cat": "determiner"
+    },
+    "los demás": {
+      "$f": "p.los demás",
+      "pron": "los de-MAS",
+      "cat": "pron"
+    },
+    "todo el mundo": {
+      "$f": "p.todo el mundo",
+      "pron": "TO-do el MUN-do",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.todo el mundo.nota"
+      }
+    },
+    "mismo": {
+      "$f": "p.mismo",
+      "pron": "MIS-mo",
+      "cat": "adj",
+      "nota": {
+        "$t": "p.mismo.nota"
+      }
+    },
+    "lo mismo": {
+      "$f": "p.lo mismo",
+      "pron": "lo MIS-mo",
+      "cat": "expr"
+    },
+    "el café": {
+      "$f": "p.el café",
+      "pron": "el ka-FE",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la mañana": {
+      "$f": "p.la mañana",
+      "pron": "la ma-NYA-na",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "la tostada": {
+      "$f": "p.la tostada",
+      "pron": "la tos-TA-da",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "probar": {
+      "$f": "p.probar",
+      "pron": "pro-BAR",
+      "cat": "verb"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Todo, otro, cada"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "With a noun meaning the whole of something, **todo/toda/todos/todas** commonly appears with a definite article: **todo el** día, **toda la** casa, **todos los** días, **todas las** semanas. Other patterns have no article: **todo mi tiempo**, **toda esta semana**. Used alone, **todo** can mean everything: lo sé **todo**.\n\n**Todo el mundo** means everybody and takes a singular verb: todo el mundo **está** aquí.\n\n**Otro/otra/otros/otras** agrees with the noun and normally takes no un/una before it: quiero **otro** café; **otra** vez; **otros dos** cafés. **Cada** does not change and takes a singular noun: cada día, cada semana, cada uno. **Algunos/as** means some; **varios/as**, several; **los demás**, the others or the rest.\n\n**Mismo/misma/mismos/mismas** means the same and agrees with the noun: **el mismo** café, **la misma** tostada. With neuter **lo**, **lo mismo** means the same thing: siempre pido **lo mismo**."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "The usual"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Camarero",
-          "es": "¿Quieren otro café?",
-          "en": "Would you like another coffee?",
-          "analisis": [["¿Quieren", "verb"], ["otro café", "object"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Sí, otros dos, por favor.",
-          "en": "Yes, two more, please.",
-          "analisis": [["otros dos", "object"], ["por favor", "politeness"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Vengo aquí todos los días. Conozco a todo el mundo.",
-          "en": "I come here every day. I know everybody.",
           "analisis": [
-            ["Vengo", "verb"],
-            ["aquí", "place"],
-            ["todos los días", "frequency"],
-            ["Conozco", "verb"],
-            ["a todo el mundo", "object"]
+            [
+              "¿Quieren",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "otro café",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Lucía",
-          "es": "¿Y siempre pides lo mismo?",
-          "en": "And do you always order the same thing?",
-          "analisis": [["siempre", "frequency"], ["pides", "verb"], ["lo mismo", "object"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Sí. Cada mañana, un café y una tostada.",
-          "en": "Yes. Every morning, a coffee and a piece of toast.",
-          "analisis": [["Cada mañana", "frequency"], ["un café y una tostada", "object"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Algunos días puedes probar otra cosa. Los demás lo hacen.",
-          "en": "Some days you can try something else. Everyone else does.",
           "analisis": [
-            ["Algunos días", "time"],
-            ["puedes probar", "verb"],
-            ["otra cosa", "object"],
-            ["Los demás", "subject"],
-            ["lo hacen", "verb"]
+            [
+              "otros dos",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "por favor",
+              {
+                "$t": "a2"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f2",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Vengo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "aquí",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "todos los días",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "Conozco",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "a todo el mundo",
+              {
+                "$t": "a1"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f3",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "siempre",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "pides",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "lo mismo",
+              {
+                "$t": "a1"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f4",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Cada mañana",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "un café y una tostada",
+              {
+                "$t": "a1"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Algunos días",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "puedes probar",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "otra cosa",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "Los demás",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "lo hacen",
+              {
+                "$t": "a0"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "todo-otro-1",
-      "pregunta": {"en": "Complete: I want another coffee."},
-      "frase": "Quiero ___ café.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "otro": {"en": "Otro takes no article."},
-        "un otro": {"en": "This is not the usual form in general modern Spanish; say otro café."},
-        "otra": {"en": "Café is masculine."}
+        "otro": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "un otro": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "otra": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "otro"
     },
     {
       "tipo": "huecos",
       "id": "todo-otro-2",
-      "pregunta": {"en": "Complete: every day."},
-      "frase": "___ los días.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "Todos": {"en": "Todos los días."},
-        "Todo": {"en": "Días is plural."},
-        "Cada": {"en": "Cada takes a singular noun with no article: cada día."}
+        "Todos": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "Todo": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "Cada": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "Todos"
     },
     {
       "tipo": "huecos",
       "id": "todo-otro-3",
-      "pregunta": {"en": "Complete: each day I study for an hour."},
-      "frase": "___ día estudio una hora.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "Cada": {"en": "Cada plus a singular noun."},
-        "Todos": {"en": "Todos needs los días."},
-        "Otros": {"en": "Otros días would be other days."}
+        "Cada": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "Todos": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "Otros": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "Cada"
     },
     {
       "tipo": "huecos",
       "id": "todo-otro-4",
-      "pregunta": {"en": "Complete: everybody is here."},
-      "frase": "Todo el mundo ___ aquí.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "está": {"en": "Todo el mundo takes a singular verb."},
-        "están": {"en": "The verb is singular."},
-        "estamos": {"en": "The verb is third person singular."}
+        "está": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "están": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "estamos": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "está"
     },
     {
       "tipo": "escribir",
       "id": "todo-otro-5",
-      "pregunta": {"en": "Translate: «the whole day»"},
-      "respuestas": ["todo el día"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "todo el día"
+      ]
     },
     {
       "tipo": "ordenar",
       "id": "todo-otro-6",
-      "frase": "Siempre pido lo mismo",
-      "traduccion": {"en": "I always order the same thing."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "todo-otro-7",
-      "pregunta": {"en": "Complete: I order the same piece of toast."},
-      "frase": "Pido la ___ tostada.",
+      "pregunta": {
+        "$t": "b10.pregunta"
+      },
+      "frase": {
+        "$e": "b10.frase"
+      },
       "audio": true,
       "opciones": {
-        "misma": {"en": "Mismo agrees with the feminine noun tostada."},
-        "mismo": {"en": "Mismo is masculine singular."},
-        "mismos": {"en": "Mismos is masculine plural."}
+        "misma": {
+          "$t": "b10.o0.refuerzo"
+        },
+        "mismo": {
+          "$t": "b10.o1.refuerzo"
+        },
+        "mismos": {
+          "$t": "b10.o2.refuerzo"
+        }
       },
       "correcta": "misma"
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write about your habits using todos los días, cada semana, otro, el mismo, todo el…\n\n**Speak (about 1 minute).** Say aloud what you do every day, every week and every year, and what you would like to change for something else."
+        "$t": "b11.texto"
       }
     }
   ]

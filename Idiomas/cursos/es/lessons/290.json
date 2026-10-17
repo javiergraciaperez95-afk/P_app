@@ -1,187 +1,442 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "290",
   "capitulo": 26,
-  "titulo_es": "El lenguaje de las noticias",
-  "titulo": {"en": "The language of the news"},
+  "titulo": {
+    "$t": "titulo"
+  },
   "intro": {
-    "en": "How newspapers write: headlines, nouns in place of verbs, the passive, sources, and the conditional of rumour."
+    "$t": "intro"
   },
   "palabras": {
-    "según": {"en": "according to", "pron": "se-GUN", "cat": "preposition"},
-    "las autoridades": {"en": "the authorities", "pron": "las au-to-ri-DA-des", "genero": "f"},
-    "el suceso": {"en": "the incident, the event", "pron": "el su-THE-so", "genero": "m", "nota": "Success is el éxito."},
-    "el incendio": {"en": "the fire", "pron": "el in-THEN-dyo", "genero": "m"},
-    "el herido": {"en": "the injured person", "pron": "el e-RI-do", "genero": "m"},
-    "los daños": {"en": "the damage", "pron": "los DA-nyos", "genero": "m"},
-    "tras": {"en": "after (formal)", "pron": "tras", "cat": "preposition"},
-    "se desconoce": {"en": "it is not known", "pron": "se des-ko-NO-the", "cat": "verb"},
-    "al parecer": {"en": "apparently", "pron": "al pa-re-THER", "cat": "expression"},
-    "el portavoz": {"en": "the spokesperson", "pron": "el por-ta-BOTH", "genero": "m"},
-    "afirmar": {"en": "to state", "pron": "a-fir-MAR", "cat": "verb"},
-    "el titular": {"en": "the headline", "pron": "el ti-tu-LAR", "genero": "m"},
-    "la subida": {"en": "the rise", "pron": "la su-BI-da", "genero": "f"},
-    "el paro": {"en": "unemployment", "pron": "el PA-ro", "genero": "m"},
-    "trasladar": {"en": "to move, to transfer", "pron": "tras-la-DAR", "cat": "verb"}
+    "según": {
+      "$f": "p.según",
+      "pron": "se-GUN",
+      "cat": "prep"
+    },
+    "las autoridades": {
+      "$f": "p.las autoridades",
+      "pron": "las au-to-ri-DA-des",
+      "genero": "f"
+    },
+    "el suceso": {
+      "$f": "p.el suceso",
+      "pron": "el su-THE-so",
+      "genero": "m",
+      "nota": {
+        "$t": "p.el suceso.nota"
+      }
+    },
+    "el incendio": {
+      "$f": "p.el incendio",
+      "pron": "el in-THEN-dyo",
+      "genero": "m"
+    },
+    "el herido": {
+      "$f": "p.el herido",
+      "pron": "el e-RI-do",
+      "genero": "m"
+    },
+    "los daños": {
+      "$f": "p.los daños",
+      "pron": "los DA-nyos",
+      "genero": "m"
+    },
+    "tras": {
+      "$f": "p.tras",
+      "pron": "tras",
+      "cat": "prep"
+    },
+    "se desconoce": {
+      "$f": "p.se desconoce",
+      "pron": "se des-ko-NO-the",
+      "cat": "verb"
+    },
+    "al parecer": {
+      "$f": "p.al parecer",
+      "pron": "al pa-re-THER",
+      "cat": "expr"
+    },
+    "el portavoz": {
+      "$f": "p.el portavoz",
+      "pron": "el por-ta-BOTH",
+      "genero": "m"
+    },
+    "afirmar": {
+      "$f": "p.afirmar",
+      "pron": "a-fir-MAR",
+      "cat": "verb"
+    },
+    "el titular": {
+      "$f": "p.el titular",
+      "pron": "el ti-tu-LAR",
+      "genero": "m"
+    },
+    "la subida": {
+      "$f": "p.la subida",
+      "pron": "la su-BI-da",
+      "genero": "f"
+    },
+    "el paro": {
+      "$f": "p.el paro",
+      "pron": "el PA-ro",
+      "genero": "m"
+    },
+    "trasladar": {
+      "$f": "p.trasladar",
+      "pron": "tras-la-DAR",
+      "cat": "verb"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Reading the news"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "**Headlines** use the present for what has just happened and often put the verb first: **Muere** un escritor. **Sube** el paro.\n\n**Nouns replace verbs**: subir → **la subida**; bajar → **la bajada**; aumentar → **el aumento**; detener → **la detención**; llegar → **la llegada**.\n\n**The doer disappears**: **fue detenido**, **fueron trasladadas**, **se desconocen** las causas, **se investigará**.\n\n**Sources are named**: **según** la policía, **al parecer**, **fuentes oficiales afirman que**…\n\n**The conditional of rumour** reports something unconfirmed: el ministro **habría dimitido** (he has reportedly resigned).\n\n**Formal prepositions**: **tras** (después de), **ante** (faced with), **mediante** (by means of).\n\n**Verbs of saying**: afirmar, declarar, señalar, asegurar, anunciar, advertir, **desmentir** (to deny)."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "texto",
-      "titulo": {"en": "A short news item"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
-          "es": "Un incendio destruye un edificio en el centro de Valencia.",
-          "en": "A fire destroys a building in the centre of Valencia.",
+          "$f": "b2.f0",
           "analisis": [
-            ["Un incendio", "subject"],
-            ["destruye", "verb (headline present)"],
-            ["un edificio", "object"],
-            ["en el centro de Valencia", "place"]
+            [
+              "Un incendio",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "destruye",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "un edificio",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "en el centro de Valencia",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
-          "es": "Según los bomberos, el fuego comenzó a las tres de la madrugada.",
-          "en": "According to the fire brigade, the fire started at three in the morning.",
+          "$f": "b2.f1",
           "analisis": [
-            ["Según los bomberos", "source"],
-            ["el fuego", "subject"],
-            ["comenzó", "verb"],
-            ["a las tres de la madrugada", "time"]
+            [
+              "Según los bomberos",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "el fuego",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "comenzó",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "a las tres de la madrugada",
+              {
+                "$t": "a6"
+              }
+            ]
           ]
         },
         {
-          "es": "Tres personas resultaron heridas y fueron trasladadas al hospital.",
-          "en": "Three people were injured and were taken to hospital.",
+          "$f": "b2.f2",
           "analisis": [
-            ["Tres personas", "subject"],
-            ["resultaron heridas", "verb"],
-            ["fueron trasladadas", "verb (passive)"],
-            ["al hospital", "place"]
+            [
+              "Tres personas",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "resultaron heridas",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "fueron trasladadas",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "al hospital",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
-          "es": "Se desconocen las causas del suceso.",
-          "en": "The causes of the incident are not known.",
-          "analisis": [["Se desconocen", "verb (passive with se)"], ["las causas del suceso", "subject"]]
-        },
-        {
-          "es": "Al parecer, el edificio habría estado vacío desde hace meses.",
-          "en": "Apparently, the building had reportedly been empty for months.",
+          "$f": "b2.f3",
           "analisis": [
-            ["Al parecer", "apparently"],
-            ["el edificio", "subject"],
-            ["habría estado vacío", "verb (conditional of rumour)"],
-            ["desde hace meses", "time"]
+            [
+              "Se desconocen",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "las causas del suceso",
+              {
+                "$t": "a0"
+              }
+            ]
           ]
         },
         {
-          "es": "Tras el incendio, un portavoz del ayuntamiento afirmó que se investigará lo ocurrido.",
-          "en": "After the fire, a town hall spokesperson stated that what happened will be investigated.",
+          "$f": "b2.f4",
           "analisis": [
-            ["Tras el incendio", "time (formal)"],
-            ["un portavoz del ayuntamiento", "subject"],
-            ["afirmó que", "reporting verb"],
-            ["se investigará", "verb"],
-            ["lo ocurrido", "subject"]
+            [
+              "Al parecer",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "el edificio",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "habría estado vacío",
+              {
+                "$t": "a10"
+              }
+            ],
+            [
+              "desde hace meses",
+              {
+                "$t": "a6"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "analisis": [
+            [
+              "Tras el incendio",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "un portavoz del ayuntamiento",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "afirmó que",
+              {
+                "$t": "a12"
+              }
+            ],
+            [
+              "se investigará",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "lo ocurrido",
+              {
+                "$t": "a0"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "traduccion",
       "id": "noticias-1",
-      "frase": "Sube el paro por tercer mes.",
+      "frase": {
+        "$e": "b4.frase"
+      },
       "opciones": [
-        {"texto": {"en": "Unemployment rises for the third month."}, "correcta": true},
         {
-          "texto": {"en": "The strike grows for the third month."},
-          "explicacion": {"en": "A strike is una huelga. El paro is unemployment."}
+          "texto": {
+            "$t": "b4.o0"
+          },
+          "correcta": true
         },
         {
-          "texto": {"en": "The bus stop moves for the third month."},
-          "explicacion": {"en": "A bus stop is una parada."}
+          "texto": {
+            "$t": "b4.o1"
+          },
+          "explicacion": {
+            "$t": "b4.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b4.o2"
+          },
+          "explicacion": {
+            "$t": "b4.o2.explicacion"
+          }
         }
       ]
     },
     {
       "tipo": "test",
       "id": "noticias-2",
-      "pregunta": {"en": "«El ministro habría dimitido.» Why the conditional?"},
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
       "opciones": {
-        "The paper reports it without confirming it": {"en": "The conditional of rumour."},
-        "It will happen later": {"en": "That would be dimitirá."},
-        "It is a wish": {"en": "A wish would use ojalá."}
+        "The paper reports it without confirming it": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "It will happen later": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "It is a wish": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "The paper reports it without confirming it"
     },
     {
       "tipo": "test",
       "id": "noticias-3",
-      "pregunta": {"en": "Which noun, common in headlines, comes from «subir»?"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "la subida": {"en": "Subir → la subida."},
-        "el subimiento": {"en": "The noun is la subida."},
-        "la subición": {"en": "The noun is la subida."}
+        "la subida": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "el subimiento": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "la subición": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "la subida"
     },
     {
       "tipo": "huecos",
       "id": "noticias-4",
-      "pregunta": {"en": "Complete: according to the police, there are three injured."},
-      "frase": "___ la policía, hay tres heridos.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "Según": {"en": "Según names the source."},
-        "Tras": {"en": "Tras means after."},
-        "Ante": {"en": "Ante means faced with."}
+        "Según": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "Tras": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "Ante": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "Según"
     },
     {
       "tipo": "traduccion",
       "id": "noticias-5",
-      "frase": "Se desconocen las causas.",
+      "frase": {
+        "$e": "b8.frase"
+      },
       "opciones": [
-        {"texto": {"en": "The causes are not known."}, "correcta": true},
         {
-          "texto": {"en": "They do not know each other."},
-          "explicacion": {"en": "Las causas is the subject, in a passive with se."}
+          "texto": {
+            "$t": "b8.o0"
+          },
+          "correcta": true
         },
         {
-          "texto": {"en": "The causes are being ignored on purpose."},
-          "explicacion": {"en": "Desconocer is not to know."}
+          "texto": {
+            "$t": "b8.o1"
+          },
+          "explicacion": {
+            "$t": "b8.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b8.o2"
+          },
+          "explicacion": {
+            "$t": "b8.o2.explicacion"
+          }
         }
       ]
     },
     {
       "tipo": "test",
       "id": "noticias-6",
-      "pregunta": {"en": "In a newspaper, «un suceso» is…"},
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
       "opciones": {
-        "an incident": {"en": "Often an accident or a crime."},
-        "a success": {"en": "Success is un éxito."},
-        "a succession": {"en": "That is una sucesión."}
+        "an incident": {
+          "$t": "b9.o0.refuerzo"
+        },
+        "a success": {
+          "$t": "b9.o1.refuerzo"
+        },
+        "a succession": {
+          "$t": "b9.o2.refuerzo"
+        }
       },
       "correcta": "an incident"
     },
     {
       "tipo": "ordenar",
       "id": "noticias-7",
-      "frase": "Tres personas fueron trasladadas al hospital",
-      "traduccion": {"en": "Three people were taken to hospital."}
+      "frase": {
+        "$e": "b10.frase"
+      },
+      "traduccion": {
+        "$t": "b10.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (150–180 words).** Rewrite an everyday anecdote as a newspaper story, with headline, passive forms and the conditional of rumour.\n\n**Speak (about 3 minutes).** Read the news aloud as a radio presenter would, then comment on it in your own words."
+        "$t": "b11.texto"
       }
     }
   ]

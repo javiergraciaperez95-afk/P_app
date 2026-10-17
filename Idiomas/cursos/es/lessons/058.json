@@ -1,138 +1,324 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "058",
   "capitulo": 7,
-  "titulo_es": "Creo que vendrá",
-  "titulo": { "en": "I think she'll come" },
-  "intro": { "en": "The simple future for what you think will happen." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "vendrá": { "en": "he/she will come", "pron": "ben-DRA", "cat": "verb" },
-    "vendré": { "en": "I will come", "pron": "ben-DRE", "cat": "verb" },
-    "llegará": { "en": "he/she/it will arrive", "pron": "ye-ga-RA", "cat": "verb" },
-    "hablaré": { "en": "I will speak", "pron": "a-bla-RE", "cat": "verb" },
-    "tendré": { "en": "I will have", "pron": "ten-DRE", "cat": "verb" },
-    "creo que": { "en": "I think that", "pron": "KRE-o ke", "cat": "expression" },
-    "mañana": { "en": "tomorrow", "pron": "ma-NYA-na", "cat": "adverb" },
-    "tarde": { "en": "late", "pron": "TAR-de", "cat": "adverb" },
-    "vendrás": { "en": "you (tú) will come", "pron": "ben-DRAS", "cat": "verb" },
-    "venir": { "en": "to come", "pron": "be-NIR", "cat": "verb" },
-    "haré": { "en": "I will do / make", "pron": "a-RE", "cat": "verb" },
-    "saldré": { "en": "I will leave / go out", "pron": "sal-DRE", "cat": "verb" },
-    "podré": { "en": "I will be able to", "pron": "po-DRE", "cat": "verb" },
-    "diré": { "en": "I will say / tell", "pron": "di-RE", "cat": "verb" },
-    "por la tarde": { "en": "in the afternoon", "cat": "expression" },
-    "el tren": { "en": "the train", "cat": "noun", "genero": "m" }
+    "vendrá": {
+      "$f": "p.vendrá",
+      "pron": "ben-DRA",
+      "cat": "verb"
+    },
+    "vendré": {
+      "$f": "p.vendré",
+      "pron": "ben-DRE",
+      "cat": "verb"
+    },
+    "llegará": {
+      "$f": "p.llegará",
+      "pron": "ye-ga-RA",
+      "cat": "verb"
+    },
+    "hablaré": {
+      "$f": "p.hablaré",
+      "pron": "a-bla-RE",
+      "cat": "verb"
+    },
+    "tendré": {
+      "$f": "p.tendré",
+      "pron": "ten-DRE",
+      "cat": "verb"
+    },
+    "creo que": {
+      "$f": "p.creo que",
+      "pron": "KRE-o ke",
+      "cat": "expr"
+    },
+    "mañana": {
+      "$f": "p.mañana",
+      "pron": "ma-NYA-na",
+      "cat": "adv"
+    },
+    "tarde": {
+      "$f": "p.tarde",
+      "pron": "TAR-de",
+      "cat": "adv"
+    },
+    "vendrás": {
+      "$f": "p.vendrás",
+      "pron": "ben-DRAS",
+      "cat": "verb"
+    },
+    "venir": {
+      "$f": "p.venir",
+      "pron": "be-NIR",
+      "cat": "verb"
+    },
+    "haré": {
+      "$f": "p.haré",
+      "pron": "a-RE",
+      "cat": "verb"
+    },
+    "saldré": {
+      "$f": "p.saldré",
+      "pron": "sal-DRE",
+      "cat": "verb"
+    },
+    "podré": {
+      "$f": "p.podré",
+      "pron": "po-DRE",
+      "cat": "verb"
+    },
+    "diré": {
+      "$f": "p.diré",
+      "pron": "di-RE",
+      "cat": "verb"
+    },
+    "por la tarde": {
+      "$f": "p.por la tarde",
+      "cat": "expr"
+    },
+    "el tren": {
+      "$f": "p.el tren",
+      "cat": "sust",
+      "genero": "m"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "The ending sticks to the infinitive",
-      "texto": "Add the ending to the **whole infinitive**: **-é, -ás, -á, -emos, -éis, -án**.\n\n- hablar**é**, comer**é**, vivir**é**\n- hablar**á**, llegar**á**\n\nSome verbs change the stem: **vendré, tendré, haré, saldré, podré, diré**.\n\n**Creo que** + future is an opinion about later: creo que el tren **llegará** tarde."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "dialogo",
-      "titulo": "The train",
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "Creo que el tren llegará tarde.",
-          "en": "I think the train will arrive late.",
           "analisis": [
-            ["Creo que", "I think that"],
-            ["el tren", "subject"],
-            ["llegará", "will arrive"],
-            ["tarde", "late"]
+            [
+              "Creo que",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "el tren",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "llegará",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "tarde",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "¿Vendrás mañana?",
-          "en": "Will you come tomorrow?",
           "analisis": [
-            ["¿Vendrás", "will you come"],
-            ["mañana", "tomorrow"]
+            [
+              "¿Vendrás",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "mañana",
+              {
+                "$t": "a5"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "Sí, vendré por la tarde.",
-          "en": "Yes, I'll come in the afternoon.",
           "analisis": [
-            ["vendré", "I will come"],
-            ["por la tarde", "in the afternoon"]
+            [
+              "vendré",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "por la tarde",
+              {
+                "$t": "a7"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "Tendré tiempo a las seis.",
-          "en": "I'll have time at six.",
           "analisis": [
-            ["Tendré", "I will have"],
-            ["tiempo", "time"],
-            ["a las seis", "at six"]
+            [
+              "Tendré",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "tiempo",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "a las seis",
+              {
+                "$t": "a10"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["vendrá", "vendré", "llegará", "hablaré", "tendré", "creo que", "mañana", "tarde", "vendrás", "venir", "haré", "saldré", "podré", "diré", "por la tarde", "el tren"]
+      "palabras": [
+        "vendrá",
+        "vendré",
+        "llegará",
+        "hablaré",
+        "tendré",
+        "creo que",
+        "mañana",
+        "tarde",
+        "vendrás",
+        "venir",
+        "haré",
+        "saldré",
+        "podré",
+        "diré",
+        "por la tarde",
+        "el tren"
+      ]
     },
     {
       "tipo": "huecos",
       "id": "b1-fut-llegara",
-      "pregunta": { "en": "Complete: the train will arrive late." },
-      "frase": "El tren ___ tarde.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "llegará": { "en": "A prediction uses the future: llegará." },
-        "llega": { "en": "Llega is the present, a timetable or a habit." },
-        "llegó": { "en": "Llegó is the past." }
+        "llegará": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "llega": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "llegó": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "llegará"
     },
     {
       "tipo": "escribir",
       "id": "b1-fut-vendre",
-      "pregunta": { "en": "Translate: «I will come tomorrow.»" },
-      "respuestas": ["Vendré mañana", "Yo vendré mañana"],
-      "explicacion": { "en": "Venir in the future: vendré." }
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "respuestas": [
+        "Vendré mañana",
+        "Yo vendré mañana"
+      ],
+      "explicacion": {
+        "$t": "b5.explicacion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "b1-fut-m1",
-      "pregunta": {"en": "Complete: I will have time at six."},
-      "frase": "___ tiempo a las seis.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "Tendré": {"en": "Tener changes its stem: tendr-."},
-        "Teneré": {"en": "The stem is tendr-."},
-        "Tengo": {"en": "Tengo is the present."}
+        "Tendré": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "Teneré": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "Tengo": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "Tendré"
     },
     {
       "tipo": "huecos",
       "id": "b1-fut-m2",
-      "pregunta": {"en": "Complete: will you come tomorrow?"},
-      "frase": "¿___ mañana?",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "Vendrás": {"en": "Venir: vendr-, and tú takes -ás."},
-        "Venirás": {"en": "The stem is vendr-."},
-        "Vendrá": {"en": "Vendrá is él, ella or usted."}
+        "Vendrás": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "Venirás": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "Vendrá": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "Vendrás"
     },
     {
       "tipo": "escribir",
       "id": "b1-fut-m3",
-      "pregunta": {"en": "Write the yo future of «hablar»."},
-      "respuestas": ["hablaré"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "hablaré"
+      ]
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write five predictions about your life and five about the world in twenty years.\n\n**Speak (about 1 minute).** Say aloud what you think will happen this year in your family, at work and in your country."
+        "$t": "b9.texto"
       }
     }
   ]

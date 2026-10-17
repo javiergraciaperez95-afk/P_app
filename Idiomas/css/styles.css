@@ -8,26 +8,26 @@
 
 /* ===== Colores: modo oscuro (por defecto) ===== */
 :root {
-  --fondo: #15121d;
-  --fondo-punto: #221c2e;
-  --panel: #231e30;
-  --panel-2: #2f2843;
-  --panel-hover: #3b3256;
+  --fondo: #463c58;
+  --fondo-punto: #54486a;
+  --panel: #574a6c;
+  --panel-2: #66587e;
+  --panel-hover: #75668f;
   --linea: #e8e0f0;
-  --sombra: #07050b;
+  --sombra: #2a2136;
   --texto: #f2ecf7;
-  --texto-suave: #b9aec8;
+  --texto-suave: #ddd3e8;
   --espanol: #ffd98a;
   --rojo: #d2353d;
   --rojo-hover: #e2464e;
   --rojo-claro: #ff8a8f;
   --verde: #6fd38c;
-  --verde-fondo: #1f4a2e;
-  --rojo-fondo: #5a1c22;
+  --verde-fondo: #3a6e4a;
+  --rojo-fondo: #7d3840;
   --oro: #f4c84a;
   --azul: #8fd8ff;
   --foco: #ffe14d;
-  --retrato: #3b3252;
+  --retrato: #6a5c86;
   --sobre-acento: #ffffff;
 
   --px: 4px;
@@ -1734,36 +1734,14 @@ body.sin-tutora main { padding-bottom: 32px; }
 .btn-curso[hidden] { display: none; }
 .marca #marca-bandera .bandera { width: 1.05em; height: .7em; vertical-align: .05em; }
 
-.elegir-curso h1 { text-align: center; }
-.elegir-curso-texto { text-align: center; max-width: 34em; margin: 0 auto 16px; }
-.cursos-lista {
-  list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 6px 4px;
-}
-.curso-tarjeta {
-  width: calc(100% - var(--px) * 3); padding: 10px 6px 8px; border: 0; cursor: pointer; font: inherit; color: inherit;
-  display: flex; flex-direction: column; align-items: center; gap: 2px; text-align: center;
-}
-.curso-tarjeta:hover:not(:disabled), .curso-tarjeta:focus-visible { background: var(--panel-hover); }
-.curso-tarjeta:disabled { cursor: default; opacity: .6; }
-.curso-actual { outline: 3px solid var(--oro); outline-offset: 2px; }
-.curso-tutora { width: 96px; height: 120px; image-rendering: pixelated; image-rendering: crisp-edges; }
-.curso-sin-tutora { display: flex; align-items: center; justify-content: center; font-family: var(--fuente-pixel); font-size: 2.4rem; opacity: .5; }
-.curso-nombre { font-weight: 700; font-size: 1.05rem; }
+/* «Elige el idioma» es un teatro: css/teatro.css */
 .curso-bandera .bandera { width: 1.05em; height: .7em; vertical-align: .05em; }
-.curso-traducido, .curso-estado { font-size: .85rem; opacity: .8; }
-.elegir-curso-pie { text-align: center; margin-top: 18px; }
 
 .creditos-lista { list-style: none; margin: 0 0 16px; padding: 0; }
 .creditos-lista > li { margin-bottom: calc(var(--px) * 4); padding: 10px 14px; }
 .creditos-lista ul { margin: 4px 0 0; padding-left: 1.2em; font-size: .95rem; }
 .creditos a { overflow-wrap: anywhere; }
 
-@media (max-width: 600px) {
-  .cursos-lista { grid-template-columns: repeat(3, 1fr); }
-  .curso-tutora { width: 72px; height: 90px; }
-  .curso-nombre { font-size: .95rem; }
-}
 
 
 /* ===== Pregunta con dos botones (salir de un juego) ===== */
@@ -1872,10 +1850,7 @@ body.en-inicio main { max-width: 1040px; }
 .aviso-datos-botones { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0 2px; }
 .aviso-datos .boton-mini { min-height: 28px; padding: 2px 8px; font-size: .75rem; margin-bottom: var(--px); }
 
-/* ===== Sobre Paglot: una página en la que las tutoras entran, pasean, bajan por la historia y se asoman ===== */
-.sobre { display: flex; flex-direction: column; gap: 56px; }
-.sobre h2 { text-align: center; font-size: 1.6rem; text-wrap: balance; }
-.sobre .caja h2 { text-align: left; font-size: 1.35rem; }
+/* ===== «Sobre Paglot» es una casa: css/sobre.css. Lo de aquí abajo lo usan la bienvenida y la página perdida ===== */
 
 /* Una tutora viva: el bocadillo, el saltito al andar y el giro cuando va hacia la izquierda */
 .sobre-actriz { position: relative; flex: none; width: 96px; height: 128px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
@@ -1889,147 +1864,6 @@ body.en-inicio main { max-width: 1040px; }
 @keyframes paso {
   0%, 49.9% { transform: translateY(0); }
   50%, 100% { transform: translateY(-4px); }
-}
-
-/* 1. Cabecera: entra andando desde la izquierda */
-.sobre-cabecera { display: flex; justify-content: center; align-items: flex-end; gap: 22px; padding-top: 58px; }
-.sobre-guia { width: 144px; height: 192px; }
-.sobre-entrada.entra { animation: entrar 1.9s steps(19) both; }
-@keyframes entrar { from { transform: translateX(-70vw); } to { transform: translateX(0); } }
-.sobre-cabecera-texto { max-width: 26em; padding-bottom: 18px; }
-.sobre-cabecera h1 { font-size: clamp(2.2rem, 7vw, 3.2rem); line-height: 1.05; margin: 0 0 8px; text-shadow: 4px 4px 0 var(--sombra); }
-:root[data-tema="claro"] .sobre-cabecera h1 { text-shadow: 4px 4px 0 var(--fondo-punto); }
-.sobre-lema { font-size: 1.2rem; font-weight: 700; margin: 0; text-wrap: balance; }
-
-/* 2. La tarjeta es una tarima: la tutora pasea por su borde de arriba */
-.sobre-tarima { position: relative; margin-top: 96px; }
-.sobre-pista { position: absolute; left: 6px; right: 14px; bottom: 100%; height: 0; }
-.sobre-pista .sobre-actriz { position: absolute; left: 0; bottom: 0; }
-.sobre-tarima .caja { margin-bottom: 0; }
-.sobre-tarima .caja p:last-child { margin-bottom: 0; }
-
-/* 3. Historia: una línea de puntos por la que baja la tutora; cada fecha se enciende cuando llega */
-.sobre-linea { position: relative; padding-left: 112px; }
-.sobre-linea::before {
-  content: ""; position: absolute; left: 46px; top: 0; bottom: 0; width: 4px;
-  background: repeating-linear-gradient(var(--texto-suave) 0 8px, transparent 8px 16px);
-}
-.sobre-carril { position: absolute; left: 0; top: 0; width: 96px; height: 100%; }
-.sobre-carril .sobre-actriz { position: absolute; left: 0; top: 0; z-index: 2; }
-.sobre-hitos { list-style: none; margin: 0; padding: 12px 0 96px; display: flex; flex-direction: column; gap: 60px; }
-.sobre-hito { position: relative; max-width: 34em; opacity: .3; transform: translateX(16px); transition: opacity .25s steps(4), transform .25s steps(4); }
-.sobre-hito.activo { opacity: 1; transform: none; }
-.sobre-hito::before {
-  content: ""; position: absolute; left: -72px; top: 8px; width: 16px; height: 16px;
-  background: var(--fondo); box-shadow: 0 0 0 4px var(--texto-suave);
-}
-.sobre-hito.activo::before { background: var(--marca-oro); box-shadow: 0 0 0 4px var(--linea); }
-.sobre-fecha { margin: 0; font-weight: 700; font-size: 1.4rem; line-height: 1.2; color: var(--marca-oro); }
-.sobre-hito h3 { margin: 0 0 4px; font-size: 1.2rem; color: var(--texto); }
-.sobre-hito p:last-child { margin: 0; color: var(--texto-suave); }
-
-/* 4. En qué creemos: detrás de cada tarjeta hay una tutora que asoma la cabeza y sale del todo al llegar */
-.sobre-valores { list-style: none; margin: 112px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 6px; }
-.sobre-valor { position: relative; margin-bottom: 0; }
-.sobre-valor h3 { margin: 0 0 6px; font-size: 1.15rem; color: var(--texto); }
-.sobre-valor p { margin: 0; font-size: .97rem; color: var(--texto-suave); }
-.sobre-asoma { position: absolute; right: 12px; bottom: 100%; width: 96px; height: 100px; overflow: hidden; }
-.sobre-asoma .sobre-actriz { position: absolute; left: 0; top: 0; transform: translateY(36px); transition: transform .3s steps(6); }
-.sobre-valor.asomada .sobre-actriz { transform: translateY(0); }
-.sobre-valor:nth-child(2) .sobre-actriz { transition-delay: .12s; }
-.sobre-valor:nth-child(3) .sobre-actriz { transition-delay: .24s; }
-
-/* Ampliaciones de Sobre: cuatro composiciones, con movimiento solo al interactuar. */
-.sobre-ampliacion { --sa-acento: var(--marca-oro); display: grid; grid-template-columns: minmax(0, 1fr) 320px; align-items: center; gap: 36px; padding: 26px 8px; }
-.sobre .sobre-ampliacion h2 { text-align: left; font-size: 1.65rem; text-wrap: balance; }
-.sobre-ampliacion-texto { min-width: 0; }
-.sobre-ampliacion-texto p { color: var(--texto-suave); }
-.sobre-ampliacion-texto p:last-child { margin-bottom: 0; }
-.sobre-ampliacion-escena { --paso: 0; position: relative; min-width: 0; }
-.sobre-ampliacion-escena .sobre-actriz { position: absolute; z-index: 2; }
-.sobre-ampliacion-escena .inicio-globo { font-size: .9rem; }
-.sa-paso { position: relative; display: flex; align-items: center; gap: 8px; min-width: 0; min-height: 44px; border: 2px solid var(--texto-suave); padding: 8px; background: var(--panel); color: var(--texto); font: 600 .85rem/1.3 var(--fuente-texto); cursor: pointer; }
-.sa-paso:hover { background: var(--panel-hover); }
-.sa-paso[aria-pressed="true"] { border-color: var(--sa-acento); box-shadow: 3px 3px 0 var(--sombra); }
-.sa-paso-numero { flex: none; color: var(--sa-acento); font: 700 .8rem var(--fuente-pixel); }
-/* Misión: un camino ascendente abierto, sin caja alrededor del texto. */
-.sobre-ampliacion-mision { border-top: 3px dashed var(--texto-suave); padding-top: 46px; }
-.sa-mision { height: 270px; }
-.sa-mision .sobre-actriz { left: calc(2% + var(--paso) * 31%); bottom: calc(70px + var(--paso) * 26px); transition: left .35s steps(6), bottom .35s steps(6); }
-.sa-camino { position: absolute; left: 0; right: 0; bottom: 58px; height: 78px; }
-.sa-camino i { position: absolute; bottom: 0; width: 34%; height: 18px; background: var(--panel-2); border-top: 4px solid var(--sa-acento); box-shadow: 0 4px 0 var(--sombra); }
-.sa-camino i:nth-child(2) { left: 33%; bottom: 26px; }
-.sa-camino i:nth-child(3) { left: 66%; bottom: 52px; }
-.sa-etapas { position: absolute; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; }
-.sa-etapas .sa-paso { flex-direction: column; gap: 2px; padding: 5px 2px; font-size: .76rem; }
-/* Método: una libreta de pasos, con la tutora leyendo junto al margen. */
-.sobre-ampliacion-metodo { --sa-acento: var(--azul); grid-template-columns: 310px minmax(0, 1fr); }
-.sobre-ampliacion-metodo .sobre-ampliacion-texto { grid-column: 2; grid-row: 1; }
-.sobre-ampliacion-metodo .sa-metodo { grid-column: 1; grid-row: 1; }
-.sa-metodo { min-height: 310px; padding: 30px 22px 80px 28px; background: var(--panel); border: 3px solid var(--linea); box-shadow: 7px 7px 0 var(--panel-2), 10px 10px 0 var(--sombra); }
-.sa-metodo::before { content: ''; position: absolute; top: 0; bottom: 0; left: 18px; border-left: 2px solid var(--azul); opacity: .5; }
-.sa-anillas { position: absolute; top: -10px; left: 30px; right: 30px; display: flex; justify-content: space-between; }
-.sa-anillas i { width: 12px; height: 20px; background: var(--fondo); border: 3px solid var(--texto-suave); }
-.sa-paginas { display: grid; gap: 12px; }
-.sa-paginas .sa-paso { padding: 10px; text-align: left; }
-.sa-metodo .sobre-actriz { right: -15px; bottom: -10px; }
-/* Eficacia: un circuito de atención, práctica y repaso, sin métricas inventadas. */
-.sobre-ampliacion-eficacia { --sa-acento: var(--verde); padding-left: 24px; border-left: 4px solid var(--verde); }
-.sa-eficacia { height: 300px; }
-.sa-circuito { position: absolute; width: 158px; height: 158px; top: 68px; left: calc(50% - 79px); border: 3px dashed var(--verde); transform: rotate(45deg); opacity: .55; }
-.sa-eficacia .sobre-actriz { top: 85px; left: calc(50% - 48px); }
-.sa-eficacia .sa-paso { position: absolute; justify-content: center; width: 43%; }
-.sa-eficacia .sa-paso:nth-last-child(3) { top: 0; left: 28.5%; }
-.sa-eficacia .sa-paso:nth-last-child(2) { bottom: 0; left: 0; }
-.sa-eficacia .sa-paso:last-child { bottom: 0; right: 0; }
-/* Tienda: un escaparate con toldo pixel y libros sobre un estante. */
-.sobre-ampliacion-tienda { --sa-acento: var(--rojo-claro); position: relative; grid-template-columns: minmax(0, 1fr) 240px; margin: 10px 8px; padding: 58px 28px 26px; background: var(--panel); box-shadow: 0 -3px 0 var(--linea), 0 3px 0 var(--linea), -3px 0 0 var(--linea), 3px 0 0 var(--linea), 6px 7px 0 var(--sombra); }
-.sobre-ampliacion-tienda::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 24px; background: repeating-linear-gradient(90deg, var(--rojo) 0 24px, var(--globo) 24px 48px); clip-path: polygon(0 0,100% 0,100% 80%,96% 80%,96% 100%,4% 100%,4% 80%,0 80%); }
-.sa-tienda { height: 230px; }
-.sa-tienda .sobre-actriz { bottom: 14px; right: 0; }
-.sa-estante { position: absolute; bottom: 0; left: 0; right: 0; height: 14px; border-top: 4px solid var(--marca-oro); background: var(--panel-2); box-shadow: 3px 4px 0 var(--sombra); }
-.sa-libros { position: absolute; bottom: 14px; left: 10px; display: flex; align-items: flex-end; gap: 8px; }
-.sa-libros i { position: relative; width: 34px; height: 100px; background: var(--azul); border: 3px solid var(--sombra); box-shadow: inset -5px 0 0 #0003; }
-.sa-libros i::before, .sa-libros i::after { content: ''; position: absolute; left: 4px; right: 4px; height: 3px; background: var(--globo); }
-.sa-libros i::before { top: 15px; }
-.sa-libros i::after { bottom: 15px; }
-.sa-libros i:nth-child(2) { height: 126px; background: var(--rojo); }
-.sa-libros i:nth-child(3) { height: 86px; background: var(--marca-oro); }
-@media (max-width: 760px) {
-  .sobre-ampliacion, .sobre-ampliacion-metodo, .sobre-ampliacion-tienda { grid-template-columns: minmax(0, 1fr); gap: 24px; }
-  .sobre-ampliacion-metodo .sobre-ampliacion-texto, .sobre-ampliacion-metodo .sa-metodo { grid-column: auto; grid-row: auto; }
-  .sobre-ampliacion-escena { width: min(320px, 100%); justify-self: center; }
-  .sobre-ampliacion-tienda { padding: 50px 18px 22px; }
-  .sobre-ampliacion-eficacia { padding-left: 18px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .sa-mision .sobre-actriz { transition: none; }
-}
-
-/* 5. Final: el desfile, de lado a lado de la pantalla */
-.sobre-fin { text-align: center; }
-.sobre-fin-texto { max-width: 34em; margin: 0 auto 34px; color: var(--texto-suave); text-wrap: balance; }
-.sobre-desfile { overflow: hidden; margin: 26px calc(50% - 50vw) 0; border-bottom: 4px solid var(--linea); }
-.sobre-fila { display: flex; width: max-content; animation: desfilar 70s linear infinite; }
-.sobre-fila canvas { flex: none; width: 96px; height: 120px; margin: 0 -4px; image-rendering: pixelated; image-rendering: crisp-edges; animation: paso .34s infinite; }
-.sobre-fila canvas:nth-child(3n) { animation-delay: -.11s; }
-.sobre-fila canvas:nth-child(3n + 1) { animation-delay: -.22s; }
-@keyframes desfilar { to { transform: translateX(-50%); } }
-
-@media (max-width: 700px) {
-  .sobre { gap: 44px; }
-  .sobre-cabecera { flex-direction: column; align-items: center; gap: 6px; text-align: center; padding-top: 50px; }
-  .sobre-guia { width: 96px; height: 128px; }
-  .sobre-cabecera-texto { padding-bottom: 0; }
-  .sobre-linea { padding-left: 100px; }
-  .sobre-hito::before { left: -60px; }
-  .sobre-valores { grid-template-columns: 1fr; gap: 108px 0; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .sobre-actriz.anda .sobre-salto, .sobre-entrada.entra, .sobre-fila, .sobre-fila canvas { animation: none; }
-  .sobre-hito, .sobre-asoma .sobre-actriz { transition: none; }
-  .sobre-fila { flex-wrap: wrap; justify-content: center; width: auto; }
-  .sobre-fila canvas:nth-child(n + 21) { display: none; }
 }
 
 /* La pantalla de entrada (#/entrar) tiene su hoja: css/entrar.css */
@@ -2053,171 +1887,8 @@ body.en-inicio main { max-width: 1040px; }
   to { transform: translate(var(--dx), var(--dy)); opacity: 0; }
 }
 
-/* Agradecimiento al final de «Sobre Paglot» */
-.sobre-gracias { max-width: 30em; margin: 0 auto; text-align: center; font-weight: 700; font-size: 1.1rem; text-wrap: balance; }
-.sobre-gracias span { color: var(--rojo-claro); }
 
-/* ===== Bienvenida: una escena a pantalla completa, sin desplazar =====
-   De arriba abajo: la barra (progreso y «Saltar»), la escena (lo que se toca) y el cuadro de diálogo,
-   con la tutora de pie sobre su borde. --k es el tamaño de la tutora (cada píxel suyo mide k píxeles). */
-body.en-bienvenida { overflow: hidden; }
-body.en-bienvenida .aviso-datos { display: none; }
-.bienvenida {
-  --k: 3;
-  position: fixed; inset: 0; z-index: 140;
-  display: flex; flex-direction: column; align-items: center;
-  height: 100vh; height: 100dvh;
-  padding: calc(8px + var(--borde-arriba)) calc(12px + var(--borde-der)) calc(14px + var(--borde-abajo)) calc(12px + var(--borde-izq));
-  background-color: var(--fondo);
-  background-image: radial-gradient(var(--fondo-punto) 1.5px, transparent 1.6px);
-  background-size: 16px 16px;
-  overflow: hidden;
-}
-.bv-fondo, .bv-efectos { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-.bv-fondo { z-index: 0; }
-.bv-efectos { z-index: 5; }
-.bv-barra, .bv-escena, .bv-dialogo { position: relative; z-index: 1; width: 100%; max-width: 780px; }
-
-/* Barra: un cuadrito por paso */
-.bv-barra { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; }
-.bv-progreso { list-style: none; margin: 0; padding: 0; display: flex; gap: 6px; }
-.bv-progreso li { width: 22px; height: 10px; background: var(--panel-2); box-shadow: 0 0 0 2px var(--texto-suave); }
-.bv-progreso li.hecho { background: var(--marca-oro); box-shadow: 0 0 0 2px var(--linea); }
-.bv-progreso li.actual { background: var(--rojo); box-shadow: 0 0 0 2px var(--linea); animation: latir .8s steps(2) infinite; }
-@keyframes latir { 50% { opacity: .45; } }
-.bv-saltar { margin: 0; }
-
-/* Escena: todo centrado; en pantallas anchas deja a la derecha el sitio de la tutora, y en las estrechas, debajo */
-.bv-escena {
-  flex: 1; min-height: 0;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(8px, 2.2vh, 20px);
-  padding: 4px 4px calc(64px * var(--k) - 4px);
-  text-align: center;
-}
-.bv-logo { width: 96px; height: 96px; animation: flotar 1.4s infinite; }
-.bv-marca { margin: 0; font-family: var(--fuente-pixel); font-weight: 700; font-size: clamp(2rem, 8vw, 3rem); line-height: 1; text-shadow: 4px 4px 0 var(--sombra); }
-.bv-marca span { color: var(--marca-oro); }
-.bv-nombre { display: flex; flex-direction: column; align-items: center; gap: 10px; width: min(100%, 360px); }
-.bv-campo {
-  width: 100%; padding: 12px 14px; border: 0; font: inherit; font-size: 1.25rem; font-weight: 700; text-align: center;
-  color: var(--texto); background: var(--panel);
-  box-shadow: 0 -4px 0 0 var(--linea), 0 4px 0 0 var(--linea), -4px 0 0 0 var(--linea), 4px 0 0 0 var(--linea);
-}
-.bv-campo:focus-visible { outline: 3px dashed var(--foco); outline-offset: 6px; }
-.bv-botones { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2px 6px; }
-
-/* La frase y sus palabras */
-.bv-frase { margin: 0; font-size: clamp(1.5rem, 5.6vw, 2.5rem); font-weight: 700; line-height: 1.5; color: var(--espanol); text-wrap: balance; white-space: pre-wrap; }
-.bv-palabra {
-  position: relative; padding: 0 2px; border: 0; font: inherit; color: inherit; background: transparent; cursor: pointer;
-  border-bottom: 4px dashed var(--texto-suave);
-}
-.bv-palabra:disabled { cursor: default; border-bottom-color: transparent; }
-.bv-palabra:hover:not(:disabled) { background: var(--panel-hover); }
-.bv-palabra.vista { color: var(--marca-oro); border-bottom: 4px solid var(--marca-oro); }
-/* la flecha que dice «aquí» */
-.pista::before {
-  content: "▼"; position: absolute; left: 50%; bottom: calc(100% + 2px); margin-left: -.5em; width: 1em;
-  font-family: var(--fuente-pixel); font-size: 1.1rem; line-height: 1; color: var(--rojo-claro); text-align: center;
-  animation: senalar .5s steps(2) infinite;
-}
-@keyframes senalar { 50% { transform: translateY(-6px); } }
-.bv-cuenta { margin: 0; font-family: var(--fuente-pixel); font-size: 1.1rem; color: var(--texto-suave); }
-.bv-glosas { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 12px; min-height: 3.4rem; }
-.bv-glosa {
-  display: flex; flex-direction: column; padding: 4px 12px; line-height: 1.25; background: var(--panel);
-  box-shadow: 0 -2px 0 0 var(--linea), 0 2px 0 0 var(--linea), -2px 0 0 0 var(--linea), 2px 0 0 0 var(--linea), 2px 4px 0 0 var(--sombra), 4px 2px 0 0 var(--sombra);
-  animation: brotar .25s steps(4);
-}
-.bv-glosa strong { color: var(--marca-oro); }
-.bv-glosa em { font-size: .82rem; color: var(--texto-suave); }
-@keyframes brotar { from { scale: 0; } 70% { scale: 1.12; } }
-
-/* El sello «?» */
-.bv-con-sello { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 18px; }
-.bv-sello {
-  position: relative; flex: none; width: 56px; height: 56px; border: 0; cursor: pointer;
-  font-family: var(--fuente-pixel); font-weight: 700; font-size: 2rem; color: var(--sobre-acento); background: var(--rojo);
-  box-shadow: 0 -4px 0 0 var(--linea), 0 4px 0 0 var(--linea), -4px 0 0 0 var(--linea), 4px 0 0 0 var(--linea), 4px 8px 0 0 var(--sombra), 8px 4px 0 0 var(--sombra);
-  rotate: -6deg;
-}
-.bv-sello:disabled { cursor: default; background: var(--panel-2); color: var(--texto-suave); rotate: 0deg; }
-.bv-traduccion { margin: 0; max-width: 30em; font-size: clamp(1.05rem, 3.6vw, 1.4rem); animation: brotar .25s steps(4); text-wrap: balance; }
-
-/* Guardar: la ficha, la estrella y el cuaderno */
-.bv-cuaderno {
-  display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; font-family: var(--fuente-pixel); background: var(--panel-2);
-  box-shadow: 0 -2px 0 0 var(--linea), 0 2px 0 0 var(--linea), -2px 0 0 0 var(--linea), 2px 0 0 0 var(--linea);
-}
-.bv-cuaderno-icono { width: 27px; height: 27px; color: var(--marca-oro); }
-.bv-contador { min-width: 1.6em; padding: 0 6px; font-weight: 700; color: var(--fondo); background: var(--marca-oro); }
-.bv-bote { animation: botar .4s steps(5); }
-@keyframes botar { 30% { scale: 1.3; } 60% { scale: .92; } }
-.bv-ficha { display: flex; align-items: center; gap: 18px; margin: 0; padding: 14px 18px; text-align: left; }
-.bv-ficha-palabra { margin: 0; font-size: clamp(1.5rem, 5vw, 2.1rem); font-weight: 700; line-height: 1.2; color: var(--espanol); }
-.bv-ficha-trad { margin: 0; color: var(--texto-suave); }
-.bv-estrella {
-  position: relative; flex: none; display: grid; place-items: center; width: 60px; height: 60px; border: 0; cursor: pointer;
-  color: var(--marca-oro); background: var(--panel-2); box-shadow: inset 0 0 0 4px var(--marca-oro);
-}
-.bv-estrella .icono { width: 36px; height: 36px; }
-.bv-estrella:disabled { cursor: default; box-shadow: inset 0 0 0 4px var(--texto-suave); }
-.bv-vuela { position: fixed; left: -18px; top: -18px; z-index: 6; width: 36px; height: 36px; color: var(--marca-oro); pointer-events: none; }
-.bv-vuela .icono { width: 36px; height: 36px; }
-
-/* La pregunta */
-.bv-opciones { display: flex; flex-direction: column; gap: 2px; width: min(100%, 380px); }
-.bv-opcion { width: calc(100% - var(--px) * 3); font-family: var(--fuente-texto); font-weight: 700; font-size: 1.05rem; }
-.bv-acierto { background: var(--verde-fondo); color: var(--verde); }
-.bv-fallo { background: var(--rojo-fondo); }
-.bv-tiembla { animation: temblar .35s steps(6); }
-@keyframes temblar { 20%, 60% { translate: -6px 0; } 40%, 80% { translate: 6px 0; } }
-
-/* Final */
-.bv-titulo { margin: 0; font-size: clamp(1.9rem, 7vw, 3.2rem); line-height: 1.1; text-shadow: 4px 4px 0 var(--sombra); text-wrap: balance; }
-:root[data-tema="claro"] .bv-titulo, :root[data-tema="claro"] .bv-marca { text-shadow: 4px 4px 0 var(--fondo-punto); }
-.bv-logo-fin { animation: botar .5s steps(5) 2, flotar 1.4s 1s infinite; }
-.bv-listo { animation: llamar 1s steps(4) infinite; }
-@keyframes llamar { 50% { scale: 1.07; } }
-
-/* El cuadro de diálogo, con la tutora de pie encima */
-.bv-dialogo { flex: none; display: flex; flex-direction: column; min-height: 7.6rem; margin: 0 0 6px; padding: 12px 14px 10px; cursor: default; }
-.bv-texto { flex: 1; margin: 0; font-size: 1.05rem; line-height: 1.45; }
-.bv-dialogo-pie { display: flex; justify-content: flex-end; min-height: 48px; }
-.bv-siguiente { margin-bottom: 0; }
-.bv-tutora {
-  position: absolute; right: 10px; bottom: calc(100% + var(--px));
-  width: calc(48px * var(--k)); height: calc(64px * var(--k));
-  padding: 0; border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent;
-}
-.bv-tutora-dibujo { display: block; width: 100%; height: 100%; image-rendering: pixelated; image-rendering: crisp-edges; }
-.bv-tutora.anda .sobre-salto { display: block; height: 100%; animation: paso .3s infinite; }
-.bv-tutora .sobre-salto { display: block; height: 100%; }
-.bv-entra { animation: llegar 1.1s steps(11) both; }
-@keyframes llegar { from { transform: translateX(60vw); } to { transform: translateX(0); } }
-
-/* Tamaños: tutora grande si hay sitio; pequeña en pantallas bajas; con el teclado abierto, se esconde */
-@media (min-width: 760px) and (min-height: 700px) {
-  .bienvenida { --k: 4; }
-  .bv-escena { padding: 4px calc(48px * var(--k) + 8px) 12px 4px; }
-  .bv-texto { font-size: 1.15rem; }
-}
-@media (min-width: 760px) and (max-height: 699px) {
-  .bv-escena { padding: 4px calc(48px * var(--k) + 8px) 12px 4px; }
-}
-@media (max-width: 759px) and (max-height: 700px), (max-width: 380px) {
-  .bienvenida { --k: 2; }
-  .bv-logo { width: 64px; height: 64px; }
-}
-@media (max-height: 470px) {
-  .bv-tutora { display: none; }
-  .bv-escena { padding: 4px; }
-  .bv-logo, .bv-marca { display: none; }
-  .bv-dialogo { min-height: 0; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .bv-logo, .bv-logo-fin, .bv-progreso li.actual, .pista::before, .bv-glosa, .bv-traduccion, .bv-bote, .bv-tiembla, .bv-listo, .bv-entra { animation: none; }
-}
+/* ===== La bienvenida es un paseo hasta la academia: css/bienvenida.css ===== */
 
 /* ===== Página perdida ===== */
 .perdida { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
@@ -2234,13 +1905,6 @@ body.en-bienvenida .aviso-datos { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .perdida-paseo, .perdida-paseo .sobre-salto, .perdida-numero img { animation: none; }
   .perdida-paseo { margin: 0 auto; }
-}
-/* Bienvenida, último paso en móviles pequeños: sin logotipo y con todo más recogido, para que no pise a la tutora */
-@media (max-width: 759px) and (max-height: 700px), (max-width: 380px) {
-  .bv-logo-fin { display: none; }
-  .bv-titulo { font-size: 1.6rem; }
-  .bv-escena .boton-grande { font-size: 1rem; padding: 10px 16px; }
-  .bv-escena .bv-botones .boton { margin-bottom: 4px; }
 }
 /* Página perdida en móviles: recogida para que quepa sin desplazar */
 .perdida .inicio-botones .boton { width: auto; }
@@ -2263,223 +1927,6 @@ body.en-bienvenida .aviso-datos { display: none; }
 .producto-fila p { color: var(--texto-suave); margin: 0 0 12px; }
 .comunidad-pie { margin-top: auto; color: var(--texto-suave); font-size: .72rem; letter-spacing: .03em; }
 .comunidad-nota { max-width: 56em; margin: 22px auto 0; color: var(--texto-suave); text-align: center; font-size: .9rem; }
-/* Social: seis pequeños escenarios con sus propias actividades y el mismo lenguaje pixel. */
-.pagina-social { width: min(1100px, 100%); padding-top: 12px; padding-bottom: 12px; }
-.pagina-social .comunidad-hero { margin-bottom: 20px; }
-.pagina-social .comunidad-hero h1 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 4px 0; }
-.pagina-social .comunidad-hero p, .pagina-social .comunidad-nota { font-size: .85rem; }
-.social-mosaico { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; padding: 4px; }
-.social-tarjeta { --s-acento: var(--marca-oro); position: relative; display: flex; flex-direction: column; min-width: 0; background: var(--panel); box-shadow: 0 -2px 0 var(--linea), 0 2px 0 var(--linea), -2px 0 0 var(--linea), 2px 0 0 var(--linea), 4px 5px 0 var(--sombra); }
-.social-tarjeta-instagram { --s-acento: #e9a5ca; }
-.social-tarjeta-tiktok { --s-acento: #68ddd5; }
-.social-tarjeta-youtube { --s-acento: #ff969b; }
-.social-tarjeta-facebook { --s-acento: #9bbdff; }
-.social-tarjeta-x { --s-acento: #e3cf9e; }
-.social-tarjeta-discord { --s-acento: #b9a8ff; }
-.social-canal { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 1px solid var(--texto-suave); }
-.social-canal > span { display: grid; place-items: center; width: 28px; height: 28px; background: var(--s-acento); color: #201b2b; font-weight: 800; }
-.social-canal h2 { margin: 0; color: var(--texto); font: 700 .95rem var(--fuente-texto); }
-.social-canal small { margin-left: auto; color: var(--texto-suave); font-size: .7rem; }
-.social-escena { position: relative; display: block; width: 100%; height: 118px; flex: none; padding: 0; overflow: hidden; border: 0; color: var(--texto); background: var(--panel-2); font: inherit; cursor: pointer; }
-.social-escena:focus-visible { z-index: 2; outline-offset: -5px; }
-.social-decorado { position: absolute; top: 0; left: 50%; display: block; width: 320px; height: 206px; transform: translateX(-50%) scale(.56); transform-origin: top center; background-image: radial-gradient(var(--texto-suave) .7px, transparent .8px); background-size: 24px 24px; }
-.social-decorado::after { content: ''; position: absolute; bottom: 10px; left: 6%; right: 6%; height: 3px; background: var(--s-acento); opacity: .75; }
-.social-personaje { position: absolute; bottom: 12px; left: 12%; width: 96px; height: 128px; z-index: 2; }
-.social-sprite { display: block; width: 96px; height: 128px; image-rendering: pixelated; }
-.social-texto { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; flex: 1; padding: 10px 12px; }
-.social-texto h3 { margin: 0; color: var(--texto); font: 600 .85rem/1.3 var(--fuente-texto); }
-.social-enlace { display: inline-flex; align-items: center; justify-content: center; margin-top: auto; min-height: 36px; padding: 5px 10px; border: 2px solid var(--texto-suave); color: var(--texto); background: var(--panel-2); font: 700 .8rem var(--fuente-texto); text-decoration: none; }
-.social-enlace:hover { background: var(--panel-hover); border-color: var(--texto); }
-/* Siluetas propias: foto, escenario musical, reproductor, tablón, nota y ventana de chat. */
-.social-tarjeta-instagram { padding: 7px; box-shadow: 4px 5px 0 var(--sombra); border: 2px solid var(--linea); }
-.social-tarjeta-instagram .social-escena { order: -1; border: 2px solid var(--s-acento); }
-.social-tarjeta-instagram .social-canal { border: 0; padding-bottom: 0; }
-.social-tarjeta-instagram .social-texto { padding-top: 5px; }
-.social-tarjeta-tiktok { border-left: 4px solid #68ddd5; border-right: 4px solid #e998b5; box-shadow: 0 4px 0 var(--sombra); }
-.social-tarjeta-tiktok .social-escena { background: #211b2a; }
-.social-tarjeta-tiktok .social-decorado { background-image: repeating-linear-gradient(0deg, transparent 0 30px, #68ddd518 30px 32px); }
-.social-tarjeta-youtube .social-canal { border-top: 5px solid #c7414a; }
-.social-tarjeta-youtube .social-escena { border-bottom: 4px solid #c7414a; background: #302436; }
-.social-tarjeta-youtube .social-decorado { background-image: none; }
-.social-tarjeta-facebook { border-top: 3px dashed var(--s-acento); border-bottom: 3px dashed var(--s-acento); box-shadow: none; background: transparent; }
-.social-tarjeta-facebook .social-escena { background: transparent; }
-.social-tarjeta-facebook .social-canal { border-bottom: none; }
-.social-tarjeta-x { display: grid; grid-template-columns: 42% 58%; background: var(--panel); border: 2px solid var(--texto-suave); box-shadow: 5px 5px 0 var(--panel-2); }
-.social-tarjeta-x .social-canal { grid-column: 1 / -1; border-bottom: 2px dashed var(--texto-suave); }
-.social-tarjeta-x .social-escena { align-self: center; height: 150px; background: transparent; }
-.social-tarjeta-x .social-decorado { left: 45%; transform: translateX(-50%) scale(.46); top: 20px; }
-.social-tarjeta-x .social-personaje { left: 2%; }
-.social-tarjeta-x .social-texto { justify-content: center; }
-.social-tarjeta-x .social-enlace { margin-top: 8px; }
-.social-tarjeta-discord { border: 2px solid var(--s-acento); box-shadow: 5px 5px 0 var(--sombra); }
-.social-tarjeta-discord .social-canal { background: var(--panel-2); border-bottom: 2px solid var(--s-acento); }
-.social-tarjeta-discord .social-escena { background: var(--fondo); border-left: 8px solid var(--panel-2); border-right: 8px solid var(--panel-2); }
-.social-tarjeta-discord .social-texto { background: var(--panel-2); }
-.social-texto > p { margin: 0; color: var(--texto-suave); font-size: .92rem; }
-/* Instagram: cámara y foto instantánea. */
-.social-camara { position: absolute; right: 20%; top: 94px; width: 65px; height: 42px; background: var(--s-acento); border: 4px solid #271d2e; box-shadow: 4px 4px 0 var(--sombra); }
-.social-camara::before { content: ''; position: absolute; top: -12px; left: 9px; width: 22px; height: 8px; background: #271d2e; }
-.social-camara::after { content: ''; position: absolute; top: 38px; left: 25px; width: 5px; height: 50px; background: var(--texto-suave); box-shadow: -15px 36px 0 var(--texto-suave), 15px 36px 0 var(--texto-suave); }
-.social-camara i { position: absolute; width: 25px; height: 25px; top: 5px; left: 17px; border: 5px solid #271d2e; background: #fff4dc; }
-.social-foto { position: absolute; right: 7%; top: 20px; width: 55px; height: 64px; padding: 6px 6px 16px; background: #fff4dc; transform: rotate(8deg); box-shadow: 3px 3px 0 var(--sombra); }
-.social-foto i { display: block; height: 100%; background: var(--s-acento); }
-.social-foto b { position: absolute; top: 16px; left: 20px; width: 16px; height: 16px; background: #fff4dc; box-shadow: 0 6px 0 #271d2e; }
-.social-instagram.activa .social-foto { animation: social-foto .6s steps(5) both; }
-/* TikTok: auriculares, altavoz y notas que aparecen al tocar. */
-.social-auriculares { position: absolute; top: 13px; left: 12px; width: 72px; height: 44px; border: 5px solid #302436; border-bottom: 0; box-shadow: inset 0 4px 0 var(--s-acento); }
-.social-auriculares::before, .social-auriculares::after { content: ''; position: absolute; top: 21px; width: 12px; height: 21px; border: 3px solid #302436; background: var(--s-acento); }
-.social-auriculares::before { left: -10px; }
-.social-auriculares::after { right: -10px; }
-.social-altavoz { position: absolute; bottom: 14px; right: 15%; width: 58px; height: 103px; border: 4px solid #302436; background: #45394f; box-shadow: 4px 4px 0 var(--sombra); }
-.social-altavoz i { display: block; width: 26px; height: 26px; margin: 11px auto; border: 6px solid var(--s-acento); background: #302436; }
-.social-notas { position: absolute; top: 24px; right: 8%; width: 125px; height: 70px; color: var(--s-acento); font-size: 1.8rem; text-shadow: 2px 2px 0 #302436; }
-.social-notas i { position: absolute; font-style: normal; }
-.social-notas i:nth-child(2) { left: 46px; top: 14px; }
-.social-notas i:nth-child(3) { right: 0; top: -5px; }
-.social-tiktok.activa .social-personaje { animation: social-baile .45s steps(2) 5; }
-.social-tiktok.activa .social-notas i { animation: social-nota .9s steps(5) 3; }
-.social-tiktok.activa .social-notas i:nth-child(2) { animation-delay: .15s; }
-/* YouTube: pantalla de presentación y una tutora ante la cámara. */
-.social-youtube .social-personaje { left: 6%; }
-.social-video { position: absolute; top: 38px; right: 9%; width: 47%; height: 113px; background: #302436; border: 5px solid var(--texto-suave); box-shadow: 5px 5px 0 var(--sombra); }
-.social-video i { position: absolute; display: grid; place-items: center; width: 47px; height: 35px; left: calc(50% - 24px); top: 20px; background: #b92e3b; color: #fff4dc; font-style: normal; }
-.social-video b { position: absolute; bottom: 11px; left: 12px; right: 12px; height: 4px; background: #716379; }
-.social-video b::before { content: ''; display: block; width: 25%; height: 100%; background: var(--s-acento); }
-.social-grabando { position: absolute; top: 16px; left: 8%; color: #fff4dc; font: 700 .7rem var(--fuente-pixel); }
-.social-youtube.activa .social-video b::before { animation: social-progreso 2.6s linear both; }
-/* Facebook: dos tutoras conversan. */
-.social-facebook .social-personaje { left: 14%; }
-.social-facebook .social-amiga { left: auto; right: 14%; transform: scaleX(-1); }
-.social-charla { position: absolute; top: 24px; padding: 4px 16px; border: 3px solid #302436; background: #fff4dc; color: #302436; font-size: 1.3rem; font-weight: 800; box-shadow: 3px 3px 0 var(--sombra); }
-.social-charla-uno { left: 18%; }
-.social-charla-dos { right: 18%; top: 13px; }
-.social-facebook.activa .social-charla-uno { animation: social-conversa .75s steps(2) 3; }
-.social-facebook.activa .social-charla-dos { animation: social-conversa .75s steps(2) 3 reverse; }
-/* X: máquina de escribir y hoja de novedades. */
-.social-x .social-personaje { left: 8%; }
-.social-maquina { position: absolute; bottom: 17px; right: 11%; width: 100px; height: 43px; border: 4px solid #302436; background: var(--s-acento); box-shadow: 4px 4px 0 var(--sombra); }
-.social-papel { position: absolute; width: 68px; height: 72px; left: 12px; bottom: 36px; padding: 16px 9px; border: 3px solid #302436; background: #fff4dc; }
-.social-papel b { display: block; height: 3px; margin-bottom: 8px; background: #675773; }
-.social-papel b:last-child { width: 60%; }
-.social-teclas { position: absolute; left: 8px; right: 8px; bottom: 7px; height: 14px; background: repeating-linear-gradient(90deg, #302436 0 5px, transparent 5px 9px); }
-.social-lapiz { position: absolute; right: 8%; top: 26px; width: 7px; height: 43px; background: var(--s-acento); border-bottom: 8px solid #302436; transform: rotate(25deg); }
-.social-x.activa .social-papel { animation: social-escribir .35s steps(2) 6; }
-/* Discord: escritorio, ordenador y respuestas del grupo. */
-.social-discord .social-personaje { left: 6%; }
-.social-ordenador { position: absolute; top: 45px; right: 9%; width: 121px; height: 85px; padding: 10px; background: #302436; border: 5px solid var(--s-acento); box-shadow: 4px 4px 0 var(--sombra); }
-.social-ordenador::after { content: ''; position: absolute; left: 48px; bottom: -23px; width: 14px; height: 18px; background: var(--s-acento); }
-.social-chat i { display: block; width: 80%; height: 8px; margin: 5px 0 9px; background: var(--s-acento); border-left: 9px solid #fff4dc; }
-.social-chat i:nth-child(2) { width: 65%; margin-left: auto; background: #68ddd5; }
-.social-chat i:last-child { width: 60%; }
-.social-mesa { position: absolute; right: 5%; bottom: 42px; width: 146px; height: 8px; background: var(--texto-suave); box-shadow: 0 4px 0 var(--sombra); }
-.social-mesa::before, .social-mesa::after { content: ''; position: absolute; top: 8px; height: 27px; width: 6px; background: var(--texto-suave); }
-.social-mesa::before { left: 6px; }
-.social-mesa::after { right: 6px; }
-.social-discord.activa .social-chat i:last-child { animation: social-mensaje .8s steps(4) both; }
-@keyframes social-foto { from { transform: translateY(15px) rotate(-7deg); } to { transform: translateY(0) rotate(8deg); } }
-@keyframes social-baile { 50% { transform: translateY(-5px) rotate(3deg); } }
-@keyframes social-nota { 50% { transform: translateY(-9px); } }
-@keyframes social-progreso { to { width: 90%; } }
-@keyframes social-conversa { 50% { transform: translateY(-5px); } }
-@keyframes social-escribir { 50% { transform: translateX(3px); } }
-@keyframes social-mensaje { from { transform: translateY(7px); opacity: .3; } to { transform: translateY(0); opacity: 1; } }
-@media (max-width: 950px) { .social-mosaico { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; } }
-@media (max-width: 540px) {
-  .social-mosaico { grid-template-columns: minmax(0, 1fr); gap: 16px; }
-  .social-tarjeta, .social-tarjeta-x { display: grid; grid-template-columns: 136px minmax(0, 1fr); padding: 0; }
-  .social-tarjeta .social-canal { grid-column: 2; grid-row: 1; padding: 8px; }
-  .social-tarjeta .social-escena { grid-column: 1; grid-row: 1 / 3; align-self: center; width: 136px; height: 118px; border: 0; }
-  .social-tarjeta .social-decorado { left: 50%; top: 14px; transform: translateX(-50%) scale(.42); }
-  .social-tarjeta .social-texto { grid-column: 2; grid-row: 2; padding: 4px 8px 10px; gap: 6px; }
-  .social-canal > span { width: 23px; height: 23px; }
-  .social-canal small { font-size: .6rem; }
-  .social-texto h3 { font-size: .8rem; }
-}
-@media (prefers-reduced-motion: reduce) { .social-escena.activa *, .social-escena.activa *::before { animation: none !important; } }
-.contacto-form { display: grid; gap: 16px; width: min(680px, 100%); margin: 0 auto 8px; padding: 24px; }
-.contacto-form label { display: grid; gap: 7px; font-weight: 700; }
-.contacto-form input, .contacto-form select, .contacto-form textarea { width: 100%; min-height: 44px; padding: 10px 12px; border: 2px solid var(--texto-suave); border-radius: 0; background: var(--fondo); color: var(--texto); font: 500 1rem/1.4 var(--fuente-texto); }
-.contacto-form textarea { resize: vertical; min-height: 130px; }
-.contacto-form input:focus-visible, .contacto-form select:focus-visible, .contacto-form textarea:focus-visible { outline: 3px dashed var(--foco); outline-offset: 3px; }
-.contacto-form .contacto-captcha { grid-template-columns: 1fr minmax(90px, 130px); align-items: center; }
-.contacto-form .comunidad-nota { margin: 0; text-align: left; }
-.contacto-form .boton { justify-self: start; }
-.contacto-estado { min-height: 1.5em; margin: 0; color: var(--marca-oro); font-weight: 700; }
-/* Productos con páginas propias: aula, equipo y tarjeta regalo. */
-.producto-detalle { max-width: 1040px; margin: 0 auto; padding: 28px 4px 40px; }
-.producto-presentacion h1 { font-size: clamp(1.9rem, 4vw, 2.8rem); text-wrap: balance; margin: 8px 0 16px; }
-.producto-presentacion > p { color: var(--texto-suave); font-size: 1.05rem; max-width: 38em; }
-.producto-anfitriona { position: absolute; display: block; width: 96px; height: 128px; padding: 0; border: 0; background: transparent; cursor: pointer; z-index: 2; }
-.producto-anfitriona canvas { display: block; width: 96px; height: 128px; image-rendering: pixelated; }
-.escuelas-hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 34px; align-items: center; }
-.escuelas-escena { position: relative; height: 285px; }
-.escuelas-pizarra { position: absolute; top: 15px; left: 0; right: 0; bottom: 58px; padding: 22px; border: 8px solid #97704b; background: #21453b; box-shadow: 5px 6px 0 var(--sombra), inset 0 0 0 3px #18372e; color: #fff4dc; }
-.escuelas-pizarra > span:first-child { font: 700 1.05rem var(--fuente-pixel); color: #f8d984; }
-.escuelas-pizarra .escuelas-pizarra-frase { max-width: 85%; margin: 14px 0 0; color: #fff4dc; font-size: 1.12rem; }
-.escuelas-tiza { position: absolute; width: 28px; height: 5px; bottom: 8px; left: 18px; background: #fff4dc; }
-.escuelas-escena .producto-anfitriona { bottom: 0; right: 12px; }
-.escuelas-pasos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; list-style: none; margin: 32px 0 36px; padding: 0; }
-.escuelas-pasos li { border-top: 3px dashed var(--texto-suave); padding-top: 16px; }
-.escuelas-numero { display: inline-block; color: var(--marca-oro); font: 700 1.5rem var(--fuente-pixel); margin-bottom: 8px; }
-.escuelas-pasos h2 { font-size: 1.2rem; }
-.escuelas-pasos p { color: var(--texto-suave); font-size: .95rem; margin: 0; }
-.escuelas-oferta { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 30px; align-items: center; padding: 26px; background: var(--panel); border: 2px solid var(--linea); box-shadow: 5px 6px 0 var(--sombra); }
-.escuelas-sello { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 150px; padding: 16px 8px; border: 3px dashed var(--marca-oro); text-align: center; }
-.escuelas-sello strong { color: var(--marca-oro); font: 700 2.4rem var(--fuente-pixel); }
-.escuelas-sello span { color: var(--texto-suave); font-size: .85rem; }
-.escuelas-oferta p { color: var(--texto-suave); }
-/* Empresas: escritorio y propuesta editorial con una línea de trabajo azul. */
-.producto-empresas .comunidad-etiqueta { color: var(--azul); }
-.empresas-hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; align-items: center; }
-.empresas-oficina { position: relative; height: 280px; border-bottom: 3px solid var(--azul); background-image: linear-gradient(90deg, transparent 49%, var(--fondo-punto) 49% 50%, transparent 50%); }
-.empresas-monitor { position: absolute; top: 28px; right: 12px; width: 69%; height: 137px; padding: 15px; background: #251e33; border: 6px solid #8391a8; box-shadow: 5px 5px 0 var(--sombra); color: #f2ecf7; }
-.empresas-monitor > span { color: #b8d9ff; font: 700 .7rem var(--fuente-texto); }
-.empresas-monitor .empresas-mensaje { margin-top: 15px; font-size: 1rem; color: #f2ecf7; }
-.empresas-monitor i { position: absolute; bottom: -29px; left: calc(50% - 8px); width: 16px; height: 24px; background: #8391a8; }
-.empresas-escritorio { position: absolute; bottom: 74px; right: 0; width: 80%; height: 8px; background: var(--texto-suave); box-shadow: 0 4px 0 var(--sombra); }
-.empresas-escritorio::after { content: ''; position: absolute; right: 10px; top: 8px; height: 62px; width: 8px; background: var(--texto-suave); }
-.empresas-oficina .producto-anfitriona { left: 6px; bottom: 0; }
-.empresas-objetivos { margin: 40px 0; }
-.empresas-objetivos > h2 { margin-bottom: 24px; }
-.empresas-columnas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
-.empresas-columnas > div { padding-left: 16px; border-left: 3px solid var(--azul); }
-.empresas-indice { font: 700 .9rem var(--fuente-pixel); color: var(--azul); }
-.empresas-columnas h3 { color: var(--texto); font-family: var(--fuente-texto); margin: 8px 0; }
-.empresas-columnas p { color: var(--texto-suave); font-size: .95rem; }
-.empresas-acuerdo { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 28px 0; border-top: 3px solid var(--azul); border-bottom: 3px solid var(--azul); }
-.empresas-acuerdo h2 { margin-top: 10px; font-size: 1.7rem; text-wrap: balance; }
-.empresas-acuerdo p { color: var(--texto-suave); }
-.empresas-contacto { padding-left: 24px; border-left: 1px dashed var(--texto-suave); }
-/* Regalo: tarjeta con cinta y elección real de la duración en la vista previa. */
-.producto-regalo > .producto-presentacion { text-align: center; max-width: 720px; margin: 0 auto 24px; }
-.producto-regalo > .producto-presentacion p { margin-left: auto; margin-right: auto; }
-.regalo-hero { display: grid; grid-template-columns: 1fr 1.15fr; align-items: center; gap: 38px; }
-.regalo-escena { position: relative; min-height: 290px; }
-.regalo-tarjeta { position: relative; display: flex; flex-direction: column; justify-content: center; gap: 14px; min-height: 218px; width: calc(100% - 16px); margin: 22px 8px 0; padding: 25px 48px 25px 24px; color: #2b2233; background: #fff1cc; border: 4px solid #bb8b35; box-shadow: 7px 7px 0 var(--sombra); transform: rotate(-3deg); }
-.regalo-cinta { position: absolute; display: grid; place-items: start center; padding-top: 16px; top: -5px; right: 14px; width: 28px; height: calc(100% + 10px); background: #a82c51; color: #ffe5a3; }
-.regalo-marca { font: 700 1.6rem var(--fuente-pixel); }
-.regalo-tarjeta .regalo-periodo { color: #2b2233; font-size: 1.1rem; }
-.regalo-codigo { font-size: .74rem; padding-top: 12px; border-top: 2px dashed #a57b36; }
-.regalo-escena .producto-anfitriona { right: 0; bottom: 0; }
-.regalo-eleccion h2 { font-size: 1.4rem; text-wrap: balance; }
-.regalo-duracion { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
-.regalo-resumen { font-weight: 700; color: var(--marca-oro); min-height: 3em; }
-.regalo-eleccion > p:not(.regalo-resumen) { color: var(--texto-suave); }
-.regalo-eleccion .regalo-saludo { margin: 16px 0 0; font-size: .85rem; }
-.regalo-pasos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; list-style: none; padding: 0; margin: 38px 0 0; }
-.regalo-pasos li { padding-top: 16px; border-top: 3px dashed var(--marca-oro); }
-.regalo-pasos li > span { color: var(--marca-oro); font: 700 1.15rem var(--fuente-pixel); }
-.regalo-pasos h2 { font: 700 1.05rem var(--fuente-texto); margin: 10px 0; }
-.regalo-pasos p { color: var(--texto-suave); font-size: .95rem; }
-@media (max-width: 730px) {
-  .escuelas-hero, .empresas-hero, .regalo-hero, .empresas-acuerdo { grid-template-columns: minmax(0, 1fr); gap: 22px; }
-  .escuelas-escena, .empresas-oficina, .regalo-escena { width: min(380px, 100%); justify-self: center; }
-  .escuelas-pasos, .empresas-columnas, .regalo-pasos { grid-template-columns: minmax(0, 1fr); gap: 20px; }
-  .escuelas-oferta { grid-template-columns: minmax(0, 1fr); padding: 20px; gap: 20px; }
-  .escuelas-sello { min-height: 0; padding: 12px; flex-direction: row; gap: 18px; }
-  .empresas-contacto { padding-left: 0; border-left: 0; }
-  .regalo-hero { gap: 28px; }
-}
 .producto-lista { display: grid; gap: 14px; }
 .producto-fila { display: grid; grid-template-columns: 58px minmax(0, 1fr) auto; align-items: center; gap: 18px; margin: 3px 3px 8px; padding: 20px 24px; }
 .producto-fila h2 { margin: 3px 0 7px; }
@@ -2493,9 +1940,8 @@ body.en-bienvenida .aviso-datos { display: none; }
   .producto-fila .boton { grid-column: 2; justify-self: start; }
 }
 @media (max-width: 420px) {
-  .contacto-form { padding: 16px; }
-  .contacto-form .contacto-captcha { grid-template-columns: 1fr 78px; }
   .comunidad-hero { margin-bottom: 22px; }
+}
 }
 
 /* Lectura por frases: texto corrido con un botón discreto tras cada frase */

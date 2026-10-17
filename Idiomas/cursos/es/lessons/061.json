@@ -1,147 +1,358 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "061",
   "capitulo": 7,
-  "titulo_es": "Fui al mercado",
-  "titulo": { "en": "I went to the market" },
-  "intro": { "en": "Ser, ir, tener and hacer are irregular in the indefinido." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "fui": { "en": "I went, I was", "pron": "fwi", "cat": "verb", "nota": "Fui is both ir and ser in the past." },
-    "fue": { "en": "he/she went, it was", "pron": "fwe", "cat": "verb" },
-    "tuve": { "en": "I had", "pron": "TU-be", "cat": "verb" },
-    "hice": { "en": "I did, I made", "pron": "I-the", "cat": "verb", "consejo": "In Spain the c sounds like th. In Latin America it sounds like s." },
-    "hizo": { "en": "he/she did", "pron": "I-tho", "cat": "verb" },
-    "al mercado": { "en": "to the market", "pron": "al mer-KA-do", "cat": "expression", "nota": "A + el becomes al." },
-    "la compra": { "en": "the shopping", "pron": "la KOM-pra", "genero": "f" },
-    "muy bueno": { "en": "very good (muy buena with a feminine noun)", "pron": "mwi BWE-no", "cat": "expression", "nota": "The adjective agrees with the thing described." },
-    "tuviste": { "en": "you (tú/vos) had", "pron": "tu-BIS-te", "cat": "verb" },
-    "la película": { "en": "the film / movie", "cat": "noun", "genero": "f" }
+    "fui": {
+      "$f": "p.fui",
+      "pron": "fwi",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.fui.nota"
+      }
+    },
+    "fue": {
+      "$f": "p.fue",
+      "pron": "fwe",
+      "cat": "verb"
+    },
+    "tuve": {
+      "$f": "p.tuve",
+      "pron": "TU-be",
+      "cat": "verb"
+    },
+    "hice": {
+      "$f": "p.hice",
+      "pron": "I-the",
+      "cat": "verb",
+      "consejo": {
+        "$t": "p.hice.consejo"
+      }
+    },
+    "hizo": {
+      "$f": "p.hizo",
+      "pron": "I-tho",
+      "cat": "verb"
+    },
+    "al mercado": {
+      "$f": "p.al mercado",
+      "pron": "al mer-KA-do",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.al mercado.nota"
+      }
+    },
+    "la compra": {
+      "$f": "p.la compra",
+      "pron": "la KOM-pra",
+      "genero": "f"
+    },
+    "muy bueno": {
+      "$f": "p.muy bueno",
+      "pron": "mwi BWE-no",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.muy bueno.nota"
+      }
+    },
+    "tuviste": {
+      "$f": "p.tuviste",
+      "pron": "tu-BIS-te",
+      "cat": "verb"
+    },
+    "la película": {
+      "$f": "p.la película",
+      "cat": "sust",
+      "genero": "f"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "Four irregular verbs",
-      "texto": "These four do not use the regular endings.\n\n- ir and ser: **fui, fuiste, fue, fuimos, fuisteis, fueron**\n- tener: **tuve, tuviste, tuvo**\n- hacer: **hice, hiciste, hizo**\n\nContext tells ir from ser. **Fui al mercado** is went. **La película fue buena** is was."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "tabla",
-      "titulo": "Yo, yesterday",
-      "columnas": ["Person", "ir / ser", "tener", "hacer"],
+      "titulo": {
+        "$t": "b2.titulo"
+      },
+      "columnas": [
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        },
+        {
+          "$t": "b2.c2"
+        },
+        {
+          "$t": "b2.c3"
+        }
+      ],
       "filas": [
-        ["yo", "fui", "tuve", "hice"],
-        ["tú / vos", "fuiste", "tuviste", "hiciste"],
-        ["él / ella / usted", "fue", "tuvo", "hizo"],
-        ["nosotros/as", "fuimos", "tuvimos", "hicimos"],
-        ["vosotros/as", "fuisteis", "tuvisteis", "hicisteis"],
-        ["ellos / ellas / ustedes", "fueron", "tuvieron", "hicieron"]
+        [
+          "yo",
+          "fui",
+          "tuve",
+          "hice"
+        ],
+        [
+          "tú / vos",
+          "fuiste",
+          "tuviste",
+          "hiciste"
+        ],
+        [
+          "él / ella / usted",
+          "fue",
+          "tuvo",
+          "hizo"
+        ],
+        [
+          "nosotros/as",
+          "fuimos",
+          "tuvimos",
+          "hicimos"
+        ],
+        [
+          "vosotros/as",
+          "fuisteis",
+          "tuvisteis",
+          "hicisteis"
+        ],
+        [
+          "ellos / ellas / ustedes",
+          "fueron",
+          "tuvieron",
+          "hicieron"
+        ]
       ]
     },
     {
       "tipo": "dialogo",
-      "titulo": "Saturday",
+      "titulo": {
+        "$t": "b3.titulo"
+      },
       "frases": [
         {
+          "$f": "b3.f0",
           "quien": "Lucía",
-          "es": "Ayer fui al mercado.",
-          "en": "Yesterday I went to the market.",
           "analisis": [
-            ["Ayer", "yesterday"],
-            ["fui", "I went"],
-            ["al mercado", "to the market"]
+            [
+              "Ayer",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "fui",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "al mercado",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f1",
           "quien": "Pablo",
-          "es": "¿Tuviste tiempo?",
-          "en": "Did you have time?",
           "analisis": [
-            ["¿Tuviste", "you had"],
-            ["tiempo", "time"]
+            [
+              "¿Tuviste",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "tiempo",
+              {
+                "$t": "a4"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f2",
           "quien": "Lucía",
-          "es": "Sí, hice la compra.",
-          "en": "Yes, I did the shopping.",
           "analisis": [
-            ["hice", "I did"],
-            ["la compra", "the shopping"]
+            [
+              "hice",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "la compra",
+              {
+                "$t": "a6"
+              }
+            ]
           ]
         },
         {
+          "$f": "b3.f3",
           "quien": "Pablo",
-          "es": "El mercado fue muy bueno.",
-          "en": "The market was very good.",
           "analisis": [
-            ["El mercado", "subject"],
-            ["fue", "was"],
-            ["muy bueno", "very good"]
+            [
+              "El mercado",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "fue",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "muy bueno",
+              {
+                "$t": "a9"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["fui", "fue", "tuve", "hice", "hizo", "al mercado", "la compra", "muy bueno", "tuviste", "la película"]
+      "palabras": [
+        "fui",
+        "fue",
+        "tuve",
+        "hice",
+        "hizo",
+        "al mercado",
+        "la compra",
+        "muy bueno",
+        "tuviste",
+        "la película"
+      ]
     },
     {
       "tipo": "test",
       "id": "a2-fui-significado",
-      "pregunta": { "en": "In «Ayer fui al cine», fui means…" },
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
       "opciones": {
-        "I went": { "en": "A place after fui means ir: I went." },
-        "I was": { "en": "Fui can mean I was, but not with al cine." },
-        "I had": { "en": "I had is tuve." }
+        "I went": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "I was": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "I had": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "I went"
     },
     {
       "tipo": "escribir",
       "id": "a2-fui-escribir",
-      "pregunta": { "en": "Translate: «I went to the market.»" },
-      "respuestas": ["Fui al mercado", "Ayer fui al mercado"],
-      "explicacion": { "en": "Ir in the past: fui. A + el = al." }
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "respuestas": [
+        "Fui al mercado",
+        "Ayer fui al mercado"
+      ],
+      "explicacion": {
+        "$t": "b6.explicacion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "a2-fui-m1",
-      "pregunta": {"en": "Complete: I did the shopping."},
-      "frase": "___ la compra.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "Hice": {"en": "Hacer: yo hice."},
-        "Hizo": {"en": "Hizo is él or ella."},
-        "Hací": {"en": "Hacer is irregular: hice."}
+        "Hice": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "Hizo": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "Hací": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "Hice"
     },
     {
       "tipo": "huecos",
       "id": "a2-fui-m2",
-      "pregunta": {"en": "Complete: did you have time?"},
-      "frase": "¿___ tiempo?",
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "frase": {
+        "$e": "b8.frase"
+      },
       "audio": true,
       "opciones": {
-        "Tuviste": {"en": "Tener: tú tuviste."},
-        "Teniste": {"en": "Tener changes its stem: tuv-."},
-        "Tuvo": {"en": "Tuvo is él or ella."}
+        "Tuviste": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "Teniste": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "Tuvo": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "Tuviste"
     },
     {
       "tipo": "test",
       "id": "a2-fui-m3",
-      "pregunta": {"en": "In «La película fue buena», fue is…"},
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
       "opciones": {
-        "the past of ser": {"en": "It describes the film: was."},
-        "the past of ir": {"en": "Ir would need a place to go to."},
-        "the past of tener": {"en": "That is tuvo."}
+        "the past of ser": {
+          "$t": "b9.o0.refuerzo"
+        },
+        "the past of ir": {
+          "$t": "b9.o1.refuerzo"
+        },
+        "the past of tener": {
+          "$t": "b9.o2.refuerzo"
+        }
       },
       "correcta": "the past of ser"
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write about the last trip you made: where you went, how, with whom and how it was.\n\n**Speak (about 1 minute).** Explain aloud where you went last weekend and what you did there."
+        "$t": "b10.texto"
       }
     }
   ]

@@ -1,128 +1,847 @@
 {
+  "esquema": 2,
+  "id": "042",
   "capitulo": 5,
-  "titulo_es": "Estoy trabajando",
-  "titulo": { "en": "I'm working" },
-  "intro": { "en": "The Spanish progressive uses estar + gerund to emphasize an action in progress, often happening now." },
+  "nivel": "A1",
   "palabras": {
-    "estoy": { "en": "I am", "pron": "es-TOY", "cat": "verb" },
-    "trabajando": { "en": "working", "pron": "tra-ba-HAN-do", "cat": "gerund" },
-    "lloviendo": { "en": "raining", "pron": "yo-BYEN-do", "cat": "gerund" },
-    "ahora": { "en": "now", "pron": "a-O-ra", "cat": "adverb" },
-    "normalmente": { "en": "normally", "pron": "nor-mal-MEN-te", "cat": "adverb" },
-    "por la mañana": { "en": "in the morning", "pron": "por la ma-NYA-na", "cat": "expression" },
-    "qué haces": { "en": "what are you doing? / what do you do?", "pron": "ke A-thes", "cat": "expression", "nota": "Context determines whether this asks about an action now or a usual activity. The /θ/ guide is used in much of Spain; in seseante varieties, c before e/i sounds like /s/." },
-    "en este momento": { "en": "right now", "pron": "en ES-te mo-MEN-to", "cat": "expression" },
-    "trabajo": { "en": "I work", "pron": "tra-BA-ho", "cat": "verb" },
-    "comiendo": { "en": "eating", "pron": "ko-MYEN-do", "cat": "gerund" },
-    "viviendo": { "en": "living", "pron": "bi-BYEN-do", "cat": "gerund" }
+    "estoy": {
+      "pron": "es-TOY",
+      "cat": "verb"
+    },
+    "trabajando": {
+      "pron": "tra-ba-HAN-do",
+      "cat": "verb"
+    },
+    "lloviendo": {
+      "pron": "yo-BYEN-do",
+      "cat": "verb"
+    },
+    "ahora": {
+      "pron": "a-O-ra",
+      "cat": "adv"
+    },
+    "normalmente": {
+      "pron": "nor-mal-MEN-te",
+      "cat": "adv"
+    },
+    "por la mañana": {
+      "pron": "por la ma-NYA-na",
+      "cat": "expr"
+    },
+    "qué haces": {
+      "pron": "ke A-thes",
+      "cat": "expr"
+    },
+    "en este momento": {
+      "pron": "en ES-te mo-MEN-to",
+      "cat": "expr"
+    },
+    "trabajo": {
+      "pron": "tra-BA-ho",
+      "cat": "verb"
+    },
+    "comiendo": {
+      "pron": "ko-MYEN-do",
+      "cat": "verb"
+    },
+    "viviendo": {
+      "pron": "bi-BYEN-do",
+      "cat": "verb"
+    },
+    "Lucía": {
+      "propio": true
+    },
+    "Pablo": {
+      "propio": true
+    }
   },
   "bloques": [
     {
-      "tipo": "explicacion",
-      "titulo": "Right now",
-      "texto": "The Spanish progressive, **estar** + gerund, emphasizes an action in progress: **Estoy trabajando**; **Está lloviendo**. You can also say **En este momento está lloviendo** for “It is raining right now.”\n\nThe simple present often describes habits: normalmente **trabajo** por la mañana. It can also describe an action in progress when the context makes that clear; the progressive emphasizes that the action is under way.\n\nMost -ar gerunds end in **-ando**; most -er/-ir gerunds end in **-iendo**: comer → comiendo, vivir → viviendo. Some forms change: leer → leyendo, dormir → durmiendo."
+      "id": "b1",
+      "tipo": "explicacion"
     },
     {
+      "id": "b2",
       "tipo": "dialogo",
-      "titulo": "Right now",
       "frases": [
         {
           "quien": "Lucía",
-          "es": "¿Qué haces?",
-          "en": "What are you doing?",
-          "analisis": [
-            ["¿Qué", "question"],
-            ["haces", "verb"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "¿Qué haces?",
+                "partes": [
+                  {
+                    "funcion": "CD",
+                    "texto": "¿Qué",
+                    "nucleo": "¿Qué"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "haces?",
+                    "nucleo": "haces?"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "Estoy trabajando.",
-          "en": "I'm working.",
-          "analisis": [
-            ["Estoy trabajando", "verb"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Estoy trabajando.",
+                "nucleo": "Estoy",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Estoy trabajando.",
+                    "nucleo": "Estoy"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Lucía",
-          "es": "Ahora está lloviendo.",
-          "en": "It's raining now.",
-          "analisis": [
-            ["Ahora", "time"],
-            ["está lloviendo", "verb"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Ahora está lloviendo.",
+                "nucleo": "está",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "Ahora",
+                    "nucleo": "Ahora"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "está lloviendo.",
+                    "nucleo": "está"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "Normalmente trabajo por la mañana.",
-          "en": "I normally work in the morning.",
-          "analisis": [
-            ["Normalmente", "habit"],
-            ["trabajo", "verb"],
-            ["por la mañana", "time"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Normalmente trabajo por la mañana.",
+                "nucleo": "trabajo",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "Normalmente",
+                    "nucleo": "Normalmente"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "trabajo",
+                    "nucleo": "trabajo"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "por la mañana.",
+                    "nucleo": "mañana",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "por"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la mañana.",
+                        "nucleo": "mañana",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "mañana."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },
     {
+      "id": "b3",
       "tipo": "vocabulario",
-      "palabras": ["estoy", "trabajando", "lloviendo", "ahora", "normalmente", "por la mañana", "qué haces", "en este momento", "trabajo", "comiendo", "viviendo"]
+      "palabras": [
+        "estoy",
+        "trabajando",
+        "lloviendo",
+        "ahora",
+        "normalmente",
+        "por la mañana",
+        "qué haces",
+        "en este momento",
+        "trabajo",
+        "comiendo",
+        "viviendo"
+      ]
     },
     {
+      "id": "b4",
+      "tipo": "gramatica",
+      "ejemplos": [
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Lucía",
+                "nucleo": "Lucía",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Lucía"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "está comiendo en este momento.",
+                "nucleo": "está",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "está comiendo",
+                    "nucleo": "está"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "en este momento.",
+                    "nucleo": "momento",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "este momento.",
+                        "nucleo": "momento",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "este"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "momento."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Pablo",
+                "nucleo": "Pablo",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Pablo"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "está viviendo en un piso pequeño.",
+                "nucleo": "está",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "está viviendo",
+                    "nucleo": "está"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en un piso pequeño.",
+                    "nucleo": "piso",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "un piso pequeño.",
+                        "nucleo": "piso",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "un"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "piso"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "pequeño.",
+                            "nucleo": "pequeño."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "b5",
+      "tipo": "texto",
+      "registro": "literario",
+      "frases": [
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Es sábado por la mañana.",
+                "nucleo": "Es",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Es",
+                    "nucleo": "Es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "sábado",
+                    "nucleo": "sábado"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "por la mañana.",
+                    "nucleo": "mañana",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "por"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la mañana.",
+                        "nucleo": "mañana",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "mañana."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Lucía",
+                "nucleo": "Lucía",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Lucía"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "está preparando el desayuno en la cocina.",
+                "nucleo": "está",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "está preparando",
+                    "nucleo": "está"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "el desayuno",
+                    "nucleo": "desayuno",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "el"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "desayuno"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en la cocina.",
+                    "nucleo": "cocina",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la cocina.",
+                        "nucleo": "cocina",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "cocina."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Su hermano Pablo",
+                "nucleo": "hermano",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Su"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "hermano"
+                  },
+                  {
+                    "funcion": "APOS",
+                    "texto": "Pablo",
+                    "nucleo": "Pablo"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "está leyendo un libro junto_a la ventana.",
+                "nucleo": "está",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "está leyendo",
+                    "nucleo": "está"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "un libro",
+                    "nucleo": "libro",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "un"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "libro"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "junto_a la ventana.",
+                    "nucleo": "ventana",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "junto_a"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la ventana.",
+                        "nucleo": "ventana",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "ventana."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Fuera está lloviendo un poco.",
+                "nucleo": "está",
+                "partes": [
+                  {
+                    "funcion": "CCL",
+                    "texto": "Fuera",
+                    "nucleo": "Fuera"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "está lloviendo",
+                    "nucleo": "está"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "un poco.",
+                    "nucleo": "poco"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Normalmente trabajan por la mañana.",
+                "nucleo": "trabajan",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "Normalmente",
+                    "nucleo": "Normalmente"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "trabajan",
+                    "nucleo": "trabajan"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "por la mañana.",
+                    "nucleo": "mañana",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "por"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la mañana.",
+                        "nucleo": "mañana",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "mañana."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Hoy no están trabajando.",
+                "nucleo": "están",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "Hoy",
+                    "nucleo": "Hoy"
+                  },
+                  {
+                    "funcion": "NEG",
+                    "texto": "no",
+                    "nucleo": "no"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "están trabajando.",
+                    "nucleo": "están"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "En este momento están comiendo pan con tomate.",
+                "nucleo": "están",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "En este momento",
+                    "nucleo": "momento",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "En"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "este momento",
+                        "nucleo": "momento",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "este"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "momento"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "están comiendo",
+                    "nucleo": "están"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "pan con tomate.",
+                    "nucleo": "pan",
+                    "partes": [
+                      {
+                        "funcion": "N",
+                        "texto": "pan",
+                        "nucleo": "pan"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "con tomate.",
+                        "nucleo": "tomate",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "con"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "tomate.",
+                            "nucleo": "tomate."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Los dos",
+                "nucleo": "dos",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Los"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "dos"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "están muy contentos.",
+                "nucleo": "están",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "están",
+                    "nucleo": "están"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "muy contentos.",
+                    "nucleo": "contentos",
+                    "partes": [
+                      {
+                        "funcion": "ADV",
+                        "texto": "muy"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "contentos."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "b6",
       "tipo": "huecos",
-      "id": "a2-ger-estoy",
-      "pregunta": { "en": "Complete: I am working right now." },
-      "frase": "Ahora ___ trabajando.",
-      "audio": true,
-      "opciones": {
-        "estoy": { "en": "The action in progress needs estar." },
-        "trabajo": { "en": "Trabajo alone is the habit." },
-        "trabajé": { "en": "Trabajé is the past." }
-      },
-      "correcta": "estoy"
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
     },
     {
-      "tipo": "ordenar",
-      "id": "a2-ger-llueve",
-      "frase": "Ahora está lloviendo",
-      "traduccion": { "en": "It's raining now." }
+      "id": "b7",
+      "tipo": "ordenar"
     },
     {
+      "id": "b8",
       "tipo": "huecos",
-      "id": "a2-ger-m1",
-      "pregunta": {"en": "Complete: she is eating."},
-      "frase": "Está ___.",
-      "audio": true,
-      "opciones": {
-        "comiendo": {"en": "-er verbs take -iendo."},
-        "comando": {"en": "-ando is for -ar verbs."},
-        "comido": {"en": "Comido is the participle."}
-      },
-      "correcta": "comiendo"
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
     },
     {
+      "id": "b9",
       "tipo": "test",
-      "id": "a2-ger-m2",
-      "pregunta": {"en": "Which sentence is a habit, not something happening now?"},
-      "opciones": {
-        "Normalmente trabajo por la mañana": {"en": "The plain present is the habit."},
-        "Estoy trabajando": {"en": "That is in progress now."},
-        "Ahora está lloviendo": {"en": "That is in progress now."}
-      },
-      "correcta": "Normalmente trabajo por la mañana"
+      "opciones": [
+        {
+          "correcta": false
+        },
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        }
+      ]
     },
     {
+      "id": "b10",
       "tipo": "escribir",
-      "id": "a2-ger-m3",
-      "pregunta": {"en": "Translate: «I'm working.»"},
-      "respuestas": ["Estoy trabajando"]
-    },
-    {
-      "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
-      "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Imagine it is eight in the evening. Write what you and five people you know are doing right now.\n\n**Speak (about 30 seconds).** Look out of the window, or at a picture, and describe aloud what people are doing."
-      }
+      "respuestas": [
+        "Estoy trabajando",
+        "Estoy trabajando."
+      ]
     }
   ]
 }

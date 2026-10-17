@@ -1,179 +1,453 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "233",
   "capitulo": 21,
-  "titulo_es": "Me niego",
-  "titulo": {"en": "I refuse"},
-  "intro": {"en": "Between yes and no: agreeing with conditions, avoiding an answer, and refusing politely or flatly."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "negarse a": {"en": "to refuse to", "pron": "ne-GAR-se a", "cat": "verb", "nota": "E becomes ie: me niego."},
-    "si no hay más remedio": {"en": "if there's no other way", "pron": "si no ai mas re-ME-dyo", "cat": "expression"},
-    "siempre que": {"en": "provided that", "pron": "SYEM-pre ke", "cat": "connector", "nota": "Followed by the subjunctive."},
-    "ya veremos": {"en": "we'll see", "pron": "ya be-RE-mos", "cat": "expression"},
-    "lo intentaré": {"en": "I'll try", "pron": "lo in-ten-ta-RE", "cat": "expression"},
-    "haré todo lo posible": {"en": "I'll do everything I can", "pron": "a-RE TO-do lo po-SI-ble", "cat": "expression"},
-    "tendré que pensarlo": {"en": "I'll have to think about it", "pron": "ten-DRE ke pen-SAR-lo", "cat": "expression"},
-    "lamentar": {"en": "to regret", "pron": "la-men-TAR", "cat": "verb"},
-    "desgraciadamente": {"en": "unfortunately", "pron": "des-gra-thya-da-MEN-te", "cat": "adverb"},
-    "lamentablemente": {"en": "regrettably", "pron": "la-men-ta-ble-MEN-te", "cat": "adverb"},
-    "no tengo por qué": {"en": "I have no reason to, I don't have to", "pron": "no TEN-go por ke", "cat": "expression"},
-    "de ninguna manera": {"en": "no way, by no means", "pron": "de nin-GU-na ma-NE-ra", "cat": "expression"},
-    "no me da la gana": {"en": "I don't feel like it (rude)", "pron": "no me da la GA-na", "cat": "expression"},
-    "rotundamente": {"en": "flatly, categorically", "pron": "ro-tun-da-MEN-te", "cat": "adverb"},
-    "la obligación": {"en": "the obligation", "pron": "la o-bli-ga-THYON", "genero": "f"},
-    "comprometerse a": {"en": "to commit oneself to", "pron": "kom-pro-me-TER-se a", "cat": "verb"},
-    "insistir en": {"en": "to insist on", "pron": "in-sis-TIR en", "cat": "verb"}
+    "negarse a": {
+      "$f": "p.negarse a",
+      "pron": "ne-GAR-se a",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.negarse a.nota"
+      }
+    },
+    "si no hay más remedio": {
+      "$f": "p.si no hay más remedio",
+      "pron": "si no ai mas re-ME-dyo",
+      "cat": "expr"
+    },
+    "siempre que": {
+      "$f": "p.siempre que",
+      "pron": "SYEM-pre ke",
+      "cat": "connector",
+      "nota": {
+        "$t": "p.siempre que.nota"
+      }
+    },
+    "ya veremos": {
+      "$f": "p.ya veremos",
+      "pron": "ya be-RE-mos",
+      "cat": "expr"
+    },
+    "lo intentaré": {
+      "$f": "p.lo intentaré",
+      "pron": "lo in-ten-ta-RE",
+      "cat": "expr"
+    },
+    "haré todo lo posible": {
+      "$f": "p.haré todo lo posible",
+      "pron": "a-RE TO-do lo po-SI-ble",
+      "cat": "expr"
+    },
+    "tendré que pensarlo": {
+      "$f": "p.tendré que pensarlo",
+      "pron": "ten-DRE ke pen-SAR-lo",
+      "cat": "expr"
+    },
+    "lamentar": {
+      "$f": "p.lamentar",
+      "pron": "la-men-TAR",
+      "cat": "verb"
+    },
+    "desgraciadamente": {
+      "$f": "p.desgraciadamente",
+      "pron": "des-gra-thya-da-MEN-te",
+      "cat": "adv"
+    },
+    "lamentablemente": {
+      "$f": "p.lamentablemente",
+      "pron": "la-men-ta-ble-MEN-te",
+      "cat": "adv"
+    },
+    "no tengo por qué": {
+      "$f": "p.no tengo por qué",
+      "pron": "no TEN-go por ke",
+      "cat": "expr"
+    },
+    "de ninguna manera": {
+      "$f": "p.de ninguna manera",
+      "pron": "de nin-GU-na ma-NE-ra",
+      "cat": "expr"
+    },
+    "no me da la gana": {
+      "$f": "p.no me da la gana",
+      "pron": "no me da la GA-na",
+      "cat": "expr"
+    },
+    "rotundamente": {
+      "$f": "p.rotundamente",
+      "pron": "ro-tun-da-MEN-te",
+      "cat": "adv"
+    },
+    "la obligación": {
+      "$f": "p.la obligación",
+      "pron": "la o-bli-ga-THYON",
+      "genero": "f"
+    },
+    "comprometerse a": {
+      "$f": "p.comprometerse a",
+      "pron": "kom-pro-me-TER-se a",
+      "cat": "verb"
+    },
+    "insistir en": {
+      "$f": "p.insistir en",
+      "pron": "in-sis-TIR en",
+      "cat": "verb"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Four kinds of answer"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "When someone asks you for something, Spanish gives you a whole scale.\n\n**1. Yes, with conditions.**\n\n- **Sí, pero solo si** me avisas antes.\n- **Vale, siempre que** me lo **devuelvas** mañana. (subjunctive)\n- **Bueno, está bien, si insistes…**\n- **Si no hay más remedio…**\n- **Como tú veas.**\n\n**2. Neither yes nor no.**\n\n- **No sé si podré, la verdad.**\n- **Lo intentaré.**\n- **Haré todo lo posible, pero** no te prometo nada.\n- **Tendré que pensarlo.**\n- **Bueno, ya veremos.**\n\nIn Spain, **ya veremos** very often means no.\n\n**3. A polite no.** It needs regret and a reason.\n\n- **Lo lamento, pero** tengo otro compromiso.\n- **Desgraciadamente**, ese día no estoy.\n- **Lamentablemente**, no va a ser posible.\n\n**4. A flat no.**\n\n- **Me niego a** firmar eso. **Me niego rotundamente.**\n- **No tengo por qué** hacerlo.\n- **No tengo ninguna obligación de** hacerlo.\n- **De ninguna manera.** **De ningún modo.**\n- **No me da la gana.** This one is rude: keep it for real anger."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Extra hours"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Jefa",
-          "es": "Alberto, necesitaría que te quedaras esta tarde hasta las nueve.",
-          "en": "Alberto, I'd need you to stay until nine this evening.",
           "analisis": [
-            ["necesitaría que", "request"],
-            ["te quedaras", "verb (imperfect subjunctive)"],
-            ["esta tarde", "time"],
-            ["hasta las nueve", "limit"]
+            [
+              "necesitaría que",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "te quedaras",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "esta tarde",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "hasta las nueve",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Alberto",
-          "es": "Lo lamento, pero hoy va a ser imposible. Tengo que recoger a mi hija.",
-          "en": "I'm sorry, but today it's going to be impossible. I have to pick up my daughter.",
           "analisis": [
-            ["Lo lamento, pero", "polite refusal"],
-            ["hoy", "time"],
-            ["va a ser imposible", "verb"],
-            ["Tengo que recoger", "verb"],
-            ["a mi hija", "object"]
+            [
+              "Lo lamento, pero",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "hoy",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "va a ser imposible",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "Tengo que recoger",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "a mi hija",
+              {
+                "$t": "a6"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Jefa",
-          "es": "¿Y el sábado por la mañana?",
-          "en": "And Saturday morning?",
-          "analisis": [["el sábado por la mañana", "time"]]
-        },
-        {
-          "quien": "Alberto",
-          "es": "No sé si podré, la verdad. Tendré que pensarlo.",
-          "en": "I don't know if I'll be able to, to be honest. I'll have to think about it.",
           "analisis": [
-            ["No sé si podré", "avoiding an answer"],
-            ["la verdad", "honestly"],
-            ["Tendré que pensarlo", "avoiding an answer"]
+            [
+              "el sábado por la mañana",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
-          "quien": "Jefa",
-          "es": "Es que el informe tiene que estar listo el lunes.",
-          "en": "The thing is, the report has to be ready on Monday.",
-          "analisis": [["Es que", "reason"], ["el informe", "subject"], ["tiene que estar listo", "verb"], ["el lunes", "time"]]
+          "$f": "b2.f3",
+          "quien": "Alberto",
+          "analisis": [
+            [
+              "No sé si podré",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "la verdad",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "Tendré que pensarlo",
+              {
+                "$t": "a7"
+              }
+            ]
+          ]
         },
         {
-          "quien": "Alberto",
-          "es": "Bueno, si no hay más remedio, vendré, siempre que me paguen las horas extra. Pero me niego a trabajar también el domingo.",
-          "en": "Well, if there's no other way, I'll come, provided I get paid the overtime. But I refuse to work on Sunday as well.",
+          "$f": "b2.f4",
+          "quien": "Jefa",
           "analisis": [
-            ["si no hay más remedio", "reluctant yes"],
-            ["vendré", "verb"],
-            ["siempre que", "condition"],
-            ["me paguen", "verb (subjunctive)"],
-            ["las horas extra", "object"],
-            ["me niego a trabajar", "flat refusal"],
-            ["también el domingo", "time"]
+            [
+              "Es que",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "el informe",
+              {
+                "$t": "a10"
+              }
+            ],
+            [
+              "tiene que estar listo",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "el lunes",
+              {
+                "$t": "a2"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "quien": "Alberto",
+          "analisis": [
+            [
+              "si no hay más remedio",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "vendré",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "siempre que",
+              {
+                "$t": "a12"
+              }
+            ],
+            [
+              "me paguen",
+              {
+                "$t": "a13"
+              }
+            ],
+            [
+              "las horas extra",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "me niego a trabajar",
+              {
+                "$t": "a14"
+              }
+            ],
+            [
+              "también el domingo",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "negarse-1",
-      "pregunta": {"en": "Complete: OK, provided you give it back tomorrow."},
-      "frase": "Vale, siempre que me lo ___ mañana.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "devuelvas": {"en": "Siempre que as a condition takes the subjunctive."},
-        "devuelves": {"en": "With the indicative, siempre que means whenever."},
-        "devolverás": {"en": "A condition with siempre que takes the subjunctive."}
+        "devuelvas": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "devuelves": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "devolverás": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "devuelvas"
     },
     {
       "tipo": "huecos",
       "id": "negarse-2",
-      "pregunta": {"en": "Complete: I refuse to pay that fine."},
-      "frase": "Me niego ___ pagar esa multa.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
-      "opciones": {"a": {"en": "Negarse a + infinitive."}, "de": {"en": "Negarse takes a."}, "en": {"en": "Negarse takes a."}},
+      "opciones": {
+        "a": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "de": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "en": {
+          "$t": "b5.o2.refuerzo"
+        }
+      },
       "correcta": "a"
     },
     {
       "tipo": "test",
       "id": "negarse-3",
-      "pregunta": {"en": "Which answer avoids saying yes or no?"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "Bueno, ya veremos.": {"en": "We'll see."},
-        "De ninguna manera.": {"en": "That is a flat no."},
-        "¡Cómo no!": {"en": "That is a warm yes."}
+        "Bueno, ya veremos.": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "De ninguna manera.": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "¡Cómo no!": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "Bueno, ya veremos."
     },
     {
       "tipo": "test",
       "id": "negarse-4",
-      "pregunta": {"en": "Which refusal is rude?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "No me da la gana.": {"en": "Only for real anger."},
-        "Lo lamento, pero no puedo.": {"en": "That is polite."},
-        "Desgraciadamente, no estoy ese día.": {"en": "That is polite."}
+        "No me da la gana.": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "Lo lamento, pero no puedo.": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "Desgraciadamente, no estoy ese día.": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "No me da la gana."
     },
     {
       "tipo": "traduccion",
       "id": "negarse-5",
-      "frase": "No tengo por qué darte explicaciones.",
+      "frase": {
+        "$e": "b8.frase"
+      },
       "opciones": [
-        {"texto": {"en": "I don't have to give you explanations."}, "correcta": true},
         {
-          "texto": {"en": "I don't have why to explain."},
-          "explicacion": {"en": "No tener por qué: to have no obligation to."}
+          "texto": {
+            "$t": "b8.o0"
+          },
+          "correcta": true
         },
         {
-          "texto": {"en": "I can't explain why."},
-          "explicacion": {"en": "The phrase is about obligation, not ability."}
+          "texto": {
+            "$t": "b8.o1"
+          },
+          "explicacion": {
+            "$t": "b8.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b8.o2"
+          },
+          "explicacion": {
+            "$t": "b8.o2.explicacion"
+          }
         }
       ]
     },
     {
       "tipo": "escribir",
       "id": "negarse-6",
-      "pregunta": {"en": "Write in Spanish: I'll do everything I can."},
-      "respuestas": ["Haré todo lo posible"],
-      "explicacion": {"en": "Hacer in the future: haré."}
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
+      "respuestas": [
+        "Haré todo lo posible"
+      ],
+      "explicacion": {
+        "$t": "b9.explicacion"
+      }
     },
     {
       "tipo": "ordenar",
       "id": "negarse-7",
-      "frase": "Si no hay más remedio, lo haré yo",
-      "traduccion": {"en": "If there's no other way, I'll do it myself."}
+      "frase": {
+        "$e": "b10.frase"
+      },
+      "traduccion": {
+        "$t": "b10.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (150–180 words).** Write a reply to your boss, who has asked you to work during your holidays: refuse, or accept with conditions.\n\n**Speak (about 3 minutes).** Answer aloud five requests: one flat no, one polite no, one yes with conditions and two answers that avoid the question."
+        "$t": "b11.texto"
       }
     }
   ]

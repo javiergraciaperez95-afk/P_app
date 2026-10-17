@@ -1,136 +1,281 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "123",
   "capitulo": 11,
-  "titulo_es": "Ya había salido",
-  "titulo": { "en": "She had already left" },
-  "intro": { "en": "The pluscuamperfecto describes an action that happened before another past action." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "haber": { "en": "to have (auxiliary)", "pron": "a-BER", "cat": "verb", "nota": "Imperfect forms here: había (yo/él/ella/usted), habías (tú); combine haber with a past participle." },
-    "salir": { "en": "to go out; to leave", "pron": "sa-LIR", "cat": "verb", "nota": "Past participle: salido." },
-    "llamar": { "en": "to call", "pron": "ya-MAR", "cat": "verb", "nota": "Past participle: llamado." },
-    "ver": { "en": "to see", "pron": "ber", "cat": "verb", "nota": "Irregular past participle: visto." },
-    "cuando llegué": { "en": "when I arrived", "pron": "KWAN-do ye-GE", "cat": "expression" },
-    "ya": { "en": "already", "pron": "ya", "cat": "adverb" },
-    "antes": { "en": "before", "pron": "AN-tes", "cat": "adverb" }
+    "haber": {
+      "$f": "p.haber",
+      "pron": "a-BER",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.haber.nota"
+      }
+    },
+    "salir": {
+      "$f": "p.salir",
+      "pron": "sa-LIR",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.salir.nota"
+      }
+    },
+    "llamar": {
+      "$f": "p.llamar",
+      "pron": "ya-MAR",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.llamar.nota"
+      }
+    },
+    "ver": {
+      "$f": "p.ver",
+      "pron": "ber",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.ver.nota"
+      }
+    },
+    "cuando llegué": {
+      "$f": "p.cuando llegué",
+      "pron": "KWAN-do ye-GE",
+      "cat": "expr"
+    },
+    "ya": {
+      "$f": "p.ya",
+      "pron": "ya",
+      "cat": "adv"
+    },
+    "antes": {
+      "$f": "p.antes",
+      "pron": "AN-tes",
+      "cat": "adv"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "Earlier than another past",
-      "texto": "Form this tense with the imperfect of **haber** + a past participle. The participle does not change for gender or number: **Ana había salido / ellas habían salido**.\n\n- **había**: yo, él, ella, usted\n- **habías**: tú\n- **habíamos**: nosotros/as\n- **habíais**: vosotros/as\n- **habían**: ellos, ellas, ustedes\n\nIn **Cuando llegué, Ana ya había salido**, **llegué** is the simple past; **había salido** happened earlier."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "dialogo",
-      "titulo": "Too late",
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "Cuando llegué, Ana ya había salido.",
-          "en": "When I arrived, Ana had already left.",
           "analisis": [
-            ["Cuando llegué", "the later past"],
-            ["ya había salido", "the earlier past"]
+            [
+              "Cuando llegué",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "ya había salido",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "¿Habías llamado antes?",
-          "en": "Had you called beforehand?",
           "analisis": [
-            ["¿Habías llamado", "verb"],
-            ["antes", "before"]
+            [
+              "¿Habías llamado",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "antes",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "Sí, había llamado a las tres.",
-          "en": "Yes, I had called at three.",
           "analisis": [
-            ["había llamado", "verb"],
-            ["a las tres", "time"]
+            [
+              "había llamado",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "a las tres",
+              {
+                "$t": "a4"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "Yo no había visto el mensaje.",
-          "en": "I hadn't seen the message.",
           "analisis": [
-            ["no había visto", "negation"],
-            ["el mensaje", "object"]
+            [
+              "no había visto",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "el mensaje",
+              {
+                "$t": "a6"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["haber", "salir", "llamar", "ver", "cuando llegué", "ya", "antes"]
+      "palabras": [
+        "haber",
+        "salir",
+        "llamar",
+        "ver",
+        "cuando llegué",
+        "ya",
+        "antes"
+      ]
     },
     {
       "tipo": "huecos",
       "id": "b1-plus-habia",
-      "pregunta": { "en": "Complete: Ana had already left." },
-      "frase": "Ana ya ___ salido.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "había": { "en": "Había plus the participle is the earlier past." },
-        "ha": { "en": "Ha is the present perfect, linked to now." },
-        "estuvo": { "en": "Estuvo does not take a participle here." }
+        "había": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "ha": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "estuvo": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "había"
     },
     {
       "tipo": "ordenar",
       "id": "b1-plus-llegue",
-      "frase": "Cuando llegué, Ana ya había salido",
-      "traduccion": { "en": "When I arrived, Ana had already left." }
+      "frase": {
+        "$e": "b5.frase"
+      },
+      "traduccion": {
+        "$t": "b5.traduccion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "b1-plus-m1",
-      "pregunta": {"en": "Complete: I hadn't seen the message."},
-      "frase": "No ___ visto el mensaje.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "había": {"en": "Había plus participle: the earlier past."},
-        "he": {"en": "He visto is linked to now."},
-        "habré": {"en": "Habré visto is the future perfect."}
+        "había": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "he": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "habré": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "había"
     },
     {
       "tipo": "test",
       "id": "b1-plus-m2",
-      "pregunta": {"en": "«Cuando llegué, Ana ya había salido.» Which happened first?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "Ana left": {"en": "Había salido is the earlier action."},
-        "I arrived": {"en": "The arrival came second."},
-        "Both at the same time": {"en": "Ya había tells you one came before."}
+        "Ana left": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "I arrived": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "Both at the same time": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "Ana left"
     },
     {
       "tipo": "huecos",
       "id": "b1-plus-plural",
-      "pregunta": {"en": "Complete: they had already left when I arrived."},
-      "frase": "Ellas ya ___ salido cuando llegué.",
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "frase": {
+        "$e": "b8.frase"
+      },
       "audio": true,
       "opciones": {
-        "habían": {"en": "Ellas takes the third-person plural habían."},
-        "había": {"en": "Use habían with ellas; the participle salido does not change."},
-        "salieron": {"en": "This is the simple past, not the earlier past."}
+        "habían": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "había": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "salieron": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "habían"
     },
     {
       "tipo": "escribir",
       "id": "b1-plus-m3",
-      "pregunta": {"en": "Translate: «I had already called.»"},
-      "respuestas": ["Ya había llamado", "Había llamado ya"]
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
+      "respuestas": [
+        "Ya había llamado",
+        "Había llamado ya"
+      ]
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write about a day when you arrived late everywhere: what had already happened when you got there.\n\n**Speak (about 2 minutes).** Tell a story in which the order of events matters, using cuando llegué, ya había…"
+        "$t": "b10.texto"
       }
     }
   ]

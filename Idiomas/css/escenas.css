@@ -1,0 +1,105 @@
+/* =====================================================================
+   ESCENAS — lo que comparten las páginas que son una escena de píxeles:
+   Sobre Paglot (css/sobre.css), Social (css/social.css), Regala Max (css/regalo.css) y Contacto (css/contacto.css).
+   Las tutoras (js/vistas/elenco.js), su bocadillo, el papel y los botones. Colores --h-* de css/cabecera.css.
+   ===================================================================== */
+
+.escena-web {
+  color: var(--h-tinta);
+  font-synthesis-weight: none;
+}
+.escena-web h1, .escena-web h2, .escena-web h3 { color: var(--h-tinta); }
+
+/* ----- Una tutora: el lienzo, el bocadillo y el giro cuando va hacia la izquierda ----- */
+.es-tutora { position: relative; flex: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.es-tutora .tutora-lienzo { display: block; width: 96px; height: 128px; image-rendering: pixelated; image-rendering: crisp-edges; }
+.es-tutora.izquierda .tutora-lienzo { transform: scaleX(-1); }
+.es-tutora[hidden] { display: none; }
+
+.es-globo {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% - 10px);
+  z-index: 6;
+  width: max-content;
+  max-width: min(230px, 72vw);
+  margin-left: var(--corre, 0px);
+  padding: 7px 11px;
+  font: 700 .86rem/1.35 var(--h-texto);
+  text-align: center;
+  white-space: normal;
+  color: var(--globo-tinta);
+  background: var(--globo);
+  box-shadow: 0 -3px 0 0 var(--globo-tinta), 0 3px 0 0 var(--globo-tinta), -3px 0 0 0 var(--globo-tinta), 3px 0 0 0 var(--globo-tinta), 4px 6px 0 0 rgba(0, 0, 0, .25);
+  transform: translateX(-50%) scale(0);
+  transform-origin: 50% 100%;
+  transition: transform .12s steps(3);
+  pointer-events: none;
+}
+/* la colita, a escalones: dos cuadraditos que bajan hacia la tutora (aunque el bocadillo esté corrido) */
+.es-globo::before, .es-globo::after {
+  content: "";
+  position: absolute;
+  left: calc(50% - var(--corre, 0px) - 3px);
+  background: var(--globo);
+  box-shadow: -3px 0 0 var(--globo-tinta), 3px 0 0 var(--globo-tinta);
+}
+.es-globo::before { top: 100%; width: 9px; height: 3px; margin-top: 3px; box-shadow: -3px 0 0 var(--globo-tinta), 3px 0 0 var(--globo-tinta), 0 3px 0 var(--globo-tinta); }
+.es-globo::after { top: 100%; width: 9px; height: 3px; background: var(--globo); box-shadow: none; }
+.es-tutora.habla .es-globo { transform: translateX(-50%) scale(1); }
+
+/* ----- Papel: notas, carteles y fichas con borde de píxel ----- */
+.es-papel {
+  position: relative;
+  padding: 18px 20px;
+  color: var(--h-tinta);
+  background: var(--h-papel);
+  box-shadow:
+    0 -3px 0 0 var(--h-borde), 0 3px 0 0 var(--h-borde), -3px 0 0 0 var(--h-borde), 3px 0 0 0 var(--h-borde),
+    4px 7px 0 0 var(--h-sombra);
+}
+.es-papel h2, .es-papel h3 { margin: 0 0 8px; }
+.es-papel p { margin: 0 0 10px; color: var(--h-suave); line-height: 1.55; }
+.es-papel p:last-child { margin-bottom: 0; }
+
+/* ----- Botones de bloque, como los de la portada y precios ----- */
+.es-boton {
+  --b: 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  margin: var(--b) var(--b) calc(var(--b) * 2);
+  padding: 8px 18px;
+  border: 0;
+  font: 700 1rem var(--fuente-pixel);
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  background: var(--rojo);
+  box-shadow:
+    inset 0 3px 0 rgba(255, 255, 255, .25), inset 0 -4px 0 rgba(0, 0, 0, .22),
+    0 calc(var(--b) * -1) 0 0 var(--h-borde), 0 var(--b) 0 0 var(--h-borde), calc(var(--b) * -1) 0 0 0 var(--h-borde), var(--b) 0 0 0 var(--h-borde),
+    var(--b) calc(var(--b) * 2) 0 0 var(--h-sombra);
+}
+.es-boton:hover { background: var(--rojo-hover); color: #fff; }
+.es-boton:active { transform: translate(var(--b), var(--b)); }
+.es-boton:focus-visible { outline: 3px dashed var(--h-tinta); outline-offset: 5px; }
+.es-boton[disabled] { cursor: not-allowed; filter: saturate(.55); }
+.es-boton-oro { background: var(--marca-oro); color: #15121d; }
+.es-boton-oro:hover { background: #ffd866; color: #15121d; }
+.es-boton-papel { background: var(--h-papel); color: var(--h-tinta); }
+.es-boton-papel:hover { background: var(--h-papel-2); color: var(--h-tinta); }
+.es-boton-grande { min-height: 56px; padding: 10px 26px; font-size: 1.2rem; }
+
+/* Lo que no se ve no se mueve (js/vistas/elenco.js pone «es-fuera»). */
+.es-fuera, .es-fuera * { animation-play-state: paused !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .es-globo { transition: none; }
+}
+
+/* La escena llega hasta el pie, sin el margen de abajo de la página. */
+body:has(.escena-web) #app { padding-bottom: 0; }

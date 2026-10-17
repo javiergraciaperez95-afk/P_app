@@ -1,130 +1,1045 @@
 {
+  "esquema": 2,
+  "id": "023",
   "capitulo": 3,
-  "titulo_es": "Este, ese, aquel",
-  "titulo": { "en": "This, that, that one over there" },
-  "intro": { "en": "A basic contrast of three distances. Demonstratives agree with a following noun and are written without a tilde, even when used alone." },
+  "nivel": "A1",
   "palabras": {
-    "este": { "en": "this (masculine, near me)", "pron": "ES-te", "cat": "demonstrative", "nota": "This demonstrative has no tilde, whether it accompanies a noun or replaces one." },
-    "esta": { "en": "this (feminine, near me)", "pron": "ES-ta", "cat": "demonstrative", "nota": "Esta with no tilde means this. Está is the verb." },
-    "ese": { "en": "that (masculine, near you or between us)", "pron": "E-se", "cat": "demonstrative", "nota": "Also used alone to mean that one: ese no. It has no tilde." },
-    "aquel": { "en": "that (masculine, farther away)", "pron": "a-KEL", "cat": "demonstrative" },
-    "aquella": { "en": "that (feminine, farther away)", "pron": "a-KE-ya", "cat": "demonstrative" },
-    "el café": { "en": "the café, the coffee", "pron": "el ka-FE", "genero": "m" },
-    "la mesa": { "en": "the table", "pron": "la ME-sa", "genero": "f" },
-    "la plaza": { "en": "the square", "pron": "la PLA-tha", "genero": "f" },
-    "bueno": { "en": "good (masculine)", "pron": "BWE-no", "cat": "adjective", "nota": "Feminine: buena." },
-    "mejor": { "en": "better", "pron": "me-HOR", "cat": "adjective", "nota": "Plural: mejores." },
-    "libre": { "en": "free, available", "pron": "LI-bre", "cat": "adjective" }
+    "este": {
+      "pron": "ES-te",
+      "cat": "pron"
+    },
+    "esta": {
+      "pron": "ES-ta",
+      "cat": "pron"
+    },
+    "ese": {
+      "pron": "E-se",
+      "cat": "pron"
+    },
+    "esa": {
+      "pron": "E-sa",
+      "cat": "pron"
+    },
+    "aquel": {
+      "pron": "a-KEL",
+      "cat": "pron"
+    },
+    "aquella": {
+      "pron": "a-KE-ya",
+      "cat": "pron"
+    },
+    "el café": {
+      "pron": "el ka-FE",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la mesa": {
+      "pron": "la ME-sa",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "la plaza": {
+      "pron": "la PLA-tha",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "bueno": {
+      "pron": "BWE-no",
+      "cat": "adj"
+    },
+    "mejor": {
+      "pron": "me-HOR",
+      "cat": "adj"
+    },
+    "libre": {
+      "pron": "LI-bre",
+      "cat": "adj"
+    },
+    "Lucía": {
+      "propio": true
+    },
+    "Pablo": {
+      "propio": true
+    }
   },
   "bloques": [
     {
-      "tipo": "explicacion",
-      "titulo": "Three distances",
-      "texto": "In this basic spatial contrast:\n- **Este** café: near me.\n- **Ese** café: near you or between us.\n- **Aquel** café: farther from both of us.\n\nThey agree with the noun: **esta** mesa, **aquella** plaza. In modern spelling, demonstratives take no tilde whether they go with a noun or stand alone: **este** café; **ese** no."
+      "id": "b1",
+      "tipo": "explicacion"
     },
     {
+      "id": "b2",
       "tipo": "dialogo",
-      "titulo": "Which café?",
       "frases": [
         {
           "quien": "Lucía",
-          "es": "Este café es bueno.",
-          "en": "This café is good.",
-          "analisis": [
-            ["Este café", "subject"],
-            ["es", "verb"],
-            ["bueno", "adjective"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Este café",
+                "nucleo": "café",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Este"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "café"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "es bueno.",
+                "nucleo": "es",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "bueno.",
+                    "nucleo": "bueno."
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "Ese no. Aquel café es mejor.",
-          "en": "Not that one. That café over there is better.",
-          "analisis": [
-            ["Ese", "that one"],
-            ["Aquel café", "subject"],
-            ["es mejor", "verb"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Aquel café",
+                "nucleo": "café",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Aquel"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "café"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "es mejor.",
+                "nucleo": "es",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "mejor.",
+                    "nucleo": "mejor."
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Lucía",
-          "es": "¿Esta mesa?",
-          "en": "This table?",
-          "analisis": [
-            ["Esta mesa", "object"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "¿Esta mesa",
+                "nucleo": "mesa",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "¿Esta"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "mesa"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "está libre?",
+                "nucleo": "está",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "está",
+                    "nucleo": "está"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "libre?",
+                    "nucleo": "libre?"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "Sí, esta mesa está libre.",
-          "en": "Yes, this table is free.",
-          "analisis": [
-            ["esta mesa", "subject"],
-            ["está", "verb"],
-            ["libre", "adjective"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Sí, está libre.",
+                "nucleo": "está",
+                "partes": [
+                  {
+                    "funcion": "ADV",
+                    "texto": "Sí,"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "está",
+                    "nucleo": "está"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "libre.",
+                    "nucleo": "libre."
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "¿Ese camarero",
+                "nucleo": "camarero",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "¿Ese"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "camarero"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "trabaja aquí?",
+                "nucleo": "trabaja",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "trabaja",
+                    "nucleo": "trabaja"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "aquí?",
+                    "nucleo": "aquí?"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Pablo",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Aquella terraza",
+                "nucleo": "terraza",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Aquella"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "terraza"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "está en la plaza.",
+                "nucleo": "está",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "está",
+                    "nucleo": "está"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en la plaza.",
+                    "nucleo": "plaza",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la plaza.",
+                        "nucleo": "plaza",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "plaza."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },
     {
+      "id": "b3",
       "tipo": "vocabulario",
-      "palabras": ["este", "esta", "ese", "aquel", "aquella", "el café", "la mesa", "la plaza", "bueno", "mejor", "libre"]
+      "palabras": [
+        "este",
+        "esta",
+        "ese",
+        "esa",
+        "aquel",
+        "aquella",
+        "el café",
+        "la mesa",
+        "la plaza",
+        "bueno",
+        "mejor",
+        "libre"
+      ]
     },
     {
-      "tipo": "huecos",
-      "id": "a1-dem-este",
-      "pregunta": { "en": "Complete: this café, the one next to me, is good." },
-      "frase": "___ café es bueno.",
-      "audio": true,
-      "opciones": {
-        "Este": { "en": "Este is close to the speaker." },
-        "Ese": { "en": "In the basic spatial pattern, ese is near the listener or between the speakers." },
-        "Aquel": { "en": "Aquel is farther away." }
-      },
-      "correcta": "Este"
+      "id": "b4",
+      "tipo": "gramatica",
+      "ejemplos": [
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Este café",
+                "nucleo": "café",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Este"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "café"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "es bueno.",
+                "nucleo": "es",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "bueno.",
+                    "nucleo": "bueno."
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Aquella mesa",
+                "nucleo": "mesa",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Aquella"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "mesa"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "está libre en la plaza.",
+                "nucleo": "está",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "está",
+                    "nucleo": "está"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "libre",
+                    "nucleo": "libre"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en la plaza.",
+                    "nucleo": "plaza",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la plaza.",
+                        "nucleo": "plaza",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "plaza."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
     },
     {
-      "tipo": "ordenar",
-      "id": "a1-dem-mesa",
-      "frase": "Esta mesa está libre",
-      "traduccion": { "en": "This table is free." }
+      "id": "b5",
+      "tipo": "texto",
+      "registro": "literario",
+      "frases": [
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Este café moderno del centro histórico",
+                "nucleo": "café",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Este"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "café"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "moderno",
+                    "nucleo": "moderno"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "del centro histórico",
+                    "nucleo": "centro",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "del"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "centro histórico",
+                        "nucleo": "centro",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "centro"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "histórico",
+                            "nucleo": "histórico"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "sirve bebidas deliciosas.",
+                "nucleo": "sirve",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "sirve",
+                    "nucleo": "sirve"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "bebidas deliciosas.",
+                    "nucleo": "bebidas",
+                    "partes": [
+                      {
+                        "funcion": "N",
+                        "texto": "bebidas"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "deliciosas.",
+                        "nucleo": "deliciosas."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Mucha gente amable",
+                "nucleo": "gente",
+                "partes": [
+                  {
+                    "funcion": "CUANT",
+                    "texto": "Mucha"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "gente"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "amable",
+                    "nucleo": "amable"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "prefiere esta mesa amplia cerca de la gran ventana.",
+                "nucleo": "prefiere",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "prefiere",
+                    "nucleo": "prefiere"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "esta mesa amplia",
+                    "nucleo": "mesa",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "esta"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "mesa"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "amplia",
+                        "nucleo": "amplia"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "cerca de la gran ventana.",
+                    "nucleo": "cerca",
+                    "partes": [
+                      {
+                        "funcion": "ADV",
+                        "texto": "cerca",
+                        "nucleo": "cerca"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "de la gran ventana.",
+                        "nucleo": "ventana",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "de"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "la gran ventana.",
+                            "nucleo": "ventana",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "la"
+                              },
+                              {
+                                "funcion": "ADY",
+                                "texto": "gran",
+                                "nucleo": "gran"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "ventana."
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Ese camarero atento",
+                "nucleo": "camarero",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Ese"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "camarero"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "atento",
+                    "nucleo": "atento"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "prepara un café excelente para los clientes.",
+                "nucleo": "prepara",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "prepara",
+                    "nucleo": "prepara"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "un café excelente",
+                    "nucleo": "café",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "un"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "café"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "excelente",
+                        "nucleo": "excelente"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "para los clientes.",
+                    "nucleo": "clientes",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "para"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "los clientes.",
+                        "nucleo": "clientes",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "los"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "clientes."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Aquel restaurante tradicional de la plaza",
+                "nucleo": "restaurante",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Aquel"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "restaurante"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "tradicional",
+                    "nucleo": "tradicional"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "de la plaza",
+                    "nucleo": "plaza",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la plaza",
+                        "nucleo": "plaza",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "plaza"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "tiene mesas muy cómodas.",
+                "nucleo": "tiene",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "tiene",
+                    "nucleo": "tiene"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "mesas muy cómodas.",
+                    "nucleo": "mesas",
+                    "partes": [
+                      {
+                        "funcion": "N",
+                        "texto": "mesas"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "muy cómodas.",
+                        "nucleo": "cómodas",
+                        "partes": [
+                          {
+                            "funcion": "CUANT",
+                            "texto": "muy"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "cómodas.",
+                            "nucleo": "cómodas."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Aquella terraza soleada",
+                "nucleo": "terraza",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Aquella"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "terraza"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "soleada",
+                    "nucleo": "soleada"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "siempre está libre durante las mañanas tranquilas.",
+                "nucleo": "está",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "siempre",
+                    "nucleo": "siempre"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "está",
+                    "nucleo": "está"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "libre",
+                    "nucleo": "libre"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "durante las mañanas tranquilas.",
+                    "nucleo": "mañanas",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "durante"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "las mañanas tranquilas.",
+                        "nucleo": "mañanas",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "las"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "mañanas"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "tranquilas.",
+                            "nucleo": "tranquilas."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Los turistas",
+                "nucleo": "turistas",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Los"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "turistas"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "disfrutan aquel café aromático con mucha calma.",
+                "nucleo": "disfrutan",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "disfrutan",
+                    "nucleo": "disfrutan"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "aquel café aromático",
+                    "nucleo": "café",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "aquel"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "café"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "aromático",
+                        "nucleo": "aromático"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "con mucha calma.",
+                    "nucleo": "calma",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "mucha calma.",
+                        "nucleo": "calma",
+                        "partes": [
+                          {
+                            "funcion": "CUANT",
+                            "texto": "mucha"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "calma."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
     },
     {
-      "tipo": "huecos",
-      "id": "a1-dem-m1",
-      "pregunta": {"en": "Complete: this table is free."},
-      "frase": "___ mesa está libre.",
-      "audio": true,
-      "opciones": {
-        "Esta": {"en": "Mesa is feminine."},
-        "Este": {"en": "Este is masculine."},
-        "Está": {"en": "With an accent it is the verb."}
-      },
-      "correcta": "Esta"
-    },
-    {
+      "id": "b6",
       "tipo": "test",
-      "id": "a1-dem-m2",
-      "pregunta": {"en": "The café is far from both of you. Which one do you say?"},
-      "opciones": {
-        "aquel café": {"en": "Aquel is far from both speakers."},
-        "este café": {"en": "Este is next to you."},
-        "ese café": {"en": "In the basic spatial pattern, ese is near the listener or between the speakers."}
-      },
-      "correcta": "aquel café"
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
     },
     {
+      "id": "b7",
+      "tipo": "huecos",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b8",
+      "tipo": "ordenar"
+    },
+    {
+      "id": "b9",
       "tipo": "escribir",
-      "id": "a1-dem-m3",
-      "pregunta": {"en": "Translate: «This café is good.»"},
-      "respuestas": ["Este café es bueno"]
-    },
-    {
-      "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
-      "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Imagine you are in a market. Write what you ask for, pointing at things near you, further away and far away.\n\n**Speak (about 30 seconds).** Point at things near and far in the room and say what they are: Este es mi…, ese es…, aquel es…"
-      }
+      "respuestas": [
+        "Este café es bueno",
+        "Este café es bueno."
+      ]
     }
   ]
 }

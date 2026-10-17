@@ -1,166 +1,469 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "098",
   "capitulo": 9,
-  "titulo_es": "Las tareas de casa",
-  "titulo": {"en": "Housework"},
-  "intro": {"en": "Chores, whose turn it is, and what has or has not been done yet."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "limpiar": {"en": "to clean", "pron": "lim-PYAR", "cat": "verb"},
-    "lavar los platos": {"en": "to wash the dishes", "pron": "la-BAR los PLA-tos", "cat": "expression"},
-    "poner la lavadora": {"en": "to start the washing machine (British English: put the washing on)", "pron": "po-NER la la-ba-DO-ra", "cat": "expression"},
-    "hacer la cama": {"en": "to make the bed", "pron": "a-SER la KA-ma (seseo) / a-THER la KA-ma (distinción)", "cat": "expression"},
-    "planchar": {"en": "to iron", "pron": "plan-CHAR", "cat": "verb"},
-    "barrer": {"en": "to sweep", "pron": "ba-RRER", "cat": "verb"},
-    "fregar el suelo": {"en": "to mop the floor", "pron": "fre-GAR el SWE-lo", "cat": "expression", "nota": "The stem e changes to ie in present forms such as yo friego."},
-    "sacar la basura": {"en": "to take out the rubbish", "pron": "sa-KAR la ba-SU-ra", "cat": "expression"},
-    "hacer la compra": {"en": "to do the grocery shopping", "pron": "a-SER la KOM-pra (seseo) / a-THER la KOM-pra (distinción)", "cat": "expression"},
-    "ordenar": {"en": "to tidy", "pron": "or-de-NAR", "cat": "verb"},
-    "limpio": {"en": "clean (feminine: limpia)", "pron": "LIM-pyo", "cat": "adjective"},
-    "sucio": {"en": "dirty (feminine: sucia)", "pron": "SU-syo (seseo) / SU-thyo (distinción)", "cat": "adjective"},
-    "el lavaplatos": {"en": "the dishwasher (also el lavavajillas)", "pron": "el la-ba-PLA-tos", "cat": "noun", "genero": "m", "nota": "For the appliance, the DLE also records feminine use of lavaplatos."},
-    "el microondas": {"en": "the microwave", "pron": "el mi-kro-ON-das", "cat": "noun", "genero": "m"},
-    "te toca a ti": {"en": "it's your turn", "pron": "te TO-ka a ti", "cat": "expression"},
-    "la tarea": {"en": "the chore; the task", "pron": "la ta-RE-a", "cat": "noun", "genero": "f"},
-    "la lavadora": {"en": "the washing machine", "pron": "la la-ba-DO-ra", "cat": "noun", "genero": "f"}
+    "limpiar": {
+      "$f": "p.limpiar",
+      "pron": "lim-PYAR",
+      "cat": "verb"
+    },
+    "lavar los platos": {
+      "$f": "p.lavar los platos",
+      "pron": "la-BAR los PLA-tos",
+      "cat": "expr"
+    },
+    "poner la lavadora": {
+      "$f": "p.poner la lavadora",
+      "pron": "po-NER la la-ba-DO-ra",
+      "cat": "expr"
+    },
+    "hacer la cama": {
+      "$f": "p.hacer la cama",
+      "pron": "a-SER la KA-ma (seseo) / a-THER la KA-ma (distinción)",
+      "cat": "expr"
+    },
+    "planchar": {
+      "$f": "p.planchar",
+      "pron": "plan-CHAR",
+      "cat": "verb"
+    },
+    "barrer": {
+      "$f": "p.barrer",
+      "pron": "ba-RRER",
+      "cat": "verb"
+    },
+    "fregar el suelo": {
+      "$f": "p.fregar el suelo",
+      "pron": "fre-GAR el SWE-lo",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.fregar el suelo.nota"
+      }
+    },
+    "sacar la basura": {
+      "$f": "p.sacar la basura",
+      "pron": "sa-KAR la ba-SU-ra",
+      "cat": "expr"
+    },
+    "hacer la compra": {
+      "$f": "p.hacer la compra",
+      "pron": "a-SER la KOM-pra (seseo) / a-THER la KOM-pra (distinción)",
+      "cat": "expr"
+    },
+    "ordenar": {
+      "$f": "p.ordenar",
+      "pron": "or-de-NAR",
+      "cat": "verb"
+    },
+    "limpio": {
+      "$f": "p.limpio",
+      "pron": "LIM-pyo",
+      "cat": "adj"
+    },
+    "sucio": {
+      "$f": "p.sucio",
+      "pron": "SU-syo (seseo) / SU-thyo (distinción)",
+      "cat": "adj"
+    },
+    "el lavaplatos": {
+      "$f": "p.el lavaplatos",
+      "pron": "el la-ba-PLA-tos",
+      "cat": "sust",
+      "genero": "m",
+      "nota": {
+        "$t": "p.el lavaplatos.nota"
+      }
+    },
+    "el microondas": {
+      "$f": "p.el microondas",
+      "pron": "el mi-kro-ON-das",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "te toca a ti": {
+      "$f": "p.te toca a ti",
+      "pron": "te TO-ka a ti",
+      "cat": "expr"
+    },
+    "la tarea": {
+      "$f": "p.la tarea",
+      "pron": "la ta-RE-a",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "la lavadora": {
+      "$f": "p.la lavadora",
+      "pron": "la la-ba-DO-ra",
+      "cat": "sust",
+      "genero": "f"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Whose turn, and is it done?"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "**Tocar** can say whose turn it is: **me toca**, **te toca**, **le toca** + infinitive. **Me/te/le** identify the person whose turn it is: hoy **te toca** limpiar el baño y el microondas. For emphasis: **te toca a ti**.\n\nIn much of Spain, use the present perfect (**haber** + participle) for recent actions linked to the present, often with **ya** or **todavía no**. Many Latin American speakers also use the simple past for recent completed actions:\n\n- ¿**Has sacado** la basura? — **Ya la he sacado.** / **Todavía no la he sacado.**\n\nWith a finished time such as **ayer**, this dialogue uses the simple past: **saqué, hice, puse**. The present tense in **tú planchas, yo friego** assigns current chores.\n\nIn the present perfect, object pronouns go before conjugated **haber**: los platos → **ya los he lavado**; la cama → **ya la he hecho**.\n\nTwo irregular participles used here are **hecho** (hacer) and **puesto** (poner): **he puesto el lavaplatos**. Here **lavaplatos** means dishwasher; **lavavajillas** is another term.\n\n**Estar** describes a current/resulting condition: la cocina **está limpia**; el baño **está sucio**."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "A dirty kitchen"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "La cocina está muy sucia. ¿Has lavado los platos?",
-          "en": "The kitchen is very dirty. Have you washed the dishes?",
           "analisis": [
-            ["La cocina", "subject"],
-            ["está", "verb"],
-            ["muy sucia", "description"],
-            ["¿Has lavado", "verb"],
-            ["los platos", "object"]
+            [
+              "La cocina",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "está",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "muy sucia",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "¿Has lavado",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "los platos",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Todavía no los he lavado. Pero ya he hecho la cama.",
-          "en": "I haven't washed them yet. But I've already made the bed.",
           "analisis": [
-            ["Todavía no", "not yet"],
-            ["los he lavado", "verb"],
-            ["ya", "already"],
-            ["he hecho", "verb"],
-            ["la cama", "object"]
+            [
+              "Todavía no",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "los he lavado",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "ya",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "he hecho",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "la cama",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "Hoy te toca a ti limpiar el baño y el microondas.",
-          "en": "Today it's your turn to clean the bathroom and the microwave.",
-          "analisis": [["Hoy", "time"], ["te toca a ti", "verb"], ["limpiar el baño y el microondas", "subject"]]
+          "analisis": [
+            [
+              "Hoy",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "te toca a ti",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "limpiar el baño y el microondas",
+              {
+                "$t": "a0"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "¿Otra vez? Yo saqué la basura ayer.",
-          "en": "Again? I took the rubbish out yesterday.",
-          "analisis": [["¿Otra vez?", "again"], ["Yo", "subject"], ["saqué", "verb"], ["la basura", "object"], ["ayer", "time"]]
+          "analisis": [
+            [
+              "¿Otra vez?",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "Yo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "saqué",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "la basura",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "ayer",
+              {
+                "$t": "a6"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f4",
           "quien": "Lucía",
-          "es": "Y yo hice la compra y puse la lavadora ayer.",
-          "en": "And yesterday I did the shopping and started the washing machine.",
-          "analisis": [["yo", "subject"], ["hice la compra", "verb"], ["puse la lavadora", "verb"], ["ayer", "time"]]
+          "analisis": [
+            [
+              "yo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "hice la compra",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "puse la lavadora",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "ayer",
+              {
+                "$t": "a6"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f5",
           "quien": "Pablo",
-          "es": "Vale. Entonces tú planchas y yo friego el suelo.",
-          "en": "OK. Then you iron and I'll mop the floor.",
-          "analisis": [["Tú", "subject"], ["planchas", "verb"], ["yo", "subject"], ["friego", "verb"], ["el suelo", "object"]]
+          "analisis": [
+            [
+              "Tú",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "planchas",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "yo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "friego",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "el suelo",
+              {
+                "$t": "a3"
+              }
+            ]
+          ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "tareas-casa-1",
-      "pregunta": {"en": "Complete: I haven't washed them yet. (los platos)"},
-      "frase": "Todavía no ___ he lavado.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
-      "opciones": {"los": {"en": "Los platos: los."}, "las": {"en": "Platos is masculine."}, "lo": {"en": "Platos is plural."}},
+      "opciones": {
+        "los": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "las": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "lo": {
+          "$t": "b4.o2.refuerzo"
+        }
+      },
       "correcta": "los"
     },
     {
       "tipo": "huecos",
       "id": "tareas-casa-2",
-      "pregunta": {"en": "Complete: today it's your turn."},
-      "frase": "Hoy ___ toca a ti.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "te": {"en": "Tocar works like gustar: te toca."},
-        "tú": {"en": "The pronoun is te."},
-        "ti": {"en": "Ti follows the preposition a."}
+        "te": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "tú": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "ti": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "te"
     },
     {
       "tipo": "test",
       "id": "tareas-casa-3",
-      "pregunta": {"en": "«Sacar la basura» means…"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "to take out the rubbish": {"en": "Basura is rubbish."},
-        "to do the shopping": {"en": "That is hacer la compra."},
-        "to mop the floor": {"en": "That is fregar el suelo."}
+        "to take out the rubbish": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "to do the shopping": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "to mop the floor": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "to take out the rubbish"
     },
     {
       "tipo": "huecos",
       "id": "tareas-casa-4",
-      "pregunta": {"en": "Complete: have you made the bed?"},
-      "frase": "¿Has ___ la cama?",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "hecho": {"en": "The participle of hacer is hecho."},
-        "hacido": {"en": "Hacer has an irregular participle."},
-        "haces": {"en": "After has, the participle."}
+        "hecho": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "hacido": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "haces": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "hecho"
     },
     {
       "tipo": "huecos",
       "id": "tareas-casa-5",
-      "pregunta": {"en": "Complete: Yesterday I took out the rubbish."},
-      "frase": "Ayer ___ la basura.",
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "frase": {
+        "$e": "b8.frase"
+      },
       "audio": true,
       "opciones": {
-        "saqué": {"en": "With a single action yesterday, use the simple past saqué."},
-        "sacaba": {"en": "This past form usually gives a habitual or background meaning."},
-        "saco": {"en": "Saco is present tense."}
+        "saqué": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "sacaba": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "saco": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "saqué"
     },
     {
       "tipo": "escribir",
       "id": "tareas-casa-6",
-      "pregunta": {"en": "Translate: «It's my turn.»"},
-      "respuestas": ["Me toca a mí", "Me toca"]
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
+      "respuestas": [
+        "Me toca a mí",
+        "Me toca"
+      ]
     },
     {
       "tipo": "ordenar",
       "id": "tareas-casa-7",
-      "frase": "Ya he puesto la lavadora",
-      "traduccion": {"en": "I've already put the washing on."}
+      "frase": {
+        "$e": "b10.frase"
+      },
+      "traduccion": {
+        "$t": "b10.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write how the housework is shared out in your home, and what you like and hate doing.\n\n**Speak (about 1 minute).** Negotiate aloud with a flatmate who does what this week."
+        "$t": "b11.texto"
       }
     }
   ]

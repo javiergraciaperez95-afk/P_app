@@ -1,138 +1,913 @@
 {
+  "esquema": 2,
+  "id": "043",
   "capitulo": 5,
-  "titulo_es": "Tengo que estudiar",
-  "titulo": { "en": "I have to study" },
-  "intro": { "en": "Tengo que expresses a personal obligation; hay que expresses a general or unspecified obligation." },
+  "nivel": "A1",
   "palabras": {
-    "tengo que": { "en": "I have to", "pron": "TEN-go ke", "cat": "expression" },
-    "hay que": { "en": "one has to, it is necessary", "pron": "ai ke", "cat": "expression" },
-    "porque": { "en": "because", "pron": "POR-ke", "cat": "conjunction" },
-    "por qué": { "en": "why", "pron": "por KE", "cat": "expression", "nota": "Use two words with an accent in questions; porque means because." },
-    "estudiar": { "en": "to study", "pron": "es-tu-DYAR", "cat": "verb" },
-    "el examen": { "en": "the exam", "pron": "el ek-SA-men", "genero": "m" },
-    "mañana": { "en": "tomorrow", "pron": "ma-NYA-na", "cat": "adverb" },
-    "llegar": { "en": "to arrive", "pron": "ye-GAR", "cat": "verb" }
+    "tengo que": {
+      "pron": "TEN-go ke",
+      "cat": "expr"
+    },
+    "hay que": {
+      "pron": "ai ke",
+      "cat": "expr"
+    },
+    "porque": {
+      "pron": "POR-ke",
+      "cat": "conj"
+    },
+    "por qué": {
+      "pron": "por KE",
+      "cat": "expr"
+    },
+    "estudiar": {
+      "pron": "es-tu-DYAR",
+      "cat": "verb"
+    },
+    "el examen": {
+      "pron": "el ek-SA-men",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "mañana": {
+      "pron": "ma-NYA-na",
+      "cat": "adv"
+    },
+    "llegar": {
+      "pron": "ye-GAR",
+      "cat": "verb"
+    },
+    "Lucía": {
+      "propio": true
+    },
+    "Pablo": {
+      "propio": true
+    }
   },
   "bloques": [
     {
-      "tipo": "explicacion",
-      "titulo": "Have to",
-      "texto": "**Tener que** + infinitive says who has to do it: **tengo que** estudiar.\n\n**Hay que** + infinitive expresses a general or unspecified obligation; it does not say who has to do it: **hay que** llegar a las nueve.\n\nUse **porque** to introduce a reason: estudio **porque** mañana hay un examen. **¿Por qué?** (two words, with an accent) asks “why.”"
+      "id": "b1",
+      "tipo": "explicacion"
     },
     {
+      "id": "b2",
       "tipo": "dialogo",
-      "titulo": "Before the exam",
       "frases": [
         {
           "quien": "Lucía",
-          "es": "Tengo que estudiar.",
-          "en": "I have to study.",
-          "analisis": [
-            ["Tengo que", "verb"],
-            ["estudiar", "infinitive"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Tengo que estudiar.",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Tengo que",
+                    "nucleo": "Tengo"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "estudiar.",
+                    "nucleo": "estudiar",
+                    "partes": [
+                      {
+                        "funcion": "INF",
+                        "texto": "estudiar.",
+                        "nucleo": "estudiar."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "¿Por qué?",
-          "en": "Why?",
-          "analisis": [
-            ["¿Por qué", "question"]
-          ]
+          "sintaxis": {
+            "oracion": "unimembre",
+            "unidades": [
+              {
+                "funcion": "CCC",
+                "texto": "¿Por qué?",
+                "nucleo": "qué",
+                "partes": [
+                  {
+                    "funcion": "PREP",
+                    "texto": "¿Por"
+                  },
+                  {
+                    "funcion": "TERM",
+                    "texto": "qué?",
+                    "nucleo": "qué?"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Lucía",
-          "es": "Porque mañana hay un examen.",
-          "en": "Because there is an exam tomorrow.",
-          "analisis": [
-            ["Porque", "because"],
-            ["mañana", "time"],
-            ["hay", "verb"]
-          ]
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Porque mañana hay un examen.",
+                "partes": [
+                  {
+                    "funcion": "CONJ",
+                    "texto": "Porque"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "mañana",
+                    "nucleo": "mañana"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "hay",
+                    "nucleo": "hay"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "un examen.",
+                    "nucleo": "examen",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "un"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "examen."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "quien": "Pablo",
-          "es": "Hay que llegar a las nueve.",
-          "en": "We have to arrive at nine.",
-          "analisis": [
-            ["Hay que", "verb"],
-            ["llegar", "infinitive"],
-            ["a las nueve", "time"]
-          ],
-          "nota": "The Spanish phrase does not name who must arrive; the context suggests the people taking the exam."
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Hay que llegar a las nueve.",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Hay que",
+                    "nucleo": "Hay"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "llegar a las nueve.",
+                    "nucleo": "llegar",
+                    "partes": [
+                      {
+                        "funcion": "INF",
+                        "texto": "llegar",
+                        "nucleo": "llegar"
+                      },
+                      {
+                        "funcion": "CCT",
+                        "texto": "a las nueve.",
+                        "nucleo": "nueve",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "a"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "las nueve.",
+                            "nucleo": "nueve",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "las"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "nueve."
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },
     {
+      "id": "b3",
       "tipo": "vocabulario",
-      "palabras": ["tengo que", "hay que", "porque", "por qué", "estudiar", "el examen", "mañana", "llegar"]
+      "palabras": [
+        "tengo que",
+        "hay que",
+        "porque",
+        "por qué",
+        "estudiar",
+        "el examen",
+        "mañana",
+        "llegar"
+      ]
     },
     {
+      "id": "b4",
+      "tipo": "gramatica",
+      "ejemplos": [
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Pablo",
+                "nucleo": "Pablo",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Pablo"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "tiene que llegar temprano.",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "tiene que",
+                    "nucleo": "tiene"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "llegar temprano.",
+                    "nucleo": "llegar",
+                    "partes": [
+                      {
+                        "funcion": "INF",
+                        "texto": "llegar",
+                        "nucleo": "llegar"
+                      },
+                      {
+                        "funcion": "CCT",
+                        "texto": "temprano.",
+                        "nucleo": "temprano."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "En la biblioteca hay que hablar bajo.",
+                "partes": [
+                  {
+                    "funcion": "CCL",
+                    "texto": "En la biblioteca",
+                    "nucleo": "biblioteca",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "En"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la biblioteca",
+                        "nucleo": "biblioteca",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "biblioteca"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "hay que",
+                    "nucleo": "hay"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "hablar bajo.",
+                    "nucleo": "hablar",
+                    "partes": [
+                      {
+                        "funcion": "INF",
+                        "texto": "hablar",
+                        "nucleo": "hablar"
+                      },
+                      {
+                        "funcion": "CCM",
+                        "texto": "bajo.",
+                        "nucleo": "bajo."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "b5",
+      "tipo": "texto",
+      "registro": "literario",
+      "frases": [
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Lucía",
+                "nucleo": "Lucía",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Lucía"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "tiene que estudiar esta tarde.",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "tiene que",
+                    "nucleo": "tiene"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "estudiar esta tarde.",
+                    "nucleo": "estudiar",
+                    "partes": [
+                      {
+                        "funcion": "INF",
+                        "texto": "estudiar",
+                        "nucleo": "estudiar"
+                      },
+                      {
+                        "funcion": "CCT",
+                        "texto": "esta tarde.",
+                        "nucleo": "tarde",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "esta"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "tarde."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Mañana hay un examen en la escuela.",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "Mañana",
+                    "nucleo": "Mañana"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "hay",
+                    "nucleo": "hay"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "un examen",
+                    "nucleo": "examen",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "un"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "examen"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en la escuela.",
+                    "nucleo": "escuela",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la escuela.",
+                        "nucleo": "escuela",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "escuela."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Por eso se sienta en su habitación.",
+                "partes": [
+                  {
+                    "funcion": "CCC",
+                    "texto": "Por eso",
+                    "nucleo": "eso",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "Por"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "eso",
+                        "nucleo": "eso"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "se",
+                    "nucleo": "se"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "sienta",
+                    "nucleo": "sienta"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en su habitación.",
+                    "nucleo": "habitación",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "su habitación.",
+                        "nucleo": "habitación",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "su"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "habitación."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Abre el cuaderno y lee con atención.",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Abre",
+                    "nucleo": "Abre"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "el cuaderno",
+                    "nucleo": "cuaderno",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "el"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "cuaderno"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CONJ",
+                    "texto": "y"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "lee",
+                    "nucleo": "lee"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "con atención.",
+                    "nucleo": "atención",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "atención.",
+                        "nucleo": "atención."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Pablo",
+                "nucleo": "Pablo",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Pablo"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "no tiene que estudiar hoy.",
+                "partes": [
+                  {
+                    "funcion": "NEG",
+                    "texto": "no"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "tiene que",
+                    "nucleo": "tiene"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "estudiar hoy.",
+                    "nucleo": "estudiar",
+                    "partes": [
+                      {
+                        "funcion": "INF",
+                        "texto": "estudiar",
+                        "nucleo": "estudiar"
+                      },
+                      {
+                        "funcion": "CCT",
+                        "texto": "hoy.",
+                        "nucleo": "hoy."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Pero en casa hay que preparar la cena.",
+                "partes": [
+                  {
+                    "funcion": "CONJ",
+                    "texto": "Pero"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en casa",
+                    "nucleo": "casa",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "casa",
+                        "nucleo": "casa"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "hay que",
+                    "nucleo": "hay"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "preparar la cena.",
+                    "nucleo": "preparar",
+                    "partes": [
+                      {
+                        "funcion": "INF",
+                        "texto": "preparar",
+                        "nucleo": "preparar"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "la cena.",
+                        "nucleo": "cena",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "cena."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Pablo",
+                "nucleo": "Pablo",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Pablo"
+                  }
+                ]
+              },
+              {
+                "funcion": "PRED",
+                "texto": "corta las verduras con cuidado.",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "corta",
+                    "nucleo": "corta"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "las verduras",
+                    "nucleo": "verduras",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "las"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "verduras"
+                      }
+                    ]
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "con cuidado.",
+                    "nucleo": "cuidado",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "cuidado.",
+                        "nucleo": "cuidado."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Luego cenan juntos en la cocina.",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "Luego",
+                    "nucleo": "Luego"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "cenan",
+                    "nucleo": "cenan"
+                  },
+                  {
+                    "funcion": "CPVO",
+                    "texto": "juntos",
+                    "nucleo": "juntos"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en la cocina.",
+                    "nucleo": "cocina",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la cocina.",
+                        "nucleo": "cocina",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "cocina."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "b6",
       "tipo": "huecos",
-      "id": "a1-obl-que",
-      "pregunta": { "en": "Complete: I have to study." },
-      "frase": "Tengo ___ estudiar.",
-      "audio": true,
-      "opciones": {
-        "que": { "en": "Tener que needs que before the infinitive." },
-        "de": { "en": "De is not the link in tengo que." },
-        "a": { "en": "Ir a is a plan. Tener uses que." }
-      },
-      "correcta": "que"
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
     },
     {
-      "tipo": "ordenar",
-      "id": "a1-obl-porque",
-      "frase": "Porque mañana hay un examen",
-      "traduccion": { "en": "Because there is an exam tomorrow." }
+      "id": "b7",
+      "tipo": "ordenar"
     },
     {
+      "id": "b8",
       "tipo": "huecos",
-      "id": "a1-obl-m1",
-      "pregunta": {"en": "Complete the general rule: you have to arrive at nine."},
-      "frase": "___ que llegar a las nueve.",
-      "audio": true,
-      "opciones": {
-        "Hay": {"en": "Hay que has no person."},
-        "Tengo": {"en": "Tengo que is I have to."},
-        "Es": {"en": "The phrase is hay que."}
-      },
-      "correcta": "Hay"
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
     },
     {
+      "id": "b9",
       "tipo": "test",
-      "id": "a1-obl-porque-por-que",
-      "pregunta": {"en": "Choose the expression that asks «why?»"},
-      "opciones": {
-        "por qué": {"en": "Two words, with an accent on qué, ask why."},
-        "porque": {"en": "One word without an accent introduces a reason: because."},
-        "porqué": {"en": "One word with an accent is a noun meaning the reason."}
-      },
-      "correcta": "por qué"
+      "opciones": [
+        {
+          "correcta": false
+        },
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        }
+      ]
     },
     {
+      "id": "b10",
       "tipo": "test",
-      "id": "a1-obl-m2",
-      "pregunta": {"en": "Which sentence says I have to study?"},
-      "opciones": {
-        "Tengo que estudiar": {"en": "Tener que names the person."},
-        "Hay que estudiar": {"en": "Hay que is general."},
-        "Es necesario estudiar": {"en": "That is general too."}
-      },
-      "correcta": "Tengo que estudiar"
+      "opciones": [
+        {
+          "correcta": false
+        },
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        }
+      ]
     },
     {
+      "id": "b11",
       "tipo": "escribir",
-      "id": "a1-obl-m3",
-      "pregunta": {"en": "Translate: «I have to study.»"},
-      "respuestas": ["Tengo que estudiar"]
-    },
-    {
-      "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
-      "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Write your list of things to do this week: what you have to do and what one must do in general (hay que).\n\n**Speak (about 30 seconds).** Explain aloud why you cannot go out tonight: give three obligations."
-      }
+      "respuestas": [
+        "Tengo que estudiar",
+        "Tengo que estudiar."
+      ]
     }
   ]
 }

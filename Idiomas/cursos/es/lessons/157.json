@@ -1,201 +1,529 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "157",
   "capitulo": 14,
-  "titulo_es": "Perdona, ha sido sin querer",
-  "titulo": {"en": "Sorry, it was an accident"},
+  "titulo": {
+    "$t": "titulo"
+  },
   "intro": {
-    "en": "The small formulas that keep people on good terms: apologising, thanking, congratulating and sending regards."
+    "$t": "intro"
   },
   "palabras": {
-    "perdonar": {"en": "to forgive", "pron": "per-do-NAR", "cat": "verb"},
-    "disculpar": {"en": "to excuse", "pron": "dis-kul-PAR", "cat": "verb"},
-    "perdóname": {"en": "forgive me", "pron": "per-DO-na-me", "cat": "expression"},
-    "sin querer": {"en": "by accident, without meaning to", "pron": "sin ke-RER", "cat": "expression"},
-    "no importa": {"en": "it doesn't matter", "pron": "no im-POR-ta", "cat": "expression"},
-    "no pasa nada": {"en": "it's all right, never mind", "pron": "no PA-sa NA-da", "cat": "expression"},
-    "no tiene importancia": {"en": "it's not important", "pron": "no TYE-ne im-por-TAN-thya", "cat": "expression"},
-    "lo siento": {"en": "I'm sorry", "pron": "lo SYEN-to", "cat": "expression"},
-    "no te preocupes": {"en": "don't worry", "pron": "no te pre-o-KU-pes", "cat": "expression"},
+    "perdonar": {
+      "$f": "p.perdonar",
+      "pron": "per-do-NAR",
+      "cat": "verb"
+    },
+    "disculpar": {
+      "$f": "p.disculpar",
+      "pron": "dis-kul-PAR",
+      "cat": "verb"
+    },
+    "perdóname": {
+      "$f": "p.perdóname",
+      "pron": "per-DO-na-me",
+      "cat": "expr"
+    },
+    "sin querer": {
+      "$f": "p.sin querer",
+      "pron": "sin ke-RER",
+      "cat": "expr"
+    },
+    "no importa": {
+      "$f": "p.no importa",
+      "pron": "no im-POR-ta",
+      "cat": "expr"
+    },
+    "no pasa nada": {
+      "$f": "p.no pasa nada",
+      "pron": "no PA-sa NA-da",
+      "cat": "expr"
+    },
+    "no tiene importancia": {
+      "$f": "p.no tiene importancia",
+      "pron": "no TYE-ne im-por-TAN-thya",
+      "cat": "expr"
+    },
+    "lo siento": {
+      "$f": "p.lo siento",
+      "pron": "lo SYEN-to",
+      "cat": "expr"
+    },
+    "no te preocupes": {
+      "$f": "p.no te preocupes",
+      "pron": "no te pre-o-KU-pes",
+      "cat": "expr"
+    },
     "gracias por": {
-      "en": "thank you for",
+      "$f": "p.gracias por",
       "pron": "GRA-thyas por",
-      "cat": "expression",
-      "nota": "Followed by a noun or an infinitive."
+      "cat": "expr",
+      "nota": {
+        "$t": "p.gracias por.nota"
+      }
     },
     "a ti": {
-      "en": "thank YOU",
+      "$f": "p.a ti",
       "pron": "a ti",
-      "cat": "expression",
-      "nota": "The answer to gracias when you are grateful too."
+      "cat": "expr",
+      "nota": {
+        "$t": "p.a ti.nota"
+      }
     },
-    "de nada": {"en": "you're welcome", "pron": "de NA-da", "cat": "expression"},
-    "no hay de qué": {"en": "you're welcome; don't mention it", "pron": "no ai de ke", "cat": "expression"},
-    "te lo prometo": {"en": "I promise", "pron": "te lo pro-ME-to", "cat": "expression"},
-    "prometer": {"en": "to promise", "pron": "pro-me-TER", "cat": "verb"},
-    "bien hecho": {"en": "well done", "pron": "byen E-cho", "cat": "expression"},
-    "¡enhorabuena!": {"en": "congratulations", "pron": "en-o-ra-BWE-na", "cat": "expression"},
-    "¡felicidades!": {"en": "congratulations; happy birthday", "pron": "fe-li-thi-DA-des (Spain) / fe-li-si-DA-des (seseo)", "cat": "expression"},
-    "que cumplas muchos más": {"en": "many happy returns", "pron": "ke KUM-plas MU-chos mas", "cat": "expression"},
-    "que tengas suerte": {"en": "good luck; hope you have good luck", "pron": "ke TEN-gas SWER-te", "cat": "expression"},
-    "igualmente": {"en": "the same to you", "pron": "i-gwal-MEN-te", "cat": "expression"},
-    "recuerdos a": {"en": "regards to", "pron": "re-KWER-dos a", "cat": "expression"},
-    "saludos a": {"en": "greetings to; say hello to", "pron": "sa-LU-dos a", "cat": "expression"},
-    "de tu parte": {"en": "on your behalf", "pron": "de tu PAR-te", "cat": "expression", "nota": "The answer to dale recuerdos."},
-    "estás en tu casa": {"en": "make yourself at home", "pron": "es-TAS en tu KA-sa", "cat": "expression"},
-    "encantado de conocerte": {"en": "pleased to meet you (encantada for a female speaker)", "pron": "en-kan-TA-do de ko-no-THER-te", "cat": "expression"},
-    "mucho gusto": {"en": "nice to meet you; pleased to meet you", "pron": "MU-cho GUS-to", "cat": "expression"}
+    "de nada": {
+      "$f": "p.de nada",
+      "pron": "de NA-da",
+      "cat": "expr"
+    },
+    "no hay de qué": {
+      "$f": "p.no hay de qué",
+      "pron": "no ai de ke",
+      "cat": "expr"
+    },
+    "te lo prometo": {
+      "$f": "p.te lo prometo",
+      "pron": "te lo pro-ME-to",
+      "cat": "expr"
+    },
+    "prometer": {
+      "$f": "p.prometer",
+      "pron": "pro-me-TER",
+      "cat": "verb"
+    },
+    "bien hecho": {
+      "$f": "p.bien hecho",
+      "pron": "byen E-cho",
+      "cat": "expr"
+    },
+    "¡enhorabuena!": {
+      "$f": "p.¡enhorabuena!",
+      "pron": "en-o-ra-BWE-na",
+      "cat": "expr"
+    },
+    "¡felicidades!": {
+      "$f": "p.¡felicidades!",
+      "pron": "fe-li-thi-DA-des (Spain) / fe-li-si-DA-des (seseo)",
+      "cat": "expr"
+    },
+    "que cumplas muchos más": {
+      "$f": "p.que cumplas muchos más",
+      "pron": "ke KUM-plas MU-chos mas",
+      "cat": "expr"
+    },
+    "que tengas suerte": {
+      "$f": "p.que tengas suerte",
+      "pron": "ke TEN-gas SWER-te",
+      "cat": "expr"
+    },
+    "igualmente": {
+      "$f": "p.igualmente",
+      "pron": "i-gwal-MEN-te",
+      "cat": "expr"
+    },
+    "recuerdos a": {
+      "$f": "p.recuerdos a",
+      "pron": "re-KWER-dos a",
+      "cat": "expr"
+    },
+    "saludos a": {
+      "$f": "p.saludos a",
+      "pron": "sa-LU-dos a",
+      "cat": "expr"
+    },
+    "de tu parte": {
+      "$f": "p.de tu parte",
+      "pron": "de tu PAR-te",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.de tu parte.nota"
+      }
+    },
+    "estás en tu casa": {
+      "$f": "p.estás en tu casa",
+      "pron": "es-TAS en tu KA-sa",
+      "cat": "expr"
+    },
+    "encantado de conocerte": {
+      "$f": "p.encantado de conocerte",
+      "pron": "en-kan-TA-do de ko-no-THER-te",
+      "cat": "expr"
+    },
+    "mucho gusto": {
+      "$f": "p.mucho gusto",
+      "pron": "MU-cho GUS-to",
+      "cat": "expr"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Formulas for everyday life"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "**Apologising.** You can add a reason with **es que**:\n\n- **Lo siento, de verdad. Es que** había mucho tráfico.\n- **Perdóname.** / **Perdóneme.** (usted)\n- **Disculpa.** / **Disculpe.**\n- **Ha sido sin querer.**\n\nCommon replies include **No importa**, **No pasa nada**, **No te preocupes** and **No tiene importancia**.\n\n**Thanking.** **Gracias por todo**, **gracias por** la invitación, **gracias por** venir. After **por**, use a noun or infinitive. Common replies: **De nada** and **No hay de qué**. Say **A ti** when you are thanking the other person too.\n\n**Promising.** **Te prometo que** no volverá a pasar. **Te lo prometo.**\n\n**Congratulating.** **¡Enhorabuena!**, **¡Bien hecho!**, **¡Buen trabajo!** On a birthday: **¡Felicidades! Que cumplas muchos más.**\n\n**Good wishes** use **que** + subjunctive: **que te diviertas**, **que descanses**, **que tengas suerte**, **que te vaya bien**, **que te mejores**. Replies include **Igualmente** and **Gracias, tú también**.\n\n**Regards.** **Recuerdos a** tu familia; **saludos a** Pedro. Reply: **De tu parte.**\n\n**Welcoming.** **Pasa, pasa, estás en tu casa. ¡Qué bien que estés aquí!**\n\n**Introducing.** Informally: **Mira, este es Luis. Encantado/a de conocerte.** The speaker says **encantado** or **encantada** according to their gender. Formally: **Quisiera presentarle a la señora Ruiz. Mucho gusto.**"
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Arriving late to a birthday dinner"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Berta",
-          "es": "¡Por fin! Pasa, pasa, estás en tu casa.",
-          "en": "At last! Come in, come in, make yourself at home.",
-          "analisis": [["Por fin", "at last"], ["Pasa, pasa", "command"], ["estás en tu casa", "welcome"]]
-        },
-        {
-          "quien": "Jaime",
-          "es": "Perdóname, de verdad. Es que he perdido el autobús.",
-          "en": "Forgive me, really. The thing is, I missed the bus.",
           "analisis": [
-            ["Perdóname", "apology"],
-            ["de verdad", "emphasis"],
-            ["Es que", "excuse"],
-            ["he perdido", "verb"],
-            ["el autobús", "object"]
+            [
+              "Por fin",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "Pasa, pasa",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "estás en tu casa",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
-          "quien": "Berta",
-          "es": "No pasa nada, no tiene importancia. Mira, este es mi primo Andrés.",
-          "en": "Never mind, it's not important. Look, this is my cousin Andrés.",
+          "$f": "b2.f1",
+          "quien": "Jaime",
           "analisis": [
-            ["No pasa nada", "accepting the apology"],
-            ["no tiene importancia", "accepting the apology"],
-            ["este es", "introduction"],
-            ["mi primo Andrés", "who"]
+            [
+              "Perdóname",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "de verdad",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "Es que",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "he perdido",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "el autobús",
+              {
+                "$t": "a7"
+              }
+            ]
           ]
         },
         {
-          "quien": "Jaime",
-          "es": "Encantado de conocerte. Y a ti, Berta, ¡felicidades! Que cumplas muchos más.",
-          "en": "Pleased to meet you. And you, Berta, happy birthday! Many happy returns.",
+          "$f": "b2.f2",
+          "quien": "Berta",
           "analisis": [
-            ["Encantado de conocerte", "greeting"],
-            ["felicidades", "congratulation"],
-            ["Que cumplas", "wish (subjunctive)"],
-            ["muchos más", "object"]
+            [
+              "No pasa nada",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "no tiene importancia",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "este es",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "mi primo Andrés",
+              {
+                "$t": "a10"
+              }
+            ]
           ]
         },
         {
-          "quien": "Berta",
-          "es": "Gracias por venir y gracias por el regalo.",
-          "en": "Thank you for coming and thank you for the present.",
-          "analisis": [["Gracias por venir", "thanks + infinitive"], ["gracias por el regalo", "thanks + noun"]]
+          "$f": "b2.f3",
+          "quien": "Jaime",
+          "analisis": [
+            [
+              "Encantado de conocerte",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "felicidades",
+              {
+                "$t": "a12"
+              }
+            ],
+            [
+              "Que cumplas",
+              {
+                "$t": "a13"
+              }
+            ],
+            [
+              "muchos más",
+              {
+                "$t": "a7"
+              }
+            ]
+          ]
         },
         {
-          "quien": "Jaime",
-          "es": "A ti por invitarme. Por cierto, recuerdos de mi madre.",
-          "en": "Thank you for inviting me. By the way, my mother sends her regards.",
+          "$f": "b2.f4",
+          "quien": "Berta",
           "analisis": [
-            ["A ti", "returning thanks"],
-            ["por invitarme", "reason"],
-            ["Por cierto", "by the way"],
-            ["recuerdos de mi madre", "regards"]
+            [
+              "Gracias por venir",
+              {
+                "$t": "a14"
+              }
+            ],
+            [
+              "gracias por el regalo",
+              {
+                "$t": "a15"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "quien": "Jaime",
+          "analisis": [
+            [
+              "A ti",
+              {
+                "$t": "a16"
+              }
+            ],
+            [
+              "por invitarme",
+              {
+                "$t": "a17"
+              }
+            ],
+            [
+              "Por cierto",
+              {
+                "$t": "a18"
+              }
+            ],
+            [
+              "recuerdos de mi madre",
+              {
+                "$t": "a19"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario", "palabras": ["perdonar", "disculpar", "perdóname", "sin querer", "no importa", "no pasa nada", "no tiene importancia", "lo siento", "no te preocupes", "gracias por", "a ti", "de nada", "no hay de qué", "te lo prometo", "prometer", "bien hecho", "¡enhorabuena!", "¡felicidades!", "que cumplas muchos más", "que tengas suerte", "igualmente", "recuerdos a", "saludos a", "de tu parte", "estás en tu casa", "encantado de conocerte", "mucho gusto"]},
+    {
+      "tipo": "vocabulario",
+      "palabras": [
+        "perdonar",
+        "disculpar",
+        "perdóname",
+        "sin querer",
+        "no importa",
+        "no pasa nada",
+        "no tiene importancia",
+        "lo siento",
+        "no te preocupes",
+        "gracias por",
+        "a ti",
+        "de nada",
+        "no hay de qué",
+        "te lo prometo",
+        "prometer",
+        "bien hecho",
+        "¡enhorabuena!",
+        "¡felicidades!",
+        "que cumplas muchos más",
+        "que tengas suerte",
+        "igualmente",
+        "recuerdos a",
+        "saludos a",
+        "de tu parte",
+        "estás en tu casa",
+        "encantado de conocerte",
+        "mucho gusto"
+      ]
+    },
     {
       "tipo": "huecos",
       "id": "cortesia-b1-1",
-      "pregunta": {"en": "Complete: thank you for helping me."},
-      "frase": "Gracias por ___.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "ayudarme": {"en": "After por, the infinitive."},
-        "ayúdame": {"en": "That is a command."},
-        "me ayudas": {"en": "After a preposition, the infinitive."}
+        "ayudarme": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "ayúdame": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "me ayudas": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "ayudarme"
     },
     {
       "tipo": "test",
       "id": "cortesia-b1-2",
-      "pregunta": {"en": "Someone says Dale recuerdos a tu padre. You answer…"},
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
       "opciones": {
-        "De tu parte.": {"en": "I'll pass them on from you."},
-        "A ti.": {"en": "That answers gracias."},
-        "No importa.": {"en": "That answers an apology."}
+        "De tu parte.": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "A ti.": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "No importa.": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "De tu parte."
     },
     {
       "tipo": "test",
       "id": "cortesia-b1-3",
-      "pregunta": {"en": "Someone steps on your foot and says ¡Perdón! You answer…"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "No pasa nada.": {"en": "It's all right."},
-        "Igualmente.": {"en": "That returns a good wish."},
-        "Te lo prometo.": {"en": "That is a promise."}
+        "No pasa nada.": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "Igualmente.": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "Te lo prometo.": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "No pasa nada."
     },
     {
       "tipo": "huecos",
       "id": "cortesia-b1-4",
-      "pregunta": {"en": "Complete the wish: have a good rest."},
-      "frase": "Que ___.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "descanses": {"en": "A wish with que takes the subjunctive."},
-        "descansas": {"en": "A wish with que takes the subjunctive."},
-        "descansar": {"en": "You need a conjugated verb."}
+        "descanses": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "descansas": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "descansar": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "descanses"
     },
     {
       "tipo": "traduccion",
       "id": "cortesia-b1-5",
-      "frase": "Ha sido sin querer.",
+      "frase": {
+        "$e": "b8.frase"
+      },
       "opciones": [
-        {"texto": {"en": "It was an accident."}, "correcta": true},
-        {"texto": {"en": "It was without love."}, "explicacion": {"en": "Sin querer: without meaning to."}},
-        {"texto": {"en": "He didn't want to be."}, "explicacion": {"en": "The phrase means it was not on purpose."}}
+        {
+          "texto": {
+            "$t": "b8.o0"
+          },
+          "correcta": true
+        },
+        {
+          "texto": {
+            "$t": "b8.o1"
+          },
+          "explicacion": {
+            "$t": "b8.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b8.o2"
+          },
+          "explicacion": {
+            "$t": "b8.o2.explicacion"
+          }
+        }
       ]
     },
     {
       "tipo": "test",
       "id": "cortesia-b1-6",
-      "pregunta": {"en": "Someone says ¡Que tengas un buen fin de semana! A natural answer is…"},
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
       "opciones": {
-        "Igualmente.": {"en": "The same to you."},
-        "De tu parte.": {"en": "That answers regards."},
-        "Bien hecho.": {"en": "That is praise."}
+        "Igualmente.": {
+          "$t": "b9.o0.refuerzo"
+        },
+        "De tu parte.": {
+          "$t": "b9.o1.refuerzo"
+        },
+        "Bien hecho.": {
+          "$t": "b9.o2.refuerzo"
+        }
       },
       "correcta": "Igualmente."
     },
     {
       "tipo": "ordenar",
       "id": "cortesia-b1-7",
-      "frase": "Te prometo que no volverá a pasar",
-      "traduccion": {"en": "I promise it won't happen again."}
+      "frase": {
+        "$e": "b10.frase"
+      },
+      "traduccion": {
+        "$t": "b10.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write three short notes: an apology, a thank-you and congratulations.\n\n**Speak (about 2 minutes).** Play both parts aloud: arrive late and apologise, be introduced, congratulate someone and send regards."
+        "$t": "b11.texto"
       }
     }
   ]

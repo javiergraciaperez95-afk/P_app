@@ -1,128 +1,273 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "136",
   "capitulo": 12,
-  "titulo_es": "Para que vengas",
-  "titulo": { "en": "So you can come" },
-  "intro": { "en": "A common pattern is para + infinitive for the speaker's own purpose, and para que + subjunctive when another person is to act." },
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "para": { "en": "in order to, for", "pron": "PA-ra", "cat": "preposition" },
-    "para que": { "en": "so that", "pron": "PA-ra ke", "cat": "conjunction" },
-    "vengas": { "en": "come (present subjunctive, tú)", "pron": "BEN-gas", "cat": "verb", "nota": "Second-person singular of venir." },
-    "entiendas": { "en": "understand (present subjunctive, tú)", "pron": "en-TYEN-das", "cat": "verb", "nota": "Second-person singular of entender." },
-    "aprender": { "en": "to learn", "pron": "a-pren-DER", "cat": "verb" },
-    "llegar": { "en": "to arrive", "pron": "ye-GAR", "cat": "verb" },
-    "a tiempo": { "en": "on time", "pron": "a TYEM-po", "cat": "expression" },
-    "despacio": { "en": "slowly", "pron": "des-PA-syo/THyo", "cat": "adverb" }
+    "para": {
+      "$f": "p.para",
+      "pron": "PA-ra",
+      "cat": "prep"
+    },
+    "para que": {
+      "$f": "p.para que",
+      "pron": "PA-ra ke",
+      "cat": "conj"
+    },
+    "vengas": {
+      "$f": "p.vengas",
+      "pron": "BEN-gas",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.vengas.nota"
+      }
+    },
+    "entiendas": {
+      "$f": "p.entiendas",
+      "pron": "en-TYEN-das",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.entiendas.nota"
+      }
+    },
+    "aprender": {
+      "$f": "p.aprender",
+      "pron": "a-pren-DER",
+      "cat": "verb"
+    },
+    "llegar": {
+      "$f": "p.llegar",
+      "pron": "ye-GAR",
+      "cat": "verb"
+    },
+    "a tiempo": {
+      "$f": "p.a tiempo",
+      "pron": "a TYEM-po",
+      "cat": "expr"
+    },
+    "despacio": {
+      "$f": "p.despacio",
+      "pron": "des-PA-syo/THyo",
+      "cat": "adv"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": "Same person, or another",
-      "texto": "In the common pattern, when the subject of the purpose action is the same, use **para** + infinitive.\n\n- Estudio **para aprender**.\n\nWhen someone else is to act, use **para que** + present subjunctive.\n\n- Te llamo **para que vengas**.\n- Hablo despacio **para que entiendas**."
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "dialogo",
-      "titulo": "Why",
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "Estudio para aprender.",
-          "en": "I study in order to learn.",
           "analisis": [
-            ["Estudio", "verb"],
-            ["para aprender", "purpose"]
+            [
+              "Estudio",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "para aprender",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Te llamo para que vengas.",
-          "en": "I'm calling you so you can come.",
           "analisis": [
-            ["Te llamo", "verb"],
-            ["para que vengas", "purpose"]
+            [
+              "Te llamo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "para que vengas",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Lucía",
-          "es": "Salgo pronto para llegar a tiempo.",
-          "en": "I leave early in order to arrive on time.",
           "analisis": [
-            ["Salgo", "verb"],
-            ["para llegar", "purpose"],
-            ["a tiempo", "on time"]
+            [
+              "Salgo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "para llegar",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "a tiempo",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "Hablo despacio para que entiendas.",
-          "en": "I speak slowly so that you understand.",
           "analisis": [
-            ["Hablo", "verb"],
-            ["despacio", "how"],
-            ["para que entiendas", "purpose"]
+            [
+              "Hablo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "despacio",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "para que entiendas",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         }
       ]
     },
     {
       "tipo": "vocabulario",
-      "palabras": ["para", "para que", "vengas", "entiendas", "aprender", "llegar", "a tiempo", "despacio"]
+      "palabras": [
+        "para",
+        "para que",
+        "vengas",
+        "entiendas",
+        "aprender",
+        "llegar",
+        "a tiempo",
+        "despacio"
+      ]
     },
     {
       "tipo": "huecos",
       "id": "b2-fin-vengas",
-      "pregunta": { "en": "Complete: I'm calling you so you can come." },
-      "frase": "Te llamo para que ___.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "vengas": { "en": "The purpose clause has a different subject, so use para que + subjunctive." },
-        "venir": { "en": "For this different subject, use para que + the conjugated form vengas." },
-        "vienes": { "en": "This purpose clause calls for the subjunctive: vengas." }
+        "vengas": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "venir": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "vienes": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "vengas"
     },
     {
       "tipo": "ordenar",
       "id": "b2-fin-estudiar",
-      "frase": "Estudio para aprender",
-      "traduccion": { "en": "I study in order to learn." }
+      "frase": {
+        "$e": "b5.frase"
+      },
+      "traduccion": {
+        "$t": "b5.traduccion"
+      }
     },
     {
       "tipo": "huecos",
       "id": "b2-fin-m1",
-      "pregunta": {"en": "Complete: I speak slowly so that you understand."},
-      "frase": "Hablo despacio para que ___.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "entiendas": {"en": "Para que takes the subjunctive."},
-        "entiendes": {"en": "Use the subjunctive in this purpose clause: entiendas."},
-        "entender": {"en": "The clause refers to tú, so conjugate entender as entiendas."}
+        "entiendas": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "entiendes": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "entender": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "entiendas"
     },
     {
       "tipo": "huecos",
       "id": "b2-fin-m2",
-      "pregunta": {"en": "Complete: I leave early in order to arrive on time."},
-      "frase": "Salgo pronto para ___ a tiempo.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "audio": true,
       "opciones": {
-        "llegar": {"en": "The same subject does both actions, so use para + infinitive."},
-        "que llegue": {"en": "That would need a different subject."},
-        "llego": {"en": "With the same subject, use para + infinitive."}
+        "llegar": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "que llegue": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "llego": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "llegar"
     },
     {
       "tipo": "escribir",
       "id": "b2-fin-m3",
-      "pregunta": {"en": "Translate: «I'm calling you so you can come.»"},
-      "respuestas": ["Te llamo para que vengas"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "Te llamo para que vengas"
+      ]
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b9.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write an explanation of why you do five things, each with para + infinitive or para que + subjunctive.\n\n**Speak (about 2 minutes).** Explain aloud what the things in your bag or on your desk are for, and what you do so that others are comfortable."
+        "$t": "b9.texto"
       }
     }
   ]

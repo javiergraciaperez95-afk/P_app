@@ -1,139 +1,370 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "053",
   "capitulo": 6,
-  "titulo_es": "El cuerpo",
-  "titulo": {"en": "The body"},
-  "intro": {"en": "Body parts you need at the doctor’s, when exercising, and when talking about clothes."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "el cuerpo": {"en": "the body", "pron": "el KWER-po", "genero": "m"},
-    "la cabeza": {"en": "the head", "pron": "la ka-BE-tha", "genero": "f"},
-    "el ojo": {"en": "the eye", "pron": "el O-ho", "genero": "m"},
-    "la cara": {"en": "the face", "pron": "la KA-ra", "genero": "f"},
-    "la nariz": {"en": "the nose", "pron": "la na-RITH", "genero": "f", "nota": "The /θ/ guide reflects much of Spain; in seseante varieties, z sounds like /s/."},
-    "la boca": {"en": "the mouth", "pron": "la BO-ka", "genero": "f"},
-    "la oreja": {"en": "the ear", "pron": "la o-RE-ha", "genero": "f"},
-    "el brazo": {"en": "the arm", "pron": "el BRA-tho", "genero": "m"},
-    "la mano": {"en": "the hand", "pron": "la MA-no", "genero": "f", "nota": "Feminine, in spite of the -o."},
-    "el dedo": {"en": "the finger, the toe", "pron": "el DE-do", "genero": "m"},
-    "la pierna": {"en": "the leg", "pron": "la PYER-na", "genero": "f"},
-    "el pie": {"en": "the foot", "pron": "el pye", "genero": "m"},
-    "la espalda": {"en": "the back", "pron": "la es-PAL-da", "genero": "f"},
-    "el cuello": {"en": "the neck", "pron": "el KWE-yo", "genero": "m"},
-    "la rodilla": {"en": "the knee", "pron": "la ro-DI-ya", "genero": "f"},
-    "derecho": {"en": "right (side)", "pron": "de-RE-cho", "cat": "adjective", "nota": "Feminine: derecha."},
-    "izquierdo": {"en": "left (side)", "pron": "ith-KYER-do", "cat": "adjective", "nota": "Feminine: izquierda."},
-    "levanta": {"en": "lift, raise (tú)", "pron": "le-BAN-ta", "cat": "verb"}
+    "el cuerpo": {
+      "$f": "p.el cuerpo",
+      "pron": "el KWER-po",
+      "genero": "m"
+    },
+    "la cabeza": {
+      "$f": "p.la cabeza",
+      "pron": "la ka-BE-tha",
+      "genero": "f"
+    },
+    "el ojo": {
+      "$f": "p.el ojo",
+      "pron": "el O-ho",
+      "genero": "m"
+    },
+    "la cara": {
+      "$f": "p.la cara",
+      "pron": "la KA-ra",
+      "genero": "f"
+    },
+    "la nariz": {
+      "$f": "p.la nariz",
+      "pron": "la na-RITH",
+      "genero": "f",
+      "nota": {
+        "$t": "p.la nariz.nota"
+      }
+    },
+    "la boca": {
+      "$f": "p.la boca",
+      "pron": "la BO-ka",
+      "genero": "f"
+    },
+    "la oreja": {
+      "$f": "p.la oreja",
+      "pron": "la o-RE-ha",
+      "genero": "f"
+    },
+    "el brazo": {
+      "$f": "p.el brazo",
+      "pron": "el BRA-tho",
+      "genero": "m"
+    },
+    "la mano": {
+      "$f": "p.la mano",
+      "pron": "la MA-no",
+      "genero": "f",
+      "nota": {
+        "$t": "p.la mano.nota"
+      }
+    },
+    "el dedo": {
+      "$f": "p.el dedo",
+      "pron": "el DE-do",
+      "genero": "m"
+    },
+    "la pierna": {
+      "$f": "p.la pierna",
+      "pron": "la PYER-na",
+      "genero": "f"
+    },
+    "el pie": {
+      "$f": "p.el pie",
+      "pron": "el pye",
+      "genero": "m"
+    },
+    "la espalda": {
+      "$f": "p.la espalda",
+      "pron": "la es-PAL-da",
+      "genero": "f"
+    },
+    "el cuello": {
+      "$f": "p.el cuello",
+      "pron": "el KWE-yo",
+      "genero": "m"
+    },
+    "la rodilla": {
+      "$f": "p.la rodilla",
+      "pron": "la ro-DI-ya",
+      "genero": "f"
+    },
+    "derecho": {
+      "$f": "p.derecho",
+      "pron": "de-RE-cho",
+      "cat": "adj",
+      "nota": {
+        "$t": "p.derecho.nota"
+      }
+    },
+    "izquierdo": {
+      "$f": "p.izquierdo",
+      "pron": "ith-KYER-do",
+      "cat": "adj",
+      "nota": {
+        "$t": "p.izquierdo.nota"
+      }
+    },
+    "levanta": {
+      "$f": "p.levanta",
+      "pron": "le-BAN-ta",
+      "cat": "verb"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Parts of the body"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "In ordinary contexts, when it is clear whose body part you mean, Spanish often uses **el, la, los, las** instead of a possessive: **levanta la mano**, **tengo las piernas cansadas**, **me duele la espalda**. A possessive can be used for emphasis or contrast.\n\n**La mano** is feminine: **la mano derecha**, **las manos frías**.\n\n**Derecho** and **izquierdo** agree with the body part: **el pie derecho**, **la mano derecha**, **el brazo izquierdo**, **la pierna izquierda**.\n\n**El dedo** means a finger or a toe; add **de la mano** or **del pie** to specify: **los dedos de la mano**, **los dedos del pie**."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "At the gym"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Monitor",
-          "es": "Levanta los brazos.",
-          "en": "Raise your arms.",
-          "analisis": [["Levanta", "command (tú)"], ["los brazos", "object"]]
+          "analisis": [
+            [
+              "Levanta",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "los brazos",
+              {
+                "$t": "a1"
+              }
+            ]
+          ]
         },
-        {"quien": "Pablo", "es": "¿Los dos?", "en": "Both?", "analisis": [["¿Los dos?", "question"]]},
         {
-          "quien": "Monitor",
-          "es": "Sí. Ahora la mano derecha en la rodilla izquierda.",
-          "en": "Yes. Now your right hand on your left knee.",
-          "analisis": [["Ahora", "time"], ["la mano derecha", "object"], ["en la rodilla izquierda", "place"]]
-        },
-        {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Tengo las piernas cansadas.",
-          "en": "My legs are tired.",
-          "analisis": [["Tengo", "verb"], ["las piernas", "object"], ["cansadas", "description"]]
+          "analisis": [
+            [
+              "¿Los dos?",
+              {
+                "$t": "a2"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Monitor",
-          "es": "La espalda recta y la cabeza alta.",
-          "en": "Back straight and head up.",
-          "analisis": [["La espalda recta", "instruction"], ["la cabeza alta", "instruction"]]
+          "analisis": [
+            [
+              "Ahora",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "la mano derecha",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "en la rodilla izquierda",
+              {
+                "$t": "a4"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Pablo",
-          "es": "¡Y tengo los pies fríos!",
-          "en": "And my feet are cold!",
-          "analisis": [["tengo", "verb"], ["los pies", "object"], ["fríos", "description"]]
+          "analisis": [
+            [
+              "Tengo",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "las piernas",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "cansadas",
+              {
+                "$t": "a6"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f4",
+          "quien": "Monitor",
+          "analisis": [
+            [
+              "La espalda recta",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "la cabeza alta",
+              {
+                "$t": "a7"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "tengo",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "los pies",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "fríos",
+              {
+                "$t": "a6"
+              }
+            ]
+          ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "cuerpo-1",
-      "pregunta": {"en": "Complete: the right hand."},
-      "frase": "___ mano derecha.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "La": {"en": "Mano is feminine."},
-        "El": {"en": "Mano is feminine, in spite of the -o."},
-        "Los": {"en": "Mano is singular."}
+        "La": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "El": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "Los": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "La"
     },
     {
       "tipo": "test",
       "id": "cuerpo-2",
-      "pregunta": {"en": "Which Spanish phrase means «the feet»?"},
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
       "opciones": {
-        "los pies": {"en": "This means the feet as a whole; dedos can refer to fingers or toes."},
-        "las orejas": {"en": "Those are the ears."},
-        "los dedos": {"en": "Those are the fingers or toes."}
+        "los pies": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "las orejas": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "los dedos": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "los pies"
     },
     {
       "tipo": "huecos",
       "id": "cuerpo-3",
-      "pregunta": {"en": "Complete: my legs are tired."},
-      "frase": "Tengo ___ piernas cansadas.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "las": {"en": "With the body, Spanish uses the article."},
-        "mis": {"en": "The article is enough: tengo already says whose."},
-        "los": {"en": "Piernas is feminine."}
+        "las": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "mis": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "los": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "las"
     },
     {
       "tipo": "test",
       "id": "cuerpo-4",
-      "pregunta": {"en": "Which is right?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "el pie izquierdo": {"en": "Pie is masculine."},
-        "el pie izquierda": {"en": "The adjective agrees with pie."},
-        "la pie izquierda": {"en": "Pie is masculine."}
+        "el pie izquierdo": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "el pie izquierda": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "la pie izquierda": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "el pie izquierdo"
     },
     {
       "tipo": "escribir",
       "id": "cuerpo-5",
-      "pregunta": {"en": "Translate: «the left hand»"},
-      "respuestas": ["la mano izquierda"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "la mano izquierda"
+      ]
     },
     {
       "tipo": "ordenar",
       "id": "cuerpo-6",
-      "frase": "Levanta la mano derecha, por favor",
-      "traduccion": {"en": "Raise your right hand, please."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (30–40 words).** Describe an invented monster: how many heads, eyes, arms and legs it has.\n\n**Speak (about 30 seconds).** Give aloud the instructions for a short stretching routine, naming the parts of the body."
+        "$t": "b10.texto"
       }
     }
   ]

@@ -1,82 +1,160 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "303",
   "capitulo": 26,
-  "titulo_es": "Mismo idioma, varias voces",
-  "titulo": {"en": "One language, many voices"},
-  "intro": {"en": "Compare a few regional features without treating a country or continent as linguistically uniform."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "la variedad": {"en": "the variety; variant", "pron": "la ba-rje-DAD", "genero": "f"},
-    "el voseo": {"en": "the use of vos", "pron": "el bo-SE-o", "genero": "m"},
-    "el seseo": {"en": "pronouncing z and soft c as s", "pron": "el se-SE-o", "genero": "m"},
-    "la región": {"en": "the region", "pron": "la rre-HYON", "genero": "f"}
+    "la variedad": {
+      "$f": "p.la variedad",
+      "pron": "la ba-rje-DAD",
+      "genero": "f"
+    },
+    "el voseo": {
+      "$f": "p.el voseo",
+      "pron": "el bo-SE-o",
+      "genero": "m"
+    },
+    "el seseo": {
+      "$f": "p.el seseo",
+      "pron": "el se-SE-o",
+      "genero": "m"
+    },
+    "la región": {
+      "$f": "p.la región",
+      "pron": "la rre-HYON",
+      "genero": "f"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "A few profiles, not fixed rules"},
-      "texto": {"en": "Spanish has regional and social varieties. A feature can be widespread without being used by every speaker, and one country can contain several patterns.\n\n- **Addressing a group:** *ustedes* is the usual plural form across most of the Americas; *vosotros* is usual in much of Spain, while *ustedes* is also used in parts of Spain.\n- **Addressing one person:** *vos* is common in Argentina and Uruguay and appears in other regions too. Its forms vary; *vos tenés* is one familiar pattern.\n- **Pronunciation:** seseo is widespread in Spain and the Americas, while speakers in much of central and northern Spain distinguish the sounds in *caza* and *casa*.\n- **Vocabulary and tense use:** words such as *coche, carro* and *auto* vary by place. The choice between *he comido* and *comí* with **hoy** also varies by region and context.\n\nTreat these as reading clues. Check who is speaking, where, and in which situation before deciding that a form is wrong or universal."}
+      "titulo": {
+        "$t": "b1.titulo"
+      },
+      "texto": {
+        "$t": "b1.texto"
+      }
     },
     {
       "tipo": "texto",
-      "titulo": {"en": "Three messages from a travel forum"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
-        {"es": "Lucía, de Madrid, escribe: «¿Vosotros habéis probado el tren nocturno? Yo lo he tomado dos veces y me ha parecido cómodo».", "en": "Lucía, from Madrid, writes: “Have you all tried the night train? I have taken it twice and found it comfortable.”"},
-        {"es": "Mateo, de Ciudad de México, responde: «Sí, nosotros lo usamos el año pasado. ¿Ustedes saben si sigue saliendo los viernes?».", "en": "Mateo, from Mexico City, replies: “Yes, we used it last year. Do you all know if it still leaves on Fridays?”"},
-        {"es": "Valentina, de Buenos Aires, añade: «Yo viajé en enero. Si vos tenés tiempo, comprá el billete con antelación».", "en": "Valentina, from Buenos Aires, adds: “I travelled in January. If you have time, buy the ticket in advance.”"},
-        {"es": "Las tres personas hablan del mismo servicio, pero eligen pronombres y formas verbales diferentes según su variedad.", "en": "The three people are discussing the same service, but they choose different pronouns and verb forms according to their variety."},
-        {"es": "Esas diferencias no impiden entender el tema; el contexto ayuda a interpretar quién habla y a quién se dirige.", "en": "Those differences do not prevent readers from understanding the topic; context helps identify who is speaking and whom they are addressing."}
+        {
+          "$f": "b2.f0"
+        },
+        {
+          "$f": "b2.f1"
+        },
+        {
+          "$f": "b2.f2"
+        },
+        {
+          "$f": "b2.f3"
+        },
+        {
+          "$f": "b2.f4"
+        }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "test",
       "id": "b2-variedades-1",
-      "pregunta": {"en": "In Lucía’s message, what does vosotros signal?"},
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
       "opciones": {
-        "She is addressing a group using a form common in much of Spain": {"en": "The pronoun and habéis are plural forms used in that variety."},
-        "She is addressing one person formally": {"en": "Vosotros is plural and informal in this context."},
-        "She is using the Argentine form vos": {"en": "Vosotros and vos are different pronouns."}
+        "She is addressing a group using a form common in much of Spain": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "She is addressing one person formally": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "She is using the Argentine form vos": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "She is addressing a group using a form common in much of Spain"
     },
     {
       "tipo": "test",
       "id": "b2-variedades-2",
-      "pregunta": {"en": "Which form does Valentina use to address one person informally?"},
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
       "opciones": {
-        "vos": {"en": "She writes si vos tenés tiempo."},
-        "ustedes": {"en": "This addresses a group."},
-        "vosotros": {"en": "This addresses a group in much of Spain."}
+        "vos": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "ustedes": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "vosotros": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "vos"
     },
     {
       "tipo": "test",
       "id": "b2-variedades-3",
-      "pregunta": {"en": "What is the main point of the final paragraph?"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "Regional differences can be understood through context": {"en": "Different forms do not prevent readers from following the discussion."},
-        "Every country has only one variety": {"en": "The lesson explicitly says patterns vary within countries."},
-        "Different verb forms always change the topic": {"en": "All three messages discuss the same train service."}
+        "Regional differences can be understood through context": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "Every country has only one variety": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "Different verb forms always change the topic": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "Regional differences can be understood through context"
     },
     {
       "tipo": "huecos",
       "id": "b2-variedades-4",
-      "pregunta": {"en": "Complete with the form used in Valentina’s message."},
-      "frase": "Si vos ___ tiempo, comprá el billete.",
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
+      "frase": {
+        "$e": "b7.frase"
+      },
       "opciones": {
-        "tenés": {"en": "A common voseo form in the Río de la Plata."},
-        "tienes": {"en": "A tú form."},
-        "tenéis": {"en": "A vosotros form."}
+        "tenés": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "tienes": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "tenéis": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "tenés"
     },
     {
       "tipo": "ordenar",
       "id": "b2-variedades-5",
-      "frase": "Las tres personas hablan del mismo servicio",
-      "traduccion": {"en": "The three people are talking about the same service."}
+      "frase": {
+        "$e": "b8.frase"
+      },
+      "traduccion": {
+        "$t": "b8.traduccion"
+      }
     }
   ]
 }

@@ -1,43 +1,71 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "305",
   "capitulo": 1,
-  "titulo_es": "La sílaba tónica y la tilde",
   "titulo": {
-    "en": "Word stress and written accents"
+    "$t": "titulo"
   },
   "intro": {
-    "en": "Notice which syllable is stressed and when Spanish writes an accent mark."
+    "$t": "intro"
   },
   "palabras": {
-    "sílaba": "syllable",
-    "tónica": "stressed",
-    "tilde": "written accent",
-    "café": "coffee",
-    "lápiz": "pencil",
-    "canción": "song",
-    "música": "music",
-    "pregunta": "question",
-    "qué": "what",
-    "que": "that",
-    "cómo": "how"
+    "sílaba": {
+      "$f": "p.sílaba"
+    },
+    "tónica": {
+      "$f": "p.tónica"
+    },
+    "tilde": {
+      "$f": "p.tilde"
+    },
+    "café": {
+      "$f": "p.café"
+    },
+    "lápiz": {
+      "$f": "p.lápiz"
+    },
+    "canción": {
+      "$f": "p.canción"
+    },
+    "música": {
+      "$f": "p.música"
+    },
+    "pregunta": {
+      "$f": "p.pregunta"
+    },
+    "qué": {
+      "$f": "p.qué"
+    },
+    "que": {
+      "$f": "p.que"
+    },
+    "cómo": {
+      "$f": "p.cómo"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
       "titulo": {
-        "en": "Stress and accent marks"
+        "$t": "b1.titulo"
       },
       "texto": {
-        "en": "Every Spanish word with more than one syllable has a stressed syllable. As a useful first guide, words ending in a vowel, **n** or **s** usually stress the next-to-last syllable; words ending in other consonants usually stress the last. A written accent mark shows exceptions, as in **café**, **lápiz** and **canción**. Words stressed on the antepenultimate syllable always carry an accent: **música**, **teléfono**. Question and exclamation words carry an accent mark even in indirect questions: **¿Qué quieres? / No sé qué quieres.** Compare **qué** with **que** in **Creo que sí**."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "tabla",
       "titulo": {
-        "en": "Look at the stressed syllable"
+        "$t": "b2.titulo"
       },
       "columnas": [
-        "Word",
-        "Stress"
+        {
+          "$t": "b2.c0"
+        },
+        {
+          "$t": "b2.c1"
+        }
       ],
       "filas": [
         [
@@ -66,18 +94,17 @@
         ]
       ],
       "nota": {
-        "en": "Capital letters show the stressed syllable; the written accent is shown where needed."
+        "$t": "b2.nota"
       }
     },
     {
       "tipo": "texto",
       "titulo": {
-        "en": "A short message"
+        "$t": "b3.titulo"
       },
       "frases": [
         {
-          "es": "¿Cómo se llama tu compañera? No sé qué libro quiere, pero creo que es una novela.",
-          "en": "What is your classmate’s name? I do not know which book she wants, but I think it is a novel."
+          "$f": "b3.f0"
         }
       ]
     },
@@ -100,72 +127,96 @@
     {
       "tipo": "test",
       "pregunta": {
-        "en": "Which word has a written accent because its stress does not follow the usual ending pattern?"
+        "$t": "b5.pregunta"
       },
       "opciones": {
-        "café": "Correct. Read the context carefully.",
-        "casa": "Check the information in the text or rule.",
-        "libros": "This option does not fit the context."
+        "café": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "casa": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "libros": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "café"
     },
     {
       "tipo": "test",
       "pregunta": {
-        "en": "Choose the correct spelling in: «No sé ____ quieres»."
+        "$t": "b6.pregunta"
       },
       "opciones": {
-        "qué": "Correct. Read the context carefully.",
-        "que": "Check the information in the text or rule.",
-        "qúe": "This option does not fit the context."
+        "qué": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "que": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "qúe": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "qué"
     },
     {
       "tipo": "huecos",
-      "frase": "Mañana escuchamos una ____ en clase. (song)",
+      "frase": {
+        "$e": "b7.frase"
+      },
       "opciones": {
-        "canción": "Correct.",
-        "cancion": "Check the tense or meaning.",
-        "cánsion": "This form does not fit the sentence."
+        "canción": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "cancion": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "cánsion": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "canción"
     },
     {
       "tipo": "traduccion",
-      "frase": "No sé cómo se llama.",
+      "frase": {
+        "$e": "b8.frase"
+      },
       "opciones": [
         {
           "texto": {
-            "en": "I do not know what her name is."
+            "$t": "b8.o0"
           },
           "correcta": true
         },
         {
           "texto": {
-            "en": "I know how to call her."
+            "$t": "b8.o1"
           },
           "correcta": false,
           "explicacion": {
-            "en": "Check the meaning of the Spanish sentence."
+            "$t": "b8.o1.explicacion"
           }
         },
         {
           "texto": {
-            "en": "I do not know where she lives."
+            "$t": "b8.o2"
           },
           "correcta": false,
           "explicacion": {
-            "en": "Check the meaning of the Spanish sentence."
+            "$t": "b8.o2.explicacion"
           }
         }
       ]
     },
     {
       "tipo": "ordenar",
-      "frase": "¿Qué canción escuchas?",
+      "frase": {
+        "$e": "b9.frase"
+      },
       "traduccion": {
-        "en": "What song are you listening to?"
+        "$t": "b9.traduccion"
       }
     }
   ]

@@ -1,161 +1,460 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "111",
   "capitulo": 10,
-  "titulo_es": "Estudiar y aprender",
-  "titulo": {"en": "Studying and learning"},
-  "intro": {"en": "Courses, levels, exams, and how to talk about what you find easy or hard."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "el colegio": {"en": "the school (often primary school in Spain)", "pron": "el ko-LE-hyo", "cat": "noun", "genero": "m"},
-    "la academia": {"en": "the academy; a language school", "pron": "la a-ka-DE-mya", "cat": "noun", "genero": "f"},
-    "el curso": {"en": "the course; the school year", "pron": "el KUR-so", "cat": "noun", "genero": "m"},
-    "la matrícula": {"en": "enrolment; course registration fee", "pron": "la ma-TRI-ku-la", "cat": "noun", "genero": "f"},
-    "apuntarse a": {"en": "to sign up for", "pron": "a-pun-TAR-se a", "cat": "verb"},
-    "la asignatura": {"en": "the school subject", "pron": "la a-sig-na-TU-ra", "cat": "noun", "genero": "f"},
-    "las matemáticas": {"en": "maths (school subject)", "pron": "las ma-te-MA-ti-kas", "cat": "noun", "genero": "f"},
-    "la historia": {"en": "history (school subject)", "pron": "la is-TO-rya", "cat": "noun", "genero": "f"},
-    "aprobar": {"en": "to pass (an exam)", "pron": "a-pro-BAR", "cat": "verb", "nota": "O becomes ue: apruebo."},
-    "suspender": {"en": "to fail (an exam; reprobar is also used in some regions)", "pron": "sus-pen-DER", "cat": "verb"},
-    "el error": {"en": "the mistake", "pron": "el e-RROR", "cat": "noun", "genero": "m"},
-    "repasar": {"en": "to revise", "pron": "re-pa-SAR", "cat": "verb"},
-    "de memoria": {"en": "by heart", "pron": "de me-MO-rya", "cat": "expression"},
-    "el nivel": {"en": "the level", "pron": "el ni-BEL", "cat": "noun", "genero": "m"},
-    "practicar": {"en": "to practise", "pron": "prak-ti-KAR", "cat": "verb"},
-    "mejorar": {"en": "to improve", "pron": "me-ho-RAR", "cat": "verb"},
-    "me cuesta": {"en": "I find it hard", "pron": "me KWES-ta", "cat": "expression"},
-    "aprender": {"en": "to learn", "pron": "a-pren-DER", "cat": "verb"},
-    "estudiar": {"en": "to study", "pron": "es-tu-DYAR", "cat": "verb"},
-    "pagar": {"en": "to pay", "pron": "pa-GAR", "cat": "verb"},
-    "el examen": {"en": "the exam", "pron": "el ek-SA-men", "cat": "noun", "genero": "m"},
-    "el vocabulario": {"en": "the vocabulary", "pron": "el bo-ka-bu-LA-ryo", "cat": "noun", "genero": "m"},
-    "el verbo": {"en": "the verb", "pron": "el BER-bo", "cat": "noun", "genero": "m"},
-    "cometer un error": {"en": "to make a mistake", "pron": "ko-me-TER un e-RROR", "cat": "expression"},
-    "equivocarse": {"en": "to make a mistake; to be wrong", "pron": "e-ki-bo-KAR-se", "cat": "verb"}
+    "el colegio": {
+      "$f": "p.el colegio",
+      "pron": "el ko-LE-hyo",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la academia": {
+      "$f": "p.la academia",
+      "pron": "la a-ka-DE-mya",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "el curso": {
+      "$f": "p.el curso",
+      "pron": "el KUR-so",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la matrícula": {
+      "$f": "p.la matrícula",
+      "pron": "la ma-TRI-ku-la",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "apuntarse a": {
+      "$f": "p.apuntarse a",
+      "pron": "a-pun-TAR-se a",
+      "cat": "verb"
+    },
+    "la asignatura": {
+      "$f": "p.la asignatura",
+      "pron": "la a-sig-na-TU-ra",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "las matemáticas": {
+      "$f": "p.las matemáticas",
+      "pron": "las ma-te-MA-ti-kas",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "la historia": {
+      "$f": "p.la historia",
+      "pron": "la is-TO-rya",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "aprobar": {
+      "$f": "p.aprobar",
+      "pron": "a-pro-BAR",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.aprobar.nota"
+      }
+    },
+    "suspender": {
+      "$f": "p.suspender",
+      "pron": "sus-pen-DER",
+      "cat": "verb"
+    },
+    "el error": {
+      "$f": "p.el error",
+      "pron": "el e-RROR",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "repasar": {
+      "$f": "p.repasar",
+      "pron": "re-pa-SAR",
+      "cat": "verb"
+    },
+    "de memoria": {
+      "$f": "p.de memoria",
+      "pron": "de me-MO-rya",
+      "cat": "expr"
+    },
+    "el nivel": {
+      "$f": "p.el nivel",
+      "pron": "el ni-BEL",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "practicar": {
+      "$f": "p.practicar",
+      "pron": "prak-ti-KAR",
+      "cat": "verb"
+    },
+    "mejorar": {
+      "$f": "p.mejorar",
+      "pron": "me-ho-RAR",
+      "cat": "verb"
+    },
+    "me cuesta": {
+      "$f": "p.me cuesta",
+      "pron": "me KWES-ta",
+      "cat": "expr"
+    },
+    "aprender": {
+      "$f": "p.aprender",
+      "pron": "a-pren-DER",
+      "cat": "verb"
+    },
+    "estudiar": {
+      "$f": "p.estudiar",
+      "pron": "es-tu-DYAR",
+      "cat": "verb"
+    },
+    "pagar": {
+      "$f": "p.pagar",
+      "pron": "pa-GAR",
+      "cat": "verb"
+    },
+    "el examen": {
+      "$f": "p.el examen",
+      "pron": "el ek-SA-men",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el vocabulario": {
+      "$f": "p.el vocabulario",
+      "pron": "el bo-ka-bu-LA-ryo",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "el verbo": {
+      "$f": "p.el verbo",
+      "pron": "el BER-bo",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "cometer un error": {
+      "$f": "p.cometer un error",
+      "pron": "ko-me-TER un e-RROR",
+      "cat": "expr"
+    },
+    "equivocarse": {
+      "$f": "p.equivocarse",
+      "pron": "e-ki-bo-KAR-se",
+      "cat": "verb"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Talking about learning"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "You **te apuntas a** un curso, **pagas la matrícula**, **haces** un examen and **apruebas** or **suspendes**.\n\nTo learn to do something, use **aprender a** + infinitive: **aprendo a** conducir.\n\n**Me cuesta** + infinitive says something is hard for you: **me cuesta** hablar. The opposite: **me resulta fácil**.\n\nTo describe a goal, use **para** + infinitive: **para mejorar**, tienes que practicar; **para aprender** palabras, las escribo.\n\nThe usual phrases are **cometer un error** and **equivocarse**. Mistakes are part of learning: **no importa**.\n\nFor a proficiency level, say **tengo nivel A2**. For a school year, say **estoy en segundo curso**."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "A Spanish course"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Lucía",
-          "es": "Me he apuntado a un curso de español en una academia.",
-          "en": "I've signed up for a Spanish course at a language school.",
-          "analisis": [["Me he apuntado a", "verb"], ["un curso de español", "object"], ["en una academia", "place"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "¿Qué nivel tienes?",
-          "en": "What level are you?",
-          "analisis": [["¿Qué nivel", "question"], ["tienes", "verb"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "A2. Me cuesta hablar, pero entiendo bastante.",
-          "en": "A2. I find speaking hard, but I understand quite a lot.",
-          "analisis": [["Me cuesta", "verb"], ["hablar", "subject"], ["entiendo", "verb"], ["bastante", "how much"]]
-        },
-        {
-          "quien": "Pablo",
-          "es": "Para mejorar tienes que practicar todos los días.",
-          "en": "To improve you have to practise every day.",
-          "analisis": [["Para mejorar", "purpose"], ["tienes que practicar", "verb"], ["todos los días", "frequency"]]
-        },
-        {
-          "quien": "Lucía",
-          "es": "Ya. Repaso el vocabulario y aprendo los verbos de memoria.",
-          "en": "I know. I revise the vocabulary and learn the verbs by heart.",
           "analisis": [
-            ["Repaso", "verb"],
-            ["el vocabulario", "object"],
-            ["aprendo", "verb"],
-            ["los verbos", "object"],
-            ["de memoria", "how"]
+            [
+              "Me he apuntado a",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "un curso de español",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "en una academia",
+              {
+                "$t": "a2"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Pablo",
-          "es": "Y no importa cometer errores. Seguro que apruebas el examen.",
-          "en": "And it doesn't matter if you make mistakes. I'm sure you'll pass the exam.",
           "analisis": [
-            ["no importa", "verb"],
-            ["cometer errores", "subject"],
-            ["Seguro que", "certainty"],
-            ["apruebas", "verb"],
-            ["el examen", "object"]
+            [
+              "¿Qué nivel",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "tienes",
+              {
+                "$t": "a0"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f2",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Me cuesta",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "hablar",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "entiendo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "bastante",
+              {
+                "$t": "a5"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f3",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "Para mejorar",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "tienes que practicar",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "todos los días",
+              {
+                "$t": "a7"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f4",
+          "quien": "Lucía",
+          "analisis": [
+            [
+              "Repaso",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "el vocabulario",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "aprendo",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "los verbos",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "de memoria",
+              {
+                "$t": "a8"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "quien": "Pablo",
+          "analisis": [
+            [
+              "no importa",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "cometer errores",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "Seguro que",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "apruebas",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "el examen",
+              {
+                "$t": "a1"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario"},
+    {
+      "tipo": "vocabulario"
+    },
     {
       "tipo": "huecos",
       "id": "estudiar-a2-1",
-      "pregunta": {"en": "Complete: I've signed up for a course."},
-      "frase": "Me he apuntado ___ un curso.",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
-      "opciones": {"a": {"en": "Apuntarse a."}, "en": {"en": "Apuntarse takes a."}, "de": {"en": "Apuntarse takes a."}},
+      "opciones": {
+        "a": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "en": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "de": {
+          "$t": "b4.o2.refuerzo"
+        }
+      },
       "correcta": "a"
     },
     {
       "tipo": "huecos",
       "id": "estudiar-a2-2",
-      "pregunta": {"en": "Complete: I find speaking hard."},
-      "frase": "Me ___ hablar.",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "cuesta": {"en": "An infinitive keeps the verb singular."},
-        "cuesto": {"en": "The verb agrees with the activity, not with you."},
-        "cuestan": {"en": "An infinitive keeps the verb singular."}
+        "cuesta": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "cuesto": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "cuestan": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "cuesta"
     },
     {
       "tipo": "huecos",
       "id": "estudiar-a2-3",
-      "pregunta": {"en": "Complete: I'm learning to drive."},
-      "frase": "Aprendo ___ conducir.",
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
+      "frase": {
+        "$e": "b6.frase"
+      },
       "audio": true,
       "opciones": {
-        "a": {"en": "Aprender a plus infinitive."},
-        "de": {"en": "Aprender takes a."},
-        "en": {"en": "Aprender takes a."}
+        "a": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "de": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "en": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "a"
     },
     {
       "tipo": "test",
       "id": "estudiar-a2-4",
-      "pregunta": {"en": "Which verb means to fail an exam?"},
+      "pregunta": {
+        "$t": "b7.pregunta"
+      },
       "opciones": {
-        "suspender": {"en": "To fail."},
-        "aprobar": {"en": "That is to pass."},
-        "repasar": {"en": "That is to revise."}
+        "suspender": {
+          "$t": "b7.o0.refuerzo"
+        },
+        "aprobar": {
+          "$t": "b7.o1.refuerzo"
+        },
+        "repasar": {
+          "$t": "b7.o2.refuerzo"
+        }
       },
       "correcta": "suspender"
     },
     {
       "tipo": "escribir",
       "id": "estudiar-a2-5",
-      "pregunta": {"en": "Translate: «I have to revise.»"},
-      "respuestas": ["Tengo que repasar"]
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
+      "respuestas": [
+        "Tengo que repasar"
+      ]
     },
     {
       "tipo": "ordenar",
       "id": "estudiar-a2-6",
-      "frase": "Para mejorar tienes que practicar",
-      "traduccion": {"en": "To improve you have to practise."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (60–80 words).** Write about how you learn Spanish: what you do, what is easy, what is hard and what helps you.\n\n**Speak (about 1 minute).** Tell someone about your school years: your best subject, your worst and a teacher you remember."
+        "$t": "b10.texto"
       }
     }
   ]

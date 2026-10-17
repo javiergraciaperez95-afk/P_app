@@ -1,185 +1,478 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "155",
   "capitulo": 14,
-  "titulo_es": "¿Y si vamos al cine?",
-  "titulo": {"en": "What if we go to the cinema?"},
-  "intro": {"en": "Suggesting a plan, accepting it with enthusiasm or with doubts, and turning it down."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "proponer": {"en": "to propose, to suggest", "pron": "pro-po-NER", "cat": "verb", "nota": "Like poner: propongo."},
-    "la propuesta": {"en": "the proposal; the suggestion", "pron": "la pro-PWES-ta", "cat": "noun", "genero": "f"},
-    "¿y si…?": {"en": "what if…?, how about…?", "pron": "i si", "cat": "expression"},
-    "¿qué te parece si…?": {"en": "how about…?; what do you think about…?", "pron": "ke te pa-RE-the si", "cat": "expression"},
-    "¿te apetece…?": {"en": "do you feel like…?", "pron": "te a-pe-TE-the", "cat": "expression"},
-    "podríamos": {"en": "we could (conditional of poder)", "pron": "po-DRI-a-mos", "cat": "verb"},
-    "la idea": {"en": "the idea", "pron": "la i-DE-a", "cat": "noun", "genero": "f"},
-    "buena idea": {"en": "good idea", "pron": "BWE-na i-DE-a", "cat": "expression"},
-    "estupendo": {"en": "great", "pron": "es-tu-PEN-do", "cat": "adjective"},
-    "fenomenal": {"en": "fantastic", "pron": "fe-no-me-NAL", "cat": "adjective"},
-    "bueno, si insistes": {"en": "well, if you insist", "pron": "BWE-no si in-SIS-tes", "cat": "expression"},
-    "prefiero": {"en": "I prefer (form of preferir)", "pron": "pre-FYE-ro", "cat": "verb"},
-    "mejor": {"en": "better; rather", "pron": "me-HOR", "cat": "adverb"},
-    "insistir": {"en": "to insist", "pron": "in-sis-TIR", "cat": "verb"},
-    "la excusa": {"en": "the excuse", "pron": "la eks-KU-sa", "cat": "noun", "genero": "f"},
-    "apuntarse": {"en": "to join in, to sign up", "pron": "a-pun-TAR-se", "cat": "verb"},
-    "quedar": {"en": "to arrange to meet", "pron": "ke-DAR", "cat": "verb"}
+    "proponer": {
+      "$f": "p.proponer",
+      "pron": "pro-po-NER",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.proponer.nota"
+      }
+    },
+    "la propuesta": {
+      "$f": "p.la propuesta",
+      "pron": "la pro-PWES-ta",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "¿y si…?": {
+      "$f": "p.¿y si…?",
+      "pron": "i si",
+      "cat": "expr"
+    },
+    "¿qué te parece si…?": {
+      "$f": "p.¿qué te parece si…?",
+      "pron": "ke te pa-RE-the si",
+      "cat": "expr"
+    },
+    "¿te apetece…?": {
+      "$f": "p.¿te apetece…?",
+      "pron": "te a-pe-TE-the",
+      "cat": "expr"
+    },
+    "podríamos": {
+      "$f": "p.podríamos",
+      "pron": "po-DRI-a-mos",
+      "cat": "verb"
+    },
+    "la idea": {
+      "$f": "p.la idea",
+      "pron": "la i-DE-a",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "buena idea": {
+      "$f": "p.buena idea",
+      "pron": "BWE-na i-DE-a",
+      "cat": "expr"
+    },
+    "estupendo": {
+      "$f": "p.estupendo",
+      "pron": "es-tu-PEN-do",
+      "cat": "adj"
+    },
+    "fenomenal": {
+      "$f": "p.fenomenal",
+      "pron": "fe-no-me-NAL",
+      "cat": "adj"
+    },
+    "bueno, si insistes": {
+      "$f": "p.bueno, si insistes",
+      "pron": "BWE-no si in-SIS-tes",
+      "cat": "expr"
+    },
+    "prefiero": {
+      "$f": "p.prefiero",
+      "pron": "pre-FYE-ro",
+      "cat": "verb"
+    },
+    "mejor": {
+      "$f": "p.mejor",
+      "pron": "me-HOR",
+      "cat": "adv"
+    },
+    "insistir": {
+      "$f": "p.insistir",
+      "pron": "in-sis-TIR",
+      "cat": "verb"
+    },
+    "la excusa": {
+      "$f": "p.la excusa",
+      "pron": "la eks-KU-sa",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "apuntarse": {
+      "$f": "p.apuntarse",
+      "pron": "a-pun-TAR-se",
+      "cat": "verb"
+    },
+    "quedar": {
+      "$f": "p.quedar",
+      "pron": "ke-DAR",
+      "cat": "verb"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Making and answering suggestions"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "To suggest a joint plan:\n\n- **¿Y si** vamos al cine? (present indicative)\n- **¿Qué te parece si** cenamos fuera? (how about…?)\n- **¿Te apetece** dar un paseo? / **¿Te apetece que** demos un paseo? (subjunctive after que)\n- **¿Te parece bien que** quedemos a las ocho?\n- **Podríamos** ir a la playa.\n- **¡Vamos a** tomar algo!\n\nTo suggest an idea to someone: **podrías** llamarla; **deberías** descansar; **yo iría** en tren.\n\nAccepting: **Vale.** **Perfecto.** **Estupendo.** **Fenomenal.** **(Muy) buena idea.** **Me apunto.**\n\n**Bueno…** or **Bueno, si insistes…** can show reluctant agreement.\n\nA polite refusal may include thanks or regret; a brief **excusa** or another **propuesta** is optional:\n\n- **No, gracias, es que** estoy muy cansado.\n- **Lo siento, es que** ya tengo planes.\n- **Prefiero** quedarme en casa.\n- **Mejor** otro día, ¿vale?\n\nTo check a plan later: **¿Ya sabes si** vienes o no?"
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "Plans for Saturday"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Nuria",
-          "es": "¿Qué hacemos el sábado? ¿Y si vamos a la playa?",
-          "en": "What shall we do on Saturday? How about going to the beach?",
           "analisis": [
-            ["¿Qué hacemos", "question"],
-            ["el sábado", "time"],
-            ["¿Y si", "suggestion"],
-            ["vamos", "verb"],
-            ["a la playa", "place"]
+            [
+              "¿Qué hacemos",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "el sábado",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "¿Y si",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "vamos",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "a la playa",
+              {
+                "$t": "a4"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Óscar",
-          "es": "Uf, es que dicen que va a llover. Prefiero quedarme en la ciudad.",
-          "en": "Oof, the thing is they say it's going to rain. I'd rather stay in the city.",
           "analisis": [
-            ["es que", "excuse"],
-            ["dicen que", "verb"],
-            ["va a llover", "verb"],
-            ["Prefiero quedarme", "counter-proposal"],
-            ["en la ciudad", "place"]
+            [
+              "es que",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "dicen que",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "va a llover",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "Prefiero quedarme",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "en la ciudad",
+              {
+                "$t": "a4"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f2",
           "quien": "Nuria",
-          "es": "Pues podríamos ver la exposición del museo.",
-          "en": "Well, we could see the exhibition at the museum.",
-          "analisis": [["podríamos ver", "suggestion"], ["la exposición del museo", "object"]]
-        },
-        {
-          "quien": "Óscar",
-          "es": "Buena idea. ¿Te apetece que comamos antes en el centro?",
-          "en": "Good idea. Do you feel like having lunch in the centre first?",
           "analisis": [
-            ["Buena idea", "agreement"],
-            ["¿Te apetece que", "suggestion"],
-            ["comamos", "verb (subjunctive)"],
-            ["antes", "order"],
-            ["en el centro", "place"]
+            [
+              "podríamos ver",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "la exposición del museo",
+              {
+                "$t": "a7"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f3",
+          "quien": "Óscar",
+          "analisis": [
+            [
+              "Buena idea",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "¿Te apetece que",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "comamos",
+              {
+                "$t": "a9"
+              }
+            ],
+            [
+              "antes",
+              {
+                "$t": "a10"
+              }
+            ],
+            [
+              "en el centro",
+              {
+                "$t": "a4"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f4",
           "quien": "Nuria",
-          "es": "Estupendo. ¿Qué te parece si se lo decimos a Clara?",
-          "en": "Great. How about telling Clara?",
           "analisis": [
-            ["Estupendo", "agreement"],
-            ["¿Qué te parece si", "suggestion"],
-            ["se lo decimos", "verb"],
-            ["a Clara", "who"]
+            [
+              "Estupendo",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "¿Qué te parece si",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "se lo decimos",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "a Clara",
+              {
+                "$t": "a11"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f5",
           "quien": "Óscar",
-          "es": "Bueno, si insistes… Pero ya sabes que siempre llega tarde.",
-          "en": "Well, if you insist… But you know she is always late.",
           "analisis": [
-            ["Bueno, si insistes", "reluctant agreement"],
-            ["ya sabes que", "verb"],
-            ["siempre", "frequency"],
-            ["llega tarde", "verb"]
+            [
+              "Bueno, si insistes",
+              {
+                "$t": "a12"
+              }
+            ],
+            [
+              "ya sabes que",
+              {
+                "$t": "a3"
+              }
+            ],
+            [
+              "siempre",
+              {
+                "$t": "a13"
+              }
+            ],
+            [
+              "llega tarde",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario", "palabras": ["proponer", "la propuesta", "¿y si…?", "¿qué te parece si…?", "¿te apetece…?", "podríamos", "la idea", "buena idea", "estupendo", "fenomenal", "bueno, si insistes", "prefiero", "mejor", "insistir", "la excusa", "apuntarse", "quedar"]},
+    {
+      "tipo": "vocabulario",
+      "palabras": [
+        "proponer",
+        "la propuesta",
+        "¿y si…?",
+        "¿qué te parece si…?",
+        "¿te apetece…?",
+        "podríamos",
+        "la idea",
+        "buena idea",
+        "estupendo",
+        "fenomenal",
+        "bueno, si insistes",
+        "prefiero",
+        "mejor",
+        "insistir",
+        "la excusa",
+        "apuntarse",
+        "quedar"
+      ]
+    },
     {
       "tipo": "huecos",
       "id": "proponer-b1-1",
-      "pregunta": {"en": "Complete the suggestion."},
-      "frase": "¿Y si ___ una pizza?",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "pedimos": {"en": "After ¿y si…?, the present indicative."},
-        "pidamos": {"en": "After ¿y si…?, the indicative."},
-        "pedir": {"en": "You need a conjugated verb."}
+        "pedimos": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "pidamos": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "pedir": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "pedimos"
     },
     {
       "tipo": "huecos",
       "id": "proponer-b1-2",
-      "pregunta": {"en": "Complete: do you feel like going for a walk together?"},
-      "frase": "¿Te apetece que ___ un paseo?",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "demos": {"en": "After que, the subjunctive."},
-        "damos": {"en": "After te apetece que, the subjunctive."},
-        "dar": {"en": "With que you need a conjugated verb."}
+        "demos": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "damos": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "dar": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "demos"
     },
     {
       "tipo": "test",
       "id": "proponer-b1-3",
-      "pregunta": {"en": "Which answer accepts without much enthusiasm?"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "Bueno, si insistes…": {"en": "You agree, but only because the other person wants to."},
-        "¡Fenomenal!": {"en": "That is enthusiastic."},
-        "Prefiero quedarme en casa.": {"en": "That refuses."}
+        "Bueno, si insistes…": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "¡Fenomenal!": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "Prefiero quedarme en casa.": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "Bueno, si insistes…"
     },
     {
       "tipo": "traduccion",
       "id": "proponer-b1-4",
-      "frase": "Mejor otro día, ¿vale?",
+      "frase": {
+        "$e": "b7.frase"
+      },
       "opciones": [
-        {"texto": {"en": "Maybe another day, OK?"}, "correcta": true},
         {
-          "texto": {"en": "The other day was better, right?"},
-          "explicacion": {"en": "Mejor otro día puts the plan off."}
+          "texto": {
+            "$t": "b7.o0"
+          },
+          "correcta": true
         },
-        {"texto": {"en": "It's the best day, OK?"}, "explicacion": {"en": "Mejor here means rather."}}
+        {
+          "texto": {
+            "$t": "b7.o1"
+          },
+          "explicacion": {
+            "$t": "b7.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b7.o2"
+          },
+          "explicacion": {
+            "$t": "b7.o2.explicacion"
+          }
+        }
       ]
     },
     {
       "tipo": "test",
       "id": "proponer-b1-5",
-      "pregunta": {"en": "Me apunto means…"},
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
       "opciones": {
-        "Count me in": {"en": "Apuntarse a un plan: to join in."},
-        "I'm taking notes": {"en": "Apuntar is to note down, but me apunto is joining in."},
-        "I disagree": {"en": "It is an acceptance."}
+        "Count me in": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "I'm taking notes": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "I disagree": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "Count me in"
     },
     {
       "tipo": "escribir",
       "id": "proponer-b1-6",
-      "pregunta": {"en": "Suggest going to the cinema using ¿Y si…? (nosotros)"},
-      "respuestas": ["¿Y si vamos al cine?"],
-      "explicacion": {"en": "¿Y si…? takes the present indicative."}
+      "pregunta": {
+        "$t": "b9.pregunta"
+      },
+      "respuestas": [
+        "¿Y si vamos al cine?"
+      ],
+      "explicacion": {
+        "$t": "b9.explicacion"
+      }
     },
     {
       "tipo": "ordenar",
       "id": "proponer-b1-7",
-      "frase": "Podríamos ver la exposición del museo",
-      "traduccion": {"en": "We could see the exhibition at the museum."}
+      "frase": {
+        "$e": "b10.frase"
+      },
+      "traduccion": {
+        "$t": "b10.traduccion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b11.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write a chat in which three friends try to agree on a plan for Saturday.\n\n**Speak (about 2 minutes).** Suggest three plans aloud and react to three suggestions with different degrees of enthusiasm."
+        "$t": "b11.texto"
       }
     }
   ]

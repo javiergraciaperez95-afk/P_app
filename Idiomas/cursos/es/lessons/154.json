@@ -1,174 +1,465 @@
 {
+  "esquema": 2,
+  "flexible": true,
+  "id": "154",
   "capitulo": 14,
-  "titulo_es": "¿Te importa que abra?",
-  "titulo": {"en": "Do you mind if I open it?"},
-  "intro": {"en": "Asking for permission with more care, giving it, refusing it and saying what is forbidden."},
+  "titulo": {
+    "$t": "titulo"
+  },
+  "intro": {
+    "$t": "intro"
+  },
   "palabras": {
-    "el permiso": {"en": "permission", "pron": "el per-MI-so", "cat": "noun", "genero": "m"},
-    "¿te importa que…?": {"en": "do you mind if…?", "pron": "te im-POR-ta ke", "cat": "expression", "nota": "Followed by the subjunctive."},
-    "¿te molesta que…?": {
-      "en": "does it bother you if…?",
-      "pron": "te mo-LES-ta ke",
-      "cat": "expression",
-      "nota": "Followed by the subjunctive."
+    "el permiso": {
+      "$f": "p.el permiso",
+      "pron": "el per-MI-so",
+      "cat": "sust",
+      "genero": "m"
     },
-    "¿me dejas…?": {"en": "will you let me…?", "pron": "me DE-has", "cat": "expression"},
-    "dejar": {"en": "to let, to allow", "pron": "de-HAR", "cat": "verb"},
-    "permitir": {"en": "to allow", "pron": "per-mi-TIR", "cat": "verb"},
-    "prohibir": {"en": "to forbid", "pron": "proi-BIR", "cat": "verb", "nota": "Present: prohíbo, prohíbes."},
-    "está prohibido": {"en": "it is forbidden", "pron": "es-TA proi-BI-do", "cat": "expression"},
-    "no está permitido": {"en": "it is not allowed", "pron": "no es-TA per-mi-TI-do", "cat": "expression"},
-    "se prohíbe": {"en": "it is forbidden (on signs)", "pron": "se pro-I-be", "cat": "expression"},
-    "me temo que no": {"en": "I'm afraid not", "pron": "me TE-mo ke no", "cat": "expression"},
-    "en absoluto": {"en": "not at all", "pron": "en ab-so-LU-to", "cat": "expression"},
-    "vale, pero…": {"en": "OK, but…", "pron": "BA-le PE-ro", "cat": "expression"},
-    "me da igual": {"en": "I don't mind; I don't care", "pron": "me da i-GWAL", "cat": "expression", "nota": "Depending on context, this can sound dismissive or defiant."},
-    "la norma": {"en": "the rule", "pron": "la NOR-ma", "cat": "noun", "genero": "f"},
-    "la multa": {"en": "the fine", "pron": "la MUL-ta", "cat": "noun", "genero": "f"},
-    "respetar": {"en": "to respect, to obey", "pron": "res-pe-TAR", "cat": "verb"}
+    "¿te importa que…?": {
+      "$f": "p.¿te importa que…?",
+      "pron": "te im-POR-ta ke",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.¿te importa que…?.nota"
+      }
+    },
+    "¿te molesta que…?": {
+      "$f": "p.¿te molesta que…?",
+      "pron": "te mo-LES-ta ke",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.¿te molesta que…?.nota"
+      }
+    },
+    "¿me dejas…?": {
+      "$f": "p.¿me dejas…?",
+      "pron": "me DE-has",
+      "cat": "expr"
+    },
+    "dejar": {
+      "$f": "p.dejar",
+      "pron": "de-HAR",
+      "cat": "verb"
+    },
+    "permitir": {
+      "$f": "p.permitir",
+      "pron": "per-mi-TIR",
+      "cat": "verb"
+    },
+    "prohibir": {
+      "$f": "p.prohibir",
+      "pron": "proi-BIR",
+      "cat": "verb",
+      "nota": {
+        "$t": "p.prohibir.nota"
+      }
+    },
+    "está prohibido": {
+      "$f": "p.está prohibido",
+      "pron": "es-TA proi-BI-do",
+      "cat": "expr"
+    },
+    "no está permitido": {
+      "$f": "p.no está permitido",
+      "pron": "no es-TA per-mi-TI-do",
+      "cat": "expr"
+    },
+    "se prohíbe": {
+      "$f": "p.se prohíbe",
+      "pron": "se pro-I-be",
+      "cat": "expr"
+    },
+    "me temo que no": {
+      "$f": "p.me temo que no",
+      "pron": "me TE-mo ke no",
+      "cat": "expr"
+    },
+    "en absoluto": {
+      "$f": "p.en absoluto",
+      "pron": "en ab-so-LU-to",
+      "cat": "expr"
+    },
+    "vale, pero…": {
+      "$f": "p.vale, pero…",
+      "pron": "BA-le PE-ro",
+      "cat": "expr"
+    },
+    "me da igual": {
+      "$f": "p.me da igual",
+      "pron": "me da i-GWAL",
+      "cat": "expr",
+      "nota": {
+        "$t": "p.me da igual.nota"
+      }
+    },
+    "la norma": {
+      "$f": "p.la norma",
+      "pron": "la NOR-ma",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "la multa": {
+      "$f": "p.la multa",
+      "pron": "la MUL-ta",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "respetar": {
+      "$f": "p.respetar",
+      "pron": "res-pe-TAR",
+      "cat": "verb"
+    }
   },
   "bloques": [
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Permission, with the subjunctive"},
+      "titulo": {
+        "$t": "b1.titulo"
+      },
       "texto": {
-        "en": "You already know **¿Puedo…?** and **¿Se puede…?** Here are three other ways to ask.\n\n1. **¿Te importa si** abro la ventana? With **si**, use the indicative.\n\n2. **¿Te importa que** abra la ventana? With **que**, use the subjunctive.\n\n3. **¿Me dejas** usar tu ordenador? / **¿Me dejas que** use tu ordenador?\n\n**¿Te importa…?** asks whether the action bothers the other person. **No, no me importa** grants permission; **Sí, me importa** refuses it. To make the answer explicit, say **Claro, ábrela** or **No me importa, ábrela**.\n\nTo give permission with a condition: **Vale, pero** solo un momento. To refuse: **Me temo que no**, **Lo siento, es que** tengo frío, or **No se puede**.\n\nRules and signs:\n\n- **Está prohibido** fumar.\n- **No está permitido** entrar con perros.\n- **Se prohíbe** el paso.\n- **No** aparcar. (brief sign)\n- **No debes** hablar tan alto.\n\nWith a different subject, use the subjunctive after **está prohibido que**: *está prohibido que los niños **entren** solos*. **Respetar** la norma evita una **multa**.\n\n**Me da igual que esté prohibido** is a blunt, defiant response; **me da igual que** is followed here by the subjunctive."
+        "$t": "b1.texto"
       }
     },
     {
       "tipo": "dialogo",
-      "titulo": {"en": "In a shared office"},
+      "titulo": {
+        "$t": "b2.titulo"
+      },
       "frases": [
         {
+          "$f": "b2.f0",
           "quien": "Marta",
-          "es": "Perdona, ¿te importa que abra la ventana? Hace mucho calor.",
-          "en": "Excuse me, do you mind if I open the window? It's very hot.",
           "analisis": [
-            ["¿te importa que", "permission"],
-            ["abra", "verb (subjunctive)"],
-            ["la ventana", "object"],
-            ["Hace mucho calor", "reason"]
+            [
+              "¿te importa que",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "abra",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "la ventana",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "Hace mucho calor",
+              {
+                "$t": "a3"
+              }
+            ]
           ]
         },
         {
+          "$f": "b2.f1",
           "quien": "Iván",
-          "es": "No, no, en absoluto. Ábrela.",
-          "en": "No, not at all. Open it.",
-          "analisis": [["en absoluto", "permission given"], ["Ábrela", "command"]]
-        },
-        {
-          "quien": "Marta",
-          "es": "¿Y me dejas usar tu cargador? Me he dejado el mío en casa.",
-          "en": "And will you let me use your charger? I've left mine at home.",
           "analisis": [
-            ["¿me dejas usar", "permission"],
-            ["tu cargador", "object"],
-            ["Me he dejado", "verb"],
-            ["el mío", "object"],
-            ["en casa", "place"]
+            [
+              "en absoluto",
+              {
+                "$t": "a4"
+              }
+            ],
+            [
+              "Ábrela",
+              {
+                "$t": "a5"
+              }
+            ]
           ]
         },
         {
-          "quien": "Iván",
-          "es": "Vale, pero devuélvemelo antes de las cinco.",
-          "en": "OK, but give it back to me before five.",
-          "analisis": [["Vale, pero", "condition"], ["devuélvemelo", "command"], ["antes de las cinco", "time"]]
-        },
-        {
+          "$f": "b2.f2",
           "quien": "Marta",
-          "es": "¿Se puede comer aquí, en la mesa?",
-          "en": "Can you eat here, at the table?",
-          "analisis": [["¿Se puede comer", "permission (general)"], ["aquí", "place"], ["en la mesa", "place"]]
+          "analisis": [
+            [
+              "¿me dejas usar",
+              {
+                "$t": "a0"
+              }
+            ],
+            [
+              "tu cargador",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "Me he dejado",
+              {
+                "$t": "a6"
+              }
+            ],
+            [
+              "el mío",
+              {
+                "$t": "a2"
+              }
+            ],
+            [
+              "en casa",
+              {
+                "$t": "a7"
+              }
+            ]
+          ]
         },
         {
+          "$f": "b2.f3",
           "quien": "Iván",
-          "es": "Me temo que no. Está prohibido comer en la oficina, y además no está permitido que entren visitas.",
-          "en": "I'm afraid not. Eating in the office is forbidden, and what's more visitors are not allowed in.",
           "analisis": [
-            ["Me temo que no", "refusal"],
-            ["Está prohibido comer", "rule"],
-            ["en la oficina", "place"],
-            ["no está permitido que", "rule"],
-            ["entren", "verb (subjunctive)"],
-            ["visitas", "subject"]
+            [
+              "Vale, pero",
+              {
+                "$t": "a8"
+              }
+            ],
+            [
+              "devuélvemelo",
+              {
+                "$t": "a5"
+              }
+            ],
+            [
+              "antes de las cinco",
+              {
+                "$t": "a9"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f4",
+          "quien": "Marta",
+          "analisis": [
+            [
+              "¿Se puede comer",
+              {
+                "$t": "a10"
+              }
+            ],
+            [
+              "aquí",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "en la mesa",
+              {
+                "$t": "a7"
+              }
+            ]
+          ]
+        },
+        {
+          "$f": "b2.f5",
+          "quien": "Iván",
+          "analisis": [
+            [
+              "Me temo que no",
+              {
+                "$t": "a11"
+              }
+            ],
+            [
+              "Está prohibido comer",
+              {
+                "$t": "a12"
+              }
+            ],
+            [
+              "en la oficina",
+              {
+                "$t": "a7"
+              }
+            ],
+            [
+              "no está permitido que",
+              {
+                "$t": "a12"
+              }
+            ],
+            [
+              "entren",
+              {
+                "$t": "a1"
+              }
+            ],
+            [
+              "visitas",
+              {
+                "$t": "a13"
+              }
+            ]
           ]
         }
       ]
     },
-    {"tipo": "vocabulario", "palabras": ["el permiso", "¿te importa que…?", "¿te molesta que…?", "¿me dejas…?", "dejar", "permitir", "prohibir", "está prohibido", "no está permitido", "se prohíbe", "me temo que no", "en absoluto", "vale, pero…", "me da igual", "la norma", "la multa", "respetar"]},
+    {
+      "tipo": "vocabulario",
+      "palabras": [
+        "el permiso",
+        "¿te importa que…?",
+        "¿te molesta que…?",
+        "¿me dejas…?",
+        "dejar",
+        "permitir",
+        "prohibir",
+        "está prohibido",
+        "no está permitido",
+        "se prohíbe",
+        "me temo que no",
+        "en absoluto",
+        "vale, pero…",
+        "me da igual",
+        "la norma",
+        "la multa",
+        "respetar"
+      ]
+    },
     {
       "tipo": "huecos",
       "id": "permiso-b1-1",
-      "pregunta": {"en": "Use que and the subjunctive: do you mind if I sit here?"},
-      "frase": "¿Te importa que me ___ aquí?",
+      "pregunta": {
+        "$t": "b4.pregunta"
+      },
+      "frase": {
+        "$e": "b4.frase"
+      },
       "audio": true,
       "opciones": {
-        "siente": {"en": "With que, the subjunctive."},
-        "siento": {"en": "With que, the subjunctive. With si, you would say si me siento."},
-        "sentar": {"en": "With que you need a conjugated verb."}
+        "siente": {
+          "$t": "b4.o0.refuerzo"
+        },
+        "siento": {
+          "$t": "b4.o1.refuerzo"
+        },
+        "sentar": {
+          "$t": "b4.o2.refuerzo"
+        }
       },
       "correcta": "siente"
     },
     {
       "tipo": "huecos",
       "id": "permiso-b1-2",
-      "pregunta": {"en": "Complete: do you mind if I smoke?"},
-      "frase": "¿Te importa ___ fumo?",
+      "pregunta": {
+        "$t": "b5.pregunta"
+      },
+      "frase": {
+        "$e": "b5.frase"
+      },
       "audio": true,
       "opciones": {
-        "si": {"en": "With si, the indicative."},
-        "que": {"en": "With que you would need the subjunctive: que fume."},
-        "de": {"en": "Importar does not take de here."}
+        "si": {
+          "$t": "b5.o0.refuerzo"
+        },
+        "que": {
+          "$t": "b5.o1.refuerzo"
+        },
+        "de": {
+          "$t": "b5.o2.refuerzo"
+        }
       },
       "correcta": "si"
     },
     {
       "tipo": "test",
       "id": "permiso-b1-3",
-      "pregunta": {"en": "Someone asks ¿Te importa que abra la ventana? Which answer gives permission?"},
+      "pregunta": {
+        "$t": "b6.pregunta"
+      },
       "opciones": {
-        "No, en absoluto.": {"en": "It does not bother you; permission is granted."},
-        "Me temo que no.": {"en": "That refuses permission."},
-        "Sí, me importa.": {"en": "That means it bothers you."}
+        "No, en absoluto.": {
+          "$t": "b6.o0.refuerzo"
+        },
+        "Me temo que no.": {
+          "$t": "b6.o1.refuerzo"
+        },
+        "Sí, me importa.": {
+          "$t": "b6.o2.refuerzo"
+        }
       },
       "correcta": "No, en absoluto."
     },
     {
       "tipo": "traduccion",
       "id": "permiso-b1-4",
-      "frase": "No está permitido entrar con perros.",
+      "frase": {
+        "$e": "b7.frase"
+      },
       "opciones": [
-        {"texto": {"en": "You are not allowed to enter with dogs."}, "correcta": true},
-        {"texto": {"en": "Dogs are not allowed to leave."}, "explicacion": {"en": "Entrar is to come in."}},
         {
-          "texto": {"en": "It is permitted to come in with dogs."},
-          "explicacion": {"en": "No está permitido: it is not allowed."}
+          "texto": {
+            "$t": "b7.o0"
+          },
+          "correcta": true
+        },
+        {
+          "texto": {
+            "$t": "b7.o1"
+          },
+          "explicacion": {
+            "$t": "b7.o1.explicacion"
+          }
+        },
+        {
+          "texto": {
+            "$t": "b7.o2"
+          },
+          "explicacion": {
+            "$t": "b7.o2.explicacion"
+          }
         }
       ]
     },
     {
       "tipo": "test",
       "id": "permiso-b1-5",
-      "pregunta": {"en": "Which is typical of a written sign?"},
+      "pregunta": {
+        "$t": "b8.pregunta"
+      },
       "opciones": {
-        "Se prohíbe el paso.": {"en": "Se prohíbe is the language of signs."},
-        "Me temo que no.": {"en": "That is a spoken refusal."},
-        "¿Me dejas pasar?": {"en": "That is a spoken request."}
+        "Se prohíbe el paso.": {
+          "$t": "b8.o0.refuerzo"
+        },
+        "Me temo que no.": {
+          "$t": "b8.o1.refuerzo"
+        },
+        "¿Me dejas pasar?": {
+          "$t": "b8.o2.refuerzo"
+        }
       },
       "correcta": "Se prohíbe el paso."
     },
     {
       "tipo": "ordenar",
       "id": "permiso-b1-6",
-      "frase": "Me da igual que esté prohibido",
-      "traduccion": {"en": "I don't care if it's forbidden."},
-      "explicacion": {"en": "Me da igual que takes the subjunctive."}
+      "frase": {
+        "$e": "b9.frase"
+      },
+      "traduccion": {
+        "$t": "b9.traduccion"
+      },
+      "explicacion": {
+        "$t": "b9.explicacion"
+      }
     },
     {
       "tipo": "explicacion",
-      "titulo": {"en": "Your turn: write and speak"},
+      "titulo": {
+        "$t": "b10.titulo"
+      },
       "texto": {
-        "en": "**The app cannot check this part.** For the writing, please use pen and paper. For the speaking, say it out loud and, if you can, practise with a native speaker or a teacher who can correct you.\n\n**Write (100–120 words).** Write the rules of a shared office and a short dialogue asking for permission.\n\n**Speak (about 2 minutes).** Ask permission aloud in five situations and answer each time: once yes, once yes with a condition, once no."
+        "$t": "b10.texto"
       }
     }
   ]
