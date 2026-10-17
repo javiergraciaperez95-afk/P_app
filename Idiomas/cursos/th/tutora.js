@@ -1,6 +1,6 @@
 // Tailandés: pelo negro en una coleta alta y larga que cae a un lado, orquídea morada en el nacimiento de la coleta,
 // flequillo fino, ojos castaños, blusa amarillo suave de cuello blanco, falda morada plisada y libro morado.
-// Se genera con _herramientas/montar_cursos.py a partir de _tutoras/disenos: los cambios se hacen allí.
+// Los cambios se hacen aquí mismo (el dibujo común está en js/tutora-base.js).
 
 export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, falda, zapatos }) => {
   const DISENO = {

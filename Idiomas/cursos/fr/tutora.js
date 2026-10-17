@@ -1,6 +1,6 @@
 // Francés: media melena corta y ondulada castaño rosado con el flequillo de lado, ojos violeta,
 // camiseta de rayas marineras con botones dorados, pañuelo rojo, pantalón verde menta y libro azul marino.
-// Se genera con _herramientas/montar_cursos.py a partir de _tutoras/disenos: los cambios se hacen allí.
+// Los cambios se hacen aquí mismo (el dibujo común está en js/tutora-base.js).
 
 export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, falda, zapatos }) => {
   const DISENO = {

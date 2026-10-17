@@ -1,6 +1,6 @@
 // Danés: pelo rubio muy claro, corto, con flequillo y un mechón rebelde en la coronilla, ojos azules,
 // jersey rojo de punto, bufanda blanca gorda, falda vaquera y libro blanco con el emblema rojo.
-// Se genera con _herramientas/montar_cursos.py a partir de _tutoras/disenos: los cambios se hacen allí.
+// Los cambios se hacen aquí mismo (el dibujo común está en js/tutora-base.js).
 
 export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, falda, zapatos }) => {
   const DISENO = {

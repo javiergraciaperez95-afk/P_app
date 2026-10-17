@@ -1,7 +1,7 @@
 // Japonés: profesora joven de oficina. Pelo castaño oscuro recogido en una coleta baja, flequillo de lado
 // con la frente despejada, gafas finas, camisa blanca de cuello abierto, falda negra de tubo, zapatos de tacón
 // y una carpeta gris oscuro entre las manos.
-// Se genera con _herramientas/montar_cursos.py a partir de _tutoras/disenos: los cambios se hacen allí.
+// Los cambios se hacen aquí mismo (el dibujo común está en js/tutora-base.js).
 
 export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, falda, zapatos }) => {
   const DISENO = {

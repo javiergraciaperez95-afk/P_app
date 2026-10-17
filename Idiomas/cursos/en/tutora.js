@@ -1,6 +1,6 @@
 // Inglés: media melena ondulada castaño miel con diadema azul marino, gafas redondas doradas, ojos azul grisáceo,
 // jersey burdeos de pico con camisa y corbata, falda de cuadros escoceses, calcetines altos y libro verde botella.
-// Se genera con _herramientas/montar_cursos.py a partir de _tutoras/disenos: los cambios se hacen allí.
+// Los cambios se hacen aquí mismo (el dibujo común está en js/tutora-base.js).
 
 export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, falda, zapatos }) => {
   const DISENO = {

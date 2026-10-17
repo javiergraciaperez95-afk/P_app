@@ -1,6 +1,6 @@
 // Neerlandés: pelirroja cobriza con dos trenzas cortas y flequillo, pecas, tulipán rosa en el pelo, ojos verdes,
 // chubasquero amarillo, vaqueros, botas de agua azules y libro azul claro.
-// Se genera con _herramientas/montar_cursos.py a partir de _tutoras/disenos: los cambios se hacen allí.
+// Los cambios se hacen aquí mismo (el dibujo común está en js/tutora-base.js).
 
 export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, falda, zapatos }) => {
   const DISENO = {

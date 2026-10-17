@@ -1,6 +1,6 @@
 // Rumano: melena castaño rojizo larga y lisa, cinta roja con lazo en el pelo, ojos color avellana,
 // blusa blanca con un bordado fino rojo en el cuello y las mangas, falda azul oscuro con dos rayas y libro amarillo.
-// Se genera con _herramientas/montar_cursos.py a partir de _tutoras/disenos: los cambios se hacen allí.
+// Los cambios se hacen aquí mismo (el dibujo común está en js/tutora-base.js).
 
 export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, falda, zapatos }) => {
   const DISENO = {

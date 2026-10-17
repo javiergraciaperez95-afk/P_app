@@ -1,6 +1,6 @@
 // Vietnamita (Cô Mai): melena negra azulada muy larga y lisa con la raya en medio, flor de loto en el pelo,
 // ojos castaños, áo dài blanco con ribete rosa (el uniforme de las estudiantes en Vietnam), pantalón de seda y libro verde.
-// Se genera con _herramientas/montar_cursos.py a partir de _tutoras/disenos: los cambios se hacen allí.
+// Los cambios se hacen aquí mismo (el dibujo común está en js/tutora-base.js).
 
 export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, falda, zapatos }) => {
   const DISENO = {

@@ -1,6 +1,6 @@
 // Italiano: pelo castaño rojizo ondulado, recogido en una coleta baja que le cae por delante de un hombro,
 // gafas de sol blancas en la cabeza, ojos color ámbar, polo verde de cuello blanco, falda blanca con cinturón rojo y libro rojo.
-// Se genera con _herramientas/montar_cursos.py a partir de _tutoras/disenos: los cambios se hacen allí.
+// Los cambios se hacen aquí mismo (el dibujo común está en js/tutora-base.js).
 
 export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, falda, zapatos }) => {
   const DISENO = {

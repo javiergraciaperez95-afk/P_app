@@ -1,6 +1,6 @@
 // Noruego: melena rubio ceniza muy larga y ondulada con una trenza por delante, boina azul con insignia,
 // horquillas plateadas, ojos verde grisáceo, bufanda azul marino, abrigo azul hielo con cinturón y libro azul.
-// Se genera con _herramientas/montar_cursos.py a partir de _tutoras/disenos: los cambios se hacen allí.
+// Los cambios se hacen aquí mismo (el dibujo común está en js/tutora-base.js).
 
 export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, falda, zapatos }) => {
   const DISENO = {

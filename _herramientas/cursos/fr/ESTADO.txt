@@ -1,3 +1,14 @@
+CÓMO SE COMPILA EL FRANCÉS (17-10-2026)
+El curso tiene dos partes: las lecciones 001–132 salen de las fuentes .txt (con compilar.py) y las 133–300
+las crea generar_ampliacion.py, que además renumera capítulos (98 en total) y retoca algunas lecciones base.
+Por eso compilar.py se para solo al compilar el francés. El orden correcto, si alguna vez hay que recompilar:
+  1. Volver a poner capitulos_base.txt como capitulos.txt (42 capítulos).
+  2. py -X utf8 _herramientas/cursos/compilar.py fr --forzar
+  3. py -X utf8 _herramientas/cursos/fr/generar_ampliacion.py
+El 17-10-2026 la ampliación (133–300) se había perdido por compilar sin el paso 3 y se volvió a generar con
+este procedimiento. Las correcciones que la revisión de _notas/informes/informe_frances.txt hizo en las
+lecciones 133–300 se perdieron con ellas; las 001–132 conservan las suyas.
+
 CURSO DE FRANCÉS — ESTADO CURRICULAR
 ACTUALIZADO: 2026-10-15
 

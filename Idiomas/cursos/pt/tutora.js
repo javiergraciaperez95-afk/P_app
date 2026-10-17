@@ -1,6 +1,6 @@
 // Portugués: pelo castaño oscuro corto y rizado, aros dorados, ojos azul verdoso,
 // camiseta blanca con dibujo de azulejo azul, falda amarillo mostaza, sandalias y libro verde.
-// Se genera con _herramientas/montar_cursos.py a partir de _tutoras/disenos: los cambios se hacen allí.
+// Los cambios se hacen aquí mismo (el dibujo común está en js/tutora-base.js).
 
 export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, falda, zapatos }) => {
   const DISENO = {

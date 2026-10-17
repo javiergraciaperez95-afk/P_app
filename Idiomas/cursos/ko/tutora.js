@@ -1,6 +1,6 @@
 // Coreano: melena castaño claro lisa hasta el pecho con las puntas hacia dentro, flequillo fino que deja ver la frente,
 // dos horquillas de colores, cárdigan beis sobre camisa blanca con lazo, falda marrón plisada y libro rosa pastel.
-// Se genera con _herramientas/montar_cursos.py a partir de _tutoras/disenos: los cambios se hacen allí.
+// Los cambios se hacen aquí mismo (el dibujo común está en js/tutora-base.js).
 
 export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, falda, zapatos }) => {
   const DISENO = {

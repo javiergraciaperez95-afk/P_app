@@ -50,6 +50,9 @@ a la vez: la lista la pone al día la compilación final, sin esa opción).
 
 Para fuentes separadas: --fuente <carpeta base> cambia la carpeta de entrada sin mover el destino.
 --ids-globales numera los identificadores de ejercicio desde el primer número indicado en desde.txt.
+--prueba compila sin escribir nada y dice cuántas lecciones saldrían.
+Si la compilación dejara el curso con menos lecciones de las que tiene, se para (ver ESTADO.txt del curso);
+--forzar compila igualmente.
 """
 import json, re, sys, time
 from pathlib import Path
@@ -379,6 +382,18 @@ def main():
         avisos += av
         if not leccion['palabras']:
             del leccion['palabras']
+
+    # Protección: algunos cursos tienen lecciones que no salen de estas fuentes (ampliaciones generadas aparte,
+    # correcciones hechas directamente en los JSON). Si compilar dejara el curso con menos lecciones de las que
+    # tiene ahora, se para: mira antes el ESTADO.txt del curso. «--forzar» compila igualmente.
+    existentes = len(list(destino.glob('[0-9][0-9][0-9].json'))) if destino.is_dir() else 0
+    if '--prueba' in sys.argv:
+        for a in avisos:
+            print('AVISO', a)
+        sys.exit(f'{curso}: PRUEBA (no se ha escrito nada) · las fuentes dan {ultima} lecciones; ahora hay {existentes}')
+    if existentes > ultima and '--forzar' not in sys.argv:
+        sys.exit(f'PARADO: las fuentes de «{curso}» dan {ultima} lecciones y ahora hay {existentes}. Compilar borraría '
+                 f'{existentes - ultima}. Lee _herramientas/cursos/{curso}/ESTADO.txt; si de verdad quieres, añade --forzar.')
 
     destino.mkdir(exist_ok=True)
     # Sobran las lecciones antiguas con un número mayor que la última de ahora (las demás se sobrescriben).

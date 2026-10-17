@@ -1,6 +1,6 @@
 // Alemán: rubio oscuro recogido en una coleta alta, flequillo, gafas cuadradas, ojos azul grisáceo,
 // chaqueta verde bosque sobre camisa blanca, falda gris oscura y libro negro con el emblema dorado.
-// Se genera con _herramientas/montar_cursos.py a partir de _tutoras/disenos: los cambios se hacen allí.
+// Los cambios se hacen aquí mismo (el dibujo común está en js/tutora-base.js).
 
 export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, falda, zapatos }) => {
   const DISENO = {

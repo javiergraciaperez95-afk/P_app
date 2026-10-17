@@ -1,4 +1,5 @@
-// Los cursos de la app: uno por idioma. Se genera con _herramientas/montar_cursos.py (los datos están allí).
+// Los cursos de la app: uno por idioma. Se edita a mano; el número de lecciones lo pone al día
+// _herramientas/contar_lecciones.py (y compilar.py, con el curso que compila).
 // campo: clave bajo la que va el texto del idioma en sus archivos · voz: idioma de la voz · prefijo: con qué nombre
 // guarda su progreso en el dispositivo · tabla: su tabla en Supabase · letras: teclas de ayuda al escribir.
 
@@ -55,7 +56,7 @@ export const CURSOS = [
     ],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 30 20\" aria-hidden=\"true\"><rect width=\"30\" height=\"20\" fill=\"#c60b1e\"/><rect y=\"5\" width=\"30\" height=\"10\" fill=\"#ffc400\"/></svg>",
     "sprite": "propio",
-    "lecciones": 296,
+    "lecciones": 320,
     "audio": false
   },
   {
@@ -91,7 +92,7 @@ export const CURSOS = [
       "œ"
     ],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 30 20\" aria-hidden=\"true\"><rect width=\"10\" height=\"20\" fill=\"#0055A4\"/><rect x=\"10\" width=\"10\" height=\"20\" fill=\"#fff\"/><rect x=\"20\" width=\"10\" height=\"20\" fill=\"#EF4135\"/></svg>",
-    "lecciones": 132,
+    "lecciones": 300,
     "audio": false
   },
   {
@@ -249,7 +250,7 @@ export const CURSOS = [
       "ç"
     ],
     "bandera": "<svg class=\"bandera\" width=\"21\" height=\"14\" viewBox=\"0 0 30 20\" aria-hidden=\"true\"><rect width=\"12\" height=\"20\" fill=\"#046a38\"/><rect x=\"12\" width=\"18\" height=\"20\" fill=\"#da291c\"/><circle cx=\"12\" cy=\"10\" r=\"4.2\" fill=\"#ffe900\"/><circle cx=\"12\" cy=\"10\" r=\"2.6\" fill=\"none\" stroke=\"#046a38\" stroke-width=\"0.8\"/></svg>",
-    "lecciones": 300,
+    "lecciones": 263,
     "audio": false
   },
   {

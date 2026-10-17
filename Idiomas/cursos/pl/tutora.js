@@ -1,6 +1,6 @@
 // Polaco: pelo rubio trigo recogido en una trenza que le rodea la cabeza como una corona, pendientes de ámbar,
 // ojos verde azulado, jersey blanco con una franja roja, falda roja plisada, medias blancas y libro color ámbar.
-// Se genera con _herramientas/montar_cursos.py a partir de _tutoras/disenos: los cambios se hacen allí.
+// Los cambios se hacen aquí mismo (el dibujo común está en js/tutora-base.js).
 
 export default ({ R, P, B, Rh, Ph, Bh, C, medias, mangas, mangaCorta, torso, falda, zapatos }) => {
   const DISENO = {
