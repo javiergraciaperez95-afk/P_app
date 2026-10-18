@@ -24,6 +24,7 @@ import { pintarElegirCurso, pintarCreditos } from './vistas/cursos.js';
 import { pintarInicio } from './vistas/inicio.js';
 import { pintarLegal, pintarAvisoDeDatos } from './vistas/legal.js';
 import { pintarSobre } from './vistas/sobre.js';
+import { paginarEnMovil, esMovil } from './paginas-movil.js';
 import { pintarEntrar } from './vistas/entrar.js';
 import { pintarEnlace } from './vistas/enlace.js';
 import { pintarPrecios } from './vistas/precios.js';
@@ -101,6 +102,8 @@ const GENERALES = {
 // Las portadas llevan la cabecera de la web (Inicio, Entrar, Paglot Max) en lugar del menú del curso.
 const PORTADAS = Object.keys(GENERALES).filter(ruta => !GENERALES[ruta].sinPortada);
 const esGeneral = ruta => Object.hasOwn(GENERALES, ruta);
+// En el móvil estas páginas no se desplazan: van por páginas del alto de la pantalla (js/paginas-movil.js).
+const PAGINADAS = new Set(['sobre', 'social', 'contacto', 'producto', 'escuelas', 'empresas', 'regala-max', 'tienda', 'guias', 'faq', 'laboratorio']);
 
 /** Pinta una pantalla general y guarda la función que la apaga, si la tiene. */
 function pintarGeneral(ruta) {
@@ -108,7 +111,8 @@ function pintarGeneral(ruta) {
   if (pantalla.titulo) titulo(t(pantalla.titulo));
   else document.title = t('app.nombre');
   const apagar = pantalla.pintar(app);
-  limpiarVista = typeof apagar === 'function' ? apagar : null;
+  const deshacer = PAGINADAS.has(ruta) && esMovil() ? paginarEnMovil(app) : null;
+  limpiarVista = deshacer || typeof apagar === 'function' ? () => { deshacer?.(); if (typeof apagar === 'function') apagar(); } : null;
 }
 
 const contenido = { resultados: [], capitulos: [], errorCapitulos: null, frases: null };
@@ -179,7 +183,7 @@ function pintarMarca() {
   // Dentro de un curso (lecciones, cuaderno, repaso…) y al elegir idioma no se pinta.
   const ruta = location.hash.startsWith('#/') ? location.hash.slice(2).split('/')[0] : '';
   const perdidaSinCurso = !hayCurso && ruta && !esGeneral(ruta);
-  document.body.classList.toggle('con-pie', !dentro || ruta === 'creditos' || ruta === 'legal' || Boolean(perdidaSinCurso));
+  document.body.classList.toggle('con-pie', (!dentro && !((ruta === 'entrar' || ruta === 'precios' || PAGINADAS.has(ruta)) && esMovil())) || ruta === 'creditos' || ruta === 'legal' || Boolean(perdidaSinCurso));
   ajustesCabecera.open = false;
   abrirAjustes.textContent = `⚙ ${t('ajustes.titulo')}`;
   if (dentro) {

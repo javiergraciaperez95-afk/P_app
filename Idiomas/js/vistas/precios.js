@@ -232,6 +232,9 @@ export function pintarPrecios(contenedor) {
     const ver = el('button', { type: 'button', class: 'pr-ver', 'aria-expanded': 'false' }, t('pr.verIncluye'));
     ver.addEventListener('click', () => {
       const abierto = li.classList.toggle('pr-abierto');
+      // en el móvil, uno abierto cada vez, y lo de arriba se vuelve a encajar en la pantalla
+      if (abierto && innerWidth <= 640) for (const otro of li.parentElement.querySelectorAll('.pr-abierto')) if (otro !== li) { otro.classList.remove('pr-abierto'); otro.querySelector('.pr-ver').setAttribute('aria-expanded', 'false'); }
+      requestAnimationFrame(encajar);
       ver.setAttribute('aria-expanded', String(abierto));
       sonar(abierto ? 'abrir' : 'cerrar');
       if (abierto) tutora.gesto('presentarIzq');
@@ -563,6 +566,125 @@ export function pintarPrecios(contenedor) {
   // ----- Montaje -----
   poner(contenedor, el('div', { class: 'precios' }, escenario, seccionHucha, seccionColeccion, seccionExtras, seccionTabla, seccionPromesas));
   pintarPreciosZona();
+
+  // ----- En el móvil, el resto no va debajo: cada sección se abre a pantalla completa desde unos botones.
+  // Nada se desplaza: lo que no cabe se reparte en páginas (flechas, puntos o deslizar el dedo) y cada página
+  // se encoge lo justo para caber.
+  let abierta = null;
+  const ENCOGER_MIN = 0.62;
+  const piezasDe = s => [...s.children].filter(k => !k.matches('.pr-panel-cerrar, .pr-paginas') && getComputedStyle(k).position !== 'absolute');
+  const altoDe = k => { const e = getComputedStyle(k); return Math.max(k.offsetHeight, k.scrollHeight) + parseFloat(e.marginTop) + parseFloat(e.marginBottom); };
+  function paginar(s) {
+    const piezas = piezasDe(s);
+    for (const k of piezas) { k.classList.remove('pr-oculta'); k.style.zoom = ''; }
+    const e = getComputedStyle(s);
+    const sitio = s.clientHeight - parseFloat(e.paddingTop) - parseFloat(e.paddingBottom);
+    const paginas = [];
+    let lista = [];
+    let suma = 0;
+    for (const k of piezas) {
+      const h = altoDe(k);
+      if (lista.length && suma + h > sitio) { paginas.push({ lista, suma }); lista = []; suma = 0; }
+      lista.push(k);
+      suma += h;
+    }
+    if (lista.length) paginas.push({ lista, suma });
+    for (const p of paginas) p.zoom = Math.max(ENCOGER_MIN, Math.min(1, sitio / p.suma));
+    s.paginas = paginas;
+    const nav = s.querySelector('.pr-paginas');
+    nav.hidden = paginas.length < 2;
+    poner(nav.querySelector('.pr-puntos'), paginas.map(() => el('i', { class: 'pr-punto' })));
+    irA(s, Math.min(s.pagina ?? 0, paginas.length - 1), false);
+  }
+  // lo medido antes de encoger no siempre coincide con lo que ocupa después: se mide la página ya puesta y se corrige
+  function ajustar(s) {
+    const p = s.paginas?.[s.pagina];
+    if (!p) return;
+    const e = getComputedStyle(s);
+    const sitio = s.clientHeight - parseFloat(e.paddingTop) - parseFloat(e.paddingBottom);
+    const marco = s.getBoundingClientRect();
+    const arriba = marco.top + parseFloat(e.paddingTop);
+    const abajo = marco.bottom - parseFloat(e.paddingBottom);
+    for (let vez = 0; vez < 4; vez++) {
+      const cajas = p.lista.map(k => k.getBoundingClientRect());
+      const top = Math.min(...cajas.map(c => c.top));
+      const bottom = Math.max(...cajas.map(c => c.bottom));
+      if (top >= arriba - 1 && bottom <= abajo + 1) return;
+      const alto = Math.max(bottom - top, 2 * Math.max(bottom - (arriba + abajo) / 2, (arriba + abajo) / 2 - top));
+      p.zoom = Math.max(0.5, p.zoom * sitio / alto);
+      for (const k of p.lista) k.style.zoom = p.zoom.toFixed(3);
+    }
+  }
+  function irA(s, n, conSonido = true) {
+    const paginas = s.paginas;
+    if (!paginas || n < 0 || n >= paginas.length) return;
+    if (conSonido && n !== s.pagina) sonar('pagina');
+    s.pagina = n;
+    paginas.forEach((p, i) => p.lista.forEach(k => { k.classList.toggle('pr-oculta', i !== n); k.style.zoom = i === n && p.zoom < 1 ? p.zoom.toFixed(3) : ''; }));
+    ajustar(s);
+    const nav = s.querySelector('.pr-paginas');
+    nav.querySelectorAll('.pr-punto').forEach((d, i) => d.classList.toggle('pr-punto-ya', i === n));
+    nav.querySelector('.pr-atras').disabled = n === 0;
+    nav.querySelector('.pr-alante').disabled = n === paginas.length - 1;
+  }
+  const cerrarPanel = () => {
+    if (!abierta) return;
+    for (const k of piezasDe(abierta)) { k.classList.remove('pr-oculta'); k.style.zoom = ''; }
+    abierta.classList.remove('pr-panel');
+    document.documentElement.classList.remove('pr-con-panel');
+    abierta = null;
+    sonar('cerrar');
+  };
+  const abrirPanel = seccion => {
+    abierta = seccion;
+    seccion.pagina = 0;
+    seccion.classList.add('pr-panel');
+    seccion.classList.remove('pr-fuera');
+    vistas.add(seccion);
+    actualizar();
+    document.documentElement.classList.add('pr-con-panel');
+    sonar('abrir');
+    if (seccion === seccionPromesas) { mirarPergamino(); despues(1400, () => { if (abierta === seccion) paginar(seccion); }); }
+    paginar(seccion);
+    seccion.querySelector('.pr-panel-cerrar').focus({ preventScroll: true });
+  };
+  const menu = [['hucha', seccionHucha], ['coleccion', seccionColeccion], ['extras', seccionExtras], ['comparar', seccionTabla], ['promesas', seccionPromesas]];
+  for (const [, s] of menu) {
+    s.prepend(el('button', { type: 'button', class: 'pr-panel-cerrar', onclick: cerrarPanel }, '◀ ', t('pr.menu.cerrar')));
+    s.append(el('nav', { class: 'pr-paginas', hidden: true },
+      el('button', { type: 'button', class: 'pr-atras', 'aria-label': '◀', onclick: () => irA(s, s.pagina - 1) }, '◀'),
+      el('span', { class: 'pr-puntos', 'aria-hidden': 'true' }),
+      el('button', { type: 'button', class: 'pr-alante', 'aria-label': '▶', onclick: () => irA(s, s.pagina + 1) }, '▶')));
+    // el pergamino se desenrolla después de abrir: al acabar, se vuelve a repartir
+    let repartir2 = 0;
+    const alAcabar = e => {
+      if (s !== abierta || !e.target.closest('.pr-pergamino') || repartir2) return;
+      repartir2 = requestAnimationFrame(() => { repartir2 = 0; if (s === abierta) paginar(s); });
+    };
+    s.addEventListener('transitionend', alAcabar);
+    s.addEventListener('animationend', alAcabar);
+    // deslizar el dedo de lado también pasa de página
+    let x0 = null;
+    s.addEventListener('pointerdown', e => { if (s === abierta) x0 = e.clientX; });
+    s.addEventListener('pointerup', e => {
+      if (x0 === null) return;
+      const dx = e.clientX - x0;
+      x0 = null;
+      if (Math.abs(dx) > 50) irA(s, s.pagina + (dx < 0 ? 1 : -1));
+    });
+  }
+  contenidoArriba.append(el('nav', { class: 'pr-menu-movil', 'aria-label': t('pr.menu.titulo') },
+    menu.map(([clave, s]) => el('button', { type: 'button', onclick: () => abrirPanel(s) }, t(`pr.menu.${clave}`)))));
+  const alTeclado = e => {
+    if (!abierta) return;
+    if (e.key === 'Escape') cerrarPanel();
+    else if (e.key === 'ArrowRight') irA(abierta, abierta.pagina + 1);
+    else if (e.key === 'ArrowLeft') irA(abierta, abierta.pagina - 1);
+  };
+  const alCambiarTamano = () => { if (abierta) { if (innerWidth > 640) cerrarPanel(); else paginar(abierta); } };
+  addEventListener('keydown', alTeclado);
+  addEventListener('resize', alCambiarTamano);
+  apagar.push(() => { removeEventListener('keydown', alTeclado); removeEventListener('resize', alCambiarTamano); document.documentElement.classList.remove('pr-con-panel'); });
 
   // ----- Que lo de arriba (de «Precios» a los tres planes) quepa siempre en la pantalla, sin desplazar -----
   const cabecera = document.querySelector('.cabecera');

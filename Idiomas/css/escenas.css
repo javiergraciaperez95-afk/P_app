@@ -103,3 +103,44 @@
 
 /* La escena llega hasta el pie, sin el margen de abajo de la página. */
 body:has(.escena-web) #app { padding-bottom: 0; }
+
+/* ===================================================================== */
+/* Móvil: las páginas de la web van por páginas, sin desplazar (js/paginas-movil.js) */
+/* ===================================================================== */
+html.pm-activo, html.pm-activo body { overflow: hidden; }
+html.pm-activo body main { padding-bottom: 0; }
+.pm-oculto { display: none !important; }
+.pm-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px));
+  background: var(--h-papel);
+  box-shadow: 0 -3px 0 0 var(--h-borde);
+}
+.pm-nav[hidden] { display: none; }
+.pm-nav button {
+  width: 48px;
+  height: 38px;
+  font: 700 1rem var(--fuente-pixel);
+  color: var(--h-tinta);
+  background: var(--h-papel-2, var(--h-papel));
+  border: 0;
+  box-shadow: 0 -3px 0 0 var(--h-borde), 0 3px 0 0 var(--h-borde), -3px 0 0 0 var(--h-borde), 3px 0 0 0 var(--h-borde), 3px 4px 0 0 var(--h-sombra);
+  cursor: pointer;
+  transition: transform .1s steps(2);
+  -webkit-tap-highlight-color: transparent;
+}
+.pm-nav button:active { transform: translateY(2px); }
+.pm-nav button:disabled { opacity: .35; cursor: default; }
+.pm-nav button:focus-visible { outline: 3px dashed var(--marca-oro); outline-offset: 3px; }
+.pm-puntos { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; max-width: 60vw; }
+.pm-puntos i { width: 10px; height: 10px; background: var(--h-papel); box-shadow: 0 0 0 2px var(--h-borde); }
+.pm-puntos i.pm-ya { background: var(--h-rosa); }
+.pm-puntos b { font: 700 .9rem var(--fuente-pixel); color: var(--h-tinta); }

@@ -1124,3 +1124,95 @@
 .pr-globito::after { content: ""; position: absolute; left: 50%; top: 100%; width: 12px; height: 8px; margin: 3px 0 0 -6px; background: var(--globo-tinta); clip-path: polygon(0 0, 100% 0, 100% 34%, 67% 34%, 67% 67%, 33% 67%, 33% 100%, 33% 34%, 0 34%); }
 .pr-como:hover .pr-globito, .pr-como:focus-visible .pr-globito { transform: translateX(-50%) scale(1); }
 @media (prefers-reduced-motion: reduce) { .pr-globito { transition: none; } }
+
+/* ===================================================================== */
+/* Móvil: solo los planes en pantalla; el resto se abre a pantalla completa desde .pr-menu-movil (js/vistas/precios.js) */
+/* ===================================================================== */
+.pr-menu-movil, .pr-panel-cerrar { display: none; }
+@media (max-width: 640px) {
+  html:has(.precios), body:has(.precios) { overflow: hidden; }
+  body main:has(> .precios) { padding-bottom: 0; }
+  .precios > .pr-seccion:not(.pr-panel) { display: none; }
+  .pr-menu-movil { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 10px; }
+  .pr-menu-movil button {
+    min-height: 36px;
+    padding: 4px 10px;
+    font: 700 .82rem var(--fuente-pixel);
+    color: var(--h-tinta);
+    background: var(--h-papel);
+    border: 0;
+    box-shadow: 0 -3px 0 0 var(--h-borde), 0 3px 0 0 var(--h-borde), -3px 0 0 0 var(--h-borde), 3px 0 0 0 var(--h-borde), 3px 4px 0 0 var(--h-sombra);
+    cursor: pointer;
+    transition: transform .1s steps(2);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .pr-menu-movil button:active { transform: translateY(2px); }
+  .pr-menu-movil button:focus-visible { outline: 3px dashed var(--marca-oro); outline-offset: 3px; }
+  /* la sección abierta tapa toda la pantalla, cabecera incluida; nada se desplaza: lo que no cabe va en páginas */
+  .pr-seccion.pr-panel {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    padding: 52px 12px 60px;
+    overflow: hidden;
+    background: var(--h-cielo);
+    animation: pr-panel-entra .2s steps(4);
+  }
+  .pr-panel > * { flex: none; }
+  /* abierta se ve siempre: que no se quede parada por «fuera de pantalla» */
+  .pr-panel.pr-fuera, .pr-panel.pr-fuera * { animation-play-state: running !important; }
+  .pr-panel > .pr-oculta { display: none !important; }
+  .pr-seccion.pr-panel > .pr-paginas:not([hidden]) {
+    position: absolute !important;
+    left: 0;
+    right: 0;
+    bottom: 8px;
+    z-index: 20 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+  }
+  .pr-paginas button {
+    width: 44px;
+    height: 40px;
+    font: 700 1rem var(--fuente-pixel);
+    color: var(--h-tinta);
+    background: var(--h-papel);
+    border: 0;
+    box-shadow: 0 -3px 0 0 var(--h-borde), 0 3px 0 0 var(--h-borde), -3px 0 0 0 var(--h-borde), 3px 0 0 0 var(--h-borde), 3px 4px 0 0 var(--h-sombra);
+    cursor: pointer;
+    transition: transform .1s steps(2);
+  }
+  .pr-paginas button:active { transform: translateY(2px); }
+  .pr-paginas button:disabled { opacity: .35; cursor: default; }
+  .pr-puntos { display: flex; gap: 6px; }
+  .pr-punto { width: 10px; height: 10px; background: var(--h-papel); box-shadow: 0 0 0 2px var(--h-borde); }
+  .pr-punto-ya { background: var(--h-rosa); }
+  /* la pizarra sin las alumnas de cada fila: la tabla cabe entera y son 10 tutoras menos animándose */
+  .pr-pizarra .pr-fila-quien { display: none; }
+  .pr-seccion.pr-panel > .pr-panel-cerrar {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20 !important;
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 6px 14px;
+    font: 700 .9rem var(--fuente-pixel);
+    color: #fff;
+    background: var(--h-rosa);
+    border: 0;
+    box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .18), 0 3px 0 0 var(--h-borde);
+    cursor: pointer;
+  }
+  :root[data-tema="oscuro"] .pr-panel .pr-panel-cerrar { color: #1b0f14; }
+}
+@keyframes pr-panel-entra { from { transform: translateY(24px); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .pr-seccion.pr-panel { animation: none; } }
