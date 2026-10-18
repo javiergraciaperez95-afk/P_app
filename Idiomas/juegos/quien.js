@@ -11,7 +11,7 @@
 import { el, poner } from '../js/dom.js';
 
 const MAX_PERSONAJES = 4;
-const MAX_RONDAS = 6;
+const MAX_RONDAS = 5;
 
 /** Las frases que se pueden preguntar: de uno de los (como mucho cuatro) personajes y sin ambigüedad. */
 function preguntables(bloque) {

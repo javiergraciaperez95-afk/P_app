@@ -118,7 +118,7 @@ export function crear(bloque, ctx) {
         if (n + 1 < tandas.length) {
           sonar('bien');
           pista.textContent = t('jg.desorden.tandaHecha');
-          luego(() => tanda(n + 1, false), 1100);
+          luego(() => tanda(n + 1, false), 650);
           return;
         }
         pista.textContent = t('jg.desorden.fin');

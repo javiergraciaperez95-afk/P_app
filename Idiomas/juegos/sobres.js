@@ -61,7 +61,7 @@ export function crear(bloque, ctx) {
       sonar('papel');
       abrir.firstChild.classList.add('abre');
       abrir.disabled = true;
-      setTimeout(() => leer(i, trozos[i].claves.length ? preguntar(trozos[i]) : null), ctx.quieto ? 0 : 450);
+      setTimeout(() => leer(i, trozos[i].claves.length ? preguntar(trozos[i]) : null), ctx.quieto ? 0 : 300);
     });
     pista.textContent = t('jg.sobres.pista');
     poner(escena, abrir);

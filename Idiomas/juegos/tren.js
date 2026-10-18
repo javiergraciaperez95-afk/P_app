@@ -104,9 +104,9 @@ export function crear(bloque, ctx) {
     ctx.decir([alAzar(t('ej.felicitaciones')), explicacion].filter(Boolean).join(' '), 'contenta');
     const { nodo: fraseLista } = ctx.frase(bloque.frase);
     estacion.hidden = true;
-    luego(() => sonar('fanfarria'), 900);
+    luego(() => sonar('fanfarria'), 600);
     // cuando el tren se ha ido, la vía vacía se recoge y la frase sube
-    luego(() => { escena.hidden = true; }, 1900);
+    luego(() => { escena.hidden = true; }, 1200);
     cartaFinal.hidden = false;
     poner(cartaFinal,
       el('p', { class: 'jg-tren-frase', lang: ctx.LANG }, fraseLista, ' ',

@@ -10,6 +10,7 @@
 import { el, poner } from '../js/dom.js';
 import { hayVoz } from '../js/sonidos.js';
 
+const MAX = 8;
 const reales = f => f && f.es && !f.propio;
 
 const usables = (bloque, ctx) => {
@@ -35,8 +36,9 @@ export const juego = {
 export function crear(bloque, ctx) {
   const { t, tr, sonar } = ctx;
   const fichas = usables(bloque, ctx);
-  const cola = ctx.barajar(fichas.map(f => ({ f, vistas: 0, vuelta: false })));
-  const total = fichas.length;
+  // ocho palabras como mucho (las demás siguen sirviendo para despistar)
+  const cola = ctx.barajar(fichas.map(f => ({ f, vistas: 0, vuelta: false }))).slice(0, MAX);
+  const total = cola.length;
   let hechas = 0;
   const significado = f => tr(f) || f.es;
 

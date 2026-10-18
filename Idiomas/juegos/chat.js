@@ -83,7 +83,7 @@ export function crear(bloque, ctx) {
       abajo();
       sonar('burbuja');
       ctx.leerSiHayVoz(f.es);
-      luego(despues, 650);
+      luego(despues, 420);
     }, 800);
   }
 
@@ -123,7 +123,7 @@ export function crear(bloque, ctx) {
           sonar('pop');
           if (contado) { hechos += 1; cuenta.textContent = `${hechos} / ${turnos}`; }
           pista.textContent = '';
-          luego(() => (contado ? seguir(indice + 1) : repasar()), 650);
+          luego(() => (contado ? seguir(indice + 1) : repasar()), 420);
         }, 350);
       });
       return b;
@@ -170,6 +170,6 @@ export function crear(bloque, ctx) {
       opciones),
     pista);
   pista.textContent = t('jg.chat.eres', { quien: yo });
-  luego(() => seguir(0), 500);
+  luego(() => seguir(0), 300);
   return { nodo, apagar() { vivo = false; for (const id of temporizadores) clearTimeout(id); } };
 }

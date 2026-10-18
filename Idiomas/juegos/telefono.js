@@ -12,7 +12,7 @@
 import { el, poner } from '../js/dom.js';
 import { hayVoz } from '../js/sonidos.js';
 
-const MAX_LLAMADAS = 8;
+const MAX_LLAMADAS = 6;
 
 const textoTrad = (f, ctx) => String(ctx.tr(f.trad) ?? '').trim();
 const conTrad = (lista, ctx) => lista.filter(f => f.es && textoTrad(f, ctx));

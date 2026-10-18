@@ -12,7 +12,7 @@ import { el, poner } from '../js/dom.js';
 
 const GENEROS = ['m', 'f', 'n'];
 const MAX_CAJAS = 4;
-const MAX_PALABRAS = 12;
+const MAX_PALABRAS = 8;
 
 const usables = (bloque, ctx) => {
   const vistas = new Set();

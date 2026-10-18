@@ -10,6 +10,7 @@
 
 import { el, poner } from '../js/dom.js';
 
+const MAX = 6;
 const minusc = c => c.toLocaleLowerCase();
 
 const usables = (bloque, ctx) => {
@@ -31,7 +32,10 @@ export const juego = {
 
 export function crear(bloque, ctx) {
   const { t, tr, sonar } = ctx;
-  const fichas = usables(bloque, ctx);
+  // seis palabras como mucho, mejor las cortas: deletrear letra a letra cansa enseguida
+  const largo = f => Array.from(f.es.replace(/\s+/g, '')).length;
+  const mezcla = ctx.barajar(usables(bloque, ctx));
+  const fichas = [...mezcla.filter(f => largo(f) <= 9), ...mezcla.filter(f => largo(f) > 9)].slice(0, MAX);
   const cola = ctx.barajar(fichas.map(f => ({ f, vuelta: false })));
   const total = fichas.length;
   let hechas = 0;

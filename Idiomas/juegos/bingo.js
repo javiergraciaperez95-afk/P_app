@@ -46,7 +46,8 @@ export const juego = {
 
 export function crear(bloque, ctx) {
   const { t, tr, sonar, elenco } = ctx;
-  const fichas = ctx.barajar(usables(bloque, ctx));
+  // un cartón: el resto de palabras ya se ve en las cartas y va al cuaderno
+  const fichas = ctx.barajar(usables(bloque, ctx)).slice(0, MAX_CARTON);
   const significado = f => tr(f) || f.es;
   const esperas = [];
   const luego = (ms, fn) => { esperas.push(setTimeout(fn, ctx.quieto ? 0 : ms)); };
@@ -140,7 +141,7 @@ export function crear(bloque, ctx) {
           tutora.gesto('saludar');
           ctx.decir(t('jg.bingo.lineaTutora'), 'contenta');
         }
-        luego(nuevas.length ? 900 : 450, llamar);
+        luego(nuevas.length ? 600 : 300, llamar);
         return;
       }
       fallos += 1;

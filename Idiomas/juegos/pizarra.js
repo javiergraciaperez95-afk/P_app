@@ -27,7 +27,7 @@ export function crear(bloque, ctx) {
     aviso.hidden = !claves.length;
     if (!claves.length) {
       boton.disabled = true;
-      espera = setTimeout(() => { boton.disabled = false; boton.classList.add('jg-listo'); }, Math.min(2200, 500 + texto.length * 18));
+      espera = setTimeout(() => { boton.disabled = false; boton.classList.add('jg-listo'); }, Math.min(1500, 400 + texto.length * 12));
       return;
     }
     boton.disabled = true;
@@ -41,7 +41,14 @@ export function crear(bloque, ctx) {
         rodear.classList.add('rodeada');
         sonar('tiza');
         quedan -= 1;
-        if (quedan === 0) { boton.disabled = false; boton.classList.add('jg-listo'); aviso.hidden = true; }
+        if (quedan === 0) {
+          boton.disabled = false;
+          boton.classList.add('jg-listo');
+          aviso.hidden = true;
+          // rodeadas las negritas, el trozo ya se ha leído: el siguiente sale solo
+          clearTimeout(espera);
+          espera = setTimeout(() => { if (boton.isConnected && !boton.disabled && !boton.hidden) boton.click(); }, ctx.quieto ? 300 : 750);
+        }
       });
       fuerte.replaceWith(rodear);
     }
@@ -68,7 +75,7 @@ export function crear(bloque, ctx) {
     lista.lastChild.scrollIntoView?.({ block: 'nearest', behavior: ctx.quieto ? 'auto' : 'smooth' });
     if (n >= total) { boton.hidden = true; ctx.hecho(); }
   }
-  boton.addEventListener('click', () => { if (boton.disabled) return; boton.classList.remove('jg-listo'); sonar('tiza'); mostrar(); });
+  boton.addEventListener('click', () => { clearTimeout(espera); if (boton.disabled || boton.hidden) return; boton.classList.remove('jg-listo'); sonar('tiza'); mostrar(); });
   mostrar();
   const nodo = el('div', { class: 'jg-pizarra' },
     el('div', { class: 'jg-pizarra-marco' }, bloque.titulo && el('h2', {}, tr(bloque.titulo)), aviso, lista, el('div', { class: 'jg-pizarra-pie' }, cuenta, boton)),

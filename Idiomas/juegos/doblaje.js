@@ -12,7 +12,7 @@
 import { el, poner } from '../js/dom.js';
 
 const MAX_PERSONAJES = 4;
-const MAX_ESCENAS = 6;
+const MAX_ESCENAS = 5;
 
 const textoTrad = (f, ctx) => String(ctx.tr(f.trad) ?? '').trim();
 const conTrad = (lista, ctx) => lista.filter(f => f.es && textoTrad(f, ctx));

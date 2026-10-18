@@ -100,7 +100,7 @@ export function crear(bloque, ctx) {
         ctx.decir(t('jg.detective.bien'), 'contenta');
         expediente.append(el('li', {}, el('b', {}, `${actual.etiqueta}: `), el('span', { lang: ctx.LANG }, actual.trozos.join(' · '))));
         if (falladas.has(actual) && !repetidas.has(actual)) { repetidas.add(actual); cola2.push(actual); }
-        setTimeout(() => { if (cola2.length) preguntar(); else resuelto(); }, ctx.quieto ? 0 : 650);
+        setTimeout(() => { if (cola2.length) preguntar(); else resuelto(); }, ctx.quieto ? 0 : 400);
         return;
       }
       falladas.add(actual);

@@ -11,7 +11,7 @@
 import { el, poner } from '../js/dom.js';
 
 const RE_PALABRA = /[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*/gu;
-const MAX = 8;
+const MAX = 6;
 const OPCIONES = 3;
 
 /** Dónde está en el texto la palabra que brilla de ctx.frase: { antes, palabra, despues, entrada }. */

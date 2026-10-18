@@ -12,7 +12,7 @@ import { el, poner } from '../js/dom.js';
 import { hayVoz } from '../js/sonidos.js';
 
 const RE_PALABRA = /[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*/gu;
-const MAX = 8;
+const MAX = 6;
 const RITMO_CON_VOZ = 600;
 const RITMO_SIN_VOZ = 900;
 

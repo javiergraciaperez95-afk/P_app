@@ -19,9 +19,16 @@
 
 /* ----- El escenario y el pie ----- */
 .jg-escenario { min-height: 360px; }
-.jg-paso.entra { animation: jg-entra .35s steps(4) both; }
+.jg-paso.entra { animation: jg-entra .25s steps(3) both; }
 @keyframes jg-entra { from { opacity: 0; transform: translateY(16px); } }
-.jg-pie { display: flex; justify-content: space-between; gap: 12px; margin-top: 22px; }
+/* el pie va pegado abajo (encima de la tutora): «Siguiente» siempre está a mano, sin bajar a buscarlo */
+.jg-pie {
+  position: sticky; z-index: 20; bottom: calc(var(--alto-tutora-real, var(--alto-tutora)) + 22px + var(--borde-abajo, 0px));
+  display: flex; justify-content: space-between; gap: 12px; margin: 22px -12px 0; padding: 10px 12px;
+  background: var(--fondo); box-shadow: 0 -3px 0 0 var(--linea);
+}
+body.tutora-oculta .jg-pie { bottom: calc(62px + var(--borde-abajo, 0px)); }
+.jg-pie .jg-listo::after { content: " ✓"; }
 .jg-pie .es-boton:disabled { opacity: .45; cursor: not-allowed; }
 .jg-listo { animation: jg-llama 1s steps(2) infinite; }
 @keyframes jg-llama { 50% { transform: scale(1.06); } }
@@ -120,7 +127,7 @@
 /* ===================== Las cartas ===================== */
 .jg-mesa-cartas { padding: 20px; background: #2f6a4a; box-shadow: inset 0 0 0 6px #24553a, 0 0 0 3px var(--h-borde), 8px 10px 0 3px rgba(0, 0, 0, .25); }
 .jg-mesa-cartas:has(.jg-carta) { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; }
-.jg-carta { position: relative; height: 150px; border: 0; padding: 0; cursor: pointer; background: transparent; perspective: 600px; animation: jg-reparte .35s steps(4) both; animation-delay: calc(var(--i) * 60ms); }
+.jg-carta { position: relative; height: 150px; border: 0; padding: 0; cursor: pointer; background: transparent; perspective: 600px; animation: jg-reparte .3s steps(3) both; animation-delay: calc(var(--i) * 35ms); }
 @keyframes jg-reparte { from { opacity: 0; transform: translateY(-20px) rotate(-8deg); } }
 .jg-carta > span { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 6px; padding: 10px; backface-visibility: hidden; box-shadow: 0 0 0 3px var(--h-borde), 4px 6px 0 2px rgba(0, 0, 0, .3); transition: transform .3s steps(4); }
 .jg-carta-dorso { background: repeating-linear-gradient(45deg, #c8445a 0 10px, #a8344a 10px 20px); }

@@ -3,7 +3,7 @@
 // ---------------------------------------------------------------------
 // 1. Descubrir: las palabras están boca abajo; cada carta que giras enseña la palabra, cómo se dice
 //    y qué significa, y suena. Hay que girarlas todas.
-// 2. Parejas: en rondas de cuatro, une cada palabra con su significado. Un fallo no castiga: la carta
+// 2. Parejas: en rondas de cuatro (dos rondas como mucho), une cada palabra con su significado. Un fallo no castiga: la carta
 //    tiembla, la tutora te da el significado y lo vuelves a intentar.
 // Vale para cualquier idioma: solo usa las fichas de la lección.
 // =====================================================================
@@ -57,7 +57,8 @@ export function crear(bloque, ctx) {
   function parejas() {
     nodo.querySelector('.jg-seguir')?.remove();
     const rondas = [];
-    const mezcla = barajar([...fichas]);
+    // dos rondas como mucho: las demás palabras ya se han visto al girarlas y se practican en el repaso
+    const mezcla = barajar([...fichas]).slice(0, POR_RONDA * 2 + 1);
     for (let i = 0; i < mezcla.length; i += POR_RONDA) rondas.push(mezcla.slice(i, i + POR_RONDA));
     // una ronda de una sola palabra no tiene gracia: se junta con la anterior
     if (rondas.length > 1 && rondas.at(-1).length === 1) rondas.at(-2).push(...rondas.pop());
@@ -93,7 +94,7 @@ export function crear(bloque, ctx) {
               sonar('bien');
               unidas = 0;
               ronda += 1;
-              if (ronda < rondas.length) setTimeout(pintarRonda, ctx.quieto ? 0 : 600);
+              if (ronda < rondas.length) setTimeout(pintarRonda, ctx.quieto ? 0 : 350);
               else fin();
             }
           } else {

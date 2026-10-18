@@ -10,7 +10,7 @@
 
 import { el, poner } from '../js/dom.js';
 
-const MAX = 8;
+const MAX = 6;
 // en el modo desarrollador la respuesta queda marcada en la página, para las pruebas automáticas
 const enPruebas = () => { try { return Boolean(sessionStorage.getItem('idiomas-desarrollador')); } catch { return false; } };
 

@@ -1,8 +1,8 @@
 // =====================================================================
 // EL SUBRAYADOR — juego para leer una explicación o la gramática (bloques «explicacion» y «gramatica»)
 // ---------------------------------------------------------------------
-// El texto sale a trozos, sobre una hoja. En cada trozo hay que pasar el rotulador fosforito por TODAS
-// las palabras en negrita (las palabras clave): se tocan una a una y se quedan subrayadas. Tocar otra
+// El texto sale a trozos, sobre una hoja. En cada trozo hay que pasar el rotulador fosforito por las
+// palabras en negrita (las palabras clave; tres como mucho): se tocan una a una y se quedan subrayadas. Tocar otra
 // cosa no castiga: la tutora recuerda qué hay que buscar. Hasta que no están todas subrayadas no sale
 // «Entendido». Si un trozo no trae negritas, basta con leerlo y entenderlo. En gramática, al final,
 // salen los ejemplos con su análisis. Vale para cualquier idioma: solo usa el texto de la lección.
@@ -50,6 +50,7 @@ export function crear(bloque, ctx) {
   let n = 0;
   let faltan = 0;
   let fallos = 0;
+  let solo = null;
 
   function mostrar() {
     for (const h of lista.children) h.classList.add('vieja');
@@ -58,8 +59,9 @@ export function crear(bloque, ctx) {
     if (n < trozos.length) {
       const fragmento = textoConFormato(trozos[n]);
       const claves = preparar(fragmento);
-      faltan = claves.length;
-      const hacia = claves.length;
+      // con muchas negritas basta con tres (las demás se pueden subrayar igual)
+      const hacia = Math.min(3, claves.length);
+      faltan = hacia;
       hoja = el('div', { class: 'jg-subrayador-hoja' }, fragmento);
       marcadas.textContent = hacia ? t('jg.subrayador.marcadas', { n: 0, total: hacia }) : '';
       if (hacia) {
@@ -68,6 +70,7 @@ export function crear(bloque, ctx) {
           c.addEventListener('click', () => {
             if (c.classList.contains('marcada')) return;
             c.classList.add('marcada');
+            if (faltan <= 0) { sonar('marcar'); return; }
             faltan -= 1;
             marcadas.textContent = t('jg.subrayador.marcadas', { n: hacia - faltan, total: hacia });
             if (faltan > 0) { sonar('marcar'); return; }
@@ -75,6 +78,9 @@ export function crear(bloque, ctx) {
             pista.textContent = t('jg.subrayador.listo');
             boton.hidden = false;
             boton.focus({ preventScroll: true });
+            // con todo subrayado ya se ha leído: el siguiente trozo sale solo, sin otro toque
+            clearTimeout(solo);
+            solo = setTimeout(() => { if (nodo.isConnected && !boton.hidden && faltan === 0) boton.click(); }, ctx.quieto ? 300 : 750);
           });
         }
         boton.hidden = true;
@@ -107,7 +113,8 @@ export function crear(bloque, ctx) {
   }
 
   boton.addEventListener('click', () => {
-    if (faltan > 0) return;
+    clearTimeout(solo);
+    if (faltan > 0 || boton.hidden) return;
     sonar('tiza');
     if (n >= total) {
       boton.hidden = true;
@@ -126,5 +133,5 @@ export function crear(bloque, ctx) {
     el('header', { class: 'jg-encabezado' }, el('h2', {}, bloque.titulo ? tr(bloque.titulo) : t('jg.subrayador.titulo')), cuenta),
     pista,
     el('div', { class: 'jg-subrayador-mesa' }, lista, el('div', { class: 'jg-subrayador-pie' }, el('span', { class: 'jg-subrayador-rotulador', 'aria-hidden': 'true' }), marcadas, boton)));
-  return { nodo };
+  return { nodo, apagar: () => clearTimeout(solo) };
 }

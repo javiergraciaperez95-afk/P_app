@@ -28,14 +28,19 @@ export function el(etiqueta, atributos = {}, ...hijos) {
 /** Convierte «**negrita**» en <strong>. Devuelve una lista de nodos. */
 export function enLinea(texto) {
   const partes = String(texto).split(/\*\*(.+?)\*\*/g);
-  return partes.map((parte, i) => (i % 2 === 1 ? el('strong', {}, parte) : parte));
+  return partes.flatMap((parte, i) => (i % 2 === 1 ? [el('strong', {}, parte)] : cursivas(parte)));
+}
+// *así* (un asterisco a cada lado, pegado a la palabra) va en cursiva: son los ejemplos dentro de una explicación
+function cursivas(texto) {
+  const trozos = texto.split(/(?<![\p{L}\p{N}*])\*([^*\s](?:[^*]*?[^*\s])?)\*(?![\p{L}\p{N}*])/gu);
+  return trozos.map((t, i) => (i % 2 === 1 ? el('em', { class: 'cursiva' }, t) : t)).filter(t => t !== '');
 }
 
 /**
  * Texto con formato mínimo:
  * - una línea en blanco separa párrafos;
  * - las líneas que empiezan por «- » forman una lista;
- * - **así** se escribe en negrita.
+ * - **así** se escribe en negrita y *así* en cursiva.
  */
 export function textoConFormato(texto) {
   const fragmento = document.createDocumentFragment();

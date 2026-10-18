@@ -275,6 +275,14 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
   }
 
   atras.addEventListener('click', () => { sonar('pagina'); ir(actual - 1); });
+  // con teclado, Intro (fuera de los campos y botones) pasa al siguiente paso cuando ya está hecho
+  const alTeclear = e => {
+    if (e.key !== 'Enter' || e.repeat || adelante.disabled || adelante.hidden || !raiz.isConnected) return;
+    if (e.target.closest?.('input, textarea, select, button, a, [contenteditable]')) return;
+    e.preventDefault();
+    adelante.click();
+  };
+  document.addEventListener('keydown', alTeclear);
   adelante.addEventListener('click', () => {
     if (adelante.disabled && !probar().saltar) return;
     sonar('paso');
@@ -283,7 +291,13 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
 
   poner(contenedor, raiz);
   elenco.vigilar(escenario);
+  // el pie va pegado justo encima de la tutora: se mide lo que ocupa de verdad (su texto la hace crecer)
+  const tutora = document.querySelector('.tutora');
+  const medir = () => raiz.style.setProperty('--alto-tutora-real', `${tutora?.offsetHeight || 0}px`);
+  const vigiaTutora = tutora && typeof ResizeObserver !== 'undefined' ? new ResizeObserver(medir) : null;
+  vigiaTutora?.observe(tutora);
+  medir();
   ir(actual);
   if (actual === 0) decir(leccion.intro ? tr(leccion.intro) : t('leccion.introTutora', { titulo: leccion.titulo_es }));
-  return () => { callar(); apagarPaso?.(); elenco.apagar(); window.removeEventListener('paglot-suceso', alSuceso); };
+  return () => { callar(); apagarPaso?.(); elenco.apagar(); window.removeEventListener('paglot-suceso', alSuceso); document.removeEventListener('keydown', alTeclear); vigiaTutora?.disconnect(); };
 }

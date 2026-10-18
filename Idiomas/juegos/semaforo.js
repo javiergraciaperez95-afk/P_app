@@ -110,7 +110,7 @@ export function crear(bloque, ctx) {
       if (falladas.has(actual) && !repetidas.has(actual)) { repetidas.add(actual); pendientes.push(actual); }
       poner(luces);
       pregunta.textContent = '';
-      setTimeout(siguienteTrozo, ctx.quieto ? 0 : 450);
+      setTimeout(siguienteTrozo, ctx.quieto ? 0 : 300);
     }
 
     function listo() {

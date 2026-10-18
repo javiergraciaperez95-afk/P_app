@@ -29,7 +29,8 @@ export const juego = {
 
 export function crear(bloque, ctx) {
   const { t, tr, sonar } = ctx;
-  const fichas = ctx.barajar(usables(bloque, ctx));
+  // dos tableros como mucho: el resto de palabras ya se ve en las cartas y va al cuaderno
+  const fichas = ctx.barajar(usables(bloque, ctx)).slice(0, POR_TABLERO * 2);
   const significado = f => tr(f) || f.es;
   const esperas = [];
   const luego = (ms, fn) => { esperas.push(setTimeout(fn, ctx.quieto ? 0 : ms)); };
@@ -102,7 +103,7 @@ export function crear(bloque, ctx) {
         const dichas = [a, b].map(x => (x.lado === 'es' ? x.f.es : significado(x.f)));
         ctx.decir(t('jg.memoria.noPareja', { a: dichas[0], b: dichas[1] }), 'pensando');
       }
-      luego(1100, () => {
+      luego(850, () => {
         for (const x of [a, b]) { x.boton.classList.remove('girada', 'tiembla'); x.boton.setAttribute('aria-label', t('jg.memoria.carta', { n: cartas.indexOf(x) + 1 })); }
         sonar('voltear');
         ocupado = false;
