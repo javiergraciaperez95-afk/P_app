@@ -1,0 +1,43 @@
+/* =====================================================================
+   ¿QUIÉN LO DIJO? (juegos/quien.js) — una plaza con los personajes debajo de la frase.
+   Solo se animan transform y opacity, a saltos.
+   ===================================================================== */
+
+.jg-quien-escena { position: relative; display: grid; gap: 22px; padding: 22px 18px 0; overflow: hidden; background: linear-gradient(#8fc8f0 0 62%, #bfe6ff 62%); box-shadow: 0 0 0 3px var(--h-borde), 8px 10px 0 3px rgba(0, 0, 0, .25); }
+.jg-quien-suelo { display: block; height: 30px; margin: -30px -18px 0; background: repeating-linear-gradient(90deg, #a8714a 0 58px, #7c4f30 58px 60px); box-shadow: inset 0 3px 0 var(--h-borde); }
+.jg-quien-frase { position: relative; z-index: 2; width: min(600px, 100%); margin: 0 auto; padding: 16px 18px; text-align: center; color: #2b1d1a; background: #fffaf0; box-shadow: 0 0 0 3px var(--h-borde), 5px 7px 0 2px rgba(0, 0, 0, .3); }
+.jg-quien-frase::after { content: ""; position: absolute; bottom: -14px; left: calc(50% - 10px); width: 20px; height: 14px; background: #fffaf0; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+.jg-quien-frase.sale { animation: jg-entra .3s steps(3) both; }
+.jg-quien-frase .jg-herramientas { justify-content: center; }
+.jg-quien-frase .jg-trad { color: #6a5a52; }
+.jg-quien-frase .palabra { color: #2b1d1a; }
+
+.jg-quien-reparto { position: relative; z-index: 1; display: flex; justify-content: space-around; align-items: flex-end; gap: 6px; min-height: 190px; padding-bottom: 38px; }
+.jg-quien-papel { position: relative; display: grid; justify-items: center; gap: 6px; padding: 4px 6px 0; transition: transform .2s steps(2), opacity .2s steps(2); }
+.jg-quien-papel .tutora-lienzo { width: 96px; height: 128px; }
+.jg-quien-nombre { padding: 2px 8px; font: 700 .85rem var(--fuente-pixel); color: #2b1d1a; background: var(--oro, #f4c84a); box-shadow: 0 0 0 2px var(--h-borde); overflow-wrap: anywhere; text-align: center; }
+.jg-quien-toque { position: absolute; inset: 0; z-index: 3; min-width: 44px; min-height: 44px; border: 0; cursor: pointer; background: transparent; -webkit-tap-highlight-color: transparent; }
+.jg-quien-toque:hover { background: rgba(255, 241, 176, .35); }
+.jg-quien-toque:active { background: rgba(255, 241, 176, .55); }
+.jg-quien-toque:focus-visible { outline: 3px dashed var(--h-borde); outline-offset: 2px; }
+.jg-quien-papel:hover:not(.descartado):not(.acierto) { transform: translateY(-6px); }
+.jg-quien-papel.descartado { opacity: .45; }
+.jg-quien-papel.descartado .jg-quien-toque { cursor: default; }
+.jg-quien-papel.acierto { transform: translateY(-10px); }
+.jg-quien-papel.acierto .jg-quien-nombre { background: #9fe0a0; box-shadow: 0 0 0 2px #3f8a4a; }
+
+.jg-quien-pie { display: flex; justify-content: center; margin-top: 8px; }
+.jg-quien-seguir { min-width: 220px; }
+
+@media (max-width: 640px) {
+  .jg-quien-escena { padding: 16px 8px 0; gap: 18px; }
+  .jg-quien-suelo { margin: -30px -8px 0; }
+  .jg-quien-papel .tutora-lienzo { width: 66px; height: 88px; }
+  .jg-quien-reparto { min-height: 150px; gap: 2px; }
+  .jg-quien-nombre { font-size: .72rem; padding: 2px 4px; }
+  .jg-quien-frase .jg-linea { font-size: 1.15rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jg-quien-frase.sale { animation: none !important; }
+  .jg-quien-papel { transition: none !important; }
+}

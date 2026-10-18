@@ -1,0 +1,342 @@
+/* =====================================================================
+   TIENDA (#/tienda) — la tiendecita de Paglot: la fachada con su letrero, el toldo y el escaparate de los seis
+   libros del idioma (cada portada con su tutora); la puerta con «Abierto» y la tendera. Dentro, los estantes
+   con la colección dibujada en píxeles y las etiquetas de precio; el mostrador con la caja y las preguntas.
+   Los diálogos (ficha del producto y cesta) son de papel. Dibujos de píxel: prefijo «tn». Todo a saltos.
+   ===================================================================== */
+
+.tienda {
+  --fachada: #f1dcc0;
+  --fachada-2: #e3c8a4;
+  --pared-int: #f6ead2;
+  --pared-int-2: #ecdcbc;
+  --madera: #a8714a;
+  --madera-2: #7c4f30;
+  --madera-3: #c48a5a;
+  --acera: #d8c7a6;
+  --acera-2: #c9b48e;
+  --cristal: #cfe7f2;
+}
+:root[data-tema="oscuro"] .tienda {
+  --fachada: #4a3a4e;
+  --fachada-2: #3d3042;
+  --pared-int: #2f2836;
+  --pared-int-2: #29232f;
+  --madera: #6e4c40;
+  --madera-2: #4e342c;
+  --madera-3: #8e6a54;
+  --acera: #3d3450;
+  --acera-2: #352c47;
+  --cristal: #2c3a52;
+}
+.tienda .tn-k { fill: var(--h-borde); }
+.tienda .tn-w { fill: #fffaf0; }
+.tienda .tn-l { fill: #f4c84a; }
+.tienda .tn-g { fill: #6d6470; }
+.tienda .tn-G { fill: #a49ba6; }
+.tienda .tn-n { fill: #a8714a; }
+.tienda .tn-r { fill: #c8445a; }
+.tienda .tn-v { fill: #6fd3a0; }
+.tn-rosa .tn-c { fill: #e98aa5; } .tn-rosa .tn-C { fill: #c4607e; }
+.tn-lavanda .tn-c { fill: #a996e0; } .tn-lavanda .tn-C { fill: #8270c4; }
+.tn-menta .tn-c { fill: #7fc79a; } .tn-menta .tn-C { fill: #559e72; }
+.tn-arena .tn-c { fill: #e8c98f; } .tn-arena .tn-C { fill: #c9a362; }
+.tn-azul .tn-c { fill: #7fb3dd; } .tn-azul .tn-C { fill: #5a8fbf; }
+.tn-fondo-rosa { --fondo-prod: #fbe4ea; }
+.tn-fondo-lavanda { --fondo-prod: #ece6fb; }
+.tn-fondo-menta { --fondo-prod: #e2f3e8; }
+.tn-fondo-arena { --fondo-prod: #f8edd6; }
+.tn-fondo-azul { --fondo-prod: #e1eef8; }
+.tn-eyebrow { display: inline-block; font: 700 .74rem var(--fuente-pixel); letter-spacing: .1em; text-transform: uppercase; color: var(--h-rosa); }
+.tn-dibujo { display: block; }
+.tn-dibujo svg { display: block; width: 100%; height: auto; }
+
+/* =====================================================================
+   La fachada
+   ===================================================================== */
+.tn-fachada { position: relative; margin: -20px calc(50% - 50vw) 0; padding: 36px 16px 0; overflow: hidden; background: linear-gradient(var(--h-cielo), #fae2b6 80%); }
+:root[data-tema="oscuro"] .tn-fachada { background: linear-gradient(var(--h-cielo), #30234a 80%); }
+.tn-edificio {
+  position: relative;
+  z-index: 1;
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  padding: 26px 26px 0;
+  background:
+    linear-gradient(var(--fachada-2) 2px, transparent 2px) 0 0 / 100% 20px,
+    var(--fachada);
+  box-shadow: 0 0 0 3px var(--h-borde);
+}
+/* el letrero de madera, con el título */
+.tn-letrero {
+  position: relative;
+  width: min(760px, 100%);
+  margin: 0 auto 24px;
+  padding: 18px 28px 20px;
+  text-align: center;
+  background: repeating-linear-gradient(transparent 0 28px, var(--madera-2) 28px 30px), var(--madera);
+  box-shadow: inset 0 4px 0 var(--madera-3), inset 0 -4px 0 var(--madera-2), 0 0 0 3px var(--h-borde), 6px 9px 0 3px rgba(0, 0, 0, .2);
+}
+.tn-letrero .tn-eyebrow { color: #f4c84a; }
+.tn-letrero h1 { margin: 6px 0 8px; font-size: clamp(1.8rem, 4.4vw, 2.7rem); line-height: 1.08; color: #fff4dc !important; text-shadow: 3px 3px 0 #5a3620; }
+.tn-letrero h1 > span { color: #f4c84a; }
+.tn-letrero p { margin: 0 auto; max-width: 36em; font-weight: 600; color: #fff0d8; line-height: 1.5; }
+/* el toldo de rayas, con su borde de ondas */
+.tn-toldo {
+  display: block;
+  height: 46px;
+  margin: 0 -26px;
+  background: repeating-linear-gradient(90deg, #c8445a 0 40px, #fff4dc 40px 80px);
+  box-shadow: inset 0 3px 0 rgba(0, 0, 0, .12);
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 97% 100%, 94% 70%, 91% 100%, 88% 70%, 85% 100%, 82% 70%, 79% 100%, 76% 70%, 73% 100%, 70% 70%, 67% 100%, 64% 70%, 61% 100%, 58% 70%, 55% 100%, 52% 70%, 49% 100%, 46% 70%, 43% 100%, 40% 70%, 37% 100%, 34% 70%, 31% 100%, 28% 70%, 25% 100%, 22% 70%, 19% 100%, 16% 70%, 13% 100%, 10% 70%, 7% 100%, 4% 70%, 1% 100%, 0 70%);
+}
+.tn-planta { display: grid; grid-template-columns: minmax(0, 1fr) 190px; gap: 26px; align-items: end; padding-top: 18px; }
+/* el escaparate: cristal con brillo, balda de madera y los libros */
+.tn-escaparate {
+  position: relative;
+  padding: 22px 24px 18px;
+  background: linear-gradient(115deg, transparent 0 62%, rgba(255, 255, 255, .35) 62% 66%, transparent 66% 70%, rgba(255, 255, 255, .25) 70% 72%, transparent 72%), var(--cristal);
+  box-shadow: inset 0 0 0 8px var(--madera), inset 0 0 0 11px var(--h-borde), 0 0 0 3px var(--h-borde);
+}
+.tn-escaparate-titulo { display: block; padding-left: 4px; font: 700 .76rem var(--fuente-pixel); letter-spacing: .1em; color: #4f7fc0; }
+.tn-escaparate h2 { margin: 4px 4px 16px; font-size: clamp(1.3rem, 2.6vw, 1.7rem); }
+.tn-libros { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; align-items: end; padding: 0 10px; }
+.tn-libro { padding: 0; border: 0; background: none; cursor: pointer; transition: transform .2s steps(3); }
+.tn-libro:hover { transform: translateY(-6px); }
+.tn-libro[aria-pressed="true"] { transform: translateY(-14px) rotate(-3deg); }
+.tn-libro:focus-visible { outline: 3px dashed var(--h-tinta); outline-offset: 4px; }
+.tn-balda { display: block; height: 16px; margin: -2px -6px 18px; background: linear-gradient(var(--madera-3) 0 6px, var(--madera) 6px 12px, var(--madera-2) 12px); box-shadow: 0 0 0 3px var(--h-borde); }
+/* una portada de libro: lomo, marca, nivel, la tutora y el idioma */
+.tn-portada {
+  --tapa: #5fa86a;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 6px 8px 12px;
+  aspect-ratio: 3 / 4.2;
+  color: #fff;
+  background: linear-gradient(90deg, rgba(0, 0, 0, .22) 0 6px, transparent 6px), var(--tapa);
+  box-shadow: 0 0 0 3px var(--h-borde), 4px 6px 0 3px rgba(0, 0, 0, .2);
+  overflow: hidden;
+}
+.tn-nivel-A2 { --tapa: #3f9a9a; }
+.tn-nivel-B1 { --tapa: #4f7fc0; }
+.tn-nivel-B2 { --tapa: #7a5ac8; }
+.tn-nivel-gramatica { --tapa: #c8445a; }
+.tn-nivel-examen { --tapa: #c99a24; }
+.tn-portada-marca { font: 700 .58rem var(--fuente-pixel); letter-spacing: .06em; opacity: .9; }
+.tn-portada-nivel { padding: 1px 6px; font: 700 .86rem var(--fuente-pixel); color: #2b1d1a; background: #fff4dc; box-shadow: 0 0 0 2px var(--h-borde); white-space: nowrap; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+.tn-portada canvas { display: block; width: 72%; height: auto; margin-top: auto; image-rendering: pixelated; }
+.tn-portada-idioma { max-width: 100%; font: 700 .62rem/1.1 var(--h-texto); text-transform: capitalize; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* el cartelito de precio y opciones, apoyado en el cristal */
+.tn-libro-config { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px 18px; padding: 16px 18px; background: var(--h-papel); box-shadow: 0 0 0 3px var(--h-borde), 4px 7px 0 3px rgba(0, 0, 0, .15); }
+.tn-config-idioma label { display: block; margin-bottom: 6px; font-weight: 800; font-size: .86rem; }
+.tn-idioma { position: relative; }
+.tn-idioma-boton { display: flex; justify-content: space-between; align-items: center; gap: 10px; width: 100%; min-height: 44px; padding: 8px 10px; border: 0; font: 700 1rem var(--h-texto); text-align: left; color: var(--h-tinta); background: var(--h-papel-2); cursor: pointer; box-shadow: inset 0 0 0 3px var(--h-borde); }
+.tn-idioma-nombre { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-transform: capitalize; }
+.tn-idioma-lista { position: absolute; z-index: 45; top: calc(100% + 6px); left: 0; right: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; max-height: 220px; overflow-y: auto; overscroll-behavior: contain; padding: 5px; background: var(--h-papel); box-shadow: 0 0 0 3px var(--h-borde), 4px 6px 0 3px rgba(0, 0, 0, .2); }
+.tn-idioma-arriba .tn-idioma-lista { top: auto; bottom: calc(100% + 6px); }
+.tn-idioma-lista button { min-width: 0; min-height: 36px; padding: 7px; border: 0; font: 600 .84rem var(--h-texto); text-align: left; color: var(--h-tinta); background: transparent; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-transform: capitalize; }
+.tn-idioma-lista button:hover, .tn-idioma-lista button:focus-visible { background: var(--h-papel-2); outline-offset: -2px; }
+.tn-idioma-lista button[aria-selected="true"] { color: var(--h-rosa); font-weight: 800; box-shadow: inset 3px 0 0 var(--h-rosa); }
+.tn-idioma button { animation: none !important; transform: none !important; }
+.tn-formatos { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-self: end; }
+.tn-formato { display: flex; flex-direction: column; align-items: flex-start; min-height: 46px; padding: 6px 10px; border: 0; font: 700 .9rem var(--h-texto); color: var(--h-tinta); background: var(--h-papel-2); cursor: pointer; box-shadow: inset 0 0 0 3px var(--h-borde); }
+.tn-formato small { font-weight: 600; color: var(--h-suave); }
+.tn-formato[aria-pressed="true"] { color: #15121d; background: var(--marca-oro); }
+.tn-formato[aria-pressed="true"] small { color: #4a3a10; }
+.tn-libro-comprar { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+.tn-libro-comprar > div { display: flex; flex-direction: column; }
+.tn-libro-formato { font: 700 .7rem var(--fuente-pixel); letter-spacing: .06em; color: var(--h-suave); }
+.tn-libro-precio { font: 700 1.9rem/1.1 var(--fuente-pixel); color: var(--h-tinta); }
+.tn-libro-nota { grid-column: 1 / -1; margin: 0; font-size: .88rem; color: var(--h-suave); }
+.tn-muestra { margin: 12px 4px 0; font-size: .82rem; font-weight: 700; color: var(--h-suave); }
+.tn-muestra span { color: var(--h-rosa); }
+/* la puerta, con su cartel de «Abierto» y la tendera */
+.tn-puerta { position: relative; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; min-height: 380px; background: linear-gradient(var(--cristal) 0 40%, transparent 40%), var(--madera); box-shadow: inset 0 0 0 8px var(--madera-2), inset 0 0 0 11px var(--h-borde), 0 0 0 3px var(--h-borde); }
+.tn-abierto { position: absolute; top: 60px; left: 50%; padding: 4px 10px; font: 700 .9rem var(--fuente-pixel); color: #fff; background: #3f8a5a; box-shadow: 0 0 0 3px var(--h-borde); transform: translateX(-50%) rotate(-4deg); animation: tn-cartel 3s steps(4) infinite; }
+@keyframes tn-cartel { 50% { transform: translateX(-50%) rotate(3deg); } }
+.tienda .tn-tendera .tutora-lienzo { width: 132px; height: 176px; }
+.tn-acera { display: block; height: 56px; margin: 0 -16px; background: conic-gradient(at 3px 3px, transparent 75%, var(--acera-2) 0) 0 0 / 40px 28px, var(--acera); box-shadow: inset 0 3px 0 var(--h-borde); }
+/* la cesta, colgada del letrero y (con cosas dentro) siempre a mano abajo a la derecha */
+.tn-cesta {
+  position: absolute;
+  right: -18px;
+  bottom: -26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 6px 12px;
+  border: 0;
+  font: 700 .9rem var(--fuente-pixel);
+  color: var(--h-tinta);
+  background: var(--h-papel);
+  cursor: pointer;
+  box-shadow: 0 0 0 3px var(--h-borde), 4px 6px 0 3px rgba(0, 0, 0, .2);
+}
+.tn-cesta:focus-visible { outline: 3px dashed var(--h-tinta); outline-offset: 5px; }
+.tn-cesta.bota { animation: tn-bota .4s steps(4); }
+@keyframes tn-bota { 40% { transform: translateY(-8px) scale(1.06); } }
+.tn-cesta-flotante { position: fixed; right: 18px; bottom: calc(18px + var(--borde-abajo, 0px)); z-index: 30; }
+.tn-cesta-flotante[hidden] { display: none; }
+.tn-cesta-numero { display: grid; place-items: center; min-width: 26px; height: 26px; padding: 0 5px; color: #15121d; background: var(--marca-oro); box-shadow: 0 0 0 2px var(--h-borde); }
+.tn-cesta-icono { position: relative; width: 22px; height: 14px; margin-top: 6px; background: repeating-linear-gradient(90deg, #c48a5a 0 4px, #a8714a 4px 6px); box-shadow: 0 0 0 2px var(--h-borde); }
+.tn-cesta-icono::before { content: ""; position: absolute; left: 4px; right: 4px; top: -10px; height: 10px; box-shadow: inset 2px 2px 0 var(--h-borde), inset -2px 0 0 var(--h-borde); }
+.tn-cesta-grande { width: 44px; height: 28px; margin: 18px auto 10px; }
+.tn-cesta-grande::before { top: -18px; height: 18px; }
+
+/* =====================================================================
+   Dentro: los estantes
+   ===================================================================== */
+.tn-interior {
+  margin: 0 calc(50% - 50vw);
+  padding: 60px max(16px, calc(50vw - 580px)) 60px;
+  background: repeating-linear-gradient(90deg, var(--pared-int) 0 44px, var(--pared-int-2) 44px 48px);
+}
+.tn-interior-cabecera { text-align: center; }
+.tn-interior-cabecera h2 { margin: 6px 0 4px; font-size: clamp(1.6rem, 3.6vw, 2.3rem); }
+.tn-resultados { margin: 0 0 20px; font-weight: 700; color: var(--h-suave); }
+/* los carteles de las categorías, colgados */
+.tn-filtros { display: flex; flex-wrap: wrap; justify-content: center; gap: 22px 14px; padding-top: 14px; }
+.tn-filtro {
+  position: relative;
+  min-height: 42px;
+  padding: 6px 14px;
+  border: 0;
+  font: 700 .86rem var(--fuente-pixel);
+  color: var(--h-tinta);
+  background: var(--h-papel);
+  cursor: pointer;
+  box-shadow: 0 0 0 3px var(--h-borde), 3px 5px 0 3px var(--h-sombra);
+}
+.tn-filtro::before { content: ""; position: absolute; left: 50%; bottom: calc(100% + 3px); width: 2px; height: 14px; background: var(--h-borde); }
+.tn-filtro[aria-pressed="true"] { color: #fff; background: var(--h-rosa); }
+.tn-filtro:focus-visible { outline: 3px dashed var(--h-tinta); outline-offset: 5px; }
+.tn-herramientas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 22px 0 34px; }
+.tn-busqueda { display: flex; align-items: center; gap: 10px; flex: 1 1 320px; max-width: 460px; padding: 0 12px; background: var(--h-papel); box-shadow: 0 0 0 3px var(--h-borde); }
+.tn-busqueda input { flex: 1; min-width: 0; min-height: 44px; border: 0; font: 600 1rem var(--h-texto); color: var(--h-tinta); background: transparent; }
+.tn-busqueda input:focus-visible { outline: 3px dashed var(--h-rosa); outline-offset: 2px; }
+.tn-lupa { position: relative; flex: none; width: 16px; height: 16px; box-shadow: inset 0 0 0 3px var(--h-tinta); }
+.tn-lupa::after { content: ""; position: absolute; right: -7px; bottom: -6px; width: 8px; height: 3px; background: var(--h-tinta); transform: rotate(45deg); }
+.tn-herramientas select { min-height: 44px; padding: 6px 10px; border: 0; border-radius: 0; font: 600 .95rem var(--h-texto); color: var(--h-tinta); background: var(--h-papel); box-shadow: inset 0 0 0 3px var(--h-borde); }
+/* cada producto en su balda, con la etiqueta de precio colgando */
+.tn-rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 46px 26px; margin: 0; padding: 0; list-style: none; }
+.tn-producto { position: relative; display: flex; flex-direction: column; }
+.tn-producto-foto {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 190px;
+  padding: 18px 18px 26px;
+  border: 0;
+  cursor: pointer;
+  background: linear-gradient(transparent calc(100% - 16px), var(--madera-3) calc(100% - 16px) calc(100% - 10px), var(--madera) calc(100% - 10px) calc(100% - 4px), var(--madera-2) calc(100% - 4px)), var(--fondo-prod, var(--h-papel));
+  box-shadow: 0 0 0 3px var(--h-borde);
+}
+:root[data-tema="oscuro"] .tn-producto-foto { --fondo-prod: #3a3242; }
+.tn-producto-foto .tn-dibujo { width: 126px; transition: transform .2s steps(3); }
+.tn-producto-foto:hover .tn-dibujo { transform: translateY(-6px) rotate(-3deg); }
+.tn-producto-foto:focus-visible { outline: 3px dashed var(--h-tinta); outline-offset: 4px; }
+.tn-etiqueta-precio { position: absolute; right: 14px; top: -10px; z-index: 1; padding: 4px 10px 4px 16px; font: 700 .95rem var(--fuente-pixel); color: #2b1d1a; background: #fff3b0; box-shadow: 0 0 0 3px var(--h-borde); transform: rotate(6deg); clip-path: polygon(10px 0, 100% 0, 100% 100%, 10px 100%, 0 50%); }
+.tn-producto-info { display: flex; flex: 1; flex-direction: column; align-items: flex-start; gap: 4px; padding: 14px 14px 16px; background: var(--h-papel); box-shadow: 0 0 0 3px var(--h-borde), 4px 7px 0 3px var(--h-sombra); }
+.tn-producto-info h3 { margin: 2px 0 2px; font-size: 1.05rem; line-height: 1.3; }
+.tn-producto-info p { margin: 0 0 8px; font-size: .9rem; line-height: 1.45; color: var(--h-suave); }
+.tn-elegir { margin-top: auto; }
+.tn-sin-resultados { grid-column: 1 / -1; padding: 30px; text-align: center; background: var(--h-papel); box-shadow: 0 0 0 3px var(--h-borde); }
+
+/* =====================================================================
+   El mostrador
+   ===================================================================== */
+.tn-mostrador { margin: 0 calc(50% - 50vw); padding: 50px max(16px, calc(50vw - 480px)) 60px; background: repeating-linear-gradient(90deg, var(--madera) 0 116px, var(--madera-2) 116px 120px); box-shadow: inset 0 14px 0 var(--madera-3), inset 0 17px 0 var(--h-borde); }
+.tn-mostrador-encima { display: flex; align-items: flex-end; gap: 22px; }
+.tn-caja { flex: none; width: 120px; height: auto; }
+.tn-gracias { display: flex; gap: 14px; align-items: flex-start; flex: 1; }
+.tn-gracias h2 { font-size: 1.2rem; }
+.tn-corazon { font-size: 1.6rem; color: var(--h-rosa); line-height: 1; }
+.tn-preguntas { display: grid; gap: 12px; margin-top: 26px; }
+.tn-preguntas details { background: var(--h-papel); box-shadow: 0 0 0 3px var(--h-borde); }
+.tn-preguntas summary { padding: 14px 16px; font-weight: 800; cursor: pointer; }
+.tn-preguntas summary:focus-visible { outline: 3px dashed var(--h-rosa); outline-offset: -6px; }
+.tn-preguntas p { margin: 0; padding: 0 16px 16px; line-height: 1.55; color: var(--h-suave); }
+
+/* =====================================================================
+   Los diálogos: la ficha del producto y la cesta
+   ===================================================================== */
+body.tienda-dialogo-abierto { overflow: hidden; }
+.tn-dialogo { width: min(760px, calc(100% - 28px)); max-height: 90dvh; padding: 0; border: 0; color: var(--h-tinta); background: var(--h-papel); box-shadow: 0 0 0 3px var(--h-borde), 8px 10px 0 3px rgba(0, 0, 0, .35); }
+.tn-dialogo::backdrop { background: rgba(15, 10, 24, .7); }
+.tn-dialogo:not([open]) { display: none; }
+.tn-detalle[open] { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1fr); }
+.tn-detalle-foto { display: grid; place-items: center; padding: 30px; background: var(--fondo-prod); }
+:root[data-tema="oscuro"] .tn-detalle-foto { background: #3a3242; }
+.tn-dibujo-grande { width: min(230px, 100%); }
+.tn-detalle-info { display: flex; flex-direction: column; gap: 8px; padding: 28px 26px; }
+.tn-detalle-info h2 { margin: 0; font-size: 1.4rem; }
+.tn-detalle-info p { margin: 0; color: var(--h-suave); }
+.tn-detalle-precio { font: 700 1.8rem var(--fuente-pixel); color: var(--h-tinta) !important; }
+.tn-detalle-info label { font-weight: 800; font-size: .88rem; }
+.tn-detalle-info select { min-height: 44px; padding: 6px 10px; border: 0; border-radius: 0; font: 600 1rem var(--h-texto); color: var(--h-tinta); background: var(--h-papel-2); box-shadow: inset 0 0 0 3px var(--h-borde); }
+.tn-nota { font-size: .8rem; color: var(--h-suave); }
+.tn-cerrar { position: absolute; right: 12px; top: 12px; z-index: 2; width: 40px; height: 40px; border: 0; font: 700 1.4rem var(--h-texto); color: var(--h-tinta); background: var(--h-papel); cursor: pointer; box-shadow: 0 0 0 3px var(--h-borde); }
+.tn-bolsa[open] { display: flex; flex-direction: column; padding: 24px; width: min(620px, calc(100% - 28px)); }
+.tn-dialogo-cabecera { position: relative; display: flex; justify-content: space-between; gap: 14px; padding-bottom: 16px; border-bottom: 3px dashed var(--h-sombra); }
+.tn-dialogo-cabecera h2 { margin: 6px 0 0; font-size: 1.5rem; }
+.tn-dialogo-cabecera .tn-cerrar { position: static; }
+.tn-lineas { display: grid; gap: 14px; margin: 16px 0; padding: 0; list-style: none; overflow-y: auto; }
+.tn-linea { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 10px; background: var(--h-papel-2); box-shadow: 0 0 0 2px var(--h-borde); }
+.tn-miniatura { width: 56px; }
+.tn-portada-mini { width: 52px; padding: 4px 3px 4px 8px; }
+.tn-portada-mini .tn-portada-marca, .tn-portada-mini .tn-portada-idioma { display: none; }
+.tn-portada-mini .tn-portada-nivel { font-size: .6rem; padding: 0 3px; }
+.tn-linea-datos h3 { margin: 0; font-size: 1rem; }
+.tn-linea-datos p { margin: 2px 0 6px; font-size: .86rem; color: var(--h-suave); }
+.tn-cantidad { display: inline-flex; align-items: center; gap: 8px; }
+.tn-cantidad button { width: 32px; height: 32px; border: 0; font: 700 1.1rem var(--h-texto); color: var(--h-tinta); background: var(--h-papel); cursor: pointer; box-shadow: 0 0 0 2px var(--h-borde); }
+.tn-linea-precio { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.tn-quitar { padding: 2px 4px; border: 0; font: 600 .82rem var(--h-texto); color: var(--h-rosa); background: none; cursor: pointer; text-decoration: underline; }
+.tn-vacio { padding: 20px; text-align: center; }
+.tn-bolsa-resumen { display: grid; gap: 10px; padding-top: 14px; border-top: 3px dashed var(--h-sombra); }
+.tn-subtotal { display: flex; justify-content: space-between; margin: 0; font-weight: 800; }
+.tn-subtotal strong { font: 700 1.4rem var(--fuente-pixel); }
+.tn-aviso { position: fixed; left: 50%; bottom: 24px; z-index: 40; padding: 10px 16px; font-weight: 700; color: #15121d; background: #fff3b0; box-shadow: 0 0 0 3px var(--h-borde); transform: translateX(-50%); }
+.tn-aviso[hidden] { display: none; }
+
+/* =====================================================================
+   Pantallas medianas y móviles
+   ===================================================================== */
+@media (max-width: 1000px) {
+  .tn-planta { grid-template-columns: minmax(0, 1fr); }
+  .tn-puerta { display: none; }
+  .tn-libros { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px 18px; padding: 0 20px; }
+}
+@media (max-width: 640px) {
+  .tn-edificio { padding: 18px 12px 0; }
+  .tn-toldo { margin: 0 -12px; height: 36px; }
+  .tn-letrero { padding: 16px 14px 34px; }
+  .tn-cesta { right: 50%; transform: translateX(50%); bottom: -24px; }
+  .tn-cesta-flotante { right: 14px; transform: none; }
+  .tn-escaparate { padding: 18px 14px 14px; }
+  .tn-libros { gap: 18px 10px; padding: 0 6px; }
+  .tn-libro-config { grid-template-columns: minmax(0, 1fr); padding: 14px; }
+  .tn-detalle[open] { grid-template-columns: minmax(0, 1fr); }
+  .tn-detalle-foto { padding: 22px; }
+  .tn-dibujo-grande { width: 150px; }
+  .tn-linea { grid-template-columns: 52px minmax(0, 1fr); }
+  .tn-linea-precio { grid-column: 1 / -1; flex-direction: row; justify-content: space-between; align-items: center; }
+  .tn-rejilla { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 12px; }
+  .tn-producto-foto { height: 130px; padding: 12px 10px 22px; }
+  .tn-producto-foto .tn-dibujo { width: 78px; }
+  .tn-etiqueta-precio { right: 6px; font-size: .8rem; }
+  .tn-producto-info { padding: 10px 10px 12px; }
+  .tn-producto-info h3 { font-size: .92rem; }
+  .tn-producto-info p { display: none; }
+  .tn-mostrador-encima { flex-direction: column; align-items: stretch; }
+  .tn-caja { width: 90px; align-self: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tn-abierto, .tn-cesta.bota { animation: none; }
+  .tn-libro, .tn-producto-foto .tn-dibujo { transition: none; }
+}

@@ -1,0 +1,39 @@
+/* =====================================================================
+   EL DIÁLOGO REVUELTO (juegos/desorden.js) — tarjetas sobre un tapete y una tira donde suben en orden.
+   Solo se animan transform y opacity, a saltos.
+   ===================================================================== */
+
+.jg-desorden-barra { display: flex; justify-content: flex-end; margin-bottom: 8px; }
+.jg-desorden-ver { padding: 0 14px; }
+.jg-desorden-ver[aria-pressed="true"] { background: #9fe0a0; }
+
+.jg-desorden-tira { display: grid; gap: 6px; min-height: 52px; margin: 0 0 14px; padding: 10px 12px 10px 34px; list-style: decimal; color: #fffaf0; background: #3a4a7a; box-shadow: 0 0 0 3px var(--h-borde), inset 0 0 0 3px #2a3560; }
+.jg-desorden-tira:empty { list-style: none; padding-left: 12px; }
+.jg-desorden-tira:empty::before { content: "…"; color: #aeb8de; font: 700 1.2rem var(--fuente-pixel); }
+.jg-desorden-puesta { line-height: 1.45; animation: jg-desorden-sube .3s steps(3) both; }
+.jg-desorden-puesta::marker { font-weight: 700; color: #f4c84a; }
+.jg-desorden-puesta b { color: #ffd866; }
+@keyframes jg-desorden-sube { from { opacity: 0; transform: translateY(46px); } }
+
+.jg-desorden-mesa { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; padding: 16px; background: #2f6a4a; box-shadow: inset 0 0 0 6px #24553a, 0 0 0 3px var(--h-borde), 8px 10px 0 3px rgba(0, 0, 0, .25); }
+.jg-desorden-carta { display: grid; align-content: center; gap: 4px; min-height: 84px; padding: 12px 14px; border: 0; cursor: pointer; text-align: left; color: #2b1d1a; background: #fffaf0; box-shadow: 0 0 0 3px var(--h-borde), 4px 6px 0 2px rgba(0, 0, 0, .3); animation: jg-reparte .35s steps(4) both; animation-delay: calc(var(--i) * 35ms); transition: transform .15s steps(2), opacity .25s steps(3); }
+.jg-desorden-carta:hover:not(:disabled) { background: #fff1b0; transform: translateY(-3px); }
+.jg-desorden-carta:active:not(:disabled) { transform: translate(2px, 2px); }
+.jg-desorden-carta:focus-visible { outline: 3px dashed #fffaf0; outline-offset: 4px; }
+.jg-desorden-carta.puesta { opacity: 0; transform: translateY(-40px) scale(.9); pointer-events: none; }
+.jg-desorden-quien { font: 700 .74rem var(--fuente-pixel); color: #8a1a2c; text-transform: uppercase; letter-spacing: .08em; }
+.jg-desorden-es { font-size: 1.2rem; font-weight: 800; line-height: 1.4; }
+.jg-desorden-trad { display: none; font-style: italic; font-weight: 400; color: #6a5a52; }
+.jg-desorden-tira .jg-desorden-trad { color: #cfd6f0; }
+.jg-desorden.con-trad .jg-desorden-trad { display: block; }
+.jg-desorden.con-trad .jg-desorden-tira .jg-desorden-trad { display: inline; }
+
+@media (max-width: 640px) {
+  .jg-desorden-mesa { grid-template-columns: 1fr; padding: 10px; gap: 10px; }
+  .jg-desorden-carta { min-height: 72px; }
+  .jg-desorden-es { font-size: 1.1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jg-desorden-carta, .jg-desorden-puesta { animation: none !important; transition: none !important; }
+}
+.jg-desorden-mesa[hidden] { display: none; }

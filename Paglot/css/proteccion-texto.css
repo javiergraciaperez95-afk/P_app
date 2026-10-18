@@ -1,0 +1,13 @@
+/* Evita seleccionar contenido y abrir el menú de selección al mantener pulsado. */
+html, body, body * {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* La edición de respuestas, notas y datos de cuenta necesita mover el cursor. */
+body input, body textarea, body [contenteditable]:not([contenteditable="false"]),
+body [contenteditable]:not([contenteditable="false"]) * {
+  -webkit-user-select: text;
+  user-select: text;
+}

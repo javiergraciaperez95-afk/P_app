@@ -1,5 +1,5 @@
 @echo off
-rem Vuelve a generar la APK de prueba con la version actual de la carpeta Idiomas (todos los cursos).
+rem Vuelve a generar la APK de prueba con la version actual de la carpeta Paglot (todos los cursos).
 set "JAVA_HOME=C:\Program Files\Android\Android Studio\jbr"
 set "ANDROID_HOME=%LOCALAPPDATA%\Android\Sdk"
 cd /d "%~dp0"

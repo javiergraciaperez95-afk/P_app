@@ -1,0 +1,258 @@
+/* =====================================================================
+   REPASO ACTIVO (js/vistas/repaso.js): cada tarjeta es un minijuego que se corrige solo.
+   ===================================================================== */
+
+/* el mazo de la portada */
+.rp-mazo { position: relative; width: 84px; height: 96px; margin: 4px auto 14px; }
+.rp-mazo span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 70px;
+  height: 92px;
+  background: var(--panel-2);
+  border: 3px solid var(--linea);
+  box-shadow: 3px 3px 0 var(--sombra);
+  transform: translate(calc(var(--k) * 1.2px), calc(var(--k) * -1.5px)) rotate(calc((var(--k) - 4) * 1.6deg));
+}
+.rp-mazo span:last-child::after {
+  content: "¿?";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font: 700 1.6rem var(--fuente-pixel);
+  color: var(--espanol);
+}
+.panel-repaso:hover .rp-mazo span:last-child { animation: rp-mazo .6s steps(4); }
+@keyframes rp-mazo { 50% { transform: translate(14px, -8px) rotate(8deg); } }
+.rp-empezar { margin-top: 6px; }
+
+/* la sesión */
+.rp-sesion { max-width: 640px; margin: 0 auto; }
+.rp-cabecera { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.rp-cabecera .boton { margin: 0; }
+.rp-progreso { flex: 1; height: 14px; background: var(--fondo-punto); border: 3px solid var(--linea); overflow: hidden; }
+.rp-progreso > span {
+  display: block;
+  height: 100%;
+  background: var(--verde);
+  transform-origin: left center;
+  transform: scaleX(var(--avance, 0));
+  transition: transform .35s steps(5);
+}
+.rp-racha {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  min-width: 52px;
+  justify-content: center;
+  padding: 2px 8px;
+  font: 700 1.05rem var(--fuente-pixel);
+  color: var(--texto-suave);
+  background: var(--panel);
+  border: 3px solid var(--linea);
+  filter: grayscale(1);
+  opacity: .7;
+}
+.rp-racha.encendida { color: var(--oro); filter: none; opacity: 1; animation: rp-llama 1s steps(4) infinite; }
+@keyframes rp-llama { 50% { transform: translateY(-2px) scale(1.06); } }
+
+.rp-carta { position: relative; min-height: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: transform .2s steps(3), opacity .2s steps(3); }
+.rp-carta.entra { transform: translateY(14px) rotate(-1.5deg); opacity: 0; }
+.rp-carta.bien { animation: rp-bien .45s steps(4); box-shadow: 0 0 0 4px var(--verde), 6px 6px 0 var(--sombra); }
+.rp-carta.mal { animation: rp-mal .4s steps(8); box-shadow: 0 0 0 4px var(--rojo), 6px 6px 0 var(--sombra); }
+@keyframes rp-bien { 40% { transform: scale(1.04) rotate(.6deg); } }
+@keyframes rp-mal { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+
+.rp-altavoz {
+  width: 86px;
+  height: 86px;
+  margin: 4px auto;
+  font-size: 2.4rem;
+  background: var(--panel-2);
+  border: 3px solid var(--linea);
+  border-radius: 50%;
+  box-shadow: 0 6px 0 var(--sombra);
+  cursor: pointer;
+}
+.rp-altavoz:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--sombra); }
+.rp-altavoz.late { animation: rp-late .5s steps(4); }
+@keyframes rp-late { 50% { transform: scale(1.12); } }
+
+.rp-zona { margin-top: 16px; }
+
+/* opciones */
+.rp-opciones { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.rp-opciones.largas { grid-template-columns: 1fr; }
+.rp-opcion {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+  margin: 0;
+  padding: 10px 12px;
+  text-align: left;
+  font: 600 1.05rem var(--fuente-texto);
+  color: var(--texto);
+  background: var(--panel);
+  border: 3px solid var(--linea);
+  box-shadow: 0 5px 0 var(--sombra);
+  cursor: pointer;
+  transition: transform .08s steps(2), box-shadow .08s steps(2);
+}
+.rp-opcion[lang] { font-family: var(--fuente-pixel); color: var(--espanol); }
+.rp-opcion:hover { background: var(--panel-2); transform: translateY(-2px); box-shadow: 0 7px 0 var(--sombra); }
+.rp-opcion:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--sombra); }
+.rp-opcion .tecla { flex: none; }
+.rp-opcion.buena { background: var(--verde-fondo); border-color: var(--verde); animation: rp-bien .45s steps(4); }
+.rp-opcion.mala { background: var(--rojo-fondo); border-color: var(--rojo); animation: rp-mal .4s steps(8); }
+.rp-opcion:disabled { cursor: default; }
+.rp-opcion:disabled:not(.buena):not(.mala) { opacity: .55; }
+
+/* montar con piezas */
+.rp-hueco { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; min-height: 52px; margin: 0 0 14px; }
+.rp-casilla {
+  display: grid;
+  place-items: center;
+  min-width: 38px;
+  height: 46px;
+  padding: 0 6px;
+  font: 700 1.3rem var(--fuente-pixel);
+  color: var(--espanol);
+  border-bottom: 4px solid var(--linea);
+}
+.rp-hueco.ordena .rp-casilla { min-width: 56px; font-size: 1.1rem; }
+.rp-casilla.llena { animation: rp-cae .25s steps(3); }
+@keyframes rp-cae { from { transform: translateY(-14px); opacity: 0; } }
+.rp-fichas { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.rp-ficha {
+  min-width: 48px;
+  min-height: 50px;
+  margin: 0;
+  padding: 6px 12px;
+  font: 700 1.3rem var(--fuente-pixel);
+  color: var(--texto);
+  background: var(--panel-2);
+  border: 3px solid var(--linea);
+  box-shadow: 0 5px 0 var(--sombra);
+  cursor: pointer;
+}
+.rp-ficha.ordena { font-size: 1.1rem; }
+.rp-ficha:hover { transform: translateY(-2px); }
+.rp-ficha:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--sombra); }
+.rp-ficha.usada { visibility: hidden; }
+.rp-ficha.tiembla { animation: rp-mal .35s steps(8); background: var(--rojo-fondo); }
+.rp-ficha.pista { animation: rp-pista 1s steps(2) infinite; }
+@keyframes rp-pista { 50% { box-shadow: 0 5px 0 var(--sombra), 0 0 0 4px var(--oro); } }
+
+/* escribir */
+.rp-escribir { display: flex; gap: 10px; align-items: center; }
+.rp-escribe {
+  flex: 1;
+  min-width: 0;
+  min-height: 50px;
+  padding: 8px 12px;
+  font: 700 1.3rem var(--fuente-pixel);
+  color: var(--texto);
+  background: var(--panel);
+  border: 3px solid var(--linea);
+}
+.rp-escribe:focus { outline: 3px solid var(--foco); outline-offset: 2px; }
+.rp-letras { margin-top: 8px; justify-content: center; }
+.rp-pista { display: flex; justify-content: center; margin-top: 8px; }
+
+/* lo que pasa al responder */
+.rp-aviso { min-height: 24px; margin-top: 14px; text-align: center; }
+.rp-aviso:empty { display: none; }
+.rp-bien, .rp-mal, .rp-tilde { margin: 0 0 6px; font: 700 1.1rem var(--fuente-pixel); }
+.rp-bien { color: var(--verde); }
+.rp-mal { color: var(--rojo-claro); }
+.rp-tilde { color: var(--oro); font-size: .95rem; }
+.rp-respuesta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px 12px;
+  padding: 8px 14px;
+  background: var(--panel);
+  border: 3px solid var(--linea);
+  animation: rp-cae .25s steps(3);
+}
+.rp-respuesta-es { font: 700 1.25rem var(--fuente-pixel); color: var(--espanol); }
+.rp-respuesta-trad { color: var(--texto-suave); }
+.rp-seguir { display: flex; margin: 12px auto 0; }
+
+.rp-final { text-align: center; }
+
+@media (max-width: 520px) {
+  .rp-opciones { grid-template-columns: 1fr; gap: 10px; }
+  .rp-opcion { min-height: 50px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rp-racha.encendida, .rp-ficha.pista, .rp-carta.bien, .rp-carta.mal { animation: none; }
+}
+
+/* =====================================================================
+   RETO RÁPIDO (js/vistas/reto.js): 60 segundos, cuatro opciones, combos.
+   ===================================================================== */
+.rp-reto { display: flex; justify-content: center; margin-top: 14px; }
+.rp-reto .cm-extra { flex: 0 1 320px; text-align: left; }
+.cm-extra-reto { border-color: var(--oro); }
+.cm-extra-reto .cm-extra-icono { display: block; width: max-content; animation: rt-rayo 1.4s steps(2) infinite; }
+
+.rt-portada { text-align: center; }
+.rt-rayo { font-size: 3.2rem; line-height: 1; animation: rt-rayo 1.4s steps(2) infinite; }
+@keyframes rt-rayo { 50% { transform: rotate(-12deg) scale(1.12); } }
+.rt-record { font: 700 1.05rem var(--fuente-pixel); }
+.rt-record strong { color: var(--oro); font-size: 1.4rem; }
+.rt-empezar { margin-top: 8px; }
+
+.rt-sesion { max-width: 640px; margin: 0 auto; }
+.rt-preparados { display: grid; place-items: center; min-height: 300px; text-align: center; }
+.rt-cuenta { margin: 0; font: 700 6rem var(--fuente-pixel); color: var(--oro); text-shadow: 5px 5px 0 var(--sombra); }
+.rt-cuenta.late { animation: rt-cuenta .5s steps(4); }
+@keyframes rt-cuenta { from { transform: scale(1.8); opacity: 0; } }
+
+.rt-cabecera { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.rt-caja {
+  flex: none;
+  min-width: 70px;
+  padding: 4px 10px;
+  text-align: center;
+  font: 700 1.2rem var(--fuente-pixel);
+  background: var(--panel);
+  border: 3px solid var(--linea);
+}
+.rt-caja.castigo { animation: rt-castigo .5s steps(6); color: var(--rojo-claro); }
+@keyframes rt-castigo { 20%, 60% { transform: translateX(-4px); } 40%, 80% { transform: translateX(4px); } }
+.rt-puntos { display: inline-block; color: var(--oro); }
+.rt-puntos.sube { animation: rt-sube .3s steps(3); }
+@keyframes rt-sube { 50% { transform: scale(1.5); } }
+.rt-barra { flex: 1; height: 16px; background: var(--fondo-punto); border: 3px solid var(--linea); overflow: hidden; }
+.rt-barra > span { display: block; height: 100%; background: var(--verde); transform-origin: left; transition: transform .1s linear; }
+.rt-barra.apurado > span { background: var(--rojo); animation: rt-apurado .5s steps(2) infinite; }
+@keyframes rt-apurado { 50% { opacity: .55; } }
+.rt-racha { display: block; min-height: 1.4em; text-align: center; font: 700 1rem var(--fuente-pixel); color: var(--oro); }
+.rt-pregunta {
+  display: grid;
+  place-items: center;
+  min-height: 120px;
+  margin-bottom: 14px;
+  padding: 10px;
+  text-align: center;
+  background: var(--panel);
+  border: 3px solid var(--linea);
+  box-shadow: 5px 5px 0 var(--sombra);
+}
+.rt-pregunta.entra { animation: rt-entra .18s steps(3); }
+@keyframes rt-entra { from { transform: translateY(8px); opacity: .2; } }
+.rt-es { margin: 0; font: 700 2rem var(--fuente-pixel); color: var(--espanol); overflow-wrap: anywhere; }
+.rt-trad { margin: 0; font-size: 1.5rem; font-weight: 700; overflow-wrap: anywhere; }
+.rt-final-puntos { margin: 0; font: 700 4rem var(--fuente-pixel); color: var(--oro); text-shadow: 4px 4px 0 var(--sombra); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cm-extra-reto .cm-extra-icono, .rt-rayo, .rt-barra.apurado > span { animation: none; }
+}

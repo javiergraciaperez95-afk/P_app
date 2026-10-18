@@ -1,0 +1,67 @@
+/* =====================================================================
+   LAS PUERTAS (juegos/puertas.js) — pasillo con una puerta por opción.
+   Solo se animan transform y opacity, a saltos (steps).
+   ===================================================================== */
+
+.jg-puertas-cartel { margin: 0 0 16px; padding: 14px 16px; text-align: center; color: #2b1d1a; background: #fffaf0; box-shadow: 0 0 0 3px var(--h-borde), 5px 7px 0 2px rgba(0, 0, 0, .3); }
+.jg-puertas-pregunta { margin: 0; font-size: 1.3rem; font-weight: 800; line-height: 1.4; }
+.jg-puertas-frase { margin: 8px 0 0; font-size: 1.2rem; font-weight: 700; }
+
+.jg-puertas-pasillo { position: relative; padding: 26px 16px 0; background: linear-gradient(#6a5a8a 0 72%, #3a2f52 72%); box-shadow: 0 0 0 3px var(--h-borde), 8px 10px 0 3px rgba(0, 0, 0, .25); }
+.jg-puertas-suelo { display: block; height: 34px; margin: 0 -16px; background: repeating-linear-gradient(90deg, #8c6a4a 0 58px, #6c4e34 58px 60px); box-shadow: inset 0 3px 0 var(--h-borde); }
+.jg-puertas-fila { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; }
+
+.jg-puertas-puerta { position: relative; flex: 1 1 100px; min-width: 92px; max-width: 150px; height: 210px; padding: 0; border: 0; cursor: pointer; color: inherit; background: #15122a; box-shadow: 0 0 0 6px var(--madera-2), 0 0 0 9px var(--h-borde); transition: transform .12s steps(2); }
+.jg-puertas-puerta:hover:not(:disabled):not(.probada) { transform: translateY(-4px); }
+.jg-puertas-puerta:active:not(:disabled) { transform: translateY(0); }
+.jg-puertas-puerta:focus-visible { outline: 3px dashed var(--oro); outline-offset: 10px; }
+.jg-puertas-puerta:disabled { cursor: default; }
+.jg-puertas-puerta.probada { cursor: not-allowed; }
+
+/* Detrás de la hoja: oscuro; al abrir la buena, luz y premio */
+.jg-puertas-luz { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 6px; padding: 8px 6px; overflow: hidden; text-align: center; color: #2b1d1a; background: #15122a; }
+.jg-puertas-rayos { position: absolute; inset: -80%; background: repeating-conic-gradient(rgba(244, 200, 74, .6) 0 9deg, transparent 9deg 18deg); opacity: 0; animation: jg-puertas-gira 8s steps(30) infinite; }
+.jg-puertas-premio, .jg-puertas-texto { position: relative; opacity: 0; }
+.jg-puertas-premio { font-size: 2.6rem; line-height: 1; }
+.jg-puertas-texto { font-weight: 800; line-height: 1.2; overflow-wrap: break-word; }
+.jg-puertas-puerta.abierta .jg-puertas-luz { background: #fff3b0; }
+.jg-puertas-puerta.abierta .jg-puertas-rayos { opacity: 1; }
+.jg-puertas-puerta.abierta .jg-puertas-premio { opacity: 1; animation: jg-puertas-premio .6s steps(6) both; }
+.jg-puertas-puerta.abierta .jg-puertas-texto { opacity: 1; }
+@keyframes jg-puertas-gira { to { transform: rotate(360deg); } }
+@keyframes jg-puertas-premio { from { opacity: 0; transform: scale(.2) translateY(30px); } 70% { transform: scale(1.3); } }
+
+/* La hoja de madera, con su placa y su pomo */
+.jg-puertas-hoja { position: absolute; inset: 0; display: grid; place-items: center; padding: 8px 26px 8px 8px; transform-origin: left center; background: linear-gradient(90deg, var(--madera) 0 90%, var(--madera-2) 90%); box-shadow: inset 0 0 0 4px var(--madera-2), inset 0 0 0 7px rgba(0, 0, 0, .18); transition: transform .5s steps(5); }
+.jg-puertas-placa { padding: 6px 8px; font-size: 1.05rem; font-weight: 800; line-height: 1.2; text-align: center; color: #2b1d1a; background: #fffaf0; box-shadow: 0 0 0 3px var(--h-borde); overflow-wrap: break-word; }
+.jg-puertas-pomo { position: absolute; right: 10px; top: 50%; width: 14px; height: 14px; margin-top: -7px; background: var(--oro); box-shadow: 0 0 0 2px var(--h-borde); }
+.jg-puertas-puerta.abierta .jg-puertas-hoja { transform: scaleX(.14); }
+
+/* La mala: se abre un poco y se cierra de golpe */
+.jg-puertas-puerta.cierra .jg-puertas-hoja { animation: jg-puertas-golpe .6s steps(6); }
+@keyframes jg-puertas-golpe { 0% { transform: scaleX(1); } 35% { transform: scaleX(.45); } 55% { transform: scaleX(1) translateX(4px); } 75% { transform: scaleX(1) translateX(-4px); } }
+.jg-puertas-puerta.probada .jg-puertas-hoja { opacity: .55; }
+.jg-puertas-puerta.probada::after { content: "✘"; position: absolute; right: -10px; top: -14px; display: grid; place-items: center; width: 30px; height: 30px; font: 700 1rem var(--fuente-pixel); color: #fff; background: #c0392b; box-shadow: 0 0 0 3px var(--h-borde); }
+.jg-puertas-puerta.apagada { opacity: .5; }
+
+.jg-puertas-nota { margin: 16px 0 0; padding: 12px 14px; font-weight: 700; line-height: 1.5; color: var(--h-tinta); background: var(--h-papel); box-shadow: 0 0 0 3px var(--h-borde), 4px 6px 0 2px var(--h-sombra); animation: jg-entra .3s steps(3) both; }
+
+/* Opciones largas: las puertas pasan a ser anchas y van una debajo de otra */
+.jg-puertas-fila.largas { display: grid; grid-template-columns: 1fr; gap: 16px; padding: 0 10px; }
+.jg-puertas-fila.largas .jg-puertas-puerta { flex: none; width: 100%; max-width: none; height: auto; min-height: 92px; }
+.jg-puertas-fila.largas .jg-puertas-luz { position: relative; min-height: 92px; grid-template-columns: auto 1fr; justify-items: center; gap: 12px; padding: 8px 14px; }
+.jg-puertas-fila.largas .jg-puertas-premio { font-size: 2rem; }
+.jg-puertas-fila.largas .jg-puertas-hoja { padding: 8px 38px 8px 12px; }
+.jg-puertas-fila.largas .jg-puertas-placa { font-size: 1.1rem; }
+
+@media (max-width: 640px) {
+  .jg-puertas-pasillo { padding: 22px 12px 0; }
+  .jg-puertas-suelo { margin: 0 -12px; }
+  .jg-puertas-fila { gap: 20px; }
+  .jg-puertas-puerta { height: 190px; flex-basis: 84px; min-width: 80px; }
+  .jg-puertas-placa { padding: 5px 4px; font-size: .9rem; }
+  .jg-puertas-hoja { padding: 6px 18px 6px 6px; }
+  .jg-puertas-pomo { right: 6px; width: 10px; height: 10px; margin-top: -5px; }
+  .jg-puertas-fila.largas .jg-puertas-hoja { padding: 8px 30px 8px 12px; }
+  .jg-puertas-pregunta { font-size: 1.15rem; }
+}

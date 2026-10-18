@@ -1,0 +1,62 @@
+/* =====================================================================
+   LA MÁQUINA DE ESCRIBIR (juegos/maquina.js) — papel, rodillo y teclas pixel.
+   Solo se animan transform y opacity, a saltos (steps).
+   ===================================================================== */
+
+.jg-maquina-cartel { margin: 0 0 16px; padding: 14px 16px; text-align: center; color: #2b1d1a; background: #fffaf0; box-shadow: 0 0 0 3px var(--h-borde), 5px 7px 0 2px rgba(0, 0, 0, .3); }
+.jg-maquina-pregunta { margin: 0; font-size: 1.3rem; font-weight: 800; line-height: 1.4; }
+.jg-maquina-frase-dada { margin: 8px 0 0; font-size: 1.25rem; font-weight: 700; }
+
+/* La máquina */
+.jg-maquina-aparato { max-width: 640px; margin: 22px auto 0; padding-top: 20px; }
+.jg-maquina-form { position: relative; }
+.jg-maquina-papel { position: relative; width: 88%; margin: 0 auto; padding: 16px 18px 12px; color: #2b1d1a; background: #fffaf0 repeating-linear-gradient(transparent 0 33px, rgba(79, 127, 192, .25) 33px 35px); box-shadow: 0 0 0 3px var(--h-borde); transform: translateY(0); }
+.jg-maquina-membrete { position: absolute; left: 6px; top: 50%; margin-top: -.7em; font: 700 1rem var(--fuente-pixel); color: #c8445a; animation: jg-maquina-parpadea 1s steps(2) infinite; }
+.jg-maquina-papel.listo .jg-maquina-membrete { display: none; }
+@keyframes jg-maquina-parpadea { 50% { opacity: 0; } }
+.jg-maquina input.jg-maquina-entrada { display: block; width: 100%; min-height: 48px; padding: 6px 4px; border: 0; border-radius: 0; font: 700 1.55rem "Courier New", Courier, ui-monospace, monospace; letter-spacing: .02em; color: #2b1d1a; background: transparent; caret-color: #c8445a; outline: 0; box-shadow: none; -webkit-appearance: none; appearance: none; }
+.jg-maquina input.jg-maquina-entrada:focus, .jg-maquina input.jg-maquina-entrada:read-only { background: transparent; box-shadow: none; outline: 0; }
+.jg-maquina input.jg-maquina-entrada::placeholder { color: transparent; }
+.jg-maquina-papel:focus-within { box-shadow: 0 0 0 3px var(--h-borde), 0 0 0 7px var(--oro); }
+.jg-maquina-papel.listo { background-color: #e8f7e4; transform: translateY(-6px); transition: transform .3s steps(3); }
+.jg-maquina-papel.tiembla { animation: jg-tiembla .3s steps(4); }
+
+.jg-maquina-rodillo { position: relative; z-index: 1; height: 20px; margin: 0 2%; background: repeating-linear-gradient(90deg, #3a3a48 0 12px, #2b2b36 12px 14px); box-shadow: 0 0 0 3px var(--h-borde); }
+.jg-maquina-rodillo::before, .jg-maquina-rodillo::after { content: ""; position: absolute; top: -4px; width: 22px; height: 28px; background: var(--oro); box-shadow: 0 0 0 3px var(--h-borde); }
+.jg-maquina-rodillo::before { left: -14px; }
+.jg-maquina-rodillo::after { right: -14px; }
+
+.jg-maquina-cuerpo { position: relative; display: flex; align-items: center; gap: 16px; padding: 18px 20px 22px; background: linear-gradient(#6c7b8c 0 70%, #55636f 70%); box-shadow: 0 0 0 3px var(--h-borde), inset 0 4px 0 rgba(255, 255, 255, .2), 8px 10px 0 3px rgba(0, 0, 0, .25); }
+.jg-maquina-adorno { flex: 1; height: 62px; background: radial-gradient(circle at 15px 15px, #f1f1f8 0 10px, #2b2b36 10px 13px, transparent 13px) 0 0 / 38px 32px; opacity: .95; }
+.jg-maquina-palanca { flex: none; min-height: 52px; padding-inline: 20px; font-size: 1.05rem; }
+.jg-maquina-aparato.golpe .jg-maquina-cuerpo { animation: jg-maquina-golpe .1s steps(2); }
+@keyframes jg-maquina-golpe { 50% { transform: translateY(2px); } }
+
+/* Teclas de las letras especiales del idioma */
+.jg-maquina-letras { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 16px; }
+.jg-maquina-letras[hidden] { display: none; }
+.jg-maquina-tecla { min-width: 48px; min-height: 48px; padding: 0 10px; border: 0; border-radius: 50%; cursor: pointer; font: 800 1.2rem var(--h-texto); color: #2b1d1a; background: #f1f1f8; box-shadow: 0 0 0 3px var(--h-borde), 0 5px 0 3px #8a8a9a; transition: transform .1s steps(2); }
+.jg-maquina-tecla:hover:not(:disabled) { background: var(--oro); }
+.jg-maquina-tecla:active:not(:disabled) { transform: translateY(4px); box-shadow: 0 0 0 3px var(--h-borde), 0 1px 0 3px #8a8a9a; }
+.jg-maquina-tecla:disabled { opacity: .5; cursor: default; }
+.jg-maquina-tecla:focus-visible { outline: 3px dashed var(--h-tinta); outline-offset: 4px; }
+
+/* La respuesta a copiar, la nota de la tutora y la frase final */
+.jg-maquina-modelo { max-width: 640px; margin: 0 auto 6px; padding: 12px 16px; text-align: center; color: #2b1d1a; background: var(--oro); box-shadow: 0 0 0 3px var(--h-borde), 4px 6px 0 2px rgba(0, 0, 0, .3); animation: jg-entra .3s steps(3) both; }
+.jg-maquina-modelo[hidden], .jg-maquina-final[hidden] { display: none; }
+.jg-maquina-etiqueta { display: inline-block; margin-bottom: 4px; font: 700 .76rem var(--fuente-pixel); text-transform: uppercase; letter-spacing: .08em; }
+.jg-maquina-modelo-texto { margin: 0; font-size: 1.5rem; font-weight: 800; }
+.jg-maquina-nota { max-width: 640px; margin: 18px auto 0; padding: 12px 14px; font-weight: 700; line-height: 1.5; color: var(--h-tinta); background: var(--h-papel); box-shadow: 0 0 0 3px var(--h-borde), 4px 6px 0 2px var(--h-sombra); animation: jg-entra .3s steps(3) both; }
+.jg-maquina-final { max-width: 640px; margin: 18px auto 0; padding: 14px 16px; text-align: center; color: var(--h-tinta); background: var(--h-papel); box-shadow: 0 0 0 3px var(--h-borde), 5px 7px 0 2px var(--h-sombra); animation: jg-entra .4s steps(4) both; }
+.jg-maquina-frase { margin: 0; font-size: 1.5rem; font-weight: 800; line-height: 1.6; }
+.jg-maquina-final .jg-oir, .jg-maquina-modelo .jg-oir { vertical-align: middle; }
+
+@media (max-width: 640px) {
+  .jg-maquina-papel { width: 94%; padding: 14px 12px 10px; }
+  .jg-maquina-entrada { font-size: 1.3rem; }
+  .jg-maquina-cuerpo { flex-direction: column; align-items: stretch; gap: 10px; padding: 14px 14px 18px; }
+  .jg-maquina-adorno { flex: none; height: 32px; }
+  .jg-maquina-palanca { width: 100%; }
+  .jg-maquina-pregunta { font-size: 1.15rem; }
+  .jg-maquina-frase, .jg-maquina-modelo-texto { font-size: 1.25rem; }
+}

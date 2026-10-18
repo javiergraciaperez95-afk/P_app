@@ -1,0 +1,30 @@
+/* ===================== La memoria (juegos/memoria.js) ===================== */
+.jg-memoria-mesa { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding: 18px; background: #2f6a4a; box-shadow: inset 0 0 0 6px #24553a, 0 0 0 3px var(--h-borde), 8px 10px 0 3px rgba(0, 0, 0, .25); }
+.jg-memoria-carta { position: relative; height: 112px; min-width: 0; padding: 0; border: 0; cursor: pointer; background: transparent; perspective: 600px; animation: jg-memoria-reparte .35s steps(4) both; animation-delay: calc(var(--i) * 40ms); }
+@keyframes jg-memoria-reparte { from { opacity: 0; transform: translateY(-16px) rotate(-6deg); } }
+.jg-memoria-carta > span { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; padding: 8px; backface-visibility: hidden; box-shadow: 0 0 0 3px var(--h-borde), 4px 6px 0 2px rgba(0, 0, 0, .3); transition: transform .3s steps(4); }
+.jg-memoria-dorso { background: repeating-linear-gradient(45deg, #4f7fc0 0 10px, #3d68a6 10px 20px); }
+.jg-memoria-dorso i { display: grid; place-items: center; width: 40px; height: 40px; font: 700 1.4rem var(--fuente-pixel); font-style: normal; color: #2b1d1a; background: var(--oro, #f4c84a); box-shadow: 0 0 0 3px var(--h-borde); }
+.jg-memoria-cara { color: #2b1d1a; text-align: center; background: #fffaf0; transform: rotateY(180deg); overflow-wrap: anywhere; }
+.jg-memoria-carta .jg-memoria-cara { border-top: 8px solid #e0a82a; }
+.jg-memoria-lado-es .jg-memoria-cara { border-top-color: #4f7fc0; }
+.jg-memoria-cara strong { font-size: 1.3rem; line-height: 1.15; color: #2b1d1a; }
+.jg-memoria-mesa[data-n="10"] { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.jg-memoria-mesa[data-n="4"] { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 420px; margin-inline: auto; }
+.jg-memoria-mesa[data-n="6"] { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 640px; margin-inline: auto; }
+.jg-memoria-sentido { font-size: 1rem; font-weight: 700; line-height: 1.2; }
+.jg-memoria-carta.girada .jg-memoria-dorso { transform: rotateY(180deg); }
+.jg-memoria-carta.girada .jg-memoria-cara { transform: rotateY(0); }
+.jg-memoria-carta.unida { cursor: default; }
+.jg-memoria-carta.unida .jg-memoria-cara { background: #cfeecb; }
+.jg-memoria-aviso { min-height: 2em; margin-top: 12px; font-weight: 800; text-align: center; color: var(--h-tinta); }
+.jg-memoria-aviso:empty { min-height: 0; }
+.jg-memoria-aviso span { font-size: 1.15rem; }
+
+@media (max-width: 640px) {
+  .jg-memoria-mesa, .jg-memoria-mesa[data-n="10"] { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; padding: 12px; }
+  .jg-memoria-mesa[data-n="4"], .jg-memoria-mesa[data-n="8"], .jg-memoria-mesa[data-n="10"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .jg-memoria-carta { height: 96px; }
+  .jg-memoria-cara strong { font-size: 1.1rem; }
+  .jg-memoria-sentido { font-size: .88rem; }
+}

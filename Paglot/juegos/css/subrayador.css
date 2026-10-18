@@ -1,0 +1,42 @@
+/* =====================================================================
+   EL SUBRAYADOR — la hoja con el texto a trozos y el rotulador fosforito.
+   Solo se animan transform y opacity, a saltos (steps).
+   ===================================================================== */
+
+.jg-subrayador-mesa { padding: 18px; background: var(--h-papel-2, var(--h-papel)); box-shadow: 0 0 0 3px var(--h-borde), 8px 10px 0 3px rgba(0, 0, 0, .25); }
+.jg-subrayador-lista { display: grid; gap: 14px; max-height: 56vh; overflow-y: auto; padding: 4px 4px 8px; }
+.jg-subrayador-hoja { padding: 14px 16px; font-size: 1.15rem; line-height: 2.1; color: var(--h-tinta); background: var(--h-papel); box-shadow: 0 0 0 3px var(--h-borde), 4px 6px 0 2px var(--h-sombra); animation: jg-subrayador-entra .35s steps(4) both; overflow-wrap: anywhere; }
+.jg-subrayador-hoja p, .jg-subrayador-hoja ul { margin: 0 0 .6em; }
+.jg-subrayador-hoja > :last-child { margin-bottom: 0; }
+.jg-subrayador-hoja ul { padding-left: 1.3em; }
+.jg-subrayador-hoja.vieja { opacity: .6; }
+@keyframes jg-subrayador-entra { from { opacity: 0; transform: translateX(-10px); } }
+
+/* las palabras sueltas: un toque equivocado solo tiembla */
+.jg-subrayador-w { display: inline-block; cursor: default; }
+
+/* las palabras clave: botones que el rotulador pinta de izquierda a derecha */
+.jg-subrayador-clave { position: relative; isolation: isolate; display: inline-block; min-height: 44px; margin: 0 2px; padding: 0 8px; border: 0; cursor: pointer; font: inherit; font-weight: 800; color: var(--h-tinta); background: transparent; box-shadow: 0 0 0 2px var(--h-borde); }
+.jg-subrayador-clave::before { content: ""; position: absolute; inset: 0; z-index: -1; background: #ffe94d; transform: scaleX(0); transform-origin: left center; }
+.jg-subrayador-clave.marcada { color: #2b1d1a; box-shadow: 0 0 0 2px #c9a800; }
+.jg-subrayador-clave.marcada::before { transform: scaleX(1); animation: jg-subrayador-pinta .35s steps(5) both; }
+.jg-subrayador-clave:not(.marcada):hover { background: rgba(255, 233, 77, .35); }
+.jg-subrayador-clave:focus-visible { outline: 3px dashed var(--h-tinta); outline-offset: 3px; }
+@keyframes jg-subrayador-pinta { from { transform: scaleX(0); } }
+
+/* los ejemplos del final */
+.jg-subrayador-hoja.jg-ejemplo { background: var(--h-papel); }
+.jg-subrayador-hoja .jg-trad { color: var(--h-suave); }
+
+.jg-subrayador-pie { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 16px; min-height: 48px; }
+.jg-subrayador-marcadas { flex: 1; font: 700 .9rem var(--fuente-pixel); color: var(--h-suave); }
+.jg-subrayador-rotulador { flex: none; width: 54px; height: 16px; background: linear-gradient(90deg, #ffe94d 0 14px, #2b1d1a 14px 18px, #e8c8f0 18px 100%); box-shadow: 0 0 0 3px var(--h-borde); transform: rotate(-12deg); }
+
+@media (max-width: 640px) {
+  .jg-subrayador-mesa { padding: 10px; }
+  .jg-subrayador-hoja { font-size: 1.05rem; padding: 12px; }
+  .jg-subrayador-lista { max-height: 50vh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jg-subrayador-hoja, .jg-subrayador-clave::before { animation: none !important; }
+}

@@ -1,0 +1,32 @@
+/* ===================== Las cajas (juegos/clasifica.js) ===================== */
+.jg-clasifica-mesa { display: grid; gap: 22px; padding: 18px; background: #7a5a3b; box-shadow: inset 0 0 0 6px #5e4329, 0 0 0 3px var(--h-borde), 8px 10px 0 3px rgba(0, 0, 0, .25); }
+.jg-clasifica-caida { display: grid; place-items: center; min-height: 170px; }
+.jg-clasifica-palabra { position: relative; display: grid; justify-items: center; gap: 4px; min-width: 220px; max-width: 100%; padding: 16px 40px 16px 24px; text-align: center; color: #2b1d1a; background: #fffaf0; box-shadow: 0 0 0 3px var(--h-borde), 5px 7px 0 2px rgba(0, 0, 0, .35); animation: jg-clasifica-cae .45s steps(5) both; }
+@keyframes jg-clasifica-cae { from { opacity: 0; transform: translateY(-120px); } 70% { opacity: 1; } }
+.jg-clasifica-palabra strong { font-size: 2rem; line-height: 1.15; overflow-wrap: anywhere; color: #2b1d1a; }
+.jg-clasifica-palabra em { font: 700 .85rem var(--fuente-pixel); font-style: normal; color: #3d68a6; }
+.jg-clasifica-palabra span { font-size: .95rem; color: #5a4a42; }
+.jg-clasifica-palabra.entra-caja { animation: jg-clasifica-entra .35s steps(4) both; }
+@keyframes jg-clasifica-entra { to { opacity: 0; transform: translateY(70px) scale(.5); } }
+.jg-clasifica-oir { position: absolute; top: 6px; right: 6px; min-width: 44px; min-height: 44px; padding: 0; border: 0; cursor: pointer; font-size: 1.3rem; background: var(--oro, #f4c84a); box-shadow: 0 0 0 3px var(--h-borde); }
+.jg-clasifica-cajas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.jg-clasifica-n3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.jg-clasifica-n4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.jg-clasifica-caja { display: grid; align-content: start; gap: 8px; min-height: 120px; padding: 0 0 10px; border: 0; cursor: pointer; text-align: center; color: #2b1d1a; background: #c99a64; box-shadow: 0 0 0 3px var(--h-borde), 4px 6px 0 2px rgba(0, 0, 0, .35); }
+.jg-clasifica-caja:active { transform: translateY(3px); }
+.jg-clasifica-tapa { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 6px 10px; font-size: 1.1rem; background: #e8c48a; box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .18); overflow-wrap: anywhere; }
+.jg-clasifica-tapa b { font-weight: 800; }
+.jg-clasifica-tapa i { font-style: normal; }
+.jg-clasifica-dentro { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; padding: 0 8px; }
+.jg-clasifica-chip { padding: 3px 8px; font-size: .9rem; font-weight: 800; background: #fffaf0; box-shadow: 0 0 0 2px var(--h-borde); animation: jg-clasifica-chip .3s steps(3) both; }
+@keyframes jg-clasifica-chip { from { opacity: 0; transform: translateY(-14px); } }
+.jg-clasifica-caja.recibe { transform: translateY(-5px); }
+
+@media (max-width: 640px) {
+  .jg-clasifica-mesa { padding: 12px; gap: 16px; }
+  .jg-clasifica-n3, .jg-clasifica-n4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .jg-clasifica-palabra { min-width: 0; width: 100%; }
+  .jg-clasifica-palabra strong { font-size: 1.7rem; }
+  .jg-clasifica-tapa { font-size: 1rem; }
+}
+.jg-clasifica-caida[hidden] { display: none; }

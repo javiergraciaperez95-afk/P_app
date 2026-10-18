@@ -1,0 +1,284 @@
+/* =====================================================================
+   LABORATORIO DE IDEAS (#/laboratorio) y NORMAS DEL LABORATORIO (#/guias) — la misma sala: pared de azulejos,
+   estantes con matraces de colores, la mesa de trabajo y el suelo de baldosas. Las ideas son matraces cuyo
+   líquido sube con los votos; las normas, carteles de seguridad. Lo común de las escenas, en css/escenas.css.
+   Pictogramas de píxel: prefijo «lb». Todo a saltos (steps).
+   ===================================================================== */
+
+.laboratorio {
+  --azulejo: #eef4f5;
+  --junta: #d6e1e4;
+  --vidrio: #e8f6fb;
+  --baldosa: #c9d3d6;
+  --baldosa-2: #b4c0c4;
+  --encimera: #6d6470;
+  --mueble: #f4f1ea;
+}
+:root[data-tema="oscuro"] .laboratorio {
+  --azulejo: #22303a;
+  --junta: #2b3b47;
+  --vidrio: #34485a;
+  --baldosa: #2a2f3a;
+  --baldosa-2: #222630;
+  --encimera: #4a4252;
+  --mueble: #332d3d;
+}
+.laboratorio .lb-p { fill: #fff; }
+.laboratorio h1, .laboratorio h2 { text-wrap: balance; }
+
+/* =====================================================================
+   La sala
+   ===================================================================== */
+.lb-sala {
+  position: relative;
+  margin: -20px calc(50% - 50vw) 0;
+  padding: 270px 16px 0;
+  overflow: hidden;
+  background:
+    linear-gradient(var(--junta) 2px, transparent 2px) 0 0 / 34px 34px,
+    linear-gradient(90deg, var(--junta) 2px, transparent 2px) 0 0 / 34px 34px,
+    var(--azulejo);
+}
+.lb-suelo { display: block; height: 70px; margin: 0 -16px; background: conic-gradient(var(--baldosa) 25%, var(--baldosa-2) 0 50%, var(--baldosa) 0 75%, var(--baldosa-2) 0) 0 0 / 56px 56px; box-shadow: inset 0 3px 0 var(--h-borde); }
+/* los estantes del fondo */
+.lb-estantes { position: absolute; left: 0; right: 0; top: 30px; display: flex; flex-direction: column; gap: 34px; padding: 0 max(16px, calc(50% - 620px)); pointer-events: none; }
+.lb-balda { display: flex; justify-content: space-between; align-items: flex-end; padding: 0 20px; box-shadow: 0 10px 0 -2px #a8714a, 0 13px 0 -2px var(--h-borde); }
+.lb-balda .lb-matraz { transform: scale(.8); transform-origin: 50% 100%; }
+
+/* ----- Un matraz de CSS: cuello, cuerpo de cristal y el líquido que sube ----- */
+.lb-matraz { --c: #68b8e8; position: relative; display: inline-flex; flex-direction: column; align-items: center; width: 60px; flex: none; }
+.lb-rosa { --c: #ee6f86; }
+.lb-menta { --c: #6fd3a0; }
+.lb-cielo { --c: #68b8e8; }
+.lb-oro { --c: #f4c84a; }
+.lb-lila { --c: #b9a8ff; }
+.lb-cuello { width: 18px; height: 22px; background: var(--vidrio); box-shadow: 0 0 0 3px var(--h-borde), inset 0 4px 0 #c99a6a; }
+.lb-cuerpo { position: relative; width: 60px; height: 56px; margin-top: 3px; background: var(--h-borde); clip-path: polygon(32% 0, 68% 0, 100% 100%, 0 100%); }
+.lb-cuerpo::before, .lb-liquido { content: ""; position: absolute; inset: 3px 3px 3px; clip-path: polygon(31% 0, 69% 0, 100% 100%, 0 100%); }
+.lb-cuerpo::before { background: var(--vidrio); }
+.lb-liquido { background: linear-gradient(to top, var(--c) 0 var(--nivel), transparent var(--nivel)); transition: background .4s steps(4); }
+.lb-cuerpo i { position: absolute; bottom: 8px; width: 4px; height: 4px; background: #fff; opacity: 0; }
+.lb-cuerpo i:nth-of-type(1) { left: 22px; }
+.lb-cuerpo i:nth-of-type(2) { left: 32px; }
+.lb-cuerpo i:nth-of-type(3) { left: 28px; }
+.burbujea .lb-cuerpo i, .lb-matraz.burbujea .lb-cuerpo i { animation: lb-burbuja 1s steps(5) 2; }
+.lb-cuerpo i:nth-of-type(2) { animation-delay: .25s !important; }
+.lb-cuerpo i:nth-of-type(3) { animation-delay: .5s !important; }
+@keyframes lb-burbuja { 0% { opacity: .9; transform: none; } 100% { opacity: 0; transform: translateY(-34px); } }
+/* el tubo de ensayo: recto y estrecho */
+.lb-tubo { width: 24px; }
+.lb-tubo .lb-cuello { width: 24px; height: 8px; }
+.lb-tubo .lb-cuerpo { width: 24px; height: 70px; clip-path: none; }
+.lb-tubo .lb-cuerpo::before, .lb-tubo .lb-liquido { clip-path: none; }
+
+/* ----- El letrero de la sala y el aviso de las normas ----- */
+.lb-letrero {
+  position: relative;
+  z-index: 2;
+  width: min(720px, 100%);
+  margin: 0 auto 34px;
+  padding: 22px 28px;
+  text-align: center;
+  background: var(--h-papel);
+  box-shadow: inset 0 0 0 4px var(--h-papel), inset 0 0 0 7px #4f7fc0, 0 0 0 3px var(--h-borde), 6px 10px 0 3px rgba(0, 0, 0, .14);
+}
+.lb-etiqueta { font: 700 .78rem var(--fuente-pixel); letter-spacing: .12em; text-transform: uppercase; color: #4f7fc0; }
+.lb-letrero h1 { margin: 6px 0 8px; font-size: clamp(1.8rem, 4.4vw, 2.6rem); line-height: 1.08; }
+.lb-letrero p { margin: 0; color: var(--h-suave); line-height: 1.55; }
+.lb-aviso-normas {
+  position: absolute;
+  z-index: 3;
+  right: max(16px, calc(50% - 620px));
+  top: 216px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  font: 700 .82rem var(--fuente-pixel);
+  color: #15121d;
+  text-decoration: none;
+  background: #f4c84a;
+  box-shadow: inset 0 0 0 4px #f4c84a, inset 0 0 0 6px #15121d, 0 0 0 3px var(--h-borde), 3px 5px 0 3px rgba(0, 0, 0, .18);
+}
+.lb-aviso-normas span { display: grid; place-items: center; width: 22px; height: 20px; color: #f4c84a; background: #15121d; clip-path: polygon(50% 0, 100% 100%, 0 100%); font-size: .8rem; padding-top: 5px; }
+.lb-aviso-normas:hover { background: #ffd866; }
+.lb-aviso-normas:focus-visible { outline: 3px dashed var(--h-tinta); outline-offset: 5px; }
+
+/* ----- La mesa de trabajo ----- */
+.lb-mesa-escena {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 560px);
+  justify-content: center;
+  align-items: end;
+  gap: 18px;
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  padding-bottom: 64px;
+}
+/* la encimera y los armarios de debajo */
+.lb-mesa-escena::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -40px;
+  right: -40px;
+  bottom: 0;
+  height: 70px;
+  background:
+    linear-gradient(var(--h-borde) 0 3px, var(--encimera) 3px 17px, var(--h-borde) 17px 20px, transparent 20px),
+    repeating-linear-gradient(90deg, var(--mueble) 0 116px, var(--h-borde) 116px 119px, var(--mueble) 119px 120px);
+}
+.lb-cientifica .tutora-lienzo { width: 132px; height: 176px; }
+.lb-cientifica { margin-bottom: -2px; }
+.lb-mesa-cosas { display: flex; align-items: flex-end; gap: 12px; padding-bottom: 6px; }
+.lb-matraz-mesa { width: 84px; }
+.lb-matraz-mesa .lb-cuello { width: 26px; height: 30px; }
+.lb-matraz-mesa .lb-cuerpo { width: 84px; height: 78px; }
+.lb-matraz-mesa.burbujea .lb-cuerpo i { animation-iteration-count: infinite; }
+.lb-mechero { width: 22px; height: 30px; background: #6d6470; box-shadow: 0 0 0 3px var(--h-borde); position: relative; }
+.lb-mechero::before { content: ""; position: absolute; left: 6px; top: -16px; width: 10px; height: 14px; background: #68b8e8; clip-path: polygon(50% 0, 100% 100%, 0 100%); animation: lb-llama .5s steps(2) infinite; }
+@keyframes lb-llama { 50% { transform: scaleY(.75); } }
+.lb-gradilla { position: relative; display: flex; gap: 6px; padding: 0 6px 8px; box-shadow: inset 0 -8px 0 #a8714a; }
+.lb-gradilla i { width: 10px; height: 40px; background: linear-gradient(to top, #ee6f86 0 40%, var(--vidrio) 40%); box-shadow: 0 0 0 2px var(--h-borde); }
+.lb-gradilla i:nth-child(2) { background: linear-gradient(to top, #6fd3a0 0 60%, var(--vidrio) 60%); }
+.lb-gradilla i:nth-child(3) { background: linear-gradient(to top, #f4c84a 0 30%, var(--vidrio) 30%); }
+/* la ficha de la idea, sujeta a la mesa */
+.lb-ficha {
+  margin-bottom: 6px;
+  padding: 20px 22px;
+  background: repeating-linear-gradient(transparent 0 27px, var(--junta) 27px 28px), var(--h-papel);
+  box-shadow: 0 0 0 3px var(--h-borde), 6px 9px 0 3px rgba(0, 0, 0, .16);
+}
+.lb-ficha h2 { margin: 0 0 4px; font-size: 1.35rem; }
+.lb-ficha > p { margin: 0 0 12px; color: var(--h-suave); }
+.lb-ficha label { display: block; margin-bottom: 6px; font-weight: 800; }
+.lb-ficha textarea, .lb-ficha input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 0;
+  font: 600 1rem var(--h-texto);
+  color: var(--h-tinta);
+  background: var(--h-papel-2);
+  box-shadow: inset 0 0 0 3px var(--h-borde);
+  resize: vertical;
+}
+.lb-ficha textarea:focus-visible, .lb-ficha input:focus-visible { outline: 3px dashed #4f7fc0; outline-offset: 3px; }
+.lb-ficha-pie { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center; margin-top: 12px; }
+
+/* =====================================================================
+   La estantería de las ideas
+   ===================================================================== */
+.lb-estanteria { width: min(1160px, 100%); margin: 0 auto; padding: 56px 16px 70px; }
+.lb-estanteria-cabecera { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+.lb-estanteria-cabecera h2 { margin: 4px 0 0; font-size: clamp(1.6rem, 3.6vw, 2.2rem); }
+.lb-total { font: 700 1rem var(--fuente-pixel); color: var(--h-suave); }
+.lb-prototipo { margin: 10px 0 6px; font-size: .9rem; color: var(--h-suave); }
+.lb-estado { min-height: 1.5em; margin: 0 0 14px; font-weight: 700; color: #4f7fc0; }
+.lb-formulas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 22px; margin: 0; padding: 0; list-style: none; }
+.lb-formula {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  gap: 10px 14px;
+  align-items: end;
+  padding: 0 10px 22px;
+  box-shadow: 0 -12px 0 -9px transparent, inset 0 -12px 0 #a8714a, inset 0 -15px 0 var(--h-borde);
+}
+.lb-formula .lb-matraz { grid-row: 1 / span 2; margin-bottom: 12px; }
+.lb-etiqueta-formula { padding: 10px 12px; background: var(--h-papel); box-shadow: 0 0 0 3px var(--h-borde), 3px 5px 0 3px var(--h-sombra); }
+.lb-etiqueta-formula p { margin: 0 0 4px; font-weight: 700; line-height: 1.4; overflow-wrap: anywhere; }
+.lb-etiqueta-formula small { color: var(--h-suave); }
+.lb-primera .lb-etiqueta-formula::after { content: "★"; position: absolute; right: 2px; top: -16px; display: grid; place-items: center; width: 30px; height: 30px; color: #15121d; background: #f4c84a; box-shadow: 0 0 0 3px var(--h-borde); }
+.lb-gota {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  margin-bottom: 14px;
+  padding: 6px 12px;
+  border: 0;
+  font: 700 .86rem var(--fuente-pixel);
+  color: var(--h-tinta);
+  background: var(--h-papel-2);
+  cursor: pointer;
+  box-shadow: 0 0 0 3px var(--h-borde), 3px 5px 0 3px var(--h-sombra);
+}
+.lb-gota b { padding: 0 6px; color: #fff; background: #4f7fc0; }
+.lb-gota[aria-pressed="true"] { background: #cfe9f7; color: #15121d; }
+.lb-gota:focus-visible { outline: 3px dashed var(--h-tinta); outline-offset: 5px; }
+.lb-gota-icono { width: 12px; height: 16px; background: #68b8e8; clip-path: polygon(50% 0, 100% 60%, 85% 100%, 15% 100%, 0 60%); box-shadow: inset 0 0 0 2px var(--h-borde); }
+.lb-vacio { grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: 18px; padding: 24px; font-weight: 700; color: var(--h-suave); }
+.lb-vacio p { margin: 0; }
+
+/* =====================================================================
+   Las normas: carteles de seguridad
+   ===================================================================== */
+.lb-sala-normas { padding-bottom: 0; }
+.lb-carteles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px; width: min(1180px, 100%); margin: 0 auto; padding: 20px 0 0; list-style: none; position: relative; z-index: 2; }
+.lb-cartel {
+  --c: #c8445a;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 16px;
+  background: var(--h-papel);
+  box-shadow: 0 0 0 3px var(--h-borde), 5px 8px 0 3px rgba(0, 0, 0, .16);
+  transform-origin: 50% -8px;
+}
+.lb-cartel:hover { animation: lb-balanceo .8s steps(6); }
+@keyframes lb-balanceo { 30% { rotate: 3deg; } 70% { rotate: -2deg; } }
+.lb-cartel-2 { --c: #4f7fc0; }
+.lb-cartel-3 { --c: #3f8a5a; }
+.lb-cartel-4 { --c: #c98a1a; }
+.lb-cartel-5 { --c: #7a5ac8; }
+.lb-cartel-clavo { position: absolute; left: calc(50% - 6px); top: -12px; z-index: 1; width: 12px; height: 12px; background: #6d6470; box-shadow: 0 0 0 3px var(--h-borde); }
+.lb-pictograma { display: grid; place-items: center; padding: 22px 0; background: var(--c); box-shadow: inset 0 0 0 5px var(--c), inset 0 0 0 7px #fff; }
+.lb-picto { width: 72px; height: auto; }
+.lb-cartel > div { padding: 12px 14px 0; }
+.lb-cartel-numero { font: 700 .9rem var(--fuente-pixel); color: var(--c); }
+.lb-cartel h2 { margin: 4px 0 6px; font-size: 1.08rem; line-height: 1.25; }
+.lb-cartel p { margin: 0; font-size: .92rem; line-height: 1.5; color: var(--h-suave); }
+.lb-pie-normas { position: relative; z-index: 2; display: flex; align-items: flex-end; justify-content: center; gap: 24px; width: min(900px, 100%); margin: 40px auto 0; }
+.lb-pie-texto { padding-bottom: 30px; }
+.lb-pie-texto p { margin: 0 0 14px; color: var(--h-suave); font-weight: 700; }
+.lb-vigilante .tutora-lienzo { width: 120px; height: 160px; }
+
+/* =====================================================================
+   Pantallas medianas y móviles
+   ===================================================================== */
+@media (max-width: 1100px) {
+  .lb-carteles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .lb-mesa-escena { grid-template-columns: auto minmax(0, 1fr); }
+  .lb-mesa-cosas { display: none; }
+  .lb-formulas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .lb-sala { padding-top: 190px; }
+  .lb-estantes { top: 20px; gap: 22px; }
+  .lb-balda .lb-matraz { transform: scale(.6); }
+  .lb-balda .lb-matraz:nth-child(n + 5) { display: none; }
+  .lb-aviso-normas { top: 140px; right: 12px; }
+  .lb-letrero { padding: 18px 16px; }
+  .lb-mesa-escena { grid-template-columns: minmax(0, 1fr); padding-bottom: 60px; }
+  .lb-cientifica { justify-self: center; margin-bottom: -6px; order: 2; }
+  .lb-cientifica .tutora-lienzo { width: 96px; height: 128px; }
+  .lb-ficha { order: 1; }
+  .lb-ficha-pie { grid-template-columns: minmax(0, 1fr); }
+  .lb-carteles { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+  .lb-cartel { flex-direction: row; padding: 0; }
+  .lb-pictograma { flex: none; width: 96px; padding: 14px 0; }
+  .lb-picto { width: 56px; }
+  .lb-cartel > div { padding: 12px 14px 14px; }
+  .lb-pie-normas { flex-direction: column; align-items: center; text-align: center; }
+  .lb-pie-texto { padding-bottom: 0; }
+  .lb-formulas { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lb-cuerpo i, .lb-mechero::before, .lb-cartel:hover { animation: none !important; }
+  .lb-liquido { transition: none; }
+}

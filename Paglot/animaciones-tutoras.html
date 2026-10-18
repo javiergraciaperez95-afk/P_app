@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Animaciones de las tutoras</title>
+<!-- Página de revisión (no forma parte de la app): todas las animaciones de una tutora, en bucle.
+     Se abre con el servidor de «Abrir Paglot.cmd»: http://localhost:8100/animaciones-tutoras.html -->
+<style>
+  :root { --fondo: #1d1a2b; --panel: #2a2640; --texto: #f2eefc; --suave: #a9a3c4; --acento: #ff7fa8; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 16px; background: var(--fondo); color: var(--texto); font: 15px/1.4 system-ui, sans-serif; }
+  h1 { font-size: 1.3rem; margin: 0 0 12px; }
+  .controles { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px; }
+  select, button { font: inherit; background: var(--panel); color: var(--texto); border: 2px solid #4a4466; border-radius: 6px; padding: 6px 10px; cursor: pointer; }
+  button:hover, select:hover { border-color: var(--acento); }
+  .rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .ficha { background: var(--panel); border-radius: 8px; padding: 8px; text-align: center; cursor: pointer; border: 2px solid transparent; }
+  .ficha:hover { border-color: var(--acento); }
+  canvas { width: 144px; height: 180px; image-rendering: pixelated; background: #3a3555; border-radius: 6px; max-width: 100%; }
+  .nombre { font-weight: 600; margin-top: 4px; }
+  .cuando { color: var(--suave); font-size: .8rem; }
+  h2 { font-size: 1rem; margin: 20px 0 8px; color: var(--suave); }
+</style>
+</head>
+<body>
+<h1>Animaciones de las tutoras</h1>
+<div class="controles">
+  <label>Tutora <select id="tutora"></select></label>
+  <button id="todas" type="button">Repetir todas a la vez</button>
+  <span class="cuando">Toca una ficha para repetir esa animación.</span>
+</div>
+<div class="rejilla" id="rejilla"></div>
+
+<script type="module">
+import { CURSOS } from './js/cursos.js';
+import { fabricar } from './js/tutora-base.js';
+
+// [animación, nombre, cuándo la hace en la app]
+const LISTA = [
+  ['saludar', 'Saludar', 'al entrar en una pantalla'],
+  ['aplaudir', 'Aplaudir', 'al acertar'],
+  ['senalar', 'Señalar', 'al fallar dos veces seguidas'],
+  ['pensar', 'Mano en la barbilla', 'cuando está pensando'],
+  ['rascarse', 'Rascarse la cabeza', 'al fallar'],
+  ['celebrar', 'Celebrar', 'al terminar una lección'],
+  ['pulgar', 'Pulgar arriba', 'en las rachas'],
+  ['guino', 'Guiño', 'en las rachas'],
+  ['bostezo', 'Bostezar', 'si nadie hace nada'],
+  ['estirarse', 'Estirarse', 'si nadie hace nada'],
+  ['mirarLados', 'Mirar a los lados', 'si nadie hace nada'],
+  ['moverPie', 'Mover el pie', 'si nadie hace nada'],
+  ['verguenza', 'Vergüenza', 'al tocarle la cara'],
+  ['vueltecita', 'Vueltecita', 'al tocarla'],
+  ['caerse', 'Caerse de culo', 'si la tocas muchas veces'],
+  ['firma', 'Su gesto propio', 'al terminar una lección y a ratos'],
+  ['asentir', 'Asentir', 'al acertar'],
+  ['negar', 'Negar', 'al fallar'],
+  ['escuchar', 'Escuchar', 'mientras suena una frase'],
+  ['escribir', 'Escribir', 'al guardar en el cuaderno'],
+  ['hojear', 'Hojear el libro', 'al abrir una lección'],
+  ['dormir', 'Dormirse', 'tras 2 min y medio sin tocar nada'],
+  ['respingo', 'Despertarse', 'al volver a tocar algo'],
+  ['asomarse', 'Asomarse', 'al abrir la app'],
+  ['cruzarBrazos', 'Cruzar los brazos', 'en el repaso y las rachas'],
+  ['taparseOjos', 'Taparse los ojos', 'al dar la vuelta a una tarjeta'],
+  ['correr', 'Correr en el sitio', 'cuando hay prisa'],
+  ['brindar', 'Brindar', 'a la tercera lección del día'],
+];
+const EXPRESIONES = [
+  ['normal', 'Cara normal'], ['contenta', 'Contenta'], ['pensando', 'Pensando (postura)'],
+  ['confundida', 'Confundida (postura)'], ['apurada', 'Con prisa (postura)'], ['sorprendida', 'Sorprendida'],
+];
+
+const elegir = document.getElementById('tutora');
+const rejilla = document.getElementById('rejilla');
+const tutoras = (await import('./js/curso.js')).NOMBRES_TUTORAS;
+for (const c of CURSOS) elegir.append(new Option(`${tutoras[c.id] ?? ''} · ${c.nombre?.es ?? c.id}`, c.id));
+
+let sprites = [];
+let relojes = [];
+
+async function pintar() {
+  sprites.forEach(s => s.parar());
+  relojes.forEach(clearInterval);
+  sprites = []; relojes = [];
+  rejilla.replaceChildren();
+  const c = CURSOS.find(x => x.id === elegir.value);
+  const { crearSprite } = fabricar((await import(`./${c.carpeta}/tutora.js`)).default);
+
+  const ficha = (nombre, cuando, preparar) => {
+    const canvas = Object.assign(document.createElement('canvas'), { width: 48, height: 60 });
+    const div = document.createElement('div');
+    div.className = 'ficha';
+    div.append(canvas, Object.assign(document.createElement('div'), { className: 'nombre', textContent: nombre }),
+      Object.assign(document.createElement('div'), { className: 'cuando', textContent: cuando }));
+    rejilla.append(div);
+    const s = crearSprite(canvas);
+    sprites.push(s);
+    preparar(s, div);
+  };
+
+  for (const [anim, nombre, cuando] of LISTA) {
+    ficha(nombre, cuando, (s, div) => {
+      if (anim === 'dormir') { s.dormida = true; return; }
+      if (anim === 'escuchar') { s.escuchando = true; return; }
+      const repetir = () => s.gesto(anim);
+      repetir();
+      relojes.push(setInterval(repetir, 4200));
+      div.addEventListener('click', repetir);
+    });
+  }
+  const titulo = Object.assign(document.createElement('h2'), { textContent: 'Caras y posturas' });
+  titulo.style.gridColumn = '1 / -1';
+  rejilla.append(titulo);
+  for (const [exp, nombre] of EXPRESIONES) ficha(nombre, 'expresión al hablar', s => { s.expresion = exp; });
+}
+
+elegir.addEventListener('change', pintar);
+document.getElementById('todas').addEventListener('click', pintar);
+await pintar();
+</script>
+</body>
+</html>
