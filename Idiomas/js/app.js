@@ -393,6 +393,7 @@ async function navegar({ cambioDeIdioma = false } = {}) {
   }
   if (seccion === 'bienvenida') bienvenidaOfrecida = true;
   document.body.classList.toggle('en-bienvenida', seccion === 'bienvenida');
+  document.body.classList.toggle('en-leccion', seccion === 'leccion'); // en el móvil, la lección usa toda la pantalla
   rutaActual = seccion === 'leccion' ? 'lecciones' : seccion;
   document.body.classList.toggle('en-inicio', PORTADAS.includes(seccion));
   document.body.classList.toggle('sin-tutora', esGeneral(seccion) || seccion === 'bienvenida');

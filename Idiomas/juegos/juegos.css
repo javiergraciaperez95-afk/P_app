@@ -217,3 +217,40 @@
 @media (prefers-reduced-motion: reduce) {
   .jg *, .jg { animation: none !important; transition: none !important; }
 }
+
+/* ----- La lección en el móvil: toda la pantalla para jugar (body.en-leccion lo pone js/app.js) -----
+   Sin las pestañas de la app (la lección tiene su «volver»), la cabecera de la lección en una línea con
+   «libro» como icono, los pasos en una fila que se desliza y la tutora más pequeña. */
+@media (max-width: 700px) {
+  body.en-leccion { --alto-tutora: 86px; }
+  body.en-leccion .menu { display: none; }
+  body.en-leccion .tutora { padding: 4px 6px; gap: 6px; }
+  body.en-leccion .tutora-canvas { width: 58px; height: 72px; }
+  body.en-leccion .tutora-nombre { font-size: .72rem; margin-bottom: 2px; }
+  body.en-leccion .tutora-texto { font-size: .86rem; line-height: 1.35; max-height: 4.1em; }
+  body.en-leccion .tutora-botones { margin-top: 0; }
+  body.en-leccion .tutora-botones .boton-mini { min-height: 28px; padding: 2px 8px; font-size: .72rem; }
+  .jg { padding-top: 0; scroll-margin-top: 72px; }
+  .jg-cabecera { flex-wrap: nowrap; gap: 8px; }
+  .jg-cabecera .jg-volver, .jg-cabecera .jg-libro { flex: none; min-height: 40px; padding: 4px 12px; font-size: 0; }
+  .jg-cabecera .jg-volver::before { content: "◀"; font-size: 1rem; }
+  .jg-cabecera .jg-libro::before { content: "📖"; font-size: 1.15rem; }
+  .jg-titulo { min-width: 0; }
+  .jg-titulo h1 { font-size: 1.15rem; overflow-wrap: anywhere; }
+  .jg-numero { font-size: .62rem; }
+  .jg-titulo-trad { font-size: .8rem; }
+  .jg-camino {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    margin: 6px -12px 8px;
+    padding: 9px 12px 6px;
+    gap: 8px;
+    scrollbar-width: none;
+  }
+  .jg-camino::-webkit-scrollbar { display: none; }
+  .jg-hito { flex: none; }
+  .jg-escenario { min-height: 0; }
+  .jg-pie { margin-top: 12px; }
+}
+

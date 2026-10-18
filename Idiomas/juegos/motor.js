@@ -188,6 +188,9 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
       onclick: dev ? () => { sonar('paso'); ir(i); } : null,
       style: dev ? 'cursor:pointer' : null,
     }, el('span', { 'aria-hidden': 'true' }, p.icono), el('span', { class: 'solo-lector' }, t('juego.paso', { n: i + 1, total: pasos.length + 1 })))));
+    // en el móvil los pasos van en una fila que se desliza: el actual se pone en el centro (sin mover la página)
+    const hito = camino.querySelector('.jg-hito.actual');
+    if (hito && camino.scrollWidth > camino.clientWidth) camino.scrollLeft = hito.offsetLeft - camino.clientWidth / 2 + hito.offsetWidth / 2;
   }
 
   // lo que se apunta al terminar, una sola vez por partida (volver atrás desde el final y avanzar otra vez no
