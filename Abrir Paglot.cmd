@@ -1,5 +1,5 @@
 @echo off
-rem Doble clic: abre Paglot (curso de espanol) en Edge. Empieza en la pantalla de inicio.
+rem Doble clic: abre Paglot (todos los cursos) en Edge. Empieza en la pantalla de inicio.
 rem Usa siempre el puerto 8100: el progreso guardado en el navegador va ligado a el.
 rem Hace falta un servidor local (si no, el navegador no carga las lecciones).
 rem Esta ventana es ese servidor. Cierrala para pararlo.
@@ -13,7 +13,7 @@ $ErrorActionPreference = 'Stop'
 $raiz = (Get-Location).Path.TrimEnd('\') + '\'
 # No cambies el numero: el progreso guardado en el navegador va ligado al puerto.
 $apps = @(
-  @{ Nombre = 'Idiomas'; Puerto = 8100 }
+  @{ Nombre = 'Paglot'; Puerto = 8100 }
 )
 $carpetas = @{}
 foreach ($a in $apps) { $carpetas[$a.Puerto] = $raiz + $a.Nombre + '\' }

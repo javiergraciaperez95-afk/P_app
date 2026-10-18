@@ -1,5 +1,5 @@
 // Las tutoras que salen de adorno (portada, pie, entrar, minijuegos…): una por curso. La del curso elegido va
-// primero; las demás son sus compañeras. Sus dibujos están en cursos/<id>/tutora.js (y una copia en tutoras/<id>/).
+// primero; las demás son sus compañeras. Sus dibujos están en cursos/<id>/tutora.js.
 
 import { curso } from './curso.js';
 import { CURSOS } from './cursos.js';
