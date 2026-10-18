@@ -19,6 +19,7 @@ import { botonEscuchar, botonGuardar } from '../comunes.js';
 import { origenTarjeta } from '../i18n.js';
 import { LOGROS, logrosGanados } from '../logros.js';
 import { tarjetas } from '../progress.js';
+import { enlaceReto } from './reto.js';
 
 export function tarjetaError(error, archivo) {
   return el('section', { class: 'caja tarjeta-error', role: 'alert' },
@@ -379,7 +380,7 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
   const lado = el('aside', { class: 'cm-lado' },
     cabecera,
     misiones,
-    el('div', { class: 'cm-extras' }, tarjetaRepaso(), tarjetaPalabra(apagar), tarjetaLogros()));
+    el('div', { class: 'cm-extras' }, tarjetaRepaso(), enlaceReto(), tarjetaPalabra(apagar), tarjetaLogros()));
 
   poner(app, el('div', { class: 'cm-pantalla' },
     lado,

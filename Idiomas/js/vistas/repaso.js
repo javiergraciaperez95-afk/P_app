@@ -21,6 +21,7 @@ import { decir } from '../tutor.js';
 import { LANG, curso } from '../curso.js';
 import { diccionarioCompleto } from './leccion.js';
 import { confeti } from '../fiesta.js';
+import { enlaceReto } from './reto.js';
 
 const NUEVAS_POR_SESION = 20;
 const VOLVER_EN_SESION = 20 * 60 * 1000; // lo que vence en menos de 20 min vuelve a salir hoy
@@ -139,6 +140,7 @@ export function pintarRepaso(app) {
           el('div', {}, el('dt', {}, t('repaso.nuevas')), el('dd', {}, String(nuevas))),
           el('div', {}, el('dt', {}, t('repaso.hoy')), el('dd', {}, String(hoy.repasos)))),
         empezar,
+        el('div', { class: 'rp-reto' }, enlaceReto()),
         !todas.length && el('p', {}, t('repaso.vacioActivo'), ' ', el('a', { href: '#/lecciones' }, t('repaso.vacioIr')))),
     );
 

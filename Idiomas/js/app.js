@@ -1,5 +1,5 @@
 // Arranque y navegación.
-// Rutas: #/inicio · #/lecciones · #/leccion/001 · #/cuaderno · #/repaso · #/perfil · #/creditos · #/bienvenida · #/desarrollador
+// Rutas: #/inicio · #/lecciones · #/leccion/001 · #/cuaderno · #/reto · #/repaso · #/perfil · #/creditos · #/bienvenida · #/desarrollador
 // La app solo enseña español (curso «es»), gratis, con la interfaz en inglés o vietnamita. Sin cuentas: todo se guarda
 // en este dispositivo.
 
@@ -19,6 +19,7 @@ import { agrupar, pintarLecciones } from './vistas/lecciones.js';
 import { pintarLeccion, cerrarFicha, ponerDiccionarioGlobal, ponerDiccionario } from './vistas/leccion.js';
 import { pintarCuaderno } from './vistas/cuaderno.js';
 import { pintarRepaso } from './vistas/repaso.js';
+import { pintarReto } from './vistas/reto.js';
 import { pintarPerfil } from './vistas/perfil.js';
 import { pintarCreditos } from './vistas/creditos.js';
 import { pintarInicio, inicioMovil } from './vistas/inicio.js';
@@ -444,6 +445,9 @@ async function navegar({ cambioDeIdioma = false } = {}) {
   } else if (seccion === 'repaso') {
     titulo(t('menu.repaso'));
     limpiarVista = pintarRepaso(app);
+  } else if (seccion === 'reto') {
+    titulo(t('reto.titulo'));
+    limpiarVista = pintarReto(app);
   } else if (seccion === 'perfil') {
     titulo(t('menu.perfil'));
     pintarPerfil(app, contenido);

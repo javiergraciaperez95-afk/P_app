@@ -194,3 +194,65 @@
 @media (prefers-reduced-motion: reduce) {
   .rp-racha.encendida, .rp-ficha.pista, .rp-carta.bien, .rp-carta.mal { animation: none; }
 }
+
+/* =====================================================================
+   RETO RÁPIDO (js/vistas/reto.js): 60 segundos, cuatro opciones, combos.
+   ===================================================================== */
+.rp-reto { display: flex; justify-content: center; margin-top: 14px; }
+.rp-reto .cm-extra { flex: 0 1 320px; text-align: left; }
+.cm-extra-reto { border-color: var(--oro); }
+.cm-extra-reto .cm-extra-icono { display: inline-block; animation: rt-rayo 1.4s steps(2) infinite; }
+
+.rt-portada { text-align: center; }
+.rt-rayo { font-size: 3.2rem; line-height: 1; animation: rt-rayo 1.4s steps(2) infinite; }
+@keyframes rt-rayo { 50% { transform: rotate(-12deg) scale(1.12); } }
+.rt-record { font: 700 1.05rem var(--fuente-pixel); }
+.rt-record strong { color: var(--oro); font-size: 1.4rem; }
+.rt-empezar { margin-top: 8px; }
+
+.rt-sesion { max-width: 640px; margin: 0 auto; }
+.rt-preparados { display: grid; place-items: center; min-height: 300px; text-align: center; }
+.rt-cuenta { margin: 0; font: 700 6rem var(--fuente-pixel); color: var(--oro); text-shadow: 5px 5px 0 var(--sombra); }
+.rt-cuenta.late { animation: rt-cuenta .5s steps(4); }
+@keyframes rt-cuenta { from { transform: scale(1.8); opacity: 0; } }
+
+.rt-cabecera { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.rt-caja {
+  flex: none;
+  min-width: 70px;
+  padding: 4px 10px;
+  text-align: center;
+  font: 700 1.2rem var(--fuente-pixel);
+  background: var(--panel);
+  border: 3px solid var(--linea);
+}
+.rt-caja.castigo { animation: rt-castigo .5s steps(6); color: var(--rojo-claro); }
+@keyframes rt-castigo { 20%, 60% { transform: translateX(-4px); } 40%, 80% { transform: translateX(4px); } }
+.rt-puntos { display: inline-block; color: var(--oro); }
+.rt-puntos.sube { animation: rt-sube .3s steps(3); }
+@keyframes rt-sube { 50% { transform: scale(1.5); } }
+.rt-barra { flex: 1; height: 16px; background: var(--fondo-punto); border: 3px solid var(--linea); overflow: hidden; }
+.rt-barra > span { display: block; height: 100%; background: var(--verde); transform-origin: left; transition: transform .1s linear; }
+.rt-barra.apurado > span { background: var(--rojo); animation: rt-apurado .5s steps(2) infinite; }
+@keyframes rt-apurado { 50% { opacity: .55; } }
+.rt-racha { display: block; min-height: 1.4em; text-align: center; font: 700 1rem var(--fuente-pixel); color: var(--oro); }
+.rt-pregunta {
+  display: grid;
+  place-items: center;
+  min-height: 120px;
+  margin-bottom: 14px;
+  padding: 10px;
+  text-align: center;
+  background: var(--panel);
+  border: 3px solid var(--linea);
+  box-shadow: 5px 5px 0 var(--sombra);
+}
+.rt-pregunta.entra { animation: rt-entra .18s steps(3); }
+@keyframes rt-entra { from { transform: translateY(8px); opacity: .2; } }
+.rt-es { margin: 0; font: 700 2rem var(--fuente-pixel); color: var(--espanol); overflow-wrap: anywhere; }
+.rt-trad { margin: 0; font-size: 1.5rem; font-weight: 700; overflow-wrap: anywhere; }
+.rt-final-puntos { margin: 0; font: 700 4rem var(--fuente-pixel); color: var(--oro); text-shadow: 4px 4px 0 var(--sombra); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cm-extra-reto .cm-extra-icono, .rt-rayo, .rt-barra.apurado > span { animation: none; }
+}

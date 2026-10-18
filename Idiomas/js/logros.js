@@ -69,6 +69,7 @@ export const LOGROS = [
   { id: 'repasos1000', icono: '🎴', si: e => e.repasos >= 1000 },
   // estos no se deducen de los datos: los da un suceso (ver más abajo)
   { id: 'enRacha', icono: '🎯' },
+  { id: 'velocista', icono: '⚡' },
   { id: 'buho', icono: '🦉' },
   { id: 'gallo', icono: '🐓' },
 ];
@@ -141,6 +142,7 @@ export function iniciarLogros(obtenerLecciones) {
   let reloj = null;
   alCambiar(() => { clearTimeout(reloj); reloj = setTimeout(comprobarLogros, 700); });
   window.addEventListener('cofre-abierto', () => setTimeout(comprobarLogros, 1200));
+  window.addEventListener('reto-terminado', ({ detail }) => { if ((detail?.puntos ?? 0) >= 25) ganar('velocista'); });
   window.addEventListener('paglot-suceso', ({ detail }) => {
     if (detail.nombre === 'bien' && (detail.racha ?? 0) >= 10) ganar('enRacha');
     if (detail.nombre === 'fin' || detail.nombre === 'fanfarria') {
