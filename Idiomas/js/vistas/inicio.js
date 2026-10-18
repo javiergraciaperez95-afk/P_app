@@ -9,6 +9,7 @@ import { el, poner } from '../dom.js';
 import { t, locale } from '../i18n.js';
 import { icono } from '../iconos.js';
 import { curso } from '../curso.js';
+import { hayProgreso } from '../progress.js';
 import { TUTORAS, tutoraPorId } from '../amigas.js';
 import { dibujoDe } from '../tutor-sprite.js';
 import { SALTO_PISA } from '../tutora-base.js';
@@ -120,7 +121,7 @@ function crearTrio(despues, zonas) {
     class: 'inicio-empezar',
     href: '#/lecciones',
     onclick: () => sonar('pagina'),
-  }, el('span', {}, t('inicio.continuar', { curso: curso.nativo })));
+  }, el('span', {}, hayProgreso() ? t('inicio.continuar', { curso: curso.nativo }) : t('inicio.empezar')));
   const plataforma = el('div', { class: 'inicio-plataforma' }, zh.figura, empezar);
 
   /** El botón reacciona: se hunde (pisado), se aprieta (apretujado) o brilla. */

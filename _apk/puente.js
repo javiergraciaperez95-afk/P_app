@@ -59,7 +59,9 @@
                   id: 730010,
                   title: TEXTOS.diario,
                   body: TEXTOS.diarioCuerpo,
-                  schedule: { on: { hour: 19, minute: 0 }, allowWhileIdle: true },
+                  schedule: { on: { hour: 19, minute: 0 } },
+                  // sin alarma exacta: si no, Android abre los ajustes de «Alarmas y recordatorios» al instalar
+                  isExactNotification: false,
                 }],
               });
             } catch (error) {

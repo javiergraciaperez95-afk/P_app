@@ -6,7 +6,7 @@ import { el, poner } from './dom.js';
 import { icono } from './iconos.js';
 import { t } from './i18n.js';
 import { curso } from './curso.js';
-import { tarjetas, racha, nombre, alCambiar } from './progress.js';
+import { tarjetas, racha, nombre, alCambiar, hayProgreso } from './progress.js';
 import { tocaRepasar, esNueva } from './srs.js';
 import { decir } from './tutor.js';
 import { sonar } from './sonidos.js';
@@ -52,7 +52,8 @@ export function pintarCabecera() {
   llama.classList.toggle('viva', dias > 0);
   llama.setAttribute('aria-label', t('cabecera.racha', { n: dias }));
   llama.title = t('cabecera.racha', { n: dias });
-  const contenido = enPortada() ? cintaBienvenida() : null;
+  // la cinta del saludo solo para quien ya ha empezado (a quien llega por primera vez no se le da la «bienvenida de vuelta»)
+  const contenido = enPortada() && hayProgreso() ? cintaBienvenida() : null;
   poner(cinta, contenido);
   cinta.hidden = !contenido;
 }
