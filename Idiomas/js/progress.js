@@ -199,7 +199,7 @@ function hoy() {
 
 function anotarActividad(campo) {
   const dia = (datos.actividad[hoy()] ??= { ejercicios: 0, repasos: 0, t: 0 });
-  dia[campo] += 1;
+  dia[campo] = (dia[campo] ?? 0) + 1;
   dia.t = Date.now();
 }
 
@@ -259,9 +259,23 @@ export function ejerciciosFallados() {
   return lista;
 }
 
+/** Un paso de un juego completado: cuenta como actividad del día (para la racha), aunque no sea un ejercicio. */
+export function anotarPaso() {
+  anotarActividad('ejercicios');
+  guardar();
+}
+
+/** Una lección con 3 estrellas hoy (para las misiones del día). */
+export function anotarPerfecta() {
+  anotarActividad('perfectas');
+  guardar();
+}
+
 export function marcarTerminada(idLeccion) {
   const l = leccion(idLeccion);
   l.terminada = true;
+  anotarActividad('ejercicios'); // terminar una lección cuenta para la racha del día
+  anotarActividad('lecciones');   // y para las misiones de hoy
   l.t = Date.now();
   guardar();
 }
@@ -419,6 +433,10 @@ export function reiniciarProgreso({ vaciarCuaderno = false } = {}) {
     for (const t of tarjetas()) cuaderno[t.id] = { ...t, srs: nuevaTarjeta(), t: ahora + 1 };
   }
   datos = { ...vacio(), reiniciado: ahora, perfil: datos.perfil, cuaderno };
+  // también lo que guardan aparte el modo juego y el camino (los logros ganados se quedan)
+  for (const nombre of ['juego2', 'estrellas', 'cofres', 'dia-completo', 'camino-abiertos']) {
+    try { localStorage.removeItem(clave(nombre)); } catch { /* sin almacenamiento */ }
+  }
   guardar({ tarjetas: 'todas' });
 }
 
@@ -484,10 +502,32 @@ export function unirDatos(local, remoto) {
  * Copia de seguridad: se junta con lo que ya hay (no se pierde nada).
  * Devuelve false si el archivo no parece una copia de esta app.
  */
+// Lo que el modo juego y el camino guardan aparte: avance de cada lección, estrellas, cofres y logros.
+const EXTRAS = ['juego2', 'estrellas', 'cofres', 'logros'];
+const leerExtra = nombre => { try { return JSON.parse(localStorage.getItem(clave(nombre))); } catch { return null; } };
+const escribirExtra = (nombre, valor) => { try { localStorage.setItem(clave(nombre), JSON.stringify(valor)); } catch { /* sin almacenamiento */ } };
+
+/** Todo lo que va en la copia de seguridad: los datos y lo que se guarda aparte. */
+export function copiaCompleta() {
+  const extras = {};
+  for (const nombre of EXTRAS) { const v = leerExtra(nombre); if (v) extras[nombre] = v; }
+  return { ...todosLosDatos(), extras };
+}
+
 export function importarCopia(copia) {
   if (!copia || typeof copia !== 'object' || copia.version !== 2 || typeof copia.lecciones !== 'object') return false;
   datos = completar(unirDatos(datos, copia));
   guardar({ tarjetas: 'todas' });
+  // lo de aparte se junta sin perder nada: las mejores estrellas, todos los cofres y logros, el avance que falte
+  const e = copia.extras && typeof copia.extras === 'object' ? copia.extras : {};
+  if (e.estrellas && typeof e.estrellas === 'object') {
+    const aqui = leerExtra('estrellas') ?? {};
+    for (const [id, n] of Object.entries(e.estrellas)) if (Number(n) > (aqui[id] ?? 0)) aqui[id] = Number(n);
+    escribirExtra('estrellas', aqui);
+  }
+  if (Array.isArray(e.cofres)) escribirExtra('cofres', [...new Set([...(leerExtra('cofres') ?? []), ...e.cofres])]);
+  if (e.logros && typeof e.logros === 'object') escribirExtra('logros', { ...e.logros, ...(leerExtra('logros') ?? {}) });
+  if (e.juego2 && typeof e.juego2 === 'object') escribirExtra('juego2', { ...e.juego2, ...(leerExtra('juego2') ?? {}) });
   return true;
 }
 

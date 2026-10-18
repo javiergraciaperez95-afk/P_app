@@ -1,5 +1,5 @@
 // Arranque y navegación.
-// Rutas: #/inicio · #/lecciones · #/leccion/001 · #/practica · #/frases · #/cuaderno · #/repaso · #/perfil · #/creditos · #/bienvenida · #/desarrollador
+// Rutas: #/inicio · #/lecciones · #/leccion/001 · #/cuaderno · #/repaso · #/perfil · #/creditos · #/bienvenida · #/desarrollador
 // La app solo enseña español (curso «es»), gratis, con la interfaz en inglés o vietnamita. Sin cuentas: todo se guarda
 // en este dispositivo.
 
@@ -7,7 +7,7 @@ import './suave.js'; // lo primero: en el móvil, todo se mueve suave
 import { el, poner } from './dom.js';
 import { activarDesarrollador } from './desarrollador.js';
 import { icono } from './iconos.js';
-import { descubrirLecciones, cargarIndice, cargarDiccionario, cargarLeccion, cargarCapitulos, cargarFrases } from './lessons.js';
+import { descubrirLecciones, cargarIndice, cargarDiccionario, cargarLeccion, cargarCapitulos } from './lessons.js';
 import { ajuste, aplicarTema, temaActual, cambiarAjuste } from './ajustes.js';
 import { t, tr, aplicarIdioma, IDIOMAS, IDIOMAS_VISIBLES, idioma, cambiarIdioma } from './i18n.js';
 import { sonar, prepararVoces } from './sonidos.js';
@@ -17,15 +17,14 @@ import { iniciarPie, pintarPie } from './pie.js';
 import { decir } from './tutor.js';
 import { agrupar, pintarLecciones } from './vistas/lecciones.js';
 import { pintarLeccion, cerrarFicha, ponerDiccionarioGlobal, ponerDiccionario } from './vistas/leccion.js';
-import { pintarFrases } from './vistas/frases.js';
 import { pintarCuaderno } from './vistas/cuaderno.js';
 import { pintarRepaso } from './vistas/repaso.js';
 import { pintarPerfil } from './vistas/perfil.js';
-import { pintarPractica } from './vistas/practica.js';
 import { pintarCreditos } from './vistas/creditos.js';
 import { pintarInicio, inicioMovil } from './vistas/inicio.js';
 import { pintarBienvenida, bienvenidaVista } from './vistas/bienvenida.js';
 import { pintarPerdida } from './vistas/perdida.js';
+import { iniciarLogros, comprobarLogros } from './logros.js';
 import { curso, hayCurso, nombreDelCurso } from './curso.js';
 import './movil.js';
 import './chispa.js';
@@ -61,8 +60,7 @@ ajustesCabecera.addEventListener('toggle', () => {
   if (!ajustesCabecera.open) cerrarIdiomas();
 });
 
-// Solo tres pestañas, para que quepan sin deslizar el dedo. Práctica y Frases siguen existiendo (#/practica, #/frases)
-// hasta que su contenido pase al cuaderno; el perfil está en el menú del avatar (o en Ajustes, sin sesión).
+// Solo tres pestañas, para que quepan sin deslizar el dedo; el perfil está dentro de Ajustes.
 const SECCIONES = [
   { ruta: 'lecciones', icono: 'libro' },
   { ruta: 'cuaderno', icono: 'cuaderno' },
@@ -89,7 +87,7 @@ function pintarGeneral(ruta) {
   limpiarVista = typeof apagar === 'function' ? apagar : null;
 }
 
-const contenido = { resultados: [], capitulos: [], errorCapitulos: null, frases: null };
+const contenido = { resultados: [], capitulos: [], errorCapitulos: null };
 let limpiarVista = null;
 let rutaActual = 'lecciones';
 
@@ -335,27 +333,10 @@ function cargarCurso() {
       if (mapa) ponerDiccionario(mapa);
       else ponerDiccionarioGlobal(cargadas);
     });
-    // Los IDs internos conservan rutas y progreso; cada curso define su orden visible.
-    const resultados = curso.id === 'vi'
-      ? cargadas.sort((a, b) =>
-        (Number(a.leccion?.capitulo) || Number.MAX_SAFE_INTEGER) - (Number(b.leccion?.capitulo) || Number.MAX_SAFE_INTEGER)
-        || Number(a.leccion?.orden_curso ?? a.id) - Number(b.leccion?.orden_curso ?? b.id))
-      : curso.id === 'fr'
-        ? cargadas.sort((a, b) => Number(a.leccion?.numero_curso ?? a.id) - Number(b.leccion?.numero_curso ?? b.id))
-      : cargadas;
-    if (curso.id === 'vi') {
-      let numeroCurso = 0;
-      for (const resultado of resultados) if (resultado.leccion) resultado.leccion.numero_curso = ++numeroCurso;
-    }
-    // El ID del JSON conserva rutas y progreso; los números visibles siguen el orden que pinta la lista.
-    // Inglés, español y ruso están en edición aparte; se dejan con su numeración actual.
-    if (!['en', 'es', 'ru'].includes(curso.id)) {
-      agrupar(resultados, capitulos).flatMap(grupo => grupo.lecciones)
-        .filter(resultado => resultado.leccion)
-        .forEach((resultado, i) => { resultado.leccion.numero_curso = i + 1; });
-    }
+    const resultados = cargadas;
     Object.assign(contenido, { resultados, capitulos, errorCapitulos: error ?? null, sinConexion: Boolean(resultados.sinConexion) });
     cursoCargado = true;
+    comprobarLogros();
   })();
   return cargaDelCurso;
 }
@@ -427,7 +408,7 @@ async function navegar({ cambioDeIdioma = false } = {}) {
   }
 
   // Lo que se practica depende de si hay voz: esas pantallas esperan a saberlo (Cuaderno, Repaso o Perfil, no).
-  if (['lecciones', 'leccion', 'practica'].includes(seccion)) {
+  if (['lecciones', 'leccion'].includes(seccion)) {
     await contenido.voces;
     if (estePase !== pase) return;
   }
@@ -445,21 +426,17 @@ async function navegar({ cambioDeIdioma = false } = {}) {
     if (!resultado || resultado.error) {
       pintarNoEncontrada(t('app.leccionNoAbre', { id: parametro }));
     } else {
-      const siguiente = contenido.resultados.slice(i + 1).find(r => !r.error)?.id ?? null;
+      // la siguiente en el orden del curso (por capítulos), no en el de los archivos
+      const enOrden = agrupar(contenido.resultados, contenido.capitulos).flatMap(g => g.lecciones).filter(r => !r.error);
+      const k = enOrden.findIndex(r => r.id === parametro);
+      const siguiente = (k >= 0 ? enOrden[k + 1]?.id : contenido.resultados.slice(i + 1).find(r => !r.error)?.id) ?? null;
       titulo(resultado.leccion.titulo_es || tr(resultado.leccion.titulo));
       limpiarVista = pintarLeccion(app, resultado, siguiente);
     }
   } else if (seccion === 'lecciones') {
     titulo(t('menu.lecciones'));
     if (contenido.sinConexion && !contenido.resultados.length) avisoSinConexion();
-    else pintarLecciones(app, contenido);
-  } else if (seccion === 'practica') {
-    titulo(t('menu.practica'));
-    pintarPractica(app, { ...contenido, leccionCompleta });
-  } else if (seccion === 'frases') {
-    titulo(t('menu.frases'));
-    contenido.frases ??= await cargarFrases();
-    pintarFrases(app, contenido.frases);
+    else limpiarVista = pintarLecciones(app, contenido);
   } else if (seccion === 'cuaderno') {
     titulo(t('menu.cuaderno'));
     pintarCuaderno(app);
@@ -533,6 +510,11 @@ async function iniciar() {
 
   empezarPorInicio();
   pintarMenu();
+  // los logros miran las lecciones del curso (con el nivel de su capítulo) cuando ya han llegado
+  iniciarLogros(() => {
+    const niveles = new Map((contenido.capitulos ?? []).map(c => [String(c.numero), c.nivel]));
+    return contenido.resultados.filter(r => r.leccion).map(r => ({ id: r.leccion.id, nivel: niveles.get(String(r.leccion.capitulo)) }));
+  });
 
   if (location.protocol === 'file:') {
     avisoArchivoLocal();

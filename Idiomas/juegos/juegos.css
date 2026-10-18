@@ -48,6 +48,39 @@
 .jg-tiza { animation: jg-tiza .4s steps(4) both; line-height: 1.55; }
 .jg-tiza :is(p, li) { color: #f1f6ec; }
 .jg-tiza strong { color: #fff19a; }
+/* las negritas que hay que rodear con tiza (juegos/pizarra.js) */
+.jg-rodea {
+  position: relative;
+  display: inline;
+  margin: 0;
+  padding: 0 3px;
+  font: inherit;
+  font-weight: 700;
+  color: #fff19a;
+  background: none;
+  border: 0;
+  border-bottom: 2px dashed rgba(255, 241, 154, .7);
+  cursor: pointer;
+  animation: jg-rodea-llama 1.4s steps(2) infinite;
+}
+.jg-rodea::after {
+  content: "";
+  position: absolute;
+  inset: -5px -6px;
+  border: 3px solid #fffbe0;
+  border-radius: 48% 52% 45% 55% / 60% 45% 55% 40%;
+  opacity: 0;
+  transform: scale(.6) rotate(-6deg);
+  transition: transform .25s steps(3), opacity .25s steps(3);
+  pointer-events: none;
+}
+.jg-rodea.rodeada { border-bottom-color: transparent; animation: none; }
+.jg-rodea.rodeada::after { opacity: .95; transform: scale(1) rotate(-3deg); }
+@keyframes jg-rodea-llama { 50% { color: #ffffff; } }
+.jg-rodea-aviso { margin: -6px 6px 10px; font: 700 .85rem var(--fuente-pixel); color: #cfe3c8; }
+.jg-rodea-aviso[hidden] { display: none; }
+.jg-entendido:disabled { filter: saturate(.4) brightness(.85); cursor: not-allowed; }
+@media (prefers-reduced-motion: reduce) { .jg-rodea { animation: none; } }
 .jg-ejemplo { padding: 12px 14px; background: rgba(255, 255, 255, .08); box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .25); }
 .jg-ejemplo .jg-trad { color: #cfe3c8; }
 .jg-ejemplo .palabra { color: #fff; }
@@ -131,6 +164,42 @@
 .jg-final { padding: 30px 20px; text-align: center; }
 .jg-final-copa { margin: 0; font-size: 3.4rem; animation: jg-late 1.2s steps(2) infinite; }
 .jg-final-botones { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+.jg-final h2 { margin: 4px 0 6px; }
+.jg-final-estrellas { display: flex; justify-content: center; gap: 10px; margin: 4px 0 10px; }
+.jg-estrella {
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--fondo-punto);
+  text-shadow: 3px 3px 0 var(--sombra);
+}
+.jg-estrella.ganada { color: var(--oro); animation: jg-estrella .5s steps(5) calc(.35s + var(--k) * .38s) both; }
+@keyframes jg-estrella {
+  0% { transform: scale(0) rotate(-40deg); opacity: 0; }
+  60% { transform: scale(1.35) rotate(8deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+.jg-final-record { margin: 0 0 8px; font: 700 1rem var(--fuente-pixel); color: var(--oro); animation: jg-late 1.2s steps(2) infinite; }
+.jg-final-datos { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 6px 0 12px; padding: 0; list-style: none; }
+.jg-final-dato {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 92px;
+  padding: 8px 10px;
+  background: var(--panel-2);
+  border: 3px solid var(--linea);
+  box-shadow: 3px 3px 0 var(--sombra);
+  animation: jg-dato .4s steps(4) calc(1.6s + var(--i, 0) * .15s) both;
+}
+.jg-final-dato:nth-child(2) { --i: 1; }
+.jg-final-dato:nth-child(3) { --i: 2; }
+.jg-final-dato strong { font: 700 1.5rem var(--fuente-pixel); }
+.jg-final-dato span:last-child { font-size: .8rem; color: var(--texto-suave); }
+.jg-final-icono { font-size: 1.1rem; }
+@keyframes jg-dato { from { transform: translateY(12px); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .jg-estrella.ganada, .jg-final-dato, .jg-final-record { animation: none; }
+}
 
 /* ===================== Móvil ===================== */
 @media (max-width: 640px) {

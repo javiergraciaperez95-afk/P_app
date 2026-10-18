@@ -15,6 +15,7 @@ const FILTROS = ['todas', 'palabra', 'frase'];
 
 let filtro = 'todas';
 let busqueda = '';
+let tapar = false; // «Tapar traducciones»: para ponerse a prueba
 
 function fecha(ms) {
   return new Date(ms).toLocaleDateString(locale(), { day: 'numeric', month: 'short' });
@@ -26,6 +27,13 @@ function textoProximo(c) {
   return t('cuaderno.proximo', { fecha: fecha(c.srs.vence) });
 }
 
+// Lo que se sabe de cada tarjeta, en cuatro puntitos (nueva, aprendiendo, en repaso, dominada).
+const PUNTOS = { nueva: 0, aprendiendo: 1, repaso: 2, dominada: 3 };
+
+/**
+ * Una fila compacta: el español y su traducción. Al tocarla se abre (pronunciación, de dónde viene y cuándo
+ * vuelve). Con «Tapar traducciones», la traducción va tapada con una pegatina que se despega al tocar.
+ */
 function tarjeta(c, repintar) {
   const e = etapa(c.srs);
   const quitar = el('button', {
@@ -33,6 +41,7 @@ function tarjeta(c, repintar) {
     class: 'boton-icono',
     'aria-label': t('comun.quitarDe', { texto: c.es }),
     title: t('comun.quitarCuaderno'),
+    'data-sonido': 'nada',
     onclick: () => {
       quitarDelCuaderno(c.es);
       sonar('quitar');
@@ -40,18 +49,38 @@ function tarjeta(c, repintar) {
       decir(t('cuaderno.quitada', { texto: c.es }));
     },
   }, icono('papelera'));
-
-  return el('li', { class: 'caja tarjeta-cuaderno' },
-    el('div', { class: 'tarjeta-cuaderno-texto' },
-      el('p', { class: 'voz-es', lang: LANG }, c.es),
-      el('p', { class: 'voz-trad' }, tr(c.trad)),
-      c.pron && el('p', { class: 'aprox' }, `${c.pron} ${t('comun.aprox')}`),
-      el('p', { class: 'meta' },
-        el('span', { class: `etapa etapa-${e.clave}` }, e.texto),
-        ` · ${t(c.tipo === 'frase' ? 'tipo.Frase' : 'tipo.Palabra')}`,
-        c.origen && ` · ${textoOrigen(c.origen)}`),
-      el('p', { class: 'meta' }, textoProximo(c))),
-    el('div', { class: 'frase-acciones' }, botonEscuchar(c.es), quitar));
+  const nivel = PUNTOS[e.clave] ?? 0;
+  const detalle = el('div', { class: 'cq-detalle', hidden: true },
+    c.pron && el('p', { class: 'aprox' }, `${c.pron} ${t('comun.aprox')}`),
+    c.nota && el('p', { class: 'aprox' }, tr(c.nota)),
+    el('p', { class: 'meta' },
+      el('span', { class: `etapa etapa-${e.clave}` }, e.texto),
+      ` · ${t(c.tipo === 'frase' ? 'tipo.Frase' : 'tipo.Palabra')}`,
+      c.origen && ` · ${textoOrigen(c.origen)}`),
+    el('p', { class: 'meta' }, textoProximo(c)),
+    el('div', { class: 'frase-acciones' }, quitar));
+  const trad = el('span', { class: 'cq-trad' }, tr(c.trad));
+  const cara = el('button', { type: 'button', class: 'cq-cara', 'aria-expanded': 'false', 'data-sonido': 'nada' },
+    el('span', { class: 'cq-es', lang: LANG }, c.es),
+    trad,
+    el('span', { class: `cq-nivel etapa-${e.clave}`, title: e.texto, 'aria-label': e.texto },
+      [0, 1, 2].map(k => el('i', { class: k < nivel ? 'lleno' : '' }))));
+  const fila = el('li', { class: `cq-fila etapa-${e.clave}` }, el('div', { class: 'cq-linea' }, cara, botonEscuchar(c.es)), detalle);
+  cara.addEventListener('click', () => {
+    // tapada: el primer toque despega la pegatina; los siguientes abren o cierran la fila
+    if (fila.closest('.tapadas') && !fila.classList.contains('vista')) {
+      fila.classList.add('vista');
+      sonar('voltear');
+      fila.dispatchEvent(new CustomEvent('destapada', { bubbles: true }));
+      return;
+    }
+    const abrir = detalle.hidden;
+    detalle.hidden = !abrir;
+    cara.setAttribute('aria-expanded', String(abrir));
+    fila.classList.toggle('abierta', abrir);
+    sonar(abrir ? 'abrir' : 'cerrar');
+  });
+  return fila;
 }
 
 function formularioNueva(repintar) {
@@ -148,12 +177,33 @@ export function pintarCuaderno(app) {
     } else {
       poner(listaEl, visibles.map(c => tarjeta(c, repintar)));
     }
+    contar();
   }
 
   const buscador = el('input', {
     id: 'buscar', type: 'search', value: busqueda, placeholder: t('cuaderno.buscarPlaceholder'), autocomplete: 'off',
   });
   buscador.addEventListener('input', () => { busqueda = buscador.value; repintar(); });
+
+  // Tapar las traducciones: cada fila se destapa al tocarla, y se lleva la cuenta de las vistas.
+  const cuentaTapadas = el('span', { class: 'cq-cuenta', 'aria-live': 'polite' });
+  const contar = () => {
+    const filas = listaEl.querySelectorAll('.cq-fila');
+    const vistas = listaEl.querySelectorAll('.cq-fila.vista').length;
+    cuentaTapadas.textContent = tapar ? t('cuaderno.destapadas', { n: vistas, total: filas.length }) : '';
+    if (tapar && filas.length && vistas === filas.length) { sonar('fanfarria'); decir(t('cuaderno.todasDestapadas'), 'contenta'); }
+  };
+  listaEl.addEventListener('destapada', contar);
+  const botonTapar = el('button', { type: 'button', class: 'boton boton-mini cq-tapar', 'aria-pressed': String(tapar), 'data-sonido': 'interruptor' }, t('cuaderno.tapar'));
+  botonTapar.addEventListener('click', () => {
+    tapar = !tapar;
+    botonTapar.setAttribute('aria-pressed', String(tapar));
+    listaEl.classList.toggle('tapadas', tapar);
+    listaEl.querySelectorAll('.cq-fila.vista').forEach(f => f.classList.remove('vista'));
+    contar();
+    if (tapar) decir(t('cuaderno.taparTutora'), 'pensando');
+  });
+  listaEl.classList.toggle('tapadas', tapar);
 
   const filtros = el('div', { class: 'filtros', role: 'group', 'aria-label': t('cuaderno.mostrar') },
     FILTROS.map(f => {
@@ -174,7 +224,8 @@ export function pintarCuaderno(app) {
       el('a', { class: 'boton boton-principal', href: '#/repaso' }, t('cuaderno.irRepaso'))),
     el('div', { class: 'barra-herramientas' },
       el('div', { class: 'campo' }, el('label', { for: 'buscar' }, t('cuaderno.buscar')), buscador),
-      filtros),
+      filtros,
+      el('div', { class: 'cq-tapar-fila' }, botonTapar, cuentaTapadas)),
     buscadorDiccionario(repintar),
     listaEl,
     formularioNueva(repintar));

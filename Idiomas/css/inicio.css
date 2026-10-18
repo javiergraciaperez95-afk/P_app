@@ -361,8 +361,6 @@ body.en-inicio { overflow-x: clip; } /* el escenario va de lado a lado de la ven
 .pancarta .inicio-datos { margin: 14px 0 0; gap: 8px 44px; }
 .pancarta .inicio-datos strong { color: inherit; font-size: 2.6rem; text-shadow: 3px 3px 0 rgba(0, 0, 0, .28); }
 .pancarta .inicio-datos span { color: inherit; opacity: .9; }
-.pancarta .inicio-otro { margin: 14px 0 0; color: inherit; }
-.pancarta .inicio-otro:hover { color: inherit; text-decoration-style: solid; }
 
 /* ----- El fondo de la pancarta: un mercado nocturno (de día, abierto por la mañana) ----- */
 .inicio-bajo {
@@ -542,41 +540,11 @@ body.en-inicio { overflow-x: clip; } /* el escenario va de lado a lado de la ven
 }
 
 /* la cuerda de las banderas, de palo a palo */
-.pancarta-cuerda {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px 10px;
-  margin: 34px 0 0;
-  padding: 0 6px 34px;
-  list-style: none;
-}
-.pancarta-cuerda li { position: relative; }
-.pancarta-cuerda li::before { content: ""; position: absolute; top: 0; left: -5px; right: -5px; height: 2px; background: var(--h-borde); }
-.cuerda-bandera {
-  display: flex;
-  margin: 2px 0 0;
-  padding: 0;
-  border: 0;
-  background: none;
-  cursor: pointer;
-  filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, .22));
-  -webkit-tap-highlight-color: transparent;
-}
-.cuerda-bandera:focus-visible { outline: 2px dashed var(--h-rosa); outline-offset: 3px; }
-.ondea-tira { position: relative; display: block; width: 9px; height: 24px; overflow: hidden; animation: ondear 1.2s steps(1) infinite; animation-delay: calc(var(--k) * -.3s); }
-.pancarta-cuerda li:nth-child(odd) .ondea-tira { animation-delay: calc(var(--k) * -.3s - .6s); }
-.cuerda-bandera:hover .ondea-tira { animation-duration: .5s; }
-.ondea-dentro { position: absolute; top: 0; left: calc(var(--k) * -9px); width: 36px; height: 24px; }
-.ondea-dentro .bandera { display: block; width: 36px; height: 24px; }
 @keyframes ondear { 25% { transform: translateY(1px); } 50% { transform: translateY(3px); } 75% { transform: translateY(2px); } }
-.inicio-otro { display: inline-block; font-weight: 700; text-decoration: underline dashed; text-underline-offset: 4px; }
 .inicio-datos { display: flex; justify-content: center; flex-wrap: wrap; padding: 0; list-style: none; line-height: 1.1; }
 .inicio-datos li { display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .inicio-datos strong { font-family: var(--fuente-pixel); }
 .inicio-datos span { font-weight: 700; font-size: .9rem; text-transform: uppercase; letter-spacing: .06em; }
-
-.inicio-seccion-texto { max-width: 34em; margin: 0 auto 24px; text-align: center; color: var(--texto-suave); text-wrap: balance; }
 
 /* ===================================================================== */
 /* 2. Así se aprende: el pasillo de la universidad                         */
@@ -836,259 +804,27 @@ body.en-inicio { overflow-x: clip; } /* el escenario va de lado a lado de la ven
 /*    cartel de bombillas, escenario con telón rojo y bambalina, el público */
 /*    delante y una entrada de teatro por idioma                           */
 /* ===================================================================== */
-.inicio-teatro {
-  --t-pared: #ead6b4;
-  --t-dibujo: #e0c79f;
-  --t-texto: var(--h-suave);
-  position: relative;
-  margin: 0 calc(50% - 50vw);
-  padding: 44px 16px 60px;
-  overflow-x: clip;
-  text-align: center;
-  /* papel pintado de rombos, como en los teatros antiguos */
-  background-color: var(--t-pared);
-  background-image:
-    repeating-conic-gradient(from 45deg, var(--t-dibujo) 0 25%, transparent 0 50%);
-  background-size: 24px 24px;
-  box-shadow: inset 0 3px 0 var(--h-borde), inset 0 -3px 0 var(--h-borde);
-}
-:root[data-tema="oscuro"] .inicio-teatro { --t-pared: #23182e; --t-dibujo: #2b1e38; }
 
 /* el cartel con bombillas que se encienden en cadena */
-.teatro-cartel {
-  position: relative;
-  display: inline-block;
-  margin: 0 auto 14px;
-  padding: 22px 34px;
-  background: #5a1f2e;
-  box-shadow:
-    inset 0 0 0 4px #7a2a3c,
-    0 -4px 0 0 var(--marca-oro), 0 4px 0 0 var(--marca-oro), -4px 0 0 0 var(--marca-oro), 4px 0 0 0 var(--marca-oro),
-    0 -7px 0 0 var(--h-borde), 0 7px 0 0 var(--h-borde), -7px 0 0 0 var(--h-borde), 7px 0 0 0 var(--h-borde),
-    6px 12px 0 0 rgba(0, 0, 0, .25);
-}
-.teatro-cartel::before, .teatro-cartel::after {
-  content: "";
-  position: absolute;
-  inset: 4px;
-  pointer-events: none;
-  --bombilla: radial-gradient(circle, #fff3b0 0 3px, #e9a83a 3px 4px, transparent 4.5px);
-  background:
-    var(--bombilla) 0 0 / 24px 12px repeat-x,
-    var(--bombilla) 0 100% / 24px 12px repeat-x,
-    var(--bombilla) 0 0 / 12px 24px repeat-y,
-    var(--bombilla) 100% 0 / 12px 24px repeat-y;
-  animation: bombillas 1s steps(1) infinite;
-}
-.teatro-cartel::after { background-position: 12px 0, 12px 100%, 0 12px, 100% 12px; animation-delay: -.5s; }
 @keyframes bombillas { 50% { opacity: .25; } }
-.teatro-cartel h2 {
-  position: relative;
-  margin: 0;
-  padding: 0 6px;
-  color: #ffe9a0;
-  font-size: clamp(1.4rem, 3.8vw, 2.2rem);
-  line-height: 1.15;
-  text-shadow: 3px 3px 0 #2b0f18;
-  text-wrap: balance;
-}
-.inicio-teatro .inicio-seccion-texto { margin: 10px auto 26px; color: var(--t-texto); font-weight: 600; }
 
 /* el teatro: el marco dorado, la escena y las tablas */
 .teatro { position: relative; width: min(760px, 100%); margin: 0 auto; }
-.teatro-marco {
-  position: relative;
-  margin: 9px;
-  box-shadow:
-    0 0 0 6px var(--marca-oro), 0 0 0 9px var(--h-borde),
-    inset 0 0 0 0 transparent,
-    9px 14px 0 0 rgba(0, 0, 0, .25);
-}
-.teatro-escena {
-  position: relative;
-  height: 310px;
-  overflow: hidden;
-  background:
-    repeating-linear-gradient(90deg, #3b1a28 0 22px, #331522 22px 26px),
-    #331522;
-}
 /* el foco: un cono de luz que baja hasta la tutora, y su círculo en el suelo */
-.teatro-foco {
-  position: absolute;
-  z-index: 1;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 300px;
-  margin-left: -150px;
-  background: #ffd45e;
-  opacity: .34;
-  mix-blend-mode: screen;
-  clip-path: polygon(42% 0, 58% 0, 58% 10%, 62% 10%, 62% 30%, 67% 30%, 67% 50%, 72% 50%, 72% 70%, 77% 70%, 77% 88%, 82% 88%, 82% 100%, 18% 100%, 18% 88%, 23% 88%, 23% 70%, 28% 70%, 28% 50%, 33% 50%, 33% 30%, 38% 30%, 38% 10%, 42% 10%);
-}
-.teatro-tutora { position: absolute !important; z-index: 2; left: 50%; bottom: 4px; transform: translateX(-50%); }
-.teatro-tutora .tutora-lienzo { width: 144px; height: 192px; }
-.teatro-tutora .inicio-globo { bottom: calc(100% - 22px); }
 
 /* el telón: dos hojas de terciopelo con pliegues; abiertas, recogidas a los lados */
-.telon {
-  position: absolute;
-  z-index: 3;
-  top: 0;
-  bottom: 0;
-  width: 51%;
-  background:
-    linear-gradient(var(--marca-oro), var(--marca-oro)) 0 100% / 100% 6px no-repeat,
-    repeating-linear-gradient(90deg, #b8283a 0 10px, #d63a4c 10px 18px, #e2505f 18px 20px, #9a1f30 20px 28px, #c42e40 28px 36px);
-}
-.telon-izq { left: 0; transform: translateX(-80%); box-shadow: inset -3px 0 0 #6a1220; }
-.telon-der { right: 0; transform: translateX(80%); box-shadow: inset 3px 0 0 #6a1220; }
-.teatro.cambia .telon-izq { animation: telon-izq .64s steps(8); }
-.teatro.cambia .telon-der { animation: telon-der .64s steps(8); }
 @keyframes telon-izq { 0% { transform: translateX(-80%); } 45%, 55% { transform: translateX(0); } 100% { transform: translateX(-80%); } }
 @keyframes telon-der { 0% { transform: translateX(80%); } 45%, 55% { transform: translateX(0); } 100% { transform: translateX(80%); } }
 /* la bambalina de arriba, con su cordón dorado y las ondas */
-.teatro-bambalina {
-  position: absolute;
-  z-index: 4;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 44px;
-  background:
-    radial-gradient(circle at 50% 0, #b8283a 0 11px, transparent 11.5px) 0 30px / 26px 14px repeat-x,
-    linear-gradient(var(--marca-oro), var(--marca-oro)) 0 26px / 100% 4px no-repeat,
-    repeating-linear-gradient(90deg, #a82334 0 13px, #c42e40 13px 26px) 0 0 / 100% 26px no-repeat;
-}
 /* las tablas del escenario */
-.teatro-tablas {
-  height: 26px;
-  background:
-    linear-gradient(#c98e58, #c98e58) 0 0 / 100% 4px no-repeat,
-    linear-gradient(var(--h-borde), var(--h-borde)) 0 4px / 100% 2px no-repeat,
-    repeating-linear-gradient(90deg, #a06a3c 0 46px, #7a4c28 46px 48px);
-}
 
 /* el público: cabecitas de espaldas delante del escenario */
-.teatro-publico {
-  position: absolute;
-  z-index: 5;
-  left: 9px;
-  right: 9px;
-  top: calc(310px + 26px + 9px - 30px);
-  display: flex;
-  justify-content: space-around;
-  pointer-events: none;
-}
-.teatro-publico i {
-  width: 38px;
-  height: 34px;
-  background: var(--pelo);
-  clip-path: polygon(25% 0, 75% 0, 75% 9%, 88% 9%, 88% 24%, 100% 24%, 100% 100%, 0 100%, 0 24%, 12% 24%, 12% 9%, 25% 9%);
-  box-shadow: inset 4px 4px 0 rgba(255, 255, 255, .15);
-  animation: publico 3.2s steps(1) infinite;
-  animation-delay: calc(var(--n) * -.43s);
-}
 @keyframes publico { 50% { transform: translateY(-2px); } }
-.teatro-publico.aplaude i { animation: aplaude .24s steps(1) infinite; animation-delay: calc(var(--n) * -.05s); }
 @keyframes aplaude { 50% { transform: translateY(-9px); } }
 
 /* la placa con el nombre, debajo del escenario */
-.teatro-placa {
-  position: relative;
-  z-index: 6;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  margin: 18px auto 0;
-  padding: 10px 18px 10px 14px;
-  text-align: left;
-  background: var(--h-papel);
-  box-shadow:
-    0 -3px 0 0 var(--marca-oro), 0 3px 0 0 var(--marca-oro), -3px 0 0 0 var(--marca-oro), 3px 0 0 0 var(--marca-oro),
-    0 -6px 0 0 var(--h-borde), 0 6px 0 0 var(--h-borde), -6px 0 0 0 var(--h-borde), 6px 0 0 0 var(--h-borde),
-    5px 9px 0 0 rgba(0, 0, 0, .2);
-}
-.teatro-bandera { display: inline-flex; flex: none; }
-.teatro-bandera .bandera { width: 42px; height: 28px; box-shadow: 0 0 0 3px var(--h-borde); }
-.teatro-nombre { display: flex; flex-direction: column; margin: 0; line-height: 1.2; }
-.teatro-nombre strong { font-family: var(--fuente-pixel); font-size: 1.5rem; color: var(--h-tinta); }
-.teatro-nombre span { color: var(--h-suave); font-size: .9rem; font-weight: 600; }
 
 /* las entradas: una por idioma, con el talón troquelado y las muescas de los lados */
-.teatro-entradas {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 18px 16px;
-  width: min(1060px, 100%);
-  margin: 40px auto 0;
-  padding: 6px;
-  list-style: none;
-}
-.teatro-entradas li {
-  --t-color: #fff6dc;
-  filter: drop-shadow(0 -2px 0 var(--h-borde)) drop-shadow(0 2px 0 var(--h-borde)) drop-shadow(-2px 0 0 var(--h-borde)) drop-shadow(2px 0 0 var(--h-borde)) drop-shadow(3px 4px 0 rgba(0, 0, 0, .2));
-}
-.teatro-entradas li:nth-child(4n + 2) { --t-color: #ffe1e6; }
-.teatro-entradas li:nth-child(4n + 3) { --t-color: #def3dc; }
-.teatro-entradas li:nth-child(4n + 4) { --t-color: #dcecfb; }
-:root[data-tema="oscuro"] .teatro-entradas li { --t-color: #efe3c8; }
-:root[data-tema="oscuro"] .teatro-entradas li:nth-child(4n + 2) { --t-color: #ecc9cf; }
-:root[data-tema="oscuro"] .teatro-entradas li:nth-child(4n + 3) { --t-color: #c9dfc7; }
-:root[data-tema="oscuro"] .teatro-entradas li:nth-child(4n + 4) { --t-color: #c7d8ea; }
-.entrada {
-  position: relative;
-  display: flex;
-  align-items: stretch;
-  width: 100%;
-  min-height: 66px;
-  padding: 0;
-  border: 0;
-  color: #2b1d1a;
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
-  background: var(--t-color);
-  clip-path: polygon(0 0, 100% 0, 100% calc(50% - 8px), calc(100% - 4px) calc(50% - 8px), calc(100% - 4px) calc(50% - 4px), calc(100% - 8px) calc(50% - 4px), calc(100% - 8px) calc(50% + 4px), calc(100% - 4px) calc(50% + 4px), calc(100% - 4px) calc(50% + 8px), 100% calc(50% + 8px), 100% 100%, 0 100%, 0 calc(50% + 8px), 4px calc(50% + 8px), 4px calc(50% + 4px), 8px calc(50% + 4px), 8px calc(50% - 4px), 4px calc(50% - 4px), 4px calc(50% - 8px), 0 calc(50% - 8px));
-  -webkit-tap-highlight-color: transparent;
-}
-.entrada-talon {
-  display: flex;
-  flex: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  width: 66px;
-  padding: 8px 4px 8px 10px;
-  background: repeating-linear-gradient(transparent 0 4px, rgba(0, 0, 0, .3) 4px 7px) 100% 0 / 2px 100% no-repeat; /* la línea de puntos por donde se corta */
-}
-.entrada-talon .bandera { width: 30px; height: 20px; box-shadow: 0 0 0 2px #2b1d1a; }
-.entrada-numero { font-family: var(--fuente-pixel); font-size: .72rem; color: #6d5b50; }
-.entrada-cuerpo { display: flex; flex-direction: column; justify-content: center; gap: 2px; min-width: 0; padding: 8px 16px 8px 12px; }
-.entrada-nativo { font-weight: 800; font-size: 1.05rem; line-height: 1.2; }
-.entrada-traducido { color: #6d5b50; font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
-.entrada-sello { position: absolute; right: 14px; top: 6px; color: #c8445a; font-size: 1.2rem; transform: rotate(-14deg); }
-.entrada:hover:not(:disabled), .entrada.en-escena { transform: translateY(-4px); background: #fffdf6; }
-.entrada.en-escena .entrada-talon { background-color: var(--marca-oro); }
-.entrada:active:not(:disabled) { transform: translateY(0); }
-.entrada:focus-visible { outline: 3px dashed #c8445a; outline-offset: -8px; }
-.entrada:disabled { cursor: default; opacity: .5; }
-
-@media (max-width: 700px) {
-  .teatro-escena { height: 240px; }
-  .teatro-tutora .tutora-lienzo { width: 96px; height: 128px; }
-  .teatro-tutora .inicio-globo { bottom: calc(100% - 14px); }
-  .teatro-foco { width: 220px; margin-left: -110px; }
-  .teatro-publico { top: calc(240px + 26px + 9px - 26px); }
-  .teatro-publico i { width: 28px; height: 26px; }
-  .teatro-publico i:nth-child(n + 9) { display: none; }
-  .teatro-entradas { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px 10px; }
-  .entrada-talon { width: 54px; }
-  .entrada-cuerpo { padding: 8px 12px 8px 10px; }
-  .entrada-nativo { font-size: .95rem; }
-  .teatro-cartel { padding: 18px 22px; }
-}
 
 :root:lang(vi) .inicio-datos strong, :root:lang(zh) .inicio-datos strong { font-family: var(--fuente-texto); }
 
@@ -1151,7 +887,6 @@ body.en-inicio { overflow-x: clip; } /* el escenario va de lado a lado de la ven
   .pancarta .inicio-datos { gap: 6px 14px; }
   .pancarta .inicio-datos strong { font-size: 1.9rem; }
   .pancarta .inicio-datos span { font-size: .7rem; letter-spacing: .03em; }
-  .pancarta-cuerda { gap: 14px 8px; }
 }
 @media (max-width: 560px) {
   .pasillo-tramos { grid-template-columns: 1fr; }
@@ -1177,7 +912,7 @@ body.en-inicio { overflow-x: clip; } /* el escenario va de lado a lado de la ven
 .quieta, .quieta::before, .quieta::after, .quieta *, .quieta *::before, .quieta *::after { animation-play-state: paused !important; }
 
 @media (prefers-reduced-motion: reduce) {
-  .teatro-cartel::before, .teatro-cartel::after, .telon, .teatro-publico i, .paseante, .paseante svg, .farolillo, .inicio-mercado .x-s, .pancarta::before, .ondea-tira, .pasillo-banderines i, .pasillo-aplique::before, .inicio-cielo::before, .inicio-cielo::after, .sol-a, .sol-b, .inicio-nube, .inicio-universidad .u-x, .inicio-logo, .inicio-empezar::before,
+  .paseante, .paseante svg, .farolillo, .inicio-mercado .x-s, .pancarta::before, .pasillo-banderines i, .pasillo-aplique::before, .inicio-cielo::before, .inicio-cielo::after, .sol-a, .sol-b, .inicio-nube, .inicio-universidad .u-x, .inicio-logo, .inicio-empezar::before,
   .inicio-plataforma.apretujado .inicio-empezar, .inicio-plataforma.brilla .inicio-empezar, .inicio-plataforma.pisado::after { animation: none; }
   .inicio-plataforma.pisado .inicio-empezar, .inicio-plataforma.pisado .boton-arriba { transform: none; }
 }
@@ -1223,23 +958,12 @@ body.en-inicio { overflow-x: clip; } /* el escenario va de lado a lado de la ven
   .inicio-pista .inicio-lema { font-size: clamp(.85rem, 2.4dvh, 1.05rem); }
   .inicio-pista > .inicio-escenario > .inicio-trio { margin-top: -26px; }
   .inicio-pista > .inicio-escenario > .inicio-suelo { display: none; }
-  .inicio-elige {
-    position: relative; z-index: 1; padding: 8px 8px 10px;
-    background: var(--h-papel, #fff6e0); border: 3px solid var(--h-borde, #3a2a2a); box-shadow: 0 4px 0 var(--h-sombra);
-  }
-  .inicio-elige-fila { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+  /* abajo, solo «Saber más», centrado (antes aquí iban las banderas para elegir idioma) */
+  .inicio-elige { position: relative; z-index: 1; padding: 6px 0 2px; }
+  .inicio-elige-fila { display: flex; align-items: center; justify-content: center; gap: 8px; }
   .inicio-elige p { margin: 0; font-family: var(--fuente-pixel); font-weight: 700; font-size: .78rem; line-height: 1.15; color: var(--h-tinta); }
-  .inicio-banderas { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px 4px; }
-  .inicio-banderas li { display: flex; justify-content: center; }
-  .inicio-bandera {
-    display: block; width: 100%; max-width: 40px; aspect-ratio: 4 / 3; padding: 0; cursor: pointer;
-    border: 2px solid var(--h-borde, #3a2a2a); background: none; overflow: hidden; touch-action: manipulation;
-  }
-  .inicio-bandera svg { display: block; width: 100%; height: 100%; }
-  .inicio-bandera.actual { outline: 3px solid var(--marca-oro); outline-offset: 1px; }
-  .inicio-bandera:active { transform: translateY(2px); }
 }
-/* Móviles muy bajitos: fuera el logotipo y el lema para que las banderas sigan a la vista */
+/* Móviles muy bajitos: fuera el logotipo y el lema para que todo quepa */
 @media (max-width: 700px) and (max-height: 580px) {
   .inicio-pista .inicio-logo, .inicio-pista .inicio-lema { display: none; }
   .inicio-pista > .inicio-escenario > .inicio-trio { margin-top: 0; }
@@ -1266,7 +990,7 @@ body.en-inicio { overflow-x: clip; } /* el escenario va de lado a lado de la ven
 @media (max-width: 700px) {
   .inicio-pista > .inicio-escenario-bajo { padding: 0; }
   .inicio-pista > .inicio-escenario-bajo .inicio-bajo { margin: 0; }
-  .inicio-pista > .inicio-pasillo, .inicio-pista > .inicio-teatro { margin: 0; }
+  .inicio-pista > .inicio-pasillo { margin: 0; }
   .inicio-pista > .inicio-pasillo .pasillo-tramos { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 14px; }
   .inicio-pista > .inicio-pasillo .pasillo-paseo { margin: 0 -12px; }
   .inicio-pista > .inicio-pie-pag .pie-sitio { margin-top: 0; }
@@ -1288,27 +1012,6 @@ body.en-inicio { overflow-x: clip; } /* el escenario va de lado a lado de la ven
   .inicio-pista .tablon-papel { padding: 10px 8px 8px; }
 }
 @media (max-width: 700px) {
-  /* el teatro: el mismo, más bajo; las entradas, tres por fila */
-  .inicio-pista > .inicio-teatro { padding: 22px 14px 14px; }
-  .inicio-pista .teatro-cartel { margin-bottom: 4px; padding: 12px 22px; }
-  .inicio-pista .teatro-cartel h2 { font-size: 1.05rem; }
-  .inicio-pista .inicio-teatro .inicio-seccion-texto { margin: 6px auto 12px; font-size: .8rem; line-height: 1.3; }
-  .inicio-pista .teatro-escena { height: 178px; }
-  .inicio-pista .teatro-publico { top: calc(178px + 9px); }
-  .inicio-pista .teatro-tutora .tutora-lienzo { width: 84px; height: 112px; }
-  .inicio-pista .teatro-placa { margin-top: 12px; padding: 6px 12px 6px 10px; }
-  .inicio-pista .teatro-bandera .bandera { width: 34px; height: 23px; }
-  .inicio-pista .teatro-nombre strong { font-size: 1.15rem; }
-  .inicio-pista .teatro-nombre span { font-size: .78rem; }
-  .inicio-pista .teatro-entradas { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 8px; margin-top: 22px; padding: 4px; }
-  .inicio-pista .entrada { min-height: 38px; }
-  .inicio-pista .entrada-talon { width: 38px; padding: 4px 2px 4px 8px; }
-  .inicio-pista .entrada-talon .bandera { width: 24px; height: 16px; }
-  .inicio-pista .entrada-numero, .inicio-pista .entrada-traducido, .inicio-pista .entrada-sello { display: none; }
-  .inicio-pista .entrada-cuerpo { padding: 4px 8px 4px 6px; }
-  .inicio-pista .entrada-nativo { font-size: .72rem; line-height: 1.15; overflow-wrap: anywhere; }
-}
-@media (max-width: 700px) {
   /* el pie de la web: el mismo, con las tutoras y los carteles más pequeños para que quepa en una pantalla */
   .inicio-pie-pag .pie-escena { padding-top: 14px; }
   .inicio-pie-pag .pie-logo { width: 72px; height: 72px; }
@@ -1322,7 +1025,6 @@ body.en-inicio { overflow-x: clip; } /* el escenario va de lado a lado de la ven
   .inicio-pie-pag .pie-grupo { padding: 8px 6px; }
   .inicio-pie-pag .pie-grupo h2 { font-size: .8rem; margin-bottom: 4px; }
   .inicio-pie-pag .pie-grupo a { padding: 4px 0; font-size: .72rem; line-height: 1.15; overflow-wrap: anywhere; }
-  .inicio-pie-pag .pie-guirnalda { height: 46px; }
   .inicio-pie-pag .pie-base-interior { padding-top: 6px; padding-bottom: 6px; gap: 4px; }
 }
 @media (max-width: 700px) { .inicio-pie-pag .pie-grupo a { padding-left: 6px; } }

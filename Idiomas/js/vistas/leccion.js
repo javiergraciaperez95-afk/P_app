@@ -1,5 +1,6 @@
 // Vista de una lección: pinta los bloques en orden, como las páginas de un libro.
 
+import { esDesarrollador } from '../desarrollador.js';
 import { el, textoConFormato, poner, enLinea } from '../dom.js';
 import { t, tr, origenTarjeta } from '../i18n.js';
 import { normalizarPalabra } from '../lessons.js';
@@ -524,7 +525,8 @@ function pintarLibro(contenedor, resultado, siguiente, alJuego) {
     leccion.titulo && el('p', { class: 'titulo-trad' }, tr(leccion.titulo)),
     progreso);
 
-  const avisosEl = avisos.length
+  // Los avisos del archivo son para quien escribe las lecciones: solo se ven con el acceso de desarrollador.
+  const avisosEl = avisos.length && esDesarrollador()
     ? el('details', { class: 'caja tarjeta-error' },
       el('summary', {}, t('comun.avisosArchivo', { archivo: resultado.archivo, n: avisos.length })),
       el('ul', {}, avisos.map(a => el('li', {}, a))))

@@ -256,115 +256,22 @@ main:focus { outline: none; }
 .aviso-bloque { color: var(--rojo-claro); font-size: .95rem; }
 
 /* ===== Lecciones y capítulos ===== */
-.capitulo { margin-bottom: 26px; }
-
-.capitulo-cabecera {
-  border-left: calc(var(--px) * 2) solid var(--rojo);
-  padding-left: 12px;
-  margin-bottom: 14px;
-}
-.capitulo-cabecera h2 { margin-bottom: .1em; font-size: 1.3rem; }
-
-.capitulo-boton {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  min-height: 44px;
-  padding: 4px 0;
-  border: 0;
-  background: none;
-  color: var(--texto);
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
-}
-.capitulo-boton:hover .capitulo-titulo { text-decoration: underline; }
-.capitulo-titulo { flex: 1; min-width: 0; overflow-wrap: anywhere; }
 
 /* Flecha pixel: ▾ abierto, ▸ plegado */
-.capitulo-flecha {
-  width: 0;
-  height: 0;
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-  border-top: 9px solid var(--rojo);
-  flex: none;
-}
-.plegado .capitulo-flecha {
-  border-top: 7px solid transparent;
-  border-bottom: 7px solid transparent;
-  border-left: 9px solid var(--rojo);
-  border-right: 0;
-}
 
-.capitulo-contador {
-  font-size: .9rem;
-  color: var(--texto-suave);
-  background: var(--panel);
-  padding: 0 8px;
-  box-shadow: 0 0 0 2px var(--texto-suave);
-}
-
-.plegado .capitulo-es,
-.plegado .capitulo-cabecera .aprox,
-.plegado .capitulo-progreso { display: none; }
 .plegado { margin-bottom: 12px; }
 
-.plegar-todo { justify-content: flex-end; margin-bottom: 8px; }
-.capitulo-es { color: var(--espanol); font-family: var(--fuente-pixel); margin: 0; }
-.capitulo-progreso { color: var(--texto-suave); font-size: .9rem; margin: 0; }
-
-.lista-lecciones, .lista-frases, .lista-cuaderno {
+.lista-cuaderno {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
-.tarjeta-leccion {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 4px 14px;
-  align-items: center;
-  color: inherit;
-  text-decoration: none;
-}
-.tarjeta-leccion:hover { background: var(--panel-2); }
-.tarjeta-leccion:hover .tarjeta-es { text-decoration: underline; }
-
-.tarjeta-numero {
-  grid-row: span 3;
-  font-family: var(--fuente-pixel);
-  font-size: 1.3rem;
-  background: var(--fondo);
-  padding: 8px 10px;
-  box-shadow: 0 0 0 2px var(--linea);
-}
-.es-terminada .tarjeta-numero { background: var(--verde-fondo); }
-
-.tarjeta-es { font-family: var(--fuente-pixel); font-size: 1.25rem; color: var(--espanol); }
-.tarjeta-trad { color: var(--texto-suave); }
-.tarjeta-es, .tarjeta-trad, .tarjeta-estado { min-width: 0; overflow-wrap: anywhere; }
-
-.tarjeta-estado {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px 12px;
-  font-size: .95rem;
-}
-
-.estado-nueva { color: var(--texto); }
-.estado-curso { color: var(--oro); }
-.estado-terminada { color: var(--verde); }
 
 .barra { display: inline-flex; gap: 2px; padding: 2px; background: var(--sombra); }
 .barra span { width: 10px; height: 12px; background: var(--panel-hover); }
 .barra span.llena { background: var(--verde); }
 
 /* Las lecciones largas distribuyen sus bloques sin ensanchar la pantalla movil. */
-.tarjeta-estado .barra { max-width: 100%; flex-wrap: wrap; }
-.tarjeta-estado .barra span { flex: 0 0 10px; }
 
 .tarjeta-error h2 { color: var(--rojo-claro); }
 .tarjeta-error ul { margin: .4em 0 0; padding-left: 1.2em; }
@@ -618,7 +525,6 @@ main:focus { outline: none; }
 /* --- Final --- */
 .final-leccion { text-align: center; }
 .final-leccion .resumen { color: var(--texto-suave); }
-.resumen-notas { list-style: none; padding: 0; color: var(--texto-suave); }
 
 /* ===== Frases ===== */
 .indice { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 18px; }
@@ -626,16 +532,12 @@ main:focus { outline: none; }
 .categoria h2 { border-left: calc(var(--px) * 2) solid var(--rojo); padding-left: 10px; }
 .categoria h2:focus { outline: none; }
 
-.tarjeta-frase,
 .tarjeta-cuaderno {
   display: flex;
   align-items: flex-start;
   gap: 10px;
 }
-.tarjeta-frase-texto,
 .tarjeta-cuaderno-texto { flex: 1; min-width: 0; }
-.tarjeta-frase .frase-es { font-size: 1.2rem; }
-.tarjeta-frase p:last-child { margin-bottom: 0; }
 
 /* ===== Cuaderno ===== */
 .resumen-cuaderno { font-family: var(--fuente-pixel); color: var(--oro); }
@@ -719,36 +621,19 @@ input[type="range"] { width: min(100%, 300px); accent-color: var(--rojo); }
 .dato-valor { font-family: var(--fuente-pixel); font-size: 1.5rem; color: var(--oro); }
 .dato-detalle { font-size: .85rem; color: var(--texto-suave); }
 
-.estado-nube { font-weight: 600; }
 .nube-sincronizada { color: var(--verde); }
 .nube-error { color: var(--rojo-claro); }
 
 .zona-peligro h2 { color: var(--rojo-claro); }
 
 .pestanas { margin: 12px 0 14px; }
-.campo-extra { display: flex; justify-content: flex-end; }
-.campo-extra .boton { margin-top: 0; }
 .mensaje-formulario { margin: 0; min-height: 1.5em; font-weight: 600; }
 .mensaje-formulario.error { color: var(--rojo-claro); }
 .mensaje-formulario.error::before { content: "⚠ "; }
 .mensaje-formulario.bien { color: var(--verde); }
 .mensaje-formulario.bien:not(:empty)::before { content: "✔ "; }
 /* Cuenta: Google, el separador «o con tu correo» y el código de 6 cifras */
-.cuenta-google { display: grid; gap: 6px; margin: 10px 0 4px; }
-.boton-google { display: flex; justify-content: center; min-height: 44px; }
-.boton-google-nativo { display: inline-flex; align-items: center; gap: 10px; }
-.google-g { display: inline-grid; place-items: center; width: 1.5em; height: 1.5em; border-radius: 50%; background: #fff; color: #4285f4; font-weight: 800; }
-.separador-o { display: flex; align-items: center; gap: 10px; margin: 4px 0; color: var(--texto-suave); font-size: .9em; }
-.separador-o::before, .separador-o::after { content: ""; flex: 1; border-top: 2px dashed var(--panel-hover); }
-.campo-codigo { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 1.6em; letter-spacing: .3em; text-align: center; max-width: 12ch; }
 .botonera-secundaria { display: inline-flex; flex-wrap: wrap; gap: 8px; }
-.enlace-correo { max-width: 560px; margin: 24px auto; text-align: center; }
-.enlace-correo .botonera { justify-content: center; }
-.aviso-nube {
-  padding: 8px 12px;
-  background: var(--fondo);
-  border-left: var(--px) solid var(--oro);
-}
 .plegable { margin-top: 12px; }
 .plegable summary { cursor: pointer; font-weight: 600; min-height: 32px; }
 .plegable[open] summary { margin-bottom: 8px; }
@@ -766,16 +651,6 @@ input[type="range"] { width: min(100%, 300px); accent-color: var(--rojo); }
 .contadores dt { color: var(--texto-suave); font-size: .9rem; }
 .contadores dd { margin: 0; font-family: var(--fuente-pixel); font-size: 2rem; color: var(--oro); }
 .panel-repaso .filtros { justify-content: center; }
-
-.cabecera-repaso {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 14px;
-}
-.cabecera-repaso .boton { margin-left: var(--px); }
-.cabecera-repaso p { margin: 0; font-family: var(--fuente-pixel); }
 
 .carta {
   background: var(--panel);
@@ -813,10 +688,6 @@ input[type="range"] { width: min(100%, 300px); accent-color: var(--rojo); }
   padding: 8px 4px;
   font-size: .95rem;
 }
-.nota-espera { font-family: var(--fuente-texto); font-size: .8rem; opacity: .85; }
-.nota-1 { background: var(--rojo-fondo); }
-.nota-4 { background: var(--verde-fondo); }
-.ayuda-teclas { text-align: center; margin-top: 14px; }
 
 /* ===== Tutora ===== */
 .tutora {
@@ -924,7 +795,7 @@ input[type="range"] { width: min(100%, 300px); accent-color: var(--rojo); }
   .tutora-texto { font-size: .95rem; max-height: 8em; }
   .frase { grid-template-columns: auto 1fr; }
   .frase-acciones { grid-column: 2; justify-content: flex-start; }
-  .tarjeta-frase, .tarjeta-cuaderno { flex-direction: column; }
+  .tarjeta-cuaderno { flex-direction: column; }
   .carta-es { font-size: 1.6rem; }
   .acciones-repaso.notas { grid-template-columns: repeat(2, 1fr); }
   .formulario.en-linea { grid-template-columns: 1fr; }
@@ -1018,20 +889,11 @@ html[data-voz="no"] .audio-texto.sin-voz-visible[hidden] { display: block !impor
 .ocultar-espanol .lectura-parrafo,
 .ocultar-espanol .lectura-detalle { display: none; }
 
-
 /* Práctica y diccionario */
-.practica-item { margin-bottom: 12px; }
-.practica-item > a { display: inline-block; margin: 0 0 4px 4px; }
 .lista-diccionario { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 8px; }
 .lista-diccionario .consejo { font-style: italic; }
 
 /* Frases: grupos por tarea y modo «tapar el español» */
-.grupo-frases > summary { cursor: pointer; display: flex; flex-direction: column; gap: 2px; }
-.grupo-titulo { font-weight: bold; }
-.grupo-tarea { font-size: .9rem; color: var(--texto-suave); }
-.grupo-frases .botonera { margin: 8px 0; }
-.frases-tapadas .tarjeta-frase:not(.visto) .frase-es { filter: blur(6px); cursor: pointer; user-select: none; }
-
 
 /* ===== Modo juego: la lección en pasos cortos, con la tutora en escena ===== */
 body.modo-juego .tutora { display: none; }
@@ -1618,7 +1480,6 @@ body.modo-juego { padding-bottom: 0; overflow: hidden; }
   .escena-cartas .ejercicio-pregunta { margin: 2px 0; }
 }
 
-
 /* Reto ya contestado: se quita lo que ya no hace falta para que la corrección y «Repetir» quepan sin desplazar. */
 .escena-reto .ejercicio:has(.feedback:not([hidden])) :is(.letras-especiales, .controles-audio, .fila-escribir .boton, .banco-palabras, .botonera, .aprox) { display: none; }
 .escena-reto .feedback { padding: 6px 10px; }
@@ -1726,12 +1587,9 @@ input.pal-deslizador { width: 100%; height: 34px; margin: 0; accent-color: #ffd2
 }
 @media (prefers-reduced-motion: reduce) { .adu-sello { animation: none; } }
 
-
 /* ===== Elegir idioma y créditos ===== */
 body.sin-tutora .tutora { display: none; }
 body.sin-tutora main { padding-bottom: 32px; }
-.btn-curso { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
-.btn-curso[hidden] { display: none; }
 .marca #marca-bandera .bandera { width: 1.05em; height: .7em; vertical-align: .05em; }
 
 /* «Elige el idioma» es un teatro: css/teatro.css */
@@ -1741,8 +1599,6 @@ body.sin-tutora main { padding-bottom: 32px; }
 .creditos-lista > li { margin-bottom: calc(var(--px) * 4); padding: 10px 14px; }
 .creditos-lista ul { margin: 4px 0 0; padding-left: 1.2em; font-size: .95rem; }
 .creditos a { overflow-wrap: anywhere; }
-
-
 
 /* ===== Pregunta con dos botones (salir de un juego) ===== */
 .pregunta-capa {
@@ -1835,20 +1691,9 @@ body.en-inicio main { max-width: 1040px; }
 /* ===== Aviso legal y aviso de almacenamiento («cookies») ===== */
 .legal h2 { font-size: 1.2rem; }
 .legal .caja p:last-child, .legal .caja ul:last-child { margin-bottom: 0; }
-.legal-resumen { font-weight: 700; }
-.legal-titular { list-style: none; margin: 0; padding: 0; }
-.legal-titular em { color: var(--texto-suave); }
 .legal a { overflow-wrap: anywhere; }
 
 /* Pequeño y en la esquina de abajo a la izquierda: que se lea, pero que tape lo mínimo */
-.aviso-datos {
-  position: fixed; z-index: 150; left: calc(10px + var(--borde-izq)); bottom: calc(12px + var(--borde-abajo));
-  width: min(290px, calc(100% - 28px)); margin: 0;
-  padding: 8px 10px; font-size: .8rem; line-height: 1.35;
-}
-.aviso-datos p { margin: 0 0 4px; }
-.aviso-datos-botones { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0 2px; }
-.aviso-datos .boton-mini { min-height: 28px; padding: 2px 8px; font-size: .75rem; margin-bottom: var(--px); }
 
 /* ===== «Sobre Paglot» es una casa: css/sobre.css. Lo de aquí abajo lo usan la bienvenida y la página perdida ===== */
 
@@ -1887,7 +1732,6 @@ body.en-inicio main { max-width: 1040px; }
   to { transform: translate(var(--dx), var(--dy)); opacity: 0; }
 }
 
-
 /* ===== La bienvenida es un paseo hasta la academia: css/bienvenida.css ===== */
 
 /* ===== Página perdida ===== */
@@ -1918,31 +1762,6 @@ body.en-inicio main { max-width: 1040px; }
 /* ===== Precios: en css/precios.css ===== */
 
 /* Páginas públicas: contenido calmado, una idea principal por tarjeta y bordes pixel del sistema. */
-.comunidad { width: min(980px, 100%); margin: 0 auto; padding: 34px 0 48px; }
-.comunidad-hero { max-width: 720px; margin: 0 auto 30px; text-align: center; }
-.comunidad-etiqueta, .comunidad-pie { display: inline-block; color: var(--marca-oro); font-size: .78rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
-.comunidad-hero h1 { margin: 8px 0 10px; font-size: clamp(1.8rem, 4vw, 2.5rem); text-wrap: balance; }
-.comunidad-hero p { max-width: 38em; margin: 0 auto; color: var(--texto-suave); text-wrap: balance; }
-.producto-fila h2 { color: var(--texto); font-family: var(--fuente-texto); font-size: 1.18rem; line-height: 1.3; margin: 8px 0; }
-.producto-fila p { color: var(--texto-suave); margin: 0 0 12px; }
-.comunidad-pie { margin-top: auto; color: var(--texto-suave); font-size: .72rem; letter-spacing: .03em; }
-.comunidad-nota { max-width: 56em; margin: 22px auto 0; color: var(--texto-suave); text-align: center; font-size: .9rem; }
-.producto-lista { display: grid; gap: 14px; }
-.producto-fila { display: grid; grid-template-columns: 58px minmax(0, 1fr) auto; align-items: center; gap: 18px; margin: 3px 3px 8px; padding: 20px 24px; }
-.producto-fila h2 { margin: 3px 0 7px; }
-.producto-fila p { max-width: 62em; margin: 0; }
-.producto-numero { display: grid; place-items: center; width: 48px; height: 48px; color: var(--marca-oro); border: 2px solid var(--marca-oro); font: 700 1rem var(--fuente-pixel); }
-.producto-fila .boton { white-space: nowrap; }
-@media (max-width: 700px) {
-  .comunidad { padding: 24px 0 38px; }
-  .producto-fila { grid-template-columns: 46px minmax(0, 1fr); gap: 12px; padding: 16px; }
-  .producto-numero { width: 40px; height: 40px; }
-  .producto-fila .boton { grid-column: 2; justify-self: start; }
-}
-@media (max-width: 420px) {
-  .comunidad-hero { margin-bottom: 22px; }
-}
-}
 
 /* Lectura por frases: texto corrido con un botón discreto tras cada frase */
 .lectura-bloque { padding: 10px 0; border-bottom: 2px dashed var(--panel-hover); }
@@ -1967,6 +1786,3 @@ body.en-inicio main { max-width: 1040px; }
 .frase-trad-lectura { margin: 2px 0 0; color: var(--texto-suave); }
 
 /* Producto en el móvil, en diapositivas (js/paginas-movil.js) */
-html.pm-activo .pagina-producto { min-height: var(--pm-alto); display: flex; flex-direction: column; justify-content: center; padding-top: 10px; padding-bottom: 10px; }
-html.pm-activo .pagina-producto .producto-lista { gap: 18px; }
-html.pm-activo .pagina-producto .comunidad-hero { margin-bottom: 18px; }

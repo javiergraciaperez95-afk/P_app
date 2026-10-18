@@ -8,9 +8,21 @@ import { t } from './i18n.js';
 import { curso } from './curso.js';
 import { tarjetas, racha, nombre, alCambiar } from './progress.js';
 import { tocaRepasar, esNueva } from './srs.js';
+import { decir } from './tutor.js';
+import { sonar } from './sonidos.js';
 
 const cabecera = document.querySelector('.cabecera');
 const cinta = document.getElementById('cabecera-cinta');
+
+// La llama de la racha, junto a los botones de la cabecera (solo dentro del curso). Al tocarla, Lucía la comenta.
+const llama = el('button', { type: 'button', class: 'btn cabecera-llama', 'data-sonido': 'nada' });
+llama.addEventListener('click', () => {
+  const dias = racha();
+  llama.classList.remove('aviva'); void llama.offsetWidth; llama.classList.add('aviva');
+  sonar(dias ? 'fuegos' : 'nada');
+  decir(t(dias >= 7 ? 'cabecera.llamaMucha' : dias ? 'cabecera.llamaViva' : 'cabecera.llamaApagada', { n: dias }), dias ? 'contenta' : 'pensando');
+});
+document.querySelector('.cabecera-botones')?.prepend(llama);
 
 /** Tarjetas que tocan hoy: las pendientes más las nuevas (como mucho 20, igual que en la pantalla de repaso). */
 export function pendientesDeHoy() {
@@ -33,8 +45,13 @@ function cintaBienvenida() {
     el('a', { class: 'btn hola-seguir', href: '#/lecciones' }, t('inicio.continuar', { curso: curso.nativo })));
 }
 
-/** Pinta la cinta (solo en las portadas). */
+/** Pinta la cinta (solo en las portadas) y la llama de la racha. */
 export function pintarCabecera() {
+  const dias = racha();
+  poner(llama, el('span', { class: 'cabecera-llama-fuego', 'aria-hidden': 'true' }, '🔥'), String(dias));
+  llama.classList.toggle('viva', dias > 0);
+  llama.setAttribute('aria-label', t('cabecera.racha', { n: dias }));
+  llama.title = t('cabecera.racha', { n: dias });
   const contenido = enPortada() ? cintaBienvenida() : null;
   poner(cinta, contenido);
   cinta.hidden = !contenido;

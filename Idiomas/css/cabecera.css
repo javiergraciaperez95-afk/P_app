@@ -8,8 +8,8 @@
    Todo con bordes escalonados de píxel (box-shadow) y animaciones a saltos (steps), como el resto de Paglot.
    ===================================================================== */
 
-/* Los colores se comparten con el pie (css/pie.css) y la portada (css/inicio.css): todo de la misma familia */
-.cabecera, .pie-sitio, .inicio, .precios, .academia-entrada, .teatro-idiomas, .escena-web, .pm-nav {
+/* Los colores se comparten con el pie (css/pie.css), la portada (css/inicio.css) y los botones de las escenas: todo de la misma familia */
+:root, .cabecera, .pie-sitio, .inicio, .escena-web {
   --h-fondo: #efe6d2;
   --h-trama: #e8dcc3;
   --h-tinta: #2b1d1a;
@@ -40,7 +40,7 @@
   background-size: 8px 8px;
   font-synthesis-weight: none;
 }
-:root[data-tema="oscuro"] .cabecera, :root[data-tema="oscuro"] .pie-sitio, :root[data-tema="oscuro"] .inicio, :root[data-tema="oscuro"] .precios, :root[data-tema="oscuro"] .academia-entrada, :root[data-tema="oscuro"] .teatro-idiomas, :root[data-tema="oscuro"] .escena-web, :root[data-tema="oscuro"] .pm-nav {
+:root[data-tema="oscuro"], :root[data-tema="oscuro"] .cabecera, :root[data-tema="oscuro"] .pie-sitio, :root[data-tema="oscuro"] .inicio, :root[data-tema="oscuro"] .escena-web {
   --h-fondo: #4a3f5e;
   --h-trama: #54486a;
   --h-tinta: #f2e8da;
@@ -105,16 +105,12 @@ body.en-inicio .cabecera::before {
 .cabecera-nav { grid-area: nav; }
 .menu { grid-area: menu; }
 .cabecera-botones { grid-area: botones; }
-.cabecera-cuenta { grid-area: cuenta; }
 
 /* Dentro de un curso el centro es para las pestañas del curso; la navegación de la web se va (la marca lleva al inicio) */
 body.en-estudio .cabecera-fila { grid-template-areas: "marca menu botones cuenta"; padding: 10px 20px; }
 body.en-estudio .cabecera-nav { display: none; }
 /* …salvo en las pantallas generales sin curso (elegir idioma, créditos, aviso legal), que no tienen pestañas */
-body.en-estudio.sin-curso .cabecera-fila { grid-template-areas: "marca nav botones cuenta"; }
-body.en-estudio.sin-curso .cabecera-nav { display: flex; }
-body.en-inicio .menu,
-body.sin-curso .menu { display: none; }
+body.en-inicio .menu { display: none; }
 body.en-inicio #btn-curso { display: none; } /* en la portada ya hay un botón para cambiar de idioma */
 
 /* ----- Botón de la cabecera: papel con borde escalonado y sombra de dos píxeles ----- */
@@ -151,7 +147,6 @@ body.en-inicio #btn-curso { display: none; } /* en la portada ya hay un botón p
 .cabecera .btn-icono { width: 40px; padding: 0; font-family: var(--h-pixel); font-size: 1.15rem; font-weight: 500; }
 .cabecera .icono { width: 18px; height: 18px; flex: none; }
 #btn-sonido[aria-pressed="false"] { color: var(--h-suave); text-decoration: line-through; }
-.btn-curso[hidden] { display: none; }
 
 /* ----- La marca: el bocadillo y «Pa» + «glot» dorado ----- */
 .marca {
@@ -199,9 +194,6 @@ body.en-inicio #btn-curso { display: none; } /* en la portada ya hay un botón p
   color: var(--h-rosa-tinta);
   background: var(--h-rosa);
 }
-.cabecera-nav .nav-max { color: var(--marca-oro); }
-.cabecera-nav .nav-max[aria-current="page"] { color: var(--h-rosa-tinta); }
-.nav-corona { animation: corona-guina 2.4s steps(2) infinite; }
 @keyframes corona-guina { 50% { transform: translateY(-2px); } }
 
 /* ----- Pestañas del curso ----- */
@@ -235,9 +227,6 @@ body.en-inicio #btn-curso { display: none; } /* en la portada ya hay un botón p
 }
 :root[data-tema="oscuro"] .menu-aviso { background: #74d290; color: #17121c; }
 /* candadito del cuaderno sin cuenta */
-.menu-candado { display: inline-flex; color: var(--marca-oro); }
-.menu-candado .icono { width: 12px; height: 12px; }
-.menu-enlace[aria-current="page"] .menu-candado { color: inherit; }
 
 /* ----- Ajustes (idioma, sonido, tema) ----- */
 .cabecera-botones { display: flex; align-items: center; gap: 8px; }
@@ -248,7 +237,7 @@ body.en-inicio #btn-curso { display: none; } /* en la portada ya hay un botón p
 .sel-idioma-corto { display: none; font-family: var(--h-pixel); font-weight: 500; font-size: 1rem; }
 .sel-idioma[aria-expanded="true"] { background: var(--h-resalte); }
 .idioma-menu { position: relative; display: inline-flex; }
-.idioma-lista, .cuenta-panel, .cabecera-ajustes-panel {
+.idioma-lista, .cabecera-ajustes-panel {
   background: var(--h-papel-2);
   box-shadow: 0 -2px 0 0 var(--h-borde), 0 2px 0 0 var(--h-borde), -2px 0 0 0 var(--h-borde), 2px 0 0 0 var(--h-borde),
     2px 6px 0 0 var(--h-sombra), 6px 2px 0 0 var(--h-sombra), 4px 4px 0 0 var(--h-sombra);
@@ -286,65 +275,14 @@ body.en-inicio #btn-curso { display: none; } /* en la portada ya hay un botón p
 }
 
 /* ----- La cuenta: invitado ----- */
-.cabecera-cuenta { display: flex; align-items: center; gap: 10px; }
 .ajustes-perfil[hidden] { display: none; }
-.cabecera-cuenta:empty { display: none; }
-.cabecera .cabecera-crear {
-  position: relative;
-  overflow: hidden;
-  color: #ffffff;
-  background: var(--rojo);
-  font-family: var(--h-pixel);
-  font-weight: 500;
-  font-size: .98rem;
-  letter-spacing: .02em;
-}
-.cabecera .cabecera-crear:hover { background: var(--rojo-hover); }
-.cabecera-crear span { position: relative; z-index: 1; }
 /* el destello que cruza el botón cada pocos segundos */
-.cabecera-crear::before {
-  content: "";
-  position: absolute;
-  top: 0; bottom: 0; left: -40%;
-  width: 22%; /* recorre del −40 % al 130 % del botón: 170 % del botón = 772,73 % de su propio ancho */
-  background: linear-gradient(90deg, transparent 0 25%, rgba(255, 255, 255, .55) 25% 50%, transparent 50% 62%, rgba(255, 255, 255, .35) 62% 80%, transparent 80%);
-  transform: skewX(-20deg);
-  animation: destello 5s steps(10) infinite;
-}
-.cabecera-crear:hover::before { animation-duration: 1.1s; }
 /* se mueve con transform (lo hace la tarjeta gráfica); con «left» había que recalcular la página en cada fotograma */
 @keyframes destello { 0%, 70% { transform: translateX(0) skewX(-20deg); } 100% { transform: translateX(772.73%) skewX(-20deg); } }
-.cabecera .cabecera-entrar { font-family: var(--h-pixel); font-weight: 500; font-size: .98rem; letter-spacing: .02em; }
 
 /* ----- La cuenta: con sesión ----- */
-.cabecera-racha {
-  display: inline-flex; align-items: center; gap: 5px;
-  height: 36px; padding: 0 10px 0 8px;
-  font: 700 1.05rem var(--fuente-pixel);
-  color: #e8701f;
-  text-decoration: none;
-  background: var(--h-papel);
-  box-shadow: 0 -2px 0 var(--h-borde), 0 2px 0 var(--h-borde), -2px 0 0 var(--h-borde), 2px 0 0 var(--h-borde);
-}
-:root[data-tema="oscuro"] .cabecera-racha { color: #ff9b4a; }
-.cabecera-racha .racha-llama { width: 20px; height: 20px; animation: llama 0.8s steps(2) infinite; }
-.cabecera-racha:hover { background: var(--h-resalte); }
-.cabecera-racha.apagada { color: var(--h-suave); }
-.cabecera-racha.apagada .racha-llama { animation: none; opacity: .6; }
 @keyframes llama { 50% { transform: scaleY(1.12) translateY(-1px); } }
 
-.cuenta-menu { position: relative; display: inline-flex; }
-.cuenta-avatar {
-  position: relative;
-  display: inline-flex;
-  width: 44px; height: 44px;
-  margin: 2px;
-  padding: 0;
-  border: 0;
-  background: none;
-  cursor: pointer;
-  isolation: isolate;
-}
 .avatar {
   display: grid; place-items: center;
   width: 100%; height: 100%;
@@ -356,63 +294,8 @@ body.en-inicio #btn-curso { display: none; } /* en la portada ya hay un botón p
   text-shadow: 2px 2px 0 rgba(0, 0, 0, .3);
   box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .22), inset 0 4px 0 rgba(255, 255, 255, .22);
 }
-.cuenta-avatar::before {
-  content: "";
-  position: absolute; inset: -2px;
-  background: var(--h-borde);
-  clip-path: polygon(4px 0, calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px, 100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%, 4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px), 0 4px, 4px 4px);
-  z-index: -1;
-}
 /* con foto de perfil: la foto llena el cuadro (mismas esquinas mordidas) */
-.avatar.con-foto { background: var(--h-papel-2); }
-.avatar.con-foto img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.cuenta-avatar:hover .avatar, .cuenta-avatar[aria-expanded="true"] .avatar { filter: brightness(1.12); }
-.cuenta-avatar:hover { animation: marca-salta .5s steps(4); }
 /* el puntito de la nube, abajo a la derecha del avatar */
-.avatar-nube {
-  position: absolute; right: -3px; bottom: -3px;
-  width: 10px; height: 10px;
-  background: #8b8494;
-  box-shadow: 0 0 0 2px var(--h-fondo), 0 0 0 4px var(--h-borde);
-}
-.avatar-nube.ok { background: #3fbf6a; }
-.avatar-nube.guardando { background: var(--marca-oro); animation: titilar .8s steps(2) infinite; }
-.avatar-nube.error { background: #e0464f; }
-
-.cuenta-panel {
-  position: absolute; right: 0; top: calc(100% + 12px); z-index: 65;
-  display: flex; flex-direction: column; gap: 2px;
-  width: min(290px, calc(100vw - 24px));
-  padding: 8px;
-}
-.cuenta-panel[hidden] { display: none; }
-.cuenta-quien { display: flex; align-items: center; gap: 12px; padding: 8px 8px 12px; margin-bottom: 4px; border-bottom: 2px dashed var(--h-suave); }
-.avatar-grande { flex: none; width: 52px; height: 52px; font-size: 1.6rem; }
-.cuenta-datos { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.cuenta-datos strong { font: 700 1.05rem var(--h-texto); color: var(--h-tinta); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.cuenta-datos small { font-size: .78rem; color: var(--h-suave); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.cuenta-estado { display: inline-flex; align-items: center; gap: 6px; font: 700 .74rem var(--h-texto); color: var(--h-suave); }
-.cuenta-estado::before { content: ""; width: 8px; height: 8px; background: #8b8494; }
-.cuenta-estado.ok::before { background: #3fbf6a; }
-.cuenta-estado.guardando::before { background: var(--marca-oro); }
-.cuenta-estado.error::before { background: #e0464f; }
-.cuenta-opcion {
-  display: flex; align-items: center; gap: 10px;
-  min-height: 42px; padding: 8px 10px;
-  border: 0;
-  font: 700 .92rem var(--h-texto);
-  text-align: left;
-  text-decoration: none;
-  color: var(--h-tinta);
-  background: transparent;
-  cursor: pointer;
-}
-.cuenta-opcion:hover, .cuenta-opcion:focus-visible { background: var(--h-resalte); outline: none; }
-.cuenta-opcion .icono { width: 16px; height: 16px; flex: none; }
-.cuenta-aviso { margin: 0 0 4px; padding: 6px 10px; font: 700 .8rem var(--h-texto); color: var(--h-tinta); background: var(--h-resalte); }
-.cuenta-aviso[hidden] { display: none; }
-.cuenta-max { display: inline-flex; align-items: center; gap: 8px; color: var(--marca-oro); }
-.cuenta-salir { margin-top: 4px; border-top: 2px dashed var(--h-suave); color: var(--rojo-claro); }
 
 /* ----- La cinta de debajo ----- */
 .cabecera-cinta {
@@ -436,21 +319,6 @@ body.en-inicio #btn-curso { display: none; } /* en la portada ya hay un botón p
 .cabecera .hola-seguir:hover { filter: brightness(1.08); background: var(--h-rosa); }
 
 /* dentro de un curso, sin sesión: el aviso amable del cuaderno */
-.cinta-invitado {
-  display: flex; align-items: center; gap: 10px 14px;
-  max-width: 1280px; margin: 0 auto; padding: 7px 20px;
-  font: 600 .86rem/1.35 var(--h-texto);
-  color: var(--h-tinta);
-}
-.cinta-invitado p { flex: 1; margin: 0; }
-.invitado-candado { width: 18px; height: 18px; flex: none; color: var(--marca-oro); }
-.cabecera .invitado-crear { flex: none; height: 32px; font-size: .84rem; color: #ffffff; background: var(--rojo); }
-.cabecera .invitado-crear:hover { background: var(--rojo-hover); }
-.invitado-cerrar {
-  flex: none; width: 32px; height: 32px; padding: 0; border: 0;
-  font: 700 1.3rem/1 var(--h-texto); color: var(--h-suave); background: transparent; cursor: pointer;
-}
-.invitado-cerrar:hover { color: var(--h-tinta); background: var(--h-resalte); }
 
 /* ----- Encogida: al bajar por la página ----- */
 .cabecera.encogida .cabecera-fila { padding-top: 6px; padding-bottom: 6px; }
@@ -473,7 +341,6 @@ body.en-estudio .marca-titulo { font-size: 1.35rem; }
   }
   body.en-estudio[data-sesion="invitado"] .menu ul { justify-content: center; }
   /* sin curso no hay pestañas: la navegación de la web sigue en la misma fila */
-  body.en-estudio.sin-curso .cabecera-fila { grid-template-columns: auto minmax(0, 1fr) auto auto; grid-template-areas: "marca nav botones cuenta"; }
 }
 @media (max-width: 1240px) {
   /* sitio justo: el idioma de la interfaz se queda en su código (ES, EN…) */
@@ -492,7 +359,6 @@ body.en-estudio .marca-titulo { font-size: 1.35rem; }
 }
 @media (max-width: 980px) {
   /* en las portadas (y sin curso), la navegación de la web baja a su propia fila */
-  body.en-estudio.sin-curso .cabecera-fila,
   body.en-inicio .cabecera-fila {
     grid-template-columns: minmax(0, 1fr) auto auto;
     grid-template-areas: "marca botones cuenta" "nav nav nav";
@@ -516,23 +382,16 @@ body.en-estudio .marca-titulo { font-size: 1.35rem; }
   .menu li { flex: 1 1 0; min-width: 0; }
   .menu-enlace { justify-content: center; gap: 5px; width: calc(100% - 4px); min-height: 42px; padding: 8px 4px; font-size: .84rem; white-space: nowrap; }
   /* invitado: en el móvil cabe un solo botón; «Iniciar sesión» se viste de rojo (la pantalla Entrar tiene también «Crear cuenta») */
-  .cabecera .cabecera-crear { display: none; }
-  .cabecera .cabecera-entrar { color: #ffffff; background: var(--rojo); }
-  .cabecera-cuenta { gap: 6px; }
-  .cabecera-racha { height: 34px; padding: 0 7px 0 5px; font-size: .95rem; }
-  body.en-inicio .cabecera-racha { display: none; } /* en las portadas la racha ya sale en la cinta del saludo */
-  .cuenta-avatar { width: 38px; height: 38px; }
+/* en las portadas la racha ya sale en la cinta del saludo */
   .avatar { font-size: 1.1rem; }
   .cinta-hola { padding: 8px 12px; }
-  .cinta-invitado { padding: 6px 12px; font-size: .8rem; }
   .cabecera-ajustes-panel { padding: 10px; gap: 6px; flex-wrap: wrap; max-width: calc(100vw - 24px); }
 }
 @media (max-width: 460px) {
   /* en el móvil pequeño la marca se queda con el bocadillo y el nombre del curso; «Paglot» ya lo dice el logotipo */
-  body.en-estudio:not(.sin-curso) .marca-titulo { display: none; }
+  body.en-estudio .marca-titulo { display: none; }
   .cinta-hola { flex-wrap: wrap; }
   .cabecera .hola-seguir { width: 100%; }
-  .cinta-invitado .invitado-crear { display: none; }
   .cabecera .sel-idioma { max-width: 76px; }
 }
 @media (max-width: 400px) {
@@ -540,7 +399,6 @@ body.en-estudio .marca-titulo { font-size: 1.35rem; }
   .marca-titulo { font-size: 1.1rem; }
   .sel-idioma-flecha { display: none; }
   .cabecera .sel-idioma { padding: 0 6px; }
-  .cabecera .cabecera-entrar { padding: 0 6px; font-size: .8rem; }
   .cabecera-fila, body.en-estudio .cabecera-fila { column-gap: 5px; padding-left: 10px; padding-right: 10px; }
   .cabecera-botones { gap: 3px; }
   .marca { gap: 6px; }
@@ -551,9 +409,19 @@ body.en-estudio .marca-titulo { font-size: 1.35rem; }
    Sin movimiento si así lo pide el dispositivo
    ===================================================================== */
 @media (prefers-reduced-motion: reduce) {
-  .cabecera::after, .cabecera::before, .marca-glot, .nav-corona, .cabecera-crear::before,
-  .racha-llama, .avatar-nube, .idioma-lista, .cuenta-panel, .cabecera-ajustes-panel { animation: none !important; }
-  .cabecera-crear::before { display: none; }
-  .marca:hover .marca-logo, .cuenta-avatar:hover { animation: none; }
+  .cabecera::after, .cabecera::before, .marca-glot, .idioma-lista, .cabecera-ajustes-panel { animation: none !important; }
+  .marca:hover .marca-logo { animation: none; }
   .cabecera .btn:active { transform: none; }
+}
+
+/* La llama de la racha (js/cabecera.js): gris si hoy y ayer no hubo nada; viva y bailando si hay racha */
+.cabecera-llama { display: inline-flex; align-items: center; gap: 3px; min-width: 52px; justify-content: center; font-weight: 700; }
+.cabecera-llama .cabecera-llama-fuego { display: inline-block; filter: grayscale(1); opacity: .6; }
+.cabecera-llama.viva .cabecera-llama-fuego { filter: none; opacity: 1; animation: llama-baila 1.2s steps(4) infinite; }
+.cabecera-llama.aviva .cabecera-llama-fuego { animation: llama-aviva .6s steps(6); }
+body.en-inicio .cabecera-llama { display: none; }
+@keyframes llama-baila { 50% { transform: translateY(-1px) scaleY(1.08); } }
+@keyframes llama-aviva { 50% { transform: scale(1.5) rotate(-10deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .cabecera-llama.viva .cabecera-llama-fuego, .cabecera-llama.aviva .cabecera-llama-fuego { animation: none; }
 }

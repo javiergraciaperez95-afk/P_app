@@ -363,19 +363,6 @@ body.con-pie .pie-sitio, .inicio-pie-pag .pie-sitio {
 .pie-grupo:hover { transform: translateY(-3px); }
 
 /* la guirnalda: una cuerda con las banderas de todos los idiomas, que se mecen a destiempo */
-.pie-guirnalda {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px 10px;
-  max-width: 1120px;
-  margin: -8px auto 0;
-  padding: 0 20px 26px;
-}
-.pie-guirnalda::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--h-borde); opacity: .55; }
-.pie-banderita { display: inline-flex; margin-top: 2px; animation: banderita 2.4s steps(1) infinite; animation-delay: calc(var(--n) * -.17s); }
-.pie-banderita .bandera { width: 24px; height: 16px; box-shadow: 0 0 0 2px var(--h-borde), 2px 3px 0 1px var(--h-sombra); }
 @keyframes banderita { 50% { transform: translateY(2px); } }
 
 /* la franja final: tablones de madera, el logo junto al año y un corazón que late junto a la frase */
@@ -398,7 +385,7 @@ body.con-pie .pie-sitio, .inicio-pie-pag .pie-sitio {
 }
 @keyframes latido { 15%, 35% { transform: scale(1.25); } 25% { transform: scale(1); } }
 @media (prefers-reduced-motion: reduce) {
-  .pie-banderita, .pie-firma::before { animation: none; }
+  .pie-firma::before { animation: none; }
   .pie-grupo { transition: none; }
 }
 

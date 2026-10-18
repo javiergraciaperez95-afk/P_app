@@ -1,6 +1,6 @@
 ESTRUCTURA DEL PROYECTO
 =======================
-Puesto al día el 17 de octubre de 2026, tras la limpieza. Si se mueve o se añade una carpeta, se apunta aquí.
+Puesto al día el 18 de octubre de 2026 (la app pasó a ser solo de español). Si se mueve o se añade una carpeta, se apunta aquí.
 
 IMPORTANTE: el proyecto es SOLO esta carpeta (Imágenes\Aplicaciones de idiomas desarrolladas).
 La copia que hubo en Descargas está archivada y no se usa.
@@ -19,7 +19,7 @@ _apk/                    El proyecto de Android (Capacitor).
 _notas/                  Notas de trabajo: resumenes/ (qué se hizo en cada conversación, por tema)
                          e informes/ (revisiones lección a lección y auditorías de cada curso).
                          También notas_voces.txt (cómo lee la app en voz alta).
-Para_lodriga/            El SQL y los pasos de Supabase.
+Para_lodriga/            El SQL y los pasos de Supabase (de cuando había cuentas; ya no se usa).
 
 Fuera del proyecto, en «Imágenes\Paglot - archivo (fuera de la app)»: las 21 apps antiguas (_antiguas),
 los audios grabados y sus programas (_audio), el generador antiguo de tutoras (_tutoras), copias hechas
@@ -29,76 +29,59 @@ y la copia de Descargas. Nada de eso lo necesita la app.
 
 LA APP: Idiomas/
 ----------------
-index.html               La página: cabecera, pie y la lista de módulos.
-css/                     El aspecto: styles.css (casi todo), tienda.css, comunidad-extra.css,
-                         juego-ilustrado.css (minijuegos), proteccion-texto.css, fuentes.css.
-assets/                  Iconos y logotipo (se generan: ver _herramientas/logo/) y fotos de la tienda.
+Desde el 18-10-2026 Paglot es solo para aprender ESPAÑOL, gratis, sin cuentas y con la interfaz en inglés
+o vietnamita. Todo el progreso se guarda en el propio dispositivo (localStorage); no se pide ningún dato.
+
+index.html               La página: cabecera, pie, las hojas de estilo y el importmap de los módulos.
+css/                     El aspecto: styles.css (casi todo), cabecera.css, pie.css, inicio.css (portada),
+                         camino.css (el mapa de lecciones), repaso.css, logros.css, bienvenida.css,
+                         escenas.css (botones y tutoras de las escenas), juego-ilustrado.css, fuentes.css.
+assets/                  Iconos, logotipo y fuentes (se generan: ver _herramientas/logo/).
 manifest.webmanifest, sw.js   Para que se pueda instalar y funcione sin conexión.
 LEEME.txt                Explicación más detallada de la app.
 
-js/                      EL PROGRAMA (común a todos los idiomas)
+js/                      EL PROGRAMA
    app.js                Arranque y pantallas. Las pantallas generales están en una sola tabla (GENERALES).
-   cursos.js             La lista de cursos. Se edita a mano; el número de lecciones lo pone al día
+   cursos.js             El curso (solo español). El número de lecciones lo pone al día
                          _herramientas/contar_lecciones.py.
-   curso.js              Qué curso está elegido y el nombre de cada tutora.
+   curso.js              El curso elegido (siempre «es») y el nombre de cada tutora.
+   amigas.js             Las otras tutoras, de adorno: compañeras de clase de Lucía (dibujos en tutoras/).
    lessons.js            Carga y revisa las lecciones del curso.
-   exercises.js          Los tipos de ejercicio.
+   exercises.js          Los tipos de ejercicio del modo libro.
    progress.js, srs.js   Progreso y repaso espaciado.
-   sync.js, config.js    Cuenta y Supabase; precios y límites del plan gratis (aún sin aplicar).
+   logros.js             Las medallas (se ganan solas; aviso arriba y vitrina en el Perfil).
+   fiesta.js             El confeti de las celebraciones.
+   desarrollador.js      El acceso de desarrollador (#/desarrollador): todo cuenta como hecho en esa pestaña.
    tutor.js, tutor-sprite.js, tutora-base.js   La tutora.
    sonidos.js            Efectos de sonido y la voz que lee (la del dispositivo).
-   i18n.js, i18n/        Idioma de la interfaz: 12 idiomas (en, es, pt, vi, zh, fr, ja, it, ko, ru, de, id).
-                         TODOS los textos de la interfaz van en i18n/<idioma>.js y se piden con t('clave').
-   movil.js              Lo propio de Android (botón atrás…).
+   i18n.js, i18n/        Idioma de la interfaz: en.js y vi.js. TODOS los textos van ahí y se piden con
+                         t('clave').
+   movil.js, suave.js    Lo propio de Android (botón atrás…) y las animaciones suaves del móvil.
    chispa.js             Rebote, chispas y sonido al pulsar o rozar cualquier botón.
    proteccion-texto.js   Impide seleccionar y copiar texto (salvo en los campos de escribir).
-   creditos.js           A quién se agradecen las voces.
-   juego/                El modo juego (minijuegos de las lecciones).
-   vistas/               Una pantalla por archivo: inicio (portada), cursos (elegir idioma), lecciones, leccion,
-                         practica, repaso, frases, cuaderno, perfil, legal, sobre, entrar, bienvenida, perdida,
-                         precios (Paglot Max), comunidad (contacto y producto), comunidad-extra (guías, FAQ,
-                         laboratorio), productos (Schools, Empresas, Regala Max), social y tienda.
-                         Tienda, contacto y laboratorio son de muestra: todavía no envían ni cobran nada.
+   creditos.js           A quién se agradece lo que usa la app.
+   juego/                El modo juego antiguo (lecciones con guion propio en cursos/es/juegos/).
+   vistas/               Una pantalla por archivo: inicio (portada), lecciones (el mapa-camino), leccion,
+                         repaso (repaso activo), cuaderno, perfil, bienvenida, creditos y perdida.
 
-cursos/                  EL CONTENIDO: una carpeta por idioma
-   <código>/
-      lessons/           001.json, 002.json… y capitulos.json
-      indice/            lecciones.json y diccionario.json: lo que la app lee al arrancar (la lista y
+juegos/                  Los 30 minijuegos del modo juego (motor.js los reparte por la lección; catalogo.js
+                         decide cuál toca a cada bloque). Al final, estrellas según los fallos.
+tutoras/<código>/        Los dibujos de las compañeras de Lucía (solo de adorno).
+
+cursos/es/               EL CONTENIDO
+   lessons/              001.json, 002.json… y capitulos.json
+   indice/               lecciones.json y diccionario.json: lo que la app lee al arrancar (la lista y
                          todas las palabras). Cada lección se descarga al abrirla. Se generan con
-                         _herramientas/generar_indices.mjs; «Abrir Paglot.cmd» y la APK lo hacen solos.
-      traducciones/      Lo que lee el alumno, en su idioma: <idioma>/001.json, 002.json…
-                         (esquema v2; ver _herramientas/ESQUEMA_V2.txt). Si falta un idioma,
-                         se usa el inglés.
-      phrases/           Frases útiles
-      juegos/            Modo juego (solo español)
-      tutora.js          El dibujo de la tutora (se edita aquí mismo)
+                         _herramientas/generar_indices.mjs; la APK lo hace sola.
+   traducciones/         es/ (el texto en español), en/ y vi/ (lo que lee el alumno): 001.json, 002.json…
+                         (esquema v2; ver _herramientas/ESQUEMA_V2.txt). Si falta vietnamita, se usa el inglés.
+   juegos/               Guiones de juego propios de algunas lecciones.
+   tutora.js             El dibujo de Lucía (se edita aquí mismo).
 
 
-LOS CURSOS (en el orden en que salen en la app)
------------------------------------------------
-Código  Idioma       Lecciones  Notas
-en      Inglés         300      A1 a B2, revisado lección a lección
-es      Español        320      A1 a B2; revisión lección a lección hecha hasta la 181
-fr      Francés        300      A1 a B2 (133-300: ampliación generada; ver su ESTADO.txt)
-de      Alemán         308      A1 a B2
-ja      Japonés        300      A1 a B2
-it      Italiano       265      A1 a B2
-ko      Coreano        300      A1 a B2
-zh      Chino           93      HSK 1 a 3
-pt      Portugués      263      A1 a B2 (portugués de Portugal)
-ru      Ruso           325      A1 a B2; los JSON son la versión buena (no compilar)
-tr      Turco          295      A1 a B2
-nl      Neerlandés     300      A1 a B2
-sv      Sueco          304      A1 a B2
-el      Griego         300      A1 a B2
-pl      Polaco         229      ampliación en curso
-no      Noruego        157      ampliación en curso (A1 hasta el capítulo 21)
-vi      Vietnamita     300      A1 a B2
-id      Indonesio      124      A1 a B2 (sin ampliar)
-da      Danés          304      A1 a B2
-ro      Rumano         124      A1 a B2 (sin ampliar)
-th      Tailandés        3      muestra
-Ningún curso lo ha revisado todavía un hablante nativo.
+EL CURSO
+--------
+Español: 320 lecciones en 26 capítulos, de A1 a B2. Ningún hablante nativo lo ha revisado todavía.
 
 
 HERRAMIENTAS
@@ -130,11 +113,14 @@ _apk/generar-apk.cmd               Genera Paglot-prueba.apk (usa el Java de Andr
 CÓMO SE HACE CADA COSA
 ----------------------
 Abrir la app          Doble clic en «Abrir Paglot.cmd».
-Cambiar una lección   Se edita su .json en Idiomas/cursos/<código>/lessons/ (o su fuente .txt y se compila,
-                      si el ESTADO.txt del curso lo permite). Después: validar_lecciones.mjs.
-Añadir un texto       En i18n/en.js y en los otros 11 idiomas, con la misma clave; en el código, t('clave').
+Cambiar una lección   Se edita su .json en Idiomas/cursos/es/lessons/ y sus textos en traducciones/es, en y vi.
+                      Después: validar_lecciones.mjs y generar_indices.mjs.
+Añadir un texto       En i18n/en.js y en i18n/vi.js, con la misma clave; en el código, t('clave').
 Añadir una pantalla   Su archivo en js/vistas/, su línea en el importmap de index.html y su línea en la
                       tabla GENERALES de app.js (si es una pantalla general).
+Revisar como desarrollador   Ir a #/desarrollador: todas las lecciones y sus pasos cuentan como hechos
+                      (solo en esa pestaña, sin guardar nada) y se puede saltar a cualquier paso.
+Comprobar el curso    node _fabrica/comprobar_web.mjs es 001 002 …  (con la app servida en el puerto 8100).
 Generar la APK        _apk/generar-apk.cmd
 
 

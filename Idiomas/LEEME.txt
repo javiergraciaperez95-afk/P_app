@@ -1,78 +1,47 @@
-PAGLOT · LA APP ÚNICA
-=====================
-Escrito el 12 de octubre de 2026; puesto al día el 17 de octubre.
+PAGLOT · APRENDER ESPAÑOL
+=========================
+Puesto al día el 18 de octubre de 2026.
 
-La app se llama Paglot desde el 13-10-2026; la carpeta sigue
-llamándose Idiomas. El logotipo es un bocadillo con cara: se dibuja y se sacan todos
-los iconos con _herramientas/logo/generar.py. Al abrir la app sale la pantalla de
-inicio (js/vistas/inicio.js), con el botón para empezar o seguir.
-
-Esta carpeta es la app de todos los idiomas: un solo programa y una carpeta
-de contenido por curso. Sustituye a las 21 apps antiguas (Spanish, French,
-Danish…), archivadas fuera del proyecto. Lo nuevo se hace aquí.
+Paglot es una app gratuita para aprender español, con la interfaz en inglés o en vietnamita.
+No hay cuentas, ni cobros, ni datos que se pidan: todo el progreso se guarda en el dispositivo.
+La tutora es Lucía; las demás tutoras salen de adorno como compañeras de clase.
 El mapa de todo el proyecto está en estructura.txt, en la carpeta de arriba.
 
-Para abrirla en el ordenador: doble clic en «Abrir Paglot.cmd», en la carpeta
-de arriba (hace de servidor local; no vale el doble clic en index.html). La APK de prueba es Paglot-prueba.apk, en la carpeta de
-arriba; se regenera con _apk/generar-apk.cmd.
+Para abrirla en el ordenador: doble clic en «Abrir Paglot.cmd», en la carpeta de arriba (hace de
+servidor local; no vale el doble clic en index.html). La APK de prueba se regenera con
+_apk/generar-apk.cmd.
 
 
-QUÉ HAY DENTRO
---------------
-index.html, css/, js/, assets/   El programa. Es el del curso de español,
-                                 hecho común para cualquier idioma.
-cursos/<código>/                 Un curso por carpeta: es, en, fr, de, it, pt,
-                                 nl, da, no, sv, pl, ro, el, ru, tr, id, ja,
-                                 ko, th, vi y zh (tres muestras de mandarín).
-   lessons/     Las lecciones (001.json…) y capitulos.json.
-   juegos/      El modo juego (hoy solo lo tiene español, lecciones 1 a 7).
-   phrases/     Las frases útiles.
-   tutora.js    El diseño de la tutora de ese curso.
-
-js/cursos.js    La lista de cursos: nombre, bandera, voz, tabla de Supabase…
-                Se edita a mano; el número de lecciones lo pone al día
-                _herramientas/contar_lecciones.py.
-js/curso.js     Sabe qué curso está elegido. Cambiar de curso recarga la app.
-js/creditos.js  A quién se agradecen las voces. Si se cambia una voz, se apunta aquí.
-js/config.js    Supabase.
-js/sonidos.js   Efectos de sonido y la voz que lee las lecciones (la del dispositivo).
-
-
-CÓMO FUNCIONA
+LAS PANTALLAS
 -------------
-Cada vez que se abre la app sale «¡Elige el idioma a estudiar!», con la tutora
-de cada curso y el de la última vez marcado. Al elegir uno, la app queda en ese
-curso; se cambia con el botón ⇄ de arriba. Cada curso guarda su progreso por separado, en el
-dispositivo y en su propia tabla de Supabase; la cuenta es la misma para todos.
+Inicio       La portada: Lucía y dos compañeras juegan con el botón de seguir; abajo, cómo se aprende.
+Lecciones    El camino: un tramo por capítulo (A1, A2, B1, B2) con paradas que serpentean. Lucía espera en
+             la lección que toca; las terminadas llevan sus estrellas; al final de cada capítulo hay un
+             cofre que solo se abre al terminarlo. Al tocar una parada sale su ficha para entrar.
+Lección      El modo juego (un minijuego por bloque, de juegos/) o el modo libro. Al final, de 1 a 3
+             estrellas según los fallos, las palabras nuevas y la racha de días.
+Cuaderno     Las palabras y frases guardadas (las de las lecciones terminadas entran solas).
+Repaso       Repaso activo con repetición espaciada: cada tarjeta es un minijuego (elegir, oír, montar
+             letras o palabras, escribir) que se corrige solo. Lo fallado vuelve en la misma sesión.
+Perfil       Nombre (opcional, solo en el dispositivo), progreso, logros, ajustes, copia y reinicio.
+Bienvenida   La primera vez, Lucía enseña la app en un minuto.
+Créditos     A quién se agradece lo que usa la app.
 
-LA VOZ. La app no lleva audios grabados: lee con la voz del propio dispositivo o
-navegador. Al abrir un curso mira, sin que se note, si hay voz para ese idioma.
-Si la hay, salen los botones de escuchar. Si no, no salen y la app funciona como
-de solo lectura: los ejercicios de escucha se hacen leyendo y los dictados no
-aparecen ni cuentan. En Perfil se explica cómo instalar una voz. Qué voz hay en
-cada sitio y por qué se decidió así: notas_voces.txt, en la carpeta de arriba.
-
-La interfaz está en inglés, español, portugués, vietnamita y chino (selector de arriba).
-Lo que no esté traducido sale en inglés. Las explicaciones de cada curso están
-en el idioma en que se escribieron: español en casi todos; inglés en el de
-español; inglés y vietnamita en el de portugués.
-
-En los archivos de un curso, el texto del idioma va bajo su código («fr», «de»…;
-en indonesio, «ind») y la traducción al español bajo «es». En el curso de
-español, el español va en «es» y las traducciones en «en», «vi» y «zh».
+#/desarrollador   Acceso para revisar: en esa pestaña todas las lecciones y sus pasos cuentan como
+                  hechos (sin guardar nada) y se puede saltar a cualquier paso.
 
 
-HERRAMIENTAS (carpetas de arriba, no van dentro de la app)
-----------------------------------------------------------
-Están explicadas en estructura.txt (carpeta de arriba). Las principales:
-_herramientas/cursos/compilar.py      Convierte las fuentes .txt de un curso en sus lecciones.
-_herramientas/validar_lecciones.mjs   Revisa todas las lecciones con el revisor de la app.
-_herramientas/contar_lecciones.py     Pone al día cuántas lecciones tiene cada curso en js/cursos.js.
-_apk/generar-apk.cmd                  Genera la APK.
+CÓMO ESTÁ HECHA
+---------------
+index.html, css/, js/, assets/   El programa.
+juegos/                          Los minijuegos del modo juego.
+cursos/es/                       El curso: lessons/, traducciones/{es,en,vi}/, indice/ y juegos/.
+tutoras/                         Los dibujos de las compañeras de Lucía.
 
+Para que la app vaya fluida:
+- Las animaciones solo mueven transform y opacity; lo que no se ve, no se mueve.
+- En el móvil, js/suave.js cambia los saltos de píxel (steps) por curvas suaves.
+- Al arrancar solo se cargan el índice de lecciones y el diccionario; cada lección, al abrirla.
 
-LO QUE FALTA
-------------
-- Probar la voz en móviles de verdad (sobre todo Samsung).
-- El modo juego del curso de español desde la lección 8, y en los demás cursos.
-- Traducir al español los textos del modo juego.
+Todo lo que se pulsa responde con una animación y un sonido (js/chispa.js y js/sonidos.js): está
+pensada para personas con déficit de atención. Ningún paso se completa solo tocando: hay que pensar.

@@ -22,7 +22,8 @@ import { execFileSync } from 'node:child_process';
 
 const AQUI = fileURLToPath(import.meta.url);
 const RAIZ = join(dirname(AQUI), '..', 'Idiomas');
-const IDIOMAS = ['en', 'es', 'vi', 'zh', 'pt', 'fr', 'ja', 'it', 'ko', 'ru', 'de', 'id'];
+// La app solo tiene la interfaz en inglés y vietnamita (y el español es el curso).
+const IDIOMAS = ['en', 'es', 'vi'];
 // En el diccionario la traducción ya va en «trad»: estas copias sobran. «es» no: es la palabra misma.
 const CAMPOS_DUPLICADOS = new Set([...IDIOMAS.filter(i => i !== 'es'), 'tes']);
 

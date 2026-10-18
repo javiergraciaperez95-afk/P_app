@@ -777,13 +777,21 @@ export function revisarAnalisis(f, donde, avisos) {
   // Se compara sin signos ni comillas: el análisis escribe «detrás del mostrador levanta» aunque la frase lleve coma.
   const soloPalabras = s => String(s).toLocaleLowerCase(LANG).replace(/[\p{P}\p{S}]+/gu, ' ').replace(/\s+/g, ' ').trim();
   const frase = ` ${soloPalabras(f.es)} `;
+  // Un constituyente puede ir partido o desordenado («"Buenos días", contesta él con una sonrisa» → PRED «contesta
+  // Buenos días con una sonrisa»): basta con que cada palabra suya esté en la frase.
+  const cuenta = new Map();
+  for (const w of soloPalabras(f.es).split(' ')) cuenta.set(w, (cuenta.get(w) ?? 0) + 1);
+  const cabe = texto => {
+    const quedan = new Map(cuenta);
+    return soloPalabras(texto).split(' ').every(w => { const n = quedan.get(w) ?? 0; quedan.set(w, n - 1); return n > 0; });
+  };
   f.analisis.forEach((parte, k) => {
     const aqui = t('rev.analisisN', { donde, n: k + 1 });
     if (!Array.isArray(parte) || parte.length < 2 || !textoValido(parte[0]) || !traducible(parte[1])) {
       avisos.push(t('rev.analisisParte', { donde: aqui }));
       return;
     }
-    if (!frase.includes(` ${soloPalabras(parte[0])} `)) {
+    if (!frase.includes(` ${soloPalabras(parte[0])} `) && !cabe(parte[0])) {
       avisos.push(t('rev.analisisNoAparece', { donde: aqui, texto: parte[0] }));
     }
     partes.push({ texto: parte[0], funcion: parte[1] });
@@ -1032,43 +1040,3 @@ export async function cargarCapitulos() {
   };
 }
 
-/**
- * phrases/frases.json: { "categorias": [{ "titulo", "descripcion", "frases": […] o "grupos": [{ "titulo", "tarea", "leccion", "frases": […] }] }] }
- */
-export async function cargarFrases() {
-  const r = await leerJSON(ruta('phrases/frases.json'), t('rev.nombreFrases'));
-  if (r.noExiste) return { categorias: [], avisos: [] };
-  if (r.error) return { categorias: [], avisos: [], error: r.error };
-  const avisos = [];
-  const lista = Array.isArray(r.json?.categorias) ? r.json.categorias : [];
-  if (!lista.length) avisos.push(t('rev.sinCategorias'));
-  const revisarFrases = (lista, donde) => {
-    const frases = [];
-    (Array.isArray(lista) ? lista : []).forEach((f, j) => {
-      const aqui = t('rev.fraseN', { donde, n: j + 1 });
-      if (!esObjeto(f) || !textoValido(f.es)) {
-        avisos.push(t('rev.faltaEs', { donde: aqui }));
-        return;
-      }
-      revisarTraduccion(f, aqui, avisos);
-      frases.push({ ...f, trad: traduccionDe(f), analisis: revisarAnalisis(f, aqui, avisos) });
-    });
-    return frases;
-  };
-  // Una categoría tiene «frases» o «grupos» (cada grupo: una tarea con sus frases).
-  const categorias = lista.filter(esObjeto).map((c, i) => {
-    const dondeCat = t('rev.categoria', { n: i + 1 });
-    return {
-      titulo: traducible(c.titulo) ? c.titulo : dondeCat,
-      descripcion: traducible(c.descripcion) ? c.descripcion : '',
-      frases: revisarFrases(c.frases, dondeCat),
-      grupos: (Array.isArray(c.grupos) ? c.grupos : []).filter(esObjeto).map((g, k) => ({
-        titulo: traducible(g.titulo) ? g.titulo : t('rev.grupo', { n: k + 1 }),
-        tarea: traducible(g.tarea) ? g.tarea : '',
-        leccion: textoValido(g.leccion) ? g.leccion : '',
-        frases: revisarFrases(g.frases, `${dondeCat}, ${t('rev.grupo', { n: k + 1 })}`),
-      })),
-    };
-  });
-  return { categorias, avisos };
-}

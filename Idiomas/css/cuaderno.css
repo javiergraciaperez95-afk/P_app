@@ -1,0 +1,75 @@
+/* =====================================================================
+   CUADERNO (js/vistas/cuaderno.js): filas compactas que se abren al tocarlas, con sus puntitos de lo
+   que se sabe y el modo «Tapar traducciones» (cada traducción, tapada con una pegatina que se despega).
+   ===================================================================== */
+
+.cq-tapar-fila { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.cq-tapar[aria-pressed="true"] { background: var(--oro); color: #1a1424; }
+.cq-cuenta { font: 700 .85rem var(--fuente-pixel); color: var(--texto-suave); }
+
+.lista-cuaderno { display: grid; gap: 8px; }
+.cq-fila {
+  list-style: none;
+  background: var(--panel);
+  border: 3px solid var(--linea);
+  box-shadow: 3px 3px 0 var(--sombra);
+}
+.cq-fila.abierta { box-shadow: 3px 3px 0 var(--sombra), inset 6px 0 0 var(--oro); }
+.cq-linea { display: flex; align-items: center; gap: 6px; padding-right: 6px; }
+.cq-cara {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "es nivel" "trad nivel";
+  align-items: center;
+  column-gap: 10px;
+  margin: 0;
+  padding: 8px 10px;
+  text-align: left;
+  color: var(--texto);
+  font: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.cq-cara:hover { background: var(--panel-2); }
+.cq-es { grid-area: es; font: 700 1.1rem var(--fuente-pixel); color: var(--espanol); overflow-wrap: anywhere; }
+.cq-trad {
+  grid-area: trad;
+  position: relative;
+  justify-self: start;
+  font-size: .92rem;
+  color: var(--texto-suave);
+  overflow-wrap: anywhere;
+}
+.cq-nivel { grid-area: nivel; display: flex; gap: 3px; }
+.cq-nivel i { width: 8px; height: 8px; background: var(--fondo-punto); border: 2px solid var(--linea); }
+.cq-nivel.etapa-aprendiendo i.lleno { background: var(--rojo-claro); }
+.cq-nivel.etapa-repaso i.lleno { background: var(--oro); }
+.cq-nivel.etapa-dominada i.lleno { background: var(--verde); }
+.cq-detalle { padding: 0 12px 10px; border-top: 2px dashed var(--panel-hover); }
+.cq-detalle[hidden] { display: none; }
+.cq-detalle p { margin: 6px 0 0; }
+.cq-detalle .frase-acciones { margin-top: 8px; }
+
+/* la pegatina que tapa la traducción */
+.tapadas .cq-fila:not(.vista) .cq-trad { color: transparent; }
+.tapadas .cq-fila:not(.vista) .cq-trad::after {
+  content: "?";
+  position: absolute;
+  inset: -2px -6px;
+  display: grid;
+  place-items: center;
+  font: 700 .85rem var(--fuente-pixel);
+  color: #1a1424;
+  background: repeating-linear-gradient(45deg, var(--oro) 0 6px, #ffe27a 6px 12px);
+  border: 2px solid var(--linea);
+  min-width: 70px;
+}
+.tapadas .cq-fila.vista .cq-trad { animation: cq-despega .35s steps(4); }
+@keyframes cq-despega { from { transform: rotate(-4deg) scale(1.1); opacity: .3; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .tapadas .cq-fila.vista .cq-trad { animation: none; }
+}

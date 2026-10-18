@@ -1,0 +1,501 @@
+/* =====================================================================
+   LECCIONES: EL CAMINO (js/vistas/lecciones.js)
+   Un tramo por capítulo con su cartel; las paradas serpentean (--x de -1 a 1) unidas por un caminito de puntos
+   (SVG). Lucía espera en la lección que toca; al final de cada tramo, un cofre.
+   Las animaciones solo mueven transform y opacity.
+   ===================================================================== */
+
+.cm-cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 18px;
+  max-width: 620px;
+  margin: 0 auto 18px;
+}
+.cm-cabecera h1 { margin: 0; }
+.cm-cabecera-textos { flex: 1 1 220px; min-width: 0; }
+.cm-cabecera-dato { margin: 2px 0 6px; color: var(--texto-suave); font-size: .95rem; }
+.cm-cabecera-barra, .cm-cartel-barra, .cm-ficha-barra {
+  display: block;
+  height: 10px;
+  background: var(--fondo-punto);
+  border: 2px solid var(--linea);
+  overflow: hidden;
+}
+.cm-cabecera-barra > span, .cm-cartel-barra > span, .cm-ficha-barra > span {
+  display: block;
+  height: 100%;
+  background: var(--oro);
+  transform-origin: left center;
+  transform: scaleX(var(--avance, 0));
+}
+.cm-ir { flex: none; }
+
+.cm-mapa { max-width: 620px; margin: 0 auto; --amp: min(118px, 23vw); }
+
+/* ----- El cartel de cada capítulo ----- */
+.cm-tramo { --nivel: #b8a9cc; --nivel-tinta: #231c2b; margin-bottom: 14px; }
+.cm-tramo.nivel-a1 { --nivel: #6fd38c; }
+.cm-tramo.nivel-a2 { --nivel: #8fd8ff; }
+.cm-tramo.nivel-b1 { --nivel: #c9a6ff; }
+.cm-tramo.nivel-b2 { --nivel: #ff9a9f; }
+:root[data-tema="claro"] .cm-tramo.nivel-a1 { --nivel: #3f9a5c; --nivel-tinta: #fff; }
+:root[data-tema="claro"] .cm-tramo.nivel-a2 { --nivel: #2f7fbf; --nivel-tinta: #fff; }
+:root[data-tema="claro"] .cm-tramo.nivel-b1 { --nivel: #8a55c4; --nivel-tinta: #fff; }
+:root[data-tema="claro"] .cm-tramo.nivel-b2 { --nivel: #c8445a; --nivel-tinta: #fff; }
+
+.cm-cartel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin: 0;
+  padding: 10px 14px 10px 10px;
+  text-align: left;
+  color: var(--texto);
+  font: inherit;
+  background: var(--panel);
+  border: 3px solid var(--linea);
+  border-left: 10px solid var(--nivel);
+  box-shadow: 4px 4px 0 var(--sombra);
+  cursor: pointer;
+  transition: transform .12s steps(2);
+}
+.cm-cartel:hover { background: var(--panel-2); }
+.cm-cartel:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--sombra); }
+.cm-cartel:focus-visible { outline: 3px solid var(--foco); outline-offset: 3px; }
+.cm-nivel {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  font: 700 1.05rem var(--fuente-pixel);
+  color: var(--nivel-tinta);
+  background: var(--nivel);
+  border: 3px solid var(--linea);
+}
+.cm-cartel-textos { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.cm-cartel-cap { font: 700 .78rem var(--fuente-pixel); letter-spacing: .06em; text-transform: uppercase; color: var(--texto-suave); }
+.cm-cartel-titulo { font: 700 1.1rem var(--fuente-pixel); line-height: 1.2; overflow-wrap: anywhere; }
+.cm-cartel-es { font-size: .88rem; color: var(--espanol); }
+.cm-cartel-cuenta {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  min-width: 64px;
+  font: 700 .95rem var(--fuente-pixel);
+}
+.cm-cartel-barra { width: 64px; height: 8px; }
+.cm-cartel-copa { font-size: 1.1rem; line-height: 1; }
+.cm-cartel-flecha {
+  flex: none;
+  width: 0;
+  height: 0;
+  border: 7px solid transparent;
+  border-top: 9px solid var(--texto);
+  margin-top: 8px;
+  transition: transform .15s steps(3);
+}
+.cm-tramo.plegado .cm-cartel-flecha { transform: rotate(-90deg); margin-top: 0; }
+.cm-tramo.completo .cm-cartel { border-left-color: var(--oro); }
+
+/* ----- El camino ----- */
+.cm-camino {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 34px 0 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+.cm-camino[hidden] { display: none; }
+.cm-sendero { position: absolute; left: 0; top: 0; pointer-events: none; overflow: visible; z-index: 0; }
+.cm-sendero path { fill: none; stroke-linecap: round; }
+.cm-sendero-base { stroke: var(--panel-hover); stroke-width: 7; stroke-dasharray: 1 14; }
+.cm-sendero-hecho { stroke: var(--oro); stroke-width: 7; stroke-dasharray: 1 14; }
+
+.cm-parada {
+  position: relative;
+  z-index: 1;
+  width: 74px;
+  height: 74px;
+  transform: translateX(calc(var(--x, 0) * var(--amp)));
+}
+.cm-parada.con-ficha { z-index: 6; }
+.cm-parada-error { width: 100%; z-index: 1; }
+
+/* la parada: un botón redondo con su anillo de avance */
+.cm-nodo {
+  --cara: var(--panel-2);
+  --borde: var(--linea);
+  --bajo: var(--sombra);
+  position: relative;
+  display: block;
+  width: 74px;
+  height: 74px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.cm-nodo-anillo {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(var(--oro) calc(var(--avance, 0) * 1turn), var(--fondo-punto) 0);
+}
+.cm-nodo-cara {
+  position: absolute;
+  inset: 7px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--cara);
+  border: 3px solid var(--borde);
+  box-shadow: 0 6px 0 var(--bajo);
+  transition: transform .1s steps(2), box-shadow .1s steps(2);
+}
+.cm-nodo-num { font: 700 1.25rem var(--fuente-pixel); color: var(--texto); }
+.cm-nodo-estrella { font-size: 1.7rem; line-height: 1; color: #6b4300; text-shadow: 1px 1px 0 #fff6c2; }
+.cm-nodo:hover .cm-nodo-cara { transform: translateY(-2px); box-shadow: 0 8px 0 var(--bajo); }
+.cm-nodo:active .cm-nodo-cara { transform: translateY(5px); box-shadow: 0 1px 0 var(--bajo); }
+.cm-nodo:focus-visible { outline: 3px solid var(--foco); outline-offset: 4px; }
+.cm-nodo[aria-expanded="true"] .cm-nodo-cara { box-shadow: 0 6px 0 var(--bajo), 0 0 0 5px var(--foco); }
+
+.cm-nodo.es-terminada { --cara: var(--oro); --bajo: #8a5a00; }
+.cm-nodo.es-terminada .cm-nodo-anillo { background: var(--oro); opacity: .45; }
+.cm-nodo.es-curso { --cara: var(--panel-hover); }
+.cm-nodo.es-nueva .cm-nodo-num { opacity: .8; }
+.cm-nodo.toca { --cara: var(--rojo); --bajo: #7a1a20; }
+.cm-nodo.toca .cm-nodo-num { color: #fff; }
+.cm-nodo.toca .cm-nodo-cara { animation: cm-bota 1.6s steps(6) infinite; }
+.cm-nodo.toca:hover .cm-nodo-cara { animation: none; }
+.cm-nodo.llama .cm-nodo-cara { animation: cm-llama .7s steps(6) 2; }
+@keyframes cm-bota {
+  0%, 60%, 100% { transform: translateY(0); }
+  75% { transform: translateY(-6px); }
+  88% { transform: translateY(-2px); }
+}
+@keyframes cm-llama {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+/* las estrellas que se sacaron, debajo de la parada */
+.cm-estrellas {
+  position: absolute;
+  left: 50%;
+  bottom: -9px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1px;
+  padding: 0 4px;
+  font-size: .8rem;
+  line-height: 1.15;
+  background: var(--panel);
+  border: 2px solid var(--linea);
+  pointer-events: none;
+}
+.cm-estrellas span { color: var(--fondo-punto); }
+.cm-estrellas span.ganada { color: var(--oro); }
+
+/* el título al lado de la parada (al lado contrario de donde se aparta) */
+.cm-etiqueta {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 12px);
+  width: max-content;
+  max-width: min(178px, 38vw);
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  pointer-events: none;
+  line-height: 1.2;
+}
+.cm-parada.a-la-izq .cm-etiqueta { right: auto; left: calc(100% + 12px); align-items: flex-start; text-align: left; }
+.cm-etiqueta-es { font: 700 .98rem var(--fuente-pixel); color: var(--espanol); overflow-wrap: anywhere; }
+.cm-etiqueta-trad { font-size: .8rem; color: var(--texto-suave); overflow-wrap: anywhere; }
+.cm-parada:has(.es-terminada) .cm-etiqueta-es { color: var(--texto-suave); }
+
+/* la que toca: «¡Aquí!» encima, el título debajo y Lucía al lado que tiene sitio */
+.cm-parada.es-toca { margin: 26px 0 50px; }
+.cm-parada.es-toca .cm-etiqueta,
+.cm-parada.es-toca.a-la-izq .cm-etiqueta {
+  top: calc(100% + 12px);
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  align-items: center;
+  text-align: center;
+  max-width: min(220px, 60vw);
+}
+.cm-aqui {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%);
+  padding: 3px 9px;
+  white-space: nowrap;
+  font: 700 .85rem var(--fuente-pixel);
+  color: var(--globo-tinta);
+  background: var(--globo);
+  border: 2px solid var(--globo-tinta);
+  pointer-events: none;
+  animation: cm-aqui 1.6s steps(6) infinite;
+}
+.cm-aqui::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  margin-left: -6px;
+  border: 6px solid transparent;
+  border-top-color: var(--globo-tinta);
+}
+@keyframes cm-aqui {
+  0%, 60%, 100% { transform: translate(-50%, 0); }
+  75% { transform: translate(-50%, -6px); }
+}
+
+.cm-lucia {
+  position: absolute;
+  bottom: -14px;
+  right: calc(100% + 4px);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.cm-parada.lucia-der .cm-lucia { right: auto; left: calc(100% + 4px); }
+.cm-lucia-lienzo { display: block; width: 72px; height: 96px; image-rendering: pixelated; image-rendering: crisp-edges; }
+.cm-parada.lucia-der .cm-lucia-lienzo { transform: scaleX(-1); }
+.cm-lucia-globo {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% - 4px);
+  transform: translate(-50%, 6px) scale(.6);
+  opacity: 0;
+  padding: 3px 8px;
+  white-space: nowrap;
+  font: 700 .82rem var(--fuente-pixel);
+  color: var(--globo-tinta);
+  background: var(--globo);
+  border: 2px solid var(--globo-tinta);
+  pointer-events: none;
+  transition: transform .18s steps(3), opacity .18s steps(3);
+}
+.cm-lucia.habla .cm-lucia-globo { transform: translate(-50%, 0) scale(1); opacity: 1; }
+
+/* ----- La ficha de una lección ----- */
+.cm-ficha {
+  position: absolute;
+  top: calc(100% + 16px);
+  left: 50%;
+  width: min(300px, calc(100vw - 32px));
+  /* centrada en el camino, no en la parada (que puede estar apartada a un lado) */
+  transform: translateX(calc(-50% - var(--x, 0) * var(--amp)));
+  padding: 14px 14px 10px;
+  text-align: center;
+  background: var(--panel);
+  border: 3px solid var(--linea);
+  box-shadow: 5px 5px 0 var(--sombra);
+  animation: cm-ficha .22s steps(4) both;
+  z-index: 7;
+}
+.cm-ficha::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: calc(50% + var(--x, 0) * var(--amp));
+  margin-left: -10px;
+  border: 10px solid transparent;
+  border-bottom-color: var(--linea);
+}
+@keyframes cm-ficha {
+  from { opacity: 0; transform: translateX(calc(-50% - var(--x, 0) * var(--amp))) translateY(-8px) scale(.94); }
+}
+.cm-ficha-num { margin: 0; font: 700 .78rem var(--fuente-pixel); letter-spacing: .08em; text-transform: uppercase; color: var(--texto-suave); }
+.cm-ficha-es { margin: 2px 0 0; font: 700 1.3rem var(--fuente-pixel); color: var(--espanol); line-height: 1.15; overflow-wrap: anywhere; }
+.cm-ficha-trad { margin: 2px 0 0; color: var(--texto-suave); font-size: .92rem; }
+.cm-ficha-avance { display: flex; align-items: center; gap: 8px; margin: 10px 0 4px; font-size: .85rem; }
+.cm-ficha-barra { flex: 1; }
+.cm-ficha-estado { flex: none; color: var(--texto-suave); }
+.cm-ficha.es-terminada .cm-ficha-estado { color: var(--verde); font-weight: 700; }
+.cm-ficha-botones { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+.cm-ficha-botones .es-boton { width: calc(100% - 9px); }
+.cm-ficha-libro { min-height: 38px; font-size: .9rem; }
+
+/* ----- El cofre del final del capítulo ----- */
+.cm-parada-cofre { width: 110px; height: auto; }
+.cm-cofre {
+  --cofre-madera: #8a5a2b;
+  --cofre-borde: #3d2410;
+  --cofre-hierro: #6b6b78;
+  --cofre-cierre: #c9c9d4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 110px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--texto);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.cm-cofre.listo { --cofre-madera: #b8742a; --cofre-hierro: #f4c84a; --cofre-cierre: #fff1a8; }
+.cm-cofre-dibujo { display: block; width: 72px; height: 63px; filter: drop-shadow(3px 3px 0 var(--sombra)); }
+.cm-cofre-dibujo svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.cm-cofre-texto { font: 700 .82rem var(--fuente-pixel); color: var(--texto-suave); text-align: center; }
+.cm-cofre.listo .cm-cofre-texto { color: var(--oro); }
+.cm-cofre-tapa { transform-box: fill-box; transform-origin: 0 100%; transition: transform .3s steps(4); }
+.cm-cofre-brillo { opacity: 0; transition: opacity .3s steps(3); }
+.cm-cofre.abierto .cm-cofre-tapa { transform: translate(-1px, -3px) rotate(-18deg); }
+.cm-cofre.abierto .cm-cofre-brillo { opacity: 1; }
+.cm-cofre.listo:not(.abierto) .cm-cofre-dibujo { animation: cm-cofre-llama 2.4s steps(8) infinite; }
+.cm-cofre:not(.listo) .cm-cofre-dibujo { filter: grayscale(.6) drop-shadow(3px 3px 0 var(--sombra)); opacity: .8; }
+.cm-cofre.tiembla .cm-cofre-dibujo { animation: cm-tiembla .4s steps(8); }
+.cm-cofre.estalla .cm-cofre-dibujo { animation: cm-estalla .6s steps(6); }
+.cm-cofre:focus-visible { outline: 3px solid var(--foco); outline-offset: 4px; }
+@keyframes cm-cofre-llama {
+  0%, 70%, 100% { transform: rotate(0); }
+  76% { transform: rotate(-6deg); }
+  82% { transform: rotate(6deg); }
+  88% { transform: rotate(-4deg); }
+  94% { transform: rotate(3deg); }
+}
+@keyframes cm-tiembla {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+@keyframes cm-estalla {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.22) translateY(-6px); }
+  100% { transform: scale(1); }
+}
+
+/* confeti (js/fiesta.js: se cuelga del body, en el sitio de lo que se celebra) */
+.fiesta-confeti { position: fixed; z-index: 60; width: 0; height: 0; pointer-events: none; }
+.fiesta-confeti i {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: var(--c);
+  animation: cm-confeti 1.2s cubic-bezier(.2, .7, .4, 1) var(--d) both;
+}
+@keyframes cm-confeti {
+  0% { transform: translate(0, 0) rotate(0); opacity: 1; }
+  55% { transform: translate(var(--dx), var(--dy)) rotate(var(--r)); opacity: 1; }
+  100% { transform: translate(var(--dx), calc(var(--dy) + 140px)) rotate(calc(var(--r) * 2)); opacity: 0; }
+}
+
+/* ----- El botón flotante «a tu lección» ----- */
+.cm-flotante {
+  position: fixed;
+  right: max(16px, var(--borde-der));
+  bottom: calc(var(--alto-tutora) + 44px + var(--borde-abajo));
+  z-index: 25;
+  margin: 0;
+  padding: 8px 14px;
+  font: 700 .95rem var(--fuente-pixel);
+  color: #fff;
+  background: var(--rojo);
+  border: 3px solid var(--linea);
+  box-shadow: 4px 4px 0 var(--sombra);
+  cursor: pointer;
+  animation: cm-ficha .22s steps(4) both;
+}
+.cm-flotante:hover { background: var(--rojo-hover); }
+.cm-flotante:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--sombra); }
+.cm-flotante[hidden] { display: none; }
+body.tutora-oculta .cm-flotante { bottom: calc(80px + var(--borde-abajo)); }
+
+@media (max-width: 600px) {
+  .cm-cartel { gap: 9px; padding: 8px 10px 8px 8px; }
+  .cm-nivel { width: 38px; height: 38px; font-size: .95rem; }
+  .cm-cartel-titulo { font-size: 1rem; }
+  .cm-camino { gap: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cm-nodo.toca .cm-nodo-cara, .cm-aqui, .cm-cofre.listo:not(.abierto) .cm-cofre-dibujo { animation: none; }
+}
+
+/* ----- Las misiones de hoy ----- */
+.cm-misiones {
+  max-width: 620px;
+  margin: 0 auto 20px;
+  padding: 10px 12px 12px;
+  background: var(--panel);
+  border: 3px solid var(--linea);
+  box-shadow: 4px 4px 0 var(--sombra);
+}
+.cm-misiones.completas { border-color: var(--oro); box-shadow: 0 0 0 3px var(--linea), 4px 4px 0 var(--sombra); }
+.cm-misiones-cabeza { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.cm-misiones-cabeza h2 { margin: 0; font-size: 1.05rem; }
+.cm-misiones.completas .cm-misiones-cabeza h2 { color: var(--oro); }
+.cm-racha {
+  flex: none;
+  padding: 2px 8px;
+  font: 700 .85rem var(--fuente-pixel);
+  color: var(--texto-suave);
+  background: var(--panel-2);
+  border: 2px solid var(--linea);
+  filter: grayscale(1);
+}
+.cm-racha.viva { color: var(--oro); filter: none; }
+.cm-racha.viva span { display: inline-block; animation: rp-llama 1s steps(4) infinite; }
+.cm-misiones-lista { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.cm-mision {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin: 0;
+  padding: 6px 8px;
+  text-align: left;
+  color: var(--texto);
+  font: inherit;
+  background: var(--panel-2);
+  border: 2px solid var(--linea);
+  cursor: pointer;
+}
+.cm-mision:hover { background: var(--panel-hover); }
+.cm-mision:active { transform: translate(1px, 2px); }
+.cm-mision-casilla {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  font: 700 .95rem var(--fuente-pixel);
+  color: #1a3a20;
+  background: var(--fondo-punto);
+  border: 2px solid var(--linea);
+}
+.cm-mision.hecha .cm-mision-casilla { background: var(--verde); animation: cm-casilla .4s steps(4); }
+@keyframes cm-casilla { 50% { transform: scale(1.3) rotate(-8deg); } }
+.cm-mision-texto { flex: 1; min-width: 0; font-size: .95rem; }
+.cm-mision.hecha .cm-mision-texto { color: var(--texto-suave); text-decoration: line-through; text-decoration-thickness: 2px; }
+.cm-mision-cuenta { flex: none; font: 700 .85rem var(--fuente-pixel); color: var(--texto-suave); }
+@media (prefers-reduced-motion: reduce) {
+  .cm-racha.viva span, .cm-mision.hecha .cm-mision-casilla { animation: none; }
+}

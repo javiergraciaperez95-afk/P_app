@@ -19,7 +19,7 @@ import { el, poner, barajar, alAzar } from '../js/dom.js';
 import { t, tr } from '../js/i18n.js';
 import { decir } from '../js/tutor.js';
 import { sonar, pronunciar, hayVoz, ayudaVoz, callar } from '../js/sonidos.js';
-import { marcarAbierta, marcarTerminada, registrarRespuesta } from '../js/progress.js';
+import { marcarAbierta, marcarTerminada, registrarRespuesta, anotarPaso, anotarPerfecta, racha } from '../js/progress.js';
 import { apuntarPalabrasDeLeccion, analisisDesplegable } from '../js/comunes.js';
 import { normalizarPalabra } from '../js/lessons.js';
 import { analizarFrase, botonPalabra } from '../js/vistas/leccion.js';
@@ -27,10 +27,12 @@ import { crearElenco } from '../js/vistas/elenco.js';
 import { LANG, clave } from '../js/curso.js';
 import { elegir, probar } from './catalogo.js';
 import { esDesarrollador } from '../js/desarrollador.js';
+import { confeti } from '../js/fiesta.js';
 import './lista.js';
 
 const EJERCICIOS = ['test', 'huecos', 'ordenar', 'escribir'];
 const CLAVE_AVANCE = clave('juego2');
+const CLAVE_ESTRELLAS = clave('estrellas');
 const quieto = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 // La app guarda la lectura como un diálogo con «esTexto»: aquí se le devuelve su nombre.
 const tipoDe = b => (b.esTexto ? 'texto' : b.tipo);
@@ -44,6 +46,33 @@ export function hayJuego(leccion) {
 // ----- Por dónde va (en este dispositivo) -----
 function leerAvance(id) {
   try { return JSON.parse(localStorage.getItem(CLAVE_AVANCE))?.[id] ?? { paso: 0, hechos: [] }; } catch { return { paso: 0, hechos: [] }; }
+}
+// ----- Estrellas: 3 si se falla poco, 2 si algo más, 1 si cuesta. Se guarda la mejor de cada lección. -----
+const estrellasPorFallos = fallos => (fallos <= 2 ? 3 : fallos <= 6 ? 2 : 1);
+function leerEstrellas() {
+  try { return JSON.parse(localStorage.getItem(CLAVE_ESTRELLAS)) ?? {}; } catch { return {}; }
+}
+/** Todas las estrellas: { id de lección: mejores estrellas }. */
+export function todasLasEstrellas() {
+  return leerEstrellas();
+}
+/** Las mejores estrellas (1–3) que se han sacado en una lección, o 0. */
+export function estrellasDe(id) {
+  return leerEstrellas()[id] ?? 0;
+}
+function guardarEstrellas(id, n) {
+  const todas = leerEstrellas();
+  const antes = todas[id] ?? 0;
+  if (n > antes) {
+    todas[id] = n;
+    try { localStorage.setItem(CLAVE_ESTRELLAS, JSON.stringify(todas)); } catch { /* sin almacenamiento */ }
+  }
+  return antes;
+}
+
+/** Por dónde va el modo juego de una lección: { paso, hechos: [índices], total? } (total: los pasos que tiene, con el final). */
+export function avanceJuego(id) {
+  return leerAvance(id);
 }
 function guardarAvance(id, avance) {
   try {
@@ -115,6 +144,20 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
   const dev = esDesarrollador(); // todo cuenta como hecho y los hitos llevan a su paso
   const estaHecho = i => dev || hechos.has(i);
   let actual = Math.min(avance.paso, pasos.length);
+  // fallos de esta partida (cada juego hace sonar «mal» al fallar): deciden las estrellas del final
+  let fallos = avance.fallos ?? 0;
+  // una lección ya terminada se vuelve a jugar entera, como una partida nueva (si no, se podría saltar hasta
+  // el final y sacar tres estrellas sin jugar)
+  if (actual >= pasos.length) { actual = 0; fallos = 0; hechos.clear(); }
+  const guardar = () => guardarAvance(leccion.id, { paso: actual, hechos: [...hechos], total: pasos.length, fallos });
+  // en la memoria, voltear dos cartas que no casan es explorar, no fallar: no cuenta
+  const NO_CUENTAN = new Set(['memoria']);
+  const alSuceso = ({ detail }) => {
+    if (detail.nombre !== 'mal' || actual >= pasos.length || NO_CUENTAN.has(pasos[actual]?.nombre)) return;
+    fallos += 1;
+    guardar();
+  };
+  window.addEventListener('paglot-suceso', alSuceso);
   // en una prueba se empieza en el primer paso del tipo pedido
   const empezar = probar().empezar;
   if (empezar) actual = Math.max(0, pasos.findIndex(p => tipoDe(p.bloque) === empezar));
@@ -150,14 +193,32 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
   function final() {
     marcarTerminada(leccion.id);
     const nuevas = apuntarPalabrasDeLeccion(leccion, leccion.palabras);
+    const estrellas = estrellasPorFallos(fallos);
+    const antes = guardarEstrellas(leccion.id, estrellas);
+    if (estrellas === 3) anotarPerfecta();
+    const dias = racha();
     sonar('fanfarria');
-    decir([t('jg.fin.tutora'), nuevas ? t('leccion.apuntadas', { n: nuevas }) : null].filter(Boolean).join(' '), 'contenta');
+    decir([t(estrellas === 3 ? 'jg.fin.tutora3' : estrellas === 2 ? 'jg.fin.tutora2' : 'jg.fin.tutora1'), nuevas ? t('leccion.apuntadas', { n: nuevas }) : null].filter(Boolean).join(' '), 'contenta');
+    // las estrellas salen una a una, cada una con su moneda; las que no se ganan quedan vacías
+    const fila = el('div', { class: 'jg-final-estrellas', role: 'img', 'aria-label': t('jg.fin.estrellas', { n: estrellas }) },
+      [1, 2, 3].map(k => el('span', { class: `jg-estrella${k <= estrellas ? ' ganada' : ''}`, style: `--k:${k}`, 'aria-hidden': 'true' }, '★')));
+    if (!quieto()) [1, 2, 3].slice(0, estrellas).forEach(k => setTimeout(() => sonar('moneda'), 450 + k * 380));
+    const dato = (icono, valor, texto, clase = '') => el('li', { class: `jg-final-dato ${clase}` },
+      el('span', { class: 'jg-final-icono', 'aria-hidden': 'true' }, icono),
+      el('strong', {}, String(valor)), el('span', {}, texto));
     return el('div', { class: 'jg-final es-papel' },
       el('p', { class: 'jg-final-copa', 'aria-hidden': 'true' }, '🏆'),
       el('h2', {}, t('jg.fin.titulo')),
+      fila,
+      estrellas > antes && antes > 0 ? el('p', { class: 'jg-final-record' }, t('jg.fin.record')) : null,
+      el('ul', { class: 'jg-final-datos' },
+        dato('✖', fallos, t('jg.fin.fallos', { n: fallos })),
+        dato('📒', nuevas, t('jg.fin.palabras', { n: nuevas })),
+        dato('🔥', dias, t('jg.fin.racha', { n: dias }), 'racha')),
       el('p', {}, t('jg.fin.texto')),
       el('div', { class: 'jg-final-botones' },
-        siguiente ? el('a', { class: 'es-boton es-boton-grande', href: `#/leccion/${siguiente}` }, t('leccion.siguiente')) : el('a', { class: 'es-boton es-boton-grande', href: '#/lecciones' }, t('comun.volverLecciones')),
+        siguiente ? el('a', { class: 'es-boton es-boton-grande', href: `#/leccion/${siguiente}`, 'data-sonido': 'puerta' }, t('leccion.siguiente')) : el('a', { class: 'es-boton es-boton-grande', href: '#/lecciones' }, t('comun.volverLecciones')),
+        el('a', { class: 'es-boton es-boton-papel', href: '#/lecciones' }, t('jg.fin.mapa')),
         el('a', { class: 'es-boton es-boton-papel', href: '#/repaso' }, t('leccion.repasarAhora'))));
   }
 
@@ -166,12 +227,13 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
     apagarPaso?.();
     apagarPaso = null;
     actual = Math.max(0, Math.min(pasos.length, i));
-    guardarAvance(leccion.id, { paso: actual, hechos: [...hechos] });
+    guardar();
     pintarCamino();
     atras.disabled = actual === 0;
     if (actual === pasos.length) {
       adelante.hidden = true;
       poner(escenario, final());
+      setTimeout(() => confeti(escenario.querySelector('.jg-final-copa'), 34), 250);
       return;
     }
     adelante.hidden = false;
@@ -184,7 +246,8 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
     ctx.hecho = () => {
       if (hechos.has(n)) return;
       hechos.add(n);
-      guardarAvance(leccion.id, { paso: actual, hechos: [...hechos] });
+      anotarPaso();
+      guardar();
       if (n === actual) {
         adelante.disabled = false;
         adelante.classList.add('jg-listo');
@@ -210,5 +273,5 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
   elenco.vigilar(escenario);
   ir(actual);
   if (actual === 0) decir(leccion.intro ? tr(leccion.intro) : t('leccion.introTutora', { titulo: leccion.titulo_es }));
-  return () => { callar(); apagarPaso?.(); elenco.apagar(); };
+  return () => { callar(); apagarPaso?.(); elenco.apagar(); window.removeEventListener('paglot-suceso', alSuceso); };
 }

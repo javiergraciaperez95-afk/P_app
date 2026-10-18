@@ -1,16 +1,18 @@
 // Pantalla «Perfil»: nombre, progreso, ajustes, copia de seguridad y reinicio. Todo se guarda solo en este dispositivo.
 
 import { el, poner, enLinea } from '../dom.js';
-import { t, IDIOMAS_VISIBLES, idioma, cambiarIdioma } from '../i18n.js';
+import { t, locale, IDIOMAS_VISIBLES, idioma, cambiarIdioma } from '../i18n.js';
 import {
   nombre, cambiarNombre, resumenLeccion, tarjetas, racha, actividad, reiniciarProgreso,
-  todosLosDatos, importarCopia,
+  copiaCompleta, importarCopia,
 } from '../progress.js';
 import { etapa } from '../srs.js';
 import { ajuste, cambiarAjuste } from '../ajustes.js';
 import { prepararVoces, nombreVoz, pronunciar, sonar, ayudaVoz, abrirInstalacionDeVoces } from '../sonidos.js';
 import { decir } from '../tutor.js';
 import { curso } from '../curso.js';
+import { todasLasEstrellas } from '../../juegos/motor.js';
+import { LOGROS, logrosGanados, comprobarLogros } from '../logros.js';
 
 function estadisticas(resultados) {
   const lecciones = resultados.filter(r => r.leccion);
@@ -27,7 +29,10 @@ function estadisticas(resultados) {
   const dominadas = cartas.filter(t => etapa(t.srs).clave === 'dominada').length;
   const repasos = Object.values(actividad()).reduce((suma, d) => suma + (d.repasos ?? 0), 0);
   const porcentaje = aciertos + errores ? Math.round((aciertos / (aciertos + errores)) * 100) : null;
-  return { lecciones: lecciones.length, terminadas, ejercicios, completados, aciertos, errores, porcentaje, cartas: cartas.length, dominadas, repasos };
+  const notas = Object.values(todasLasEstrellas());
+  const estrellas = notas.reduce((suma, n) => suma + n, 0);
+  const perfectas = notas.filter(n => n >= 3).length;
+  return { lecciones: lecciones.length, terminadas, ejercicios, completados, aciertos, errores, porcentaje, cartas: cartas.length, dominadas, repasos, estrellas, perfectas };
 }
 
 function dato(titulo, valor, detalle) {
@@ -53,6 +58,36 @@ function seccionNombre() {
   return el('section', { class: 'caja' }, el('h2', {}, t('perfil.tuNombre')), form);
 }
 
+/** La vitrina de logros: los ganados con su medalla y su fecha; los demás, a oscuras y con lo que hay que hacer. */
+function seccionLogros() {
+  comprobarLogros();
+  const ganados = logrosGanados();
+  const n = LOGROS.filter(l => ganados[l.id]).length;
+  const fecha = ms => new Date(ms).toLocaleDateString(locale(), { day: 'numeric', month: 'short', year: 'numeric' });
+  const vitrina = el('ul', { class: 'lg-vitrina' }, LOGROS.map(l => {
+    const tiene = Boolean(ganados[l.id]);
+    const medalla = el('button', {
+      type: 'button',
+      class: `lg-pieza${tiene ? ' ganado' : ''}`,
+      'aria-label': `${t(`logros.${l.id}.nombre`)}: ${t(`logros.${l.id}.desc`)}${tiene ? ` · ${fecha(ganados[l.id])}` : ` · ${t('logros.bloqueado')}`}`,
+      'data-sonido': tiene ? 'moneda' : 'nada',
+    },
+    el('span', { class: 'lg-pieza-medalla', 'aria-hidden': 'true' }, tiene ? l.icono : '🔒'),
+    el('span', { class: 'lg-pieza-nombre', 'aria-hidden': 'true' }, tiene ? t(`logros.${l.id}.nombre`) : '???'));
+    medalla.addEventListener('click', () => {
+      medalla.classList.remove('gira'); void medalla.offsetWidth; medalla.classList.add('gira');
+      decir(tiene
+        ? t('logros.tutoraGanado', { nombre: t(`logros.${l.id}.nombre`), fecha: fecha(ganados[l.id]) })
+        : t('logros.tutoraFalta', { desc: t(`logros.${l.id}.desc`) }), tiene ? 'contenta' : 'pensando');
+    });
+    return el('li', {}, medalla);
+  }));
+  return el('section', { class: 'caja' },
+    el('h2', {}, t('logros.titulo'), ' ', el('span', { class: 'lg-cuenta' }, `${n}/${LOGROS.length}`)),
+    el('p', { class: 'aprox' }, t('logros.intro')),
+    vitrina);
+}
+
 function seccionProgreso(resultados) {
   const s = estadisticas(resultados);
   const r = racha();
@@ -60,7 +95,7 @@ function seccionProgreso(resultados) {
     el('h2', {}, t('perfil.tuProgreso')),
     el('dl', { class: 'datos' },
       dato(t('perfil.leccionesTerminadas'), `${s.terminadas}/${s.lecciones}`),
-      dato(t('perfil.ejerciciosHechos'), `${s.completados}/${s.ejercicios}`),
+      dato(t('perfil.estrellas'), `${s.estrellas}/${s.lecciones * 3}`, t('perfil.perfectas', { n: s.perfectas })),
       dato(t('perfil.aciertos'), String(s.aciertos), s.porcentaje !== null ? t('perfil.porcentaje', { n: s.porcentaje }) : null),
       dato(t('perfil.errores'), String(s.errores)),
       dato(t('perfil.enCuaderno'), String(s.cartas), t('perfil.dominadas', { n: s.dominadas })),
@@ -151,7 +186,7 @@ function seccionCopia(repintar) {
   const descargar = el('button', { type: 'button', class: 'boton' }, t('copia.descargar'));
   descargar.addEventListener('click', () => {
     const fecha = new Date().toISOString().slice(0, 10);
-    const archivo = new Blob([JSON.stringify(todosLosDatos(), null, 2)], { type: 'application/json' });
+    const archivo = new Blob([JSON.stringify(copiaCompleta(), null, 2)], { type: 'application/json' });
     const enlace = el('a', { href: URL.createObjectURL(archivo), download: `${curso.prefijo}-progreso-${fecha}.json` });
     document.body.append(enlace);
     enlace.click();
@@ -210,6 +245,7 @@ export function pintarPerfil(app, { resultados }) {
       el('h1', {}, nombre() ? t('perfil.de', { nombre: nombre() }) : t('menu.perfil'))),
     seccionNombre(),
     seccionProgreso(resultados),
+    seccionLogros(),
     seccionAjustes(),
     seccionCopia(repintar),
     seccionReinicio(repintar));
