@@ -26,6 +26,7 @@ import { pintarInicio, inicioMovil } from './vistas/inicio.js';
 import { pintarBienvenida, bienvenidaVista } from './vistas/bienvenida.js';
 import { pintarPerdida } from './vistas/perdida.js';
 import { iniciarLogros, comprobarLogros } from './logros.js';
+import { iniciarNube } from './nube.js';
 import { curso, hayCurso, nombreDelCurso } from './curso.js';
 import './movil.js';
 import './chispa.js';
@@ -555,6 +556,13 @@ async function iniciar() {
   }
   await primera;
   quitarArranque();
+  // el progreso en la nube (Supabase): se junta con el del dispositivo y se sube al cambiar
+  iniciarNube();
+  // si de la nube llega progreso nuevo, se repinta la pantalla (salvo en mitad de una lección, un repaso o un reto)
+  window.addEventListener('datos-sincronizados', () => {
+    if (!/^#\/(leccion|repaso|reto)/.test(location.hash)) navegar({ cambioDeIdioma: true });
+    pintarAvisoRepaso();
+  });
 }
 
 iniciar();

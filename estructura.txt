@@ -19,7 +19,7 @@ _apk/                    El proyecto de Android (Capacitor).
 _notas/                  Notas de trabajo: resumenes/ (qué se hizo en cada conversación, por tema)
                          e informes/ (revisiones lección a lección y auditorías de cada curso).
                          También notas_voces.txt (cómo lee la app en voz alta).
-Para_lodriga/            El SQL y los pasos de Supabase (de cuando había cuentas; ya no se usa).
+Para_lodriga/            El SQL y los pasos para dejar Supabase listo (paglot-cuentas.sql y LEEME.txt).
 
 Fuera del proyecto, en «Imágenes\Paglot - archivo (fuera de la app)»: las 21 apps antiguas (_antiguas),
 los audios grabados y sus programas (_audio), el generador antiguo de tutoras (_tutoras), copias hechas
@@ -29,8 +29,9 @@ y la copia de Descargas. Nada de eso lo necesita la app.
 
 LA APP: Idiomas/
 ----------------
-Desde el 18-10-2026 Paglot es solo para aprender ESPAÑOL, gratis, sin cuentas y con la interfaz en inglés
-o vietnamita. Todo el progreso se guarda en el propio dispositivo (localStorage); no se pide ningún dato.
+Desde el 18-10-2026 Paglot es solo para aprender ESPAÑOL, gratis y con la interfaz en inglés o vietnamita.
+Cuentas al estilo Mullvad: un número de 16 cifras por dispositivo, progreso en Supabase (js/nube.js,
+Para_lodriga/), copia en el dispositivo para estudiar sin conexión. Sin correo, caduca a los 7 días sin uso.
 
 index.html               La página: cabecera, pie, las hojas de estilo y el importmap de los módulos.
 css/                     El aspecto: styles.css (casi todo), cabecera.css, pie.css, inicio.css (portada),
@@ -52,6 +53,7 @@ js/                      EL PROGRAMA
    progress.js, srs.js   Progreso y repaso espaciado.
    logros.js             Las medallas (se ganan solas; aviso arriba y vitrina en el Perfil).
    fiesta.js             El confeti de las celebraciones.
+   nube.js, config.js    La cuenta (número de 16 cifras) y el progreso en Supabase.
    desarrollador.js      El acceso de desarrollador (#/desarrollador): todo cuenta como hecho en esa pestaña.
    tutor.js, tutor-sprite.js, tutora-base.js   La tutora.
    sonidos.js            Efectos de sonido y la voz que lee (la del dispositivo).

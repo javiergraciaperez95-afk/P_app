@@ -58,3 +58,27 @@
 .nv-cuenta { font: 700 .9rem var(--fuente-pixel); }
 
 @media (prefers-reduced-motion: reduce) { .ac-dia.hoy { animation: none; } }
+
+/* ----- La cuenta (al estilo Mullvad) ----- */
+.cu-fila { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 8px 0; }
+.cu-fila input { flex: 1 1 200px; }
+.cu-fila input[hidden] { display: none; }
+.cu-numero {
+  flex: 1 1 auto;
+  min-height: 48px;
+  margin: 0;
+  padding: 6px 14px;
+  font: 700 1.35rem var(--fuente-pixel);
+  letter-spacing: .08em;
+  color: var(--oro);
+  background: var(--fondo);
+  border: 3px dashed var(--linea);
+  cursor: pointer;
+}
+.cu-numero.tapado { color: transparent; text-shadow: 0 0 10px var(--texto-suave); }
+.cu-caduca { margin: 4px 0; }
+.cu-estado { margin: 6px 0 12px; font-weight: 700; font-size: .9rem; }
+.cu-guardada { color: var(--verde); }
+.cu-sin-conexion, .cu-error { color: var(--oro); }
+.cu-correo { margin-top: 10px; padding-top: 10px; border-top: 2px dashed var(--panel-hover); }
+.cu-correo h3 { margin: 0 0 4px; font-size: 1rem; }

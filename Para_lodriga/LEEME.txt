@@ -1,59 +1,41 @@
-PARA DEJAR SUPABASE LISTO PARA LA APP ÚNICA «IDIOMAS»
+PARA DEJAR SUPABASE LISTO (CUENTAS AL ESTILO MULLVAD)
 =====================================================
-Escrito el 12 de octubre de 2026. Son tres cosas; la primera es la única obligatoria.
+Escrito el 18 de octubre de 2026. Proyecto: https://iuniglsiqnfvnotmfgdo.supabase.co
+
+Cómo funciona ahora: cada móvil recibe un número de cuenta de 16 cifras, sin pedir nada. Su progreso se
+guarda en Supabase con ese número. Con el número se entra desde otro móvil. Si la cuenta no tiene correo y
+no se usa en 7 días, se borra sola. Con un correo unido (verificado con un código de 6 cifras) ya no caduca
+y el número se puede recuperar con el correo. Los archivos antiguos (supabase-todas.sql y
+supabase-app-unica.sql) eran del sistema anterior con cuentas de correo y contraseña: ya no se usan.
 
 
 1. EJECUTAR EL SQL  (obligatorio, 1 minuto)
 -------------------------------------------
-Archivo: supabase-app-unica.sql (en esta misma carpeta).
+Archivo: paglot-cuentas.sql (en esta carpeta).
 
   Supabase → el proyecto → SQL Editor → New query → pegar TODO el archivo → Run.
 
-Crea las tablas de progreso que faltaban (portugués, vietnamita y chino; las
-otras 18 ya existían y no cambian) y un almacén público llamado «audios».
-Se puede ejecutar más de una vez sin miedo: no borra nada.
-
-Sin este paso, quien inicie sesión en los cursos de portugués o vietnamita
-verá el aviso «la tabla de este curso todavía no existe».
+Sin esto la app funciona, pero el Perfil dice «La nube no responde» y el progreso solo se guarda en el móvil.
 
 
-2. PERMITIR EL ENLACE DE LOS CORREOS HACIA LA APP  (para la APK)
----------------------------------------------------------------
-Cuando alguien confirma su cuenta o pide cambiar la contraseña, Supabase le
-manda un correo con un enlace. Para que ese enlace abra la app instalada:
+2. QUE EL CORREO LLEVE UN CÓDIGO  (para la parte del correo, 2 minutos)
+-----------------------------------------------------------------------
+La app pide un código de 6 cifras, no un enlace. Hay que ponerlo en la plantilla del correo:
 
-  Supabase → Authentication → URL Configuration → Redirect URLs → Add URL
+  Supabase → Authentication → Emails (Email Templates) → «Magic Link»
+  Cambiar el texto por algo así:
 
-  y añadir exactamente:   idiomasapp://auth
+    <h2>Tu código de Paglot</h2>
+    <p>Escribe este código en la app: <strong>{{ .Token }}</strong></p>
 
-Si no se añade, el enlace del correo lleva a la dirección web de siempre y la
-app del móvil no se entera. No rompe nada, pero el cambio de contraseña desde
-el móvil no funcionará.
+  (y lo mismo en la plantilla «Confirm signup», que es la que llega la primera vez).
+
+Comprueba también que en Authentication → Providers → Email esté activado «Email».
+Ojo: el servidor de correo gratuito de Supabase manda muy pocos correos por hora. Para muchos usuarios
+habrá que poner un SMTP propio (Authentication → Emails → SMTP Settings).
 
 
-3. SUBIR LOS AUDIOS A INTERNET  (opcional, cuando se quiera aligerar la APK)
-----------------------------------------------------------------------------
-Ahora mismo los audios van DENTRO de la app. Funciona, pero la APK pesa más
-de 100 MB. Para que la app los descargue por lección:
-
-  a) Supabase → Storage → audios → Upload folder.
-     Hay que subir, de cada curso, el CONTENIDO de su carpeta de audios dentro
-     de una carpeta con el código del curso. Es decir:
-
-        Idiomas/cursos/es/audio/*   →   audios/es/
-        Idiomas/cursos/fr/audio/*   →   audios/fr/
-        ...
-
-     Lo más cómodo: copiar cada carpeta «audio» a otro sitio, renombrarla con
-     el código del curso (es, fr, de…) y arrastrarla al almacén.
-
-  b) En Idiomas/js/config.js, poner la dirección en AUDIOS_EN_LINEA:
-
-        https://TU-PROYECTO.supabase.co/storage/v1/object/public/audios
-
-  c) Volver a generar la APK. Con esa dirección puesta, los audios ya no hace
-     falta meterlos dentro (hay que decírselo a Claude para que los excluya).
-
-Límites del plan gratuito de Supabase: 1 GB de almacén. Hoy los audios ocupan
-bastante menos; el curso entero de los 21 idiomas no cabrá, y entonces habrá
-que pasar a otro alojamiento (la app solo necesita que se cambie esa dirección).
+3. NADA MÁS
+-----------
+El borrado de las cuentas anónimas de más de 7 días lo hace la propia base de datos cada vez que alguien
+abre la app; no hace falta programar nada.
