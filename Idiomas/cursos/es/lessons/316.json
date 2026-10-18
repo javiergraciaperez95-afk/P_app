@@ -2,6 +2,8 @@
   "esquema": 2,
   "id": "316",
   "capitulo": 26,
+  "numero_curso": 317,
+  "orden_curso": 317,
   "nivel": "B2",
   "palabras": {
     "la condición": {
@@ -49,6 +51,84 @@
     "retener": {
       "pron": "re-te-NER",
       "cat": "verb"
+    },
+    "presento": {
+      "pron": "pre-SEN-to",
+      "cat": "verb"
+    },
+    "envío": {
+      "pron": "en-BI-o",
+      "cat": "verb"
+    },
+    "confirmada": {
+      "pron": "kon-fir-MA-da",
+      "cat": "adj"
+    },
+    "importe": {
+      "pron": "im-POR-te",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "restante": {
+      "pron": "res-TAN-te",
+      "cat": "adj"
+    },
+    "abona": {
+      "pron": "a-BO-na",
+      "cat": "verb"
+    },
+    "recepción": {
+      "pron": "re-thep-THYON",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "cancelación": {
+      "pron": "kan-se-la-THYON",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "gratuita": {
+      "pron": "gra-TWI-ta",
+      "cat": "adj"
+    },
+    "retiene": {
+      "pron": "re-TYE-ne",
+      "cat": "verb"
+    },
+    "total": {
+      "pron": "to-TAL",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "presenta": {
+      "pron": "pre-SEN-ta",
+      "cat": "verb"
+    },
+    "gasto": {
+      "pron": "GAS-to",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "adicional": {
+      "pron": "a-di-thyo-NAL",
+      "cat": "adj"
+    },
+    "cobra": {
+      "pron": "KO-bra",
+      "cat": "verb"
+    },
+    "finalizar": {
+      "pron": "fi-na-li-THAR",
+      "cat": "verb"
+    },
+    "acordado": {
+      "pron": "a-kor-DA-do",
+      "cat": "verb"
+    },
+    "condición": {
+      "pron": "kon-di-THYON",
+      "cat": "sust",
+      "genero": "f"
     }
   },
   "bloques": [
@@ -69,24 +149,60 @@
               {
                 "funcion": "PRED",
                 "texto": "Hasta cuándo puedo cancelar sin gastos",
-                "nucleo": "puedo",
                 "partes": [
                   {
                     "funcion": "CCT",
                     "texto": "Hasta cuándo",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "Hasta"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "cuándo",
+                        "partes": [
+                          {
+                            "funcion": "ADV",
+                            "texto": "cuándo",
+                            "nucleo": "cuándo"
+                          }
+                        ],
+                        "nucleo": "cuándo"
+                      }
+                    ],
                     "nucleo": "cuándo"
                   },
                   {
                     "funcion": "V",
                     "texto": "puedo cancelar",
-                    "nucleo": "puedo"
+                    "nucleo": "cancelar"
                   },
                   {
                     "funcion": "CCM",
                     "texto": "sin gastos",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "sin"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "gastos",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "gastos",
+                            "nucleo": "gastos"
+                          }
+                        ],
+                        "nucleo": "gastos"
+                      }
+                    ],
                     "nucleo": "gastos"
                   }
-                ]
+                ],
+                "nucleo": "cancelar"
               }
             ]
           }
@@ -100,19 +216,46 @@
               {
                 "funcion": "PRED",
                 "texto": "Puede cancelar hasta el día quince",
-                "nucleo": "Puede",
                 "partes": [
                   {
                     "funcion": "V",
                     "texto": "Puede cancelar",
-                    "nucleo": "Puede"
+                    "nucleo": "cancelar"
                   },
                   {
                     "funcion": "CCT",
                     "texto": "hasta el día quince",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "hasta"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "el día quince",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "día",
+                            "nucleo": "día"
+                          },
+                          {
+                            "funcion": "CUANT",
+                            "texto": "quince",
+                            "nucleo": "quince"
+                          }
+                        ],
+                        "nucleo": "día"
+                      }
+                    ],
                     "nucleo": "día"
                   }
-                ]
+                ],
+                "nucleo": "cancelar"
               }
             ]
           }
@@ -126,12 +269,18 @@
               {
                 "funcion": "SUJ",
                 "texto": "Qué",
+                "partes": [
+                  {
+                    "funcion": "PRON",
+                    "texto": "Qué",
+                    "nucleo": "Qué"
+                  }
+                ],
                 "nucleo": "Qué"
               },
               {
                 "funcion": "PRED",
                 "texto": "pasa si no me presento",
-                "nucleo": "pasa",
                 "partes": [
                   {
                     "funcion": "V",
@@ -141,28 +290,32 @@
                   {
                     "funcion": "CCC",
                     "texto": "si no me presento",
-                    "nucleo": "presento",
                     "partes": [
                       {
                         "funcion": "CONJ",
                         "texto": "si"
                       },
                       {
-                        "funcion": "NEG",
-                        "texto": "no"
-                      },
-                      {
-                        "funcion": "PRON",
-                        "texto": "me"
-                      },
-                      {
-                        "funcion": "V",
-                        "texto": "presento",
+                        "funcion": "PRED",
+                        "texto": "no me presento",
+                        "partes": [
+                          {
+                            "funcion": "NEG",
+                            "texto": "no"
+                          },
+                          {
+                            "funcion": "V",
+                            "texto": "me presento",
+                            "nucleo": "presento"
+                          }
+                        ],
                         "nucleo": "presento"
                       }
-                    ]
+                    ],
+                    "nucleo": "presento"
                   }
-                ]
+                ],
+                "nucleo": "pasa"
               }
             ]
           }
@@ -171,46 +324,44 @@
           "quien": "Recepción",
           "sintaxis": {
             "oracion": "bimembre",
-            "sujeto": "omitido",
+            "sujeto": "expreso",
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Entonces no se devuelve el anticipo",
-                "nucleo": "devuelve",
+                "texto": "Entonces no se devuelve",
                 "partes": [
                   {
-                    "funcion": "CONJ",
-                    "texto": "Entonces"
+                    "funcion": "CCT",
+                    "texto": "Entonces",
+                    "nucleo": "Entonces"
                   },
                   {
                     "funcion": "NEG",
                     "texto": "no"
                   },
                   {
-                    "funcion": "PRON",
-                    "texto": "se"
-                  },
-                  {
                     "funcion": "V",
-                    "texto": "devuelve",
+                    "texto": "se devuelve",
                     "nucleo": "devuelve"
+                  }
+                ],
+                "nucleo": "devuelve"
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "el anticipo",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "el"
                   },
                   {
-                    "funcion": "CD",
-                    "texto": "el anticipo",
-                    "nucleo": "anticipo",
-                    "partes": [
-                      {
-                        "funcion": "DET",
-                        "texto": "el"
-                      },
-                      {
-                        "funcion": "N",
-                        "texto": "anticipo"
-                      }
-                    ]
+                    "funcion": "N",
+                    "texto": "anticipo",
+                    "nucleo": "anticipo"
                   }
-                ]
+                ],
+                "nucleo": "anticipo"
               }
             ]
           }
@@ -224,7 +375,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Me envía el comprobante por correo",
-                "nucleo": "envía",
                 "partes": [
                   {
                     "funcion": "CI",
@@ -239,7 +389,6 @@
                   {
                     "funcion": "CD",
                     "texto": "el comprobante",
-                    "nucleo": "comprobante",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -247,16 +396,37 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "comprobante"
+                        "texto": "comprobante",
+                        "nucleo": "comprobante"
                       }
-                    ]
+                    ],
+                    "nucleo": "comprobante"
                   },
                   {
-                    "funcion": "CCM",
+                    "funcion": "CCINSTR",
                     "texto": "por correo",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "por"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "correo",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "correo",
+                            "nucleo": "correo"
+                          }
+                        ],
+                        "nucleo": "correo"
+                      }
+                    ],
                     "nucleo": "correo"
                   }
-                ]
+                ],
+                "nucleo": "envía"
               }
             ]
           }
@@ -270,7 +440,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Se lo envío en cuanto lo reciba",
-                "nucleo": "envío",
                 "partes": [
                   {
                     "funcion": "CI",
@@ -290,25 +459,33 @@
                   {
                     "funcion": "CCT",
                     "texto": "en cuanto lo reciba",
-                    "nucleo": "reciba",
                     "partes": [
                       {
                         "funcion": "CONJ",
                         "texto": "en cuanto"
                       },
                       {
-                        "funcion": "CD",
-                        "texto": "lo",
-                        "nucleo": "lo"
-                      },
-                      {
-                        "funcion": "V",
-                        "texto": "reciba",
+                        "funcion": "PRED",
+                        "texto": "lo reciba",
+                        "partes": [
+                          {
+                            "funcion": "CD",
+                            "texto": "lo",
+                            "nucleo": "lo"
+                          },
+                          {
+                            "funcion": "V",
+                            "texto": "reciba",
+                            "nucleo": "reciba"
+                          }
+                        ],
                         "nucleo": "reciba"
                       }
-                    ]
+                    ],
+                    "nucleo": "reciba"
                   }
-                ]
+                ],
+                "nucleo": "envío"
               }
             ]
           }
@@ -343,7 +520,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La reserva",
-                "nucleo": "reserva",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -351,14 +527,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "reserva"
+                    "texto": "reserva",
+                    "nucleo": "reserva"
                   }
-                ]
+                ],
+                "nucleo": "reserva"
               },
               {
                 "funcion": "PRED",
                 "texto": "queda confirmada cuando se recibe el anticipo",
-                "nucleo": "queda",
                 "partes": [
                   {
                     "funcion": "V",
@@ -366,36 +543,51 @@
                     "nucleo": "queda"
                   },
                   {
-                    "funcion": "CPVO",
+                    "funcion": "ATRIB",
                     "texto": "confirmada",
                     "nucleo": "confirmada"
                   },
                   {
                     "funcion": "CCT",
                     "texto": "cuando se recibe el anticipo",
-                    "nucleo": "recibe",
                     "partes": [
                       {
                         "funcion": "CONJ",
                         "texto": "cuando"
                       },
                       {
-                        "funcion": "PRON",
-                        "texto": "se"
-                      },
-                      {
-                        "funcion": "V",
-                        "texto": "recibe",
+                        "funcion": "PRED",
+                        "texto": "se recibe",
+                        "partes": [
+                          {
+                            "funcion": "V",
+                            "texto": "se recibe",
+                            "nucleo": "recibe"
+                          }
+                        ],
                         "nucleo": "recibe"
                       },
                       {
-                        "funcion": "CD",
+                        "funcion": "SUJ",
                         "texto": "el anticipo",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "anticipo",
+                            "nucleo": "anticipo"
+                          }
+                        ],
                         "nucleo": "anticipo"
                       }
-                    ]
+                    ],
+                    "nucleo": "recibe"
                   }
-                ]
+                ],
+                "nucleo": "queda"
               }
             ]
           }
@@ -403,57 +595,97 @@
         {
           "sintaxis": {
             "oracion": "bimembre",
-            "sujeto": "omitido",
+            "sujeto": "expreso",
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "No se devuelve el anticipo salvo que se avise con dos días",
-                "nucleo": "devuelve",
+                "texto": "No se devuelve",
                 "partes": [
                   {
                     "funcion": "NEG",
                     "texto": "No"
                   },
                   {
-                    "funcion": "PRON",
-                    "texto": "se"
-                  },
-                  {
                     "funcion": "V",
-                    "texto": "devuelve",
+                    "texto": "se devuelve",
                     "nucleo": "devuelve"
+                  }
+                ],
+                "nucleo": "devuelve"
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "el anticipo",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "el"
                   },
                   {
-                    "funcion": "CD",
-                    "texto": "el anticipo",
+                    "funcion": "N",
+                    "texto": "anticipo",
                     "nucleo": "anticipo"
-                  },
+                  }
+                ],
+                "nucleo": "anticipo"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "salvo que se avise con dos días",
+                "partes": [
                   {
                     "funcion": "CCC",
                     "texto": "salvo que se avise con dos días",
-                    "nucleo": "avise",
                     "partes": [
                       {
                         "funcion": "CONJ",
                         "texto": "salvo que"
                       },
                       {
-                        "funcion": "PRON",
-                        "texto": "se"
-                      },
-                      {
-                        "funcion": "V",
-                        "texto": "avise",
+                        "funcion": "PRED",
+                        "texto": "se avise con dos días",
+                        "partes": [
+                          {
+                            "funcion": "V",
+                            "texto": "se avise",
+                            "nucleo": "avise"
+                          },
+                          {
+                            "funcion": "CCM",
+                            "texto": "con dos días",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "con"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "dos días",
+                                "partes": [
+                                  {
+                                    "funcion": "CUANT",
+                                    "texto": "dos",
+                                    "nucleo": "dos"
+                                  },
+                                  {
+                                    "funcion": "N",
+                                    "texto": "días",
+                                    "nucleo": "días"
+                                  }
+                                ],
+                                "nucleo": "días"
+                              }
+                            ],
+                            "nucleo": "días"
+                          }
+                        ],
                         "nucleo": "avise"
-                      },
-                      {
-                        "funcion": "CCT",
-                        "texto": "con dos días",
-                        "nucleo": "días"
                       }
-                    ]
+                    ],
+                    "nucleo": "avise"
                   }
-                ]
+                ],
+                "nucleo": "avise"
               }
             ]
           }
@@ -474,7 +706,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La reserva",
-                "nucleo": "reserva",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -482,14 +713,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "reserva"
+                    "texto": "reserva",
+                    "nucleo": "reserva"
                   }
-                ]
+                ],
+                "nucleo": "reserva"
               },
               {
                 "funcion": "PRED",
                 "texto": "queda confirmada cuando se recibe el anticipo",
-                "nucleo": "queda",
                 "partes": [
                   {
                     "funcion": "V",
@@ -497,16 +729,51 @@
                     "nucleo": "queda"
                   },
                   {
-                    "funcion": "CPVO",
+                    "funcion": "ATRIB",
                     "texto": "confirmada",
                     "nucleo": "confirmada"
                   },
                   {
                     "funcion": "CCT",
                     "texto": "cuando se recibe el anticipo",
+                    "partes": [
+                      {
+                        "funcion": "CONJ",
+                        "texto": "cuando"
+                      },
+                      {
+                        "funcion": "PRED",
+                        "texto": "se recibe",
+                        "partes": [
+                          {
+                            "funcion": "V",
+                            "texto": "se recibe",
+                            "nucleo": "recibe"
+                          }
+                        ],
+                        "nucleo": "recibe"
+                      },
+                      {
+                        "funcion": "SUJ",
+                        "texto": "el anticipo",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "anticipo",
+                            "nucleo": "anticipo"
+                          }
+                        ],
+                        "nucleo": "anticipo"
+                      }
+                    ],
                     "nucleo": "recibe"
                   }
-                ]
+                ],
+                "nucleo": "queda"
               }
             ]
           }
@@ -520,7 +787,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "El importe restante",
-                "nucleo": "importe",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -528,32 +794,51 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "importe"
+                    "texto": "importe",
+                    "nucleo": "importe"
                   },
                   {
                     "funcion": "ADY",
                     "texto": "restante",
                     "nucleo": "restante"
                   }
-                ]
+                ],
+                "nucleo": "importe"
               },
               {
                 "funcion": "PRED",
                 "texto": "se abona antes de la llegada o en la recepción del alojamiento",
-                "nucleo": "abona",
                 "partes": [
                   {
-                    "funcion": "PRON",
-                    "texto": "se"
-                  },
-                  {
                     "funcion": "V",
-                    "texto": "abona",
+                    "texto": "se abona",
                     "nucleo": "abona"
                   },
                   {
                     "funcion": "CCT",
                     "texto": "antes de la llegada",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "antes de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la llegada",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "llegada",
+                            "nucleo": "llegada"
+                          }
+                        ],
+                        "nucleo": "llegada"
+                      }
+                    ],
                     "nucleo": "llegada"
                   },
                   {
@@ -563,9 +848,55 @@
                   {
                     "funcion": "CCL",
                     "texto": "en la recepción del alojamiento",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la recepción del alojamiento",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "recepción",
+                            "nucleo": "recepción"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "del alojamiento",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "del"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "alojamiento",
+                                "partes": [
+                                  {
+                                    "funcion": "N",
+                                    "texto": "alojamiento",
+                                    "nucleo": "alojamiento"
+                                  }
+                                ],
+                                "nucleo": "alojamiento"
+                              }
+                            ],
+                            "nucleo": "alojamiento"
+                          }
+                        ],
+                        "nucleo": "recepción"
+                      }
+                    ],
                     "nucleo": "recepción"
                   }
-                ]
+                ],
+                "nucleo": "abona"
               }
             ]
           }
@@ -579,7 +910,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La cancelación",
-                "nucleo": "cancelación",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -587,14 +917,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "cancelación"
+                    "texto": "cancelación",
+                    "nucleo": "cancelación"
                   }
-                ]
+                ],
+                "nucleo": "cancelación"
               },
               {
                 "funcion": "PRED",
                 "texto": "es gratuita hasta el día quince del mes anterior",
-                "nucleo": "es",
                 "partes": [
                   {
                     "funcion": "V",
@@ -609,9 +940,65 @@
                   {
                     "funcion": "CCT",
                     "texto": "hasta el día quince del mes anterior",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "hasta"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "el día quince del mes anterior",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "día",
+                            "nucleo": "día"
+                          },
+                          {
+                            "funcion": "CUANT",
+                            "texto": "quince",
+                            "nucleo": "quince"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "del mes anterior",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "del"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "mes anterior",
+                                "partes": [
+                                  {
+                                    "funcion": "N",
+                                    "texto": "mes",
+                                    "nucleo": "mes"
+                                  },
+                                  {
+                                    "funcion": "ADY",
+                                    "texto": "anterior",
+                                    "nucleo": "anterior"
+                                  }
+                                ],
+                                "nucleo": "mes"
+                              }
+                            ],
+                            "nucleo": "mes"
+                          }
+                        ],
+                        "nucleo": "día"
+                      }
+                    ],
                     "nucleo": "día"
                   }
-                ]
+                ],
+                "nucleo": "es"
               }
             ]
           }
@@ -620,33 +1007,85 @@
           "parrafo": 0,
           "sintaxis": {
             "oracion": "bimembre",
-            "sujeto": "omitido",
+            "sujeto": "expreso",
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "A partir de esa fecha se retiene el veinte por ciento del total",
-                "nucleo": "retiene",
+                "texto": "A partir de esa fecha se retiene",
                 "partes": [
                   {
                     "funcion": "CCT",
                     "texto": "A partir de esa fecha",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "A partir de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "esa fecha",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "esa"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "fecha",
+                            "nucleo": "fecha"
+                          }
+                        ],
+                        "nucleo": "fecha"
+                      }
+                    ],
                     "nucleo": "fecha"
                   },
                   {
-                    "funcion": "PRON",
-                    "texto": "se"
-                  },
-                  {
                     "funcion": "V",
-                    "texto": "retiene",
+                    "texto": "se retiene",
                     "nucleo": "retiene"
+                  }
+                ],
+                "nucleo": "retiene"
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "el veinte por ciento del total",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "el"
                   },
                   {
-                    "funcion": "CD",
-                    "texto": "el veinte por ciento del total",
-                    "nucleo": "veinte"
+                    "funcion": "CUANT",
+                    "texto": "veinte por ciento",
+                    "nucleo": "ciento"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "del total",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "del"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "total",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "total",
+                            "nucleo": "total"
+                          }
+                        ],
+                        "nucleo": "total"
+                      }
+                    ],
+                    "nucleo": "total"
                   }
-                ]
+                ],
+                "nucleo": "ciento"
               }
             ]
           }
@@ -655,64 +1094,82 @@
           "parrafo": 1,
           "sintaxis": {
             "oracion": "bimembre",
-            "sujeto": "omitido",
+            "sujeto": "expreso",
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Si el cliente no se presenta, no se devuelve el anticipo",
-                "nucleo": "devuelve",
+                "texto": "Si el cliente no se presenta no se devuelve",
                 "partes": [
                   {
                     "funcion": "CCC",
                     "texto": "Si el cliente no se presenta",
-                    "nucleo": "presenta",
                     "partes": [
                       {
                         "funcion": "CONJ",
                         "texto": "Si"
                       },
                       {
-                        "funcion": "DET",
-                        "texto": "el"
+                        "funcion": "SUJ",
+                        "texto": "el cliente",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "cliente",
+                            "nucleo": "cliente"
+                          }
+                        ],
+                        "nucleo": "cliente"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "cliente"
-                      },
-                      {
-                        "funcion": "NEG",
-                        "texto": "no"
-                      },
-                      {
-                        "funcion": "PRON",
-                        "texto": "se"
-                      },
-                      {
-                        "funcion": "V",
-                        "texto": "presenta",
+                        "funcion": "PRED",
+                        "texto": "no se presenta",
+                        "partes": [
+                          {
+                            "funcion": "NEG",
+                            "texto": "no"
+                          },
+                          {
+                            "funcion": "V",
+                            "texto": "se presenta",
+                            "nucleo": "presenta"
+                          }
+                        ],
                         "nucleo": "presenta"
                       }
-                    ]
+                    ],
+                    "nucleo": "cliente"
                   },
                   {
                     "funcion": "NEG",
                     "texto": "no"
                   },
                   {
-                    "funcion": "PRON",
-                    "texto": "se"
-                  },
-                  {
                     "funcion": "V",
-                    "texto": "devuelve",
+                    "texto": "se devuelve",
                     "nucleo": "devuelve"
+                  }
+                ],
+                "nucleo": "devuelve"
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "el anticipo",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "el"
                   },
                   {
-                    "funcion": "CD",
-                    "texto": "el anticipo",
+                    "funcion": "N",
+                    "texto": "anticipo",
                     "nucleo": "anticipo"
                   }
-                ]
+                ],
+                "nucleo": "anticipo"
               }
             ]
           }
@@ -721,40 +1178,101 @@
           "parrafo": 1,
           "sintaxis": {
             "oracion": "bimembre",
-            "sujeto": "omitido",
+            "sujeto": "expreso",
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Conviene conservar el comprobante de pago durante toda la estancia",
-                "nucleo": "Conviene",
+                "texto": "Conviene",
                 "partes": [
                   {
                     "funcion": "V",
                     "texto": "Conviene",
                     "nucleo": "Conviene"
+                  }
+                ],
+                "nucleo": "Conviene"
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "conservar el comprobante de pago durante toda la estancia",
+                "partes": [
+                  {
+                    "funcion": "INF",
+                    "texto": "conservar",
+                    "nucleo": "conservar"
                   },
                   {
-                    "funcion": "CN",
-                    "texto": "conservar el comprobante de pago durante toda la estancia",
-                    "nucleo": "conservar",
+                    "funcion": "CD",
+                    "texto": "el comprobante de pago",
                     "partes": [
                       {
-                        "funcion": "INF",
-                        "texto": "conservar"
+                        "funcion": "DET",
+                        "texto": "el"
                       },
                       {
-                        "funcion": "CD",
-                        "texto": "el comprobante de pago",
+                        "funcion": "N",
+                        "texto": "comprobante",
                         "nucleo": "comprobante"
                       },
                       {
-                        "funcion": "CCT",
-                        "texto": "durante toda la estancia",
+                        "funcion": "CN",
+                        "texto": "de pago",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "de"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "pago",
+                            "partes": [
+                              {
+                                "funcion": "N",
+                                "texto": "pago",
+                                "nucleo": "pago"
+                              }
+                            ],
+                            "nucleo": "pago"
+                          }
+                        ],
+                        "nucleo": "pago"
+                      }
+                    ],
+                    "nucleo": "comprobante"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "durante toda la estancia",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "durante"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "toda la estancia",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "toda"
+                          },
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "estancia",
+                            "nucleo": "estancia"
+                          }
+                        ],
                         "nucleo": "estancia"
                       }
-                    ]
+                    ],
+                    "nucleo": "estancia"
                   }
-                ]
+                ],
+                "nucleo": "conservar"
               }
             ]
           }
@@ -768,7 +1286,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Cualquier gasto adicional",
-                "nucleo": "gasto",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -776,64 +1293,102 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "gasto"
+                    "texto": "gasto",
+                    "nucleo": "gasto"
                   },
                   {
                     "funcion": "ADY",
                     "texto": "adicional",
                     "nucleo": "adicional"
                   }
-                ]
+                ],
+                "nucleo": "gasto"
               },
               {
                 "funcion": "PRED",
-                "texto": "se cobra al finalizar, salvo que se haya acordado otra cosa por escrito",
-                "nucleo": "cobra",
+                "texto": "se cobra al finalizar salvo que se haya acordado otra cosa por escrito",
                 "partes": [
                   {
-                    "funcion": "PRON",
-                    "texto": "se"
-                  },
-                  {
                     "funcion": "V",
-                    "texto": "cobra",
+                    "texto": "se cobra",
                     "nucleo": "cobra"
                   },
                   {
                     "funcion": "CCT",
                     "texto": "al finalizar",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "al"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "finalizar",
+                        "partes": [
+                          {
+                            "funcion": "INF",
+                            "texto": "finalizar",
+                            "nucleo": "finalizar"
+                          }
+                        ],
+                        "nucleo": "finalizar"
+                      }
+                    ],
                     "nucleo": "finalizar"
                   },
                   {
                     "funcion": "CCC",
                     "texto": "salvo que se haya acordado otra cosa por escrito",
-                    "nucleo": "acordado",
                     "partes": [
                       {
                         "funcion": "CONJ",
                         "texto": "salvo que"
                       },
                       {
-                        "funcion": "PRON",
-                        "texto": "se"
-                      },
-                      {
-                        "funcion": "AUX",
-                        "texto": "haya"
-                      },
-                      {
-                        "funcion": "V",
-                        "texto": "acordado",
+                        "funcion": "PRED",
+                        "texto": "se haya acordado",
+                        "partes": [
+                          {
+                            "funcion": "V",
+                            "texto": "se haya acordado",
+                            "nucleo": "acordado"
+                          }
+                        ],
                         "nucleo": "acordado"
                       },
                       {
-                        "funcion": "CD",
-                        "texto": "otra cosa por escrito",
+                        "funcion": "SUJ",
+                        "texto": "otra cosa",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "otra"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "cosa",
+                            "nucleo": "cosa"
+                          }
+                        ],
                         "nucleo": "cosa"
+                      },
+                      {
+                        "funcion": "PRED",
+                        "texto": "por escrito",
+                        "partes": [
+                          {
+                            "funcion": "CCM",
+                            "texto": "por escrito",
+                            "nucleo": "escrito"
+                          }
+                        ],
+                        "nucleo": "escrito"
                       }
-                    ]
+                    ],
+                    "nucleo": "acordado"
                   }
-                ]
+                ],
+                "nucleo": "cobra"
               }
             ]
           }

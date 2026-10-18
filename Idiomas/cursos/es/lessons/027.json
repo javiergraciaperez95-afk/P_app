@@ -2,66 +2,338 @@
   "esquema": 2,
   "id": "027",
   "capitulo": 3,
+  "numero_curso": 29,
+  "orden_curso": 29,
   "nivel": "A1",
   "palabras": {
-    "voy": { "pron": "boy", "cat": "verb" },
-    "vas": { "pron": "bas", "cat": "verb" },
-    "va": { "pron": "ba", "cat": "verb" },
-    "vamos": { "pron": "BA-mos", "cat": "verb" },
-    "van": { "pron": "ban", "cat": "verb" },
-    "adónde": { "pron": "a-DON-de", "cat": "adv" },
-    "al": { "pron": "al", "cat": "expr" },
-    "del": { "pron": "del", "cat": "expr" },
-    "el centro": { "pron": "el THEN-tro", "cat": "sust", "genero": "m" },
-    "la playa": { "pron": "la PLA-ya", "cat": "sust", "genero": "f" },
-    "en metro": { "pron": "en ME-tro", "cat": "expr" },
-    "a pie": { "pron": "a PYE", "cat": "expr" }
+    "voy": {
+      "pron": "boy",
+      "cat": "verb"
+    },
+    "vas": {
+      "pron": "bas",
+      "cat": "verb"
+    },
+    "va": {
+      "pron": "ba",
+      "cat": "verb"
+    },
+    "vamos": {
+      "pron": "BA-mos",
+      "cat": "verb"
+    },
+    "van": {
+      "pron": "ban",
+      "cat": "verb"
+    },
+    "adónde": {
+      "pron": "a-DON-de",
+      "cat": "adv"
+    },
+    "al": {
+      "pron": "al",
+      "cat": "expr"
+    },
+    "del": {
+      "pron": "del",
+      "cat": "expr"
+    },
+    "el centro": {
+      "pron": "el THEN-tro",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "la playa": {
+      "pron": "la PLA-ya",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "en metro": {
+      "pron": "en ME-tro",
+      "cat": "expr"
+    },
+    "a pie": {
+      "pron": "a PYE",
+      "cat": "expr"
+    },
+    "lento": {
+      "pron": "LEN-to",
+      "cat": "adj"
+    },
+    "cafeterías": {
+      "pron": "ka-fe-te-RI-as",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "toman": {
+      "pron": "TO-man",
+      "cat": "verb"
+    },
+    "vuelven": {
+      "pron": "BWEL-ben",
+      "cat": "verb"
+    },
+    "Pablo": {
+      "propio": true
+    },
+    "Lucía": {
+      "propio": true
+    }
   },
   "bloques": [
-    { "id": "b1", "tipo": "explicacion" },
+    {
+      "id": "b1",
+      "tipo": "explicacion"
+    },
     {
       "id": "b2",
       "tipo": "dialogo",
       "frases": [
-        { "quien": "Lucía", "sintaxis": { "oracion": "bimembre", "sujeto": "omitido", "unidades": [
-          { "funcion": "PRED", "texto": "Adónde vas", "nucleo": "vas", "partes": [
-            { "funcion": "CCL", "texto": "Adónde", "nucleo": "Adónde" },
-            { "funcion": "V", "texto": "vas", "nucleo": "vas" } ] } ] } },
-        { "quien": "Pablo", "sintaxis": { "oracion": "bimembre", "sujeto": "omitido", "unidades": [
-          { "funcion": "PRED", "texto": "Voy al centro", "nucleo": "Voy", "partes": [
-            { "funcion": "V", "texto": "Voy", "nucleo": "Voy" },
-            { "funcion": "CCL", "texto": "al centro", "nucleo": "centro" } ] } ] } },
-        { "quien": "Lucía", "sintaxis": { "oracion": "bimembre", "sujeto": "omitido", "unidades": [
-          { "funcion": "PRED", "texto": "Cómo vamos", "nucleo": "vamos", "partes": [
-            { "funcion": "CCM", "texto": "Cómo", "nucleo": "Cómo" },
-            { "funcion": "V", "texto": "vamos", "nucleo": "vamos" } ] } ] } },
-        { "quien": "Pablo", "sintaxis": { "oracion": "unimembre", "unidades": [
-          { "funcion": "CCM", "texto": "En metro", "nucleo": "metro" } ] } },
-        { "quien": "Lucía", "sintaxis": { "oracion": "bimembre", "sujeto": "expreso", "unidades": [
-          { "funcion": "SUJ", "texto": "Yo", "nucleo": "Yo" },
-          { "funcion": "PRED", "texto": "siempre voy a pie", "nucleo": "voy", "partes": [
-            { "funcion": "CCM", "texto": "siempre", "nucleo": "siempre" },
-            { "funcion": "V", "texto": "voy", "nucleo": "voy" },
-            { "funcion": "CCM", "texto": "a pie", "nucleo": "pie" } ] } ] } }
+        {
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Adónde vas",
+                "partes": [
+                  {
+                    "funcion": "CCL",
+                    "texto": "Adónde",
+                    "nucleo": "Adónde"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "vas",
+                    "nucleo": "vas"
+                  }
+                ],
+                "nucleo": "vas"
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Pablo",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Voy al centro",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Voy",
+                    "nucleo": "Voy"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "al centro",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "al"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "centro",
+                        "nucleo": "centro"
+                      }
+                    ],
+                    "nucleo": "centro"
+                  }
+                ],
+                "nucleo": "Voy"
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Cómo vamos",
+                "partes": [
+                  {
+                    "funcion": "CCM",
+                    "texto": "Cómo",
+                    "nucleo": "Cómo"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "vamos",
+                    "nucleo": "vamos"
+                  }
+                ],
+                "nucleo": "vamos"
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Pablo",
+          "sintaxis": {
+            "oracion": "unimembre",
+            "unidades": [
+              {
+                "funcion": "CCM",
+                "texto": "En metro",
+                "partes": [
+                  {
+                    "funcion": "PREP",
+                    "texto": "En"
+                  },
+                  {
+                    "funcion": "TERM",
+                    "texto": "metro",
+                    "nucleo": "metro"
+                  }
+                ],
+                "nucleo": "metro"
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Yo",
+                "nucleo": "Yo"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "siempre voy a pie",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "siempre",
+                    "nucleo": "siempre"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "voy",
+                    "nucleo": "voy"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "a pie",
+                    "nucleo": "pie"
+                  }
+                ],
+                "nucleo": "voy"
+              }
+            ]
+          }
+        }
       ]
     },
     {
       "id": "b3",
       "tipo": "vocabulario",
-      "palabras": ["voy", "vas", "va", "vamos", "van", "adónde", "al", "del", "el centro", "la playa", "en metro", "a pie"]
+      "palabras": [
+        "voy",
+        "vas",
+        "va",
+        "vamos",
+        "van",
+        "adónde",
+        "al",
+        "del",
+        "el centro",
+        "la playa",
+        "en metro",
+        "a pie"
+      ]
     },
     {
       "id": "b4",
       "tipo": "gramatica",
       "ejemplos": [
-        { "sintaxis": { "oracion": "bimembre", "sujeto": "omitido", "unidades": [
-          { "funcion": "PRED", "texto": "Voy al centro", "nucleo": "Voy", "partes": [
-            { "funcion": "V", "texto": "Voy", "nucleo": "Voy" },
-            { "funcion": "CCL", "texto": "al centro", "nucleo": "centro" } ] } ] } },
-        { "sintaxis": { "oracion": "bimembre", "sujeto": "omitido", "unidades": [
-          { "funcion": "PRED", "texto": "Vamos en metro", "nucleo": "Vamos", "partes": [
-            { "funcion": "V", "texto": "Vamos", "nucleo": "Vamos" },
-            { "funcion": "CCM", "texto": "en metro", "nucleo": "metro" } ] } ] } }
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Voy al centro",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Voy",
+                    "nucleo": "Voy"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "al centro",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "al"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "centro",
+                        "nucleo": "centro"
+                      }
+                    ],
+                    "nucleo": "centro"
+                  }
+                ],
+                "nucleo": "Voy"
+              }
+            ]
+          }
+        },
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Vamos en metro",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Vamos",
+                    "nucleo": "Vamos"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "en metro",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "metro",
+                        "nucleo": "metro"
+                      }
+                    ],
+                    "nucleo": "metro"
+                  }
+                ],
+                "nucleo": "Vamos"
+              }
+            ]
+          }
+        }
       ]
     },
     {
@@ -69,63 +341,568 @@
       "tipo": "texto",
       "registro": "literario",
       "frases": [
-        { "parrafo": 0, "sintaxis": { "oracion": "bimembre", "sujeto": "expreso", "unidades": [
-          { "funcion": "SUJ", "texto": "Lucía y Pablo", "nucleo": "Lucía", "partes": [
-            { "funcion": "N", "texto": "Lucía" },
-            { "funcion": "CONJ", "texto": "y" },
-            { "funcion": "N", "texto": "Pablo" } ] },
-          { "funcion": "PRED", "texto": "van al centro el sábado", "nucleo": "van", "partes": [
-            { "funcion": "V", "texto": "van", "nucleo": "van" },
-            { "funcion": "CCL", "texto": "al centro", "nucleo": "centro" },
-            { "funcion": "CCT", "texto": "el sábado", "nucleo": "sábado" } ] } ] } },
-        { "parrafo": 0, "sintaxis": { "oracion": "bimembre", "sujeto": "omitido", "unidades": [
-          { "funcion": "PRED", "texto": "Van en metro porque el autobús es lento", "nucleo": "Van", "partes": [
-            { "funcion": "V", "texto": "Van", "nucleo": "Van" },
-            { "funcion": "CCM", "texto": "en metro", "nucleo": "metro" },
-            { "funcion": "CCC", "texto": "porque el autobús es lento", "nucleo": "es", "partes": [
-              { "funcion": "CONJ", "texto": "porque" },
-              { "funcion": "DET", "texto": "el" },
-              { "funcion": "N", "texto": "autobús" },
-              { "funcion": "V", "texto": "es", "nucleo": "es" },
-              { "funcion": "ATRIB", "texto": "lento", "nucleo": "lento" } ] } ] } ] } },
-        { "parrafo": 0, "sintaxis": { "oracion": "bimembre", "sujeto": "expreso", "unidades": [
-          { "funcion": "SUJ", "texto": "El centro", "nucleo": "centro", "partes": [
-            { "funcion": "DET", "texto": "El" },
-            { "funcion": "N", "texto": "centro" } ] },
-          { "funcion": "PRED", "texto": "está cerca de la playa", "nucleo": "está", "partes": [
-            { "funcion": "V", "texto": "está", "nucleo": "está" },
-            { "funcion": "CCL", "texto": "cerca de la playa", "nucleo": "playa" } ] } ] } },
-        { "parrafo": 0, "sintaxis": { "oracion": "bimembre", "sujeto": "omitido", "unidades": [
-          { "funcion": "PRED", "texto": "Allí hay muchas tiendas y cafeterías", "nucleo": "hay", "partes": [
-            { "funcion": "CCL", "texto": "Allí", "nucleo": "Allí" },
-            { "funcion": "V", "texto": "hay", "nucleo": "hay" },
-            { "funcion": "CD", "texto": "muchas tiendas y cafeterías", "nucleo": "tiendas" } ] } ] } },
-        { "parrafo": 1, "sintaxis": { "oracion": "bimembre", "sujeto": "expreso", "unidades": [
-          { "funcion": "SUJ", "texto": "Lucía", "nucleo": "Lucía" },
-          { "funcion": "PRED", "texto": "quiere comprar un regalo", "nucleo": "quiere", "partes": [
-            { "funcion": "V", "texto": "quiere comprar", "nucleo": "quiere" },
-            { "funcion": "CD", "texto": "un regalo", "nucleo": "regalo" } ] } ] } },
-        { "parrafo": 1, "sintaxis": { "oracion": "bimembre", "sujeto": "expreso", "unidades": [
-          { "funcion": "SUJ", "texto": "Pablo", "nucleo": "Pablo" },
-          { "funcion": "PRED", "texto": "busca un libro en la librería", "nucleo": "busca", "partes": [
-            { "funcion": "V", "texto": "busca", "nucleo": "busca" },
-            { "funcion": "CD", "texto": "un libro", "nucleo": "libro" },
-            { "funcion": "CCL", "texto": "en la librería", "nucleo": "librería" } ] } ] } },
-        { "parrafo": 1, "sintaxis": { "oracion": "bimembre", "sujeto": "omitido", "unidades": [
-          { "funcion": "PRED", "texto": "Toman un café con leche después", "nucleo": "Toman", "partes": [
-            { "funcion": "V", "texto": "Toman", "nucleo": "Toman" },
-            { "funcion": "CD", "texto": "un café con leche", "nucleo": "café" },
-            { "funcion": "CCT", "texto": "después", "nucleo": "después" } ] } ] } },
-        { "parrafo": 1, "sintaxis": { "oracion": "bimembre", "sujeto": "omitido", "unidades": [
-          { "funcion": "PRED", "texto": "Vuelven a casa a las seis y media", "nucleo": "Vuelven", "partes": [
-            { "funcion": "V", "texto": "Vuelven", "nucleo": "Vuelven" },
-            { "funcion": "CCL", "texto": "a casa", "nucleo": "casa" },
-            { "funcion": "CCT", "texto": "a las seis y media", "nucleo": "seis" } ] } ] } }
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Lucía y Pablo",
+                "partes": [
+                  {
+                    "funcion": "SUJ",
+                    "texto": "Lucía",
+                    "nucleo": "Lucía"
+                  },
+                  {
+                    "funcion": "CONJ",
+                    "texto": "y"
+                  },
+                  {
+                    "funcion": "SUJ",
+                    "texto": "Pablo",
+                    "nucleo": "Pablo"
+                  }
+                ],
+                "nucleo": "Lucía"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "van al centro el sábado",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "van",
+                    "nucleo": "van"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "al centro",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "al"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "centro",
+                        "nucleo": "centro"
+                      }
+                    ],
+                    "nucleo": "centro"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "el sábado",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "el"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "sábado",
+                        "nucleo": "sábado"
+                      }
+                    ],
+                    "nucleo": "sábado"
+                  }
+                ],
+                "nucleo": "van"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Van en metro porque el autobús es lento",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Van",
+                    "nucleo": "Van"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "en metro",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "metro",
+                        "nucleo": "metro"
+                      }
+                    ],
+                    "nucleo": "metro"
+                  },
+                  {
+                    "funcion": "CCC",
+                    "texto": "porque el autobús es lento",
+                    "partes": [
+                      {
+                        "funcion": "CONJ",
+                        "texto": "porque"
+                      },
+                      {
+                        "funcion": "SUJ",
+                        "texto": "el autobús",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "autobús",
+                            "nucleo": "autobús"
+                          }
+                        ],
+                        "nucleo": "autobús"
+                      },
+                      {
+                        "funcion": "PRED",
+                        "texto": "es lento",
+                        "partes": [
+                          {
+                            "funcion": "V",
+                            "texto": "es",
+                            "nucleo": "es"
+                          },
+                          {
+                            "funcion": "ATRIB",
+                            "texto": "lento",
+                            "nucleo": "lento"
+                          }
+                        ],
+                        "nucleo": "es"
+                      }
+                    ],
+                    "nucleo": "autobús"
+                  }
+                ],
+                "nucleo": "Van"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "El centro",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "El"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "centro",
+                    "nucleo": "centro"
+                  }
+                ],
+                "nucleo": "centro"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "está cerca de la playa",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "está",
+                    "nucleo": "está"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "cerca de la playa",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "cerca de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la playa",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "playa",
+                            "nucleo": "playa"
+                          }
+                        ],
+                        "nucleo": "playa"
+                      }
+                    ],
+                    "nucleo": "playa"
+                  }
+                ],
+                "nucleo": "está"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Allí hay muchas tiendas y cafeterías",
+                "partes": [
+                  {
+                    "funcion": "CCL",
+                    "texto": "Allí",
+                    "nucleo": "Allí"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "hay",
+                    "nucleo": "hay"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "muchas tiendas y cafeterías",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "muchas",
+                        "nucleo": "muchas"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "tiendas y cafeterías",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "tiendas",
+                            "nucleo": "tiendas"
+                          },
+                          {
+                            "funcion": "CONJ",
+                            "texto": "y"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "cafeterías",
+                            "nucleo": "cafeterías"
+                          }
+                        ],
+                        "nucleo": "tiendas"
+                      }
+                    ],
+                    "nucleo": "tiendas"
+                  }
+                ],
+                "nucleo": "hay"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Lucía",
+                "nucleo": "Lucía"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "quiere comprar un regalo",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "quiere comprar",
+                    "nucleo": "comprar"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "un regalo",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "un"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "regalo",
+                        "nucleo": "regalo"
+                      }
+                    ],
+                    "nucleo": "regalo"
+                  }
+                ],
+                "nucleo": "comprar"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Pablo",
+                "nucleo": "Pablo"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "busca un libro en la librería",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "busca",
+                    "nucleo": "busca"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "un libro",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "un"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "libro",
+                        "nucleo": "libro"
+                      }
+                    ],
+                    "nucleo": "libro"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en la librería",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la librería",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "librería",
+                            "nucleo": "librería"
+                          }
+                        ],
+                        "nucleo": "librería"
+                      }
+                    ],
+                    "nucleo": "librería"
+                  }
+                ],
+                "nucleo": "busca"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Toman un café con leche después",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Toman",
+                    "nucleo": "Toman"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "un café con leche",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "un"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "café",
+                        "nucleo": "café"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "con leche",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "con"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "leche",
+                            "nucleo": "leche"
+                          }
+                        ],
+                        "nucleo": "leche"
+                      }
+                    ],
+                    "nucleo": "café"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "después",
+                    "nucleo": "después"
+                  }
+                ],
+                "nucleo": "Toman"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Vuelven a casa a las seis y media",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Vuelven",
+                    "nucleo": "Vuelven"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "a casa",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "a"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "casa",
+                        "nucleo": "casa"
+                      }
+                    ],
+                    "nucleo": "casa"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "a las seis y media",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "a"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "las seis y media",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "las"
+                          },
+                          {
+                            "funcion": "CUANT",
+                            "texto": "seis",
+                            "nucleo": "seis"
+                          },
+                          {
+                            "funcion": "CONJ",
+                            "texto": "y"
+                          },
+                          {
+                            "funcion": "CUANT",
+                            "texto": "media",
+                            "nucleo": "media"
+                          }
+                        ],
+                        "nucleo": "seis"
+                      }
+                    ],
+                    "nucleo": "seis"
+                  }
+                ],
+                "nucleo": "Vuelven"
+              }
+            ]
+          }
+        }
       ]
     },
-    { "id": "b6", "tipo": "test", "opciones": [{ "correcta": true }, { "correcta": false }, { "correcta": false }] },
-    { "id": "b7", "tipo": "huecos", "opciones": [{ "correcta": true }, { "correcta": false }, { "correcta": false }] },
-    { "id": "b8", "tipo": "ordenar" },
-    { "id": "b9", "tipo": "escribir", "respuestas": ["Voy al centro a pie"] }
+    {
+      "id": "b6",
+      "tipo": "test",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b7",
+      "tipo": "huecos",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b8",
+      "tipo": "ordenar"
+    },
+    {
+      "id": "b9",
+      "tipo": "escribir",
+      "respuestas": [
+        "Voy al centro a pie"
+      ]
+    }
   ]
 }

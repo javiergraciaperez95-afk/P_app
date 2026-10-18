@@ -2,6 +2,8 @@
   "esquema": 2,
   "id": "043",
   "capitulo": 5,
+  "numero_curso": 45,
+  "orden_curso": 45,
   "nivel": "A1",
   "palabras": {
     "tengo que": {
@@ -9,7 +11,7 @@
       "cat": "expr"
     },
     "hay que": {
-      "pron": "ai ke",
+      "pron": "ay ke",
       "cat": "expr"
     },
     "porque": {
@@ -42,6 +44,33 @@
     },
     "Pablo": {
       "propio": true
+    },
+    "examen": {
+      "pron": "ek-SA-men",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "escuela": {
+      "pron": "es-KWE-la",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "sienta": {
+      "pron": "SYEN-ta",
+      "cat": "verb"
+    },
+    "preparar": {
+      "pron": "pre-pa-RAR",
+      "cat": "verb"
+    },
+    "verduras": {
+      "pron": "ber-DU-ras",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "cenan": {
+      "pron": "THE-nan",
+      "cat": "verb"
     }
   },
   "bloques": [
@@ -61,26 +90,15 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Tengo que estudiar.",
+                "texto": "Tengo que estudiar",
                 "partes": [
                   {
                     "funcion": "V",
-                    "texto": "Tengo que",
-                    "nucleo": "Tengo"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "estudiar.",
-                    "nucleo": "estudiar",
-                    "partes": [
-                      {
-                        "funcion": "INF",
-                        "texto": "estudiar.",
-                        "nucleo": "estudiar."
-                      }
-                    ]
+                    "texto": "Tengo que estudiar",
+                    "nucleo": "estudiar"
                   }
-                ]
+                ],
+                "nucleo": "estudiar"
               }
             ]
           }
@@ -92,19 +110,19 @@
             "unidades": [
               {
                 "funcion": "CCC",
-                "texto": "¿Por qué?",
-                "nucleo": "qué",
+                "texto": "Por qué",
                 "partes": [
                   {
                     "funcion": "PREP",
-                    "texto": "¿Por"
+                    "texto": "Por"
                   },
                   {
                     "funcion": "TERM",
-                    "texto": "qué?",
-                    "nucleo": "qué?"
+                    "texto": "qué",
+                    "nucleo": "qué"
                   }
-                ]
+                ],
+                "nucleo": "qué"
               }
             ]
           }
@@ -112,43 +130,51 @@
         {
           "quien": "Lucía",
           "sintaxis": {
-            "oracion": "bimembre",
-            "sujeto": "omitido",
+            "oracion": "unimembre",
             "unidades": [
               {
-                "funcion": "PRED",
-                "texto": "Porque mañana hay un examen.",
+                "funcion": "CCC",
+                "texto": "Porque mañana hay un examen",
                 "partes": [
                   {
                     "funcion": "CONJ",
                     "texto": "Porque"
                   },
                   {
-                    "funcion": "CCT",
-                    "texto": "mañana",
-                    "nucleo": "mañana"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "hay",
-                    "nucleo": "hay"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "un examen.",
-                    "nucleo": "examen",
+                    "funcion": "PRED",
+                    "texto": "mañana hay un examen",
                     "partes": [
                       {
-                        "funcion": "DET",
-                        "texto": "un"
+                        "funcion": "CCT",
+                        "texto": "mañana",
+                        "nucleo": "mañana"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "examen."
+                        "funcion": "V",
+                        "texto": "hay",
+                        "nucleo": "hay"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "un examen",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "un"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "examen",
+                            "nucleo": "examen"
+                          }
+                        ],
+                        "nucleo": "examen"
                       }
-                    ]
+                    ],
+                    "nucleo": "hay"
                   }
-                ]
+                ],
+                "nucleo": "hay"
               }
             ]
           }
@@ -161,52 +187,42 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Hay que llegar a las nueve.",
+                "texto": "Hay que llegar a las nueve",
                 "partes": [
                   {
                     "funcion": "V",
-                    "texto": "Hay que",
-                    "nucleo": "Hay"
+                    "texto": "Hay que llegar",
+                    "nucleo": "llegar"
                   },
                   {
-                    "funcion": "CD",
-                    "texto": "llegar a las nueve.",
-                    "nucleo": "llegar",
+                    "funcion": "CCT",
+                    "texto": "a las nueve",
                     "partes": [
                       {
-                        "funcion": "INF",
-                        "texto": "llegar",
-                        "nucleo": "llegar"
+                        "funcion": "PREP",
+                        "texto": "a"
                       },
                       {
-                        "funcion": "CCT",
-                        "texto": "a las nueve.",
-                        "nucleo": "nueve",
+                        "funcion": "TERM",
+                        "texto": "las nueve",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "a"
+                            "funcion": "DET",
+                            "texto": "las"
                           },
                           {
-                            "funcion": "TERM",
-                            "texto": "las nueve.",
-                            "nucleo": "nueve",
-                            "partes": [
-                              {
-                                "funcion": "DET",
-                                "texto": "las"
-                              },
-                              {
-                                "funcion": "N",
-                                "texto": "nueve."
-                              }
-                            ]
+                            "funcion": "N",
+                            "texto": "nueve",
+                            "nucleo": "nueve"
                           }
-                        ]
+                        ],
+                        "nucleo": "nueve"
                       }
-                    ]
+                    ],
+                    "nucleo": "nueve"
                   }
-                ]
+                ],
+                "nucleo": "llegar"
               }
             ]
           }
@@ -239,41 +255,31 @@
               {
                 "funcion": "SUJ",
                 "texto": "Pablo",
-                "nucleo": "Pablo",
                 "partes": [
                   {
                     "funcion": "N",
-                    "texto": "Pablo"
+                    "texto": "Pablo",
+                    "nucleo": "Pablo"
                   }
-                ]
+                ],
+                "nucleo": "Pablo"
               },
               {
                 "funcion": "PRED",
-                "texto": "tiene que llegar temprano.",
+                "texto": "tiene que llegar temprano",
                 "partes": [
                   {
                     "funcion": "V",
-                    "texto": "tiene que",
-                    "nucleo": "tiene"
+                    "texto": "tiene que llegar",
+                    "nucleo": "llegar"
                   },
                   {
-                    "funcion": "CD",
-                    "texto": "llegar temprano.",
-                    "nucleo": "llegar",
-                    "partes": [
-                      {
-                        "funcion": "INF",
-                        "texto": "llegar",
-                        "nucleo": "llegar"
-                      },
-                      {
-                        "funcion": "CCT",
-                        "texto": "temprano.",
-                        "nucleo": "temprano."
-                      }
-                    ]
+                    "funcion": "CCT",
+                    "texto": "temprano",
+                    "nucleo": "temprano"
                   }
-                ]
+                ],
+                "nucleo": "llegar"
               }
             ]
           }
@@ -285,12 +291,11 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "En la biblioteca hay que hablar bajo.",
+                "texto": "En la biblioteca hay que hablar bajo",
                 "partes": [
                   {
                     "funcion": "CCL",
                     "texto": "En la biblioteca",
-                    "nucleo": "biblioteca",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -299,7 +304,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "la biblioteca",
-                        "nucleo": "biblioteca",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -307,35 +311,27 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "biblioteca"
+                            "texto": "biblioteca",
+                            "nucleo": "biblioteca"
                           }
-                        ]
+                        ],
+                        "nucleo": "biblioteca"
                       }
-                    ]
+                    ],
+                    "nucleo": "biblioteca"
                   },
                   {
                     "funcion": "V",
-                    "texto": "hay que",
-                    "nucleo": "hay"
+                    "texto": "hay que hablar",
+                    "nucleo": "hablar"
                   },
                   {
-                    "funcion": "CD",
-                    "texto": "hablar bajo.",
-                    "nucleo": "hablar",
-                    "partes": [
-                      {
-                        "funcion": "INF",
-                        "texto": "hablar",
-                        "nucleo": "hablar"
-                      },
-                      {
-                        "funcion": "CCM",
-                        "texto": "bajo.",
-                        "nucleo": "bajo."
-                      }
-                    ]
+                    "funcion": "CCM",
+                    "texto": "bajo",
+                    "nucleo": "bajo"
                   }
-                ]
+                ],
+                "nucleo": "hablar"
               }
             ]
           }
@@ -356,51 +352,42 @@
               {
                 "funcion": "SUJ",
                 "texto": "Lucía",
-                "nucleo": "Lucía",
                 "partes": [
                   {
                     "funcion": "N",
-                    "texto": "Lucía"
+                    "texto": "Lucía",
+                    "nucleo": "Lucía"
                   }
-                ]
+                ],
+                "nucleo": "Lucía"
               },
               {
                 "funcion": "PRED",
-                "texto": "tiene que estudiar esta tarde.",
+                "texto": "tiene que estudiar esta tarde",
                 "partes": [
                   {
                     "funcion": "V",
-                    "texto": "tiene que",
-                    "nucleo": "tiene"
+                    "texto": "tiene que estudiar",
+                    "nucleo": "estudiar"
                   },
                   {
-                    "funcion": "CD",
-                    "texto": "estudiar esta tarde.",
-                    "nucleo": "estudiar",
+                    "funcion": "CCT",
+                    "texto": "esta tarde",
                     "partes": [
                       {
-                        "funcion": "INF",
-                        "texto": "estudiar",
-                        "nucleo": "estudiar"
+                        "funcion": "DET",
+                        "texto": "esta"
                       },
                       {
-                        "funcion": "CCT",
-                        "texto": "esta tarde.",
-                        "nucleo": "tarde",
-                        "partes": [
-                          {
-                            "funcion": "DET",
-                            "texto": "esta"
-                          },
-                          {
-                            "funcion": "N",
-                            "texto": "tarde."
-                          }
-                        ]
+                        "funcion": "N",
+                        "texto": "tarde",
+                        "nucleo": "tarde"
                       }
-                    ]
+                    ],
+                    "nucleo": "tarde"
                   }
-                ]
+                ],
+                "nucleo": "estudiar"
               }
             ]
           }
@@ -413,7 +400,7 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Mañana hay un examen en la escuela.",
+                "texto": "Mañana hay un examen en la escuela",
                 "partes": [
                   {
                     "funcion": "CCT",
@@ -428,7 +415,6 @@
                   {
                     "funcion": "CD",
                     "texto": "un examen",
-                    "nucleo": "examen",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -436,14 +422,15 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "examen"
+                        "texto": "examen",
+                        "nucleo": "examen"
                       }
-                    ]
+                    ],
+                    "nucleo": "examen"
                   },
                   {
                     "funcion": "CCL",
-                    "texto": "en la escuela.",
-                    "nucleo": "escuela",
+                    "texto": "en la escuela",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -451,8 +438,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "la escuela.",
-                        "nucleo": "escuela",
+                        "texto": "la escuela",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -460,13 +446,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "escuela."
+                            "texto": "escuela",
+                            "nucleo": "escuela"
                           }
-                        ]
+                        ],
+                        "nucleo": "escuela"
                       }
-                    ]
+                    ],
+                    "nucleo": "escuela"
                   }
-                ]
+                ],
+                "nucleo": "hay"
               }
             ]
           }
@@ -479,12 +469,11 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Por eso se sienta en su habitación.",
+                "texto": "Por eso se sienta en su habitación",
                 "partes": [
                   {
                     "funcion": "CCC",
                     "texto": "Por eso",
-                    "nucleo": "eso",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -495,22 +484,17 @@
                         "texto": "eso",
                         "nucleo": "eso"
                       }
-                    ]
-                  },
-                  {
-                    "funcion": "CI",
-                    "texto": "se",
-                    "nucleo": "se"
+                    ],
+                    "nucleo": "eso"
                   },
                   {
                     "funcion": "V",
-                    "texto": "sienta",
+                    "texto": "se sienta",
                     "nucleo": "sienta"
                   },
                   {
                     "funcion": "CCL",
-                    "texto": "en su habitación.",
-                    "nucleo": "habitación",
+                    "texto": "en su habitación",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -518,8 +502,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "su habitación.",
-                        "nucleo": "habitación",
+                        "texto": "su habitación",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -527,13 +510,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "habitación."
+                            "texto": "habitación",
+                            "nucleo": "habitación"
                           }
-                        ]
+                        ],
+                        "nucleo": "habitación"
                       }
-                    ]
+                    ],
+                    "nucleo": "habitación"
                   }
-                ]
+                ],
+                "nucleo": "sienta"
               }
             ]
           }
@@ -546,54 +533,70 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Abre el cuaderno y lee con atención.",
+                "texto": "Abre el cuaderno y lee con atención",
                 "partes": [
                   {
-                    "funcion": "V",
-                    "texto": "Abre",
-                    "nucleo": "Abre"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "el cuaderno",
-                    "nucleo": "cuaderno",
+                    "funcion": "PRED",
+                    "texto": "Abre el cuaderno",
                     "partes": [
                       {
-                        "funcion": "DET",
-                        "texto": "el"
+                        "funcion": "V",
+                        "texto": "Abre",
+                        "nucleo": "Abre"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "cuaderno"
+                        "funcion": "CD",
+                        "texto": "el cuaderno",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "cuaderno",
+                            "nucleo": "cuaderno"
+                          }
+                        ],
+                        "nucleo": "cuaderno"
                       }
-                    ]
+                    ],
+                    "nucleo": "Abre"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "V",
-                    "texto": "lee",
-                    "nucleo": "lee"
-                  },
-                  {
-                    "funcion": "CCM",
-                    "texto": "con atención.",
-                    "nucleo": "atención",
+                    "funcion": "PRED",
+                    "texto": "lee con atención",
                     "partes": [
                       {
-                        "funcion": "PREP",
-                        "texto": "con"
+                        "funcion": "V",
+                        "texto": "lee",
+                        "nucleo": "lee"
                       },
                       {
-                        "funcion": "TERM",
-                        "texto": "atención.",
-                        "nucleo": "atención."
+                        "funcion": "CCM",
+                        "texto": "con atención",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "con"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "atención",
+                            "nucleo": "atención"
+                          }
+                        ],
+                        "nucleo": "atención"
                       }
-                    ]
+                    ],
+                    "nucleo": "lee"
                   }
-                ]
+                ],
+                "nucleo": "Abre"
               }
             ]
           }
@@ -607,17 +610,18 @@
               {
                 "funcion": "SUJ",
                 "texto": "Pablo",
-                "nucleo": "Pablo",
                 "partes": [
                   {
                     "funcion": "N",
-                    "texto": "Pablo"
+                    "texto": "Pablo",
+                    "nucleo": "Pablo"
                   }
-                ]
+                ],
+                "nucleo": "Pablo"
               },
               {
                 "funcion": "PRED",
-                "texto": "no tiene que estudiar hoy.",
+                "texto": "no tiene que estudiar hoy",
                 "partes": [
                   {
                     "funcion": "NEG",
@@ -625,27 +629,16 @@
                   },
                   {
                     "funcion": "V",
-                    "texto": "tiene que",
-                    "nucleo": "tiene"
+                    "texto": "tiene que estudiar",
+                    "nucleo": "estudiar"
                   },
                   {
-                    "funcion": "CD",
-                    "texto": "estudiar hoy.",
-                    "nucleo": "estudiar",
-                    "partes": [
-                      {
-                        "funcion": "INF",
-                        "texto": "estudiar",
-                        "nucleo": "estudiar"
-                      },
-                      {
-                        "funcion": "CCT",
-                        "texto": "hoy.",
-                        "nucleo": "hoy."
-                      }
-                    ]
+                    "funcion": "CCT",
+                    "texto": "hoy",
+                    "nucleo": "hoy"
                   }
-                ]
+                ],
+                "nucleo": "estudiar"
               }
             ]
           }
@@ -658,7 +651,7 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Pero en casa hay que preparar la cena.",
+                "texto": "Pero en casa hay que preparar la cena",
                 "partes": [
                   {
                     "funcion": "CONJ",
@@ -667,7 +660,6 @@
                   {
                     "funcion": "CCL",
                     "texto": "en casa",
-                    "nucleo": "casa",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -678,41 +670,32 @@
                         "texto": "casa",
                         "nucleo": "casa"
                       }
-                    ]
+                    ],
+                    "nucleo": "casa"
                   },
                   {
                     "funcion": "V",
-                    "texto": "hay que",
-                    "nucleo": "hay"
+                    "texto": "hay que preparar",
+                    "nucleo": "preparar"
                   },
                   {
                     "funcion": "CD",
-                    "texto": "preparar la cena.",
-                    "nucleo": "preparar",
+                    "texto": "la cena",
                     "partes": [
                       {
-                        "funcion": "INF",
-                        "texto": "preparar",
-                        "nucleo": "preparar"
+                        "funcion": "DET",
+                        "texto": "la"
                       },
                       {
-                        "funcion": "CD",
-                        "texto": "la cena.",
-                        "nucleo": "cena",
-                        "partes": [
-                          {
-                            "funcion": "DET",
-                            "texto": "la"
-                          },
-                          {
-                            "funcion": "N",
-                            "texto": "cena."
-                          }
-                        ]
+                        "funcion": "N",
+                        "texto": "cena",
+                        "nucleo": "cena"
                       }
-                    ]
+                    ],
+                    "nucleo": "cena"
                   }
-                ]
+                ],
+                "nucleo": "preparar"
               }
             ]
           }
@@ -726,17 +709,18 @@
               {
                 "funcion": "SUJ",
                 "texto": "Pablo",
-                "nucleo": "Pablo",
                 "partes": [
                   {
                     "funcion": "N",
-                    "texto": "Pablo"
+                    "texto": "Pablo",
+                    "nucleo": "Pablo"
                   }
-                ]
+                ],
+                "nucleo": "Pablo"
               },
               {
                 "funcion": "PRED",
-                "texto": "corta las verduras con cuidado.",
+                "texto": "corta las verduras con cuidado",
                 "partes": [
                   {
                     "funcion": "V",
@@ -746,7 +730,6 @@
                   {
                     "funcion": "CD",
                     "texto": "las verduras",
-                    "nucleo": "verduras",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -754,14 +737,15 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "verduras"
+                        "texto": "verduras",
+                        "nucleo": "verduras"
                       }
-                    ]
+                    ],
+                    "nucleo": "verduras"
                   },
                   {
                     "funcion": "CCM",
-                    "texto": "con cuidado.",
-                    "nucleo": "cuidado",
+                    "texto": "con cuidado",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -769,12 +753,14 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "cuidado.",
-                        "nucleo": "cuidado."
+                        "texto": "cuidado",
+                        "nucleo": "cuidado"
                       }
-                    ]
+                    ],
+                    "nucleo": "cuidado"
                   }
-                ]
+                ],
+                "nucleo": "corta"
               }
             ]
           }
@@ -787,7 +773,7 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Luego cenan juntos en la cocina.",
+                "texto": "Luego cenan juntos en la cocina",
                 "partes": [
                   {
                     "funcion": "CCT",
@@ -800,14 +786,13 @@
                     "nucleo": "cenan"
                   },
                   {
-                    "funcion": "CPVO",
+                    "funcion": "CCM",
                     "texto": "juntos",
                     "nucleo": "juntos"
                   },
                   {
                     "funcion": "CCL",
-                    "texto": "en la cocina.",
-                    "nucleo": "cocina",
+                    "texto": "en la cocina",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -815,8 +800,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "la cocina.",
-                        "nucleo": "cocina",
+                        "texto": "la cocina",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -824,13 +808,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "cocina."
+                            "texto": "cocina",
+                            "nucleo": "cocina"
                           }
-                        ]
+                        ],
+                        "nucleo": "cocina"
                       }
-                    ]
+                    ],
+                    "nucleo": "cocina"
                   }
-                ]
+                ],
+                "nucleo": "cenan"
               }
             ]
           }
@@ -887,6 +875,14 @@
       ]
     },
     {
+      "id": "b11",
+      "tipo": "escribir",
+      "respuestas": [
+        "Tengo que estudiar",
+        "Tengo que estudiar."
+      ]
+    },
+    {
       "id": "b10",
       "tipo": "test",
       "opciones": [
@@ -899,14 +895,6 @@
         {
           "correcta": false
         }
-      ]
-    },
-    {
-      "id": "b11",
-      "tipo": "escribir",
-      "respuestas": [
-        "Tengo que estudiar",
-        "Tengo que estudiar."
       ]
     }
   ]

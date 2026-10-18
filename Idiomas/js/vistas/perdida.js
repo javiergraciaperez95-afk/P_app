@@ -3,7 +3,6 @@
 
 import { el, poner, alAzar } from '../dom.js';
 import { t } from '../i18n.js';
-import { CURSOS } from '../cursos.js';
 import { curso, hayCurso } from '../curso.js';
 import { dibujoDe } from '../tutor-sprite.js';
 import { sonar } from '../sonidos.js';
@@ -12,8 +11,7 @@ import { sonar } from '../sonidos.js';
 export function pintarPerdida(contenedor, detalle = '') {
   let encendida = true;
   let sprite = null;
-  const disponibles = CURSOS.filter(c => !c.proximamente);
-  const quien = hayCurso ? curso : disponibles[Math.floor(Math.random() * disponibles.length)];
+  const quien = curso;
 
   const canvas = el('canvas', { class: 'sobre-tutora', width: 48, height: 64 });
   const globo = el('span', { class: 'inicio-globo' });

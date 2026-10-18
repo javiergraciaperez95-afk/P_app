@@ -1,0 +1,46 @@
+/* =====================================================================
+   EL CHAT (juegos/chat.js) — una app de mensajería pixel. Solo se animan transform y opacity, a saltos.
+   ===================================================================== */
+
+.jg-chat-movil { display: grid; grid-template-rows: auto 1fr auto; width: min(560px, 100%); margin: 8px auto 0; color: #2b1d1a; background: #e6dcc8; box-shadow: 0 0 0 3px var(--h-borde), 8px 10px 0 3px rgba(0, 0, 0, .25); }
+.jg-chat-barra { display: flex; align-items: center; gap: 10px; padding: 10px 14px; color: #fff; background: #2f7a5a; box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .25); }
+.jg-chat-avatar { flex: none; display: grid; place-items: center; width: 38px; height: 38px; font: 700 1.1rem var(--fuente-pixel); color: #2b1d1a; background: var(--oro, #f4c84a); box-shadow: 0 0 0 3px #1f4f3a; }
+.jg-chat-contacto { flex: 1; min-width: 0; font: 700 1rem var(--fuente-pixel); overflow-wrap: anywhere; }
+.jg-chat-linea { flex: none; width: 10px; height: 10px; background: #8cf09a; box-shadow: 0 0 0 2px #1f4f3a; }
+
+.jg-chat-hilo { display: flex; flex-direction: column; gap: 10px; min-height: 230px; max-height: min(46vh, 420px); padding: 14px 12px; overflow-y: auto; overflow-x: hidden; background: repeating-linear-gradient(0deg, #e6dcc8 0 22px, #dfd3bb 22px 24px); }
+.jg-chat-fila { display: flex; animation: jg-entra .25s steps(3) both; }
+.jg-chat-fila.propia { justify-content: flex-end; }
+.jg-chat-burbuja { position: relative; max-width: 84%; padding: 9px 12px; color: #2b1d1a; background: #fffaf0; box-shadow: 0 0 0 3px var(--h-borde), 3px 4px 0 1px rgba(0, 0, 0, .25); }
+.jg-chat-fila.propia .jg-chat-burbuja { background: #c4f0b4; }
+.jg-chat-nombre { display: block; margin-bottom: 4px; font: 700 .74rem var(--fuente-pixel); color: #8a1a2c; text-transform: uppercase; letter-spacing: .08em; }
+.jg-chat-texto { margin: 0; font-size: 1.15rem; font-weight: 700; line-height: 1.55; }
+.jg-chat-burbuja .palabra { color: #2b1d1a; }
+.jg-chat-burbuja .palabra:hover, .jg-chat-burbuja .palabra[aria-expanded="true"] { color: #fff; background: #2f7a5a; }
+.jg-chat-herramientas { display: flex; gap: 6px; margin-top: 6px; }
+.jg-chat-boton { min-width: 40px; min-height: 40px; border: 0; cursor: pointer; font: 700 1rem var(--fuente-pixel); color: #2b1d1a; background: var(--oro, #f4c84a); box-shadow: 0 0 0 3px var(--h-borde); }
+.jg-chat-boton:active { transform: translate(2px, 2px); }
+.jg-chat-trad { margin: 6px 0 0; font-style: italic; color: #6a5a52; }
+.jg-chat-puntos { display: flex; gap: 6px; align-items: center; height: 36px; }
+.jg-chat-puntos i { display: block; width: 8px; height: 8px; background: #6a5a52; animation: jg-chat-punto .9s steps(3) infinite; animation-delay: calc(var(--i) * -.3s); }
+@keyframes jg-chat-punto { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.jg-chat-aviso { align-self: center; margin: 4px 0; padding: 4px 12px; font: 700 .8rem var(--fuente-pixel); color: #fffaf0; background: #7c4f30; box-shadow: 0 0 0 2px var(--h-borde); }
+
+.jg-chat-opciones { display: grid; gap: 8px; padding: 12px; background: #fffaf0; box-shadow: inset 0 3px 0 var(--h-borde); }
+.jg-chat-opciones:empty { display: none; }
+.jg-chat-opcion { min-height: 52px; padding: 8px 14px; border: 0; cursor: pointer; text-align: left; font: 700 1.1rem var(--h-texto, inherit); color: #2b1d1a; background: #c4f0b4; box-shadow: 0 0 0 3px var(--h-borde), 3px 4px 0 1px rgba(0, 0, 0, .3); transition: transform .15s steps(2); }
+.jg-chat-opcion:hover:not(:disabled) { background: #fff1b0; }
+.jg-chat-opcion:active:not(:disabled) { transform: translate(2px, 2px); }
+.jg-chat-opcion:focus-visible { outline: 3px dashed var(--h-borde); outline-offset: 3px; }
+.jg-chat-opcion:disabled { cursor: default; opacity: .5; }
+.jg-chat-opcion.bien { opacity: 1; background: #9fe0a0; box-shadow: 0 0 0 3px #3f8a4a; }
+.jg-chat-opcion.mal { background: #f2b8b0; box-shadow: 0 0 0 3px #a8344a; }
+
+@media (max-width: 640px) {
+  .jg-chat-hilo { min-height: 200px; max-height: 40vh; padding: 10px 8px; }
+  .jg-chat-burbuja { max-width: 92%; }
+  .jg-chat-texto { font-size: 1.05rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jg-chat-fila, .jg-chat-puntos i { animation: none !important; }
+}

@@ -447,7 +447,8 @@ async function adaptarV2(json, id) {
 
   // Catálogo de la lección en el idioma del alumno (con el inglés detrás).
   const propio = await leerCatalogo(id, entorno);
-  const ingles = entorno === 'en' ? {} : await leerCatalogo(id, 'en');
+  // En el curso de inglés el catálogo «en» es el texto que se estudia: no sirve de respaldo para las explicaciones.
+  const ingles = entorno === 'en' || delCurso === 'en' ? {} : await leerCatalogo(id, 'en');
   const textos = { ...ingles, ...propio, idioma: entorno };
   /** Para lo que se estudia: se lee primero en el idioma del curso. */
   const estudio = delCurso === entorno ? textos : { ...(await leerCatalogo(id, delCurso)), idioma: delCurso };
@@ -495,7 +496,7 @@ async function adaptarV2(json, id) {
     for (const fuente of [ingles, textos]) {
       const v = fuente?.[claveTexto];
       if (typeof v !== 'string' || !v.trim()) continue;
-      const codigo = fuente.idioma === delCurso && delCurso !== 'es' ? 'tes' : fuente.idioma;
+      const codigo = fuente.idioma === 'es' && delCurso !== 'es' ? 'tes' : fuente.idioma;
       salida[codigo] = v;
     }
     return Object.keys(salida).length ? salida : null;
@@ -522,7 +523,10 @@ async function adaptarV2(json, id) {
     if (!e || e.propio) continue;
     // La ficha se escribe en la forma que espera revisarPalabras(): el significado
     // bajo el código de cada idioma, más los campos de la palabra.
-    const ficha = { ...T(`p.${palabra}.glosa`), pron: e.pron, cat: etq('cat', e.cat), consejo: T(`p.${palabra}.consejo`) };
+    const significado = T(`p.${palabra}.glosa`);
+    // En los cursos de otros idiomas, «es» es la palabra que se estudia: el significado en español va en «tes».
+    if (delCurso !== 'es' && significado.es !== undefined) { significado.tes = significado.es; delete significado.es; }
+    const ficha = { ...significado, pron: e.pron, cat: etq('cat', e.cat), consejo: T(`p.${palabra}.consejo`) };
     if (e.genero) ficha.genero = e.genero;
     if (e.ejemplo) ficha.ejemplo = e.ejemplo;
     palabras[palabra] = ficha;
@@ -613,6 +617,9 @@ async function adaptarV2(json, id) {
 
   return {
     capitulo: json.capitulo,
+    // Posición y número visibles en el curso (el id del archivo no cambia: guarda el progreso).
+    numero_curso: json.numero_curso,
+    orden_curso: json.orden_curso,
     // «titulo_es» es el título en el idioma que se estudia: lo pide el revisor.
     titulo_es: CURSO('titulo'),
     titulo: T('titulo'),
@@ -648,7 +655,8 @@ function traduccionDe(objeto) {
 
 /** Avisa si falta la traducción al inglés. El vietnamita del contenido es opcional. */
 function revisarTraduccion(objeto, donde, avisos) {
-  if (!traducible(objeto.en) && !traducible(objeto.tes)) avisos.push(t('rev.faltaTraduccion', { donde, campos: '«en»' }));
+  // Vale cualquier traducción para el alumno (inglés, español, vietnamita…), no solo la inglesa.
+  if (!traduccionDe(objeto) && !traducible(objeto.en) && !traducible(objeto.tes)) avisos.push(t('rev.faltaTraduccion', { donde, campos: '«en»' }));
 }
 
 function revisarCampos(objeto, permitidos, donde, avisos) {
@@ -766,14 +774,16 @@ export function revisarAnalisis(f, donde, avisos) {
     return null;
   }
   const partes = [];
-  const frase = String(f.es).toLocaleLowerCase(LANG);
+  // Se compara sin signos ni comillas: el análisis escribe «detrás del mostrador levanta» aunque la frase lleve coma.
+  const soloPalabras = s => String(s).toLocaleLowerCase(LANG).replace(/[\p{P}\p{S}]+/gu, ' ').replace(/\s+/g, ' ').trim();
+  const frase = ` ${soloPalabras(f.es)} `;
   f.analisis.forEach((parte, k) => {
     const aqui = t('rev.analisisN', { donde, n: k + 1 });
     if (!Array.isArray(parte) || parte.length < 2 || !textoValido(parte[0]) || !traducible(parte[1])) {
       avisos.push(t('rev.analisisParte', { donde: aqui }));
       return;
     }
-    if (!frase.includes(parte[0].toLocaleLowerCase(LANG).replace(/[?!.]+$/, '').replace(/^[¿¡]+/, ''))) {
+    if (!frase.includes(` ${soloPalabras(parte[0])} `)) {
       avisos.push(t('rev.analisisNoAparece', { donde: aqui, texto: parte[0] }));
     }
     partes.push({ texto: parte[0], funcion: parte[1] });

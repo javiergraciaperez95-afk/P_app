@@ -5,18 +5,8 @@
 
 import { CURSOS } from './cursos.js';
 
-const CLAVE_CURSO = 'idiomas-curso';
-
-function leerElegido() {
-  try {
-    const id = localStorage.getItem(CLAVE_CURSO);
-    return CURSOS.find(c => c.id === id && !c.proximamente) ?? null;
-  } catch {
-    return null;
-  }
-}
-
-const elegido = leerElegido();
+// Solo hay un curso, el de español: está siempre elegido.
+const elegido = CURSOS.find(c => c.id === 'es');
 
 // Nombre propio de cada tutora, elegido según el idioma que se está aprendiendo.
 // Se mantienen en escritura local cuando existe, para que suenen naturales en cada curso.
@@ -59,14 +49,3 @@ export const nombreDelCurso = idioma => nombreCurso(curso, idioma);
 /** El saludo del idioma sin signos, para frases como «¡Hola, Ana!». */
 export const saludo = curso.hola.replace(/^[¡¿\s]+|[!！.。\s]+$/gu, '');
 
-export function elegirCurso(id) {
-  try { localStorage.setItem(CLAVE_CURSO, id); } catch { /* sin almacenamiento */ }
-  location.hash = '#/lecciones';
-  location.reload();
-}
-
-export function cambiarDeCurso() {
-  try { localStorage.removeItem(CLAVE_CURSO); } catch { /* sin almacenamiento */ }
-  location.hash = '#/';
-  location.reload();
-}

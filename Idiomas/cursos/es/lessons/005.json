@@ -2,6 +2,8 @@
   "esquema": 2,
   "id": "005",
   "capitulo": 1,
+  "numero_curso": 7,
+  "orden_curso": 7,
   "nivel": "A1",
   "palabras": {
     "once": {
@@ -66,6 +68,99 @@
     },
     "Leo": {
       "propio": true
+    },
+    "alumnos": {
+      "pron": "a-LUM-nos",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "traído": {
+      "pron": "tra-I-do",
+      "cat": "verb"
+    },
+    "caja": {
+      "pron": "KA-ha",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "botones": {
+      "pron": "bo-TO-nes",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "colores": {
+      "pron": "ko-LO-res",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "cuente": {
+      "pron": "KWEN-te",
+      "cat": "verb"
+    },
+    "respira": {
+      "pron": "res-PI-ra",
+      "cat": "verb"
+    },
+    "hondo": {
+      "pron": "ON-do",
+      "cat": "adv"
+    },
+    "continúa": {
+      "pron": "kon-ti-NU-a",
+      "cat": "verb"
+    },
+    "contando": {
+      "pron": "kon-TAN-do",
+      "cat": "verb"
+    },
+    "prisa": {
+      "pron": "PRI-sa",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "escucha": {
+      "pron": "es-KU-cha",
+      "cat": "verb"
+    },
+    "setenta": {
+      "pron": "se-TEN-ta",
+      "cat": "num"
+    },
+    "repartidos": {
+      "pron": "re-par-TI-dos",
+      "cat": "verb"
+    },
+    "ocasión": {
+      "pron": "o-ka-SYON",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "salta": {
+      "pron": "SAL-ta",
+      "cat": "verb"
+    },
+    "tiza": {
+      "pron": "TI-tha",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "cifra": {
+      "pron": "THI-fra",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "vacía": {
+      "pron": "ba-THI-a",
+      "cat": "adj"
+    },
+    "comprende": {
+      "pron": "kom-PREN-de",
+      "cat": "verb"
+    },
+    "forma": {
+      "pron": "FOR-ma",
+      "cat": "sust",
+      "genero": "f"
     }
   },
   "bloques": [
@@ -86,7 +181,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Tengo veintitrés años",
-                "nucleo": "Tengo",
                 "partes": [
                   {
                     "funcion": "V",
@@ -96,19 +190,22 @@
                   {
                     "funcion": "CD",
                     "texto": "veintitrés años",
-                    "nucleo": "años",
                     "partes": [
                       {
                         "funcion": "CUANT",
-                        "texto": "veintitrés"
+                        "texto": "veintitrés",
+                        "nucleo": "veintitrés"
                       },
                       {
                         "funcion": "N",
-                        "texto": "años"
+                        "texto": "años",
+                        "nucleo": "años"
                       }
-                    ]
+                    ],
+                    "nucleo": "años"
                   }
-                ]
+                ],
+                "nucleo": "Tengo"
               }
             ]
           }
@@ -127,7 +224,6 @@
               {
                 "funcion": "PRED",
                 "texto": "tengo treinta y uno",
-                "nucleo": "tengo",
                 "partes": [
                   {
                     "funcion": "V",
@@ -137,9 +233,26 @@
                   {
                     "funcion": "CD",
                     "texto": "treinta y uno",
-                    "nucleo": "uno"
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "treinta",
+                        "nucleo": "treinta"
+                      },
+                      {
+                        "funcion": "CONJ",
+                        "texto": "y"
+                      },
+                      {
+                        "funcion": "CUANT",
+                        "texto": "uno",
+                        "nucleo": "uno"
+                      }
+                    ],
+                    "nucleo": "treinta"
                   }
-                ]
+                ],
+                "nucleo": "tengo"
               }
             ]
           }
@@ -153,12 +266,10 @@
               {
                 "funcion": "PRED",
                 "texto": "En la clase hay treinta alumnos",
-                "nucleo": "hay",
                 "partes": [
                   {
                     "funcion": "CCL",
                     "texto": "En la clase",
-                    "nucleo": "clase",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -167,7 +278,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "la clase",
-                        "nucleo": "clase",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -175,11 +285,14 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "clase"
+                            "texto": "clase",
+                            "nucleo": "clase"
                           }
-                        ]
+                        ],
+                        "nucleo": "clase"
                       }
-                    ]
+                    ],
+                    "nucleo": "clase"
                   },
                   {
                     "funcion": "V",
@@ -189,19 +302,22 @@
                   {
                     "funcion": "CD",
                     "texto": "treinta alumnos",
-                    "nucleo": "alumnos",
                     "partes": [
                       {
                         "funcion": "CUANT",
-                        "texto": "treinta"
+                        "texto": "treinta",
+                        "nucleo": "treinta"
                       },
                       {
                         "funcion": "N",
-                        "texto": "alumnos"
+                        "texto": "alumnos",
+                        "nucleo": "alumnos"
                       }
-                    ]
+                    ],
+                    "nucleo": "alumnos"
                   }
-                ]
+                ],
+                "nucleo": "hay"
               }
             ]
           }
@@ -215,12 +331,10 @@
               {
                 "funcion": "PRED",
                 "texto": "En la mesa hay cien libros",
-                "nucleo": "hay",
                 "partes": [
                   {
                     "funcion": "CCL",
                     "texto": "En la mesa",
-                    "nucleo": "mesa",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -229,7 +343,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "la mesa",
-                        "nucleo": "mesa",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -237,11 +350,14 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "mesa"
+                            "texto": "mesa",
+                            "nucleo": "mesa"
                           }
-                        ]
+                        ],
+                        "nucleo": "mesa"
                       }
-                    ]
+                    ],
+                    "nucleo": "mesa"
                   },
                   {
                     "funcion": "V",
@@ -251,19 +367,22 @@
                   {
                     "funcion": "CD",
                     "texto": "cien libros",
-                    "nucleo": "libros",
                     "partes": [
                       {
                         "funcion": "CUANT",
-                        "texto": "cien"
+                        "texto": "cien",
+                        "nucleo": "cien"
                       },
                       {
                         "funcion": "N",
-                        "texto": "libros"
+                        "texto": "libros",
+                        "nucleo": "libros"
                       }
-                    ]
+                    ],
+                    "nucleo": "libros"
                   }
-                ]
+                ],
+                "nucleo": "hay"
               }
             ]
           }
@@ -299,7 +418,7 @@
             "oracion": "unimembre",
             "unidades": [
               {
-                "funcion": "ATRIB",
+                "funcion": "CUANT",
                 "texto": "Veintitrés",
                 "nucleo": "Veintitrés"
               }
@@ -311,23 +430,18 @@
             "oracion": "unimembre",
             "unidades": [
               {
-                "funcion": "ATRIB",
-                "texto": "Treinta y uno",
-                "nucleo": "uno",
-                "partes": [
-                  {
-                    "funcion": "N",
-                    "texto": "Treinta"
-                  },
-                  {
-                    "funcion": "CONJ",
-                    "texto": "y"
-                  },
-                  {
-                    "funcion": "N",
-                    "texto": "uno"
-                  }
-                ]
+                "funcion": "CUANT",
+                "texto": "Treinta",
+                "nucleo": "Treinta"
+              },
+              {
+                "funcion": "CONJ",
+                "texto": "y"
+              },
+              {
+                "funcion": "CUANT",
+                "texto": "uno",
+                "nucleo": "uno"
               }
             ]
           }
@@ -348,12 +462,18 @@
               {
                 "funcion": "SUJ",
                 "texto": "Leo",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Leo",
+                    "nucleo": "Leo"
+                  }
+                ],
                 "nucleo": "Leo"
               },
               {
                 "funcion": "PRED",
-                "texto": "ha traído una caja con botones de colores a la clase.",
-                "nucleo": "traído",
+                "texto": "ha traído una caja con botones de colores a la clase",
                 "partes": [
                   {
                     "funcion": "V",
@@ -363,7 +483,6 @@
                   {
                     "funcion": "CD",
                     "texto": "una caja con botones de colores",
-                    "nucleo": "caja",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -371,12 +490,12 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "caja"
+                        "texto": "caja",
+                        "nucleo": "caja"
                       },
                       {
                         "funcion": "CN",
                         "texto": "con botones de colores",
-                        "nucleo": "botones",
                         "partes": [
                           {
                             "funcion": "PREP",
@@ -385,16 +504,15 @@
                           {
                             "funcion": "TERM",
                             "texto": "botones de colores",
-                            "nucleo": "botones",
                             "partes": [
                               {
                                 "funcion": "N",
-                                "texto": "botones"
+                                "texto": "botones",
+                                "nucleo": "botones"
                               },
                               {
                                 "funcion": "CN",
                                 "texto": "de colores",
-                                "nucleo": "colores",
                                 "partes": [
                                   {
                                     "funcion": "PREP",
@@ -405,18 +523,21 @@
                                     "texto": "colores",
                                     "nucleo": "colores"
                                   }
-                                ]
+                                ],
+                                "nucleo": "colores"
                               }
-                            ]
+                            ],
+                            "nucleo": "botones"
                           }
-                        ]
+                        ],
+                        "nucleo": "botones"
                       }
-                    ]
+                    ],
+                    "nucleo": "caja"
                   },
                   {
                     "funcion": "CCL",
-                    "texto": "a la clase.",
-                    "nucleo": "clase",
+                    "texto": "a la clase",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -424,8 +545,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "la clase.",
-                        "nucleo": "clase",
+                        "texto": "la clase",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -433,13 +553,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "clase."
+                            "texto": "clase",
+                            "nucleo": "clase"
                           }
-                        ]
+                        ],
+                        "nucleo": "clase"
                       }
-                    ]
+                    ],
+                    "nucleo": "clase"
                   }
-                ]
+                ],
+                "nucleo": "traído"
               }
             ]
           }
@@ -448,28 +572,28 @@
           "parrafo": 0,
           "sintaxis": {
             "oracion": "bimembre",
-            "sujeto": "omitido",
+            "sujeto": "expreso",
             "unidades": [
               {
-                "funcion": "PRED",
-                "texto": "La profesora le pide que los cuente delante de todos y él empieza despacio: once, doce, trece...",
-                "nucleo": "pide",
+                "funcion": "SUJ",
+                "texto": "La profesora",
                 "partes": [
                   {
-                    "funcion": "SUJ",
-                    "texto": "La profesora",
-                    "nucleo": "profesora",
-                    "partes": [
-                      {
-                        "funcion": "DET",
-                        "texto": "La"
-                      },
-                      {
-                        "funcion": "N",
-                        "texto": "profesora"
-                      }
-                    ]
+                    "funcion": "DET",
+                    "texto": "La"
                   },
+                  {
+                    "funcion": "N",
+                    "texto": "profesora",
+                    "nucleo": "profesora"
+                  }
+                ],
+                "nucleo": "profesora"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "le pide que los cuente delante de todos",
+                "partes": [
                   {
                     "funcion": "CI",
                     "texto": "le",
@@ -483,96 +607,49 @@
                   {
                     "funcion": "CD",
                     "texto": "que los cuente delante de todos",
-                    "nucleo": "cuente",
                     "partes": [
                       {
                         "funcion": "CONJ",
                         "texto": "que"
                       },
                       {
-                        "funcion": "CD",
-                        "texto": "los",
-                        "nucleo": "los"
-                      },
-                      {
-                        "funcion": "V",
-                        "texto": "cuente",
-                        "nucleo": "cuente"
-                      },
-                      {
-                        "funcion": "CCL",
-                        "texto": "delante de todos",
-                        "nucleo": "delante",
+                        "funcion": "PRED",
+                        "texto": "los cuente delante de todos",
                         "partes": [
                           {
-                            "funcion": "ADV",
-                            "texto": "delante"
+                            "funcion": "CD",
+                            "texto": "los",
+                            "nucleo": "los"
                           },
                           {
-                            "funcion": "CN",
-                            "texto": "de todos",
-                            "nucleo": "todos",
+                            "funcion": "V",
+                            "texto": "cuente",
+                            "nucleo": "cuente"
+                          },
+                          {
+                            "funcion": "CCL",
+                            "texto": "delante de todos",
                             "partes": [
                               {
                                 "funcion": "PREP",
-                                "texto": "de"
+                                "texto": "delante de"
                               },
                               {
                                 "funcion": "TERM",
                                 "texto": "todos",
                                 "nucleo": "todos"
                               }
-                            ]
+                            ],
+                            "nucleo": "todos"
                           }
-                        ]
+                        ],
+                        "nucleo": "cuente"
                       }
-                    ]
-                  },
-                  {
-                    "funcion": "CONJ",
-                    "texto": "y"
-                  },
-                  {
-                    "funcion": "SUJ",
-                    "texto": "él",
-                    "nucleo": "él"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "empieza",
-                    "nucleo": "empieza"
-                  },
-                  {
-                    "funcion": "CCM",
-                    "texto": "despacio:",
-                    "nucleo": "despacio",
-                    "partes": [
-                      {
-                        "funcion": "ADV",
-                        "texto": "despacio:"
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "CCM",
-                    "texto": "once, doce, trece...",
-                    "nucleo": "once",
-                    "partes": [
-                      {
-                        "funcion": "CUANT",
-                        "texto": "once,"
-                      },
-                      {
-                        "funcion": "CUANT",
-                        "texto": "doce,"
-                      },
-                      {
-                        "funcion": "CUANT",
-                        "texto": "trece..."
-                      }
-                    ]
+                    ],
+                    "nucleo": "cuente"
                   }
-                ]
+                ],
+                "nucleo": "pide"
               }
             ]
           }
@@ -585,54 +662,71 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "En catorce se para, respira hondo y continúa contando.",
-                "nucleo": "para",
+                "texto": "En catorce se para respira hondo y continúa contando",
                 "partes": [
                   {
-                    "funcion": "CCL",
-                    "texto": "En catorce",
-                    "nucleo": "catorce",
+                    "funcion": "PRED",
+                    "texto": "En catorce se para",
                     "partes": [
                       {
-                        "funcion": "PREP",
-                        "texto": "En"
+                        "funcion": "CCT",
+                        "texto": "En catorce",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "En"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "catorce",
+                            "nucleo": "catorce"
+                          }
+                        ],
+                        "nucleo": "catorce"
                       },
                       {
-                        "funcion": "TERM",
-                        "texto": "catorce",
-                        "nucleo": "catorce"
+                        "funcion": "V",
+                        "texto": "se para",
+                        "nucleo": "para"
                       }
-                    ]
+                    ],
+                    "nucleo": "para"
                   },
                   {
-                    "funcion": "PRON",
-                    "texto": "se"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "para,",
-                    "nucleo": "para,"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "respira",
+                    "funcion": "PRED",
+                    "texto": "respira hondo",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "respira",
+                        "nucleo": "respira"
+                      },
+                      {
+                        "funcion": "CCM",
+                        "texto": "hondo",
+                        "nucleo": "hondo"
+                      }
+                    ],
                     "nucleo": "respira"
-                  },
-                  {
-                    "funcion": "CCM",
-                    "texto": "hondo",
-                    "nucleo": "hondo"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "V",
-                    "texto": "continúa contando.",
-                    "nucleo": "continúa"
+                    "funcion": "PRED",
+                    "texto": "continúa contando",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "continúa contando",
+                        "nucleo": "contando"
+                      }
+                    ],
+                    "nucleo": "contando"
                   }
-                ]
+                ],
+                "nucleo": "para"
               }
             ]
           }
@@ -650,8 +744,7 @@
               },
               {
                 "funcion": "PRED",
-                "texto": "tiene prisa.",
-                "nucleo": "tiene",
+                "texto": "tiene prisa",
                 "partes": [
                   {
                     "funcion": "V",
@@ -660,10 +753,11 @@
                   },
                   {
                     "funcion": "CD",
-                    "texto": "prisa.",
-                    "nucleo": "prisa."
+                    "texto": "prisa",
+                    "nucleo": "prisa"
                   }
-                ]
+                ],
+                "nucleo": "tiene"
               }
             ]
           }
@@ -672,191 +766,79 @@
           "parrafo": 0,
           "sintaxis": {
             "oracion": "bimembre",
-            "sujeto": "omitido",
+            "sujeto": "expreso",
             "unidades": [
               {
+                "funcion": "SUJ",
+                "texto": "Alguien",
+                "nucleo": "Alguien"
+              },
+              {
                 "funcion": "PRED",
-                "texto": "Cuando llega a treinta y uno, alguien sonríe: es la primera vez que toda la clase escucha esa pequeña «y» en medio de los números.",
-                "nucleo": "sonríe",
+                "texto": "sonríe cuando llega a treinta y uno",
                 "partes": [
                   {
+                    "funcion": "V",
+                    "texto": "sonríe",
+                    "nucleo": "sonríe"
+                  },
+                  {
                     "funcion": "CCT",
-                    "texto": "Cuando llega a treinta y uno,",
-                    "nucleo": "llega",
+                    "texto": "cuando llega a treinta y uno",
                     "partes": [
                       {
                         "funcion": "CONJ",
-                        "texto": "Cuando"
+                        "texto": "cuando"
                       },
                       {
-                        "funcion": "V",
-                        "texto": "llega",
-                        "nucleo": "llega"
-                      },
-                      {
-                        "funcion": "CCL",
-                        "texto": "a treinta y uno,",
-                        "nucleo": "treinta",
+                        "funcion": "PRED",
+                        "texto": "llega a treinta y uno",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "a"
+                            "funcion": "V",
+                            "texto": "llega",
+                            "nucleo": "llega"
                           },
                           {
-                            "funcion": "TERM",
-                            "texto": "treinta y uno,",
-                            "nucleo": "treinta"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "SUJ",
-                    "texto": "alguien",
-                    "nucleo": "alguien"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "sonríe:",
-                    "nucleo": "sonríe:"
-                  },
-                  {
-                    "funcion": "CCM",
-                    "texto": "es la primera vez que toda la clase escucha esa pequeña «y» en medio de los números.",
-                    "nucleo": "es",
-                    "partes": [
-                      {
-                        "funcion": "V",
-                        "texto": "es",
-                        "nucleo": "es"
-                      },
-                      {
-                        "funcion": "ATRIB",
-                        "texto": "la primera vez que toda la clase escucha esa pequeña «y» en medio de los números.",
-                        "nucleo": "vez",
-                        "partes": [
-                          {
-                            "funcion": "DET",
-                            "texto": "la"
-                          },
-                          {
-                            "funcion": "ADY",
-                            "texto": "primera",
-                            "nucleo": "primera"
-                          },
-                          {
-                            "funcion": "N",
-                            "texto": "vez"
-                          },
-                          {
-                            "funcion": "CN",
-                            "texto": "que toda la clase escucha esa pequeña «y» en medio de los números.",
-                            "nucleo": "escucha",
+                            "funcion": "CCL",
+                            "texto": "a treinta y uno",
                             "partes": [
                               {
-                                "funcion": "PRON",
-                                "texto": "que"
+                                "funcion": "PREP",
+                                "texto": "a"
                               },
                               {
-                                "funcion": "SUJ",
-                                "texto": "toda la clase",
-                                "nucleo": "clase",
+                                "funcion": "TERM",
+                                "texto": "treinta y uno",
                                 "partes": [
                                   {
-                                    "funcion": "DET",
-                                    "texto": "toda"
+                                    "funcion": "CUANT",
+                                    "texto": "treinta",
+                                    "nucleo": "treinta"
                                   },
                                   {
-                                    "funcion": "DET",
-                                    "texto": "la"
+                                    "funcion": "CONJ",
+                                    "texto": "y"
                                   },
                                   {
-                                    "funcion": "N",
-                                    "texto": "clase"
+                                    "funcion": "CUANT",
+                                    "texto": "uno",
+                                    "nucleo": "uno"
                                   }
-                                ]
-                              },
-                              {
-                                "funcion": "V",
-                                "texto": "escucha",
-                                "nucleo": "escucha"
-                              },
-                              {
-                                "funcion": "CD",
-                                "texto": "esa pequeña «y»",
-                                "nucleo": "y",
-                                "partes": [
-                                  {
-                                    "funcion": "DET",
-                                    "texto": "esa"
-                                  },
-                                  {
-                                    "funcion": "ADY",
-                                    "texto": "pequeña",
-                                    "nucleo": "pequeña"
-                                  },
-                                  {
-                                    "funcion": "N",
-                                    "texto": "«y»"
-                                  }
-                                ]
-                              },
-                              {
-                                "funcion": "CCL",
-                                "texto": "en medio de los números.",
-                                "nucleo": "medio",
-                                "partes": [
-                                  {
-                                    "funcion": "PREP",
-                                    "texto": "en"
-                                  },
-                                  {
-                                    "funcion": "TERM",
-                                    "texto": "medio de los números.",
-                                    "nucleo": "medio",
-                                    "partes": [
-                                      {
-                                        "funcion": "N",
-                                        "texto": "medio"
-                                      },
-                                      {
-                                        "funcion": "CN",
-                                        "texto": "de los números.",
-                                        "nucleo": "números",
-                                        "partes": [
-                                          {
-                                            "funcion": "PREP",
-                                            "texto": "de"
-                                          },
-                                          {
-                                            "funcion": "TERM",
-                                            "texto": "los números.",
-                                            "nucleo": "números",
-                                            "partes": [
-                                              {
-                                                "funcion": "DET",
-                                                "texto": "los"
-                                              },
-                                              {
-                                                "funcion": "N",
-                                                "texto": "números."
-                                              }
-                                            ]
-                                          }
-                                        ]
-                                      }
-                                    ]
-                                  }
-                                ]
+                                ],
+                                "nucleo": "treinta"
                               }
-                            ]
+                            ],
+                            "nucleo": "treinta"
                           }
-                        ]
+                        ],
+                        "nucleo": "llega"
                       }
-                    ]
+                    ],
+                    "nucleo": "llega"
                   }
-                ]
+                ],
+                "nucleo": "sonríe"
               }
             ]
           }
@@ -869,24 +851,12 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Al final hay setenta botones repartidos por encima de la mesa.",
-                "nucleo": "hay",
+                "texto": "Al final hay setenta botones repartidos por encima de la mesa",
                 "partes": [
                   {
                     "funcion": "CCT",
                     "texto": "Al final",
-                    "nucleo": "final",
-                    "partes": [
-                      {
-                        "funcion": "PREP",
-                        "texto": "Al"
-                      },
-                      {
-                        "funcion": "TERM",
-                        "texto": "final",
-                        "nucleo": "final"
-                      }
-                    ]
+                    "nucleo": "final"
                   },
                   {
                     "funcion": "V",
@@ -895,73 +865,62 @@
                   },
                   {
                     "funcion": "CD",
-                    "texto": "setenta botones repartidos por encima de la mesa.",
-                    "nucleo": "botones",
+                    "texto": "setenta botones repartidos por encima de la mesa",
                     "partes": [
                       {
                         "funcion": "CUANT",
-                        "texto": "setenta"
+                        "texto": "setenta",
+                        "nucleo": "setenta"
                       },
                       {
                         "funcion": "N",
-                        "texto": "botones"
+                        "texto": "botones",
+                        "nucleo": "botones"
                       },
                       {
                         "funcion": "ADY",
-                        "texto": "repartidos",
-                        "nucleo": "repartidos"
-                      },
-                      {
-                        "funcion": "CCL",
-                        "texto": "por encima de la mesa.",
-                        "nucleo": "encima",
+                        "texto": "repartidos por encima de la mesa",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "por"
+                            "funcion": "PART",
+                            "texto": "repartidos",
+                            "nucleo": "repartidos"
                           },
                           {
-                            "funcion": "TERM",
-                            "texto": "encima de la mesa.",
-                            "nucleo": "encima",
+                            "funcion": "CCL",
+                            "texto": "por encima de la mesa",
                             "partes": [
                               {
-                                "funcion": "ADV",
-                                "texto": "encima"
+                                "funcion": "PREP",
+                                "texto": "por encima de"
                               },
                               {
-                                "funcion": "CN",
-                                "texto": "de la mesa.",
-                                "nucleo": "mesa",
+                                "funcion": "TERM",
+                                "texto": "la mesa",
                                 "partes": [
                                   {
-                                    "funcion": "PREP",
-                                    "texto": "de"
+                                    "funcion": "DET",
+                                    "texto": "la"
                                   },
                                   {
-                                    "funcion": "TERM",
-                                    "texto": "la mesa.",
-                                    "nucleo": "mesa",
-                                    "partes": [
-                                      {
-                                        "funcion": "DET",
-                                        "texto": "la"
-                                      },
-                                      {
-                                        "funcion": "N",
-                                        "texto": "mesa."
-                                      }
-                                    ]
+                                    "funcion": "N",
+                                    "texto": "mesa",
+                                    "nucleo": "mesa"
                                   }
-                                ]
+                                ],
+                                "nucleo": "mesa"
                               }
-                            ]
+                            ],
+                            "nucleo": "mesa"
                           }
-                        ]
+                        ],
+                        "nucleo": "repartidos"
                       }
-                    ]
+                    ],
+                    "nucleo": "botones"
                   }
-                ]
+                ],
+                "nucleo": "hay"
               }
             ]
           }
@@ -975,129 +934,145 @@
               {
                 "funcion": "SUJ",
                 "texto": "Leo",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Leo",
+                    "nucleo": "Leo"
+                  }
+                ],
                 "nucleo": "Leo"
               },
               {
                 "funcion": "PRED",
-                "texto": "los cuenta otra vez, ahora en voz baja, y en esta ocasión no se salta ni uno solo.",
-                "nucleo": "cuenta",
+                "texto": "los cuenta otra vez ahora en voz baja y en esta ocasión no se salta ni uno solo",
                 "partes": [
                   {
-                    "funcion": "CD",
-                    "texto": "los",
-                    "nucleo": "los"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "cuenta",
-                    "nucleo": "cuenta"
-                  },
-                  {
-                    "funcion": "CCT",
-                    "texto": "otra vez,",
-                    "nucleo": "vez",
+                    "funcion": "PRED",
+                    "texto": "los cuenta otra vez ahora en voz baja",
                     "partes": [
                       {
-                        "funcion": "DET",
-                        "texto": "otra"
+                        "funcion": "CD",
+                        "texto": "los",
+                        "nucleo": "los"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "vez,"
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "CCM",
-                    "texto": "ahora en voz baja,",
-                    "nucleo": "voz",
-                    "partes": [
-                      {
-                        "funcion": "ADV",
-                        "texto": "ahora"
+                        "funcion": "V",
+                        "texto": "cuenta",
+                        "nucleo": "cuenta"
                       },
                       {
-                        "funcion": "PREP",
-                        "texto": "en"
+                        "funcion": "CCT",
+                        "texto": "otra vez",
+                        "nucleo": "vez"
                       },
                       {
-                        "funcion": "TERM",
-                        "texto": "voz baja,",
-                        "nucleo": "voz",
+                        "funcion": "CCT",
+                        "texto": "ahora",
+                        "nucleo": "ahora"
+                      },
+                      {
+                        "funcion": "CCM",
+                        "texto": "en voz baja",
                         "partes": [
                           {
-                            "funcion": "N",
-                            "texto": "voz"
+                            "funcion": "PREP",
+                            "texto": "en"
                           },
                           {
-                            "funcion": "ADY",
-                            "texto": "baja,",
-                            "nucleo": "baja,"
+                            "funcion": "TERM",
+                            "texto": "voz baja",
+                            "partes": [
+                              {
+                                "funcion": "N",
+                                "texto": "voz",
+                                "nucleo": "voz"
+                              },
+                              {
+                                "funcion": "ADY",
+                                "texto": "baja",
+                                "nucleo": "baja"
+                              }
+                            ],
+                            "nucleo": "voz"
                           }
-                        ]
+                        ],
+                        "nucleo": "voz"
                       }
-                    ]
+                    ],
+                    "nucleo": "cuenta"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "CCT",
-                    "texto": "en esta ocasión",
-                    "nucleo": "ocasión",
+                    "funcion": "PRED",
+                    "texto": "en esta ocasión no se salta ni uno solo",
                     "partes": [
                       {
-                        "funcion": "PREP",
-                        "texto": "en"
-                      },
-                      {
-                        "funcion": "TERM",
-                        "texto": "esta ocasión",
-                        "nucleo": "ocasión",
+                        "funcion": "CCT",
+                        "texto": "en esta ocasión",
                         "partes": [
                           {
-                            "funcion": "DET",
-                            "texto": "esta"
+                            "funcion": "PREP",
+                            "texto": "en"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "esta ocasión",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "esta"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "ocasión",
+                                "nucleo": "ocasión"
+                              }
+                            ],
+                            "nucleo": "ocasión"
+                          }
+                        ],
+                        "nucleo": "ocasión"
+                      },
+                      {
+                        "funcion": "NEG",
+                        "texto": "no"
+                      },
+                      {
+                        "funcion": "V",
+                        "texto": "se salta",
+                        "nucleo": "salta"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "ni uno solo",
+                        "partes": [
+                          {
+                            "funcion": "CUANT",
+                            "texto": "ni",
+                            "nucleo": "ni"
                           },
                           {
                             "funcion": "N",
-                            "texto": "ocasión"
+                            "texto": "uno",
+                            "nucleo": "uno"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "solo",
+                            "nucleo": "solo"
                           }
-                        ]
+                        ],
+                        "nucleo": "uno"
                       }
-                    ]
-                  },
-                  {
-                    "funcion": "NEG",
-                    "texto": "no"
-                  },
-                  {
-                    "funcion": "PRON",
-                    "texto": "se"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "salta",
+                    ],
                     "nucleo": "salta"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "ni uno solo.",
-                    "nucleo": "uno",
-                    "partes": [
-                      {
-                        "funcion": "CUANT",
-                        "texto": "ni uno"
-                      },
-                      {
-                        "funcion": "ADY",
-                        "texto": "solo.",
-                        "nucleo": "solo."
-                      }
-                    ]
                   }
-                ]
+                ],
+                "nucleo": "cuenta"
               }
             ]
           }
@@ -1111,7 +1086,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La profesora",
-                "nucleo": "profesora",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -1119,139 +1093,166 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "profesora"
+                    "texto": "profesora",
+                    "nucleo": "profesora"
                   }
-                ]
+                ],
+                "nucleo": "profesora"
               },
               {
                 "funcion": "PRED",
-                "texto": "escribe el número con tiza en la pizarra y dice que setenta es una cifra muy grande.",
-                "nucleo": "escribe",
+                "texto": "escribe el número con tiza en la pizarra y dice que setenta es una cifra muy grande",
                 "partes": [
                   {
-                    "funcion": "V",
-                    "texto": "escribe",
-                    "nucleo": "escribe"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "el número",
-                    "nucleo": "número",
+                    "funcion": "PRED",
+                    "texto": "escribe el número con tiza en la pizarra",
                     "partes": [
                       {
-                        "funcion": "DET",
-                        "texto": "el"
+                        "funcion": "V",
+                        "texto": "escribe",
+                        "nucleo": "escribe"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "número"
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "CCINSTR",
-                    "texto": "con tiza",
-                    "nucleo": "tiza",
-                    "partes": [
-                      {
-                        "funcion": "PREP",
-                        "texto": "con"
-                      },
-                      {
-                        "funcion": "TERM",
-                        "texto": "tiza",
-                        "nucleo": "tiza"
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "CCL",
-                    "texto": "en la pizarra",
-                    "nucleo": "pizarra",
-                    "partes": [
-                      {
-                        "funcion": "PREP",
-                        "texto": "en"
-                      },
-                      {
-                        "funcion": "TERM",
-                        "texto": "la pizarra",
-                        "nucleo": "pizarra",
+                        "funcion": "CD",
+                        "texto": "el número",
                         "partes": [
                           {
                             "funcion": "DET",
-                            "texto": "la"
+                            "texto": "el"
                           },
                           {
                             "funcion": "N",
-                            "texto": "pizarra"
+                            "texto": "número",
+                            "nucleo": "número"
                           }
-                        ]
+                        ],
+                        "nucleo": "número"
+                      },
+                      {
+                        "funcion": "CCINSTR",
+                        "texto": "con tiza",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "con"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "tiza",
+                            "nucleo": "tiza"
+                          }
+                        ],
+                        "nucleo": "tiza"
+                      },
+                      {
+                        "funcion": "CCL",
+                        "texto": "en la pizarra",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "en"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "la pizarra",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "la"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "pizarra",
+                                "nucleo": "pizarra"
+                              }
+                            ],
+                            "nucleo": "pizarra"
+                          }
+                        ],
+                        "nucleo": "pizarra"
                       }
-                    ]
+                    ],
+                    "nucleo": "escribe"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "V",
-                    "texto": "dice",
-                    "nucleo": "dice"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "que setenta es una cifra muy grande.",
-                    "nucleo": "es",
+                    "funcion": "PRED",
+                    "texto": "dice que setenta es una cifra muy grande",
                     "partes": [
                       {
-                        "funcion": "CONJ",
-                        "texto": "que"
-                      },
-                      {
-                        "funcion": "SUJ",
-                        "texto": "setenta",
-                        "nucleo": "setenta"
-                      },
-                      {
                         "funcion": "V",
-                        "texto": "es",
-                        "nucleo": "es"
+                        "texto": "dice",
+                        "nucleo": "dice"
                       },
                       {
-                        "funcion": "ATRIB",
-                        "texto": "una cifra muy grande.",
-                        "nucleo": "cifra",
+                        "funcion": "CD",
+                        "texto": "que setenta es una cifra muy grande",
                         "partes": [
                           {
-                            "funcion": "DET",
-                            "texto": "una"
+                            "funcion": "CONJ",
+                            "texto": "que"
                           },
                           {
-                            "funcion": "N",
-                            "texto": "cifra"
+                            "funcion": "SUJ",
+                            "texto": "setenta",
+                            "nucleo": "setenta"
                           },
                           {
-                            "funcion": "ADY",
-                            "texto": "muy grande.",
-                            "nucleo": "grande",
+                            "funcion": "PRED",
+                            "texto": "es una cifra muy grande",
                             "partes": [
                               {
-                                "funcion": "CUANT",
-                                "texto": "muy"
+                                "funcion": "V",
+                                "texto": "es",
+                                "nucleo": "es"
                               },
                               {
-                                "funcion": "ADY",
-                                "texto": "grande.",
-                                "nucleo": "grande."
+                                "funcion": "ATRIB",
+                                "texto": "una cifra muy grande",
+                                "partes": [
+                                  {
+                                    "funcion": "DET",
+                                    "texto": "una"
+                                  },
+                                  {
+                                    "funcion": "N",
+                                    "texto": "cifra",
+                                    "nucleo": "cifra"
+                                  },
+                                  {
+                                    "funcion": "ADY",
+                                    "texto": "muy grande",
+                                    "partes": [
+                                      {
+                                        "funcion": "ADV",
+                                        "texto": "muy",
+                                        "nucleo": "muy"
+                                      },
+                                      {
+                                        "funcion": "ADY",
+                                        "texto": "grande",
+                                        "nucleo": "grande"
+                                      }
+                                    ],
+                                    "nucleo": "muy"
+                                  }
+                                ],
+                                "nucleo": "cifra"
                               }
-                            ]
+                            ],
+                            "nucleo": "es"
                           }
-                        ]
+                        ],
+                        "nucleo": "setenta"
                       }
-                    ]
+                    ],
+                    "nucleo": "dice"
                   }
-                ]
+                ],
+                "nucleo": "escribe"
               }
             ]
           }
@@ -1269,122 +1270,154 @@
               },
               {
                 "funcion": "PRED",
-                "texto": "mira la caja vacía y comprende que contar con calma también es una forma de aprender.",
-                "nucleo": "mira",
+                "texto": "mira la caja vacía y comprende que contar con calma también es una forma de aprender",
                 "partes": [
                   {
-                    "funcion": "V",
-                    "texto": "mira",
-                    "nucleo": "mira"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "la caja vacía",
-                    "nucleo": "caja",
+                    "funcion": "PRED",
+                    "texto": "mira la caja vacía",
                     "partes": [
                       {
-                        "funcion": "DET",
-                        "texto": "la"
+                        "funcion": "V",
+                        "texto": "mira",
+                        "nucleo": "mira"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "caja"
-                      },
-                      {
-                        "funcion": "ADY",
-                        "texto": "vacía",
-                        "nucleo": "vacía"
+                        "funcion": "CD",
+                        "texto": "la caja vacía",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "caja",
+                            "nucleo": "caja"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "vacía",
+                            "nucleo": "vacía"
+                          }
+                        ],
+                        "nucleo": "caja"
                       }
-                    ]
+                    ],
+                    "nucleo": "mira"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "V",
-                    "texto": "comprende",
-                    "nucleo": "comprende"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "que contar con calma también es una forma de aprender.",
-                    "nucleo": "es",
+                    "funcion": "PRED",
+                    "texto": "comprende que contar con calma también es una forma de aprender",
                     "partes": [
                       {
-                        "funcion": "CONJ",
-                        "texto": "que"
+                        "funcion": "V",
+                        "texto": "comprende",
+                        "nucleo": "comprende"
                       },
                       {
-                        "funcion": "SUJ",
-                        "texto": "contar con calma",
-                        "nucleo": "contar",
+                        "funcion": "CD",
+                        "texto": "que contar con calma también es una forma de aprender",
                         "partes": [
                           {
-                            "funcion": "N",
-                            "texto": "contar"
+                            "funcion": "CONJ",
+                            "texto": "que"
                           },
                           {
-                            "funcion": "CCM",
-                            "texto": "con calma",
-                            "nucleo": "calma",
+                            "funcion": "SUJ",
+                            "texto": "contar con calma",
                             "partes": [
                               {
-                                "funcion": "PREP",
-                                "texto": "con"
+                                "funcion": "INF",
+                                "texto": "contar",
+                                "nucleo": "contar"
                               },
                               {
-                                "funcion": "TERM",
-                                "texto": "calma",
+                                "funcion": "CCM",
+                                "texto": "con calma",
+                                "partes": [
+                                  {
+                                    "funcion": "PREP",
+                                    "texto": "con"
+                                  },
+                                  {
+                                    "funcion": "TERM",
+                                    "texto": "calma",
+                                    "nucleo": "calma"
+                                  }
+                                ],
                                 "nucleo": "calma"
                               }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "funcion": "ADV",
-                        "texto": "también"
-                      },
-                      {
-                        "funcion": "V",
-                        "texto": "es",
-                        "nucleo": "es"
-                      },
-                      {
-                        "funcion": "ATRIB",
-                        "texto": "una forma de aprender.",
-                        "nucleo": "forma",
-                        "partes": [
-                          {
-                            "funcion": "DET",
-                            "texto": "una"
+                            ],
+                            "nucleo": "contar"
                           },
                           {
-                            "funcion": "N",
-                            "texto": "forma"
-                          },
-                          {
-                            "funcion": "CN",
-                            "texto": "de aprender.",
-                            "nucleo": "aprender",
+                            "funcion": "PRED",
+                            "texto": "también es una forma de aprender",
                             "partes": [
                               {
-                                "funcion": "PREP",
-                                "texto": "de"
+                                "funcion": "CCM",
+                                "texto": "también",
+                                "nucleo": "también"
                               },
                               {
-                                "funcion": "TERM",
-                                "texto": "aprender.",
-                                "nucleo": "aprender."
+                                "funcion": "V",
+                                "texto": "es",
+                                "nucleo": "es"
+                              },
+                              {
+                                "funcion": "ATRIB",
+                                "texto": "una forma de aprender",
+                                "partes": [
+                                  {
+                                    "funcion": "DET",
+                                    "texto": "una"
+                                  },
+                                  {
+                                    "funcion": "N",
+                                    "texto": "forma",
+                                    "nucleo": "forma"
+                                  },
+                                  {
+                                    "funcion": "CN",
+                                    "texto": "de aprender",
+                                    "partes": [
+                                      {
+                                        "funcion": "PREP",
+                                        "texto": "de"
+                                      },
+                                      {
+                                        "funcion": "TERM",
+                                        "texto": "aprender",
+                                        "partes": [
+                                          {
+                                            "funcion": "INF",
+                                            "texto": "aprender",
+                                            "nucleo": "aprender"
+                                          }
+                                        ],
+                                        "nucleo": "aprender"
+                                      }
+                                    ],
+                                    "nucleo": "aprender"
+                                  }
+                                ],
+                                "nucleo": "forma"
                               }
-                            ]
+                            ],
+                            "nucleo": "es"
                           }
-                        ]
+                        ],
+                        "nucleo": "contar"
                       }
-                    ]
+                    ],
+                    "nucleo": "comprende"
                   }
-                ]
+                ],
+                "nucleo": "mira"
               }
             ]
           }

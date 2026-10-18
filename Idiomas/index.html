@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Paglot</title>
-  <meta name="description" content="Paglot: learn languages with your pixel tutor · Aprende idiomas con tu tutora de píxeles.">
+  <meta name="description" content="Paglot: learn Spanish for free with your pixel tutor · Học tiếng Tây Ban Nha miễn phí.">
   <meta name="application-name" content="Paglot">
   <meta name="apple-mobile-web-app-title" content="Paglot">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Paglot">
-  <meta property="og:description" content="Learn languages with your pixel tutor · Aprende idiomas con tu tutora de píxeles.">
+  <meta property="og:description" content="Learn Spanish for free with your pixel tutor · Học tiếng Tây Ban Nha miễn phí.">
   <meta property="og:image" content="assets/icono-512.png">
   <meta name="theme-color" content="#14111c">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -23,7 +23,7 @@
       const t = a.tema || 'auto';
       const oscuro = t === 'oscuro' || (t === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
       document.documentElement.dataset.tema = oscuro ? 'oscuro' : 'claro';
-      const compatibles = new Set(['en', 'vi', 'zh', 'es', 'pt', 'fr', 'ja', 'it', 'ko', 'ru', 'de', 'id']);
+      const compatibles = new Set(['en', 'vi']);
       const detectar = () => [...(navigator.languages ?? []), navigator.language ?? '']
         .map(x => x.toLowerCase().replaceAll('_', '-').split('-')[0]).find(x => compatibles.has(x)) ?? 'en';
       document.documentElement.lang = a.idioma && a.idioma !== 'auto' && compatibles.has(a.idioma) ? a.idioma : detectar();
@@ -48,20 +48,35 @@
   <link rel="stylesheet" href="css/cabecera.css?v=__VERSION__">
   <link rel="stylesheet" href="css/pie.css?v=__VERSION__">
   <link rel="stylesheet" href="css/inicio.css?v=__VERSION__">
-  <link rel="stylesheet" href="css/precios.css?v=__VERSION__">
-  <link rel="stylesheet" href="css/entrar.css?v=__VERSION__">
-  <link rel="stylesheet" href="css/teatro.css?v=__VERSION__">
   <link rel="stylesheet" href="css/escenas.css?v=__VERSION__">
-  <link rel="stylesheet" href="css/sobre.css?v=__VERSION__">
-  <link rel="stylesheet" href="css/social.css?v=__VERSION__">
-  <link rel="stylesheet" href="css/regalo.css?v=__VERSION__">
-  <link rel="stylesheet" href="css/contacto.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/juegos.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/ayuda-trozos.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/bingo.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/busca.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/chat.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/clasifica.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/desorden.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/detective.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/dianas.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/doblaje.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/escucha.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/globos.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/intrusa.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/karaoke.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/letras.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/maquina.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/memoria.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/puertas.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/puzle.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/quien.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/rescate.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/semaforo.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/sobres.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/subrayador.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/taller.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/telefono.css?v=__VERSION__">
+  <link rel="stylesheet" href="juegos/css/tren.css?v=__VERSION__">
   <link rel="stylesheet" href="css/bienvenida.css?v=__VERSION__">
-  <link rel="stylesheet" href="css/escuelas.css?v=__VERSION__">
-  <link rel="stylesheet" href="css/empresas.css?v=__VERSION__">
-  <link rel="stylesheet" href="css/laboratorio.css?v=__VERSION__">
-  <link rel="stylesheet" href="css/faq.css?v=__VERSION__">
-  <link rel="stylesheet" href="css/tienda.css?v=__VERSION__">
   <!-- Al publicar, __VERSION__ se cambia por el código de la versión (ver .github/workflows/static.yml),
        así el navegador descarga siempre los archivos nuevos en lugar de usar los antiguos guardados. -->
   <script type="importmap">
@@ -73,7 +88,6 @@
         "./js/pie.js": "./js/pie.js?v=__VERSION__",
         "./js/chispa.js": "./js/chispa.js?v=__VERSION__",
         "./js/comunes.js": "./js/comunes.js?v=__VERSION__",
-        "./js/config.js": "./js/config.js?v=__VERSION__",
         "./js/creditos.js": "./js/creditos.js?v=__VERSION__",
         "./js/curso.js": "./js/curso.js?v=__VERSION__",
         "./js/cursos.js": "./js/cursos.js?v=__VERSION__",
@@ -81,61 +95,71 @@
         "./js/exercises.js": "./js/exercises.js?v=__VERSION__",
         "./js/i18n.js": "./js/i18n.js?v=__VERSION__",
         "./js/i18n/en.js": "./js/i18n/en.js?v=__VERSION__",
-        "./js/i18n/es.js": "./js/i18n/es.js?v=__VERSION__",
-        "./js/i18n/fr.js": "./js/i18n/fr.js?v=__VERSION__",
-        "./js/i18n/ja.js": "./js/i18n/ja.js?v=__VERSION__",
-        "./js/i18n/it.js": "./js/i18n/it.js?v=__VERSION__",
-        "./js/i18n/ko.js": "./js/i18n/ko.js?v=__VERSION__",
-        "./js/i18n/de.js": "./js/i18n/de.js?v=__VERSION__",
-        "./js/i18n/ru.js": "./js/i18n/ru.js?v=__VERSION__",
-        "./js/i18n/id.js": "./js/i18n/id.js?v=__VERSION__",
-        "./js/i18n/pt.js": "./js/i18n/pt.js?v=__VERSION__",
         "./js/i18n/vi.js": "./js/i18n/vi.js?v=__VERSION__",
-        "./js/i18n/zh.js": "./js/i18n/zh.js?v=__VERSION__",
         "./js/iconos.js": "./js/iconos.js?v=__VERSION__",
         "./js/juego/efectos.js": "./js/juego/efectos.js?v=__VERSION__",
         "./js/juego/escenas.js": "./js/juego/escenas.js?v=__VERSION__",
         "./js/juego/escenas-b.js": "./js/juego/escenas-b.js?v=__VERSION__",
         "./js/juego/escenas-c.js": "./js/juego/escenas-c.js?v=__VERSION__",
         "./js/juego/motor.js": "./js/juego/motor.js?v=__VERSION__",
+        "./juegos/ayuda-trozos.js": "./juegos/ayuda-trozos.js?v=__VERSION__",
+        "./juegos/bingo.js": "./juegos/bingo.js?v=__VERSION__",
+        "./juegos/busca.js": "./juegos/busca.js?v=__VERSION__",
+        "./juegos/cartas.js": "./juegos/cartas.js?v=__VERSION__",
+        "./juegos/catalogo.js": "./juegos/catalogo.js?v=__VERSION__",
+        "./juegos/chat.js": "./juegos/chat.js?v=__VERSION__",
+        "./juegos/clasifica.js": "./juegos/clasifica.js?v=__VERSION__",
+        "./juegos/desorden.js": "./juegos/desorden.js?v=__VERSION__",
+        "./juegos/detective.js": "./juegos/detective.js?v=__VERSION__",
+        "./juegos/dianas.js": "./juegos/dianas.js?v=__VERSION__",
+        "./juegos/doblaje.js": "./juegos/doblaje.js?v=__VERSION__",
+        "./juegos/ejercicio.js": "./juegos/ejercicio.js?v=__VERSION__",
+        "./juegos/escucha.js": "./juegos/escucha.js?v=__VERSION__",
+        "./juegos/globos.js": "./juegos/globos.js?v=__VERSION__",
+        "./juegos/intrusa.js": "./juegos/intrusa.js?v=__VERSION__",
+        "./juegos/karaoke.js": "./juegos/karaoke.js?v=__VERSION__",
+        "./juegos/letras.js": "./juegos/letras.js?v=__VERSION__",
+        "./juegos/linterna.js": "./juegos/linterna.js?v=__VERSION__",
+        "./juegos/lista.js": "./juegos/lista.js?v=__VERSION__",
+        "./juegos/maquina.js": "./juegos/maquina.js?v=__VERSION__",
+        "./juegos/memoria.js": "./juegos/memoria.js?v=__VERSION__",
+        "./juegos/motor.js": "./juegos/motor.js?v=__VERSION__",
+        "./juegos/pizarra.js": "./juegos/pizarra.js?v=__VERSION__",
+        "./juegos/puertas.js": "./juegos/puertas.js?v=__VERSION__",
+        "./juegos/puzle.js": "./juegos/puzle.js?v=__VERSION__",
+        "./juegos/quien.js": "./juegos/quien.js?v=__VERSION__",
+        "./juegos/rescate.js": "./juegos/rescate.js?v=__VERSION__",
+        "./juegos/semaforo.js": "./juegos/semaforo.js?v=__VERSION__",
+        "./juegos/sobres.js": "./juegos/sobres.js?v=__VERSION__",
+        "./juegos/subrayador.js": "./juegos/subrayador.js?v=__VERSION__",
+        "./juegos/taller.js": "./juegos/taller.js?v=__VERSION__",
+        "./juegos/teatro.js": "./juegos/teatro.js?v=__VERSION__",
+        "./juegos/telefono.js": "./juegos/telefono.js?v=__VERSION__",
+        "./juegos/tren.js": "./juegos/tren.js?v=__VERSION__",
         "./js/lessons.js": "./js/lessons.js?v=__VERSION__",
         "./js/movil.js": "./js/movil.js?v=__VERSION__",
+        "./js/suave.js": "./js/suave.js?v=__VERSION__",
         "./js/progress.js": "./js/progress.js?v=__VERSION__",
-        "./js/region.js": "./js/region.js?v=__VERSION__",
         "./js/sonidos.js": "./js/sonidos.js?v=__VERSION__",
         "./js/srs.js": "./js/srs.js?v=__VERSION__",
-        "./js/sync.js": "./js/sync.js?v=__VERSION__",
         "./js/tutor-sprite.js": "./js/tutor-sprite.js?v=__VERSION__",
         "./js/tutor.js": "./js/tutor.js?v=__VERSION__",
         "./js/tutora-base.js": "./js/tutora-base.js?v=__VERSION__",
         "./js/vistas/bienvenida.js": "./js/vistas/bienvenida.js?v=__VERSION__",
-        "./js/vistas/comunidad.js": "./js/vistas/comunidad.js?v=__VERSION__",
-        "./js/vistas/contacto.js": "./js/vistas/contacto.js?v=__VERSION__",
-        "./js/vistas/comunidad-extra.js": "./js/vistas/comunidad-extra.js?v=__VERSION__",
-        "./js/vistas/laboratorio.js": "./js/vistas/laboratorio.js?v=__VERSION__",
-        "./js/vistas/faq.js": "./js/vistas/faq.js?v=__VERSION__",
-        "./js/vistas/social.js": "./js/vistas/social.js?v=__VERSION__",
-        "./js/vistas/productos.js": "./js/vistas/productos.js?v=__VERSION__",
-        "./js/vistas/regalo.js": "./js/vistas/regalo.js?v=__VERSION__",
-        "./js/vistas/escuelas.js": "./js/vistas/escuelas.js?v=__VERSION__",
-        "./js/vistas/empresas.js": "./js/vistas/empresas.js?v=__VERSION__",
-        "./js/vistas/tienda.js": "./js/vistas/tienda.js?v=__VERSION__",
+        "./js/vistas/creditos.js": "./js/vistas/creditos.js?v=__VERSION__",
         "./js/vistas/cuaderno.js": "./js/vistas/cuaderno.js?v=__VERSION__",
-        "./js/vistas/cursos.js": "./js/vistas/cursos.js?v=__VERSION__",
         "./js/vistas/elenco.js": "./js/vistas/elenco.js?v=__VERSION__",
-        "./js/vistas/entrar.js": "./js/vistas/entrar.js?v=__VERSION__",
         "./js/vistas/frases.js": "./js/vistas/frases.js?v=__VERSION__",
         "./js/vistas/inicio-decorado.js": "./js/vistas/inicio-decorado.js?v=__VERSION__",
         "./js/vistas/inicio.js": "./js/vistas/inicio.js?v=__VERSION__",
         "./js/vistas/leccion.js": "./js/vistas/leccion.js?v=__VERSION__",
         "./js/vistas/perdida.js": "./js/vistas/perdida.js?v=__VERSION__",
-        "./js/vistas/legal.js": "./js/vistas/legal.js?v=__VERSION__",
         "./js/vistas/lecciones.js": "./js/vistas/lecciones.js?v=__VERSION__",
         "./js/vistas/perfil.js": "./js/vistas/perfil.js?v=__VERSION__",
         "./js/vistas/practica.js": "./js/vistas/practica.js?v=__VERSION__",
-        "./js/vistas/precios.js": "./js/vistas/precios.js?v=__VERSION__",
         "./js/vistas/repaso.js": "./js/vistas/repaso.js?v=__VERSION__",
-        "./js/vistas/sobre.js": "./js/vistas/sobre.js?v=__VERSION__"
+        "./js/amigas.js": "./js/amigas.js?v=__VERSION__",
+        "./js/desarrollador.js": "./js/desarrollador.js?v=__VERSION__"
       }
     }
   </script>
@@ -160,12 +184,10 @@
     </a>
     <nav id="cabecera-nav" class="cabecera-nav" data-t-aria="html.secciones">
       <a class="btn" href="#/inicio" data-nav="inicio">Inicio</a>
-      <a class="btn" href="#/idiomas" data-nav="idiomas">Idiomas</a>
-      <a class="btn nav-max" href="#/precios" data-nav="precios">Paglot Max</a>
+      <a class="btn" href="#/lecciones" data-nav="lecciones">Lessons</a>
     </nav>
     <nav id="menu" class="menu" data-t-aria="html.secciones"></nav>
     <span class="cabecera-botones">
-      <a id="btn-curso" class="btn btn-icono btn-curso" href="#/idiomas" hidden>⇄</a>
       <span class="idioma-menu">
         <button type="button" id="sel-idioma" class="btn sel-idioma" aria-haspopup="menu" aria-expanded="false" aria-label="Language" data-t-aria="idioma.selector"></button>
         <span id="lista-idiomas" class="idioma-lista" role="menu" hidden></span>
@@ -173,7 +195,6 @@
       <button type="button" id="btn-sonido" class="btn btn-icono" aria-pressed="true" aria-label="Mute sounds">♪</button>
       <button type="button" id="btn-tema" class="btn btn-icono" aria-label="Switch to dark mode">☾</button>
     </span>
-    <div id="cabecera-cuenta" class="cabecera-cuenta"></div>
     </div>
     <div id="cabecera-cinta" class="cabecera-cinta" hidden></div>
   </header>
@@ -199,26 +220,8 @@
     <div class="pie-interior">
       <nav class="pie-grupos" aria-label="Paglot">
         <section class="pie-grupo">
-          <h2 data-pie-titulo="descubre">Discover</h2>
-          <a href="#/sobre" data-pie="sobre">About Paglot</a>
-          <a href="#/social" data-pie="social">Social</a>
-          <a href="#/guias" data-pie="guias">Community guidelines</a>
-          <a href="#/laboratorio" data-pie="laboratorio">Idea Lab</a>
-        </section>
-        <section class="pie-grupo">
-          <h2 data-pie-titulo="producto">Products</h2>
-          <a href="#/escuelas" data-pie="escuelas">Paglot Schools</a>
-          <a href="#/empresas" data-pie="empresas">Paglot Business</a>
-          <a href="#/precios" data-pie="max">Paglot Max</a>
-          <a href="#/regala-max" data-pie="regalo">Gift Paglot Max</a>
-          <a href="#/tienda" data-pie="tienda">Store</a>
-        </section>
-        <section class="pie-grupo">
           <h2 data-pie-titulo="ayuda">Help</h2>
-          <a href="#/contacto" data-pie="contacto">Contact</a>
-          <a href="#/faq" data-pie="faq">FAQ</a>
           <a href="#/bienvenida" data-pie="bienvenida" hidden>See the welcome again</a>
-          <a href="#/legal" data-pie="legal">Legal notice</a>
           <a href="#/creditos" data-pie="creditos">Credits</a>
         </section>
       </nav>

@@ -1,164 +1,464 @@
 {
   "esquema": 2,
-  "flexible": true,
   "id": "054",
   "capitulo": 6,
-  "titulo": {
-    "$t": "titulo"
-  },
-  "intro": {
-    "$t": "intro"
-  },
+  "numero_curso": 56,
+  "orden_curso": 56,
+  "nivel": "A1",
   "palabras": {
     "me duele": {
-      "$f": "p.me duele",
       "pron": "me DWE-le",
       "cat": "verb"
     },
     "me duelen": {
-      "$f": "p.me duelen",
       "pron": "me DWE-len",
       "cat": "verb"
     },
     "la cabeza": {
-      "$f": "p.la cabeza",
       "pron": "la ka-BE-tha",
-      "genero": "f",
-      "cat": "sust"
+      "cat": "sust",
+      "genero": "f"
     },
     "los ojos": {
-      "$f": "p.los ojos",
       "pron": "los O-hos",
-      "genero": "m",
-      "cat": "sust"
+      "cat": "sust",
+      "genero": "m"
     },
     "el estómago": {
-      "$f": "p.el estómago",
       "pron": "el es-TO-ma-go",
-      "genero": "m",
-      "cat": "sust"
+      "cat": "sust",
+      "genero": "m"
     },
     "fiebre": {
-      "$f": "p.fiebre",
       "pron": "FYE-bre",
-      "genero": "f",
-      "cat": "sust"
+      "cat": "sust",
+      "genero": "f"
     },
     "la farmacia": {
-      "$f": "p.la farmacia",
       "pron": "la far-MA-thya",
-      "genero": "f",
-      "cat": "sust"
+      "cat": "sust",
+      "genero": "f"
     },
     "cerca": {
-      "$f": "p.cerca",
       "pron": "THER-ka",
       "cat": "adv"
+    },
+    "duelen": {
+      "pron": "DWE-len",
+      "cat": "verb"
+    },
+    "sordo": {
+      "pron": "SOR-do",
+      "cat": "adj"
+    },
+    "late": {
+      "pron": "LA-te",
+      "cat": "verb"
+    },
+    "brasas": {
+      "pron": "BRA-sas",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "manta": {
+      "pron": "MAN-ta",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "termómetro": {
+      "pron": "ter-MO-me-tro",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "mesita": {
+      "pron": "me-SI-ta",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "cruz": {
+      "pron": "KRUTH",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "campanita": {
+      "pron": "kam-pa-NI-ta",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "limpio": {
+      "pron": "LIM-pyo",
+      "cat": "adj"
+    },
+    "hierbas": {
+      "pron": "YER-bas",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "farmacéutico": {
+      "pron": "far-ma-THEU-ti-ko",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "entrega": {
+      "pron": "en-TRE-ga",
+      "cat": "verb"
+    },
+    "estómago": {
+      "pron": "es-TO-ma-go",
+      "cat": "sust",
+      "genero": "m"
     }
   },
   "bloques": [
     {
-      "tipo": "explicacion",
-      "titulo": {
-        "$t": "b1.titulo"
-      },
-      "texto": {
-        "$t": "b1.texto"
-      }
+      "id": "b1",
+      "tipo": "explicacion"
     },
     {
+      "id": "b2",
       "tipo": "dialogo",
-      "titulo": {
-        "$t": "b2.titulo"
-      },
       "frases": [
         {
-          "$f": "b2.f0",
           "quien": "Lucía",
-          "analisis": [
-            [
-              "Me duele",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
               {
-                "$t": "a0"
-              }
-            ],
-            [
-              "la cabeza",
+                "funcion": "PRED",
+                "texto": "Me duele",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "Me",
+                    "nucleo": "Me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "duele",
+                    "nucleo": "duele"
+                  }
+                ],
+                "nucleo": "duele"
+              },
               {
-                "$t": "a1"
+                "funcion": "SUJ",
+                "texto": "la cabeza",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "la"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "cabeza",
+                    "nucleo": "cabeza"
+                  }
+                ],
+                "nucleo": "cabeza"
               }
             ]
-          ]
+          }
         },
         {
-          "$f": "b2.f1",
           "quien": "Pablo",
-          "analisis": [
-            [
-              "¿Tienes",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
               {
-                "$t": "a0"
-              }
-            ],
-            [
-              "fiebre",
-              {
-                "$t": "a2"
+                "funcion": "PRED",
+                "texto": "Tienes fiebre",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Tienes",
+                    "nucleo": "Tienes"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "fiebre",
+                    "partes": [
+                      {
+                        "funcion": "N",
+                        "texto": "fiebre",
+                        "nucleo": "fiebre"
+                      }
+                    ],
+                    "nucleo": "fiebre"
+                  }
+                ],
+                "nucleo": "Tienes"
               }
             ]
-          ]
+          }
         },
         {
-          "$f": "b2.f2",
           "quien": "Lucía",
-          "analisis": [
-            [
-              "No",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
               {
-                "$t": "a3"
-              }
-            ],
-            [
-              "me duelen",
-              {
-                "$t": "a0"
-              }
-            ],
-            [
-              "los ojos",
-              {
-                "$t": "a1"
+                "funcion": "PRED",
+                "texto": "No tengo fiebre",
+                "partes": [
+                  {
+                    "funcion": "NEG",
+                    "texto": "No"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "tengo",
+                    "nucleo": "tengo"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "fiebre",
+                    "partes": [
+                      {
+                        "funcion": "N",
+                        "texto": "fiebre",
+                        "nucleo": "fiebre"
+                      }
+                    ],
+                    "nucleo": "fiebre"
+                  }
+                ],
+                "nucleo": "tengo"
               }
             ]
-          ]
+          }
         },
         {
-          "$f": "b2.f3",
-          "quien": "Pablo",
-          "analisis": [
-            [
-              "Hay",
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
               {
-                "$t": "a0"
-              }
-            ],
-            [
-              "una farmacia",
+                "funcion": "PRED",
+                "texto": "También me duelen",
+                "partes": [
+                  {
+                    "funcion": "CCM",
+                    "texto": "También",
+                    "nucleo": "También"
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "me",
+                    "nucleo": "me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "duelen",
+                    "nucleo": "duelen"
+                  }
+                ],
+                "nucleo": "duelen"
+              },
               {
-                "$t": "a2"
-              }
-            ],
-            [
-              "cerca",
-              {
-                "$t": "a4"
+                "funcion": "SUJ",
+                "texto": "los ojos",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "los"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "ojos",
+                    "nucleo": "ojos"
+                  }
+                ],
+                "nucleo": "ojos"
               }
             ]
-          ]
+          }
+        },
+        {
+          "quien": "Pablo",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Te duele",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "Te",
+                    "nucleo": "Te"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "duele",
+                    "nucleo": "duele"
+                  }
+                ],
+                "nucleo": "duele"
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "el estómago",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "el"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "estómago",
+                    "nucleo": "estómago"
+                  }
+                ],
+                "nucleo": "estómago"
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "El estómago",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "El"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "estómago",
+                    "nucleo": "estómago"
+                  }
+                ],
+                "nucleo": "estómago"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "no me duele",
+                "partes": [
+                  {
+                    "funcion": "NEG",
+                    "texto": "no"
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "me",
+                    "nucleo": "me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "duele",
+                    "nucleo": "duele"
+                  }
+                ],
+                "nucleo": "duele"
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Pablo",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Hay una farmacia cerca",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Hay",
+                    "nucleo": "Hay"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "una farmacia",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "una"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "farmacia",
+                        "nucleo": "farmacia"
+                      }
+                    ],
+                    "nucleo": "farmacia"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "cerca",
+                    "nucleo": "cerca"
+                  }
+                ],
+                "nucleo": "Hay"
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Vamos a la farmacia",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Vamos",
+                    "nucleo": "Vamos"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "a la farmacia",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "a"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la farmacia",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "farmacia",
+                            "nucleo": "farmacia"
+                          }
+                        ],
+                        "nucleo": "farmacia"
+                      }
+                    ],
+                    "nucleo": "farmacia"
+                  }
+                ],
+                "nucleo": "Vamos"
+              }
+            ]
+          }
         }
       ]
     },
     {
+      "id": "b3",
       "tipo": "vocabulario",
       "palabras": [
         "me duele",
@@ -172,102 +472,1112 @@
       ]
     },
     {
-      "tipo": "huecos",
-      "id": "a1-salud-duele",
-      "pregunta": {
-        "$t": "b4.pregunta"
-      },
-      "frase": {
-        "$e": "b4.frase"
-      },
-      "audio": true,
-      "opciones": {
-        "duele": {
-          "$t": "b4.o0.refuerzo"
+      "id": "b4",
+      "tipo": "gramatica",
+      "ejemplos": [
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Le duele",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "Le",
+                    "nucleo": "Le"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "duele",
+                    "nucleo": "duele"
+                  }
+                ],
+                "nucleo": "duele"
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "el estómago",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "el"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "estómago",
+                    "nucleo": "estómago"
+                  }
+                ],
+                "nucleo": "estómago"
+              }
+            ]
+          }
         },
-        "duelen": {
-          "$t": "b4.o1.refuerzo"
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Nos duelen",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "Nos",
+                    "nucleo": "Nos"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "duelen",
+                    "nucleo": "duelen"
+                  }
+                ],
+                "nucleo": "duelen"
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "los ojos",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "los"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "ojos",
+                    "nucleo": "ojos"
+                  }
+                ],
+                "nucleo": "ojos"
+              }
+            ]
+          }
         },
-        "dolor": {
-          "$t": "b4.o2.refuerzo"
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Mi hermana",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Mi"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "hermana",
+                    "nucleo": "hermana"
+                  }
+                ],
+                "nucleo": "hermana"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "tiene fiebre",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "tiene",
+                    "nucleo": "tiene"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "fiebre",
+                    "partes": [
+                      {
+                        "funcion": "N",
+                        "texto": "fiebre",
+                        "nucleo": "fiebre"
+                      }
+                    ],
+                    "nucleo": "fiebre"
+                  }
+                ],
+                "nucleo": "tiene"
+              }
+            ]
+          }
         }
-      },
-      "correcta": "duele"
-    },
-    {
-      "tipo": "ordenar",
-      "id": "a1-salud-cabeza",
-      "frase": {
-        "$e": "b5.frase"
-      },
-      "traduccion": {
-        "$t": "b5.traduccion"
-      }
-    },
-    {
-      "tipo": "huecos",
-      "id": "a1-salud-m1",
-      "pregunta": {
-        "$t": "b6.pregunta"
-      },
-      "frase": {
-        "$e": "b6.frase"
-      },
-      "audio": true,
-      "opciones": {
-        "duelen": {
-          "$t": "b6.o0.refuerzo"
-        },
-        "duele": {
-          "$t": "b6.o1.refuerzo"
-        },
-        "dolor": {
-          "$t": "b6.o2.refuerzo"
-        }
-      },
-      "correcta": "duelen"
-    },
-    {
-      "tipo": "huecos",
-      "id": "a1-salud-m2",
-      "pregunta": {
-        "$t": "b7.pregunta"
-      },
-      "frase": {
-        "$e": "b7.frase"
-      },
-      "audio": true,
-      "opciones": {
-        "Tengo": {
-          "$t": "b7.o0.refuerzo"
-        },
-        "Me duele": {
-          "$t": "b7.o1.refuerzo"
-        },
-        "Estoy": {
-          "$t": "b7.o2.refuerzo"
-        }
-      },
-      "correcta": "Tengo"
-    },
-    {
-      "tipo": "escribir",
-      "id": "a1-salud-m3",
-      "pregunta": {
-        "$t": "b8.pregunta"
-      },
-      "respuestas": [
-        "Me duele el estómago"
       ]
     },
     {
-      "tipo": "explicacion",
-      "titulo": {
-        "$t": "b9.titulo"
-      },
-      "texto": {
-        "$t": "b9.texto"
-      }
+      "id": "b5",
+      "tipo": "texto",
+      "registro": "literario",
+      "frases": [
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Una luz gris",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Una"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "luz",
+                    "nucleo": "luz"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "gris",
+                    "nucleo": "gris"
+                  }
+                ],
+                "nucleo": "luz"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "entra por la ventana de la habitación",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "entra",
+                    "nucleo": "entra"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "por la ventana de la habitación",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "por"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la ventana de la habitación",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "ventana",
+                            "nucleo": "ventana"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "de la habitación",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "de"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "la habitación",
+                                "partes": [
+                                  {
+                                    "funcion": "DET",
+                                    "texto": "la"
+                                  },
+                                  {
+                                    "funcion": "N",
+                                    "texto": "habitación",
+                                    "nucleo": "habitación"
+                                  }
+                                ],
+                                "nucleo": "habitación"
+                              }
+                            ],
+                            "nucleo": "habitación"
+                          }
+                        ],
+                        "nucleo": "ventana"
+                      }
+                    ],
+                    "nucleo": "ventana"
+                  }
+                ],
+                "nucleo": "entra"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Un golpe sordo",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Un"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "golpe",
+                    "nucleo": "golpe"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "sordo",
+                    "nucleo": "sordo"
+                  }
+                ],
+                "nucleo": "golpe"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "late dentro de la cabeza de Lucía",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "late",
+                    "nucleo": "late"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "dentro de la cabeza de Lucía",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "dentro de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la cabeza de Lucía",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "cabeza",
+                            "nucleo": "cabeza"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "de Lucía",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "de"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "Lucía",
+                                "partes": [
+                                  {
+                                    "funcion": "N",
+                                    "texto": "Lucía",
+                                    "nucleo": "Lucía"
+                                  }
+                                ],
+                                "nucleo": "Lucía"
+                              }
+                            ],
+                            "nucleo": "Lucía"
+                          }
+                        ],
+                        "nucleo": "cabeza"
+                      }
+                    ],
+                    "nucleo": "cabeza"
+                  }
+                ],
+                "nucleo": "late"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Los ojos",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Los"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "ojos",
+                    "nucleo": "ojos"
+                  }
+                ],
+                "nucleo": "ojos"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "le duelen como dos brasas pequeñas",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "le",
+                    "nucleo": "le"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "duelen",
+                    "nucleo": "duelen"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "como dos brasas pequeñas",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "como"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "dos brasas pequeñas",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "dos"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "brasas",
+                            "nucleo": "brasas"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "pequeñas",
+                            "nucleo": "pequeñas"
+                          }
+                        ],
+                        "nucleo": "brasas"
+                      }
+                    ],
+                    "nucleo": "brasas"
+                  }
+                ],
+                "nucleo": "duelen"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "El estómago",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "El"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "estómago",
+                    "nucleo": "estómago"
+                  }
+                ],
+                "nucleo": "estómago"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "descansa bajo la manta suave",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "descansa",
+                    "nucleo": "descansa"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "bajo la manta suave",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "bajo"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la manta suave",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "manta",
+                            "nucleo": "manta"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "suave",
+                            "nucleo": "suave"
+                          }
+                        ],
+                        "nucleo": "manta"
+                      }
+                    ],
+                    "nucleo": "manta"
+                  }
+                ],
+                "nucleo": "descansa"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Un termómetro frío",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Un"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "termómetro",
+                    "nucleo": "termómetro"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "frío",
+                    "nucleo": "frío"
+                  }
+                ],
+                "nucleo": "termómetro"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "espera sobre la mesita de noche",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "espera",
+                    "nucleo": "espera"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "sobre la mesita de noche",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "sobre"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la mesita de noche",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "mesita",
+                            "nucleo": "mesita"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "de noche",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "de"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "noche",
+                                "partes": [
+                                  {
+                                    "funcion": "N",
+                                    "texto": "noche",
+                                    "nucleo": "noche"
+                                  }
+                                ],
+                                "nucleo": "noche"
+                              }
+                            ],
+                            "nucleo": "noche"
+                          }
+                        ],
+                        "nucleo": "mesita"
+                      }
+                    ],
+                    "nucleo": "mesita"
+                  }
+                ],
+                "nucleo": "espera"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Lucía",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Lucía",
+                    "nucleo": "Lucía"
+                  }
+                ],
+                "nucleo": "Lucía"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "camina despacio por la calle fresca de la mañana",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "camina",
+                    "nucleo": "camina"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "despacio",
+                    "nucleo": "despacio"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "por la calle fresca de la mañana",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "por"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la calle fresca de la mañana",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "calle",
+                            "nucleo": "calle"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "fresca",
+                            "nucleo": "fresca"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "de la mañana",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "de"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "la mañana",
+                                "partes": [
+                                  {
+                                    "funcion": "DET",
+                                    "texto": "la"
+                                  },
+                                  {
+                                    "funcion": "N",
+                                    "texto": "mañana",
+                                    "nucleo": "mañana"
+                                  }
+                                ],
+                                "nucleo": "mañana"
+                              }
+                            ],
+                            "nucleo": "mañana"
+                          }
+                        ],
+                        "nucleo": "calle"
+                      }
+                    ],
+                    "nucleo": "calle"
+                  }
+                ],
+                "nucleo": "camina"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "La farmacia",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "La"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "farmacia",
+                    "nucleo": "farmacia"
+                  }
+                ],
+                "nucleo": "farmacia"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "está cerca y brilla con una cruz verde",
+                "partes": [
+                  {
+                    "funcion": "PRED",
+                    "texto": "está cerca",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "está",
+                        "nucleo": "está"
+                      },
+                      {
+                        "funcion": "CCL",
+                        "texto": "cerca",
+                        "nucleo": "cerca"
+                      }
+                    ],
+                    "nucleo": "está"
+                  },
+                  {
+                    "funcion": "CONJ",
+                    "texto": "y"
+                  },
+                  {
+                    "funcion": "PRED",
+                    "texto": "brilla con una cruz verde",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "brilla",
+                        "nucleo": "brilla"
+                      },
+                      {
+                        "funcion": "CCM",
+                        "texto": "con una cruz verde",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "con"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "una cruz verde",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "una"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "cruz",
+                                "nucleo": "cruz"
+                              },
+                              {
+                                "funcion": "ADY",
+                                "texto": "verde",
+                                "nucleo": "verde"
+                              }
+                            ],
+                            "nucleo": "cruz"
+                          }
+                        ],
+                        "nucleo": "cruz"
+                      }
+                    ],
+                    "nucleo": "brilla"
+                  }
+                ],
+                "nucleo": "está"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Una campanita",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Una"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "campanita",
+                    "nucleo": "campanita"
+                  }
+                ],
+                "nucleo": "campanita"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "suena sobre la puerta de cristal",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "suena",
+                    "nucleo": "suena"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "sobre la puerta de cristal",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "sobre"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la puerta de cristal",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "puerta",
+                            "nucleo": "puerta"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "de cristal",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "de"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "cristal",
+                                "partes": [
+                                  {
+                                    "funcion": "N",
+                                    "texto": "cristal",
+                                    "nucleo": "cristal"
+                                  }
+                                ],
+                                "nucleo": "cristal"
+                              }
+                            ],
+                            "nucleo": "cristal"
+                          }
+                        ],
+                        "nucleo": "puerta"
+                      }
+                    ],
+                    "nucleo": "puerta"
+                  }
+                ],
+                "nucleo": "suena"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Un olor limpio a hierbas",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Un"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "olor",
+                    "nucleo": "olor"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "limpio",
+                    "nucleo": "limpio"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "a hierbas",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "a"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "hierbas",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "hierbas",
+                            "nucleo": "hierbas"
+                          }
+                        ],
+                        "nucleo": "hierbas"
+                      }
+                    ],
+                    "nucleo": "hierbas"
+                  }
+                ],
+                "nucleo": "olor"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "llena el aire fresco",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "llena",
+                    "nucleo": "llena"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "el aire fresco",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "el"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "aire",
+                        "nucleo": "aire"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "fresco",
+                        "nucleo": "fresco"
+                      }
+                    ],
+                    "nucleo": "aire"
+                  }
+                ],
+                "nucleo": "llena"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "El farmacéutico",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "El"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "farmacéutico",
+                    "nucleo": "farmacéutico"
+                  }
+                ],
+                "nucleo": "farmacéutico"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "sonríe y le entrega una caja pequeña",
+                "partes": [
+                  {
+                    "funcion": "PRED",
+                    "texto": "sonríe",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "sonríe",
+                        "nucleo": "sonríe"
+                      }
+                    ],
+                    "nucleo": "sonríe"
+                  },
+                  {
+                    "funcion": "CONJ",
+                    "texto": "y"
+                  },
+                  {
+                    "funcion": "PRED",
+                    "texto": "le entrega una caja pequeña",
+                    "partes": [
+                      {
+                        "funcion": "CI",
+                        "texto": "le",
+                        "nucleo": "le"
+                      },
+                      {
+                        "funcion": "V",
+                        "texto": "entrega",
+                        "nucleo": "entrega"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "una caja pequeña",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "una"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "caja",
+                            "nucleo": "caja"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "pequeña",
+                            "nucleo": "pequeña"
+                          }
+                        ],
+                        "nucleo": "caja"
+                      }
+                    ],
+                    "nucleo": "entrega"
+                  }
+                ],
+                "nucleo": "sonríe"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "b6",
+      "tipo": "test",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b7",
+      "tipo": "huecos",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b8",
+      "tipo": "ordenar"
+    },
+    {
+      "id": "b9",
+      "tipo": "test",
+      "opciones": [
+        {
+          "correcta": false
+        },
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b10",
+      "tipo": "huecos",
+      "opciones": [
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": true
+        }
+      ]
+    },
+    {
+      "id": "b11",
+      "tipo": "escribir",
+      "respuestas": [
+        "Me duelen los ojos",
+        "me duelen los ojos",
+        "Me duelen los ojos.",
+        "los ojos me duelen"
+      ]
+    },
+    {
+      "id": "b12",
+      "tipo": "test",
+      "opciones": [
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": true
+        }
+      ]
     }
   ]
 }

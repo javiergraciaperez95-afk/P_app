@@ -2,6 +2,8 @@
   "esquema": 2,
   "id": "030",
   "capitulo": 4,
+  "numero_curso": 32,
+  "orden_curso": 32,
   "nivel": "A1",
   "palabras": {
     "quiero": {
@@ -71,6 +73,53 @@
     },
     "Pablo": {
       "propio": true
+    },
+    "entradas": {
+      "pron": "en-TRA-das",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "quieren": {
+      "pron": "KYE-ren",
+      "cat": "verb"
+    },
+    "ver": {
+      "pron": "ber",
+      "cat": "verb"
+    },
+    "películas": {
+      "pron": "pe-LI-ku-las",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "función": {
+      "pron": "fun-THYON",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "amigo": {
+      "pron": "a-MI-go",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "anticipación": {
+      "pron": "an-ti-thi-pa-THYON",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "puertas": {
+      "pron": "PWER-tas",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "jornada": {
+      "pron": "hor-NA-da",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "tranquilamente": {
+      "pron": "tran-ki-la-MEN-te",
+      "cat": "adv"
     }
   },
   "bloques": [
@@ -90,45 +139,32 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "¿Quieres ir al cine esta noche?",
-                "nucleo": "Quieres",
+                "texto": "Quieres ir al cine esta noche",
                 "partes": [
                   {
                     "funcion": "V",
-                    "texto": "¿Quieres",
-                    "nucleo": "¿Quieres"
+                    "texto": "Quieres ir",
+                    "nucleo": "ir"
                   },
                   {
-                    "funcion": "CD",
-                    "texto": "ir al cine",
-                    "nucleo": "ir",
+                    "funcion": "CCL",
+                    "texto": "al cine",
                     "partes": [
                       {
-                        "funcion": "INF",
-                        "texto": "ir"
+                        "funcion": "PREP",
+                        "texto": "al"
                       },
                       {
-                        "funcion": "CCL",
-                        "texto": "al cine",
-                        "nucleo": "cine",
-                        "partes": [
-                          {
-                            "funcion": "PREP",
-                            "texto": "al"
-                          },
-                          {
-                            "funcion": "TERM",
-                            "texto": "cine",
-                            "nucleo": "cine"
-                          }
-                        ]
+                        "funcion": "TERM",
+                        "texto": "cine",
+                        "nucleo": "cine"
                       }
-                    ]
+                    ],
+                    "nucleo": "cine"
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "esta noche?",
-                    "nucleo": "noche",
+                    "texto": "esta noche",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -136,11 +172,14 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "noche?"
+                        "texto": "noche",
+                        "nucleo": "noche"
                       }
-                    ]
+                    ],
+                    "nucleo": "noche"
                   }
-                ]
+                ],
+                "nucleo": "ir"
               }
             ]
           }
@@ -153,8 +192,7 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "No puedo hoy.",
-                "nucleo": "puedo",
+                "texto": "No puedo hoy",
                 "partes": [
                   {
                     "funcion": "NEG",
@@ -167,10 +205,11 @@
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "hoy.",
-                    "nucleo": "hoy."
+                    "texto": "hoy",
+                    "nucleo": "hoy"
                   }
-                ]
+                ],
+                "nucleo": "puedo"
               }
             ]
           }
@@ -183,8 +222,7 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Vuelvo tarde del trabajo.",
-                "nucleo": "Vuelvo",
+                "texto": "Vuelvo tarde del trabajo",
                 "partes": [
                   {
                     "funcion": "V",
@@ -198,8 +236,7 @@
                   },
                   {
                     "funcion": "CCL",
-                    "texto": "del trabajo.",
-                    "nucleo": "trabajo",
+                    "texto": "del trabajo",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -207,12 +244,14 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "trabajo.",
-                        "nucleo": "trabajo."
+                        "texto": "trabajo",
+                        "nucleo": "trabajo"
                       }
-                    ]
+                    ],
+                    "nucleo": "trabajo"
                   }
-                ]
+                ],
+                "nucleo": "Vuelvo"
               }
             ]
           }
@@ -226,7 +265,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La película",
-                "nucleo": "película",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -234,14 +272,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "película"
+                    "texto": "película",
+                    "nucleo": "película"
                   }
-                ]
+                ],
+                "nucleo": "película"
               },
               {
                 "funcion": "PRED",
-                "texto": "empieza a las ocho.",
-                "nucleo": "empieza",
+                "texto": "empieza a las ocho",
                 "partes": [
                   {
                     "funcion": "V",
@@ -250,8 +289,7 @@
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "a las ocho.",
-                    "nucleo": "ocho",
+                    "texto": "a las ocho",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -259,8 +297,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "las ocho.",
-                        "nucleo": "ocho",
+                        "texto": "las ocho",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -268,13 +305,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "ocho."
+                            "texto": "ocho",
+                            "nucleo": "ocho"
                           }
-                        ]
+                        ],
+                        "nucleo": "ocho"
                       }
-                    ]
+                    ],
+                    "nucleo": "ocho"
                   }
-                ]
+                ],
+                "nucleo": "empieza"
               }
             ]
           }
@@ -287,29 +328,16 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Prefiero salir el sábado.",
-                "nucleo": "Prefiero",
+                "texto": "Prefiero salir el sábado",
                 "partes": [
                   {
                     "funcion": "V",
-                    "texto": "Prefiero",
-                    "nucleo": "Prefiero"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "salir",
-                    "nucleo": "salir",
-                    "partes": [
-                      {
-                        "funcion": "INF",
-                        "texto": "salir"
-                      }
-                    ]
+                    "texto": "Prefiero salir",
+                    "nucleo": "salir"
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "el sábado.",
-                    "nucleo": "sábado",
+                    "texto": "el sábado",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -317,11 +345,14 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "sábado."
+                        "texto": "sábado",
+                        "nucleo": "sábado"
                       }
-                    ]
+                    ],
+                    "nucleo": "sábado"
                   }
-                ]
+                ],
+                "nucleo": "salir"
               }
             ]
           }
@@ -334,45 +365,32 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Podemos ir al cine el sábado.",
-                "nucleo": "Podemos",
+                "texto": "Podemos ir al cine el sábado",
                 "partes": [
                   {
                     "funcion": "V",
-                    "texto": "Podemos",
-                    "nucleo": "Podemos"
+                    "texto": "Podemos ir",
+                    "nucleo": "ir"
                   },
                   {
-                    "funcion": "CD",
-                    "texto": "ir al cine",
-                    "nucleo": "ir",
+                    "funcion": "CCL",
+                    "texto": "al cine",
                     "partes": [
                       {
-                        "funcion": "INF",
-                        "texto": "ir"
+                        "funcion": "PREP",
+                        "texto": "al"
                       },
                       {
-                        "funcion": "CCL",
-                        "texto": "al cine",
-                        "nucleo": "cine",
-                        "partes": [
-                          {
-                            "funcion": "PREP",
-                            "texto": "al"
-                          },
-                          {
-                            "funcion": "TERM",
-                            "texto": "cine",
-                            "nucleo": "cine"
-                          }
-                        ]
+                        "funcion": "TERM",
+                        "texto": "cine",
+                        "nucleo": "cine"
                       }
-                    ]
+                    ],
+                    "nucleo": "cine"
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "el sábado.",
-                    "nucleo": "sábado",
+                    "texto": "el sábado",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -380,11 +398,14 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "sábado."
+                        "texto": "sábado",
+                        "nucleo": "sábado"
                       }
-                    ]
+                    ],
+                    "nucleo": "sábado"
                   }
-                ]
+                ],
+                "nucleo": "ir"
               }
             ]
           }
@@ -423,34 +444,21 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Quiero comprar entradas para el cine.",
-                "nucleo": "Quiero",
+                "texto": "Quiero comprar entradas para el cine",
                 "partes": [
                   {
                     "funcion": "V",
-                    "texto": "Quiero",
-                    "nucleo": "Quiero"
+                    "texto": "Quiero comprar",
+                    "nucleo": "comprar"
                   },
                   {
                     "funcion": "CD",
-                    "texto": "comprar entradas",
-                    "nucleo": "comprar",
-                    "partes": [
-                      {
-                        "funcion": "INF",
-                        "texto": "comprar"
-                      },
-                      {
-                        "funcion": "CD",
-                        "texto": "entradas",
-                        "nucleo": "entradas"
-                      }
-                    ]
+                    "texto": "entradas",
+                    "nucleo": "entradas"
                   },
                   {
                     "funcion": "CCF",
-                    "texto": "para el cine.",
-                    "nucleo": "cine",
+                    "texto": "para el cine",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -458,8 +466,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "el cine.",
-                        "nucleo": "cine",
+                        "texto": "el cine",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -467,13 +474,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "cine."
+                            "texto": "cine",
+                            "nucleo": "cine"
                           }
-                        ]
+                        ],
+                        "nucleo": "cine"
                       }
-                    ]
+                    ],
+                    "nucleo": "cine"
                   }
-                ]
+                ],
+                "nucleo": "comprar"
               }
             ]
           }
@@ -486,7 +497,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La tienda",
-                "nucleo": "tienda",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -494,14 +504,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "tienda"
+                    "texto": "tienda",
+                    "nucleo": "tienda"
                   }
-                ]
+                ],
+                "nucleo": "tienda"
               },
               {
                 "funcion": "PRED",
-                "texto": "cierra a las nueve de la noche.",
-                "nucleo": "cierra",
+                "texto": "cierra a las nueve de la noche",
                 "partes": [
                   {
                     "funcion": "V",
@@ -510,8 +521,7 @@
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "a las nueve de la noche.",
-                    "nucleo": "nueve",
+                    "texto": "a las nueve de la noche",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -519,8 +529,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "las nueve de la noche.",
-                        "nucleo": "nueve",
+                        "texto": "las nueve de la noche",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -528,12 +537,12 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "nueve"
+                            "texto": "nueve",
+                            "nucleo": "nueve"
                           },
                           {
                             "funcion": "CN",
-                            "texto": "de la noche.",
-                            "nucleo": "noche",
+                            "texto": "de la noche",
                             "partes": [
                               {
                                 "funcion": "PREP",
@@ -541,8 +550,7 @@
                               },
                               {
                                 "funcion": "TERM",
-                                "texto": "la noche.",
-                                "nucleo": "noche",
+                                "texto": "la noche",
                                 "partes": [
                                   {
                                     "funcion": "DET",
@@ -550,17 +558,23 @@
                                   },
                                   {
                                     "funcion": "N",
-                                    "texto": "noche."
+                                    "texto": "noche",
+                                    "nucleo": "noche"
                                   }
-                                ]
+                                ],
+                                "nucleo": "noche"
                               }
-                            ]
+                            ],
+                            "nucleo": "noche"
                           }
-                        ]
+                        ],
+                        "nucleo": "nueve"
                       }
-                    ]
+                    ],
+                    "nucleo": "nueve"
                   }
-                ]
+                ],
+                "nucleo": "cierra"
               }
             ]
           }
@@ -581,64 +595,54 @@
               {
                 "funcion": "SUJ",
                 "texto": "Muchos jóvenes alegres",
-                "nucleo": "jóvenes",
                 "partes": [
                   {
                     "funcion": "CUANT",
-                    "texto": "Muchos"
+                    "texto": "Muchos",
+                    "nucleo": "Muchos"
                   },
                   {
                     "funcion": "N",
-                    "texto": "jóvenes"
+                    "texto": "jóvenes",
+                    "nucleo": "jóvenes"
                   },
                   {
                     "funcion": "ADY",
                     "texto": "alegres",
                     "nucleo": "alegres"
                   }
-                ]
+                ],
+                "nucleo": "jóvenes"
               },
               {
                 "funcion": "PRED",
-                "texto": "quieren ver películas interesantes en el gran cine.",
-                "nucleo": "quieren",
+                "texto": "quieren ver películas interesantes en el gran cine",
                 "partes": [
                   {
                     "funcion": "V",
-                    "texto": "quieren",
-                    "nucleo": "quieren"
+                    "texto": "quieren ver",
+                    "nucleo": "ver"
                   },
                   {
                     "funcion": "CD",
-                    "texto": "ver películas interesantes",
-                    "nucleo": "ver",
+                    "texto": "películas interesantes",
                     "partes": [
                       {
-                        "funcion": "INF",
-                        "texto": "ver"
+                        "funcion": "N",
+                        "texto": "películas",
+                        "nucleo": "películas"
                       },
                       {
-                        "funcion": "CD",
-                        "texto": "películas interesantes",
-                        "nucleo": "películas",
-                        "partes": [
-                          {
-                            "funcion": "N",
-                            "texto": "películas"
-                          },
-                          {
-                            "funcion": "ADY",
-                            "texto": "interesantes",
-                            "nucleo": "interesantes"
-                          }
-                        ]
+                        "funcion": "ADY",
+                        "texto": "interesantes",
+                        "nucleo": "interesantes"
                       }
-                    ]
+                    ],
+                    "nucleo": "películas"
                   },
                   {
                     "funcion": "CCL",
-                    "texto": "en el gran cine.",
-                    "nucleo": "cine",
+                    "texto": "en el gran cine",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -646,8 +650,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "el gran cine.",
-                        "nucleo": "cine",
+                        "texto": "el gran cine",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -660,13 +663,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "cine."
+                            "texto": "cine",
+                            "nucleo": "cine"
                           }
-                        ]
+                        ],
+                        "nucleo": "cine"
                       }
-                    ]
+                    ],
+                    "nucleo": "cine"
                   }
-                ]
+                ],
+                "nucleo": "ver"
               }
             ]
           }
@@ -680,7 +687,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La función principal de la tarde",
-                "nucleo": "función",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -688,7 +694,8 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "función"
+                    "texto": "función",
+                    "nucleo": "función"
                   },
                   {
                     "funcion": "ADY",
@@ -698,7 +705,6 @@
                   {
                     "funcion": "CN",
                     "texto": "de la tarde",
-                    "nucleo": "tarde",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -707,7 +713,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "la tarde",
-                        "nucleo": "tarde",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -715,18 +720,21 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "tarde"
+                            "texto": "tarde",
+                            "nucleo": "tarde"
                           }
-                        ]
+                        ],
+                        "nucleo": "tarde"
                       }
-                    ]
+                    ],
+                    "nucleo": "tarde"
                   }
-                ]
+                ],
+                "nucleo": "función"
               },
               {
                 "funcion": "PRED",
-                "texto": "empieza siempre a las siete en punto.",
-                "nucleo": "empieza",
+                "texto": "empieza siempre a las siete en punto",
                 "partes": [
                   {
                     "funcion": "V",
@@ -740,8 +748,7 @@
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "a las siete en punto.",
-                    "nucleo": "siete",
+                    "texto": "a las siete en punto",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -749,8 +756,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "las siete en punto.",
-                        "nucleo": "siete",
+                        "texto": "las siete en punto",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -758,29 +764,22 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "siete"
+                            "texto": "siete",
+                            "nucleo": "siete"
                           },
                           {
-                            "funcion": "ADY",
-                            "texto": "en punto.",
-                            "nucleo": "punto",
-                            "partes": [
-                              {
-                                "funcion": "PREP",
-                                "texto": "en"
-                              },
-                              {
-                                "funcion": "TERM",
-                                "texto": "punto.",
-                                "nucleo": "punto."
-                              }
-                            ]
+                            "funcion": "ADV",
+                            "texto": "en punto",
+                            "nucleo": "punto"
                           }
-                        ]
+                        ],
+                        "nucleo": "siete"
                       }
-                    ]
+                    ],
+                    "nucleo": "siete"
                   }
-                ]
+                ],
+                "nucleo": "empieza"
               }
             ]
           }
@@ -794,7 +793,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Mi amigo simpático",
-                "nucleo": "amigo",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -802,60 +800,51 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "amigo"
+                    "texto": "amigo",
+                    "nucleo": "amigo"
                   },
                   {
                     "funcion": "ADY",
                     "texto": "simpático",
                     "nucleo": "simpático"
                   }
-                ]
+                ],
+                "nucleo": "amigo"
               },
               {
                 "funcion": "PRED",
-                "texto": "prefiere reservar dos entradas buenas con anticipación.",
-                "nucleo": "prefiere",
+                "texto": "prefiere reservar dos entradas buenas con anticipación",
                 "partes": [
                   {
                     "funcion": "V",
-                    "texto": "prefiere",
-                    "nucleo": "prefiere"
+                    "texto": "prefiere reservar",
+                    "nucleo": "reservar"
                   },
                   {
                     "funcion": "CD",
-                    "texto": "reservar dos entradas buenas",
-                    "nucleo": "reservar",
+                    "texto": "dos entradas buenas",
                     "partes": [
                       {
-                        "funcion": "INF",
-                        "texto": "reservar"
+                        "funcion": "CUANT",
+                        "texto": "dos",
+                        "nucleo": "dos"
                       },
                       {
-                        "funcion": "CD",
-                        "texto": "dos entradas buenas",
-                        "nucleo": "entradas",
-                        "partes": [
-                          {
-                            "funcion": "CUANT",
-                            "texto": "dos"
-                          },
-                          {
-                            "funcion": "N",
-                            "texto": "entradas"
-                          },
-                          {
-                            "funcion": "ADY",
-                            "texto": "buenas",
-                            "nucleo": "buenas"
-                          }
-                        ]
+                        "funcion": "N",
+                        "texto": "entradas",
+                        "nucleo": "entradas"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "buenas",
+                        "nucleo": "buenas"
                       }
-                    ]
+                    ],
+                    "nucleo": "entradas"
                   },
                   {
                     "funcion": "CCM",
-                    "texto": "con anticipación.",
-                    "nucleo": "anticipación",
+                    "texto": "con anticipación",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -863,12 +852,14 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "anticipación.",
-                        "nucleo": "anticipación."
+                        "texto": "anticipación",
+                        "nucleo": "anticipación"
                       }
-                    ]
+                    ],
+                    "nucleo": "anticipación"
                   }
-                ]
+                ],
+                "nucleo": "reservar"
               }
             ]
           }
@@ -882,7 +873,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La pequeña tienda de la esquina",
-                "nucleo": "tienda",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -895,12 +885,12 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "tienda"
+                    "texto": "tienda",
+                    "nucleo": "tienda"
                   },
                   {
                     "funcion": "CN",
                     "texto": "de la esquina",
-                    "nucleo": "esquina",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -909,7 +899,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "la esquina",
-                        "nucleo": "esquina",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -917,18 +906,21 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "esquina"
+                            "texto": "esquina",
+                            "nucleo": "esquina"
                           }
-                        ]
+                        ],
+                        "nucleo": "esquina"
                       }
-                    ]
+                    ],
+                    "nucleo": "esquina"
                   }
-                ]
+                ],
+                "nucleo": "tienda"
               },
               {
                 "funcion": "PRED",
-                "texto": "cierra sus puertas a las nueve.",
-                "nucleo": "cierra",
+                "texto": "cierra sus puertas a las nueve",
                 "partes": [
                   {
                     "funcion": "V",
@@ -938,7 +930,6 @@
                   {
                     "funcion": "CD",
                     "texto": "sus puertas",
-                    "nucleo": "puertas",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -946,14 +937,15 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "puertas"
+                        "texto": "puertas",
+                        "nucleo": "puertas"
                       }
-                    ]
+                    ],
+                    "nucleo": "puertas"
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "a las nueve.",
-                    "nucleo": "nueve",
+                    "texto": "a las nueve",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -961,8 +953,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "las nueve.",
-                        "nucleo": "nueve",
+                        "texto": "las nueve",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -970,13 +961,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "nueve."
+                            "texto": "nueve",
+                            "nucleo": "nueve"
                           }
-                        ]
+                        ],
+                        "nucleo": "nueve"
                       }
-                    ]
+                    ],
+                    "nucleo": "nueve"
                   }
-                ]
+                ],
+                "nucleo": "cierra"
               }
             ]
           }
@@ -994,8 +989,7 @@
               },
               {
                 "funcion": "PRED",
-                "texto": "vuelve a casa cansado después de una larga jornada.",
-                "nucleo": "vuelve",
+                "texto": "vuelve a casa cansado después de una larga jornada",
                 "partes": [
                   {
                     "funcion": "V",
@@ -1005,7 +999,6 @@
                   {
                     "funcion": "CCL",
                     "texto": "a casa",
-                    "nucleo": "casa",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -1016,7 +1009,8 @@
                         "texto": "casa",
                         "nucleo": "casa"
                       }
-                    ]
+                    ],
+                    "nucleo": "casa"
                   },
                   {
                     "funcion": "CPVO",
@@ -1025,48 +1019,38 @@
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "después de una larga jornada.",
-                    "nucleo": "después",
+                    "texto": "después de una larga jornada",
                     "partes": [
                       {
-                        "funcion": "ADV",
-                        "texto": "después",
-                        "nucleo": "después"
+                        "funcion": "PREP",
+                        "texto": "después de"
                       },
                       {
-                        "funcion": "CN",
-                        "texto": "de una larga jornada.",
-                        "nucleo": "jornada",
+                        "funcion": "TERM",
+                        "texto": "una larga jornada",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "de"
+                            "funcion": "DET",
+                            "texto": "una"
                           },
                           {
-                            "funcion": "TERM",
-                            "texto": "una larga jornada.",
-                            "nucleo": "jornada",
-                            "partes": [
-                              {
-                                "funcion": "DET",
-                                "texto": "una"
-                              },
-                              {
-                                "funcion": "ADY",
-                                "texto": "larga",
-                                "nucleo": "larga"
-                              },
-                              {
-                                "funcion": "N",
-                                "texto": "jornada."
-                              }
-                            ]
+                            "funcion": "ADY",
+                            "texto": "larga",
+                            "nucleo": "larga"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "jornada",
+                            "nucleo": "jornada"
                           }
-                        ]
+                        ],
+                        "nucleo": "jornada"
                       }
-                    ]
+                    ],
+                    "nucleo": "jornada"
                   }
-                ]
+                ],
+                "nucleo": "vuelve"
               }
             ]
           }
@@ -1084,8 +1068,7 @@
               },
               {
                 "funcion": "PRED",
-                "texto": "duerme tranquilamente muchas horas durante el fin de semana.",
-                "nucleo": "duerme",
+                "texto": "duerme tranquilamente muchas horas durante el fin de semana",
                 "partes": [
                   {
                     "funcion": "V",
@@ -1100,22 +1083,23 @@
                   {
                     "funcion": "CCT",
                     "texto": "muchas horas",
-                    "nucleo": "horas",
                     "partes": [
                       {
                         "funcion": "CUANT",
-                        "texto": "muchas"
+                        "texto": "muchas",
+                        "nucleo": "muchas"
                       },
                       {
                         "funcion": "N",
-                        "texto": "horas"
+                        "texto": "horas",
+                        "nucleo": "horas"
                       }
-                    ]
+                    ],
+                    "nucleo": "horas"
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "durante el fin de semana.",
-                    "nucleo": "fin",
+                    "texto": "durante el fin de semana",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -1123,8 +1107,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "el fin de semana.",
-                        "nucleo": "fin",
+                        "texto": "el fin de semana",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -1132,12 +1115,12 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "fin"
+                            "texto": "fin",
+                            "nucleo": "fin"
                           },
                           {
                             "funcion": "CN",
-                            "texto": "de semana.",
-                            "nucleo": "semana",
+                            "texto": "de semana",
                             "partes": [
                               {
                                 "funcion": "PREP",
@@ -1145,16 +1128,20 @@
                               },
                               {
                                 "funcion": "TERM",
-                                "texto": "semana.",
-                                "nucleo": "semana."
+                                "texto": "semana",
+                                "nucleo": "semana"
                               }
-                            ]
+                            ],
+                            "nucleo": "semana"
                           }
-                        ]
+                        ],
+                        "nucleo": "fin"
                       }
-                    ]
+                    ],
+                    "nucleo": "fin"
                   }
-                ]
+                ],
+                "nucleo": "duerme"
               }
             ]
           }

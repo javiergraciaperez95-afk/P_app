@@ -2,6 +2,8 @@
   "esquema": 2,
   "id": "018",
   "capitulo": 2,
+  "numero_curso": 20,
+  "orden_curso": 20,
   "nivel": "A1",
   "palabras": {
     "el pelo": {
@@ -106,6 +108,39 @@
     },
     "Pablo": {
       "propio": true
+    },
+    "gafas": {
+      "pron": "GA-fas",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "barba": {
+      "pron": "BAR-ba",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "bigote": {
+      "pron": "bi-GO-te",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "elegantes": {
+      "pron": "e-le-GAN-tes",
+      "cat": "adj"
+    },
+    "admiración": {
+      "pron": "ad-mi-ra-THYON",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "caminan": {
+      "pron": "ka-MI-nan",
+      "cat": "verb"
+    },
+    "pelo": {
+      "pron": "PE-lo",
+      "cat": "sust",
+      "genero": "m"
     }
   },
   "bloques": [
@@ -126,7 +161,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Cómo es",
-                "nucleo": "es",
                 "partes": [
                   {
                     "funcion": "ATRIB",
@@ -138,12 +172,12 @@
                     "texto": "es",
                     "nucleo": "es"
                   }
-                ]
+                ],
+                "nucleo": "es"
               },
               {
                 "funcion": "SUJ",
                 "texto": "tu hermano",
-                "nucleo": "hermano",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -151,9 +185,11 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "hermano"
+                    "texto": "hermano",
+                    "nucleo": "hermano"
                   }
-                ]
+                ],
+                "nucleo": "hermano"
               }
             ]
           }
@@ -167,7 +203,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Es alto y delgado",
-                "nucleo": "Es",
                 "partes": [
                   {
                     "funcion": "V",
@@ -177,10 +212,9 @@
                   {
                     "funcion": "ATRIB",
                     "texto": "alto y delgado",
-                    "nucleo": "alto",
                     "partes": [
                       {
-                        "funcion": "ADY",
+                        "funcion": "ATRIB",
                         "texto": "alto",
                         "nucleo": "alto"
                       },
@@ -189,13 +223,15 @@
                         "texto": "y"
                       },
                       {
-                        "funcion": "ADY",
+                        "funcion": "ATRIB",
                         "texto": "delgado",
                         "nucleo": "delgado"
                       }
-                    ]
+                    ],
+                    "nucleo": "alto"
                   }
-                ]
+                ],
+                "nucleo": "Es"
               }
             ]
           }
@@ -209,7 +245,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Tiene el pelo corto y rizado",
-                "nucleo": "Tiene",
                 "partes": [
                   {
                     "funcion": "V",
@@ -219,7 +254,6 @@
                   {
                     "funcion": "CD",
                     "texto": "el pelo corto y rizado",
-                    "nucleo": "pelo",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -227,25 +261,35 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "pelo"
+                        "texto": "pelo",
+                        "nucleo": "pelo"
                       },
                       {
                         "funcion": "ADY",
-                        "texto": "corto",
+                        "texto": "corto y rizado",
+                        "partes": [
+                          {
+                            "funcion": "ADY",
+                            "texto": "corto",
+                            "nucleo": "corto"
+                          },
+                          {
+                            "funcion": "CONJ",
+                            "texto": "y"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "rizado",
+                            "nucleo": "rizado"
+                          }
+                        ],
                         "nucleo": "corto"
-                      },
-                      {
-                        "funcion": "CONJ",
-                        "texto": "y"
-                      },
-                      {
-                        "funcion": "ADY",
-                        "texto": "rizado",
-                        "nucleo": "rizado"
                       }
-                    ]
+                    ],
+                    "nucleo": "pelo"
                   }
-                ]
+                ],
+                "nucleo": "Tiene"
               }
             ]
           }
@@ -259,7 +303,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Es rubio",
-                "nucleo": "Es",
                 "partes": [
                   {
                     "funcion": "V",
@@ -271,7 +314,8 @@
                     "texto": "rubio",
                     "nucleo": "rubio"
                   }
-                ]
+                ],
+                "nucleo": "Es"
               }
             ]
           }
@@ -285,7 +329,6 @@
               {
                 "funcion": "PRED",
                 "texto": "No es moreno",
-                "nucleo": "es",
                 "partes": [
                   {
                     "funcion": "NEG",
@@ -301,7 +344,8 @@
                     "texto": "moreno",
                     "nucleo": "moreno"
                   }
-                ]
+                ],
+                "nucleo": "es"
               }
             ]
           }
@@ -315,54 +359,63 @@
               {
                 "funcion": "PRED",
                 "texto": "Tiene los ojos verdes y lleva gafas",
-                "nucleo": "Tiene",
                 "partes": [
                   {
-                    "funcion": "V",
-                    "texto": "Tiene",
-                    "nucleo": "Tiene"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "los ojos verdes",
-                    "nucleo": "ojos",
+                    "funcion": "PRED",
+                    "texto": "Tiene los ojos verdes",
                     "partes": [
                       {
-                        "funcion": "DET",
-                        "texto": "los"
+                        "funcion": "V",
+                        "texto": "Tiene",
+                        "nucleo": "Tiene"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "ojos"
-                      },
-                      {
-                        "funcion": "ADY",
-                        "texto": "verdes",
-                        "nucleo": "verdes"
+                        "funcion": "CD",
+                        "texto": "los ojos verdes",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "los"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "ojos",
+                            "nucleo": "ojos"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "verdes",
+                            "nucleo": "verdes"
+                          }
+                        ],
+                        "nucleo": "ojos"
                       }
-                    ]
+                    ],
+                    "nucleo": "Tiene"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "V",
-                    "texto": "lleva",
-                    "nucleo": "lleva"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "gafas",
-                    "nucleo": "gafas",
+                    "funcion": "PRED",
+                    "texto": "lleva gafas",
                     "partes": [
                       {
-                        "funcion": "N",
-                        "texto": "gafas"
+                        "funcion": "V",
+                        "texto": "lleva",
+                        "nucleo": "lleva"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "gafas",
+                        "nucleo": "gafas"
                       }
-                    ]
+                    ],
+                    "nucleo": "lleva"
                   }
-                ]
+                ],
+                "nucleo": "Tiene"
               }
             ]
           }
@@ -376,7 +429,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Lleva barba",
-                "nucleo": "Lleva",
                 "partes": [
                   {
                     "funcion": "V",
@@ -386,15 +438,10 @@
                   {
                     "funcion": "CD",
                     "texto": "barba",
-                    "nucleo": "barba",
-                    "partes": [
-                      {
-                        "funcion": "N",
-                        "texto": "barba"
-                      }
-                    ]
+                    "nucleo": "barba"
                   }
-                ]
+                ],
+                "nucleo": "Lleva"
               }
             ]
           }
@@ -408,7 +455,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Mi padre",
-                "nucleo": "padre",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -416,46 +462,56 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "padre"
+                    "texto": "padre",
+                    "nucleo": "padre"
                   }
-                ]
+                ],
+                "nucleo": "padre"
               },
               {
                 "funcion": "PRED",
                 "texto": "lleva bigote y es calvo",
-                "nucleo": "lleva",
                 "partes": [
                   {
-                    "funcion": "V",
-                    "texto": "lleva",
-                    "nucleo": "lleva"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "bigote",
-                    "nucleo": "bigote",
+                    "funcion": "PRED",
+                    "texto": "lleva bigote",
                     "partes": [
                       {
-                        "funcion": "N",
-                        "texto": "bigote"
+                        "funcion": "V",
+                        "texto": "lleva",
+                        "nucleo": "lleva"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "bigote",
+                        "nucleo": "bigote"
                       }
-                    ]
+                    ],
+                    "nucleo": "lleva"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "V",
-                    "texto": "es",
+                    "funcion": "PRED",
+                    "texto": "es calvo",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "es",
+                        "nucleo": "es"
+                      },
+                      {
+                        "funcion": "ATRIB",
+                        "texto": "calvo",
+                        "nucleo": "calvo"
+                      }
+                    ],
                     "nucleo": "es"
-                  },
-                  {
-                    "funcion": "ATRIB",
-                    "texto": "calvo",
-                    "nucleo": "calvo"
                   }
-                ]
+                ],
+                "nucleo": "lleva"
               }
             ]
           }
@@ -508,7 +564,6 @@
               {
                 "funcion": "PRED",
                 "texto": "tiene el pelo corto",
-                "nucleo": "tiene",
                 "partes": [
                   {
                     "funcion": "V",
@@ -518,7 +573,6 @@
                   {
                     "funcion": "CD",
                     "texto": "el pelo corto",
-                    "nucleo": "pelo",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -526,16 +580,19 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "pelo"
+                        "texto": "pelo",
+                        "nucleo": "pelo"
                       },
                       {
                         "funcion": "ADY",
                         "texto": "corto",
                         "nucleo": "corto"
                       }
-                    ]
+                    ],
+                    "nucleo": "pelo"
                   }
-                ]
+                ],
+                "nucleo": "tiene"
               }
             ]
           }
@@ -553,7 +610,6 @@
               {
                 "funcion": "PRED",
                 "texto": "tiene los ojos verdes",
-                "nucleo": "tiene",
                 "partes": [
                   {
                     "funcion": "V",
@@ -563,7 +619,6 @@
                   {
                     "funcion": "CD",
                     "texto": "los ojos verdes",
-                    "nucleo": "ojos",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -571,16 +626,19 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "ojos"
+                        "texto": "ojos",
+                        "nucleo": "ojos"
                       },
                       {
                         "funcion": "ADY",
                         "texto": "verdes",
                         "nucleo": "verdes"
                       }
-                    ]
+                    ],
+                    "nucleo": "ojos"
                   }
-                ]
+                ],
+                "nucleo": "tiene"
               }
             ]
           }
@@ -601,7 +659,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La nueva profesora",
-                "nucleo": "profesora",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -614,55 +671,72 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "profesora"
+                    "texto": "profesora",
+                    "nucleo": "profesora"
                   }
-                ]
+                ],
+                "nucleo": "profesora"
               },
               {
                 "funcion": "PRED",
                 "texto": "es alta y tiene el pelo castaño",
-                "nucleo": "es",
                 "partes": [
                   {
-                    "funcion": "V",
-                    "texto": "es",
+                    "funcion": "PRED",
+                    "texto": "es alta",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "es",
+                        "nucleo": "es"
+                      },
+                      {
+                        "funcion": "ATRIB",
+                        "texto": "alta",
+                        "nucleo": "alta"
+                      }
+                    ],
                     "nucleo": "es"
-                  },
-                  {
-                    "funcion": "ATRIB",
-                    "texto": "alta",
-                    "nucleo": "alta"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "V",
-                    "texto": "tiene",
-                    "nucleo": "tiene"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "el pelo castaño",
-                    "nucleo": "pelo",
+                    "funcion": "PRED",
+                    "texto": "tiene el pelo castaño",
                     "partes": [
                       {
-                        "funcion": "DET",
-                        "texto": "el"
+                        "funcion": "V",
+                        "texto": "tiene",
+                        "nucleo": "tiene"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "pelo"
-                      },
-                      {
-                        "funcion": "ADY",
-                        "texto": "castaño",
-                        "nucleo": "castaño"
+                        "funcion": "CD",
+                        "texto": "el pelo castaño",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "pelo",
+                            "nucleo": "pelo"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "castaño",
+                            "nucleo": "castaño"
+                          }
+                        ],
+                        "nucleo": "pelo"
                       }
-                    ]
+                    ],
+                    "nucleo": "tiene"
                   }
-                ]
+                ],
+                "nucleo": "es"
               }
             ]
           }
@@ -681,59 +755,75 @@
               {
                 "funcion": "PRED",
                 "texto": "tiene los ojos azules y lleva gafas elegantes",
-                "nucleo": "tiene",
                 "partes": [
                   {
-                    "funcion": "V",
-                    "texto": "tiene",
-                    "nucleo": "tiene"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "los ojos azules",
-                    "nucleo": "ojos",
+                    "funcion": "PRED",
+                    "texto": "tiene los ojos azules",
                     "partes": [
                       {
-                        "funcion": "DET",
-                        "texto": "los"
+                        "funcion": "V",
+                        "texto": "tiene",
+                        "nucleo": "tiene"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "ojos"
-                      },
-                      {
-                        "funcion": "ADY",
-                        "texto": "azules",
-                        "nucleo": "azules"
+                        "funcion": "CD",
+                        "texto": "los ojos azules",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "los"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "ojos",
+                            "nucleo": "ojos"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "azules",
+                            "nucleo": "azules"
+                          }
+                        ],
+                        "nucleo": "ojos"
                       }
-                    ]
+                    ],
+                    "nucleo": "tiene"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "V",
-                    "texto": "lleva",
-                    "nucleo": "lleva"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "gafas elegantes",
-                    "nucleo": "gafas",
+                    "funcion": "PRED",
+                    "texto": "lleva gafas elegantes",
                     "partes": [
                       {
-                        "funcion": "N",
-                        "texto": "gafas"
+                        "funcion": "V",
+                        "texto": "lleva",
+                        "nucleo": "lleva"
                       },
                       {
-                        "funcion": "ADY",
-                        "texto": "elegantes",
-                        "nucleo": "elegantes"
+                        "funcion": "CD",
+                        "texto": "gafas elegantes",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "gafas",
+                            "nucleo": "gafas"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "elegantes",
+                            "nucleo": "elegantes"
+                          }
+                        ],
+                        "nucleo": "gafas"
                       }
-                    ]
+                    ],
+                    "nucleo": "lleva"
                   }
-                ]
+                ],
+                "nucleo": "tiene"
               }
             ]
           }
@@ -747,7 +837,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Los estudiantes",
-                "nucleo": "estudiantes",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -755,14 +844,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "estudiantes"
+                    "texto": "estudiantes",
+                    "nucleo": "estudiantes"
                   }
-                ]
+                ],
+                "nucleo": "estudiantes"
               },
               {
                 "funcion": "PRED",
                 "texto": "conversan con ella con gran admiración",
-                "nucleo": "conversan",
                 "partes": [
                   {
                     "funcion": "V",
@@ -772,7 +862,6 @@
                   {
                     "funcion": "CCCOMP",
                     "texto": "con ella",
-                    "nucleo": "ella",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -783,12 +872,12 @@
                         "texto": "ella",
                         "nucleo": "ella"
                       }
-                    ]
+                    ],
+                    "nucleo": "ella"
                   },
                   {
                     "funcion": "CCM",
                     "texto": "con gran admiración",
-                    "nucleo": "admiración",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -797,7 +886,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "gran admiración",
-                        "nucleo": "admiración",
                         "partes": [
                           {
                             "funcion": "ADY",
@@ -806,13 +894,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "admiración"
+                            "texto": "admiración",
+                            "nucleo": "admiración"
                           }
-                        ]
+                        ],
+                        "nucleo": "admiración"
                       }
-                    ]
+                    ],
+                    "nucleo": "admiración"
                   }
-                ]
+                ],
+                "nucleo": "conversan"
               }
             ]
           }
@@ -826,7 +918,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "El hermano menor",
-                "nucleo": "hermano",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -834,19 +925,20 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "hermano"
+                    "texto": "hermano",
+                    "nucleo": "hermano"
                   },
                   {
                     "funcion": "ADY",
                     "texto": "menor",
                     "nucleo": "menor"
                   }
-                ]
+                ],
+                "nucleo": "hermano"
               },
               {
                 "funcion": "PRED",
                 "texto": "es bajo y muy delgado",
-                "nucleo": "es",
                 "partes": [
                   {
                     "funcion": "V",
@@ -856,10 +948,9 @@
                   {
                     "funcion": "ATRIB",
                     "texto": "bajo y muy delgado",
-                    "nucleo": "bajo",
                     "partes": [
                       {
-                        "funcion": "ADY",
+                        "funcion": "ATRIB",
                         "texto": "bajo",
                         "nucleo": "bajo"
                       },
@@ -868,24 +959,27 @@
                         "texto": "y"
                       },
                       {
-                        "funcion": "ADY",
+                        "funcion": "ATRIB",
                         "texto": "muy delgado",
-                        "nucleo": "delgado",
                         "partes": [
                           {
-                            "funcion": "CUANT",
-                            "texto": "muy"
+                            "funcion": "ADV",
+                            "texto": "muy",
+                            "nucleo": "muy"
                           },
                           {
                             "funcion": "ADY",
                             "texto": "delgado",
                             "nucleo": "delgado"
                           }
-                        ]
+                        ],
+                        "nucleo": "muy"
                       }
-                    ]
+                    ],
+                    "nucleo": "bajo"
                   }
-                ]
+                ],
+                "nucleo": "es"
               }
             ]
           }
@@ -904,63 +998,79 @@
               {
                 "funcion": "PRED",
                 "texto": "tiene el pelo rizado y lleva una barba corta",
-                "nucleo": "tiene",
                 "partes": [
                   {
-                    "funcion": "V",
-                    "texto": "tiene",
-                    "nucleo": "tiene"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "el pelo rizado",
-                    "nucleo": "pelo",
+                    "funcion": "PRED",
+                    "texto": "tiene el pelo rizado",
                     "partes": [
                       {
-                        "funcion": "DET",
-                        "texto": "el"
+                        "funcion": "V",
+                        "texto": "tiene",
+                        "nucleo": "tiene"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "pelo"
-                      },
-                      {
-                        "funcion": "ADY",
-                        "texto": "rizado",
-                        "nucleo": "rizado"
+                        "funcion": "CD",
+                        "texto": "el pelo rizado",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "pelo",
+                            "nucleo": "pelo"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "rizado",
+                            "nucleo": "rizado"
+                          }
+                        ],
+                        "nucleo": "pelo"
                       }
-                    ]
+                    ],
+                    "nucleo": "tiene"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "V",
-                    "texto": "lleva",
-                    "nucleo": "lleva"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "una barba corta",
-                    "nucleo": "barba",
+                    "funcion": "PRED",
+                    "texto": "lleva una barba corta",
                     "partes": [
                       {
-                        "funcion": "DET",
-                        "texto": "una"
+                        "funcion": "V",
+                        "texto": "lleva",
+                        "nucleo": "lleva"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "barba"
-                      },
-                      {
-                        "funcion": "ADY",
-                        "texto": "corta",
-                        "nucleo": "corta"
+                        "funcion": "CD",
+                        "texto": "una barba corta",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "una"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "barba",
+                            "nucleo": "barba"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "corta",
+                            "nucleo": "corta"
+                          }
+                        ],
+                        "nucleo": "barba"
                       }
-                    ]
+                    ],
+                    "nucleo": "lleva"
                   }
-                ]
+                ],
+                "nucleo": "tiene"
               }
             ]
           }
@@ -974,7 +1084,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Los dos amigos",
-                "nucleo": "amigos",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -982,18 +1091,20 @@
                   },
                   {
                     "funcion": "CUANT",
-                    "texto": "dos"
+                    "texto": "dos",
+                    "nucleo": "dos"
                   },
                   {
                     "funcion": "N",
-                    "texto": "amigos"
+                    "texto": "amigos",
+                    "nucleo": "amigos"
                   }
-                ]
+                ],
+                "nucleo": "amigos"
               },
               {
                 "funcion": "PRED",
                 "texto": "caminan juntos por el parque verde",
-                "nucleo": "caminan",
                 "partes": [
                   {
                     "funcion": "V",
@@ -1001,14 +1112,13 @@
                     "nucleo": "caminan"
                   },
                   {
-                    "funcion": "CPVO",
+                    "funcion": "CCM",
                     "texto": "juntos",
                     "nucleo": "juntos"
                   },
                   {
                     "funcion": "CCL",
                     "texto": "por el parque verde",
-                    "nucleo": "parque",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -1017,7 +1127,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "el parque verde",
-                        "nucleo": "parque",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -1025,18 +1134,22 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "parque"
+                            "texto": "parque",
+                            "nucleo": "parque"
                           },
                           {
                             "funcion": "ADY",
                             "texto": "verde",
                             "nucleo": "verde"
                           }
-                        ]
+                        ],
+                        "nucleo": "parque"
                       }
-                    ]
+                    ],
+                    "nucleo": "parque"
                   }
-                ]
+                ],
+                "nucleo": "caminan"
               }
             ]
           }

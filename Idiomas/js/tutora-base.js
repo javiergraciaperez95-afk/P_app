@@ -4,6 +4,8 @@
 // Se pinta con rectángulos de 1 píxel y un pase automático de contorno.
 // Además de las caras (EXPRESIONES) mueven brazos, cabeza y piernas: las ANIMACIONES, que se piden con sprite.gesto().
 
+import { movilSuave } from './suave.js';
+
 const ANCHO = 48;
 const ALTO = 60;
 const OY = 4; // filas libres por encima de la cabeza (moños, gorros): se dibuja con y desde −4
@@ -550,6 +552,18 @@ export function fabricar(disenar) {
     sprite.ocupada = () => Boolean(actual || cola.length);
 
     const sinMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // En el móvil el cuerpo entero (saltos, temblores, la vueltecita y la respiración) no se pinta a píxeles enteros:
+    // se mueve el lienzo con translate y scale, que el navegador interpola (ver .movil-suave .tutora-lienzo). Así es
+    // continuo y además se repinta menos, solo cuando cambia la postura.
+    let ultimoSitio = '';
+    let ultimoGiro = '';
+    function moverLienzo(x, y, giro) {
+      const escala = (canvas.clientWidth || canvas.width) / canvas.width;
+      const sitio = `${(x * escala).toFixed(1)}px ${(-y * escala).toFixed(1)}px`;
+      if (sitio !== ultimoSitio) { canvas.style.translate = sitio; ultimoSitio = sitio; }
+      const vuelta = giro == null ? '' : `${giro.toFixed(3)} 1`;
+      if (vuelta !== ultimoGiro) { canvas.style.scale = vuelta; ultimoGiro = vuelta; }
+    }
 
     let proximoParpadeo = performance.now() + 2000;
     let finParpadeo = 0;
@@ -645,6 +659,14 @@ export function fabricar(disenar) {
         piernaD: mover ? cuerpo.piernaD : 0,
         t: CON_TIEMPO.includes(fx) ? Math.floor(t / 70) * 70 : 0,
       };
+      if (movilSuave) {
+        const respira = mover ? Math.sin((ahora / 1300) * Math.PI * 2) * 0.5 : 0;
+        moverLienzo(estado.temblor || 0, (estado.salto || 0) + respira, estado.giro);
+        estado.salto = 0;
+        estado.temblor = 0;
+        estado.giro = undefined;
+        estado.bob = 0;
+      }
       const clave = JSON.stringify(estado);
       if (clave === ultimaClave) return;
       ultimaClave = clave;

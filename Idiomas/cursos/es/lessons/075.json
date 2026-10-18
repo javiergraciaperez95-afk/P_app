@@ -1,351 +1,1486 @@
 {
   "esquema": 2,
-  "flexible": true,
   "id": "075",
   "capitulo": 8,
-  "titulo": {
-    "$t": "titulo"
-  },
-  "intro": {
-    "$t": "intro"
-  },
+  "numero_curso": 79,
+  "orden_curso": 79,
+  "nivel": "A2",
   "palabras": {
-    "dime": {
-      "$f": "p.dime",
-      "pron": "DI-me",
+    "dámelo": {
+      "pron": "DA-me-lo",
       "cat": "verb"
     },
-    "dámelo": {
-      "$f": "p.dámelo",
-      "pron": "DA-me-lo",
-      "cat": "verb",
-      "nota": {
-        "$t": "p.dámelo.nota"
-      }
-    },
     "llámame": {
-      "$f": "p.llámame",
       "pron": "YA-ma-me",
       "cat": "verb"
     },
-    "ayúdame": {
-      "$f": "p.ayúdame",
-      "pron": "a-YU-da-me",
-      "cat": "verb"
-    },
     "pásame": {
-      "$f": "p.pásame",
       "pron": "PA-sa-me",
       "cat": "verb"
     },
     "siéntate": {
-      "$f": "p.siéntate",
       "pron": "SYEN-ta-te",
       "cat": "verb"
     },
-    "espérame": {
-      "$f": "p.espérame",
-      "pron": "es-PE-ra-me",
+    "verlo": {
+      "pron": "BER-lo",
+      "cat": "verb"
+    },
+    "usándola": {
+      "pron": "u-SAN-do-la",
+      "cat": "verb"
+    },
+    "llevártelo": {
+      "pron": "ye-BAR-te-lo",
       "cat": "verb"
     },
     "la sal": {
-      "$f": "p.la sal",
       "pron": "la sal",
       "cat": "sust",
       "genero": "f"
     },
-    "el libro": {
-      "$f": "p.el libro",
-      "pron": "el LI-bro",
-      "cat": "sust",
-      "genero": "m"
-    },
     "un momento": {
-      "$f": "p.un momento",
       "pron": "un mo-MEN-to",
       "cat": "expr"
     },
-    "enseguida": {
-      "$f": "p.enseguida",
-      "pron": "en-se-GI-da",
-      "cat": "adv"
-    },
     "bonito": {
-      "$f": "p.bonito",
       "pron": "bo-NI-to",
       "cat": "adj"
+    },
+    "Lucía": {
+      "propio": true
+    },
+    "Pablo": {
+      "propio": true
+    },
+    "Ana": {
+      "propio": true
+    },
+    "enseño": {
+      "pron": "en-SE-nyo",
+      "cat": "verb"
+    },
+    "páginas": {
+      "pron": "PA-hi-nas",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "crujen": {
+      "pron": "KRU-hen",
+      "cat": "verb"
+    },
+    "haciéndolo": {
+      "pron": "a-THYEN-do-lo",
+      "cat": "verb"
     }
   },
   "bloques": [
     {
-      "tipo": "explicacion",
-      "titulo": {
-        "$t": "b1.titulo"
-      },
-      "texto": {
-        "$t": "b1.texto"
-      }
+      "id": "b1",
+      "tipo": "explicacion"
     },
     {
-      "tipo": "tabla",
-      "titulo": {
-        "$t": "b2.titulo"
-      },
-      "columnas": [
-        {
-          "$t": "b2.c0"
-        },
-        {
-          "$t": "b2.c1"
-        }
-      ],
-      "filas": [
-        [
-          "Lo quiero ver.",
-          "Quiero verlo."
-        ],
-        [
-          "Te voy a llamar.",
-          "Voy a llamarte."
-        ],
-        [
-          "Lo estoy haciendo.",
-          "Estoy haciéndolo."
-        ],
-        [
-          "—",
-          "Llámame."
-        ],
-        [
-          "—",
-          "Dámelo."
-        ]
-      ]
-    },
-    {
+      "id": "b2",
       "tipo": "dialogo",
-      "titulo": {
-        "$t": "b3.titulo"
-      },
       "frases": [
         {
-          "$f": "b3.f0",
           "quien": "Lucía",
-          "analisis": [
-            [
-              "Pásame",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
               {
-                "$t": "a0"
-              }
-            ],
-            [
-              "la sal",
-              {
-                "$t": "a1"
-              }
-            ],
-            [
-              "por favor",
-              {
-                "$t": "a2"
+                "funcion": "PRED",
+                "texto": "Pásame la sal por favor",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Pásame",
+                    "nucleo": "Pásame"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "la sal",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "la"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "sal",
+                        "nucleo": "sal"
+                      }
+                    ],
+                    "nucleo": "sal"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "por favor",
+                    "nucleo": "favor"
+                  }
+                ],
+                "nucleo": "Pásame"
               }
             ]
-          ]
+          }
         },
         {
-          "$f": "b3.f1",
           "quien": "Pablo",
-          "analisis": [
-            [
-              "Un momento",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
               {
-                "$t": "a3"
-              }
-            ],
-            [
-              "estoy usándola",
-              {
-                "$t": "a4"
+                "funcion": "PRED",
+                "texto": "Un momento estoy usándola",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "Un momento",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "Un"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "momento",
+                        "nucleo": "momento"
+                      }
+                    ],
+                    "nucleo": "momento"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "estoy usándola",
+                    "nucleo": "usándola"
+                  }
+                ],
+                "nucleo": "usándola"
               }
             ]
-          ]
+          }
         },
         {
-          "$f": "b3.f2",
           "quien": "Lucía",
-          "analisis": [
-            [
-              "¿Tienes",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
               {
-                "$t": "a5"
-              }
-            ],
-            [
-              "el libro de Ana",
-              {
-                "$t": "a1"
-              }
-            ],
-            [
-              "Quiero verlo",
-              {
-                "$t": "a6"
+                "funcion": "PRED",
+                "texto": "Tienes el libro de Ana",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Tienes",
+                    "nucleo": "Tienes"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "el libro de Ana",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "el"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "libro",
+                        "nucleo": "libro"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "de Ana",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "de"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "Ana",
+                            "partes": [
+                              {
+                                "funcion": "N",
+                                "texto": "Ana",
+                                "nucleo": "Ana"
+                              }
+                            ],
+                            "nucleo": "Ana"
+                          }
+                        ],
+                        "nucleo": "Ana"
+                      }
+                    ],
+                    "nucleo": "libro"
+                  }
+                ],
+                "nucleo": "Tienes"
               }
             ]
-          ]
+          }
         },
         {
-          "$f": "b3.f3",
           "quien": "Pablo",
-          "analisis": [
-            [
-              "Siéntate",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
               {
-                "$t": "a7"
-              }
-            ],
-            [
-              "te lo",
-              {
-                "$t": "a8"
-              }
-            ],
-            [
-              "enseño",
-              {
-                "$t": "a5"
+                "funcion": "PRED",
+                "texto": "Siéntate y te lo enseño",
+                "partes": [
+                  {
+                    "funcion": "PRED",
+                    "texto": "Siéntate",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "Siéntate",
+                        "nucleo": "Siéntate"
+                      }
+                    ],
+                    "nucleo": "Siéntate"
+                  },
+                  {
+                    "funcion": "CONJ",
+                    "texto": "y"
+                  },
+                  {
+                    "funcion": "PRED",
+                    "texto": "te lo enseño",
+                    "partes": [
+                      {
+                        "funcion": "CI",
+                        "texto": "te",
+                        "nucleo": "te"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "lo",
+                        "nucleo": "lo"
+                      },
+                      {
+                        "funcion": "V",
+                        "texto": "enseño",
+                        "nucleo": "enseño"
+                      }
+                    ],
+                    "nucleo": "enseño"
+                  }
+                ],
+                "nucleo": "Siéntate"
               }
             ]
-          ]
+          }
         },
         {
-          "$f": "b3.f4",
           "quien": "Lucía",
-          "analisis": [
-            [
-              "Es",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
               {
-                "$t": "a5"
-              }
-            ],
-            [
-              "muy bonito",
-              {
-                "$t": "a9"
-              }
-            ],
-            [
-              "Dime",
-              {
-                "$t": "a0"
-              }
-            ],
-            [
-              "¿puedes prestármelo?",
-              {
-                "$t": "a10"
+                "funcion": "PRED",
+                "texto": "Es muy bonito",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Es",
+                    "nucleo": "Es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "muy bonito",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "muy",
+                        "nucleo": "muy"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "bonito",
+                        "nucleo": "bonito"
+                      }
+                    ],
+                    "nucleo": "bonito"
+                  }
+                ],
+                "nucleo": "Es"
               }
             ]
-          ]
+          }
+        },
+        {
+          "quien": "Pablo",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Puedes llevártelo hoy",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Puedes llevártelo",
+                    "nucleo": "llevártelo"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "hoy",
+                    "nucleo": "hoy"
+                  }
+                ],
+                "nucleo": "llevártelo"
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Dámelo entonces",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Dámelo",
+                    "nucleo": "Dámelo"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "entonces",
+                    "nucleo": "entonces"
+                  }
+                ],
+                "nucleo": "Dámelo"
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Pablo",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Llámame mañana por favor",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Llámame",
+                    "nucleo": "Llámame"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "mañana",
+                    "nucleo": "mañana"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "por favor",
+                    "nucleo": "favor"
+                  }
+                ],
+                "nucleo": "Llámame"
+              }
+            ]
+          }
         }
       ]
     },
     {
-      "tipo": "vocabulario"
+      "id": "b3",
+      "tipo": "vocabulario",
+      "palabras": [
+        "dámelo",
+        "llámame",
+        "pásame",
+        "siéntate",
+        "verlo",
+        "usándola",
+        "llevártelo",
+        "la sal",
+        "un momento",
+        "bonito"
+      ]
     },
     {
-      "tipo": "huecos",
-      "id": "damelo-1",
-      "pregunta": {
-        "$t": "b5.pregunta"
-      },
-      "frase": {
-        "$e": "b5.frase"
-      },
-      "audio": true,
-      "opciones": {
-        "Llámame": {
-          "$t": "b5.o0.refuerzo"
+      "id": "b4",
+      "tipo": "gramatica",
+      "ejemplos": [
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Lo quiero ver mañana",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Lo quiero ver",
+                    "nucleo": "ver"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "mañana",
+                    "nucleo": "mañana"
+                  }
+                ],
+                "nucleo": "ver"
+              }
+            ]
+          }
         },
-        "Me llama": {
-          "$t": "b5.o1.refuerzo"
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Estoy haciéndolo ahora",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Estoy haciéndolo",
+                    "nucleo": "haciéndolo"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "ahora",
+                    "nucleo": "ahora"
+                  }
+                ],
+                "nucleo": "haciéndolo"
+              }
+            ]
+          }
         },
-        "Me llamas": {
-          "$t": "b5.o2.refuerzo"
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "No me llames tarde",
+                "partes": [
+                  {
+                    "funcion": "NEG",
+                    "texto": "No"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "me llames",
+                    "nucleo": "llames"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "tarde",
+                    "nucleo": "tarde"
+                  }
+                ],
+                "nucleo": "llames"
+              }
+            ]
+          }
         }
-      },
-      "correcta": "Llámame"
+      ]
     },
     {
+      "id": "b5",
+      "tipo": "texto",
+      "registro": "literario",
+      "frases": [
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "La cocina",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "La"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "cocina",
+                    "nucleo": "cocina"
+                  }
+                ],
+                "nucleo": "cocina"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "huele a pan tostado y a tomate fresco",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "huele",
+                    "nucleo": "huele"
+                  },
+                  {
+                    "funcion": "CRV",
+                    "texto": "a pan tostado y a tomate fresco",
+                    "partes": [
+                      {
+                        "funcion": "CRV",
+                        "texto": "a pan tostado",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "a"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "pan tostado",
+                            "partes": [
+                              {
+                                "funcion": "N",
+                                "texto": "pan",
+                                "nucleo": "pan"
+                              },
+                              {
+                                "funcion": "ADY",
+                                "texto": "tostado",
+                                "nucleo": "tostado"
+                              }
+                            ],
+                            "nucleo": "pan"
+                          }
+                        ],
+                        "nucleo": "pan"
+                      },
+                      {
+                        "funcion": "CONJ",
+                        "texto": "y"
+                      },
+                      {
+                        "funcion": "CRV",
+                        "texto": "a tomate fresco",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "a"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "tomate fresco",
+                            "partes": [
+                              {
+                                "funcion": "N",
+                                "texto": "tomate",
+                                "nucleo": "tomate"
+                              },
+                              {
+                                "funcion": "ADY",
+                                "texto": "fresco",
+                                "nucleo": "fresco"
+                              }
+                            ],
+                            "nucleo": "tomate"
+                          }
+                        ],
+                        "nucleo": "tomate"
+                      }
+                    ],
+                    "nucleo": "pan"
+                  }
+                ],
+                "nucleo": "huele"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Una luz amarilla",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Una"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "luz",
+                    "nucleo": "luz"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "amarilla",
+                    "nucleo": "amarilla"
+                  }
+                ],
+                "nucleo": "luz"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "entra por la ventana abierta",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "entra",
+                    "nucleo": "entra"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "por la ventana abierta",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "por"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la ventana abierta",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "ventana",
+                            "nucleo": "ventana"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "abierta",
+                            "nucleo": "abierta"
+                          }
+                        ],
+                        "nucleo": "ventana"
+                      }
+                    ],
+                    "nucleo": "ventana"
+                  }
+                ],
+                "nucleo": "entra"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Lucía",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Lucía",
+                    "nucleo": "Lucía"
+                  }
+                ],
+                "nucleo": "Lucía"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "corta el queso en trozos pequeños y los pone en un plato",
+                "partes": [
+                  {
+                    "funcion": "PRED",
+                    "texto": "corta el queso en trozos pequeños",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "corta",
+                        "nucleo": "corta"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "el queso",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "queso",
+                            "nucleo": "queso"
+                          }
+                        ],
+                        "nucleo": "queso"
+                      },
+                      {
+                        "funcion": "CCM",
+                        "texto": "en trozos pequeños",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "en"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "trozos pequeños",
+                            "partes": [
+                              {
+                                "funcion": "N",
+                                "texto": "trozos",
+                                "nucleo": "trozos"
+                              },
+                              {
+                                "funcion": "ADY",
+                                "texto": "pequeños",
+                                "nucleo": "pequeños"
+                              }
+                            ],
+                            "nucleo": "trozos"
+                          }
+                        ],
+                        "nucleo": "trozos"
+                      }
+                    ],
+                    "nucleo": "corta"
+                  },
+                  {
+                    "funcion": "CONJ",
+                    "texto": "y"
+                  },
+                  {
+                    "funcion": "PRED",
+                    "texto": "los pone en un plato",
+                    "partes": [
+                      {
+                        "funcion": "CD",
+                        "texto": "los",
+                        "nucleo": "los"
+                      },
+                      {
+                        "funcion": "V",
+                        "texto": "pone",
+                        "nucleo": "pone"
+                      },
+                      {
+                        "funcion": "CCL",
+                        "texto": "en un plato",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "en"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "un plato",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "un"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "plato",
+                                "nucleo": "plato"
+                              }
+                            ],
+                            "nucleo": "plato"
+                          }
+                        ],
+                        "nucleo": "plato"
+                      }
+                    ],
+                    "nucleo": "pone"
+                  }
+                ],
+                "nucleo": "corta"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Pablo",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Pablo",
+                    "nucleo": "Pablo"
+                  }
+                ],
+                "nucleo": "Pablo"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "lava las manzanas y las seca con un paño blanco",
+                "partes": [
+                  {
+                    "funcion": "PRED",
+                    "texto": "lava las manzanas",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "lava",
+                        "nucleo": "lava"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "las manzanas",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "las"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "manzanas",
+                            "nucleo": "manzanas"
+                          }
+                        ],
+                        "nucleo": "manzanas"
+                      }
+                    ],
+                    "nucleo": "lava"
+                  },
+                  {
+                    "funcion": "CONJ",
+                    "texto": "y"
+                  },
+                  {
+                    "funcion": "PRED",
+                    "texto": "las seca con un paño blanco",
+                    "partes": [
+                      {
+                        "funcion": "CD",
+                        "texto": "las",
+                        "nucleo": "las"
+                      },
+                      {
+                        "funcion": "V",
+                        "texto": "seca",
+                        "nucleo": "seca"
+                      },
+                      {
+                        "funcion": "CCINSTR",
+                        "texto": "con un paño blanco",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "con"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "un paño blanco",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "un"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "paño",
+                                "nucleo": "paño"
+                              },
+                              {
+                                "funcion": "ADY",
+                                "texto": "blanco",
+                                "nucleo": "blanco"
+                              }
+                            ],
+                            "nucleo": "paño"
+                          }
+                        ],
+                        "nucleo": "paño"
+                      }
+                    ],
+                    "nucleo": "seca"
+                  }
+                ],
+                "nucleo": "lava"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Después se sientan a la mesa con calma",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "Después",
+                    "nucleo": "Después"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "se sientan",
+                    "nucleo": "sientan"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "a la mesa",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "a"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la mesa",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "mesa",
+                            "nucleo": "mesa"
+                          }
+                        ],
+                        "nucleo": "mesa"
+                      }
+                    ],
+                    "nucleo": "mesa"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "con calma",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "calma",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "calma",
+                            "nucleo": "calma"
+                          }
+                        ],
+                        "nucleo": "calma"
+                      }
+                    ],
+                    "nucleo": "calma"
+                  }
+                ],
+                "nucleo": "sientan"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Sobre la mesa descansa",
+                "partes": [
+                  {
+                    "funcion": "CCL",
+                    "texto": "Sobre la mesa",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "Sobre"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la mesa",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "mesa",
+                            "nucleo": "mesa"
+                          }
+                        ],
+                        "nucleo": "mesa"
+                      }
+                    ],
+                    "nucleo": "mesa"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "descansa",
+                    "nucleo": "descansa"
+                  }
+                ],
+                "nucleo": "descansa"
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "el libro nuevo de Ana",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "el"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "libro",
+                    "nucleo": "libro"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "nuevo",
+                    "nucleo": "nuevo"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "de Ana",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "Ana",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "Ana",
+                            "nucleo": "Ana"
+                          }
+                        ],
+                        "nucleo": "Ana"
+                      }
+                    ],
+                    "nucleo": "Ana"
+                  }
+                ],
+                "nucleo": "libro"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Lucía",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Lucía",
+                    "nucleo": "Lucía"
+                  }
+                ],
+                "nucleo": "Lucía"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "quiere abrirlo con las dos manos",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "quiere abrirlo",
+                    "nucleo": "abrirlo"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "con las dos manos",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "las dos manos",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "las"
+                          },
+                          {
+                            "funcion": "CUANT",
+                            "texto": "dos",
+                            "nucleo": "dos"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "manos",
+                            "nucleo": "manos"
+                          }
+                        ],
+                        "nucleo": "manos"
+                      }
+                    ],
+                    "nucleo": "manos"
+                  }
+                ],
+                "nucleo": "abrirlo"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Pablo",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Pablo",
+                    "nucleo": "Pablo"
+                  }
+                ],
+                "nucleo": "Pablo"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "se lo pasa despacio como un tesoro",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "se",
+                    "nucleo": "se"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "lo",
+                    "nucleo": "lo"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "pasa",
+                    "nucleo": "pasa"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "despacio",
+                    "nucleo": "despacio"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "como un tesoro",
+                    "partes": [
+                      {
+                        "funcion": "CONJ",
+                        "texto": "como"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "un tesoro",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "un"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "tesoro",
+                            "nucleo": "tesoro"
+                          }
+                        ],
+                        "nucleo": "tesoro"
+                      }
+                    ],
+                    "nucleo": "tesoro"
+                  }
+                ],
+                "nucleo": "pasa"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Las páginas",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Las"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "páginas",
+                    "nucleo": "páginas"
+                  }
+                ],
+                "nucleo": "páginas"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "crujen suavemente bajo sus dedos",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "crujen",
+                    "nucleo": "crujen"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "suavemente",
+                    "nucleo": "suavemente"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "bajo sus dedos",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "bajo"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "sus dedos",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "sus"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "dedos",
+                            "nucleo": "dedos"
+                          }
+                        ],
+                        "nucleo": "dedos"
+                      }
+                    ],
+                    "nucleo": "dedos"
+                  }
+                ],
+                "nucleo": "crujen"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Ella",
+                "partes": [
+                  {
+                    "funcion": "PRON",
+                    "texto": "Ella",
+                    "nucleo": "Ella"
+                  }
+                ],
+                "nucleo": "Ella"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "lo cierra y lo abraza con una sonrisa",
+                "partes": [
+                  {
+                    "funcion": "PRED",
+                    "texto": "lo cierra",
+                    "partes": [
+                      {
+                        "funcion": "CD",
+                        "texto": "lo",
+                        "nucleo": "lo"
+                      },
+                      {
+                        "funcion": "V",
+                        "texto": "cierra",
+                        "nucleo": "cierra"
+                      }
+                    ],
+                    "nucleo": "cierra"
+                  },
+                  {
+                    "funcion": "CONJ",
+                    "texto": "y"
+                  },
+                  {
+                    "funcion": "PRED",
+                    "texto": "lo abraza con una sonrisa",
+                    "partes": [
+                      {
+                        "funcion": "CD",
+                        "texto": "lo",
+                        "nucleo": "lo"
+                      },
+                      {
+                        "funcion": "V",
+                        "texto": "abraza",
+                        "nucleo": "abraza"
+                      },
+                      {
+                        "funcion": "CCM",
+                        "texto": "con una sonrisa",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "con"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "una sonrisa",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "una"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "sonrisa",
+                                "nucleo": "sonrisa"
+                              }
+                            ],
+                            "nucleo": "sonrisa"
+                          }
+                        ],
+                        "nucleo": "sonrisa"
+                      }
+                    ],
+                    "nucleo": "abraza"
+                  }
+                ],
+                "nucleo": "cierra"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "b6",
+      "tipo": "huecos",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b7",
       "tipo": "test",
-      "id": "damelo-2",
-      "pregunta": {
-        "$t": "b6.pregunta"
-      },
-      "opciones": {
-        "Quiero lo comprar": {
-          "$t": "b6.o0.refuerzo"
+      "opciones": [
+        {
+          "correcta": true
         },
-        "Lo quiero comprar": {
-          "$t": "b6.o1.refuerzo"
+        {
+          "correcta": false
         },
-        "Quiero comprarlo": {
-          "$t": "b6.o2.refuerzo"
+        {
+          "correcta": false
         }
-      },
-      "correcta": "Quiero lo comprar"
+      ]
     },
     {
+      "id": "b8",
+      "tipo": "ordenar"
+    },
+    {
+      "id": "b9",
       "tipo": "huecos",
-      "id": "damelo-3",
-      "pregunta": {
-        "$t": "b7.pregunta"
-      },
-      "frase": {
-        "$e": "b7.frase"
-      },
-      "audio": true,
-      "opciones": {
-        "haciéndolo": {
-          "$t": "b7.o0.refuerzo"
+      "opciones": [
+        {
+          "correcta": false
         },
-        "lo haciendo": {
-          "$t": "b7.o1.refuerzo"
+        {
+          "correcta": true
         },
-        "hacerlo": {
-          "$t": "b7.o2.refuerzo"
+        {
+          "correcta": false
         }
-      },
-      "correcta": "haciéndolo"
+      ]
     },
     {
+      "id": "b10",
       "tipo": "escribir",
-      "id": "damelo-4",
-      "pregunta": {
-        "$t": "b8.pregunta"
-      },
       "respuestas": [
         "Dámelo"
       ]
     },
     {
-      "tipo": "ordenar",
-      "id": "damelo-5",
-      "frase": {
-        "$e": "b9.frase"
-      },
-      "traduccion": {
-        "$t": "b9.traduccion"
-      }
+      "id": "b11",
+      "tipo": "test",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
     },
     {
-      "tipo": "explicacion",
-      "titulo": {
-        "$t": "b10.titulo"
-      },
-      "texto": {
-        "$t": "b10.texto"
-      }
+      "id": "b12",
+      "tipo": "huecos",
+      "opciones": [
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": true
+        }
+      ]
     }
   ]
 }

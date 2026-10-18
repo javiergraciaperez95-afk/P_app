@@ -1,250 +1,757 @@
 {
   "esquema": 2,
-  "flexible": true,
   "id": "077",
   "capitulo": 8,
-  "titulo": {
-    "$t": "titulo"
-  },
-  "intro": {
-    "$t": "intro"
-  },
+  "numero_curso": 81,
+  "orden_curso": 81,
+  "nivel": "A2",
   "palabras": {
     "más": {
-      "$f": "p.más",
       "pron": "mas",
       "cat": "adv"
     },
     "menos": {
-      "$f": "p.menos",
       "pron": "ME-nos",
       "cat": "adv"
     },
-    "que": {
-      "$f": "p.que",
-      "pron": "ke",
-      "cat": "conj"
-    },
     "tan": {
-      "$f": "p.tan",
       "pron": "tan",
       "cat": "adv"
     },
+    "que": {
+      "pron": "ke",
+      "cat": "conj"
+    },
     "como": {
-      "$f": "p.como",
       "pron": "KO-mo",
       "cat": "conj"
     },
     "grande": {
-      "$f": "p.grande",
       "pron": "GRAN-de",
       "cat": "adj"
     },
     "caro": {
-      "$f": "p.caro",
       "pron": "KA-ro",
       "cat": "adj"
     },
-    "cara": {
-      "$f": "p.cara",
-      "pron": "KA-ra",
-      "cat": "adj"
-    },
-    "alta": {
-      "$f": "p.alta",
-      "pron": "AL-ta",
+    "barato": {
+      "pron": "ba-RA-to",
       "cat": "adj"
     },
     "bueno": {
-      "$f": "p.bueno",
       "pron": "BWE-no",
       "cat": "adj"
     },
     "malo": {
-      "$f": "p.malo",
       "pron": "MA-lo",
       "cat": "adj"
     },
-    "café": {
-      "$f": "p.café",
-      "pron": "ka-FE",
-      "cat": "sust",
-      "genero": "m"
-    },
     "mejor": {
-      "$f": "p.mejor",
       "pron": "me-HOR",
-      "cat": "adj",
-      "nota": {
-        "$t": "p.mejor.nota"
-      }
+      "cat": "adj"
     },
     "peor": {
-      "$f": "p.peor",
       "pron": "pe-OR",
-      "cat": "adj",
-      "nota": {
-        "$t": "p.peor.nota"
-      }
+      "cat": "adj"
     },
     "mayor": {
-      "$f": "p.mayor",
       "pron": "ma-YOR",
-      "cat": "adj",
-      "nota": {
-        "$t": "p.mayor.nota"
-      }
+      "cat": "adj"
     },
     "menor": {
-      "$f": "p.menor",
       "pron": "me-NOR",
-      "cat": "adj",
-      "nota": {
-        "$t": "p.menor.nota"
-      }
+      "cat": "adj"
+    },
+    "Lucía": {
+      "propio": true
+    },
+    "Pablo": {
+      "propio": true
+    },
+    "Ana": {
+      "propio": true
+    },
+    "Madrid": {
+      "propio": true
+    },
+    "Granada": {
+      "propio": true
+    },
+    "casas": {
+      "pron": "KA-sas",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "antiguas": {
+      "pron": "an-TI-gwas",
+      "cat": "adj"
+    },
+    "rocas": {
+      "pron": "RRO-kas",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "deprisa": {
+      "pron": "de-PRI-sa",
+      "cat": "adv"
     }
   },
   "bloques": [
     {
-      "tipo": "explicacion",
-      "titulo": {
-        "$t": "b1.titulo"
-      },
-      "texto": {
-        "$t": "b1.texto"
-      }
+      "id": "b1",
+      "tipo": "explicacion"
     },
     {
+      "id": "b2",
       "tipo": "dialogo",
-      "titulo": {
-        "$t": "b2.titulo"
-      },
       "frases": [
         {
-          "$f": "b2.f0",
           "quien": "Lucía",
-          "analisis": [
-            [
-              "Madrid",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
               {
-                "$t": "a0"
-              }
-            ],
-            [
-              "es",
+                "funcion": "SUJ",
+                "texto": "Madrid",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Madrid",
+                    "nucleo": "Madrid"
+                  }
+                ],
+                "nucleo": "Madrid"
+              },
               {
-                "$t": "a1"
-              }
-            ],
-            [
-              "más grande que",
-              {
-                "$t": "a2"
-              }
-            ],
-            [
-              "Granada",
-              {
-                "$t": "a3"
+                "funcion": "PRED",
+                "texto": "es más grande que Granada",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "más grande que Granada",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "más",
+                        "nucleo": "más"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "grande",
+                        "nucleo": "grande"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "que Granada",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "que"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "Granada",
+                            "partes": [
+                              {
+                                "funcion": "N",
+                                "texto": "Granada",
+                                "nucleo": "Granada"
+                              }
+                            ],
+                            "nucleo": "Granada"
+                          }
+                        ],
+                        "nucleo": "Granada"
+                      }
+                    ],
+                    "nucleo": "grande"
+                  }
+                ],
+                "nucleo": "es"
               }
             ]
-          ]
+          }
         },
         {
-          "$f": "b2.f1",
           "quien": "Pablo",
-          "analisis": [
-            [
-              "Granada",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
               {
-                "$t": "a0"
-              }
-            ],
-            [
-              "es",
+                "funcion": "SUJ",
+                "texto": "Granada",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Granada",
+                    "nucleo": "Granada"
+                  }
+                ],
+                "nucleo": "Granada"
+              },
               {
-                "$t": "a1"
-              }
-            ],
-            [
-              "menos cara que",
-              {
-                "$t": "a4"
-              }
-            ],
-            [
-              "Madrid",
-              {
-                "$t": "a3"
+                "funcion": "PRED",
+                "texto": "es menos cara que Madrid",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "menos cara que Madrid",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "menos",
+                        "nucleo": "menos"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "cara",
+                        "nucleo": "cara"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "que Madrid",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "que"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "Madrid",
+                            "partes": [
+                              {
+                                "funcion": "N",
+                                "texto": "Madrid",
+                                "nucleo": "Madrid"
+                              }
+                            ],
+                            "nucleo": "Madrid"
+                          }
+                        ],
+                        "nucleo": "Madrid"
+                      }
+                    ],
+                    "nucleo": "cara"
+                  }
+                ],
+                "nucleo": "es"
               }
             ]
-          ]
+          }
         },
         {
-          "$f": "b2.f2",
           "quien": "Lucía",
-          "analisis": [
-            [
-              "Mi hermana",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
               {
-                "$t": "a0"
-              }
-            ],
-            [
-              "es mayor que",
+                "funcion": "SUJ",
+                "texto": "Mi hermana",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Mi"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "hermana",
+                    "nucleo": "hermana"
+                  }
+                ],
+                "nucleo": "hermana"
+              },
               {
-                "$t": "a5"
-              }
-            ],
-            [
-              "yo",
-              {
-                "$t": "a6"
+                "funcion": "PRED",
+                "texto": "es mayor que yo",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "mayor que yo",
+                    "partes": [
+                      {
+                        "funcion": "ADY",
+                        "texto": "mayor",
+                        "nucleo": "mayor"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "que yo",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "que"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "yo",
+                            "partes": [
+                              {
+                                "funcion": "PRON",
+                                "texto": "yo",
+                                "nucleo": "yo"
+                              }
+                            ],
+                            "nucleo": "yo"
+                          }
+                        ],
+                        "nucleo": "yo"
+                      }
+                    ],
+                    "nucleo": "mayor"
+                  }
+                ],
+                "nucleo": "es"
               }
             ]
-          ]
+          }
         },
         {
-          "$f": "b2.f3",
           "quien": "Pablo",
-          "analisis": [
-            [
-              "Este café",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
               {
-                "$t": "a0"
-              }
-            ],
-            [
-              "tan bueno como",
+                "funcion": "SUJ",
+                "texto": "Este café",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Este"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "café",
+                    "nucleo": "café"
+                  }
+                ],
+                "nucleo": "café"
+              },
               {
-                "$t": "a7"
-              }
-            ],
-            [
-              "el otro",
-              {
-                "$t": "a8"
+                "funcion": "PRED",
+                "texto": "es tan bueno como el otro",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "tan bueno como el otro",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "tan",
+                        "nucleo": "tan"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "bueno",
+                        "nucleo": "bueno"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "como el otro",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "como"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "el otro",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "el"
+                              },
+                              {
+                                "funcion": "PRON",
+                                "texto": "otro",
+                                "nucleo": "otro"
+                              }
+                            ],
+                            "nucleo": "otro"
+                          }
+                        ],
+                        "nucleo": "otro"
+                      }
+                    ],
+                    "nucleo": "bueno"
+                  }
+                ],
+                "nucleo": "es"
               }
             ]
-          ]
+          }
+        },
+        {
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "El café de Granada",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "El"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "café",
+                    "nucleo": "café"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "de Granada",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "Granada",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "Granada",
+                            "nucleo": "Granada"
+                          }
+                        ],
+                        "nucleo": "Granada"
+                      }
+                    ],
+                    "nucleo": "Granada"
+                  }
+                ],
+                "nucleo": "café"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "es mejor que el de Madrid",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "mejor que el de Madrid",
+                    "partes": [
+                      {
+                        "funcion": "ADY",
+                        "texto": "mejor",
+                        "nucleo": "mejor"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "que el de Madrid",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "que"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "el de Madrid",
+                            "partes": [
+                              {
+                                "funcion": "N",
+                                "texto": "el",
+                                "nucleo": "el"
+                              },
+                              {
+                                "funcion": "CN",
+                                "texto": "de Madrid",
+                                "partes": [
+                                  {
+                                    "funcion": "PREP",
+                                    "texto": "de"
+                                  },
+                                  {
+                                    "funcion": "TERM",
+                                    "texto": "Madrid",
+                                    "partes": [
+                                      {
+                                        "funcion": "N",
+                                        "texto": "Madrid",
+                                        "nucleo": "Madrid"
+                                      }
+                                    ],
+                                    "nucleo": "Madrid"
+                                  }
+                                ],
+                                "nucleo": "Madrid"
+                              }
+                            ],
+                            "nucleo": "el"
+                          }
+                        ],
+                        "nucleo": "el"
+                      }
+                    ],
+                    "nucleo": "mejor"
+                  }
+                ],
+                "nucleo": "es"
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Pablo",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "El de Madrid",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "El",
+                    "nucleo": "El"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "de Madrid",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "Madrid",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "Madrid",
+                            "nucleo": "Madrid"
+                          }
+                        ],
+                        "nucleo": "Madrid"
+                      }
+                    ],
+                    "nucleo": "Madrid"
+                  }
+                ],
+                "nucleo": "El"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "no es peor",
+                "partes": [
+                  {
+                    "funcion": "NEG",
+                    "texto": "no"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "peor",
+                    "nucleo": "peor"
+                  }
+                ],
+                "nucleo": "es"
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Mi hermano",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Mi"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "hermano",
+                    "nucleo": "hermano"
+                  }
+                ],
+                "nucleo": "hermano"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "es menor que yo",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "menor que yo",
+                    "partes": [
+                      {
+                        "funcion": "ADY",
+                        "texto": "menor",
+                        "nucleo": "menor"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "que yo",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "que"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "yo",
+                            "partes": [
+                              {
+                                "funcion": "PRON",
+                                "texto": "yo",
+                                "nucleo": "yo"
+                              }
+                            ],
+                            "nucleo": "yo"
+                          }
+                        ],
+                        "nucleo": "yo"
+                      }
+                    ],
+                    "nucleo": "menor"
+                  }
+                ],
+                "nucleo": "es"
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Pablo",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Tú",
+                "partes": [
+                  {
+                    "funcion": "PRON",
+                    "texto": "Tú",
+                    "nucleo": "Tú"
+                  }
+                ],
+                "nucleo": "Tú"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "eres tan alta como tu hermana",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "eres",
+                    "nucleo": "eres"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "tan alta como tu hermana",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "tan",
+                        "nucleo": "tan"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "alta",
+                        "nucleo": "alta"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "como tu hermana",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "como"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "tu hermana",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "tu"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "hermana",
+                                "nucleo": "hermana"
+                              }
+                            ],
+                            "nucleo": "hermana"
+                          }
+                        ],
+                        "nucleo": "hermana"
+                      }
+                    ],
+                    "nucleo": "alta"
+                  }
+                ],
+                "nucleo": "eres"
+              }
+            ]
+          }
         }
       ]
     },
     {
+      "id": "b3",
       "tipo": "vocabulario",
       "palabras": [
         "más",
         "menos",
-        "que",
         "tan",
+        "que",
         "como",
         "grande",
         "caro",
-        "cara",
-        "alta",
+        "barato",
         "bueno",
         "malo",
-        "café",
         "mejor",
         "peor",
         "mayor",
@@ -252,106 +759,1447 @@
       ]
     },
     {
-      "tipo": "huecos",
-      "id": "a2-comp-mas",
-      "pregunta": {
-        "$t": "b4.pregunta"
-      },
-      "frase": {
-        "$e": "b4.frase"
-      },
-      "audio": true,
-      "opciones": {
-        "más": {
-          "$t": "b4.o0.refuerzo"
+      "id": "b4",
+      "tipo": "gramatica",
+      "ejemplos": [
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Pablo",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Pablo",
+                    "nucleo": "Pablo"
+                  }
+                ],
+                "nucleo": "Pablo"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "es más alto que Ana",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "más alto que Ana",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "más",
+                        "nucleo": "más"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "alto",
+                        "nucleo": "alto"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "que Ana",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "que"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "Ana",
+                            "partes": [
+                              {
+                                "funcion": "N",
+                                "texto": "Ana",
+                                "nucleo": "Ana"
+                              }
+                            ],
+                            "nucleo": "Ana"
+                          }
+                        ],
+                        "nucleo": "Ana"
+                      }
+                    ],
+                    "nucleo": "alto"
+                  }
+                ],
+                "nucleo": "es"
+              }
+            ]
+          }
         },
-        "tan": {
-          "$t": "b4.o1.refuerzo"
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Esta casa",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Esta"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "casa",
+                    "nucleo": "casa"
+                  }
+                ],
+                "nucleo": "casa"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "es tan cara como esa",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "tan cara como esa",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "tan",
+                        "nucleo": "tan"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "cara",
+                        "nucleo": "cara"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "como esa",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "como"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "esa",
+                            "partes": [
+                              {
+                                "funcion": "PRON",
+                                "texto": "esa",
+                                "nucleo": "esa"
+                              }
+                            ],
+                            "nucleo": "esa"
+                          }
+                        ],
+                        "nucleo": "esa"
+                      }
+                    ],
+                    "nucleo": "cara"
+                  }
+                ],
+                "nucleo": "es"
+              }
+            ]
+          }
         },
-        "muy": {
-          "$t": "b4.o2.refuerzo"
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Ana",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Ana",
+                    "nucleo": "Ana"
+                  }
+                ],
+                "nucleo": "Ana"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "trabaja menos que yo",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "trabaja",
+                    "nucleo": "trabaja"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "menos que yo",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "menos",
+                        "nucleo": "menos"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "que yo",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "que"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "yo",
+                            "partes": [
+                              {
+                                "funcion": "PRON",
+                                "texto": "yo",
+                                "nucleo": "yo"
+                              }
+                            ],
+                            "nucleo": "yo"
+                          }
+                        ],
+                        "nucleo": "yo"
+                      }
+                    ],
+                    "nucleo": "yo"
+                  }
+                ],
+                "nucleo": "trabaja"
+              }
+            ]
+          }
         }
-      },
-      "correcta": "más"
+      ]
     },
     {
+      "id": "b5",
+      "tipo": "texto",
+      "registro": "literario",
+      "frases": [
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "El pueblo de arriba",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "El"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "pueblo",
+                    "nucleo": "pueblo"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "de arriba",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "arriba",
+                        "partes": [
+                          {
+                            "funcion": "ADV",
+                            "texto": "arriba",
+                            "nucleo": "arriba"
+                          }
+                        ],
+                        "nucleo": "arriba"
+                      }
+                    ],
+                    "nucleo": "arriba"
+                  }
+                ],
+                "nucleo": "pueblo"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "es más pequeño que el del valle",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "más pequeño que el del valle",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "más",
+                        "nucleo": "más"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "pequeño",
+                        "nucleo": "pequeño"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "que el del valle",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "que"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "el del valle",
+                            "partes": [
+                              {
+                                "funcion": "N",
+                                "texto": "el",
+                                "nucleo": "el"
+                              },
+                              {
+                                "funcion": "CN",
+                                "texto": "del valle",
+                                "partes": [
+                                  {
+                                    "funcion": "PREP",
+                                    "texto": "del"
+                                  },
+                                  {
+                                    "funcion": "TERM",
+                                    "texto": "valle",
+                                    "partes": [
+                                      {
+                                        "funcion": "N",
+                                        "texto": "valle",
+                                        "nucleo": "valle"
+                                      }
+                                    ],
+                                    "nucleo": "valle"
+                                  }
+                                ],
+                                "nucleo": "valle"
+                              }
+                            ],
+                            "nucleo": "el"
+                          }
+                        ],
+                        "nucleo": "el"
+                      }
+                    ],
+                    "nucleo": "pequeño"
+                  }
+                ],
+                "nucleo": "es"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Sus casas blancas",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Sus"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "casas",
+                    "nucleo": "casas"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "blancas",
+                    "nucleo": "blancas"
+                  }
+                ],
+                "nucleo": "casas"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "parecen más antiguas que las rocas del camino",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "parecen",
+                    "nucleo": "parecen"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "más antiguas que las rocas del camino",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "más",
+                        "nucleo": "más"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "antiguas",
+                        "nucleo": "antiguas"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "que las rocas del camino",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "que"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "las rocas del camino",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "las"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "rocas",
+                                "nucleo": "rocas"
+                              },
+                              {
+                                "funcion": "CN",
+                                "texto": "del camino",
+                                "partes": [
+                                  {
+                                    "funcion": "PREP",
+                                    "texto": "del"
+                                  },
+                                  {
+                                    "funcion": "TERM",
+                                    "texto": "camino",
+                                    "partes": [
+                                      {
+                                        "funcion": "N",
+                                        "texto": "camino",
+                                        "nucleo": "camino"
+                                      }
+                                    ],
+                                    "nucleo": "camino"
+                                  }
+                                ],
+                                "nucleo": "camino"
+                              }
+                            ],
+                            "nucleo": "rocas"
+                          }
+                        ],
+                        "nucleo": "rocas"
+                      }
+                    ],
+                    "nucleo": "antiguas"
+                  }
+                ],
+                "nucleo": "parecen"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "El aire de la mañana",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "El"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "aire",
+                    "nucleo": "aire"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "de la mañana",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la mañana",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "mañana",
+                            "nucleo": "mañana"
+                          }
+                        ],
+                        "nucleo": "mañana"
+                      }
+                    ],
+                    "nucleo": "mañana"
+                  }
+                ],
+                "nucleo": "aire"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "es tan fresco como el agua del río",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "tan fresco como el agua del río",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "tan",
+                        "nucleo": "tan"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "fresco",
+                        "nucleo": "fresco"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "como el agua del río",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "como"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "el agua del río",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "el"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "agua",
+                                "nucleo": "agua"
+                              },
+                              {
+                                "funcion": "CN",
+                                "texto": "del río",
+                                "partes": [
+                                  {
+                                    "funcion": "PREP",
+                                    "texto": "del"
+                                  },
+                                  {
+                                    "funcion": "TERM",
+                                    "texto": "río",
+                                    "partes": [
+                                      {
+                                        "funcion": "N",
+                                        "texto": "río",
+                                        "nucleo": "río"
+                                      }
+                                    ],
+                                    "nucleo": "río"
+                                  }
+                                ],
+                                "nucleo": "río"
+                              }
+                            ],
+                            "nucleo": "agua"
+                          }
+                        ],
+                        "nucleo": "agua"
+                      }
+                    ],
+                    "nucleo": "fresco"
+                  }
+                ],
+                "nucleo": "es"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Una niña",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Una"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "niña",
+                    "nucleo": "niña"
+                  }
+                ],
+                "nucleo": "niña"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "corre por la plaza menos deprisa que su perro",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "corre",
+                    "nucleo": "corre"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "por la plaza",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "por"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la plaza",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "plaza",
+                            "nucleo": "plaza"
+                          }
+                        ],
+                        "nucleo": "plaza"
+                      }
+                    ],
+                    "nucleo": "plaza"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "menos deprisa que su perro",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "menos",
+                        "nucleo": "menos"
+                      },
+                      {
+                        "funcion": "ADV",
+                        "texto": "deprisa",
+                        "nucleo": "deprisa"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "que su perro",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "que"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "su perro",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "su"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "perro",
+                                "nucleo": "perro"
+                              }
+                            ],
+                            "nucleo": "perro"
+                          }
+                        ],
+                        "nucleo": "perro"
+                      }
+                    ],
+                    "nucleo": "deprisa"
+                  }
+                ],
+                "nucleo": "corre"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "El cielo",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "El"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "cielo",
+                    "nucleo": "cielo"
+                  }
+                ],
+                "nucleo": "cielo"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "parece más grande desde aquí",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "parece",
+                    "nucleo": "parece"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "más grande",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "más",
+                        "nucleo": "más"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "grande",
+                        "nucleo": "grande"
+                      }
+                    ],
+                    "nucleo": "grande"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "desde aquí",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "desde"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "aquí",
+                        "partes": [
+                          {
+                            "funcion": "ADV",
+                            "texto": "aquí",
+                            "nucleo": "aquí"
+                          }
+                        ],
+                        "nucleo": "aquí"
+                      }
+                    ],
+                    "nucleo": "aquí"
+                  }
+                ],
+                "nucleo": "parece"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "En el valle",
+                "partes": [
+                  {
+                    "funcion": "CCL",
+                    "texto": "En el valle",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "En"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "el valle",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "valle",
+                            "nucleo": "valle"
+                          }
+                        ],
+                        "nucleo": "valle"
+                      }
+                    ],
+                    "nucleo": "valle"
+                  }
+                ],
+                "nucleo": "valle"
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "el mercado",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "el"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "mercado",
+                    "nucleo": "mercado"
+                  }
+                ],
+                "nucleo": "mercado"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "es mayor que la plaza del pueblo",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "mayor que la plaza del pueblo",
+                    "partes": [
+                      {
+                        "funcion": "ADY",
+                        "texto": "mayor",
+                        "nucleo": "mayor"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "que la plaza del pueblo",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "que"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "la plaza del pueblo",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "la"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "plaza",
+                                "nucleo": "plaza"
+                              },
+                              {
+                                "funcion": "CN",
+                                "texto": "del pueblo",
+                                "partes": [
+                                  {
+                                    "funcion": "PREP",
+                                    "texto": "del"
+                                  },
+                                  {
+                                    "funcion": "TERM",
+                                    "texto": "pueblo",
+                                    "partes": [
+                                      {
+                                        "funcion": "N",
+                                        "texto": "pueblo",
+                                        "nucleo": "pueblo"
+                                      }
+                                    ],
+                                    "nucleo": "pueblo"
+                                  }
+                                ],
+                                "nucleo": "pueblo"
+                              }
+                            ],
+                            "nucleo": "plaza"
+                          }
+                        ],
+                        "nucleo": "plaza"
+                      }
+                    ],
+                    "nucleo": "mayor"
+                  }
+                ],
+                "nucleo": "es"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Los vendedores",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Los"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "vendedores",
+                    "nucleo": "vendedores"
+                  }
+                ],
+                "nucleo": "vendedores"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "gritan más alto que los pájaros del río",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "gritan",
+                    "nucleo": "gritan"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "más alto que los pájaros del río",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "más",
+                        "nucleo": "más"
+                      },
+                      {
+                        "funcion": "ADV",
+                        "texto": "alto",
+                        "nucleo": "alto"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "que los pájaros del río",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "que"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "los pájaros del río",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "los"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "pájaros",
+                                "nucleo": "pájaros"
+                              },
+                              {
+                                "funcion": "CN",
+                                "texto": "del río",
+                                "partes": [
+                                  {
+                                    "funcion": "PREP",
+                                    "texto": "del"
+                                  },
+                                  {
+                                    "funcion": "TERM",
+                                    "texto": "río",
+                                    "partes": [
+                                      {
+                                        "funcion": "N",
+                                        "texto": "río",
+                                        "nucleo": "río"
+                                      }
+                                    ],
+                                    "nucleo": "río"
+                                  }
+                                ],
+                                "nucleo": "río"
+                              }
+                            ],
+                            "nucleo": "pájaros"
+                          }
+                        ],
+                        "nucleo": "pájaros"
+                      }
+                    ],
+                    "nucleo": "alto"
+                  }
+                ],
+                "nucleo": "gritan"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "El café del mercado",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "El"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "café",
+                    "nucleo": "café"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "del mercado",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "del"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "mercado",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "mercado",
+                            "nucleo": "mercado"
+                          }
+                        ],
+                        "nucleo": "mercado"
+                      }
+                    ],
+                    "nucleo": "mercado"
+                  }
+                ],
+                "nucleo": "café"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "huele mejor que el pan recién hecho",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "huele",
+                    "nucleo": "huele"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "mejor que el pan recién hecho",
+                    "partes": [
+                      {
+                        "funcion": "ADV",
+                        "texto": "mejor",
+                        "nucleo": "mejor"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "que el pan recién hecho",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "que"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "el pan recién hecho",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "el"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "pan",
+                                "nucleo": "pan"
+                              },
+                              {
+                                "funcion": "ADY",
+                                "texto": "recién hecho",
+                                "partes": [
+                                  {
+                                    "funcion": "ADV",
+                                    "texto": "recién",
+                                    "nucleo": "recién"
+                                  },
+                                  {
+                                    "funcion": "PART",
+                                    "texto": "hecho",
+                                    "nucleo": "hecho"
+                                  }
+                                ],
+                                "nucleo": "hecho"
+                              }
+                            ],
+                            "nucleo": "pan"
+                          }
+                        ],
+                        "nucleo": "pan"
+                      }
+                    ],
+                    "nucleo": "mejor"
+                  }
+                ],
+                "nucleo": "huele"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Pablo",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Pablo",
+                    "nucleo": "Pablo"
+                  }
+                ],
+                "nucleo": "Pablo"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "bebe su café tan despacio como un gato",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "bebe",
+                    "nucleo": "bebe"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "su café",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "su"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "café",
+                        "nucleo": "café"
+                      }
+                    ],
+                    "nucleo": "café"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "tan despacio como un gato",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "tan",
+                        "nucleo": "tan"
+                      },
+                      {
+                        "funcion": "ADV",
+                        "texto": "despacio",
+                        "nucleo": "despacio"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "como un gato",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "como"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "un gato",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "un"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "gato",
+                                "nucleo": "gato"
+                              }
+                            ],
+                            "nucleo": "gato"
+                          }
+                        ],
+                        "nucleo": "gato"
+                      }
+                    ],
+                    "nucleo": "despacio"
+                  }
+                ],
+                "nucleo": "bebe"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Bajo la luna",
+                "partes": [
+                  {
+                    "funcion": "CCL",
+                    "texto": "Bajo la luna",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "Bajo"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la luna",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "luna",
+                            "nucleo": "luna"
+                          }
+                        ],
+                        "nucleo": "luna"
+                      }
+                    ],
+                    "nucleo": "luna"
+                  }
+                ],
+                "nucleo": "luna"
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "el pueblo de arriba",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "el"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "pueblo",
+                    "nucleo": "pueblo"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "de arriba",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "arriba",
+                        "partes": [
+                          {
+                            "funcion": "ADV",
+                            "texto": "arriba",
+                            "nucleo": "arriba"
+                          }
+                        ],
+                        "nucleo": "arriba"
+                      }
+                    ],
+                    "nucleo": "arriba"
+                  }
+                ],
+                "nucleo": "pueblo"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "parece más grande que nunca",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "parece",
+                    "nucleo": "parece"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "más grande que nunca",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "más",
+                        "nucleo": "más"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "grande",
+                        "nucleo": "grande"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "que nunca",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "que"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "nunca",
+                            "partes": [
+                              {
+                                "funcion": "ADV",
+                                "texto": "nunca",
+                                "nucleo": "nunca"
+                              }
+                            ],
+                            "nucleo": "nunca"
+                          }
+                        ],
+                        "nucleo": "nunca"
+                      }
+                    ],
+                    "nucleo": "grande"
+                  }
+                ],
+                "nucleo": "parece"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "b6",
+      "tipo": "huecos",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b7",
+      "tipo": "test",
+      "opciones": [
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": true
+        }
+      ]
+    },
+    {
+      "id": "b8",
+      "tipo": "ordenar"
+    },
+    {
+      "id": "b9",
+      "tipo": "huecos",
+      "opciones": [
+        {
+          "correcta": false
+        },
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b10",
       "tipo": "escribir",
-      "id": "a2-comp-mayor",
-      "pregunta": {
-        "$t": "b5.pregunta"
-      },
       "respuestas": [
         "Mi hermana es mayor que yo",
         "Mi hermana es más vieja que yo"
-      ],
-      "explicacion": {
-        "$t": "b5.explicacion"
-      }
+      ]
     },
     {
-      "tipo": "huecos",
-      "id": "a2-comp-m1",
-      "pregunta": {
-        "$t": "b6.pregunta"
-      },
-      "frase": {
-        "$e": "b6.frase"
-      },
-      "audio": true,
-      "opciones": {
-        "tan": {
-          "$t": "b6.o0.refuerzo"
+      "id": "b11",
+      "tipo": "test",
+      "opciones": [
+        {
+          "correcta": false
         },
-        "más": {
-          "$t": "b6.o1.refuerzo"
+        {
+          "correcta": true
         },
-        "tanto": {
-          "$t": "b6.o2.refuerzo"
+        {
+          "correcta": false
         }
-      },
-      "correcta": "tan"
+      ]
     },
     {
+      "id": "b12",
       "tipo": "huecos",
-      "id": "a2-comp-m2",
-      "pregunta": {
-        "$t": "b7.pregunta"
-      },
-      "frase": {
-        "$e": "b7.frase"
-      },
-      "audio": true,
-      "opciones": {
-        "mejor": {
-          "$t": "b7.o0.refuerzo"
+      "opciones": [
+        {
+          "correcta": true
         },
-        "más bueno": {
-          "$t": "b7.o1.refuerzo"
+        {
+          "correcta": false
         },
-        "más mejor": {
-          "$t": "b7.o2.refuerzo"
+        {
+          "correcta": false
         }
-      },
-      "correcta": "mejor"
-    },
-    {
-      "tipo": "ordenar",
-      "id": "a2-comp-m3",
-      "frase": {
-        "$e": "b8.frase"
-      },
-      "traduccion": {
-        "$t": "b8.traduccion"
-      }
-    },
-    {
-      "tipo": "explicacion",
-      "titulo": {
-        "$t": "b9.titulo"
-      },
-      "texto": {
-        "$t": "b9.texto"
-      }
+      ]
     }
   ]
 }

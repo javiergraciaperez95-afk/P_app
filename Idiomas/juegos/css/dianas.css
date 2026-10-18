@@ -1,0 +1,76 @@
+/* =====================================================================
+   LAS DIANAS (juegos/dianas.js) — el puesto de tiro de la feria.
+   Solo se animan transform y opacity, a saltos (steps).
+   ===================================================================== */
+
+.jg-dianas-cartel { margin: 0 0 16px; padding: 14px 16px; text-align: center; color: #2b1d1a; background: #fffaf0; box-shadow: 0 0 0 3px var(--h-borde), 5px 7px 0 2px rgba(0, 0, 0, .3); }
+.jg-dianas-pregunta { margin: 0; font-size: 1.25rem; font-weight: 800; line-height: 1.4; }
+.jg-dianas-frase { margin: 8px 0 0; font-size: 1.45rem; font-weight: 800; line-height: 1.7; }
+.jg-dianas-hueco { display: inline-block; min-width: 3.2em; margin: 0 4px; padding: 0 8px; text-align: center; background: #fff1b0; box-shadow: 0 3px 0 0 var(--oro-2); }
+.jg-dianas-hueco.lleno { color: #1f5d2a; background: #9fe0a0; box-shadow: 0 3px 0 0 #3f8a4a; animation: jg-dianas-pon .35s steps(3); }
+@keyframes jg-dianas-pon { from { transform: translateY(-10px) scale(1.3); } }
+.jg-dianas-frase .palabra { color: inherit; }
+.jg-dianas-frase .jg-oir { vertical-align: middle; }
+
+/* El puesto: luces, toldo, fondo y mostrador */
+.jg-dianas-puesto { position: relative; overflow: hidden; padding: 82px 14px 0; background: #3b2f5c repeating-linear-gradient(90deg, rgba(255, 255, 255, .05) 0 20px, transparent 20px 40px); box-shadow: 0 0 0 3px var(--h-borde), 8px 10px 0 3px rgba(0, 0, 0, .25); }
+.jg-dianas-luces { position: absolute; left: 0; right: 0; top: 0; height: 12px; background: repeating-linear-gradient(90deg, #f4c84a 0 8px, transparent 8px 20px, #e8505b 20px 28px, transparent 28px 40px, #57b8e0 40px 48px, transparent 48px 60px); animation: jg-dianas-luces 1s steps(2) infinite; }
+@keyframes jg-dianas-luces { 50% { opacity: .35; } }
+.jg-dianas-toldo { position: absolute; left: 0; right: 0; top: 12px; height: 46px; background: repeating-linear-gradient(90deg, #d23a50 0 36px, #fffaf0 36px 72px); box-shadow: 0 3px 0 var(--h-borde); }
+.jg-dianas-toldo::after { content: ""; position: absolute; left: 0; right: 0; bottom: -14px; height: 14px; background: radial-gradient(circle at 18px 0, #d23a50 0 17px, transparent 18px) 0 0 / 72px 14px, radial-gradient(circle at 54px 0, #fffaf0 0 17px, transparent 18px) 0 0 / 72px 14px; }
+.jg-dianas-mostrador { display: block; height: 30px; margin: 0 -14px; background: repeating-linear-gradient(90deg, var(--madera) 0 58px, var(--madera-2) 58px 60px); box-shadow: inset 0 3px 0 var(--h-borde); }
+
+.jg-dianas-feria { display: flex; justify-content: center; flex-wrap: wrap; align-items: flex-start; gap: 22px 18px; padding-bottom: 22px; }
+
+/* Cada diana: disco, poste y cartel; aparece de golpe, una tras otra */
+.jg-dianas-diana { position: relative; display: grid; justify-items: center; gap: 0; width: 132px; padding: 0; border: 0; cursor: pointer; color: inherit; background: transparent; visibility: hidden; transform-origin: 50% 70%; }
+.jg-dianas-diana.aparece { visibility: visible; animation: jg-dianas-sale .45s steps(5) both; }
+@keyframes jg-dianas-sale { from { opacity: 0; transform: translateY(40px) scale(.5); } }
+.jg-dianas-disco { position: relative; display: block; width: 96px; height: 96px; border-radius: 50%; background: radial-gradient(circle, #e8505b 0 13%, #fffaf0 13% 30%, #e8505b 30% 48%, #fffaf0 48% 66%, #4f7fc0 66% 100%); box-shadow: 0 0 0 3px var(--h-borde), inset -6px -6px 0 rgba(0, 0, 0, .14), 4px 6px 0 2px rgba(0, 0, 0, .3); transition: transform .12s steps(2); }
+.jg-dianas-poste { display: block; width: 8px; height: 16px; background: var(--madera-2); box-shadow: 0 0 0 2px var(--h-borde); }
+.jg-dianas-placa { display: block; min-width: 80px; max-width: 100%; margin-top: 2px; padding: 6px 10px; font-size: 1.05rem; font-weight: 800; line-height: 1.2; text-align: center; color: #2b1d1a; background: #fffaf0; box-shadow: 0 0 0 3px var(--h-borde), 3px 5px 0 1px rgba(0, 0, 0, .3); overflow-wrap: break-word; }
+.jg-dianas-diana:hover:not(:disabled):not(.fallada) .jg-dianas-disco { transform: scale(1.08); }
+.jg-dianas-diana:focus-visible { outline: 3px dashed var(--oro); outline-offset: 6px; }
+.jg-dianas-diana:disabled { cursor: default; }
+
+/* El agujero del tiro */
+.jg-dianas-agujero { position: absolute; z-index: 2; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: #1b1830; box-shadow: 0 0 0 2px #fff; animation: jg-dianas-agujero .25s steps(3) both; }
+@keyframes jg-dianas-agujero { from { opacity: 0; transform: scale(2.4); } }
+
+/* Fallo: cae hacia atrás y se queda tachada */
+.jg-dianas-diana.cae .jg-dianas-disco { animation: jg-dianas-cae .5s steps(5); }
+@keyframes jg-dianas-cae { 30% { transform: translateY(-6px) scale(1.1); } 60% { transform: translateY(8px) scale(.9); } }
+.jg-dianas-diana.fallada { cursor: not-allowed; }
+.jg-dianas-diana.fallada .jg-dianas-disco, .jg-dianas-diana.fallada .jg-dianas-placa { opacity: .5; }
+.jg-dianas-diana.fallada::after { content: "✘"; position: absolute; right: 6px; top: -8px; display: grid; place-items: center; width: 28px; height: 28px; font: 700 1rem var(--fuente-pixel); color: #fff; background: #c0392b; box-shadow: 0 0 0 3px var(--h-borde); }
+
+/* Acierto: la diana gira, sale la estrella y el cartel se pone verde */
+.jg-dianas-estrella { position: absolute; left: 50%; top: -20px; margin-left: -.55em; font-size: 2.2rem; line-height: 1; opacity: 0; z-index: 3; }
+.jg-dianas-diana.acierta .jg-dianas-disco { animation: jg-dianas-gira .7s steps(7); }
+.jg-dianas-diana.acierta .jg-dianas-estrella { opacity: 1; animation: jg-dianas-estrella .7s steps(7) both; }
+.jg-dianas-diana.acierta .jg-dianas-placa { background: #9fe0a0; }
+.jg-dianas-diana.apagada { opacity: .45; }
+@keyframes jg-dianas-gira { to { transform: rotate(360deg) scale(1.1); } }
+@keyframes jg-dianas-estrella { from { opacity: 0; transform: translateY(30px) scale(.3); } 70% { transform: translateY(-16px) scale(1.3); } }
+
+.jg-dianas-nota { margin: 16px 0 0; padding: 12px 14px; font-weight: 700; line-height: 1.5; color: var(--h-tinta); background: var(--h-papel); box-shadow: 0 0 0 3px var(--h-borde), 4px 6px 0 2px var(--h-sombra); animation: jg-entra .3s steps(3) both; }
+
+/* Opciones largas: cada diana ocupa una fila, con el cartel al lado */
+.jg-dianas-feria.largas { display: grid; grid-template-columns: 1fr; gap: 16px; padding: 0 6px 22px; }
+.jg-dianas-feria.largas .jg-dianas-diana { grid-template-columns: auto 1fr; align-items: center; justify-items: stretch; width: 100%; gap: 0 12px; text-align: left; }
+.jg-dianas-feria.largas .jg-dianas-disco { width: 68px; height: 68px; }
+.jg-dianas-feria.largas .jg-dianas-poste { display: none; }
+.jg-dianas-feria.largas .jg-dianas-placa { text-align: left; margin: 0; padding: 10px 12px; }
+.jg-dianas-feria.largas .jg-dianas-estrella { left: 34px; top: -14px; font-size: 1.8rem; }
+.jg-dianas-feria.largas .jg-dianas-diana.fallada::after { right: 4px; top: -10px; }
+
+@media (max-width: 640px) {
+  .jg-dianas-puesto { padding: 76px 10px 0; }
+  .jg-dianas-mostrador { margin: 0 -10px; }
+  .jg-dianas-feria { gap: 18px 8px; }
+  .jg-dianas-diana { width: 104px; }
+  .jg-dianas-disco { width: 80px; height: 80px; }
+  .jg-dianas-placa { padding: 5px 6px; font-size: .95rem; min-width: 0; }
+  .jg-dianas-frase { font-size: 1.2rem; }
+  .jg-dianas-pregunta { font-size: 1.1rem; }
+}

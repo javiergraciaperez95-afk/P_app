@@ -2,6 +2,8 @@
   "esquema": 2,
   "id": "031",
   "capitulo": 4,
+  "numero_curso": 33,
+  "orden_curso": 33,
   "nivel": "A1",
   "palabras": {
     "me gusta": {
@@ -30,7 +32,7 @@
       "genero": "m"
     },
     "el té": {
-      "pron": "el te",
+      "pron": "el TE",
       "cat": "sust",
       "genero": "m"
     },
@@ -52,6 +54,73 @@
     },
     "Pablo": {
       "propio": true
+    },
+    "gusta": {
+      "pron": "GUS-ta",
+      "cat": "verb"
+    },
+    "aventuras": {
+      "pron": "a-ben-TU-ras",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "lectores": {
+      "pron": "lek-TO-res",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "gustan": {
+      "pron": "GUS-tan",
+      "cat": "verb"
+    },
+    "antiguos": {
+      "pron": "an-TI-gwos",
+      "cat": "adj"
+    },
+    "historia": {
+      "pron": "is-TO-rya",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "agradables": {
+      "pron": "a-gra-DA-bles",
+      "cat": "adj"
+    },
+    "limón": {
+      "pron": "li-MON",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "tomar": {
+      "pron": "to-MAR",
+      "cat": "verb"
+    },
+    "infusiones": {
+      "pron": "in-fu-SYO-nes",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "suaves": {
+      "pron": "SWA-bes",
+      "cat": "adj"
+    },
+    "frutas": {
+      "pron": "FRU-tas",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "naturales": {
+      "pron": "na-tu-RA-les",
+      "cat": "adj"
+    },
+    "gustos": {
+      "pron": "GUS-tos",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "parecidos": {
+      "pron": "pa-re-THI-dos",
+      "cat": "adj"
     }
   },
   "bloques": [
@@ -71,25 +140,24 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "¿Te gusta",
-                "nucleo": "gusta",
+                "texto": "Te gusta",
                 "partes": [
                   {
                     "funcion": "CI",
-                    "texto": "¿Te",
-                    "nucleo": "¿Te"
+                    "texto": "Te",
+                    "nucleo": "Te"
                   },
                   {
                     "funcion": "V",
                     "texto": "gusta",
                     "nucleo": "gusta"
                   }
-                ]
+                ],
+                "nucleo": "gusta"
               },
               {
                 "funcion": "SUJ",
-                "texto": "el café?",
-                "nucleo": "café",
+                "texto": "el café",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -97,9 +165,11 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "café?"
+                    "texto": "café",
+                    "nucleo": "café"
                   }
-                ]
+                ],
+                "nucleo": "café"
               }
             ]
           }
@@ -112,12 +182,12 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Sí, me gusta mucho.",
-                "nucleo": "gusta",
+                "texto": "Sí me gusta mucho",
                 "partes": [
                   {
                     "funcion": "ADV",
-                    "texto": "Sí,"
+                    "texto": "Sí",
+                    "nucleo": "Sí"
                   },
                   {
                     "funcion": "CI",
@@ -130,11 +200,12 @@
                     "nucleo": "gusta"
                   },
                   {
-                    "funcion": "CCM",
-                    "texto": "mucho.",
-                    "nucleo": "mucho."
+                    "funcion": "CCA",
+                    "texto": "mucho",
+                    "nucleo": "mucho"
                   }
-                ]
+                ],
+                "nucleo": "gusta"
               }
             ]
           }
@@ -148,12 +219,10 @@
               {
                 "funcion": "PRED",
                 "texto": "A mí también me gusta",
-                "nucleo": "gusta",
                 "partes": [
                   {
                     "funcion": "CI",
                     "texto": "A mí",
-                    "nucleo": "mí",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -164,11 +233,13 @@
                         "texto": "mí",
                         "nucleo": "mí"
                       }
-                    ]
+                    ],
+                    "nucleo": "mí"
                   },
                   {
                     "funcion": "ADV",
-                    "texto": "también"
+                    "texto": "también",
+                    "nucleo": "también"
                   },
                   {
                     "funcion": "CI",
@@ -180,12 +251,12 @@
                     "texto": "gusta",
                     "nucleo": "gusta"
                   }
-                ]
+                ],
+                "nucleo": "gusta"
               },
               {
                 "funcion": "SUJ",
-                "texto": "el café.",
-                "nucleo": "café",
+                "texto": "el café",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -193,9 +264,11 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "café."
+                    "texto": "café",
+                    "nucleo": "café"
                   }
-                ]
+                ],
+                "nucleo": "café"
               }
             ]
           }
@@ -209,11 +282,11 @@
               {
                 "funcion": "PRED",
                 "texto": "También me gustan",
-                "nucleo": "gustan",
                 "partes": [
                   {
                     "funcion": "ADV",
-                    "texto": "También"
+                    "texto": "También",
+                    "nucleo": "También"
                   },
                   {
                     "funcion": "CI",
@@ -225,12 +298,12 @@
                     "texto": "gustan",
                     "nucleo": "gustan"
                   }
-                ]
+                ],
+                "nucleo": "gustan"
               },
               {
                 "funcion": "SUJ",
-                "texto": "los libros.",
-                "nucleo": "libros",
+                "texto": "los libros",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -238,9 +311,11 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "libros."
+                    "texto": "libros",
+                    "nucleo": "libros"
                   }
-                ]
+                ],
+                "nucleo": "libros"
               }
             ]
           }
@@ -254,7 +329,6 @@
               {
                 "funcion": "PRED",
                 "texto": "No me gusta",
-                "nucleo": "gusta",
                 "partes": [
                   {
                     "funcion": "NEG",
@@ -270,12 +344,12 @@
                     "texto": "gusta",
                     "nucleo": "gusta"
                   }
-                ]
+                ],
+                "nucleo": "gusta"
               },
               {
                 "funcion": "SUJ",
-                "texto": "el té.",
-                "nucleo": "té",
+                "texto": "el té",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -283,9 +357,11 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "té."
+                    "texto": "té",
+                    "nucleo": "té"
                   }
-                ]
+                ],
+                "nucleo": "té"
               }
             ]
           }
@@ -299,12 +375,10 @@
               {
                 "funcion": "PRED",
                 "texto": "A mí me gusta",
-                "nucleo": "gusta",
                 "partes": [
                   {
                     "funcion": "CI",
                     "texto": "A mí",
-                    "nucleo": "mí",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -315,7 +389,8 @@
                         "texto": "mí",
                         "nucleo": "mí"
                       }
-                    ]
+                    ],
+                    "nucleo": "mí"
                   },
                   {
                     "funcion": "CI",
@@ -327,12 +402,12 @@
                     "texto": "gusta",
                     "nucleo": "gusta"
                   }
-                ]
+                ],
+                "nucleo": "gusta"
               },
               {
                 "funcion": "SUJ",
-                "texto": "el té verde.",
-                "nucleo": "té",
+                "texto": "el té verde",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -340,14 +415,16 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "té"
+                    "texto": "té",
+                    "nucleo": "té"
                   },
                   {
                     "funcion": "ADY",
-                    "texto": "verde.",
-                    "nucleo": "verde."
+                    "texto": "verde",
+                    "nucleo": "verde"
                   }
-                ]
+                ],
+                "nucleo": "té"
               }
             ]
           }
@@ -382,7 +459,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Me gusta",
-                "nucleo": "gusta",
                 "partes": [
                   {
                     "funcion": "CI",
@@ -394,12 +470,12 @@
                     "texto": "gusta",
                     "nucleo": "gusta"
                   }
-                ]
+                ],
+                "nucleo": "gusta"
               },
               {
                 "funcion": "SUJ",
-                "texto": "el café con leche.",
-                "nucleo": "café",
+                "texto": "el café con leche",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -407,12 +483,12 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "café"
+                    "texto": "café",
+                    "nucleo": "café"
                   },
                   {
                     "funcion": "CN",
-                    "texto": "con leche.",
-                    "nucleo": "leche",
+                    "texto": "con leche",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -420,12 +496,14 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "leche.",
-                        "nucleo": "leche."
+                        "texto": "leche",
+                        "nucleo": "leche"
                       }
-                    ]
+                    ],
+                    "nucleo": "leche"
                   }
-                ]
+                ],
+                "nucleo": "café"
               }
             ]
           }
@@ -438,7 +516,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Me gustan",
-                "nucleo": "gustan",
                 "partes": [
                   {
                     "funcion": "CI",
@@ -450,12 +527,12 @@
                     "texto": "gustan",
                     "nucleo": "gustan"
                   }
-                ]
+                ],
+                "nucleo": "gustan"
               },
               {
                 "funcion": "SUJ",
-                "texto": "los libros de aventuras.",
-                "nucleo": "libros",
+                "texto": "los libros de aventuras",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -463,12 +540,12 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "libros"
+                    "texto": "libros",
+                    "nucleo": "libros"
                   },
                   {
                     "funcion": "CN",
-                    "texto": "de aventuras.",
-                    "nucleo": "aventuras",
+                    "texto": "de aventuras",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -476,12 +553,14 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "aventuras.",
-                        "nucleo": "aventuras."
+                        "texto": "aventuras",
+                        "nucleo": "aventuras"
                       }
-                    ]
+                    ],
+                    "nucleo": "aventuras"
                   }
-                ]
+                ],
+                "nucleo": "libros"
               }
             ]
           }
@@ -502,12 +581,10 @@
               {
                 "funcion": "PRED",
                 "texto": "A muchos lectores tranquilos les gusta",
-                "nucleo": "gusta",
                 "partes": [
                   {
                     "funcion": "CI",
                     "texto": "A muchos lectores tranquilos",
-                    "nucleo": "lectores",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -516,24 +593,27 @@
                       {
                         "funcion": "TERM",
                         "texto": "muchos lectores tranquilos",
-                        "nucleo": "lectores",
                         "partes": [
                           {
                             "funcion": "CUANT",
-                            "texto": "muchos"
+                            "texto": "muchos",
+                            "nucleo": "muchos"
                           },
                           {
                             "funcion": "N",
-                            "texto": "lectores"
+                            "texto": "lectores",
+                            "nucleo": "lectores"
                           },
                           {
                             "funcion": "ADY",
                             "texto": "tranquilos",
                             "nucleo": "tranquilos"
                           }
-                        ]
+                        ],
+                        "nucleo": "lectores"
                       }
-                    ]
+                    ],
+                    "nucleo": "lectores"
                   },
                   {
                     "funcion": "CI",
@@ -545,12 +625,12 @@
                     "texto": "gusta",
                     "nucleo": "gusta"
                   }
-                ]
+                ],
+                "nucleo": "gusta"
               },
               {
                 "funcion": "SUJ",
-                "texto": "el café caliente por la mañana.",
-                "nucleo": "café",
+                "texto": "el café caliente",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -558,17 +638,24 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "café"
+                    "texto": "café",
+                    "nucleo": "café"
                   },
                   {
                     "funcion": "ADY",
                     "texto": "caliente",
                     "nucleo": "caliente"
-                  },
+                  }
+                ],
+                "nucleo": "café"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "por la mañana",
+                "partes": [
                   {
                     "funcion": "CCT",
-                    "texto": "por la mañana.",
-                    "nucleo": "mañana",
+                    "texto": "por la mañana",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -576,8 +663,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "la mañana.",
-                        "nucleo": "mañana",
+                        "texto": "la mañana",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -585,13 +671,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "mañana."
+                            "texto": "mañana",
+                            "nucleo": "mañana"
                           }
-                        ]
+                        ],
+                        "nucleo": "mañana"
                       }
-                    ]
+                    ],
+                    "nucleo": "mañana"
                   }
-                ]
+                ],
+                "nucleo": "mañana"
               }
             ]
           }
@@ -605,12 +695,10 @@
               {
                 "funcion": "PRED",
                 "texto": "A Lucía le gustan mucho",
-                "nucleo": "gustan",
                 "partes": [
                   {
                     "funcion": "CI",
                     "texto": "A Lucía",
-                    "nucleo": "Lucía",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -621,7 +709,8 @@
                         "texto": "Lucía",
                         "nucleo": "Lucía"
                       }
-                    ]
+                    ],
+                    "nucleo": "Lucía"
                   },
                   {
                     "funcion": "CI",
@@ -634,15 +723,16 @@
                     "nucleo": "gustan"
                   },
                   {
-                    "funcion": "CCM",
-                    "texto": "mucho"
+                    "funcion": "CCA",
+                    "texto": "mucho",
+                    "nucleo": "mucho"
                   }
-                ]
+                ],
+                "nucleo": "gustan"
               },
               {
                 "funcion": "SUJ",
-                "texto": "los libros antiguos de historia.",
-                "nucleo": "libros",
+                "texto": "los libros antiguos de historia",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -650,7 +740,8 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "libros"
+                    "texto": "libros",
+                    "nucleo": "libros"
                   },
                   {
                     "funcion": "ADY",
@@ -659,8 +750,7 @@
                   },
                   {
                     "funcion": "CN",
-                    "texto": "de historia.",
-                    "nucleo": "historia",
+                    "texto": "de historia",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -668,12 +758,14 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "historia.",
-                        "nucleo": "historia."
+                        "texto": "historia",
+                        "nucleo": "historia"
                       }
-                    ]
+                    ],
+                    "nucleo": "historia"
                   }
-                ]
+                ],
+                "nucleo": "libros"
               }
             ]
           }
@@ -691,8 +783,7 @@
               },
               {
                 "funcion": "PRED",
-                "texto": "pasa horas agradables en la biblioteca pública del barrio.",
-                "nucleo": "pasa",
+                "texto": "pasa horas agradables en la biblioteca pública del barrio",
                 "partes": [
                   {
                     "funcion": "V",
@@ -702,23 +793,23 @@
                   {
                     "funcion": "CD",
                     "texto": "horas agradables",
-                    "nucleo": "horas",
                     "partes": [
                       {
                         "funcion": "N",
-                        "texto": "horas"
+                        "texto": "horas",
+                        "nucleo": "horas"
                       },
                       {
                         "funcion": "ADY",
                         "texto": "agradables",
                         "nucleo": "agradables"
                       }
-                    ]
+                    ],
+                    "nucleo": "horas"
                   },
                   {
                     "funcion": "CCL",
-                    "texto": "en la biblioteca pública del barrio.",
-                    "nucleo": "biblioteca",
+                    "texto": "en la biblioteca pública del barrio",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -726,8 +817,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "la biblioteca pública del barrio.",
-                        "nucleo": "biblioteca",
+                        "texto": "la biblioteca pública del barrio",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -735,7 +825,8 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "biblioteca"
+                            "texto": "biblioteca",
+                            "nucleo": "biblioteca"
                           },
                           {
                             "funcion": "ADY",
@@ -744,8 +835,7 @@
                           },
                           {
                             "funcion": "CN",
-                            "texto": "del barrio.",
-                            "nucleo": "barrio",
+                            "texto": "del barrio",
                             "partes": [
                               {
                                 "funcion": "PREP",
@@ -753,16 +843,20 @@
                               },
                               {
                                 "funcion": "TERM",
-                                "texto": "barrio.",
-                                "nucleo": "barrio."
+                                "texto": "barrio",
+                                "nucleo": "barrio"
                               }
-                            ]
+                            ],
+                            "nucleo": "barrio"
                           }
-                        ]
+                        ],
+                        "nucleo": "biblioteca"
                       }
-                    ]
+                    ],
+                    "nucleo": "biblioteca"
                   }
-                ]
+                ],
+                "nucleo": "pasa"
               }
             ]
           }
@@ -776,12 +870,10 @@
               {
                 "funcion": "PRED",
                 "texto": "A Pablo no le gusta",
-                "nucleo": "gusta",
                 "partes": [
                   {
                     "funcion": "CI",
                     "texto": "A Pablo",
-                    "nucleo": "Pablo",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -792,7 +884,8 @@
                         "texto": "Pablo",
                         "nucleo": "Pablo"
                       }
-                    ]
+                    ],
+                    "nucleo": "Pablo"
                   },
                   {
                     "funcion": "NEG",
@@ -808,12 +901,12 @@
                     "texto": "gusta",
                     "nucleo": "gusta"
                   }
-                ]
+                ],
+                "nucleo": "gusta"
               },
               {
                 "funcion": "SUJ",
-                "texto": "el té negro con limón.",
-                "nucleo": "té",
+                "texto": "el té negro con limón",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -821,7 +914,8 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "té"
+                    "texto": "té",
+                    "nucleo": "té"
                   },
                   {
                     "funcion": "ADY",
@@ -830,8 +924,7 @@
                   },
                   {
                     "funcion": "CN",
-                    "texto": "con limón.",
-                    "nucleo": "limón",
+                    "texto": "con limón",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -839,12 +932,14 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "limón.",
-                        "nucleo": "limón."
+                        "texto": "limón",
+                        "nucleo": "limón"
                       }
-                    ]
+                    ],
+                    "nucleo": "limón"
                   }
-                ]
+                ],
+                "nucleo": "té"
               }
             ]
           }
@@ -862,69 +957,60 @@
               },
               {
                 "funcion": "PRED",
-                "texto": "prefiere tomar infusiones suaves de frutas naturales.",
-                "nucleo": "prefiere",
+                "texto": "prefiere tomar infusiones suaves de frutas naturales",
                 "partes": [
                   {
                     "funcion": "V",
-                    "texto": "prefiere",
-                    "nucleo": "prefiere"
+                    "texto": "prefiere tomar",
+                    "nucleo": "tomar"
                   },
                   {
                     "funcion": "CD",
-                    "texto": "tomar infusiones suaves de frutas naturales.",
-                    "nucleo": "tomar",
+                    "texto": "infusiones suaves de frutas naturales",
                     "partes": [
                       {
-                        "funcion": "INF",
-                        "texto": "tomar"
+                        "funcion": "N",
+                        "texto": "infusiones",
+                        "nucleo": "infusiones"
                       },
                       {
-                        "funcion": "CD",
-                        "texto": "infusiones suaves de frutas naturales.",
-                        "nucleo": "infusiones",
+                        "funcion": "ADY",
+                        "texto": "suaves",
+                        "nucleo": "suaves"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "de frutas naturales",
                         "partes": [
                           {
-                            "funcion": "N",
-                            "texto": "infusiones"
+                            "funcion": "PREP",
+                            "texto": "de"
                           },
                           {
-                            "funcion": "ADY",
-                            "texto": "suaves",
-                            "nucleo": "suaves"
-                          },
-                          {
-                            "funcion": "CN",
-                            "texto": "de frutas naturales.",
-                            "nucleo": "frutas",
+                            "funcion": "TERM",
+                            "texto": "frutas naturales",
                             "partes": [
                               {
-                                "funcion": "PREP",
-                                "texto": "de"
+                                "funcion": "N",
+                                "texto": "frutas",
+                                "nucleo": "frutas"
                               },
                               {
-                                "funcion": "TERM",
-                                "texto": "frutas naturales.",
-                                "nucleo": "frutas",
-                                "partes": [
-                                  {
-                                    "funcion": "N",
-                                    "texto": "frutas"
-                                  },
-                                  {
-                                    "funcion": "ADY",
-                                    "texto": "naturales.",
-                                    "nucleo": "naturales."
-                                  }
-                                ]
+                                "funcion": "ADY",
+                                "texto": "naturales",
+                                "nucleo": "naturales"
                               }
-                            ]
+                            ],
+                            "nucleo": "frutas"
                           }
-                        ]
+                        ],
+                        "nucleo": "frutas"
                       }
-                    ]
+                    ],
+                    "nucleo": "infusiones"
                   }
-                ]
+                ],
+                "nucleo": "tomar"
               }
             ]
           }
@@ -938,7 +1024,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Los dos compañeros",
-                "nucleo": "compañeros",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -946,18 +1031,20 @@
                   },
                   {
                     "funcion": "CUANT",
-                    "texto": "dos"
+                    "texto": "dos",
+                    "nucleo": "dos"
                   },
                   {
                     "funcion": "N",
-                    "texto": "compañeros"
+                    "texto": "compañeros",
+                    "nucleo": "compañeros"
                   }
-                ]
+                ],
+                "nucleo": "compañeros"
               },
               {
                 "funcion": "PRED",
-                "texto": "comparten gustos parecidos en su tiempo libre.",
-                "nucleo": "comparten",
+                "texto": "comparten gustos parecidos en su tiempo libre",
                 "partes": [
                   {
                     "funcion": "V",
@@ -967,23 +1054,23 @@
                   {
                     "funcion": "CD",
                     "texto": "gustos parecidos",
-                    "nucleo": "gustos",
                     "partes": [
                       {
                         "funcion": "N",
-                        "texto": "gustos"
+                        "texto": "gustos",
+                        "nucleo": "gustos"
                       },
                       {
                         "funcion": "ADY",
                         "texto": "parecidos",
                         "nucleo": "parecidos"
                       }
-                    ]
+                    ],
+                    "nucleo": "gustos"
                   },
                   {
-                    "funcion": "CCL",
-                    "texto": "en su tiempo libre.",
-                    "nucleo": "tiempo",
+                    "funcion": "CCT",
+                    "texto": "en su tiempo libre",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -991,8 +1078,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "su tiempo libre.",
-                        "nucleo": "tiempo",
+                        "texto": "su tiempo libre",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -1000,18 +1086,22 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "tiempo"
+                            "texto": "tiempo",
+                            "nucleo": "tiempo"
                           },
                           {
                             "funcion": "ADY",
-                            "texto": "libre.",
-                            "nucleo": "libre."
+                            "texto": "libre",
+                            "nucleo": "libre"
                           }
-                        ]
+                        ],
+                        "nucleo": "tiempo"
                       }
-                    ]
+                    ],
+                    "nucleo": "tiempo"
                   }
-                ]
+                ],
+                "nucleo": "comparten"
               }
             ]
           }

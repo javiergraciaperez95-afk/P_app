@@ -140,7 +140,27 @@ html.pm-activo body main { padding-bottom: 0; }
 .pm-nav button:active { transform: translateY(2px); }
 .pm-nav button:disabled { opacity: .35; cursor: default; }
 .pm-nav button:focus-visible { outline: 3px dashed var(--marca-oro); outline-offset: 3px; }
-.pm-puntos { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; max-width: 60vw; }
-.pm-puntos i { width: 10px; height: 10px; background: var(--h-papel); box-shadow: 0 0 0 2px var(--h-borde); }
-.pm-puntos i.pm-ya { background: var(--h-rosa); }
+.pm-puntos { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; max-width: 72vw; }
+.pm-nav .pm-puntos > i { display: block; width: 8px; height: 8px; background: transparent; box-shadow: 0 0 0 2px var(--h-tinta); opacity: .55; }
+.pm-nav .pm-puntos > i.pm-ya { background: var(--h-rosa); box-shadow: 0 0 0 2px var(--h-tinta); opacity: 1; }
 .pm-puntos b { font: 700 .9rem var(--fuente-pixel); color: var(--h-tinta); }
+/* la vista ya va de borde a borde (js/paginas-movil.js): sus secciones no añaden su propio margen */
+html.pm-activo .pm-vista > section { margin-left: 0 !important; margin-right: 0 !important; }
+/* el dedo arrastra la diapositiva de lado: el navegador se queda solo con lo vertical y el pellizco */
+html.pm-activo .pm-vista { touch-action: pan-y pinch-zoom; }
+/* la barra acompaña con suavidad: el punto de la diapositiva se enciende y crece un poco, los botones ceden al pulsar */
+.pm-nav .pm-puntos > i { transition: background-color .35s ease, opacity .35s ease, scale .45s cubic-bezier(.34, 1.56, .64, 1); }
+.pm-nav .pm-puntos > i.pm-ya { scale: 1.3; }
+.pm-nav button { transition: translate .18s cubic-bezier(.34, 1.56, .64, 1), opacity .3s ease; }
+.pm-nav button:active { transform: none; translate: 0 2px; }
+@media (prefers-reduced-motion: reduce) {
+  .pm-nav .pm-puntos > i, .pm-nav button { transition: none; }
+}
+
+/* Móvil (js/suave.js): las tutoras se mueven de cuerpo entero con el lienzo (js/tutora-base.js), y el navegador
+   rellena el paso de un dibujo al siguiente; el reloj de las tutoras late cada 70 ms */
+.movil-suave .tutora-lienzo { transition: translate .14s linear, scale .14s linear; }
+/* las tutoras que pasean (el pasillo de la portada, la casa de «Sobre») dan un paso cada 90 ms: el navegador rellena
+   el hueco entre paso y paso y se ve que andan, no que saltan */
+.movil-suave .pasillo-tutora, .movil-suave .casa-paseante { transition: transform .09s linear; }
+.movil-suave .casa-caminante { transition: transform .5s cubic-bezier(.22, 1, .36, 1); }

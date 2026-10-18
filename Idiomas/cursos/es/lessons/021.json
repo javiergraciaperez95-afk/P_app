@@ -2,6 +2,8 @@
   "esquema": 2,
   "id": "021",
   "capitulo": 3,
+  "numero_curso": 23,
+  "orden_curso": 23,
   "nivel": "A1",
   "palabras": {
     "hay": {
@@ -48,6 +50,63 @@
     },
     "Pablo": {
       "propio": true
+    },
+    "farmacia": {
+      "pron": "far-MA-thya",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "banco": {
+      "pron": "BAN-ko",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "plaza": {
+      "pron": "PLA-tha",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "hermosa": {
+      "pron": "er-MO-sa",
+      "cat": "adj"
+    },
+    "tranquilos": {
+      "pron": "tran-KI-los",
+      "cat": "adj"
+    },
+    "alrededor": {
+      "pron": "al-rre-de-DOR",
+      "cat": "adv"
+    },
+    "principal": {
+      "pron": "prin-thi-PAL",
+      "cat": "adj"
+    },
+    "parque": {
+      "pron": "PAR-ke",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "moderna": {
+      "pron": "mo-DER-na",
+      "cat": "adj"
+    },
+    "abierta": {
+      "pron": "a-BYER-ta",
+      "cat": "adj"
+    },
+    "compran": {
+      "pron": "KOM-pran",
+      "cat": "verb"
+    },
+    "medicinas": {
+      "pron": "me-di-THI-nas",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "histórico": {
+      "pron": "is-TO-ri-ko",
+      "cat": "adj"
     }
   },
   "bloques": [
@@ -63,11 +122,11 @@
           "quien": "Lucía",
           "sintaxis": {
             "oracion": "bimembre",
+            "sujeto": "omitido",
             "unidades": [
               {
                 "funcion": "PRED",
                 "texto": "Hay una farmacia aquí",
-                "nucleo": "Hay",
                 "partes": [
                   {
                     "funcion": "V",
@@ -77,7 +136,6 @@
                   {
                     "funcion": "CD",
                     "texto": "una farmacia",
-                    "nucleo": "farmacia",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -85,30 +143,32 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "farmacia"
+                        "texto": "farmacia",
+                        "nucleo": "farmacia"
                       }
-                    ]
+                    ],
+                    "nucleo": "farmacia"
                   },
                   {
                     "funcion": "CCL",
                     "texto": "aquí",
                     "nucleo": "aquí"
                   }
-                ]
+                ],
+                "nucleo": "Hay"
               }
-            ],
-            "sujeto": "omitido"
+            ]
           }
         },
         {
           "quien": "Pablo",
           "sintaxis": {
             "oracion": "bimembre",
+            "sujeto": "omitido",
             "unidades": [
               {
                 "funcion": "PRED",
                 "texto": "Hay una farmacia en la plaza",
-                "nucleo": "Hay",
                 "partes": [
                   {
                     "funcion": "V",
@@ -118,7 +178,6 @@
                   {
                     "funcion": "CD",
                     "texto": "una farmacia",
-                    "nucleo": "farmacia",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -126,14 +185,15 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "farmacia"
+                        "texto": "farmacia",
+                        "nucleo": "farmacia"
                       }
-                    ]
+                    ],
+                    "nucleo": "farmacia"
                   },
                   {
                     "funcion": "CCL",
                     "texto": "en la plaza",
-                    "nucleo": "plaza",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -142,7 +202,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "la plaza",
-                        "nucleo": "plaza",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -150,16 +209,19 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "plaza"
+                            "texto": "plaza",
+                            "nucleo": "plaza"
                           }
-                        ]
+                        ],
+                        "nucleo": "plaza"
                       }
-                    ]
+                    ],
+                    "nucleo": "plaza"
                   }
-                ]
+                ],
+                "nucleo": "Hay"
               }
-            ],
-            "sujeto": "omitido"
+            ]
           }
         },
         {
@@ -171,7 +233,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Dónde está",
-                "nucleo": "está",
                 "partes": [
                   {
                     "funcion": "CCL",
@@ -183,12 +244,12 @@
                     "texto": "está",
                     "nucleo": "está"
                   }
-                ]
+                ],
+                "nucleo": "está"
               },
               {
                 "funcion": "SUJ",
                 "texto": "la farmacia",
-                "nucleo": "farmacia",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -196,9 +257,11 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "farmacia"
+                    "texto": "farmacia",
+                    "nucleo": "farmacia"
                   }
-                ]
+                ],
+                "nucleo": "farmacia"
               }
             ]
           }
@@ -212,7 +275,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La farmacia",
-                "nucleo": "farmacia",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -220,14 +282,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "farmacia"
+                    "texto": "farmacia",
+                    "nucleo": "farmacia"
                   }
-                ]
+                ],
+                "nucleo": "farmacia"
               },
               {
                 "funcion": "PRED",
                 "texto": "está al lado del banco",
-                "nucleo": "está",
                 "partes": [
                   {
                     "funcion": "V",
@@ -237,36 +300,21 @@
                   {
                     "funcion": "CCL",
                     "texto": "al lado del banco",
-                    "nucleo": "lado",
                     "partes": [
                       {
                         "funcion": "PREP",
-                        "texto": "al"
+                        "texto": "al lado del"
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "lado",
-                        "nucleo": "lado"
-                      },
-                      {
-                        "funcion": "CN",
-                        "texto": "del banco",
-                        "nucleo": "banco",
-                        "partes": [
-                          {
-                            "funcion": "PREP",
-                            "texto": "del"
-                          },
-                          {
-                            "funcion": "TERM",
-                            "texto": "banco",
-                            "nucleo": "banco"
-                          }
-                        ]
+                        "texto": "banco",
+                        "nucleo": "banco"
                       }
-                    ]
+                    ],
+                    "nucleo": "banco"
                   }
-                ]
+                ],
+                "nucleo": "está"
               }
             ]
           }
@@ -280,7 +328,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Está cerca",
-                "nucleo": "Está",
                 "partes": [
                   {
                     "funcion": "V",
@@ -292,12 +339,12 @@
                     "texto": "cerca",
                     "nucleo": "cerca"
                   }
-                ]
+                ],
+                "nucleo": "Está"
               },
               {
                 "funcion": "SUJ",
                 "texto": "el banco",
-                "nucleo": "banco",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -305,9 +352,11 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "banco"
+                    "texto": "banco",
+                    "nucleo": "banco"
                   }
-                ]
+                ],
+                "nucleo": "banco"
               }
             ]
           }
@@ -321,7 +370,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "El banco",
-                "nucleo": "banco",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -329,14 +377,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "banco"
+                    "texto": "banco",
+                    "nucleo": "banco"
                   }
-                ]
+                ],
+                "nucleo": "banco"
               },
               {
                 "funcion": "PRED",
                 "texto": "está muy cerca",
-                "nucleo": "está",
                 "partes": [
                   {
                     "funcion": "V",
@@ -346,20 +395,22 @@
                   {
                     "funcion": "CCL",
                     "texto": "muy cerca",
-                    "nucleo": "cerca",
                     "partes": [
                       {
-                        "funcion": "CUANT",
-                        "texto": "muy"
+                        "funcion": "ADV",
+                        "texto": "muy",
+                        "nucleo": "muy"
                       },
                       {
                         "funcion": "ADV",
                         "texto": "cerca",
                         "nucleo": "cerca"
                       }
-                    ]
+                    ],
+                    "nucleo": "muy"
                   }
-                ]
+                ],
+                "nucleo": "está"
               }
             ]
           }
@@ -388,11 +439,11 @@
         {
           "sintaxis": {
             "oracion": "bimembre",
+            "sujeto": "omitido",
             "unidades": [
               {
                 "funcion": "PRED",
                 "texto": "Hay una farmacia en la plaza",
-                "nucleo": "Hay",
                 "partes": [
                   {
                     "funcion": "V",
@@ -402,7 +453,6 @@
                   {
                     "funcion": "CD",
                     "texto": "una farmacia",
-                    "nucleo": "farmacia",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -410,14 +460,15 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "farmacia"
+                        "texto": "farmacia",
+                        "nucleo": "farmacia"
                       }
-                    ]
+                    ],
+                    "nucleo": "farmacia"
                   },
                   {
                     "funcion": "CCL",
                     "texto": "en la plaza",
-                    "nucleo": "plaza",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -426,7 +477,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "la plaza",
-                        "nucleo": "plaza",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -434,16 +484,19 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "plaza"
+                            "texto": "plaza",
+                            "nucleo": "plaza"
                           }
-                        ]
+                        ],
+                        "nucleo": "plaza"
                       }
-                    ]
+                    ],
+                    "nucleo": "plaza"
                   }
-                ]
+                ],
+                "nucleo": "Hay"
               }
-            ],
-            "sujeto": "omitido"
+            ]
           }
         },
         {
@@ -454,7 +507,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La farmacia",
-                "nucleo": "farmacia",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -462,14 +514,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "farmacia"
+                    "texto": "farmacia",
+                    "nucleo": "farmacia"
                   }
-                ]
+                ],
+                "nucleo": "farmacia"
               },
               {
                 "funcion": "PRED",
                 "texto": "está al lado del banco",
-                "nucleo": "está",
                 "partes": [
                   {
                     "funcion": "V",
@@ -479,36 +532,21 @@
                   {
                     "funcion": "CCL",
                     "texto": "al lado del banco",
-                    "nucleo": "lado",
                     "partes": [
                       {
                         "funcion": "PREP",
-                        "texto": "al"
+                        "texto": "al lado del"
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "lado",
-                        "nucleo": "lado"
-                      },
-                      {
-                        "funcion": "CN",
-                        "texto": "del banco",
-                        "nucleo": "banco",
-                        "partes": [
-                          {
-                            "funcion": "PREP",
-                            "texto": "del"
-                          },
-                          {
-                            "funcion": "TERM",
-                            "texto": "banco",
-                            "nucleo": "banco"
-                          }
-                        ]
+                        "texto": "banco",
+                        "nucleo": "banco"
                       }
-                    ]
+                    ],
+                    "nucleo": "banco"
                   }
-                ]
+                ],
+                "nucleo": "está"
               }
             ]
           }
@@ -524,16 +562,15 @@
           "parrafo": 0,
           "sintaxis": {
             "oracion": "bimembre",
+            "sujeto": "omitido",
             "unidades": [
               {
                 "funcion": "PRED",
                 "texto": "En el centro histórico de la ciudad hay una plaza hermosa",
-                "nucleo": "hay",
                 "partes": [
                   {
                     "funcion": "CCL",
                     "texto": "En el centro histórico de la ciudad",
-                    "nucleo": "centro",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -542,7 +579,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "el centro histórico de la ciudad",
-                        "nucleo": "centro",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -550,7 +586,8 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "centro"
+                            "texto": "centro",
+                            "nucleo": "centro"
                           },
                           {
                             "funcion": "ADY",
@@ -560,7 +597,6 @@
                           {
                             "funcion": "CN",
                             "texto": "de la ciudad",
-                            "nucleo": "ciudad",
                             "partes": [
                               {
                                 "funcion": "PREP",
@@ -569,7 +605,6 @@
                               {
                                 "funcion": "TERM",
                                 "texto": "la ciudad",
-                                "nucleo": "ciudad",
                                 "partes": [
                                   {
                                     "funcion": "DET",
@@ -577,15 +612,20 @@
                                   },
                                   {
                                     "funcion": "N",
-                                    "texto": "ciudad"
+                                    "texto": "ciudad",
+                                    "nucleo": "ciudad"
                                   }
-                                ]
+                                ],
+                                "nucleo": "ciudad"
                               }
-                            ]
+                            ],
+                            "nucleo": "ciudad"
                           }
-                        ]
+                        ],
+                        "nucleo": "centro"
                       }
-                    ]
+                    ],
+                    "nucleo": "centro"
                   },
                   {
                     "funcion": "V",
@@ -595,7 +635,6 @@
                   {
                     "funcion": "CD",
                     "texto": "una plaza hermosa",
-                    "nucleo": "plaza",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -603,19 +642,21 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "plaza"
+                        "texto": "plaza",
+                        "nucleo": "plaza"
                       },
                       {
                         "funcion": "ADY",
                         "texto": "hermosa",
                         "nucleo": "hermosa"
                       }
-                    ]
+                    ],
+                    "nucleo": "plaza"
                   }
-                ]
+                ],
+                "nucleo": "hay"
               }
-            ],
-            "sujeto": "omitido"
+            ]
           }
         },
         {
@@ -627,27 +668,27 @@
               {
                 "funcion": "SUJ",
                 "texto": "Muchos vecinos tranquilos",
-                "nucleo": "vecinos",
                 "partes": [
                   {
-                    "funcion": "CUANT",
+                    "funcion": "DET",
                     "texto": "Muchos"
                   },
                   {
                     "funcion": "N",
-                    "texto": "vecinos"
+                    "texto": "vecinos",
+                    "nucleo": "vecinos"
                   },
                   {
                     "funcion": "ADY",
                     "texto": "tranquilos",
                     "nucleo": "tranquilos"
                   }
-                ]
+                ],
+                "nucleo": "vecinos"
               },
               {
                 "funcion": "PRED",
                 "texto": "caminan alrededor de la fuente",
-                "nucleo": "caminan",
                 "partes": [
                   {
                     "funcion": "V",
@@ -657,42 +698,32 @@
                   {
                     "funcion": "CCL",
                     "texto": "alrededor de la fuente",
-                    "nucleo": "alrededor",
                     "partes": [
                       {
-                        "funcion": "ADV",
-                        "texto": "alrededor",
-                        "nucleo": "alrededor"
+                        "funcion": "PREP",
+                        "texto": "alrededor de"
                       },
                       {
-                        "funcion": "CN",
-                        "texto": "de la fuente",
-                        "nucleo": "fuente",
+                        "funcion": "TERM",
+                        "texto": "la fuente",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "de"
+                            "funcion": "DET",
+                            "texto": "la"
                           },
                           {
-                            "funcion": "TERM",
-                            "texto": "la fuente",
-                            "nucleo": "fuente",
-                            "partes": [
-                              {
-                                "funcion": "DET",
-                                "texto": "la"
-                              },
-                              {
-                                "funcion": "N",
-                                "texto": "fuente"
-                              }
-                            ]
+                            "funcion": "N",
+                            "texto": "fuente",
+                            "nucleo": "fuente"
                           }
-                        ]
+                        ],
+                        "nucleo": "fuente"
                       }
-                    ]
+                    ],
+                    "nucleo": "fuente"
                   }
-                ]
+                ],
+                "nucleo": "caminan"
               }
             ]
           }
@@ -701,11 +732,11 @@
           "parrafo": 0,
           "sintaxis": {
             "oracion": "bimembre",
+            "sujeto": "omitido",
             "unidades": [
               {
                 "funcion": "PRED",
                 "texto": "Hay varios árboles grandes y una pequeña farmacia",
-                "nucleo": "Hay",
                 "partes": [
                   {
                     "funcion": "V",
@@ -715,44 +746,60 @@
                   {
                     "funcion": "CD",
                     "texto": "varios árboles grandes y una pequeña farmacia",
-                    "nucleo": "árboles",
                     "partes": [
                       {
-                        "funcion": "CUANT",
-                        "texto": "varios"
-                      },
-                      {
-                        "funcion": "N",
-                        "texto": "árboles"
-                      },
-                      {
-                        "funcion": "ADY",
-                        "texto": "grandes",
-                        "nucleo": "grandes"
+                        "funcion": "CD",
+                        "texto": "varios árboles grandes",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "varios"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "árboles",
+                            "nucleo": "árboles"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "grandes",
+                            "nucleo": "grandes"
+                          }
+                        ],
+                        "nucleo": "árboles"
                       },
                       {
                         "funcion": "CONJ",
                         "texto": "y"
                       },
                       {
-                        "funcion": "DET",
-                        "texto": "una"
-                      },
-                      {
-                        "funcion": "ADY",
-                        "texto": "pequeña",
-                        "nucleo": "pequeña"
-                      },
-                      {
-                        "funcion": "N",
-                        "texto": "farmacia"
+                        "funcion": "CD",
+                        "texto": "una pequeña farmacia",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "una"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "pequeña",
+                            "nucleo": "pequeña"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "farmacia",
+                            "nucleo": "farmacia"
+                          }
+                        ],
+                        "nucleo": "farmacia"
                       }
-                    ]
+                    ],
+                    "nucleo": "árboles"
                   }
-                ]
+                ],
+                "nucleo": "Hay"
               }
-            ],
-            "sujeto": "omitido"
+            ]
           }
         },
         {
@@ -764,7 +811,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "El banco principal",
-                "nucleo": "banco",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -772,19 +818,20 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "banco"
+                    "texto": "banco",
+                    "nucleo": "banco"
                   },
                   {
                     "funcion": "ADY",
                     "texto": "principal",
                     "nucleo": "principal"
                   }
-                ]
+                ],
+                "nucleo": "banco"
               },
               {
                 "funcion": "PRED",
                 "texto": "está al lado del parque verde",
-                "nucleo": "está",
                 "partes": [
                   {
                     "funcion": "V",
@@ -794,47 +841,33 @@
                   {
                     "funcion": "CCL",
                     "texto": "al lado del parque verde",
-                    "nucleo": "lado",
                     "partes": [
                       {
                         "funcion": "PREP",
-                        "texto": "al"
+                        "texto": "al lado del"
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "lado",
-                        "nucleo": "lado"
-                      },
-                      {
-                        "funcion": "CN",
-                        "texto": "del parque verde",
-                        "nucleo": "parque",
+                        "texto": "parque verde",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "del"
+                            "funcion": "N",
+                            "texto": "parque",
+                            "nucleo": "parque"
                           },
                           {
-                            "funcion": "TERM",
-                            "texto": "parque verde",
-                            "nucleo": "parque",
-                            "partes": [
-                              {
-                                "funcion": "N",
-                                "texto": "parque"
-                              },
-                              {
-                                "funcion": "ADY",
-                                "texto": "verde",
-                                "nucleo": "verde"
-                              }
-                            ]
+                            "funcion": "ADY",
+                            "texto": "verde",
+                            "nucleo": "verde"
                           }
-                        ]
+                        ],
+                        "nucleo": "parque"
                       }
-                    ]
+                    ],
+                    "nucleo": "parque"
                   }
-                ]
+                ],
+                "nucleo": "está"
               }
             ]
           }
@@ -848,7 +881,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La farmacia moderna",
-                "nucleo": "farmacia",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -856,19 +888,20 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "farmacia"
+                    "texto": "farmacia",
+                    "nucleo": "farmacia"
                   },
                   {
                     "funcion": "ADY",
                     "texto": "moderna",
                     "nucleo": "moderna"
                   }
-                ]
+                ],
+                "nucleo": "farmacia"
               },
               {
                 "funcion": "PRED",
                 "texto": "está siempre abierta para el público",
-                "nucleo": "está",
                 "partes": [
                   {
                     "funcion": "V",
@@ -888,7 +921,6 @@
                   {
                     "funcion": "CCF",
                     "texto": "para el público",
-                    "nucleo": "público",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -897,7 +929,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "el público",
-                        "nucleo": "público",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -905,13 +936,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "público"
+                            "texto": "público",
+                            "nucleo": "público"
                           }
-                        ]
+                        ],
+                        "nucleo": "público"
                       }
-                    ]
+                    ],
+                    "nucleo": "público"
                   }
-                ]
+                ],
+                "nucleo": "está"
               }
             ]
           }
@@ -925,7 +960,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Los clientes",
-                "nucleo": "clientes",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -933,14 +967,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "clientes"
+                    "texto": "clientes",
+                    "nucleo": "clientes"
                   }
-                ]
+                ],
+                "nucleo": "clientes"
               },
               {
                 "funcion": "PRED",
                 "texto": "compran medicinas con mucha tranquilidad",
-                "nucleo": "compran",
                 "partes": [
                   {
                     "funcion": "V",
@@ -955,7 +990,6 @@
                   {
                     "funcion": "CCM",
                     "texto": "con mucha tranquilidad",
-                    "nucleo": "tranquilidad",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -964,21 +998,24 @@
                       {
                         "funcion": "TERM",
                         "texto": "mucha tranquilidad",
-                        "nucleo": "tranquilidad",
                         "partes": [
                           {
-                            "funcion": "CUANT",
+                            "funcion": "DET",
                             "texto": "mucha"
                           },
                           {
                             "funcion": "N",
-                            "texto": "tranquilidad"
+                            "texto": "tranquilidad",
+                            "nucleo": "tranquilidad"
                           }
-                        ]
+                        ],
+                        "nucleo": "tranquilidad"
                       }
-                    ]
+                    ],
+                    "nucleo": "tranquilidad"
                   }
-                ]
+                ],
+                "nucleo": "compran"
               }
             ]
           }

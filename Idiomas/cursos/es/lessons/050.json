@@ -1,170 +1,456 @@
 {
   "esquema": 2,
-  "flexible": true,
   "id": "050",
   "capitulo": 6,
-  "titulo": {
-    "$t": "titulo"
-  },
-  "intro": {
-    "$t": "intro"
-  },
+  "numero_curso": 52,
+  "orden_curso": 52,
+  "nivel": "A1",
   "palabras": {
     "llevo": {
-      "$f": "p.llevo",
       "pron": "YE-bo",
       "cat": "verb"
     },
     "la camisa": {
-      "$f": "p.la camisa",
       "pron": "la ka-MI-sa",
-      "genero": "f",
-      "cat": "sust"
+      "cat": "sust",
+      "genero": "f"
     },
     "los pantalones": {
-      "$f": "p.los pantalones",
       "pron": "los pan-ta-LO-nes",
-      "genero": "m",
-      "nota": {
-        "$t": "p.los pantalones.nota"
-      },
-      "cat": "sust"
+      "cat": "sust",
+      "genero": "m"
     },
     "blanco": {
-      "$f": "p.blanco",
       "pron": "BLAN-ko",
       "cat": "adj"
     },
     "blanca": {
-      "$f": "p.blanca",
       "pron": "BLAN-ka",
       "cat": "adj"
     },
     "negro": {
-      "$f": "p.negro",
       "pron": "NE-gro",
-      "cat": "adj",
-      "nota": {
-        "$t": "p.negro.nota"
-      }
+      "cat": "adj"
     },
     "negra": {
-      "$f": "p.negra",
       "pron": "NE-gra",
       "cat": "adj"
     },
+    "elegante": {
+      "pron": "e-le-GAN-te",
+      "cat": "adj"
+    },
+    "bien": {
+      "pron": "byen",
+      "cat": "adv"
+    },
     "me queda": {
-      "$f": "p.me queda",
       "pron": "me KE-da",
-      "cat": "verb",
-      "nota": {
-        "$t": "p.me queda.nota"
-      }
+      "cat": "verb"
+    },
+    "pantalones": {
+      "pron": "pan-ta-LO-nes",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "lavanda": {
+      "pron": "la-BAN-da",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "pequeñas": {
+      "pron": "pe-KE-nyas",
+      "cat": "adj"
+    },
+    "color": {
+      "pron": "ko-LOR",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "lucía": {
+      "pron": "lu-THI-a",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "elige": {
+      "pron": "e-LI-he",
+      "cat": "verb"
+    },
+    "resbala": {
+      "pron": "rres-BA-la",
+      "cat": "verb"
+    },
+    "dedos": {
+      "pron": "DE-dos",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "marco": {
+      "pron": "MAR-ko",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "brillantes": {
+      "pron": "bri-YAN-tes",
+      "cat": "adj"
+    },
+    "estos": {
+      "pron": "ES-tos",
+      "cat": "adj"
     }
   },
   "bloques": [
     {
-      "tipo": "explicacion",
-      "titulo": {
-        "$t": "b1.titulo"
-      },
-      "texto": {
-        "$t": "b1.texto"
-      }
+      "id": "b1",
+      "tipo": "explicacion"
     },
     {
+      "id": "b2",
       "tipo": "dialogo",
-      "titulo": {
-        "$t": "b2.titulo"
-      },
       "frases": [
         {
-          "$f": "b2.f0",
           "quien": "Lucía",
-          "analisis": [
-            [
-              "¿Qué",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
               {
-                "$t": "a0"
-              }
-            ],
-            [
-              "llevas",
-              {
-                "$t": "a1"
-              }
-            ],
-            [
-              "hoy",
-              {
-                "$t": "a2"
+                "funcion": "PRED",
+                "texto": "Qué llevas hoy",
+                "partes": [
+                  {
+                    "funcion": "CD",
+                    "texto": "Qué",
+                    "nucleo": "Qué"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "llevas",
+                    "nucleo": "llevas"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "hoy",
+                    "nucleo": "hoy"
+                  }
+                ],
+                "nucleo": "llevas"
               }
             ]
-          ]
+          }
         },
         {
-          "$f": "b2.f1",
           "quien": "Pablo",
-          "analisis": [
-            [
-              "Llevo",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
               {
-                "$t": "a1"
-              }
-            ],
-            [
-              "una camisa blanca",
-              {
-                "$t": "a3"
+                "funcion": "PRED",
+                "texto": "Llevo una camisa blanca y unos pantalones negros",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Llevo",
+                    "nucleo": "Llevo"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "una camisa blanca y unos pantalones negros",
+                    "partes": [
+                      {
+                        "funcion": "CD",
+                        "texto": "una camisa blanca",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "una"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "camisa",
+                            "nucleo": "camisa"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "blanca",
+                            "nucleo": "blanca"
+                          }
+                        ],
+                        "nucleo": "camisa"
+                      },
+                      {
+                        "funcion": "CONJ",
+                        "texto": "y"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "unos pantalones negros",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "unos"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "pantalones",
+                            "nucleo": "pantalones"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "negros",
+                            "nucleo": "negros"
+                          }
+                        ],
+                        "nucleo": "pantalones"
+                      }
+                    ],
+                    "nucleo": "camisa"
+                  }
+                ],
+                "nucleo": "Llevo"
               }
             ]
-          ]
+          }
         },
         {
-          "$f": "b2.f2",
           "quien": "Lucía",
-          "analisis": [
-            [
-              "Me quedan",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
               {
-                "$t": "a1"
-              }
-            ],
-            [
-              "estos pantalones",
+                "funcion": "PRED",
+                "texto": "Cómo te quedan",
+                "partes": [
+                  {
+                    "funcion": "CCM",
+                    "texto": "Cómo",
+                    "nucleo": "Cómo"
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "te",
+                    "nucleo": "te"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "quedan",
+                    "nucleo": "quedan"
+                  }
+                ],
+                "nucleo": "quedan"
+              },
               {
-                "$t": "a4"
+                "funcion": "SUJ",
+                "texto": "los pantalones",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "los"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "pantalones",
+                    "nucleo": "pantalones"
+                  }
+                ],
+                "nucleo": "pantalones"
               }
             ]
-          ]
+          }
         },
         {
-          "$f": "b2.f3",
           "quien": "Pablo",
-          "analisis": [
-            [
-              "La camisa negra",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
               {
-                "$t": "a4"
-              }
-            ],
-            [
-              "es",
-              {
-                "$t": "a1"
-              }
-            ],
-            [
-              "más elegante",
-              {
-                "$t": "a5"
+                "funcion": "PRED",
+                "texto": "Me quedan bien",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "Me",
+                    "nucleo": "Me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "quedan",
+                    "nucleo": "quedan"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "bien",
+                    "nucleo": "bien"
+                  }
+                ],
+                "nucleo": "quedan"
               }
             ]
-          ]
+          }
+        },
+        {
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Yo",
+                "partes": [
+                  {
+                    "funcion": "PRON",
+                    "texto": "Yo",
+                    "nucleo": "Yo"
+                  }
+                ],
+                "nucleo": "Yo"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "llevo una camisa negra",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "llevo",
+                    "nucleo": "llevo"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "una camisa negra",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "una"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "camisa",
+                        "nucleo": "camisa"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "negra",
+                        "nucleo": "negra"
+                      }
+                    ],
+                    "nucleo": "camisa"
+                  }
+                ],
+                "nucleo": "llevo"
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Pablo",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "La camisa negra",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "La"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "camisa",
+                    "nucleo": "camisa"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "negra",
+                    "nucleo": "negra"
+                  }
+                ],
+                "nucleo": "camisa"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "es más elegante",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "es",
+                    "nucleo": "es"
+                  },
+                  {
+                    "funcion": "ATRIB",
+                    "texto": "más elegante",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "más",
+                        "nucleo": "más"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "elegante",
+                        "nucleo": "elegante"
+                      }
+                    ],
+                    "nucleo": "elegante"
+                  }
+                ],
+                "nucleo": "es"
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Me queda muy bien",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "Me",
+                    "nucleo": "Me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "queda",
+                    "nucleo": "queda"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "muy bien",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "muy",
+                        "nucleo": "muy"
+                      },
+                      {
+                        "funcion": "ADV",
+                        "texto": "bien",
+                        "nucleo": "bien"
+                      }
+                    ],
+                    "nucleo": "bien"
+                  }
+                ],
+                "nucleo": "queda"
+              }
+            ]
+          }
         }
       ]
     },
     {
+      "id": "b3",
       "tipo": "vocabulario",
       "palabras": [
         "llevo",
@@ -174,106 +460,1195 @@
         "blanca",
         "negro",
         "negra",
+        "elegante",
+        "bien",
         "me queda"
       ]
     },
     {
-      "tipo": "huecos",
-      "id": "a1-ropa-llevo",
-      "pregunta": {
-        "$t": "b4.pregunta"
-      },
-      "frase": {
-        "$e": "b4.frase"
-      },
-      "audio": true,
-      "opciones": {
-        "Llevo": {
-          "$t": "b4.o0.refuerzo"
+      "id": "b4",
+      "tipo": "gramatica",
+      "ejemplos": [
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Los pantalones negros",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Los"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "pantalones",
+                    "nucleo": "pantalones"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "negros",
+                    "nucleo": "negros"
+                  }
+                ],
+                "nucleo": "pantalones"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "me quedan bien",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "me",
+                    "nucleo": "me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "quedan",
+                    "nucleo": "quedan"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "bien",
+                    "nucleo": "bien"
+                  }
+                ],
+                "nucleo": "quedan"
+              }
+            ]
+          }
         },
-        "Llevas": {
-          "$t": "b4.o1.refuerzo"
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "La camisa blanca",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "La"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "camisa",
+                    "nucleo": "camisa"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "blanca",
+                    "nucleo": "blanca"
+                  }
+                ],
+                "nucleo": "camisa"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "me queda bien",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "me",
+                    "nucleo": "me"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "queda",
+                    "nucleo": "queda"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "bien",
+                    "nucleo": "bien"
+                  }
+                ],
+                "nucleo": "queda"
+              }
+            ]
+          }
         },
-        "Lleva": {
-          "$t": "b4.o2.refuerzo"
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Llevo unos pantalones negros",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Llevo",
+                    "nucleo": "Llevo"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "unos pantalones negros",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "unos"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "pantalones",
+                        "nucleo": "pantalones"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "negros",
+                        "nucleo": "negros"
+                      }
+                    ],
+                    "nucleo": "pantalones"
+                  }
+                ],
+                "nucleo": "Llevo"
+              }
+            ]
+          }
         }
-      },
-      "correcta": "Llevo"
-    },
-    {
-      "tipo": "ordenar",
-      "id": "a1-ropa-camisa",
-      "frase": {
-        "$e": "b5.frase"
-      },
-      "traduccion": {
-        "$t": "b5.traduccion"
-      }
-    },
-    {
-      "tipo": "huecos",
-      "id": "a1-ropa-m1",
-      "pregunta": {
-        "$t": "b6.pregunta"
-      },
-      "frase": {
-        "$e": "b6.frase"
-      },
-      "audio": true,
-      "opciones": {
-        "negros": {
-          "$t": "b6.o0.refuerzo"
-        },
-        "negro": {
-          "$t": "b6.o1.refuerzo"
-        },
-        "negras": {
-          "$t": "b6.o2.refuerzo"
-        }
-      },
-      "correcta": "negros"
-    },
-    {
-      "tipo": "huecos",
-      "id": "a1-ropa-m2",
-      "pregunta": {
-        "$t": "b7.pregunta"
-      },
-      "frase": {
-        "$e": "b7.frase"
-      },
-      "audio": true,
-      "opciones": {
-        "quedan": {
-          "$t": "b7.o0.refuerzo"
-        },
-        "queda": {
-          "$t": "b7.o1.refuerzo"
-        },
-        "quedo": {
-          "$t": "b7.o2.refuerzo"
-        }
-      },
-      "correcta": "quedan"
-    },
-    {
-      "tipo": "escribir",
-      "id": "a1-ropa-m3",
-      "pregunta": {
-        "$t": "b8.pregunta"
-      },
-      "respuestas": [
-        "Llevo una camisa blanca"
       ]
     },
     {
-      "tipo": "explicacion",
-      "titulo": {
-        "$t": "b9.titulo"
-      },
-      "texto": {
-        "$t": "b9.texto"
-      }
+      "id": "b5",
+      "tipo": "texto",
+      "registro": "literario",
+      "frases": [
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "El armario de la abuela",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "El"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "armario",
+                    "nucleo": "armario"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "de la abuela",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la abuela",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "abuela",
+                            "nucleo": "abuela"
+                          }
+                        ],
+                        "nucleo": "abuela"
+                      }
+                    ],
+                    "nucleo": "abuela"
+                  }
+                ],
+                "nucleo": "armario"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "huele a lavanda y a papel viejo",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "huele",
+                    "nucleo": "huele"
+                  },
+                  {
+                    "funcion": "CRV",
+                    "texto": "a lavanda y a papel viejo",
+                    "partes": [
+                      {
+                        "funcion": "CRV",
+                        "texto": "a lavanda",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "a"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "lavanda",
+                            "partes": [
+                              {
+                                "funcion": "N",
+                                "texto": "lavanda",
+                                "nucleo": "lavanda"
+                              }
+                            ],
+                            "nucleo": "lavanda"
+                          }
+                        ],
+                        "nucleo": "lavanda"
+                      },
+                      {
+                        "funcion": "CONJ",
+                        "texto": "y"
+                      },
+                      {
+                        "funcion": "CRV",
+                        "texto": "a papel viejo",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "a"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "papel viejo",
+                            "partes": [
+                              {
+                                "funcion": "N",
+                                "texto": "papel",
+                                "nucleo": "papel"
+                              },
+                              {
+                                "funcion": "ADY",
+                                "texto": "viejo",
+                                "nucleo": "viejo"
+                              }
+                            ],
+                            "nucleo": "papel"
+                          }
+                        ],
+                        "nucleo": "papel"
+                      }
+                    ],
+                    "nucleo": "lavanda"
+                  }
+                ],
+                "nucleo": "huele"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Las camisas blancas",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Las"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "camisas",
+                    "nucleo": "camisas"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "blancas",
+                    "nucleo": "blancas"
+                  }
+                ],
+                "nucleo": "camisas"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "cuelgan en fila como pequeñas nubes",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "cuelgan",
+                    "nucleo": "cuelgan"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en fila",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "fila",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "fila",
+                            "nucleo": "fila"
+                          }
+                        ],
+                        "nucleo": "fila"
+                      }
+                    ],
+                    "nucleo": "fila"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "como pequeñas nubes",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "como"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "pequeñas nubes",
+                        "partes": [
+                          {
+                            "funcion": "ADY",
+                            "texto": "pequeñas",
+                            "nucleo": "pequeñas"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "nubes",
+                            "nucleo": "nubes"
+                          }
+                        ],
+                        "nucleo": "nubes"
+                      }
+                    ],
+                    "nucleo": "nubes"
+                  }
+                ],
+                "nucleo": "cuelgan"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Los pantalones negros",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Los"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "pantalones",
+                    "nucleo": "pantalones"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "negros",
+                    "nucleo": "negros"
+                  }
+                ],
+                "nucleo": "pantalones"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "descansan sobre un estante de madera",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "descansan",
+                    "nucleo": "descansan"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "sobre un estante de madera",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "sobre"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "un estante de madera",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "un"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "estante",
+                            "nucleo": "estante"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "de madera",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "de"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "madera",
+                                "partes": [
+                                  {
+                                    "funcion": "N",
+                                    "texto": "madera",
+                                    "nucleo": "madera"
+                                  }
+                                ],
+                                "nucleo": "madera"
+                              }
+                            ],
+                            "nucleo": "madera"
+                          }
+                        ],
+                        "nucleo": "estante"
+                      }
+                    ],
+                    "nucleo": "estante"
+                  }
+                ],
+                "nucleo": "descansan"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Una luz dorada",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Una"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "luz",
+                    "nucleo": "luz"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "dorada",
+                    "nucleo": "dorada"
+                  }
+                ],
+                "nucleo": "luz"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "entra por la ventana y toca la tela suave",
+                "partes": [
+                  {
+                    "funcion": "PRED",
+                    "texto": "entra por la ventana",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "entra",
+                        "nucleo": "entra"
+                      },
+                      {
+                        "funcion": "CCL",
+                        "texto": "por la ventana",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "por"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "la ventana",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "la"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "ventana",
+                                "nucleo": "ventana"
+                              }
+                            ],
+                            "nucleo": "ventana"
+                          }
+                        ],
+                        "nucleo": "ventana"
+                      }
+                    ],
+                    "nucleo": "entra"
+                  },
+                  {
+                    "funcion": "CONJ",
+                    "texto": "y"
+                  },
+                  {
+                    "funcion": "PRED",
+                    "texto": "toca la tela suave",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "toca",
+                        "nucleo": "toca"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "la tela suave",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "tela",
+                            "nucleo": "tela"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "suave",
+                            "nucleo": "suave"
+                          }
+                        ],
+                        "nucleo": "tela"
+                      }
+                    ],
+                    "nucleo": "toca"
+                  }
+                ],
+                "nucleo": "entra"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "El color negro",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "El"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "color",
+                    "nucleo": "color"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "negro",
+                    "nucleo": "negro"
+                  }
+                ],
+                "nucleo": "color"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "brilla como una noche tranquila",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "brilla",
+                    "nucleo": "brilla"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "como una noche tranquila",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "como"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "una noche tranquila",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "una"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "noche",
+                            "nucleo": "noche"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "tranquila",
+                            "nucleo": "tranquila"
+                          }
+                        ],
+                        "nucleo": "noche"
+                      }
+                    ],
+                    "nucleo": "noche"
+                  }
+                ],
+                "nucleo": "brilla"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Lucía",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Lucía",
+                    "nucleo": "Lucía"
+                  }
+                ],
+                "nucleo": "Lucía"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "elige una camisa blanca con botones pequeños",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "elige",
+                    "nucleo": "elige"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "una camisa blanca con botones pequeños",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "una"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "camisa",
+                        "nucleo": "camisa"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "blanca",
+                        "nucleo": "blanca"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "con botones pequeños",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "con"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "botones pequeños",
+                            "partes": [
+                              {
+                                "funcion": "N",
+                                "texto": "botones",
+                                "nucleo": "botones"
+                              },
+                              {
+                                "funcion": "ADY",
+                                "texto": "pequeños",
+                                "nucleo": "pequeños"
+                              }
+                            ],
+                            "nucleo": "botones"
+                          }
+                        ],
+                        "nucleo": "botones"
+                      }
+                    ],
+                    "nucleo": "camisa"
+                  }
+                ],
+                "nucleo": "elige"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "La tela fría",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "La"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "tela",
+                    "nucleo": "tela"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "fría",
+                    "nucleo": "fría"
+                  }
+                ],
+                "nucleo": "tela"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "resbala entre sus dedos como el agua",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "resbala",
+                    "nucleo": "resbala"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "entre sus dedos",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "entre"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "sus dedos",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "sus"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "dedos",
+                            "nucleo": "dedos"
+                          }
+                        ],
+                        "nucleo": "dedos"
+                      }
+                    ],
+                    "nucleo": "dedos"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "como el agua",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "como"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "el agua",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "agua",
+                            "nucleo": "agua"
+                          }
+                        ],
+                        "nucleo": "agua"
+                      }
+                    ],
+                    "nucleo": "agua"
+                  }
+                ],
+                "nucleo": "resbala"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Un espejo viejo",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Un"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "espejo",
+                    "nucleo": "espejo"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "viejo",
+                    "nucleo": "viejo"
+                  }
+                ],
+                "nucleo": "espejo"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "guarda su sonrisa en el marco de madera",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "guarda",
+                    "nucleo": "guarda"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "su sonrisa",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "su"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "sonrisa",
+                        "nucleo": "sonrisa"
+                      }
+                    ],
+                    "nucleo": "sonrisa"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en el marco de madera",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "el marco de madera",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "marco",
+                            "nucleo": "marco"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "de madera",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "de"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "madera",
+                                "partes": [
+                                  {
+                                    "funcion": "N",
+                                    "texto": "madera",
+                                    "nucleo": "madera"
+                                  }
+                                ],
+                                "nucleo": "madera"
+                              }
+                            ],
+                            "nucleo": "madera"
+                          }
+                        ],
+                        "nucleo": "marco"
+                      }
+                    ],
+                    "nucleo": "marco"
+                  }
+                ],
+                "nucleo": "guarda"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "La camisa blanca",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "La"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "camisa",
+                    "nucleo": "camisa"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "blanca",
+                    "nucleo": "blanca"
+                  }
+                ],
+                "nucleo": "camisa"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "le queda muy bien",
+                "partes": [
+                  {
+                    "funcion": "CI",
+                    "texto": "le",
+                    "nucleo": "le"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "queda",
+                    "nucleo": "queda"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "muy bien",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "muy",
+                        "nucleo": "muy"
+                      },
+                      {
+                        "funcion": "ADV",
+                        "texto": "bien",
+                        "nucleo": "bien"
+                      }
+                    ],
+                    "nucleo": "bien"
+                  }
+                ],
+                "nucleo": "queda"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "La abuela",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "La"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "abuela",
+                    "nucleo": "abuela"
+                  }
+                ],
+                "nucleo": "abuela"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "sonríe desde la puerta con ojos brillantes",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "sonríe",
+                    "nucleo": "sonríe"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "desde la puerta",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "desde"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la puerta",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "puerta",
+                            "nucleo": "puerta"
+                          }
+                        ],
+                        "nucleo": "puerta"
+                      }
+                    ],
+                    "nucleo": "puerta"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "con ojos brillantes",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "ojos brillantes",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "ojos",
+                            "nucleo": "ojos"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "brillantes",
+                            "nucleo": "brillantes"
+                          }
+                        ],
+                        "nucleo": "ojos"
+                      }
+                    ],
+                    "nucleo": "ojos"
+                  }
+                ],
+                "nucleo": "sonríe"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "b6",
+      "tipo": "test",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b7",
+      "tipo": "huecos",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b8",
+      "tipo": "ordenar"
+    },
+    {
+      "id": "b9",
+      "tipo": "huecos",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b10",
+      "tipo": "test",
+      "opciones": [
+        {
+          "correcta": false
+        },
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b11",
+      "tipo": "escribir",
+      "respuestas": [
+        "Llevo una camisa blanca",
+        "llevo una camisa blanca",
+        "Llevo una camisa blanca.",
+        "llevo una camisa blanca."
+      ]
+    },
+    {
+      "id": "b12",
+      "tipo": "huecos",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
     }
   ]
 }

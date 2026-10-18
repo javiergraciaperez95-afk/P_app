@@ -2,6 +2,8 @@
   "esquema": 2,
   "id": "039",
   "capitulo": 5,
+  "numero_curso": 41,
+  "orden_curso": 41,
   "nivel": "A1",
   "palabras": {
     "me ducho": {
@@ -46,7 +48,7 @@
       "cat": "verb"
     },
     "el cepillo de dientes": {
-      "pron": "el the-PI-lyo de DYEN-tes",
+      "pron": "el the-PI-yo de DYEN-tes",
       "cat": "sust",
       "genero": "m"
     },
@@ -91,6 +93,71 @@
     },
     "Pablo": {
       "propio": true
+    },
+    "acuesta": {
+      "pron": "a-KWES-ta",
+      "cat": "verb"
+    },
+    "lava": {
+      "pron": "LA-ba",
+      "cat": "verb"
+    },
+    "sol": {
+      "pron": "sol",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "champú": {
+      "pron": "cham-PU",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "suave": {
+      "pron": "SWA-be",
+      "cat": "adj"
+    },
+    "uso": {
+      "pron": "U-so",
+      "cat": "verb"
+    },
+    "lavarme": {
+      "pron": "la-BAR-me",
+      "cat": "verb"
+    },
+    "frente": {
+      "pron": "FREN-te",
+      "cat": "prep"
+    },
+    "espejo": {
+      "pron": "es-PE-ho",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "pasillo": {
+      "pron": "pa-SI-yo",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "dormitorio": {
+      "pron": "dor-mi-TO-ryo",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "elijo": {
+      "pron": "e-LI-ho",
+      "cat": "verb"
+    },
+    "limpia": {
+      "pron": "LIM-pya",
+      "cat": "adj"
+    },
+    "levantamos": {
+      "pron": "le-ban-TA-mos",
+      "cat": "verb"
+    },
+    "se": {
+      "pron": "se",
+      "cat": "pron"
     }
   },
   "bloques": [
@@ -110,22 +177,19 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "¿A qué hora te levantas normalmente?",
-                "nucleo": "levantas",
+                "texto": "A qué hora te levantas normalmente",
                 "partes": [
                   {
                     "funcion": "CCT",
-                    "texto": "¿A qué hora",
-                    "nucleo": "hora",
+                    "texto": "A qué hora",
                     "partes": [
                       {
                         "funcion": "PREP",
-                        "texto": "¿A"
+                        "texto": "A"
                       },
                       {
                         "funcion": "TERM",
                         "texto": "qué hora",
-                        "nucleo": "hora",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -133,28 +197,27 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "hora"
+                            "texto": "hora",
+                            "nucleo": "hora"
                           }
-                        ]
+                        ],
+                        "nucleo": "hora"
                       }
-                    ]
-                  },
-                  {
-                    "funcion": "CI",
-                    "texto": "te",
-                    "nucleo": "te"
+                    ],
+                    "nucleo": "hora"
                   },
                   {
                     "funcion": "V",
-                    "texto": "levantas",
+                    "texto": "te levantas",
                     "nucleo": "levantas"
                   },
                   {
-                    "funcion": "ADV",
-                    "texto": "normalmente?",
-                    "nucleo": "normalmente?"
+                    "funcion": "CCT",
+                    "texto": "normalmente",
+                    "nucleo": "normalmente"
                   }
-                ]
+                ],
+                "nucleo": "levantas"
               }
             ]
           }
@@ -167,60 +230,65 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Me levanto a las siete y me ducho.",
-                "nucleo": "levanto",
+                "texto": "Me levanto a las siete y me ducho",
                 "partes": [
                   {
-                    "funcion": "CI",
-                    "texto": "Me",
-                    "nucleo": "Me"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "levanto",
-                    "nucleo": "levanto"
-                  },
-                  {
-                    "funcion": "CCT",
-                    "texto": "a las siete",
-                    "nucleo": "siete",
+                    "funcion": "PRED",
+                    "texto": "Me levanto a las siete",
                     "partes": [
                       {
-                        "funcion": "PREP",
-                        "texto": "a"
+                        "funcion": "V",
+                        "texto": "Me levanto",
+                        "nucleo": "levanto"
                       },
                       {
-                        "funcion": "TERM",
-                        "texto": "las siete",
-                        "nucleo": "siete",
+                        "funcion": "CCT",
+                        "texto": "a las siete",
                         "partes": [
                           {
-                            "funcion": "DET",
-                            "texto": "las"
+                            "funcion": "PREP",
+                            "texto": "a"
                           },
                           {
-                            "funcion": "N",
-                            "texto": "siete"
+                            "funcion": "TERM",
+                            "texto": "las siete",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "las"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "siete",
+                                "nucleo": "siete"
+                              }
+                            ],
+                            "nucleo": "siete"
                           }
-                        ]
+                        ],
+                        "nucleo": "siete"
                       }
-                    ]
+                    ],
+                    "nucleo": "levanto"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "CI",
-                    "texto": "me",
-                    "nucleo": "me"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "ducho.",
-                    "nucleo": "ducho."
+                    "funcion": "PRED",
+                    "texto": "me ducho",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "me ducho",
+                        "nucleo": "ducho"
+                      }
+                    ],
+                    "nucleo": "ducho"
                   }
-                ]
+                ],
+                "nucleo": "levanto"
               }
             ]
           }
@@ -233,12 +301,11 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "¿Y qué haces después en el baño?",
-                "nucleo": "haces",
+                "texto": "Y qué haces después en el baño",
                 "partes": [
                   {
                     "funcion": "CONJ",
-                    "texto": "¿Y"
+                    "texto": "Y"
                   },
                   {
                     "funcion": "CD",
@@ -257,8 +324,7 @@
                   },
                   {
                     "funcion": "CCL",
-                    "texto": "en el baño?",
-                    "nucleo": "baño",
+                    "texto": "en el baño",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -266,8 +332,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "el baño?",
-                        "nucleo": "baño",
+                        "texto": "el baño",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -275,13 +340,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "baño?"
+                            "texto": "baño",
+                            "nucleo": "baño"
                           }
-                        ]
+                        ],
+                        "nucleo": "baño"
                       }
-                    ]
+                    ],
+                    "nucleo": "baño"
                   }
-                ]
+                ],
+                "nucleo": "haces"
               }
             ]
           }
@@ -294,17 +363,18 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Me visto y me lavo los dientes.",
-                "nucleo": "visto",
+                "texto": "Me visto y me lavo los dientes",
                 "partes": [
                   {
-                    "funcion": "CI",
-                    "texto": "Me",
-                    "nucleo": "Me"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "visto",
+                    "funcion": "PRED",
+                    "texto": "Me visto",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "Me visto",
+                        "nucleo": "visto"
+                      }
+                    ],
                     "nucleo": "visto"
                   },
                   {
@@ -312,31 +382,40 @@
                     "texto": "y"
                   },
                   {
-                    "funcion": "CI",
-                    "texto": "me",
-                    "nucleo": "me"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "lavo",
-                    "nucleo": "lavo"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "los dientes.",
-                    "nucleo": "dientes",
+                    "funcion": "PRED",
+                    "texto": "me lavo los dientes",
                     "partes": [
                       {
-                        "funcion": "DET",
-                        "texto": "los"
+                        "funcion": "CI",
+                        "texto": "me",
+                        "nucleo": "me"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "dientes."
+                        "funcion": "V",
+                        "texto": "lavo",
+                        "nucleo": "lavo"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "los dientes",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "los"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "dientes",
+                            "nucleo": "dientes"
+                          }
+                        ],
+                        "nucleo": "dientes"
                       }
-                    ]
+                    ],
+                    "nucleo": "lavo"
                   }
-                ]
+                ],
+                "nucleo": "visto"
               }
             ]
           }
@@ -350,7 +429,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Mi hermano",
-                "nucleo": "hermano",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -358,14 +436,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "hermano"
+                    "texto": "hermano",
+                    "nucleo": "hermano"
                   }
-                ]
+                ],
+                "nucleo": "hermano"
               },
               {
                 "funcion": "PRED",
-                "texto": "siempre se acuesta muy tarde.",
-                "nucleo": "acuesta",
+                "texto": "siempre se acuesta muy tarde",
                 "partes": [
                   {
                     "funcion": "CCT",
@@ -373,32 +452,29 @@
                     "nucleo": "siempre"
                   },
                   {
-                    "funcion": "CI",
-                    "texto": "se",
-                    "nucleo": "se"
-                  },
-                  {
                     "funcion": "V",
-                    "texto": "acuesta",
+                    "texto": "se acuesta",
                     "nucleo": "acuesta"
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "muy tarde.",
-                    "nucleo": "tarde",
+                    "texto": "muy tarde",
                     "partes": [
                       {
                         "funcion": "CUANT",
-                        "texto": "muy"
+                        "texto": "muy",
+                        "nucleo": "muy"
                       },
                       {
                         "funcion": "ADV",
-                        "texto": "tarde.",
-                        "nucleo": "tarde."
+                        "texto": "tarde",
+                        "nucleo": "tarde"
                       }
-                    ]
+                    ],
+                    "nucleo": "tarde"
                   }
-                ]
+                ],
+                "nucleo": "acuesta"
               }
             ]
           }
@@ -412,33 +488,20 @@
               {
                 "funcion": "SUJ",
                 "texto": "Él",
-                "nucleo": "Él",
-                "partes": [
-                  {
-                    "funcion": "N",
-                    "texto": "Él"
-                  }
-                ]
+                "nucleo": "Él"
               },
               {
                 "funcion": "PRED",
-                "texto": "se levanta a las once alegre.",
-                "nucleo": "levanta",
+                "texto": "se levanta a las once alegre",
                 "partes": [
                   {
-                    "funcion": "CI",
-                    "texto": "se",
-                    "nucleo": "se"
-                  },
-                  {
                     "funcion": "V",
-                    "texto": "levanta",
+                    "texto": "se levanta",
                     "nucleo": "levanta"
                   },
                   {
                     "funcion": "CCT",
                     "texto": "a las once",
-                    "nucleo": "once",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -447,7 +510,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "las once",
-                        "nucleo": "once",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -455,18 +517,22 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "once"
+                            "texto": "once",
+                            "nucleo": "once"
                           }
-                        ]
+                        ],
+                        "nucleo": "once"
                       }
-                    ]
+                    ],
+                    "nucleo": "once"
                   },
                   {
                     "funcion": "CPVO",
-                    "texto": "alegre.",
-                    "nucleo": "alegre."
+                    "texto": "alegre",
+                    "nucleo": "alegre"
                   }
-                ]
+                ],
+                "nucleo": "levanta"
               }
             ]
           }
@@ -510,27 +576,15 @@
               {
                 "funcion": "SUJ",
                 "texto": "Nosotros",
-                "nucleo": "Nosotros",
-                "partes": [
-                  {
-                    "funcion": "N",
-                    "texto": "Nosotros"
-                  }
-                ]
+                "nucleo": "Nosotros"
               },
               {
                 "funcion": "PRED",
-                "texto": "nos levantamos temprano hoy.",
-                "nucleo": "levantamos",
+                "texto": "nos levantamos temprano hoy",
                 "partes": [
                   {
-                    "funcion": "CI",
-                    "texto": "nos",
-                    "nucleo": "nos"
-                  },
-                  {
                     "funcion": "V",
-                    "texto": "levantamos",
+                    "texto": "nos levantamos",
                     "nucleo": "levantamos"
                   },
                   {
@@ -540,10 +594,11 @@
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "hoy.",
-                    "nucleo": "hoy."
+                    "texto": "hoy",
+                    "nucleo": "hoy"
                   }
-                ]
+                ],
+                "nucleo": "levantamos"
               }
             ]
           }
@@ -556,18 +611,11 @@
               {
                 "funcion": "SUJ",
                 "texto": "Ella",
-                "nucleo": "Ella",
-                "partes": [
-                  {
-                    "funcion": "N",
-                    "texto": "Ella"
-                  }
-                ]
+                "nucleo": "Ella"
               },
               {
                 "funcion": "PRED",
-                "texto": "se lava las manos con jabón.",
-                "nucleo": "lava",
+                "texto": "se lava las manos con jabón",
                 "partes": [
                   {
                     "funcion": "CI",
@@ -582,7 +630,6 @@
                   {
                     "funcion": "CD",
                     "texto": "las manos",
-                    "nucleo": "manos",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -590,14 +637,15 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "manos"
+                        "texto": "manos",
+                        "nucleo": "manos"
                       }
-                    ]
+                    ],
+                    "nucleo": "manos"
                   },
                   {
-                    "funcion": "CCM",
-                    "texto": "con jabón.",
-                    "nucleo": "jabón",
+                    "funcion": "CCINSTR",
+                    "texto": "con jabón",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -605,12 +653,14 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "jabón.",
-                        "nucleo": "jabón."
+                        "texto": "jabón",
+                        "nucleo": "jabón"
                       }
-                    ]
+                    ],
+                    "nucleo": "jabón"
                   }
-                ]
+                ],
+                "nucleo": "lava"
               }
             ]
           }
@@ -630,13 +680,11 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Cada mañana me despierto con energía cuando sale la luz del sol.",
-                "nucleo": "despierto",
+                "texto": "Cada mañana me despierto con energía cuando sale la luz del sol",
                 "partes": [
                   {
                     "funcion": "CCT",
                     "texto": "Cada mañana",
-                    "nucleo": "mañana",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -644,24 +692,20 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "mañana"
+                        "texto": "mañana",
+                        "nucleo": "mañana"
                       }
-                    ]
-                  },
-                  {
-                    "funcion": "CI",
-                    "texto": "me",
-                    "nucleo": "me"
+                    ],
+                    "nucleo": "mañana"
                   },
                   {
                     "funcion": "V",
-                    "texto": "despierto",
+                    "texto": "me despierto",
                     "nucleo": "despierto"
                   },
                   {
                     "funcion": "CCM",
                     "texto": "con energía",
-                    "nucleo": "energía",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -672,26 +716,32 @@
                         "texto": "energía",
                         "nucleo": "energía"
                       }
-                    ]
+                    ],
+                    "nucleo": "energía"
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "cuando sale la luz del sol.",
-                    "nucleo": "sale",
+                    "texto": "cuando sale la luz del sol",
                     "partes": [
                       {
                         "funcion": "CONJ",
                         "texto": "cuando"
                       },
                       {
-                        "funcion": "V",
+                        "funcion": "PRED",
                         "texto": "sale",
+                        "partes": [
+                          {
+                            "funcion": "V",
+                            "texto": "sale",
+                            "nucleo": "sale"
+                          }
+                        ],
                         "nucleo": "sale"
                       },
                       {
                         "funcion": "SUJ",
-                        "texto": "la luz del sol.",
-                        "nucleo": "luz",
+                        "texto": "la luz del sol",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -699,12 +749,12 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "luz"
+                            "texto": "luz",
+                            "nucleo": "luz"
                           },
                           {
                             "funcion": "CN",
-                            "texto": "del sol.",
-                            "nucleo": "sol",
+                            "texto": "del sol",
                             "partes": [
                               {
                                 "funcion": "PREP",
@@ -712,16 +762,20 @@
                               },
                               {
                                 "funcion": "TERM",
-                                "texto": "sol.",
-                                "nucleo": "sol."
+                                "texto": "sol",
+                                "nucleo": "sol"
                               }
-                            ]
+                            ],
+                            "nucleo": "sol"
                           }
-                        ]
+                        ],
+                        "nucleo": "luz"
                       }
-                    ]
+                    ],
+                    "nucleo": "sale"
                   }
-                ]
+                ],
+                "nucleo": "despierto"
               }
             ]
           }
@@ -734,107 +788,133 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Voy al cuarto de baño y me ducho con champú suave y agua caliente.",
-                "nucleo": "Voy",
+                "texto": "Voy al cuarto de baño y me ducho con champú suave y agua caliente",
                 "partes": [
                   {
-                    "funcion": "V",
-                    "texto": "Voy",
-                    "nucleo": "Voy"
-                  },
-                  {
-                    "funcion": "CCL",
-                    "texto": "al cuarto de baño",
-                    "nucleo": "cuarto",
+                    "funcion": "PRED",
+                    "texto": "Voy al cuarto de baño",
                     "partes": [
                       {
-                        "funcion": "PREP",
-                        "texto": "al"
+                        "funcion": "V",
+                        "texto": "Voy",
+                        "nucleo": "Voy"
                       },
                       {
-                        "funcion": "TERM",
-                        "texto": "cuarto de baño",
-                        "nucleo": "cuarto",
+                        "funcion": "CCL",
+                        "texto": "al cuarto de baño",
                         "partes": [
                           {
-                            "funcion": "N",
-                            "texto": "cuarto"
+                            "funcion": "PREP",
+                            "texto": "al"
                           },
                           {
-                            "funcion": "CN",
-                            "texto": "de baño",
-                            "nucleo": "baño",
+                            "funcion": "TERM",
+                            "texto": "cuarto de baño",
                             "partes": [
                               {
-                                "funcion": "PREP",
-                                "texto": "de"
+                                "funcion": "N",
+                                "texto": "cuarto",
+                                "nucleo": "cuarto"
                               },
                               {
-                                "funcion": "TERM",
-                                "texto": "baño",
+                                "funcion": "CN",
+                                "texto": "de baño",
+                                "partes": [
+                                  {
+                                    "funcion": "PREP",
+                                    "texto": "de"
+                                  },
+                                  {
+                                    "funcion": "TERM",
+                                    "texto": "baño",
+                                    "nucleo": "baño"
+                                  }
+                                ],
                                 "nucleo": "baño"
                               }
-                            ]
+                            ],
+                            "nucleo": "cuarto"
                           }
-                        ]
+                        ],
+                        "nucleo": "cuarto"
                       }
-                    ]
+                    ],
+                    "nucleo": "Voy"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "CI",
-                    "texto": "me",
-                    "nucleo": "me"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "ducho",
-                    "nucleo": "ducho"
-                  },
-                  {
-                    "funcion": "CCM",
-                    "texto": "con champú suave y agua caliente.",
-                    "nucleo": "champú",
+                    "funcion": "PRED",
+                    "texto": "me ducho con champú suave y agua caliente",
                     "partes": [
                       {
-                        "funcion": "PREP",
-                        "texto": "con"
+                        "funcion": "V",
+                        "texto": "me ducho",
+                        "nucleo": "ducho"
                       },
                       {
-                        "funcion": "TERM",
-                        "texto": "champú suave y agua caliente.",
-                        "nucleo": "champú",
+                        "funcion": "CCM",
+                        "texto": "con champú suave y agua caliente",
                         "partes": [
                           {
-                            "funcion": "N",
-                            "texto": "champú"
+                            "funcion": "PREP",
+                            "texto": "con"
                           },
                           {
-                            "funcion": "CN",
-                            "texto": "suave",
-                            "nucleo": "suave"
-                          },
-                          {
-                            "funcion": "CONJ",
-                            "texto": "y"
-                          },
-                          {
-                            "funcion": "N",
-                            "texto": "agua"
-                          },
-                          {
-                            "funcion": "CN",
-                            "texto": "caliente.",
-                            "nucleo": "caliente."
+                            "funcion": "TERM",
+                            "texto": "champú suave y agua caliente",
+                            "partes": [
+                              {
+                                "funcion": "TERM",
+                                "texto": "champú suave",
+                                "partes": [
+                                  {
+                                    "funcion": "N",
+                                    "texto": "champú",
+                                    "nucleo": "champú"
+                                  },
+                                  {
+                                    "funcion": "ADY",
+                                    "texto": "suave",
+                                    "nucleo": "suave"
+                                  }
+                                ],
+                                "nucleo": "champú"
+                              },
+                              {
+                                "funcion": "CONJ",
+                                "texto": "y"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "agua caliente",
+                                "partes": [
+                                  {
+                                    "funcion": "N",
+                                    "texto": "agua",
+                                    "nucleo": "agua"
+                                  },
+                                  {
+                                    "funcion": "ADY",
+                                    "texto": "caliente",
+                                    "nucleo": "caliente"
+                                  }
+                                ],
+                                "nucleo": "agua"
+                              }
+                            ],
+                            "nucleo": "champú"
                           }
-                        ]
+                        ],
+                        "nucleo": "champú"
                       }
-                    ]
+                    ],
+                    "nucleo": "ducho"
                   }
-                ]
+                ],
+                "nucleo": "Voy"
               }
             ]
           }
@@ -847,8 +927,7 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Después uso el cepillo de dientes para lavarme la boca con cuidado.",
-                "nucleo": "uso",
+                "texto": "Después uso el cepillo de dientes para lavarme la boca con cuidado",
                 "partes": [
                   {
                     "funcion": "CCT",
@@ -863,7 +942,6 @@
                   {
                     "funcion": "CD",
                     "texto": "el cepillo de dientes",
-                    "nucleo": "cepillo",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -871,12 +949,12 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "cepillo"
+                        "texto": "cepillo",
+                        "nucleo": "cepillo"
                       },
                       {
                         "funcion": "CN",
                         "texto": "de dientes",
-                        "nucleo": "dientes",
                         "partes": [
                           {
                             "funcion": "PREP",
@@ -887,14 +965,15 @@
                             "texto": "dientes",
                             "nucleo": "dientes"
                           }
-                        ]
+                        ],
+                        "nucleo": "dientes"
                       }
-                    ]
+                    ],
+                    "nucleo": "cepillo"
                   },
                   {
                     "funcion": "CCF",
-                    "texto": "para lavarme la boca con cuidado.",
-                    "nucleo": "lavarme",
+                    "texto": "para lavarme la boca con cuidado",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -902,17 +981,16 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "lavarme la boca con cuidado.",
-                        "nucleo": "lavarme",
+                        "texto": "lavarme la boca con cuidado",
                         "partes": [
                           {
                             "funcion": "INF",
-                            "texto": "lavarme"
+                            "texto": "lavarme",
+                            "nucleo": "lavarme"
                           },
                           {
                             "funcion": "CD",
                             "texto": "la boca",
-                            "nucleo": "boca",
                             "partes": [
                               {
                                 "funcion": "DET",
@@ -920,14 +998,15 @@
                               },
                               {
                                 "funcion": "N",
-                                "texto": "boca"
+                                "texto": "boca",
+                                "nucleo": "boca"
                               }
-                            ]
+                            ],
+                            "nucleo": "boca"
                           },
                           {
                             "funcion": "CCM",
-                            "texto": "con cuidado.",
-                            "nucleo": "cuidado",
+                            "texto": "con cuidado",
                             "partes": [
                               {
                                 "funcion": "PREP",
@@ -935,16 +1014,20 @@
                               },
                               {
                                 "funcion": "TERM",
-                                "texto": "cuidado.",
-                                "nucleo": "cuidado."
+                                "texto": "cuidado",
+                                "nucleo": "cuidado"
                               }
-                            ]
+                            ],
+                            "nucleo": "cuidado"
                           }
-                        ]
+                        ],
+                        "nucleo": "lavarme"
                       }
-                    ]
+                    ],
+                    "nucleo": "lavarme"
                   }
-                ]
+                ],
+                "nucleo": "uso"
               }
             ]
           }
@@ -957,40 +1040,32 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Frente al espejo del pasillo me peino el pelo y me afeito despacio.",
-                "nucleo": "peino",
+                "texto": "Frente al espejo del pasillo me peino el pelo y me afeito despacio",
                 "partes": [
                   {
-                    "funcion": "CCL",
-                    "texto": "Frente al espejo del pasillo",
-                    "nucleo": "Frente",
+                    "funcion": "PRED",
+                    "texto": "Frente al espejo del pasillo me peino el pelo",
                     "partes": [
                       {
-                        "funcion": "ADV",
-                        "texto": "Frente"
-                      },
-                      {
-                        "funcion": "CN",
-                        "texto": "al espejo del pasillo",
-                        "nucleo": "espejo",
+                        "funcion": "CCL",
+                        "texto": "Frente al espejo del pasillo",
                         "partes": [
                           {
                             "funcion": "PREP",
-                            "texto": "al"
+                            "texto": "Frente al"
                           },
                           {
                             "funcion": "TERM",
                             "texto": "espejo del pasillo",
-                            "nucleo": "espejo",
                             "partes": [
                               {
                                 "funcion": "N",
-                                "texto": "espejo"
+                                "texto": "espejo",
+                                "nucleo": "espejo"
                               },
                               {
                                 "funcion": "CN",
                                 "texto": "del pasillo",
-                                "nucleo": "pasillo",
                                 "partes": [
                                   {
                                     "funcion": "PREP",
@@ -1001,157 +1076,67 @@
                                     "texto": "pasillo",
                                     "nucleo": "pasillo"
                                   }
-                                ]
+                                ],
+                                "nucleo": "pasillo"
                               }
-                            ]
+                            ],
+                            "nucleo": "espejo"
                           }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "CI",
-                    "texto": "me",
-                    "nucleo": "me"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "peino",
-                    "nucleo": "peino"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "el pelo",
-                    "nucleo": "pelo",
-                    "partes": [
-                      {
-                        "funcion": "DET",
-                        "texto": "el"
+                        ],
+                        "nucleo": "espejo"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "pelo"
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "CONJ",
-                    "texto": "y"
-                  },
-                  {
-                    "funcion": "CI",
-                    "texto": "me",
-                    "nucleo": "me"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "afeito",
-                    "nucleo": "afeito"
-                  },
-                  {
-                    "funcion": "CCM",
-                    "texto": "despacio.",
-                    "nucleo": "despacio."
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "parrafo": 1,
-          "sintaxis": {
-            "oracion": "bimembre",
-            "sujeto": "omitido",
-            "unidades": [
-              {
-                "funcion": "PRED",
-                "texto": "En mi dormitorio elijo ropa limpia y me visto rápidamente para salir.",
-                "nucleo": "elijo",
-                "partes": [
-                  {
-                    "funcion": "CCL",
-                    "texto": "En mi dormitorio",
-                    "nucleo": "dormitorio",
-                    "partes": [
-                      {
-                        "funcion": "PREP",
-                        "texto": "En"
+                        "funcion": "CI",
+                        "texto": "me",
+                        "nucleo": "me"
                       },
                       {
-                        "funcion": "TERM",
-                        "texto": "mi dormitorio",
-                        "nucleo": "dormitorio",
+                        "funcion": "V",
+                        "texto": "peino",
+                        "nucleo": "peino"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "el pelo",
                         "partes": [
                           {
                             "funcion": "DET",
-                            "texto": "mi"
+                            "texto": "el"
                           },
                           {
                             "funcion": "N",
-                            "texto": "dormitorio"
+                            "texto": "pelo",
+                            "nucleo": "pelo"
                           }
-                        ]
+                        ],
+                        "nucleo": "pelo"
                       }
-                    ]
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "elijo",
-                    "nucleo": "elijo"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "ropa limpia",
-                    "nucleo": "ropa",
-                    "partes": [
-                      {
-                        "funcion": "N",
-                        "texto": "ropa"
-                      },
-                      {
-                        "funcion": "CN",
-                        "texto": "limpia",
-                        "nucleo": "limpia"
-                      }
-                    ]
+                    ],
+                    "nucleo": "peino"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "CI",
-                    "texto": "me",
-                    "nucleo": "me"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "visto",
-                    "nucleo": "visto"
-                  },
-                  {
-                    "funcion": "CCM",
-                    "texto": "rápidamente",
-                    "nucleo": "rápidamente"
-                  },
-                  {
-                    "funcion": "CCF",
-                    "texto": "para salir.",
-                    "nucleo": "salir",
+                    "funcion": "PRED",
+                    "texto": "me afeito despacio",
                     "partes": [
                       {
-                        "funcion": "PREP",
-                        "texto": "para"
+                        "funcion": "V",
+                        "texto": "me afeito",
+                        "nucleo": "afeito"
                       },
                       {
-                        "funcion": "TERM",
-                        "texto": "salir.",
-                        "nucleo": "salir."
+                        "funcion": "CCM",
+                        "texto": "despacio",
+                        "nucleo": "despacio"
                       }
-                    ]
+                    ],
+                    "nucleo": "afeito"
                   }
-                ]
+                ],
+                "nucleo": "peino"
               }
             ]
           }
@@ -1164,13 +1149,120 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Por la noche me acuesto en la cama para descansar de todo el día.",
-                "nucleo": "acuesto",
+                "texto": "En mi dormitorio elijo ropa limpia y me visto rápidamente para salir",
+                "partes": [
+                  {
+                    "funcion": "PRED",
+                    "texto": "En mi dormitorio elijo ropa limpia",
+                    "partes": [
+                      {
+                        "funcion": "CCL",
+                        "texto": "En mi dormitorio",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "En"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "mi dormitorio",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "mi"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "dormitorio",
+                                "nucleo": "dormitorio"
+                              }
+                            ],
+                            "nucleo": "dormitorio"
+                          }
+                        ],
+                        "nucleo": "dormitorio"
+                      },
+                      {
+                        "funcion": "V",
+                        "texto": "elijo",
+                        "nucleo": "elijo"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "ropa limpia",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "ropa",
+                            "nucleo": "ropa"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "limpia",
+                            "nucleo": "limpia"
+                          }
+                        ],
+                        "nucleo": "ropa"
+                      }
+                    ],
+                    "nucleo": "elijo"
+                  },
+                  {
+                    "funcion": "CONJ",
+                    "texto": "y"
+                  },
+                  {
+                    "funcion": "PRED",
+                    "texto": "me visto rápidamente para salir",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "me visto",
+                        "nucleo": "visto"
+                      },
+                      {
+                        "funcion": "CCM",
+                        "texto": "rápidamente",
+                        "nucleo": "rápidamente"
+                      },
+                      {
+                        "funcion": "CCF",
+                        "texto": "para salir",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "para"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "salir",
+                            "nucleo": "salir"
+                          }
+                        ],
+                        "nucleo": "salir"
+                      }
+                    ],
+                    "nucleo": "visto"
+                  }
+                ],
+                "nucleo": "elijo"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Por la noche me acuesto en la cama para descansar de todo el día",
                 "partes": [
                   {
                     "funcion": "CCT",
                     "texto": "Por la noche",
-                    "nucleo": "noche",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -1179,7 +1271,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "la noche",
-                        "nucleo": "noche",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -1187,26 +1278,23 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "noche"
+                            "texto": "noche",
+                            "nucleo": "noche"
                           }
-                        ]
+                        ],
+                        "nucleo": "noche"
                       }
-                    ]
-                  },
-                  {
-                    "funcion": "CI",
-                    "texto": "me",
-                    "nucleo": "me"
+                    ],
+                    "nucleo": "noche"
                   },
                   {
                     "funcion": "V",
-                    "texto": "acuesto",
+                    "texto": "me acuesto",
                     "nucleo": "acuesto"
                   },
                   {
                     "funcion": "CCL",
                     "texto": "en la cama",
-                    "nucleo": "cama",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -1215,7 +1303,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "la cama",
-                        "nucleo": "cama",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -1223,16 +1310,18 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "cama"
+                            "texto": "cama",
+                            "nucleo": "cama"
                           }
-                        ]
+                        ],
+                        "nucleo": "cama"
                       }
-                    ]
+                    ],
+                    "nucleo": "cama"
                   },
                   {
                     "funcion": "CCF",
-                    "texto": "para descansar de todo el día.",
-                    "nucleo": "descansar",
+                    "texto": "para descansar de todo el día",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -1240,17 +1329,16 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "descansar de todo el día.",
-                        "nucleo": "descansar",
+                        "texto": "descansar de todo el día",
                         "partes": [
                           {
                             "funcion": "INF",
-                            "texto": "descansar"
+                            "texto": "descansar",
+                            "nucleo": "descansar"
                           },
                           {
-                            "funcion": "CN",
-                            "texto": "de todo el día.",
-                            "nucleo": "día",
+                            "funcion": "CRV",
+                            "texto": "de todo el día",
                             "partes": [
                               {
                                 "funcion": "PREP",
@@ -1258,8 +1346,7 @@
                               },
                               {
                                 "funcion": "TERM",
-                                "texto": "todo el día.",
-                                "nucleo": "día",
+                                "texto": "todo el día",
                                 "partes": [
                                   {
                                     "funcion": "DET",
@@ -1271,17 +1358,23 @@
                                   },
                                   {
                                     "funcion": "N",
-                                    "texto": "día."
+                                    "texto": "día",
+                                    "nucleo": "día"
                                   }
-                                ]
+                                ],
+                                "nucleo": "día"
                               }
-                            ]
+                            ],
+                            "nucleo": "día"
                           }
-                        ]
+                        ],
+                        "nucleo": "descansar"
                       }
-                    ]
+                    ],
+                    "nucleo": "descansar"
                   }
-                ]
+                ],
+                "nucleo": "acuesto"
               }
             ]
           }

@@ -3,7 +3,8 @@
 
 export const CLAVE_AJUSTES = 'idiomas-ajustes';
 const CLAVE_ANTIGUA = 'espanol-ajustes'; // de cuando la app era solo de español
-const IDIOMAS_INTERFAZ = new Set(['en', 'vi', 'zh', 'es', 'pt', 'fr', 'ja', 'it', 'ko', 'ru', 'de', 'id']);
+// Idiomas ofrecidos de momento (el resto de traducciones existe, pero está oculto).
+const IDIOMAS_INTERFAZ = new Set(['en', 'vi']);
 
 /** Idioma preferido por el navegador/WebView (en Capacitor, el del dispositivo Android). */
 export function idiomaDispositivo() {

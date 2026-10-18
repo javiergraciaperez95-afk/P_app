@@ -1,0 +1,214 @@
+// =====================================================================
+// MODO JUEGO A PARTIR DE LA LECCIÓN (para cualquier curso)
+// ---------------------------------------------------------------------
+// No hay guion escrito a mano: cada bloque del JSON v2 se convierte en un paso jugable.
+//   explicación / gramática → la pizarra (se lee a trozos)
+//   diálogo                 → el teatro       (juegos/teatro.js)
+//   vocabulario             → las cartas      (juegos/cartas.js)
+//   lectura                 → la linterna     (juegos/linterna.js)
+//   test, huecos, ordenar…  → el ejercicio de siempre, uno por paso
+// Pensado para TDAH: una sola cosa cada vez, todo responde, nada se completa solo, y
+// no se avanza sin terminar el paso (pero siempre se puede volver atrás).
+//
+// Cada juego es un módulo que exporta crear(bloque, ctx) → { nodo, apagar? } y llama a
+// ctx.hecho() cuando el paso está completo. Así los juegos valen para cualquier idioma:
+// solo leen los datos de la lección.
+// =====================================================================
+
+import { el, poner, barajar, alAzar } from '../js/dom.js';
+import { t, tr } from '../js/i18n.js';
+import { decir } from '../js/tutor.js';
+import { sonar, pronunciar, hayVoz, ayudaVoz, callar } from '../js/sonidos.js';
+import { marcarAbierta, marcarTerminada, registrarRespuesta } from '../js/progress.js';
+import { apuntarPalabrasDeLeccion, analisisDesplegable } from '../js/comunes.js';
+import { normalizarPalabra } from '../js/lessons.js';
+import { analizarFrase, botonPalabra } from '../js/vistas/leccion.js';
+import { crearElenco } from '../js/vistas/elenco.js';
+import { LANG, clave } from '../js/curso.js';
+import { elegir, probar } from './catalogo.js';
+import { esDesarrollador } from '../js/desarrollador.js';
+import './lista.js';
+
+const EJERCICIOS = ['test', 'huecos', 'ordenar', 'escribir'];
+const CLAVE_AVANCE = clave('juego2');
+const quieto = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// La app guarda la lectura como un diálogo con «esTexto»: aquí se le devuelve su nombre.
+const tipoDe = b => (b.esTexto ? 'texto' : b.tipo);
+
+/** Una lección tiene este modo juego si trae los bloques de la estructura fija. */
+export function hayJuego(leccion) {
+  const tipos = new Set(leccion.bloques.map(tipoDe));
+  return ['dialogo', 'vocabulario', 'texto'].every(x => tipos.has(x));
+}
+
+// ----- Por dónde va (en este dispositivo) -----
+function leerAvance(id) {
+  try { return JSON.parse(localStorage.getItem(CLAVE_AVANCE))?.[id] ?? { paso: 0, hechos: [] }; } catch { return { paso: 0, hechos: [] }; }
+}
+function guardarAvance(id, avance) {
+  try {
+    const todo = JSON.parse(localStorage.getItem(CLAVE_AVANCE) ?? '{}');
+    todo[id] = avance;
+    localStorage.setItem(CLAVE_AVANCE, JSON.stringify(todo));
+  } catch { /* sin almacenamiento: se juega igual */ }
+}
+
+// ----- Lo que comparten todos los juegos -----
+function crearContexto(leccion, palabras) {
+  const vocab = new Set((leccion.bloques.find(b => b.tipo === 'vocabulario')?.palabras ?? []).map(normalizarPalabra));
+  return {
+    leccion, palabras, vocab, LANG, t, tr, sonar, decir, quieto: quieto(),
+    entrada: clave => palabras.get(normalizarPalabra(clave)),
+    oir(texto) { if (!pronunciar(texto)) decir(ayudaVoz(), 'apurada'); },
+    leerSiHayVoz(texto) { if (hayVoz()) pronunciar(texto); },
+    /**
+     * La frase con sus palabras pulsables (abren la ficha con pron y «?»).
+     * Devuelve { nodo, botones: [{ boton, entrada }] } y propone la «palabra que brilla»:
+     * una del vocabulario de la lección o, si no hay, la más larga.
+     */
+    frase(texto) {
+      const botones = [];
+      const nodo = el('span', { class: 'jg-frase', lang: LANG },
+        analizarFrase(texto, palabras).map(trozo => {
+          if (!trozo.entrada) return trozo.texto;
+          const boton = botonPalabra(trozo.texto, trozo.entrada);
+          botones.push({ boton, entrada: trozo.entrada });
+          return boton;
+        }));
+      const delVocab = botones.filter(b => vocab.has(normalizarPalabra(b.entrada.es)));
+      const lista = delVocab.length ? delVocab : botones;
+      const clave = [...lista].sort((a, b) => b.entrada.es.length - a.entrada.es.length)[0] ?? null;
+      return { nodo, botones, clave };
+    },
+    barajar, alAzar,
+    /** Todas las fichas de la lección (sin nombres propios), para opciones y distractores. */
+    fichas: () => [...leccion.palabras.values()],
+    /** Todas las frases de estudio de la lección ({ es, trad, analisis, quien? }), para distractores. */
+    frases: () => leccion.bloques.flatMap(b => b.frases ?? b.ejemplos ?? []).filter(f => f.es),
+    /** Apunta el resultado de un ejercicio (cuenta para el progreso de la lección). */
+    registrar: (bloque, acierto) => registrarRespuesta(leccion.id, bloque.id, acierto),
+    /** Botón «Análisis» con la sintaxis de la frase (si la tiene). */
+    analisis: (frase, id) => analisisDesplegable(frase, id),
+  };
+}
+
+/** Pinta la lección como juego. Devuelve la función que lo limpia todo al salir. */
+export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente, alLibro }) {
+  marcarAbierta(leccion.id);
+  const pasos = [];
+  // El número de la lección decide qué juego le toca a cada bloque (ver catalogo.js).
+  const n = Number(leccion.orden_curso ?? leccion.numero_curso ?? parseInt(leccion.id, 10)) || 0;
+  const vistos = {};
+  const ctxEleccion = crearContexto(leccion, palabras);
+  let numeroEjercicio = 0;
+  for (const b of leccion.bloques) {
+    if (b.error) continue;
+    const tipo = tipoDe(b);
+    const k = vistos[tipo] = (vistos[tipo] ?? -1) + 1;
+    const juego = elegir(tipo, b, ctxEleccion, n, k);
+    if (!juego) continue;
+    const numero = EJERCICIOS.includes(tipo) ? ++numeroEjercicio : 0;
+    pasos.push({ bloque: b, icono: juego.icono, nombre: juego.nombre, crear: juego.crear, numero });
+  }
+  const avance = leerAvance(leccion.id);
+  const hechos = new Set(avance.hechos);
+  const dev = esDesarrollador(); // todo cuenta como hecho y los hitos llevan a su paso
+  const estaHecho = i => dev || hechos.has(i);
+  let actual = Math.min(avance.paso, pasos.length);
+  // en una prueba se empieza en el primer paso del tipo pedido
+  const empezar = probar().empezar;
+  if (empezar) actual = Math.max(0, pasos.findIndex(p => tipoDe(p.bloque) === empezar));
+  if (Number.isInteger(probar().paso)) actual = probar().paso;
+  let apagarPaso = null;
+  const elenco = crearElenco();
+
+  const camino = el('ol', { class: 'jg-camino', 'aria-label': t('juego.camino') });
+  const escenario = el('div', { class: 'jg-escenario' });
+  const atras = el('button', { type: 'button', class: 'es-boton es-boton-papel' }, t('juego.atras'));
+  const adelante = el('button', { type: 'button', class: 'es-boton' }, t('juego.siguiente'));
+  const raiz = el('article', { class: 'jg escena-web' },
+    el('header', { class: 'jg-cabecera' },
+      el('a', { class: 'es-boton es-boton-papel jg-volver', href: '#/lecciones' }, `◀ ${t('menu.lecciones')}`),
+      el('div', { class: 'jg-titulo' },
+        el('p', { class: 'jg-numero' }, t('leccion.numero', { id: leccion.numero_curso })),
+        el('h1', { lang: LANG }, leccion.titulo_es),
+        leccion.titulo && el('p', { class: 'jg-titulo-trad' }, tr(leccion.titulo))),
+      el('button', { type: 'button', class: 'es-boton es-boton-papel jg-libro', onclick: alLibro }, t('juego.verLibro'))),
+    camino,
+    escenario,
+    el('nav', { class: 'jg-pie' }, atras, adelante));
+
+  function pintarCamino() {
+    poner(camino, [...pasos, { icono: '🏁' }].map((p, i) => el('li', {
+      class: `jg-hito ${i === actual ? 'actual' : ''} ${estaHecho(i) || (i === pasos.length && actual === pasos.length) ? 'hecho' : ''}`,
+      'aria-current': i === actual ? 'step' : null,
+      onclick: dev ? () => { sonar('paso'); ir(i); } : null,
+      style: dev ? 'cursor:pointer' : null,
+    }, el('span', { 'aria-hidden': 'true' }, p.icono), el('span', { class: 'solo-lector' }, t('juego.paso', { n: i + 1, total: pasos.length + 1 })))));
+  }
+
+  function final() {
+    marcarTerminada(leccion.id);
+    const nuevas = apuntarPalabrasDeLeccion(leccion, leccion.palabras);
+    sonar('fanfarria');
+    decir([t('jg.fin.tutora'), nuevas ? t('leccion.apuntadas', { n: nuevas }) : null].filter(Boolean).join(' '), 'contenta');
+    return el('div', { class: 'jg-final es-papel' },
+      el('p', { class: 'jg-final-copa', 'aria-hidden': 'true' }, '🏆'),
+      el('h2', {}, t('jg.fin.titulo')),
+      el('p', {}, t('jg.fin.texto')),
+      el('div', { class: 'jg-final-botones' },
+        siguiente ? el('a', { class: 'es-boton es-boton-grande', href: `#/leccion/${siguiente}` }, t('leccion.siguiente')) : el('a', { class: 'es-boton es-boton-grande', href: '#/lecciones' }, t('comun.volverLecciones')),
+        el('a', { class: 'es-boton es-boton-papel', href: '#/repaso' }, t('leccion.repasarAhora'))));
+  }
+
+  function ir(i) {
+    callar();
+    apagarPaso?.();
+    apagarPaso = null;
+    actual = Math.max(0, Math.min(pasos.length, i));
+    guardarAvance(leccion.id, { paso: actual, hechos: [...hechos] });
+    pintarCamino();
+    atras.disabled = actual === 0;
+    if (actual === pasos.length) {
+      adelante.hidden = true;
+      poner(escenario, final());
+      return;
+    }
+    adelante.hidden = false;
+    const paso = pasos[actual];
+    const n = actual;
+    adelante.disabled = !estaHecho(n) && !probar().saltar; // en una prueba se puede pasar sin terminar
+    const ctx = crearContexto(leccion, palabras);
+    ctx.elenco = elenco;
+    ctx.numeroEjercicio = paso.numero;
+    ctx.hecho = () => {
+      if (hechos.has(n)) return;
+      hechos.add(n);
+      guardarAvance(leccion.id, { paso: actual, hechos: [...hechos] });
+      if (n === actual) {
+        adelante.disabled = false;
+        adelante.classList.add('jg-listo');
+        pintarCamino();
+      }
+    };
+    adelante.classList.remove('jg-listo');
+    const { nodo, apagar } = paso.crear(paso.bloque, ctx);
+    apagarPaso = apagar ?? null;
+    poner(escenario, el('section', { class: `jg-paso jg-paso-${tipoDe(paso.bloque)} jg-juego-${paso.nombre}` }, nodo));
+    if (!ctx.quieto) escenario.firstChild.classList.add('entra');
+    raiz.scrollIntoView?.({ block: 'start', behavior: 'auto' });
+  }
+
+  atras.addEventListener('click', () => { sonar('pagina'); ir(actual - 1); });
+  adelante.addEventListener('click', () => {
+    if (adelante.disabled && !probar().saltar) return;
+    sonar('paso');
+    ir(actual + 1);
+  });
+
+  poner(contenedor, raiz);
+  elenco.vigilar(escenario);
+  ir(actual);
+  if (actual === 0) decir(leccion.intro ? tr(leccion.intro) : t('leccion.introTutora', { titulo: leccion.titulo_es }));
+  return () => { callar(); apagarPaso?.(); elenco.apagar(); };
+}

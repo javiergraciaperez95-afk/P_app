@@ -1,0 +1,25 @@
+/* ===================== La escucha (juegos/escucha.js) ===================== */
+.jg-escucha-mesa { display: grid; justify-items: center; gap: 20px; padding: 24px 18px; background: #5a3b7a; box-shadow: inset 0 0 0 6px #482e66, 0 0 0 3px var(--h-borde), 8px 10px 0 3px rgba(0, 0, 0, .25); }
+.jg-escucha-altavoz { display: grid; justify-items: center; gap: 6px; min-width: 150px; min-height: 120px; padding: 14px 22px; border: 0; cursor: pointer; font: 700 .9rem var(--fuente-pixel); color: #2b1d1a; background: var(--oro, #f4c84a); box-shadow: 0 0 0 3px var(--h-borde), 5px 7px 0 2px rgba(0, 0, 0, .35); animation: jg-escucha-late 1.4s steps(2) infinite; }
+.jg-escucha-altavoz > span:first-child { font-size: 3rem; line-height: 1; }
+.jg-escucha-altavoz:active { transform: translateY(4px); animation: none; }
+@keyframes jg-escucha-late { 50% { transform: scale(1.05); } }
+.jg-escucha-pron { display: grid; justify-items: center; gap: 4px; min-width: 200px; padding: 16px 24px; text-align: center; color: #2b1d1a; background: #fffaf0; box-shadow: 0 0 0 3px var(--h-borde), 5px 7px 0 2px rgba(0, 0, 0, .35); }
+.jg-escucha-etiqueta { font: 700 .78rem var(--fuente-pixel); color: #3d68a6; text-transform: uppercase; letter-spacing: .08em; }
+.jg-escucha-pron strong { font-size: 2rem; line-height: 1.2; overflow-wrap: anywhere; }
+.jg-escucha-opciones { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; width: 100%; }
+.jg-escucha-opcion { flex: 1 1 150px; max-width: 240px; min-height: 64px; padding: 10px 14px; border: 0; cursor: pointer; font: 800 1.4rem var(--h-texto); color: #2b1d1a; overflow-wrap: anywhere; background: #fffaf0; box-shadow: 0 0 0 3px var(--h-borde), 3px 5px 0 1px rgba(0, 0, 0, .35); }
+.jg-escucha-opcion:active:not(:disabled) { transform: translateY(3px); }
+.jg-escucha-opcion.buena { background: #cfeecb; box-shadow: 0 0 0 3px #3f8a4a, 3px 5px 0 1px rgba(0, 0, 0, .35); }
+.jg-escucha-opcion.mala { opacity: .45; background: #f0c9c9; cursor: default; }
+.jg-escucha-detalle { display: grid; justify-items: center; gap: 4px; min-height: 0; color: #fff; text-align: center; }
+.jg-escucha-detalle em { font-style: normal; color: #d9e6ff; font-weight: 700; }
+.jg-escucha-sig { font-size: 1.2rem; font-weight: 800; }
+.jg-escucha-resumen { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.jg-escucha-mini { padding: 8px 12px; font-weight: 800; color: #2b1d1a; background: #fffaf0; box-shadow: 0 0 0 3px var(--h-borde); }
+
+@media (max-width: 640px) {
+  .jg-escucha-mesa { padding: 18px 12px; gap: 16px; }
+  .jg-escucha-opcion { flex-basis: 100%; max-width: none; font-size: 1.3rem; }
+  .jg-escucha-pron strong { font-size: 1.6rem; }
+}

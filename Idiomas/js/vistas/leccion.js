@@ -9,6 +9,7 @@ import { resumenLeccion, marcarTerminada, marcarAbierta } from '../progress.js';
 import { botonEscuchar, botonGuardar, analisisDesplegable, textoAnalisis, apuntarPalabrasDeLeccion } from '../comunes.js';
 import { sonar, pronunciarSeguido, callar, ayudaVoz, hayVoz } from '../sonidos.js';
 import { cargarJuego, pintarJuego } from '../juego/motor.js';
+import { hayJuego, pintarJuegoDeLeccion } from '../../juegos/motor.js';
 import { LANG } from '../curso.js';
 
 /** Género: «m» o «f» (también «m/f» para las palabras que admiten los dos). */
@@ -92,7 +93,7 @@ ficha.addEventListener('pointerleave', e => {
   if (e.pointerType === 'mouse' && !fichaFijada) cierrePendiente = setTimeout(cerrarFicha, 250);
 });
 
-function botonPalabra(texto, entrada) {
+export function botonPalabra(texto, entrada) {
   const boton = el('button', {
     type: 'button',
     class: 'palabra',
@@ -474,14 +475,23 @@ export function pintarLeccion(contenedor, resultado, siguiente) {
   const mostrar = guion => {
     limpiar?.();
     limpiar = null;
-    if (guion && !prefiereLibro()) {
+    const alLibro = () => { preferir('libro'); mostrar(guion); window.scrollTo(0, 0); };
+    // Las lecciones con la estructura fija se juegan con los juegos comunes (juegos/), hechos con sus datos.
+    if (hayJuego(resultado.leccion) && !prefiereLibro()) {
+      limpiar = pintarJuegoDeLeccion(contenedor, resultado.leccion, {
+        siguiente,
+        palabras: new Map([...diccionarioGlobal, ...resultado.leccion.palabras]),
+        alLibro,
+      });
+    } else if (guion && !prefiereLibro()) {
       limpiar = pintarJuego(contenedor, resultado, guion, {
         siguiente,
         diccionario: diccionarioGlobal,
         alLibro: () => { preferir('libro'); mostrar(guion); window.scrollTo(0, 0); },
       });
     } else {
-      pintarLibro(contenedor, resultado, siguiente, guion ? () => { preferir('juego'); mostrar(guion); window.scrollTo(0, 0); } : null);
+      const conJuego = guion || hayJuego(resultado.leccion);
+      pintarLibro(contenedor, resultado, siguiente, conJuego ? () => { preferir('juego'); mostrar(guion); window.scrollTo(0, 0); } : null);
     }
   };
   cargarJuego(resultado.leccion.id).then(guion => { if (abierta) mostrar(guion); });

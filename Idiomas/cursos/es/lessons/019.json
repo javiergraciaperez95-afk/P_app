@@ -2,6 +2,8 @@
   "esquema": 2,
   "id": "019",
   "capitulo": 2,
+  "numero_curso": 21,
+  "orden_curso": 21,
   "nivel": "A1",
   "palabras": {
     "el nombre": {
@@ -115,6 +117,82 @@
     },
     "Lucía": {
       "propio": true
+    },
+    "dirección": {
+      "pron": "di-reth-THYON",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "firme": {
+      "pron": "FIR-me",
+      "cat": "verb"
+    },
+    "rellena": {
+      "pron": "re-YE-na",
+      "cat": "verb"
+    },
+    "oficial": {
+      "pron": "o-fi-THYAL",
+      "cat": "adj"
+    },
+    "inscripción": {
+      "pron": "ins-krip-THYON",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "completo": {
+      "pron": "kom-PLE-to",
+      "cat": "adj"
+    },
+    "apellidos": {
+      "pron": "a-pe-YI-dos",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "indica": {
+      "pron": "in-DI-ka",
+      "cat": "verb"
+    },
+    "nacionalidad": {
+      "pron": "na-thyo-na-li-DAD",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "orgullo": {
+      "pron": "or-GU-yo",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "atento": {
+      "pron": "a-TEN-to",
+      "cat": "adj"
+    },
+    "revisa": {
+      "pron": "re-BI-sa",
+      "cat": "verb"
+    },
+    "comprueba": {
+      "pron": "kom-PRWE-ba",
+      "cat": "verb"
+    },
+    "rapidez": {
+      "pron": "ra-pi-DETH",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "añade": {
+      "pron": "a-NYA-de",
+      "cat": "verb"
+    },
+    "firma": {
+      "pron": "FIR-ma",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "apellido": {
+      "pron": "a-pe-YI-do",
+      "cat": "sust",
+      "genero": "m"
     }
   },
   "bloques": [
@@ -135,7 +213,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Cuál es",
-                "nucleo": "es",
                 "partes": [
                   {
                     "funcion": "ATRIB",
@@ -147,12 +224,12 @@
                     "texto": "es",
                     "nucleo": "es"
                   }
-                ]
+                ],
+                "nucleo": "es"
               },
               {
                 "funcion": "SUJ",
                 "texto": "su nombre",
-                "nucleo": "nombre",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -160,9 +237,11 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "nombre"
+                    "texto": "nombre",
+                    "nucleo": "nombre"
                   }
-                ]
+                ],
+                "nucleo": "nombre"
               }
             ]
           }
@@ -176,7 +255,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Mi nombre",
-                "nucleo": "nombre",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -184,14 +262,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "nombre"
+                    "texto": "nombre",
+                    "nucleo": "nombre"
                   }
-                ]
+                ],
+                "nucleo": "nombre"
               },
               {
                 "funcion": "PRED",
                 "texto": "es Lucía",
-                "nucleo": "es",
                 "partes": [
                   {
                     "funcion": "V",
@@ -203,7 +282,8 @@
                     "texto": "Lucía",
                     "nucleo": "Lucía"
                   }
-                ]
+                ],
+                "nucleo": "es"
               }
             ]
           }
@@ -217,7 +297,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Cuál es",
-                "nucleo": "es",
                 "partes": [
                   {
                     "funcion": "ATRIB",
@@ -229,12 +308,12 @@
                     "texto": "es",
                     "nucleo": "es"
                   }
-                ]
+                ],
+                "nucleo": "es"
               },
               {
                 "funcion": "SUJ",
                 "texto": "su dirección",
-                "nucleo": "dirección",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -242,9 +321,11 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "dirección"
+                    "texto": "dirección",
+                    "nucleo": "dirección"
                   }
-                ]
+                ],
+                "nucleo": "dirección"
               }
             ]
           }
@@ -258,7 +339,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Vivo en la calle Mayor",
-                "nucleo": "Vivo",
                 "partes": [
                   {
                     "funcion": "V",
@@ -268,7 +348,6 @@
                   {
                     "funcion": "CCL",
                     "texto": "en la calle Mayor",
-                    "nucleo": "calle",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -277,7 +356,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "la calle Mayor",
-                        "nucleo": "calle",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -285,18 +363,22 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "calle"
+                            "texto": "calle",
+                            "nucleo": "calle"
                           },
                           {
                             "funcion": "ADY",
                             "texto": "Mayor",
                             "nucleo": "Mayor"
                           }
-                        ]
+                        ],
+                        "nucleo": "calle"
                       }
-                    ]
+                    ],
+                    "nucleo": "calle"
                   }
-                ]
+                ],
+                "nucleo": "Vivo"
               }
             ]
           }
@@ -310,7 +392,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Cuál es",
-                "nucleo": "es",
                 "partes": [
                   {
                     "funcion": "ATRIB",
@@ -322,12 +403,12 @@
                     "texto": "es",
                     "nucleo": "es"
                   }
-                ]
+                ],
+                "nucleo": "es"
               },
               {
                 "funcion": "SUJ",
                 "texto": "su teléfono",
-                "nucleo": "teléfono",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -335,9 +416,11 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "teléfono"
+                    "texto": "teléfono",
+                    "nucleo": "teléfono"
                   }
-                ]
+                ],
+                "nucleo": "teléfono"
               }
             ]
           }
@@ -351,7 +434,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Firme aquí",
-                "nucleo": "Firme",
                 "partes": [
                   {
                     "funcion": "V",
@@ -363,7 +445,8 @@
                     "texto": "aquí",
                     "nucleo": "aquí"
                   }
-                ]
+                ],
+                "nucleo": "Firme"
               }
             ]
           }
@@ -410,7 +493,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Cuál es",
-                "nucleo": "es",
                 "partes": [
                   {
                     "funcion": "ATRIB",
@@ -422,12 +504,12 @@
                     "texto": "es",
                     "nucleo": "es"
                   }
-                ]
+                ],
+                "nucleo": "es"
               },
               {
                 "funcion": "SUJ",
                 "texto": "tu dirección",
-                "nucleo": "dirección",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -435,9 +517,11 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "dirección"
+                    "texto": "dirección",
+                    "nucleo": "dirección"
                   }
-                ]
+                ],
+                "nucleo": "dirección"
               }
             ]
           }
@@ -450,7 +534,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Cuál es",
-                "nucleo": "es",
                 "partes": [
                   {
                     "funcion": "ATRIB",
@@ -462,12 +545,12 @@
                     "texto": "es",
                     "nucleo": "es"
                   }
-                ]
+                ],
+                "nucleo": "es"
               },
               {
                 "funcion": "SUJ",
                 "texto": "su número",
-                "nucleo": "número",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -475,9 +558,11 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "número"
+                    "texto": "número",
+                    "nucleo": "número"
                   }
-                ]
+                ],
+                "nucleo": "número"
               }
             ]
           }
@@ -503,7 +588,6 @@
               {
                 "funcion": "PRED",
                 "texto": "rellena con cuidado el formulario oficial de inscripción",
-                "nucleo": "rellena",
                 "partes": [
                   {
                     "funcion": "V",
@@ -513,7 +597,6 @@
                   {
                     "funcion": "CCM",
                     "texto": "con cuidado",
-                    "nucleo": "cuidado",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -524,12 +607,12 @@
                         "texto": "cuidado",
                         "nucleo": "cuidado"
                       }
-                    ]
+                    ],
+                    "nucleo": "cuidado"
                   },
                   {
                     "funcion": "CD",
                     "texto": "el formulario oficial de inscripción",
-                    "nucleo": "formulario",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -537,7 +620,8 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "formulario"
+                        "texto": "formulario",
+                        "nucleo": "formulario"
                       },
                       {
                         "funcion": "ADY",
@@ -547,7 +631,6 @@
                       {
                         "funcion": "CN",
                         "texto": "de inscripción",
-                        "nucleo": "inscripción",
                         "partes": [
                           {
                             "funcion": "PREP",
@@ -558,11 +641,14 @@
                             "texto": "inscripción",
                             "nucleo": "inscripción"
                           }
-                        ]
+                        ],
+                        "nucleo": "inscripción"
                       }
-                    ]
+                    ],
+                    "nucleo": "formulario"
                   }
-                ]
+                ],
+                "nucleo": "rellena"
               }
             ]
           }
@@ -581,7 +667,6 @@
               {
                 "funcion": "PRED",
                 "texto": "escribe su nombre completo y sus dos apellidos en la hoja",
-                "nucleo": "escribe",
                 "partes": [
                   {
                     "funcion": "V",
@@ -591,43 +676,59 @@
                   {
                     "funcion": "CD",
                     "texto": "su nombre completo y sus dos apellidos",
-                    "nucleo": "nombre",
                     "partes": [
                       {
-                        "funcion": "DET",
-                        "texto": "su"
-                      },
-                      {
-                        "funcion": "N",
-                        "texto": "nombre"
-                      },
-                      {
-                        "funcion": "ADY",
-                        "texto": "completo",
-                        "nucleo": "completo"
+                        "funcion": "CD",
+                        "texto": "su nombre completo",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "su"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "nombre",
+                            "nucleo": "nombre"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "completo",
+                            "nucleo": "completo"
+                          }
+                        ],
+                        "nucleo": "nombre"
                       },
                       {
                         "funcion": "CONJ",
                         "texto": "y"
                       },
                       {
-                        "funcion": "DET",
-                        "texto": "sus"
-                      },
-                      {
-                        "funcion": "CUANT",
-                        "texto": "dos"
-                      },
-                      {
-                        "funcion": "N",
-                        "texto": "apellidos"
+                        "funcion": "CD",
+                        "texto": "sus dos apellidos",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "sus"
+                          },
+                          {
+                            "funcion": "CUANT",
+                            "texto": "dos",
+                            "nucleo": "dos"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "apellidos",
+                            "nucleo": "apellidos"
+                          }
+                        ],
+                        "nucleo": "apellidos"
                       }
-                    ]
+                    ],
+                    "nucleo": "nombre"
                   },
                   {
                     "funcion": "CCL",
                     "texto": "en la hoja",
-                    "nucleo": "hoja",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -636,7 +737,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "la hoja",
-                        "nucleo": "hoja",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -644,13 +744,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "hoja"
+                            "texto": "hoja",
+                            "nucleo": "hoja"
                           }
-                        ]
+                        ],
+                        "nucleo": "hoja"
                       }
-                    ]
+                    ],
+                    "nucleo": "hoja"
                   }
-                ]
+                ],
+                "nucleo": "escribe"
               }
             ]
           }
@@ -664,7 +768,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La joven estudiante",
-                "nucleo": "estudiante",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -677,14 +780,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "estudiante"
+                    "texto": "estudiante",
+                    "nucleo": "estudiante"
                   }
-                ]
+                ],
+                "nucleo": "estudiante"
               },
               {
                 "funcion": "PRED",
                 "texto": "indica su nacionalidad chilena con orgullo",
-                "nucleo": "indica",
                 "partes": [
                   {
                     "funcion": "V",
@@ -694,7 +798,6 @@
                   {
                     "funcion": "CD",
                     "texto": "su nacionalidad chilena",
-                    "nucleo": "nacionalidad",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -702,19 +805,20 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "nacionalidad"
+                        "texto": "nacionalidad",
+                        "nucleo": "nacionalidad"
                       },
                       {
                         "funcion": "ADY",
                         "texto": "chilena",
                         "nucleo": "chilena"
                       }
-                    ]
+                    ],
+                    "nucleo": "nacionalidad"
                   },
                   {
                     "funcion": "CCM",
                     "texto": "con orgullo",
-                    "nucleo": "orgullo",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -725,9 +829,11 @@
                         "texto": "orgullo",
                         "nucleo": "orgullo"
                       }
-                    ]
+                    ],
+                    "nucleo": "orgullo"
                   }
-                ]
+                ],
+                "nucleo": "indica"
               }
             ]
           }
@@ -741,7 +847,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "El recepcionista atento",
-                "nucleo": "recepcionista",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -749,19 +854,20 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "recepcionista"
+                    "texto": "recepcionista",
+                    "nucleo": "recepcionista"
                   },
                   {
                     "funcion": "ADY",
                     "texto": "atento",
                     "nucleo": "atento"
                   }
-                ]
+                ],
+                "nucleo": "recepcionista"
               },
               {
                 "funcion": "PRED",
                 "texto": "revisa los datos de la ficha",
-                "nucleo": "revisa",
                 "partes": [
                   {
                     "funcion": "V",
@@ -771,7 +877,6 @@
                   {
                     "funcion": "CD",
                     "texto": "los datos de la ficha",
-                    "nucleo": "datos",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -779,12 +884,12 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "datos"
+                        "texto": "datos",
+                        "nucleo": "datos"
                       },
                       {
                         "funcion": "CN",
                         "texto": "de la ficha",
-                        "nucleo": "ficha",
                         "partes": [
                           {
                             "funcion": "PREP",
@@ -793,7 +898,6 @@
                           {
                             "funcion": "TERM",
                             "texto": "la ficha",
-                            "nucleo": "ficha",
                             "partes": [
                               {
                                 "funcion": "DET",
@@ -801,15 +905,20 @@
                               },
                               {
                                 "funcion": "N",
-                                "texto": "ficha"
+                                "texto": "ficha",
+                                "nucleo": "ficha"
                               }
-                            ]
+                            ],
+                            "nucleo": "ficha"
                           }
-                        ]
+                        ],
+                        "nucleo": "ficha"
                       }
-                    ]
+                    ],
+                    "nucleo": "datos"
                   }
-                ]
+                ],
+                "nucleo": "revisa"
               }
             ]
           }
@@ -828,7 +937,6 @@
               {
                 "funcion": "PRED",
                 "texto": "comprueba el número de teléfono con rapidez",
-                "nucleo": "comprueba",
                 "partes": [
                   {
                     "funcion": "V",
@@ -838,7 +946,6 @@
                   {
                     "funcion": "CD",
                     "texto": "el número de teléfono",
-                    "nucleo": "número",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -846,12 +953,12 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "número"
+                        "texto": "número",
+                        "nucleo": "número"
                       },
                       {
                         "funcion": "CN",
                         "texto": "de teléfono",
-                        "nucleo": "teléfono",
                         "partes": [
                           {
                             "funcion": "PREP",
@@ -862,14 +969,15 @@
                             "texto": "teléfono",
                             "nucleo": "teléfono"
                           }
-                        ]
+                        ],
+                        "nucleo": "teléfono"
                       }
-                    ]
+                    ],
+                    "nucleo": "número"
                   },
                   {
                     "funcion": "CCM",
                     "texto": "con rapidez",
-                    "nucleo": "rapidez",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -880,9 +988,11 @@
                         "texto": "rapidez",
                         "nucleo": "rapidez"
                       }
-                    ]
+                    ],
+                    "nucleo": "rapidez"
                   }
-                ]
+                ],
+                "nucleo": "comprueba"
               }
             ]
           }
@@ -901,7 +1011,6 @@
               {
                 "funcion": "PRED",
                 "texto": "añade su firma clara en el documento nuevo",
-                "nucleo": "añade",
                 "partes": [
                   {
                     "funcion": "V",
@@ -911,7 +1020,6 @@
                   {
                     "funcion": "CD",
                     "texto": "su firma clara",
-                    "nucleo": "firma",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -919,19 +1027,20 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "firma"
+                        "texto": "firma",
+                        "nucleo": "firma"
                       },
                       {
                         "funcion": "ADY",
                         "texto": "clara",
                         "nucleo": "clara"
                       }
-                    ]
+                    ],
+                    "nucleo": "firma"
                   },
                   {
                     "funcion": "CCL",
                     "texto": "en el documento nuevo",
-                    "nucleo": "documento",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -940,7 +1049,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "el documento nuevo",
-                        "nucleo": "documento",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -948,18 +1056,22 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "documento"
+                            "texto": "documento",
+                            "nucleo": "documento"
                           },
                           {
                             "funcion": "ADY",
                             "texto": "nuevo",
                             "nucleo": "nuevo"
                           }
-                        ]
+                        ],
+                        "nucleo": "documento"
                       }
-                    ]
+                    ],
+                    "nucleo": "documento"
                   }
-                ]
+                ],
+                "nucleo": "añade"
               }
             ]
           }

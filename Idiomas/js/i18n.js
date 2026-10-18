@@ -10,25 +10,15 @@ import { curso, nombreDelCurso, nombreTutora, saludo } from './curso.js';
 export const IDIOMAS = [
   { clave: 'en', nombre: 'English', corto: 'EN', locale: 'en-GB' },
   { clave: 'vi', nombre: 'Tiếng Việt', corto: 'VI', locale: 'vi-VN' },
-  { clave: 'zh', nombre: '中文', corto: '中', locale: 'zh-CN' },
-  { clave: 'es', nombre: 'Español', corto: 'ES', locale: 'es-ES' },
-  { clave: 'pt', nombre: 'Português', corto: 'PT', locale: 'pt-BR' },
-  { clave: 'fr', nombre: 'Français', corto: 'FR', locale: 'fr-FR' },
-  { clave: 'ja', nombre: '日本語', corto: 'JA', locale: 'ja-JP' },
-  { clave: 'it', nombre: 'Italiano', corto: 'IT', locale: 'it-IT' },
-  { clave: 'ko', nombre: '한국어', corto: 'KO', locale: 'ko-KR' },
-  { clave: 'ru', nombre: 'Русский', corto: 'RU', locale: 'ru-RU' },
-  { clave: 'de', nombre: 'Deutsch', corto: 'DE', locale: 'de-DE' },
-  { clave: 'id', nombre: 'Bahasa Indonesia', corto: 'ID', locale: 'id-ID' },
 ];
 
+// La interfaz solo está en inglés y vietnamita.
+export const IDIOMAS_VISIBLES = IDIOMAS;
+
 // Al abrir solo se cargan los textos del idioma en uso (y el inglés, que es el de reserva): son unos 90 KB por idioma.
-// Los demás llegan después, cuando el navegador está libre (para cambiar de idioma al momento).
+// El otro llega después, cuando el navegador está libre (para cambiar de idioma al momento).
 const CARGAR = {
-  vi: () => import('./i18n/vi.js'), zh: () => import('./i18n/zh.js'), es: () => import('./i18n/es.js'),
-  pt: () => import('./i18n/pt.js'), fr: () => import('./i18n/fr.js'), ja: () => import('./i18n/ja.js'),
-  it: () => import('./i18n/it.js'), ko: () => import('./i18n/ko.js'), de: () => import('./i18n/de.js'),
-  ru: () => import('./i18n/ru.js'), id: () => import('./i18n/id.js'),
+  vi: () => import('./i18n/vi.js'),
 };
 const TEXTOS = { en };
 const cargando = {};
@@ -37,7 +27,7 @@ function cargarTextos(i) {
   cargando[i] ??= CARGAR[i]().then(m => { TEXTOS[i] = m.default; }).catch(() => { delete cargando[i]; });
   return cargando[i];
 }
-const pedido = () => { const i = ajuste('idioma'); return i === 'en' || CARGAR[i] ? i : idiomaDispositivo(); };
+const pedido = () => { const i = ajuste('idioma'); return IDIOMAS_VISIBLES.some(v => v.clave === i) ? i : idiomaDispositivo(); };
 await cargarTextos(pedido());
 const cargarElResto = () => Object.keys(CARGAR).forEach(cargarTextos);
 if ('requestIdleCallback' in window) requestIdleCallback(cargarElResto, { timeout: 5000 });

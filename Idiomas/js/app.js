@@ -1,14 +1,16 @@
 // Arranque y navegación.
-// Rutas: #/inicio · #/lecciones · #/leccion/001 · #/practica · #/frases · #/cuaderno · #/repaso · #/perfil · #/idiomas · #/creditos · #/legal · #/sobre · #/entrar · #/precios · #/bienvenida
-// Sin curso elegido solo existen la pantalla de inicio, la de elegir idioma, los créditos, el aviso legal y «Sobre Paglot».
+// Rutas: #/inicio · #/lecciones · #/leccion/001 · #/practica · #/frases · #/cuaderno · #/repaso · #/perfil · #/creditos · #/bienvenida · #/desarrollador
+// La app solo enseña español (curso «es»), gratis, con la interfaz en inglés o vietnamita. Sin cuentas: todo se guarda
+// en este dispositivo.
 
+import './suave.js'; // lo primero: en el móvil, todo se mueve suave
 import { el, poner } from './dom.js';
+import { activarDesarrollador } from './desarrollador.js';
 import { icono } from './iconos.js';
 import { descubrirLecciones, cargarIndice, cargarDiccionario, cargarLeccion, cargarCapitulos, cargarFrases } from './lessons.js';
 import { ajuste, aplicarTema, temaActual, cambiarAjuste } from './ajustes.js';
-import { t, tr, aplicarIdioma, IDIOMAS, idioma, cambiarIdioma } from './i18n.js';
+import { t, tr, aplicarIdioma, IDIOMAS, IDIOMAS_VISIBLES, idioma, cambiarIdioma } from './i18n.js';
 import { sonar, prepararVoces } from './sonidos.js';
-import { iniciarNube, usuarioActual, alCambiarNube } from './sync.js';
 import { alCambiar, hayProgreso } from './progress.js';
 import { pintarCabecera, pendientesDeHoy } from './cabecera.js';
 import { iniciarPie, pintarPie } from './pie.js';
@@ -20,19 +22,10 @@ import { pintarCuaderno } from './vistas/cuaderno.js';
 import { pintarRepaso } from './vistas/repaso.js';
 import { pintarPerfil } from './vistas/perfil.js';
 import { pintarPractica } from './vistas/practica.js';
-import { pintarElegirCurso, pintarCreditos } from './vistas/cursos.js';
-import { pintarInicio } from './vistas/inicio.js';
-import { pintarLegal, pintarAvisoDeDatos } from './vistas/legal.js';
-import { pintarSobre } from './vistas/sobre.js';
-import { paginarEnMovil, esMovil } from './paginas-movil.js';
-import { pintarEntrar } from './vistas/entrar.js';
-import { pintarEnlace } from './vistas/enlace.js';
-import { pintarPrecios } from './vistas/precios.js';
+import { pintarCreditos } from './vistas/creditos.js';
+import { pintarInicio, inicioMovil } from './vistas/inicio.js';
 import { pintarBienvenida, bienvenidaVista } from './vistas/bienvenida.js';
 import { pintarPerdida } from './vistas/perdida.js';
-import { pintarSocial, pintarContacto, pintarProducto, pintarTienda } from './vistas/comunidad.js';
-import { pintarEscuelas, pintarEmpresas, pintarRegalo } from './vistas/productos.js';
-import { pintarGuias, pintarFaq, pintarLaboratorio } from './vistas/comunidad-extra.js';
 import { curso, hayCurso, nombreDelCurso } from './curso.js';
 import './movil.js';
 import './chispa.js';
@@ -52,7 +45,7 @@ const controlesAjustes = ['.idioma-menu', '#btn-sonido', '#btn-tema'].map(s => c
 const enlacePerfil = el('a', { class: 'btn ajustes-perfil', href: '#/perfil', onclick: () => { ajustesCabecera.open = false; } });
 const pintarEnlacePerfil = () => {
   poner(enlacePerfil, icono('perfil'), t('menu.perfil'));
-  enlacePerfil.hidden = !hayCurso || Boolean(usuarioActual());
+  enlacePerfil.hidden = false;
 };
 document.addEventListener('click', e => {
   if (!ajustesCabecera.contains(e.target)) ajustesCabecera.open = false;
@@ -81,29 +74,11 @@ const SECCIONES = [
 // Para añadir una pantalla nueva basta con ponerla aquí.
 const GENERALES = {
   inicio: { pintar: pintarInicio },
-  entrar: { titulo: 'entrar.titulo', pintar: pintarEntrar },
-  precios: { titulo: 'precios.titulo', pintar: pintarPrecios },
-  sobre: { titulo: 'sobre.titulo', pintar: pintarSobre },
-  social: { titulo: 'pagina.social', pintar: pintarSocial },
-  contacto: { titulo: 'pagina.contacto', pintar: pintarContacto },
-  producto: { titulo: 'pagina.producto', pintar: pintarProducto },
-  escuelas: { titulo: 'pagina.escuelas', pintar: pintarEscuelas },
-  empresas: { titulo: 'pagina.empresas', pintar: pintarEmpresas },
-  'regala-max': { titulo: 'pagina.regalo', pintar: pintarRegalo },
-  tienda: { titulo: 'pagina.tienda', pintar: pintarTienda },
-  guias: { titulo: 'pagina.guias', pintar: pintarGuias },
-  faq: { titulo: 'pagina.faq', pintar: pintarFaq },
-  laboratorio: { titulo: 'pagina.laboratorio', pintar: pintarLaboratorio },
-  idiomas: { titulo: 'cursos.titulo', pintar: pintarElegirCurso, sinPortada: true },
   creditos: { titulo: 'creditos.titulo', pintar: pintarCreditos, sinPortada: true },
-  legal: { titulo: 'legal.titulo', pintar: pintarLegal, sinPortada: true },
-  enlace: { titulo: 'enlace.titulo', pintar: pintarEnlace, sinPortada: true },
 };
-// Las portadas llevan la cabecera de la web (Inicio, Entrar, Paglot Max) en lugar del menú del curso.
+// Las portadas llevan la cabecera de la web (Inicio y Lecciones) en lugar del menú del curso.
 const PORTADAS = Object.keys(GENERALES).filter(ruta => !GENERALES[ruta].sinPortada);
 const esGeneral = ruta => Object.hasOwn(GENERALES, ruta);
-// En el móvil estas páginas no se desplazan: van por páginas del alto de la pantalla (js/paginas-movil.js).
-const PAGINADAS = new Set(['sobre', 'social', 'contacto', 'producto', 'escuelas', 'empresas', 'regala-max', 'tienda', 'guias', 'faq', 'laboratorio']);
 
 /** Pinta una pantalla general y guarda la función que la apaga, si la tiene. */
 function pintarGeneral(ruta) {
@@ -111,8 +86,7 @@ function pintarGeneral(ruta) {
   if (pantalla.titulo) titulo(t(pantalla.titulo));
   else document.title = t('app.nombre');
   const apagar = pantalla.pintar(app);
-  const deshacer = PAGINADAS.has(ruta) && esMovil() ? paginarEnMovil(app) : null;
-  limpiarVista = deshacer || typeof apagar === 'function' ? () => { deshacer?.(); if (typeof apagar === 'function') apagar(); } : null;
+  limpiarVista = typeof apagar === 'function' ? apagar : null;
 }
 
 const contenido = { resultados: [], capitulos: [], errorCapitulos: null, frases: null };
@@ -125,11 +99,7 @@ let rutaActual = 'lecciones';
 
 function pintarMenu() {
   poner(menu, el('ul', {}, SECCIONES.map(s => el('li', {},
-    el('a', { href: `#/${s.ruta}`, 'data-ruta': s.ruta, class: 'menu-enlace' }, icono(s.icono), el('span', {}, t(`menu.${s.ruta}`)),
-      // sin cuenta, el cuaderno solo se guarda en este dispositivo: lo dice un candadito
-      s.ruta === 'cuaderno' && !usuarioActual()
-        ? el('span', { class: 'menu-candado', title: t('cabecera.cuadernoInvitado') }, icono('candado'), el('span', { class: 'solo-lector' }, t('cabecera.cuadernoInvitado')))
-        : null)))));
+    el('a', { href: `#/${s.ruta}`, 'data-ruta': s.ruta, class: 'menu-enlace' }, icono(s.icono), el('span', {}, t(`menu.${s.ruta}`)))))));
   marcarMenu(rutaActual);
   pintarAvisoRepaso();
 }
@@ -182,14 +152,14 @@ function pintarMarca() {
   // El pie solo va en las pantallas de la web: portadas, créditos, aviso legal y la página perdida.
   // Dentro de un curso (lecciones, cuaderno, repaso…) y al elegir idioma no se pinta.
   const ruta = location.hash.startsWith('#/') ? location.hash.slice(2).split('/')[0] : '';
-  const perdidaSinCurso = !hayCurso && ruta && !esGeneral(ruta);
-  document.body.classList.toggle('con-pie', (!dentro && !((ruta === 'entrar' || ruta === 'precios' || PAGINADAS.has(ruta)) && esMovil())) || ruta === 'creditos' || ruta === 'legal' || Boolean(perdidaSinCurso));
+  document.body.classList.toggle('con-pie', (!dentro && !(ruta === 'inicio' && inicioMovil())) || ruta === 'creditos');
   ajustesCabecera.open = false;
   abrirAjustes.textContent = `⚙ ${t('ajustes.titulo')}`;
   if (dentro) {
     controlesCabecera.append(ajustesCabecera);
     panelAjustes.append(...controlesAjustes, enlacePerfil);
     pintarEnlacePerfil();
+    pintarNavegacion();
   } else {
     controlesCabecera.append(...controlesAjustes);
     ajustesCabecera.remove();
@@ -209,10 +179,6 @@ function pintarMarca() {
   pintarNavegacion();
   pintarCabecera();
   pintarPie();
-  const boton = document.getElementById('btn-curso');
-  boton.setAttribute('aria-label', t('cursos.cambiar'));
-  boton.title = t('cursos.cambiar');
-  boton.hidden = !hayCurso;
 }
 
 // «glot» destella cada 6 s: claro del 90 % al 93 % del ciclo y del 96 % al final (el CSS solo lo enseña en las portadas).
@@ -228,26 +194,19 @@ function pintarMarca() {
   ciclo();
 }
 
-/** La navegación de la web: Inicio, Idiomas y Paglot Max (la cuenta va aparte, en js/cabecera.js). */
+/** La navegación de la web: Inicio y Lecciones (la cuenta va aparte, en js/cabecera.js). */
 function pintarNavegacion() {
-  const aqui = location.hash.slice(2).split('/')[0] || (hayCurso ? 'lecciones' : 'inicio');
-  const etiquetas = [t('inicio.titulo'), t('cabecera.idiomas'), 'Paglot Max'];
-  const rutas = ['inicio', 'idiomas', 'precios'];
+  const aqui = location.hash.slice(2).split('/')[0] || 'lecciones';
+  const etiquetas = [t('inicio.titulo'), t('menu.lecciones')];
+  const rutas = ['inicio', 'lecciones'];
   for (const [i, a] of [...document.querySelectorAll('#cabecera-nav a')].entries()) {
     a.href = `#/${rutas[i]}`;
     a.dataset.nav = rutas[i];
-    poner(a, rutas[i] === 'precios' ? icono('corona', 'icono nav-corona') : null, etiquetas[i]);
+    poner(a, etiquetas[i]);
     if (a.dataset.nav === aqui) a.setAttribute('aria-current', 'page');
     else a.removeAttribute('aria-current');
   }
 }
-
-// Al entrar o salir de la cuenta cambia el candadito del cuaderno (el resto de la cabecera lo repinta js/cabecera.js).
-let habiaSesion = null;
-alCambiarNube(() => {
-  const hay = Boolean(usuarioActual());
-  if (hay !== habiaSesion) { habiaSesion = hay; pintarEnlacePerfil(); if (hayCurso) pintarMenu(); }
-});
 
 // Selector de idioma de la cabecera (lo que no esté traducido sale en inglés).
 // Es un botón que despliega una lista propia (la del navegador no se puede vestir como el resto de la app).
@@ -272,7 +231,7 @@ function pintarSelectorIdioma() {
     el('span', { class: 'idioma-marca', 'aria-hidden': 'true' }, automatico ? '✓' : '↻'),
     el('span', { class: 'idioma-opcion-nombre' }, t('ajustes.automatico')),
     el('span', { class: 'idioma-opcion-detalle', lang: actual.clave }, actual.nombre)),
-    IDIOMAS.map(i => {
+    IDIOMAS_VISIBLES.map(i => {
       const seleccionado = !automatico && i.clave === actual.clave;
       return el('button', {
         type: 'button', class: 'idioma-opcion', role: 'menuitemradio', lang: i.clave,
@@ -330,11 +289,9 @@ window.addEventListener('efectos-cambiado', pintarBotonSonido);
 // Al cambiar de idioma se repinta todo: cabecera, menú y la pantalla abierta.
 window.addEventListener('idioma-cambiado', () => {
   pintarSelectorIdioma();
-  pintarAvisoDeDatos();
   pintarMarca();
   pintarBotonTema();
   pintarBotonSonido();
-  if (!hayCurso) { pintarSinCurso({ cambioDeIdioma: true }); return; }
   pintarMenu();
   navegar({ cambioDeIdioma: true });
 });
@@ -344,7 +301,6 @@ window.addEventListener('idioma-cambiado', () => {
 // ---------------------------------------------------------------------------
 
 alCambiar(pintarAvisoRepaso);
-window.addEventListener('datos-sincronizados', pintarAvisoRepaso);
 setInterval(pintarAvisoRepaso, 60 * 1000); // las tarjetas también vencen con el paso del tiempo
 // Si el navegador no deja guardar el progreso (sin sitio, modo privado…), la tutora lo dice una vez (ver progress.js).
 window.addEventListener('guardado-fallido', () => decir(t('app.guardadoFallido'), 'apurada'));
@@ -443,6 +399,12 @@ async function navegar({ cambioDeIdioma = false } = {}) {
   const hash = location.hash.startsWith('#/') ? location.hash.slice(2) : '';
   const [ruta, parametro] = hash.split('/');
   let seccion = ruta || 'lecciones';
+  // #/desarrollador: acceso para revisar la app (todas las lecciones y sus pasos cuentan como hechos, ver desarrollador.js).
+  if (seccion === 'desarrollador') {
+    activarDesarrollador();
+    history.replaceState(null, '', '#/lecciones');
+    seccion = 'lecciones';
+  }
   // La primera vez que alguien sin progreso llega a sus lecciones, antes pasa por la bienvenida.
   if (seccion === 'lecciones' && !bienvenidaOfrecida && !bienvenidaVista() && !hayProgreso()) {
     history.replaceState(null, '', '#/bienvenida');
@@ -542,24 +504,6 @@ function avisoArchivoLocal() {
   decir(t('app.archivoLocalTutora'), 'apurada');
 }
 
-/** Sin curso elegido: la pantalla de inicio, la de elegir idioma o los créditos. */
-function pintarSinCurso({ cambioDeIdioma = false } = {}) {
-  limpiarVista?.();
-  limpiarVista = null;
-  const ruta = location.hash.startsWith('#/') ? location.hash.slice(2).split('/')[0] : '';
-  // Lo que no es una ruta («#/algo») no es una página perdida: son, por ejemplo, los datos que traen los enlaces de los correos.
-  const vista = esGeneral(ruta) ? ruta : ruta ? 'perdida' : 'inicio';
-  document.body.classList.toggle('en-inicio', PORTADAS.includes(vista));
-  pintarMarca();
-  if (vista === 'perdida') {
-    titulo(t('perdida.titulo'));
-    limpiarVista = pintarPerdida(app);
-  } else {
-    pintarGeneral(vista);
-  }
-  if (!cambioDeIdioma) window.scrollTo(0, 0);
-}
-
 /**
  * Cada vez que se abre la app se empieza por la pantalla de inicio, con el botón para seguir con el curso de la última vez.
  * Solo al abrirla: no al recargar, ni al elegir curso, ni si se entra por un enlace a una pantalla concreta.
@@ -577,7 +521,6 @@ function empezarPorInicio() {
 /** Quita la pantalla de arranque (el logotipo que se ve mientras carga la app). */
 function quitarArranque() {
   document.body.classList.remove('arrancando');
-  pintarAvisoDeDatos();
 }
 
 async function iniciar() {
@@ -587,16 +530,6 @@ async function iniciar() {
   pintarMarca();
   pintarBotonTema();
   pintarBotonSonido();
-
-  if (!hayCurso) {
-    try { sessionStorage.setItem('idiomas-abierta', '1'); } catch { /* sin almacenamiento */ }
-    document.body.classList.add('sin-curso', 'sin-tutora');
-    window.addEventListener('hashchange', () => pintarSinCurso());
-    pintarSinCurso();
-    quitarArranque();
-    iniciarNube(); // para saber si ya hay una sesión iniciada
-    return;
-  }
 
   empezarPorInicio();
   pintarMenu();
@@ -608,10 +541,6 @@ async function iniciar() {
   }
 
   window.addEventListener('hashchange', () => navegar());
-  // Cuando llegan datos de la nube, se repinta la pantalla (salvo en mitad de un repaso).
-  window.addEventListener('datos-sincronizados', () => {
-    if (!location.hash.startsWith('#/repaso') && !enPantallaGeneral()) navegar();
-  });
   // Si la voz aparece o desaparece (se instala una, se va la conexión), se repinta la pantalla en el mismo sitio:
   // cambian los ejercicios de oído. En un repaso o en un juego no se interrumpe.
   window.addEventListener('voz-cambiada', () => {
@@ -635,7 +564,6 @@ async function iniciar() {
   }
   await primera;
   quitarArranque();
-  iniciarNube();
 }
 
 iniciar();

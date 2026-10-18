@@ -1,0 +1,53 @@
+/* =====================================================================
+   EL TELÉFONO (juegos/telefono.js) — un móvil pixel con la pantalla verde de los viejos aparatos.
+   Solo se animan transform y opacity, a saltos (steps).
+   ===================================================================== */
+
+.jg-telefono-aparato { position: relative; width: min(440px, 100%); margin: 14px auto 0; padding: 30px 16px 18px; background: #3b3f5c; box-shadow: 0 0 0 3px var(--h-borde), inset 0 0 0 4px #565b82, 8px 10px 0 3px rgba(0, 0, 0, .25); }
+.jg-telefono-altavoz { position: absolute; top: 11px; left: calc(50% - 30px); width: 60px; height: 8px; background: #1d1f33; box-shadow: 0 0 0 2px #565b82; }
+.jg-telefono-pantalla { display: grid; align-content: start; gap: 12px; min-height: 190px; padding: 12px 14px 16px; color: #1d2b22; background: #c4e6c1; box-shadow: 0 0 0 3px var(--h-borde), inset 0 0 0 3px #9fcf9b; }
+.jg-telefono-barra { display: flex; align-items: center; gap: 8px; padding-bottom: 8px; font: 700 .86rem var(--fuente-pixel); color: #1d2b22; border-bottom: 3px solid #1d2b22; }
+.jg-telefono-icono { display: inline-block; animation: jg-telefono-suena .6s steps(2) infinite; }
+.jg-telefono-barra.colgada .jg-telefono-icono { animation: none; opacity: .5; }
+@keyframes jg-telefono-suena { 25% { transform: rotate(-14deg); } 75% { transform: rotate(14deg); } }
+
+.jg-telefono-voz { display: grid; justify-items: center; }
+.jg-telefono-oir { display: grid; justify-items: center; gap: 8px; min-width: 200px; min-height: 76px; padding: 10px 16px; border: 0; cursor: pointer; font: 700 1rem var(--fuente-pixel); color: #1d2b22; background: #e7f6e4; box-shadow: 0 0 0 3px #1d2b22, 3px 5px 0 1px rgba(0, 0, 0, .3); }
+.jg-telefono-oir:active { transform: translate(2px, 2px); }
+.jg-telefono-oir:focus-visible { outline: 3px dashed #1d2b22; outline-offset: 4px; }
+.jg-telefono-ondas { display: flex; align-items: center; gap: 4px; height: 26px; }
+.jg-telefono-ondas i { display: block; width: 6px; height: 100%; background: #1d2b22; transform-origin: center; animation: jg-telefono-onda .8s steps(3) infinite; animation-delay: calc(var(--i) * -.16s); }
+@keyframes jg-telefono-onda { 0% { transform: scaleY(.25); } 50% { transform: scaleY(1); } 100% { transform: scaleY(.25); } }
+
+.jg-telefono-texto { display: grid; gap: 6px; justify-items: center; text-align: center; }
+.jg-telefono-texto:empty { display: none; }
+.jg-telefono-texto.entra { animation: jg-entra .3s steps(3) both; }
+.jg-telefono-borrosa { margin: 0; font-size: 1.35rem; font-weight: 700; line-height: 1.5; filter: blur(5px); user-select: none; }
+.jg-telefono-borrosa.poco { filter: blur(3px); }
+.jg-telefono-pron { margin: 0; font: 700 1.05rem var(--fuente-pixel); color: #1d4a8a; }
+.jg-telefono-escrita { margin: 0; font-size: 1.4rem; font-weight: 700; line-height: 1.6; }
+.jg-telefono-texto .palabra { color: #1d2b22; border-bottom-color: #1d4a8a; }
+.jg-telefono-texto .palabra:hover, .jg-telefono-texto .palabra[aria-expanded="true"] { color: #fff; background: #1d4a8a; }
+.jg-telefono-texto .jg-herramientas { justify-content: center; }
+
+.jg-telefono-teclas { display: grid; gap: 10px; margin-top: 16px; }
+.jg-telefono-tecla { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 12px; border: 0; cursor: pointer; text-align: left; font: 700 1.05rem var(--h-texto, inherit); color: #2b1d1a; background: #fffaf0; box-shadow: 0 0 0 3px var(--h-borde), 3px 5px 0 1px rgba(0, 0, 0, .35); transition: transform .15s steps(2); }
+.jg-telefono-tecla:hover:not(:disabled) { background: #fff1b0; }
+.jg-telefono-tecla:active:not(:disabled) { transform: translate(2px, 2px); }
+.jg-telefono-tecla:focus-visible { outline: 3px dashed #fffaf0; outline-offset: 4px; }
+.jg-telefono-tecla:disabled { cursor: default; opacity: .55; }
+.jg-telefono-tecla.bien { opacity: 1; background: #9fe0a0; box-shadow: 0 0 0 3px #3f8a4a, 3px 5px 0 1px rgba(0, 0, 0, .35); }
+.jg-telefono-tecla.mal { background: #f2b8b0; box-shadow: 0 0 0 3px #a8344a; }
+.jg-telefono-num { flex: none; display: grid; place-items: center; width: 30px; height: 30px; font: 800 1rem var(--h-texto, inherit); color: #fffaf0; background: #3b3f5c; }
+.jg-telefono-trad { flex: 1; }
+.jg-telefono-seguir { width: 100%; margin: 14px 0 0; }
+
+@media (max-width: 640px) {
+  .jg-telefono-aparato { padding: 28px 10px 14px; }
+  .jg-telefono-pantalla { padding: 10px 10px 14px; }
+  .jg-telefono-borrosa { font-size: 1.2rem; }
+  .jg-telefono-escrita { font-size: 1.2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jg-telefono-icono, .jg-telefono-ondas i, .jg-telefono-texto.entra { animation: none !important; }
+}

@@ -2,6 +2,8 @@
   "esquema": 2,
   "id": "024",
   "capitulo": 3,
+  "numero_curso": 26,
+  "orden_curso": 26,
   "nivel": "A1",
   "palabras": {
     "la cocina": {
@@ -60,6 +62,74 @@
     },
     "Pablo": {
       "propio": true
+    },
+    "dormitorio": {
+      "pron": "dor-mi-TO-ryo",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "cocina": {
+      "pron": "ko-THI-na",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "dormitorios": {
+      "pron": "dor-mi-TO-ryos",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "amplios": {
+      "pron": "AM-plyos",
+      "cat": "adj"
+    },
+    "lectura": {
+      "pron": "lek-TU-ra",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "plantas": {
+      "pron": "PLAN-tas",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "hermosas": {
+      "pron": "er-MO-sas",
+      "cat": "adj"
+    },
+    "silla": {
+      "pron": "SI-ya",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "cómoda": {
+      "pron": "KO-mo-da",
+      "cat": "adj"
+    },
+    "metálicas": {
+      "pron": "me-TA-li-kas",
+      "cat": "adj"
+    },
+    "descansa": {
+      "pron": "des-KAN-sa",
+      "cat": "verb"
+    },
+    "vivienda": {
+      "pron": "bi-BYEN-da",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "ofrece": {
+      "pron": "o-FRE-the",
+      "cat": "verb"
+    },
+    "paz": {
+      "pron": "PATH",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "encima": {
+      "pron": "en-THI-ma",
+      "cat": "adv"
     }
   },
   "bloques": [
@@ -80,7 +150,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La cocina",
-                "nucleo": "cocina",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -88,14 +157,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "cocina"
+                    "texto": "cocina",
+                    "nucleo": "cocina"
                   }
-                ]
+                ],
+                "nucleo": "cocina"
               },
               {
                 "funcion": "PRED",
-                "texto": "es pequeña.",
-                "nucleo": "es",
+                "texto": "es pequeña",
                 "partes": [
                   {
                     "funcion": "V",
@@ -104,10 +174,11 @@
                   },
                   {
                     "funcion": "ATRIB",
-                    "texto": "pequeña.",
-                    "nucleo": "pequeña."
+                    "texto": "pequeña",
+                    "nucleo": "pequeña"
                   }
-                ]
+                ],
+                "nucleo": "es"
               }
             ]
           }
@@ -121,7 +192,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "El libro",
-                "nucleo": "libro",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -129,14 +199,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "libro"
+                    "texto": "libro",
+                    "nucleo": "libro"
                   }
-                ]
+                ],
+                "nucleo": "libro"
               },
               {
                 "funcion": "PRED",
-                "texto": "está encima de la mesa.",
-                "nucleo": "está",
+                "texto": "está encima de la mesa",
                 "partes": [
                   {
                     "funcion": "V",
@@ -145,43 +216,33 @@
                   },
                   {
                     "funcion": "CCL",
-                    "texto": "encima de la mesa.",
-                    "nucleo": "encima",
+                    "texto": "encima de la mesa",
                     "partes": [
                       {
-                        "funcion": "ADV",
-                        "texto": "encima",
-                        "nucleo": "encima"
+                        "funcion": "PREP",
+                        "texto": "encima de"
                       },
                       {
-                        "funcion": "CN",
-                        "texto": "de la mesa.",
-                        "nucleo": "mesa",
+                        "funcion": "TERM",
+                        "texto": "la mesa",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "de"
+                            "funcion": "DET",
+                            "texto": "la"
                           },
                           {
-                            "funcion": "TERM",
-                            "texto": "la mesa.",
-                            "nucleo": "mesa",
-                            "partes": [
-                              {
-                                "funcion": "DET",
-                                "texto": "la"
-                              },
-                              {
-                                "funcion": "N",
-                                "texto": "mesa."
-                              }
-                            ]
+                            "funcion": "N",
+                            "texto": "mesa",
+                            "nucleo": "mesa"
                           }
-                        ]
+                        ],
+                        "nucleo": "mesa"
                       }
-                    ]
+                    ],
+                    "nucleo": "mesa"
                   }
-                ]
+                ],
+                "nucleo": "está"
               }
             ]
           }
@@ -192,23 +253,24 @@
             "oracion": "unimembre",
             "unidades": [
               {
-                "funcion": "VOC",
-                "texto": "¿Y las llaves?",
-                "nucleo": "llaves",
+                "funcion": "CONJ",
+                "texto": "Y"
+              },
+              {
+                "funcion": "N",
+                "texto": "las llaves",
                 "partes": [
-                  {
-                    "funcion": "CONJ",
-                    "texto": "¿Y"
-                  },
                   {
                     "funcion": "DET",
                     "texto": "las"
                   },
                   {
                     "funcion": "N",
-                    "texto": "llaves?"
+                    "texto": "llaves",
+                    "nucleo": "llaves"
                   }
-                ]
+                ],
+                "nucleo": "llaves"
               }
             ]
           }
@@ -221,8 +283,7 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Están debajo de la silla.",
-                "nucleo": "Están",
+                "texto": "Están debajo de la silla",
                 "partes": [
                   {
                     "funcion": "V",
@@ -231,43 +292,33 @@
                   },
                   {
                     "funcion": "CCL",
-                    "texto": "debajo de la silla.",
-                    "nucleo": "debajo",
+                    "texto": "debajo de la silla",
                     "partes": [
                       {
-                        "funcion": "ADV",
-                        "texto": "debajo",
-                        "nucleo": "debajo"
+                        "funcion": "PREP",
+                        "texto": "debajo de"
                       },
                       {
-                        "funcion": "CN",
-                        "texto": "de la silla.",
-                        "nucleo": "silla",
+                        "funcion": "TERM",
+                        "texto": "la silla",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "de"
+                            "funcion": "DET",
+                            "texto": "la"
                           },
                           {
-                            "funcion": "TERM",
-                            "texto": "la silla.",
-                            "nucleo": "silla",
-                            "partes": [
-                              {
-                                "funcion": "DET",
-                                "texto": "la"
-                              },
-                              {
-                                "funcion": "N",
-                                "texto": "silla."
-                              }
-                            ]
+                            "funcion": "N",
+                            "texto": "silla",
+                            "nucleo": "silla"
                           }
-                        ]
+                        ],
+                        "nucleo": "silla"
                       }
-                    ]
+                    ],
+                    "nucleo": "silla"
                   }
-                ]
+                ],
+                "nucleo": "Están"
               }
             ]
           }
@@ -280,25 +331,24 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "¿Dónde está",
-                "nucleo": "está",
+                "texto": "Dónde está",
                 "partes": [
                   {
                     "funcion": "CCL",
-                    "texto": "¿Dónde",
-                    "nucleo": "¿Dónde"
+                    "texto": "Dónde",
+                    "nucleo": "Dónde"
                   },
                   {
                     "funcion": "V",
                     "texto": "está",
                     "nucleo": "está"
                   }
-                ]
+                ],
+                "nucleo": "está"
               },
               {
                 "funcion": "SUJ",
-                "texto": "el baño?",
-                "nucleo": "baño",
+                "texto": "el baño",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -306,9 +356,11 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "baño?"
+                    "texto": "baño",
+                    "nucleo": "baño"
                   }
-                ]
+                ],
+                "nucleo": "baño"
               }
             ]
           }
@@ -322,7 +374,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "El baño",
-                "nucleo": "baño",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -330,14 +381,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "baño"
+                    "texto": "baño",
+                    "nucleo": "baño"
                   }
-                ]
+                ],
+                "nucleo": "baño"
               },
               {
                 "funcion": "PRED",
-                "texto": "está al lado del dormitorio.",
-                "nucleo": "está",
+                "texto": "está al lado del dormitorio",
                 "partes": [
                   {
                     "funcion": "V",
@@ -346,37 +398,22 @@
                   },
                   {
                     "funcion": "CCL",
-                    "texto": "al lado del dormitorio.",
-                    "nucleo": "lado",
+                    "texto": "al lado del dormitorio",
                     "partes": [
                       {
                         "funcion": "PREP",
-                        "texto": "al"
+                        "texto": "al lado del"
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "lado",
-                        "nucleo": "lado"
-                      },
-                      {
-                        "funcion": "CN",
-                        "texto": "del dormitorio.",
-                        "nucleo": "dormitorio",
-                        "partes": [
-                          {
-                            "funcion": "PREP",
-                            "texto": "del"
-                          },
-                          {
-                            "funcion": "TERM",
-                            "texto": "dormitorio.",
-                            "nucleo": "dormitorio."
-                          }
-                        ]
+                        "texto": "dormitorio",
+                        "nucleo": "dormitorio"
                       }
-                    ]
+                    ],
+                    "nucleo": "dormitorio"
                   }
-                ]
+                ],
+                "nucleo": "está"
               }
             ]
           }
@@ -412,7 +449,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "El libro",
-                "nucleo": "libro",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -420,14 +456,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "libro"
+                    "texto": "libro",
+                    "nucleo": "libro"
                   }
-                ]
+                ],
+                "nucleo": "libro"
               },
               {
                 "funcion": "PRED",
-                "texto": "está encima de la mesa.",
-                "nucleo": "está",
+                "texto": "está encima de la mesa",
                 "partes": [
                   {
                     "funcion": "V",
@@ -436,43 +473,33 @@
                   },
                   {
                     "funcion": "CCL",
-                    "texto": "encima de la mesa.",
-                    "nucleo": "encima",
+                    "texto": "encima de la mesa",
                     "partes": [
                       {
-                        "funcion": "ADV",
-                        "texto": "encima",
-                        "nucleo": "encima"
+                        "funcion": "PREP",
+                        "texto": "encima de"
                       },
                       {
-                        "funcion": "CN",
-                        "texto": "de la mesa.",
-                        "nucleo": "mesa",
+                        "funcion": "TERM",
+                        "texto": "la mesa",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "de"
+                            "funcion": "DET",
+                            "texto": "la"
                           },
                           {
-                            "funcion": "TERM",
-                            "texto": "la mesa.",
-                            "nucleo": "mesa",
-                            "partes": [
-                              {
-                                "funcion": "DET",
-                                "texto": "la"
-                              },
-                              {
-                                "funcion": "N",
-                                "texto": "mesa."
-                              }
-                            ]
+                            "funcion": "N",
+                            "texto": "mesa",
+                            "nucleo": "mesa"
                           }
-                        ]
+                        ],
+                        "nucleo": "mesa"
                       }
-                    ]
+                    ],
+                    "nucleo": "mesa"
                   }
-                ]
+                ],
+                "nucleo": "está"
               }
             ]
           }
@@ -485,7 +512,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Las llaves",
-                "nucleo": "llaves",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -493,14 +519,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "llaves"
+                    "texto": "llaves",
+                    "nucleo": "llaves"
                   }
-                ]
+                ],
+                "nucleo": "llaves"
               },
               {
                 "funcion": "PRED",
-                "texto": "están debajo de la silla.",
-                "nucleo": "están",
+                "texto": "están debajo de la silla",
                 "partes": [
                   {
                     "funcion": "V",
@@ -509,43 +536,33 @@
                   },
                   {
                     "funcion": "CCL",
-                    "texto": "debajo de la silla.",
-                    "nucleo": "debajo",
+                    "texto": "debajo de la silla",
                     "partes": [
                       {
-                        "funcion": "ADV",
-                        "texto": "debajo",
-                        "nucleo": "debajo"
+                        "funcion": "PREP",
+                        "texto": "debajo de"
                       },
                       {
-                        "funcion": "CN",
-                        "texto": "de la silla.",
-                        "nucleo": "silla",
+                        "funcion": "TERM",
+                        "texto": "la silla",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "de"
+                            "funcion": "DET",
+                            "texto": "la"
                           },
                           {
-                            "funcion": "TERM",
-                            "texto": "la silla.",
-                            "nucleo": "silla",
-                            "partes": [
-                              {
-                                "funcion": "DET",
-                                "texto": "la"
-                              },
-                              {
-                                "funcion": "N",
-                                "texto": "silla."
-                              }
-                            ]
+                            "funcion": "N",
+                            "texto": "silla",
+                            "nucleo": "silla"
                           }
-                        ]
+                        ],
+                        "nucleo": "silla"
                       }
-                    ]
+                    ],
+                    "nucleo": "silla"
                   }
-                ]
+                ],
+                "nucleo": "están"
               }
             ]
           }
@@ -566,7 +583,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Nuestra casa acogedora",
-                "nucleo": "casa",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -574,19 +590,20 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "casa"
+                    "texto": "casa",
+                    "nucleo": "casa"
                   },
                   {
                     "funcion": "ADY",
                     "texto": "acogedora",
                     "nucleo": "acogedora"
                   }
-                ]
+                ],
+                "nucleo": "casa"
               },
               {
                 "funcion": "PRED",
-                "texto": "tiene una cocina pequeña y dos dormitorios amplios.",
-                "nucleo": "tiene",
+                "texto": "tiene una cocina pequeña y dos dormitorios amplios",
                 "partes": [
                   {
                     "funcion": "V",
@@ -595,42 +612,60 @@
                   },
                   {
                     "funcion": "CD",
-                    "texto": "una cocina pequeña y dos dormitorios amplios.",
-                    "nucleo": "cocina",
+                    "texto": "una cocina pequeña y dos dormitorios amplios",
                     "partes": [
                       {
-                        "funcion": "DET",
-                        "texto": "una"
-                      },
-                      {
-                        "funcion": "N",
-                        "texto": "cocina"
-                      },
-                      {
-                        "funcion": "ADY",
-                        "texto": "pequeña",
-                        "nucleo": "pequeña"
+                        "funcion": "CD",
+                        "texto": "una cocina pequeña",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "una"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "cocina",
+                            "nucleo": "cocina"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "pequeña",
+                            "nucleo": "pequeña"
+                          }
+                        ],
+                        "nucleo": "cocina"
                       },
                       {
                         "funcion": "CONJ",
                         "texto": "y"
                       },
                       {
-                        "funcion": "CUANT",
-                        "texto": "dos"
-                      },
-                      {
-                        "funcion": "N",
-                        "texto": "dormitorios"
-                      },
-                      {
-                        "funcion": "ADY",
-                        "texto": "amplios.",
-                        "nucleo": "amplios."
+                        "funcion": "CD",
+                        "texto": "dos dormitorios amplios",
+                        "partes": [
+                          {
+                            "funcion": "CUANT",
+                            "texto": "dos",
+                            "nucleo": "dos"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "dormitorios",
+                            "nucleo": "dormitorios"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "amplios",
+                            "nucleo": "amplios"
+                          }
+                        ],
+                        "nucleo": "dormitorios"
                       }
-                    ]
+                    ],
+                    "nucleo": "cocina"
                   }
-                ]
+                ],
+                "nucleo": "tiene"
               }
             ]
           }
@@ -644,7 +679,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "El libro nuevo de lectura",
-                "nucleo": "libro",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -652,7 +686,8 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "libro"
+                    "texto": "libro",
+                    "nucleo": "libro"
                   },
                   {
                     "funcion": "ADY",
@@ -662,7 +697,6 @@
                   {
                     "funcion": "CN",
                     "texto": "de lectura",
-                    "nucleo": "lectura",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -673,14 +707,15 @@
                         "texto": "lectura",
                         "nucleo": "lectura"
                       }
-                    ]
+                    ],
+                    "nucleo": "lectura"
                   }
-                ]
+                ],
+                "nucleo": "libro"
               },
               {
                 "funcion": "PRED",
-                "texto": "siempre está encima de la mesa grande.",
-                "nucleo": "está",
+                "texto": "siempre está encima de la mesa grande",
                 "partes": [
                   {
                     "funcion": "CCT",
@@ -694,48 +729,38 @@
                   },
                   {
                     "funcion": "CCL",
-                    "texto": "encima de la mesa grande.",
-                    "nucleo": "encima",
+                    "texto": "encima de la mesa grande",
                     "partes": [
                       {
-                        "funcion": "ADV",
-                        "texto": "encima",
-                        "nucleo": "encima"
+                        "funcion": "PREP",
+                        "texto": "encima de"
                       },
                       {
-                        "funcion": "CN",
-                        "texto": "de la mesa grande.",
-                        "nucleo": "mesa",
+                        "funcion": "TERM",
+                        "texto": "la mesa grande",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "de"
+                            "funcion": "DET",
+                            "texto": "la"
                           },
                           {
-                            "funcion": "TERM",
-                            "texto": "la mesa grande.",
-                            "nucleo": "mesa",
-                            "partes": [
-                              {
-                                "funcion": "DET",
-                                "texto": "la"
-                              },
-                              {
-                                "funcion": "N",
-                                "texto": "mesa"
-                              },
-                              {
-                                "funcion": "ADY",
-                                "texto": "grande.",
-                                "nucleo": "grande."
-                              }
-                            ]
+                            "funcion": "N",
+                            "texto": "mesa",
+                            "nucleo": "mesa"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "grande",
+                            "nucleo": "grande"
                           }
-                        ]
+                        ],
+                        "nucleo": "mesa"
                       }
-                    ]
+                    ],
+                    "nucleo": "mesa"
                   }
-                ]
+                ],
+                "nucleo": "está"
               }
             ]
           }
@@ -748,13 +773,11 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "En el salón luminoso hay plantas hermosas y una silla cómoda.",
-                "nucleo": "hay",
+                "texto": "En el salón luminoso hay plantas hermosas y una silla cómoda",
                 "partes": [
                   {
                     "funcion": "CCL",
                     "texto": "En el salón luminoso",
-                    "nucleo": "salón",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -763,7 +786,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "el salón luminoso",
-                        "nucleo": "salón",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -771,16 +793,19 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "salón"
+                            "texto": "salón",
+                            "nucleo": "salón"
                           },
                           {
                             "funcion": "ADY",
                             "texto": "luminoso",
                             "nucleo": "luminoso"
                           }
-                        ]
+                        ],
+                        "nucleo": "salón"
                       }
-                    ]
+                    ],
+                    "nucleo": "salón"
                   },
                   {
                     "funcion": "V",
@@ -789,38 +814,55 @@
                   },
                   {
                     "funcion": "CD",
-                    "texto": "plantas hermosas y una silla cómoda.",
-                    "nucleo": "plantas",
+                    "texto": "plantas hermosas y una silla cómoda",
                     "partes": [
                       {
-                        "funcion": "N",
-                        "texto": "plantas"
-                      },
-                      {
-                        "funcion": "ADY",
-                        "texto": "hermosas",
-                        "nucleo": "hermosas"
+                        "funcion": "CD",
+                        "texto": "plantas hermosas",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "plantas",
+                            "nucleo": "plantas"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "hermosas",
+                            "nucleo": "hermosas"
+                          }
+                        ],
+                        "nucleo": "plantas"
                       },
                       {
                         "funcion": "CONJ",
                         "texto": "y"
                       },
                       {
-                        "funcion": "DET",
-                        "texto": "una"
-                      },
-                      {
-                        "funcion": "N",
-                        "texto": "silla"
-                      },
-                      {
-                        "funcion": "ADY",
-                        "texto": "cómoda.",
-                        "nucleo": "cómoda."
+                        "funcion": "CD",
+                        "texto": "una silla cómoda",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "una"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "silla",
+                            "nucleo": "silla"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "cómoda",
+                            "nucleo": "cómoda"
+                          }
+                        ],
+                        "nucleo": "silla"
                       }
-                    ]
+                    ],
+                    "nucleo": "plantas"
                   }
-                ]
+                ],
+                "nucleo": "hay"
               }
             ]
           }
@@ -834,7 +876,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Las llaves metálicas de la puerta",
-                "nucleo": "llaves",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -842,7 +883,8 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "llaves"
+                    "texto": "llaves",
+                    "nucleo": "llaves"
                   },
                   {
                     "funcion": "ADY",
@@ -852,7 +894,6 @@
                   {
                     "funcion": "CN",
                     "texto": "de la puerta",
-                    "nucleo": "puerta",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -861,7 +902,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "la puerta",
-                        "nucleo": "puerta",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -869,18 +909,21 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "puerta"
+                            "texto": "puerta",
+                            "nucleo": "puerta"
                           }
-                        ]
+                        ],
+                        "nucleo": "puerta"
                       }
-                    ]
+                    ],
+                    "nucleo": "puerta"
                   }
-                ]
+                ],
+                "nucleo": "llaves"
               },
               {
                 "funcion": "PRED",
-                "texto": "están debajo de la pequeña silla.",
-                "nucleo": "están",
+                "texto": "están debajo de la pequeña silla",
                 "partes": [
                   {
                     "funcion": "V",
@@ -889,48 +932,38 @@
                   },
                   {
                     "funcion": "CCL",
-                    "texto": "debajo de la pequeña silla.",
-                    "nucleo": "debajo",
+                    "texto": "debajo de la pequeña silla",
                     "partes": [
                       {
-                        "funcion": "ADV",
-                        "texto": "debajo",
-                        "nucleo": "debajo"
+                        "funcion": "PREP",
+                        "texto": "debajo de"
                       },
                       {
-                        "funcion": "CN",
-                        "texto": "de la pequeña silla.",
-                        "nucleo": "silla",
+                        "funcion": "TERM",
+                        "texto": "la pequeña silla",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "de"
+                            "funcion": "DET",
+                            "texto": "la"
                           },
                           {
-                            "funcion": "TERM",
-                            "texto": "la pequeña silla.",
-                            "nucleo": "silla",
-                            "partes": [
-                              {
-                                "funcion": "DET",
-                                "texto": "la"
-                              },
-                              {
-                                "funcion": "ADY",
-                                "texto": "pequeña",
-                                "nucleo": "pequeña"
-                              },
-                              {
-                                "funcion": "N",
-                                "texto": "silla."
-                              }
-                            ]
+                            "funcion": "ADY",
+                            "texto": "pequeña",
+                            "nucleo": "pequeña"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "silla",
+                            "nucleo": "silla"
                           }
-                        ]
+                        ],
+                        "nucleo": "silla"
                       }
-                    ]
+                    ],
+                    "nucleo": "silla"
                   }
-                ]
+                ],
+                "nucleo": "están"
               }
             ]
           }
@@ -944,7 +977,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Mi hermano tranquilo",
-                "nucleo": "hermano",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -952,19 +984,20 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "hermano"
+                    "texto": "hermano",
+                    "nucleo": "hermano"
                   },
                   {
                     "funcion": "ADY",
                     "texto": "tranquilo",
                     "nucleo": "tranquilo"
                   }
-                ]
+                ],
+                "nucleo": "hermano"
               },
               {
                 "funcion": "PRED",
-                "texto": "descansa en el dormitorio principal por la tarde.",
-                "nucleo": "descansa",
+                "texto": "descansa en el dormitorio principal por la tarde",
                 "partes": [
                   {
                     "funcion": "V",
@@ -974,7 +1007,6 @@
                   {
                     "funcion": "CCL",
                     "texto": "en el dormitorio principal",
-                    "nucleo": "dormitorio",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -983,7 +1015,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "el dormitorio principal",
-                        "nucleo": "dormitorio",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -991,21 +1022,23 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "dormitorio"
+                            "texto": "dormitorio",
+                            "nucleo": "dormitorio"
                           },
                           {
                             "funcion": "ADY",
                             "texto": "principal",
                             "nucleo": "principal"
                           }
-                        ]
+                        ],
+                        "nucleo": "dormitorio"
                       }
-                    ]
+                    ],
+                    "nucleo": "dormitorio"
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "por la tarde.",
-                    "nucleo": "tarde",
+                    "texto": "por la tarde",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -1013,8 +1046,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "la tarde.",
-                        "nucleo": "tarde",
+                        "texto": "la tarde",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -1022,13 +1054,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "tarde."
+                            "texto": "tarde",
+                            "nucleo": "tarde"
                           }
-                        ]
+                        ],
+                        "nucleo": "tarde"
                       }
-                    ]
+                    ],
+                    "nucleo": "tarde"
                   }
-                ]
+                ],
+                "nucleo": "descansa"
               }
             ]
           }
@@ -1042,7 +1078,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Esta vivienda bonita",
-                "nucleo": "vivienda",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -1050,19 +1085,20 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "vivienda"
+                    "texto": "vivienda",
+                    "nucleo": "vivienda"
                   },
                   {
                     "funcion": "ADY",
                     "texto": "bonita",
                     "nucleo": "bonita"
                   }
-                ]
+                ],
+                "nucleo": "vivienda"
               },
               {
                 "funcion": "PRED",
-                "texto": "ofrece mucha paz a toda la familia.",
-                "nucleo": "ofrece",
+                "texto": "ofrece mucha paz a toda la familia",
                 "partes": [
                   {
                     "funcion": "V",
@@ -1072,22 +1108,23 @@
                   {
                     "funcion": "CD",
                     "texto": "mucha paz",
-                    "nucleo": "paz",
                     "partes": [
                       {
                         "funcion": "CUANT",
-                        "texto": "mucha"
+                        "texto": "mucha",
+                        "nucleo": "mucha"
                       },
                       {
                         "funcion": "N",
-                        "texto": "paz"
+                        "texto": "paz",
+                        "nucleo": "paz"
                       }
-                    ]
+                    ],
+                    "nucleo": "paz"
                   },
                   {
                     "funcion": "CI",
-                    "texto": "a toda la familia.",
-                    "nucleo": "familia",
+                    "texto": "a toda la familia",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -1095,12 +1132,12 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "toda la familia.",
-                        "nucleo": "familia",
+                        "texto": "toda la familia",
                         "partes": [
                           {
-                            "funcion": "DET",
-                            "texto": "toda"
+                            "funcion": "CUANT",
+                            "texto": "toda",
+                            "nucleo": "toda"
                           },
                           {
                             "funcion": "DET",
@@ -1108,13 +1145,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "familia."
+                            "texto": "familia",
+                            "nucleo": "familia"
                           }
-                        ]
+                        ],
+                        "nucleo": "familia"
                       }
-                    ]
+                    ],
+                    "nucleo": "familia"
                   }
-                ]
+                ],
+                "nucleo": "ofrece"
               }
             ]
           }

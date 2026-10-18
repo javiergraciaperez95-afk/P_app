@@ -2,6 +2,8 @@
   "esquema": 2,
   "id": "033",
   "capitulo": 4,
+  "numero_curso": 35,
+  "orden_curso": 35,
   "nivel": "A1",
   "palabras": {
     "el pan": {
@@ -119,6 +121,101 @@
     },
     "Pablo": {
       "propio": true
+    },
+    "desayunas": {
+      "pron": "de-sa-YU-nas",
+      "cat": "verb"
+    },
+    "tomo": {
+      "pron": "TO-mo",
+      "cat": "verb"
+    },
+    "zumo": {
+      "pron": "THU-mo",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "naranja": {
+      "pron": "na-RAN-ha",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "verdura": {
+      "pron": "ber-DU-ra",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "ceno": {
+      "pron": "THE-no",
+      "cat": "verb"
+    },
+    "pescado": {
+      "pron": "pes-KA-do",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "almuerzo": {
+      "pron": "al-MWER-tho",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "preparamos": {
+      "pron": "pre-pa-RA-mos",
+      "cat": "verb"
+    },
+    "manzana": {
+      "pron": "man-THA-na",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "leche": {
+      "pron": "LE-che",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "comedor": {
+      "pron": "ko-me-DOR",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "cocinamos": {
+      "pron": "ko-thi-NA-mos",
+      "cat": "verb"
+    },
+    "sopa": {
+      "pron": "SO-pa",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "ligera": {
+      "pron": "li-HE-ra",
+      "cat": "adj"
+    },
+    "tortilla": {
+      "pron": "tor-TI-ya",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "sed": {
+      "pron": "sed",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "bebemos": {
+      "pron": "be-BE-mos",
+      "cat": "verb"
+    },
+    "natural": {
+      "pron": "na-tu-RAL",
+      "cat": "adj"
+    },
+    "exprimido": {
+      "pron": "eks-pri-MI-do",
+      "cat": "adj"
+    },
+    "rojas": {
+      "pron": "RRO-has",
+      "cat": "adj"
     }
   },
   "bloques": [
@@ -138,13 +235,12 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "¿Qué desayunas por la mañana?",
-                "nucleo": "desayunas",
+                "texto": "Qué desayunas por la mañana",
                 "partes": [
                   {
                     "funcion": "CD",
-                    "texto": "¿Qué",
-                    "nucleo": "¿Qué"
+                    "texto": "Qué",
+                    "nucleo": "Qué"
                   },
                   {
                     "funcion": "V",
@@ -153,8 +249,7 @@
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "por la mañana?",
-                    "nucleo": "mañana",
+                    "texto": "por la mañana",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -162,8 +257,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "la mañana?",
-                        "nucleo": "mañana",
+                        "texto": "la mañana",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -171,13 +265,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "mañana?"
+                            "texto": "mañana",
+                            "nucleo": "mañana"
                           }
-                        ]
+                        ],
+                        "nucleo": "mañana"
                       }
-                    ]
+                    ],
+                    "nucleo": "mañana"
                   }
-                ]
+                ],
+                "nucleo": "desayunas"
               }
             ]
           }
@@ -190,8 +288,7 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Desayuno pan con tomate y queso.",
-                "nucleo": "Desayuno",
+                "texto": "Desayuno pan con tomate y queso",
                 "partes": [
                   {
                     "funcion": "V",
@@ -200,17 +297,16 @@
                   },
                   {
                     "funcion": "CD",
-                    "texto": "pan con tomate y queso.",
-                    "nucleo": "pan",
+                    "texto": "pan con tomate y queso",
                     "partes": [
                       {
                         "funcion": "N",
-                        "texto": "pan"
+                        "texto": "pan",
+                        "nucleo": "pan"
                       },
                       {
                         "funcion": "CN",
-                        "texto": "con tomate y queso.",
-                        "nucleo": "tomate",
+                        "texto": "con tomate y queso",
                         "partes": [
                           {
                             "funcion": "PREP",
@@ -218,28 +314,33 @@
                           },
                           {
                             "funcion": "TERM",
-                            "texto": "tomate y queso.",
-                            "nucleo": "tomate",
+                            "texto": "tomate y queso",
                             "partes": [
                               {
-                                "funcion": "N",
-                                "texto": "tomate"
+                                "funcion": "TERM",
+                                "texto": "tomate",
+                                "nucleo": "tomate"
                               },
                               {
                                 "funcion": "CONJ",
                                 "texto": "y"
                               },
                               {
-                                "funcion": "N",
-                                "texto": "queso."
+                                "funcion": "TERM",
+                                "texto": "queso",
+                                "nucleo": "queso"
                               }
-                            ]
+                            ],
+                            "nucleo": "tomate"
                           }
-                        ]
+                        ],
+                        "nucleo": "tomate"
                       }
-                    ]
+                    ],
+                    "nucleo": "pan"
                   }
-                ]
+                ],
+                "nucleo": "Desayuno"
               }
             ]
           }
@@ -252,8 +353,7 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Tomo fruta y un zumo de naranja.",
-                "nucleo": "Tomo",
+                "texto": "Tomo fruta y un zumo de naranja",
                 "partes": [
                   {
                     "funcion": "V",
@@ -262,12 +362,12 @@
                   },
                   {
                     "funcion": "CD",
-                    "texto": "fruta y un zumo de naranja.",
-                    "nucleo": "fruta",
+                    "texto": "fruta y un zumo de naranja",
                     "partes": [
                       {
-                        "funcion": "N",
-                        "texto": "fruta"
+                        "funcion": "CD",
+                        "texto": "fruta",
+                        "nucleo": "fruta"
                       },
                       {
                         "funcion": "CONJ",
@@ -275,8 +375,7 @@
                       },
                       {
                         "funcion": "CD",
-                        "texto": "un zumo de naranja.",
-                        "nucleo": "zumo",
+                        "texto": "un zumo de naranja",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -284,12 +383,12 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "zumo"
+                            "texto": "zumo",
+                            "nucleo": "zumo"
                           },
                           {
                             "funcion": "CN",
-                            "texto": "de naranja.",
-                            "nucleo": "naranja",
+                            "texto": "de naranja",
                             "partes": [
                               {
                                 "funcion": "PREP",
@@ -297,16 +396,20 @@
                               },
                               {
                                 "funcion": "TERM",
-                                "texto": "naranja.",
-                                "nucleo": "naranja."
+                                "texto": "naranja",
+                                "nucleo": "naranja"
                               }
-                            ]
+                            ],
+                            "nucleo": "naranja"
                           }
-                        ]
+                        ],
+                        "nucleo": "zumo"
                       }
-                    ]
+                    ],
+                    "nucleo": "fruta"
                   }
-                ]
+                ],
+                "nucleo": "Tomo"
               }
             ]
           }
@@ -319,22 +422,19 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "¿A qué hora comes al mediodía?",
-                "nucleo": "comes",
+                "texto": "A qué hora comes al mediodía",
                 "partes": [
                   {
                     "funcion": "CCT",
-                    "texto": "¿A qué hora",
-                    "nucleo": "hora",
+                    "texto": "A qué hora",
                     "partes": [
                       {
                         "funcion": "PREP",
-                        "texto": "¿A"
+                        "texto": "A"
                       },
                       {
                         "funcion": "TERM",
                         "texto": "qué hora",
-                        "nucleo": "hora",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -342,11 +442,14 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "hora"
+                            "texto": "hora",
+                            "nucleo": "hora"
                           }
-                        ]
+                        ],
+                        "nucleo": "hora"
                       }
-                    ]
+                    ],
+                    "nucleo": "hora"
                   },
                   {
                     "funcion": "V",
@@ -355,8 +458,7 @@
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "al mediodía?",
-                    "nucleo": "mediodía",
+                    "texto": "al mediodía",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -364,12 +466,14 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "mediodía?",
-                        "nucleo": "mediodía?"
+                        "texto": "mediodía",
+                        "nucleo": "mediodía"
                       }
-                    ]
+                    ],
+                    "nucleo": "mediodía"
                   }
-                ]
+                ],
+                "nucleo": "comes"
               }
             ]
           }
@@ -382,8 +486,7 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Como a las dos arroz o verdura.",
-                "nucleo": "Como",
+                "texto": "Como a las dos arroz o verdura",
                 "partes": [
                   {
                     "funcion": "V",
@@ -393,7 +496,6 @@
                   {
                     "funcion": "CCT",
                     "texto": "a las dos",
-                    "nucleo": "dos",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -402,7 +504,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "las dos",
-                        "nucleo": "dos",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -410,32 +511,38 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "dos"
+                            "texto": "dos",
+                            "nucleo": "dos"
                           }
-                        ]
+                        ],
+                        "nucleo": "dos"
                       }
-                    ]
+                    ],
+                    "nucleo": "dos"
                   },
                   {
                     "funcion": "CD",
-                    "texto": "arroz o verdura.",
-                    "nucleo": "arroz",
+                    "texto": "arroz o verdura",
                     "partes": [
                       {
-                        "funcion": "N",
-                        "texto": "arroz"
+                        "funcion": "CD",
+                        "texto": "arroz",
+                        "nucleo": "arroz"
                       },
                       {
                         "funcion": "CONJ",
                         "texto": "o"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "verdura."
+                        "funcion": "CD",
+                        "texto": "verdura",
+                        "nucleo": "verdura"
                       }
-                    ]
+                    ],
+                    "nucleo": "arroz"
                   }
-                ]
+                ],
+                "nucleo": "Como"
               }
             ]
           }
@@ -449,18 +556,11 @@
               {
                 "funcion": "SUJ",
                 "texto": "Yo",
-                "nucleo": "Yo",
-                "partes": [
-                  {
-                    "funcion": "N",
-                    "texto": "Yo"
-                  }
-                ]
+                "nucleo": "Yo"
               },
               {
                 "funcion": "PRED",
-                "texto": "ceno huevos con patatas hoy.",
-                "nucleo": "ceno",
+                "texto": "ceno huevos con patatas hoy",
                 "partes": [
                   {
                     "funcion": "V",
@@ -470,16 +570,15 @@
                   {
                     "funcion": "CD",
                     "texto": "huevos con patatas",
-                    "nucleo": "huevos",
                     "partes": [
                       {
                         "funcion": "N",
-                        "texto": "huevos"
+                        "texto": "huevos",
+                        "nucleo": "huevos"
                       },
                       {
                         "funcion": "CN",
                         "texto": "con patatas",
-                        "nucleo": "patatas",
                         "partes": [
                           {
                             "funcion": "PREP",
@@ -490,16 +589,19 @@
                             "texto": "patatas",
                             "nucleo": "patatas"
                           }
-                        ]
+                        ],
+                        "nucleo": "patatas"
                       }
-                    ]
+                    ],
+                    "nucleo": "huevos"
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "hoy.",
-                    "nucleo": "hoy."
+                    "texto": "hoy",
+                    "nucleo": "hoy"
                   }
-                ]
+                ],
+                "nucleo": "ceno"
               }
             ]
           }
@@ -547,18 +649,11 @@
               {
                 "funcion": "SUJ",
                 "texto": "Nosotros",
-                "nucleo": "Nosotros",
-                "partes": [
-                  {
-                    "funcion": "N",
-                    "texto": "Nosotros"
-                  }
-                ]
+                "nucleo": "Nosotros"
               },
               {
                 "funcion": "PRED",
-                "texto": "cenamos pescado con arroz blanco.",
-                "nucleo": "cenamos",
+                "texto": "cenamos pescado con arroz blanco",
                 "partes": [
                   {
                     "funcion": "V",
@@ -567,17 +662,16 @@
                   },
                   {
                     "funcion": "CD",
-                    "texto": "pescado con arroz blanco.",
-                    "nucleo": "pescado",
+                    "texto": "pescado con arroz blanco",
                     "partes": [
                       {
                         "funcion": "N",
-                        "texto": "pescado"
+                        "texto": "pescado",
+                        "nucleo": "pescado"
                       },
                       {
                         "funcion": "CN",
-                        "texto": "con arroz blanco.",
-                        "nucleo": "arroz",
+                        "texto": "con arroz blanco",
                         "partes": [
                           {
                             "funcion": "PREP",
@@ -585,25 +679,29 @@
                           },
                           {
                             "funcion": "TERM",
-                            "texto": "arroz blanco.",
-                            "nucleo": "arroz",
+                            "texto": "arroz blanco",
                             "partes": [
                               {
                                 "funcion": "N",
-                                "texto": "arroz"
+                                "texto": "arroz",
+                                "nucleo": "arroz"
                               },
                               {
-                                "funcion": "CN",
-                                "texto": "blanco.",
-                                "nucleo": "blanco."
+                                "funcion": "ADY",
+                                "texto": "blanco",
+                                "nucleo": "blanco"
                               }
-                            ]
+                            ],
+                            "nucleo": "arroz"
                           }
-                        ]
+                        ],
+                        "nucleo": "arroz"
                       }
-                    ]
+                    ],
+                    "nucleo": "pescado"
                   }
-                ]
+                ],
+                "nucleo": "cenamos"
               }
             ]
           }
@@ -616,18 +714,11 @@
               {
                 "funcion": "SUJ",
                 "texto": "Ella",
-                "nucleo": "Ella",
-                "partes": [
-                  {
-                    "funcion": "N",
-                    "texto": "Ella"
-                  }
-                ]
+                "nucleo": "Ella"
               },
               {
                 "funcion": "PRED",
-                "texto": "tiene hambre antes del almuerzo.",
-                "nucleo": "tiene",
+                "texto": "tiene hambre antes del almuerzo",
                 "partes": [
                   {
                     "funcion": "V",
@@ -641,32 +732,22 @@
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "antes del almuerzo.",
-                    "nucleo": "antes",
+                    "texto": "antes del almuerzo",
                     "partes": [
                       {
-                        "funcion": "ADV",
-                        "texto": "antes"
+                        "funcion": "PREP",
+                        "texto": "antes del"
                       },
                       {
-                        "funcion": "CN",
-                        "texto": "del almuerzo.",
-                        "nucleo": "almuerzo",
-                        "partes": [
-                          {
-                            "funcion": "PREP",
-                            "texto": "del"
-                          },
-                          {
-                            "funcion": "TERM",
-                            "texto": "almuerzo.",
-                            "nucleo": "almuerzo."
-                          }
-                        ]
+                        "funcion": "TERM",
+                        "texto": "almuerzo",
+                        "nucleo": "almuerzo"
                       }
-                    ]
+                    ],
+                    "nucleo": "almuerzo"
                   }
-                ]
+                ],
+                "nucleo": "tiene"
               }
             ]
           }
@@ -686,13 +767,11 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Cada mañana preparamos el desayuno con café caliente y tostadas.",
-                "nucleo": "preparamos",
+                "texto": "Cada mañana preparamos el desayuno con café caliente y tostadas",
                 "partes": [
                   {
                     "funcion": "CCT",
                     "texto": "Cada mañana",
-                    "nucleo": "mañana",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -700,9 +779,11 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "mañana"
+                        "texto": "mañana",
+                        "nucleo": "mañana"
                       }
-                    ]
+                    ],
+                    "nucleo": "mañana"
                   },
                   {
                     "funcion": "V",
@@ -711,8 +792,7 @@
                   },
                   {
                     "funcion": "CD",
-                    "texto": "el desayuno",
-                    "nucleo": "desayuno",
+                    "texto": "el desayuno con café caliente y tostadas",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -720,46 +800,58 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "desayuno"
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "CCM",
-                    "texto": "con café caliente y tostadas.",
-                    "nucleo": "café",
-                    "partes": [
-                      {
-                        "funcion": "PREP",
-                        "texto": "con"
+                        "texto": "desayuno",
+                        "nucleo": "desayuno"
                       },
                       {
-                        "funcion": "TERM",
-                        "texto": "café caliente y tostadas.",
-                        "nucleo": "café",
+                        "funcion": "CN",
+                        "texto": "con café caliente y tostadas",
                         "partes": [
                           {
-                            "funcion": "N",
-                            "texto": "café"
+                            "funcion": "PREP",
+                            "texto": "con"
                           },
                           {
-                            "funcion": "CN",
-                            "texto": "caliente",
-                            "nucleo": "caliente"
-                          },
-                          {
-                            "funcion": "CONJ",
-                            "texto": "y"
-                          },
-                          {
-                            "funcion": "N",
-                            "texto": "tostadas."
+                            "funcion": "TERM",
+                            "texto": "café caliente y tostadas",
+                            "partes": [
+                              {
+                                "funcion": "TERM",
+                                "texto": "café caliente",
+                                "partes": [
+                                  {
+                                    "funcion": "N",
+                                    "texto": "café",
+                                    "nucleo": "café"
+                                  },
+                                  {
+                                    "funcion": "ADY",
+                                    "texto": "caliente",
+                                    "nucleo": "caliente"
+                                  }
+                                ],
+                                "nucleo": "café"
+                              },
+                              {
+                                "funcion": "CONJ",
+                                "texto": "y"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "tostadas",
+                                "nucleo": "tostadas"
+                              }
+                            ],
+                            "nucleo": "café"
                           }
-                        ]
+                        ],
+                        "nucleo": "café"
                       }
-                    ]
+                    ],
+                    "nucleo": "desayuno"
                   }
-                ]
+                ],
+                "nucleo": "preparamos"
               }
             ]
           }
@@ -773,7 +865,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Mi hermano pequeño",
-                "nucleo": "hermano",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -781,86 +872,104 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "hermano"
+                    "texto": "hermano",
+                    "nucleo": "hermano"
                   },
                   {
-                    "funcion": "CN",
+                    "funcion": "ADY",
                     "texto": "pequeño",
                     "nucleo": "pequeño"
                   }
-                ]
+                ],
+                "nucleo": "hermano"
               },
               {
                 "funcion": "PRED",
-                "texto": "come una manzana roja y bebe un vaso de leche.",
-                "nucleo": "come",
+                "texto": "come una manzana roja y bebe un vaso de leche",
                 "partes": [
                   {
-                    "funcion": "V",
-                    "texto": "come",
-                    "nucleo": "come"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "una manzana roja",
-                    "nucleo": "manzana",
+                    "funcion": "PRED",
+                    "texto": "come una manzana roja",
                     "partes": [
                       {
-                        "funcion": "DET",
-                        "texto": "una"
+                        "funcion": "V",
+                        "texto": "come",
+                        "nucleo": "come"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "manzana"
-                      },
-                      {
-                        "funcion": "CN",
-                        "texto": "roja",
-                        "nucleo": "roja"
+                        "funcion": "CD",
+                        "texto": "una manzana roja",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "una"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "manzana",
+                            "nucleo": "manzana"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "roja",
+                            "nucleo": "roja"
+                          }
+                        ],
+                        "nucleo": "manzana"
                       }
-                    ]
+                    ],
+                    "nucleo": "come"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "V",
-                    "texto": "bebe",
-                    "nucleo": "bebe"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "un vaso de leche.",
-                    "nucleo": "vaso",
+                    "funcion": "PRED",
+                    "texto": "bebe un vaso de leche",
                     "partes": [
                       {
-                        "funcion": "DET",
-                        "texto": "un"
+                        "funcion": "V",
+                        "texto": "bebe",
+                        "nucleo": "bebe"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "vaso"
-                      },
-                      {
-                        "funcion": "CN",
-                        "texto": "de leche.",
-                        "nucleo": "leche",
+                        "funcion": "CD",
+                        "texto": "un vaso de leche",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "de"
+                            "funcion": "DET",
+                            "texto": "un"
                           },
                           {
-                            "funcion": "TERM",
-                            "texto": "leche.",
-                            "nucleo": "leche."
+                            "funcion": "N",
+                            "texto": "vaso",
+                            "nucleo": "vaso"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "de leche",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "de"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "leche",
+                                "nucleo": "leche"
+                              }
+                            ],
+                            "nucleo": "leche"
                           }
-                        ]
+                        ],
+                        "nucleo": "vaso"
                       }
-                    ]
+                    ],
+                    "nucleo": "bebe"
                   }
-                ]
+                ],
+                "nucleo": "come"
               }
             ]
           }
@@ -874,18 +983,11 @@
               {
                 "funcion": "SUJ",
                 "texto": "Todos",
-                "nucleo": "Todos",
-                "partes": [
-                  {
-                    "funcion": "N",
-                    "texto": "Todos"
-                  }
-                ]
+                "nucleo": "Todos"
               },
               {
                 "funcion": "PRED",
-                "texto": "comemos juntos a las tres en el comedor de nuestra casa.",
-                "nucleo": "comemos",
+                "texto": "comemos juntos a las tres en el comedor de nuestra casa",
                 "partes": [
                   {
                     "funcion": "V",
@@ -900,7 +1002,6 @@
                   {
                     "funcion": "CCT",
                     "texto": "a las tres",
-                    "nucleo": "tres",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -909,7 +1010,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "las tres",
-                        "nucleo": "tres",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -917,16 +1017,18 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "tres"
+                            "texto": "tres",
+                            "nucleo": "tres"
                           }
-                        ]
+                        ],
+                        "nucleo": "tres"
                       }
-                    ]
+                    ],
+                    "nucleo": "tres"
                   },
                   {
                     "funcion": "CCL",
-                    "texto": "en el comedor de nuestra casa.",
-                    "nucleo": "comedor",
+                    "texto": "en el comedor de nuestra casa",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -934,8 +1036,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "el comedor de nuestra casa.",
-                        "nucleo": "comedor",
+                        "texto": "el comedor de nuestra casa",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -943,12 +1044,12 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "comedor"
+                            "texto": "comedor",
+                            "nucleo": "comedor"
                           },
                           {
                             "funcion": "CN",
-                            "texto": "de nuestra casa.",
-                            "nucleo": "casa",
+                            "texto": "de nuestra casa",
                             "partes": [
                               {
                                 "funcion": "PREP",
@@ -956,8 +1057,7 @@
                               },
                               {
                                 "funcion": "TERM",
-                                "texto": "nuestra casa.",
-                                "nucleo": "casa",
+                                "texto": "nuestra casa",
                                 "partes": [
                                   {
                                     "funcion": "DET",
@@ -965,17 +1065,23 @@
                                   },
                                   {
                                     "funcion": "N",
-                                    "texto": "casa."
+                                    "texto": "casa",
+                                    "nucleo": "casa"
                                   }
-                                ]
+                                ],
+                                "nucleo": "casa"
                               }
-                            ]
+                            ],
+                            "nucleo": "casa"
                           }
-                        ]
+                        ],
+                        "nucleo": "comedor"
                       }
-                    ]
+                    ],
+                    "nucleo": "comedor"
                   }
-                ]
+                ],
+                "nucleo": "comemos"
               }
             ]
           }
@@ -988,13 +1094,11 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Para la comida principal siempre cocinamos arroz con verduras frescas.",
-                "nucleo": "cocinamos",
+                "texto": "Para la comida principal siempre cocinamos arroz con verduras frescas",
                 "partes": [
                   {
                     "funcion": "CCF",
                     "texto": "Para la comida principal",
-                    "nucleo": "comida",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -1003,7 +1107,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "la comida principal",
-                        "nucleo": "comida",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -1011,16 +1114,19 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "comida"
+                            "texto": "comida",
+                            "nucleo": "comida"
                           },
                           {
-                            "funcion": "CN",
+                            "funcion": "ADY",
                             "texto": "principal",
                             "nucleo": "principal"
                           }
-                        ]
+                        ],
+                        "nucleo": "comida"
                       }
-                    ]
+                    ],
+                    "nucleo": "comida"
                   },
                   {
                     "funcion": "CCT",
@@ -1034,17 +1140,16 @@
                   },
                   {
                     "funcion": "CD",
-                    "texto": "arroz con verduras frescas.",
-                    "nucleo": "arroz",
+                    "texto": "arroz con verduras frescas",
                     "partes": [
                       {
                         "funcion": "N",
-                        "texto": "arroz"
+                        "texto": "arroz",
+                        "nucleo": "arroz"
                       },
                       {
                         "funcion": "CN",
-                        "texto": "con verduras frescas.",
-                        "nucleo": "verduras",
+                        "texto": "con verduras frescas",
                         "partes": [
                           {
                             "funcion": "PREP",
@@ -1052,25 +1157,29 @@
                           },
                           {
                             "funcion": "TERM",
-                            "texto": "verduras frescas.",
-                            "nucleo": "verduras",
+                            "texto": "verduras frescas",
                             "partes": [
                               {
                                 "funcion": "N",
-                                "texto": "verduras"
+                                "texto": "verduras",
+                                "nucleo": "verduras"
                               },
                               {
-                                "funcion": "CN",
-                                "texto": "frescas.",
-                                "nucleo": "frescas."
+                                "funcion": "ADY",
+                                "texto": "frescas",
+                                "nucleo": "frescas"
                               }
-                            ]
+                            ],
+                            "nucleo": "verduras"
                           }
-                        ]
+                        ],
+                        "nucleo": "verduras"
                       }
-                    ]
+                    ],
+                    "nucleo": "arroz"
                   }
-                ]
+                ],
+                "nucleo": "cocinamos"
               }
             ]
           }
@@ -1083,13 +1192,11 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Por la noche cenamos sopa ligera y una tortilla con patatas ricas.",
-                "nucleo": "cenamos",
+                "texto": "Por la noche cenamos sopa ligera y una tortilla con patatas ricas",
                 "partes": [
                   {
                     "funcion": "CCT",
                     "texto": "Por la noche",
-                    "nucleo": "noche",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -1098,7 +1205,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "la noche",
-                        "nucleo": "noche",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -1106,11 +1212,14 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "noche"
+                            "texto": "noche",
+                            "nucleo": "noche"
                           }
-                        ]
+                        ],
+                        "nucleo": "noche"
                       }
-                    ]
+                    ],
+                    "nucleo": "noche"
                   },
                   {
                     "funcion": "V",
@@ -1119,67 +1228,78 @@
                   },
                   {
                     "funcion": "CD",
-                    "texto": "sopa ligera",
-                    "nucleo": "sopa",
+                    "texto": "sopa ligera y una tortilla con patatas ricas",
                     "partes": [
                       {
-                        "funcion": "N",
-                        "texto": "sopa"
-                      },
-                      {
-                        "funcion": "CN",
-                        "texto": "ligera",
-                        "nucleo": "ligera"
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "CONJ",
-                    "texto": "y"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "una tortilla con patatas ricas.",
-                    "nucleo": "tortilla",
-                    "partes": [
-                      {
-                        "funcion": "DET",
-                        "texto": "una"
-                      },
-                      {
-                        "funcion": "N",
-                        "texto": "tortilla"
-                      },
-                      {
-                        "funcion": "CN",
-                        "texto": "con patatas ricas.",
-                        "nucleo": "patatas",
+                        "funcion": "CD",
+                        "texto": "sopa ligera",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "con"
+                            "funcion": "N",
+                            "texto": "sopa",
+                            "nucleo": "sopa"
                           },
                           {
-                            "funcion": "TERM",
-                            "texto": "patatas ricas.",
-                            "nucleo": "patatas",
+                            "funcion": "ADY",
+                            "texto": "ligera",
+                            "nucleo": "ligera"
+                          }
+                        ],
+                        "nucleo": "sopa"
+                      },
+                      {
+                        "funcion": "CONJ",
+                        "texto": "y"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "una tortilla con patatas ricas",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "una"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "tortilla",
+                            "nucleo": "tortilla"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "con patatas ricas",
                             "partes": [
                               {
-                                "funcion": "N",
-                                "texto": "patatas"
+                                "funcion": "PREP",
+                                "texto": "con"
                               },
                               {
-                                "funcion": "CN",
-                                "texto": "ricas.",
-                                "nucleo": "ricas."
+                                "funcion": "TERM",
+                                "texto": "patatas ricas",
+                                "partes": [
+                                  {
+                                    "funcion": "N",
+                                    "texto": "patatas",
+                                    "nucleo": "patatas"
+                                  },
+                                  {
+                                    "funcion": "ADY",
+                                    "texto": "ricas",
+                                    "nucleo": "ricas"
+                                  }
+                                ],
+                                "nucleo": "patatas"
                               }
-                            ]
+                            ],
+                            "nucleo": "patatas"
                           }
-                        ]
+                        ],
+                        "nucleo": "tortilla"
                       }
-                    ]
+                    ],
+                    "nucleo": "sopa"
                   }
-                ]
+                ],
+                "nucleo": "cenamos"
               }
             ]
           }
@@ -1192,29 +1312,35 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Cuando tenemos sed bebemos zumo natural de naranja recién exprimido.",
-                "nucleo": "bebemos",
+                "texto": "Cuando tenemos sed bebemos zumo natural de naranja recién exprimido",
                 "partes": [
                   {
                     "funcion": "CCT",
                     "texto": "Cuando tenemos sed",
-                    "nucleo": "tenemos",
                     "partes": [
                       {
                         "funcion": "CONJ",
                         "texto": "Cuando"
                       },
                       {
-                        "funcion": "V",
-                        "texto": "tenemos",
+                        "funcion": "PRED",
+                        "texto": "tenemos sed",
+                        "partes": [
+                          {
+                            "funcion": "V",
+                            "texto": "tenemos",
+                            "nucleo": "tenemos"
+                          },
+                          {
+                            "funcion": "CD",
+                            "texto": "sed",
+                            "nucleo": "sed"
+                          }
+                        ],
                         "nucleo": "tenemos"
-                      },
-                      {
-                        "funcion": "CD",
-                        "texto": "sed",
-                        "nucleo": "sed"
                       }
-                    ]
+                    ],
+                    "nucleo": "tenemos"
                   },
                   {
                     "funcion": "V",
@@ -1223,22 +1349,21 @@
                   },
                   {
                     "funcion": "CD",
-                    "texto": "zumo natural de naranja recién exprimido.",
-                    "nucleo": "zumo",
+                    "texto": "zumo natural de naranja recién exprimido",
                     "partes": [
                       {
                         "funcion": "N",
-                        "texto": "zumo"
+                        "texto": "zumo",
+                        "nucleo": "zumo"
                       },
                       {
-                        "funcion": "CN",
+                        "funcion": "ADY",
                         "texto": "natural",
                         "nucleo": "natural"
                       },
                       {
                         "funcion": "CN",
-                        "texto": "de naranja recién exprimido.",
-                        "nucleo": "naranja",
+                        "texto": "de naranja recién exprimido",
                         "partes": [
                           {
                             "funcion": "PREP",
@@ -1246,29 +1371,41 @@
                           },
                           {
                             "funcion": "TERM",
-                            "texto": "naranja recién exprimido.",
-                            "nucleo": "naranja",
+                            "texto": "naranja recién exprimido",
                             "partes": [
                               {
                                 "funcion": "N",
-                                "texto": "naranja"
+                                "texto": "naranja",
+                                "nucleo": "naranja"
                               },
                               {
-                                "funcion": "ADV",
-                                "texto": "recién"
-                              },
-                              {
-                                "funcion": "CN",
-                                "texto": "exprimido.",
-                                "nucleo": "exprimido."
+                                "funcion": "ADY",
+                                "texto": "recién exprimido",
+                                "partes": [
+                                  {
+                                    "funcion": "ADV",
+                                    "texto": "recién",
+                                    "nucleo": "recién"
+                                  },
+                                  {
+                                    "funcion": "ADY",
+                                    "texto": "exprimido",
+                                    "nucleo": "exprimido"
+                                  }
+                                ],
+                                "nucleo": "recién"
                               }
-                            ]
+                            ],
+                            "nucleo": "naranja"
                           }
-                        ]
+                        ],
+                        "nucleo": "naranja"
                       }
-                    ]
+                    ],
+                    "nucleo": "zumo"
                   }
-                ]
+                ],
+                "nucleo": "bebemos"
               }
             ]
           }

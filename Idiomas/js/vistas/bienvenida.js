@@ -11,6 +11,7 @@
 import { el, poner, enLinea, barajar } from '../dom.js';
 import { t, tr, origenTarjeta } from '../i18n.js';
 import { icono } from '../iconos.js';
+import { movilSuave } from '../suave.js';
 import { curso, LANG } from '../curso.js';
 import { crearSprite } from '../tutor-sprite.js';
 import { sonar, pitidoVoz, pronunciar, hayVoz } from '../sonidos.js';
@@ -602,7 +603,8 @@ export function pintarBienvenida(contenedor, { resultados }) {
         const s = p * p * (3 - 2 * p); // sale despacio y llega despacio
         const x = (1 - s) ** 2 * x0 + 2 * (1 - s) * s * ((x0 + x1) / 2) + s ** 2 * x1;
         const y = (1 - s) ** 2 * y0 + 2 * (1 - s) * s * alto + s ** 2 * y1;
-        vuela.style.transform = `translate(${Math.round(x / 2) * 2}px, ${Math.round(y / 2) * 2}px) rotate(${Math.round(p * 8) * 45}deg)`;
+        // en el móvil vuela suave; en el ordenador, a saltos de píxel como el resto
+        vuela.style.transform = movilSuave ? `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) rotate(${(p * 360).toFixed(1)}deg)` : `translate(${Math.round(x / 2) * 2}px, ${Math.round(y / 2) * 2}px) rotate(${Math.round(p * 8) * 45}deg)`;
         if (Math.random() < 0.5) fx.confeti(x, y, 1, 0.25);
         if (p < 1) requestAnimationFrame(volar);
         else { vuela.remove(); llegar(); }

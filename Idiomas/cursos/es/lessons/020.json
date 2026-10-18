@@ -2,6 +2,8 @@
   "esquema": 2,
   "id": "020",
   "capitulo": 3,
+  "numero_curso": 22,
+  "orden_curso": 22,
   "nivel": "A1",
   "palabras": {
     "dónde": {
@@ -71,6 +73,67 @@
     },
     "Señora": {
       "propio": true
+    },
+    "busca": {
+      "pron": "BUS-ka",
+      "cat": "verb"
+    },
+    "arte": {
+      "pron": "AR-te",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "camina": {
+      "pron": "ka-MI-na",
+      "cat": "verb"
+    },
+    "letreros": {
+      "pron": "le-TRE-ros",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "calles": {
+      "pron": "KA-yes",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "sonriente": {
+      "pron": "son-RRYEN-te",
+      "cat": "adj"
+    },
+    "estación": {
+      "pron": "es-ta-THYON",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "trenes": {
+      "pron": "TRE-nes",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "visitantes": {
+      "pron": "bi-si-TAN-tes",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "viajeros": {
+      "pron": "bya-HE-ros",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "encuentran": {
+      "pron": "en-KWEN-tran",
+      "cat": "verb"
+    },
+    "dificultad": {
+      "pron": "di-fi-kul-TAD",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "ayuda": {
+      "pron": "a-YU-da",
+      "cat": "sust",
+      "genero": "f"
     }
   },
   "bloques": [
@@ -90,25 +153,24 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "dónde está",
-                "nucleo": "está",
+                "texto": "Dónde está",
                 "partes": [
                   {
                     "funcion": "CCL",
-                    "texto": "dónde",
-                    "nucleo": "dónde"
+                    "texto": "Dónde",
+                    "nucleo": "Dónde"
                   },
                   {
                     "funcion": "V",
                     "texto": "está",
                     "nucleo": "está"
                   }
-                ]
+                ],
+                "nucleo": "está"
               },
               {
                 "funcion": "SUJ",
                 "texto": "el museo",
-                "nucleo": "museo",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -116,9 +178,11 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "museo"
+                    "texto": "museo",
+                    "nucleo": "museo"
                   }
-                ]
+                ],
+                "nucleo": "museo"
               }
             ]
           }
@@ -132,7 +196,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "El museo",
-                "nucleo": "museo",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -140,14 +203,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "museo"
+                    "texto": "museo",
+                    "nucleo": "museo"
                   }
-                ]
+                ],
+                "nucleo": "museo"
               },
               {
                 "funcion": "PRED",
                 "texto": "está cerca",
-                "nucleo": "está",
                 "partes": [
                   {
                     "funcion": "V",
@@ -159,7 +223,8 @@
                     "texto": "cerca",
                     "nucleo": "cerca"
                   }
-                ]
+                ],
+                "nucleo": "está"
               }
             ]
           }
@@ -171,50 +236,58 @@
             "unidades": [
               {
                 "funcion": "CCL",
-                "texto": "Todo recto",
-                "nucleo": "recto",
+                "texto": "Todo recto y a la derecha",
                 "partes": [
                   {
-                    "funcion": "ADV",
-                    "texto": "Todo",
+                    "funcion": "CCL",
+                    "texto": "Todo recto",
+                    "partes": [
+                      {
+                        "funcion": "ADV",
+                        "texto": "Todo",
+                        "nucleo": "Todo"
+                      },
+                      {
+                        "funcion": "ADV",
+                        "texto": "recto",
+                        "nucleo": "recto"
+                      }
+                    ],
                     "nucleo": "Todo"
                   },
                   {
-                    "funcion": "ADV",
-                    "texto": "recto",
-                    "nucleo": "recto"
-                  }
-                ]
-              },
-              {
-                "funcion": "CONJ",
-                "texto": "y"
-              },
-              {
-                "funcion": "CCL",
-                "texto": "a la derecha",
-                "nucleo": "derecha",
-                "partes": [
-                  {
-                    "funcion": "PREP",
-                    "texto": "a"
+                    "funcion": "CONJ",
+                    "texto": "y"
                   },
                   {
-                    "funcion": "TERM",
-                    "texto": "la derecha",
-                    "nucleo": "derecha",
+                    "funcion": "CCL",
+                    "texto": "a la derecha",
                     "partes": [
                       {
-                        "funcion": "DET",
-                        "texto": "la"
+                        "funcion": "PREP",
+                        "texto": "a"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "derecha"
+                        "funcion": "TERM",
+                        "texto": "la derecha",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "derecha",
+                            "nucleo": "derecha"
+                          }
+                        ],
+                        "nucleo": "derecha"
                       }
-                    ]
+                    ],
+                    "nucleo": "derecha"
                   }
-                ]
+                ],
+                "nucleo": "Todo"
               }
             ]
           }
@@ -228,7 +301,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Está lejos",
-                "nucleo": "Está",
                 "partes": [
                   {
                     "funcion": "V",
@@ -240,12 +312,12 @@
                     "texto": "lejos",
                     "nucleo": "lejos"
                   }
-                ]
+                ],
+                "nucleo": "Está"
               },
               {
                 "funcion": "SUJ",
                 "texto": "la estación",
-                "nucleo": "estación",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -253,9 +325,11 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "estación"
+                    "texto": "estación",
+                    "nucleo": "estación"
                   }
-                ]
+                ],
+                "nucleo": "estación"
               }
             ]
           }
@@ -268,23 +342,23 @@
             "unidades": [
               {
                 "funcion": "SUJ",
-                "texto": "la estación",
-                "nucleo": "estación",
+                "texto": "La estación",
                 "partes": [
                   {
                     "funcion": "DET",
-                    "texto": "la"
+                    "texto": "La"
                   },
                   {
                     "funcion": "N",
-                    "texto": "estación"
+                    "texto": "estación",
+                    "nucleo": "estación"
                   }
-                ]
+                ],
+                "nucleo": "estación"
               },
               {
                 "funcion": "PRED",
                 "texto": "no está lejos",
-                "nucleo": "está",
                 "partes": [
                   {
                     "funcion": "NEG",
@@ -300,7 +374,8 @@
                     "texto": "lejos",
                     "nucleo": "lejos"
                   }
-                ]
+                ],
+                "nucleo": "está"
               }
             ]
           }
@@ -311,45 +386,47 @@
             "oracion": "unimembre",
             "unidades": [
               {
-                "funcion": "INTERJ",
-                "texto": "Muchas gracias",
-                "nucleo": "gracias",
+                "funcion": "N",
+                "texto": "Muchas gracias por su ayuda",
                 "partes": [
                   {
-                    "funcion": "CUANT",
+                    "funcion": "DET",
                     "texto": "Muchas"
                   },
                   {
                     "funcion": "N",
-                    "texto": "gracias"
-                  }
-                ]
-              },
-              {
-                "funcion": "CCC",
-                "texto": "por su ayuda",
-                "nucleo": "ayuda",
-                "partes": [
-                  {
-                    "funcion": "PREP",
-                    "texto": "por"
+                    "texto": "gracias",
+                    "nucleo": "gracias"
                   },
                   {
-                    "funcion": "TERM",
-                    "texto": "su ayuda",
-                    "nucleo": "ayuda",
+                    "funcion": "CN",
+                    "texto": "por su ayuda",
                     "partes": [
                       {
-                        "funcion": "DET",
-                        "texto": "su"
+                        "funcion": "PREP",
+                        "texto": "por"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "ayuda"
+                        "funcion": "TERM",
+                        "texto": "su ayuda",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "su"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "ayuda",
+                            "nucleo": "ayuda"
+                          }
+                        ],
+                        "nucleo": "ayuda"
                       }
-                    ]
+                    ],
+                    "nucleo": "ayuda"
                   }
-                ]
+                ],
+                "nucleo": "gracias"
               }
             ]
           }
@@ -389,22 +466,22 @@
               {
                 "funcion": "SUJ",
                 "texto": "El museo",
-                "nucleo": "museo",
                 "partes": [
                   {
                     "funcion": "DET",
-                    "texto": "el"
+                    "texto": "El"
                   },
                   {
                     "funcion": "N",
-                    "texto": "museo"
+                    "texto": "museo",
+                    "nucleo": "museo"
                   }
-                ]
+                ],
+                "nucleo": "museo"
               },
               {
                 "funcion": "PRED",
                 "texto": "está cerca",
-                "nucleo": "está",
                 "partes": [
                   {
                     "funcion": "V",
@@ -416,7 +493,8 @@
                     "texto": "cerca",
                     "nucleo": "cerca"
                   }
-                ]
+                ],
+                "nucleo": "está"
               }
             ]
           }
@@ -429,7 +507,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La estación",
-                "nucleo": "estación",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -437,14 +514,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "estación"
+                    "texto": "estación",
+                    "nucleo": "estación"
                   }
-                ]
+                ],
+                "nucleo": "estación"
               },
               {
                 "funcion": "PRED",
                 "texto": "está a la derecha",
-                "nucleo": "está",
                 "partes": [
                   {
                     "funcion": "V",
@@ -454,7 +532,6 @@
                   {
                     "funcion": "CCL",
                     "texto": "a la derecha",
-                    "nucleo": "derecha",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -463,7 +540,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "la derecha",
-                        "nucleo": "derecha",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -471,13 +547,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "derecha"
+                            "texto": "derecha",
+                            "nucleo": "derecha"
                           }
-                        ]
+                        ],
+                        "nucleo": "derecha"
                       }
-                    ]
+                    ],
+                    "nucleo": "derecha"
                   }
-                ]
+                ],
+                "nucleo": "está"
               }
             ]
           }
@@ -498,7 +578,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Un turista amable",
-                "nucleo": "turista",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -506,19 +585,20 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "turista"
+                    "texto": "turista",
+                    "nucleo": "turista"
                   },
                   {
                     "funcion": "ADY",
                     "texto": "amable",
                     "nucleo": "amable"
                   }
-                ]
+                ],
+                "nucleo": "turista"
               },
               {
                 "funcion": "PRED",
                 "texto": "busca el museo de arte en el centro",
-                "nucleo": "busca",
                 "partes": [
                   {
                     "funcion": "V",
@@ -528,7 +608,6 @@
                   {
                     "funcion": "CD",
                     "texto": "el museo de arte",
-                    "nucleo": "museo",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -536,12 +615,12 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "museo"
+                        "texto": "museo",
+                        "nucleo": "museo"
                       },
                       {
                         "funcion": "CN",
                         "texto": "de arte",
-                        "nucleo": "arte",
                         "partes": [
                           {
                             "funcion": "PREP",
@@ -552,14 +631,15 @@
                             "texto": "arte",
                             "nucleo": "arte"
                           }
-                        ]
+                        ],
+                        "nucleo": "arte"
                       }
-                    ]
+                    ],
+                    "nucleo": "museo"
                   },
                   {
                     "funcion": "CCL",
                     "texto": "en el centro",
-                    "nucleo": "centro",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -568,7 +648,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "el centro",
-                        "nucleo": "centro",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -576,13 +655,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "centro"
+                            "texto": "centro",
+                            "nucleo": "centro"
                           }
-                        ]
+                        ],
+                        "nucleo": "centro"
                       }
-                    ]
+                    ],
+                    "nucleo": "centro"
                   }
-                ]
+                ],
+                "nucleo": "busca"
               }
             ]
           }
@@ -601,69 +684,85 @@
               {
                 "funcion": "PRED",
                 "texto": "camina despacio y mira los letreros de las calles",
-                "nucleo": "camina",
                 "partes": [
                   {
-                    "funcion": "V",
-                    "texto": "camina",
+                    "funcion": "PRED",
+                    "texto": "camina despacio",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "camina",
+                        "nucleo": "camina"
+                      },
+                      {
+                        "funcion": "CCM",
+                        "texto": "despacio",
+                        "nucleo": "despacio"
+                      }
+                    ],
                     "nucleo": "camina"
-                  },
-                  {
-                    "funcion": "CCM",
-                    "texto": "despacio",
-                    "nucleo": "despacio"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "V",
-                    "texto": "mira",
-                    "nucleo": "mira"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "los letreros de las calles",
-                    "nucleo": "letreros",
+                    "funcion": "PRED",
+                    "texto": "mira los letreros de las calles",
                     "partes": [
                       {
-                        "funcion": "DET",
-                        "texto": "los"
+                        "funcion": "V",
+                        "texto": "mira",
+                        "nucleo": "mira"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "letreros"
-                      },
-                      {
-                        "funcion": "CN",
-                        "texto": "de las calles",
-                        "nucleo": "calles",
+                        "funcion": "CD",
+                        "texto": "los letreros de las calles",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "de"
+                            "funcion": "DET",
+                            "texto": "los"
                           },
                           {
-                            "funcion": "TERM",
-                            "texto": "las calles",
-                            "nucleo": "calles",
+                            "funcion": "N",
+                            "texto": "letreros",
+                            "nucleo": "letreros"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "de las calles",
                             "partes": [
                               {
-                                "funcion": "DET",
-                                "texto": "las"
+                                "funcion": "PREP",
+                                "texto": "de"
                               },
                               {
-                                "funcion": "N",
-                                "texto": "calles"
+                                "funcion": "TERM",
+                                "texto": "las calles",
+                                "partes": [
+                                  {
+                                    "funcion": "DET",
+                                    "texto": "las"
+                                  },
+                                  {
+                                    "funcion": "N",
+                                    "texto": "calles",
+                                    "nucleo": "calles"
+                                  }
+                                ],
+                                "nucleo": "calles"
                               }
-                            ]
+                            ],
+                            "nucleo": "calles"
                           }
-                        ]
+                        ],
+                        "nucleo": "letreros"
                       }
-                    ]
+                    ],
+                    "nucleo": "mira"
                   }
-                ]
+                ],
+                "nucleo": "camina"
               }
             ]
           }
@@ -677,7 +776,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Una señora sonriente",
-                "nucleo": "señora",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -685,19 +783,20 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "señora"
+                    "texto": "señora",
+                    "nucleo": "señora"
                   },
                   {
                     "funcion": "ADY",
                     "texto": "sonriente",
                     "nucleo": "sonriente"
                   }
-                ]
+                ],
+                "nucleo": "señora"
               },
               {
                 "funcion": "PRED",
                 "texto": "explica la dirección con calma",
-                "nucleo": "explica",
                 "partes": [
                   {
                     "funcion": "V",
@@ -707,7 +806,6 @@
                   {
                     "funcion": "CD",
                     "texto": "la dirección",
-                    "nucleo": "dirección",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -715,14 +813,15 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "dirección"
+                        "texto": "dirección",
+                        "nucleo": "dirección"
                       }
-                    ]
+                    ],
+                    "nucleo": "dirección"
                   },
                   {
                     "funcion": "CCM",
                     "texto": "con calma",
-                    "nucleo": "calma",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -733,9 +832,11 @@
                         "texto": "calma",
                         "nucleo": "calma"
                       }
-                    ]
+                    ],
+                    "nucleo": "calma"
                   }
-                ]
+                ],
+                "nucleo": "explica"
               }
             ]
           }
@@ -749,7 +850,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La gran estación de trenes",
-                "nucleo": "estación",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -762,12 +862,12 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "estación"
+                    "texto": "estación",
+                    "nucleo": "estación"
                   },
                   {
                     "funcion": "CN",
                     "texto": "de trenes",
-                    "nucleo": "trenes",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -778,14 +878,15 @@
                         "texto": "trenes",
                         "nucleo": "trenes"
                       }
-                    ]
+                    ],
+                    "nucleo": "trenes"
                   }
-                ]
+                ],
+                "nucleo": "estación"
               },
               {
                 "funcion": "PRED",
                 "texto": "está cerca de la plaza",
-                "nucleo": "está",
                 "partes": [
                   {
                     "funcion": "V",
@@ -795,42 +896,32 @@
                   {
                     "funcion": "CCL",
                     "texto": "cerca de la plaza",
-                    "nucleo": "cerca",
                     "partes": [
                       {
-                        "funcion": "ADV",
-                        "texto": "cerca",
-                        "nucleo": "cerca"
+                        "funcion": "PREP",
+                        "texto": "cerca de"
                       },
                       {
-                        "funcion": "CN",
-                        "texto": "de la plaza",
-                        "nucleo": "plaza",
+                        "funcion": "TERM",
+                        "texto": "la plaza",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "de"
+                            "funcion": "DET",
+                            "texto": "la"
                           },
                           {
-                            "funcion": "TERM",
-                            "texto": "la plaza",
-                            "nucleo": "plaza",
-                            "partes": [
-                              {
-                                "funcion": "DET",
-                                "texto": "la"
-                              },
-                              {
-                                "funcion": "N",
-                                "texto": "plaza"
-                              }
-                            ]
+                            "funcion": "N",
+                            "texto": "plaza",
+                            "nucleo": "plaza"
                           }
-                        ]
+                        ],
+                        "nucleo": "plaza"
                       }
-                    ]
+                    ],
+                    "nucleo": "plaza"
                   }
-                ]
+                ],
+                "nucleo": "está"
               }
             ]
           }
@@ -844,7 +935,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Los visitantes",
-                "nucleo": "visitantes",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -852,14 +942,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "visitantes"
+                    "texto": "visitantes",
+                    "nucleo": "visitantes"
                   }
-                ]
+                ],
+                "nucleo": "visitantes"
               },
               {
                 "funcion": "PRED",
                 "texto": "caminan todo recto hacia el puente",
-                "nucleo": "caminan",
                 "partes": [
                   {
                     "funcion": "V",
@@ -869,7 +960,6 @@
                   {
                     "funcion": "CCM",
                     "texto": "todo recto",
-                    "nucleo": "recto",
                     "partes": [
                       {
                         "funcion": "ADV",
@@ -881,12 +971,12 @@
                         "texto": "recto",
                         "nucleo": "recto"
                       }
-                    ]
+                    ],
+                    "nucleo": "todo"
                   },
                   {
                     "funcion": "CCL",
                     "texto": "hacia el puente",
-                    "nucleo": "puente",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -895,7 +985,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "el puente",
-                        "nucleo": "puente",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -903,13 +992,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "puente"
+                            "texto": "puente",
+                            "nucleo": "puente"
                           }
-                        ]
+                        ],
+                        "nucleo": "puente"
                       }
-                    ]
+                    ],
+                    "nucleo": "puente"
                   }
-                ]
+                ],
+                "nucleo": "caminan"
               }
             ]
           }
@@ -923,22 +1016,22 @@
               {
                 "funcion": "SUJ",
                 "texto": "Muchos viajeros",
-                "nucleo": "viajeros",
                 "partes": [
                   {
-                    "funcion": "CUANT",
+                    "funcion": "DET",
                     "texto": "Muchos"
                   },
                   {
                     "funcion": "N",
-                    "texto": "viajeros"
+                    "texto": "viajeros",
+                    "nucleo": "viajeros"
                   }
-                ]
+                ],
+                "nucleo": "viajeros"
               },
               {
                 "funcion": "PRED",
                 "texto": "encuentran el edificio sin dificultad",
-                "nucleo": "encuentran",
                 "partes": [
                   {
                     "funcion": "V",
@@ -948,7 +1041,6 @@
                   {
                     "funcion": "CD",
                     "texto": "el edificio",
-                    "nucleo": "edificio",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -956,14 +1048,15 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "edificio"
+                        "texto": "edificio",
+                        "nucleo": "edificio"
                       }
-                    ]
+                    ],
+                    "nucleo": "edificio"
                   },
                   {
                     "funcion": "CCM",
                     "texto": "sin dificultad",
-                    "nucleo": "dificultad",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -974,9 +1067,11 @@
                         "texto": "dificultad",
                         "nucleo": "dificultad"
                       }
-                    ]
+                    ],
+                    "nucleo": "dificultad"
                   }
-                ]
+                ],
+                "nucleo": "encuentran"
               }
             ]
           }

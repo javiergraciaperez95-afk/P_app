@@ -14,6 +14,7 @@ import { nuevaTarjeta } from './srs.js';
 import { LANG } from './curso.js';
 import { clave } from './curso.js';
 import { compactarOrigen } from './i18n.js';
+import { esDesarrollador } from './desarrollador.js';
 
 const CLAVE = clave('datos');
 const PREFIJO_TARJETA = `${clave('tarjeta')}:`;
@@ -285,7 +286,7 @@ export function resumenLeccion(idLeccion, idsEjercicios) {
     errores += e.errores;
   }
   const total = idsEjercicios.length;
-  const terminada = Boolean(guardada?.terminada);
+  const terminada = Boolean(guardada?.terminada) || esDesarrollador();
   let estado = 'nueva';
   if (terminada) estado = 'terminada';
   else if (guardada && (completados > 0 || guardada.abierta)) estado = 'curso';

@@ -2,6 +2,8 @@
   "esquema": 2,
   "id": "029",
   "capitulo": 4,
+  "numero_curso": 31,
+  "orden_curso": 31,
   "nivel": "A1",
   "palabras": {
     "un café": {
@@ -34,7 +36,7 @@
       "cat": "expr"
     },
     "los euros": {
-      "pron": "los E-u-ros",
+      "pron": "los EW-ros",
       "cat": "sust",
       "genero": "m"
     },
@@ -45,6 +47,18 @@
     "gracias": {
       "pron": "GRA-thyas",
       "cat": "interj"
+    },
+    "Lucía": {
+      "propio": true
+    },
+    "cafetería": {
+      "pron": "ka-fe-te-RI-a",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "paga": {
+      "pron": "PA-ga",
+      "cat": "verb"
     }
   },
   "bloques": [
@@ -78,7 +92,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Qué quiere",
-                "nucleo": "quiere",
                 "partes": [
                   {
                     "funcion": "CD",
@@ -90,7 +103,8 @@
                     "texto": "quiere",
                     "nucleo": "quiere"
                   }
-                ]
+                ],
+                "nucleo": "quiere"
               }
             ]
           }
@@ -101,12 +115,39 @@
             "oracion": "unimembre",
             "unidades": [
               {
-                "funcion": "CD",
+                "funcion": "N",
                 "texto": "Un café con leche",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Un"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "café",
+                    "nucleo": "café"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "con leche",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "leche",
+                        "nucleo": "leche"
+                      }
+                    ],
+                    "nucleo": "leche"
+                  }
+                ],
                 "nucleo": "café"
               },
               {
-                "funcion": "VOC",
+                "funcion": "INTERJ",
                 "texto": "por favor",
                 "nucleo": "favor"
               }
@@ -122,10 +163,9 @@
               {
                 "funcion": "PRED",
                 "texto": "Cuánto es",
-                "nucleo": "es",
                 "partes": [
                   {
-                    "funcion": "CD",
+                    "funcion": "ATRIB",
                     "texto": "Cuánto",
                     "nucleo": "Cuánto"
                   },
@@ -134,7 +174,8 @@
                     "texto": "es",
                     "nucleo": "es"
                   }
-                ]
+                ],
+                "nucleo": "es"
               }
             ]
           }
@@ -145,8 +186,20 @@
             "oracion": "unimembre",
             "unidades": [
               {
-                "funcion": "ATRIB",
+                "funcion": "N",
                 "texto": "Dos euros",
+                "partes": [
+                  {
+                    "funcion": "CUANT",
+                    "texto": "Dos",
+                    "nucleo": "Dos"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "euros",
+                    "nucleo": "euros"
+                  }
+                ],
                 "nucleo": "euros"
               }
             ]
@@ -195,7 +248,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Quiero un café",
-                "nucleo": "Quiero",
                 "partes": [
                   {
                     "funcion": "V",
@@ -205,9 +257,21 @@
                   {
                     "funcion": "CD",
                     "texto": "un café",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "un"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "café",
+                        "nucleo": "café"
+                      }
+                    ],
                     "nucleo": "café"
                   }
-                ]
+                ],
+                "nucleo": "Quiero"
               }
             ]
           }
@@ -220,7 +284,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Qué quiere",
-                "nucleo": "quiere",
                 "partes": [
                   {
                     "funcion": "CD",
@@ -232,7 +295,8 @@
                     "texto": "quiere",
                     "nucleo": "quiere"
                   }
-                ]
+                ],
+                "nucleo": "quiere"
               },
               {
                 "funcion": "SUJ",
@@ -258,7 +322,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Es sábado por la mañana",
-                "nucleo": "Es",
                 "partes": [
                   {
                     "funcion": "V",
@@ -273,9 +336,32 @@
                   {
                     "funcion": "CCT",
                     "texto": "por la mañana",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "por"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la mañana",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "mañana",
+                            "nucleo": "mañana"
+                          }
+                        ],
+                        "nucleo": "mañana"
+                      }
+                    ],
                     "nucleo": "mañana"
                   }
-                ]
+                ],
+                "nucleo": "Es"
               }
             ]
           }
@@ -294,7 +380,6 @@
               {
                 "funcion": "PRED",
                 "texto": "entra en una cafetería pequeña",
-                "nucleo": "entra",
                 "partes": [
                   {
                     "funcion": "V",
@@ -304,9 +389,37 @@
                   {
                     "funcion": "CCL",
                     "texto": "en una cafetería pequeña",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "una cafetería pequeña",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "una"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "cafetería",
+                            "nucleo": "cafetería"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "pequeña",
+                            "nucleo": "pequeña"
+                          }
+                        ],
+                        "nucleo": "cafetería"
+                      }
+                    ],
                     "nucleo": "cafetería"
                   }
-                ]
+                ],
+                "nucleo": "entra"
               }
             ]
           }
@@ -320,33 +433,70 @@
               {
                 "funcion": "PRED",
                 "texto": "Hay mucha gente y huele a café",
-                "nucleo": "Hay",
                 "partes": [
                   {
-                    "funcion": "V",
-                    "texto": "Hay",
+                    "funcion": "PRED",
+                    "texto": "Hay mucha gente",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "Hay",
+                        "nucleo": "Hay"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "mucha gente",
+                        "partes": [
+                          {
+                            "funcion": "CUANT",
+                            "texto": "mucha",
+                            "nucleo": "mucha"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "gente",
+                            "nucleo": "gente"
+                          }
+                        ],
+                        "nucleo": "gente"
+                      }
+                    ],
                     "nucleo": "Hay"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "mucha gente",
-                    "nucleo": "gente"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "V",
-                    "texto": "huele",
+                    "funcion": "PRED",
+                    "texto": "huele a café",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "huele",
+                        "nucleo": "huele"
+                      },
+                      {
+                        "funcion": "CRV",
+                        "texto": "a café",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "a"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "café",
+                            "nucleo": "café"
+                          }
+                        ],
+                        "nucleo": "café"
+                      }
+                    ],
                     "nucleo": "huele"
-                  },
-                  {
-                    "funcion": "CRV",
-                    "texto": "a café",
-                    "nucleo": "café"
                   }
-                ]
+                ],
+                "nucleo": "Hay"
               }
             ]
           }
@@ -360,7 +510,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La camarera",
-                "nucleo": "camarera",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -368,14 +517,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "camarera"
+                    "texto": "camarera",
+                    "nucleo": "camarera"
                   }
-                ]
+                ],
+                "nucleo": "camarera"
               },
               {
                 "funcion": "PRED",
                 "texto": "se acerca a su mesa",
-                "nucleo": "acerca",
                 "partes": [
                   {
                     "funcion": "V",
@@ -385,9 +535,32 @@
                   {
                     "funcion": "CCL",
                     "texto": "a su mesa",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "a"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "su mesa",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "su"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "mesa",
+                            "nucleo": "mesa"
+                          }
+                        ],
+                        "nucleo": "mesa"
+                      }
+                    ],
                     "nucleo": "mesa"
                   }
-                ]
+                ],
+                "nucleo": "acerca"
               }
             ]
           }
@@ -401,7 +574,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La camarera",
-                "nucleo": "camarera",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -409,14 +581,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "camarera"
+                    "texto": "camarera",
+                    "nucleo": "camarera"
                   }
-                ]
+                ],
+                "nucleo": "camarera"
               },
               {
                 "funcion": "PRED",
                 "texto": "le pregunta qué quiere",
-                "nucleo": "pregunta",
                 "partes": [
                   {
                     "funcion": "CI",
@@ -431,9 +604,29 @@
                   {
                     "funcion": "CD",
                     "texto": "qué quiere",
+                    "partes": [
+                      {
+                        "funcion": "PRED",
+                        "texto": "qué quiere",
+                        "partes": [
+                          {
+                            "funcion": "CD",
+                            "texto": "qué",
+                            "nucleo": "qué"
+                          },
+                          {
+                            "funcion": "V",
+                            "texto": "quiere",
+                            "nucleo": "quiere"
+                          }
+                        ],
+                        "nucleo": "quiere"
+                      }
+                    ],
                     "nucleo": "quiere"
                   }
-                ]
+                ],
+                "nucleo": "pregunta"
               }
             ]
           }
@@ -452,7 +645,6 @@
               {
                 "funcion": "PRED",
                 "texto": "pide un café con leche y un té",
-                "nucleo": "pide",
                 "partes": [
                   {
                     "funcion": "V",
@@ -462,9 +654,64 @@
                   {
                     "funcion": "CD",
                     "texto": "un café con leche y un té",
+                    "partes": [
+                      {
+                        "funcion": "CD",
+                        "texto": "un café con leche",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "un"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "café",
+                            "nucleo": "café"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "con leche",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "con"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "leche",
+                                "nucleo": "leche"
+                              }
+                            ],
+                            "nucleo": "leche"
+                          }
+                        ],
+                        "nucleo": "café"
+                      },
+                      {
+                        "funcion": "CONJ",
+                        "texto": "y"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "un té",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "un"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "té",
+                            "nucleo": "té"
+                          }
+                        ],
+                        "nucleo": "té"
+                      }
+                    ],
                     "nucleo": "café"
                   }
-                ]
+                ],
+                "nucleo": "pide"
               }
             ]
           }
@@ -478,7 +725,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "El café",
-                "nucleo": "café",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -486,14 +732,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "café"
+                    "texto": "café",
+                    "nucleo": "café"
                   }
-                ]
+                ],
+                "nucleo": "café"
               },
               {
                 "funcion": "PRED",
                 "texto": "cuesta dos euros",
-                "nucleo": "cuesta",
                 "partes": [
                   {
                     "funcion": "V",
@@ -501,11 +748,24 @@
                     "nucleo": "cuesta"
                   },
                   {
-                    "funcion": "CD",
+                    "funcion": "CCA",
                     "texto": "dos euros",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "dos",
+                        "nucleo": "dos"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "euros",
+                        "nucleo": "euros"
+                      }
+                    ],
                     "nucleo": "euros"
                   }
-                ]
+                ],
+                "nucleo": "cuesta"
               }
             ]
           }
@@ -524,11 +784,17 @@
               {
                 "funcion": "PRED",
                 "texto": "paga y da las gracias",
-                "nucleo": "paga",
                 "partes": [
                   {
-                    "funcion": "V",
+                    "funcion": "PRED",
                     "texto": "paga",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "paga",
+                        "nucleo": "paga"
+                      }
+                    ],
                     "nucleo": "paga"
                   },
                   {
@@ -536,16 +802,35 @@
                     "texto": "y"
                   },
                   {
-                    "funcion": "V",
-                    "texto": "da",
+                    "funcion": "PRED",
+                    "texto": "da las gracias",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "da",
+                        "nucleo": "da"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "las gracias",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "las"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "gracias",
+                            "nucleo": "gracias"
+                          }
+                        ],
+                        "nucleo": "gracias"
+                      }
+                    ],
                     "nucleo": "da"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "las gracias",
-                    "nucleo": "gracias"
                   }
-                ]
+                ],
+                "nucleo": "paga"
               }
             ]
           }

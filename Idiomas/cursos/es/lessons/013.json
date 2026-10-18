@@ -2,6 +2,8 @@
   "esquema": 2,
   "id": "013",
   "capitulo": 2,
+  "numero_curso": 15,
+  "orden_curso": 15,
   "nivel": "A1",
   "palabras": {
     "la familia": {
@@ -82,6 +84,75 @@
     },
     "Nam": {
       "propio": true
+    },
+    "hermanos": {
+      "pron": "er-MA-nos",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "hermana": {
+      "pron": "er-MA-na",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "padres": {
+      "pron": "PA-dres",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "hermano": {
+      "pron": "er-MA-no",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "familia": {
+      "pron": "fa-MI-lya",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "feliz": {
+      "pron": "fe-LITH",
+      "cat": "adj"
+    },
+    "cariño": {
+      "pron": "ka-RI-nyo",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "todas": {
+      "pron": "TO-das",
+      "cat": "adj"
+    },
+    "personas": {
+      "pron": "per-SO-nas",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "amables": {
+      "pron": "a-MA-bles",
+      "cat": "adj"
+    },
+    "bonita": {
+      "pron": "bo-NI-ta",
+      "cat": "adj"
+    },
+    "flores": {
+      "pron": "FLO-res",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "cenamos": {
+      "pron": "the-NA-mos",
+      "cat": "verb"
+    },
+    "juntos": {
+      "pron": "HUN-tos",
+      "cat": "adv"
+    },
+    "padre": {
+      "pron": "PA-dre",
+      "cat": "sust",
+      "genero": "m"
     }
   },
   "bloques": [
@@ -102,7 +173,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Tienes hermanos",
-                "nucleo": "Tienes",
                 "partes": [
                   {
                     "funcion": "V",
@@ -114,7 +184,8 @@
                     "texto": "hermanos",
                     "nucleo": "hermanos"
                   }
-                ]
+                ],
+                "nucleo": "Tienes"
               }
             ]
           }
@@ -127,12 +198,12 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Sí, tengo una hermana",
-                "nucleo": "tengo",
+                "texto": "Sí tengo una hermana",
                 "partes": [
                   {
                     "funcion": "ADV",
-                    "texto": "Sí"
+                    "texto": "Sí",
+                    "nucleo": "Sí"
                   },
                   {
                     "funcion": "V",
@@ -142,7 +213,6 @@
                   {
                     "funcion": "CD",
                     "texto": "una hermana",
-                    "nucleo": "hermana",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -150,11 +220,14 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "hermana"
+                        "texto": "hermana",
+                        "nucleo": "hermana"
                       }
-                    ]
+                    ],
+                    "nucleo": "hermana"
                   }
-                ]
+                ],
+                "nucleo": "tengo"
               }
             ]
           }
@@ -168,7 +241,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Mi hermana",
-                "nucleo": "hermana",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -176,14 +248,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "hermana"
+                    "texto": "hermana",
+                    "nucleo": "hermana"
                   }
-                ]
+                ],
+                "nucleo": "hermana"
               },
               {
                 "funcion": "PRED",
                 "texto": "se llama Mai",
-                "nucleo": "llama",
                 "partes": [
                   {
                     "funcion": "V",
@@ -191,11 +264,12 @@
                     "nucleo": "llama"
                   },
                   {
-                    "funcion": "CD",
+                    "funcion": "CPVO",
                     "texto": "Mai",
                     "nucleo": "Mai"
                   }
-                ]
+                ],
+                "nucleo": "llama"
               }
             ]
           }
@@ -209,7 +283,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Mis padres",
-                "nucleo": "padres",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -217,14 +290,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "padres"
+                    "texto": "padres",
+                    "nucleo": "padres"
                   }
-                ]
+                ],
+                "nucleo": "padres"
               },
               {
                 "funcion": "PRED",
                 "texto": "se llaman Hoa y Nam",
-                "nucleo": "llaman",
                 "partes": [
                   {
                     "funcion": "V",
@@ -232,25 +306,28 @@
                     "nucleo": "llaman"
                   },
                   {
-                    "funcion": "CD",
+                    "funcion": "CPVO",
                     "texto": "Hoa y Nam",
-                    "nucleo": "Hoa",
                     "partes": [
                       {
-                        "funcion": "N",
-                        "texto": "Hoa"
+                        "funcion": "CPVO",
+                        "texto": "Hoa",
+                        "nucleo": "Hoa"
                       },
                       {
                         "funcion": "CONJ",
                         "texto": "y"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "Nam"
+                        "funcion": "CPVO",
+                        "texto": "Nam",
+                        "nucleo": "Nam"
                       }
-                    ]
+                    ],
+                    "nucleo": "Hoa"
                   }
-                ]
+                ],
+                "nucleo": "llaman"
               }
             ]
           }
@@ -289,7 +366,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Mi hermano",
-                "nucleo": "hermano",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -297,14 +373,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "hermano"
+                    "texto": "hermano",
+                    "nucleo": "hermano"
                   }
-                ]
+                ],
+                "nucleo": "hermano"
               },
               {
                 "funcion": "PRED",
                 "texto": "se llama David",
-                "nucleo": "llama",
                 "partes": [
                   {
                     "funcion": "V",
@@ -312,11 +389,12 @@
                     "nucleo": "llama"
                   },
                   {
-                    "funcion": "CD",
+                    "funcion": "CPVO",
                     "texto": "David",
                     "nucleo": "David"
                   }
-                ]
+                ],
+                "nucleo": "llama"
               }
             ]
           }
@@ -329,7 +407,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Mis hermanos",
-                "nucleo": "hermanos",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -337,14 +414,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "hermanos"
+                    "texto": "hermanos",
+                    "nucleo": "hermanos"
                   }
-                ]
+                ],
+                "nucleo": "hermanos"
               },
               {
                 "funcion": "PRED",
                 "texto": "se llaman Carlos y Luis",
-                "nucleo": "llaman",
                 "partes": [
                   {
                     "funcion": "V",
@@ -352,25 +430,28 @@
                     "nucleo": "llaman"
                   },
                   {
-                    "funcion": "CD",
+                    "funcion": "CPVO",
                     "texto": "Carlos y Luis",
-                    "nucleo": "Carlos",
                     "partes": [
                       {
-                        "funcion": "N",
-                        "texto": "Carlos"
+                        "funcion": "CPVO",
+                        "texto": "Carlos",
+                        "nucleo": "Carlos"
                       },
                       {
                         "funcion": "CONJ",
                         "texto": "y"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "Luis"
+                        "funcion": "CPVO",
+                        "texto": "Luis",
+                        "nucleo": "Luis"
                       }
-                    ]
+                    ],
+                    "nucleo": "Carlos"
                   }
-                ]
+                ],
+                "nucleo": "llaman"
               }
             ]
           }
@@ -391,7 +472,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Mi familia",
-                "nucleo": "familia",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -399,14 +479,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "familia"
+                    "texto": "familia",
+                    "nucleo": "familia"
                   }
-                ]
+                ],
+                "nucleo": "familia"
               },
               {
                 "funcion": "PRED",
                 "texto": "es pequeña y muy feliz en Madrid",
-                "nucleo": "es",
                 "partes": [
                   {
                     "funcion": "V",
@@ -416,10 +497,9 @@
                   {
                     "funcion": "ATRIB",
                     "texto": "pequeña y muy feliz",
-                    "nucleo": "pequeña",
                     "partes": [
                       {
-                        "funcion": "ADY",
+                        "funcion": "ATRIB",
                         "texto": "pequeña",
                         "nucleo": "pequeña"
                       },
@@ -428,27 +508,28 @@
                         "texto": "y"
                       },
                       {
-                        "funcion": "ADY",
+                        "funcion": "ATRIB",
                         "texto": "muy feliz",
-                        "nucleo": "feliz",
                         "partes": [
                           {
                             "funcion": "ADV",
-                            "texto": "muy"
+                            "texto": "muy",
+                            "nucleo": "muy"
                           },
                           {
                             "funcion": "ADY",
                             "texto": "feliz",
                             "nucleo": "feliz"
                           }
-                        ]
+                        ],
+                        "nucleo": "muy"
                       }
-                    ]
+                    ],
+                    "nucleo": "pequeña"
                   },
                   {
                     "funcion": "CCL",
                     "texto": "en Madrid",
-                    "nucleo": "Madrid",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -459,9 +540,11 @@
                         "texto": "Madrid",
                         "nucleo": "Madrid"
                       }
-                    ]
+                    ],
+                    "nucleo": "Madrid"
                   }
-                ]
+                ],
+                "nucleo": "es"
               }
             ]
           }
@@ -475,7 +558,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Mi madre",
-                "nucleo": "madre",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -483,51 +565,67 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "madre"
+                    "texto": "madre",
+                    "nucleo": "madre"
                   }
-                ]
+                ],
+                "nucleo": "madre"
               },
               {
                 "funcion": "PRED",
                 "texto": "se llama Elena y trabaja con cariño",
-                "nucleo": "llama",
                 "partes": [
                   {
-                    "funcion": "V",
-                    "texto": "se llama",
+                    "funcion": "PRED",
+                    "texto": "se llama Elena",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "se llama",
+                        "nucleo": "llama"
+                      },
+                      {
+                        "funcion": "CPVO",
+                        "texto": "Elena",
+                        "nucleo": "Elena"
+                      }
+                    ],
                     "nucleo": "llama"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "Elena",
-                    "nucleo": "Elena"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "V",
-                    "texto": "trabaja",
-                    "nucleo": "trabaja"
-                  },
-                  {
-                    "funcion": "CCM",
-                    "texto": "con cariño",
-                    "nucleo": "cariño",
+                    "funcion": "PRED",
+                    "texto": "trabaja con cariño",
                     "partes": [
                       {
-                        "funcion": "PREP",
-                        "texto": "con"
+                        "funcion": "V",
+                        "texto": "trabaja",
+                        "nucleo": "trabaja"
                       },
                       {
-                        "funcion": "TERM",
-                        "texto": "cariño",
+                        "funcion": "CCM",
+                        "texto": "con cariño",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "con"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "cariño",
+                            "nucleo": "cariño"
+                          }
+                        ],
                         "nucleo": "cariño"
                       }
-                    ]
+                    ],
+                    "nucleo": "trabaja"
                   }
-                ]
+                ],
+                "nucleo": "llama"
               }
             ]
           }
@@ -546,7 +644,6 @@
               {
                 "funcion": "PRED",
                 "texto": "siempre ayuda a todas las personas amables",
-                "nucleo": "ayuda",
                 "partes": [
                   {
                     "funcion": "CCT",
@@ -561,7 +658,6 @@
                   {
                     "funcion": "CD",
                     "texto": "a todas las personas amables",
-                    "nucleo": "personas",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -570,7 +666,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "todas las personas amables",
-                        "nucleo": "personas",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -582,18 +677,22 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "personas"
+                            "texto": "personas",
+                            "nucleo": "personas"
                           },
                           {
                             "funcion": "ADY",
                             "texto": "amables",
                             "nucleo": "amables"
                           }
-                        ]
+                        ],
+                        "nucleo": "personas"
                       }
-                    ]
+                    ],
+                    "nucleo": "personas"
                   }
-                ]
+                ],
+                "nucleo": "ayuda"
               }
             ]
           }
@@ -607,7 +706,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Mi hermano mayor",
-                "nucleo": "hermano",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -615,19 +713,20 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "hermano"
+                    "texto": "hermano",
+                    "nucleo": "hermano"
                   },
                   {
                     "funcion": "ADY",
                     "texto": "mayor",
                     "nucleo": "mayor"
                   }
-                ]
+                ],
+                "nucleo": "hermano"
               },
               {
                 "funcion": "PRED",
                 "texto": "estudia mucho en la universidad",
-                "nucleo": "estudia",
                 "partes": [
                   {
                     "funcion": "V",
@@ -635,14 +734,13 @@
                     "nucleo": "estudia"
                   },
                   {
-                    "funcion": "CCC",
+                    "funcion": "CCA",
                     "texto": "mucho",
                     "nucleo": "mucho"
                   },
                   {
                     "funcion": "CCL",
                     "texto": "en la universidad",
-                    "nucleo": "universidad",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -651,7 +749,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "la universidad",
-                        "nucleo": "universidad",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -659,13 +756,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "universidad"
+                            "texto": "universidad",
+                            "nucleo": "universidad"
                           }
-                        ]
+                        ],
+                        "nucleo": "universidad"
                       }
-                    ]
+                    ],
+                    "nucleo": "universidad"
                   }
-                ]
+                ],
+                "nucleo": "estudia"
               }
             ]
           }
@@ -679,7 +780,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Mis padres",
-                "nucleo": "padres",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -687,14 +787,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "padres"
+                    "texto": "padres",
+                    "nucleo": "padres"
                   }
-                ]
+                ],
+                "nucleo": "padres"
               },
               {
                 "funcion": "PRED",
                 "texto": "tienen una casa bonita con flores",
-                "nucleo": "tienen",
                 "partes": [
                   {
                     "funcion": "V",
@@ -704,7 +805,6 @@
                   {
                     "funcion": "CD",
                     "texto": "una casa bonita con flores",
-                    "nucleo": "casa",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -712,7 +812,8 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "casa"
+                        "texto": "casa",
+                        "nucleo": "casa"
                       },
                       {
                         "funcion": "ADY",
@@ -722,7 +823,6 @@
                       {
                         "funcion": "CN",
                         "texto": "con flores",
-                        "nucleo": "flores",
                         "partes": [
                           {
                             "funcion": "PREP",
@@ -733,11 +833,14 @@
                             "texto": "flores",
                             "nucleo": "flores"
                           }
-                        ]
+                        ],
+                        "nucleo": "flores"
                       }
-                    ]
+                    ],
+                    "nucleo": "casa"
                   }
-                ]
+                ],
+                "nucleo": "tienen"
               }
             ]
           }
@@ -756,7 +859,6 @@
               {
                 "funcion": "PRED",
                 "texto": "siempre cenamos juntos en la mesa grande",
-                "nucleo": "cenamos",
                 "partes": [
                   {
                     "funcion": "CCT",
@@ -769,14 +871,13 @@
                     "nucleo": "cenamos"
                   },
                   {
-                    "funcion": "CPVO",
+                    "funcion": "CCM",
                     "texto": "juntos",
                     "nucleo": "juntos"
                   },
                   {
                     "funcion": "CCL",
                     "texto": "en la mesa grande",
-                    "nucleo": "mesa",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -785,7 +886,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "la mesa grande",
-                        "nucleo": "mesa",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -793,18 +893,22 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "mesa"
+                            "texto": "mesa",
+                            "nucleo": "mesa"
                           },
                           {
                             "funcion": "ADY",
                             "texto": "grande",
                             "nucleo": "grande"
                           }
-                        ]
+                        ],
+                        "nucleo": "mesa"
                       }
-                    ]
+                    ],
+                    "nucleo": "mesa"
                   }
-                ]
+                ],
+                "nucleo": "cenamos"
               }
             ]
           }

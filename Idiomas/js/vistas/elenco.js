@@ -4,7 +4,7 @@
 // Los colores y el bocadillo están en css/escenas.css.
 
 import { el } from '../dom.js';
-import { CURSOS } from '../cursos.js';
+import { TUTORAS } from '../amigas.js';
 import { curso, hayCurso } from '../curso.js';
 import { dibujoDe } from '../tutor-sprite.js';
 import { sonar } from '../sonidos.js';
@@ -23,7 +23,7 @@ export function crearElenco() {
   const alApagar = fn => apagados.push(fn);
 
   // El reparto: la del curso elegido es la protagonista; las demás, al azar y sin repetirse.
-  const disponibles = CURSOS.filter(c => !c.proximamente);
+  const disponibles = TUTORAS;
   const principal = hayCurso ? curso : null;
   const barajadas = disponibles.filter(c => c.id !== principal?.id).sort(() => Math.random() - 0.5);
   let turno = 0;

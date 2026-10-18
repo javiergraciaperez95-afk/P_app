@@ -2,6 +2,8 @@
   "esquema": 2,
   "id": "016",
   "capitulo": 2,
+  "numero_curso": 18,
+  "orden_curso": 18,
   "nivel": "A1",
   "palabras": {
     "qué": {
@@ -60,6 +62,48 @@
     },
     "Sevilla": {
       "propio": true
+    },
+    "chico": {
+      "pron": "CHI-ko",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "número": {
+      "pron": "NU-me-ro",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "teléfono": {
+      "pron": "te-LE-fo-no",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "curiosidad": {
+      "pron": "ku-ryo-si-DAD",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "quiere": {
+      "pron": "KYE-re",
+      "cat": "verb"
+    },
+    "responde": {
+      "pron": "rres-PON-de",
+      "cat": "verb"
+    },
+    "dudas": {
+      "pron": "DU-das",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "conversan": {
+      "pron": "kon-BER-san",
+      "cat": "verb"
+    },
+    "entusiasmo": {
+      "pron": "en-tu-SYAS-mo",
+      "cat": "sust",
+      "genero": "m"
     }
   },
   "bloques": [
@@ -80,7 +124,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Quién es",
-                "nucleo": "es",
                 "partes": [
                   {
                     "funcion": "ATRIB",
@@ -92,12 +135,12 @@
                     "texto": "es",
                     "nucleo": "es"
                   }
-                ]
+                ],
+                "nucleo": "es"
               },
               {
                 "funcion": "SUJ",
                 "texto": "ese chico",
-                "nucleo": "chico",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -105,9 +148,11 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "chico"
+                    "texto": "chico",
+                    "nucleo": "chico"
                   }
-                ]
+                ],
+                "nucleo": "chico"
               }
             ]
           }
@@ -121,7 +166,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Es mi hermano",
-                "nucleo": "Es",
                 "partes": [
                   {
                     "funcion": "V",
@@ -131,7 +175,6 @@
                   {
                     "funcion": "ATRIB",
                     "texto": "mi hermano",
-                    "nucleo": "hermano",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -139,11 +182,14 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "hermano"
+                        "texto": "hermano",
+                        "nucleo": "hermano"
                       }
-                    ]
+                    ],
+                    "nucleo": "hermano"
                   }
-                ]
+                ],
+                "nucleo": "Es"
               }
             ]
           }
@@ -157,7 +203,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Vive en Sevilla",
-                "nucleo": "Vive",
                 "partes": [
                   {
                     "funcion": "V",
@@ -167,7 +212,6 @@
                   {
                     "funcion": "CCL",
                     "texto": "en Sevilla",
-                    "nucleo": "Sevilla",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -178,9 +222,11 @@
                         "texto": "Sevilla",
                         "nucleo": "Sevilla"
                       }
-                    ]
+                    ],
+                    "nucleo": "Sevilla"
                   }
-                ]
+                ],
+                "nucleo": "Vive"
               }
             ]
           }
@@ -194,12 +240,10 @@
               {
                 "funcion": "PRED",
                 "texto": "Por qué no vive aquí",
-                "nucleo": "vive",
                 "partes": [
                   {
                     "funcion": "CCC",
                     "texto": "Por qué",
-                    "nucleo": "qué",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -210,7 +254,8 @@
                         "texto": "qué",
                         "nucleo": "qué"
                       }
-                    ]
+                    ],
+                    "nucleo": "qué"
                   },
                   {
                     "funcion": "NEG",
@@ -226,7 +271,8 @@
                     "texto": "aquí",
                     "nucleo": "aquí"
                   }
-                ]
+                ],
+                "nucleo": "vive"
               }
             ]
           }
@@ -234,29 +280,35 @@
         {
           "quien": "Pablo",
           "sintaxis": {
-            "oracion": "bimembre",
-            "sujeto": "omitido",
+            "oracion": "unimembre",
             "unidades": [
               {
-                "funcion": "PRED",
+                "funcion": "CCC",
                 "texto": "Porque estudia allí",
-                "nucleo": "estudia",
                 "partes": [
                   {
                     "funcion": "CONJ",
                     "texto": "Porque"
                   },
                   {
-                    "funcion": "V",
-                    "texto": "estudia",
+                    "funcion": "PRED",
+                    "texto": "estudia allí",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "estudia",
+                        "nucleo": "estudia"
+                      },
+                      {
+                        "funcion": "CCL",
+                        "texto": "allí",
+                        "nucleo": "allí"
+                      }
+                    ],
                     "nucleo": "estudia"
-                  },
-                  {
-                    "funcion": "CCL",
-                    "texto": "allí",
-                    "nucleo": "allí"
                   }
-                ]
+                ],
+                "nucleo": "estudia"
               }
             ]
           }
@@ -270,7 +322,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Cuál es",
-                "nucleo": "es",
                 "partes": [
                   {
                     "funcion": "ATRIB",
@@ -282,12 +333,12 @@
                     "texto": "es",
                     "nucleo": "es"
                   }
-                ]
+                ],
+                "nucleo": "es"
               },
               {
                 "funcion": "SUJ",
                 "texto": "su número de teléfono",
-                "nucleo": "número",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -295,12 +346,12 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "número"
+                    "texto": "número",
+                    "nucleo": "número"
                   },
                   {
                     "funcion": "CN",
                     "texto": "de teléfono",
-                    "nucleo": "teléfono",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -311,9 +362,11 @@
                         "texto": "teléfono",
                         "nucleo": "teléfono"
                       }
-                    ]
+                    ],
+                    "nucleo": "teléfono"
                   }
-                ]
+                ],
+                "nucleo": "número"
               }
             ]
           }
@@ -349,7 +402,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Dónde vive",
-                "nucleo": "vive",
                 "partes": [
                   {
                     "funcion": "CCL",
@@ -361,7 +413,8 @@
                     "texto": "vive",
                     "nucleo": "vive"
                   }
-                ]
+                ],
+                "nucleo": "vive"
               },
               {
                 "funcion": "SUJ",
@@ -379,7 +432,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Cuándo es",
-                "nucleo": "es",
                 "partes": [
                   {
                     "funcion": "CCT",
@@ -391,12 +443,12 @@
                     "texto": "es",
                     "nucleo": "es"
                   }
-                ]
+                ],
+                "nucleo": "es"
               },
               {
                 "funcion": "SUJ",
                 "texto": "la clase",
-                "nucleo": "clase",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -404,9 +456,11 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "clase"
+                    "texto": "clase",
+                    "nucleo": "clase"
                   }
-                ]
+                ],
+                "nucleo": "clase"
               }
             ]
           }
@@ -432,7 +486,6 @@
               {
                 "funcion": "PRED",
                 "texto": "pregunta con curiosidad por su nuevo compañero",
-                "nucleo": "pregunta",
                 "partes": [
                   {
                     "funcion": "V",
@@ -442,7 +495,6 @@
                   {
                     "funcion": "CCM",
                     "texto": "con curiosidad",
-                    "nucleo": "curiosidad",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -453,12 +505,12 @@
                         "texto": "curiosidad",
                         "nucleo": "curiosidad"
                       }
-                    ]
+                    ],
+                    "nucleo": "curiosidad"
                   },
                   {
                     "funcion": "CRV",
                     "texto": "por su nuevo compañero",
-                    "nucleo": "compañero",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -467,7 +519,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "su nuevo compañero",
-                        "nucleo": "compañero",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -480,13 +531,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "compañero"
+                            "texto": "compañero",
+                            "nucleo": "compañero"
                           }
-                        ]
+                        ],
+                        "nucleo": "compañero"
                       }
-                    ]
+                    ],
+                    "nucleo": "compañero"
                   }
-                ]
+                ],
+                "nucleo": "pregunta"
               }
             ]
           }
@@ -505,30 +560,38 @@
               {
                 "funcion": "PRED",
                 "texto": "quiere saber dónde vive y cuándo estudia",
-                "nucleo": "quiere",
                 "partes": [
                   {
                     "funcion": "V",
-                    "texto": "quiere",
-                    "nucleo": "quiere"
+                    "texto": "quiere saber",
+                    "nucleo": "saber"
                   },
                   {
                     "funcion": "CD",
-                    "texto": "saber dónde vive y cuándo estudia",
-                    "nucleo": "saber",
+                    "texto": "dónde vive y cuándo estudia",
                     "partes": [
                       {
-                        "funcion": "INF",
-                        "texto": "saber"
-                      },
-                      {
-                        "funcion": "CCL",
-                        "texto": "dónde",
-                        "nucleo": "dónde"
-                      },
-                      {
-                        "funcion": "V",
-                        "texto": "vive",
+                        "funcion": "CD",
+                        "texto": "dónde vive",
+                        "partes": [
+                          {
+                            "funcion": "PRED",
+                            "texto": "dónde vive",
+                            "partes": [
+                              {
+                                "funcion": "CCL",
+                                "texto": "dónde",
+                                "nucleo": "dónde"
+                              },
+                              {
+                                "funcion": "V",
+                                "texto": "vive",
+                                "nucleo": "vive"
+                              }
+                            ],
+                            "nucleo": "vive"
+                          }
+                        ],
                         "nucleo": "vive"
                       },
                       {
@@ -536,18 +599,34 @@
                         "texto": "y"
                       },
                       {
-                        "funcion": "CCT",
-                        "texto": "cuándo",
-                        "nucleo": "cuándo"
-                      },
-                      {
-                        "funcion": "V",
-                        "texto": "estudia",
+                        "funcion": "CD",
+                        "texto": "cuándo estudia",
+                        "partes": [
+                          {
+                            "funcion": "PRED",
+                            "texto": "cuándo estudia",
+                            "partes": [
+                              {
+                                "funcion": "CCT",
+                                "texto": "cuándo",
+                                "nucleo": "cuándo"
+                              },
+                              {
+                                "funcion": "V",
+                                "texto": "estudia",
+                                "nucleo": "estudia"
+                              }
+                            ],
+                            "nucleo": "estudia"
+                          }
+                        ],
                         "nucleo": "estudia"
                       }
-                    ]
+                    ],
+                    "nucleo": "vive"
                   }
-                ]
+                ],
+                "nucleo": "saber"
               }
             ]
           }
@@ -566,7 +645,6 @@
               {
                 "funcion": "PRED",
                 "texto": "responde a todas sus dudas con amabilidad",
-                "nucleo": "responde",
                 "partes": [
                   {
                     "funcion": "V",
@@ -576,7 +654,6 @@
                   {
                     "funcion": "CI",
                     "texto": "a todas sus dudas",
-                    "nucleo": "dudas",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -585,11 +662,11 @@
                       {
                         "funcion": "TERM",
                         "texto": "todas sus dudas",
-                        "nucleo": "dudas",
                         "partes": [
                           {
-                            "funcion": "DET",
-                            "texto": "todas"
+                            "funcion": "CUANT",
+                            "texto": "todas",
+                            "nucleo": "todas"
                           },
                           {
                             "funcion": "DET",
@@ -597,16 +674,18 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "dudas"
+                            "texto": "dudas",
+                            "nucleo": "dudas"
                           }
-                        ]
+                        ],
+                        "nucleo": "dudas"
                       }
-                    ]
+                    ],
+                    "nucleo": "dudas"
                   },
                   {
                     "funcion": "CCM",
                     "texto": "con amabilidad",
-                    "nucleo": "amabilidad",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -617,9 +696,11 @@
                         "texto": "amabilidad",
                         "nucleo": "amabilidad"
                       }
-                    ]
+                    ],
+                    "nucleo": "amabilidad"
                   }
-                ]
+                ],
+                "nucleo": "responde"
               }
             ]
           }
@@ -633,7 +714,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "El estudiante",
-                "nucleo": "estudiante",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -641,14 +721,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "estudiante"
+                    "texto": "estudiante",
+                    "nucleo": "estudiante"
                   }
-                ]
+                ],
+                "nucleo": "estudiante"
               },
               {
                 "funcion": "PRED",
                 "texto": "vive lejos porque aprende idiomas allí",
-                "nucleo": "vive",
                 "partes": [
                   {
                     "funcion": "V",
@@ -663,30 +744,38 @@
                   {
                     "funcion": "CCC",
                     "texto": "porque aprende idiomas allí",
-                    "nucleo": "aprende",
                     "partes": [
                       {
                         "funcion": "CONJ",
                         "texto": "porque"
                       },
                       {
-                        "funcion": "V",
-                        "texto": "aprende",
+                        "funcion": "PRED",
+                        "texto": "aprende idiomas allí",
+                        "partes": [
+                          {
+                            "funcion": "V",
+                            "texto": "aprende",
+                            "nucleo": "aprende"
+                          },
+                          {
+                            "funcion": "CD",
+                            "texto": "idiomas",
+                            "nucleo": "idiomas"
+                          },
+                          {
+                            "funcion": "CCL",
+                            "texto": "allí",
+                            "nucleo": "allí"
+                          }
+                        ],
                         "nucleo": "aprende"
-                      },
-                      {
-                        "funcion": "CD",
-                        "texto": "idiomas",
-                        "nucleo": "idiomas"
-                      },
-                      {
-                        "funcion": "CCL",
-                        "texto": "allí",
-                        "nucleo": "allí"
                       }
-                    ]
+                    ],
+                    "nucleo": "aprende"
                   }
-                ]
+                ],
+                "nucleo": "vive"
               }
             ]
           }
@@ -705,7 +794,6 @@
               {
                 "funcion": "PRED",
                 "texto": "escriben su número de teléfono en el cuaderno",
-                "nucleo": "escriben",
                 "partes": [
                   {
                     "funcion": "V",
@@ -715,7 +803,6 @@
                   {
                     "funcion": "CD",
                     "texto": "su número de teléfono",
-                    "nucleo": "número",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -723,12 +810,12 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "número"
+                        "texto": "número",
+                        "nucleo": "número"
                       },
                       {
                         "funcion": "CN",
                         "texto": "de teléfono",
-                        "nucleo": "teléfono",
                         "partes": [
                           {
                             "funcion": "PREP",
@@ -739,14 +826,15 @@
                             "texto": "teléfono",
                             "nucleo": "teléfono"
                           }
-                        ]
+                        ],
+                        "nucleo": "teléfono"
                       }
-                    ]
+                    ],
+                    "nucleo": "número"
                   },
                   {
                     "funcion": "CCL",
                     "texto": "en el cuaderno",
-                    "nucleo": "cuaderno",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -755,7 +843,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "el cuaderno",
-                        "nucleo": "cuaderno",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -763,13 +850,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "cuaderno"
+                            "texto": "cuaderno",
+                            "nucleo": "cuaderno"
                           }
-                        ]
+                        ],
+                        "nucleo": "cuaderno"
                       }
-                    ]
+                    ],
+                    "nucleo": "cuaderno"
                   }
-                ]
+                ],
+                "nucleo": "escriben"
               }
             ]
           }
@@ -783,7 +874,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Los dos amigos",
-                "nucleo": "amigos",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -791,18 +881,20 @@
                   },
                   {
                     "funcion": "CUANT",
-                    "texto": "dos"
+                    "texto": "dos",
+                    "nucleo": "dos"
                   },
                   {
                     "funcion": "N",
-                    "texto": "amigos"
+                    "texto": "amigos",
+                    "nucleo": "amigos"
                   }
-                ]
+                ],
+                "nucleo": "amigos"
               },
               {
                 "funcion": "PRED",
                 "texto": "conversan siempre con mucho entusiasmo",
-                "nucleo": "conversan",
                 "partes": [
                   {
                     "funcion": "V",
@@ -817,7 +909,6 @@
                   {
                     "funcion": "CCM",
                     "texto": "con mucho entusiasmo",
-                    "nucleo": "entusiasmo",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -826,21 +917,25 @@
                       {
                         "funcion": "TERM",
                         "texto": "mucho entusiasmo",
-                        "nucleo": "entusiasmo",
                         "partes": [
                           {
                             "funcion": "CUANT",
-                            "texto": "mucho"
+                            "texto": "mucho",
+                            "nucleo": "mucho"
                           },
                           {
                             "funcion": "N",
-                            "texto": "entusiasmo"
+                            "texto": "entusiasmo",
+                            "nucleo": "entusiasmo"
                           }
-                        ]
+                        ],
+                        "nucleo": "entusiasmo"
                       }
-                    ]
+                    ],
+                    "nucleo": "entusiasmo"
                   }
-                ]
+                ],
+                "nucleo": "conversan"
               }
             ]
           }

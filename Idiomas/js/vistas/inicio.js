@@ -1,15 +1,15 @@
 // Pantalla de inicio (portada).
 // 1. El escenario (con una universidad de fondo y su cielo de día o de noche): el logotipo, el nombre y el botón de empezar, con tres tutoras (español, inglés y chino)
 //    que juegan con él: lo señalan, lo empujan, lo presentan… y la de chino, de pie encima, salta y lo hunde.
+//    La de español es Lucía, la tutora del curso; las otras dos son compañeras de clase (js/amigas.js).
 // 2. Cómo se aprende: cuatro carteles, cada uno con una tutora haciendo lo que cuenta.
-// 3. Los idiomas: un teatro con telón donde sale la tutora del idioma que se señala, y una entrada por idioma.
 // Las tutoras solo se mueven mientras se ven (IntersectionObserver).
 
 import { el, poner } from '../dom.js';
-import { t, locale, idioma } from '../i18n.js';
+import { t, locale } from '../i18n.js';
 import { icono } from '../iconos.js';
-import { CURSOS } from '../cursos.js';
-import { curso, hayCurso, elegirCurso, nombreCurso, NOMBRES_TUTORAS } from '../curso.js';
+import { curso } from '../curso.js';
+import { TUTORAS, tutoraPorId } from '../amigas.js';
 import { dibujoDe } from '../tutor-sprite.js';
 import { SALTO_PISA } from '../tutora-base.js';
 import { sonar } from '../sonidos.js';
@@ -17,7 +17,6 @@ import { universidad, sol, luna, nubes, maceta, aplique, ventana, banderines, me
 
 const CADA_ESCENA = 4200; // milisegundos entre una escenita del botón y la siguiente
 const DURA_GLOBO = 1800;
-const CADA_PASARELA = 3600;
 
 // Cada cartel de «así se aprende» con el gesto que lo cuenta (se repite mientras se ve).
 const CARACTERISTICAS = [
@@ -32,7 +31,7 @@ const dibujo = c => {
   if (!dibujos.has(c.id)) dibujos.set(c.id, dibujoDe(c));
   return dibujos.get(c.id);
 };
-const porId = id => CURSOS.find(c => c.id === id);
+const porId = tutoraPorId;
 
 /**
  * Una tutora en su lienzo. Se enciende y se apaga con su zona; mientras no se ve no dibuja nada.
@@ -111,33 +110,17 @@ function logo(clase, lado) {
   return el('img', { class: clase, src: 'assets/logo.svg', alt: '', width: lado, height: lado });
 }
 
-function bandera(c) {
-  const hueco = el('span', { class: 'curso-bandera', 'aria-hidden': 'true' });
-  hueco.innerHTML = c.bandera; // dibujo fijo que viene de js/cursos.js
-  return hueco;
-}
-
-/**
- * Pinta la portada. Devuelve una función que la apaga (las tutoras dejan de moverse):
- * hay que llamarla al salir de la pantalla.
- */
-export function pintarInicio(contenedor) {
-  const relojes = new Set();
-  const despues = (ms, fn) => { const r = setTimeout(() => { relojes.delete(r); fn(); }, ms); relojes.add(r); };
-  const zonas = [];
-
-  // =====================================================================
-  // 1. El escenario del botón
-  // =====================================================================
+/** El trío del botón: las tres tutoras y su escenita (la usan la portada grande y la del móvil). */
+function crearTrio(despues, zonas) {
   const es = tutora(porId('es'), { clase: 'boton-izq' });
   const en = tutora(porId('en'), { clase: 'boton-der' });
   const zh = tutora(porId('zh'), { clase: 'boton-arriba', alto: 78 });
 
   const empezar = el('a', {
     class: 'inicio-empezar',
-    href: hayCurso ? '#/lecciones' : '#/idiomas',
+    href: '#/lecciones',
     onclick: () => sonar('pagina'),
-  }, el('span', {}, hayCurso ? t('inicio.continuar', { curso: curso.nativo }) : t('inicio.empezar')));
+  }, el('span', {}, t('inicio.continuar', { curso: curso.nativo })));
   const plataforma = el('div', { class: 'inicio-plataforma' }, zh.figura, empezar);
 
   /** El botón reacciona: se hunde (pisado), se aprieta (apretujado) o brilla. */
@@ -185,34 +168,187 @@ export function pintarInicio(contenedor) {
     x.figura.addEventListener('click', () => { sonar('saludo'); x.gesto('firma', true); });
   }
 
+  const nodo = el('div', { class: 'inicio-trio' }, universidad(), es.figura, plataforma, en.figura);
+  for (const x of [es, en, zh]) x.figura.setAttribute('aria-hidden', 'true');
+  zonas.push(zona(nodo, () => [es, en, zh], {
+    alVer: () => { despues(500, siguienteEscena); relojEscenas = setInterval(siguienteEscena, CADA_ESCENA); },
+    alDejar: () => clearInterval(relojEscenas),
+  }));
+  return { nodo, parar: () => clearInterval(relojEscenas) };
+}
+
+/** En el móvil la portada cabe en una sola pantalla, sin scroll (lo decide también app.js: sin pie). */
+export const inicioMovil = () => window.matchMedia('(max-width: 700px)').matches;
+
+/**
+ * La portada en el móvil: las mismas partes que en la web (el escenario del botón, la pancarta del mercado, el
+ * pasillo y el pie), cada una en su diapositiva y sin scroll. Se pasan con los botones de abajo, con los
+ * puntos o deslizando el dedo; la primera lleva su propio botón «Saber más».
+ * Devuelve la función que deshace lo que ha movido (el pie vuelve a su sitio).
+ */
+function diapositivas(contenedor, { escenario, pancarta, pasillo }) {
+  // la primera: el escenario del botón y, abajo, «Saber más»
+  escenario.append(el('div', { class: 'inicio-elige' },
+    el('div', { class: 'inicio-elige-fila' },
+      el('button', { type: 'button', class: 'inicio-flecha inicio-flecha-der', onclick: () => ir(1) },
+        t('inicio.saberMas'), ' ', el('span', { 'aria-hidden': 'true' }, '▶')))));
+  // la segunda: la pancarta del mercado, con el mismo cielo que el escenario
+  const mercadoPag = el('section', { class: 'inicio-escenario inicio-escenario-bajo' }, pancarta);
+  // la última: el pie de la web de verdad (con sus tutoras que charlan), prestado mientras dura la portada
+  const pie = document.getElementById('pie-sitio');
+  const hueco = document.createComment('pie');
+  pie.before(hueco);
+  const piePag = el('section', { class: 'inicio-pie-pag' }, pie);
+
+  const quietaDelTodo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const paginas = [escenario, mercadoPag, pasillo, piePag];
+  for (const pg of paginas) pg.classList.add('inicio-pag');
+  const pista = el('div', { class: 'inicio-pista', style: `width:${paginas.length * 100}%` }, paginas);
+  const atras = el('button', { type: 'button', class: 'inicio-flecha inicio-flecha-izq', onclick: () => ir(pagina - 1) },
+    el('span', { 'aria-hidden': 'true' }, '◀'), ' ', t('inicio.volver'));
+  const adelante = el('button', { type: 'button', class: 'inicio-flecha inicio-flecha-der', onclick: () => ir(pagina + 1) });
+  const puntos = paginas.map((_, n) => el('button', { type: 'button', class: 'inicio-punto', 'aria-label': String(n + 1), onclick: () => ir(n) }));
+  const barra = el('nav', { class: 'inicio-barra', hidden: true }, atras, el('div', { class: 'inicio-puntos' }, puntos), adelante);
+  let pagina = 0;
+  // Solo la diapositiva a la vista y sus vecinas se pintan (content-visibility): las demás no cuestan layout, pintura ni animaciones.
+  const mostrarCerca = () => paginas.forEach((pg, k) => pg.classList.toggle('lejos', Math.abs(k - pagina) > 1));
+  const sitioDe = n => (n ? -n * 100 / paginas.length : 0);
+  function ir(n) {
+    n = Math.max(0, Math.min(paginas.length - 1, n));
+    if (n !== pagina) sonar('pagina');
+    // un salto de más de una diapositiva no pasa por las del medio (estarían sin pintar): la pista se desvanece,
+    // cambia de sitio y vuelve a aparecer
+    const lejos = Math.abs(n - pagina) > 1 && !quietaDelTodo;
+    if (lejos) {
+      const fuera = pista.animate([{ offset: 1, opacity: 0 }], { duration: 160, easing: 'ease-in', fill: 'forwards' });
+      fuera.finished.then(() => {
+        pista.style.transition = 'none';
+        colocarPagina(n);
+        void pista.offsetWidth;
+        pista.style.transition = '';
+        fuera.cancel();
+        pista.animate([{ offset: 0, opacity: 0 }], { duration: 360, easing: 'cubic-bezier(.22, 1, .36, 1)' });
+      }).catch(() => {});
+      return;
+    }
+    pista.style.transition = '';
+    colocarPagina(n);
+  }
+  let cercaLuego = 0;
+  function colocarPagina(n) {
+    pagina = n;
+    // la de destino ya está pintada (era vecina); las vecinas nuevas se pintan cuando la pista ha llegado,
+    // para que pintarlas no frene el arranque del deslizamiento
+    paginas[n].classList.remove('lejos');
+    clearTimeout(cercaLuego);
+    cercaLuego = setTimeout(mostrarCerca, 680);
+    pista.style.transform = n ? `translateX(${sitioDe(n)}%)` : '';
+    paginas.forEach((pg, k) => { pg.inert = k !== n; });
+    puntos.forEach((pt, k) => pt.classList.toggle('actual', k === n));
+    barra.hidden = n === 0; // la primera ya lleva su propio «Saber más»
+    adelante.style.visibility = n === paginas.length - 1 ? 'hidden' : '';
+    poner(adelante, t('inicio.siguiente'), ' ', el('span', { 'aria-hidden': 'true' }, '▶'));
+  }
+  ir(0);
+  // «Volver arriba» del pie vuelve a la primera diapositiva
+  pie.querySelector('[data-pie-subir]')?.addEventListener('click', () => ir(0));
+  // deslizar el dedo de un lado a otro también pasa de diapositiva
+  let x0 = null;
+  let y0 = null;
+  let tirando = false;
+  let marco = 0;
+  pista.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; tirando = false; }, { passive: true });
+  pista.addEventListener('touchmove', e => {
+    if (x0 === null || quietaDelTodo) return;
+    const dx = e.touches[0].clientX - x0;
+    const dy = e.touches[0].clientY - y0;
+    if (!tirando) {
+      if (Math.abs(dy) > 14 && Math.abs(dy) > Math.abs(dx)) { x0 = null; return; }
+      if (Math.abs(dx) < 10 || Math.abs(dx) < Math.abs(dy) * 1.3) return;
+      tirando = true;
+      pista.style.transition = 'none';
+    }
+    const tope = (dx > 0 && pagina === 0) || (dx < 0 && pagina === paginas.length - 1);
+    const mover = tope ? dx * 0.2 : dx * 0.85;
+    cancelAnimationFrame(marco);
+    marco = requestAnimationFrame(() => { pista.style.transform = `translateX(calc(${sitioDe(pagina)}% + ${mover.toFixed(1)}px))`; });
+  }, { passive: true });
+  const soltar = e => {
+    if (x0 === null) return;
+    const dx = (e.changedTouches?.[0]?.clientX ?? x0) - x0;
+    const dy = (e.changedTouches?.[0]?.clientY ?? y0) - y0;
+    x0 = null;
+    cancelAnimationFrame(marco);
+    pista.style.transition = '';
+    if (tirando) {
+      tirando = false;
+      const destino = pagina + (dx < 0 ? 1 : -1);
+      if (Math.abs(dx) > 56 && destino >= 0 && destino < paginas.length) ir(destino);
+      else colocarPagina(pagina); // vuelve a su sitio, con la misma curva
+      return;
+    }
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) ir(pagina + (dx < 0 ? 1 : -1));
+  };
+  pista.addEventListener('touchend', soltar, { passive: true });
+  pista.addEventListener('touchcancel', soltar, { passive: true });
+
+  // Cada parte conserva su diseño: si no cabe en el alto de la pantalla, se encoge lo justo (zoom) en vez de recortarse.
+  const ajustes = [mercadoPag, pasillo, piePag].map(pg => {
+    const ajuste = el('div', { class: 'inicio-ajuste' }, [...pg.childNodes]);
+    pg.append(ajuste);
+    return { pg, ajuste };
+  });
+  const encajar = () => {
+    for (const pg of paginas) pg.classList.remove('lejos'); // para medirlas hay que pintarlas
+    for (const { pg, ajuste } of ajustes) {
+      const estilo = getComputedStyle(pg);
+      const alto = pg.clientHeight - parseFloat(estilo.paddingTop) - parseFloat(estilo.paddingBottom);
+      ajuste.style.zoom = '1';
+      const natural = ajuste.getBoundingClientRect().height;
+      ajuste.style.zoom = natural > alto && alto > 0 ? String(Math.max(.5, Math.floor(alto / natural * 100) / 100)) : '';
+    }
+    mostrarCerca();
+  };
+  const portada = el('div', { class: 'inicio inicio-movil' }, pista, barra);
+  // un foco o un gesto no pueden desplazar la pista a mano: solo se mueve con los botones
+  portada.addEventListener('scroll', () => { portada.scrollLeft = 0; portada.scrollTop = 0; });
+  poner(contenedor, portada);
+  const vigia = 'ResizeObserver' in window ? new ResizeObserver(encajar) : null;
+  vigia?.observe(pista);
+  requestAnimationFrame(encajar);
+  document.fonts?.ready.then(encajar);
+  return () => { vigia?.disconnect(); hueco.replaceWith(pie); };
+}
+
+/**
+ * Pinta la portada. Devuelve una función que la apaga (las tutoras dejan de moverse):
+ * hay que llamarla al salir de la pantalla.
+ */
+export function pintarInicio(contenedor) {
+  const movil = inicioMovil();
+  const relojes = new Set();
+  const despues = (ms, fn) => { const r = setTimeout(() => { relojes.delete(r); fn(); }, ms); relojes.add(r); };
+  const zonas = [];
+
+  // =====================================================================
+  // 1. El escenario del botón
+  // =====================================================================
+  const trio = crearTrio(despues, zonas);
+
   const numero = n => n.toLocaleString(locale());
-  const totalLecciones = CURSOS.reduce((suma, c) => suma + (c.lecciones || 0), 0);
-  const disponibles = CURSOS.filter(c => !c.proximamente);
-  const otras = disponibles.filter(c => !['es', 'en', 'zh'].includes(c.id));
+  const otras = TUTORAS.filter(c => !['es', 'en', 'zh'].includes(c.id));
   for (let i = otras.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [otras[i], otras[j]] = [otras[j], otras[i]];
   }
   const dato = (n, clave) => el('li', {}, el('strong', {}, numero(n)), el('span', {}, t(`inicio.dato.${clave}`)));
 
-  // ----- La pancarta: una tela colgada entre dos palos que sujetan dos tutoras; debajo, las 21 banderas ondeando -----
+  // ----- La pancarta: una tela colgada entre dos palos que sujetan dos tutoras -----
   const pancarta = (() => {
     const izq = tutora(otras[4 % otras.length], { clase: 'pancarta-tutora' });
     const der = tutora(otras[5 % otras.length], { clase: 'pancarta-tutora' });
     izq.figura.setAttribute('aria-hidden', 'true');
     der.figura.setAttribute('aria-hidden', 'true');
-    // cada bandera va en cuatro tiras que suben y bajan a destiempo: así ondea a saltos de píxel
-    const ondea = c => {
-      const tiras = [0, 1, 2, 3].map(k => {
-        const dentro = el('span', { class: 'ondea-dentro' });
-        dentro.innerHTML = c.bandera; // dibujo fijo del catálogo local de cursos
-        return el('span', { class: 'ondea-tira', style: `--k:${k}` }, dentro);
-      });
-      return el('li', {}, el('button', {
-        type: 'button', class: 'cuerda-bandera', title: c.nativo, 'aria-label': c.nativo, lang: c.lang,
-        onclick: () => { sonar('pagina'); elegirCurso(c.id); },
-      }, tiras));
-    };
     const curva = curvaDeTela();
     const lado = (x, cual) => el('div', { class: `pancarta-lado lado-${cual}` }, el('span', { class: 'pancarta-palo', 'aria-hidden': 'true' }), x.figura);
     const nodo = el('div', { class: 'inicio-bajo' },
@@ -229,12 +365,8 @@ export function pintarInicio(contenedor) {
           el('div', { class: 'pancarta-borde' }, el('div', { class: 'pancarta', style: `clip-path: ${curva.tela}` },
             el('p', { class: 'inicio-texto' }, t('inicio.texto')),
             el('ul', { class: 'inicio-datos' },
-              dato(disponibles.length, 'idiomas'),
-              dato(totalLecciones, 'lecciones'),
-              dato(disponibles.length, 'tutoras')),
-            hayCurso ? el('a', { class: 'inicio-otro', href: '#/idiomas', onclick: () => sonar('pagina') }, t('inicio.otroIdioma')) : null)),
-          el('span', { class: 'pancarta-flecos', 'aria-hidden': 'true', style: `clip-path: ${curva.flecos}` })),
-          el('ul', { class: 'pancarta-cuerda' }, disponibles.map(ondea))),
+              dato(curso.lecciones, 'lecciones')))),
+          el('span', { class: 'pancarta-flecos', 'aria-hidden': 'true', style: `clip-path: ${curva.flecos}` }))),
         lado(der, 'der')),
       el('div', { class: 'pancarta-suelo', 'aria-hidden': 'true' }));
     // de vez en cuando saludan con la mano libre, se guiñan o asienten (sin soltar el palo)
@@ -265,15 +397,9 @@ export function pintarInicio(contenedor) {
       el('h1', { class: 'inicio-nombre', 'aria-label': t('app.nombre') },
         el('span', { 'aria-hidden': 'true' }, 'Pa'), el('span', { class: 'inicio-nombre-oro', 'aria-hidden': 'true' }, 'glot')),
       el('p', { class: 'inicio-lema' }, t('inicio.lema'))),
-    el('div', { class: 'inicio-trio' }, universidad(), es.figura, plataforma, en.figura),
+    trio.nodo,
     el('div', { class: 'inicio-suelo', 'aria-hidden': 'true' }),
-    pancarta.nodo);
-  for (const x of [es, en, zh]) x.figura.setAttribute('aria-hidden', 'true');
-
-  zonas.push(zona(escenario.querySelector('.inicio-trio'), () => [es, en, zh], {
-    alVer: () => { despues(500, siguienteEscena); relojEscenas = setInterval(siguienteEscena, CADA_ESCENA); },
-    alDejar: () => clearInterval(relojEscenas),
-  }));
+    movil ? null : pancarta.nodo);
 
   // =====================================================================
   // 2. Así se aprende: el pasillo de la universidad. Cada cosa va en un tablón de corcho y, debajo,
@@ -351,124 +477,21 @@ export function pintarInicio(contenedor) {
     return tramo;
   });
 
-  // =====================================================================
-  // 3. Los idiomas: el teatro. Un cartel de bombillas con el título, un escenario con telón rojo donde sale
-  //    la tutora del idioma que se señala (el telón se cierra, cambia de tutora y se vuelve a abrir), el público
-  //    delante y, debajo, una entrada de teatro por idioma.
-  // =====================================================================
-  const i = idioma();
-  const primera = hayCurso ? curso : disponibles[Math.floor(Math.random() * disponibles.length)];
-  const modelo = tutora(primera, { clase: 'teatro-tutora' });
-  modelo.figura.setAttribute('aria-hidden', 'true');
-  const nombreModelo = el('p', { class: 'teatro-nombre' });
-  const banderaModelo = el('span', { class: 'teatro-bandera' });
-  let fija = false; // mientras se señala un idioma, el teatro no cambia solo
-  let enEscena = disponibles.indexOf(primera);
-  let cambioTelon = null;
-
-  const placa = c => {
-    banderaModelo.innerHTML = c.bandera; // dibujo fijo del catálogo local de cursos
-    poner(nombreModelo, el('strong', {}, NOMBRES_TUTORAS[c.id] ?? ''), el('span', {}, t('inicio.tutoraDe', { idioma: nombreCurso(c, i) })));
-  };
-  const presentar = (c, saludar = true) => {
-    for (const b of lista.querySelectorAll('.inicio-idioma')) b.classList.toggle('en-escena', b.dataset.id === c.id);
-    if (c.id === modelo.c.id) { if (saludar) modelo.gesto('saludar', true); return; }
-    // el telón se cierra, sale la nueva y se abre: hace una reverencia y saluda
-    teatro.classList.remove('cambia');
-    void teatro.offsetWidth;
-    teatro.classList.add('cambia');
-    clearTimeout(cambioTelon);
-    cambioTelon = setTimeout(() => {
-      placa(c);
-      modelo.cambiar(c).then(() => { if (saludar) despues(250, () => modelo.gesto(['reverencia', 'saludar'], true)); });
-    }, 300);
-  };
-
-  const ficha = (c, n) => {
-    const pronto = Boolean(c.proximamente);
-    const traducido = nombreCurso(c, i);
-    const b = el('button', {
-      type: 'button', class: `inicio-idioma entrada${c.id === curso.id ? ' actual' : ''}`, disabled: pronto, 'data-id': c.id,
-      title: pronto ? `${traducido} · ${t('cursos.pronto')}` : traducido,
-      onclick: () => { sonar('pagina'); elegirCurso(c.id); },
-    },
-    // el talón (bandera y número de la entrada) y el cuerpo (el idioma en su lengua y en la tuya)
-    el('span', { class: 'entrada-talon' }, bandera(c), el('span', { class: 'entrada-numero' }, `Nº ${String(n + 1).padStart(2, '0')}`)),
-    el('span', { class: 'entrada-cuerpo' },
-      el('span', { class: 'entrada-nativo', lang: c.lang }, c.nativo),
-      traducido !== c.nativo ? el('span', { class: 'entrada-traducido' }, traducido) : null),
-    c.id === curso.id ? el('span', { class: 'entrada-sello', 'aria-hidden': 'true' }, '★') : null);
-    if (!pronto) {
-      const senalar = () => { fija = true; enEscena = disponibles.indexOf(c); presentar(c); };
-      b.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') senalar(); });
-      b.addEventListener('focus', senalar);
-      b.addEventListener('pointerleave', () => { fija = false; });
-      b.addEventListener('blur', () => { fija = false; });
-    }
-    return el('li', {}, b);
-  };
-  const lista = el('ul', { class: 'inicio-idiomas teatro-entradas' }, CURSOS.map(ficha));
-
-  // el público: cabecitas de espaldas, cada una con su pelo; al tocar a la tutora se emocionan
-  const PELOS = ['#2b1d1a', '#7a4a2a', '#d9a441', '#b8402e', '#4a3a46', '#2b1d1a', '#9a6a3a', '#1f1a2e', '#c86a2a', '#5a3a28', '#2b1d1a', '#d9a441'];
-  const publico = el('div', { class: 'teatro-publico', 'aria-hidden': 'true' },
-    PELOS.map((pelo, n) => el('i', { style: `--pelo:${pelo}; --n:${n}` })));
-  const aplauso = () => {
-    publico.classList.remove('aplaude');
-    void publico.offsetWidth;
-    publico.classList.add('aplaude');
-    despues(1600, () => publico.classList.remove('aplaude'));
-  };
-  modelo.figura.addEventListener('click', () => { sonar('saludo'); modelo.gesto('firma', true); aplauso(); despues(250, () => sonar('aplausos')); });
-
-  const teatro = el('div', { class: 'teatro' },
-    el('div', { class: 'teatro-marco' },
-      el('div', { class: 'teatro-escena' },
-        el('div', { class: 'teatro-foco', 'aria-hidden': 'true' }),
-        modelo.figura,
-        el('div', { class: 'telon telon-izq', 'aria-hidden': 'true' }),
-        el('div', { class: 'telon telon-der', 'aria-hidden': 'true' }),
-        el('div', { class: 'teatro-bambalina', 'aria-hidden': 'true' })),
-      el('div', { class: 'teatro-tablas', 'aria-hidden': 'true' })),
-    el('div', { class: 'teatro-placa' }, banderaModelo, nombreModelo),
-    publico);
-
-  let relojTeatro = null;
-  zonas.push(zona(teatro, () => [modelo], {
-    alVer: () => {
-      despues(400, () => { modelo.gesto(['reverencia', 'saludar'], true); aplauso(); });
-      relojTeatro = setInterval(() => {
-        if (fija || document.hidden) return;
-        enEscena = (enEscena + 1) % disponibles.length;
-        presentar(disponibles[enEscena]);
-      }, CADA_PASARELA);
-    },
-    alDejar: () => clearInterval(relojTeatro),
-  }));
-
-  poner(contenedor,
-    el('div', { class: 'inicio' },
-      escenario,
-      el('section', { class: 'inicio-pasillo' },
-        banderines(), ventana('izq'), ventana('der'),
-        el('h2', { class: 'pasillo-letrero' }, el('span', {}, t('inicio.comoTitulo'))),
-        el('ul', { class: 'pasillo-tramos' }, tramos)),
-      el('section', { class: 'inicio-teatro' },
-        el('div', { class: 'teatro-cartel' }, el('h2', {}, t('inicio.idiomasTitulo', { n: CURSOS.length }))),
-        el('p', { class: 'inicio-seccion-texto' }, t('inicio.idiomasTexto')),
-        teatro,
-        lista)));
-  placa(primera);
-  for (const b of lista.querySelectorAll('.inicio-idioma')) b.classList.toggle('en-escena', b.dataset.id === primera.id);
-  const despertar = quietasFuera(['.inicio-cielo', '.inicio-cabeza', '.inicio-trio', '.inicio-bajo', '.inicio-pasillo', '.inicio-teatro']
+  const pasilloSeccion = el('section', { class: 'inicio-pasillo' },
+    banderines(), ventana('izq'), ventana('der'),
+    el('h2', { class: 'pasillo-letrero' }, el('span', {}, t('inicio.comoTitulo'))),
+    el('ul', { class: 'pasillo-tramos' }, tramos));
+  let desmontar = () => {};
+  if (movil) desmontar = diapositivas(contenedor, { escenario, pancarta: pancarta.nodo, pasillo: pasilloSeccion });
+  else poner(contenedor, el('div', { class: 'inicio' }, escenario, pasilloSeccion));
+  const despertar = quietasFuera(['.inicio-cielo', '.inicio-cabeza', '.inicio-trio', '.inicio-bajo', '.inicio-pasillo']
     .map(sel => contenedor.querySelector(sel)));
 
   return () => {
+    desmontar();
     despertar();
     for (const r of relojes) clearTimeout(r);
-    clearInterval(relojEscenas);
-    clearInterval(relojTeatro);
-    clearTimeout(cambioTelon);
+    trio.parar();
     for (const z of zonas) z.apagar();
   };
 }

@@ -2,6 +2,8 @@
   "esquema": 2,
   "id": "008",
   "capitulo": 2,
+  "numero_curso": 10,
+  "orden_curso": 10,
   "nivel": "A1",
   "palabras": {
     "el": {
@@ -90,6 +92,86 @@
     },
     "Ana": {
       "propio": true
+    },
+    "grandes": {
+      "pron": "GRAN-des",
+      "cat": "adj"
+    },
+    "fría": {
+      "pron": "FRI-a",
+      "cat": "adj"
+    },
+    "problemas": {
+      "pron": "pro-BLE-mas",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "deja": {
+      "pron": "DE-ha",
+      "cat": "verb"
+    },
+    "ríen": {
+      "pron": "RRI-en",
+      "cat": "verb"
+    },
+    "ocupa": {
+      "pron": "o-KU-pa",
+      "cat": "verb"
+    },
+    "media": {
+      "pron": "ME-dya",
+      "cat": "num"
+    },
+    "señala": {
+      "pron": "se-NYA-la",
+      "cat": "verb"
+    },
+    "explica": {
+      "pron": "eks-PLI-ka",
+      "cat": "verb"
+    },
+    "acabe": {
+      "pron": "a-KA-be",
+      "cat": "verb"
+    },
+    "estante": {
+      "pron": "es-TAN-te",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "queda": {
+      "pron": "KE-da",
+      "cat": "verb"
+    },
+    "enrollado": {
+      "pron": "en-ro-YA-do",
+      "cat": "adj"
+    },
+    "rincón": {
+      "pron": "rin-KON",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "agua": {
+      "pron": "A-gwa",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "tramposa": {
+      "pron": "tram-PO-sa",
+      "cat": "adj"
+    },
+    "femenina": {
+      "pron": "fe-me-NI-na",
+      "cat": "adj"
+    },
+    "eso": {
+      "pron": "E-so",
+      "cat": "pron"
+    },
+    "será": {
+      "pron": "se-RA",
+      "cat": "verb"
     }
   },
   "bloques": [
@@ -110,7 +192,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Es un libro",
-                "nucleo": "Es",
                 "partes": [
                   {
                     "funcion": "V",
@@ -120,7 +201,6 @@
                   {
                     "funcion": "ATRIB",
                     "texto": "un libro",
-                    "nucleo": "libro",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -128,11 +208,14 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "libro"
+                        "texto": "libro",
+                        "nucleo": "libro"
                       }
-                    ]
+                    ],
+                    "nucleo": "libro"
                   }
-                ]
+                ],
+                "nucleo": "Es"
               }
             ]
           }
@@ -145,12 +228,12 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Sí, es el libro de Ana",
-                "nucleo": "es",
+                "texto": "Sí es el libro de Ana",
                 "partes": [
                   {
                     "funcion": "ADV",
-                    "texto": "Sí"
+                    "texto": "Sí",
+                    "nucleo": "Sí"
                   },
                   {
                     "funcion": "V",
@@ -160,7 +243,6 @@
                   {
                     "funcion": "ATRIB",
                     "texto": "el libro de Ana",
-                    "nucleo": "libro",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -168,12 +250,12 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "libro"
+                        "texto": "libro",
+                        "nucleo": "libro"
                       },
                       {
                         "funcion": "CN",
                         "texto": "de Ana",
-                        "nucleo": "Ana",
                         "partes": [
                           {
                             "funcion": "PREP",
@@ -184,11 +266,14 @@
                             "texto": "Ana",
                             "nucleo": "Ana"
                           }
-                        ]
+                        ],
+                        "nucleo": "Ana"
                       }
-                    ]
+                    ],
+                    "nucleo": "libro"
                   }
-                ]
+                ],
+                "nucleo": "es"
               }
             ]
           }
@@ -199,23 +284,31 @@
             "oracion": "unimembre",
             "unidades": [
               {
-                "funcion": "VOC",
+                "funcion": "N",
                 "texto": "Y la mesa",
-                "nucleo": "mesa",
                 "partes": [
                   {
                     "funcion": "CONJ",
                     "texto": "Y"
                   },
                   {
-                    "funcion": "DET",
-                    "texto": "la"
-                  },
-                  {
                     "funcion": "N",
-                    "texto": "mesa"
+                    "texto": "la mesa",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "la"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "mesa",
+                        "nucleo": "mesa"
+                      }
+                    ],
+                    "nucleo": "mesa"
                   }
-                ]
+                ],
+                "nucleo": "mesa"
               }
             ]
           }
@@ -229,7 +322,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La mesa",
-                "nucleo": "mesa",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -237,14 +329,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "mesa"
+                    "texto": "mesa",
+                    "nucleo": "mesa"
                   }
-                ]
+                ],
+                "nucleo": "mesa"
               },
               {
                 "funcion": "PRED",
                 "texto": "es grande",
-                "nucleo": "es",
                 "partes": [
                   {
                     "funcion": "V",
@@ -256,7 +349,8 @@
                     "texto": "grande",
                     "nucleo": "grande"
                   }
-                ]
+                ],
+                "nucleo": "es"
               }
             ]
           }
@@ -270,7 +364,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Los libros",
-                "nucleo": "libros",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -278,14 +371,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "libros"
+                    "texto": "libros",
+                    "nucleo": "libros"
                   }
-                ]
+                ],
+                "nucleo": "libros"
               },
               {
                 "funcion": "PRED",
                 "texto": "son grandes",
-                "nucleo": "son",
                 "partes": [
                   {
                     "funcion": "V",
@@ -297,7 +391,8 @@
                     "texto": "grandes",
                     "nucleo": "grandes"
                   }
-                ]
+                ],
+                "nucleo": "son"
               }
             ]
           }
@@ -311,7 +406,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "El mapa",
-                "nucleo": "mapa",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -319,14 +413,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "mapa"
+                    "texto": "mapa",
+                    "nucleo": "mapa"
                   }
-                ]
+                ],
+                "nucleo": "mapa"
               },
               {
                 "funcion": "PRED",
                 "texto": "es pequeño",
-                "nucleo": "es",
                 "partes": [
                   {
                     "funcion": "V",
@@ -338,7 +433,8 @@
                     "texto": "pequeño",
                     "nucleo": "pequeño"
                   }
-                ]
+                ],
+                "nucleo": "es"
               }
             ]
           }
@@ -352,7 +448,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La mano",
-                "nucleo": "mano",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -360,14 +455,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "mano"
+                    "texto": "mano",
+                    "nucleo": "mano"
                   }
-                ]
+                ],
+                "nucleo": "mano"
               },
               {
                 "funcion": "PRED",
-                "texto": "es pequeña, pero",
-                "nucleo": "es",
+                "texto": "es pequeña pero",
                 "partes": [
                   {
                     "funcion": "V",
@@ -383,7 +479,8 @@
                     "funcion": "CONJ",
                     "texto": "pero"
                   }
-                ]
+                ],
+                "nucleo": "es"
               }
             ]
           }
@@ -397,7 +494,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "el problema",
-                "nucleo": "problema",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -405,14 +501,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "problema"
+                    "texto": "problema",
+                    "nucleo": "problema"
                   }
-                ]
+                ],
+                "nucleo": "problema"
               },
               {
                 "funcion": "PRED",
                 "texto": "es grande",
-                "nucleo": "es",
                 "partes": [
                   {
                     "funcion": "V",
@@ -424,7 +521,8 @@
                     "texto": "grande",
                     "nucleo": "grande"
                   }
-                ]
+                ],
+                "nucleo": "es"
               }
             ]
           }
@@ -458,7 +556,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "El agua",
-                "nucleo": "agua",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -466,14 +563,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "agua"
+                    "texto": "agua",
+                    "nucleo": "agua"
                   }
-                ]
+                ],
+                "nucleo": "agua"
               },
               {
                 "funcion": "PRED",
                 "texto": "está fría",
-                "nucleo": "está",
                 "partes": [
                   {
                     "funcion": "V",
@@ -485,7 +583,8 @@
                     "texto": "fría",
                     "nucleo": "fría"
                   }
-                ]
+                ],
+                "nucleo": "está"
               }
             ]
           }
@@ -498,7 +597,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Los problemas",
-                "nucleo": "problemas",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -506,14 +604,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "problemas"
+                    "texto": "problemas",
+                    "nucleo": "problemas"
                   }
-                ]
+                ],
+                "nucleo": "problemas"
               },
               {
                 "funcion": "PRED",
                 "texto": "son grandes",
-                "nucleo": "son",
                 "partes": [
                   {
                     "funcion": "V",
@@ -525,7 +624,8 @@
                     "texto": "grandes",
                     "nucleo": "grandes"
                   }
-                ]
+                ],
+                "nucleo": "son"
               }
             ]
           }
@@ -546,7 +646,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La profesora",
-                "nucleo": "profesora",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -554,14 +653,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "profesora"
+                    "texto": "profesora",
+                    "nucleo": "profesora"
                   }
-                ]
+                ],
+                "nucleo": "profesora"
               },
               {
                 "funcion": "PRED",
-                "texto": "deja encima de la mesa un mapa grande y un libro viejo.",
-                "nucleo": "deja",
+                "texto": "deja encima de la mesa un mapa grande y un libro viejo",
                 "partes": [
                   {
                     "funcion": "V",
@@ -571,49 +671,37 @@
                   {
                     "funcion": "CCL",
                     "texto": "encima de la mesa",
-                    "nucleo": "encima",
                     "partes": [
                       {
-                        "funcion": "ADV",
-                        "texto": "encima"
+                        "funcion": "PREP",
+                        "texto": "encima de"
                       },
                       {
-                        "funcion": "CN",
-                        "texto": "de la mesa",
-                        "nucleo": "mesa",
+                        "funcion": "TERM",
+                        "texto": "la mesa",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "de"
+                            "funcion": "DET",
+                            "texto": "la"
                           },
                           {
-                            "funcion": "TERM",
-                            "texto": "la mesa",
-                            "nucleo": "mesa",
-                            "partes": [
-                              {
-                                "funcion": "DET",
-                                "texto": "la"
-                              },
-                              {
-                                "funcion": "N",
-                                "texto": "mesa"
-                              }
-                            ]
+                            "funcion": "N",
+                            "texto": "mesa",
+                            "nucleo": "mesa"
                           }
-                        ]
+                        ],
+                        "nucleo": "mesa"
                       }
-                    ]
+                    ],
+                    "nucleo": "mesa"
                   },
                   {
                     "funcion": "CD",
-                    "texto": "un mapa grande y un libro viejo.",
-                    "nucleo": "mapa",
+                    "texto": "un mapa grande y un libro viejo",
                     "partes": [
                       {
                         "funcion": "CD",
                         "texto": "un mapa grande",
-                        "nucleo": "mapa",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -621,14 +709,16 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "mapa"
+                            "texto": "mapa",
+                            "nucleo": "mapa"
                           },
                           {
                             "funcion": "ADY",
                             "texto": "grande",
                             "nucleo": "grande"
                           }
-                        ]
+                        ],
+                        "nucleo": "mapa"
                       },
                       {
                         "funcion": "CONJ",
@@ -636,8 +726,7 @@
                       },
                       {
                         "funcion": "CD",
-                        "texto": "un libro viejo.",
-                        "nucleo": "libro",
+                        "texto": "un libro viejo",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -645,18 +734,22 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "libro"
+                            "texto": "libro",
+                            "nucleo": "libro"
                           },
                           {
                             "funcion": "ADY",
-                            "texto": "viejo.",
+                            "texto": "viejo",
                             "nucleo": "viejo"
                           }
-                        ]
+                        ],
+                        "nucleo": "libro"
                       }
-                    ]
+                    ],
+                    "nucleo": "mapa"
                   }
-                ]
+                ],
+                "nucleo": "deja"
               }
             ]
           }
@@ -668,106 +761,140 @@
             "sujeto": "expreso",
             "unidades": [
               {
-                "funcion": "SUJ",
-                "texto": "Ana",
-                "nucleo": "Ana"
-              },
-              {
                 "funcion": "PRED",
-                "texto": "dice que el mapa es pequeño, y todos se ríen porque ocupa media mesa.",
-                "nucleo": "dice",
+                "texto": "Cuando Ana dice que el mapa es pequeño",
                 "partes": [
                   {
-                    "funcion": "V",
-                    "texto": "dice",
-                    "nucleo": "dice"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "que el mapa es pequeño,",
-                    "nucleo": "es",
+                    "funcion": "CCT",
+                    "texto": "Cuando Ana dice que el mapa es pequeño",
                     "partes": [
                       {
                         "funcion": "CONJ",
-                        "texto": "que"
+                        "texto": "Cuando"
                       },
                       {
                         "funcion": "SUJ",
-                        "texto": "el mapa",
-                        "nucleo": "mapa",
+                        "texto": "Ana",
+                        "nucleo": "Ana"
+                      },
+                      {
+                        "funcion": "PRED",
+                        "texto": "dice que el mapa es pequeño",
                         "partes": [
                           {
-                            "funcion": "DET",
-                            "texto": "el"
+                            "funcion": "V",
+                            "texto": "dice",
+                            "nucleo": "dice"
                           },
                           {
-                            "funcion": "N",
-                            "texto": "mapa"
+                            "funcion": "CD",
+                            "texto": "que el mapa es pequeño",
+                            "partes": [
+                              {
+                                "funcion": "CONJ",
+                                "texto": "que"
+                              },
+                              {
+                                "funcion": "SUJ",
+                                "texto": "el mapa",
+                                "partes": [
+                                  {
+                                    "funcion": "DET",
+                                    "texto": "el"
+                                  },
+                                  {
+                                    "funcion": "N",
+                                    "texto": "mapa",
+                                    "nucleo": "mapa"
+                                  }
+                                ],
+                                "nucleo": "mapa"
+                              },
+                              {
+                                "funcion": "PRED",
+                                "texto": "es pequeño",
+                                "partes": [
+                                  {
+                                    "funcion": "V",
+                                    "texto": "es",
+                                    "nucleo": "es"
+                                  },
+                                  {
+                                    "funcion": "ATRIB",
+                                    "texto": "pequeño",
+                                    "nucleo": "pequeño"
+                                  }
+                                ],
+                                "nucleo": "es"
+                              }
+                            ],
+                            "nucleo": "mapa"
                           }
-                        ]
-                      },
-                      {
-                        "funcion": "V",
-                        "texto": "es",
-                        "nucleo": "es"
-                      },
-                      {
-                        "funcion": "ATRIB",
-                        "texto": "pequeño,",
-                        "nucleo": "pequeño"
+                        ],
+                        "nucleo": "dice"
                       }
-                    ]
-                  },
-                  {
-                    "funcion": "CONJ",
-                    "texto": "y"
-                  },
-                  {
-                    "funcion": "SUJ",
-                    "texto": "todos",
-                    "nucleo": "todos"
-                  },
-                  {
-                    "funcion": "PRON",
-                    "texto": "se"
-                  },
+                    ],
+                    "nucleo": "Ana"
+                  }
+                ],
+                "nucleo": "Ana"
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "todos",
+                "nucleo": "todos"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "se ríen porque ocupa media mesa",
+                "partes": [
                   {
                     "funcion": "V",
-                    "texto": "ríen",
+                    "texto": "se ríen",
                     "nucleo": "ríen"
                   },
                   {
                     "funcion": "CCC",
-                    "texto": "porque ocupa media mesa.",
-                    "nucleo": "ocupa",
+                    "texto": "porque ocupa media mesa",
                     "partes": [
                       {
                         "funcion": "CONJ",
                         "texto": "porque"
                       },
                       {
-                        "funcion": "V",
-                        "texto": "ocupa",
-                        "nucleo": "ocupa"
-                      },
-                      {
-                        "funcion": "CD",
-                        "texto": "media mesa.",
-                        "nucleo": "mesa",
+                        "funcion": "PRED",
+                        "texto": "ocupa media mesa",
                         "partes": [
                           {
-                            "funcion": "DET",
-                            "texto": "media"
+                            "funcion": "V",
+                            "texto": "ocupa",
+                            "nucleo": "ocupa"
                           },
                           {
-                            "funcion": "N",
-                            "texto": "mesa."
+                            "funcion": "CD",
+                            "texto": "media mesa",
+                            "partes": [
+                              {
+                                "funcion": "CUANT",
+                                "texto": "media",
+                                "nucleo": "media"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "mesa",
+                                "nucleo": "mesa"
+                              }
+                            ],
+                            "nucleo": "mesa"
                           }
-                        ]
+                        ],
+                        "nucleo": "ocupa"
                       }
-                    ]
+                    ],
+                    "nucleo": "ocupa"
                   }
-                ]
+                ],
+                "nucleo": "ríen"
               }
             ]
           }
@@ -785,128 +912,171 @@
               },
               {
                 "funcion": "PRED",
-                "texto": "lo señala con la mano y explica que en España se dice «el mapa», aunque acabe en a.",
-                "nucleo": "señala",
+                "texto": "lo señala con la mano y explica que en España se dice el mapa aunque acabe en a",
                 "partes": [
                   {
-                    "funcion": "CD",
-                    "texto": "lo",
-                    "nucleo": "lo"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "señala",
-                    "nucleo": "señala"
-                  },
-                  {
-                    "funcion": "CCM",
-                    "texto": "con la mano",
-                    "nucleo": "mano",
+                    "funcion": "PRED",
+                    "texto": "lo señala con la mano",
                     "partes": [
                       {
-                        "funcion": "PREP",
-                        "texto": "con"
+                        "funcion": "CD",
+                        "texto": "lo",
+                        "nucleo": "lo"
                       },
                       {
-                        "funcion": "TERM",
-                        "texto": "la mano",
-                        "nucleo": "mano",
+                        "funcion": "V",
+                        "texto": "señala",
+                        "nucleo": "señala"
+                      },
+                      {
+                        "funcion": "CCINSTR",
+                        "texto": "con la mano",
                         "partes": [
                           {
-                            "funcion": "DET",
-                            "texto": "la"
+                            "funcion": "PREP",
+                            "texto": "con"
                           },
                           {
-                            "funcion": "N",
-                            "texto": "mano"
+                            "funcion": "TERM",
+                            "texto": "la mano",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "la"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "mano",
+                                "nucleo": "mano"
+                              }
+                            ],
+                            "nucleo": "mano"
                           }
-                        ]
+                        ],
+                        "nucleo": "mano"
                       }
-                    ]
+                    ],
+                    "nucleo": "señala"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "V",
-                    "texto": "explica",
-                    "nucleo": "explica"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "que en España se dice «el mapa», aunque acabe en a.",
-                    "nucleo": "dice",
+                    "funcion": "PRED",
+                    "texto": "explica que en España se dice el mapa aunque acabe en a",
                     "partes": [
                       {
-                        "funcion": "CONJ",
-                        "texto": "que"
-                      },
-                      {
-                        "funcion": "CCL",
-                        "texto": "en España",
-                        "nucleo": "España",
-                        "partes": [
-                          {
-                            "funcion": "PREP",
-                            "texto": "en"
-                          },
-                          {
-                            "funcion": "TERM",
-                            "texto": "España",
-                            "nucleo": "España"
-                          }
-                        ]
-                      },
-                      {
-                        "funcion": "PRON",
-                        "texto": "se"
-                      },
-                      {
                         "funcion": "V",
-                        "texto": "dice",
-                        "nucleo": "dice"
+                        "texto": "explica",
+                        "nucleo": "explica"
                       },
                       {
                         "funcion": "CD",
-                        "texto": "«el mapa»,",
-                        "nucleo": "mapa"
-                      },
-                      {
-                        "funcion": "CCM",
-                        "texto": "aunque acabe en a.",
-                        "nucleo": "acabe",
+                        "texto": "que en España se dice el mapa aunque acabe en a",
                         "partes": [
                           {
                             "funcion": "CONJ",
-                            "texto": "aunque"
+                            "texto": "que"
                           },
                           {
-                            "funcion": "V",
-                            "texto": "acabe",
-                            "nucleo": "acabe"
-                          },
-                          {
-                            "funcion": "CRV",
-                            "texto": "en a.",
-                            "nucleo": "a",
+                            "funcion": "PRED",
+                            "texto": "en España se dice",
                             "partes": [
                               {
-                                "funcion": "PREP",
-                                "texto": "en"
+                                "funcion": "CCL",
+                                "texto": "en España",
+                                "partes": [
+                                  {
+                                    "funcion": "PREP",
+                                    "texto": "en"
+                                  },
+                                  {
+                                    "funcion": "TERM",
+                                    "texto": "España",
+                                    "nucleo": "España"
+                                  }
+                                ],
+                                "nucleo": "España"
                               },
                               {
-                                "funcion": "TERM",
-                                "texto": "a.",
-                                "nucleo": "a"
+                                "funcion": "V",
+                                "texto": "se dice",
+                                "nucleo": "dice"
                               }
-                            ]
+                            ],
+                            "nucleo": "dice"
+                          },
+                          {
+                            "funcion": "SUJ",
+                            "texto": "el mapa",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "el"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "mapa",
+                                "nucleo": "mapa"
+                              }
+                            ],
+                            "nucleo": "mapa"
+                          },
+                          {
+                            "funcion": "PRED",
+                            "texto": "aunque acabe en a",
+                            "partes": [
+                              {
+                                "funcion": "CCM",
+                                "texto": "aunque acabe en a",
+                                "partes": [
+                                  {
+                                    "funcion": "CONJ",
+                                    "texto": "aunque"
+                                  },
+                                  {
+                                    "funcion": "PRED",
+                                    "texto": "acabe en a",
+                                    "partes": [
+                                      {
+                                        "funcion": "V",
+                                        "texto": "acabe",
+                                        "nucleo": "acabe"
+                                      },
+                                      {
+                                        "funcion": "CRV",
+                                        "texto": "en a",
+                                        "partes": [
+                                          {
+                                            "funcion": "PREP",
+                                            "texto": "en"
+                                          },
+                                          {
+                                            "funcion": "TERM",
+                                            "texto": "a",
+                                            "nucleo": "a"
+                                          }
+                                        ],
+                                        "nucleo": "a"
+                                      }
+                                    ],
+                                    "nucleo": "acabe"
+                                  }
+                                ],
+                                "nucleo": "acabe"
+                              }
+                            ],
+                            "nucleo": "acabe"
                           }
-                        ]
+                        ],
+                        "nucleo": "dice"
                       }
-                    ]
+                    ],
+                    "nucleo": "explica"
                   }
-                ]
+                ],
+                "nucleo": "señala"
               }
             ]
           }
@@ -919,49 +1089,52 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "«Entonces, ¿el problema también?», pregunta",
-                "nucleo": "pregunta",
+                "texto": "Entonces el problema también pregunta",
                 "partes": [
                   {
                     "funcion": "CD",
-                    "texto": "«Entonces, ¿el problema también?»,",
-                    "nucleo": "problema",
+                    "texto": "Entonces el problema también",
                     "partes": [
                       {
                         "funcion": "ADV",
-                        "texto": "«Entonces,"
+                        "texto": "Entonces",
+                        "nucleo": "Entonces"
                       },
                       {
-                        "funcion": "SUJ",
-                        "texto": "¿el problema",
-                        "nucleo": "problema",
+                        "funcion": "N",
+                        "texto": "el problema",
                         "partes": [
                           {
                             "funcion": "DET",
-                            "texto": "¿el"
+                            "texto": "el"
                           },
                           {
                             "funcion": "N",
-                            "texto": "problema"
+                            "texto": "problema",
+                            "nucleo": "problema"
                           }
-                        ]
+                        ],
+                        "nucleo": "problema"
                       },
                       {
                         "funcion": "ADV",
-                        "texto": "también?»,"
+                        "texto": "también",
+                        "nucleo": "también"
                       }
-                    ]
+                    ],
+                    "nucleo": "problema"
                   },
                   {
                     "funcion": "V",
                     "texto": "pregunta",
                     "nucleo": "pregunta"
                   }
-                ]
+                ],
+                "nucleo": "pregunta"
               },
               {
                 "funcion": "SUJ",
-                "texto": "Pablo.",
+                "texto": "Pablo",
                 "nucleo": "Pablo"
               }
             ]
@@ -975,12 +1148,11 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "«También», contesta",
-                "nucleo": "contesta",
+                "texto": "También contesta",
                 "partes": [
                   {
                     "funcion": "CD",
-                    "texto": "«También»,",
+                    "texto": "También",
                     "nucleo": "También"
                   },
                   {
@@ -988,11 +1160,12 @@
                     "texto": "contesta",
                     "nucleo": "contesta"
                   }
-                ]
+                ],
+                "nucleo": "contesta"
               },
               {
                 "funcion": "SUJ",
-                "texto": "ella.",
+                "texto": "ella",
                 "nucleo": "ella"
               }
             ]
@@ -1002,76 +1175,62 @@
           "parrafo": 1,
           "sintaxis": {
             "oracion": "bimembre",
-            "sujeto": "omitido",
+            "sujeto": "expreso",
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Al final de la clase el libro vuelve a su estante y el mapa se queda enrollado en un rincón.",
-                "nucleo": "vuelve",
+                "texto": "Al final de la clase",
                 "partes": [
                   {
                     "funcion": "CCT",
                     "texto": "Al final de la clase",
-                    "nucleo": "final",
                     "partes": [
                       {
                         "funcion": "PREP",
-                        "texto": "Al"
+                        "texto": "Al final de"
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "final de la clase",
-                        "nucleo": "final",
+                        "texto": "la clase",
                         "partes": [
                           {
-                            "funcion": "N",
-                            "texto": "final"
+                            "funcion": "DET",
+                            "texto": "la"
                           },
                           {
-                            "funcion": "CN",
-                            "texto": "de la clase",
-                            "nucleo": "clase",
-                            "partes": [
-                              {
-                                "funcion": "PREP",
-                                "texto": "de"
-                              },
-                              {
-                                "funcion": "TERM",
-                                "texto": "la clase",
-                                "nucleo": "clase",
-                                "partes": [
-                                  {
-                                    "funcion": "DET",
-                                    "texto": "la"
-                                  },
-                                  {
-                                    "funcion": "N",
-                                    "texto": "clase"
-                                  }
-                                ]
-                              }
-                            ]
+                            "funcion": "N",
+                            "texto": "clase",
+                            "nucleo": "clase"
                           }
-                        ]
+                        ],
+                        "nucleo": "clase"
                       }
-                    ]
+                    ],
+                    "nucleo": "clase"
+                  }
+                ],
+                "nucleo": "clase"
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "el libro",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "el"
                   },
                   {
-                    "funcion": "SUJ",
-                    "texto": "el libro",
-                    "nucleo": "libro",
-                    "partes": [
-                      {
-                        "funcion": "DET",
-                        "texto": "el"
-                      },
-                      {
-                        "funcion": "N",
-                        "texto": "libro"
-                      }
-                    ]
-                  },
+                    "funcion": "N",
+                    "texto": "libro",
+                    "nucleo": "libro"
+                  }
+                ],
+                "nucleo": "libro"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "vuelve a su estante mientras el mapa se queda enrollado en un rincón",
+                "partes": [
                   {
                     "funcion": "V",
                     "texto": "vuelve",
@@ -1080,7 +1239,6 @@
                   {
                     "funcion": "CCL",
                     "texto": "a su estante",
-                    "nucleo": "estante",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -1089,7 +1247,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "su estante",
-                        "nucleo": "estante",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -1097,72 +1254,88 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "estante"
+                            "texto": "estante",
+                            "nucleo": "estante"
                           }
-                        ]
+                        ],
+                        "nucleo": "estante"
                       }
-                    ]
+                    ],
+                    "nucleo": "estante"
                   },
                   {
-                    "funcion": "CONJ",
-                    "texto": "y"
-                  },
-                  {
-                    "funcion": "SUJ",
-                    "texto": "el mapa",
-                    "nucleo": "mapa",
+                    "funcion": "CCT",
+                    "texto": "mientras el mapa se queda enrollado en un rincón",
                     "partes": [
                       {
-                        "funcion": "DET",
-                        "texto": "el"
+                        "funcion": "CONJ",
+                        "texto": "mientras"
                       },
                       {
-                        "funcion": "N",
-                        "texto": "mapa"
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "PRON",
-                    "texto": "se"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "queda",
-                    "nucleo": "queda"
-                  },
-                  {
-                    "funcion": "CPVO",
-                    "texto": "enrollado",
-                    "nucleo": "enrollado"
-                  },
-                  {
-                    "funcion": "CCL",
-                    "texto": "en un rincón.",
-                    "nucleo": "rincón",
-                    "partes": [
-                      {
-                        "funcion": "PREP",
-                        "texto": "en"
-                      },
-                      {
-                        "funcion": "TERM",
-                        "texto": "un rincón.",
-                        "nucleo": "rincón",
+                        "funcion": "SUJ",
+                        "texto": "el mapa",
                         "partes": [
                           {
                             "funcion": "DET",
-                            "texto": "un"
+                            "texto": "el"
                           },
                           {
                             "funcion": "N",
-                            "texto": "rincón."
+                            "texto": "mapa",
+                            "nucleo": "mapa"
                           }
-                        ]
+                        ],
+                        "nucleo": "mapa"
+                      },
+                      {
+                        "funcion": "PRED",
+                        "texto": "se queda enrollado en un rincón",
+                        "partes": [
+                          {
+                            "funcion": "V",
+                            "texto": "se queda",
+                            "nucleo": "queda"
+                          },
+                          {
+                            "funcion": "CPVO",
+                            "texto": "enrollado",
+                            "nucleo": "enrollado"
+                          },
+                          {
+                            "funcion": "CCL",
+                            "texto": "en un rincón",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "en"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "un rincón",
+                                "partes": [
+                                  {
+                                    "funcion": "DET",
+                                    "texto": "un"
+                                  },
+                                  {
+                                    "funcion": "N",
+                                    "texto": "rincón",
+                                    "nucleo": "rincón"
+                                  }
+                                ],
+                                "nucleo": "rincón"
+                              }
+                            ],
+                            "nucleo": "rincón"
+                          }
+                        ],
+                        "nucleo": "queda"
                       }
-                    ]
+                    ],
+                    "nucleo": "mapa"
                   }
-                ]
+                ],
+                "nucleo": "vuelve"
               }
             ]
           }
@@ -1175,13 +1348,11 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Sobre la mesa solo hay un vaso de agua fría.",
-                "nucleo": "hay",
+                "texto": "Sobre la mesa solo hay un vaso de agua fría",
                 "partes": [
                   {
                     "funcion": "CCL",
                     "texto": "Sobre la mesa",
-                    "nucleo": "mesa",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -1190,7 +1361,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "la mesa",
-                        "nucleo": "mesa",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -1198,15 +1368,19 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "mesa"
+                            "texto": "mesa",
+                            "nucleo": "mesa"
                           }
-                        ]
+                        ],
+                        "nucleo": "mesa"
                       }
-                    ]
+                    ],
+                    "nucleo": "mesa"
                   },
                   {
-                    "funcion": "ADV",
-                    "texto": "solo"
+                    "funcion": "CCM",
+                    "texto": "solo",
+                    "nucleo": "solo"
                   },
                   {
                     "funcion": "V",
@@ -1215,8 +1389,7 @@
                   },
                   {
                     "funcion": "CD",
-                    "texto": "un vaso de agua fría.",
-                    "nucleo": "vaso",
+                    "texto": "un vaso de agua fría",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -1224,12 +1397,12 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "vaso"
+                        "texto": "vaso",
+                        "nucleo": "vaso"
                       },
                       {
                         "funcion": "CN",
-                        "texto": "de agua fría.",
-                        "nucleo": "agua",
+                        "texto": "de agua fría",
                         "partes": [
                           {
                             "funcion": "PREP",
@@ -1237,25 +1410,29 @@
                           },
                           {
                             "funcion": "TERM",
-                            "texto": "agua fría.",
-                            "nucleo": "agua",
+                            "texto": "agua fría",
                             "partes": [
                               {
                                 "funcion": "N",
-                                "texto": "agua"
+                                "texto": "agua",
+                                "nucleo": "agua"
                               },
                               {
                                 "funcion": "ADY",
-                                "texto": "fría.",
+                                "texto": "fría",
                                 "nucleo": "fría"
                               }
-                            ]
+                            ],
+                            "nucleo": "agua"
                           }
-                        ]
+                        ],
+                        "nucleo": "agua"
                       }
-                    ]
+                    ],
+                    "nucleo": "vaso"
                   }
-                ]
+                ],
+                "nucleo": "hay"
               }
             ]
           }
@@ -1273,17 +1450,23 @@
               },
               {
                 "funcion": "PRED",
-                "texto": "lo mira y piensa que el agua también es un poco tramposa: lleva el y es femenina.",
-                "nucleo": "mira",
+                "texto": "lo mira y piensa que el agua también es un poco tramposa porque lleva el y es femenina",
                 "partes": [
                   {
-                    "funcion": "CD",
-                    "texto": "lo",
-                    "nucleo": "lo"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "mira",
+                    "funcion": "PRED",
+                    "texto": "lo mira",
+                    "partes": [
+                      {
+                        "funcion": "CD",
+                        "texto": "lo",
+                        "nucleo": "lo"
+                      },
+                      {
+                        "funcion": "V",
+                        "texto": "mira",
+                        "nucleo": "mira"
+                      }
+                    ],
                     "nucleo": "mira"
                   },
                   {
@@ -1291,92 +1474,136 @@
                     "texto": "y"
                   },
                   {
-                    "funcion": "V",
-                    "texto": "piensa",
-                    "nucleo": "piensa"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "que el agua también es un poco tramposa: lleva el y es femenina.",
-                    "nucleo": "es",
+                    "funcion": "PRED",
+                    "texto": "piensa que el agua también es un poco tramposa porque lleva el y es femenina",
                     "partes": [
                       {
-                        "funcion": "CONJ",
-                        "texto": "que"
-                      },
-                      {
-                        "funcion": "SUJ",
-                        "texto": "el agua",
-                        "nucleo": "agua",
-                        "partes": [
-                          {
-                            "funcion": "DET",
-                            "texto": "el"
-                          },
-                          {
-                            "funcion": "N",
-                            "texto": "agua"
-                          }
-                        ]
-                      },
-                      {
-                        "funcion": "ADV",
-                        "texto": "también"
-                      },
-                      {
                         "funcion": "V",
-                        "texto": "es",
-                        "nucleo": "es"
+                        "texto": "piensa",
+                        "nucleo": "piensa"
                       },
                       {
-                        "funcion": "ATRIB",
-                        "texto": "un poco tramposa:",
-                        "nucleo": "tramposa",
+                        "funcion": "CD",
+                        "texto": "que el agua también es un poco tramposa porque lleva el y es femenina",
                         "partes": [
-                          {
-                            "funcion": "CUANT",
-                            "texto": "un poco"
-                          },
-                          {
-                            "funcion": "ADY",
-                            "texto": "tramposa:"
-                          }
-                        ]
-                      },
-                      {
-                        "funcion": "APOS",
-                        "texto": "lleva el y es femenina.",
-                        "nucleo": "lleva",
-                        "partes": [
-                          {
-                            "funcion": "V",
-                            "texto": "lleva",
-                            "nucleo": "lleva"
-                          },
-                          {
-                            "funcion": "CD",
-                            "texto": "el",
-                            "nucleo": "el"
-                          },
                           {
                             "funcion": "CONJ",
-                            "texto": "y"
+                            "texto": "que"
                           },
                           {
-                            "funcion": "V",
-                            "texto": "es",
+                            "funcion": "SUJ",
+                            "texto": "el agua",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "el"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "agua",
+                                "nucleo": "agua"
+                              }
+                            ],
+                            "nucleo": "agua"
+                          },
+                          {
+                            "funcion": "PRED",
+                            "texto": "también es un poco tramposa porque lleva el y es femenina",
+                            "partes": [
+                              {
+                                "funcion": "CCM",
+                                "texto": "también",
+                                "nucleo": "también"
+                              },
+                              {
+                                "funcion": "V",
+                                "texto": "es",
+                                "nucleo": "es"
+                              },
+                              {
+                                "funcion": "ATRIB",
+                                "texto": "un poco tramposa",
+                                "partes": [
+                                  {
+                                    "funcion": "CUANT",
+                                    "texto": "un poco",
+                                    "nucleo": "poco"
+                                  },
+                                  {
+                                    "funcion": "ADY",
+                                    "texto": "tramposa",
+                                    "nucleo": "tramposa"
+                                  }
+                                ],
+                                "nucleo": "tramposa"
+                              },
+                              {
+                                "funcion": "CCC",
+                                "texto": "porque lleva el y es femenina",
+                                "partes": [
+                                  {
+                                    "funcion": "CONJ",
+                                    "texto": "porque"
+                                  },
+                                  {
+                                    "funcion": "PRED",
+                                    "texto": "lleva el y es femenina",
+                                    "partes": [
+                                      {
+                                        "funcion": "PRED",
+                                        "texto": "lleva el",
+                                        "partes": [
+                                          {
+                                            "funcion": "V",
+                                            "texto": "lleva",
+                                            "nucleo": "lleva"
+                                          },
+                                          {
+                                            "funcion": "CD",
+                                            "texto": "el",
+                                            "nucleo": "el"
+                                          }
+                                        ],
+                                        "nucleo": "lleva"
+                                      },
+                                      {
+                                        "funcion": "CONJ",
+                                        "texto": "y"
+                                      },
+                                      {
+                                        "funcion": "PRED",
+                                        "texto": "es femenina",
+                                        "partes": [
+                                          {
+                                            "funcion": "V",
+                                            "texto": "es",
+                                            "nucleo": "es"
+                                          },
+                                          {
+                                            "funcion": "ATRIB",
+                                            "texto": "femenina",
+                                            "nucleo": "femenina"
+                                          }
+                                        ],
+                                        "nucleo": "es"
+                                      }
+                                    ],
+                                    "nucleo": "lleva"
+                                  }
+                                ],
+                                "nucleo": "lleva"
+                              }
+                            ],
                             "nucleo": "es"
-                          },
-                          {
-                            "funcion": "ATRIB",
-                            "texto": "femenina.",
-                            "nucleo": "femenina"
                           }
-                        ]
+                        ],
+                        "nucleo": "agua"
                       }
-                    ]
+                    ],
+                    "nucleo": "piensa"
                   }
-                ]
+                ],
+                "nucleo": "mira"
               }
             ]
           }
@@ -1385,31 +1612,35 @@
           "parrafo": 1,
           "sintaxis": {
             "oracion": "bimembre",
-            "sujeto": "omitido",
+            "sujeto": "expreso",
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Pero eso será para otro día.",
-                "nucleo": "será",
+                "texto": "Pero",
                 "partes": [
                   {
                     "funcion": "CONJ",
                     "texto": "Pero"
-                  },
-                  {
-                    "funcion": "SUJ",
-                    "texto": "eso",
-                    "nucleo": "eso"
-                  },
+                  }
+                ]
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "eso",
+                "nucleo": "eso"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "será para otro día",
+                "partes": [
                   {
                     "funcion": "V",
                     "texto": "será",
                     "nucleo": "será"
                   },
                   {
-                    "funcion": "CCT",
-                    "texto": "para otro día.",
-                    "nucleo": "día",
+                    "funcion": "ATRIB",
+                    "texto": "para otro día",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -1417,8 +1648,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "otro día.",
-                        "nucleo": "día",
+                        "texto": "otro día",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -1426,13 +1656,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "día."
+                            "texto": "día",
+                            "nucleo": "día"
                           }
-                        ]
+                        ],
+                        "nucleo": "día"
                       }
-                    ]
+                    ],
+                    "nucleo": "día"
                   }
-                ]
+                ],
+                "nucleo": "será"
               }
             ]
           }

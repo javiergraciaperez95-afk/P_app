@@ -2,6 +2,7 @@
 // Todo son nodos sueltos que se borran solos; con «reducir movimiento» no se pinta nada.
 
 import { LANG } from '../curso.js';
+import { suavizar } from '../suave.js';
 
 const quieto = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const COLORES = ['#ffd23f', '#ff5d73', '#6ad7ff', '#8be28b', '#ffffff', '#c48bff'];
@@ -31,7 +32,7 @@ export function chispas(nodo, cantidad = 14) {
     p.animate([
       { transform: 'translate(0, 0)', opacity: 1 },
       { transform: `translate(${Math.cos(angulo) * lejos}px, ${Math.sin(angulo) * lejos + 30}px)`, opacity: 0 },
-    ], { duration: 800, easing: 'steps(8)', fill: 'forwards' });
+    ], { duration: 800, easing: suavizar('steps(8)', true), fill: 'forwards' });
     setTimeout(() => p.remove(), 850);
   }
 }
@@ -44,7 +45,7 @@ export function confeti(cantidad = 40) {
     p.animate([
       { transform: 'translate(0, 0) rotate(0)', opacity: 1 },
       { transform: `translate(${azar(-80, 80)}px, ${window.innerHeight * azar(0.5, 1)}px) rotate(${azar(-360, 360)}deg)`, opacity: 0 },
-    ], { duration: azar(1100, 2100), delay: azar(0, 350), easing: 'steps(14)', fill: 'both' });
+    ], { duration: azar(1100, 2100), delay: azar(0, 350), easing: suavizar('steps(14)'), fill: 'both' });
     setTimeout(() => p.remove(), 2500);
   }
 }
@@ -63,7 +64,7 @@ export function flotar(nodo, texto) {
     { transform: 'translate(-50%, -50%) scale(.6)', opacity: 0 },
     { transform: 'translate(-50%, -120%) scale(1.15)', opacity: 1, offset: 0.25 },
     { transform: 'translate(-50%, -260%) scale(1)', opacity: 0 },
-  ], { duration: 1000, easing: 'steps(10)', fill: 'forwards' });
+  ], { duration: 1000, easing: suavizar('steps(10)', true), fill: 'forwards' });
   setTimeout(() => p.remove(), 1050);
 }
 

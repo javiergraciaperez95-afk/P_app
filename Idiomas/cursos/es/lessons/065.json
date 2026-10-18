@@ -1,341 +1,1627 @@
 {
   "esquema": 2,
-  "flexible": true,
   "id": "065",
   "capitulo": 7,
-  "titulo": {
-    "$t": "titulo"
-  },
-  "intro": {
-    "$t": "intro"
-  },
+  "numero_curso": 68,
+  "orden_curso": 68,
+  "nivel": "A2",
   "palabras": {
     "he": {
-      "$f": "p.he",
       "pron": "e",
       "cat": "verb"
     },
     "has": {
-      "$f": "p.has",
       "pron": "as",
       "cat": "verb"
     },
     "ha": {
-      "$f": "p.ha",
       "pron": "a",
       "cat": "verb"
     },
     "hemos": {
-      "$f": "p.hemos",
       "pron": "E-mos",
       "cat": "verb"
     },
-    "habéis": {
-      "$f": "p.habéis",
-      "pron": "a-BEIS",
-      "cat": "verb"
-    },
     "han": {
-      "$f": "p.han",
       "pron": "an",
       "cat": "verb"
     },
     "vivido": {
-      "$f": "p.vivido",
       "pron": "bi-BI-do",
       "cat": "verb"
     },
     "estado": {
-      "$f": "p.estado",
       "pron": "es-TA-do",
       "cat": "verb"
     },
     "visto": {
-      "$f": "p.visto",
       "pron": "BIS-to",
-      "cat": "verb",
-      "nota": {
-        "$t": "p.visto.nota"
-      }
-    },
-    "hecho": {
-      "$f": "p.hecho",
-      "pron": "E-cho",
-      "cat": "verb",
-      "consejo": {
-        "$t": "p.hecho.consejo"
-      }
-    },
-    "escrito": {
-      "$f": "p.escrito",
-      "pron": "es-CRI-to",
       "cat": "verb"
     },
-    "abierto": {
-      "$f": "p.abierto",
-      "pron": "a-BIER-to",
+    "hecho": {
+      "pron": "E-cho",
+      "cat": "verb"
+    },
+    "escrito": {
+      "pron": "es-KRI-to",
       "cat": "verb"
     },
     "dicho": {
-      "$f": "p.dicho",
       "pron": "DI-cho",
       "cat": "verb"
     },
-    "puesto": {
-      "$f": "p.puesto",
-      "pron": "PUES-to",
-      "cat": "verb"
-    },
     "ya": {
-      "$f": "p.ya",
       "pron": "ya",
       "cat": "adv"
     },
     "todavía no": {
-      "$f": "p.todavía no",
       "pron": "to-da-BI-a no",
-      "cat": "expr"
+      "cat": "adv"
     },
     "aún no": {
-      "$f": "p.aún no",
       "pron": "a-UN no",
-      "cat": "expr"
+      "cat": "adv"
+    },
+    "comido": {
+      "pron": "ko-MI-do",
+      "cat": "verb"
+    },
+    "campanas": {
+      "pron": "kam-PA-nas",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "despertado": {
+      "pron": "des-per-TA-do",
+      "cat": "verb"
+    },
+    "guardado": {
+      "pron": "gwar-DA-do",
+      "cat": "verb"
+    },
+    "dibujado": {
+      "pron": "di-bu-JA-do",
+      "cat": "verb"
+    },
+    "entrado": {
+      "pron": "en-TRA-do",
+      "cat": "verb"
     }
   },
   "bloques": [
     {
-      "tipo": "explicacion",
-      "titulo": {
-        "$t": "b1.titulo"
-      },
-      "texto": {
-        "$t": "b1.texto"
-      }
+      "id": "b1",
+      "tipo": "explicacion"
     },
     {
+      "id": "b2",
       "tipo": "dialogo",
-      "titulo": {
-        "$t": "b2.titulo"
-      },
       "frases": [
         {
-          "$f": "b2.f0",
           "quien": "Lucía",
-          "analisis": [
-            [
-              "He vivido",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
               {
-                "$t": "a0"
-              }
-            ],
-            [
-              "aquí",
-              {
-                "$t": "a1"
-              }
-            ],
-            [
-              "dos años",
-              {
-                "$t": "a2"
-              }
-            ],
-            [
-              "y todavía vivo aquí",
-              {
-                "$t": "a3"
+                "funcion": "PRED",
+                "texto": "Has estado en México",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Has estado",
+                    "nucleo": "estado"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en México",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "México",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "México",
+                            "nucleo": "México"
+                          }
+                        ],
+                        "nucleo": "México"
+                      }
+                    ],
+                    "nucleo": "México"
+                  }
+                ],
+                "nucleo": "estado"
               }
             ]
-          ]
+          }
         },
         {
-          "$f": "b2.f1",
           "quien": "Pablo",
-          "analisis": [
-            [
-              "¿Has estado",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
               {
-                "$t": "a4"
-              }
-            ],
-            [
-              "en México",
-              {
-                "$t": "a5"
+                "funcion": "PRED",
+                "texto": "Ya he estado dos veces",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "Ya",
+                    "nucleo": "Ya"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "he estado",
+                    "nucleo": "estado"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "dos veces",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "dos"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "veces",
+                        "nucleo": "veces"
+                      }
+                    ],
+                    "nucleo": "veces"
+                  }
+                ],
+                "nucleo": "estado"
               }
             ]
-          ]
+          }
         },
         {
-          "$f": "b2.f2",
           "quien": "Lucía",
-          "analisis": [
-            [
-              "ya",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
               {
-                "$t": "a6"
-              }
-            ],
-            [
-              "he visto",
+                "funcion": "SUJ",
+                "texto": "Yo",
+                "partes": [
+                  {
+                    "funcion": "PRON",
+                    "texto": "Yo",
+                    "nucleo": "Yo"
+                  }
+                ],
+                "nucleo": "Yo"
+              },
               {
-                "$t": "a7"
-              }
-            ],
-            [
-              "Ciudad de México",
-              {
-                "$t": "a8"
+                "funcion": "PRED",
+                "texto": "todavía no he hecho ese viaje",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "todavía",
+                    "nucleo": "todavía"
+                  },
+                  {
+                    "funcion": "NEG",
+                    "texto": "no"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "he hecho",
+                    "nucleo": "hecho"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "ese viaje",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "ese"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "viaje",
+                        "nucleo": "viaje"
+                      }
+                    ],
+                    "nucleo": "viaje"
+                  }
+                ],
+                "nucleo": "hecho"
               }
             ]
-          ]
+          }
         },
         {
-          "$f": "b2.f3",
           "quien": "Pablo",
-          "analisis": [
-            [
-              "todavía no",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
               {
-                "$t": "a9"
-              }
-            ],
-            [
-              "he hecho",
-              {
-                "$t": "a10"
-              }
-            ],
-            [
-              "el viaje",
-              {
-                "$t": "a11"
+                "funcion": "PRED",
+                "texto": "He vivido allí dos años",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "He vivido",
+                    "nucleo": "vivido"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "allí",
+                    "nucleo": "allí"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "dos años",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "dos"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "años",
+                        "nucleo": "años"
+                      }
+                    ],
+                    "nucleo": "años"
+                  }
+                ],
+                "nucleo": "vivido"
               }
             ]
-          ]
+          }
+        },
+        {
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Has hecho muchos amigos",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Has hecho",
+                    "nucleo": "hecho"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "muchos amigos",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "muchos"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "amigos",
+                        "nucleo": "amigos"
+                      }
+                    ],
+                    "nucleo": "amigos"
+                  }
+                ],
+                "nucleo": "hecho"
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Pablo",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "He hecho tres buenos amigos",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "He hecho",
+                    "nucleo": "hecho"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "tres buenos amigos",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "tres"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "buenos",
+                        "nucleo": "buenos"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "amigos",
+                        "nucleo": "amigos"
+                      }
+                    ],
+                    "nucleo": "amigos"
+                  }
+                ],
+                "nucleo": "hecho"
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Lucía",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Yo",
+                "partes": [
+                  {
+                    "funcion": "PRON",
+                    "texto": "Yo",
+                    "nucleo": "Yo"
+                  }
+                ],
+                "nucleo": "Yo"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "aún no he escrito el plan del viaje",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "aún",
+                    "nucleo": "aún"
+                  },
+                  {
+                    "funcion": "NEG",
+                    "texto": "no"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "he escrito",
+                    "nucleo": "escrito"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "el plan del viaje",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "el"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "plan",
+                        "nucleo": "plan"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "del viaje",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "del"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "viaje",
+                            "partes": [
+                              {
+                                "funcion": "N",
+                                "texto": "viaje",
+                                "nucleo": "viaje"
+                              }
+                            ],
+                            "nucleo": "viaje"
+                          }
+                        ],
+                        "nucleo": "viaje"
+                      }
+                    ],
+                    "nucleo": "plan"
+                  }
+                ],
+                "nucleo": "escrito"
+              }
+            ]
+          }
+        },
+        {
+          "quien": "Pablo",
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Mi amigo",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Mi"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "amigo",
+                    "nucleo": "amigo"
+                  }
+                ],
+                "nucleo": "amigo"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "ha dicho que el viaje es precioso",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "ha dicho",
+                    "nucleo": "dicho"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "que el viaje es precioso",
+                    "partes": [
+                      {
+                        "funcion": "CONJ",
+                        "texto": "que"
+                      },
+                      {
+                        "funcion": "SUJ",
+                        "texto": "el viaje",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "viaje",
+                            "nucleo": "viaje"
+                          }
+                        ],
+                        "nucleo": "viaje"
+                      },
+                      {
+                        "funcion": "PRED",
+                        "texto": "es precioso",
+                        "partes": [
+                          {
+                            "funcion": "V",
+                            "texto": "es",
+                            "nucleo": "es"
+                          },
+                          {
+                            "funcion": "ATRIB",
+                            "texto": "precioso",
+                            "nucleo": "precioso"
+                          }
+                        ],
+                        "nucleo": "es"
+                      }
+                    ],
+                    "nucleo": "viaje"
+                  }
+                ],
+                "nucleo": "dicho"
+              }
+            ]
+          }
         }
       ]
     },
     {
+      "id": "b3",
       "tipo": "vocabulario",
       "palabras": [
         "he",
         "has",
         "ha",
         "hemos",
-        "habéis",
         "han",
         "vivido",
         "estado",
         "visto",
         "hecho",
         "escrito",
-        "abierto",
         "dicho",
-        "puesto",
         "ya",
         "todavía no",
         "aún no"
       ]
     },
     {
-      "tipo": "huecos",
-      "id": "b1-perf-visto",
-      "pregunta": {
-        "$t": "b4.pregunta"
-      },
-      "frase": {
-        "$e": "b4.frase"
-      },
-      "audio": true,
-      "opciones": {
-        "visto": {
-          "$t": "b4.o0.refuerzo"
+      "id": "b4",
+      "tipo": "gramatica",
+      "ejemplos": [
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Hemos comido en casa hoy",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "Hemos comido",
+                    "nucleo": "comido"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en casa",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "casa",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "casa",
+                            "nucleo": "casa"
+                          }
+                        ],
+                        "nucleo": "casa"
+                      }
+                    ],
+                    "nucleo": "casa"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "hoy",
+                    "nucleo": "hoy"
+                  }
+                ],
+                "nucleo": "comido"
+              }
+            ]
+          }
         },
-        "vido": {
-          "$t": "b4.o1.refuerzo"
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Mis padres",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Mis"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "padres",
+                    "nucleo": "padres"
+                  }
+                ],
+                "nucleo": "padres"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "han abierto la ventana",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "han abierto",
+                    "nucleo": "abierto"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "la ventana",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "la"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "ventana",
+                        "nucleo": "ventana"
+                      }
+                    ],
+                    "nucleo": "ventana"
+                  }
+                ],
+                "nucleo": "abierto"
+              }
+            ]
+          }
         },
-        "veía": {
-          "$t": "b4.o2.refuerzo"
+        {
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Ana",
+                "partes": [
+                  {
+                    "funcion": "N",
+                    "texto": "Ana",
+                    "nucleo": "Ana"
+                  }
+                ],
+                "nucleo": "Ana"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "todavía no ha dicho nada",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "todavía",
+                    "nucleo": "todavía"
+                  },
+                  {
+                    "funcion": "NEG",
+                    "texto": "no"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "ha dicho",
+                    "nucleo": "dicho"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "nada",
+                    "partes": [
+                      {
+                        "funcion": "PRON",
+                        "texto": "nada",
+                        "nucleo": "nada"
+                      }
+                    ],
+                    "nucleo": "nada"
+                  }
+                ],
+                "nucleo": "dicho"
+              }
+            ]
+          }
         }
-      },
-      "correcta": "visto"
-    },
-    {
-      "tipo": "ordenar",
-      "id": "b1-perf-vivido",
-      "frase": {
-        "$e": "b5.frase"
-      },
-      "traduccion": {
-        "$t": "b5.traduccion"
-      }
-    },
-    {
-      "tipo": "huecos",
-      "id": "b1-perf-m1",
-      "pregunta": {
-        "$t": "b6.pregunta"
-      },
-      "frase": {
-        "$e": "b6.frase"
-      },
-      "audio": true,
-      "opciones": {
-        "hecho": {
-          "$t": "b6.o0.refuerzo"
-        },
-        "hacido": {
-          "$t": "b6.o1.refuerzo"
-        },
-        "hice": {
-          "$t": "b6.o2.refuerzo"
-        }
-      },
-      "correcta": "hecho"
-    },
-    {
-      "tipo": "huecos",
-      "id": "b1-perf-m2",
-      "pregunta": {
-        "$t": "b7.pregunta"
-      },
-      "frase": {
-        "$e": "b7.frase"
-      },
-      "audio": true,
-      "opciones": {
-        "Has": {
-          "$t": "b7.o0.refuerzo"
-        },
-        "Ha": {
-          "$t": "b7.o1.refuerzo"
-        },
-        "Eres": {
-          "$t": "b7.o2.refuerzo"
-        }
-      },
-      "correcta": "Has"
-    },
-    {
-      "tipo": "escribir",
-      "id": "b1-perf-m3",
-      "pregunta": {
-        "$t": "b8.pregunta"
-      },
-      "respuestas": [
-        "Todavía no",
-        "Aún no"
       ]
     },
     {
-      "tipo": "explicacion",
-      "titulo": {
-        "$t": "b9.titulo"
-      },
-      "texto": {
-        "$t": "b9.texto"
-      }
+      "id": "b5",
+      "tipo": "texto",
+      "registro": "literario",
+      "frases": [
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "He vivido muchos años en esta casa junto al río",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "He vivido",
+                    "nucleo": "vivido"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "muchos años",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "muchos"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "años",
+                        "nucleo": "años"
+                      }
+                    ],
+                    "nucleo": "años"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en esta casa junto al río",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "esta casa junto al río",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "esta"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "casa",
+                            "nucleo": "casa"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "junto al río",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "junto al"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "río",
+                                "partes": [
+                                  {
+                                    "funcion": "N",
+                                    "texto": "río",
+                                    "nucleo": "río"
+                                  }
+                                ],
+                                "nucleo": "río"
+                              }
+                            ],
+                            "nucleo": "río"
+                          }
+                        ],
+                        "nucleo": "casa"
+                      }
+                    ],
+                    "nucleo": "casa"
+                  }
+                ],
+                "nucleo": "vivido"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "La niebla",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "La"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "niebla",
+                    "nucleo": "niebla"
+                  }
+                ],
+                "nucleo": "niebla"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "ha cubierto el agua cada mañana",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "ha cubierto",
+                    "nucleo": "cubierto"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "el agua",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "el"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "agua",
+                        "nucleo": "agua"
+                      }
+                    ],
+                    "nucleo": "agua"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "cada mañana",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "cada"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "mañana",
+                        "nucleo": "mañana"
+                      }
+                    ],
+                    "nucleo": "mañana"
+                  }
+                ],
+                "nucleo": "cubierto"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Las campanas",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Las"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "campanas",
+                    "nucleo": "campanas"
+                  }
+                ],
+                "nucleo": "campanas"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "han despertado el pueblo con un sonido suave",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "han despertado",
+                    "nucleo": "despertado"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "el pueblo",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "el"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "pueblo",
+                        "nucleo": "pueblo"
+                      }
+                    ],
+                    "nucleo": "pueblo"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "con un sonido suave",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "un sonido suave",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "un"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "sonido",
+                            "nucleo": "sonido"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "suave",
+                            "nucleo": "suave"
+                          }
+                        ],
+                        "nucleo": "sonido"
+                      }
+                    ],
+                    "nucleo": "sonido"
+                  }
+                ],
+                "nucleo": "despertado"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Mis vecinos",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Mis"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "vecinos",
+                    "nucleo": "vecinos"
+                  }
+                ],
+                "nucleo": "vecinos"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "han abierto las ventanas al primer sol",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "han abierto",
+                    "nucleo": "abierto"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "las ventanas",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "las"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "ventanas",
+                        "nucleo": "ventanas"
+                      }
+                    ],
+                    "nucleo": "ventanas"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "al primer sol",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "al"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "primer sol",
+                        "partes": [
+                          {
+                            "funcion": "ADY",
+                            "texto": "primer",
+                            "nucleo": "primer"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "sol",
+                            "nucleo": "sol"
+                          }
+                        ],
+                        "nucleo": "sol"
+                      }
+                    ],
+                    "nucleo": "sol"
+                  }
+                ],
+                "nucleo": "abierto"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Yo",
+                "partes": [
+                  {
+                    "funcion": "PRON",
+                    "texto": "Yo",
+                    "nucleo": "Yo"
+                  }
+                ],
+                "nucleo": "Yo"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "he visto cada día la misma luz dorada en el tejado",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "he visto",
+                    "nucleo": "visto"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "cada día",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "cada"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "día",
+                        "nucleo": "día"
+                      }
+                    ],
+                    "nucleo": "día"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "la misma luz dorada",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "la"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "misma",
+                        "nucleo": "misma"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "luz",
+                        "nucleo": "luz"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "dorada",
+                        "nucleo": "dorada"
+                      }
+                    ],
+                    "nucleo": "luz"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "en el tejado",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "en"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "el tejado",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "tejado",
+                            "nucleo": "tejado"
+                          }
+                        ],
+                        "nucleo": "tejado"
+                      }
+                    ],
+                    "nucleo": "tejado"
+                  }
+                ],
+                "nucleo": "visto"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Esta mañana he escrito una carta larga a mi abuela",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "Esta mañana",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "Esta"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "mañana",
+                        "nucleo": "mañana"
+                      }
+                    ],
+                    "nucleo": "mañana"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "he escrito",
+                    "nucleo": "escrito"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "una carta larga",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "una"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "carta",
+                        "nucleo": "carta"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "larga",
+                        "nucleo": "larga"
+                      }
+                    ],
+                    "nucleo": "carta"
+                  },
+                  {
+                    "funcion": "CI",
+                    "texto": "a mi abuela",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "a"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "mi abuela",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "mi"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "abuela",
+                            "nucleo": "abuela"
+                          }
+                        ],
+                        "nucleo": "abuela"
+                      }
+                    ],
+                    "nucleo": "abuela"
+                  }
+                ],
+                "nucleo": "escrito"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "El papel blanco",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "El"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "papel",
+                    "nucleo": "papel"
+                  },
+                  {
+                    "funcion": "ADY",
+                    "texto": "blanco",
+                    "nucleo": "blanco"
+                  }
+                ],
+                "nucleo": "papel"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "ha guardado el olor del café",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "ha guardado",
+                    "nucleo": "guardado"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "el olor del café",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "el"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "olor",
+                        "nucleo": "olor"
+                      },
+                      {
+                        "funcion": "CN",
+                        "texto": "del café",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "del"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "café",
+                            "partes": [
+                              {
+                                "funcion": "N",
+                                "texto": "café",
+                                "nucleo": "café"
+                              }
+                            ],
+                            "nucleo": "café"
+                          }
+                        ],
+                        "nucleo": "café"
+                      }
+                    ],
+                    "nucleo": "olor"
+                  }
+                ],
+                "nucleo": "guardado"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Mi mano",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "Mi"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "mano",
+                    "nucleo": "mano"
+                  }
+                ],
+                "nucleo": "mano"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "ha dibujado cada letra con mucho cuidado",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "ha dibujado",
+                    "nucleo": "dibujado"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "cada letra",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "cada"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "letra",
+                        "nucleo": "letra"
+                      }
+                    ],
+                    "nucleo": "letra"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "con mucho cuidado",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "con"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "mucho cuidado",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "mucho"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "cuidado",
+                            "nucleo": "cuidado"
+                          }
+                        ],
+                        "nucleo": "cuidado"
+                      }
+                    ],
+                    "nucleo": "cuidado"
+                  }
+                ],
+                "nucleo": "dibujado"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "omitido",
+            "unidades": [
+              {
+                "funcion": "PRED",
+                "texto": "Todavía no he cerrado el sobre azul",
+                "partes": [
+                  {
+                    "funcion": "CCT",
+                    "texto": "Todavía",
+                    "nucleo": "Todavía"
+                  },
+                  {
+                    "funcion": "NEG",
+                    "texto": "no"
+                  },
+                  {
+                    "funcion": "V",
+                    "texto": "he cerrado",
+                    "nucleo": "cerrado"
+                  },
+                  {
+                    "funcion": "CD",
+                    "texto": "el sobre azul",
+                    "partes": [
+                      {
+                        "funcion": "DET",
+                        "texto": "el"
+                      },
+                      {
+                        "funcion": "N",
+                        "texto": "sobre",
+                        "nucleo": "sobre"
+                      },
+                      {
+                        "funcion": "ADY",
+                        "texto": "azul",
+                        "nucleo": "azul"
+                      }
+                    ],
+                    "nucleo": "sobre"
+                  }
+                ],
+                "nucleo": "cerrado"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 1,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "La luz del patio",
+                "partes": [
+                  {
+                    "funcion": "DET",
+                    "texto": "La"
+                  },
+                  {
+                    "funcion": "N",
+                    "texto": "luz",
+                    "nucleo": "luz"
+                  },
+                  {
+                    "funcion": "CN",
+                    "texto": "del patio",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "del"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "patio",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "patio",
+                            "nucleo": "patio"
+                          }
+                        ],
+                        "nucleo": "patio"
+                      }
+                    ],
+                    "nucleo": "patio"
+                  }
+                ],
+                "nucleo": "luz"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "ha entrado despacio por la ventana abierta",
+                "partes": [
+                  {
+                    "funcion": "V",
+                    "texto": "ha entrado",
+                    "nucleo": "entrado"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "despacio",
+                    "nucleo": "despacio"
+                  },
+                  {
+                    "funcion": "CCL",
+                    "texto": "por la ventana abierta",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "por"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "la ventana abierta",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "ventana",
+                            "nucleo": "ventana"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "abierta",
+                            "nucleo": "abierta"
+                          }
+                        ],
+                        "nucleo": "ventana"
+                      }
+                    ],
+                    "nucleo": "ventana"
+                  }
+                ],
+                "nucleo": "entrado"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "b6",
+      "tipo": "test",
+      "opciones": [
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b7",
+      "tipo": "huecos",
+      "opciones": [
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": true
+        }
+      ]
+    },
+    {
+      "id": "b8",
+      "tipo": "ordenar"
+    },
+    {
+      "id": "b9",
+      "tipo": "test",
+      "opciones": [
+        {
+          "correcta": false
+        },
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b10",
+      "tipo": "huecos",
+      "opciones": [
+        {
+          "correcta": false
+        },
+        {
+          "correcta": true
+        },
+        {
+          "correcta": false
+        }
+      ]
+    },
+    {
+      "id": "b11",
+      "tipo": "escribir",
+      "respuestas": [
+        "Todavía no",
+        "todavía no",
+        "Todavía no.",
+        "Aún no",
+        "aún no",
+        "Aún no.",
+        "Aun no",
+        "aun no"
+      ]
+    },
+    {
+      "id": "b12",
+      "tipo": "test",
+      "opciones": [
+        {
+          "correcta": false
+        },
+        {
+          "correcta": false
+        },
+        {
+          "correcta": true
+        }
+      ]
     }
   ]
 }

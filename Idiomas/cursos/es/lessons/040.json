@@ -2,6 +2,8 @@
   "esquema": 2,
   "id": "040",
   "capitulo": 5,
+  "numero_curso": 42,
+  "orden_curso": 42,
   "nivel": "A1",
   "palabras": {
     "con qué frecuencia": {
@@ -74,6 +76,82 @@
     },
     "Pablo": {
       "propio": true
+    },
+    "gimnasio": {
+      "pron": "him-NA-syo",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "semana": {
+      "pron": "se-MA-na",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "paseamos": {
+      "pron": "pa-se-A-mos",
+      "cat": "verb"
+    },
+    "mantener": {
+      "pron": "man-te-NER",
+      "cat": "verb"
+    },
+    "cuerpo": {
+      "pron": "KWER-po",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "buena": {
+      "pron": "BWE-na",
+      "cat": "adj"
+    },
+    "físico": {
+      "pron": "FI-si-ko",
+      "cat": "adj"
+    },
+    "correr": {
+      "pron": "ko-RRER",
+      "cat": "verb"
+    },
+    "avenida": {
+      "pron": "a-be-NI-da",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "ancha": {
+      "pron": "AN-cha",
+      "cat": "adj"
+    },
+    "prefiere": {
+      "pron": "pre-FYE-re",
+      "cat": "verb"
+    },
+    "interesantes": {
+      "pron": "in-te-re-SAN-tes",
+      "cat": "adj"
+    },
+    "o": {
+      "pron": "o",
+      "cat": "conj"
+    },
+    "relajante": {
+      "pron": "rre-la-HAN-te",
+      "cat": "adj"
+    },
+    "descansan": {
+      "pron": "des-KAN-san",
+      "cat": "verb"
+    },
+    "acuestan": {
+      "pron": "a-KWES-tan",
+      "cat": "verb"
+    },
+    "pronto": {
+      "pron": "PRON-to",
+      "cat": "adv"
+    },
+    "tranquila": {
+      "pron": "tran-KI-la",
+      "cat": "adj"
     }
   },
   "bloques": [
@@ -93,22 +171,19 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "¿Con qué frecuencia vas al gimnasio?",
-                "nucleo": "vas",
+                "texto": "Con qué frecuencia vas al gimnasio",
                 "partes": [
                   {
                     "funcion": "CCT",
-                    "texto": "¿Con qué frecuencia",
-                    "nucleo": "frecuencia",
+                    "texto": "Con qué frecuencia",
                     "partes": [
                       {
                         "funcion": "PREP",
-                        "texto": "¿Con"
+                        "texto": "Con"
                       },
                       {
                         "funcion": "TERM",
                         "texto": "qué frecuencia",
-                        "nucleo": "frecuencia",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -116,11 +191,14 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "frecuencia"
+                            "texto": "frecuencia",
+                            "nucleo": "frecuencia"
                           }
-                        ]
+                        ],
+                        "nucleo": "frecuencia"
                       }
-                    ]
+                    ],
+                    "nucleo": "frecuencia"
                   },
                   {
                     "funcion": "V",
@@ -129,8 +207,7 @@
                   },
                   {
                     "funcion": "CCL",
-                    "texto": "al gimnasio?",
-                    "nucleo": "gimnasio",
+                    "texto": "al gimnasio",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -138,12 +215,14 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "gimnasio?",
-                        "nucleo": "gimnasio?"
+                        "texto": "gimnasio",
+                        "nucleo": "gimnasio"
                       }
-                    ]
+                    ],
+                    "nucleo": "gimnasio"
                   }
-                ]
+                ],
+                "nucleo": "vas"
               }
             ]
           }
@@ -156,8 +235,7 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Voy al gimnasio dos veces a la semana.",
-                "nucleo": "Voy",
+                "texto": "Voy al gimnasio dos veces a la semana",
                 "partes": [
                   {
                     "funcion": "V",
@@ -167,7 +245,6 @@
                   {
                     "funcion": "CCL",
                     "texto": "al gimnasio",
-                    "nucleo": "gimnasio",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -178,12 +255,12 @@
                         "texto": "gimnasio",
                         "nucleo": "gimnasio"
                       }
-                    ]
+                    ],
+                    "nucleo": "gimnasio"
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "dos veces a la semana.",
-                    "nucleo": "veces",
+                    "texto": "dos veces",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -191,37 +268,41 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "veces"
+                        "texto": "veces",
+                        "nucleo": "veces"
+                      }
+                    ],
+                    "nucleo": "veces"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "a la semana",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "a"
                       },
                       {
-                        "funcion": "CCT",
-                        "texto": "a la semana.",
-                        "nucleo": "semana",
+                        "funcion": "TERM",
+                        "texto": "la semana",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "a"
+                            "funcion": "DET",
+                            "texto": "la"
                           },
                           {
-                            "funcion": "TERM",
-                            "texto": "la semana.",
-                            "nucleo": "semana",
-                            "partes": [
-                              {
-                                "funcion": "DET",
-                                "texto": "la"
-                              },
-                              {
-                                "funcion": "N",
-                                "texto": "semana."
-                              }
-                            ]
+                            "funcion": "N",
+                            "texto": "semana",
+                            "nucleo": "semana"
                           }
-                        ]
+                        ],
+                        "nucleo": "semana"
                       }
-                    ]
+                    ],
+                    "nucleo": "semana"
                   }
-                ]
+                ],
+                "nucleo": "Voy"
               }
             ]
           }
@@ -234,8 +315,7 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Normalmente paseo por la tarde tranquila.",
-                "nucleo": "paseo",
+                "texto": "Normalmente paseo por la tarde tranquila",
                 "partes": [
                   {
                     "funcion": "CCT",
@@ -249,8 +329,7 @@
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "por la tarde tranquila.",
-                    "nucleo": "tarde",
+                    "texto": "por la tarde tranquila",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -258,8 +337,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "la tarde tranquila.",
-                        "nucleo": "tarde",
+                        "texto": "la tarde tranquila",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -267,18 +345,22 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "tarde"
+                            "texto": "tarde",
+                            "nucleo": "tarde"
                           },
                           {
-                            "funcion": "CN",
-                            "texto": "tranquila.",
-                            "nucleo": "tranquila."
+                            "funcion": "ADY",
+                            "texto": "tranquila",
+                            "nucleo": "tranquila"
                           }
-                        ]
+                        ],
+                        "nucleo": "tarde"
                       }
-                    ]
+                    ],
+                    "nucleo": "tarde"
                   }
-                ]
+                ],
+                "nucleo": "paseo"
               }
             ]
           }
@@ -291,13 +373,11 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Entre semana siempre me levanto temprano.",
-                "nucleo": "levanto",
+                "texto": "Entre semana siempre me levanto temprano",
                 "partes": [
                   {
                     "funcion": "CCT",
                     "texto": "Entre semana",
-                    "nucleo": "semana",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -308,7 +388,8 @@
                         "texto": "semana",
                         "nucleo": "semana"
                       }
-                    ]
+                    ],
+                    "nucleo": "semana"
                   },
                   {
                     "funcion": "CCT",
@@ -316,21 +397,17 @@
                     "nucleo": "siempre"
                   },
                   {
-                    "funcion": "CI",
-                    "texto": "me",
-                    "nucleo": "me"
-                  },
-                  {
                     "funcion": "V",
-                    "texto": "levanto",
+                    "texto": "me levanto",
                     "nucleo": "levanto"
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "temprano.",
-                    "nucleo": "temprano."
+                    "texto": "temprano",
+                    "nucleo": "temprano"
                   }
-                ]
+                ],
+                "nucleo": "levanto"
               }
             ]
           }
@@ -343,12 +420,11 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "¿Y qué haces los fines de semana?",
-                "nucleo": "haces",
+                "texto": "Y qué haces los fines de semana",
                 "partes": [
                   {
                     "funcion": "CONJ",
-                    "texto": "¿Y"
+                    "texto": "Y"
                   },
                   {
                     "funcion": "CD",
@@ -362,8 +438,7 @@
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "los fines de semana?",
-                    "nucleo": "fines",
+                    "texto": "los fines de semana",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -371,12 +446,12 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "fines"
+                        "texto": "fines",
+                        "nucleo": "fines"
                       },
                       {
                         "funcion": "CN",
-                        "texto": "de semana?",
-                        "nucleo": "semana",
+                        "texto": "de semana",
                         "partes": [
                           {
                             "funcion": "PREP",
@@ -384,14 +459,17 @@
                           },
                           {
                             "funcion": "TERM",
-                            "texto": "semana?",
-                            "nucleo": "semana?"
+                            "texto": "semana",
+                            "nucleo": "semana"
                           }
-                        ]
+                        ],
+                        "nucleo": "semana"
                       }
-                    ]
+                    ],
+                    "nucleo": "fines"
                   }
-                ]
+                ],
+                "nucleo": "haces"
               }
             ]
           }
@@ -404,8 +482,7 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "A veces me levanto a las doce.",
-                "nucleo": "levanto",
+                "texto": "A veces me levanto a las doce",
                 "partes": [
                   {
                     "funcion": "CCT",
@@ -413,19 +490,13 @@
                     "nucleo": "veces"
                   },
                   {
-                    "funcion": "CI",
-                    "texto": "me",
-                    "nucleo": "me"
-                  },
-                  {
                     "funcion": "V",
-                    "texto": "levanto",
+                    "texto": "me levanto",
                     "nucleo": "levanto"
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "a las doce.",
-                    "nucleo": "doce",
+                    "texto": "a las doce",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -433,8 +504,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "las doce.",
-                        "nucleo": "doce",
+                        "texto": "las doce",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -442,13 +512,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "doce."
+                            "texto": "doce",
+                            "nucleo": "doce"
                           }
-                        ]
+                        ],
+                        "nucleo": "doce"
                       }
-                    ]
+                    ],
+                    "nucleo": "doce"
                   }
-                ]
+                ],
+                "nucleo": "levanto"
               }
             ]
           }
@@ -489,18 +563,11 @@
               {
                 "funcion": "SUJ",
                 "texto": "Nosotros",
-                "nucleo": "Nosotros",
-                "partes": [
-                  {
-                    "funcion": "N",
-                    "texto": "Nosotros"
-                  }
-                ]
+                "nucleo": "Nosotros"
               },
               {
                 "funcion": "PRED",
-                "texto": "paseamos cada día por el parque.",
-                "nucleo": "paseamos",
+                "texto": "paseamos cada día por el parque",
                 "partes": [
                   {
                     "funcion": "V",
@@ -510,7 +577,6 @@
                   {
                     "funcion": "CCT",
                     "texto": "cada día",
-                    "nucleo": "día",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -518,14 +584,15 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "día"
+                        "texto": "día",
+                        "nucleo": "día"
                       }
-                    ]
+                    ],
+                    "nucleo": "día"
                   },
                   {
                     "funcion": "CCL",
-                    "texto": "por el parque.",
-                    "nucleo": "parque",
+                    "texto": "por el parque",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -533,8 +600,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "el parque.",
-                        "nucleo": "parque",
+                        "texto": "el parque",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -542,13 +608,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "parque."
+                            "texto": "parque",
+                            "nucleo": "parque"
                           }
-                        ]
+                        ],
+                        "nucleo": "parque"
                       }
-                    ]
+                    ],
+                    "nucleo": "parque"
                   }
-                ]
+                ],
+                "nucleo": "paseamos"
               }
             ]
           }
@@ -561,18 +631,11 @@
               {
                 "funcion": "SUJ",
                 "texto": "Pablo",
-                "nucleo": "Pablo",
-                "partes": [
-                  {
-                    "funcion": "N",
-                    "texto": "Pablo"
-                  }
-                ]
+                "nucleo": "Pablo"
               },
               {
                 "funcion": "PRED",
-                "texto": "va al gimnasio dos veces al mes.",
-                "nucleo": "va",
+                "texto": "va al gimnasio dos veces al mes",
                 "partes": [
                   {
                     "funcion": "V",
@@ -582,7 +645,6 @@
                   {
                     "funcion": "CCL",
                     "texto": "al gimnasio",
-                    "nucleo": "gimnasio",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -593,12 +655,12 @@
                         "texto": "gimnasio",
                         "nucleo": "gimnasio"
                       }
-                    ]
+                    ],
+                    "nucleo": "gimnasio"
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "dos veces al mes.",
-                    "nucleo": "veces",
+                    "texto": "dos veces",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -606,27 +668,30 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "veces"
+                        "texto": "veces",
+                        "nucleo": "veces"
+                      }
+                    ],
+                    "nucleo": "veces"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "al mes",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "al"
                       },
                       {
-                        "funcion": "CCT",
-                        "texto": "al mes.",
-                        "nucleo": "mes",
-                        "partes": [
-                          {
-                            "funcion": "PREP",
-                            "texto": "al"
-                          },
-                          {
-                            "funcion": "TERM",
-                            "texto": "mes.",
-                            "nucleo": "mes."
-                          }
-                        ]
+                        "funcion": "TERM",
+                        "texto": "mes",
+                        "nucleo": "mes"
                       }
-                    ]
+                    ],
+                    "nucleo": "mes"
                   }
-                ]
+                ],
+                "nucleo": "va"
               }
             ]
           }
@@ -647,16 +712,15 @@
               {
                 "funcion": "SUJ",
                 "texto": "Tener una rutina saludable",
-                "nucleo": "Tener",
                 "partes": [
                   {
-                    "funcion": "N",
-                    "texto": "Tener"
+                    "funcion": "INF",
+                    "texto": "Tener",
+                    "nucleo": "Tener"
                   },
                   {
                     "funcion": "CD",
                     "texto": "una rutina saludable",
-                    "nucleo": "rutina",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -664,21 +728,23 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "rutina"
+                        "texto": "rutina",
+                        "nucleo": "rutina"
                       },
                       {
-                        "funcion": "CN",
+                        "funcion": "ADY",
                         "texto": "saludable",
                         "nucleo": "saludable"
                       }
-                    ]
+                    ],
+                    "nucleo": "rutina"
                   }
-                ]
+                ],
+                "nucleo": "Tener"
               },
               {
                 "funcion": "PRED",
-                "texto": "ayuda a mantener el cuerpo en buena forma.",
-                "nucleo": "ayuda",
+                "texto": "ayuda a mantener el cuerpo en buena forma",
                 "partes": [
                   {
                     "funcion": "V",
@@ -687,8 +753,7 @@
                   },
                   {
                     "funcion": "CRV",
-                    "texto": "a mantener el cuerpo en buena forma.",
-                    "nucleo": "mantener",
+                    "texto": "a mantener el cuerpo en buena forma",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -696,17 +761,16 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "mantener el cuerpo en buena forma.",
-                        "nucleo": "mantener",
+                        "texto": "mantener el cuerpo en buena forma",
                         "partes": [
                           {
                             "funcion": "INF",
-                            "texto": "mantener"
+                            "texto": "mantener",
+                            "nucleo": "mantener"
                           },
                           {
                             "funcion": "CD",
                             "texto": "el cuerpo",
-                            "nucleo": "cuerpo",
                             "partes": [
                               {
                                 "funcion": "DET",
@@ -714,14 +778,15 @@
                               },
                               {
                                 "funcion": "N",
-                                "texto": "cuerpo"
+                                "texto": "cuerpo",
+                                "nucleo": "cuerpo"
                               }
-                            ]
+                            ],
+                            "nucleo": "cuerpo"
                           },
                           {
                             "funcion": "CCM",
-                            "texto": "en buena forma.",
-                            "nucleo": "forma",
+                            "texto": "en buena forma",
                             "partes": [
                               {
                                 "funcion": "PREP",
@@ -729,27 +794,32 @@
                               },
                               {
                                 "funcion": "TERM",
-                                "texto": "buena forma.",
-                                "nucleo": "forma",
+                                "texto": "buena forma",
                                 "partes": [
                                   {
-                                    "funcion": "CN",
+                                    "funcion": "ADY",
                                     "texto": "buena",
                                     "nucleo": "buena"
                                   },
                                   {
                                     "funcion": "N",
-                                    "texto": "forma."
+                                    "texto": "forma",
+                                    "nucleo": "forma"
                                   }
-                                ]
+                                ],
+                                "nucleo": "forma"
                               }
-                            ]
+                            ],
+                            "nucleo": "forma"
                           }
-                        ]
+                        ],
+                        "nucleo": "mantener"
                       }
-                    ]
+                    ],
+                    "nucleo": "mantener"
                   }
-                ]
+                ],
+                "nucleo": "ayuda"
               }
             ]
           }
@@ -763,18 +833,11 @@
               {
                 "funcion": "SUJ",
                 "texto": "Pablo",
-                "nucleo": "Pablo",
-                "partes": [
-                  {
-                    "funcion": "N",
-                    "texto": "Pablo"
-                  }
-                ]
+                "nucleo": "Pablo"
               },
               {
                 "funcion": "PRED",
-                "texto": "va al gimnasio dos veces a la semana para hacer ejercicio físico.",
-                "nucleo": "va",
+                "texto": "va al gimnasio dos veces a la semana para hacer ejercicio físico",
                 "partes": [
                   {
                     "funcion": "V",
@@ -784,7 +847,6 @@
                   {
                     "funcion": "CCL",
                     "texto": "al gimnasio",
-                    "nucleo": "gimnasio",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -795,12 +857,12 @@
                         "texto": "gimnasio",
                         "nucleo": "gimnasio"
                       }
-                    ]
+                    ],
+                    "nucleo": "gimnasio"
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "dos veces a la semana",
-                    "nucleo": "veces",
+                    "texto": "dos veces",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -808,40 +870,42 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "veces"
+                        "texto": "veces",
+                        "nucleo": "veces"
+                      }
+                    ],
+                    "nucleo": "veces"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "a la semana",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "a"
                       },
                       {
-                        "funcion": "CCT",
-                        "texto": "a la semana",
-                        "nucleo": "semana",
+                        "funcion": "TERM",
+                        "texto": "la semana",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "a"
+                            "funcion": "DET",
+                            "texto": "la"
                           },
                           {
-                            "funcion": "TERM",
-                            "texto": "la semana",
-                            "nucleo": "semana",
-                            "partes": [
-                              {
-                                "funcion": "DET",
-                                "texto": "la"
-                              },
-                              {
-                                "funcion": "N",
-                                "texto": "semana"
-                              }
-                            ]
+                            "funcion": "N",
+                            "texto": "semana",
+                            "nucleo": "semana"
                           }
-                        ]
+                        ],
+                        "nucleo": "semana"
                       }
-                    ]
+                    ],
+                    "nucleo": "semana"
                   },
                   {
                     "funcion": "CCF",
-                    "texto": "para hacer ejercicio físico.",
-                    "nucleo": "hacer",
+                    "texto": "para hacer ejercicio físico",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -849,34 +913,38 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "hacer ejercicio físico.",
-                        "nucleo": "hacer",
+                        "texto": "hacer ejercicio físico",
                         "partes": [
                           {
                             "funcion": "INF",
-                            "texto": "hacer"
+                            "texto": "hacer",
+                            "nucleo": "hacer"
                           },
                           {
                             "funcion": "CD",
-                            "texto": "ejercicio físico.",
-                            "nucleo": "ejercicio",
+                            "texto": "ejercicio físico",
                             "partes": [
                               {
                                 "funcion": "N",
-                                "texto": "ejercicio"
+                                "texto": "ejercicio",
+                                "nucleo": "ejercicio"
                               },
                               {
-                                "funcion": "CN",
-                                "texto": "físico.",
-                                "nucleo": "físico."
+                                "funcion": "ADY",
+                                "texto": "físico",
+                                "nucleo": "físico"
                               }
-                            ]
+                            ],
+                            "nucleo": "ejercicio"
                           }
-                        ]
+                        ],
+                        "nucleo": "hacer"
                       }
-                    ]
+                    ],
+                    "nucleo": "hacer"
                   }
-                ]
+                ],
+                "nucleo": "va"
               }
             ]
           }
@@ -889,97 +957,107 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Entre semana se levanta temprano y sale a correr por la avenida ancha.",
-                "nucleo": "levanta",
+                "texto": "Entre semana se levanta temprano y sale a correr por la avenida ancha",
                 "partes": [
                   {
-                    "funcion": "CCT",
-                    "texto": "Entre semana",
-                    "nucleo": "semana",
+                    "funcion": "PRED",
+                    "texto": "Entre semana se levanta temprano",
                     "partes": [
                       {
-                        "funcion": "PREP",
-                        "texto": "Entre"
+                        "funcion": "CCT",
+                        "texto": "Entre semana",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "Entre"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "semana",
+                            "nucleo": "semana"
+                          }
+                        ],
+                        "nucleo": "semana"
                       },
                       {
-                        "funcion": "TERM",
-                        "texto": "semana",
-                        "nucleo": "semana"
+                        "funcion": "V",
+                        "texto": "se levanta",
+                        "nucleo": "levanta"
+                      },
+                      {
+                        "funcion": "CCT",
+                        "texto": "temprano",
+                        "nucleo": "temprano"
                       }
-                    ]
-                  },
-                  {
-                    "funcion": "CI",
-                    "texto": "se",
-                    "nucleo": "se"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "levanta",
+                    ],
                     "nucleo": "levanta"
-                  },
-                  {
-                    "funcion": "CCT",
-                    "texto": "temprano",
-                    "nucleo": "temprano"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "V",
-                    "texto": "sale",
-                    "nucleo": "sale"
-                  },
-                  {
-                    "funcion": "CCF",
-                    "texto": "a correr",
-                    "nucleo": "correr",
+                    "funcion": "PRED",
+                    "texto": "sale a correr por la avenida ancha",
                     "partes": [
                       {
-                        "funcion": "PREP",
-                        "texto": "a"
+                        "funcion": "V",
+                        "texto": "sale",
+                        "nucleo": "sale"
                       },
                       {
-                        "funcion": "TERM",
-                        "texto": "correr",
-                        "nucleo": "correr"
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "CCL",
-                    "texto": "por la avenida ancha.",
-                    "nucleo": "avenida",
-                    "partes": [
-                      {
-                        "funcion": "PREP",
-                        "texto": "por"
-                      },
-                      {
-                        "funcion": "TERM",
-                        "texto": "la avenida ancha.",
-                        "nucleo": "avenida",
+                        "funcion": "CCF",
+                        "texto": "a correr",
                         "partes": [
                           {
-                            "funcion": "DET",
-                            "texto": "la"
+                            "funcion": "PREP",
+                            "texto": "a"
                           },
                           {
-                            "funcion": "N",
-                            "texto": "avenida"
-                          },
-                          {
-                            "funcion": "CN",
-                            "texto": "ancha.",
-                            "nucleo": "ancha."
+                            "funcion": "TERM",
+                            "texto": "correr",
+                            "nucleo": "correr"
                           }
-                        ]
+                        ],
+                        "nucleo": "correr"
+                      },
+                      {
+                        "funcion": "CCL",
+                        "texto": "por la avenida ancha",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "por"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "la avenida ancha",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "la"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "avenida",
+                                "nucleo": "avenida"
+                              },
+                              {
+                                "funcion": "ADY",
+                                "texto": "ancha",
+                                "nucleo": "ancha"
+                              }
+                            ],
+                            "nucleo": "avenida"
+                          }
+                        ],
+                        "nucleo": "avenida"
                       }
-                    ]
+                    ],
+                    "nucleo": "sale"
                   }
-                ]
+                ],
+                "nucleo": "levanta"
               }
             ]
           }
@@ -993,18 +1071,11 @@
               {
                 "funcion": "SUJ",
                 "texto": "Lucía",
-                "nucleo": "Lucía",
-                "partes": [
-                  {
-                    "funcion": "N",
-                    "texto": "Lucía"
-                  }
-                ]
+                "nucleo": "Lucía"
               },
               {
                 "funcion": "PRED",
-                "texto": "prefiere pasear por el parque verde casi siempre por la tarde.",
-                "nucleo": "prefiere",
+                "texto": "prefiere pasear por el parque verde casi siempre por la tarde",
                 "partes": [
                   {
                     "funcion": "V",
@@ -1014,16 +1085,15 @@
                   {
                     "funcion": "CD",
                     "texto": "pasear por el parque verde",
-                    "nucleo": "pasear",
                     "partes": [
                       {
                         "funcion": "INF",
-                        "texto": "pasear"
+                        "texto": "pasear",
+                        "nucleo": "pasear"
                       },
                       {
                         "funcion": "CCL",
                         "texto": "por el parque verde",
-                        "nucleo": "parque",
                         "partes": [
                           {
                             "funcion": "PREP",
@@ -1032,7 +1102,6 @@
                           {
                             "funcion": "TERM",
                             "texto": "el parque verde",
-                            "nucleo": "parque",
                             "partes": [
                               {
                                 "funcion": "DET",
@@ -1040,28 +1109,43 @@
                               },
                               {
                                 "funcion": "N",
-                                "texto": "parque"
+                                "texto": "parque",
+                                "nucleo": "parque"
                               },
                               {
-                                "funcion": "CN",
+                                "funcion": "ADY",
                                 "texto": "verde",
                                 "nucleo": "verde"
                               }
-                            ]
+                            ],
+                            "nucleo": "parque"
                           }
-                        ]
+                        ],
+                        "nucleo": "parque"
                       }
-                    ]
+                    ],
+                    "nucleo": "pasear"
                   },
                   {
                     "funcion": "CCT",
                     "texto": "casi siempre",
+                    "partes": [
+                      {
+                        "funcion": "CUANT",
+                        "texto": "casi",
+                        "nucleo": "casi"
+                      },
+                      {
+                        "funcion": "ADV",
+                        "texto": "siempre",
+                        "nucleo": "siempre"
+                      }
+                    ],
                     "nucleo": "siempre"
                   },
                   {
                     "funcion": "CCT",
-                    "texto": "por la tarde.",
-                    "nucleo": "tarde",
+                    "texto": "por la tarde",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -1069,8 +1153,7 @@
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "la tarde.",
-                        "nucleo": "tarde",
+                        "texto": "la tarde",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -1078,13 +1161,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "tarde."
+                            "texto": "tarde",
+                            "nucleo": "tarde"
                           }
-                        ]
+                        ],
+                        "nucleo": "tarde"
                       }
-                    ]
+                    ],
+                    "nucleo": "tarde"
                   }
-                ]
+                ],
+                "nucleo": "prefiere"
               }
             ]
           }
@@ -1097,77 +1184,93 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "A menudo lee libros interesantes o escucha música relajante en casa.",
-                "nucleo": "lee",
+                "texto": "A menudo lee libros interesantes o escucha música relajante en casa",
                 "partes": [
                   {
-                    "funcion": "CCT",
-                    "texto": "A menudo",
-                    "nucleo": "menudo"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "lee",
-                    "nucleo": "lee"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "libros interesantes",
-                    "nucleo": "libros",
+                    "funcion": "PRED",
+                    "texto": "A menudo lee libros interesantes",
                     "partes": [
                       {
-                        "funcion": "N",
-                        "texto": "libros"
+                        "funcion": "CCT",
+                        "texto": "A menudo",
+                        "nucleo": "menudo"
                       },
                       {
-                        "funcion": "CN",
-                        "texto": "interesantes",
-                        "nucleo": "interesantes"
+                        "funcion": "V",
+                        "texto": "lee",
+                        "nucleo": "lee"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "libros interesantes",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "libros",
+                            "nucleo": "libros"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "interesantes",
+                            "nucleo": "interesantes"
+                          }
+                        ],
+                        "nucleo": "libros"
                       }
-                    ]
+                    ],
+                    "nucleo": "lee"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "o"
                   },
                   {
-                    "funcion": "V",
-                    "texto": "escucha",
+                    "funcion": "PRED",
+                    "texto": "escucha música relajante en casa",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "escucha",
+                        "nucleo": "escucha"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "música relajante",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "música",
+                            "nucleo": "música"
+                          },
+                          {
+                            "funcion": "ADY",
+                            "texto": "relajante",
+                            "nucleo": "relajante"
+                          }
+                        ],
+                        "nucleo": "música"
+                      },
+                      {
+                        "funcion": "CCL",
+                        "texto": "en casa",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "en"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "casa",
+                            "nucleo": "casa"
+                          }
+                        ],
+                        "nucleo": "casa"
+                      }
+                    ],
                     "nucleo": "escucha"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "música relajante",
-                    "nucleo": "música",
-                    "partes": [
-                      {
-                        "funcion": "N",
-                        "texto": "música"
-                      },
-                      {
-                        "funcion": "CN",
-                        "texto": "relajante",
-                        "nucleo": "relajante"
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "CCL",
-                    "texto": "en casa.",
-                    "nucleo": "casa",
-                    "partes": [
-                      {
-                        "funcion": "PREP",
-                        "texto": "en"
-                      },
-                      {
-                        "funcion": "TERM",
-                        "texto": "casa.",
-                        "nucleo": "casa."
-                      }
-                    ]
                   }
-                ]
+                ],
+                "nucleo": "lee"
               }
             ]
           }
@@ -1180,75 +1283,97 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Los fines de semana descansan juntos y casi nunca se acuestan pronto.",
-                "nucleo": "descansan",
+                "texto": "Los fines de semana descansan juntos y casi nunca se acuestan pronto",
                 "partes": [
                   {
-                    "funcion": "CCT",
-                    "texto": "Los fines de semana",
-                    "nucleo": "fines",
+                    "funcion": "PRED",
+                    "texto": "Los fines de semana descansan juntos",
                     "partes": [
                       {
-                        "funcion": "DET",
-                        "texto": "Los"
-                      },
-                      {
-                        "funcion": "N",
-                        "texto": "fines"
-                      },
-                      {
-                        "funcion": "CN",
-                        "texto": "de semana",
-                        "nucleo": "semana",
+                        "funcion": "CCT",
+                        "texto": "Los fines de semana",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "de"
+                            "funcion": "DET",
+                            "texto": "Los"
                           },
                           {
-                            "funcion": "TERM",
-                            "texto": "semana",
+                            "funcion": "N",
+                            "texto": "fines",
+                            "nucleo": "fines"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "de semana",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "de"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "semana",
+                                "nucleo": "semana"
+                              }
+                            ],
                             "nucleo": "semana"
                           }
-                        ]
+                        ],
+                        "nucleo": "fines"
+                      },
+                      {
+                        "funcion": "V",
+                        "texto": "descansan",
+                        "nucleo": "descansan"
+                      },
+                      {
+                        "funcion": "CPVO",
+                        "texto": "juntos",
+                        "nucleo": "juntos"
                       }
-                    ]
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "descansan",
+                    ],
                     "nucleo": "descansan"
-                  },
-                  {
-                    "funcion": "CPVO",
-                    "texto": "juntos",
-                    "nucleo": "juntos"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "CCT",
-                    "texto": "casi nunca",
-                    "nucleo": "nunca"
-                  },
-                  {
-                    "funcion": "CI",
-                    "texto": "se",
-                    "nucleo": "se"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "acuestan",
+                    "funcion": "PRED",
+                    "texto": "casi nunca se acuestan pronto",
+                    "partes": [
+                      {
+                        "funcion": "CCT",
+                        "texto": "casi nunca",
+                        "partes": [
+                          {
+                            "funcion": "CUANT",
+                            "texto": "casi",
+                            "nucleo": "casi"
+                          },
+                          {
+                            "funcion": "ADV",
+                            "texto": "nunca",
+                            "nucleo": "nunca"
+                          }
+                        ],
+                        "nucleo": "nunca"
+                      },
+                      {
+                        "funcion": "V",
+                        "texto": "se acuestan",
+                        "nucleo": "acuestan"
+                      },
+                      {
+                        "funcion": "CCT",
+                        "texto": "pronto",
+                        "nucleo": "pronto"
+                      }
+                    ],
                     "nucleo": "acuestan"
-                  },
-                  {
-                    "funcion": "CCT",
-                    "texto": "pronto.",
-                    "nucleo": "pronto."
                   }
-                ]
+                ],
+                "nucleo": "descansan"
               }
             ]
           }

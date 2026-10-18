@@ -1,12 +1,10 @@
 @echo off
-rem Doble clic: abre la app unica Idiomas (todos los cursos) en Edge. Empieza en la pantalla de inicio.
+rem Doble clic: abre Paglot (curso de espanol) en Edge. Empieza en la pantalla de inicio.
 rem Usa siempre el puerto 8100: el progreso guardado en el navegador va ligado a el.
 rem Hace falta un servidor local (si no, el navegador no carga las lecciones).
 rem Esta ventana es ese servidor. Cierrala para pararlo.
 title Paglot
 cd /d "%~dp0"
-rem El indice y el diccionario de cada curso, al dia (si Node esta instalado).
-where node >nul 2>nul && node "_herramientas\generar_indices.mjs"
 powershell -NoProfile -ExecutionPolicy Bypass -Command "$t = Get-Content -LiteralPath '%~f0' -Raw; $i = $t.IndexOf('#' + 'SERVIDOR'); if ($i -lt 0) { throw 'Marcador no encontrado' }; Invoke-Expression $t.Substring($i)"
 exit /b
 

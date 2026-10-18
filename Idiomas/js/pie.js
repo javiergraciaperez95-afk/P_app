@@ -5,7 +5,7 @@
 
 import { el, poner } from './dom.js';
 import { t } from './i18n.js';
-import { CURSOS } from './cursos.js';
+import { TUTORAS } from './amigas.js';
 import { curso, hayCurso } from './curso.js';
 import { dibujoDe } from './tutor-sprite.js';
 import { sonar } from './sonidos.js';
@@ -43,7 +43,7 @@ let siguiente = 0;    // por qué tutora empieza la próxima escenita
 
 /** Cuatro tutoras al azar; si hay curso elegido, la suya va entre ellas. */
 function elegirTutoras() {
-  const libres = CURSOS.filter(c => !c.proximamente && c.id !== curso.id);
+  const libres = TUTORAS.filter(c => c.id !== curso.id);
   for (let i = libres.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [libres[i], libres[j]] = [libres[j], libres[i]];
@@ -143,13 +143,6 @@ function despedida() {
 export function iniciarPie() {
   const pie = document.getElementById('pie-sitio');
   const lados = [pie.querySelector('[data-pie-tutoras="izq"]'), pie.querySelector('[data-pie-tutoras="der"]')];
-  // la guirnalda con las banderas de todos los idiomas, entre los carteles y la franja final
-  const guirnalda = el('div', { class: 'pie-guirnalda', 'aria-hidden': 'true' }, CURSOS.map((c, n) => {
-    const b = el('span', { class: 'pie-banderita', style: `--n:${n}` });
-    b.innerHTML = c.bandera; // dibujo fijo del catálogo local de cursos
-    return b;
-  }));
-  pie.querySelector('.pie-base').before(guirnalda);
   pie.querySelector('[data-pie-anio]').before(el('img', { class: 'pie-base-logo', src: 'assets/favicon.svg', alt: '', width: 22, height: 22 }));
 
   // el decorado, detrás de todo
@@ -189,14 +182,12 @@ export function iniciarPie() {
 
 /** Los textos del pie, en el idioma de la interfaz (se repinta al cambiarlo y al cambiar de pantalla). */
 export function pintarPie() {
-  for (const clave of ['descubre', 'producto', 'ayuda']) {
+  for (const clave of ['ayuda']) {
     const nodo = document.querySelector(`[data-pie-titulo="${clave}"]`);
     if (nodo) poner(nodo, icono(ICONOS_GRUPO[clave], 'icono pie-icono'), el('span', {}, t(`pie.${clave}`)));
   }
   const enlaces = {
-    sobre: t('sobre.titulo'), social: t('pagina.social'), guias: t('pie.guias'), laboratorio: t('pie.laboratorio'),
-    escuelas: t('pie.escuelas'), empresas: t('pie.empresas'), max: 'Paglot Max', regalo: t('pie.regalo'), tienda: t('pie.tienda'),
-    contacto: t('pie.contacto'), faq: t('pagina.faq'), legal: t('legal.titulo'), creditos: t('creditos.titulo'),
+    creditos: t('creditos.titulo'),
   };
   for (const [clave, texto] of Object.entries(enlaces)) {
     const nodo = document.querySelector(`[data-pie="${clave}"]`);

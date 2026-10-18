@@ -2,6 +2,8 @@
   "esquema": 2,
   "id": "002",
   "capitulo": 1,
+  "numero_curso": 2,
+  "orden_curso": 2,
   "nivel": "A1",
   "palabras": {
     "me llamo": {
@@ -63,6 +65,135 @@
     },
     "Minh": {
       "propio": true
+    },
+    "mapa": {
+      "pron": "MA-pa",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "nombres": {
+      "pron": "NOM-bres",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "conoce": {
+      "pron": "ko-NO-the",
+      "cat": "verb"
+    },
+    "estudiante": {
+      "pron": "es-tu-DYAN-te",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "país": {
+      "pron": "pa-IS",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "voz": {
+      "pron": "BOTH",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "usara": {
+      "pron": "u-SA-ra",
+      "cat": "verb"
+    },
+    "primera": {
+      "pron": "pri-ME-ra",
+      "cat": "num"
+    },
+    "vez": {
+      "pron": "BETH",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "lado": {
+      "pron": "LA-do",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "sonríe": {
+      "pron": "son-RRI-e",
+      "cat": "verb"
+    },
+    "palabra": {
+      "pron": "pa-LA-bra",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "ayudarlo": {
+      "pron": "a-yu-DAR-lo",
+      "cat": "verb"
+    },
+    "pronunciarla": {
+      "pron": "pro-nun-THYAR-la",
+      "cat": "verb"
+    },
+    "todos": {
+      "pron": "TO-dos",
+      "cat": "pron"
+    },
+    "escriben": {
+      "pron": "es-KRI-ben",
+      "cat": "verb"
+    },
+    "nombre": {
+      "pron": "NOM-bre",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "papel": {
+      "pron": "pa-PEL",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "pegan": {
+      "pron": "PE-gan",
+      "cat": "verb"
+    },
+    "junto": {
+      "pron": "HUN-to",
+      "cat": "adv"
+    },
+    "pared": {
+      "pron": "pa-RED",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "lugares": {
+      "pron": "lu-GA-res",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "diferentes": {
+      "pron": "di-fe-REN-tes",
+      "cat": "adj"
+    },
+    "compañero": {
+      "pron": "kom-pa-NYE-ro",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "descubre": {
+      "pron": "des-KU-bre",
+      "cat": "verb"
+    },
+    "aprendida": {
+      "pron": "a-pren-DI-da",
+      "cat": "adj"
+    },
+    "sirve": {
+      "pron": "SIR-be",
+      "cat": "verb"
+    },
+    "yo": {
+      "pron": "yo",
+      "cat": "pron"
+    },
+    "pregunta": {
+      "pron": "pre-GUN-ta",
+      "cat": "verb"
     }
   },
   "bloques": [
@@ -83,7 +214,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Me llamo Carmen",
-                "nucleo": "llamo",
                 "partes": [
                   {
                     "funcion": "V",
@@ -91,11 +221,12 @@
                     "nucleo": "llamo"
                   },
                   {
-                    "funcion": "CD",
+                    "funcion": "CPVO",
                     "texto": "Carmen",
                     "nucleo": "Carmen"
                   }
-                ]
+                ],
+                "nucleo": "llamo"
               }
             ]
           }
@@ -109,7 +240,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Soy Minh",
-                "nucleo": "Soy",
                 "partes": [
                   {
                     "funcion": "V",
@@ -121,7 +251,8 @@
                     "texto": "Minh",
                     "nucleo": "Minh"
                   }
-                ]
+                ],
+                "nucleo": "Soy"
               }
             ]
           }
@@ -135,11 +266,21 @@
               {
                 "funcion": "PRED",
                 "texto": "De dónde eres",
-                "nucleo": "eres",
                 "partes": [
                   {
                     "funcion": "ATRIB",
                     "texto": "De dónde",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "De"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "dónde",
+                        "nucleo": "dónde"
+                      }
+                    ],
                     "nucleo": "dónde"
                   },
                   {
@@ -147,7 +288,8 @@
                     "texto": "eres",
                     "nucleo": "eres"
                   }
-                ]
+                ],
+                "nucleo": "eres"
               }
             ]
           }
@@ -161,7 +303,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Soy de Vietnam",
-                "nucleo": "Soy",
                 "partes": [
                   {
                     "funcion": "V",
@@ -171,7 +312,6 @@
                   {
                     "funcion": "ATRIB",
                     "texto": "de Vietnam",
-                    "nucleo": "Vietnam",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -182,9 +322,11 @@
                         "texto": "Vietnam",
                         "nucleo": "Vietnam"
                       }
-                    ]
+                    ],
+                    "nucleo": "Vietnam"
                   }
-                ]
+                ],
+                "nucleo": "Soy"
               }
             ]
           }
@@ -198,7 +340,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Soy de España",
-                "nucleo": "Soy",
                 "partes": [
                   {
                     "funcion": "V",
@@ -208,7 +349,6 @@
                   {
                     "funcion": "ATRIB",
                     "texto": "de España",
-                    "nucleo": "España",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -219,9 +359,11 @@
                         "texto": "España",
                         "nucleo": "España"
                       }
-                    ]
+                    ],
+                    "nucleo": "España"
                   }
-                ]
+                ],
+                "nucleo": "Soy"
               }
             ]
           }
@@ -253,7 +395,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Soy Ana",
-                "nucleo": "Soy",
                 "partes": [
                   {
                     "funcion": "V",
@@ -265,7 +406,8 @@
                     "texto": "Ana",
                     "nucleo": "Ana"
                   }
-                ]
+                ],
+                "nucleo": "Soy"
               }
             ]
           }
@@ -278,7 +420,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Eres de España",
-                "nucleo": "Eres",
                 "partes": [
                   {
                     "funcion": "V",
@@ -288,7 +429,6 @@
                   {
                     "funcion": "ATRIB",
                     "texto": "de España",
-                    "nucleo": "España",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -299,9 +439,11 @@
                         "texto": "España",
                         "nucleo": "España"
                       }
-                    ]
+                    ],
+                    "nucleo": "España"
                   }
-                ]
+                ],
+                "nucleo": "Eres"
               }
             ]
           }
@@ -322,12 +464,10 @@
               {
                 "funcion": "PRED",
                 "texto": "En la clase hay un mapa grande con nombres que Minh todavía no conoce",
-                "nucleo": "hay",
                 "partes": [
                   {
                     "funcion": "CCL",
                     "texto": "En la clase",
-                    "nucleo": "clase",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -336,7 +476,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "la clase",
-                        "nucleo": "clase",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -347,9 +486,11 @@
                             "texto": "clase",
                             "nucleo": "clase"
                           }
-                        ]
+                        ],
+                        "nucleo": "clase"
                       }
-                    ]
+                    ],
+                    "nucleo": "clase"
                   },
                   {
                     "funcion": "V",
@@ -359,7 +500,6 @@
                   {
                     "funcion": "CD",
                     "texto": "un mapa grande con nombres que Minh todavía no conoce",
-                    "nucleo": "mapa",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -378,7 +518,6 @@
                       {
                         "funcion": "CN",
                         "texto": "con nombres que Minh todavía no conoce",
-                        "nucleo": "nombres",
                         "partes": [
                           {
                             "funcion": "PREP",
@@ -387,7 +526,6 @@
                           {
                             "funcion": "TERM",
                             "texto": "nombres que Minh todavía no conoce",
-                            "nucleo": "nombres",
                             "partes": [
                               {
                                 "funcion": "N",
@@ -395,13 +533,13 @@
                                 "nucleo": "nombres"
                               },
                               {
-                                "funcion": "CN",
+                                "funcion": "ADY",
                                 "texto": "que Minh todavía no conoce",
-                                "nucleo": "conoce",
                                 "partes": [
                                   {
                                     "funcion": "CD",
-                                    "texto": "que"
+                                    "texto": "que",
+                                    "nucleo": "que"
                                   },
                                   {
                                     "funcion": "SUJ",
@@ -409,28 +547,40 @@
                                     "nucleo": "Minh"
                                   },
                                   {
-                                    "funcion": "CCT",
-                                    "texto": "todavía",
-                                    "nucleo": "todavía"
-                                  },
-                                  {
-                                    "funcion": "NEG",
-                                    "texto": "no"
-                                  },
-                                  {
-                                    "funcion": "V",
-                                    "texto": "conoce",
+                                    "funcion": "PRED",
+                                    "texto": "todavía no conoce",
+                                    "partes": [
+                                      {
+                                        "funcion": "CCT",
+                                        "texto": "todavía",
+                                        "nucleo": "todavía"
+                                      },
+                                      {
+                                        "funcion": "NEG",
+                                        "texto": "no"
+                                      },
+                                      {
+                                        "funcion": "V",
+                                        "texto": "conoce",
+                                        "nucleo": "conoce"
+                                      }
+                                    ],
                                     "nucleo": "conoce"
                                   }
-                                ]
+                                ],
+                                "nucleo": "que"
                               }
-                            ]
+                            ],
+                            "nucleo": "nombres"
                           }
-                        ]
+                        ],
+                        "nucleo": "nombres"
                       }
-                    ]
+                    ],
+                    "nucleo": "mapa"
                   }
-                ]
+                ],
+                "nucleo": "hay"
               }
             ]
           }
@@ -444,7 +594,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La profesora",
-                "nucleo": "profesora",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -455,278 +604,120 @@
                     "texto": "profesora",
                     "nucleo": "profesora"
                   }
-                ]
+                ],
+                "nucleo": "profesora"
               },
               {
                 "funcion": "PRED",
-                "texto": "lo abre con cuidado y pregunta, uno a uno, de dónde viene cada estudiante",
-                "nucleo": "abre",
+                "texto": "lo abre con cuidado y pregunta uno a uno de dónde viene cada estudiante",
                 "partes": [
                   {
-                    "funcion": "CD",
-                    "texto": "lo"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "abre",
-                    "nucleo": "abre"
-                  },
-                  {
-                    "funcion": "CCM",
-                    "texto": "con cuidado",
-                    "nucleo": "cuidado",
+                    "funcion": "PRED",
+                    "texto": "lo abre con cuidado",
                     "partes": [
                       {
-                        "funcion": "PREP",
-                        "texto": "con"
+                        "funcion": "CD",
+                        "texto": "lo",
+                        "nucleo": "lo"
                       },
                       {
-                        "funcion": "TERM",
-                        "texto": "cuidado",
+                        "funcion": "V",
+                        "texto": "abre",
+                        "nucleo": "abre"
+                      },
+                      {
+                        "funcion": "CCM",
+                        "texto": "con cuidado",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "con"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "cuidado",
+                            "nucleo": "cuidado"
+                          }
+                        ],
                         "nucleo": "cuidado"
                       }
-                    ]
+                    ],
+                    "nucleo": "abre"
                   },
                   {
                     "funcion": "CONJ",
                     "texto": "y"
                   },
                   {
-                    "funcion": "V",
-                    "texto": "pregunta",
-                    "nucleo": "pregunta"
-                  },
-                  {
-                    "funcion": "CCM",
-                    "texto": "uno a uno",
-                    "nucleo": "uno",
+                    "funcion": "PRED",
+                    "texto": "pregunta uno a uno de dónde viene cada estudiante",
                     "partes": [
-                      {
-                        "funcion": "PRON",
-                        "texto": "uno",
-                        "nucleo": "uno"
-                      },
-                      {
-                        "funcion": "PREP",
-                        "texto": "a"
-                      },
-                      {
-                        "funcion": "PRON",
-                        "texto": "uno",
-                        "nucleo": "uno"
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "de dónde viene cada estudiante",
-                    "nucleo": "viene",
-                    "partes": [
-                      {
-                        "funcion": "CCL",
-                        "texto": "de dónde",
-                        "nucleo": "dónde",
-                        "partes": [
-                          {
-                            "funcion": "PREP",
-                            "texto": "de"
-                          },
-                          {
-                            "funcion": "TERM",
-                            "texto": "dónde",
-                            "nucleo": "dónde"
-                          }
-                        ]
-                      },
                       {
                         "funcion": "V",
-                        "texto": "viene",
-                        "nucleo": "viene"
+                        "texto": "pregunta",
+                        "nucleo": "pregunta"
                       },
                       {
-                        "funcion": "SUJ",
-                        "texto": "cada estudiante",
-                        "nucleo": "estudiante",
-                        "partes": [
-                          {
-                            "funcion": "DET",
-                            "texto": "cada"
-                          },
-                          {
-                            "funcion": "N",
-                            "texto": "estudiante",
-                            "nucleo": "estudiante"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "parrafo": 0,
-          "sintaxis": {
-            "oracion": "bimembre",
-            "sujeto": "omitido",
-            "unidades": [
-              {
-                "funcion": "PRED",
-                "texto": "Cuando llega a su país, Minh dice el nombre en voz baja, como si lo usara por primera vez",
-                "nucleo": "dice",
-                "partes": [
-                  {
-                    "funcion": "CCT",
-                    "texto": "Cuando llega a su país",
-                    "nucleo": "llega",
-                    "partes": [
-                      {
-                        "funcion": "CONJ",
-                        "texto": "Cuando"
-                      },
-                      {
-                        "funcion": "V",
-                        "texto": "llega",
-                        "nucleo": "llega"
-                      },
-                      {
-                        "funcion": "CCL",
-                        "texto": "a su país",
-                        "nucleo": "país",
-                        "partes": [
-                          {
-                            "funcion": "PREP",
-                            "texto": "a"
-                          },
-                          {
-                            "funcion": "TERM",
-                            "texto": "su país",
-                            "nucleo": "país",
-                            "partes": [
-                              {
-                                "funcion": "DET",
-                                "texto": "su"
-                              },
-                              {
-                                "funcion": "N",
-                                "texto": "país",
-                                "nucleo": "país"
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "SUJ",
-                    "texto": "Minh",
-                    "nucleo": "Minh"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "dice",
-                    "nucleo": "dice"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "el nombre",
-                    "nucleo": "nombre",
-                    "partes": [
-                      {
-                        "funcion": "DET",
-                        "texto": "el"
-                      },
-                      {
-                        "funcion": "N",
-                        "texto": "nombre",
-                        "nucleo": "nombre"
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "CCM",
-                    "texto": "en voz baja",
-                    "nucleo": "voz",
-                    "partes": [
-                      {
-                        "funcion": "PREP",
-                        "texto": "en"
-                      },
-                      {
-                        "funcion": "TERM",
-                        "texto": "voz baja",
-                        "nucleo": "voz",
-                        "partes": [
-                          {
-                            "funcion": "N",
-                            "texto": "voz",
-                            "nucleo": "voz"
-                          },
-                          {
-                            "funcion": "ADY",
-                            "texto": "baja",
-                            "nucleo": "baja"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "CCM",
-                    "texto": "como si lo usara por primera vez",
-                    "nucleo": "usara",
-                    "partes": [
-                      {
-                        "funcion": "CONJ",
-                        "texto": "como"
-                      },
-                      {
-                        "funcion": "CONJ",
-                        "texto": "si"
+                        "funcion": "CCM",
+                        "texto": "uno a uno",
+                        "nucleo": "uno"
                       },
                       {
                         "funcion": "CD",
-                        "texto": "lo"
-                      },
-                      {
-                        "funcion": "V",
-                        "texto": "usara",
-                        "nucleo": "usara"
-                      },
-                      {
-                        "funcion": "CCT",
-                        "texto": "por primera vez",
-                        "nucleo": "vez",
+                        "texto": "de dónde viene cada estudiante",
                         "partes": [
                           {
-                            "funcion": "PREP",
-                            "texto": "por"
-                          },
-                          {
-                            "funcion": "TERM",
-                            "texto": "primera vez",
-                            "nucleo": "vez",
+                            "funcion": "PRED",
+                            "texto": "de dónde viene",
                             "partes": [
                               {
-                                "funcion": "ADY",
-                                "texto": "primera",
-                                "nucleo": "primera"
+                                "funcion": "CCL",
+                                "texto": "de dónde",
+                                "partes": [
+                                  {
+                                    "funcion": "PREP",
+                                    "texto": "de"
+                                  },
+                                  {
+                                    "funcion": "TERM",
+                                    "texto": "dónde",
+                                    "nucleo": "dónde"
+                                  }
+                                ],
+                                "nucleo": "dónde"
+                              },
+                              {
+                                "funcion": "V",
+                                "texto": "viene",
+                                "nucleo": "viene"
+                              }
+                            ],
+                            "nucleo": "viene"
+                          },
+                          {
+                            "funcion": "SUJ",
+                            "texto": "cada estudiante",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "cada"
                               },
                               {
                                 "funcion": "N",
-                                "texto": "vez",
-                                "nucleo": "vez"
+                                "texto": "estudiante",
+                                "nucleo": "estudiante"
                               }
-                            ]
+                            ],
+                            "nucleo": "estudiante"
                           }
-                        ]
+                        ],
+                        "nucleo": "viene"
                       }
-                    ]
+                    ],
+                    "nucleo": "pregunta"
                   }
-                ]
+                ],
+                "nucleo": "abre"
               }
             ]
           }
@@ -739,106 +730,82 @@
             "unidades": [
               {
                 "funcion": "SUJ",
-                "texto": "Carmen, a su lado",
-                "nucleo": "Carmen",
-                "partes": [
-                  {
-                    "funcion": "N",
-                    "texto": "Carmen",
-                    "nucleo": "Carmen"
-                  },
-                  {
-                    "funcion": "CN",
-                    "texto": "a su lado",
-                    "nucleo": "lado",
-                    "partes": [
-                      {
-                        "funcion": "PREP",
-                        "texto": "a"
-                      },
-                      {
-                        "funcion": "TERM",
-                        "texto": "su lado",
-                        "nucleo": "lado",
-                        "partes": [
-                          {
-                            "funcion": "DET",
-                            "texto": "su"
-                          },
-                          {
-                            "funcion": "N",
-                            "texto": "lado",
-                            "nucleo": "lado"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
+                "texto": "Minh",
+                "nucleo": "Minh"
               },
               {
                 "funcion": "PRED",
-                "texto": "sonríe y repite la palabra despacio para ayudarlo a pronunciarla bien",
-                "nucleo": "sonríe",
+                "texto": "dice el nombre en voz baja cuando llega a su país como si lo usara por primera vez",
                 "partes": [
                   {
                     "funcion": "V",
-                    "texto": "sonríe",
-                    "nucleo": "sonríe"
-                  },
-                  {
-                    "funcion": "CONJ",
-                    "texto": "y"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "repite",
-                    "nucleo": "repite"
+                    "texto": "dice",
+                    "nucleo": "dice"
                   },
                   {
                     "funcion": "CD",
-                    "texto": "la palabra",
-                    "nucleo": "palabra",
+                    "texto": "el nombre",
                     "partes": [
                       {
                         "funcion": "DET",
-                        "texto": "la"
+                        "texto": "el"
                       },
                       {
                         "funcion": "N",
-                        "texto": "palabra",
-                        "nucleo": "palabra"
+                        "texto": "nombre",
+                        "nucleo": "nombre"
                       }
-                    ]
+                    ],
+                    "nucleo": "nombre"
                   },
                   {
                     "funcion": "CCM",
-                    "texto": "despacio",
-                    "nucleo": "despacio"
-                  },
-                  {
-                    "funcion": "CCF",
-                    "texto": "para ayudarlo a pronunciarla bien",
-                    "nucleo": "ayudarlo",
+                    "texto": "en voz baja",
                     "partes": [
                       {
                         "funcion": "PREP",
-                        "texto": "para"
+                        "texto": "en"
                       },
                       {
                         "funcion": "TERM",
-                        "texto": "ayudarlo a pronunciarla bien",
-                        "nucleo": "ayudarlo",
+                        "texto": "voz baja",
                         "partes": [
                           {
-                            "funcion": "INF",
-                            "texto": "ayudarlo",
-                            "nucleo": "ayudarlo"
+                            "funcion": "N",
+                            "texto": "voz",
+                            "nucleo": "voz"
                           },
                           {
-                            "funcion": "CRV",
-                            "texto": "a pronunciarla bien",
-                            "nucleo": "pronunciarla",
+                            "funcion": "ADY",
+                            "texto": "baja",
+                            "nucleo": "baja"
+                          }
+                        ],
+                        "nucleo": "voz"
+                      }
+                    ],
+                    "nucleo": "voz"
+                  },
+                  {
+                    "funcion": "CCT",
+                    "texto": "cuando llega a su país",
+                    "partes": [
+                      {
+                        "funcion": "CONJ",
+                        "texto": "cuando"
+                      },
+                      {
+                        "funcion": "PRED",
+                        "texto": "llega a su país",
+                        "partes": [
+                          {
+                            "funcion": "V",
+                            "texto": "llega",
+                            "nucleo": "llega"
+                          },
+                          {
+                            "funcion": "CCL",
+                            "texto": "a su país",
                             "partes": [
                               {
                                 "funcion": "PREP",
@@ -846,28 +813,235 @@
                               },
                               {
                                 "funcion": "TERM",
-                                "texto": "pronunciarla bien",
-                                "nucleo": "pronunciarla",
+                                "texto": "su país",
                                 "partes": [
                                   {
-                                    "funcion": "INF",
-                                    "texto": "pronunciarla",
-                                    "nucleo": "pronunciarla"
+                                    "funcion": "DET",
+                                    "texto": "su"
                                   },
                                   {
-                                    "funcion": "CCM",
-                                    "texto": "bien",
-                                    "nucleo": "bien"
+                                    "funcion": "N",
+                                    "texto": "país",
+                                    "nucleo": "país"
                                   }
-                                ]
+                                ],
+                                "nucleo": "país"
                               }
-                            ]
+                            ],
+                            "nucleo": "país"
                           }
-                        ]
+                        ],
+                        "nucleo": "llega"
                       }
-                    ]
+                    ],
+                    "nucleo": "llega"
+                  },
+                  {
+                    "funcion": "CCM",
+                    "texto": "como si lo usara por primera vez",
+                    "partes": [
+                      {
+                        "funcion": "CONJ",
+                        "texto": "como si"
+                      },
+                      {
+                        "funcion": "PRED",
+                        "texto": "lo usara por primera vez",
+                        "partes": [
+                          {
+                            "funcion": "CD",
+                            "texto": "lo",
+                            "nucleo": "lo"
+                          },
+                          {
+                            "funcion": "V",
+                            "texto": "usara",
+                            "nucleo": "usara"
+                          },
+                          {
+                            "funcion": "CCT",
+                            "texto": "por primera vez",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "por"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "primera vez",
+                                "partes": [
+                                  {
+                                    "funcion": "ADY",
+                                    "texto": "primera",
+                                    "nucleo": "primera"
+                                  },
+                                  {
+                                    "funcion": "N",
+                                    "texto": "vez",
+                                    "nucleo": "vez"
+                                  }
+                                ],
+                                "nucleo": "vez"
+                              }
+                            ],
+                            "nucleo": "vez"
+                          }
+                        ],
+                        "nucleo": "usara"
+                      }
+                    ],
+                    "nucleo": "usara"
                   }
-                ]
+                ],
+                "nucleo": "dice"
+              }
+            ]
+          }
+        },
+        {
+          "parrafo": 0,
+          "sintaxis": {
+            "oracion": "bimembre",
+            "sujeto": "expreso",
+            "unidades": [
+              {
+                "funcion": "SUJ",
+                "texto": "Carmen",
+                "nucleo": "Carmen"
+              },
+              {
+                "funcion": "PRED",
+                "texto": "a su lado sonríe y repite la palabra despacio para ayudarlo a pronunciarla bien",
+                "partes": [
+                  {
+                    "funcion": "PRED",
+                    "texto": "a su lado sonríe",
+                    "partes": [
+                      {
+                        "funcion": "CCL",
+                        "texto": "a su lado",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "a"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "su lado",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "su"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "lado",
+                                "nucleo": "lado"
+                              }
+                            ],
+                            "nucleo": "lado"
+                          }
+                        ],
+                        "nucleo": "lado"
+                      },
+                      {
+                        "funcion": "V",
+                        "texto": "sonríe",
+                        "nucleo": "sonríe"
+                      }
+                    ],
+                    "nucleo": "sonríe"
+                  },
+                  {
+                    "funcion": "CONJ",
+                    "texto": "y"
+                  },
+                  {
+                    "funcion": "PRED",
+                    "texto": "repite la palabra despacio para ayudarlo a pronunciarla bien",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "repite",
+                        "nucleo": "repite"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "la palabra",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "palabra",
+                            "nucleo": "palabra"
+                          }
+                        ],
+                        "nucleo": "palabra"
+                      },
+                      {
+                        "funcion": "CCM",
+                        "texto": "despacio",
+                        "nucleo": "despacio"
+                      },
+                      {
+                        "funcion": "CCF",
+                        "texto": "para ayudarlo a pronunciarla bien",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "para"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "ayudarlo a pronunciarla bien",
+                            "partes": [
+                              {
+                                "funcion": "INF",
+                                "texto": "ayudarlo",
+                                "nucleo": "ayudarlo"
+                              },
+                              {
+                                "funcion": "CRV",
+                                "texto": "a pronunciarla bien",
+                                "partes": [
+                                  {
+                                    "funcion": "PREP",
+                                    "texto": "a"
+                                  },
+                                  {
+                                    "funcion": "TERM",
+                                    "texto": "pronunciarla bien",
+                                    "partes": [
+                                      {
+                                        "funcion": "INF",
+                                        "texto": "pronunciarla",
+                                        "nucleo": "pronunciarla"
+                                      },
+                                      {
+                                        "funcion": "CCM",
+                                        "texto": "bien",
+                                        "nucleo": "bien"
+                                      }
+                                    ],
+                                    "nucleo": "pronunciarla"
+                                  }
+                                ],
+                                "nucleo": "pronunciarla"
+                              }
+                            ],
+                            "nucleo": "ayudarlo"
+                          }
+                        ],
+                        "nucleo": "ayudarlo"
+                      }
+                    ],
+                    "nucleo": "repite"
+                  }
+                ],
+                "nucleo": "sonríe"
               }
             ]
           }
@@ -876,148 +1050,77 @@
           "parrafo": 1,
           "sintaxis": {
             "oracion": "bimembre",
-            "sujeto": "omitido",
+            "sujeto": "expreso",
             "unidades": [
               {
+                "funcion": "SUJ",
+                "texto": "Todos",
+                "nucleo": "Todos"
+              },
+              {
                 "funcion": "PRED",
-                "texto": "Al final de la clase, todos escriben su nombre en un papel pequeño y lo pegan junto al mapa",
-                "nucleo": "escriben",
+                "texto": "escriben su nombre en un papel pequeño al final de la clase y lo pegan junto al mapa",
                 "partes": [
                   {
-                    "funcion": "CCT",
-                    "texto": "Al final de la clase",
-                    "nucleo": "final",
+                    "funcion": "PRED",
+                    "texto": "escriben su nombre en un papel pequeño al final de la clase",
                     "partes": [
                       {
-                        "funcion": "PREP",
-                        "texto": "Al"
+                        "funcion": "V",
+                        "texto": "escriben",
+                        "nucleo": "escriben"
                       },
                       {
-                        "funcion": "TERM",
-                        "texto": "final de la clase",
-                        "nucleo": "final",
-                        "partes": [
-                          {
-                            "funcion": "N",
-                            "texto": "final",
-                            "nucleo": "final"
-                          },
-                          {
-                            "funcion": "CN",
-                            "texto": "de la clase",
-                            "nucleo": "clase",
-                            "partes": [
-                              {
-                                "funcion": "PREP",
-                                "texto": "de"
-                              },
-                              {
-                                "funcion": "TERM",
-                                "texto": "la clase",
-                                "nucleo": "clase",
-                                "partes": [
-                                  {
-                                    "funcion": "DET",
-                                    "texto": "la"
-                                  },
-                                  {
-                                    "funcion": "N",
-                                    "texto": "clase",
-                                    "nucleo": "clase"
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "SUJ",
-                    "texto": "todos",
-                    "nucleo": "todos"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "escriben",
-                    "nucleo": "escriben"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "su nombre",
-                    "nucleo": "nombre",
-                    "partes": [
-                      {
-                        "funcion": "DET",
-                        "texto": "su"
-                      },
-                      {
-                        "funcion": "N",
-                        "texto": "nombre",
-                        "nucleo": "nombre"
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "CCL",
-                    "texto": "en un papel pequeño",
-                    "nucleo": "papel",
-                    "partes": [
-                      {
-                        "funcion": "PREP",
-                        "texto": "en"
-                      },
-                      {
-                        "funcion": "TERM",
-                        "texto": "un papel pequeño",
-                        "nucleo": "papel",
+                        "funcion": "CD",
+                        "texto": "su nombre",
                         "partes": [
                           {
                             "funcion": "DET",
-                            "texto": "un"
+                            "texto": "su"
                           },
                           {
                             "funcion": "N",
-                            "texto": "papel",
-                            "nucleo": "papel"
-                          },
-                          {
-                            "funcion": "ADY",
-                            "texto": "pequeño",
-                            "nucleo": "pequeño"
+                            "texto": "nombre",
+                            "nucleo": "nombre"
                           }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "CONJ",
-                    "texto": "y"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "lo"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "pegan",
-                    "nucleo": "pegan"
-                  },
-                  {
-                    "funcion": "CCL",
-                    "texto": "junto al mapa",
-                    "nucleo": "junto",
-                    "partes": [
-                      {
-                        "funcion": "ADV",
-                        "texto": "junto",
-                        "nucleo": "junto"
+                        ],
+                        "nucleo": "nombre"
                       },
                       {
-                        "funcion": "CN",
-                        "texto": "al mapa",
-                        "nucleo": "mapa",
+                        "funcion": "CCL",
+                        "texto": "en un papel pequeño",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "en"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "un papel pequeño",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "un"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "papel",
+                                "nucleo": "papel"
+                              },
+                              {
+                                "funcion": "ADY",
+                                "texto": "pequeño",
+                                "nucleo": "pequeño"
+                              }
+                            ],
+                            "nucleo": "papel"
+                          }
+                        ],
+                        "nucleo": "papel"
+                      },
+                      {
+                        "funcion": "CCT",
+                        "texto": "al final de la clase",
                         "partes": [
                           {
                             "funcion": "PREP",
@@ -1025,14 +1128,88 @@
                           },
                           {
                             "funcion": "TERM",
+                            "texto": "final de la clase",
+                            "partes": [
+                              {
+                                "funcion": "N",
+                                "texto": "final",
+                                "nucleo": "final"
+                              },
+                              {
+                                "funcion": "CN",
+                                "texto": "de la clase",
+                                "partes": [
+                                  {
+                                    "funcion": "PREP",
+                                    "texto": "de"
+                                  },
+                                  {
+                                    "funcion": "TERM",
+                                    "texto": "la clase",
+                                    "partes": [
+                                      {
+                                        "funcion": "DET",
+                                        "texto": "la"
+                                      },
+                                      {
+                                        "funcion": "N",
+                                        "texto": "clase",
+                                        "nucleo": "clase"
+                                      }
+                                    ],
+                                    "nucleo": "clase"
+                                  }
+                                ],
+                                "nucleo": "clase"
+                              }
+                            ],
+                            "nucleo": "final"
+                          }
+                        ],
+                        "nucleo": "final"
+                      }
+                    ],
+                    "nucleo": "escriben"
+                  },
+                  {
+                    "funcion": "CONJ",
+                    "texto": "y"
+                  },
+                  {
+                    "funcion": "PRED",
+                    "texto": "lo pegan junto al mapa",
+                    "partes": [
+                      {
+                        "funcion": "CD",
+                        "texto": "lo",
+                        "nucleo": "lo"
+                      },
+                      {
+                        "funcion": "V",
+                        "texto": "pegan",
+                        "nucleo": "pegan"
+                      },
+                      {
+                        "funcion": "CCL",
+                        "texto": "junto al mapa",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "junto al"
+                          },
+                          {
+                            "funcion": "TERM",
                             "texto": "mapa",
                             "nucleo": "mapa"
                           }
-                        ]
+                        ],
+                        "nucleo": "mapa"
                       }
-                    ]
+                    ],
+                    "nucleo": "pegan"
                   }
-                ]
+                ],
+                "nucleo": "escriben"
               }
             ]
           }
@@ -1050,87 +1227,96 @@
               },
               {
                 "funcion": "PRED",
-                "texto": "mira la pared durante un rato: hay veinte nombres y veinte lugares diferentes",
-                "nucleo": "mira",
+                "texto": "mira la pared durante un rato y ve veinte nombres y veinte lugares diferentes",
                 "partes": [
                   {
-                    "funcion": "V",
-                    "texto": "mira",
-                    "nucleo": "mira"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "la pared",
-                    "nucleo": "pared",
-                    "partes": [
-                      {
-                        "funcion": "DET",
-                        "texto": "la"
-                      },
-                      {
-                        "funcion": "N",
-                        "texto": "pared",
-                        "nucleo": "pared"
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "CCT",
-                    "texto": "durante un rato",
-                    "nucleo": "rato",
-                    "partes": [
-                      {
-                        "funcion": "PREP",
-                        "texto": "durante"
-                      },
-                      {
-                        "funcion": "TERM",
-                        "texto": "un rato",
-                        "nucleo": "rato",
-                        "partes": [
-                          {
-                            "funcion": "DET",
-                            "texto": "un"
-                          },
-                          {
-                            "funcion": "N",
-                            "texto": "rato",
-                            "nucleo": "rato"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "CN",
-                    "texto": "hay veinte nombres y veinte lugares diferentes",
-                    "nucleo": "hay",
+                    "funcion": "PRED",
+                    "texto": "mira la pared durante un rato",
                     "partes": [
                       {
                         "funcion": "V",
-                        "texto": "hay",
-                        "nucleo": "hay"
+                        "texto": "mira",
+                        "nucleo": "mira"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "la pared",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "la"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "pared",
+                            "nucleo": "pared"
+                          }
+                        ],
+                        "nucleo": "pared"
+                      },
+                      {
+                        "funcion": "CCT",
+                        "texto": "durante un rato",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "durante"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "un rato",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "un"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "rato",
+                                "nucleo": "rato"
+                              }
+                            ],
+                            "nucleo": "rato"
+                          }
+                        ],
+                        "nucleo": "rato"
+                      }
+                    ],
+                    "nucleo": "mira"
+                  },
+                  {
+                    "funcion": "CONJ",
+                    "texto": "y"
+                  },
+                  {
+                    "funcion": "PRED",
+                    "texto": "ve veinte nombres y veinte lugares diferentes",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "ve",
+                        "nucleo": "ve"
                       },
                       {
                         "funcion": "CD",
                         "texto": "veinte nombres y veinte lugares diferentes",
-                        "nucleo": "nombres",
                         "partes": [
                           {
                             "funcion": "CD",
                             "texto": "veinte nombres",
-                            "nucleo": "nombres",
                             "partes": [
                               {
                                 "funcion": "CUANT",
-                                "texto": "veinte"
+                                "texto": "veinte",
+                                "nucleo": "veinte"
                               },
                               {
                                 "funcion": "N",
                                 "texto": "nombres",
                                 "nucleo": "nombres"
                               }
-                            ]
+                            ],
+                            "nucleo": "nombres"
                           },
                           {
                             "funcion": "CONJ",
@@ -1139,11 +1325,11 @@
                           {
                             "funcion": "CD",
                             "texto": "veinte lugares diferentes",
-                            "nucleo": "lugares",
                             "partes": [
                               {
                                 "funcion": "CUANT",
-                                "texto": "veinte"
+                                "texto": "veinte",
+                                "nucleo": "veinte"
                               },
                               {
                                 "funcion": "N",
@@ -1155,13 +1341,17 @@
                                 "texto": "diferentes",
                                 "nucleo": "diferentes"
                               }
-                            ]
+                            ],
+                            "nucleo": "lugares"
                           }
-                        ]
+                        ],
+                        "nucleo": "nombres"
                       }
-                    ]
+                    ],
+                    "nucleo": "ve"
                   }
-                ]
+                ],
+                "nucleo": "mira"
               }
             ]
           }
@@ -1174,172 +1364,47 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "«Encantado», le dice al compañero de al lado, y descubre que esta palabra aprendida por la mañana ya sirve para algo de verdad",
-                "nucleo": "dice",
+                "texto": "Encantado le dice al compañero de al lado y descubre que esta palabra aprendida por la mañana ya sirve para algo de verdad",
                 "partes": [
                   {
-                    "funcion": "CD",
-                    "texto": "«Encantado»",
-                    "nucleo": "Encantado"
-                  },
-                  {
-                    "funcion": "CI",
-                    "texto": "le"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "dice",
-                    "nucleo": "dice"
-                  },
-                  {
-                    "funcion": "CI",
-                    "texto": "al compañero de al lado",
-                    "nucleo": "compañero",
+                    "funcion": "PRED",
+                    "texto": "Encantado le dice al compañero de al lado",
                     "partes": [
                       {
-                        "funcion": "PREP",
-                        "texto": "al"
+                        "funcion": "CD",
+                        "texto": "Encantado",
+                        "nucleo": "Encantado"
                       },
                       {
-                        "funcion": "TERM",
-                        "texto": "compañero de al lado",
-                        "nucleo": "compañero",
-                        "partes": [
-                          {
-                            "funcion": "N",
-                            "texto": "compañero",
-                            "nucleo": "compañero"
-                          },
-                          {
-                            "funcion": "CN",
-                            "texto": "de al lado",
-                            "nucleo": "lado",
-                            "partes": [
-                              {
-                                "funcion": "PREP",
-                                "texto": "de"
-                              },
-                              {
-                                "funcion": "PREP",
-                                "texto": "al"
-                              },
-                              {
-                                "funcion": "TERM",
-                                "texto": "lado",
-                                "nucleo": "lado"
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "CONJ",
-                    "texto": "y"
-                  },
-                  {
-                    "funcion": "V",
-                    "texto": "descubre",
-                    "nucleo": "descubre"
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "que esta palabra aprendida por la mañana ya sirve para algo de verdad",
-                    "nucleo": "sirve",
-                    "partes": [
-                      {
-                        "funcion": "CONJ",
-                        "texto": "que"
-                      },
-                      {
-                        "funcion": "SUJ",
-                        "texto": "esta palabra aprendida por la mañana",
-                        "nucleo": "palabra",
-                        "partes": [
-                          {
-                            "funcion": "DET",
-                            "texto": "esta"
-                          },
-                          {
-                            "funcion": "N",
-                            "texto": "palabra",
-                            "nucleo": "palabra"
-                          },
-                          {
-                            "funcion": "ADY",
-                            "texto": "aprendida por la mañana",
-                            "nucleo": "aprendida",
-                            "partes": [
-                              {
-                                "funcion": "PART",
-                                "texto": "aprendida",
-                                "nucleo": "aprendida"
-                              },
-                              {
-                                "funcion": "CCT",
-                                "texto": "por la mañana",
-                                "nucleo": "mañana",
-                                "partes": [
-                                  {
-                                    "funcion": "PREP",
-                                    "texto": "por"
-                                  },
-                                  {
-                                    "funcion": "TERM",
-                                    "texto": "la mañana",
-                                    "nucleo": "mañana",
-                                    "partes": [
-                                      {
-                                        "funcion": "DET",
-                                        "texto": "la"
-                                      },
-                                      {
-                                        "funcion": "N",
-                                        "texto": "mañana",
-                                        "nucleo": "mañana"
-                                      }
-                                    ]
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "funcion": "CCT",
-                        "texto": "ya",
-                        "nucleo": "ya"
+                        "funcion": "CI",
+                        "texto": "le",
+                        "nucleo": "le"
                       },
                       {
                         "funcion": "V",
-                        "texto": "sirve",
-                        "nucleo": "sirve"
+                        "texto": "dice",
+                        "nucleo": "dice"
                       },
                       {
-                        "funcion": "CCF",
-                        "texto": "para algo de verdad",
-                        "nucleo": "algo",
+                        "funcion": "CI",
+                        "texto": "al compañero de al lado",
                         "partes": [
                           {
                             "funcion": "PREP",
-                            "texto": "para"
+                            "texto": "al"
                           },
                           {
                             "funcion": "TERM",
-                            "texto": "algo de verdad",
-                            "nucleo": "algo",
+                            "texto": "compañero de al lado",
                             "partes": [
                               {
-                                "funcion": "PRON",
-                                "texto": "algo",
-                                "nucleo": "algo"
+                                "funcion": "N",
+                                "texto": "compañero",
+                                "nucleo": "compañero"
                               },
                               {
                                 "funcion": "CN",
-                                "texto": "de verdad",
-                                "nucleo": "verdad",
+                                "texto": "de al lado",
                                 "partes": [
                                   {
                                     "funcion": "PREP",
@@ -1347,18 +1412,161 @@
                                   },
                                   {
                                     "funcion": "TERM",
-                                    "texto": "verdad",
-                                    "nucleo": "verdad"
+                                    "texto": "al lado",
+                                    "nucleo": "lado"
                                   }
-                                ]
+                                ],
+                                "nucleo": "lado"
                               }
-                            ]
+                            ],
+                            "nucleo": "compañero"
                           }
-                        ]
+                        ],
+                        "nucleo": "compañero"
                       }
-                    ]
+                    ],
+                    "nucleo": "dice"
+                  },
+                  {
+                    "funcion": "CONJ",
+                    "texto": "y"
+                  },
+                  {
+                    "funcion": "PRED",
+                    "texto": "descubre que esta palabra aprendida por la mañana ya sirve para algo de verdad",
+                    "partes": [
+                      {
+                        "funcion": "V",
+                        "texto": "descubre",
+                        "nucleo": "descubre"
+                      },
+                      {
+                        "funcion": "CD",
+                        "texto": "que esta palabra aprendida por la mañana ya sirve para algo de verdad",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "que"
+                          },
+                          {
+                            "funcion": "SUJ",
+                            "texto": "esta palabra aprendida por la mañana",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "esta"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "palabra",
+                                "nucleo": "palabra"
+                              },
+                              {
+                                "funcion": "ADY",
+                                "texto": "aprendida por la mañana",
+                                "partes": [
+                                  {
+                                    "funcion": "PART",
+                                    "texto": "aprendida",
+                                    "nucleo": "aprendida"
+                                  },
+                                  {
+                                    "funcion": "CCT",
+                                    "texto": "por la mañana",
+                                    "partes": [
+                                      {
+                                        "funcion": "PREP",
+                                        "texto": "por"
+                                      },
+                                      {
+                                        "funcion": "TERM",
+                                        "texto": "la mañana",
+                                        "partes": [
+                                          {
+                                            "funcion": "DET",
+                                            "texto": "la"
+                                          },
+                                          {
+                                            "funcion": "N",
+                                            "texto": "mañana",
+                                            "nucleo": "mañana"
+                                          }
+                                        ],
+                                        "nucleo": "mañana"
+                                      }
+                                    ],
+                                    "nucleo": "mañana"
+                                  }
+                                ],
+                                "nucleo": "aprendida"
+                              }
+                            ],
+                            "nucleo": "palabra"
+                          },
+                          {
+                            "funcion": "PRED",
+                            "texto": "ya sirve para algo de verdad",
+                            "partes": [
+                              {
+                                "funcion": "CCT",
+                                "texto": "ya",
+                                "nucleo": "ya"
+                              },
+                              {
+                                "funcion": "V",
+                                "texto": "sirve",
+                                "nucleo": "sirve"
+                              },
+                              {
+                                "funcion": "CCF",
+                                "texto": "para algo de verdad",
+                                "partes": [
+                                  {
+                                    "funcion": "PREP",
+                                    "texto": "para"
+                                  },
+                                  {
+                                    "funcion": "TERM",
+                                    "texto": "algo de verdad",
+                                    "partes": [
+                                      {
+                                        "funcion": "PRON",
+                                        "texto": "algo",
+                                        "nucleo": "algo"
+                                      },
+                                      {
+                                        "funcion": "CN",
+                                        "texto": "de verdad",
+                                        "partes": [
+                                          {
+                                            "funcion": "PREP",
+                                            "texto": "de"
+                                          },
+                                          {
+                                            "funcion": "TERM",
+                                            "texto": "verdad",
+                                            "nucleo": "verdad"
+                                          }
+                                        ],
+                                        "nucleo": "verdad"
+                                      }
+                                    ],
+                                    "nucleo": "algo"
+                                  }
+                                ],
+                                "nucleo": "algo"
+                              }
+                            ],
+                            "nucleo": "sirve"
+                          }
+                        ],
+                        "nucleo": "palabra"
+                      }
+                    ],
+                    "nucleo": "descubre"
                   }
-                ]
+                ],
+                "nucleo": "dice"
               }
             ]
           }

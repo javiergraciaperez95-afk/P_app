@@ -2,6 +2,8 @@
   "esquema": 2,
   "id": "017",
   "capitulo": 2,
+  "numero_curso": 19,
+  "orden_curso": 19,
   "nivel": "A1",
   "palabras": {
     "a qué te dedicas": {
@@ -149,6 +151,62 @@
     },
     "Marta": {
       "propio": true
+    },
+    "ingeniero": {
+      "pron": "in-he-NYE-ro",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "empresa": {
+      "pron": "em-PRE-sa",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "hospital": {
+      "pron": "os-pi-TAL",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "restaurante": {
+      "pron": "res-tau-RRAN-te",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "periodista": {
+      "pron": "pe-ryo-DIS-ta",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "conocida": {
+      "pron": "ko-no-THI-da",
+      "cat": "adj"
+    },
+    "importantes": {
+      "pron": "im-por-TAN-tes",
+      "cat": "adj"
+    },
+    "diseña": {
+      "pron": "di-SE-nya",
+      "cat": "verb"
+    },
+    "proyectos": {
+      "pron": "pro-YEK-tos",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "atiende": {
+      "pron": "a-TYEN-de",
+      "cat": "verb"
+    },
+    "clientes": {
+      "pron": "KLYEN-tes",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "profesionales": {
+      "pron": "pro-fe-syo-NA-les",
+      "cat": "sust",
+      "genero": "m"
     }
   },
   "bloques": [
@@ -169,12 +227,10 @@
               {
                 "funcion": "PRED",
                 "texto": "A qué te dedicas",
-                "nucleo": "dedicas",
                 "partes": [
                   {
                     "funcion": "CRV",
                     "texto": "A qué",
-                    "nucleo": "qué",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -185,19 +241,16 @@
                         "texto": "qué",
                         "nucleo": "qué"
                       }
-                    ]
-                  },
-                  {
-                    "funcion": "CD",
-                    "texto": "te",
-                    "nucleo": "te"
+                    ],
+                    "nucleo": "qué"
                   },
                   {
                     "funcion": "V",
-                    "texto": "dedicas",
+                    "texto": "te dedicas",
                     "nucleo": "dedicas"
                   }
-                ]
+                ],
+                "nucleo": "dedicas"
               }
             ]
           }
@@ -211,7 +264,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Soy ingeniero",
-                "nucleo": "Soy",
                 "partes": [
                   {
                     "funcion": "V",
@@ -223,7 +275,8 @@
                     "texto": "ingeniero",
                     "nucleo": "ingeniero"
                   }
-                ]
+                ],
+                "nucleo": "Soy"
               }
             ]
           }
@@ -237,7 +290,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Trabajo en una empresa",
-                "nucleo": "Trabajo",
                 "partes": [
                   {
                     "funcion": "V",
@@ -247,7 +299,6 @@
                   {
                     "funcion": "CCL",
                     "texto": "en una empresa",
-                    "nucleo": "empresa",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -256,7 +307,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "una empresa",
-                        "nucleo": "empresa",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -264,13 +314,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "empresa"
+                            "texto": "empresa",
+                            "nucleo": "empresa"
                           }
-                        ]
+                        ],
+                        "nucleo": "empresa"
                       }
-                    ]
+                    ],
+                    "nucleo": "empresa"
                   }
-                ]
+                ],
+                "nucleo": "Trabajo"
               }
             ]
           }
@@ -284,7 +338,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Mi hermana",
-                "nucleo": "hermana",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -292,14 +345,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "hermana"
+                    "texto": "hermana",
+                    "nucleo": "hermana"
                   }
-                ]
+                ],
+                "nucleo": "hermana"
               },
               {
                 "funcion": "PRED",
                 "texto": "es enfermera",
-                "nucleo": "es",
                 "partes": [
                   {
                     "funcion": "V",
@@ -311,7 +365,8 @@
                     "texto": "enfermera",
                     "nucleo": "enfermera"
                   }
-                ]
+                ],
+                "nucleo": "es"
               }
             ]
           }
@@ -325,7 +380,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Trabaja en un hospital",
-                "nucleo": "Trabaja",
                 "partes": [
                   {
                     "funcion": "V",
@@ -335,7 +389,6 @@
                   {
                     "funcion": "CCL",
                     "texto": "en un hospital",
-                    "nucleo": "hospital",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -344,7 +397,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "un hospital",
-                        "nucleo": "hospital",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -352,13 +404,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "hospital"
+                            "texto": "hospital",
+                            "nucleo": "hospital"
                           }
-                        ]
+                        ],
+                        "nucleo": "hospital"
                       }
-                    ]
+                    ],
+                    "nucleo": "hospital"
                   }
-                ]
+                ],
+                "nucleo": "Trabaja"
               }
             ]
           }
@@ -372,7 +428,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Tiene mucho trabajo",
-                "nucleo": "Tiene",
                 "partes": [
                   {
                     "funcion": "V",
@@ -382,19 +437,22 @@
                   {
                     "funcion": "CD",
                     "texto": "mucho trabajo",
-                    "nucleo": "trabajo",
                     "partes": [
                       {
                         "funcion": "CUANT",
-                        "texto": "mucho"
+                        "texto": "mucho",
+                        "nucleo": "mucho"
                       },
                       {
                         "funcion": "N",
-                        "texto": "trabajo"
+                        "texto": "trabajo",
+                        "nucleo": "trabajo"
                       }
-                    ]
+                    ],
+                    "nucleo": "trabajo"
                   }
-                ]
+                ],
+                "nucleo": "Tiene"
               }
             ]
           }
@@ -408,7 +466,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Mis padres",
-                "nucleo": "padres",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -416,14 +473,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "padres"
+                    "texto": "padres",
+                    "nucleo": "padres"
                   }
-                ]
+                ],
+                "nucleo": "padres"
               },
               {
                 "funcion": "PRED",
                 "texto": "tienen un restaurante",
-                "nucleo": "tienen",
                 "partes": [
                   {
                     "funcion": "V",
@@ -433,7 +491,6 @@
                   {
                     "funcion": "CD",
                     "texto": "un restaurante",
-                    "nucleo": "restaurante",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -441,11 +498,14 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "restaurante"
+                        "texto": "restaurante",
+                        "nucleo": "restaurante"
                       }
-                    ]
+                    ],
+                    "nucleo": "restaurante"
                   }
-                ]
+                ],
+                "nucleo": "tienen"
               }
             ]
           }
@@ -505,7 +565,6 @@
               {
                 "funcion": "PRED",
                 "texto": "tenemos un restaurante",
-                "nucleo": "tenemos",
                 "partes": [
                   {
                     "funcion": "V",
@@ -515,7 +574,6 @@
                   {
                     "funcion": "CD",
                     "texto": "un restaurante",
-                    "nucleo": "restaurante",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -523,11 +581,14 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "restaurante"
+                        "texto": "restaurante",
+                        "nucleo": "restaurante"
                       }
-                    ]
+                    ],
+                    "nucleo": "restaurante"
                   }
-                ]
+                ],
+                "nucleo": "tenemos"
               }
             ]
           }
@@ -545,7 +606,6 @@
               {
                 "funcion": "PRED",
                 "texto": "tienen mucho trabajo",
-                "nucleo": "tienen",
                 "partes": [
                   {
                     "funcion": "V",
@@ -555,19 +615,22 @@
                   {
                     "funcion": "CD",
                     "texto": "mucho trabajo",
-                    "nucleo": "trabajo",
                     "partes": [
                       {
                         "funcion": "CUANT",
-                        "texto": "mucho"
+                        "texto": "mucho",
+                        "nucleo": "mucho"
                       },
                       {
                         "funcion": "N",
-                        "texto": "trabajo"
+                        "texto": "trabajo",
+                        "nucleo": "trabajo"
                       }
-                    ]
+                    ],
+                    "nucleo": "trabajo"
                   }
-                ]
+                ],
+                "nucleo": "tienen"
               }
             ]
           }
@@ -593,7 +656,6 @@
               {
                 "funcion": "PRED",
                 "texto": "es una periodista muy conocida en la ciudad",
-                "nucleo": "es",
                 "partes": [
                   {
                     "funcion": "V",
@@ -603,7 +665,6 @@
                   {
                     "funcion": "ATRIB",
                     "texto": "una periodista muy conocida",
-                    "nucleo": "periodista",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -611,30 +672,32 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "periodista"
+                        "texto": "periodista",
+                        "nucleo": "periodista"
                       },
                       {
                         "funcion": "ADY",
                         "texto": "muy conocida",
-                        "nucleo": "conocida",
                         "partes": [
                           {
-                            "funcion": "CUANT",
-                            "texto": "muy"
+                            "funcion": "ADV",
+                            "texto": "muy",
+                            "nucleo": "muy"
                           },
                           {
                             "funcion": "ADY",
                             "texto": "conocida",
                             "nucleo": "conocida"
                           }
-                        ]
+                        ],
+                        "nucleo": "muy"
                       }
-                    ]
+                    ],
+                    "nucleo": "periodista"
                   },
                   {
                     "funcion": "CCL",
                     "texto": "en la ciudad",
-                    "nucleo": "ciudad",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -643,7 +706,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "la ciudad",
-                        "nucleo": "ciudad",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -651,13 +713,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "ciudad"
+                            "texto": "ciudad",
+                            "nucleo": "ciudad"
                           }
-                        ]
+                        ],
+                        "nucleo": "ciudad"
                       }
-                    ]
+                    ],
+                    "nucleo": "ciudad"
                   }
-                ]
+                ],
+                "nucleo": "es"
               }
             ]
           }
@@ -671,7 +737,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Su hermano mayor",
-                "nucleo": "hermano",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -679,19 +744,20 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "hermano"
+                    "texto": "hermano",
+                    "nucleo": "hermano"
                   },
                   {
                     "funcion": "ADY",
                     "texto": "mayor",
                     "nucleo": "mayor"
                   }
-                ]
+                ],
+                "nucleo": "hermano"
               },
               {
                 "funcion": "PRED",
                 "texto": "trabaja en un hospital grande",
-                "nucleo": "trabaja",
                 "partes": [
                   {
                     "funcion": "V",
@@ -701,7 +767,6 @@
                   {
                     "funcion": "CCL",
                     "texto": "en un hospital grande",
-                    "nucleo": "hospital",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -710,7 +775,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "un hospital grande",
-                        "nucleo": "hospital",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -718,18 +782,22 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "hospital"
+                            "texto": "hospital",
+                            "nucleo": "hospital"
                           },
                           {
                             "funcion": "ADY",
                             "texto": "grande",
                             "nucleo": "grande"
                           }
-                        ]
+                        ],
+                        "nucleo": "hospital"
                       }
-                    ]
+                    ],
+                    "nucleo": "hospital"
                   }
-                ]
+                ],
+                "nucleo": "trabaja"
               }
             ]
           }
@@ -743,7 +811,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Los dos hermanos",
-                "nucleo": "hermanos",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -751,18 +818,20 @@
                   },
                   {
                     "funcion": "CUANT",
-                    "texto": "dos"
+                    "texto": "dos",
+                    "nucleo": "dos"
                   },
                   {
                     "funcion": "N",
-                    "texto": "hermanos"
+                    "texto": "hermanos",
+                    "nucleo": "hermanos"
                   }
-                ]
+                ],
+                "nucleo": "hermanos"
               },
               {
                 "funcion": "PRED",
                 "texto": "tienen siempre muchas tareas importantes",
-                "nucleo": "tienen",
                 "partes": [
                   {
                     "funcion": "V",
@@ -777,24 +846,27 @@
                   {
                     "funcion": "CD",
                     "texto": "muchas tareas importantes",
-                    "nucleo": "tareas",
                     "partes": [
                       {
                         "funcion": "CUANT",
-                        "texto": "muchas"
+                        "texto": "muchas",
+                        "nucleo": "muchas"
                       },
                       {
                         "funcion": "N",
-                        "texto": "tareas"
+                        "texto": "tareas",
+                        "nucleo": "tareas"
                       },
                       {
                         "funcion": "ADY",
                         "texto": "importantes",
                         "nucleo": "importantes"
                       }
-                    ]
+                    ],
+                    "nucleo": "tareas"
                   }
-                ]
+                ],
+                "nucleo": "tienen"
               }
             ]
           }
@@ -808,7 +880,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "El joven ingeniero",
-                "nucleo": "ingeniero",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -821,14 +892,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "ingeniero"
+                    "texto": "ingeniero",
+                    "nucleo": "ingeniero"
                   }
-                ]
+                ],
+                "nucleo": "ingeniero"
               },
               {
                 "funcion": "PRED",
                 "texto": "diseña proyectos para una empresa",
-                "nucleo": "diseña",
                 "partes": [
                   {
                     "funcion": "V",
@@ -841,9 +913,8 @@
                     "nucleo": "proyectos"
                   },
                   {
-                    "funcion": "CCF",
+                    "funcion": "CI",
                     "texto": "para una empresa",
-                    "nucleo": "empresa",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -852,7 +923,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "una empresa",
-                        "nucleo": "empresa",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -860,13 +930,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "empresa"
+                            "texto": "empresa",
+                            "nucleo": "empresa"
                           }
-                        ]
+                        ],
+                        "nucleo": "empresa"
                       }
-                    ]
+                    ],
+                    "nucleo": "empresa"
                   }
-                ]
+                ],
+                "nucleo": "diseña"
               }
             ]
           }
@@ -880,7 +954,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "El camarero amable",
-                "nucleo": "camarero",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -888,19 +961,20 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "camarero"
+                    "texto": "camarero",
+                    "nucleo": "camarero"
                   },
                   {
                     "funcion": "ADY",
                     "texto": "amable",
                     "nucleo": "amable"
                   }
-                ]
+                ],
+                "nucleo": "camarero"
               },
               {
                 "funcion": "PRED",
                 "texto": "atiende a los clientes en el restaurante",
-                "nucleo": "atiende",
                 "partes": [
                   {
                     "funcion": "V",
@@ -910,7 +984,6 @@
                   {
                     "funcion": "CD",
                     "texto": "a los clientes",
-                    "nucleo": "clientes",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -919,7 +992,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "los clientes",
-                        "nucleo": "clientes",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -927,16 +999,18 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "clientes"
+                            "texto": "clientes",
+                            "nucleo": "clientes"
                           }
-                        ]
+                        ],
+                        "nucleo": "clientes"
                       }
-                    ]
+                    ],
+                    "nucleo": "clientes"
                   },
                   {
                     "funcion": "CCL",
                     "texto": "en el restaurante",
-                    "nucleo": "restaurante",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -945,7 +1019,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "el restaurante",
-                        "nucleo": "restaurante",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -953,13 +1026,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "restaurante"
+                            "texto": "restaurante",
+                            "nucleo": "restaurante"
                           }
-                        ]
+                        ],
+                        "nucleo": "restaurante"
                       }
-                    ]
+                    ],
+                    "nucleo": "restaurante"
                   }
-                ]
+                ],
+                "nucleo": "atiende"
               }
             ]
           }
@@ -973,7 +1050,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Los nuevos profesionales",
-                "nucleo": "profesionales",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -986,14 +1062,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "profesionales"
+                    "texto": "profesionales",
+                    "nucleo": "profesionales"
                   }
-                ]
+                ],
+                "nucleo": "profesionales"
               },
               {
                 "funcion": "PRED",
                 "texto": "conversan con entusiasmo durante el descanso",
-                "nucleo": "conversan",
                 "partes": [
                   {
                     "funcion": "V",
@@ -1003,7 +1080,6 @@
                   {
                     "funcion": "CCM",
                     "texto": "con entusiasmo",
-                    "nucleo": "entusiasmo",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -1014,12 +1090,12 @@
                         "texto": "entusiasmo",
                         "nucleo": "entusiasmo"
                       }
-                    ]
+                    ],
+                    "nucleo": "entusiasmo"
                   },
                   {
                     "funcion": "CCT",
                     "texto": "durante el descanso",
-                    "nucleo": "descanso",
                     "partes": [
                       {
                         "funcion": "PREP",
@@ -1028,7 +1104,6 @@
                       {
                         "funcion": "TERM",
                         "texto": "el descanso",
-                        "nucleo": "descanso",
                         "partes": [
                           {
                             "funcion": "DET",
@@ -1036,13 +1111,17 @@
                           },
                           {
                             "funcion": "N",
-                            "texto": "descanso"
+                            "texto": "descanso",
+                            "nucleo": "descanso"
                           }
-                        ]
+                        ],
+                        "nucleo": "descanso"
                       }
-                    ]
+                    ],
+                    "nucleo": "descanso"
                   }
-                ]
+                ],
+                "nucleo": "conversan"
               }
             ]
           }

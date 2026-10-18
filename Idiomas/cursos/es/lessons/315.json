@@ -2,6 +2,8 @@
   "esquema": 2,
   "id": "315",
   "capitulo": 26,
+  "numero_curso": 316,
+  "orden_curso": 316,
   "nivel": "B2",
   "palabras": {
     "buscar": {
@@ -49,6 +51,116 @@
       "pron": "el kon-sen-ti-MYEN-to",
       "cat": "sust",
       "genero": "m"
+    },
+    "buscamos": {
+      "pron": "bus-KA-mos",
+      "cat": "verb"
+    },
+    "puedan": {
+      "pron": "PWE-dan",
+      "cat": "verb"
+    },
+    "tenga": {
+      "pron": "TEN-ga",
+      "cat": "verb"
+    },
+    "confirmen": {
+      "pron": "kon-FIR-men",
+      "cat": "verb"
+    },
+    "lleguen": {
+      "pron": "YE-gen",
+      "cat": "verb"
+    },
+    "alimentos": {
+      "pron": "a-li-MEN-tos",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "encarga": {
+      "pron": "en-KAR-ga",
+      "cat": "verb"
+    },
+    "reciba": {
+      "pron": "re-THI-ba",
+      "cat": "verb"
+    },
+    "conozcan": {
+      "pron": "ko-NOTH-kan",
+      "cat": "verb"
+    },
+    "normas": {
+      "pron": "NOR-mas",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "higiene": {
+      "pron": "i-HYE-ne",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "compartan": {
+      "pron": "kom-PAR-tan",
+      "cat": "verb"
+    },
+    "personales": {
+      "pron": "per-so-NA-les",
+      "cat": "adj"
+    },
+    "acudir": {
+      "pron": "a-ku-DIR",
+      "cat": "verb"
+    },
+    "conviene": {
+      "pron": "kon-BYE-ne",
+      "cat": "verb"
+    },
+    "avise": {
+      "pron": "a-BI-se",
+      "cat": "verb"
+    },
+    "encuentre": {
+      "pron": "en-KWEN-tre",
+      "cat": "verb"
+    },
+    "cubra": {
+      "pron": "KU-bra",
+      "cat": "verb"
+    },
+    "hueco": {
+      "pron": "WE-ko",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "publica": {
+      "pron": "PU-bli-ka",
+      "cat": "verb"
+    },
+    "imágenes": {
+      "pron": "i-MA-he-nes",
+      "cat": "sust",
+      "genero": "f"
+    },
+    "identificables": {
+      "pron": "i-den-ti-fi-KA-bles",
+      "cat": "adj"
+    },
+    "den": {
+      "pron": "DEN",
+      "cat": "verb"
+    },
+    "consentimiento": {
+      "pron": "kon-sen-ti-MIEN-to",
+      "cat": "sust",
+      "genero": "m"
+    },
+    "refiere": {
+      "pron": "re-FYE-re",
+      "cat": "verb"
+    },
+    "concretas": {
+      "pron": "kon-KRE-tas",
+      "cat": "adj"
     }
   },
   "bloques": [
@@ -69,7 +181,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Buscamos personas que puedan colaborar dos horas",
-                "nucleo": "Buscamos",
                 "partes": [
                   {
                     "funcion": "V",
@@ -79,40 +190,58 @@
                   {
                     "funcion": "CD",
                     "texto": "personas que puedan colaborar dos horas",
-                    "nucleo": "personas",
                     "partes": [
                       {
                         "funcion": "N",
-                        "texto": "personas"
+                        "texto": "personas",
+                        "nucleo": "personas"
                       },
                       {
-                        "funcion": "CN",
+                        "funcion": "ADY",
                         "texto": "que puedan colaborar dos horas",
-                        "nucleo": "puedan",
                         "partes": [
                           {
-                            "funcion": "PRON",
-                            "texto": "que"
+                            "funcion": "SUJ",
+                            "texto": "que",
+                            "nucleo": "que"
                           },
                           {
-                            "funcion": "V",
-                            "texto": "puedan",
-                            "nucleo": "puedan"
-                          },
-                          {
-                            "funcion": "INF",
-                            "texto": "colaborar"
-                          },
-                          {
-                            "funcion": "CCT",
-                            "texto": "dos horas",
-                            "nucleo": "horas"
+                            "funcion": "PRED",
+                            "texto": "puedan colaborar dos horas",
+                            "partes": [
+                              {
+                                "funcion": "V",
+                                "texto": "puedan colaborar",
+                                "nucleo": "colaborar"
+                              },
+                              {
+                                "funcion": "CCT",
+                                "texto": "dos horas",
+                                "partes": [
+                                  {
+                                    "funcion": "CUANT",
+                                    "texto": "dos",
+                                    "nucleo": "dos"
+                                  },
+                                  {
+                                    "funcion": "N",
+                                    "texto": "horas",
+                                    "nucleo": "horas"
+                                  }
+                                ],
+                                "nucleo": "horas"
+                              }
+                            ],
+                            "nucleo": "colaborar"
                           }
-                        ]
+                        ],
+                        "nucleo": "que"
                       }
-                    ]
+                    ],
+                    "nucleo": "personas"
                   }
-                ]
+                ],
+                "nucleo": "Buscamos"
               }
             ]
           }
@@ -121,12 +250,11 @@
           "quien": "Voluntario",
           "sintaxis": {
             "oracion": "bimembre",
-            "sujeto": "omitido",
+            "sujeto": "expreso",
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Es necesario que tenga experiencia",
-                "nucleo": "Es",
+                "texto": "Es necesario",
                 "partes": [
                   {
                     "funcion": "V",
@@ -135,38 +263,46 @@
                   },
                   {
                     "funcion": "ATRIB",
-                    "texto": "necesario que tenga experiencia",
-                    "nucleo": "necesario",
+                    "texto": "necesario",
+                    "nucleo": "necesario"
+                  }
+                ],
+                "nucleo": "Es"
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "que tenga experiencia",
+                "partes": [
+                  {
+                    "funcion": "CONJ",
+                    "texto": "que"
+                  },
+                  {
+                    "funcion": "PRED",
+                    "texto": "tenga experiencia",
                     "partes": [
                       {
-                        "funcion": "ADY",
-                        "texto": "necesario",
-                        "nucleo": "necesario"
+                        "funcion": "V",
+                        "texto": "tenga",
+                        "nucleo": "tenga"
                       },
                       {
-                        "funcion": "CN",
-                        "texto": "que tenga experiencia",
-                        "nucleo": "tenga",
+                        "funcion": "CD",
+                        "texto": "experiencia",
                         "partes": [
                           {
-                            "funcion": "PRON",
-                            "texto": "que"
-                          },
-                          {
-                            "funcion": "V",
-                            "texto": "tenga",
-                            "nucleo": "tenga"
-                          },
-                          {
-                            "funcion": "CD",
+                            "funcion": "N",
                             "texto": "experiencia",
                             "nucleo": "experiencia"
                           }
-                        ]
+                        ],
+                        "nucleo": "experiencia"
                       }
-                    ]
+                    ],
+                    "nucleo": "tenga"
                   }
-                ]
+                ],
+                "nucleo": "tenga"
               }
             ]
           }
@@ -175,12 +311,11 @@
           "quien": "Coordinadora",
           "sintaxis": {
             "oracion": "bimembre",
-            "sujeto": "omitido",
+            "sujeto": "expreso",
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "No hace falta que la tengas",
-                "nucleo": "hace",
+                "texto": "No hace falta",
                 "partes": [
                   {
                     "funcion": "NEG",
@@ -189,29 +324,38 @@
                   {
                     "funcion": "V",
                     "texto": "hace falta",
-                    "nucleo": "hace"
+                    "nucleo": "falta"
+                  }
+                ],
+                "nucleo": "falta"
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "que la tengas",
+                "partes": [
+                  {
+                    "funcion": "CONJ",
+                    "texto": "que"
                   },
                   {
-                    "funcion": "CN",
-                    "texto": "que la tengas",
-                    "nucleo": "tengas",
+                    "funcion": "PRED",
+                    "texto": "la tengas",
                     "partes": [
                       {
-                        "funcion": "PRON",
-                        "texto": "que"
-                      },
-                      {
-                        "funcion": "PRON",
-                        "texto": "la"
+                        "funcion": "CD",
+                        "texto": "la",
+                        "nucleo": "la"
                       },
                       {
                         "funcion": "V",
                         "texto": "tengas",
                         "nucleo": "tengas"
                       }
-                    ]
+                    ],
+                    "nucleo": "tengas"
                   }
-                ]
+                ],
+                "nucleo": "tengas"
               }
             ]
           }
@@ -225,7 +369,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Avísame cuando confirmen el turno",
-                "nucleo": "Avísame",
                 "partes": [
                   {
                     "funcion": "V",
@@ -235,35 +378,44 @@
                   {
                     "funcion": "CCT",
                     "texto": "cuando confirmen el turno",
-                    "nucleo": "confirmen",
                     "partes": [
                       {
                         "funcion": "CONJ",
                         "texto": "cuando"
                       },
                       {
-                        "funcion": "V",
-                        "texto": "confirmen",
-                        "nucleo": "confirmen"
-                      },
-                      {
-                        "funcion": "CD",
-                        "texto": "el turno",
-                        "nucleo": "turno",
+                        "funcion": "PRED",
+                        "texto": "confirmen el turno",
                         "partes": [
                           {
-                            "funcion": "DET",
-                            "texto": "el"
+                            "funcion": "V",
+                            "texto": "confirmen",
+                            "nucleo": "confirmen"
                           },
                           {
-                            "funcion": "N",
-                            "texto": "turno"
+                            "funcion": "CD",
+                            "texto": "el turno",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "el"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "turno",
+                                "nucleo": "turno"
+                              }
+                            ],
+                            "nucleo": "turno"
                           }
-                        ]
+                        ],
+                        "nucleo": "confirmen"
                       }
-                    ]
+                    ],
+                    "nucleo": "confirmen"
                   }
-                ]
+                ],
+                "nucleo": "Avísame"
               }
             ]
           }
@@ -277,7 +429,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Te escribo en cuanto sepa la fecha",
-                "nucleo": "escribo",
                 "partes": [
                   {
                     "funcion": "CI",
@@ -292,35 +443,44 @@
                   {
                     "funcion": "CCT",
                     "texto": "en cuanto sepa la fecha",
-                    "nucleo": "sepa",
                     "partes": [
                       {
                         "funcion": "CONJ",
                         "texto": "en cuanto"
                       },
                       {
-                        "funcion": "V",
-                        "texto": "sepa",
-                        "nucleo": "sepa"
-                      },
-                      {
-                        "funcion": "CD",
-                        "texto": "la fecha",
-                        "nucleo": "fecha",
+                        "funcion": "PRED",
+                        "texto": "sepa la fecha",
                         "partes": [
                           {
-                            "funcion": "DET",
-                            "texto": "la"
+                            "funcion": "V",
+                            "texto": "sepa",
+                            "nucleo": "sepa"
                           },
                           {
-                            "funcion": "N",
-                            "texto": "fecha"
+                            "funcion": "CD",
+                            "texto": "la fecha",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "la"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "fecha",
+                                "nucleo": "fecha"
+                              }
+                            ],
+                            "nucleo": "fecha"
                           }
-                        ]
+                        ],
+                        "nucleo": "sepa"
                       }
-                    ]
+                    ],
+                    "nucleo": "sepa"
                   }
-                ]
+                ],
+                "nucleo": "escribo"
               }
             ]
           }
@@ -355,7 +515,6 @@
               {
                 "funcion": "PRED",
                 "texto": "Quiero que vengas",
-                "nucleo": "Quiero",
                 "partes": [
                   {
                     "funcion": "V",
@@ -365,20 +524,28 @@
                   {
                     "funcion": "CD",
                     "texto": "que vengas",
-                    "nucleo": "vengas",
                     "partes": [
                       {
-                        "funcion": "PRON",
+                        "funcion": "CONJ",
                         "texto": "que"
                       },
                       {
-                        "funcion": "V",
+                        "funcion": "PRED",
                         "texto": "vengas",
+                        "partes": [
+                          {
+                            "funcion": "V",
+                            "texto": "vengas",
+                            "nucleo": "vengas"
+                          }
+                        ],
                         "nucleo": "vengas"
                       }
-                    ]
+                    ],
+                    "nucleo": "vengas"
                   }
-                ]
+                ],
+                "nucleo": "Quiero"
               }
             ]
           }
@@ -386,12 +553,11 @@
         {
           "sintaxis": {
             "oracion": "bimembre",
-            "sujeto": "omitido",
+            "sujeto": "expreso",
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Es importante que lleguen pronto",
-                "nucleo": "Es",
+                "texto": "Es importante",
                 "partes": [
                   {
                     "funcion": "V",
@@ -400,38 +566,39 @@
                   },
                   {
                     "funcion": "ATRIB",
-                    "texto": "importante que lleguen pronto",
-                    "nucleo": "importante",
+                    "texto": "importante",
+                    "nucleo": "importante"
+                  }
+                ],
+                "nucleo": "Es"
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "que lleguen pronto",
+                "partes": [
+                  {
+                    "funcion": "CONJ",
+                    "texto": "que"
+                  },
+                  {
+                    "funcion": "PRED",
+                    "texto": "lleguen pronto",
                     "partes": [
                       {
-                        "funcion": "ADY",
-                        "texto": "importante",
-                        "nucleo": "importante"
+                        "funcion": "V",
+                        "texto": "lleguen",
+                        "nucleo": "lleguen"
                       },
                       {
-                        "funcion": "CN",
-                        "texto": "que lleguen pronto",
-                        "nucleo": "lleguen",
-                        "partes": [
-                          {
-                            "funcion": "PRON",
-                            "texto": "que"
-                          },
-                          {
-                            "funcion": "V",
-                            "texto": "lleguen",
-                            "nucleo": "lleguen"
-                          },
-                          {
-                            "funcion": "CCT",
-                            "texto": "pronto",
-                            "nucleo": "pronto"
-                          }
-                        ]
+                        "funcion": "CCT",
+                        "texto": "pronto",
+                        "nucleo": "pronto"
                       }
-                    ]
+                    ],
+                    "nucleo": "lleguen"
                   }
-                ]
+                ],
+                "nucleo": "lleguen"
               }
             ]
           }
@@ -452,7 +619,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "El banco de alimentos del barrio",
-                "nucleo": "banco",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -460,18 +626,61 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "banco"
+                    "texto": "banco",
+                    "nucleo": "banco"
                   },
                   {
                     "funcion": "CN",
-                    "texto": "de alimentos del barrio"
+                    "texto": "de alimentos del barrio",
+                    "partes": [
+                      {
+                        "funcion": "PREP",
+                        "texto": "de"
+                      },
+                      {
+                        "funcion": "TERM",
+                        "texto": "alimentos del barrio",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "alimentos",
+                            "nucleo": "alimentos"
+                          },
+                          {
+                            "funcion": "CN",
+                            "texto": "del barrio",
+                            "partes": [
+                              {
+                                "funcion": "PREP",
+                                "texto": "del"
+                              },
+                              {
+                                "funcion": "TERM",
+                                "texto": "barrio",
+                                "partes": [
+                                  {
+                                    "funcion": "N",
+                                    "texto": "barrio",
+                                    "nucleo": "barrio"
+                                  }
+                                ],
+                                "nucleo": "barrio"
+                              }
+                            ],
+                            "nucleo": "barrio"
+                          }
+                        ],
+                        "nucleo": "alimentos"
+                      }
+                    ],
+                    "nucleo": "alimentos"
                   }
-                ]
+                ],
+                "nucleo": "banco"
               },
               {
                 "funcion": "PRED",
                 "texto": "busca personas que puedan colaborar dos horas a la semana",
-                "nucleo": "busca",
                 "partes": [
                   {
                     "funcion": "V",
@@ -481,40 +690,85 @@
                   {
                     "funcion": "CD",
                     "texto": "personas que puedan colaborar dos horas a la semana",
-                    "nucleo": "personas",
                     "partes": [
                       {
                         "funcion": "N",
-                        "texto": "personas"
+                        "texto": "personas",
+                        "nucleo": "personas"
                       },
                       {
-                        "funcion": "CN",
+                        "funcion": "ADY",
                         "texto": "que puedan colaborar dos horas a la semana",
-                        "nucleo": "puedan",
                         "partes": [
                           {
-                            "funcion": "PRON",
-                            "texto": "que"
+                            "funcion": "SUJ",
+                            "texto": "que",
+                            "nucleo": "que"
                           },
                           {
-                            "funcion": "V",
-                            "texto": "puedan",
-                            "nucleo": "puedan"
-                          },
-                          {
-                            "funcion": "INF",
-                            "texto": "colaborar"
-                          },
-                          {
-                            "funcion": "CCT",
-                            "texto": "dos horas a la semana",
-                            "nucleo": "horas"
+                            "funcion": "PRED",
+                            "texto": "puedan colaborar dos horas a la semana",
+                            "partes": [
+                              {
+                                "funcion": "V",
+                                "texto": "puedan colaborar",
+                                "nucleo": "colaborar"
+                              },
+                              {
+                                "funcion": "CCT",
+                                "texto": "dos horas",
+                                "partes": [
+                                  {
+                                    "funcion": "CUANT",
+                                    "texto": "dos",
+                                    "nucleo": "dos"
+                                  },
+                                  {
+                                    "funcion": "N",
+                                    "texto": "horas",
+                                    "nucleo": "horas"
+                                  }
+                                ],
+                                "nucleo": "horas"
+                              },
+                              {
+                                "funcion": "CCT",
+                                "texto": "a la semana",
+                                "partes": [
+                                  {
+                                    "funcion": "PREP",
+                                    "texto": "a"
+                                  },
+                                  {
+                                    "funcion": "TERM",
+                                    "texto": "la semana",
+                                    "partes": [
+                                      {
+                                        "funcion": "DET",
+                                        "texto": "la"
+                                      },
+                                      {
+                                        "funcion": "N",
+                                        "texto": "semana",
+                                        "nucleo": "semana"
+                                      }
+                                    ],
+                                    "nucleo": "semana"
+                                  }
+                                ],
+                                "nucleo": "semana"
+                              }
+                            ],
+                            "nucleo": "colaborar"
                           }
-                        ]
+                        ],
+                        "nucleo": "que"
                       }
-                    ]
+                    ],
+                    "nucleo": "personas"
                   }
-                ]
+                ],
+                "nucleo": "busca"
               }
             ]
           }
@@ -523,12 +777,11 @@
           "parrafo": 0,
           "sintaxis": {
             "oracion": "bimembre",
-            "sujeto": "omitido",
+            "sujeto": "expreso",
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "No hace falta que tengas experiencia previa",
-                "nucleo": "hace",
+                "texto": "No hace falta",
                 "partes": [
                   {
                     "funcion": "NEG",
@@ -537,17 +790,23 @@
                   {
                     "funcion": "V",
                     "texto": "hace falta",
-                    "nucleo": "hace"
+                    "nucleo": "falta"
+                  }
+                ],
+                "nucleo": "falta"
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "que tengas experiencia previa",
+                "partes": [
+                  {
+                    "funcion": "CONJ",
+                    "texto": "que"
                   },
                   {
-                    "funcion": "CN",
-                    "texto": "que tengas experiencia previa",
-                    "nucleo": "tengas",
+                    "funcion": "PRED",
+                    "texto": "tengas experiencia previa",
                     "partes": [
-                      {
-                        "funcion": "PRON",
-                        "texto": "que"
-                      },
                       {
                         "funcion": "V",
                         "texto": "tengas",
@@ -556,22 +815,25 @@
                       {
                         "funcion": "CD",
                         "texto": "experiencia previa",
-                        "nucleo": "experiencia",
                         "partes": [
                           {
                             "funcion": "N",
-                            "texto": "experiencia"
+                            "texto": "experiencia",
+                            "nucleo": "experiencia"
                           },
                           {
                             "funcion": "ADY",
                             "texto": "previa",
                             "nucleo": "previa"
                           }
-                        ]
+                        ],
+                        "nucleo": "experiencia"
                       }
-                    ]
+                    ],
+                    "nucleo": "tengas"
                   }
-                ]
+                ],
+                "nucleo": "tengas"
               }
             ]
           }
@@ -585,7 +847,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La coordinadora",
-                "nucleo": "coordinadora",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -593,14 +854,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "coordinadora"
+                    "texto": "coordinadora",
+                    "nucleo": "coordinadora"
                   }
-                ]
+                ],
+                "nucleo": "coordinadora"
               },
               {
                 "funcion": "PRED",
                 "texto": "se encarga de que cada voluntario reciba una formación breve antes de empezar",
-                "nucleo": "encarga",
                 "partes": [
                   {
                     "funcion": "V",
@@ -610,63 +872,99 @@
                   {
                     "funcion": "CRV",
                     "texto": "de que cada voluntario reciba una formación breve antes de empezar",
-                    "nucleo": "reciba",
                     "partes": [
                       {
                         "funcion": "PREP",
                         "texto": "de"
                       },
                       {
-                        "funcion": "CN",
+                        "funcion": "TERM",
                         "texto": "que cada voluntario reciba una formación breve antes de empezar",
-                        "nucleo": "reciba",
                         "partes": [
                           {
-                            "funcion": "PRON",
+                            "funcion": "CONJ",
                             "texto": "que"
                           },
                           {
-                            "funcion": "DET",
-                            "texto": "cada"
-                          },
-                          {
-                            "funcion": "N",
-                            "texto": "voluntario"
-                          },
-                          {
-                            "funcion": "V",
-                            "texto": "reciba",
-                            "nucleo": "reciba"
-                          },
-                          {
-                            "funcion": "CD",
-                            "texto": "una formación breve",
-                            "nucleo": "formación",
+                            "funcion": "SUJ",
+                            "texto": "cada voluntario",
                             "partes": [
                               {
                                 "funcion": "DET",
-                                "texto": "una"
+                                "texto": "cada"
                               },
                               {
                                 "funcion": "N",
-                                "texto": "formación"
-                              },
-                              {
-                                "funcion": "ADY",
-                                "texto": "breve",
-                                "nucleo": "breve"
+                                "texto": "voluntario",
+                                "nucleo": "voluntario"
                               }
-                            ]
+                            ],
+                            "nucleo": "voluntario"
                           },
                           {
-                            "funcion": "CCT",
-                            "texto": "antes de empezar"
+                            "funcion": "PRED",
+                            "texto": "reciba una formación breve antes de empezar",
+                            "partes": [
+                              {
+                                "funcion": "V",
+                                "texto": "reciba",
+                                "nucleo": "reciba"
+                              },
+                              {
+                                "funcion": "CD",
+                                "texto": "una formación breve",
+                                "partes": [
+                                  {
+                                    "funcion": "DET",
+                                    "texto": "una"
+                                  },
+                                  {
+                                    "funcion": "N",
+                                    "texto": "formación",
+                                    "nucleo": "formación"
+                                  },
+                                  {
+                                    "funcion": "ADY",
+                                    "texto": "breve",
+                                    "nucleo": "breve"
+                                  }
+                                ],
+                                "nucleo": "formación"
+                              },
+                              {
+                                "funcion": "CCT",
+                                "texto": "antes de empezar",
+                                "partes": [
+                                  {
+                                    "funcion": "PREP",
+                                    "texto": "antes de"
+                                  },
+                                  {
+                                    "funcion": "TERM",
+                                    "texto": "empezar",
+                                    "partes": [
+                                      {
+                                        "funcion": "INF",
+                                        "texto": "empezar",
+                                        "nucleo": "empezar"
+                                      }
+                                    ],
+                                    "nucleo": "empezar"
+                                  }
+                                ],
+                                "nucleo": "empezar"
+                              }
+                            ],
+                            "nucleo": "reciba"
                           }
-                        ]
+                        ],
+                        "nucleo": "voluntario"
                       }
-                    ]
+                    ],
+                    "nucleo": "voluntario"
                   }
-                ]
+                ],
+                "nucleo": "encarga"
               }
             ]
           }
@@ -679,8 +977,7 @@
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "También pide que se llegue diez minutos antes, para repartir las tareas del turno",
-                "nucleo": "pide",
+                "texto": "También pide que se llegue diez minutos antes para repartir las tareas del turno",
                 "partes": [
                   {
                     "funcion": "CCM",
@@ -695,49 +992,112 @@
                   {
                     "funcion": "CD",
                     "texto": "que se llegue diez minutos antes",
-                    "nucleo": "llegue",
                     "partes": [
                       {
-                        "funcion": "PRON",
+                        "funcion": "CONJ",
                         "texto": "que"
                       },
                       {
-                        "funcion": "PRON",
-                        "texto": "se"
-                      },
-                      {
-                        "funcion": "V",
-                        "texto": "llegue",
+                        "funcion": "PRED",
+                        "texto": "se llegue diez minutos antes",
+                        "partes": [
+                          {
+                            "funcion": "V",
+                            "texto": "se llegue",
+                            "nucleo": "llegue"
+                          },
+                          {
+                            "funcion": "CCT",
+                            "texto": "diez minutos antes",
+                            "partes": [
+                              {
+                                "funcion": "CUANT",
+                                "texto": "diez",
+                                "nucleo": "diez"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "minutos",
+                                "nucleo": "minutos"
+                              },
+                              {
+                                "funcion": "ADV",
+                                "texto": "antes",
+                                "nucleo": "antes"
+                              }
+                            ],
+                            "nucleo": "minutos"
+                          }
+                        ],
                         "nucleo": "llegue"
-                      },
-                      {
-                        "funcion": "CCT",
-                        "texto": "diez minutos antes",
-                        "nucleo": "antes"
                       }
-                    ]
+                    ],
+                    "nucleo": "llegue"
                   },
                   {
                     "funcion": "CCF",
                     "texto": "para repartir las tareas del turno",
-                    "nucleo": "repartir",
                     "partes": [
                       {
                         "funcion": "PREP",
                         "texto": "para"
                       },
                       {
-                        "funcion": "INF",
-                        "texto": "repartir"
-                      },
-                      {
-                        "funcion": "CD",
-                        "texto": "las tareas del turno",
-                        "nucleo": "tareas"
+                        "funcion": "TERM",
+                        "texto": "repartir las tareas del turno",
+                        "partes": [
+                          {
+                            "funcion": "INF",
+                            "texto": "repartir",
+                            "nucleo": "repartir"
+                          },
+                          {
+                            "funcion": "CD",
+                            "texto": "las tareas del turno",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "las"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "tareas",
+                                "nucleo": "tareas"
+                              },
+                              {
+                                "funcion": "CN",
+                                "texto": "del turno",
+                                "partes": [
+                                  {
+                                    "funcion": "PREP",
+                                    "texto": "del"
+                                  },
+                                  {
+                                    "funcion": "TERM",
+                                    "texto": "turno",
+                                    "partes": [
+                                      {
+                                        "funcion": "N",
+                                        "texto": "turno",
+                                        "nucleo": "turno"
+                                      }
+                                    ],
+                                    "nucleo": "turno"
+                                  }
+                                ],
+                                "nucleo": "turno"
+                              }
+                            ],
+                            "nucleo": "tareas"
+                          }
+                        ],
+                        "nucleo": "repartir"
                       }
-                    ]
+                    ],
+                    "nucleo": "repartir"
                   }
-                ]
+                ],
+                "nucleo": "pide"
               }
             ]
           }
@@ -746,12 +1106,11 @@
           "parrafo": 1,
           "sintaxis": {
             "oracion": "bimembre",
-            "sujeto": "omitido",
+            "sujeto": "expreso",
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Es importante que todos conozcan las normas de higiene y que no se compartan datos personales",
-                "nucleo": "Es",
+                "texto": "Es importante",
                 "partes": [
                   {
                     "funcion": "V",
@@ -760,27 +1119,40 @@
                   },
                   {
                     "funcion": "ATRIB",
-                    "texto": "importante que todos conozcan las normas de higiene y que no se compartan datos personales",
-                    "nucleo": "importante",
+                    "texto": "importante",
+                    "nucleo": "importante"
+                  }
+                ],
+                "nucleo": "Es"
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "que todos conozcan las normas de higiene y que no se compartan datos personales",
+                "partes": [
+                  {
+                    "funcion": "SUJ",
+                    "texto": "que todos conozcan las normas de higiene",
                     "partes": [
                       {
-                        "funcion": "ADY",
-                        "texto": "importante",
-                        "nucleo": "importante"
+                        "funcion": "CONJ",
+                        "texto": "que"
                       },
                       {
-                        "funcion": "CN",
-                        "texto": "que todos conozcan las normas de higiene",
-                        "nucleo": "conozcan",
+                        "funcion": "SUJ",
+                        "texto": "todos",
                         "partes": [
                           {
                             "funcion": "PRON",
-                            "texto": "que"
-                          },
-                          {
-                            "funcion": "PRON",
-                            "texto": "todos"
-                          },
+                            "texto": "todos",
+                            "nucleo": "todos"
+                          }
+                        ],
+                        "nucleo": "todos"
+                      },
+                      {
+                        "funcion": "PRED",
+                        "texto": "conozcan las normas de higiene",
+                        "partes": [
                           {
                             "funcion": "V",
                             "texto": "conozcan",
@@ -789,46 +1161,98 @@
                           {
                             "funcion": "CD",
                             "texto": "las normas de higiene",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "las"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "normas",
+                                "nucleo": "normas"
+                              },
+                              {
+                                "funcion": "CN",
+                                "texto": "de higiene",
+                                "partes": [
+                                  {
+                                    "funcion": "PREP",
+                                    "texto": "de"
+                                  },
+                                  {
+                                    "funcion": "TERM",
+                                    "texto": "higiene",
+                                    "partes": [
+                                      {
+                                        "funcion": "N",
+                                        "texto": "higiene",
+                                        "nucleo": "higiene"
+                                      }
+                                    ],
+                                    "nucleo": "higiene"
+                                  }
+                                ],
+                                "nucleo": "higiene"
+                              }
+                            ],
                             "nucleo": "normas"
                           }
-                        ]
-                      },
+                        ],
+                        "nucleo": "conozcan"
+                      }
+                    ],
+                    "nucleo": "todos"
+                  },
+                  {
+                    "funcion": "CONJ",
+                    "texto": "y"
+                  },
+                  {
+                    "funcion": "SUJ",
+                    "texto": "que no se compartan datos personales",
+                    "partes": [
                       {
                         "funcion": "CONJ",
-                        "texto": "y"
+                        "texto": "que"
                       },
                       {
-                        "funcion": "CN",
-                        "texto": "que no se compartan datos personales",
-                        "nucleo": "compartan",
+                        "funcion": "PRED",
+                        "texto": "no se compartan",
                         "partes": [
-                          {
-                            "funcion": "PRON",
-                            "texto": "que"
-                          },
                           {
                             "funcion": "NEG",
                             "texto": "no"
                           },
                           {
-                            "funcion": "PRON",
-                            "texto": "se"
-                          },
-                          {
                             "funcion": "V",
-                            "texto": "compartan",
+                            "texto": "se compartan",
                             "nucleo": "compartan"
+                          }
+                        ],
+                        "nucleo": "compartan"
+                      },
+                      {
+                        "funcion": "SUJ",
+                        "texto": "datos personales",
+                        "partes": [
+                          {
+                            "funcion": "N",
+                            "texto": "datos",
+                            "nucleo": "datos"
                           },
                           {
-                            "funcion": "CD",
-                            "texto": "datos personales",
-                            "nucleo": "datos"
+                            "funcion": "ADY",
+                            "texto": "personales",
+                            "nucleo": "personales"
                           }
-                        ]
+                        ],
+                        "nucleo": "datos"
                       }
-                    ]
+                    ],
+                    "nucleo": "compartan"
                   }
-                ]
+                ],
+                "nucleo": "todos"
               }
             ]
           }
@@ -842,7 +1266,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "Cada persona",
-                "nucleo": "persona",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -850,19 +1273,20 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "persona"
+                    "texto": "persona",
+                    "nucleo": "persona"
                   }
-                ]
+                ],
+                "nucleo": "persona"
               },
               {
                 "funcion": "PRED",
                 "texto": "debe dejar limpia su mesa cuando termine el turno",
-                "nucleo": "debe",
                 "partes": [
                   {
                     "funcion": "V",
                     "texto": "debe dejar",
-                    "nucleo": "debe"
+                    "nucleo": "dejar"
                   },
                   {
                     "funcion": "CPVO",
@@ -872,7 +1296,6 @@
                   {
                     "funcion": "CD",
                     "texto": "su mesa",
-                    "nucleo": "mesa",
                     "partes": [
                       {
                         "funcion": "DET",
@@ -880,32 +1303,53 @@
                       },
                       {
                         "funcion": "N",
-                        "texto": "mesa"
+                        "texto": "mesa",
+                        "nucleo": "mesa"
                       }
-                    ]
+                    ],
+                    "nucleo": "mesa"
                   },
                   {
                     "funcion": "CCT",
                     "texto": "cuando termine el turno",
-                    "nucleo": "termine",
                     "partes": [
                       {
                         "funcion": "CONJ",
                         "texto": "cuando"
                       },
                       {
-                        "funcion": "V",
+                        "funcion": "PRED",
                         "texto": "termine",
+                        "partes": [
+                          {
+                            "funcion": "V",
+                            "texto": "termine",
+                            "nucleo": "termine"
+                          }
+                        ],
                         "nucleo": "termine"
                       },
                       {
-                        "funcion": "CD",
+                        "funcion": "SUJ",
                         "texto": "el turno",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "el"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "turno",
+                            "nucleo": "turno"
+                          }
+                        ],
                         "nucleo": "turno"
                       }
-                    ]
+                    ],
+                    "nucleo": "termine"
                   }
-                ]
+                ],
+                "nucleo": "dejar"
               }
             ]
           }
@@ -914,51 +1358,71 @@
           "parrafo": 1,
           "sintaxis": {
             "oracion": "bimembre",
-            "sujeto": "omitido",
+            "sujeto": "expreso",
             "unidades": [
               {
                 "funcion": "PRED",
-                "texto": "Si alguien no puede acudir, conviene que avise con tiempo, para que la coordinadora encuentre a otra persona que cubra el hueco",
-                "nucleo": "conviene",
+                "texto": "Si alguien no puede acudir conviene",
                 "partes": [
                   {
                     "funcion": "CCC",
                     "texto": "Si alguien no puede acudir",
-                    "nucleo": "puede",
                     "partes": [
                       {
                         "funcion": "CONJ",
                         "texto": "Si"
                       },
                       {
-                        "funcion": "PRON",
-                        "texto": "alguien"
+                        "funcion": "SUJ",
+                        "texto": "alguien",
+                        "partes": [
+                          {
+                            "funcion": "PRON",
+                            "texto": "alguien",
+                            "nucleo": "alguien"
+                          }
+                        ],
+                        "nucleo": "alguien"
                       },
                       {
-                        "funcion": "NEG",
-                        "texto": "no"
-                      },
-                      {
-                        "funcion": "V",
-                        "texto": "puede acudir",
-                        "nucleo": "puede"
+                        "funcion": "PRED",
+                        "texto": "no puede acudir",
+                        "partes": [
+                          {
+                            "funcion": "NEG",
+                            "texto": "no"
+                          },
+                          {
+                            "funcion": "V",
+                            "texto": "puede acudir",
+                            "nucleo": "acudir"
+                          }
+                        ],
+                        "nucleo": "acudir"
                       }
-                    ]
+                    ],
+                    "nucleo": "alguien"
                   },
                   {
                     "funcion": "V",
                     "texto": "conviene",
                     "nucleo": "conviene"
+                  }
+                ],
+                "nucleo": "conviene"
+              },
+              {
+                "funcion": "SUJ",
+                "texto": "que avise con tiempo para que la coordinadora encuentre a otra persona que cubra el hueco",
+                "partes": [
+                  {
+                    "funcion": "CONJ",
+                    "texto": "que"
                   },
                   {
-                    "funcion": "CN",
-                    "texto": "que avise con tiempo",
-                    "nucleo": "avise",
+                    "funcion": "PRED",
+                    "texto": "avise con tiempo para que la coordinadora encuentre a otra persona que cubra el hueco",
                     "partes": [
-                      {
-                        "funcion": "PRON",
-                        "texto": "que"
-                      },
                       {
                         "funcion": "V",
                         "texto": "avise",
@@ -967,37 +1431,137 @@
                       {
                         "funcion": "CCM",
                         "texto": "con tiempo",
+                        "partes": [
+                          {
+                            "funcion": "PREP",
+                            "texto": "con"
+                          },
+                          {
+                            "funcion": "TERM",
+                            "texto": "tiempo",
+                            "partes": [
+                              {
+                                "funcion": "N",
+                                "texto": "tiempo",
+                                "nucleo": "tiempo"
+                              }
+                            ],
+                            "nucleo": "tiempo"
+                          }
+                        ],
                         "nucleo": "tiempo"
-                      }
-                    ]
-                  },
-                  {
-                    "funcion": "CCF",
-                    "texto": "para que la coordinadora encuentre a otra persona que cubra el hueco",
-                    "nucleo": "encuentre",
-                    "partes": [
-                      {
-                        "funcion": "CONJ",
-                        "texto": "para que"
                       },
                       {
-                        "funcion": "SUJ",
-                        "texto": "la coordinadora",
+                        "funcion": "CCF",
+                        "texto": "para que la coordinadora encuentre a otra persona que cubra el hueco",
+                        "partes": [
+                          {
+                            "funcion": "CONJ",
+                            "texto": "para que"
+                          },
+                          {
+                            "funcion": "SUJ",
+                            "texto": "la coordinadora",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "la"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "coordinadora",
+                                "nucleo": "coordinadora"
+                              }
+                            ],
+                            "nucleo": "coordinadora"
+                          },
+                          {
+                            "funcion": "PRED",
+                            "texto": "encuentre a otra persona que cubra el hueco",
+                            "partes": [
+                              {
+                                "funcion": "V",
+                                "texto": "encuentre",
+                                "nucleo": "encuentre"
+                              },
+                              {
+                                "funcion": "CD",
+                                "texto": "a otra persona que cubra el hueco",
+                                "partes": [
+                                  {
+                                    "funcion": "PREP",
+                                    "texto": "a"
+                                  },
+                                  {
+                                    "funcion": "TERM",
+                                    "texto": "otra persona que cubra el hueco",
+                                    "partes": [
+                                      {
+                                        "funcion": "DET",
+                                        "texto": "otra"
+                                      },
+                                      {
+                                        "funcion": "N",
+                                        "texto": "persona",
+                                        "nucleo": "persona"
+                                      },
+                                      {
+                                        "funcion": "ADY",
+                                        "texto": "que cubra el hueco",
+                                        "partes": [
+                                          {
+                                            "funcion": "SUJ",
+                                            "texto": "que",
+                                            "nucleo": "que"
+                                          },
+                                          {
+                                            "funcion": "PRED",
+                                            "texto": "cubra el hueco",
+                                            "partes": [
+                                              {
+                                                "funcion": "V",
+                                                "texto": "cubra",
+                                                "nucleo": "cubra"
+                                              },
+                                              {
+                                                "funcion": "CD",
+                                                "texto": "el hueco",
+                                                "partes": [
+                                                  {
+                                                    "funcion": "DET",
+                                                    "texto": "el"
+                                                  },
+                                                  {
+                                                    "funcion": "N",
+                                                    "texto": "hueco",
+                                                    "nucleo": "hueco"
+                                                  }
+                                                ],
+                                                "nucleo": "hueco"
+                                              }
+                                            ],
+                                            "nucleo": "cubra"
+                                          }
+                                        ],
+                                        "nucleo": "que"
+                                      }
+                                    ],
+                                    "nucleo": "persona"
+                                  }
+                                ],
+                                "nucleo": "persona"
+                              }
+                            ],
+                            "nucleo": "encuentre"
+                          }
+                        ],
                         "nucleo": "coordinadora"
-                      },
-                      {
-                        "funcion": "V",
-                        "texto": "encuentre",
-                        "nucleo": "encuentre"
-                      },
-                      {
-                        "funcion": "CD",
-                        "texto": "a otra persona que cubra el hueco",
-                        "nucleo": "persona"
                       }
-                    ]
+                    ],
+                    "nucleo": "avise"
                   }
-                ]
+                ],
+                "nucleo": "avise"
               }
             ]
           }
@@ -1011,7 +1575,6 @@
               {
                 "funcion": "SUJ",
                 "texto": "La asociación",
-                "nucleo": "asociación",
                 "partes": [
                   {
                     "funcion": "DET",
@@ -1019,14 +1582,15 @@
                   },
                   {
                     "funcion": "N",
-                    "texto": "asociación"
+                    "texto": "asociación",
+                    "nucleo": "asociación"
                   }
-                ]
+                ],
+                "nucleo": "asociación"
               },
               {
                 "funcion": "PRED",
-                "texto": "tampoco publica imágenes identificables, a menos que las familias den su consentimiento",
-                "nucleo": "publica",
+                "texto": "tampoco publica imágenes identificables a menos que las familias den su consentimiento",
                 "partes": [
                   {
                     "funcion": "NEG",
@@ -1040,23 +1604,23 @@
                   {
                     "funcion": "CD",
                     "texto": "imágenes identificables",
-                    "nucleo": "imágenes",
                     "partes": [
                       {
                         "funcion": "N",
-                        "texto": "imágenes"
+                        "texto": "imágenes",
+                        "nucleo": "imágenes"
                       },
                       {
                         "funcion": "ADY",
                         "texto": "identificables",
                         "nucleo": "identificables"
                       }
-                    ]
+                    ],
+                    "nucleo": "imágenes"
                   },
                   {
                     "funcion": "CCC",
                     "texto": "a menos que las familias den su consentimiento",
-                    "nucleo": "den",
                     "partes": [
                       {
                         "funcion": "CONJ",
@@ -1065,21 +1629,52 @@
                       {
                         "funcion": "SUJ",
                         "texto": "las familias",
+                        "partes": [
+                          {
+                            "funcion": "DET",
+                            "texto": "las"
+                          },
+                          {
+                            "funcion": "N",
+                            "texto": "familias",
+                            "nucleo": "familias"
+                          }
+                        ],
                         "nucleo": "familias"
                       },
                       {
-                        "funcion": "V",
-                        "texto": "den",
+                        "funcion": "PRED",
+                        "texto": "den su consentimiento",
+                        "partes": [
+                          {
+                            "funcion": "V",
+                            "texto": "den",
+                            "nucleo": "den"
+                          },
+                          {
+                            "funcion": "CD",
+                            "texto": "su consentimiento",
+                            "partes": [
+                              {
+                                "funcion": "DET",
+                                "texto": "su"
+                              },
+                              {
+                                "funcion": "N",
+                                "texto": "consentimiento",
+                                "nucleo": "consentimiento"
+                              }
+                            ],
+                            "nucleo": "consentimiento"
+                          }
+                        ],
                         "nucleo": "den"
-                      },
-                      {
-                        "funcion": "CD",
-                        "texto": "su consentimiento",
-                        "nucleo": "consentimiento"
                       }
-                    ]
+                    ],
+                    "nucleo": "familias"
                   }
-                ]
+                ],
+                "nucleo": "publica"
               }
             ]
           }
