@@ -1,64 +1,78 @@
 {
  "capitulo": 15,
  "titulo_tr": "Sipariş ve müşteri hizmetleri",
- "titulo_es": "Pedidos y atención al cliente",
+ "titulo_es": "Customer orders and attention",
  "palabras": {
   "sipariş": {
    "es": "pedido",
+   "en": "order",
    "pron": "si-pa-RISH"
   },
   "kargo": {
    "es": "envío; mensajería",
+   "en": "shipping; courier",
    "pron": "kar-GO"
   },
   "gecikmek": {
    "es": "retrasarse",
+   "en": "be delayed",
    "pron": "ge-jik-MEK"
   },
   "siparişim": {
    "es": "mi pedido",
+   "en": "my order",
    "pron": "si-pa-ri-SHIM"
   },
   "yardımcı olabilir misiniz": {
    "es": "¿puede ayudarme?",
+   "en": "Can you help me?",
    "pron": "yar-dım-jı o-la-bi-LIR mi-si-niz"
   },
   "müşteri hizmetleri": {
    "es": "atención al cliente",
+   "en": "customer service",
    "pron": "müş-te-ri hiz-met-le-RI"
   },
   "teslimat": {
    "es": "entrega",
+   "en": "delivery",
    "pron": "tes-li-MAT"
   },
   "kontrol etmek": {
    "es": "comprobar",
+   "en": "check",
    "pron": "kon-trol et-MEK",
    "oculta": true
   },
   "Kargonuz": {
    "es": "su envío",
+   "en": "your shipment",
    "oculta": true
   },
   "gecikti": {
    "es": "se retrasó",
+   "en": "was delayed",
    "pron": "ge-jik-TI"
   },
   "görevli": {
    "es": "empleado/a",
+   "en": "employee",
    "pron": "gö-rev-LI"
   },
   "gelecek": {
    "es": "llegará",
+   "en": "He'll be here.",
    "pron": "ge-le-JEK"
   },
   "kontrol ediyorum": {
    "es": "estoy comprobando",
+   "en": "I'm checking.",
    "pron": "kon-trol e-di-YO-rum",
    "oculta": true
   },
   "numaranızı": {
    "es": "su número",
+   "en": "your number",
    "pron": "nu-ma-ra-nı-ZUH",
    "oculta": true
   }
@@ -66,16 +80,16 @@
  "bloques": [
   {
    "tipo": "explicacion",
-   "titulo": "Consultas de pedidos",
+   "titulo": "Order consultations",
    "texto": [
-    "**sipariş** = pedido; **kargo** = envío; **gecikmek** = retrasarse.",
-    "**Siparişim nerede?** = ¿Dónde está mi pedido?",
-    "**yardımcı olabilir misiniz?** significa «¿puede ayudarme?»."
+    "**sipariş** = order; **kargo** = shipment; **gecikmek** = delay.",
+    "**Siparişim nerede?** = Where is my order?",
+    "**yardımcı olabilir misiniz?** means «Can you help me?»."
    ]
   },
   {
    "tipo": "vocabulario",
-   "titulo": "Una llamada",
+   "titulo": "A call.",
    "palabras": [
     "sipariş",
     "kargo",
@@ -88,193 +102,197 @@
   },
   {
    "tipo": "dialogo",
-   "titulo": "Consultar una entrega",
+   "titulo": "Consult a delivery",
    "frases": [
     {
      "quien": "Müşteri",
      "tr": "Merhaba, siparişim gecikti.",
-     "es": "Hola, mi pedido se ha retrasado."
+     "es": "Hola, mi pedido se ha retrasado.",
+     "en": "Hey, my order's been delayed."
     },
     {
      "quien": "Görevli",
      "tr": "Sipariş numaranızı alabilir miyim?",
-     "es": "¿Me puede dar su número de pedido?"
+     "es": "¿Me puede dar su número de pedido?",
+     "en": "Can I have your order number?"
     },
     {
      "quien": "Müşteri",
      "tr": "Evet, numaram 245.",
-     "es": "Sí, mi número es 245."
+     "es": "Sí, mi número es 245.",
+     "en": "Yeah, my number is 245."
     },
     {
      "quien": "Görevli",
      "tr": "Kontrol ediyorum. Kargonuz yarın gelecek.",
-     "es": "Lo estoy comprobando. Su envío llegará mañana."
+     "es": "Lo estoy comprobando. Su envío llegará mañana.",
+     "en": "I'm checking. Your shipment will be here tomorrow."
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "¿Qué significa «sipariş»?",
+   "pregunta": "What does «sipariş» mean?",
    "id": "tr015-1",
    "opciones": [
     {
-     "texto": "pedido",
-     "explicacion": "Sipariş es algo que el cliente compró.",
+     "texto": "order",
+     "explicacion": "Sipariş is something the client bought.",
      "correcta": true
     },
     {
-     "texto": "envío",
-     "explicacion": "Kargo es el envío."
+     "texto": "shipping",
+     "explicacion": "Kargo is the shipment."
     },
     {
-     "texto": "entrega",
-     "explicacion": "Teslimat es la entrega."
+     "texto": "delivery",
+     "explicacion": "Teslimat is the delivery."
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "¿Qué problema tiene el cliente?",
+   "pregunta": "What's the problem with the client?",
    "id": "tr015-2",
    "opciones": [
     {
-     "texto": "Su pedido se retrasó",
+     "texto": "Your order was delayed.",
      "explicacion": "Siparişim gecikti.",
      "correcta": true
     },
     {
-     "texto": "No conoce el precio",
-     "explicacion": "No pregunta el precio."
+     "texto": "He doesn't know the price.",
+     "explicacion": "He doesn't ask the price."
     },
     {
-     "texto": "No puede pagar",
-     "explicacion": "No se habla del pago."
+     "texto": "You can't pay.",
+     "explicacion": "There's no talk of payment."
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "¿Qué pide el empleado?",
+   "pregunta": "What does the employee ask for?",
    "id": "tr015-3",
    "opciones": [
     {
-     "texto": "El número del pedido",
-     "explicacion": "Sipariş numaranızı alabilir miyim?",
+     "texto": "The order number",
+     "explicacion": "Sipariş numaranızı alabirr miyim?",
      "correcta": true
     },
     {
-     "texto": "La dirección del cliente",
-     "explicacion": "No la solicita."
+     "texto": "The address of the client",
+     "explicacion": "He doesn't ask for it."
     },
     {
-     "texto": "El recibo",
-     "explicacion": "Fiş significa recibo."
+     "texto": "The receipt",
+     "explicacion": "Fiş means receipt."
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "¿Cuándo llegará el paquete?",
+   "pregunta": "When will the package come?",
    "id": "tr015-4",
    "opciones": [
     {
-     "texto": "Mañana",
-     "explicacion": "Yarın gelecek = llegará mañana.",
+     "texto": "Tomorrow",
+     "explicacion": "Yarın gelecek = will be here tomorrow.",
      "correcta": true
     },
     {
-     "texto": "Hoy",
-     "explicacion": "Hoy es bugün."
+     "texto": "Today",
+     "explicacion": "Today it's bugün."
     },
     {
-     "texto": "La semana que viene",
+     "texto": "Next week",
      "explicacion": "Gelecek hafta."
     }
    ]
   },
   {
    "tipo": "traduccion",
-   "pregunta": "Traduce.",
+   "pregunta": "Translate.",
    "frase": "Kargonuz yarın gelecek.",
    "id": "tr015-5",
    "opciones": [
     {
-     "texto": "Su envío llegará mañana.",
-     "explicacion": "Kargonuz = su envío; gelecek = llegará.",
+     "texto": "Your shipment will be here tomorrow.",
+     "explicacion": "Kargonuz = your shipment; gelecek = will arrive.",
      "correcta": true
     },
     {
-     "texto": "Mi pedido se retrasó.",
-     "explicacion": "Esa frase aparece al principio."
+     "texto": "My order was delayed.",
+     "explicacion": "That phrase appears at the beginning."
     },
     {
-     "texto": "¿Puede ayudarme?",
-     "explicacion": "Es una petición distinta."
+     "texto": "Can you help me?",
+     "explicacion": "It's a different request."
     }
    ]
   },
   {
    "tipo": "huecos",
-   "pregunta": "Completa: «Mi pedido se ha retrasado».",
+   "pregunta": "Complete: «My order has been delayed.».",
    "frase": "Siparişim ___ .",
    "id": "tr015-6",
    "opciones": [
     {
      "texto": "gecikti",
-     "explicacion": "Gecikti = se retrasó.",
+     "explicacion": "GENIKTI = was delayed.",
      "correcta": true
     },
     {
      "texto": "teslimat",
-     "explicacion": "Entrega."
+     "explicacion": "Delivery."
     },
     {
      "texto": "kontrol",
-     "explicacion": "Comprobación."
+     "explicacion": "Check."
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "Escucha la petición.",
+   "pregunta": "Listen to the request.",
    "audio": "Yardımcı olabilir misiniz?",
    "id": "tr015-7",
    "opciones": [
     {
-     "texto": "¿Puede ayudarme?",
-     "explicacion": "Es una pregunta cortés.",
+     "texto": "Can you help me?",
+     "explicacion": "It's a polite question.",
      "correcta": true
     },
     {
-     "texto": "¿Dónde está mi pedido?",
+     "texto": "Where's my order?",
      "explicacion": "Siparişim nerede?"
     },
     {
-     "texto": "¿Cuándo llegará?",
+     "texto": "When will he be here?",
      "explicacion": "Ne zaman gelecek?"
     }
    ]
   },
   {
    "tipo": "ordenar",
-   "pregunta": "Ordena las palabras.",
+   "pregunta": "Order the words.",
    "frase": "Siparişim gecikti",
-   "traduccion": "Mi pedido se retrasó",
-   "explicacion": "Gecikti describe un retraso pasado.",
+   "traduccion": "My order was delayed.",
+   "explicacion": "GENIKTI describes a past delay.",
    "id": "tr015-8"
   },
   {
    "tipo": "escribir",
-   "pregunta": "Escribe «¿Dónde está mi pedido?»",
+   "pregunta": "Write «Where's my order?»",
    "respuestas": [
     "siparişim nerede"
    ],
-   "explicacion": "Siparişim = mi pedido.",
+   "explicacion": "Siparişim = my order.",
    "id": "tr015-9"
   },
   {
    "tipo": "vocabulario",
-   "titulo": "Vocabulario",
+   "titulo": "Vocabulary",
    "palabras": [
     "gecikti",
     "görevli",
@@ -282,5 +300,5 @@
    ]
   }
  ],
- "intro": "Pregunta por teléfono por el estado de un pedido y explica un problema sencillo."
+ "intro": "Ask by phone about the status of an order and explain a simple problem."
 }

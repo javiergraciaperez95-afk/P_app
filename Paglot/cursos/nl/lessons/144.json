@@ -1,37 +1,42 @@
 {
  "capitulo": 16,
  "titulo_nl": "Een bon lezen",
- "titulo_es": "Leer un recibo",
+ "titulo_es": "Read a receipt",
  "palabras": {
   "aantal": {
-   "es": "cantidad"
+   "es": "cantidad",
+   "en": "quantity"
   },
   "totaal": {
-   "es": "total"
+   "es": "total",
+   "en": "Total"
   },
   "betaald": {
-   "es": "pagado"
+   "es": "pagado",
+   "en": "paid"
   },
   "bon": {
    "es": "recibo; tíquet",
+   "en": "receipt; tiquet",
    "oculta": true
   },
   "stuks": {
    "es": "unidades; piezas",
+   "en": "units; parts",
    "oculta": true
   }
  },
  "bloques": [
   {
    "tipo": "explicacion",
-   "titulo": "Lectura de comprobantes de compra",
+   "titulo": "Reading of purchase vouchers",
    "texto": [
-    "En un recibo de compra («kassabon» o «bon»), los importes se desglosan por producto, especificando en ocasiones el número de piezas («stuks»). Al final figuran el importe total acumulado («totaal») y la modalidad de pago utilizada («betaald met kaart» o «contant»)."
+    "In a purchase receipt («kassabon» or «bon»), the amounts are broken down by product, sometimes specifying the number of parts («stuks»). The total amount («totaal») and the payment modality used («betaald met kaart» or «contant») are shown at the end."
    ]
   },
   {
    "tipo": "vocabulario",
-   "titulo": "Términos de compras",
+   "titulo": "Terms of purchase",
    "palabras": [
     "aantal",
     "totaal",
@@ -40,79 +45,84 @@
   },
   {
    "tipo": "texto",
-   "titulo": "Texto breve",
+   "titulo": "Short text",
    "frases": [
     {
      "nl": "Brood: 1,20 euro.",
      "es": "Pan: 1,20 euros.",
+     "en": "Bread: 1.20 euros.",
      "analisis": [
       [
        "Brood",
-       "pan"
+       "bread"
       ],
       [
        "1,20 euro",
-       "1,20 euros"
+       "€1.20"
       ]
      ]
     },
     {
      "nl": "Melk: 1,45 euro.",
      "es": "Leche: 1,45 euros.",
+     "en": "Milk: 1.45 euros.",
      "analisis": [
       [
        "Melk",
-       "leche"
+       "milk"
       ],
       [
        "1,45 euro",
-       "1,45 euros"
+       "€1.45"
       ]
      ]
     },
     {
      "nl": "Appels, 3 stuks: 2,50 euro.",
      "es": "Manzanas, 3 unidades: 2,50 euros.",
+     "en": "Apples, 3 units: 2.50 euros.",
      "analisis": [
       [
        "Appels",
-       "manzanas"
+       "apples"
       ],
       [
        "3 stuks",
-       "3 piezas; 3 unidades"
+       "3 pieces; 3 units"
       ],
       [
        "2,50 euro",
-       "2,50 euros"
+       "EUR 2.50"
       ]
      ]
     },
     {
      "nl": "Totaal: 5,15 euro.",
      "es": "Total: 5,15 euros.",
+     "en": "Total: €5.15.",
      "analisis": [
       [
        "Totaal",
-       "total"
+       "Total"
       ],
       [
        "5,15 euro",
-       "5,15 euros"
+       "EUR 5.15"
       ]
      ]
     },
     {
      "nl": "Betaald met kaart.",
      "es": "Pagado con tarjeta.",
+     "en": "Paid by card.",
      "analisis": [
       [
        "Betaald",
-       "pagado"
+       "paid"
       ],
       [
        "met kaart",
-       "con tarjeta"
+       "with a card"
       ]
      ]
     }
@@ -120,136 +130,136 @@
   },
   {
    "tipo": "test",
-   "pregunta": "En un recibo comercial, ¿qué indica la anotación «3 stuks»?",
+   "pregunta": "In a commercial receipt, what does the «3 stuks» notation indicate?",
    "id": "nl144-1",
    "opciones": [
     {
-     "texto": "Tres piezas o unidades del producto",
-     "explicacion": "«Stuks» es el plural de «stuk» y expresa unidades contables.",
+     "texto": "Three parts or units of the product",
+     "explicacion": "«Stuks» is the plural of «stuk» and expresses accounting units.",
      "correcta": true
     },
     {
-     "texto": "Un descuento especial del 3% en caja",
-     "explicacion": "No representa ningún porcentaje de descuento."
+     "texto": "A 3% special cash discount",
+     "explicacion": "It doesn't represent any discount percentage."
     },
     {
-     "texto": "El número de lote de expedición",
-     "explicacion": "Expresa la cantidad física adquirida."
+     "texto": "The consignment lot number",
+     "explicacion": "It expresses the physical amount acquired."
     }
    ]
   },
   {
    "tipo": "traduccion",
-   "pregunta": "¿De qué manera se ha abonado la compra?",
+   "pregunta": "How has the purchase been paid?",
    "frase": "Betaald met kaart.",
    "id": "nl144-2",
    "opciones": [
     {
-     "texto": "Se ha pagado con tarjeta bancaria.",
-     "explicacion": "«Betaald met kaart» indica pago con tarjeta (de débito o crédito).",
+     "texto": "It's been paid by bank card.",
+     "explicacion": "«Betaald met kaart» indicates payment by card (debit or credit).",
      "correcta": true
     },
     {
-     "texto": "Se ha pagado en efectivo con monedas exactas.",
-     "explicacion": "En efectivo sería «contant betaald»."
+     "texto": "It has been paid in cash with exact coins.",
+     "explicacion": "Cash would be «contant betaald»."
     },
     {
-     "texto": "El cliente tiene pendiente el pago para fin de mes.",
-     "explicacion": "La forma «betaald» certifica que la transacción ya se ha completado."
+     "texto": "The customer has the payment due by the end of the month.",
+     "explicacion": "The «betaald» form certifies that the transaction has already been completed."
     }
    ]
   },
   {
    "tipo": "huecos",
-   "pregunta": "Completa con la divisa en que se expresa el importe.",
+   "pregunta": "Complete with the currency in which the amount is expressed.",
    "frase": "Totaal: 5,15 ___.",
    "id": "nl144-3",
    "opciones": [
     {
      "texto": "euro",
-     "explicacion": "Los precios en los Países Bajos y Bélgica se expresan en «euro» (invariable tras cifra).",
+     "explicacion": "Prices in the Netherlands and Belgium are expressed in «euro» (invariable after figure).",
      "correcta": true
     },
     {
      "texto": "cent",
-     "explicacion": "5,15 representa euros y céntimos, la palabra principal de la unidad monetaria es euro."
+     "explicacion": "5.15 represents euros and cents, the main word of the monetary unit is euro."
     },
     {
      "texto": "stuks",
-     "explicacion": "«Stuks» cuantifica artículos, no moneda."
+     "explicacion": "«Stuks» quantifies items, not currency."
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "¿Cuál es el importe total del recibo según el desglose?",
+   "pregunta": "What is the total amount of the receipt according to the breakdown?",
    "id": "nl144-4",
    "opciones": [
     {
-     "texto": "5,15 euros",
-     "explicacion": "El campo «Totaal» marca exactamente 5,15 euros.",
+     "texto": "EUR 5.15",
+     "explicacion": "The «Totaal» field marks exactly 5.15 euros.",
      "correcta": true
     },
     {
-     "texto": "2,50 euros",
-     "explicacion": "2,50 euros corresponde solo a las tres manzanas."
+     "texto": "EUR 2.50",
+     "explicacion": "EUR 2.50 corresponds to only three blocks."
     },
     {
-     "texto": "1,20 euros",
-     "explicacion": "1,20 euros es el coste del pan."
+     "texto": "€1.20",
+     "explicacion": "1.20 euros is the cost of bread."
     }
    ]
   },
   {
    "tipo": "traduccion",
-   "pregunta": "¿Qué producto y coste refleja este apunte del recibo?",
+   "pregunta": "What product and cost does this receipt note reflect?",
    "frase": "Appels, 3 stuks: 2,50 euro.",
    "id": "nl144-5",
    "opciones": [
     {
-     "texto": "Tres manzanas por un importe conjunto de 2,50 euros.",
-     "explicacion": "Especifica 3 unidades de fruta con su precio total.",
+     "texto": "Three blocks for a joint amount of EUR 2.50.",
+     "explicacion": "Specifies 3 units of fruit with its total price.",
      "correcta": true
     },
     {
-     "texto": "Una manzana por 2,50 euros la unidad.",
-     "explicacion": "2,50 euros es el precio de las tres juntas."
+     "texto": "One apple for 2.50 euros a unit.",
+     "explicacion": "2.50 euros is the price of the three together."
     },
     {
-     "texto": "Tres bolsas de leche fresca por 2,50 euros.",
-     "explicacion": "El artículo detallado son manzanas («appels»), no leche."
+     "texto": "Three bags of fresh milk for 2.50 euros.",
+     "explicacion": "The detailed article is apples («appels»), not milk."
     }
    ]
   },
   {
    "tipo": "huecos",
-   "pregunta": "Completa la línea del recibo con la unidad monetaria.",
+   "pregunta": "Complete the receipt line with the monetary unit.",
    "frase": "Melk: 1,45 ___.",
    "id": "nl144-6",
    "opciones": [
     {
      "texto": "euro",
-     "explicacion": "La unidad monetaria tras la cifra decimal es «euro».",
+     "explicacion": "The monetary unit after the decimal place is «euro».",
      "correcta": true
     },
     {
      "texto": "stuks",
-     "explicacion": "La leche se mide en envases o litros, y el importe va en «euro»."
+     "explicacion": "The milk is measured in packings or litres, and the amount goes in «euro»."
     },
     {
      "texto": "totaal",
-     "explicacion": "«Totaal» es la línea sumatoria final del tíquet."
+     "explicacion": "«Totaal» is the final sumatoria line of the tiquet."
     }
    ]
   },
   {
    "tipo": "ordenar",
-   "pregunta": "Ordena las palabras.",
+   "pregunta": "Order the words.",
    "frase": "Betaald met kaart",
-   "traduccion": "Pagado con tarjeta.",
-   "explicacion": "Participio de pago seguido del medio con preposición instrumental «met».",
+   "traduccion": "Paid by card.",
+   "explicacion": "Payment item followed by the medium with instrumental preposition «met».",
    "id": "nl144-7"
   }
  ],
- "intro": "Interpreta un comprobante o recibo de compra con artículos, importes y forma de pago."
+ "intro": "It interprets a voucher or purchase receipt with items, amounts and form of payment."
 }

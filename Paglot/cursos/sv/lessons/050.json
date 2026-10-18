@@ -1,48 +1,59 @@
 {
  "capitulo": 17,
  "titulo_sv": "På stationen",
- "titulo_es": "En la estación",
+ "titulo_es": "At the station",
  "palabras": {
   "ett tåg": {
-   "es": "un tren"
+   "es": "un tren",
+   "en": "a train"
   },
   "en avgång": {
-   "es": "una salida"
+   "es": "una salida",
+   "en": "an output"
   },
   "ett spår": {
-   "es": "una vía, un andén"
+   "es": "una vía, un andén",
+   "en": "a way, a platform"
   },
   "går": {
-   "es": "sale, va"
+   "es": "sale, va",
+   "en": "Come on out."
   },
   "direkt": {
-   "es": "directo"
+   "es": "directo",
+   "en": "direct"
   },
   "en resa": {
-   "es": "un viaje"
+   "es": "un viaje",
+   "en": "a trip"
   },
   "en timme": {
-   "es": "una hora"
+   "es": "una hora",
+   "en": "an hour"
   },
   "tar": {
-   "es": "tarda, toma"
+   "es": "tarda, toma",
+   "en": "It takes, take."
   },
   "en försening": {
-   "es": "un retraso"
+   "es": "un retraso",
+   "en": "a delay"
   },
   "Resan": {
-   "es": "el viaje"
+   "es": "el viaje",
+   "en": "the trip"
   },
   "spår": {
-   "es": "andén, vía"
+   "es": "andén, vía",
+   "en": "anden, via"
   }
  },
  "bloques": [
   {
    "tipo": "explicacion",
-   "titulo": "Horarios",
+   "titulo": "Timetable",
    "texto": [
-    "**När går tåget?** pregunta a qué hora sale el tren. **Hur lång tid tar det?** pregunta cuánto tarda."
+    "**När går tåget?** asks what time the train leaves. **Hur lång tid tar det?** asks how long it takes."
    ]
   },
   {
@@ -69,123 +80,127 @@
     {
      "quien": "Resenär",
      "sv": "När går tåget till Malmö?",
-     "es": "¿A qué hora sale el tren a Malmö?"
+     "es": "¿A qué hora sale el tren a Malmö?",
+     "en": "What time does the train go to Malmö?"
     },
     {
      "quien": "Personal",
      "sv": "Det går klockan tio från spår tre.",
-     "es": "Sale a las diez del andén tres."
+     "es": "Sale a las diez del andén tres.",
+     "en": "He leaves at 10: 00 on platform three."
     },
     {
      "quien": "Resenär",
      "sv": "Går det direkt?",
-     "es": "¿Va directo?"
+     "es": "¿Va directo?",
+     "en": "Are you going straight?"
     },
     {
      "quien": "Personal",
      "sv": "Ja, resan tar en timme.",
-     "es": "Sí, el viaje dura una hora."
+     "es": "Sí, el viaje dura una hora.",
+     "en": "Yeah, the trip takes an hour."
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "¿A qué hora sale el tren?",
+   "pregunta": "What time does the train leave?",
    "id": "sv050-1",
    "opciones": [
     {
-     "texto": "A las diez.",
-     "explicacion": "El empleado dice «klockan tio».",
+     "texto": "Ten o'clock.",
+     "explicacion": "The employee says «klockan tio».",
      "correcta": true
     },
     {
-     "texto": "A las tres.",
-     "explicacion": "Tres es el andén."
+     "texto": "Three o'clock.",
+     "explicacion": "Three is the platform."
     },
     {
-     "texto": "A las once.",
-     "explicacion": "No se menciona las once."
+     "texto": "11: 00.",
+     "explicacion": "There's no mention of 11: 00."
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "¿Cuánto dura el viaje?",
+   "pregunta": "How long does the trip last?",
    "id": "sv050-2",
    "opciones": [
     {
-     "texto": "Una hora.",
-     "explicacion": "«En timme» significa una hora.",
+     "texto": "An hour.",
+     "explicacion": "«En timme» means an hour.",
      "correcta": true
     },
     {
-     "texto": "Tres horas.",
-     "explicacion": "No es la duración indicada."
+     "texto": "Three hours.",
+     "explicacion": "It's not the duration indicated."
     },
     {
-     "texto": "Diez minutos.",
-     "explicacion": "No es la duración indicada."
+     "texto": "Ten minutes.",
+     "explicacion": "It's not the duration indicated."
     }
    ]
   },
   {
    "tipo": "traduccion",
-   "pregunta": "¿Qué significa?",
+   "pregunta": "What does that mean?",
    "frase": "Det går från spår tre.",
    "id": "sv050-3",
    "opciones": [
     {
-     "texto": "Sale del andén tres.",
-     "explicacion": "«Spår» puede referirse al andén o la vía.",
+     "texto": "He's out of platform three.",
+     "explicacion": "«Spår» may refer to the platform or track.",
      "correcta": true
     },
     {
-     "texto": "El tren llega a las tres.",
-     "explicacion": "«Klockan tre» sería a las tres."
+     "texto": "The train's at 3: 00.",
+     "explicacion": "«Klockan tre» would be at three."
     },
     {
-     "texto": "El viaje dura tres horas.",
-     "explicacion": "No dice la duración."
+     "texto": "The trip takes three hours.",
+     "explicacion": "It doesn't say the duration."
     }
    ]
   },
   {
    "tipo": "huecos",
-   "pregunta": "Completa la frase.",
+   "pregunta": "Complete the sentence.",
    "frase": "Tåget går klockan ___ .",
    "id": "sv050-4",
    "opciones": [
     {
      "texto": "tio",
-     "explicacion": "«Tio» significa diez.",
+     "explicacion": "«Tio» means ten.",
      "correcta": true
     },
     {
      "texto": "tre",
-     "explicacion": "«Tre» significa tres."
+     "explicacion": "«Tre» means three."
     },
     {
      "texto": "ett",
-     "explicacion": "«Ett» significa uno."
+     "explicacion": "«Ett» means one."
     }
    ]
   },
   {
    "tipo": "ordenar",
-   "pregunta": "Ordena las palabras.",
+   "pregunta": "Order the words.",
    "frase": "Resan tar en timme",
-   "traduccion": "El viaje dura una hora",
-   "explicacion": "«Tar» expresa duración en esta pregunta.",
+   "traduccion": "The trip takes an hour",
+   "explicacion": "«Tar» expresses duration in this question.",
    "id": "sv050-5"
   },
   {
    "tipo": "escribir",
-   "pregunta": "Escribe en sueco: «¿Va directo?»",
+   "pregunta": "Write in Swedish: «Are you going straight?»",
    "respuestas": [
     "Går det direkt"
    ],
    "id": "sv050-6"
   }
  ],
- "intro": "Pregunta por una salida, un andén y la duración del viaje."
+ "intro": "Ask for an exit, a platform and the duration of the trip."
 }
