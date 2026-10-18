@@ -753,7 +753,7 @@ export function pintarPrecios(contenedor) {
     seccionPromesas.classList.add('pr-visto');
     removeEventListener('scroll', mirarPergamino);
     // se oye cómo se desenrolla, cómo cae cada sello (al ritmo del css) y la firma
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (!(matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('modo-calma'))) {
       sonar('papel');
       seccionPromesas.querySelectorAll('.pr-lacre').forEach((_, n) => despues(1200 + n * 450 + 260, () => sonar('sello')));
       despues(3600, () => sonar('tiza'));

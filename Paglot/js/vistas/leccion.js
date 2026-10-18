@@ -11,6 +11,7 @@ import { botonEscuchar, botonGuardar, analisisDesplegable, textoAnalisis, apunta
 import { sonar, pronunciarSeguido, callar, ayudaVoz, hayVoz } from '../sonidos.js';
 import { cargarJuego, pintarJuego } from '../juego/motor.js';
 import { hayJuego, pintarJuegoDeLeccion } from '../../juegos/motor.js';
+import { paginarEnMovil, esMovil } from '../paginas-movil.js';
 import { LANG } from '../curso.js';
 
 /** Género: «m» o «f» (también «m/f» para las palabras que admiten los dos). */
@@ -493,6 +494,8 @@ export function pintarLeccion(contenedor, resultado, siguiente) {
     } else {
       const conJuego = guion || hayJuego(resultado.leccion);
       pintarLibro(contenedor, resultado, siguiente, conJuego ? () => { preferir('juego'); mostrar(guion); window.scrollTo(0, 0); } : null);
+      // en el móvil el libro no se desplaza: va por páginas, como el modo juego va por pasos
+      if (esMovil()) limpiar = paginarEnMovil(contenedor);
     }
   };
   cargarJuego(resultado.leccion.id).then(guion => { if (abierta) mostrar(guion); });

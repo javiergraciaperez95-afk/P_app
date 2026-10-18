@@ -12,13 +12,13 @@
 // Atajos: 1–4 para elegir, Enter para comprobar o seguir.
 
 import { el, poner, barajar, alAzar } from '../dom.js';
-import { t, tr } from '../i18n.js';
+import { t, tr, idioma } from '../i18n.js';
 import { tarjetas, actualizarTarjeta, actividadDeHoy } from '../progress.js';
 import { programar, esNueva, tocaRepasar } from '../srs.js';
 import { botonEscuchar } from '../comunes.js';
 import { sonar, sonarAcierto, pronunciar, hayVoz } from '../sonidos.js';
 import { decir } from '../tutor.js';
-import { LANG, curso } from '../curso.js';
+import { LANG, curso, nombreDelCurso } from '../curso.js';
 import { diccionarioCompleto } from './leccion.js';
 import { confeti } from '../fiesta.js';
 import { enlaceReto } from './reto.js';
@@ -293,7 +293,7 @@ export function pintarRepaso(app) {
       zona.append(hueco, el('div', { class: `rp-fichas ${modo}` }, fichas));
       alTeclear = null;
     } else if (modo === 'escribe') {
-      carta.append(el('p', { class: 'carta-trad' }, trad), el('p', { class: 'aprox' }, t('repaso.escribeEs')));
+      carta.append(el('p', { class: 'carta-trad' }, trad), el('p', { class: 'aprox' }, t('repaso.escribeEs', { curso: nombreDelCurso(idioma()) })));
       const campo = el('input', { type: 'text', class: 'rp-escribe', lang: LANG, autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', 'aria-label': t('repaso.escribeEs') });
       const comprobar = el('button', { type: 'button', class: 'es-boton', 'data-sonido': 'nada' }, t('repaso.comprobar'));
       const pista = el('button', { type: 'button', class: 'boton boton-mini', 'data-sonido': 'duda' }, t('repaso.pista'));

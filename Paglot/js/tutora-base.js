@@ -551,7 +551,8 @@ export function fabricar(disenar) {
     /** Si está en mitad de una animación. */
     sprite.ocupada = () => Boolean(actual || cola.length);
 
-    const sinMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // con «reducir movimiento» o el modo calma (se mira en cada latido: se puede cambiar en el perfil)
+    const sinMovimiento = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('modo-calma');
     // En el móvil el cuerpo entero (saltos, temblores, la vueltecita y la respiración) no se pinta a píxeles enteros:
     // se mueve el lienzo con translate y scale, que el navegador interpola (ver .movil-suave .tutora-lienzo). Así es
     // continuo y además se repinta menos, solo cuando cambia la postura.
@@ -641,7 +642,7 @@ export function fabricar(disenar) {
 
       const rebote = actual ? null : REBOTES[expresion];
       const progreso = rebote ? (ahora - inicioRebote) / rebote.duracion : 1;
-      const mover = !sinMovimiento;
+      const mover = !sinMovimiento();
       const fx = cuerpo.fx ?? cara.fx;
 
       const estado = {

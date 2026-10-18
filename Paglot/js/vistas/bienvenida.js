@@ -233,7 +233,7 @@ export function efectos(lienzoFx, quieto) {
  * contenido.resultados: las lecciones cargadas del curso.
  */
 export function pintarBienvenida(contenedor, { resultados }) {
-  const quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const quieto = (window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('modo-calma'));
   const apagar = [];
   const relojes = new Set();
   let encendida = true;

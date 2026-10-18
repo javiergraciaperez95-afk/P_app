@@ -7,7 +7,7 @@ import {
   copiaCompleta, importarCopia,
 } from '../progress.js';
 import { etapa } from '../srs.js';
-import { ajuste, cambiarAjuste } from '../ajustes.js';
+import { ajuste, cambiarAjuste, modoCalma } from '../ajustes.js';
 import { prepararVoces, nombreVoz, pronunciar, sonar, ayudaVoz, abrirInstalacionDeVoces } from '../sonidos.js';
 import { decir } from '../tutor.js';
 import { curso } from '../curso.js';
@@ -349,6 +349,20 @@ function seccionAjustes() {
       return b;
     }));
 
+  // comodidad: el modo calma (de serie sigue a «reducir movimiento») y el tamaño del texto
+  const calma = interruptor('ajuste-calma', t('ajustes.calma'), 'calma');
+  calma.querySelector('input').checked = modoCalma();
+  const texto = el('div', { class: 'filtros', role: 'group', 'aria-labelledby': 'titulo-texto' },
+    [['normal', t('ajustes.textoNormal')], ['grande', t('ajustes.textoGrande')]].map(([valor, nombre]) => {
+      const b = el('button', { type: 'button', class: 'boton boton-mini', 'aria-pressed': String(ajuste('texto') === valor) }, nombre);
+      b.addEventListener('click', () => {
+        cambiarAjuste('texto', valor);
+        sonar('interruptor');
+        texto.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+      });
+      return b;
+    }));
+
   const velocidad = el('input', { id: 'velocidad-voz', type: 'range', min: '0.5', max: '1.2', step: '0.1', value: String(ajuste('velocidadVoz')) });
   velocidad.addEventListener('change', () => cambiarAjuste('velocidadVoz', Number(velocidad.value)));
 
@@ -376,6 +390,10 @@ function seccionAjustes() {
     el('h3', {}, t('ajustes.sonido')),
     interruptor('ajuste-efectos', t('ajustes.efectos'), 'efectos', activo => activo && sonar('bien')),
     interruptor('ajuste-voz-tutora', t('ajustes.pitidos'), 'vozTutora'),
+    el('h3', {}, t('ajustes.comodidad')),
+    calma,
+    el('h3', { id: 'titulo-texto' }, t('ajustes.texto')),
+    texto,
     el('h3', {}, t('ajustes.voz')),
     estadoVoz,
     // En un ordenador con otro navegador, Edge es la forma más fácil de tener voz en todos los idiomas.

@@ -33,7 +33,7 @@ import './lista.js';
 const EJERCICIOS = ['test', 'huecos', 'ordenar', 'escribir'];
 const CLAVE_AVANCE = clave('juego2');
 const CLAVE_ESTRELLAS = clave('estrellas');
-const quieto = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const quieto = () => (window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('modo-calma'));
 // La app guarda la lectura como un diálogo con «esTexto»: aquí se le devuelve su nombre.
 const tipoDe = b => (b.esTexto ? 'texto' : b.tipo);
 
@@ -169,6 +169,25 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
   const escenario = el('div', { class: 'jg-escenario' });
   const atras = el('button', { type: 'button', class: 'es-boton es-boton-papel' }, t('juego.atras'));
   const adelante = el('button', { type: 'button', class: 'es-boton' }, t('juego.siguiente'));
+  // «Paso X de Y» (en el móvil, «X/Y») y la pausa, en la misma fila que los pasos
+  const cuentaLarga = el('span', { class: 'jg-cuenta-larga' });
+  const cuentaCorta = el('span', { class: 'jg-cuenta-corta', 'aria-hidden': 'true' });
+  const cuenta = el('span', { class: 'jg-cuenta' }, cuentaLarga, cuentaCorta);
+  const seguir = el('button', { type: 'button', class: 'es-boton es-boton-grande' }, t('jg.pausa.seguir'));
+  const pausa = el('dialog', { class: 'jg-pausa', 'aria-labelledby': 'jg-pausa-titulo' },
+    el('h2', { id: 'jg-pausa-titulo' }, t('jg.pausa.titulo')),
+    el('p', {}, t('jg.pausa.texto')),
+    el('div', { class: 'jg-pausa-botones' }, seguir,
+      el('a', { class: 'es-boton es-boton-papel', href: '#/lecciones', onclick: () => pausa.close() }, t('jg.pausa.salir'))));
+  const pausar = el('button', {
+    type: 'button', class: 'es-boton es-boton-papel jg-pausar', title: t('jg.pausa.boton'), 'aria-label': t('jg.pausa.boton'),
+    onclick: () => {
+      if (!raiz.isConnected) return;
+      if (!pausa.isConnected) raiz.append(pausa);
+      callar(); sonar('cerrar'); pausa.showModal?.(); seguir.focus();
+    },
+  }, '⏸');
+  seguir.addEventListener('click', () => { sonar('abrir'); pausa.close(); requestAnimationFrame(ajustar); });
   const raiz = el('article', { class: 'jg escena-web' },
     el('header', { class: 'jg-cabecera' },
       el('a', { class: 'es-boton es-boton-papel jg-volver', href: '#/lecciones' }, `◀ ${t('menu.lecciones')}`),
@@ -177,8 +196,9 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
         el('h1', { lang: LANG }, leccion.titulo_es),
         leccion.titulo && el('p', { class: 'jg-titulo-trad' }, tr(leccion.titulo))),
       el('button', { type: 'button', class: 'es-boton es-boton-papel jg-libro', onclick: alLibro }, t('juego.verLibro'))),
-    camino,
+    el('div', { class: 'jg-ruta' }, camino, el('div', { class: 'jg-ruta-lado' }, cuenta, pausar)),
     escenario,
+    pausa,
     el('nav', { class: 'jg-pie' }, atras, adelante));
 
   function pintarCamino() {
@@ -188,6 +208,10 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
       onclick: dev ? () => { sonar('paso'); ir(i); } : null,
       style: dev ? 'cursor:pointer' : null,
     }, el('span', { 'aria-hidden': 'true' }, p.icono), el('span', { class: 'solo-lector' }, t('juego.paso', { n: i + 1, total: pasos.length + 1 })))));
+    const enFinal = actual >= pasos.length;
+    cuenta.hidden = enFinal;
+    cuentaLarga.textContent = t('juego.paso', { n: actual + 1, total: pasos.length });
+    cuentaCorta.textContent = `${actual + 1}/${pasos.length}`;
     // en el móvil los pasos van en una fila que se desliza: el actual se pone en el centro (sin mover la página)
     const hito = camino.querySelector('.jg-hito.actual');
     if (hito && camino.scrollWidth > camino.clientWidth) camino.scrollLeft = hito.offsetLeft - camino.clientWidth / 2 + hito.offsetWidth / 2;
@@ -272,12 +296,32 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
     poner(escenario, el('section', { class: `jg-paso jg-paso-${tipoDe(paso.bloque)} jg-juego-${paso.nombre}` }, nodo));
     if (!ctx.quieto) escenario.firstChild.classList.add('entra');
     raiz.scrollIntoView?.({ block: 'start', behavior: 'auto' });
+    requestAnimationFrame(ajustar);
   }
+
+  // En el móvil el paso tiene que caber entre la fila de pasos y el pie: si es más alto, se encoge lo justo
+  // (hasta el 78 %, para que todo siga siendo fácil de tocar). Se vuelve a medir al tocar algo y al girar el móvil.
+  const enMovil = window.matchMedia('(max-width: 700px)');
+  function ajustar() {
+    const seccion = escenario.firstElementChild;
+    if (!seccion) return;
+    seccion.style.zoom = '';
+    if (!enMovil.matches) return;
+    const tutora = document.getElementById('tutora');
+    const abajo = adelante.offsetHeight + 28 + (tutora && !document.body.classList.contains('tutora-oculta') ? tutora.offsetHeight + 14 : 62);
+    const sitio = window.innerHeight - (escenario.getBoundingClientRect().top + window.scrollY) - abajo;
+    const alto = seccion.getBoundingClientRect().height;
+    if (alto > sitio && sitio > 120) seccion.style.zoom = String(Math.max(0.78, sitio / alto).toFixed(3));
+  }
+  let medida = 0;
+  const reajustar = () => { clearTimeout(medida); medida = setTimeout(() => requestAnimationFrame(ajustar), 140); };
+  escenario.addEventListener('click', reajustar);
+  window.addEventListener('resize', reajustar);
 
   atras.addEventListener('click', () => { sonar('pagina'); ir(actual - 1); });
   // con teclado, Intro (fuera de los campos y botones) pasa al siguiente paso cuando ya está hecho
   const alTeclear = e => {
-    if (e.key !== 'Enter' || e.repeat || adelante.disabled || adelante.hidden || !raiz.isConnected) return;
+    if (e.key !== 'Enter' || e.repeat || pausa.open || adelante.disabled || adelante.hidden || !raiz.isConnected) return;
     if (e.target.closest?.('input, textarea, select, button, a, [contenteditable]')) return;
     e.preventDefault();
     adelante.click();
@@ -299,5 +343,5 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
   medir();
   ir(actual);
   if (actual === 0) decir(leccion.intro ? tr(leccion.intro) : t('leccion.introTutora', { titulo: leccion.titulo_es }));
-  return () => { callar(); apagarPaso?.(); elenco.apagar(); window.removeEventListener('paglot-suceso', alSuceso); document.removeEventListener('keydown', alTeclear); vigiaTutora?.disconnect(); };
+  return () => { clearTimeout(medida); window.removeEventListener('resize', reajustar); callar(); apagarPaso?.(); elenco.apagar(); window.removeEventListener('paglot-suceso', alSuceso); document.removeEventListener('keydown', alTeclear); vigiaTutora?.disconnect(); };
 }

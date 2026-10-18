@@ -279,7 +279,7 @@ export function pintarInicio(contenedor) {
   // 2. Así se aprende: el pasillo de la universidad. Cada cosa va en un tablón de corcho y, debajo,
   //    una tutora pasea de un lado a otro; cuando llega a su sitio se para y hace lo que cuenta su tablón.
   // =====================================================================
-  const quieta = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const quieta = (window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('modo-calma'));
   const PASO = 3;        // píxeles por paso
   const CADA_PASO = 90;  // milisegundos entre paso y paso
   const tramos = CARACTERISTICAS.map((f, i) => {

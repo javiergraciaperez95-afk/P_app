@@ -4,7 +4,7 @@
 import { LANG } from '../curso.js';
 import { suavizar } from '../suave.js';
 
-const quieto = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const quieto = () => (window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('modo-calma'));
 const COLORES = ['#ffd23f', '#ff5d73', '#6ad7ff', '#8be28b', '#ffffff', '#c48bff'];
 const azar = (min, max) => min + Math.random() * (max - min);
 

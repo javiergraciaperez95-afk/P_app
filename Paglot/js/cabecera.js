@@ -75,7 +75,10 @@ export function pintarCabecera() {
 // Dos umbrales separados: al encogerse, la página se acorta y el desplazamiento cambia; con uno solo,
 // ese cambio la hacía dudar entre encogerse y crecer. Ahora se encoge pasados 120 px y solo crece arriba del todo.
 let encogida = false;
+// (en el móvil no: cambiar su alto mientras el dedo arrastra recoloca toda la página y se nota a tirones)
+const enMovil = window.matchMedia('(max-width: 700px)');
 addEventListener('scroll', () => {
+  if (enMovil.matches) return;
   const ahora = encogida ? scrollY > 8 : scrollY > 120;
   if (ahora !== encogida) { encogida = ahora; cabecera.classList.toggle('encogida', ahora); }
 }, { passive: true });

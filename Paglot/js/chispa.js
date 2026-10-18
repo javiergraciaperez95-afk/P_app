@@ -11,7 +11,10 @@ import { sonar, sonoHace, haySonido } from './sonidos.js';
 
 // Lo que se considera «pulsable».
 const PULSABLE = 'a[href], button, select, summary, label.campo-casilla, .boton, .btn, .inicio-figura, .sobre-actriz, .es-tutora, [role="button"]';
-const quieto = window.matchMedia('(prefers-reduced-motion: reduce)');
+const reducir = window.matchMedia('(prefers-reduced-motion: reduce)');
+// el modo calma (html.modo-calma, js/ajustes.js) apaga todo esto: animaciones, chispas y sonidos de adorno
+const calma = () => document.documentElement.classList.contains('modo-calma');
+const quieto = () => reducir.matches || calma();
 
 function pulsableDe(nodo) {
   const pieza = nodo instanceof Element ? nodo.closest(PULSABLE) : null;
@@ -22,7 +25,7 @@ function pulsableDe(nodo) {
 
 /** Lanza una animación corta poniendo una clase y quitándola al terminar. */
 function animar(pieza, clase) {
-  if (quieto.matches) return;
+  if (quieto()) return;
   pieza.classList.remove(clase);
   void pieza.offsetWidth; // para que vuelva a empezar si ya la tenía
   pieza.classList.add(clase);
@@ -34,7 +37,7 @@ function animar(pieza, clase) {
 // ----- Pasar por encima (solo con ratón) -----
 let rozada = null;
 document.addEventListener('pointerover', e => {
-  if (e.pointerType !== 'mouse') return;
+  if (e.pointerType !== 'mouse' || calma()) return;
   const pieza = pulsableDe(e.target);
   if (pieza === rozada) return; // moverse por dentro de la misma pieza no cuenta
   rozada = pieza;
@@ -48,7 +51,7 @@ document.addEventListener('pointerover', e => {
 const COLORES = ['#f4c84a', '#fff4dc', '#ff9aa8', '#8fd8ff'];
 
 function chispas(x, y) {
-  if (quieto.matches) return;
+  if (quieto()) return;
   for (let i = 0; i < 6; i++) {
     const angulo = (Math.PI * 2 * i) / 6 + Math.random() * 0.6;
     const lejos = 18 + Math.random() * 16;
@@ -66,7 +69,7 @@ function chispas(x, y) {
 
 document.addEventListener('click', e => {
   const pieza = pulsableDe(e.target);
-  if (!pieza) return;
+  if (!pieza || calma()) return;
   animar(pieza, 'pulsado');
   // Con el teclado no hay punto de toque: las chispas salen del centro de la pieza.
   const caja = pieza.getBoundingClientRect();
@@ -101,7 +104,7 @@ let ultimaTecla = 0;
 let ultimaBarra = 0;
 document.addEventListener('input', e => {
   const campo = e.target;
-  if (!(campo instanceof Element) || campo.closest('[data-sin-efectos]')) return;
+  if (!(campo instanceof Element) || campo.closest('[data-sin-efectos]') || calma()) return;
   const ahora = performance.now();
   if (campo.matches('input[type="range"]')) {
     if (ahora - ultimaBarra < 45) return;
@@ -121,5 +124,5 @@ document.addEventListener('input', e => {
 
 // Los desplegables nativos: al cambiar de opción suena como una opción elegida.
 document.addEventListener('change', e => {
-  if (e.target instanceof HTMLSelectElement && !e.target.closest('[data-sin-efectos]') && sonoHace() > 80) sonar('elegir');
+  if (e.target instanceof HTMLSelectElement && !e.target.closest('[data-sin-efectos]') && !calma() && sonoHace() > 80) sonar('elegir');
 });

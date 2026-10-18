@@ -65,8 +65,10 @@ export const nombreDelCurso = idioma => nombreCurso(curso, idioma);
 export const saludo = curso.hola.replace(/^[¡¿\s]+|[!！.。\s]+$/gu, '');
 
 /** Los cursos que están revisados a fondo; los demás llevan el aviso de «beta» (ver vistas/lecciones.js). */
-export const CURSOS_REVISADOS = ['es', 'vi'];
+export const CURSOS_REVISADOS = ['es'];
 export const esBeta = c => !CURSOS_REVISADOS.includes(c.id);
+/** Cursos beta que siguen explicados en español (no se tradujeron al inglés: el de inglés y el de vietnamita). */
+export const explicadoEnEspanol = c => ['en', 'vi'].includes(c.id);
 
 export function elegirCurso(id) {
   try { localStorage.setItem(CLAVE_CURSO, id); } catch { /* sin almacenamiento */ }

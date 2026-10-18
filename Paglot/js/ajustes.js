@@ -23,6 +23,8 @@ const PREDETERMINADOS = {
   efectos: true,      // sonidos 8-bit de la interfaz
   vozTutora: true,    // pitidos mientras habla la tutora
   velocidadVoz: 0.9,  // velocidad de la voz española
+  // calma: sin valor sigue a «reducir movimiento» del sistema; true/false si la persona lo elige
+  texto: 'normal',    // normal · grande
 };
 
 let ajustes = cargar();
@@ -44,7 +46,26 @@ export function cambiarAjuste(nombre, valor) {
   try { localStorage.setItem(CLAVE_AJUSTES, JSON.stringify(ajustes)); } catch { /* sin almacenamiento */ }
   if (nombre === 'tema') aplicarTema();
   if (nombre === 'efectos') window.dispatchEvent(new Event('efectos-cambiado'));
+  if (nombre === 'calma' || nombre === 'texto') aplicarComodidad();
 }
+
+const pideQuietud = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+/** Modo calma: sin animaciones ni sonidos de adorno. Si no se ha elegido, sigue a «reducir movimiento». */
+export function modoCalma() {
+  return ajustes.calma ?? pideQuietud.matches;
+}
+
+/** Pone html.modo-calma y html.texto-grande (index.html ya lo hace antes de pintar; esto es para los cambios). */
+export function aplicarComodidad() {
+  const raiz = document.documentElement;
+  raiz.classList.toggle('modo-calma', modoCalma());
+  raiz.classList.toggle('texto-grande', ajustes.texto === 'grande');
+}
+
+pideQuietud.addEventListener?.('change', () => {
+  if (ajustes.calma == null) aplicarComodidad();
+});
 
 const sistemaOscuro = window.matchMedia('(prefers-color-scheme: dark)');
 

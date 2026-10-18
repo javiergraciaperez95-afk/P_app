@@ -88,7 +88,7 @@ export function pintarJuego(contenedor, resultado, guion, { siguiente, alLibro, 
   avance.hechos = avance.hechos.filter(i => i < pasos.length);
   let actual = Math.min(avance.paso, pasos.length - 1);
   let limpiarEscena = null;
-  const sinAnimaciones = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const sinAnimaciones = (window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('modo-calma'));
 
   marcarAbierta(leccion.id);
   document.body.classList.add('modo-juego');

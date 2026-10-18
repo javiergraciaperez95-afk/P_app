@@ -3,7 +3,7 @@
 import { el, poner } from '../dom.js';
 import { t, tr, idioma, locale } from '../i18n.js';
 import { CURSOS } from '../cursos.js';
-import { curso, hayCurso, elegirCurso, nombreCurso, NOMBRES_TUTORAS } from '../curso.js';
+import { curso, hayCurso, elegirCurso, nombreCurso, NOMBRES_TUTORAS, esBeta, explicadoEnEspanol } from '../curso.js';
 import { dibujoDe } from '../tutor-sprite.js';
 import { sonar } from '../sonidos.js';
 import { VOCES, OTROS } from '../creditos.js';
@@ -114,7 +114,9 @@ export function pintarElegirCurso(contenedor) {
         el('span', { class: 'ti-cartel-numero' }, t('idi.numero', { n: String(n + 1).padStart(2, '0') })),
         banderaSola(c, 'ti-cartel-bandera')),
       el('h2', { class: 'ti-cartel-nombre', lang: c.lang }, c.nativo),
-      el('p', { class: 'ti-cartel-traducido' }, nombreEn(c, i18n), estudiando ? el('span', { class: 'ti-aqui' }, t('cursos.estudiando')) : null),
+      el('p', { class: 'ti-cartel-traducido' }, nombreEn(c, i18n), estudiando ? el('span', { class: 'ti-aqui' }, t('cursos.estudiando')) : null,
+        esBeta(c) ? el('span', { class: 'etiqueta-beta', title: t(explicadoEnEspanol(c) ? 'beta.cortoEs' : 'beta.corto') }, t('beta.etiqueta')) : null),
+      esBeta(c) ? el('p', { class: 'ti-beta-nota' }, t(explicadoEnEspanol(c) ? 'beta.cortoEs' : 'beta.corto')) : null,
       el('ul', { class: 'ti-datos' },
         hablantes ? el('li', { class: 'ti-dato-gente', style: '--n:0' }, t('idi.hablantes', { n: numero(hablantes), w: numero(hablantes * 100) })) : null,
         paises ? el('li', { class: 'ti-dato-mundo', style: '--n:1' }, paises) : null,
@@ -212,7 +214,8 @@ export function pintarElegirCurso(contenedor) {
     const b = el('button', { type: 'button', class: 'ti-camafeo', 'aria-label': `${c.nativo} · ${nombreEn(c, i18n)}`, title: nombreEn(c, i18n) },
       el('span', { class: 'ti-camafeo-marco' }, camafeo(c, n)),
       banderaSola(c, 'ti-camafeo-bandera'),
-      el('span', { class: 'ti-camafeo-nombre', lang: c.lang }, c.nativo));
+      el('span', { class: 'ti-camafeo-nombre', lang: c.lang }, c.nativo),
+      esBeta(c) ? el('span', { class: 'etiqueta-beta ti-camafeo-beta', 'aria-hidden': 'true' }, 'β') : null);
     b.addEventListener('click', () => {
       if (n === actual) return;
       sonar('voltear');

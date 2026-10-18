@@ -23,6 +23,10 @@
       const t = a.tema || 'auto';
       const oscuro = t === 'oscuro' || (t === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
       document.documentElement.dataset.tema = oscuro ? 'oscuro' : 'claro';
+      // modo calma (sin valor elegido, sigue a «reducir movimiento») y tamaño del texto (js/ajustes.js)
+      const calma = typeof a.calma === 'boolean' ? a.calma : matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.documentElement.classList.toggle('modo-calma', calma);
+      document.documentElement.classList.toggle('texto-grande', a.texto === 'grande');
       const compatibles = new Set(['en', 'vi']);
       const detectar = () => [...(navigator.languages ?? []), navigator.language ?? '']
         .map(x => x.toLowerCase().replaceAll('_', '-').split('-')[0]).find(x => compatibles.has(x)) ?? 'en';
@@ -94,6 +98,7 @@
   <link rel="stylesheet" href="css/laboratorio.css?v=__VERSION__">
   <link rel="stylesheet" href="css/faq.css?v=__VERSION__">
   <link rel="stylesheet" href="css/tienda.css?v=__VERSION__">
+  <link rel="stylesheet" href="css/movil.css?v=__VERSION__">
   <!-- Al publicar, __VERSION__ se cambia por el código de la versión (ver .github/workflows/static.yml),
        así el navegador descarga siempre los archivos nuevos en lugar de usar los antiguos guardados. -->
   <script type="importmap">

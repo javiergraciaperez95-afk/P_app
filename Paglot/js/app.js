@@ -9,7 +9,7 @@ import { el, poner } from './dom.js';
 import { activarDesarrollador } from './desarrollador.js';
 import { icono } from './iconos.js';
 import { descubrirLecciones, cargarIndice, cargarDiccionario, cargarLeccion, cargarCapitulos, cargarFrases } from './lessons.js';
-import { ajuste, aplicarTema, temaActual, cambiarAjuste } from './ajustes.js';
+import { ajuste, aplicarTema, temaActual, cambiarAjuste, aplicarComodidad } from './ajustes.js';
 import { t, tr, aplicarIdioma, IDIOMAS, IDIOMAS_VISIBLES, idioma, cambiarIdioma } from './i18n.js';
 import { sonar, prepararVoces } from './sonidos.js';
 import { alCambiar, hayProgreso } from './progress.js';
@@ -39,7 +39,7 @@ import { pintarBienvenida, bienvenidaVista } from './vistas/bienvenida.js';
 import { pintarPerdida } from './vistas/perdida.js';
 import { iniciarLogros, comprobarLogros } from './logros.js';
 import { iniciarNube } from './nube.js';
-import { curso, hayCurso, nombreDelCurso, esBeta } from './curso.js';
+import { curso, hayCurso, nombreDelCurso, esBeta, explicadoEnEspanol } from './curso.js';
 import './movil.js';
 import './chispa.js';
 
@@ -109,7 +109,25 @@ const GENERALES = {
 const PORTADAS = Object.keys(GENERALES).filter(ruta => !GENERALES[ruta].sinPortada);
 const esGeneral = ruta => Object.hasOwn(GENERALES, ruta);
 // En el móvil estas páginas no se desplazan: van por páginas del alto de la pantalla (js/paginas-movil.js).
-const PAGINADAS = new Set(['sobre', 'social', 'contacto', 'producto', 'escuelas', 'empresas', 'regala-max', 'tienda', 'guias', 'faq', 'laboratorio']);
+const PAGINADAS = new Set(['inicio', 'sobre', 'social', 'contacto', 'producto', 'escuelas', 'empresas', 'regala-max', 'tienda', 'guias', 'faq',
+  'laboratorio', 'legal', 'creditos', 'idiomas']);
+// Las del curso que también van por páginas en el móvil (la lección en modo libro lo hace en vistas/leccion.js).
+const PAGINADAS_CURSO = new Set(['perfil', 'cuaderno', 'frases']);
+
+/** En el móvil, la pantalla del curso ya pintada se reparte en páginas (si le toca); se apaga con la vista. */
+function paginarCursoEnMovil(seccion) {
+  if (!esMovil()) return;
+  if (!PAGINADAS_CURSO.has(seccion)) return;
+  const deshacer = paginarEnMovil(app);
+  const antes = limpiarVista;
+  limpiarVista = () => { deshacer(); antes?.(); };
+}
+
+/** En el móvil no hay pie debajo de todo: sus enlaces van en la última página de la portada. */
+function enlacesDelPie() {
+  const grupos = document.querySelector('#pie-sitio .pie-grupos');
+  return grupos ? el('nav', { class: 'inicio-pie-movil', 'aria-label': 'Paglot' }, grupos.cloneNode(true)) : null;
+}
 
 /** Pinta una pantalla general y guarda la función que la apaga, si la tiene. */
 function pintarGeneral(ruta) {
@@ -117,6 +135,7 @@ function pintarGeneral(ruta) {
   if (pantalla.titulo) titulo(t(pantalla.titulo));
   else document.title = t('app.nombre');
   const apagar = pantalla.pintar(app);
+  if (ruta === 'inicio' && esMovil()) app.firstElementChild?.append(enlacesDelPie() ?? '');
   const deshacer = PAGINADAS.has(ruta) && esMovil() ? paginarEnMovil(app) : null;
   limpiarVista = deshacer || typeof apagar === 'function' ? () => { deshacer?.(); if (typeof apagar === 'function') apagar(); } : null;
 }
@@ -185,8 +204,8 @@ function pintarMarca() {
   // Dentro de un curso (lecciones, cuaderno, repaso…) y al elegir idioma no se pinta.
   const ruta = location.hash.startsWith('#/') ? location.hash.slice(2).split('/')[0] : '';
   const perdidaSinCurso = !hayCurso && ruta && !esGeneral(ruta);
-  const sinPieEnMovil = ((ruta === 'entrar' || ruta === 'precios' || PAGINADAS.has(ruta)) && esMovil());
-  document.body.classList.toggle('con-pie', (!dentro && !sinPieEnMovil) || ruta === 'creditos' || ruta === 'legal' || Boolean(perdidaSinCurso));
+  // en el móvil el pie no va debajo de nada (no se desplaza ninguna pantalla): sus enlaces están en la portada
+  document.body.classList.toggle('con-pie', !esMovil() && (!dentro || ruta === 'creditos' || ruta === 'legal' || Boolean(perdidaSinCurso)));
   ajustesCabecera.open = false;
   abrirAjustes.textContent = `⚙ ${t('ajustes.titulo')}`;
   if (dentro) {
@@ -207,7 +226,7 @@ function pintarMarca() {
   nombre.removeAttribute('lang');
   document.getElementById('marca-bandera').innerHTML = deCurso ? curso.bandera : ''; // SVG del catálogo local de cursos.
   const subtitulo = document.getElementById('marca-subtitulo');
-  subtitulo.textContent = deCurso ? nombreDelCurso(idioma()) : '';
+  subtitulo.textContent = deCurso ? nombreDelCurso(idioma()) + (esBeta(curso) ? ` · ${t('beta.etiqueta')}` : '') : '';
   subtitulo.parentElement.hidden = !deCurso;
   document.getElementById('marca').title = t('inicio.titulo');
   pintarNavegacion();
@@ -513,6 +532,8 @@ async function navegar({ cambioDeIdioma = false } = {}) {
     pintarNoEncontrada('');
   }
 
+  if (estePase === pase && !esGeneral(seccion)) paginarCursoEnMovil(seccion);
+
   // Al cambiar de idioma no se mueve la página ni el foco: solo cambian los textos.
   if (!cambioDeIdioma) {
     window.scrollTo(0, 0);
@@ -541,7 +562,7 @@ function avisoBeta() {
     el('div', { class: 'aviso-beta-caja es-papel' },
       el('span', { class: 'aviso-beta-etiqueta' }, t('beta.etiqueta')),
       el('h2', { id: 'aviso-beta-titulo' }, t('beta.titulo')),
-      el('p', {}, t('beta.texto', { curso: nombreDelCurso(idioma()) })),
+      el('p', {}, t(explicadoEnEspanol(curso) ? 'beta.textoEs' : 'beta.texto', { curso: nombreDelCurso(idioma()) })),
       vale));
   document.body.append(capa);
   vale.focus();
@@ -606,6 +627,7 @@ async function iniciar() {
   aplicarIdioma();
   iniciarPie();
   aplicarTema();
+  aplicarComodidad();
   pintarMarca();
   pintarBotonTema();
   pintarBotonSonido();

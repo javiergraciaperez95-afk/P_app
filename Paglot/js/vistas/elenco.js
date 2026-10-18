@@ -10,7 +10,7 @@ import { dibujoDe } from '../tutor-sprite.js';
 import { sonar } from '../sonidos.js';
 
 export function crearElenco() {
-  const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const quieto = (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('modo-calma'));
   const apagados = [];
   let encendido = true;
 

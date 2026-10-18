@@ -4,7 +4,7 @@ import { el } from './dom.js';
 
 /** Lanza confeti desde el centro de un elemento. */
 export function confeti(origen, cuantos = 26) {
-  if (!origen || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!origen || (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('modo-calma'))) return;
   const caja = origen.getBoundingClientRect();
   const capa = el('div', { class: 'fiesta-confeti', 'aria-hidden': 'true', style: `left:${caja.left + caja.width / 2}px;top:${caja.top + caja.height / 3}px` });
   const colores = ['#f4c84a', '#d2353d', '#6fd38c', '#8fd8ff', '#ff8ad8', '#fff'];

@@ -12,7 +12,8 @@ const ENCOGER_MIN = 0.5;
 
 /** Pagina el contenido de `app` (la vista ya pintada). Devuelve la función que lo deshace. */
 export function paginarEnMovil(app) {
-  const raiz = app.firstElementChild;
+  // la vista suele ser un solo bloque; si son varios (título + secciones, como el perfil), se reparte la vista entera
+  const raiz = app.childElementCount > 1 ? app : app.firstElementChild;
   if (!raiz) return () => {};
   document.documentElement.classList.add('pm-activo');
   let paginas = [];
@@ -28,8 +29,15 @@ export function paginarEnMovil(app) {
     const e = getComputedStyle(k);
     return e.display !== 'none' && e.position !== 'absolute' && e.position !== 'fixed' && k.offsetHeight > 0 && !k.matches('dialog, template, script, style');
   };
-  // el sitio que hay para una página: la pantalla menos la cabecera y la barra de abajo
-  const sitio = () => window.innerHeight - app.getBoundingClientRect().top - window.scrollY - nav.offsetHeight - 8;
+  // lo que la tutora flotante (con su bocadillo) asoma por encima de la barra de abajo: ese hueco no es de la página
+  const tutora = document.querySelector('.tutora');
+  const huecoTutora = () => {
+    if (!tutora || document.body.matches('.tutora-oculta, .sin-tutora') || !tutora.offsetHeight) return 0;
+    const borde = nav.hidden ? window.innerHeight : nav.getBoundingClientRect().top;
+    return Math.max(0, borde - tutora.getBoundingClientRect().top + 6);
+  };
+  // el sitio que hay para una página: la pantalla menos la cabecera, la barra de abajo y la tutora
+  const sitio = () => window.innerHeight - app.getBoundingClientRect().top - window.scrollY - nav.offsetHeight - 8 - huecoTutora();
 
   // lo decorativo (escondido a los lectores, o sin texto ni nada que pulsar) no es un bloque: se queda con su
   // contenedor y se estira con él (una escalera dibujada, un hueco, una tutora de adorno)
@@ -94,6 +102,7 @@ export function paginarEnMovil(app) {
   function ir(n, conSonido = true) {
     if (!vivo || n < 0 || n >= paginas.length) return;
     if (conSonido && n !== actual) sonar('pagina');
+    const sentido = n > actual ? 'der' : n < actual ? 'izq' : '';
     actual = n;
     const vivos = paginas[n].vivos;
     raiz.style.zoom = '';
@@ -101,6 +110,12 @@ export function paginarEnMovil(app) {
     for (const p of paginas) for (const k of p.vivos) k.classList.toggle('pm-oculto', !vivos.has(k));
     window.scrollTo(0, 0);
     encoger();
+    // la página nueva entra deslizándose desde el lado hacia el que se va (solo transform y opacity)
+    if (sentido) {
+      raiz.classList.remove('pm-entra-der', 'pm-entra-izq');
+      void raiz.offsetWidth;
+      raiz.classList.add(`pm-entra-${sentido}`);
+    }
     const puntos = nav.querySelector('.pm-puntos');
     if (puntos.firstChild?.tagName === 'B') puntos.firstChild.textContent = `${n + 1} / ${paginas.length}`;
     else [...puntos.children].forEach((d, i) => d.classList.toggle('pm-ya', i === n));
@@ -110,7 +125,7 @@ export function paginarEnMovil(app) {
 
   // lo que ocupa de verdad la página ya puesta; si se pasa, se encoge todo lo de la vista
   function encoger() {
-    const tope = window.innerHeight - nav.offsetHeight - 4;
+    const tope = window.innerHeight - nav.offsetHeight - 4 - huecoTutora();
     let zoom = 1;
     for (let vez = 0; vez < 4; vez++) {
       const abajo = Math.max(raiz.getBoundingClientRect().bottom, document.documentElement.scrollHeight - (nav.hidden ? 0 : nav.offsetHeight) - 4);
@@ -142,25 +157,39 @@ export function paginarEnMovil(app) {
     if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) ir(actual + (dx < 0 ? 1 : -1));
   };
   app.addEventListener('click', alPulsar);
+  // escribir en un buscador cambia lo que hay: se reparte cuando se deja de teclear
+  const alEscribir = () => luego(250);
+  app.addEventListener('input', alEscribir);
   app.addEventListener('pointerdown', alBajar);
   app.addEventListener('pointerup', alSubir);
   window.addEventListener('resize', alCambiar);
   window.addEventListener('keydown', alTeclado);
   document.fonts?.ready.then(() => luego(0));
+  // si la tutora crece (su texto), se esconde o vuelve, cambia el sitio que queda
+  let altoTutora = tutora?.offsetHeight ?? 0;
+  const vigiaTutora = tutora && typeof ResizeObserver !== 'undefined' ? new ResizeObserver(() => {
+    if (Math.abs(tutora.offsetHeight - altoTutora) < 4) return;
+    altoTutora = tutora.offsetHeight;
+    luego(120);
+  }) : null;
+  vigiaTutora?.observe(tutora);
   // lo que se pinta un poco después (tutoras, imágenes, textos que llegan) cambia las medidas
   const tardes = [setTimeout(() => luego(0), 400), setTimeout(() => luego(0), 1500)];
   repartir();
 
   return () => {
     vivo = false;
+    vigiaTutora?.disconnect();
     clearTimeout(pendiente);
     tardes.forEach(clearTimeout);
     app.removeEventListener('click', alPulsar);
+    app.removeEventListener('input', alEscribir);
     app.removeEventListener('pointerdown', alBajar);
     app.removeEventListener('pointerup', alSubir);
     window.removeEventListener('resize', alCambiar);
     window.removeEventListener('keydown', alTeclado);
     limpiar();
+    raiz.classList.remove('pm-entra-der', 'pm-entra-izq');
     nav.remove();
     document.documentElement.classList.remove('pm-activo');
   };

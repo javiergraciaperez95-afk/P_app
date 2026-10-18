@@ -20,6 +20,7 @@ import { origenTarjeta } from '../i18n.js';
 import { LOGROS, logrosGanados } from '../logros.js';
 import { tarjetas } from '../progress.js';
 import { enlaceReto } from './reto.js';
+import { esMovil } from '../paginas-movil.js';
 
 export function tarjetaError(error, archivo) {
   return el('section', { class: 'caja tarjeta-error', role: 'alert' },
@@ -161,6 +162,8 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
 
   // ----- Un tramo por capítulo -----
   let indiceGlobal = 0;
+  const movil = esMovil();
+  let irADiapo = () => {};
   const abiertosGuardados = leer(CLAVE_ABIERTOS, {});
   const cofres = new Set(leer(CLAVE_COFRES, []));
 
@@ -218,7 +221,8 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
       aplicar(abrir);
     });
     raiz.append(boton, lista);
-    aplicar(abierto);
+    raiz.dataset.cap = claveCap;
+    aplicar(movil || abierto);
     return raiz;
   }
 
@@ -310,6 +314,7 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
       el('span', { class: 'cm-extra-titulo' }, t('camino.cofrePendiente')),
       el('span', { class: 'cm-extra-texto' }, t('camino.cofrePendienteTexto', { n: pendiente.capitulo.numero })));
     aviso.addEventListener('click', () => {
+      irADiapo(claveCap);
       const lista = document.getElementById(`cm-cap-${claveCap}`);
       if (lista?.hidden) lista.previousElementSibling?.click();
       requestAnimationFrame(() => {
@@ -336,6 +341,7 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
   function irALeccion(id) {
     const r = validas.find(x => x.leccion.id === id);
     if (!r) return;
+    irADiapo(String(r.leccion.capitulo ?? 'sin'));
     const cap = document.getElementById(`cm-cap-${String(r.leccion.capitulo ?? 'sin')}`);
     if (cap?.hidden) cap.previousElementSibling?.click();
     requestAnimationFrame(() => {
@@ -397,6 +403,7 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
 
   function irALoQueToca(conFicha = false, suave = true) {
     if (!toca) return;
+    irADiapo(capituloToca);
     const cap = document.getElementById(`cm-cap-${capituloToca}`);
     if (cap?.hidden) cap.previousElementSibling?.click();
     const nodo = app.querySelector('.cm-nodo.toca');
@@ -425,6 +432,65 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
       ? el('div', { class: 'cm-mapa' }, grupos.map(tramo))
       : el('p', { class: 'caja' }, t('lecciones.ninguna')))),
     flotante);
+
+  // ----- En el móvil: un capítulo por pantalla (el panel es la primera), con ◀ ▶ y deslizando de lado -----
+  if (movil) {
+    const pantalla = app.querySelector('.cm-pantalla');
+    const diapos = [lado, ...app.querySelectorAll('.cm-tramo')];
+    let actual = 0;
+    pantalla.classList.add('cm-diapos');
+    document.documentElement.classList.add('pm-activo');
+    if (flotante) flotante.remove();
+    const titulo = el('b', { class: 'cm-diapo-num' });
+    const atras = el('button', { type: 'button', class: 'pm-atras', 'aria-label': '◀', onclick: () => mostrar(actual - 1) }, '◀');
+    const alante = el('button', { type: 'button', class: 'pm-alante', 'aria-label': '▶', onclick: () => mostrar(actual + 1) }, '▶');
+    const nav = el('nav', { class: 'pm-nav', 'aria-label': t('menu.lecciones') }, atras, el('span', { class: 'pm-puntos' }, titulo), alante);
+    document.body.append(nav);
+    const medir = () => {
+      pantalla.style.setProperty('--cm-alto',
+        `${Math.max(200, innerHeight - pantalla.getBoundingClientRect().top - window.scrollY - nav.offsetHeight - 10)}px`);
+      // la tutora flotante tapa el final de la lista: se deja ese hueco abajo, dentro de lo que se desliza
+      const tutora = document.querySelector('.tutora');
+      const tapa = tutora?.offsetHeight && !document.body.matches('.tutora-oculta, .sin-tutora')
+        ? Math.max(0, pantalla.getBoundingClientRect().bottom - tutora.getBoundingClientRect().top + 8) : 0;
+      pantalla.style.setProperty('--cm-hueco', `${Math.round(tapa)}px`);
+    };
+    function mostrar(n, sentido) {
+      n = Math.max(0, Math.min(diapos.length - 1, n));
+      const dir = sentido ?? (n >= actual ? 'der' : 'izq');
+      const cambia = n !== actual;
+      actual = n;
+      diapos.forEach((d, i) => d.classList.toggle('pm-oculto', i !== n));
+      const d = diapos[n];
+      if (cambia) { cerrarFicha(); d.classList.remove('pm-entra-der', 'pm-entra-izq'); void d.offsetWidth; d.classList.add(`pm-entra-${dir}`); sonar('pagina'); }
+      atras.disabled = n === 0;
+      alante.disabled = n === diapos.length - 1;
+      titulo.textContent = n === 0 ? '★' : `${n}/${diapos.length - 1}`;
+      medir();
+      const lista = d.querySelector('.cm-camino');
+      if (lista) requestAnimationFrame(() => dibujarSendero(lista));
+    }
+    irADiapo = clave => { const i = diapos.findIndex(d => d.dataset?.cap === clave); if (i >= 0 && i !== actual) mostrar(i); };
+    let x0 = null, y0 = 0;
+    const empieza = e => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; };
+    const acaba = e => {
+      if (x0 == null) return;
+      const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      x0 = null;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) mostrar(actual + (dx < 0 ? 1 : -1));
+    };
+    pantalla.addEventListener('touchstart', empieza, { passive: true });
+    pantalla.addEventListener('touchend', acaba, { passive: true });
+    addEventListener('resize', medir);
+    const inicial = diapos.findIndex(d => d.dataset?.cap === capituloToca);
+    actual = -1;
+    mostrar(inicial > 0 ? inicial : (diapos.length > 1 ? 1 : 0), 'der');
+    apagar.push(() => {
+      removeEventListener('resize', medir);
+      nav.remove();
+      document.documentElement.classList.remove('pm-activo');
+    });
+  }
 
   // el caminito de puntos se recoloca si cambia el ancho
   if ('ResizeObserver' in window) {
