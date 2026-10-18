@@ -187,7 +187,9 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
       const inicio = indicesDe.get(claveCap);
       lecciones.forEach((r, k) => {
         if (!r.leccion) { lista.append(el('li', { class: 'cm-parada-error' }, tarjetaError(r.error, r.archivo))); return; }
-        lista.append(parada(r.leccion, inicio + k));
+        const li = parada(r.leccion, inicio + k);
+        li.style.setProperty('--i', String(Math.min(k, 14)));
+        lista.append(li);
       });
       lista.append(cofre(claveCap, completo, hechas, buenas.length, inicio + lecciones.length, capitulo));
       dibujarSendero(lista);
@@ -298,13 +300,13 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
   // botón flotante: aparece cuando la lección que toca no está a la vista
   const flotante = toca ? el('button', { type: 'button', class: 'cm-flotante', hidden: true, 'data-sonido': 'flecha', onclick: () => irALoQueToca(true) }) : null;
 
-  function irALoQueToca(conFicha = false) {
+  function irALoQueToca(conFicha = false, suave = true) {
     if (!toca) return;
     const cap = document.getElementById(`cm-cap-${capituloToca}`);
     if (cap?.hidden) cap.previousElementSibling?.click();
     const nodo = app.querySelector('.cm-nodo.toca');
     if (!nodo) return;
-    nodo.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    nodo.scrollIntoView({ block: 'center', behavior: suave && !matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'auto' });
     nodo.classList.remove('llama'); void nodo.offsetWidth; nodo.classList.add('llama');
     if (conFicha) setTimeout(() => { if (!fichaAbierta) nodo.click(); }, 550);
   }
@@ -346,7 +348,7 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
   }
 
   // al llegar, el camino se abre por donde vas
-  if (toca && hayProgreso()) requestAnimationFrame(() => irALoQueToca(false));
+  if (toca && hayProgreso()) requestAnimationFrame(() => irALoQueToca(false, false));
 
   const quien = nombre() ? `, ${nombre()}` : '';
   decir(hayProgreso()

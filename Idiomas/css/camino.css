@@ -192,6 +192,15 @@
   50% { transform: scale(1.15); }
 }
 
+/* al abrir un capítulo, las paradas salen una detrás de otra */
+.cm-camino:not([hidden]) .cm-parada > .cm-nodo { animation: cm-aparece .35s steps(4) calc(var(--i, 0) * 45ms) both; }
+.cm-camino:not([hidden]) .cm-parada > .cm-etiqueta { animation: cm-aparece-texto .35s steps(4) calc(var(--i, 0) * 45ms + 80ms) both; }
+@keyframes cm-aparece { from { opacity: 0; transform: scale(.4); } }
+@keyframes cm-aparece-texto { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .cm-camino .cm-parada > .cm-nodo, .cm-camino .cm-parada > .cm-etiqueta { animation: none; }
+}
+
 /* las estrellas que se sacaron, debajo de la parada */
 .cm-estrellas {
   position: absolute;

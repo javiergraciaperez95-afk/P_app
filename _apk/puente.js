@@ -12,9 +12,31 @@
     if (notificaciones) {
       window.PaglotLocalNotifications = notificaciones;
 
-      // Bienvenida de primer inicio. La marca se guarda antes de solicitar
-      // permiso para no volver a interrumpir al usuario en aperturas posteriores.
-      const clavePrimerAviso = 'paglot_welcome_notification_v3';
+      // Los textos, en el idioma de la interfaz (inglés o vietnamita; el puente se carga antes que la app).
+      const vietnamita = (() => {
+        try {
+          const elegido = JSON.parse(localStorage.getItem('idiomas-ajustes') ?? '{}').idioma;
+          if (elegido === 'vi' || elegido === 'en') return elegido === 'vi';
+        } catch { /* sin ajustes */ }
+        return (navigator.language ?? '').toLowerCase().startsWith('vi');
+      })();
+      const TEXTOS = vietnamita
+        ? {
+          hola: '¡Hola! Chào mừng em đến với Paglot ✨',
+          holaCuerpo: 'Lucía đang chờ em. Hôm nay mình học bài tiếng Tây Ban Nha đầu tiên nhé!',
+          diario: '🔥 Giữ lửa nhé!',
+          diarioCuerpo: 'Một bài học hoặc vài thẻ ôn tập là đủ để giữ chuỗi ngày học của em.',
+        }
+        : {
+          hola: '¡Hola! Welcome to Paglot ✨',
+          holaCuerpo: 'Lucía is waiting for you. Take your first step in Spanish today!',
+          diario: '🔥 Keep the flame alive!',
+          diarioCuerpo: 'One lesson or a few review cards is enough to keep your streak going.',
+        };
+
+      // Bienvenida de primer inicio y recordatorio diario (a las 19:00). La marca se guarda antes de pedir
+      // permiso para no volver a interrumpir en aperturas posteriores.
+      const clavePrimerAviso = 'paglot_welcome_notification_v4';
       try {
         if (!localStorage.getItem(clavePrimerAviso)) {
           localStorage.setItem(clavePrimerAviso, 'attempted');
@@ -29,21 +51,25 @@
               await notificaciones.schedule({
                 notifications: [{
                   id: 730002,
-                  title: '¡Bienvenido a Paglot! ✨',
-                  body: 'Tu próxima aventura empieza aquí. Elige un idioma y da hoy tu primer paso.',
-                  largeBody: 'Tu próxima aventura empieza aquí. Elige un idioma, conoce a tu tutora pixelada y disfruta de tu primera lección. ¡Cada palabra nueva cuenta!',
+                  title: TEXTOS.hola,
+                  body: TEXTOS.holaCuerpo,
                   schedule: { at: new Date(Date.now() + 1000) },
                   isExactNotification: false,
+                }, {
+                  id: 730010,
+                  title: TEXTOS.diario,
+                  body: TEXTOS.diarioCuerpo,
+                  schedule: { on: { hour: 19, minute: 0 }, allowWhileIdle: true },
                 }],
               });
             } catch (error) {
               localStorage.removeItem(clavePrimerAviso);
-              console.warn('No se pudo mostrar la notificación de prueba.', error);
+              console.warn('No se pudieron programar las notificaciones.', error);
             }
           })();
         }
       } catch (error) {
-        console.warn('No se pudo guardar el estado de la notificación de prueba.', error);
+        console.warn('No se pudo guardar el estado de las notificaciones.', error);
       }
     }
   }
