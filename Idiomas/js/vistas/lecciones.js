@@ -14,6 +14,11 @@ import { LANG, clave, curso } from '../curso.js';
 import { dibujoDe } from '../tutor-sprite.js';
 import { avanceJuego, estrellasDe } from '../../juegos/motor.js';
 import { confeti } from '../fiesta.js';
+import { diccionarioCompleto } from './leccion.js';
+import { botonEscuchar, botonGuardar } from '../comunes.js';
+import { origenTarjeta } from '../i18n.js';
+import { LOGROS, logrosGanados } from '../logros.js';
+import { tarjetas } from '../progress.js';
 
 export function tarjetaError(error, archivo) {
   return el('section', { class: 'caja tarjeta-error', role: 'alert' },
@@ -207,7 +212,6 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
       guardados[claveCap] = abrir;
       escribir(CLAVE_ABIERTOS, guardados);
       aplicar(abrir);
-      if (abrir) lista.querySelector('.cm-parada')?.classList.add('saluda');
     });
     raiz.append(boton, lista);
     aplicar(abierto);
@@ -227,6 +231,7 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
       class: `cm-nodo es-${e.estado}${esToca ? ' toca' : ''}`,
       style: `--avance:${e.avance}`,
       'aria-expanded': 'false',
+      'data-id': leccion.id,
       'aria-label': `${t('leccion.numero', { id: leccion.numero_curso })}: ${leccion.titulo_es}${leccion.titulo ? ` (${tr(leccion.titulo)})` : ''} · ${t(`estado.${e.estado}`)}`,
       'data-sonido': 'burbuja',
     },
@@ -291,8 +296,66 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
       el('h1', {}, t('menu.lecciones')),
       el('p', { class: 'cm-cabecera-dato' }, t('camino.llevas', { hechas: terminadas, total })),
       el('span', { class: 'cm-cabecera-barra', 'aria-hidden': 'true' }, el('span', { style: `--avance:${total ? terminadas / total : 0}` }))),
+    buscador(),
     toca && el('button', { type: 'button', class: 'es-boton cm-ir', 'data-sonido': 'flecha', onclick: () => irALoQueToca(true) },
       t('camino.irA', { n: toca.numero_curso })));
+
+  // ----- Buscar una lección por su título (en español o traducido) o por su número -----
+  function irALeccion(id) {
+    const r = validas.find(x => x.leccion.id === id);
+    if (!r) return;
+    const cap = document.getElementById(`cm-cap-${String(r.leccion.capitulo ?? 'sin')}`);
+    if (cap?.hidden) cap.previousElementSibling?.click();
+    requestAnimationFrame(() => {
+      const nodo = app.querySelector(`.cm-nodo[data-id="${id}"]`);
+      if (!nodo) return;
+      nodo.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      nodo.classList.remove('llama'); void nodo.offsetWidth; nodo.classList.add('llama');
+      setTimeout(() => { if (fichaAbierta?.nodo !== nodo) nodo.click(); }, 550);
+    });
+  }
+  function buscador() {
+    const sinTildes = x => String(x ?? '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd');
+    const campo = el('input', { type: 'search', class: 'cm-buscar-campo', placeholder: t('camino.buscar'), 'aria-label': t('camino.buscar'), autocomplete: 'off' });
+    const lista = el('ul', { class: 'cm-buscar-lista', role: 'listbox', hidden: true });
+    const caja = el('div', { class: 'cm-buscar' }, el('span', { class: 'cm-buscar-lupa', 'aria-hidden': 'true' }), campo, lista);
+    const cerrar = () => { lista.hidden = true; };
+    campo.addEventListener('input', () => {
+      const q = sinTildes(campo.value.trim());
+      if (q.length < 2 && !/^\d+$/.test(q)) { cerrar(); return; }
+      const encontradas = validas.map(r => r.leccion).filter(l =>
+        String(l.numero_curso) === q || sinTildes(l.titulo_es).includes(q) || sinTildes(tr(l.titulo)).includes(q)).slice(0, 8);
+      poner(lista, encontradas.length
+        ? encontradas.map(l => {
+          const e = estados.get(l.id);
+          const b = el('button', { type: 'button', class: `cm-buscar-item es-${e.estado}`, role: 'option', 'data-sonido': 'flecha' },
+            el('span', { class: 'cm-buscar-num' }, e.estado === 'terminada' ? '★' : l.numero_curso),
+            el('span', { class: 'cm-buscar-textos' },
+              el('span', { class: 'cm-buscar-es', lang: LANG }, l.titulo_es),
+              l.titulo && el('span', { class: 'cm-buscar-trad' }, tr(l.titulo))));
+          b.addEventListener('click', () => { cerrar(); campo.value = ''; irALeccion(l.id); });
+          return el('li', {}, b);
+        })
+        : el('li', { class: 'cm-buscar-nada' }, t('camino.buscarNada')));
+      lista.hidden = false;
+    });
+    campo.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { cerrar(); campo.blur(); }
+      if (e.key === 'Enter') { e.preventDefault(); lista.querySelector('button')?.click(); }
+      if (e.key === 'ArrowDown') { e.preventDefault(); lista.querySelector('button')?.focus(); }
+    });
+    lista.addEventListener('keydown', e => {
+      const botones = [...lista.querySelectorAll('button')];
+      const i = botones.indexOf(document.activeElement);
+      if (e.key === 'ArrowDown') { e.preventDefault(); botones[Math.min(i + 1, botones.length - 1)]?.focus(); }
+      if (e.key === 'ArrowUp') { e.preventDefault(); (i <= 0 ? campo : botones[i - 1]).focus(); }
+      if (e.key === 'Escape') { cerrar(); campo.focus(); }
+    });
+    const fuera = e => { if (!caja.contains(e.target)) cerrar(); };
+    document.addEventListener('pointerdown', fuera);
+    apagar.push(() => document.removeEventListener('pointerdown', fuera));
+    return caja;
+  }
 
   // ----- Las misiones de hoy: una lección, un repaso y una lección de 3 estrellas -----
   const misiones = misionesDeHoy({ irALeccion: () => irALoQueToca(true) });
@@ -311,9 +374,16 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
     if (conFicha) setTimeout(() => { if (!fichaAbierta) nodo.click(); }, 550);
   }
 
-  poner(app,
+  // el panel: en pantalla ancha va al lado del mapa y se queda fijo; en el móvil, encima, con las tarjetas en una
+  // tira que se desliza de lado
+  const lado = el('aside', { class: 'cm-lado' },
     cabecera,
     misiones,
+    el('div', { class: 'cm-extras' }, tarjetaRepaso(), tarjetaPalabra(apagar), tarjetaLogros()));
+
+  poner(app, el('div', { class: 'cm-pantalla' },
+    lado,
+    el('div', { class: 'cm-principal' },
     resultados.sinConexion && el('section', { class: 'caja tarjeta-error', role: 'alert' },
       el('h2', {}, t('app.sinConexionTitulo')),
       el('p', {}, t('app.sinConexionTexto')),
@@ -321,7 +391,7 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
     errorCapitulos && tarjetaError(errorCapitulos, 'lessons/capitulos.json'),
     grupos.length
       ? el('div', { class: 'cm-mapa' }, grupos.map(tramo))
-      : el('p', { class: 'caja' }, t('lecciones.ninguna')),
+      : el('p', { class: 'caja' }, t('lecciones.ninguna')))),
     flotante);
 
   // el caminito de puntos se recoloca si cambia el ancho
@@ -361,6 +431,75 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
 // ---------------------------------------------------------------------------
 // Piezas
 // ---------------------------------------------------------------------------
+
+/** Lo que toca repasar hoy, con su botón. */
+function tarjetaRepaso() {
+  const n = pendientesDeHoy();
+  const total = tarjetas().length;
+  return el('a', { class: `cm-extra cm-extra-repaso${n ? '' : ' al-dia'}`, href: '#/repaso', 'data-sonido': 'voltear' },
+    el('span', { class: 'cm-extra-icono', 'aria-hidden': 'true' }, !total ? '📒' : n ? '🃏' : '✅'),
+    el('span', { class: 'cm-extra-titulo' }, t('menu.repaso')),
+    el('span', { class: 'cm-extra-texto' }, !total ? t('camino.repasoVacio') : n ? t('camino.repasoPendiente', { n }) : t('camino.repasoAlDia')));
+}
+
+/** Los logros: cuántos hay y el último ganado. */
+function tarjetaLogros() {
+  const ganados = logrosGanados();
+  const lista = LOGROS.filter(l => ganados[l.id]).sort((a, b) => ganados[b.id] - ganados[a.id]);
+  const ultimo = lista[0];
+  return el('a', { class: 'cm-extra cm-extra-logros', href: '#/perfil', 'data-sonido': 'moneda' },
+    el('span', { class: 'cm-extra-icono', 'aria-hidden': 'true' }, ultimo?.icono ?? '🏅'),
+    el('span', { class: 'cm-extra-titulo' }, t('logros.titulo'), ' ', el('b', {}, `${lista.length}/${LOGROS.length}`)),
+    el('span', { class: 'cm-extra-texto' }, ultimo ? t('camino.ultimoLogro', { nombre: t(`logros.${ultimo.id}.nombre`) }) : t('camino.sinLogros')));
+}
+
+/**
+ * La palabra del día: una tarjeta que se gira al tocarla. Sale del cuaderno si hay palabras (para no olvidarlas);
+ * si no, del diccionario del curso. Es la misma todo el día.
+ */
+function tarjetaPalabra(apagar) {
+  const caja = el('div', { class: 'cm-extra cm-extra-palabra' });
+  const semilla = [...new Date().toLocaleDateString('sv')].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
+  const elegir = () => {
+    const propias = tarjetas().filter(c => c.es && !/\s/.test(c.es.trim()) && tr(c.trad));
+    if (propias.length >= 5) {
+      const c = [...propias].sort((a, b) => a.es.localeCompare(b.es))[semilla % propias.length];
+      return { es: c.es, trad: tr(c.trad), pron: c.pron, ficha: { es: c.es, trad: c.trad, pron: c.pron, tipo: 'palabra' } };
+    }
+    const dic = [...diccionarioCompleto().values()].filter(e => e.trad && !e.oculta && /^[\p{L}]{4,10}$/u.test(e.es));
+    if (!dic.length) return null;
+    dic.sort((a, b) => a.es.localeCompare(b.es));
+    const e = dic[semilla % dic.length];
+    return { es: e.es, trad: tr(e.trad), pron: e.pron, ficha: { es: e.es, trad: e.trad, pron: e.pron, nota: e.consejo, tipo: 'palabra', origen: origenTarjeta('cuaderno.diccionario') } };
+  };
+  const pintar = p => {
+    if (!p) { caja.hidden = true; return; }
+    caja.hidden = false;
+    const giro = el('button', { type: 'button', class: 'cm-palabra-giro', 'aria-pressed': 'false', 'data-sonido': 'voltear' },
+      el('span', { class: 'cm-palabra-cara delante' },
+        el('span', { class: 'cm-extra-titulo' }, t('camino.palabraDia')),
+        el('span', { class: 'cm-palabra-es', lang: LANG }, p.es),
+        el('span', { class: 'cm-extra-texto' }, t('camino.palabraToca'))),
+      el('span', { class: 'cm-palabra-cara detras' },
+        el('span', { class: 'cm-palabra-es', lang: LANG }, p.es),
+        el('span', { class: 'cm-palabra-trad' }, p.trad),
+        p.pron && el('span', { class: 'cm-extra-texto' }, `${p.pron} ${t('comun.aprox')}`)));
+    giro.addEventListener('click', () => {
+      const vuelta = giro.getAttribute('aria-pressed') !== 'true';
+      giro.setAttribute('aria-pressed', String(vuelta));
+      caja.classList.toggle('girada', vuelta);
+    });
+    poner(caja, giro, el('span', { class: 'cm-palabra-acciones' }, botonEscuchar(p.es), botonGuardar(p.ficha)));
+  };
+  const primera = elegir();
+  pintar(primera);
+  // el diccionario puede estar llegando todavía: se mira otra vez en un momento
+  if (!primera) {
+    const reloj = setTimeout(() => pintar(elegir()), 1800);
+    apagar.push(() => clearTimeout(reloj));
+  }
+  return caja;
+}
 
 /** Las misiones del día, con la racha. Al completarlas todas, confeti (una vez al día). */
 function misionesDeHoy({ irALeccion }) {

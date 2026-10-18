@@ -190,12 +190,19 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
     }, el('span', { 'aria-hidden': 'true' }, p.icono), el('span', { class: 'solo-lector' }, t('juego.paso', { n: i + 1, total: pasos.length + 1 })))));
   }
 
+  // lo que se apunta al terminar, una sola vez por partida (volver atrás desde el final y avanzar otra vez no
+  // vuelve a contar la lección para las misiones de hoy)
+  let resultado = null;
   function final() {
-    marcarTerminada(leccion.id);
-    const nuevas = apuntarPalabrasDeLeccion(leccion, leccion.palabras);
-    const estrellas = estrellasPorFallos(fallos);
-    const antes = guardarEstrellas(leccion.id, estrellas);
-    if (estrellas === 3) anotarPerfecta();
+    if (!resultado) {
+      marcarTerminada(leccion.id);
+      const nuevasAhora = apuntarPalabrasDeLeccion(leccion, leccion.palabras);
+      const sacadas = estrellasPorFallos(fallos);
+      const previas = guardarEstrellas(leccion.id, sacadas);
+      if (sacadas === 3) anotarPerfecta();
+      resultado = { nuevas: nuevasAhora, estrellas: sacadas, antes: previas };
+    }
+    const { nuevas, estrellas, antes } = resultado;
     const dias = racha();
     sonar('fanfarria');
     decir([t(estrellas === 3 ? 'jg.fin.tutora3' : estrellas === 2 ? 'jg.fin.tutora2' : 'jg.fin.tutora1'), nuevas ? t('leccion.apuntadas', { n: nuevas }) : null].filter(Boolean).join(' '), 'contenta');

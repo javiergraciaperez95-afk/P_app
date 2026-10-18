@@ -34,6 +34,8 @@
 .cm-ir { flex: none; }
 
 .cm-mapa { max-width: 620px; margin: 0 auto; --amp: min(118px, 23vw); }
+/* el dorado de las paradas y los cofres brilla igual en los dos temas (el --oro del tema claro es marrón) */
+:root { --dorado: #f4c84a; --dorado-claro: #fff1a8; --dorado-oscuro: #8a5a00; }
 
 /* ----- El cartel de cada capítulo ----- */
 .cm-tramo { --nivel: #b8a9cc; --nivel-tinta: #231c2b; margin-bottom: 14px; }
@@ -153,7 +155,7 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: conic-gradient(var(--oro) calc(var(--avance, 0) * 1turn), var(--fondo-punto) 0);
+  background: conic-gradient(var(--dorado) calc(var(--avance, 0) * 1turn), var(--fondo-punto) 0);
 }
 .cm-nodo-cara {
   position: absolute;
@@ -173,8 +175,8 @@
 .cm-nodo:focus-visible { outline: 3px solid var(--foco); outline-offset: 4px; }
 .cm-nodo[aria-expanded="true"] .cm-nodo-cara { box-shadow: 0 6px 0 var(--bajo), 0 0 0 5px var(--foco); }
 
-.cm-nodo.es-terminada { --cara: var(--oro); --bajo: #8a5a00; }
-.cm-nodo.es-terminada .cm-nodo-anillo { background: var(--oro); opacity: .45; }
+.cm-nodo.es-terminada { --cara: var(--dorado); --bajo: var(--dorado-oscuro); }
+.cm-nodo.es-terminada .cm-nodo-anillo { background: var(--dorado); opacity: .45; }
 .cm-nodo.es-curso { --cara: var(--panel-hover); }
 .cm-nodo.es-nueva .cm-nodo-num { opacity: .8; }
 .cm-nodo.toca { --cara: var(--rojo); --bajo: #7a1a20; }
@@ -217,7 +219,7 @@
   pointer-events: none;
 }
 .cm-estrellas span { color: var(--fondo-punto); }
-.cm-estrellas span.ganada { color: var(--oro); }
+.cm-estrellas span.ganada { color: var(--dorado); text-shadow: 0 0 0 var(--dorado-oscuro), 1px 1px 0 var(--dorado-oscuro); }
 
 /* el título al lado de la parada (al lado contrario de donde se aparta) */
 .cm-etiqueta {
@@ -508,3 +510,186 @@ body.tutora-oculta .cm-flotante { bottom: calc(80px + var(--borde-abajo)); }
 @media (prefers-reduced-motion: reduce) {
   .cm-racha.viva span, .cm-mision.hecha .cm-mision-casilla { animation: none; }
 }
+
+/* ----- El armazón: panel y mapa ----- */
+.cm-pantalla { max-width: 620px; margin: 0 auto; }
+.cm-lado { display: grid; gap: 14px; margin-bottom: 18px; }
+.cm-lado > .cm-cabecera, .cm-lado > .cm-misiones { margin: 0; max-width: none; }
+.cm-principal { min-width: 0; }
+
+/* las tarjetas del panel: en el móvil, una tira que se desliza de lado */
+.cm-extras {
+  display: flex;
+  gap: 10px;
+  margin: 0 -4px;
+  padding: 2px 4px 8px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+.cm-extra {
+  flex: 0 0 min(230px, 72%);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-height: 104px;
+  padding: 10px 12px;
+  color: var(--texto);
+  text-decoration: none;
+  background: var(--panel);
+  border: 3px solid var(--linea);
+  box-shadow: 4px 4px 0 var(--sombra);
+}
+a.cm-extra:hover { background: var(--panel-2); color: var(--texto); }
+a.cm-extra:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--sombra); }
+.cm-extra[hidden] { display: none; }
+.cm-extra-icono { font-size: 1.5rem; line-height: 1.1; }
+.cm-extra-titulo { font: 700 .95rem var(--fuente-pixel); }
+.cm-extra-titulo b { color: var(--oro); }
+.cm-extra-texto { font-size: .85rem; color: var(--texto-suave); }
+.cm-extra-repaso:not(.al-dia) { border-color: var(--rojo); }
+.cm-extra-repaso:not(.al-dia) .cm-extra-icono { animation: cm-tarjetas 1.6s steps(4) infinite; }
+@keyframes cm-tarjetas { 50% { transform: rotate(-10deg) translateY(-2px); } }
+
+/* la palabra del día: se gira al tocarla */
+.cm-extra-palabra { padding: 0; gap: 0; position: relative; }
+.cm-palabra-giro {
+  display: grid;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  perspective: 600px;
+}
+.cm-palabra-cara {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 12px 34px;
+  backface-visibility: hidden;
+  transition: transform .4s steps(5);
+}
+.cm-palabra-cara.detras { transform: rotateY(180deg); background: var(--panel-2); }
+.cm-extra-palabra.girada .cm-palabra-cara.delante { transform: rotateY(-180deg); }
+.cm-extra-palabra.girada .cm-palabra-cara.detras { transform: rotateY(0); }
+.cm-palabra-es { font: 700 1.35rem var(--fuente-pixel); color: var(--espanol); overflow-wrap: anywhere; }
+.cm-palabra-trad { font-weight: 600; }
+.cm-palabra-acciones { position: absolute; right: 6px; bottom: 4px; display: flex; gap: 4px; z-index: 1; }
+.cm-palabra-acciones .boton-icono { width: 34px; height: 34px; }
+
+/* pantalla ancha: el panel, a la derecha y quieto mientras se baja por el mapa */
+@media (min-width: 1000px) {
+  .cm-pantalla { max-width: 1010px; display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 34px; align-items: start; }
+  .cm-lado {
+    order: 2;
+    position: sticky;
+    top: 96px;
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
+    margin: 0;
+    padding: 0 6px 8px 0;
+    scrollbar-width: thin;
+  }
+  .cm-principal { order: 1; }
+  .cm-extras { flex-direction: column; overflow: visible; margin: 0; padding: 0; }
+  .cm-extra { flex: none; min-height: 0; }
+  .cm-extra-palabra { min-height: 118px; }
+  .cm-mapa { max-width: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cm-extra-repaso .cm-extra-icono { animation: none; }
+  .cm-palabra-cara { transition: none; }
+}
+
+/* ----- El buscador de lecciones ----- */
+.cm-buscar { position: relative; flex: 1 1 100%; display: flex; align-items: center; }
+.cm-buscar-lupa {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  width: 13px;
+  height: 13px;
+  margin-top: -9px;
+  border: 3px solid var(--texto-suave);
+  border-radius: 50%;
+  pointer-events: none;
+  font-size: 0;
+}
+.cm-buscar-lupa::after {
+  content: "";
+  position: absolute;
+  right: -7px;
+  bottom: -7px;
+  width: 7px;
+  height: 3px;
+  background: var(--texto-suave);
+  transform: rotate(45deg);
+}
+.cm-buscar input.cm-buscar-campo {
+  width: 100%;
+  min-height: 42px;
+  padding: 6px 10px 6px 38px;
+  font: inherit;
+  color: var(--texto);
+  background: var(--panel);
+  border: 3px solid var(--linea);
+  box-shadow: none;
+}
+.cm-buscar input.cm-buscar-campo:focus { outline: 3px solid var(--foco); outline-offset: 2px; }
+.cm-buscar-lista {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 12;
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  max-height: 340px;
+  overflow-y: auto;
+  background: var(--panel);
+  border: 3px solid var(--linea);
+  box-shadow: 5px 5px 0 var(--sombra);
+  animation: cm-ficha .18s steps(3) both;
+}
+.cm-buscar-lista[hidden] { display: none; }
+.cm-buscar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin: 0;
+  padding: 6px 8px;
+  text-align: left;
+  font: inherit;
+  color: var(--texto);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.cm-buscar-item:hover, .cm-buscar-item:focus-visible { background: var(--panel-2); outline: none; }
+.cm-buscar-num {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  font: 700 .85rem var(--fuente-pixel);
+  background: var(--panel-2);
+  border: 2px solid var(--linea);
+  border-radius: 50%;
+}
+.cm-buscar-item.es-terminada .cm-buscar-num { background: var(--dorado); color: #6b4300; }
+.cm-buscar-textos { display: flex; flex-direction: column; min-width: 0; }
+.cm-buscar-es { font: 700 .95rem var(--fuente-pixel); color: var(--espanol); overflow-wrap: anywhere; }
+.cm-buscar-trad { font-size: .8rem; color: var(--texto-suave); }
+.cm-buscar-nada { padding: 8px; color: var(--texto-suave); font-size: .9rem; }

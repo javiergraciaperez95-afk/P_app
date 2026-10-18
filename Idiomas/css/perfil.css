@@ -1,0 +1,60 @@
+/* =====================================================================
+   PERFIL (js/vistas/perfil.js): el calendario de actividad y el avance por niveles.
+   ===================================================================== */
+
+.ac-datos { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0 0 12px; font: 700 .9rem var(--fuente-pixel); }
+.ac-calendario {
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 4px;
+  max-width: calc(var(--semanas) * 30px);
+}
+.ac-dia {
+  display: block;
+  aspect-ratio: 1;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  background: var(--fondo-punto);
+  border: 2px solid var(--linea);
+  cursor: pointer;
+}
+.ac-dia:not(:disabled):hover { transform: scale(1.18); }
+.ac-dia:focus-visible { outline: 3px solid var(--foco); outline-offset: 1px; }
+.ac-dia.ac-1 { background: #3d6b4a; }
+.ac-dia.ac-2 { background: #4f9a63; }
+.ac-dia.ac-3 { background: #6fd38c; }
+.ac-dia.ac-4 { background: #b6f5c4; }
+:root[data-tema="claro"] .ac-dia.ac-1 { background: #cdeccf; }
+:root[data-tema="claro"] .ac-dia.ac-2 { background: #8fd19c; }
+:root[data-tema="claro"] .ac-dia.ac-3 { background: #3f9a5c; }
+:root[data-tema="claro"] .ac-dia.ac-4 { background: #1d6b34; }
+.ac-dia.ac-futuro { opacity: .25; cursor: default; }
+.ac-dia.hoy { box-shadow: 0 0 0 2px var(--oro); animation: ac-hoy 1.6s steps(2) infinite; }
+@keyframes ac-hoy { 50% { box-shadow: 0 0 0 3px var(--oro); } }
+.ac-leyenda { display: flex; align-items: center; gap: 4px; margin: 10px 0 0; font-size: .8rem; }
+.ac-leyenda i.ac-dia { width: 14px; height: 14px; cursor: default; }
+
+.nv-lista { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.nv-fila { display: grid; grid-template-columns: 46px minmax(0, 1fr) auto; align-items: center; gap: 12px; }
+.nv-insignia {
+  display: grid;
+  place-items: center;
+  height: 34px;
+  font: 700 .95rem var(--fuente-pixel);
+  color: #231c2b;
+  background: var(--nivel, var(--oro));
+  border: 3px solid var(--linea);
+}
+.nv-fila.nivel-a1 { --nivel: #6fd38c; }
+.nv-fila.nivel-a2 { --nivel: #8fd8ff; }
+.nv-fila.nivel-b1 { --nivel: #c9a6ff; }
+.nv-fila.nivel-b2 { --nivel: #ff9a9f; }
+.nv-barra { height: 16px; background: var(--fondo-punto); border: 3px solid var(--linea); overflow: hidden; }
+.nv-barra > span { display: block; height: 100%; background: var(--nivel); transform-origin: left; transform: scaleX(var(--avance, 0)); }
+.nv-cuenta { font: 700 .9rem var(--fuente-pixel); }
+
+@media (prefers-reduced-motion: reduce) { .ac-dia.hoy { animation: none; } }

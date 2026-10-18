@@ -58,6 +58,94 @@ function seccionNombre() {
   return el('section', { class: 'caja' }, el('h2', {}, t('perfil.tuNombre')), form);
 }
 
+// ----- La actividad de las últimas 12 semanas, como un calendario de cuadritos -----
+const claveDia = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+/** La racha más larga de toda la historia (días seguidos con algo hecho). */
+function mejorRacha(dias) {
+  const fechas = Object.keys(dias).sort();
+  let mejor = 0;
+  let seguidos = 0;
+  let anterior = null;
+  for (const f of fechas) {
+    const d = new Date(`${f}T12:00:00`);
+    seguidos = anterior && Math.round((d - anterior) / 86400000) === 1 ? seguidos + 1 : 1;
+    mejor = Math.max(mejor, seguidos);
+    anterior = d;
+  }
+  return mejor;
+}
+
+function seccionActividad() {
+  const dias = actividad() ?? {};
+  const SEMANAS = 12;
+  const hoy = new Date();
+  hoy.setHours(12, 0, 0, 0);
+  // empieza en lunes, para que cada fila sea un día de la semana
+  const inicio = new Date(hoy);
+  inicio.setDate(inicio.getDate() - ((inicio.getDay() + 6) % 7) - (SEMANAS - 1) * 7);
+  const cuanto = d => (d?.ejercicios ?? 0) + (d?.repasos ?? 0);
+  const nivel = n => (n === 0 ? 0 : n < 5 ? 1 : n < 15 ? 2 : n < 40 ? 3 : 4);
+  const celdas = [];
+  let activos = 0;
+  for (let k = 0; k < SEMANAS * 7; k++) {
+    const d = new Date(inicio);
+    d.setDate(inicio.getDate() + k);
+    const futuro = d > hoy;
+    const datos = dias[claveDia(d)];
+    const n = cuanto(datos);
+    if (n) activos += 1;
+    const fecha = d.toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' });
+    const celda = el('button', {
+      type: 'button',
+      class: `ac-dia ac-${futuro ? 'futuro' : nivel(n)}${claveDia(d) === claveDia(hoy) ? ' hoy' : ''}`,
+      disabled: futuro,
+      'aria-label': `${fecha}: ${t('perfil.diaResumen', { pasos: datos?.ejercicios ?? 0, repasos: datos?.repasos ?? 0 })}`,
+      'data-sonido': n ? 'moneda' : 'nada',
+    });
+    celda.addEventListener('click', () => {
+      decir(n
+        ? t('perfil.diaTutora', { fecha, pasos: datos?.ejercicios ?? 0, repasos: datos?.repasos ?? 0, lecciones: datos?.lecciones ?? 0 })
+        : t('perfil.diaVacio', { fecha }), n ? 'contenta' : 'pensando');
+    });
+    celdas.push(celda);
+  }
+  return el('section', { class: 'caja' },
+    el('h2', {}, t('perfil.actividad')),
+    el('div', { class: 'ac-datos' },
+      el('span', {}, '🔥 ', t('perfil.rachaAhora', { n: racha() })),
+      el('span', {}, '🏆 ', t('perfil.rachaMejor', { n: mejorRacha(dias) })),
+      el('span', {}, '📅 ', t('perfil.diasActivos', { n: activos }))),
+    el('div', { class: 'ac-calendario', style: `--semanas:${SEMANAS}` }, celdas),
+    el('p', { class: 'ac-leyenda aprox' }, t('perfil.menos'), ' ',
+      [0, 1, 2, 3, 4].map(k => el('i', { class: `ac-dia ac-${k}`, 'aria-hidden': 'true' })), ' ', t('perfil.mas')));
+}
+
+// ----- Cuánto llevas de cada nivel (A1, A2, B1, B2) -----
+function seccionNiveles(resultados, capitulos) {
+  const nivelDe = new Map(capitulos.map(c => [String(c.numero), c.nivel]));
+  const cuenta = {};
+  for (const { leccion } of resultados.filter(r => r.leccion)) {
+    const n = nivelDe.get(String(leccion.capitulo));
+    if (!n) continue;
+    cuenta[n] ??= { hechas: 0, total: 0 };
+    cuenta[n].total += 1;
+    if (resumenLeccion(leccion.id, leccion.idsEjercicios).terminada) cuenta[n].hechas += 1;
+  }
+  const niveles = Object.keys(cuenta).sort();
+  if (!niveles.length) return null;
+  return el('section', { class: 'caja' },
+    el('h2', {}, t('perfil.niveles')),
+    el('ul', { class: 'nv-lista' }, niveles.map(n => {
+      const { hechas, total } = cuenta[n];
+      const parte = total ? hechas / total : 0;
+      return el('li', { class: `nv-fila nivel-${n.toLowerCase()}` },
+        el('span', { class: 'nv-insignia' }, n),
+        el('span', { class: 'nv-barra', 'aria-hidden': 'true' }, el('span', { style: `--avance:${parte}` })),
+        el('span', { class: 'nv-cuenta' }, `${hechas}/${total}`, parte === 1 ? ' ✔' : ''));
+    })));
+}
+
 /** La vitrina de logros: los ganados con su medalla y su fecha; los demás, a oscuras y con lo que hay que hacer. */
 function seccionLogros() {
   comprobarLogros();
@@ -238,13 +326,15 @@ function seccionReinicio(repintar) {
     boton);
 }
 
-export function pintarPerfil(app, { resultados }) {
-  const repintar = () => pintarPerfil(app, { resultados });
+export function pintarPerfil(app, { resultados, capitulos = [] }) {
+  const repintar = () => pintarPerfil(app, { resultados, capitulos });
   poner(app,
     el('section', { class: 'intro-vista' },
       el('h1', {}, nombre() ? t('perfil.de', { nombre: nombre() }) : t('menu.perfil'))),
     seccionNombre(),
     seccionProgreso(resultados),
+    seccionActividad(),
+    seccionNiveles(resultados, capitulos),
     seccionLogros(),
     seccionAjustes(),
     seccionCopia(repintar),
