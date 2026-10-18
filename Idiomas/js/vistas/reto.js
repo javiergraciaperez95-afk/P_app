@@ -212,6 +212,6 @@ export function enlaceReto({ clase = '' } = {}) {
   const { puede, mejor } = estadoReto();
   return el('a', { class: `cm-extra cm-extra-reto ${clase}`.trim(), href: '#/reto', 'data-sonido': 'arcade' },
     el('span', { class: 'cm-extra-icono', 'aria-hidden': 'true' }, '⚡'),
-    el('span', { class: 'cm-extra-titulo' }, t('reto.titulo')),
+    el('span', { class: 'cm-extra-titulo' }, t('reto.titulo').replace(/^⚡\s*/u, '')),
     el('span', { class: 'cm-extra-texto' }, puede ? t('reto.anuncio', { mejor }) : t('reto.anuncioBloqueado', { n: MINIMO })));
 }

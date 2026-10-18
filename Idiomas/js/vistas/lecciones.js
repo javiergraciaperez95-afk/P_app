@@ -107,6 +107,9 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
   // La lección que toca: la primera sin terminar, en el orden del curso.
   const toca = validas.find(r => estados.get(r.leccion.id).estado !== 'terminada')?.leccion ?? null;
   const capituloToca = toca ? String(toca.capitulo ?? 'sin') : null;
+  // la lección que se acaba de terminar (la pone el modo juego): su parada lo celebra una vez
+  let recien = null;
+  try { recien = sessionStorage.getItem('paglot-recien'); sessionStorage.removeItem('paglot-recien'); } catch { /* sin almacenamiento */ }
 
   // ----- La ficha que sale al tocar una parada (solo una abierta a la vez) -----
   let fichaAbierta = null;
@@ -247,6 +250,10 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
       [1, 2, 3].map(k => el('span', { class: k <= n ? 'ganada' : '' }, '★'))) : null;
     if (n) nodo.setAttribute('aria-label', `${nodo.getAttribute('aria-label')} · ${t('jg.fin.estrellas', { n })}`);
     const li = el('li', { class: `cm-parada${x < 0 ? ' a-la-izq' : ''}`, style: `--x:${x}` }, nodo, estrellas, etiqueta);
+    if (recien === leccion.id && e.estado === 'terminada') {
+      li.classList.add('recien');
+      setTimeout(() => { sonar('moneda'); lucia.felicitar(); }, 700);
+    }
     if (esToca) {
       li.classList.add('es-toca');
       li.append(el('span', { class: 'cm-aqui', 'aria-hidden': 'true' }, t('camino.aqui')), lucia.figura);
@@ -288,6 +295,30 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
       }
     });
     return el('li', { class: 'cm-parada cm-parada-cofre', style: `--x:${OLA(i)}` }, boton);
+  }
+
+  // ----- Un capítulo terminado con su cofre aún cerrado: se avisa en el panel -----
+  function avisoCofre() {
+    const pendiente = grupos.find(g => {
+      const buenas = g.lecciones.filter(r => r.leccion);
+      return g.capitulo && buenas.length && buenas.every(r => estados.get(r.leccion.id).estado === 'terminada') && !cofres.has(String(g.capitulo.numero));
+    });
+    if (!pendiente) return null;
+    const claveCap = String(pendiente.capitulo.numero);
+    const aviso = el('button', { type: 'button', class: 'cm-extra cm-extra-cofre', 'data-sonido': 'caja' },
+      el('span', { class: 'cm-extra-icono', 'aria-hidden': 'true' }, '🧰'),
+      el('span', { class: 'cm-extra-titulo' }, t('camino.cofrePendiente')),
+      el('span', { class: 'cm-extra-texto' }, t('camino.cofrePendienteTexto', { n: pendiente.capitulo.numero })));
+    aviso.addEventListener('click', () => {
+      const lista = document.getElementById(`cm-cap-${claveCap}`);
+      if (lista?.hidden) lista.previousElementSibling?.click();
+      requestAnimationFrame(() => {
+        const cofreBoton = lista?.querySelector('.cm-cofre');
+        cofreBoton?.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+        cofreBoton?.classList.remove('estalla'); void cofreBoton?.offsetWidth; cofreBoton?.classList.add('estalla');
+      });
+    });
+    return aviso;
   }
 
   // ----- Arriba: cuánto llevas y el botón para ir a lo que toca -----
@@ -380,7 +411,7 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
   const lado = el('aside', { class: 'cm-lado' },
     cabecera,
     misiones,
-    el('div', { class: 'cm-extras' }, tarjetaRepaso(), enlaceReto(), tarjetaPalabra(apagar), tarjetaLogros()));
+    el('div', { class: 'cm-extras' }, avisoCofre(), tarjetaRepaso(), enlaceReto(), tarjetaPalabra(apagar), tarjetaLogros()));
 
   poner(app, el('div', { class: 'cm-pantalla' },
     lado,
@@ -660,5 +691,6 @@ function crearLucia(apagar) {
     // se pone al lado que tiene sitio: si la parada está a la izquierda, a su derecha
     colocar(li, x) { li.classList.toggle('lucia-der', x < 0); },
     celebrar() { sprite?.gesto(['celebrar', 'aplaudir']); decirGlobo('¡Enhorabuena!', 3000); },
+    felicitar() { sprite?.gesto(['aplaudir', 'pulgar']); decirGlobo('¡Bien hecho!', 2600); },
   };
 }

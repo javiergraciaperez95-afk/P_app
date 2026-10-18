@@ -693,3 +693,24 @@ a.cm-extra:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--
 .cm-buscar-es { font: 700 .95rem var(--fuente-pixel); color: var(--espanol); overflow-wrap: anywhere; }
 .cm-buscar-trad { font-size: .8rem; color: var(--texto-suave); }
 .cm-buscar-nada { padding: 8px; color: var(--texto-suave); font-size: .9rem; }
+
+/* la lección recién terminada: su estrella salta al volver al mapa */
+.cm-parada.recien .cm-nodo-cara { animation: cm-recien 1s steps(6) .3s both; }
+.cm-parada.recien .cm-nodo-estrella { display: inline-block; animation: cm-recien-estrella .9s steps(6) .5s both; }
+@keyframes cm-recien { 0% { transform: scale(.6); } 40% { transform: scale(1.25); } 70% { transform: scale(.95); } 100% { transform: scale(1); } }
+@keyframes cm-recien-estrella { from { transform: rotate(-200deg) scale(0); } to { transform: rotate(0) scale(1); } }
+
+/* el aviso del cofre sin abrir */
+.cm-extra-cofre {
+  margin: 0;
+  font: inherit;
+  text-align: left;
+  border-color: var(--dorado);
+  cursor: pointer;
+  animation: cm-cofre-aviso 1.4s steps(2) infinite;
+}
+.cm-extra-cofre:hover { background: var(--panel-2); }
+@keyframes cm-cofre-aviso { 50% { box-shadow: 4px 4px 0 var(--sombra), 0 0 0 3px var(--dorado); } }
+@media (prefers-reduced-motion: reduce) {
+  .cm-parada.recien .cm-nodo-cara, .cm-parada.recien .cm-nodo-estrella, .cm-extra-cofre { animation: none; }
+}

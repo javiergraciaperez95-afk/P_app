@@ -467,6 +467,10 @@ async function navegar({ cambioDeIdioma = false } = {}) {
   if (!cambioDeIdioma) {
     window.scrollTo(0, 0);
     app.focus({ preventScroll: true });
+    // la pantalla nueva entra con un pequeño deslizamiento (ver #app.vista-entra en styles.css)
+    app.classList.remove('vista-entra');
+    void app.offsetWidth;
+    app.classList.add('vista-entra');
   }
 }
 

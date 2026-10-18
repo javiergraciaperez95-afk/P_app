@@ -268,6 +268,8 @@ export default {
   'camino.palabraToca': 'Em biết từ này không? Bấm để lật.',
   'camino.buscar': 'Tìm bài học (tên hoặc số)',
   'camino.buscarNada': 'Chưa có bài nào tên như vậy…',
+  'camino.cofrePendiente': 'Có rương đang chờ em!',
+  'camino.cofrePendienteTexto': 'Em đã xong chương {n}. Mau đi mở rương nào ▶',
   'camino.empezar': 'Bắt đầu ▶',
   'camino.seguir': 'Học tiếp ▶',
   'camino.repetir': 'Chơi lại ↻',

@@ -204,6 +204,8 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
       const previas = guardarEstrellas(leccion.id, sacadas);
       if (sacadas === 3) anotarPerfecta();
       resultado = { nuevas: nuevasAhora, estrellas: sacadas, antes: previas };
+      // el mapa lo celebra al volver (ver js/vistas/lecciones.js)
+      try { sessionStorage.setItem('paglot-recien', leccion.id); } catch { /* sin almacenamiento */ }
     }
     const { nuevas, estrellas, antes } = resultado;
     const dias = racha();

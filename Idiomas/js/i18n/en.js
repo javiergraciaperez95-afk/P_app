@@ -345,6 +345,8 @@ export default {
   'camino.palabraToca': 'Do you know it? Tap to flip.',
   'camino.buscar': 'Find a lesson (title or number)',
   'camino.buscarNada': 'No lesson with that name… yet.',
+  'camino.cofrePendiente': 'A chest is waiting!',
+  'camino.cofrePendienteTexto': 'You finished chapter {n}. Go and open its chest ▶',
   'camino.empezar': 'Start ▶',
   'camino.seguir': 'Continue ▶',
   'camino.repetir': 'Play again ↻',
