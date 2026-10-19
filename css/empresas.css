@@ -95,7 +95,7 @@
   background: #fbfbf7;
   box-shadow: inset 0 0 0 4px #e3e3dc, 0 0 0 8px var(--aluminio-2), 0 0 0 11px var(--h-borde), 8px 14px 0 8px rgba(0, 0, 0, .14);
 }
-.of-etiqueta { font: 700 .8rem var(--fuente-pixel); letter-spacing: .12em; text-transform: uppercase; color: #4f7fc0; }
+.of-etiqueta { font: 700 .8rem var(--fuente-pixel); letter-spacing: .12em; text-transform: uppercase; color: var(--h-azul-texto); }
 .of-pizarra h1 { margin: 6px 0 10px; font-size: clamp(1.9rem, 4.4vw, 2.7rem); line-height: 1.06; color: #2b1d1a !important; }
 .of-pizarra p { margin: 0 0 16px; font-size: 1rem; line-height: 1.55; color: #4a3a32; }
 .of-rotuladores { position: absolute; left: 20%; right: 20%; bottom: -16px; height: 8px; background: var(--aluminio-2); box-shadow: 0 0 0 2px var(--h-borde); }
@@ -144,13 +144,13 @@
 .of-credencial:hover { transform: rotate(-2deg); }
 .of-cinta { position: absolute; left: calc(50% - 7px); bottom: 100%; width: 14px; height: 64px; background: repeating-linear-gradient(180deg, var(--c) 0 10px, #fffaf0 10px 14px); box-shadow: 0 0 0 2px var(--h-borde); }
 .of-pinza { position: absolute; left: calc(50% - 12px); top: -10px; z-index: 1; width: 24px; height: 14px; background: var(--aluminio-2); box-shadow: 0 0 0 2px var(--h-borde); }
-.of-c-equipo { --c: #4f7fc0; }
+.of-c-equipo { --c: #3a68a8; } /* (antes #4f7fc0: el blanco encima daba 4,09:1) */
 .of-c-max { --c: #f4c84a; }
 .of-c-sector { --c: #c8445a; }
 .of-c-plantilla { --c: #3f7a4a; }
 .of-credencial-cabecera { display: flex; flex-direction: column; gap: 2px; padding: 20px 16px 12px; color: #fff; background: var(--c); }
 .of-c-max .of-credencial-cabecera { color: #2b1d1a; }
-.of-credencial-cabecera span { font: 700 .7rem var(--fuente-pixel); letter-spacing: .14em; text-transform: uppercase; opacity: .85; }
+.of-credencial-cabecera span { font: 700 .76rem var(--fuente-pixel); letter-spacing: .14em; text-transform: uppercase; }
 .of-credencial-cabecera b { font: 700 1.25rem/1.15 var(--fuente-pixel); }
 .of-credencial-precio { margin: 12px 16px 8px; font-weight: 800; color: #2b1d1a; }
 .of-credencial ul { display: grid; gap: 6px; margin: 0 16px; padding-left: 18px; }
@@ -163,7 +163,7 @@
 .of-equipo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 36px; align-items: center; width: min(1160px, 100%); margin: 0 auto; padding: 50px 16px 60px; scroll-margin-top: 80px; }
 .of-planes { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
 .of-plan { min-height: 42px; padding: 6px 14px; border: 0; font: 700 .92rem var(--fuente-pixel); color: var(--h-tinta); background: var(--h-papel-2); cursor: pointer; box-shadow: 0 0 0 3px var(--h-borde), 3px 5px 0 3px var(--h-sombra); }
-.of-plan[aria-pressed="true"] { color: #fff; background: #4f7fc0; }
+.of-plan[aria-pressed="true"] { color: #fff; background: #3a68a8; }
 .of-plan:focus-visible { outline: 3px dashed var(--h-tinta); outline-offset: 5px; }
 .of-calc-etiqueta { display: block; margin-top: 8px; font: 700 .78rem var(--fuente-pixel); letter-spacing: .08em; text-transform: uppercase; color: var(--h-suave); }
 .of-calc-fila { display: flex; align-items: center; gap: 14px; margin: 8px 0 14px; }
@@ -176,7 +176,9 @@
 .of-precio, .of-total { font: 700 1.9rem/1.1 var(--fuente-pixel); color: var(--h-tinta); }
 html.sin-precios .of-precio, html.sin-precios .of-total { font-size: 1.15rem; }
 .of-descuento { color: #4f7fc0 !important; }
-:root[data-tema="oscuro"] .of-descuento, :root[data-tema="oscuro"] .of-muestra li b, :root[data-tema="oscuro"] .of-etiqueta { color: #9bbdff !important; }
+:root[data-tema="oscuro"] .of-descuento, :root[data-tema="oscuro"] .of-muestra li b { color: #dbe9ff !important; }
+/* la pizarra y las notas de los pasos son claras en los dos temas: el azul, oscuro */
+.of-pizarra .of-etiqueta, .of-pasos b { color: #3a68a8 !important; }
 .of-calc-nota { margin-top: 12px !important; font-size: .86rem; }
 /* la mesa grande: diez sillas que se ocupan */
 .of-mesa-grande { position: relative; padding: 20px 10px 0; }
@@ -214,13 +216,13 @@ html.sin-precios .of-precio, html.sin-precios .of-total { font-size: 1.15rem; }
 .of-sector[aria-pressed="true"] { color: #15121d; background: var(--marca-oro); }
 .of-sector-icono { flex: none; width: 38px; height: auto; }
 .of-muestra { min-height: 100%; padding: 22px 24px; background: var(--h-papel); box-shadow: 0 0 0 3px var(--h-borde), 6px 10px 0 3px var(--h-sombra); }
-.of-muestra-etiqueta { display: inline-block; padding: 2px 8px; font: 700 .72rem var(--fuente-pixel); letter-spacing: .08em; text-transform: uppercase; color: #fff; background: #c8445a; }
+.of-muestra-etiqueta { display: inline-block; padding: 2px 8px; font: 700 .78rem var(--fuente-pixel); letter-spacing: .08em; text-transform: uppercase; color: #fff; background: #c8445a; }
 .of-muestra h3 { margin: 10px 0 14px; font-size: 1.35rem; }
 .of-muestra ol { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
 .of-muestra li { display: flex; align-items: center; gap: 12px; padding: 10px 12px; font-weight: 700; background: var(--h-papel-2); box-shadow: inset 4px 0 0 #4f7fc0; animation: of-llega .3s steps(3) both; }
 .of-muestra li:nth-child(2) { animation-delay: .08s; }
 .of-muestra li:nth-child(3) { animation-delay: .16s; }
-.of-muestra li b { font-family: var(--fuente-pixel); color: #4f7fc0; }
+.of-muestra li b { font-family: var(--fuente-pixel); color: var(--h-azul-texto); }
 @keyframes of-llega { from { opacity: 0; transform: translateX(-12px); } }
 .of-sectores-precio { width: min(820px, 100%); margin: 24px auto 0; text-align: center; font-weight: 700; color: var(--h-suave); }
 
@@ -248,7 +250,7 @@ html.sin-precios .of-precio, html.sin-precios .of-total { font-size: 1.15rem; }
 .of-pasos li:nth-child(even) { background: #ffd9df; transform: rotate(1.5deg); }
 .of-pasos li:nth-child(odd) { transform: rotate(-1deg); }
 .of-pasos li:nth-child(5) { background: #cdeac0; }
-.of-pasos b { font: 700 1.3rem var(--fuente-pixel); color: #4f7fc0; }
+.of-pasos b { font: 700 1.3rem var(--fuente-pixel); color: var(--h-azul-texto); }
 .of-avisos { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
 .of-avisos h3 { font-size: 1.15rem; }
 .of-fin { width: min(760px, 100%); margin: 0 auto; padding: 50px 16px 70px; text-align: center; }

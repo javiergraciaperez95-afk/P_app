@@ -454,6 +454,8 @@ export default {
   'reto.titulo': '⚡ Thử thách tốc độ',
   'reto.intro': ({ s, castigo }) => `${s} giây để trả lời đúng càng nhiều từ trong sổ tay càng tốt. Chuỗi đúng được gấp đôi, gấp ba điểm; sai mất ${castigo} giây.`,
   'reto.empezar': 'Bắt đầu! ⚡',
+  'reto.sinPrisa': 'Không vội: gấp đôi thời gian, sai không bị trừ giờ',
+  'reto.sinPrisaFin': 'Lượt không vội không tính kỷ lục.',
   'reto.mejor': 'Kỷ lục của em:',
   'reto.faltan': ({ n, tienes }) => `Em cần ${n} từ trong sổ tay để chơi (em đang có ${tienes}).`,
   'reto.tutora': ({ mejor }) => (mejor ? `Kỷ lục của em là ${mejor}. Cô cá là em phá được… mà cô chưa thua lần nào.` : 'Sáu mươi giây, càng nhiều từ càng tốt. Sẵn sàng chưa? Cô thì rồi.'),

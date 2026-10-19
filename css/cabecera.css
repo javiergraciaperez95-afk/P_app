@@ -13,7 +13,7 @@
   --h-fondo: #efe6d2;
   --h-trama: #e8dcc3;
   --h-tinta: #2b1d1a;
-  --h-suave: #6d5b50;
+  --h-suave: #5a4a40; /* (antes #6d5b50: 3,87:1 sobre la calle de «Sobre Paglot») */
   --h-papel: #fffaf0;
   --h-papel-2: #f4ead6;
   --h-borde: #2b1d1a;
@@ -21,6 +21,9 @@
   --h-resalte: #fff0a0;
   --h-rosa: #c8445a;
   --h-rosa-tinta: #ffffff;
+  /* rosa y azul para letras sobre el papel (no como fondo): 4,5:1 como mínimo en los dos temas (informe de accesibilidad) */
+  --h-rosa-texto: #b03a4e;
+  --h-azul-texto: #335f9c;
   --h-cielo: #f7d9a8;
   --h-estrella: #c77a00;
   --h-pixel: "Tiny5", "Be Vietnam Pro", "Segoe UI", sans-serif;
@@ -44,7 +47,7 @@
   --h-fondo: #4a3f5e;
   --h-trama: #54486a;
   --h-tinta: #f2e8da;
-  --h-suave: #ddd0e0;
+  --h-suave: #ece2ee; /* (antes #ddd0e0: 4,06:1 sobre las cajas más claras) */
   --h-papel: #5a4d70;
   --h-papel-2: #6a5c82;
   --h-borde: #2a2136;
@@ -52,6 +55,8 @@
   --h-resalte: #5b4b1b;
   --h-rosa: #ee6f86;
   --h-rosa-tinta: #1b0f14;
+  --h-rosa-texto: #ffb3c1;
+  --h-azul-texto: #a8ccff;
   --h-cielo: #5c4d7a;
   --h-estrella: #ffe28a;
 }
@@ -200,6 +205,9 @@ body.en-inicio #btn-curso { display: none; } /* en la portada ya hay un botón p
   background: var(--h-rosa);
 }
 .cabecera-nav .nav-max { color: var(--marca-oro); }
+/* el oro sobre el botón daba 3,79:1 de noche y 2,83:1 de día (con la pestaña puesta, la tinta del rosa: arriba) */
+:root[data-tema="oscuro"] .cabecera-nav .nav-max:not([aria-current="page"]) { color: #ffe39a; }
+:root[data-tema="claro"] .cabecera-nav .nav-max:not([aria-current="page"]) { color: #8a5300; }
 .cabecera-nav .nav-max[aria-current="page"] { color: var(--h-rosa-tinta); }
 @keyframes corona-guina { 50% { transform: translateY(-2px); } }
 

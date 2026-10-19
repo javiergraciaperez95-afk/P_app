@@ -456,6 +456,8 @@ export default {
   'reto.titulo': "⚡ Reto de velocidad",
   'reto.intro': ({ s, castigo }) => `${s} segundos para acertar todas las palabras del cuaderno que puedas. Las rachas valen doble y triple; un fallo cuesta ${castigo} segundos.`,
   'reto.empezar': "¡Vamos! ⚡",
+  'reto.sinPrisa': "Sin prisa: el doble de tiempo y los fallos no restan",
+  'reto.sinPrisaFin': "Sin prisa no cuenta para el récord.",
   'reto.mejor': "Tu récord:",
   'reto.faltan': ({ n, tienes }) => `Necesitas ${n} palabras en tu cuaderno para jugar (tienes ${tienes}).`,
   'reto.tutora': ({ mejor }) => (mejor ? `Tu récord es ${mejor}. Apuesto a que lo superas… y yo nunca pierdo una apuesta.` : 'Sesenta segundos, todas las palabras que puedas. ¿Lista? Yo sí.'),

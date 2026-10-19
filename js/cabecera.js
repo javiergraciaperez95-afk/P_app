@@ -52,7 +52,9 @@ function pintarCuenta() {
   if (!cuenta) return;
   const estado = { guardada: 'ok', conectando: 'guardando', 'sin-conexion': 'local', error: 'error' }[nube.estado] ?? 'local';
   const texto = t(`cuenta2.estado.${nube.estado}`) || t('cabecera.cuenta');
-  poner(cuenta, el('a', { class: 'btn cabecera-entrar', href: '#/entrar', title: texto, 'aria-label': `${t('cabecera.cuenta')} · ${texto}` },
+  // sin estado de la nube que contar, el nombre es solo «Cuenta» (antes salía «Cuenta · Cuenta» en el lector de pantalla)
+  const nombre = texto === t('cabecera.cuenta') ? texto : `${t('cabecera.cuenta')} · ${texto}`;
+  poner(cuenta, el('a', { class: 'btn cabecera-entrar', href: '#/entrar', title: texto, 'aria-label': nombre },
     icono('perfil'), el('span', { class: 'cabecera-cuenta-texto' }, t('cabecera.cuenta')),
     el('span', { class: `avatar-nube ${estado}`, 'aria-hidden': 'true' })));
 }

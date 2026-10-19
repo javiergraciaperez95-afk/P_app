@@ -13,7 +13,7 @@ import { icono } from './iconos.js';
 import { descubrirLecciones, cargarIndice, cargarDiccionario, cargarLeccion, cargarCapitulos, cargarFrases } from './lessons.js';
 import { ajuste, aplicarTema, temaActual, cambiarAjuste, aplicarComodidad } from './ajustes.js';
 import { t, tr, aplicarIdioma, IDIOMAS, IDIOMAS_VISIBLES, idioma, cambiarIdioma } from './i18n.js';
-import { sonar, prepararVoces } from './sonidos.js';
+import { sonar, prepararVoces, callar } from './sonidos.js';
 import { alCambiar, hayProgreso } from './progress.js';
 import { pintarCabecera, pendientesDeHoy } from './cabecera.js';
 import { iniciarPie, pintarPie } from './pie.js';
@@ -504,6 +504,7 @@ document.getElementById('btn-sonido').addEventListener('click', () => {
   const on = !ajuste('efectos');
   cambiarAjuste('efectos', on);
   if (on) sonar('interruptor');
+  else callar(); // silenciar también corta la voz que esté leyendo en ese momento
 });
 window.addEventListener('tema-cambiado', pintarBotonTema);
 window.addEventListener('efectos-cambiado', pintarBotonSonido);

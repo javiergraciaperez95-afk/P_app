@@ -14,17 +14,17 @@
   --fondo-punto: #54486a;
   --panel: #574a6c;
   --panel-2: #66587e;
-  --panel-hover: #75668f;
+  --panel-hover: #71628a; /* (antes #75668f: el texto encima daba 4,47:1; informe de accesibilidad, A02) */
   --linea: #e8e0f0;
   --sombra: #2a2136;
   --texto: #f2ecf7;
-  --texto-suave: #ddd3e8;
+  --texto-suave: #e6dcef; /* (antes #ddd3e8: 4,46:1 sobre el panel claro) */
   --espanol: #ffd98a;
   --rojo: #d2353d;
-  --rojo-hover: #e2464e;
-  --rojo-claro: #ff8a8f;
+  --rojo-hover: #d63840; /* (antes #e2464e: el blanco encima daba 4,02:1) */
+  --rojo-claro: #ffb3b6; /* (antes #ff8a8f: 3,57:1 sobre el panel) */
   --verde: #78d693; /* (antes #6fd38c: 4,37:1 sobre el panel; así llega a 4,55:1, informe de arte del 19-10) */
-  --verde-fondo: #3a6e4a;
+  --verde-fondo: #2d5639; /* (antes #3a6e4a: el verde encima daba 3,37:1) */
   --rojo-fondo: #7d3840;
   --oro: #f4c84a;
   --azul: #8fd8ff;
@@ -1702,6 +1702,11 @@ body.en-inicio main { max-width: 1040px; }
 
 /* En chino la fuente pixel no tiene letras: los títulos usan la del texto en vez de una con remates */
 :root:lang(zh) { --fuente-pixel: "Pixelify Sans", system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
+/* Vietnamita: la letra pixel no tiene ệ, ơ, ư, ộ, ế, ồ ni ữ. Lo que le falte sale con Be Vietnam Pro (antes, con una de
+   máquina de escribir), y los títulos van enteros con ella para no mezclar dos letras en una palabra (informe de
+   accesibilidad, A15). */
+:root:lang(vi) { --fuente-pixel: "Pixelify Sans", "Be Vietnam Pro", system-ui, sans-serif; }
+:root:lang(vi) :is(h1, h2, h3) { font-family: "Be Vietnam Pro", system-ui, sans-serif; }
 
 /* ===== Aviso legal y aviso de almacenamiento («cookies») ===== */
 .legal h2 { font-size: 1.2rem; }
@@ -1850,7 +1855,7 @@ body.en-inicio main { max-width: 1040px; }
 .aviso-beta-etiqueta { display: inline-block; padding: 2px 10px; font: 700 .8rem var(--fuente-pixel); letter-spacing: .1em; text-transform: uppercase; color: #2b1d1a; background: var(--oro); box-shadow: 0 0 0 3px var(--linea); }
 
 /* La etiqueta «Beta» de los cursos aún no revisados (traducción automática): pantalla de idiomas */
-.etiqueta-beta { display: inline-block; margin-left: 6px; padding: 0 6px; font: 700 .72rem/1.5 var(--fuente-pixel); letter-spacing: .06em;
+.etiqueta-beta { display: inline-block; margin-left: 6px; padding: 0 6px; font: 700 .76rem/1.5 var(--fuente-pixel); letter-spacing: .06em;
   text-transform: uppercase; vertical-align: middle; color: #2b1d1a; background: #f4c84a; box-shadow: 0 0 0 2px var(--linea); }
 .ti-beta-nota { margin: 4px 0 0; font-size: .82rem; opacity: .85; }
 .ti-camafeo { position: relative; }
@@ -1927,7 +1932,7 @@ html.modo-calma .sin-terminar { animation: none; }
 /* Zona táctil de 44 px como mínimo en los botones pequeños, sin cambiar lo que se ve ni mover nada (la zona invisible
    sobresale un poco por arriba y por abajo). */
 .boton-mini { position: relative; }
-.boton-mini::after { content: ""; position: absolute; inset: -4px 0; }
+.boton-mini::after { content: ""; position: absolute; inset: -8px 0; }
 /* El texto de ayuda de los campos, legible (antes casi no se veía) */
 ::placeholder { color: var(--texto-suave); opacity: .85; }
 /* ===== Al acertar (js/chispa.js): el «golpe» de cuatro fotogramas y dos destellos en cruz ===== */
@@ -1965,4 +1970,18 @@ body.en-leccion #app > .caja::after {
     var(--cinta);
   clip-path: polygon(0 0, 16px 0, 16px 100%, 12px 100%, 12px calc(100% - 3px), 10px calc(100% - 3px), 10px calc(100% - 6px),
     6px calc(100% - 6px), 6px calc(100% - 3px), 4px calc(100% - 3px), 4px 100%, 0 100%);
+}
+/* ===== Zonas que se tocan: 44 px como mínimo (informes de diseño, accesibilidad y usabilidad, 19-10-2026). Donde la fila
+   o el dibujo no dejan crecer el botón (la cabecera de la lección en el móvil, la campana del colegio), crece solo su zona
+   de toque: un ::after o ::before transparente, que no cambia nada de lo que se ve ni el alto de las diapositivas. ===== */
+.saltar { display: inline-flex; align-items: center; min-height: 44px; }
+.marca { position: relative; }
+.marca::after { content: ""; position: absolute; inset: -7px 0; }
+.ce-campana::before { content: ""; position: absolute; inset: -10px -8px; }
+@media (max-width: 700px) {
+  .menu-enlace { position: relative; }
+  .menu-enlace::after { content: ""; position: absolute; inset: -2px 0; }
+  .jg-cabecera .jg-volver, .jg-cabecera .jg-libro, .jg-pausar { position: relative; }
+  .jg-cabecera .jg-volver::after, .jg-cabecera .jg-libro::after { content: ""; position: absolute; inset: -2px; }
+  .jg-pausar::after { content: ""; position: absolute; inset: -5px -4px; }
 }

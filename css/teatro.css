@@ -230,7 +230,7 @@ html:has(.teatro-idiomas), body:has(.teatro-idiomas) { height: 100%; min-height:
   color: #fff;
   text-align: center;
   text-decoration: none;
-  background: #3f9a52;
+  background: #2f7f42; /* (antes #3f9a52: el blanco encima daba 3,53:1) */
   border: 0;
   box-shadow: 0 0 0 3px #000, inset 0 -5px 0 rgba(0, 0, 0, .22), 5px 7px 0 0 rgba(0, 0, 0, .3);
   cursor: pointer;
@@ -310,7 +310,7 @@ html:has(.teatro-idiomas), body:has(.teatro-idiomas) { height: 100%; min-height:
 .ti-camafeo-cara { display: block; width: 100%; height: 100%; image-rendering: pixelated; }
 .ti-camafeo-bandera { position: relative; z-index: 1; margin-top: 9px; }
 .ti-camafeo-bandera svg { display: block; width: 33px; height: 22px; box-shadow: 0 0 0 2px #000, 2px 3px 0 2px rgba(0, 0, 0, .3); }
-.ti-camafeo-nombre { max-width: 100%; margin-top: 4px; overflow: hidden; font-size: .72rem; font-weight: 800; line-height: 1.15; color: #fff4dc; text-overflow: ellipsis; white-space: nowrap; text-shadow: 2px 2px 0 rgba(0, 0, 0, .45); }
+.ti-camafeo-nombre { max-width: 100%; margin-top: 4px; overflow: hidden; font-size: .78rem; font-weight: 800; line-height: 1.15; color: #fff4dc; text-overflow: ellipsis; white-space: nowrap; text-shadow: 2px 2px 0 rgba(0, 0, 0, .45); }
 .ti-camafeo:hover { transform: translateY(-3px); }
 .ti-camafeo:hover .ti-camafeo-marco { box-shadow: 0 0 0 3px var(--oro-luz), 0 0 0 6px #000, 4px 6px 0 4px rgba(0, 0, 0, .3); }
 .ti-camafeo[aria-current="true"] { transform: scale(1.08); }
@@ -348,7 +348,7 @@ html:has(.teatro-idiomas), body:has(.teatro-idiomas) { height: 100%; min-height:
   .ti-camafeo-marco { display: none; }
   .ti-camafeo-bandera { margin-top: 0; }
   .ti-camafeo-bandera svg { width: 36px; height: 24px; }
-  .ti-camafeo-nombre { display: block; max-width: 100%; margin-top: 4px; font-size: .6rem; }
+  .ti-camafeo-nombre { display: block; max-width: 100%; margin-top: 4px; font-size: .7rem; }
   .ti-camafeo[aria-current="true"] { transform: none; background: var(--oro); box-shadow: 0 0 0 2px #000, 0 0 12px 3px rgba(255, 220, 120, .55); }
   .ti-camafeo[aria-current="true"] .ti-camafeo-nombre { color: #2b1d1a; text-shadow: none; }
   .ti-camafeo:hover { transform: none; }
@@ -376,7 +376,7 @@ html:has(.teatro-idiomas), body:has(.teatro-idiomas) { height: 100%; min-height:
   .ti-cartel-cabeza { margin: 0 -12px 6px; padding: 5px 12px; }
   .ti-cartel-bandera svg { width: 36px; height: 24px; }
   .ti-cartel-nombre { font-size: 1.7rem; }
-  .ti-cartel-traducido { margin: 0 0 6px; font-size: .7rem; }
+  .ti-cartel-traducido { margin: 0 0 6px; font-size: .75rem; }
   .ti-datos { margin-bottom: 6px; }
   .ti-datos li { margin-bottom: 3px; padding-left: 22px; font-size: .8rem; line-height: 1.3; }
   .ti-datos li::before { width: 15px; height: 15px; }
@@ -410,7 +410,7 @@ html:has(.teatro-idiomas), body:has(.teatro-idiomas) { height: 100%; min-height:
   .ti-sabias { display: none; }
   /* (la etiqueta «Beta» se queda junto al nombre; la frase larga, en el aviso del curso) */
   .ti-beta-nota { display: none; }
-  .ti-escena { padding-top: 150px; }
+  .ti-escena { padding-top: 146px; }
   .ti-actriz .tutora-lienzo { width: 108px; height: 144px; }
   .ti-cartel-nombre { font-size: 1.45rem; }
 }
@@ -431,7 +431,7 @@ html:has(.teatro-idiomas), body:has(.teatro-idiomas) { height: 100%; min-height:
   .ti-camafeo-marco { display: block; width: 48px; height: 48px; box-shadow: 0 0 0 2px var(--oro), 0 0 0 4px #000, 3px 4px 0 2px rgba(0, 0, 0, .3); }
   .ti-camafeo-bandera { margin-top: 7px; }
   .ti-camafeo-bandera svg { width: 27px; height: 18px; }
-  .ti-camafeo-nombre { max-width: 100%; margin-top: 5px; font-size: .66rem; white-space: normal; overflow-wrap: anywhere; text-align: center; }
+  .ti-camafeo-nombre { max-width: 100%; margin-top: 5px; font-size: .74rem; white-space: normal; overflow-wrap: anywhere; text-align: center; }
   .ti-camafeo[aria-current="true"] { background: rgba(255, 220, 120, .16); box-shadow: 0 0 0 2px var(--oro); }
   .ti-camafeo[aria-current="true"] .ti-camafeo-nombre { color: var(--oro-luz); text-shadow: 2px 2px 0 rgba(0, 0, 0, .45); }
   .ti-camafeo[aria-current="true"] .ti-camafeo-marco { box-shadow: 0 0 0 2px var(--oro-luz), 0 0 0 4px #000, 0 0 14px 4px rgba(255, 220, 120, .5); }
@@ -442,5 +442,5 @@ html:has(.teatro-idiomas), body:has(.teatro-idiomas) { height: 100%; min-height:
   .ti-camafeo-marco { width: 34px; height: 34px; }
   .ti-camafeo-bandera { margin-top: 4px; }
   .ti-camafeo-bandera svg { width: 22px; height: 15px; }
-  .ti-camafeo-nombre { margin-top: 3px; font-size: .6rem; }
+  .ti-camafeo-nombre { margin-top: 3px; font-size: .68rem; }
 }

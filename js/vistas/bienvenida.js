@@ -479,7 +479,8 @@ export function pintarBienvenida(contenedor, { resultados }) {
       el('header', { class: 'bv-carne-cabecera' },
         el('img', { src: 'assets/logo.svg', alt: '', width: 30, height: 30 }),
         el('span', { class: 'bv-carne-marca' }, 'Pa', el('b', {}, 'glot')),
-        el('span', { class: 'bv-carne-titulo' }, t('bienvenida.carne.titulo'))),
+        // el título de la pantalla (h1) es el del carné: sin él, la bienvenida no tenía encabezado principal
+        el('h1', { class: 'bv-carne-titulo' }, t('bienvenida.carne.titulo'))),
       el('div', { class: 'bv-carne-cuerpo' },
         el('div', { class: 'bv-carne-foto', 'aria-hidden': 'true' }, inicial),
         el('div', { class: 'bv-carne-datos' },

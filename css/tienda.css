@@ -47,7 +47,7 @@
 .tn-fondo-menta { --fondo-prod: #e2f3e8; }
 .tn-fondo-arena { --fondo-prod: #f8edd6; }
 .tn-fondo-azul { --fondo-prod: #e1eef8; }
-.tn-eyebrow { display: inline-block; font: 700 .74rem var(--fuente-pixel); letter-spacing: .1em; text-transform: uppercase; color: var(--h-rosa); }
+.tn-eyebrow { display: inline-block; font: 700 .82rem var(--fuente-pixel); letter-spacing: .1em; text-transform: uppercase; color: var(--h-rosa-texto); }
 .tn-dibujo { display: block; }
 .tn-dibujo svg { display: block; width: 100%; height: auto; }
 
@@ -98,7 +98,7 @@
   background: linear-gradient(115deg, transparent 0 62%, rgba(255, 255, 255, .35) 62% 66%, transparent 66% 70%, rgba(255, 255, 255, .25) 70% 72%, transparent 72%), var(--cristal);
   box-shadow: inset 0 0 0 8px var(--madera), inset 0 0 0 11px var(--h-borde), 0 0 0 3px var(--h-borde);
 }
-.tn-escaparate-titulo { display: block; padding-left: 4px; font: 700 .76rem var(--fuente-pixel); letter-spacing: .1em; color: #4f7fc0; }
+.tn-escaparate-titulo { display: block; padding-left: 4px; font: 700 .76rem var(--fuente-pixel); letter-spacing: .1em; color: var(--h-azul-texto); }
 .tn-escaparate h2 { margin: 4px 4px 16px; font-size: clamp(1.3rem, 2.6vw, 1.7rem); }
 .tn-libros { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; align-items: end; padding: 0 10px; }
 .tn-libro { padding: 0; border: 0; background: none; cursor: pointer; transition: transform .2s steps(3); }
@@ -153,10 +153,14 @@
 .tn-formato { display: flex; flex-direction: column; align-items: flex-start; min-height: 46px; padding: 6px 10px; border: 0; font: 700 .9rem var(--h-texto); color: var(--h-tinta); background: var(--h-papel-2); cursor: pointer; box-shadow: inset 0 0 0 3px var(--h-borde); }
 .tn-formato small { font-weight: 600; color: var(--h-suave); }
 .tn-formato[aria-pressed="true"] { color: #15121d; background: var(--marca-oro); }
-.tn-formato[aria-pressed="true"] small { color: #4a3a10; }
+/* de día, el letrero de madera más oscuro, para que el título y el texto claros se lean (4,5:1) */
+:root[data-tema="claro"] .tn-letrero { --madera: #7a4f30; --madera-2: #5e3a22; }
+:root[data-tema="claro"] .tn-letrero > .tn-eyebrow, :root[data-tema="claro"] .tn-letrero h1 span { color: #ffd76a; }
+:root[data-tema="claro"] .tn-escaparate-titulo { color: #2c5590; }
+.tn-formato[aria-pressed="true"] small { color: #15121d; }
 .tn-libro-comprar { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
 .tn-libro-comprar > div { display: flex; flex-direction: column; }
-.tn-libro-formato { font: 700 .7rem var(--fuente-pixel); letter-spacing: .06em; color: var(--h-suave); }
+.tn-libro-formato { font: 700 .76rem var(--fuente-pixel); letter-spacing: .06em; color: var(--h-suave); }
 .tn-libro-precio { font: 700 1.9rem/1.1 var(--fuente-pixel); color: var(--h-tinta); }
 .tn-libro-nota { grid-column: 1 / -1; margin: 0; font-size: .88rem; color: var(--h-suave); }
 .tn-muestra { margin: 12px 4px 0; font-size: .82rem; font-weight: 700; color: var(--h-suave); }
@@ -220,7 +224,7 @@
   box-shadow: 0 0 0 3px var(--h-borde), 3px 5px 0 3px var(--h-sombra);
 }
 .tn-filtro::before { content: ""; position: absolute; left: 50%; bottom: calc(100% + 3px); width: 2px; height: 14px; background: var(--h-borde); }
-.tn-filtro[aria-pressed="true"] { color: #fff; background: var(--h-rosa); }
+.tn-filtro[aria-pressed="true"] { color: var(--h-rosa-tinta); background: var(--h-rosa); }
 .tn-filtro:focus-visible { outline: 3px dashed var(--h-tinta); outline-offset: 5px; }
 .tn-herramientas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 22px 0 34px; }
 .tn-busqueda { display: flex; align-items: center; gap: 10px; flex: 1 1 320px; max-width: 460px; padding: 0 12px; background: var(--h-papel); box-shadow: 0 0 0 3px var(--h-borde); }

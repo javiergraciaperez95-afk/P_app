@@ -13,8 +13,8 @@
 .precios .inicio-figura { margin: 0; }
 
 /* comunes */
-.pr-etiqueta { display: inline-block; padding: 4px 10px; margin-bottom: 12px; font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; background: var(--marca-oro); color: #15121d; }
-.pr-etiqueta-coral { background: var(--h-rosa); color: #fff; }
+.pr-etiqueta { display: inline-block; padding: 4px 10px; margin-bottom: 12px; font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; background: var(--marca-oro); color: #15121d; }
+.pr-etiqueta-coral { background: var(--h-rosa); color: var(--h-rosa-tinta); }
 .pr-seccion { position: relative; margin: 0 calc(50% - 50vw); padding: 64px 16px; overflow-x: clip; }
 .pr-seccion > * { max-width: 1080px; margin-left: auto; margin-right: auto; }
 .pr-seccion h2 { font-size: clamp(1.8rem, 4.4vw, 2.6rem); line-height: 1.1; margin: 0 auto 10px; }
@@ -167,7 +167,7 @@
 .pr-plus .pr-bloque { --color: #4f9fd8; }
 .pr-max .pr-bloque { --color: var(--marca-oro); box-shadow: inset 0 10px 0 var(--color), inset 0 0 0 4px var(--marca-oro), 0 -3px 0 0 var(--h-borde), 0 3px 0 0 var(--h-borde), 3px 0 0 0 var(--h-borde), -3px 0 0 0 var(--h-borde), 5px 7px 0 0 var(--h-sombra); }
 .pr-nombre { margin: 2px 0 0; font: 700 1.55rem var(--fuente-pixel); line-height: 1; }
-.pr-plus .pr-nombre { color: #3f86c4; }
+.pr-plus .pr-nombre { color: var(--h-azul-texto); }
 .pr-max .pr-nombre { color: var(--marca-oro); text-shadow: 2px 2px 0 var(--h-sombra); }
 .pr-lema { margin: 4px 0 8px; color: var(--h-suave); font-weight: 600; font-size: .85rem; }
 .pr-precio { margin: 0; font: 700 2.3rem var(--fuente-pixel); line-height: 1; color: var(--h-tinta); }
@@ -180,7 +180,7 @@
 .pr-lista li::before { content: ""; position: absolute; left: 0; top: .4em; width: 8px; height: 8px; background: var(--color); box-shadow: 2px 2px 0 var(--h-sombra); }
 .pr-escalera .pr-boton { min-height: 42px; margin-top: 10px; font-size: .95rem; }
 .pr-ver { display: none; }
-.pr-cinta { position: absolute; top: -12px; right: 12px; padding: 3px 9px; font: 700 .76rem var(--fuente-pixel); color: #fff; background: var(--h-rosa); box-shadow: 0 0 0 2px var(--h-borde), 3px 3px 0 2px var(--h-sombra); }
+.pr-cinta { position: absolute; top: -12px; right: 12px; padding: 3px 9px; font: 700 .76rem var(--fuente-pixel); color: var(--h-rosa-tinta); background: var(--h-rosa); box-shadow: 0 0 0 2px var(--h-borde), 3px 3px 0 2px var(--h-sombra); }
 .pr-nota-oral { margin: 14px auto 0; max-width: 60em; font-size: .76rem; color: var(--h-suave); }
 
 /* ===================================================================== */
@@ -399,6 +399,10 @@
 .pr-libro .pr-libro-tutora .tutora-lienzo { width: 96px; height: 128px; }
 .pr-libro b { font: 700 1.6rem var(--fuente-pixel); line-height: 1; }
 .pr-libro-nombre { margin-top: 4px; font-size: .78rem; font-weight: 700; opacity: .92; }
+/* lo escrito en la tapa va sobre una etiqueta oscura (o clara, en la tapa clara): en blanco sobre los colores de las tapas
+   no llegaba a 4,5:1 */
+.pr-libro-marca, .pr-libro b, .pr-libro-nombre { padding: 1px 5px; background: rgba(21, 18, 29, .62); opacity: 1; }
+.pr-libro:last-child :is(.pr-libro-marca, b, .pr-libro-nombre) { background: rgba(255, 250, 240, .7); }
 .pr-sello-pdf { position: absolute; top: 34px; right: 8px; padding: 2px 6px; font: 700 .75rem var(--fuente-pixel); color: #15121d; background: #fff; box-shadow: 0 0 0 2px #000; transform: rotate(8deg); }
 /* el tablón con sus escuadras de hierro */
 .pr-tabla-madera {
@@ -1047,7 +1051,7 @@
   }
   .pr-bloque .pr-nombre { grid-area: nombre; font-size: 1.3rem; }
   .pr-bloque .pr-precio { grid-area: precio; font-size: 1.75rem; margin-top: 2px; }
-  .pr-bloque .pr-por { grid-area: por; font-size: .72rem; }
+  .pr-bloque .pr-por { grid-area: por; font-size: .76rem; }
   .pr-bloque .pr-lema { display: none; }
   .pr-escalera .pr-boton { grid-area: boton; align-self: center; width: auto; min-width: 104px; min-height: 40px; margin: 0 3px; padding: 6px 10px; font-size: .82rem; }
   .pr-bloque .pr-nota-pronto { grid-area: nota; }
@@ -1093,7 +1097,7 @@
   .pr-region { font-size: .76rem; }
   .pr-peldano .pr-tutora .tutora-lienzo { width: 72px; height: 96px; }
   .pr-lista li { font-size: .82rem; margin-bottom: 4px; }
-  .pr-nota-oral { font-size: .7rem; margin-top: 8px; }
+  .pr-nota-oral { font-size: .76rem; margin-top: 8px; }
 }
 
 /* móviles bajitos: lo de arriba (de «Precios» a los tres planes) más apretado, para que quepa sin encogerse */
@@ -1108,7 +1112,7 @@
   .pr-ver { margin-top: 4px; }
   .pr-peldano .pr-tutora { top: 10px; }
   .pr-peldano .pr-tutora .tutora-lienzo { width: 58px; height: 77px; }
-  .pr-nota-oral { font-size: .64rem; margin-top: 4px; }
+  .pr-nota-oral { font-size: .75rem; margin-top: 4px; }
 }
 @media (max-width: 520px) and (max-height: 700px) {
   .pr-cabeza .pr-etiqueta { display: none; } /* el título ya dice que son los precios */
@@ -1184,7 +1188,8 @@
     -webkit-tap-highlight-color: transparent;
   }
   /* en una sola fila si cabe */
-  .pr-menu-movil button { min-height: 32px; padding-inline: clamp(5px, 1.8vw, 10px); font-size: clamp(.64rem, 2.7vw, .82rem); }
+  .pr-menu-movil button { position: relative; min-height: 32px; padding-inline: clamp(4px, 1.4vw, 10px); font-size: clamp(.75rem, 3.1vw, .82rem); }
+  .pr-menu-movil button::after { content: ""; position: absolute; inset: -6px -3px; }
   .pr-menu-movil button:active { transform: translateY(2px); }
   .pr-menu-movil button:focus-visible { outline: 3px dashed var(--marca-oro); outline-offset: 3px; }
   /* la sección abierta tapa toda la pantalla, cabecera incluida; nada se desplaza: lo que no cabe va en páginas */

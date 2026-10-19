@@ -15,6 +15,8 @@ import { conCartel } from './carteles.js';
 
 const DURACION = 60;        // segundos
 const CASTIGO = 3;          // segundos que quita un fallo
+// «Sin prisa»: el doble de tiempo y los fallos no lo quitan (informe de accesibilidad, A12: el tiempo se puede ampliar).
+// No cuenta para el récord.
 const MINIMO = 8;           // palabras del cuaderno que hacen falta para jugar
 const CLAVE_MEJOR = clave('reto-mejor');
 
@@ -56,6 +58,8 @@ export function pintarReto(app) {
     const puede = cartas.length >= MINIMO;
     const empezar = el('button', { type: 'button', class: 'es-boton es-boton-grande rt-empezar', disabled: !puede, 'data-sonido': 'arcade' }, t('reto.empezar'));
     empezar.addEventListener('click', () => cuentaAtras(cartas));
+    const sinPrisa = el('button', { type: 'button', class: 'es-boton es-boton-papel rt-sin-prisa', disabled: !puede }, t('reto.sinPrisa'));
+    sinPrisa.addEventListener('click', () => cuentaAtras(cartas, true));
     poner(app,
       conCartel(el('section', { class: 'intro-vista' },
         el('h1', {}, t('reto.titulo')),
@@ -64,33 +68,36 @@ export function pintarReto(app) {
         el('div', { class: 'rt-rayo', 'aria-hidden': 'true' }, '⚡'),
         el('p', { class: 'rt-record' }, t('reto.mejor'), ' ', el('strong', {}, String(mejor))),
         empezar,
+        sinPrisa,
         !puede && el('p', { class: 'aprox' }, t('reto.faltan', { n: MINIMO, tienes: cartas.length }), ' ', el('a', { href: '#/lecciones' }, t('repaso.vacioIr')))));
     decir(puede ? t('reto.tutora', { mejor }) : t('reto.tutoraFaltan'), puede ? 'contenta' : 'pensando');
   }
 
   // ---------------------------------------------------------------------
-  function cuentaAtras(cartas) {
+  function cuentaAtras(cartas, calma = false) {
     const numero = el('p', { class: 'rt-cuenta' }, '3');
     poner(app, el('div', { class: 'rt-sesion rt-preparados' }, numero, el('p', { class: 'aprox' }, t('reto.preparados'))));
     sonar('reloj');
     luego(700, () => { numero.textContent = '2'; numero.classList.remove('late'); void numero.offsetWidth; numero.classList.add('late'); sonar('reloj'); });
     luego(1400, () => { numero.textContent = '1'; numero.classList.remove('late'); void numero.offsetWidth; numero.classList.add('late'); sonar('reloj'); });
-    luego(2100, () => { sonar('silbato'); jugar(cartas); });
+    luego(2100, () => { sonar('silbato'); jugar(cartas, calma); });
   }
 
   // ---------------------------------------------------------------------
-  function jugar(cartas) {
+  function jugar(cartas, calma = false) {
+    const duracion = calma ? DURACION * 2 : DURACION;
+    const castigo = calma ? 0 : CASTIGO;
     let puntos = 0;
     let aciertos = 0;
     let fallos = 0;
     let racha = 0;
     let mejorRacha = 0;
-    let fin = performance.now() + DURACION * 1000;
+    let fin = performance.now() + duracion * 1000;
     let mazo = barajar(cartas);
     let anterior = null;
 
     const marcador = el('span', { class: 'rt-puntos' }, '0');
-    const tiempo = el('span', { class: 'rt-tiempo' }, String(DURACION));
+    const tiempo = el('span', { class: 'rt-tiempo' }, String(duracion));
     const barra = el('span', { class: 'rt-barra', 'aria-hidden': 'true' }, el('span'));
     const llama = el('span', { class: 'rt-racha' });
     const pregunta = el('div', { class: 'rt-pregunta' });
@@ -107,7 +114,7 @@ export function pintarReto(app) {
     const pintarTiempo = () => {
       const queda = Math.max(0, (fin - performance.now()) / 1000);
       tiempo.textContent = String(Math.ceil(queda));
-      barra.firstChild.style.transform = `scaleX(${(queda / DURACION).toFixed(3)})`;
+      barra.firstChild.style.transform = `scaleX(${(queda / duracion).toFixed(3)})`;
       barra.classList.toggle('apurado', queda <= 10);
       if (queda <= 0) terminar();
     };
@@ -147,7 +154,7 @@ export function pintarReto(app) {
           } else {
             racha = 0;
             fallos += 1;
-            fin -= CASTIGO * 1000;
+            fin -= castigo * 1000;
             sonar('mal');
             b.classList.add('mala');
             botones.find(x => limpiar(x.lastChild.textContent) === limpiar(buena))?.classList.add('buena');
@@ -169,7 +176,7 @@ export function pintarReto(app) {
       terminado = true;
       limpiarTodo();
       const antes = leerMejor();
-      const record = puntos > antes;
+      const record = !calma && puntos > antes;
       if (record) guardarMejor(puntos);
       if (puntos > 0) anotarReto(); // cuenta para la racha del día
       window.dispatchEvent(new CustomEvent('reto-terminado', { detail: { puntos } }));
@@ -178,12 +185,13 @@ export function pintarReto(app) {
       const dato = (icono, valor, texto) => el('li', { class: 'jg-final-dato' },
         el('span', { class: 'jg-final-icono', 'aria-hidden': 'true' }, icono), el('strong', {}, String(valor)), el('span', {}, texto));
       const otra = el('button', { type: 'button', class: 'es-boton es-boton-grande', 'data-sonido': 'arcade' }, t('reto.otra'));
-      otra.addEventListener('click', () => cuentaAtras(cartas));
+      otra.addEventListener('click', () => cuentaAtras(cartas, calma));
       poner(app, el('section', { class: 'caja final-leccion rt-final' },
         copa,
         el('h1', {}, t('reto.finTitulo')),
         el('p', { class: 'rt-final-puntos' }, String(puntos)),
-        record ? el('p', { class: 'jg-final-record' }, t('jg.fin.record')) : el('p', { class: 'aprox' }, t('reto.mejor'), ' ', String(antes)),
+        record ? el('p', { class: 'jg-final-record' }, t('jg.fin.record'))
+          : el('p', { class: 'aprox' }, calma ? t('reto.sinPrisaFin') : [t('reto.mejor'), ' ', String(antes)]),
         el('ul', { class: 'jg-final-datos' },
           dato('✔', aciertos, t('reto.aciertos')),
           dato('✖', fallos, t('reto.fallos')),

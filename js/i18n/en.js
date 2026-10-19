@@ -532,6 +532,8 @@ export default {
   'reto.titulo': '⚡ Speed challenge',
   'reto.intro': ({ s, castigo }) => `${s} seconds to get as many notebook words right as you can. Streaks are worth double and triple; a mistake costs ${castigo} seconds.`,
   'reto.empezar': 'Go! ⚡',
+  'reto.sinPrisa': 'No rush: double the time, and mistakes cost none',
+  'reto.sinPrisaFin': 'No-rush rounds don’t count for the record.',
   'reto.mejor': 'Your record:',
   'reto.faltan': ({ n, tienes }) => `You need ${n} words in your notebook to play (you have ${tienes}).`,
   'reto.tutora': ({ mejor }) => (mejor ? `Your record is ${mejor}. I bet you can beat it… and I never lose a bet.` : 'Sixty seconds, as many words as you can. Ready? I am.'),

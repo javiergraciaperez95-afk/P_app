@@ -82,7 +82,7 @@
   background: var(--h-papel);
   box-shadow: inset 0 0 0 4px var(--h-papel), inset 0 0 0 7px #4f7fc0, 0 0 0 3px var(--h-borde), 6px 10px 0 3px rgba(0, 0, 0, .14);
 }
-.lb-etiqueta { font: 700 .78rem var(--fuente-pixel); letter-spacing: .12em; text-transform: uppercase; color: #4f7fc0; }
+.lb-etiqueta { font: 700 .78rem var(--fuente-pixel); letter-spacing: .12em; text-transform: uppercase; color: var(--h-azul-texto); }
 .lb-letrero h1 { margin: 6px 0 8px; font-size: clamp(1.8rem, 4.4vw, 2.6rem); line-height: 1.08; }
 .lb-letrero p { margin: 0; color: var(--h-suave); line-height: 1.55; }
 .lb-aviso-normas {
@@ -176,7 +176,7 @@
 .lb-estanteria-cabecera h2 { margin: 4px 0 0; font-size: clamp(1.6rem, 3.6vw, 2.2rem); }
 .lb-total { font: 700 1rem var(--fuente-pixel); color: var(--h-suave); }
 .lb-prototipo { margin: 10px 0 6px; font-size: .9rem; color: var(--h-suave); }
-.lb-estado { min-height: 1.5em; margin: 0 0 14px; font-weight: 700; color: #4f7fc0; }
+.lb-estado { min-height: 1.5em; margin: 0 0 14px; font-weight: 700; color: var(--h-azul-texto); }
 .lb-formulas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 22px; margin: 0; padding: 0; list-style: none; }
 .lb-formula {
   position: relative;
@@ -241,6 +241,8 @@
 .lb-picto { width: 72px; height: auto; }
 .lb-cartel > div { padding: 12px 14px 0; }
 .lb-cartel-numero { font: 700 .9rem var(--fuente-pixel); color: var(--c); }
+/* el número, en la tinta del papel: el color de cada cartel ya va en su franja, y como letra no se leía (informe de accesibilidad) */
+.lb-cartel-numero { color: var(--h-tinta); }
 .lb-cartel h2 { margin: 4px 0 6px; font-size: 1.08rem; line-height: 1.25; }
 .lb-cartel p { margin: 0; font-size: .92rem; line-height: 1.5; color: var(--h-suave); }
 .lb-pie-normas { position: relative; z-index: 2; display: flex; align-items: flex-end; justify-content: center; gap: 24px; width: min(900px, 100%); margin: 40px auto 0; }

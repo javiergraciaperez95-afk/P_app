@@ -178,7 +178,7 @@
   box-shadow: inset 0 3px 0 rgba(255, 255, 255, .45), inset 0 -4px 0 rgba(0, 0, 0, .18), 0 0 0 3px #0f0a18, 0 0 calc(var(--brillo) * 22px) var(--acento);
 }
 .rc-marquesina h2 { margin: 0; font: 700 1.02rem var(--fuente-pixel); color: #1a1424 !important; }
-.rc-marquesina small { margin-left: auto; font: 700 .62rem var(--h-texto); text-transform: uppercase; letter-spacing: .06em; opacity: .7; }
+.rc-marquesina small { margin-left: auto; font: 700 .72rem var(--h-texto); text-transform: uppercase; letter-spacing: .06em; opacity: .7; }
 .rc-icono { display: grid; place-items: center; flex: none; width: 24px; height: 24px; font-weight: 800; color: var(--acento); background: #1a1424; }
 
 /* el marco negro de la pantalla */
@@ -204,13 +204,13 @@
   right: 0;
   bottom: 0;
   padding: 3px 4px;
-  font: 700 .66rem/1.2 var(--fuente-pixel);
+  font: 700 .75rem/1.2 var(--fuente-pixel);
   color: #fff4dc;
   background: rgba(15, 10, 24, .82);
   animation: rc-parpadeo 1.1s steps(1) infinite;
 }
 .rc-maquina.activa .rc-letrero-pantalla { animation: none; color: #ffe28a; }
-@keyframes rc-parpadeo { 50% { color: rgba(255, 244, 220, .35); } }
+@keyframes rc-parpadeo { 50% { color: rgba(255, 244, 220, .78); } } /* (antes .35: medio segundo sin leerse) */
 .rc-escena { position: absolute; inset: 0 0 20px; }
 .rc-actriz { position: absolute !important; left: 10px; bottom: 0; z-index: 2; }
 .rc-actriz .tutora-lienzo { width: 72px; height: 96px; }
@@ -238,7 +238,7 @@
 /* la tarjeta de instrucciones */
 .rc-instrucciones { flex: 1; margin: 12px 10px 0; padding: 8px 9px; color: #2b1d1a; background: #fff4dc; box-shadow: 0 0 0 2px #0f0a18; }
 .rc-instrucciones h3 { margin: 0 0 4px; font: 700 .86rem/1.25 var(--h-texto); color: #2b1d1a !important; }
-.rc-instrucciones p { margin: 0; font-size: .74rem; line-height: 1.4; color: #5a4840; }
+.rc-instrucciones p { margin: 0; font-size: .82rem; line-height: 1.4; color: #5a4840; }
 
 /* la puerta de las monedas: el enlace */
 .rc-ranura {
@@ -349,7 +349,7 @@
   .rc-pantalla { height: 128px; }
   .rc-actriz { left: 4px; }
   .rc-instrucciones h3 { font-size: .8rem; }
-  .rc-instrucciones p { font-size: .7rem; }
+  .rc-instrucciones p { font-size: .76rem; }
 }
 @media (max-width: 370px) {
   .rc-escena { transform: scale(.88); transform-origin: 50% 100%; }
