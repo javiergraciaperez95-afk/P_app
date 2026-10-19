@@ -8,6 +8,7 @@
 // diálogo, con la tutora de pie encima. Ocupa toda la pantalla y nunca hay que desplazar.
 // Un lienzo por delante pone el confeti. Colores en css/bienvenida.css; textos en i18n/ (claves «bienvenida.*»).
 
+import { nubeActiva, progresoEnLaNube, encenderNube, apagarNube } from '../nube.js';
 import { el, poner, enLinea, barajar } from '../dom.js';
 import { t, tr, origenTarjeta } from '../i18n.js';
 import { icono } from '../iconos.js';
@@ -668,6 +669,13 @@ export function pintarBienvenida(contenedor, { resultados }) {
     raiz.classList.add('final');
     const quien = nombre();
     const empezar = el('button', { type: 'button', class: 'es-boton es-boton-grande', onclick: () => terminar(primera ? `#/leccion/${primera}` : '#/lecciones') }, t('bienvenida.fin.empezar'));
+    // la copia en la nube solo se guarda si se elige (sin marcar de serie); se cambia en Perfil → Cuenta
+    const casillaNube = el('input', { type: 'checkbox', id: 'bv-nube', checked: progresoEnLaNube() });
+    casillaNube.addEventListener('change', () => {
+      sonar('interruptor');
+      if (casillaNube.checked) encenderNube(); else apagarNube();
+    });
+    const nube = nubeActiva && el('p', { class: 'bv-nube' }, casillaNube, el('label', { for: 'bv-nube' }, t('bienvenida.fin.nube')));
     poner(escena,
       el('div', { class: 'bv-pancarta' },
         el('span', { class: 'bv-pancarta-palos', 'aria-hidden': 'true' }),
@@ -677,7 +685,8 @@ export function pintarBienvenida(contenedor, { resultados }) {
         empezar,
         // para quien ya sabe algo: la prueba de nivel propone por dónde empezar (vistas/prueba.js)
         el('button', { type: 'button', class: 'es-boton es-boton-papel', onclick: () => terminar('#/prueba') }, t('bienvenida.fin.prueba')),
-        el('button', { type: 'button', class: 'es-boton es-boton-papel', onclick: () => terminar('#/lecciones') }, t('bienvenida.fin.lecciones'))));
+        el('button', { type: 'button', class: 'es-boton es-boton-papel', onclick: () => terminar('#/lecciones') }, t('bienvenida.fin.lecciones'))),
+      nube);
     sonar('fanfarria');
     sprite.reaccionar('contenta', 1800);
     sprite.gesto('celebrar');

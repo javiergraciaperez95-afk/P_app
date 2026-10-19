@@ -5,8 +5,9 @@
 // - Con el número se entra desde otro dispositivo (se juntan los dos progresos).
 // - Una cuenta anónima que no se usa en 7 días se borra sola (lo hace la base de datos). Si se le añade un
 //   correo (con un código que llega por correo), ya no caduca y el número se puede recuperar con ese correo.
-// - Se puede apagar (Perfil → Cuenta): desde ahí no se sube ni se baja nada hasta que se vuelva a encender. Borrar
-//   la cuenta de la nube también la apaga, para que no se vuelva a subir nada sin que la persona lo pida.
+// - Solo funciona si la persona la enciende (decisión del 19-10-2026, por el informe legal y por los menores): en la
+//   bienvenida o en Perfil → Cuenta, y al entrar con el número de otro dispositivo. Quien ya la usaba antes la conserva.
+//   Se puede apagar cuando se quiera; borrar la cuenta de la nube también la apaga.
 // Todo va por las funciones de _herramientas/supabase-cuentas.sql, con fetch (sin librería).
 
 import { SUPABASE_URL, SUPABASE_CLAVE_PUBLICA } from './config.js';
@@ -14,7 +15,16 @@ import { copiaCompleta, importarCopia, alCambiar } from './progress.js';
 import { curso } from './curso.js';
 
 const CLAVE_NUMERO = 'paglot-cuenta';
-const CLAVE_APAGADA = 'paglot-nube-apagada';
+const CLAVE_NUBE = 'paglot-nube'; // 'si' · 'no' · sin valor: aún no se ha elegido (y entonces no sale nada)
+
+// De antes del 19-10 (la nube iba de serie): quien la había apagado, apagada; quien ya tenía cuenta, encendida.
+try {
+  if (!localStorage.getItem(CLAVE_NUBE)) {
+    if (localStorage.getItem('paglot-nube-apagada') === '1') localStorage.setItem(CLAVE_NUBE, 'no');
+    else if (localStorage.getItem('paglot-cuenta')) localStorage.setItem(CLAVE_NUBE, 'si');
+  }
+  localStorage.removeItem('paglot-nube-apagada');
+} catch { /* sin almacenamiento */ }
 const ESPERA_SUBIDA = 3000;
 
 // Las pruebas automáticas (_herramientas/probar_cursos.mjs, la auditoría, las capturas) la apagan: cada una abre la app
@@ -22,9 +32,9 @@ const ESPERA_SUBIDA = 3000;
 const sinNube = (() => { try { return localStorage.getItem('paglot-sin-nube') === '1'; } catch { return false; } })();
 export const nubeActiva = Boolean(SUPABASE_URL && SUPABASE_CLAVE_PUBLICA) && !sinNube;
 
-/** false si la persona ha apagado la nube en este dispositivo (Perfil → Cuenta): su progreso no sale de aquí. */
+/** true solo si la persona ha encendido la nube en este dispositivo; si no, su progreso no sale de aquí. */
 export function progresoEnLaNube() {
-  try { return localStorage.getItem(CLAVE_APAGADA) !== '1'; } catch { return true; }
+  try { return localStorage.getItem(CLAVE_NUBE) === 'si'; } catch { return false; }
 }
 
 /** estado: apagada · conectando · guardada · sin-conexion · error · desactivada (la ha apagado la persona).
@@ -202,7 +212,7 @@ export async function usarNumero(texto) {
   if (!/^\d{16}$/.test(numero)) throw Object.assign(new Error('formato'), { motivo: 'formato' });
   const existe = await rpc('paglot_existe', { p_numero: numero });
   if (!existe) throw Object.assign(new Error('no existe'), { motivo: 'noExiste' });
-  try { localStorage.setItem(CLAVE_NUMERO, numero); } catch { /* sin almacenamiento */ }
+  try { localStorage.setItem(CLAVE_NUMERO, numero); localStorage.setItem(CLAVE_NUBE, 'si'); } catch { /* sin almacenamiento */ }
   cursosNube = null;
   await bajarYJuntar(numero);
   await subir();
@@ -219,7 +229,7 @@ export async function borrarCuentaNube() {
 
 /** Deja de subir y bajar el progreso en este dispositivo (lo que ya hay en la nube se queda hasta que caduque o se borre). */
 export function apagarNube() {
-  try { localStorage.setItem(CLAVE_APAGADA, '1'); } catch { /* sin almacenamiento */ }
+  try { localStorage.setItem(CLAVE_NUBE, 'no'); } catch { /* sin almacenamiento */ }
   clearTimeout(reloj);
   reloj = null;
   cursosNube = null;
@@ -228,7 +238,7 @@ export function apagarNube() {
 
 /** Vuelve a guardar el progreso en la nube: junta lo de allí con lo de aquí y sigue subiendo los cambios. */
 export async function encenderNube() {
-  try { localStorage.removeItem(CLAVE_APAGADA); } catch { /* sin almacenamiento */ }
+  try { localStorage.setItem(CLAVE_NUBE, 'si'); } catch { /* sin almacenamiento */ }
   avisar('conectando');
   if (iniciada) {
     try { await bajarYJuntar(numeroCuenta()); await subir(); } catch (e) { avisar(e.estado ? 'error' : 'sin-conexion'); }

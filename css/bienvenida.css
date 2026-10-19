@@ -258,6 +258,9 @@ body.en-bienvenida .aviso-datos { display: none; }
 @keyframes bv-se-va { to { opacity: 0; transform: translateY(18px) scale(.94); } }
 @keyframes bv-llega { from { opacity: 0; transform: translateY(-24px) scale(.9); } 70% { transform: translateY(4px); } }
 .bv-botones { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 16px; }
+/* la casilla de la nube, debajo de los botones del final */
+.bv-nube { display: flex; align-items: center; gap: 10px; max-width: 30rem; margin: 12px auto 0; padding: 8px 12px; font-size: .88rem; line-height: 1.35; text-align: left; color: var(--texto); background: var(--panel); box-shadow: 0 0 0 3px var(--linea), 3px 4px 0 3px var(--sombra); }
+.bv-nube input { width: 24px; height: 24px; flex: none; }
 .bv-tiembla { animation: bv-tiembla .35s steps(6); }
 @keyframes bv-tiembla { 20%, 60% { translate: -6px 0; } 40%, 80% { translate: 6px 0; } }
 .bv-listo { animation: bv-llama 1s steps(4) infinite; }

@@ -21,7 +21,7 @@ export const DATOS_DISPOSITIVO = [
   ['vistos', ['idiomas-aviso-visto', 'idiomas-bienvenida-vista', 'idiomas-beta-…', 'paglot_welcome_notification_v5']],
   ['comodidad', ['idiomas-tutora-oculta', 'idiomas-tutora-hoy', 'idiomas-modo-leccion', 'idiomas-juego-musica']],
   ['nombreJuego', ['idiomas-juego-nombre']],
-  ['cuenta', ['paglot-cuenta', 'paglot-nube-apagada']],
+  ['cuenta', ['paglot-cuenta', 'paglot-nube', 'paglot-nube-apagada']],
   ['laboratorio', ['paglot-laboratorio-ideas-v1', 'paglot-laboratorio-votos-v1', 'paglot-laboratorio-quien']],
   ['pestana', ['idiomas-abierta', 'idiomas-desarrollador', 'paglot-sin-terminar', 'paglot-recien', 'paglot-contacto-asunto']],
   ['pruebas', ['paglot-sin-nube', 'paglot-juego-forzado', 'paglot-bienvenida-paso', 'paglot-prueba-almacen']],
