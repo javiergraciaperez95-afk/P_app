@@ -582,6 +582,8 @@ export default {
   'ajustes.efectos': "Efectos de sonido de 8 bits",
   'ajustes.pitidos': "Pitidos de la tutora al hablar",
   'ajustes.comodidad': "Comodidad",
+  'ajustes.recordatorio': 'Recordatorio diario',
+  'ajustes.recordatorioNo': 'Ninguno',
   'ajustes.calma': "Modo calma (sin animaciones ni sonidos decorativos)",
   'ajustes.texto': "Tamaño del texto",
   'ajustes.textoNormal': "Normal",

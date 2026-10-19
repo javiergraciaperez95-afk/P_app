@@ -25,6 +25,7 @@ const PREDETERMINADOS = {
   velocidadVoz: 0.9,  // velocidad de la voz española
   // calma: sin valor sigue a «reducir movimiento» del sistema; true/false si la persona lo elige
   texto: 'normal',    // normal · grande
+  recordatorio: '19:00', // la hora del aviso diario de la APK (_apk/puente.js), o 'no'
 };
 
 let ajustes = cargar();

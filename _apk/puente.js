@@ -12,31 +12,59 @@
     if (notificaciones) {
       window.PaglotLocalNotifications = notificaciones;
 
-      // Los textos, en el idioma de la interfaz (inglés o vietnamita; el puente se carga antes que la app).
-      const vietnamita = (() => {
-        try {
-          const elegido = JSON.parse(localStorage.getItem('idiomas-ajustes') ?? '{}').idioma;
-          if (elegido === 'vi' || elegido === 'en') return elegido === 'vi';
-        } catch { /* sin ajustes */ }
-        return (navigator.language ?? '').toLowerCase().startsWith('vi');
-      })();
-      const TEXTOS = vietnamita
-        ? {
-          hola: '¡Hola! Chào mừng em đến với Paglot ✨',
-          holaCuerpo: 'Lucía đang chờ em. Hôm nay mình học bài tiếng Tây Ban Nha đầu tiên nhé!',
-          diario: '🔥 Giữ lửa nhé!',
-          diarioCuerpo: 'Một bài học hoặc vài thẻ ôn tập là đủ để giữ chuỗi ngày học của em.',
-        }
-        : {
-          hola: '¡Hola! Welcome to Paglot ✨',
-          holaCuerpo: 'Lucía is waiting for you. Take your first step in Spanish today!',
-          diario: '🔥 Keep the flame alive!',
-          diarioCuerpo: 'One lesson or a few review cards is enough to keep your streak going.',
-        };
+      // Los textos, en el idioma de la interfaz (el puente se carga antes que la app): español, inglés o vietnamita.
+      const ajustes = (() => { try { return JSON.parse(localStorage.getItem('idiomas-ajustes') ?? '{}'); } catch { return {}; } })();
+      const lengua = ['es', 'en', 'vi'].includes(ajustes.idioma) ? ajustes.idioma
+        : ['es', 'vi'].find(i => (navigator.language ?? '').toLowerCase().startsWith(i)) ?? 'en';
+      const TEXTOS = {
+        es: {
+          hola: '¡Hola! Te damos la bienvenida a Paglot ✨',
+          holaCuerpo: 'Tu tutora te espera: hoy puedes dar tu primer paso.',
+          diario: '🔥 ¿Un ratito de idiomas?',
+          diarioCuerpo: 'Con una lección o unas tarjetas basta para que la llama siga viva.',
+        },
+        en: {
+          hola: 'Hello! Welcome to Paglot ✨',
+          holaCuerpo: 'Your tutor is waiting: you can take your first step today.',
+          diario: '🔥 A few minutes of language?',
+          diarioCuerpo: 'One lesson or a few cards is enough to keep the flame alive.',
+        },
+        vi: {
+          hola: 'Xin chào! Chào mừng bạn đến với Paglot ✨',
+          holaCuerpo: 'Cô giáo đang chờ bạn: hôm nay bắt đầu bước đầu tiên nhé.',
+          diario: '🔥 Học một chút nhé?',
+          diarioCuerpo: 'Một bài học hoặc vài thẻ là đủ để giữ lửa.',
+        },
+      }[lengua];
 
-      // Bienvenida de primer inicio y recordatorio diario (a las 19:00). La marca se guarda antes de pedir
-      // permiso para no volver a interrumpir en aperturas posteriores.
-      const clavePrimerAviso = 'paglot_welcome_notification_v4';
+      // El recordatorio diario, a la hora que se elige en Perfil → Ajustes (19:00 si no se ha elegido; «no», ninguno).
+      const ID_DIARIO = 730010;
+      const programarDiario = async hora => {
+        await notificaciones.cancel({ notifications: [{ id: ID_DIARIO }] }).catch(() => {});
+        if (!hora || hora === 'no') return;
+        const [h, m] = String(hora).split(':').map(Number);
+        await notificaciones.schedule({
+          notifications: [{
+            id: ID_DIARIO,
+            title: TEXTOS.diario,
+            body: TEXTOS.diarioCuerpo,
+            schedule: { on: { hour: h, minute: m || 0 } },
+            // sin alarma exacta: si no, Android abre los ajustes de «Alarmas y recordatorios» al instalar
+            isExactNotification: false,
+          }],
+        });
+      };
+      window.PaglotRecordatorio = async hora => {
+        let permiso = await notificaciones.checkPermissions();
+        if (permiso.display !== 'granted' && hora !== 'no') permiso = await notificaciones.requestPermissions();
+        if (permiso.display !== 'granted' && hora !== 'no') return false;
+        await programarDiario(hora);
+        return true;
+      };
+
+      // La bienvenida del primer inicio y el recordatorio. La marca se guarda antes de pedir permiso para no volver a
+      // interrumpir en aperturas posteriores.
+      const clavePrimerAviso = 'paglot_welcome_notification_v5';
       try {
         if (!localStorage.getItem(clavePrimerAviso)) {
           localStorage.setItem(clavePrimerAviso, 'attempted');
@@ -55,15 +83,9 @@
                   body: TEXTOS.holaCuerpo,
                   schedule: { at: new Date(Date.now() + 1000) },
                   isExactNotification: false,
-                }, {
-                  id: 730010,
-                  title: TEXTOS.diario,
-                  body: TEXTOS.diarioCuerpo,
-                  schedule: { on: { hour: 19, minute: 0 } },
-                  // sin alarma exacta: si no, Android abre los ajustes de «Alarmas y recordatorios» al instalar
-                  isExactNotification: false,
                 }],
               });
+              await programarDiario(ajustes.recordatorio ?? '19:00');
             } catch (error) {
               localStorage.removeItem(clavePrimerAviso);
               console.warn('No se pudieron programar las notificaciones.', error);

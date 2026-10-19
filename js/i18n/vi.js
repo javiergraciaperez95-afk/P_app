@@ -590,6 +590,8 @@ export default {
   'ajustes.efectos': 'Hiệu ứng âm thanh 8-bit',
   'ajustes.pitidos': 'Tiếng bíp khi cô giáo nói',
   'ajustes.comodidad': 'Dễ chịu',
+  'ajustes.recordatorio': 'Nhắc học mỗi ngày',
+  'ajustes.recordatorioNo': 'Tắt',
   'ajustes.calma': 'Chế độ yên tĩnh (không có hiệu ứng và âm thanh trang trí)',
   'ajustes.texto': 'Cỡ chữ',
   'ajustes.textoNormal': 'Bình thường',

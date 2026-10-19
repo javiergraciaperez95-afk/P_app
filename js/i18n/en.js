@@ -673,6 +673,8 @@ export default {
   'ajustes.efectos': '8-bit sound effects',
   'ajustes.pitidos': 'Tutor beeps while talking',
   'ajustes.comodidad': 'Comfort',
+  'ajustes.recordatorio': 'Daily reminder',
+  'ajustes.recordatorioNo': 'None',
   'ajustes.calma': 'Calm mode (no decorative animations or sounds)',
   'ajustes.texto': 'Text size',
   'ajustes.textoNormal': 'Normal',

@@ -365,6 +365,21 @@ function seccionAjustes() {
   prepararVoces().then(pintarVoz);
   window.addEventListener('voz-cambiada', alCambiarVoz);
 
+  // el aviso diario solo existe en la APK (_apk/puente.js): a qué hora, o ninguno
+  const HORAS = ['no', '09:00', '13:00', '19:00', '21:00'];
+  const recordatorio = window.PaglotRecordatorio && el('div', { class: 'filtros', role: 'group', 'aria-labelledby': 'titulo-recordatorio' },
+    HORAS.map(hora => {
+      const b = el('button', { type: 'button', class: 'boton boton-mini', 'aria-pressed': String(ajuste('recordatorio') === hora) },
+        hora === 'no' ? t('ajustes.recordatorioNo') : hora);
+      b.addEventListener('click', async () => {
+        sonar('interruptor');
+        if (!await window.PaglotRecordatorio(hora)) return;
+        cambiarAjuste('recordatorio', hora);
+        recordatorio.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+      });
+      return b;
+    }));
+
   return el('section', { class: 'caja' },
     el('h2', {}, t('ajustes.titulo')),
     el('h3', { id: 'titulo-idioma' }, t('ajustes.idioma')),
@@ -375,6 +390,8 @@ function seccionAjustes() {
     el('h3', {}, t('ajustes.sonido')),
     interruptor('ajuste-efectos', t('ajustes.efectos'), 'efectos', activo => activo && sonar('bien')),
     interruptor('ajuste-voz-tutora', t('ajustes.pitidos'), 'vozTutora'),
+    recordatorio && el('h3', { id: 'titulo-recordatorio' }, t('ajustes.recordatorio')),
+    recordatorio,
     el('h3', {}, t('ajustes.comodidad')),
     calma,
     el('h3', { id: 'titulo-texto' }, t('ajustes.texto')),
