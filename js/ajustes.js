@@ -3,8 +3,8 @@
 
 export const CLAVE_AJUSTES = 'idiomas-ajustes';
 const CLAVE_ANTIGUA = 'espanol-ajustes'; // de cuando la app era solo de español
-// Idiomas ofrecidos de momento (el resto de traducciones existe, pero está oculto).
-const IDIOMAS_INTERFAZ = new Set(['en', 'vi']);
+// Idiomas de la interfaz (cada curso ofrece dos de ellos: ver i18n.js).
+const IDIOMAS_INTERFAZ = new Set(['es', 'en', 'vi']);
 
 /** Idioma preferido por el navegador/WebView (en Capacitor, el del dispositivo Android). */
 export function idiomaDispositivo() {

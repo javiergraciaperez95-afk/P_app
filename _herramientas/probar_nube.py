@@ -1,4 +1,4 @@
-"""Prueba las funciones de Supabase de las cuentas con número (Para_lodriga/paglot-cuentas.sql) sin abrir la app.
+"""Prueba las funciones de Supabase de las cuentas con número (_herramientas/supabase-cuentas.sql) sin abrir la app.
 
     python _herramientas/probar_nube.py
 

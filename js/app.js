@@ -39,7 +39,7 @@ import { pintarBienvenida, bienvenidaVista } from './vistas/bienvenida.js';
 import { pintarPerdida } from './vistas/perdida.js';
 import { iniciarLogros, comprobarLogros } from './logros.js';
 import { iniciarNube } from './nube.js';
-import { curso, hayCurso, nombreDelCurso, esBeta, explicadoEnEspanol } from './curso.js';
+import { curso, hayCurso, nombreDelCurso, esBeta } from './curso.js';
 import './movil.js';
 import './chispa.js';
 
@@ -362,6 +362,8 @@ window.addEventListener('efectos-cambiado', pintarBotonSonido);
 
 // Al cambiar de idioma se repinta todo: cabecera, menú y la pantalla abierta.
 window.addEventListener('idioma-cambiado', () => {
+  // Los cursos de otros idiomas se quedan con el español o el inglés de sus lecciones al cargarlas: se recargan.
+  if (hayCurso && curso.id !== 'es') { location.reload(); return; }
   pintarSelectorIdioma();
   pintarAvisoDeDatos();
   pintarMarca();
@@ -579,7 +581,7 @@ function avisoBeta() {
     el('div', { class: 'aviso-beta-caja es-papel' },
       el('span', { class: 'aviso-beta-etiqueta' }, t('beta.etiqueta')),
       el('h2', { id: 'aviso-beta-titulo' }, t('beta.titulo')),
-      el('p', {}, t(explicadoEnEspanol(curso) ? 'beta.textoEs' : 'beta.texto', { curso: nombreDelCurso(idioma()) })),
+      el('p', {}, t('beta.texto', { curso: nombreDelCurso(idioma()) })),
       vale));
   document.body.append(capa);
   vale.focus();

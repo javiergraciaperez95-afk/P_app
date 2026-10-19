@@ -5,19 +5,24 @@
 
 import { ajuste, cambiarAjuste, idiomaDispositivo } from './ajustes.js';
 import en from './i18n/en.js';
-import { curso, nombreDelCurso, nombreTutora, saludo } from './curso.js';
+import { curso, hayCurso, nombreDelCurso, nombreTutora, saludo } from './curso.js';
 
 export const IDIOMAS = [
+  { clave: 'es', nombre: 'Español', corto: 'ES', locale: 'es-ES' },
   { clave: 'en', nombre: 'English', corto: 'EN', locale: 'en-GB' },
   { clave: 'vi', nombre: 'Tiếng Việt', corto: 'VI', locale: 'vi-VN' },
 ];
 
-// La interfaz solo está en inglés y vietnamita.
-export const IDIOMAS_VISIBLES = IDIOMAS;
+// Cada curso se explica en dos idiomas: el de español, en inglés y vietnamita; todos los demás, en español e
+// inglés. Antes de elegir curso (la portada y las páginas de la web) se ofrecen los tres.
+const DEL_CURSO = !hayCurso ? ['es', 'en', 'vi'] : curso.id === 'es' ? ['en', 'vi'] : ['es', 'en'];
+export const IDIOMAS_VISIBLES = IDIOMAS.filter(i => DEL_CURSO.includes(i.clave));
+const visible = i => DEL_CURSO.includes(i);
 
 // Al abrir solo se cargan los textos del idioma en uso (y el inglés, que es el de reserva): son unos 90 KB por idioma.
 // El otro llega después, cuando el navegador está libre (para cambiar de idioma al momento).
 const CARGAR = {
+  es: () => import('./i18n/es.js'),
   vi: () => import('./i18n/vi.js'),
 };
 const TEXTOS = { en };
@@ -27,9 +32,15 @@ function cargarTextos(i) {
   cargando[i] ??= CARGAR[i]().then(m => { TEXTOS[i] = m.default; }).catch(() => { delete cargando[i]; });
   return cargando[i];
 }
-const pedido = () => { const i = ajuste('idioma'); return IDIOMAS_VISIBLES.some(v => v.clave === i) ? i : idiomaDispositivo(); };
+// El elegido; si este curso no lo tiene, el del dispositivo; y si tampoco, inglés.
+const pedido = () => {
+  const i = ajuste('idioma');
+  if (visible(i)) return i;
+  const d = idiomaDispositivo();
+  return visible(d) ? d : 'en';
+};
 await cargarTextos(pedido());
-const cargarElResto = () => Object.keys(CARGAR).forEach(cargarTextos);
+const cargarElResto = () => Object.keys(CARGAR).filter(visible).forEach(cargarTextos);
 if ('requestIdleCallback' in window) requestIdleCallback(cargarElResto, { timeout: 5000 });
 else setTimeout(cargarElResto, 3000);
 
@@ -38,7 +49,7 @@ export function idioma() {
   return TEXTOS[i] ? i : 'en'; // (solo pasa un instante, si el idioma del dispositivo cambia y sus textos aún no han llegado)
 }
 
-/** Para fechas y horas: 'en-GB' o 'vi-VN'. */
+/** Para fechas y horas: 'es-ES', 'en-GB' o 'vi-VN'. */
 export function locale() {
   return IDIOMAS.find(i => i.clave === idioma()).locale;
 }

@@ -1,7 +1,10 @@
 {
  "capitulo": 19,
  "titulo_el": "Στο φαρμακείο",
- "titulo_es": "At the pharmacy.",
+ "titulo_es": {
+  "@es": "En la farmacia",
+  "@en": "At the pharmacy."
+ },
  "palabras": {
   "φαρμακοποιός": {
    "es": "farmacéutico/a",
@@ -62,10 +65,19 @@
  "bloques": [
   {
    "tipo": "explicacion",
-   "titulo": "At the pharmacy.",
+   "titulo": {
+    "@es": "En la farmacia",
+    "@en": "At the pharmacy."
+   },
    "texto": [
-    "**Χρειάζομαι κάτι για…** means «I need something for you.». **Πόσες φορές την ημέρα;** asks how many times a day.",
-    "**Ένα χάπι μετά το φαγητό** is a pill after lunch. If you have an allergy, say it with **Έχω αλλεργία σε…**. **Χωρίς συνταγή** means no prescription."
+    {
+     "@es": "**Χρειάζομαι κάτι για…** significa «necesito algo para…». **Πόσες φορές την ημέρα;** pregunta cuántas veces al día.",
+     "@en": "**Χρειάζομαι κάτι για…** means «I need something for you.». **Πόσες φορές την ημέρα;** asks how many times a day."
+    },
+    {
+     "@es": "**Ένα χάπι μετά το φαγητό** es una pastilla después de comer. Si tienes alergia, dilo con **Έχω αλλεργία σε…**. **Χωρίς συνταγή** quiere decir sin receta médica.",
+     "@en": "**Ένα χάπι μετά το φαγητό** is a pill after lunch. If you have an allergy, say it with **Έχω αλλεργία σε…**. **Χωρίς συνταγή** means no prescription."
+    }
    ]
   },
   {
@@ -87,7 +99,7 @@
   },
   {
    "tipo": "dialogo",
-   "titulo": "Αγοράθ οντας φάρμακο",
+   "titulo": "Αγοράζοντας φάρμακο",
    "frases": [
     {
      "quien": "Νίκος",
@@ -97,11 +109,17 @@
      "analisis": [
       [
        "χρειάζομαι",
-       "I need"
+       {
+        "@es": "necesito",
+        "@en": "I need"
+       }
       ],
       [
        "για τον βήχα",
-       "for cough"
+       {
+        "@es": "para la tos",
+        "@en": "for cough"
+       }
       ]
      ]
     },
@@ -113,11 +131,17 @@
      "analisis": [
       [
        "αλλεργία",
-       "allergy"
+       {
+        "@es": "alergia",
+        "@en": "allergy"
+       }
       ],
       [
        "κάποιο φάρμακο",
-       "any medicine"
+       {
+        "@es": "algún medicamento",
+        "@en": "any medicine"
+       }
       ]
      ]
     },
@@ -129,11 +153,17 @@
      "analisis": [
       [
        "πόσες φορές την ημέρα",
-       "how many times a day"
+       {
+        "@es": "cuántas veces al día",
+        "@en": "how many times a day"
+       }
       ],
       [
        "το παίρνω",
-       "I'll take it."
+       {
+        "@es": "lo tomo",
+        "@en": "I'll take it."
+       }
       ]
      ]
     },
@@ -145,11 +175,17 @@
      "analisis": [
       [
        "δύο φορές",
-       "twice"
+       {
+        "@es": "dos veces",
+        "@en": "twice"
+       }
       ],
       [
        "μετά το φαγητό",
-       "after lunch"
+       {
+        "@es": "después de comer",
+        "@en": "after lunch"
+       }
       ]
      ]
     }
@@ -157,118 +193,226 @@
   },
   {
    "tipo": "test",
-   "pregunta": "What does Nikos need something for?",
+   "pregunta": {
+    "@es": "¿Para qué necesita algo Nikos?",
+    "@en": "What does Nikos need something for?"
+   },
    "id": "el027-1",
    "opciones": [
     {
-     "texto": "For the cough.",
-     "explicacion": "It says «για τον βήχα».",
+     "texto": {
+      "@es": "Para la tos.",
+      "@en": "For the cough."
+     },
+     "explicacion": {
+      "@es": "Dice «για τον βήχα».",
+      "@en": "It says «για τον βήχα»."
+     },
      "correcta": true
     },
     {
-     "texto": "For the fever.",
-     "explicacion": "Fever is «πυρετός»."
+     "texto": {
+      "@es": "Para la fiebre.",
+      "@en": "For the fever."
+     },
+     "explicacion": {
+      "@es": "Fiebre es «πυρετός».",
+      "@en": "Fever is «πυρετός»."
+     }
     },
     {
-     "texto": "For allergy.",
-     "explicacion": "They ask if you have an allergy, it's not the reason to buy it."
+     "texto": {
+      "@es": "Para la alergia.",
+      "@en": "For allergy."
+     },
+     "explicacion": {
+      "@es": "Preguntan si tiene alergia, no es el motivo de compra.",
+      "@en": "They ask if you have an allergy, it's not the reason to buy it."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "When should you take the medicine?",
+   "pregunta": {
+    "@es": "¿Cuándo debe tomar el medicamento?",
+    "@en": "When should you take the medicine?"
+   },
    "id": "el027-2",
    "opciones": [
     {
-     "texto": "Twice a day, after lunch.",
-     "explicacion": "That's what the pharmacist says.",
+     "texto": {
+      "@es": "Dos veces al día, después de comer.",
+      "@en": "Twice a day, after lunch."
+     },
+     "explicacion": {
+      "@es": "Así lo indica el farmacéutico.",
+      "@en": "That's what the pharmacist says."
+     },
      "correcta": true
     },
     {
-     "texto": "Once a day, before lunch.",
-     "explicacion": "It's not the instruction."
+     "texto": {
+      "@es": "Una vez al día, antes de comer.",
+      "@en": "Once a day, before lunch."
+     },
+     "explicacion": {
+      "@es": "No es la instrucción.",
+      "@en": "It's not the instruction."
+     }
     },
     {
-     "texto": "Three times in the morning.",
-     "explicacion": "It's not the instruction."
+     "texto": {
+      "@es": "Tres veces, por la mañana.",
+      "@en": "Three times in the morning."
+     },
+     "explicacion": {
+      "@es": "No es la instrucción.",
+      "@en": "It's not the instruction."
+     }
     }
    ]
   },
   {
    "tipo": "traduccion",
-   "pregunta": "What does that mean?",
+   "pregunta": {
+    "@es": "¿Qué significa?",
+    "@en": "What does that mean?"
+   },
    "frase": "Έχω αλλεργία σε αυτό το φάρμακο.",
    "id": "el027-3",
    "opciones": [
     {
-     "texto": "I have an allergy to this medicine.",
-     "explicacion": "«Αλλεργία» means allergy.",
+     "texto": {
+      "@es": "Tengo alergia a este medicamento.",
+      "@en": "I have an allergy to this medicine."
+     },
+     "explicacion": {
+      "@es": "«Αλλεργία» significa alergia.",
+      "@en": "«Αλλεργία» means allergy."
+     },
      "correcta": true
     },
     {
-     "texto": "I need a prescription.",
-     "explicacion": "Recipe is «συνταγή»."
+     "texto": {
+      "@es": "Necesito una receta médica.",
+      "@en": "I need a prescription."
+     },
+     "explicacion": {
+      "@es": "Receta es «συνταγή».",
+      "@en": "Recipe is «συνταγή»."
+     }
     },
     {
-     "texto": "My head hurts.",
-     "explicacion": "Headache is «πονοκέφαλος»."
+     "texto": {
+      "@es": "Me duele la cabeza.",
+      "@en": "My head hurts."
+     },
+     "explicacion": {
+      "@es": "Dolor de cabeza es «πονοκέφαλος».",
+      "@en": "Headache is «πονοκέφαλος»."
+     }
     }
    ]
   },
   {
    "tipo": "huecos",
-   "pregunta": "Complete the sentence.",
+   "pregunta": {
+    "@es": "Completa la frase.",
+    "@en": "Complete the sentence."
+   },
    "frase": "Πόσες ___ την ημέρα το παίρνω;",
    "id": "el027-4",
    "opciones": [
     {
      "texto": "φορές",
-     "explicacion": "«Πόσες φορές» means how many times.",
+     "explicacion": {
+      "@es": "«Πόσες φορές» significa cuántas veces.",
+      "@en": "«Πόσες φορές» means how many times."
+     },
      "correcta": true
     },
     {
      "texto": "χάπια",
-     "explicacion": "It means pills."
+     "explicacion": {
+      "@es": "Significa pastillas.",
+      "@en": "It means pills."
+     }
     },
     {
      "texto": "οδηγία",
-     "explicacion": "It means instruction."
+     "explicacion": {
+      "@es": "Significa instrucción.",
+      "@en": "It means instruction."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "Listen. What does that mean?",
+   "pregunta": {
+    "@es": "Escucha. ¿Qué significa?",
+    "@en": "Listen. What does that mean?"
+   },
    "audio": "Δύο φορές, μετά το φαγητό.",
    "id": "el027-5",
    "opciones": [
     {
-     "texto": "Twice, after lunch.",
-     "explicacion": "It's the pharmacist's indication.",
+     "texto": {
+      "@es": "Dos veces, después de comer.",
+      "@en": "Twice, after lunch."
+     },
+     "explicacion": {
+      "@es": "Es la indicación del farmacéutico.",
+      "@en": "It's the pharmacist's indication."
+     },
      "correcta": true
     },
     {
-     "texto": "Two pills before sleep.",
-     "explicacion": "Sleep is «κοιμάμαι»."
+     "texto": {
+      "@es": "Dos pastillas antes de dormir.",
+      "@en": "Two pills before sleep."
+     },
+     "explicacion": {
+      "@es": "Dormir es «κοιμάμαι».",
+      "@en": "Sleep is «κοιμάμαι»."
+     }
     },
     {
-     "texto": "Two cough recipes.",
-     "explicacion": "Recipe is «συνταγή»."
+     "texto": {
+      "@es": "Dos recetas para la tos.",
+      "@en": "Two cough recipes."
+     },
+     "explicacion": {
+      "@es": "Receta es «συνταγή».",
+      "@en": "Recipe is «συνταγή»."
+     }
     }
    ]
   },
   {
    "tipo": "ordenar",
-   "pregunta": "Order the words.",
+   "pregunta": {
+    "@es": "Ordena las palabras.",
+    "@en": "Order the words."
+   },
    "frase": "χρειάζομαι κάτι για τον βήχα",
-   "traduccion": "I need something for the cough.",
-   "explicacion": "«Χρειάζομαι» means I need to.",
+   "traduccion": {
+    "@es": "necesito algo para la tos",
+    "@en": "I need something for the cough."
+   },
+   "explicacion": {
+    "@es": "«Χρειάζομαι» significa necesito.",
+    "@en": "«Χρειάζομαι» means I need to."
+   },
    "id": "el027-6"
   },
   {
    "tipo": "escribir",
-   "pregunta": "Write in Greek: «Ptablet»",
+   "pregunta": {
+    "@es": "Escribe en griego: «pastilla»",
+    "@en": "Write in Greek: «Ptablet»"
+   },
    "respuestas": [
     "χάπι"
    ],
@@ -276,5 +420,8 @@
    "id": "el027-7"
   }
  ],
- "intro": "Explain what you need and ask how you should take a medicine."
+ "intro": {
+  "@es": "Explica qué necesitas y pregunta cómo debes tomar un medicamento.",
+  "@en": "Explain what you need and ask how you should take a medicine."
+ }
 }

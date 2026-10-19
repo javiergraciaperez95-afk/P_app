@@ -1,7 +1,10 @@
 {
  "capitulo": 12,
  "titulo_el": "Ψάχνω διαμέρισμα",
- "titulo_es": "I'm looking for a floor.",
+ "titulo_es": {
+  "@es": "Busco piso",
+  "@en": "I'm looking for a floor."
+ },
  "palabras": {
   "διαμέρισμα": {
    "es": "piso, apartamento",
@@ -67,15 +70,24 @@
  "bloques": [
   {
    "tipo": "explicacion",
-   "titulo": "Describe a home",
+   "titulo": {
+    "@es": "Describir una vivienda",
+    "@en": "Describe a home"
+   },
    "texto": [
-    "**Ψάχνω διαμέρισμα** means «I'm looking for a flat.». To ask for a home: **Πόσα δωμάτια έχει;** (how many rooms do you have?).",
-    "**Βρίσκεται** means «is located». **Στον δεύτερο όροφο** is «on the second floor». The ordinals match in gender: **δεύτερος όροφος**, **δεύτερη στάση**."
+    {
+     "@es": "**Ψάχνω διαμέρισμα** significa «busco piso». Para preguntar por una vivienda: **Πόσα δωμάτια έχει;** (¿cuántas habitaciones tiene?).",
+     "@en": "**Ψάχνω διαμέρισμα** means «I'm looking for a flat.». To ask for a home: **Πόσα δωμάτια έχει;** (how many rooms do you have?)."
+    },
+    {
+     "@es": "**Βρίσκεται** significa «está situado». **Στον δεύτερο όροφο** es «en la segunda planta». Los ordinales concuerdan en género: **δεύτερος όροφος**, **δεύτερη στάση**.",
+     "@en": "**Βρίσκεται** means «is located». **Στον δεύτερο όροφο** is «on the second floor». The ordinals match in gender: **δεύτερος όροφος**, **δεύτερη στάση**."
+    }
    ]
   },
   {
    "tipo": "vocabulario",
-   "titulo": "Αναύ ήτηση σπιτιού",
+   "titulo": "Αναζήτηση σπιτιού",
    "palabras": [
     "διαμέρισμα",
     "αγγελία",
@@ -103,11 +115,17 @@
      "analisis": [
       [
        "ψάχνω",
-       "I'm looking"
+       {
+        "@es": "busco",
+        "@en": "I'm looking"
+       }
       ],
       [
        "κοντά στο κέντρο",
-       "near the center"
+       {
+        "@es": "cerca del centro",
+        "@en": "near the center"
+       }
       ]
      ]
     },
@@ -119,15 +137,24 @@
      "analisis": [
       [
        "βρίσκεται",
-       "is located"
+       {
+        "@es": "está situado",
+        "@en": "is located"
+       }
       ],
       [
        "δεύτερο όροφο",
-       "Second floor"
+       {
+        "@es": "segunda planta",
+        "@en": "Second floor"
+       }
       ],
       [
        "δύο δωμάτια",
-       "two rooms"
+       {
+        "@es": "dos habitaciones",
+        "@en": "two rooms"
+       }
       ]
      ]
     },
@@ -139,7 +166,10 @@
      "analisis": [
       [
        "ασανσέρ",
-       "elevator"
+       {
+        "@es": "ascensor",
+        "@en": "elevator"
+       }
       ]
      ]
     },
@@ -151,15 +181,24 @@
      "analisis": [
       [
        "ενοίκιο",
-       "rental"
+       {
+        "@es": "alquiler",
+        "@en": "rental"
+       }
       ],
       [
        "χωρίς",
-       "without"
+       {
+        "@es": "sin",
+        "@en": "without"
+       }
       ],
       [
        "κοινόχρηστα",
-       "Community expenditure"
+       {
+        "@es": "gastos comunitarios",
+        "@en": "Community expenditure"
+       }
       ]
      ]
     }
@@ -167,118 +206,226 @@
   },
   {
    "tipo": "test",
-   "pregunta": "How many rooms does the floor have?",
+   "pregunta": {
+    "@es": "¿Cuántas habitaciones tiene el piso?",
+    "@en": "How many rooms does the floor have?"
+   },
    "id": "el004-1",
    "opciones": [
     {
-     "texto": "Two.",
-     "explicacion": "The dialogue says «δύο δωμάτια».",
+     "texto": {
+      "@es": "Dos.",
+      "@en": "Two."
+     },
+     "explicacion": {
+      "@es": "El diálogo dice «δύο δωμάτια».",
+      "@en": "The dialogue says «δύο δωμάτια»."
+     },
      "correcta": true
     },
     {
-     "texto": "One.",
-     "explicacion": "It's not what Nikos says."
+     "texto": {
+      "@es": "Una.",
+      "@en": "One."
+     },
+     "explicacion": {
+      "@es": "No es lo que dice Nikos.",
+      "@en": "It's not what Nikos says."
+     }
     },
     {
-     "texto": "Three.",
-     "explicacion": "The dialogue mentions two."
+     "texto": {
+      "@es": "Tres.",
+      "@en": "Three."
+     },
+     "explicacion": {
+      "@es": "El diálogo menciona dos.",
+      "@en": "The dialogue mentions two."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "What expenses are not included?",
+   "pregunta": {
+    "@es": "¿Qué gastos no están incluidos?",
+    "@en": "What expenses are not included?"
+   },
    "id": "el004-2",
    "opciones": [
     {
-     "texto": "Community expenditure.",
-     "explicacion": "«χωρίς κοινόχρηστα» is indicated.",
+     "texto": {
+      "@es": "Los gastos comunitarios.",
+      "@en": "Community expenditure."
+     },
+     "explicacion": {
+      "@es": "Se indica «χωρίς κοινόχρηστα».",
+      "@en": "«χωρίς κοινόχρηστα» is indicated."
+     },
      "correcta": true
     },
     {
-     "texto": "Water and light.",
-     "explicacion": "They're not mentioned."
+     "texto": {
+      "@es": "El agua y la luz.",
+      "@en": "Water and light."
+     },
+     "explicacion": {
+      "@es": "No se mencionan.",
+      "@en": "They're not mentioned."
+     }
     },
     {
-     "texto": "The elevator.",
-     "explicacion": "The elevator is available."
+     "texto": {
+      "@es": "El ascensor.",
+      "@en": "The elevator."
+     },
+     "explicacion": {
+      "@es": "El ascensor está disponible.",
+      "@en": "The elevator is available."
+     }
     }
    ]
   },
   {
    "tipo": "traduccion",
-   "pregunta": "What does that mean?",
+   "pregunta": {
+    "@es": "¿Qué significa?",
+    "@en": "What does that mean?"
+   },
    "frase": "Το διαμέρισμα βρίσκεται στον δεύτερο όροφο.",
    "id": "el004-3",
    "opciones": [
     {
-     "texto": "The floor is on the second floor.",
-     "explicacion": "«Βρίσκεται» indicates location.",
+     "texto": {
+      "@es": "El piso está en la segunda planta.",
+      "@en": "The floor is on the second floor."
+     },
+     "explicacion": {
+      "@es": "«Βρίσκεται» indica ubicación.",
+      "@en": "«Βρίσκεται» indicates location."
+     },
      "correcta": true
     },
     {
-     "texto": "The floor has two rooms.",
-     "explicacion": "That information appears in another sentence."
+     "texto": {
+      "@es": "El piso tiene dos habitaciones.",
+      "@en": "The floor has two rooms."
+     },
+     "explicacion": {
+      "@es": "Esa información aparece en otra frase.",
+      "@en": "That information appears in another sentence."
+     }
     },
     {
-     "texto": "The rent includes the expenses.",
-     "explicacion": "It says «χωρίς κοινόχρηστα»."
+     "texto": {
+      "@es": "El alquiler incluye los gastos.",
+      "@en": "The rent includes the expenses."
+     },
+     "explicacion": {
+      "@es": "Dice «χωρίς κοινόχρηστα».",
+      "@en": "It says «χωρίς κοινόχρηστα»."
+     }
     }
    ]
   },
   {
    "tipo": "huecos",
-   "pregunta": "Complete the sentence.",
+   "pregunta": {
+    "@es": "Completa la frase.",
+    "@en": "Complete the sentence."
+   },
    "frase": "Το ενοίκιο είναι ___ ευρώ.",
    "id": "el004-4",
    "opciones": [
     {
      "texto": "εξακόσια",
-     "explicacion": "The number matches the ad.",
+     "explicacion": {
+      "@es": "El número coincide con el anuncio.",
+      "@en": "The number matches the ad."
+     },
      "correcta": true
     },
     {
      "texto": "διαμέρισμα",
-     "explicacion": "It means floor."
+     "explicacion": {
+      "@es": "Significa piso.",
+      "@en": "It means floor."
+     }
     },
     {
      "texto": "φωτεινό",
-     "explicacion": "It means light."
+     "explicacion": {
+      "@es": "Significa luminoso.",
+      "@en": "It means light."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "Listen. What does that mean?",
+   "pregunta": {
+    "@es": "Escucha. ¿Qué significa?",
+    "@en": "Listen. What does that mean?"
+   },
    "audio": "Έχει ασανσέρ;",
    "id": "el004-5",
    "opciones": [
     {
-     "texto": "Do you have an elevator?",
-     "explicacion": "It's a question about the building.",
+     "texto": {
+      "@es": "¿Tiene ascensor?",
+      "@en": "Do you have an elevator?"
+     },
+     "explicacion": {
+      "@es": "Es una pregunta sobre el edificio.",
+      "@en": "It's a question about the building."
+     },
      "correcta": true
     },
     {
-     "texto": "How much does the elevator cost?",
-     "explicacion": "You don't ask the price."
+     "texto": {
+      "@es": "¿Cuánto cuesta el ascensor?",
+      "@en": "How much does the elevator cost?"
+     },
+     "explicacion": {
+      "@es": "No se pregunta el precio.",
+      "@en": "You don't ask the price."
+     }
     },
     {
-     "texto": "What floor is he on?",
-     "explicacion": "That would be «σε ποιον όροφο;»."
+     "texto": {
+      "@es": "¿En qué planta está?",
+      "@en": "What floor is he on?"
+     },
+     "explicacion": {
+      "@es": "Eso sería «σε ποιον όροφο;».",
+      "@en": "That would be «σε ποιον όροφο;»."
+     }
     }
    ]
   },
   {
    "tipo": "ordenar",
-   "pregunta": "Order the words.",
+   "pregunta": {
+    "@es": "Ordena las palabras.",
+    "@en": "Order the words."
+   },
    "frase": "ψάχνω ένα διαμέρισμα",
-   "traduccion": "I'm looking for a flat.",
-   "explicacion": "«Ψάχνω» means search.",
+   "traduccion": {
+    "@es": "busco un piso",
+    "@en": "I'm looking for a flat."
+   },
+   "explicacion": {
+    "@es": "«Ψάχνω» significa busco.",
+    "@en": "«Ψάχνω» means search."
+   },
    "id": "el004-6"
   },
   {
    "tipo": "escribir",
-   "pregunta": "Write in Greek: «rental»",
+   "pregunta": {
+    "@es": "Escribe en griego: «alquiler»",
+    "@en": "Write in Greek: «rental»"
+   },
    "respuestas": [
     "ενοίκιο"
    ],
@@ -286,5 +433,8 @@
    "id": "el004-7"
   }
  ],
- "intro": "The neighborhood, the number of rooms, the floor and the price are usually shown in a house announcement."
+ "intro": {
+  "@es": "En un anuncio de vivienda suelen aparecer el barrio, el número de habitaciones, la planta y el precio.",
+  "@en": "The neighborhood, the number of rooms, the floor and the price are usually shown in a house announcement."
+ }
 }

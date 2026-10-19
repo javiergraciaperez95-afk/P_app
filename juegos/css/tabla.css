@@ -1,0 +1,11 @@
+/* LA TABLA (juegos/tabla.js): cada fila se toca para leerla; la tocada se queda iluminada */
+.jg-tabla { display: flex; flex-direction: column; gap: 10px; }
+.jg-tabla-titulo { margin: 0; font-family: var(--fuente-pixel); font-size: 1.1rem; }
+.jg-tabla-aviso { margin: 0; font-size: .9rem; opacity: .85; }
+.jg-tabla .tabla-contenedor { overflow-x: auto; }
+.jg-tabla-fila { cursor: pointer; transition: background-color .2s steps(2); }
+.jg-tabla-fila:hover td, .jg-tabla-fila:focus-visible td { background: var(--h-resalte, rgba(255, 255, 255, .08)); }
+.jg-tabla-fila:focus-visible { outline: 2px dashed var(--h-rosa, #c8445a); outline-offset: -2px; }
+.jg-tabla-fila.tocada td { background: rgba(244, 200, 74, .22); }
+.jg-tabla-fila.tocada td:first-child { box-shadow: inset 4px 0 0 var(--marca-oro, #f4c84a); }
+.jg-tabla .jg-entendido { align-self: center; }

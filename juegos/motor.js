@@ -25,12 +25,12 @@ import { normalizarPalabra } from '../js/lessons.js';
 import { analizarFrase, botonPalabra } from '../js/vistas/leccion.js';
 import { crearElenco } from '../js/vistas/elenco.js';
 import { LANG, clave } from '../js/curso.js';
-import { elegir, probar } from './catalogo.js';
+import { elegir, probar, hayJuegoPara } from './catalogo.js';
 import { esDesarrollador } from '../js/desarrollador.js';
 import { confeti } from '../js/fiesta.js';
 import './lista.js';
 
-const EJERCICIOS = ['test', 'huecos', 'ordenar', 'escribir'];
+const EJERCICIOS = ['test', 'traduccion', 'huecos', 'ordenar', 'escribir'];
 const CLAVE_AVANCE = clave('juego2');
 const CLAVE_ESTRELLAS = clave('estrellas');
 const quieto = () => (window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('modo-calma'));
@@ -38,9 +38,10 @@ const quieto = () => (window.matchMedia('(prefers-reduced-motion: reduce)').matc
 const tipoDe = b => (b.esTexto ? 'texto' : b.tipo);
 
 /** Una lección tiene este modo juego si trae los bloques de la estructura fija. */
+// Toda lección con algo que jugar va en modo juego (antes hacía falta diálogo + vocabulario + texto a la vez, y
+// fuera del español casi ninguna lección lo cumplía: se quedaban en modo libro).
 export function hayJuego(leccion) {
-  const tipos = new Set(leccion.bloques.map(tipoDe));
-  return ['dialogo', 'vocabulario', 'texto'].every(x => tipos.has(x));
+  return leccion.bloques.some(b => !b.error && hayJuegoPara(tipoDe(b)));
 }
 
 // ----- Por dónde va (en este dispositivo) -----

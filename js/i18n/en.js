@@ -850,6 +850,7 @@ export default {
   'bienvenida.carne.curso': 'Course',
   'bienvenida.carne.idioma': '{L}',
   'bienvenida.carne.tutora': 'Tutor',
+  'jg.tabla.toca': 'Tap each row to read it.',
   'jg.entendido': 'Got it ✓',
   'jg.brilla': 'Tap the word that shines.',
   'jg.verTraduccion': 'Show the translation',
@@ -2034,8 +2035,6 @@ export default {
   'beta.titulo': 'This course is in beta',
   'beta.texto': ({ curso }) => `Sorry! The ${curso} course is in beta: it was made quickly, no teacher has reviewed it yet, and its explanations were translated into English automatically, so some may sound odd. We’ll review and improve it as Paglot grows. Thanks for your patience!`,
   'beta.corto': 'Beta: automatic English translation, not yet reviewed. We’ll improve it.',
-  'beta.textoEs': ({ curso }) => `Sorry! The ${curso} course is in beta: no teacher has reviewed it yet and, for now, its explanations are in Spanish. We’ll translate and improve it as Paglot grows. Thanks for your patience!`,
-  'beta.cortoEs': 'Beta: explanations in Spanish for now, not yet reviewed. We’ll improve it.',
   'beta.vale': 'Got it, let’s start',
   'beta.etiqueta': 'Beta',
 };

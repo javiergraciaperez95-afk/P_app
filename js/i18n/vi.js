@@ -856,6 +856,7 @@ export default {
   'bienvenida.carne.curso': 'Khóa học',
   'bienvenida.carne.idioma': '{L}',
   'bienvenida.carne.tutora': 'Gia sư',
+  'jg.tabla.toca': 'Chạm vào từng hàng để đọc.',
   'jg.entendido': 'Hiểu rồi ✓',
   'jg.brilla': 'Chạm vào từ đang sáng.',
   'jg.verTraduccion': 'Xem bản dịch',
@@ -2041,8 +2042,6 @@ export default {
   'beta.titulo': 'Khóa học này đang thử nghiệm',
   'beta.texto': ({ curso }) => `Xin lỗi! Khóa ${curso} đang thử nghiệm (beta): được làm nhanh, chưa có giáo viên kiểm tra, và phần giải thích được dịch tự động sang tiếng Anh nên có chỗ chưa tự nhiên. Chúng mình sẽ kiểm tra và cải thiện dần theo sự phát triển của Paglot. Cảm ơn bạn đã kiên nhẫn!`,
   'beta.corto': 'Beta: bản dịch tiếng Anh tự động, chưa được kiểm tra. Chúng mình sẽ cải thiện.',
-  'beta.textoEs': ({ curso }) => `Xin lỗi! Khóa ${curso} đang thử nghiệm (beta): chưa có giáo viên kiểm tra và hiện phần giải thích bằng tiếng Tây Ban Nha. Chúng mình sẽ dịch và cải thiện dần theo sự phát triển của Paglot. Cảm ơn bạn đã kiên nhẫn!`,
-  'beta.cortoEs': 'Beta: tạm thời giải thích bằng tiếng Tây Ban Nha, chưa được kiểm tra. Chúng mình sẽ cải thiện.',
   'beta.vale': 'Đã hiểu, bắt đầu thôi',
   'beta.etiqueta': 'Beta',
 };

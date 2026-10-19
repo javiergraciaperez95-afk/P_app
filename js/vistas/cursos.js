@@ -3,7 +3,7 @@
 import { el, poner } from '../dom.js';
 import { t, tr, idioma, locale } from '../i18n.js';
 import { CURSOS } from '../cursos.js';
-import { curso, hayCurso, elegirCurso, nombreCurso, NOMBRES_TUTORAS, esBeta, explicadoEnEspanol } from '../curso.js';
+import { curso, hayCurso, elegirCurso, nombreCurso, NOMBRES_TUTORAS, esBeta } from '../curso.js';
 import { dibujoDe } from '../tutor-sprite.js';
 import { sonar } from '../sonidos.js';
 import { VOCES, OTROS } from '../creditos.js';
@@ -115,8 +115,8 @@ export function pintarElegirCurso(contenedor) {
         banderaSola(c, 'ti-cartel-bandera')),
       el('h2', { class: 'ti-cartel-nombre', lang: c.lang }, c.nativo),
       el('p', { class: 'ti-cartel-traducido' }, nombreEn(c, i18n), estudiando ? el('span', { class: 'ti-aqui' }, t('cursos.estudiando')) : null,
-        esBeta(c) ? el('span', { class: 'etiqueta-beta', title: t(explicadoEnEspanol(c) ? 'beta.cortoEs' : 'beta.corto') }, t('beta.etiqueta')) : null),
-      esBeta(c) ? el('p', { class: 'ti-beta-nota' }, t(explicadoEnEspanol(c) ? 'beta.cortoEs' : 'beta.corto')) : null,
+        esBeta(c) ? el('span', { class: 'etiqueta-beta', title: t('beta.corto') }, t('beta.etiqueta')) : null),
+      esBeta(c) ? el('p', { class: 'ti-beta-nota' }, t('beta.corto')) : null,
       el('ul', { class: 'ti-datos' },
         hablantes ? el('li', { class: 'ti-dato-gente', style: '--n:0' }, t('idi.hablantes', { n: numero(hablantes), w: numero(hablantes * 100) })) : null,
         paises ? el('li', { class: 'ti-dato-mundo', style: '--n:1' }, paises) : null,

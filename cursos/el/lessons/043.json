@@ -1,7 +1,10 @@
 {
  "capitulo": 14,
  "titulo_el": "Στο εστιατόριο",
- "titulo_es": "In the restaurant",
+ "titulo_es": {
+  "@es": "En el restaurante",
+  "@en": "In the restaurant"
+ },
  "palabras": {
   "περιέχει": {
    "es": "contiene",
@@ -37,10 +40,19 @@
  "bloques": [
   {
    "tipo": "explicacion",
-   "titulo": "Ask and pay",
+   "titulo": {
+    "@es": "Pedir y pagar",
+    "@en": "Ask and pay"
+   },
    "texto": [
-    "**Θα ήθελα…** is a courteous way to order: «I wish». **Τι περιέχει;** asks what a dish contains.",
-    "To order the account: **Τον λογαριασμό, παρακαλώ**. **Χωρίς…** means without; **με…** indicates what it is carrying. **Περιέχει ξηρούς καρπούς** means contains nuts."
+    {
+     "@es": "**Θα ήθελα…** es una forma cortés de pedir: «quisiera…». **Τι περιέχει;** pregunta qué contiene un plato.",
+     "@en": "**Θα ήθελα…** is a courteous way to order: «I wish». **Τι περιέχει;** asks what a dish contains."
+    },
+    {
+     "@es": "Para pedir la cuenta: **Τον λογαριασμό, παρακαλώ**. **Χωρίς…** significa sin; **με…** indica qué lleva. **Περιέχει ξηρούς καρπούς** significa contiene frutos secos.",
+     "@en": "To order the account: **Τον λογαριασμό, παρακαλώ**. **Χωρίς…** means without; **με…** indicates what it is carrying. **Περιέχει ξηρούς καρπούς** means contains nuts."
+    }
    ]
   },
   {
@@ -67,11 +79,17 @@
      "analisis": [
       [
        "τι περιέχει",
-       "what it contains"
+       {
+        "@es": "qué contiene",
+        "@en": "what it contains"
+       }
       ],
       [
        "αυτή η σαλάτα",
-       "This salad"
+       {
+        "@es": "esta ensalada",
+        "@en": "This salad"
+       }
       ]
      ]
     },
@@ -87,7 +105,10 @@
       ],
       [
        "ελιές",
-       "olives"
+       {
+        "@es": "aceitunas",
+        "@en": "olives"
+       }
       ]
      ]
     },
@@ -99,11 +120,17 @@
      "analisis": [
       [
        "θα ήθελα",
-       "I wish."
+       {
+        "@es": "quisiera",
+        "@en": "I wish."
+       }
       ],
       [
        "χωρίς ξηρούς καρπούς",
-       "without nuts"
+       {
+        "@es": "sin frutos secos",
+        "@en": "without nuts"
+       }
       ]
      ]
     },
@@ -115,11 +142,17 @@
      "analisis": [
       [
        "τον λογαριασμό",
-       "the account"
+       {
+        "@es": "la cuenta",
+        "@en": "the account"
+       }
       ],
       [
        "παρακαλώ",
-       "Please."
+       {
+        "@es": "por favor",
+        "@en": "Please."
+       }
       ]
      ]
     }
@@ -127,124 +160,232 @@
   },
   {
    "tipo": "test",
-   "pregunta": "What does the salad contain?",
+   "pregunta": {
+    "@es": "¿Qué contiene la ensalada?",
+    "@en": "What does the salad contain?"
+   },
    "id": "el012-1",
    "opciones": [
     {
      "texto": "Tomate, pepino, feta y aceitunas.",
-     "explicacion": "That's the waiter's answer.",
+     "explicacion": {
+      "@es": "Esa es la respuesta del camarero.",
+      "@en": "That's the waiter's answer."
+     },
      "correcta": true
     },
     {
-     "texto": "Tuna, corn and egg.",
-     "explicacion": "Those ingredients don't appear."
+     "texto": {
+      "@es": "Atún, maíz y huevo.",
+      "@en": "Tuna, corn and egg."
+     },
+     "explicacion": {
+      "@es": "No aparecen esos ingredientes.",
+      "@en": "Those ingredients don't appear."
+     }
     },
     {
-     "texto": "Pepino, rice and yogurt.",
-     "explicacion": "Those ingredients don't appear."
+     "texto": {
+      "@es": "Pepino, arroz y yogur.",
+      "@en": "Pepino, rice and yogurt."
+     },
+     "explicacion": {
+      "@es": "No aparecen esos ingredientes.",
+      "@en": "Those ingredients don't appear."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "What does Sofia ask me not to wear?",
+   "pregunta": {
+    "@es": "¿Qué pide Sofía que no lleve?",
+    "@en": "What does Sofia ask me not to wear?"
+   },
    "id": "el012-2",
    "opciones": [
     {
-     "texto": "Dry fruits.",
-     "explicacion": "It says «χωρίς ξηρούς καρπούς».",
+     "texto": {
+      "@es": "Frutos secos.",
+      "@en": "Dry fruits."
+     },
+     "explicacion": {
+      "@es": "Dice «χωρίς ξηρούς καρπούς».",
+      "@en": "It says «χωρίς ξηρούς καρπούς»."
+     },
      "correcta": true
     },
     {
-     "texto": "Feta cheese.",
-     "explicacion": "The feta does appear among the ingredients."
+     "texto": {
+      "@es": "Queso feta.",
+      "@en": "Feta cheese."
+     },
+     "explicacion": {
+      "@es": "La feta sí aparece entre los ingredientes.",
+      "@en": "The feta does appear among the ingredients."
+     }
     },
     {
-     "texto": "Here.",
-     "explicacion": "He doesn't ask to take it off."
+     "texto": {
+      "@es": "Tomate.",
+      "@en": "Here."
+     },
+     "explicacion": {
+      "@es": "No pide quitarlo.",
+      "@en": "He doesn't ask to take it off."
+     }
     }
    ]
   },
   {
    "tipo": "traduccion",
-   "pregunta": "What does that mean?",
+   "pregunta": {
+    "@es": "¿Qué significa?",
+    "@en": "What does that mean?"
+   },
    "frase": "Θα ήθελα τη σαλάτα χωρίς τυρί.",
    "id": "el012-3",
    "opciones": [
     {
-     "texto": "I'd like the salad without cheese.",
-     "explicacion": "«Χωρίς» means no.",
+     "texto": {
+      "@es": "Quisiera la ensalada sin queso.",
+      "@en": "I'd like the salad without cheese."
+     },
+     "explicacion": {
+      "@es": "«Χωρίς» significa sin.",
+      "@en": "«Χωρίς» means no."
+     },
      "correcta": true
     },
     {
-     "texto": "I want a cheese salad.",
-     "explicacion": "The phrase is polite and says without cheese."
+     "texto": {
+      "@es": "Quiero una ensalada con queso.",
+      "@en": "I want a cheese salad."
+     },
+     "explicacion": {
+      "@es": "La frase es cortés y dice sin queso.",
+      "@en": "The phrase is polite and says without cheese."
+     }
     },
     {
-     "texto": "What does the salad contain?",
-     "explicacion": "That question is «τι περιέχει;»."
+     "texto": {
+      "@es": "¿Qué contiene la ensalada?",
+      "@en": "What does the salad contain?"
+     },
+     "explicacion": {
+      "@es": "Esa pregunta es «τι περιέχει;».",
+      "@en": "That question is «τι περιέχει;»."
+     }
     }
    ]
   },
   {
    "tipo": "huecos",
-   "pregunta": "Complete the sentence.",
+   "pregunta": {
+    "@es": "Completa la frase.",
+    "@en": "Complete the sentence."
+   },
    "frase": "Τον ___, παρακαλώ.",
    "id": "el012-4",
    "opciones": [
     {
      "texto": "λογαριασμό",
-     "explicacion": "That's what the bill is called for.",
+     "explicacion": {
+      "@es": "Así se pide la cuenta.",
+      "@en": "That's what the bill is called for."
+     },
      "correcta": true
     },
     {
      "texto": "λογαριασμός",
-     "explicacion": "It's the form of a dictionary."
+     "explicacion": {
+      "@es": "Es la forma de diccionario.",
+      "@en": "It's the form of a dictionary."
+     }
     },
     {
      "texto": "περιέχει",
-     "explicacion": "It means contains."
+     "explicacion": {
+      "@es": "Significa contiene.",
+      "@en": "It means contains."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "Listen. What does that mean?",
+   "pregunta": {
+    "@es": "Escucha. ¿Qué significa?",
+    "@en": "Listen. What does that mean?"
+   },
    "audio": "Θα ήθελα ένα ψητό ψάρι.",
    "id": "el012-5",
    "opciones": [
     {
-     "texto": "I'd like a roast fish.",
-     "explicacion": "«Ψητό» means roast.",
+     "texto": {
+      "@es": "Quisiera un pescado asado.",
+      "@en": "I'd like a roast fish."
+     },
+     "explicacion": {
+      "@es": "«Ψητό» significa asado.",
+      "@en": "«Ψητό» means roast."
+     },
      "correcta": true
     },
     {
-     "texto": "I want a salad without cheese.",
-     "explicacion": "There's no mention of salad."
+     "texto": {
+      "@es": "Quiero una ensalada sin queso.",
+      "@en": "I want a salad without cheese."
+     },
+     "explicacion": {
+      "@es": "No se menciona ensalada.",
+      "@en": "There's no mention of salad."
+     }
     },
     {
-     "texto": "The bill, please.",
-     "explicacion": "The account is «λογαριασμό»."
+     "texto": {
+      "@es": "La cuenta, por favor.",
+      "@en": "The bill, please."
+     },
+     "explicacion": {
+      "@es": "La cuenta es «λογαριασμό».",
+      "@en": "The account is «λογαριασμό»."
+     }
     }
    ]
   },
   {
    "tipo": "ordenar",
-   "pregunta": "Order the words.",
+   "pregunta": {
+    "@es": "Ordena las palabras.",
+    "@en": "Order the words."
+   },
    "frase": "τι περιέχει αυτή η σαλάτα",
-   "traduccion": "what this salad contains",
-   "explicacion": "«Περιέχει» means contains.",
+   "traduccion": {
+    "@es": "qué contiene esta ensalada",
+    "@en": "what this salad contains"
+   },
+   "explicacion": {
+    "@es": "«Περιέχει» significa contiene.",
+    "@en": "«Περιέχει» means contains."
+   },
    "id": "el012-6"
   },
   {
    "tipo": "escribir",
-   "pregunta": "Write in Greek: «Please.»",
+   "pregunta": {
+    "@es": "Escribe en griego: «por favor»",
+    "@en": "Write in Greek: «Please.»"
+   },
    "respuestas": [
     "παρακαλώ"
    ],
-   "explicacion": "παρακαλε",
+   "explicacion": "παρακαλώ",
    "id": "el012-7"
   }
  ],
- "intro": "Ask for an explanation about the dishes, choose what you want and ask for the account with courtesy."
+ "intro": {
+  "@es": "Pide una explicación sobre los platos, elige lo que quieres y pide la cuenta con cortesía.",
+  "@en": "Ask for an explanation about the dishes, choose what you want and ask for the account with courtesy."
+ }
 }

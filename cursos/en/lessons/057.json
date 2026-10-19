@@ -1,7 +1,10 @@
 {
  "capitulo": 8,
  "titulo_en": "Read a simple timetable",
- "titulo_es": "buscar datos en un horario",
+ "titulo_es": {
+  "@es": "buscar datos en un horario",
+  "@en": "search data on a schedule"
+ },
  "palabras": {
   "departure": {
    "es": "salida",
@@ -31,14 +34,23 @@
  "bloques": [
   {
    "tipo": "explicacion",
-   "titulo": "Leer un horario",
+   "titulo": {
+    "@es": "Leer un horario",
+    "@en": "Read a schedule"
+   },
    "texto": [
-    "**Departure** indica cuándo sale un servicio; **arrival**, cuándo llega. Lee cada fila de izquierda a derecha para relacionar el servicio, la salida, la llegada y el andén. Comprueba el destino antes de elegir."
+    {
+     "@es": "**Departure** indica cuándo sale un servicio; **arrival**, cuándo llega. Lee cada fila de izquierda a derecha para relacionar el servicio, la salida, la llegada y el andén. Comprueba el destino antes de elegir.",
+     "@en": "**Departure** indicates when a service comes out; **arrival**, when it arrives. Read each row from left to right to relate service, output, arrival and platform. Check the destination before choosing."
+    }
    ]
   },
   {
    "tipo": "vocabulario",
-   "titulo": "Vocabulario: el horario",
+   "titulo": {
+    "@es": "Vocabulario: el horario",
+    "@en": "Vocabulary: the schedule"
+   },
    "palabras": [
     "departure",
     "arrival",
@@ -50,7 +62,10 @@
   },
   {
    "tipo": "tabla",
-   "titulo": "Trenes a Oxford",
+   "titulo": {
+    "@es": "Trenes a Oxford",
+    "@en": "Trains to Oxford"
+   },
    "filas": [
     [
      "Train 1 / Tren 1",
@@ -74,145 +89,235 @@
   },
   {
    "tipo": "test",
-   "pregunta": "Lee el horario. ¿Desde qué andén sale el tren de las 09:10?",
+   "pregunta": {
+    "@es": "Lee el horario. ¿Desde qué andén sale el tren de las 09:10?",
+    "@en": "Read the schedule. Since when does the 9: 10 train leave?"
+   },
    "id": "en057-1",
    "opciones": [
     {
      "texto": "Platform 4.",
-     "explicacion": "La fila de Train 2 indica el andén 4.",
+     "explicacion": {
+      "@es": "La fila de Train 2 indica el andén 4.",
+      "@en": "Train 2 row indicates platform 4."
+     },
      "correcta": true
     },
     {
      "texto": "Platform 2.",
-     "explicacion": "El andén 2 corresponde a Train 1."
+     "explicacion": {
+      "@es": "El andén 2 corresponde a Train 1.",
+      "@en": "The platform 2 corresponds to Train 1."
+     }
     },
     {
      "texto": "Platform 3.",
-     "explicacion": "Ese andén no aparece en el horario."
+     "explicacion": {
+      "@es": "Ese andén no aparece en el horario.",
+      "@en": "That platform doesn't show up on schedule."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "Lee el horario. ¿A qué hora llega Train 1?",
+   "pregunta": {
+    "@es": "Lee el horario. ¿A qué hora llega Train 1?",
+    "@en": "Read the schedule. What time does Train 1 get here?"
+   },
    "id": "en057-2",
    "opciones": [
     {
      "texto": "08:55.",
-     "explicacion": "Es la hora de la columna «Arrival».",
+     "explicacion": {
+      "@es": "Es la hora de la columna «Arrival».",
+      "@en": "It's time for the «Arrival» column."
+     },
      "correcta": true
     },
     {
      "texto": "08:10.",
-     "explicacion": "Esa es la hora de salida."
+     "explicacion": {
+      "@es": "Esa es la hora de salida.",
+      "@en": "That's the time of departure."
+     }
     },
     {
      "texto": "09:55.",
-     "explicacion": "Esa es la llegada de Train 2."
+     "explicacion": {
+      "@es": "Esa es la llegada de Train 2.",
+      "@en": "That's the arrival of Train 2."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "¿Qué tren sale primero?",
+   "pregunta": {
+    "@es": "¿Qué tren sale primero?",
+    "@en": "What train leaves first?"
+   },
    "id": "en057-3",
    "opciones": [
     {
      "texto": "Train 1.",
-     "explicacion": "Sale a las 08:10, antes que Train 2.",
+     "explicacion": {
+      "@es": "Sale a las 08:10, antes que Train 2.",
+      "@en": "He leaves at 8: 10, before Train 2."
+     },
      "correcta": true
     },
     {
      "texto": "Train 2.",
-     "explicacion": "Sale a las 09:10."
+     "explicacion": {
+      "@es": "Sale a las 09:10.",
+      "@en": "He leaves at 9: 10."
+     }
     },
     {
      "texto": "Salen a la vez.",
-     "explicacion": "Las horas son distintas."
+     "explicacion": {
+      "@es": "Las horas son distintas.",
+      "@en": "The hours are different."
+     }
     }
    ]
   },
   {
    "tipo": "huecos",
-   "pregunta": "Completa según el horario.",
+   "pregunta": {
+    "@es": "Completa según el horario.",
+    "@en": "Complete according to schedule."
+   },
    "frase": "The 09:10 train leaves from platform ___.",
    "id": "en057-4",
    "opciones": [
     {
      "texto": "four",
-     "explicacion": "La fila indica el andén 4.",
+     "explicacion": {
+      "@es": "La fila indica el andén 4.",
+      "@en": "The row indicates platform 4."
+     },
      "correcta": true
     },
     {
      "texto": "two",
-     "explicacion": "El andén 2 corresponde al tren de las 08:10."
+     "explicacion": {
+      "@es": "El andén 2 corresponde al tren de las 08:10.",
+      "@en": "The platform 2 corresponds to the 8: 10 train."
+     }
     },
     {
      "texto": "three",
-     "explicacion": "Ese número no aparece en la tabla."
+     "explicacion": {
+      "@es": "Ese número no aparece en la tabla.",
+      "@en": "That number doesn't appear on the table."
+     }
     }
    ]
   },
   {
    "tipo": "huecos",
-   "pregunta": "Completa según la columna «Arrival».",
+   "pregunta": {
+    "@es": "Completa según la columna «Arrival».",
+    "@en": "Complete according to «Arrival» column."
+   },
    "frase": "Train 1 ___ in Oxford at 08:55.",
    "id": "en057-5",
    "opciones": [
     {
      "texto": "arrives",
-     "explicacion": "«Arrival» indica la llegada.",
+     "explicacion": {
+      "@es": "«Arrival» indica la llegada.",
+      "@en": "«Arrival» indicates arrival."
+     },
      "correcta": true
     },
     {
      "texto": "leaves",
-     "explicacion": "«Leaves» significa que sale."
+     "explicacion": {
+      "@es": "«Leaves» significa que sale.",
+      "@en": "«Leaves» means it comes out."
+     }
     },
     {
      "texto": "departs",
-     "explicacion": "«Departs» también significa que sale."
+     "explicacion": {
+      "@es": "«Departs» también significa que sale.",
+      "@en": "«Departs» also means it comes out."
+     }
     }
    ]
   },
   {
    "tipo": "traduccion",
-   "pregunta": "¿Qué significa?",
+   "pregunta": {
+    "@es": "¿Qué significa?",
+    "@en": "What does that mean?"
+   },
    "frase": "Train 2 arrives at 09:55.",
    "id": "en057-6",
    "opciones": [
     {
      "texto": "El tren 2 llega a las 09:55.",
-     "explicacion": "«Arrives» indica la hora de llegada.",
+     "explicacion": {
+      "@es": "«Arrives» indica la hora de llegada.",
+      "@en": "«Arrives» indicates arrival time."
+     },
      "correcta": true
     },
     {
      "texto": "El tren 2 sale a las 09:55.",
-     "explicacion": "«Leaves» sería «sale»."
+     "explicacion": {
+      "@es": "«Leaves» sería «sale».",
+      "@en": "«Leaves» would be «sale»."
+     }
     },
     {
      "texto": "El tren 2 llega al andén 9.",
-     "explicacion": "09:55 es una hora, no un andén."
+     "explicacion": {
+      "@es": "09:55 es una hora, no un andén.",
+      "@en": "09: 55 is an hour, not a platform."
+     }
     }
    ]
   },
   {
    "tipo": "ordenar",
-   "pregunta": "Ordena las palabras.",
+   "pregunta": {
+    "@es": "Ordena las palabras.",
+    "@en": "Order the words."
+   },
    "frase": "The 09:10 train leaves from platform four",
-   "traduccion": "El tren de las 09:10 sale del andén cuatro",
-   "explicacion": "«Leaves» es la salida; «platform» es el andén.",
+   "traduccion": {
+    "@es": "El tren de las 09:10 sale del andén cuatro",
+    "@en": "The 9: 10 train leaves platform four."
+   },
+   "explicacion": {
+    "@es": "«Leaves» es la salida; «platform» es el andén.",
+    "@en": "«Leaves» is the output; «platform» is the platform."
+   },
    "id": "en057-7"
   },
   {
    "tipo": "escribir",
-   "pregunta": "Escribe en inglés: «El tren 1 sale a las 08:10 y llega a Oxford a las 08:55.»",
+   "pregunta": {
+    "@es": "Escribe en inglés: «El tren 1 sale a las 08:10 y llega a Oxford a las 08:55.»",
+    "@en": "Write in English: «Train 1 leaves at 08: 10 and arrives at Oxford at 08: 55.»"
+   },
    "respuestas": [
     "Train 1 leaves at 08:10 and arrives in Oxford at 08:55.",
     "Train 1 leaves at 8:10 and arrives in Oxford at 8:55."
    ],
-   "explicacion": "Ambas formas de escribir la hora son válidas.",
+   "explicacion": {
+    "@es": "Ambas formas de escribir la hora son válidas.",
+    "@en": "Both ways of writing the time are valid."
+   },
    "id": "en057-8"
   }
  ],
- "intro": "Practica leer salidas, llegadas y andenes en un horario."
+ "intro": {
+  "@es": "Practica leer salidas, llegadas y andenes en un horario.",
+  "@en": "Practice reading exits, arrivals and rallies on a schedule."
+ }
 }

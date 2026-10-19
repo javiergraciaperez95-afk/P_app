@@ -1,7 +1,10 @@
 {
  "capitulo": 20,
  "titulo_el": "Στο ταχυδρομείο και στην τράπεζα",
- "titulo_es": "In post and in the bank",
+ "titulo_es": {
+  "@es": "En correos y en el banco",
+  "@en": "In post and in the bank"
+ },
  "palabras": {
   "ταχυδρομείο": {
    "es": "oficina de correos",
@@ -92,15 +95,24 @@
  "bloques": [
   {
    "tipo": "explicacion",
-   "titulo": "Simple management",
+   "titulo": {
+    "@es": "Gestiones sencillas",
+    "@en": "Simple management"
+   },
    "texto": [
-    "**Θέλω να στείλω ένα γράμμα** means «I want to send a letter». **Να ανοίξω λογαριασμό** is «open an account».",
-    "**Συμπληρώνω την αίτηση** means «fill in the application». In a courteous request he uses **Θα μπορούσα να…;** (could he?). **Χρειάζεστε ταυτότητα** means he needs an identity card."
+    {
+     "@es": "**Θέλω να στείλω ένα γράμμα** significa «quiero enviar una carta». **Να ανοίξω λογαριασμό** es «abrir una cuenta».",
+     "@en": "**Θέλω να στείλω ένα γράμμα** means «I want to send a letter». **Να ανοίξω λογαριασμό** is «open an account»."
+    },
+    {
+     "@es": "**Συμπληρώνω την αίτηση** significa «relleno la solicitud». En una petición cortés usa **Θα μπορούσα να…;** (¿podría…?). **Χρειάζεστε ταυτότητα** quiere decir que necesita un documento de identidad.",
+     "@en": "**Συμπληρώνω την αίτηση** means «fill in the application». In a courteous request he uses **Θα μπορούσα να…;** (could he?). **Χρειάζεστε ταυτότητα** means he needs an identity card."
+    }
    ]
   },
   {
    "tipo": "vocabulario",
-   "titulo": "Μια εΣυπηρέτηση",
+   "titulo": "Μια εξυπηρέτηση",
    "palabras": [
     "ταχυδρομείο",
     "γράμμα",
@@ -133,15 +145,24 @@
      "analisis": [
       [
        "θα ήθελα",
-       "I wish."
+       {
+        "@es": "quisiera",
+        "@en": "I wish."
+       }
       ],
       [
        "να στείλω",
-       "send"
+       {
+        "@es": "enviar",
+        "@en": "send"
+       }
       ],
       [
        "γράμμα",
-       "letter"
+       {
+        "@es": "carta",
+        "@en": "letter"
+       }
       ]
      ]
     },
@@ -157,7 +178,10 @@
       ],
       [
        "συστημένη αποστολή",
-       "certified shipment"
+       {
+        "@es": "envío certificado",
+        "@en": "certified shipment"
+       }
       ]
      ]
     },
@@ -173,7 +197,10 @@
       ],
       [
        "παρακαλώ",
-       "Please."
+       {
+        "@es": "por favor",
+        "@en": "Please."
+       }
       ]
      ]
     }
@@ -181,7 +208,7 @@
   },
   {
    "tipo": "dialogo",
-   "titulo": "Στο γκισή της τράπεφας",
+   "titulo": "Στο γκισέ της τράπεζας",
    "frases": [
     {
      "quien": "Μαρία",
@@ -191,15 +218,24 @@
      "analisis": [
       [
        "θα μπορούσα",
-       "I could"
+       {
+        "@es": "podría",
+        "@en": "I could"
+       }
       ],
       [
        "να ανοίξω",
-       "open"
+       {
+        "@es": "abrir",
+        "@en": "open"
+       }
       ],
       [
        "λογαριασμό",
-       "account"
+       {
+        "@es": "cuenta",
+        "@en": "account"
+       }
       ]
      ]
     },
@@ -211,11 +247,17 @@
      "analisis": [
       [
        "χρειάζεστε",
-       "needs"
+       {
+        "@es": "necesita",
+        "@en": "needs"
+       }
       ],
       [
        "ταυτότητά σας",
-       "your identity card"
+       {
+        "@es": "su documento de identidad",
+        "@en": "your identity card"
+       }
       ]
      ]
     }
@@ -223,118 +265,220 @@
   },
   {
    "tipo": "test",
-   "pregunta": "What kind of shipment does Kostas choose?",
+   "pregunta": {
+    "@es": "¿Qué tipo de envío elige Kostas?",
+    "@en": "What kind of shipment does Kostas choose?"
+   },
    "id": "el029-1",
    "opciones": [
     {
      "texto": "Normal.",
-     "explicacion": "Answer «απλή».",
+     "explicacion": {
+      "@es": "Responde «απλή».",
+      "@en": "Answer «απλή»."
+     },
      "correcta": true
     },
     {
      "texto": "Certificado.",
-     "explicacion": "«Συστημένη» is certified."
+     "explicacion": {
+      "@es": "«Συστημένη» es certificado.",
+      "@en": "«Συστημένη» is certified."
+     }
     },
     {
-     "texto": "Urgent.",
-     "explicacion": "That option does not appear."
+     "texto": {
+      "@es": "Urgente.",
+      "@en": "Urgent."
+     },
+     "explicacion": {
+      "@es": "No aparece esa opción.",
+      "@en": "That option does not appear."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "What does Maria need to open the account?",
+   "pregunta": {
+    "@es": "¿Qué necesita María para abrir la cuenta?",
+    "@en": "What does Maria need to open the account?"
+   },
    "id": "el029-2",
    "opciones": [
     {
-     "texto": "Your ID.",
-     "explicacion": "That's what the employee tells you.",
+     "texto": {
+      "@es": "Su documento de identidad.",
+      "@en": "Your ID."
+     },
+     "explicacion": {
+      "@es": "Es lo que le indica el empleado.",
+      "@en": "That's what the employee tells you."
+     },
      "correcta": true
     },
     {
-     "texto": "An envelope.",
-     "explicacion": "About is «φάκελος»."
+     "texto": {
+      "@es": "Un sobre.",
+      "@en": "An envelope."
+     },
+     "explicacion": {
+      "@es": "Sobre es «φάκελος».",
+      "@en": "About is «φάκελος»."
+     }
     },
     {
-     "texto": "A letter.",
-     "explicacion": "Letter is «γράμμα»."
+     "texto": {
+      "@es": "Una carta.",
+      "@en": "A letter."
+     },
+     "explicacion": {
+      "@es": "Carta es «γράμμα».",
+      "@en": "Letter is «γράμμα»."
+     }
     }
    ]
   },
   {
    "tipo": "traduccion",
-   "pregunta": "What does that mean?",
+   "pregunta": {
+    "@es": "¿Qué significa?",
+    "@en": "What does that mean?"
+   },
    "frase": "Θα μπορούσα να ανοίξω έναν λογαριασμό;",
    "id": "el029-3",
    "opciones": [
     {
-     "texto": "Could you open an account?",
-     "explicacion": "It's a courteous request.",
+     "texto": {
+      "@es": "¿Podría abrir una cuenta?",
+      "@en": "Could you open an account?"
+     },
+     "explicacion": {
+      "@es": "Es una petición cortés.",
+      "@en": "It's a courteous request."
+     },
      "correcta": true
     },
     {
-     "texto": "Can I send a letter?",
-     "explicacion": "Send is «στέλνω»."
+     "texto": {
+      "@es": "¿Puedo enviar una carta?",
+      "@en": "Can I send a letter?"
+     },
+     "explicacion": {
+      "@es": "Enviar es «στέλνω».",
+      "@en": "Send is «στέλνω»."
+     }
     },
     {
-     "texto": "Do I need to fill in an application?",
-     "explicacion": "Request is «αίτηση»."
+     "texto": {
+      "@es": "¿Necesito rellenar una solicitud?",
+      "@en": "Do I need to fill in an application?"
+     },
+     "explicacion": {
+      "@es": "Solicitud es «αίτηση».",
+      "@en": "Request is «αίτηση»."
+     }
     }
    ]
   },
   {
    "tipo": "huecos",
-   "pregunta": "Complete the sentence.",
+   "pregunta": {
+    "@es": "Completa la frase.",
+    "@en": "Complete the sentence."
+   },
    "frase": "Θα ήθελα να ___ αυτό το γράμμα.",
    "id": "el029-4",
    "opciones": [
     {
      "texto": "στείλω",
-     "explicacion": "«Να στείλω» means send.",
+     "explicacion": {
+      "@es": "«Να στείλω» significa enviar.",
+      "@en": "«Να στείλω» means send."
+     },
      "correcta": true
     },
     {
      "texto": "ταυτότητα",
-     "explicacion": "It means identity card."
+     "explicacion": {
+      "@es": "Significa documento de identidad.",
+      "@en": "It means identity card."
+     }
     },
     {
      "texto": "τράπεζα",
-     "explicacion": "It means bank."
+     "explicacion": {
+      "@es": "Significa banco.",
+      "@en": "It means bank."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "Listen. What does that mean?",
+   "pregunta": {
+    "@es": "Escucha. ¿Qué significa?",
+    "@en": "Listen. What does that mean?"
+   },
    "audio": "Χρειάζεστε την ταυτότητά σας.",
    "id": "el029-5",
    "opciones": [
     {
-     "texto": "He needs his ID.",
-     "explicacion": "«Ταυτότητα» is an identity document.",
+     "texto": {
+      "@es": "Necesita su documento de identidad.",
+      "@en": "He needs his ID."
+     },
+     "explicacion": {
+      "@es": "«Ταυτότητα» es documento de identidad.",
+      "@en": "«Ταυτότητα» is an identity document."
+     },
      "correcta": true
     },
     {
-     "texto": "You need to send a letter.",
-     "explicacion": "Letter is «γράμμα»."
+     "texto": {
+      "@es": "Necesita enviar una carta.",
+      "@en": "You need to send a letter."
+     },
+     "explicacion": {
+      "@es": "Carta es «γράμμα».",
+      "@en": "Letter is «γράμμα»."
+     }
     },
     {
-     "texto": "He needs to open an office.",
-     "explicacion": "Open is «ανοίγω»."
+     "texto": {
+      "@es": "Necesita abrir una oficina.",
+      "@en": "He needs to open an office."
+     },
+     "explicacion": {
+      "@es": "Abrir es «ανοίγω».",
+      "@en": "Open is «ανοίγω»."
+     }
     }
    ]
   },
   {
    "tipo": "ordenar",
-   "pregunta": "Order the words.",
+   "pregunta": {
+    "@es": "Ordena las palabras.",
+    "@en": "Order the words."
+   },
    "frase": "συμπληρώνω την αίτηση",
-   "traduccion": "fill in the application",
-   "explicacion": "«Συμπληρώνω» means filling.",
+   "traduccion": {
+    "@es": "relleno la solicitud",
+    "@en": "fill in the application"
+   },
+   "explicacion": {
+    "@es": "«Συμπληρώνω» significa relleno.",
+    "@en": "«Συμπληρώνω» means filling."
+   },
    "id": "el029-6"
   },
   {
    "tipo": "escribir",
-   "pregunta": "Write in Greek: «application»",
+   "pregunta": {
+    "@es": "Escribe en griego: «solicitud»",
+    "@en": "Write in Greek: «application»"
+   },
    "respuestas": [
     "αίτηση"
    ],
@@ -342,5 +486,8 @@
    "id": "el029-7"
   }
  ],
- "intro": "Ask for help in two public services and confirm which documents or data you need."
+ "intro": {
+  "@es": "Pide ayuda en dos servicios públicos y confirma qué documentos o datos necesitas.",
+  "@en": "Ask for help in two public services and confirm which documents or data you need."
+ }
 }

@@ -87,7 +87,7 @@ export async function cargarIndice() {
   try {
     const respuesta = await fetch(conVersion(ruta('indice/lecciones.json')), { cache: 'no-cache' });
     if (!respuesta.ok) return null;
-    indice = JSON.parse((await respuesta.text()).replace(/^﻿/, ''));
+    indice = leerContenido(await respuesta.text());
   } catch {
     return null;
   }
@@ -124,11 +124,29 @@ export async function cargarDiccionario() {
   try {
     const respuesta = await fetch(conVersion(ruta('indice/diccionario.json')), { cache: 'no-cache' });
     if (!respuesta.ok) return null;
-    return new Map(Object.entries(JSON.parse((await respuesta.text()).replace(/^﻿/, ''))));
+    return new Map(Object.entries(leerContenido(await respuesta.text())));
   } catch {
     return null;
   }
 }
+
+/**
+ * Los cursos de otros idiomas se explican en español y en inglés: donde el texto cambia, el archivo lleva
+ * { "@es": "…", "@en": "…" } (ver _herramientas/juntar_es_en.py). Al cargar se queda el del idioma de la
+ * interfaz, así el resto del programa sigue viendo textos normales. (Al cambiar de idioma la página se recarga.)
+ */
+export function elegirIdiomaContenido(dato) {
+  const clave = idioma() === 'es' ? '@es' : '@en';
+  const andar = d => {
+    if (Array.isArray(d)) return d.map(andar);
+    if (!esObjeto(d)) return d;
+    if ('@es' in d && '@en' in d) return d[clave];
+    for (const k in d) d[k] = andar(d[k]);
+    return d;
+  };
+  return andar(dato);
+}
+const leerContenido = texto => elegirIdiomaContenido(JSON.parse(texto.replace(/^﻿/, '')));
 
 // Versión del despliegue (la pone el workflow en index.html). Evita que la caché sirva JSON viejos.
 const VERSION = new URL(import.meta.url).searchParams.get('v');
@@ -152,7 +170,7 @@ export async function cargarLeccion(id) {
 
   let json;
   try {
-    json = JSON.parse(texto.replace(/^﻿/, ''));
+    json = leerContenido(texto);
   } catch (e) {
     return { id, archivo, error: explicarErrorDeFormato(id, texto, e) };
   }
@@ -1013,7 +1031,7 @@ async function leerJSON(archivo, nombre) {
     return { noExiste: true };
   }
   try {
-    return { json: adaptar(JSON.parse(texto.replace(/^﻿/, ''))) };
+    return { json: adaptar(leerContenido(texto)) };
   } catch (e) {
     return { error: explicarErrorDeFormato('', texto, e, t('rev.noCargaArchivo', { nombre, archivo })) };
   }

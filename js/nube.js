@@ -100,6 +100,9 @@ async function subir() {
   if (!nubeActiva || !numero || !curso.id) return;
   try {
     if (cursosNube === null) await bajarYJuntar(numero);
+    // justo antes de escribir se releen los demás cursos: otro dispositivo puede haberlos cambiado desde que se
+    // abrió la app, y subir la copia de entonces los pisaría (el curso de ahora va tal cual está aquí)
+    else cursosNube = { ...cursosDe(await rpc('paglot_leer', { p_numero: numero })) };
     const datos = paraSubir();
     subiendo = rpc('paglot_guardar', { p_numero: numero, p_datos: datos });
     await subiendo;

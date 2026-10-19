@@ -1,7 +1,10 @@
 {
  "capitulo": 42,
  "titulo_en": "Multiple matching across short texts",
- "titulo_es": "Comparar posturas en textos breves",
+ "titulo_es": {
+  "@es": "Comparar posturas en textos breves",
+  "@en": "Compare positions in short texts"
+ },
  "palabras": {
   "cycle lane": {
    "es": "carril bici",
@@ -60,15 +63,27 @@
  "bloques": [
   {
    "tipo": "explicacion",
-   "titulo": "Comparar posturas en textos breves",
+   "titulo": {
+    "@es": "Comparar posturas en textos breves",
+    "@en": "Compare positions in short texts"
+   },
    "texto": [
-    "En tareas de correspondencia (**multiple matching**), resume la postura de cada persona (apoyo directo, apoyo con condición o preferencia por otra medida) y busca qué frase expresa la misma idea con otras palabras.",
-    "**Writer B supports the plan provided that parking remains available.** = La persona B apoya el plan siempre que se mantenga el aparcamiento."
+    {
+     "@es": "En tareas de correspondencia (**multiple matching**), resume la postura de cada persona (apoyo directo, apoyo con condición o preferencia por otra medida) y busca qué frase expresa la misma idea con otras palabras.",
+     "@en": "In correspondence tasks (**multiple matching**), it summarizes the position of each person (direct support, support with condition or preference for another measure) and seeks which sentence expresses the same idea with other words."
+    },
+    {
+     "@es": "**Writer B supports the plan provided that parking remains available.** = La persona B apoya el plan siempre que se mantenga el aparcamiento.",
+     "@en": "**Writer B supports the plan provided that parking remains available.** = Person B supports the plan as long as the parking is maintained."
+    }
    ]
   },
   {
    "tipo": "vocabulario",
-   "titulo": "Palabras clave",
+   "titulo": {
+    "@es": "Palabras clave",
+    "@en": "Key words"
+   },
    "palabras": [
     "cycle lane",
     "parking"
@@ -76,7 +91,10 @@
   },
   {
    "tipo": "texto",
-   "titulo": "Tres opiniones sobre un carril bici",
+   "titulo": {
+    "@es": "Tres opiniones sobre un carril bici",
+    "@en": "Three opinions on a bike lane"
+   },
    "frases": [
     {
      "en": "A: I support the cycle lane because it makes the school route safer.",
@@ -84,11 +102,17 @@
      "analisis": [
       [
        "cycle lane",
-       "carril bici"
+       {
+        "@es": "carril bici",
+        "@en": "bike lane"
+       }
       ],
       [
        "safer",
-       "más segura"
+       {
+        "@es": "más segura",
+        "@en": "safer"
+       }
       ]
      ]
     },
@@ -98,11 +122,17 @@
      "analisis": [
       [
        "provided that",
-       "siempre que"
+       {
+        "@es": "siempre que",
+        "@en": "provided that"
+       }
       ],
       [
        "remains available",
-       "se mantenga disponible"
+       {
+        "@es": "se mantenga disponible",
+        "@en": "remain available"
+       }
       ]
      ]
     },
@@ -112,11 +142,17 @@
      "analisis": [
       [
        "would prefer",
-       "preferiría"
+       {
+        "@es": "preferiría",
+        "@en": "I'd rather."
+       }
       ],
       [
        "outside town",
-       "fuera del pueblo"
+       {
+        "@es": "fuera del pueblo",
+        "@en": "out of town"
+       }
       ]
      ]
     }
@@ -124,126 +160,201 @@
   },
   {
    "tipo": "test",
-   "pregunta": "Comprensión lectora: Who supports the cycle lane because of school safety?",
+   "pregunta": {
+    "@es": "Comprensión lectora: Who supports the cycle lane because of school safety?",
+    "@en": "Reading understanding: Who supports the cycle lane because of school safety?"
+   },
    "id": "en297-1",
    "opciones": [
     {
      "texto": "Writer A.",
-     "explicacion": "El texto A apoya el carril porque hace más segura la ruta escolar.",
+     "explicacion": {
+      "@es": "El texto A apoya el carril porque hace más segura la ruta escolar.",
+      "@en": "The A text supports the lane because it makes the school route safer."
+     },
      "correcta": true
     },
     {
      "texto": "Writer B.",
-     "explicacion": "El texto B centra su condición en el aparcamiento."
+     "explicacion": {
+      "@es": "El texto B centra su condición en el aparcamiento.",
+      "@en": "The text B focuses its condition on the parking lot."
+     }
     },
     {
      "texto": "Writer C.",
-     "explicacion": "El texto C prefiere mejorar los autobuses."
+     "explicacion": {
+      "@es": "El texto C prefiere mejorar los autobuses.",
+      "@en": "The text C prefers to improve the buses."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "Comprensión lectora: Who makes support conditional on keeping parking spaces?",
+   "pregunta": {
+    "@es": "Comprensión lectora: Who makes support conditional on keeping parking spaces?",
+    "@en": "Reading understanding: Who makes conditional support on keeping parking spaces?"
+   },
    "id": "en297-2",
    "opciones": [
     {
      "texto": "Writer B.",
-     "explicacion": "Usa **provided that parking remains available** para poner una condición.",
+     "explicacion": {
+      "@es": "Usa **provided that parking remains available** para poner una condición.",
+      "@en": "Use **provided that parking remains available** to put a condition."
+     },
      "correcta": true
     },
     {
      "texto": "Writer A.",
-     "explicacion": "El texto A no menciona el aparcamiento."
+     "explicacion": {
+      "@es": "El texto A no menciona el aparcamiento.",
+      "@en": "Text A does not mention parking."
+     }
     },
     {
      "texto": "Writer C.",
-     "explicacion": "El texto C habla del transporte para quienes viven fuera del pueblo."
+     "explicacion": {
+      "@es": "El texto C habla del transporte para quienes viven fuera del pueblo.",
+      "@en": "The text C speaks of transport for those living outside the village."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "Comprensión lectora: Who thinks another transport improvement would be more useful?",
+   "pregunta": {
+    "@es": "Comprensión lectora: Who thinks another transport improvement would be more useful?",
+    "@en": "Reading understanding: Who thinks another transport improvement would be more useful?"
+   },
    "id": "en297-3",
    "opciones": [
     {
      "texto": "Writer C.",
-     "explicacion": "Dice **I would prefer better buses** porque el carril no ayudará a quienes viven fuera del pueblo.",
+     "explicacion": {
+      "@es": "Dice **I would prefer better buses** porque el carril no ayudará a quienes viven fuera del pueblo.",
+      "@en": "**I would prefer better buses** says because the lane will not help those living outside the village."
+     },
      "correcta": true
     },
     {
      "texto": "Writer A.",
-     "explicacion": "El texto A respalda el carril bici."
+     "explicacion": {
+      "@es": "El texto A respalda el carril bici.",
+      "@en": "Text A supports the bike lane."
+     }
     },
     {
      "texto": "Writer B.",
-     "explicacion": "El texto B considera útil el carril si se mantiene el aparcamiento."
+     "explicacion": {
+      "@es": "El texto B considera útil el carril si se mantiene el aparcamiento.",
+      "@en": "The B text considers the lane useful if the parking is maintained."
+     }
     }
    ]
   },
   {
    "tipo": "huecos",
-   "pregunta": "Completa la condición del texto B.",
+   "pregunta": {
+    "@es": "Completa la condición del texto B.",
+    "@en": "Complies the status of text B."
+   },
    "frase": "The lane is useful, ___ that parking remains available.",
    "id": "en297-4",
    "opciones": [
     {
      "texto": "provided",
-     "explicacion": "**Provided that** introduce la condición («siempre que»).",
+     "explicacion": {
+      "@es": "**Provided that** introduce la condición («siempre que»).",
+      "@en": "**Provided that** introduces the condition («provided that»)."
+     },
      "correcta": true
     },
     {
      "texto": "safer",
-     "explicacion": "Es un adjetivo comparativo («más seguro»)."
+     "explicacion": {
+      "@es": "Es un adjetivo comparativo («más seguro»).",
+      "@en": "It is a comparative adjective («safer»)."
+     }
     },
     {
      "texto": "buses",
-     "explicacion": "Es un sustantivo plural («autobuses»)."
+     "explicacion": {
+      "@es": "Es un sustantivo plural («autobuses»).",
+      "@en": "It is a plural noun («buses»)."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "¿Por qué el texto C no apoya el carril bici como prioridad?",
+   "pregunta": {
+    "@es": "¿Por qué el texto C no apoya el carril bici como prioridad?",
+    "@en": "Why does text C not support the bike lane as a priority?"
+   },
    "id": "en297-5",
    "opciones": [
     {
      "texto": "Porque cree que no ayudará a quienes viven fuera del pueblo y prefiere mejores autobuses.",
-     "explicacion": "Esa es la razón explícita de la tercera opinión.",
+     "explicacion": {
+      "@es": "Esa es la razón explícita de la tercera opinión.",
+      "@en": "That is the explicit reason for the third opinion."
+     },
      "correcta": true
     },
     {
      "texto": "Porque piensa que la ruta escolar será más peligrosa.",
-     "explicacion": "Eso contradice el texto A y no aparece en el C."
+     "explicacion": {
+      "@es": "Eso contradice el texto A y no aparece en el C.",
+      "@en": "That contradicts text A and does not appear in the C."
+     }
     },
     {
      "texto": "Porque quiere eliminar todas las paradas de autobús.",
-     "explicacion": "Al contrario, pide mejores autobuses."
+     "explicacion": {
+      "@es": "Al contrario, pide mejores autobuses.",
+      "@en": "On the contrary, he calls for better buses."
+     }
     }
    ]
   },
   {
    "tipo": "traduccion",
-   "pregunta": "¿Qué significa?",
+   "pregunta": {
+    "@es": "¿Qué significa?",
+    "@en": "What does that mean?"
+   },
    "frase": "The lane is useful, provided that parking remains available.",
    "id": "en297-6",
    "opciones": [
     {
      "texto": "El carril bici es útil, siempre que se mantenga el aparcamiento.",
-     "explicacion": "**Provided that** expresa la condición necesaria para apoyar la medida.",
+     "explicacion": {
+      "@es": "**Provided that** expresa la condición necesaria para apoyar la medida.",
+      "@en": "**Provided that** expresses the necessary condition to support the measure."
+     },
      "correcta": true
     },
     {
      "texto": "El carril bici es inútil aunque haya más aparcamiento.",
-     "explicacion": "La oración afirma que es útil bajo esa condición."
+     "explicacion": {
+      "@es": "La oración afirma que es útil bajo esa condición.",
+      "@en": "Prayer states that it is useful under that condition."
+     }
     },
     {
      "texto": "El aparcamiento sustituirá al carril bici cerca de la escuela.",
-     "explicacion": "La frase no dice que uno sustituya al otro."
+     "explicacion": {
+      "@es": "La frase no dice que uno sustituya al otro.",
+      "@en": "The phrase does not say that one will replace the other."
+     }
     }
    ]
   }
  ],
- "intro": "Lee tres opiniones breves sobre un mismo plan municipal y relaciona cada postura con su autor sin dejarte llevar por palabras sueltas."
+ "intro": {
+  "@es": "Lee tres opiniones breves sobre un mismo plan municipal y relaciona cada postura con su autor sin dejarte llevar por palabras sueltas.",
+  "@en": "Read three brief opinions about the same municipal plan and relate each position to its author without letting you go for loose words."
+ }
 }

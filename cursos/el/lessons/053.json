@@ -1,7 +1,10 @@
 {
  "capitulo": 18,
  "titulo_el": "Κλείνω εισιτήριο",
- "titulo_es": "I'll buy a ticket.",
+ "titulo_es": {
+  "@es": "Compro un billete",
+  "@en": "I'll buy a ticket."
+ },
  "palabras": {
   "επιστροφή": {
    "es": "vuelta, regreso",
@@ -53,10 +56,19 @@
  "bloques": [
   {
    "tipo": "explicacion",
-   "titulo": "Travel information",
+   "titulo": {
+    "@es": "Información del viaje",
+    "@en": "Travel information"
+   },
    "texto": [
-    "**Με επιστροφή** means round-trip. **Πόση ώρα κάνει;** asks how long it takes.",
-    "**Απευθείας** means direct, without changing transport. **Αλλαγή** may mean change or transhipment; **θέση στο παράθυρο** is seat by the window."
+    {
+     "@es": "**Με επιστροφή** significa ida y vuelta. **Πόση ώρα κάνει;** pregunta cuánto tarda.",
+     "@en": "**Με επιστροφή** means round-trip. **Πόση ώρα κάνει;** asks how long it takes."
+    },
+    {
+     "@es": "**Απευθείας** quiere decir directo, sin cambiar de transporte. **Αλλαγή** puede significar cambio o transbordo; **θέση στο παράθυρο** es asiento junto a la ventana.",
+     "@en": "**Απευθείας** means direct, without changing transport. **Αλλαγή** may mean change or transhipment; **θέση στο παράθυρο** is seat by the window."
+    }
    ]
   },
   {
@@ -75,7 +87,7 @@
   },
   {
    "tipo": "dialogo",
-   "titulo": "Ονα εισιτήριο για Πάτρα",
+   "titulo": "Ένα εισιτήριο για Πάτρα",
    "frases": [
     {
      "quien": "Κώστας",
@@ -85,11 +97,17 @@
      "analisis": [
       [
        "θα ήθελα",
-       "I wish."
+       {
+        "@es": "quisiera",
+        "@en": "I wish."
+       }
       ],
       [
        "με επιστροφή",
-       "back and forth"
+       {
+        "@es": "ida y vuelta",
+        "@en": "back and forth"
+       }
       ]
      ]
     },
@@ -101,11 +119,17 @@
      "analisis": [
       [
        "υπάρχει",
-       "There's"
+       {
+        "@es": "hay",
+        "@en": "There's"
+       }
       ],
       [
        "απευθείας",
-       "direct"
+       {
+        "@es": "directo",
+        "@en": "direct"
+       }
       ]
      ]
     },
@@ -117,11 +141,17 @@
      "analisis": [
       [
        "πόση ώρα",
-       "How long?"
+       {
+        "@es": "cuánto tiempo",
+        "@en": "How long?"
+       }
       ],
       [
        "κάνει",
-       "late"
+       {
+        "@es": "tarda",
+        "@en": "late"
+       }
       ]
      ]
     },
@@ -133,7 +163,10 @@
      "analisis": [
       [
        "τρεις ώρες",
-       "3 hours"
+       {
+        "@es": "tres horas",
+        "@en": "3 hours"
+       }
       ]
      ]
     }
@@ -141,118 +174,226 @@
   },
   {
    "tipo": "test",
-   "pregunta": "What kind of ticket does Kostas ask for?",
+   "pregunta": {
+    "@es": "¿Qué tipo de billete pide Kostas?",
+    "@en": "What kind of ticket does Kostas ask for?"
+   },
    "id": "el022-1",
    "opciones": [
     {
-     "texto": "Go back to Patras.",
-     "explicacion": "It says «με επιστροφή».",
+     "texto": {
+      "@es": "Ida y vuelta a Patras.",
+      "@en": "Go back to Patras."
+     },
+     "explicacion": {
+      "@es": "Dice «με επιστροφή».",
+      "@en": "It says «με επιστροφή»."
+     },
      "correcta": true
     },
     {
-     "texto": "Just go to Athens.",
-     "explicacion": "Order Patras and turn."
+     "texto": {
+      "@es": "Solo ida a Atenas.",
+      "@en": "Just go to Athens."
+     },
+     "explicacion": {
+      "@es": "Pide Patras y vuelta.",
+      "@en": "Order Patras and turn."
+     }
     },
     {
-     "texto": "Go back to Thessaloniki.",
-     "explicacion": "Fate is Patras."
+     "texto": {
+      "@es": "Ida y vuelta a Salónica.",
+      "@en": "Go back to Thessaloniki."
+     },
+     "explicacion": {
+      "@es": "El destino es Patras.",
+      "@en": "Fate is Patras."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "How long does the journey last?",
+   "pregunta": {
+    "@es": "¿Cuánto dura el trayecto?",
+    "@en": "How long does the journey last?"
+   },
    "id": "el022-2",
    "opciones": [
     {
-     "texto": "Three hours.",
-     "explicacion": "That's the employee's answer.",
+     "texto": {
+      "@es": "Tres horas.",
+      "@en": "Three hours."
+     },
+     "explicacion": {
+      "@es": "Esa es la respuesta del empleado.",
+      "@en": "That's the employee's answer."
+     },
      "correcta": true
     },
     {
-     "texto": "Two hours.",
-     "explicacion": "It's not the duration indicated."
+     "texto": {
+      "@es": "Dos horas.",
+      "@en": "Two hours."
+     },
+     "explicacion": {
+      "@es": "No es la duración indicada.",
+      "@en": "It's not the duration indicated."
+     }
     },
     {
-     "texto": "An hour.",
-     "explicacion": "It's not the duration indicated."
+     "texto": {
+      "@es": "Una hora.",
+      "@en": "An hour."
+     },
+     "explicacion": {
+      "@es": "No es la duración indicada.",
+      "@en": "It's not the duration indicated."
+     }
     }
    ]
   },
   {
    "tipo": "traduccion",
-   "pregunta": "What does that mean?",
+   "pregunta": {
+    "@es": "¿Qué significa?",
+    "@en": "What does that mean?"
+   },
    "frase": "Θα ήθελα ένα εισιτήριο με επιστροφή.",
    "id": "el022-3",
    "opciones": [
     {
-     "texto": "I'd like a return ticket.",
-     "explicacion": "«Με επιστροφή» is back and forth.",
+     "texto": {
+      "@es": "Quisiera un billete de ida y vuelta.",
+      "@en": "I'd like a return ticket."
+     },
+     "explicacion": {
+      "@es": "«Με επιστροφή» es ida y vuelta.",
+      "@en": "«Με επιστροφή» is back and forth."
+     },
      "correcta": true
     },
     {
-     "texto": "I want to change the train.",
-     "explicacion": "Change is «αλλαγή»."
+     "texto": {
+      "@es": "Quiero cambiar de tren.",
+      "@en": "I want to change the train."
+     },
+     "explicacion": {
+      "@es": "Cambio es «αλλαγή».",
+      "@en": "Change is «αλλαγή»."
+     }
     },
     {
-     "texto": "I'd like a seat by the window.",
-     "explicacion": "That's «θέση στο παράθυρο»."
+     "texto": {
+      "@es": "Quisiera un asiento junto a la ventana.",
+      "@en": "I'd like a seat by the window."
+     },
+     "explicacion": {
+      "@es": "Eso es «θέση στο παράθυρο».",
+      "@en": "That's «θέση στο παράθυρο»."
+     }
     }
    ]
   },
   {
    "tipo": "huecos",
-   "pregunta": "Complete the sentence.",
+   "pregunta": {
+    "@es": "Completa la frase.",
+    "@en": "Complete the sentence."
+   },
    "frase": "Υπάρχει ___ τρένο στις δέκα.",
    "id": "el022-4",
    "opciones": [
     {
      "texto": "απευθείας",
-     "explicacion": "The train has no transhipment.",
+     "explicacion": {
+      "@es": "El tren no tiene transbordo.",
+      "@en": "The train has no transhipment."
+     },
      "correcta": true
     },
     {
      "texto": "επιστροφή",
-     "explicacion": "It means turn."
+     "explicacion": {
+      "@es": "Significa vuelta.",
+      "@en": "It means turn."
+     }
     },
     {
      "texto": "παράθυρο",
-     "explicacion": "It means window."
+     "explicacion": {
+      "@es": "Significa ventana.",
+      "@en": "It means window."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "Listen. What does that mean?",
+   "pregunta": {
+    "@es": "Escucha. ¿Qué significa?",
+    "@en": "Listen. What does that mean?"
+   },
    "audio": "Πόση ώρα κάνει;",
    "id": "el022-5",
    "opciones": [
     {
-     "texto": "How long does it take?",
-     "explicacion": "It's a question about the duration.",
+     "texto": {
+      "@es": "¿Cuánto tarda?",
+      "@en": "How long does it take?"
+     },
+     "explicacion": {
+      "@es": "Es una pregunta por la duración.",
+      "@en": "It's a question about the duration."
+     },
      "correcta": true
     },
     {
-     "texto": "What time does it leave?",
-     "explicacion": "Leaving is «φεύγει»."
+     "texto": {
+      "@es": "¿A qué hora sale?",
+      "@en": "What time does it leave?"
+     },
+     "explicacion": {
+      "@es": "Salir es «φεύγει».",
+      "@en": "Leaving is «φεύγει»."
+     }
     },
     {
-     "texto": "How much is the ticket?",
-     "explicacion": "Costar is «κοστίζει»."
+     "texto": {
+      "@es": "¿Cuánto cuesta el billete?",
+      "@en": "How much is the ticket?"
+     },
+     "explicacion": {
+      "@es": "Costar es «κοστίζει».",
+      "@en": "Costar is «κοστίζει»."
+     }
     }
    ]
   },
   {
    "tipo": "ordenar",
-   "pregunta": "Order the words.",
+   "pregunta": {
+    "@es": "Ordena las palabras.",
+    "@en": "Order the words."
+   },
    "frase": "τρεις ώρες",
-   "traduccion": "3 hours",
-   "explicacion": "«Τρεις» means three.",
+   "traduccion": {
+    "@es": "tres horas",
+    "@en": "3 hours"
+   },
+   "explicacion": {
+    "@es": "«Τρεις» significa tres.",
+    "@en": "«Τρεις» means three."
+   },
    "id": "el022-6"
   },
   {
    "tipo": "escribir",
-   "pregunta": "Write in Greek: «back»",
+   "pregunta": {
+    "@es": "Escribe en griego: «vuelta»",
+    "@en": "Write in Greek: «back»"
+   },
    "respuestas": [
     "επιστροφή"
    ],
@@ -260,5 +401,8 @@
    "id": "el022-7"
   }
  ],
- "intro": "Ask for information for a trip, compare it back and forth and ask how long it lasts."
+ "intro": {
+  "@es": "Pide información para un trayecto, compara ida y vuelta y pregunta cuánto dura.",
+  "@en": "Ask for information for a trip, compare it back and forth and ask how long it lasts."
+ }
 }

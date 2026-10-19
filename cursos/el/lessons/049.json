@@ -1,7 +1,10 @@
 {
  "capitulo": 16,
  "titulo_el": "Τι παίζει απόψε;",
- "titulo_es": "What are you doing tonight?",
+ "titulo_es": {
+  "@es": "¿Qué ponen esta noche?",
+  "@en": "What are you doing tonight?"
+ },
  "palabras": {
   "απόψε": {
    "es": "esta noche",
@@ -89,15 +92,24 @@
  "bloques": [
   {
    "tipo": "explicacion",
-   "titulo": "Programming",
+   "titulo": {
+    "@es": "Programación",
+    "@en": "Programming"
+   },
    "texto": [
-    "**Τι παίζει απόψε;** asks what's on or what's on tonight. **Αρχίζει στις…** indicates the time of start and **τελειώνει στις…** the time of end.",
-    "**Έχει ακόμη εισιτήρια;** asks if there are any tickets left. **Μπροστινή σειρά** is front row; **θέση δίπλα** is seat next to it."
+    {
+     "@es": "**Τι παίζει απόψε;** pregunta qué hay o qué ponen esta noche. **Αρχίζει στις…** indica la hora de inicio y **τελειώνει στις…** la hora de fin.",
+     "@en": "**Τι παίζει απόψε;** asks what's on or what's on tonight. **Αρχίζει στις…** indicates the time of start and **τελειώνει στις…** the time of end."
+    },
+    {
+     "@es": "**Έχει ακόμη εισιτήρια;** pregunta si quedan entradas. **Μπροστινή σειρά** es fila de delante; **θέση δίπλα** es asiento al lado.",
+     "@en": "**Έχει ακόμη εισιτήρια;** asks if there are any tickets left. **Μπροστινή σειρά** is front row; **θέση δίπλα** is seat next to it."
+    }
    ]
   },
   {
    "tipo": "vocabulario",
-   "titulo": "Μια βραδινή έΟοδος",
+   "titulo": "Μια βραδινή έξοδος",
    "palabras": [
     "απόψε",
     "παίζει",
@@ -127,15 +139,24 @@
      "analisis": [
       [
        "τι παίζει",
-       "What do they say?"
+       {
+        "@es": "qué ponen",
+        "@en": "What do they say?"
+       }
       ],
       [
        "απόψε",
-       "tonight"
+       {
+        "@es": "esta noche",
+        "@en": "tonight"
+       }
       ],
       [
        "θέατρο",
-       "theatre"
+       {
+        "@es": "teatro",
+        "@en": "theatre"
+       }
       ]
      ]
     },
@@ -147,15 +168,24 @@
      "analisis": [
       [
        "κωμωδία",
-       "comedy"
+       {
+        "@es": "comedia",
+        "@en": "comedy"
+       }
       ],
       [
        "στις επτά",
-       "at 7: 00"
+       {
+        "@es": "a las siete",
+        "@en": "at 7: 00"
+       }
       ],
       [
        "στις εννέα",
-       "at 9: 00"
+       {
+        "@es": "a las nueve",
+        "@en": "at 9: 00"
+       }
       ]
      ]
     },
@@ -167,11 +197,17 @@
      "analisis": [
       [
        "δύο θέσεις δίπλα",
-       "two seats together"
+       {
+        "@es": "dos asientos juntos",
+        "@en": "two seats together"
+       }
       ],
       [
        "για τις εννέα",
-       "by 9: 00"
+       {
+        "@es": "para las nueve",
+        "@en": "by 9: 00"
+       }
       ]
      ]
     },
@@ -183,7 +219,10 @@
      "analisis": [
       [
        "διαθέσιμες",
-       "available (feminine plural)"
+       {
+        "@es": "disponibles (femenino plural)",
+        "@en": "available (feminine plural)"
+       }
       ]
      ]
     }
@@ -191,118 +230,223 @@
   },
   {
    "tipo": "test",
-   "pregunta": "What time is the function Nikos chooses?",
+   "pregunta": {
+    "@es": "¿A qué hora es la función que elige Nikos?",
+    "@en": "What time is the function Nikos chooses?"
+   },
    "id": "el018-1",
    "opciones": [
     {
-     "texto": "9: 00.",
-     "explicacion": "You order two seats for that hour.",
+     "texto": {
+      "@es": "A las nueve.",
+      "@en": "9: 00."
+     },
+     "explicacion": {
+      "@es": "Pide dos asientos para esa hora.",
+      "@en": "You order two seats for that hour."
+     },
      "correcta": true
     },
     {
-     "texto": "At 7: 00.",
-     "explicacion": "That's comedy time."
+     "texto": {
+      "@es": "A las siete.",
+      "@en": "At 7: 00."
+     },
+     "explicacion": {
+      "@es": "Esa es la hora de la comedia.",
+      "@en": "That's comedy time."
+     }
     },
     {
-     "texto": "8: 00.",
-     "explicacion": "He doesn't show up that hour."
+     "texto": {
+      "@es": "A las ocho.",
+      "@en": "8: 00."
+     },
+     "explicacion": {
+      "@es": "No aparece esa hora.",
+      "@en": "He doesn't show up that hour."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "What does Nikos ask when he asks for tickets?",
+   "pregunta": {
+    "@es": "¿Qué pregunta Nikos al pedir entradas?",
+    "@en": "What does Nikos ask when he asks for tickets?"
+   },
    "id": "el018-2",
    "opciones": [
     {
-     "texto": "If there are two seats together.",
+     "texto": {
+      "@es": "Si hay dos asientos juntos.",
+      "@en": "If there are two seats together."
+     },
      "explicacion": "«Δύο θέσεις δίπλα».",
      "correcta": true
     },
     {
-     "texto": "If the show ends at nine.",
-     "explicacion": "He doesn't ask the final time."
+     "texto": {
+      "@es": "Si la función termina a las nueve.",
+      "@en": "If the show ends at nine."
+     },
+     "explicacion": {
+      "@es": "No pregunta la hora final.",
+      "@en": "He doesn't ask the final time."
+     }
     },
     {
-     "texto": "If the comedy is available.",
-     "explicacion": "Choose the other function."
+     "texto": {
+      "@es": "Si la comedia está disponible.",
+      "@en": "If the comedy is available."
+     },
+     "explicacion": {
+      "@es": "Elige la otra función.",
+      "@en": "Choose the other function."
+     }
     }
    ]
   },
   {
    "tipo": "traduccion",
-   "pregunta": "What does that mean?",
+   "pregunta": {
+    "@es": "¿Qué significa?",
+    "@en": "What does that mean?"
+   },
    "frase": "Είναι διαθέσιμες δύο θέσεις.",
    "id": "el018-3",
    "opciones": [
     {
-     "texto": "There are two seats available.",
-     "explicacion": "«Διαθέσιμες» matches «θέσεις».",
+     "texto": {
+      "@es": "Hay dos asientos disponibles.",
+      "@en": "There are two seats available."
+     },
+     "explicacion": {
+      "@es": "«Διαθέσιμες» concuerda con «θέσεις».",
+      "@en": "«Διαθέσιμες» matches «θέσεις»."
+     },
      "correcta": true
     },
     {
-     "texto": "The function ends in two hours.",
-     "explicacion": "«Τελειώνει» is over."
+     "texto": {
+      "@es": "La función termina en dos horas.",
+      "@en": "The function ends in two hours."
+     },
+     "explicacion": {
+      "@es": "«Τελειώνει» es termina.",
+      "@en": "«Τελειώνει» is over."
+     }
     },
     {
-     "texto": "There are two tickets to the movies.",
-     "explicacion": "The scene is in the theater."
+     "texto": {
+      "@es": "Quedan dos entradas para el cine.",
+      "@en": "There are two tickets to the movies."
+     },
+     "explicacion": {
+      "@es": "La escena es en el teatro.",
+      "@en": "The scene is in the theater."
+     }
     }
    ]
   },
   {
    "tipo": "huecos",
-   "pregunta": "Complete the sentence.",
+   "pregunta": {
+    "@es": "Completa la frase.",
+    "@en": "Complete the sentence."
+   },
    "frase": "Τι παίζει ___ στο θέατρο;",
    "id": "el018-4",
    "opciones": [
     {
      "texto": "απόψε",
-     "explicacion": "«Απόψε» means tonight.",
+     "explicacion": {
+      "@es": "«Απόψε» significa esta noche.",
+      "@en": "«Απόψε» means tonight."
+     },
      "correcta": true
     },
     {
      "texto": "αύριο",
-     "explicacion": "It means tomorrow."
+     "explicacion": {
+      "@es": "Significa mañana.",
+      "@en": "It means tomorrow."
+     }
     },
     {
      "texto": "χτες",
-     "explicacion": "It means yesterday."
+     "explicacion": {
+      "@es": "Significa ayer.",
+      "@en": "It means yesterday."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "Listen. What does that mean?",
+   "pregunta": {
+    "@es": "Escucha. ¿Qué significa?",
+    "@en": "Listen. What does that mean?"
+   },
    "audio": "Η παράσταση αρχίζει στις εννέα.",
    "id": "el018-5",
    "opciones": [
     {
-     "texto": "The show starts at 9: 00.",
-     "explicacion": "«Αρχίζει» means start.",
+     "texto": {
+      "@es": "La función empieza a las nueve.",
+      "@en": "The show starts at 9: 00."
+     },
+     "explicacion": {
+      "@es": "«Αρχίζει» significa empieza.",
+      "@en": "«Αρχίζει» means start."
+     },
      "correcta": true
     },
     {
-     "texto": "The show ends at nine.",
-     "explicacion": "Finish is «τελειώνει»."
+     "texto": {
+      "@es": "La función acaba a las nueve.",
+      "@en": "The show ends at nine."
+     },
+     "explicacion": {
+      "@es": "Acabar es «τελειώνει».",
+      "@en": "Finish is «τελειώνει»."
+     }
     },
     {
-     "texto": "The function is available.",
-     "explicacion": "Available is «διαθέσιμη»."
+     "texto": {
+      "@es": "La función está disponible.",
+      "@en": "The function is available."
+     },
+     "explicacion": {
+      "@es": "Disponible es «διαθέσιμη».",
+      "@en": "Available is «διαθέσιμη»."
+     }
     }
    ]
   },
   {
    "tipo": "ordenar",
-   "pregunta": "Order the words.",
+   "pregunta": {
+    "@es": "Ordena las palabras.",
+    "@en": "Order the words."
+   },
    "frase": "δύο θέσεις δίπλα",
-   "traduccion": "two seats together",
-   "explicacion": "«Δίπλα» means next door.",
+   "traduccion": {
+    "@es": "dos asientos juntos",
+    "@en": "two seats together"
+   },
+   "explicacion": {
+    "@es": "«Δίπλα» significa al lado.",
+    "@en": "«Δίπλα» means next door."
+   },
    "id": "el018-6"
   },
   {
    "tipo": "escribir",
-   "pregunta": "Write in Greek: «concert»",
+   "pregunta": {
+    "@es": "Escribe en griego: «concierto»",
+    "@en": "Write in Greek: «concert»"
+   },
    "respuestas": [
     "συναυλία"
    ],
@@ -310,5 +454,8 @@
    "id": "el018-7"
   }
  ],
- "intro": "Read a simple billboard and ask about the type of show, the schedule and the tickets."
+ "intro": {
+  "@es": "Lee una cartelera sencilla y pregunta por el tipo de espectáculo, el horario y las entradas.",
+  "@en": "Read a simple billboard and ask about the type of show, the schedule and the tickets."
+ }
 }

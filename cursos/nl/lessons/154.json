@@ -1,7 +1,10 @@
 {
  "capitulo": 20,
  "titulo_nl": "Een vertrektijd vinden",
- "titulo_es": "Check out one hour",
+ "titulo_es": {
+  "@es": "Consultar una hora de salida",
+  "@en": "Check out one hour"
+ },
  "palabras": {
   "vertrek": {
    "es": "salida",
@@ -38,14 +41,23 @@
  "bloques": [
   {
    "tipo": "explicacion",
-   "titulo": "Transport and rail panels",
+   "titulo": {
+    "@es": "Paneles de transporte y ferrocarril",
+    "@en": "Transport and rail panels"
+   },
    "texto": [
-    "At Dutch and Belgian train stations, the information panels indicate the time of departure («vertrek»), the expected time of arrival («aankomst») and the route or platform («spoor»). The «rechtstreeks» indication means that the train is direct (without transshipments). If there are intermediate connections, the number of train changes («overstap») and the minutes of delay («vertraging») are indicated."
+    {
+     "@es": "En las estaciones de tren holandesas y belgas, los paneles de información indican la hora de salida («vertrek»), la hora prevista de llegada («aankomst») y la vía o andén asignado («spoor»). La indicación «rechtstreeks» significa que el tren es directo (sin transbordos). Si hay conexiones intermedias se indica el número de cambios de tren («overstap») y los minutos de demora («vertraging»).",
+     "@en": "At Dutch and Belgian train stations, the information panels indicate the time of departure («vertrek»), the expected time of arrival («aankomst») and the route or platform («spoor»). The «rechtstreeks» indication means that the train is direct (without transshipments). If there are intermediate connections, the number of train changes («overstap») and the minutes of delay («vertraging») are indicated."
+    }
    ]
   },
   {
    "tipo": "vocabulario",
-   "titulo": "Train information",
+   "titulo": {
+    "@es": "Información de trenes",
+    "@en": "Train information"
+   },
    "palabras": [
     "vertrek",
     "aankomst",
@@ -55,7 +67,10 @@
   },
   {
    "tipo": "texto",
-   "titulo": "Short text",
+   "titulo": {
+    "@es": "Texto breve",
+    "@en": "Short text"
+   },
    "frases": [
     {
      "nl": "Trein naar Rotterdam: vertrek 10.14, spoor 5.",
@@ -64,15 +79,24 @@
      "analisis": [
       [
        "Trein naar Rotterdam",
-       "train to Rotterdam"
+       {
+        "@es": "tren a Rotterdam",
+        "@en": "train to Rotterdam"
+       }
       ],
       [
        "vertrek 10.14",
-       "departure at 10: 14"
+       {
+        "@es": "salida a las 10:14",
+        "@en": "departure at 10: 14"
+       }
       ],
       [
        "spoor 5",
-       "Route 5"
+       {
+        "@es": "vía 5",
+        "@en": "Route 5"
+       }
       ]
      ]
     },
@@ -83,11 +107,17 @@
      "analisis": [
       [
        "Aankomst in Rotterdam",
-       "arrival in Rotterdam"
+       {
+        "@es": "llegada a Rotterdam",
+        "@en": "arrival in Rotterdam"
+       }
       ],
       [
        "11.02",
-       "at 11: 02"
+       {
+        "@es": "a las 11:02",
+        "@en": "at 11: 02"
+       }
       ]
      ]
     },
@@ -98,15 +128,24 @@
      "analisis": [
       [
        "Trein naar Leiden",
-       "train to Leiden"
+       {
+        "@es": "tren a Leiden",
+        "@en": "train to Leiden"
+       }
       ],
       [
        "vertrek 10.22",
-       "departure at 10: 22"
+       {
+        "@es": "salida a las 10:22",
+        "@en": "departure at 10: 22"
+       }
       ],
       [
        "spoor 2",
-       "track 2"
+       {
+        "@es": "vía 2",
+        "@en": "track 2"
+       }
       ]
      ]
     },
@@ -117,11 +156,17 @@
      "analisis": [
       [
        "De trein naar Rotterdam",
-       "the train to Rotterdam"
+       {
+        "@es": "el tren a Rotterdam",
+        "@en": "the train to Rotterdam"
+       }
       ],
       [
        "rijdt rechtstreeks",
-       "direct circle"
+       {
+        "@es": "circula directo",
+        "@en": "direct circle"
+       }
       ]
      ]
     },
@@ -132,19 +177,31 @@
      "analisis": [
       [
        "De trein naar Leiden",
-       "the train to Leiden"
+       {
+        "@es": "el tren a Leiden",
+        "@en": "the train to Leiden"
+       }
       ],
       [
        "heeft één overstap",
-       "has a transshipment"
+       {
+        "@es": "tiene un transbordo",
+        "@en": "has a transshipment"
+       }
       ],
       [
        "en",
-       "and"
+       {
+        "@es": "y",
+        "@en": "and"
+       }
       ],
       [
        "tien minuten vertraging",
-       "10 minutes late"
+       {
+        "@es": "diez minutos de retraso",
+        "@en": "10 minutes late"
+       }
       ]
      ]
     }
@@ -152,136 +209,247 @@
   },
   {
    "tipo": "test",
-   "pregunta": "What railway term does the route or platform of departure in Dutch mean?",
+   "pregunta": {
+    "@es": "¿Qué término ferroviario designa la vía o andén de salida en neerlandés?",
+    "@en": "What railway term does the route or platform of departure in Dutch mean?"
+   },
    "id": "nl154-1",
    "opciones": [
     {
      "texto": "spoor",
-     "explicacion": "«Spoor» (sometimes abbreviated as sp.) indicates the train track.",
+     "explicacion": {
+      "@es": "«Spoor» (abreviado a veces como sp.) indica la vía del tren.",
+      "@en": "«Spoor» (sometimes abbreviated as sp.) indicates the train track."
+     },
      "correcta": true
     },
     {
      "texto": "vertrek",
-     "explicacion": "«Vertrek» is the time or action of output, not the physical platform."
+     "explicacion": {
+      "@es": "«Vertrek» es la hora o acción de salida, no el andén físico.",
+      "@en": "«Vertrek» is the time or action of output, not the physical platform."
+     }
     },
     {
      "texto": "overstap",
-     "explicacion": "«Overstap» is the transshipment or link between two convoys."
+     "explicacion": {
+      "@es": "«Overstap» es el transbordo o enlace entre dos convoyes.",
+      "@en": "«Overstap» is the transshipment or link between two convoys."
+     }
     }
    ]
   },
   {
    "tipo": "traduccion",
-   "pregunta": "From what time and what time does the train leave for Rotterdam?",
+   "pregunta": {
+    "@es": "¿Desde qué andén y a qué hora sale el tren a Rotterdam?",
+    "@en": "From what time and what time does the train leave for Rotterdam?"
+   },
    "frase": "Trein naar Rotterdam: vertrek 10.14, spoor 5.",
    "id": "nl154-2",
    "opciones": [
     {
-     "texto": "10: 14 from 5.",
-     "explicacion": "«Vertrek 10.14» and «spoor 5» mark the exact output and track.",
+     "texto": {
+      "@es": "A las 10:14 desde la vía 5.",
+      "@en": "10: 14 from 5."
+     },
+     "explicacion": {
+      "@es": "«Vertrek 10.14» y «spoor 5» marcan la salida y la vía exactas.",
+      "@en": "«Vertrek 10.14» and «spoor 5» mark the exact output and track."
+     },
      "correcta": true
     },
     {
-     "texto": "11: 02 from track 2.",
-     "explicacion": "11: 02 is the time of arrival at destination, not the time of departure."
+     "texto": {
+      "@es": "A las 11:02 desde la vía 2.",
+      "@en": "11: 02 from track 2."
+     },
+     "explicacion": {
+      "@es": "11:02 es la hora de llegada a destino, no la de partida.",
+      "@en": "11: 02 is the time of arrival at destination, not the time of departure."
+     }
     },
     {
-     "texto": "10: 22 from track 1.",
-     "explicacion": "10: 22 is the departure of the train to Leiden."
+     "texto": {
+      "@es": "A las 10:22 desde la vía 1.",
+      "@en": "10: 22 from track 1."
+     },
+     "explicacion": {
+      "@es": "10:22 es la salida del tren con destino a Leiden.",
+      "@en": "10: 22 is the departure of the train to Leiden."
+     }
     }
    ]
   },
   {
    "tipo": "huecos",
-   "pregunta": "Complete with the technical word for starting time.",
+   "pregunta": {
+    "@es": "Completa con la palabra técnica para la hora de partida.",
+    "@en": "Complete with the technical word for starting time."
+   },
    "frase": "Trein naar Rotterdam: ___ 10.14, spoor 5.",
    "id": "nl154-3",
    "opciones": [
     {
      "texto": "vertrek",
-     "explicacion": "«Vertrek» means convoy output.",
+     "explicacion": {
+      "@es": "«Vertrek» significa salida del convoy.",
+      "@en": "«Vertrek» means convoy output."
+     },
      "correcta": true
     },
     {
      "texto": "aankomst",
-     "explicacion": "«Aankomst» would indicate arrival at the station."
+     "explicacion": {
+      "@es": "«Aankomst» indicaría la llegada a la estación.",
+      "@en": "«Aankomst» would indicate arrival at the station."
+     }
     },
     {
      "texto": "overstap",
-     "explicacion": "«Overstap» would mean transhipment."
+     "explicacion": {
+      "@es": "«Overstap» significaría transbordo.",
+      "@en": "«Overstap» would mean transhipment."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "What advantage does the train trip to Rotterdam have in relation to Leiden's?",
+   "pregunta": {
+    "@es": "¿Qué ventaja presenta el viaje en tren a Rotterdam respecto al de Leiden?",
+    "@en": "What advantage does the train trip to Rotterdam have in relation to Leiden's?"
+   },
    "id": "nl154-4",
    "opciones": [
     {
-     "texto": "Direct circulation without any transhipment",
-     "explicacion": "«Rijdt rechtstreeks» confirms no links.",
+     "texto": {
+      "@es": "Circula directo sin necesidad de hacer ningún transbordo",
+      "@en": "Direct circulation without any transhipment"
+     },
+     "explicacion": {
+      "@es": "«Rijdt rechtstreeks» confirma trayecto sin enlaces.",
+      "@en": "«Rijdt rechtstreeks» confirms no links."
+     },
      "correcta": true
     },
     {
-     "texto": "It is completely free for students",
-     "explicacion": "It does not mention free rates."
+     "texto": {
+      "@es": "Es completamente gratuito para los estudiantes",
+      "@en": "It is completely free for students"
+     },
+     "explicacion": {
+      "@es": "No menciona tarifas gratuitas.",
+      "@en": "It does not mention free rates."
+     }
     },
     {
-     "texto": "It has a car restaurant with hot food",
-     "explicacion": "He doesn't report on on-board services."
+     "texto": {
+      "@es": "Dispone de vagón restaurante con comida caliente",
+      "@en": "It has a car restaurant with hot food"
+     },
+     "explicacion": {
+      "@es": "No informa sobre servicios a bordo.",
+      "@en": "He doesn't report on on-board services."
+     }
     }
    ]
   },
   {
    "tipo": "traduccion",
-   "pregunta": "What is the incidence of the train to Leiden?",
+   "pregunta": {
+    "@es": "¿Qué incidencia presenta el tren a Leiden?",
+    "@en": "What is the incidence of the train to Leiden?"
+   },
    "frase": "De trein naar Leiden heeft één overstap en tien minuten vertraging.",
    "id": "nl154-5",
    "opciones": [
     {
-     "texto": "It requires a transhipment and it accumulates ten minutes of delay.",
-     "explicacion": "«Één overstap» (one transhipment) and «tien minuten vertraging» (delay).",
+     "texto": {
+      "@es": "Requiere un transbordo y acumula diez minutos de demora.",
+      "@en": "It requires a transhipment and it accumulates ten minutes of delay."
+     },
+     "explicacion": {
+      "@es": "«Één overstap» (un transbordo) y «tien minuten vertraging» (retraso).",
+      "@en": "«Één overstap» (one transhipment) and «tien minuten vertraging» (delay)."
+     },
      "correcta": true
     },
     {
-     "texto": "It has been cancelled for works in the railway infrastructure",
-     "explicacion": "It's not canceled, it's just late and transshipment."
+     "texto": {
+      "@es": "Ha sido cancelado por obras en la infraestructura ferroviaria",
+      "@en": "It has been cancelled for works in the railway infrastructure"
+     },
+     "explicacion": {
+      "@es": "No está cancelado, solo sufre retraso y transbordo.",
+      "@en": "It's not canceled, it's just late and transshipment."
+     }
     },
     {
-     "texto": "You arrive 10 minutes in advance of schedule",
-     "explicacion": "It is late («vertraging»), not advanced."
+     "texto": {
+      "@es": "Llega con diez minutos de antelación sobre el horario previsto",
+      "@en": "You arrive 10 minutes in advance of schedule"
+     },
+     "explicacion": {
+      "@es": "Lleva retraso («vertraging»), no adelanto.",
+      "@en": "It is late («vertraging»), not advanced."
+     }
     }
    ]
   },
   {
    "tipo": "huecos",
-   "pregunta": "Complete with the time of arrival specified on the panel.",
+   "pregunta": {
+    "@es": "Completa con la hora de llegada especificada en el panel.",
+    "@en": "Complete with the time of arrival specified on the panel."
+   },
    "frase": "Aankomst in Rotterdam: ___.",
    "id": "nl154-6",
    "opciones": [
     {
      "texto": "11.02",
-     "explicacion": "The expected time of arrival is 11: 00 and two minutes.",
+     "explicacion": {
+      "@es": "La hora prevista de llegada son las once y dos minutos.",
+      "@en": "The expected time of arrival is 11: 00 and two minutes."
+     },
      "correcta": true
     },
     {
      "texto": "10.14",
-     "explicacion": "10.14 is the time of departure."
+     "explicacion": {
+      "@es": "10.14 es la hora de partida.",
+      "@en": "10.14 is the time of departure."
+     }
     },
     {
      "texto": "10.22",
-     "explicacion": "10.22 is the train's exit to Leiden."
+     "explicacion": {
+      "@es": "10.22 es la salida del tren hacia Leiden.",
+      "@en": "10.22 is the train's exit to Leiden."
+     }
     }
    ]
   },
   {
    "tipo": "ordenar",
-   "pregunta": "Order the words.",
+   "pregunta": {
+    "@es": "Ordena las palabras.",
+    "@en": "Order the words."
+   },
    "frase": "De trein naar Rotterdam rijdt rechtstreeks",
-   "traduccion": "The train to Rotterdam goes straight.",
-   "explicacion": "Nominal syntagma subject, verb of displacement and warning in a way.",
+   "traduccion": {
+    "@es": "El tren a Rotterdam va directo.",
+    "@en": "The train to Rotterdam goes straight."
+   },
+   "explicacion": {
+    "@es": "Sintagma nominal sujeto, verbo de desplazamiento y adverbio de modo.",
+    "@en": "Nominal syntagma subject, verb of displacement and warning in a way."
+   },
    "id": "nl154-7"
   }
  ],
- "intro": "Interprets railway time panels identifying destinations, platforms and punctuality."
+ "intro": {
+  "@es": "Interpreta paneles horarios ferroviarios identificando destinos, andenes y puntualidad.",
+  "@en": "Interprets railway time panels identifying destinations, platforms and punctuality."
+ }
 }

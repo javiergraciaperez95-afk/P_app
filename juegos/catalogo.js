@@ -17,6 +17,7 @@ import * as ejercicio from './ejercicio.js';
 import * as teatro from './teatro.js';
 import * as cartas from './cartas.js';
 import * as linterna from './linterna.js';
+import * as tabla from './tabla.js';
 
 // Los tres primeros juegos se escribieron antes del catálogo: aquí se declara para qué sirven.
 const JUEGOS = [
@@ -24,7 +25,8 @@ const JUEGOS = [
   { nombre: 'teatro', icono: '🎭', tipos: ['dialogo'], crear: teatro.crear },
   { nombre: 'cartas', icono: '🃏', tipos: ['vocabulario'], crear: cartas.crear },
   { nombre: 'linterna', icono: '🏮', tipos: ['texto'], crear: linterna.crear },
-  { nombre: 'ejercicio', icono: '⭐', tipos: ['test', 'huecos', 'ordenar', 'escribir'], crear: ejercicio.crear },
+  { nombre: 'ejercicio', icono: '⭐', tipos: ['test', 'traduccion', 'huecos', 'ordenar', 'escribir'], crear: ejercicio.crear },
+  { ...tabla.juego, crear: tabla.crear },
 ];
 
 /** Añade juegos al catálogo (módulos con «juego» y «crear»). */
@@ -33,7 +35,7 @@ export function registrar(...modulos) {
 }
 
 // Un salto distinto por tipo, para que los tipos no avancen todos a la vez.
-const SALTO = { explicacion: 0, dialogo: 1, vocabulario: 2, gramatica: 3, texto: 4, test: 0, huecos: 1, ordenar: 2, escribir: 3 };
+const SALTO = { explicacion: 0, dialogo: 1, vocabulario: 2, gramatica: 3, texto: 4, test: 0, traduccion: 1, huecos: 1, ordenar: 2, escribir: 3, tabla: 0 };
 
 /**
  * El juego que le toca a un bloque. «n» es el número de la lección en el curso y «k» cuántos bloques
@@ -49,6 +51,9 @@ export function elegir(tipo, bloque, ctx, n, k = 0) {
 }
 
 export const todos = () => JUEGOS.map(j => j.nombre);
+
+/** Si algún juego sabe jugar este tipo de bloque. */
+export const hayJuegoPara = tipo => JUEGOS.some(j => j.tipos.includes(tipo));
 
 /** Lo que pide la prueba de un juego (solo en desarrollo): { tipo: nombre, empezar: tipo }. */
 export function probar() {

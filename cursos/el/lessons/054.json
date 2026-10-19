@@ -1,7 +1,10 @@
 {
  "capitulo": 18,
  "titulo_el": "Έχω κράτηση",
- "titulo_es": "I have a reservation.",
+ "titulo_es": {
+  "@es": "Tengo una reserva",
+  "@en": "I have a reservation."
+ },
  "palabras": {
   "δίκλινο": {
    "es": "doble",
@@ -39,15 +42,24 @@
  "bloques": [
   {
    "tipo": "explicacion",
-   "titulo": "Accommodation reserve",
+   "titulo": {
+    "@es": "Reserva de alojamiento",
+    "@en": "Accommodation reserve"
+   },
    "texto": [
-    "**Έχω κράτηση στο όνομα…** means «I have a reservation in the name of». **Δίκλινο δωμάτιο** is a double room.",
-    "**Για δύο νύχτες** indicates the duration. To request confirmation of the data: **Μπορείτε να ελέγξετε την κράτηση;**. **Το πρωινό περιλαμβάνεται;** asks if breakfast is included."
+    {
+     "@es": "**Έχω κράτηση στο όνομα…** significa «tengo una reserva a nombre de…». **Δίκλινο δωμάτιο** es una habitación doble.",
+     "@en": "**Έχω κράτηση στο όνομα…** means «I have a reservation in the name of». **Δίκλινο δωμάτιο** is a double room."
+    },
+    {
+     "@es": "**Για δύο νύχτες** indica la duración. Para pedir que confirmen los datos: **Μπορείτε να ελέγξετε την κράτηση;**. **Το πρωινό περιλαμβάνεται;** pregunta si el desayuno está incluido.",
+     "@en": "**Για δύο νύχτες** indicates the duration. To request confirmation of the data: **Μπορείτε να ελέγξετε την κράτηση;**. **Το πρωινό περιλαμβάνεται;** asks if breakfast is included."
+    }
    ]
   },
   {
    "tipo": "vocabulario",
-   "titulo": "Στη ρεσεΟιόν",
+   "titulo": "Στη ρεσεψιόν",
    "palabras": [
     "δίκλινο",
     "επιβεβαιώνω",
@@ -57,7 +69,7 @@
   },
   {
    "tipo": "dialogo",
-   "titulo": "In the case of the Commission, the Commission shall, in the case of the Member States of the European Union, take the following measures:",
+   "titulo": "Άφιξη στο ξενοδοχείο",
    "frases": [
     {
      "quien": "Μαρία",
@@ -67,11 +79,17 @@
      "analisis": [
       [
        "έχω κράτηση",
-       "I have a reservation."
+       {
+        "@es": "tengo reserva",
+        "@en": "I have a reservation."
+       }
       ],
       [
        "στο όνομα",
-       "in the name of"
+       {
+        "@es": "a nombre de",
+        "@en": "in the name of"
+       }
       ]
      ]
     },
@@ -83,7 +101,10 @@
      "analisis": [
       [
        "για πόσες νύχτες",
-       "for how many nights"
+       {
+        "@es": "para cuántas noches",
+        "@en": "for how many nights"
+       }
       ]
      ]
     },
@@ -95,15 +116,24 @@
      "analisis": [
       [
        "δύο νύχτες",
-       "two nights"
+       {
+        "@es": "dos noches",
+        "@en": "two nights"
+       }
       ],
       [
        "πρωινό",
-       "breakfast"
+       {
+        "@es": "desayuno",
+        "@en": "breakfast"
+       }
       ],
       [
        "περιλαμβάνεται",
-       "is included"
+       {
+        "@es": "está incluido",
+        "@en": "is included"
+       }
       ]
      ]
     },
@@ -115,11 +145,17 @@
      "analisis": [
       [
        "από τις επτά",
-       "from 7: 00"
+       {
+        "@es": "desde las siete",
+        "@en": "from 7: 00"
+       }
       ],
       [
        "μέχρι τις δέκα",
-       "until 10: 00."
+       {
+        "@es": "hasta las diez",
+        "@en": "until 10: 00."
+       }
       ]
      ]
     }
@@ -127,118 +163,217 @@
   },
   {
    "tipo": "test",
-   "pregunta": "In whose name is the reservation?",
+   "pregunta": {
+    "@es": "¿A nombre de quién está la reserva?",
+    "@en": "In whose name is the reservation?"
+   },
    "id": "el023-1",
    "opciones": [
     {
      "texto": "María Papadopoulou.",
-     "explicacion": "That's what Maria says.",
+     "explicacion": {
+      "@es": "Así lo dice María.",
+      "@en": "That's what Maria says."
+     },
      "correcta": true
     },
     {
      "texto": "Anna Papadopoulou.",
-     "explicacion": "It's not the name of the reservation."
+     "explicacion": {
+      "@es": "No es el nombre de la reserva.",
+      "@en": "It's not the name of the reservation."
+     }
     },
     {
      "texto": "Nikos Papadopoulos.",
-     "explicacion": "It's not the right name."
+     "explicacion": {
+      "@es": "No es el nombre indicado.",
+      "@en": "It's not the right name."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "What time is breakfast served?",
+   "pregunta": {
+    "@es": "¿A qué hora se sirve el desayuno?",
+    "@en": "What time is breakfast served?"
+   },
    "id": "el023-2",
    "opciones": [
     {
-     "texto": "Seven to ten.",
-     "explicacion": "The employee indicates the schedule.",
+     "texto": {
+      "@es": "De siete a diez.",
+      "@en": "Seven to ten."
+     },
+     "explicacion": {
+      "@es": "El empleado indica el horario.",
+      "@en": "The employee indicates the schedule."
+     },
      "correcta": true
     },
     {
-     "texto": "Six to nine.",
-     "explicacion": "It's not the right time."
+     "texto": {
+      "@es": "De seis a nueve.",
+      "@en": "Six to nine."
+     },
+     "explicacion": {
+      "@es": "No es el horario indicado.",
+      "@en": "It's not the right time."
+     }
     },
     {
-     "texto": "Eight to eleven.",
-     "explicacion": "It's not the right time."
+     "texto": {
+      "@es": "De ocho a once.",
+      "@en": "Eight to eleven."
+     },
+     "explicacion": {
+      "@es": "No es el horario indicado.",
+      "@en": "It's not the right time."
+     }
     }
    ]
   },
   {
    "tipo": "traduccion",
-   "pregunta": "What does that mean?",
+   "pregunta": {
+    "@es": "¿Qué significa?",
+    "@en": "What does that mean?"
+   },
    "frase": "Το πρωινό περιλαμβάνεται;",
    "id": "el023-3",
    "opciones": [
     {
-     "texto": "Is breakfast included?",
-     "explicacion": "«Περιλαμβάνεται» means is included.",
+     "texto": {
+      "@es": "¿Está incluido el desayuno?",
+      "@en": "Is breakfast included?"
+     },
+     "explicacion": {
+      "@es": "«Περιλαμβάνεται» significa está incluido.",
+      "@en": "«Περιλαμβάνεται» means is included."
+     },
      "correcta": true
     },
     {
-     "texto": "What time is breakfast?",
-     "explicacion": "She asked if it was included."
+     "texto": {
+      "@es": "¿A qué hora es el desayuno?",
+      "@en": "What time is breakfast?"
+     },
+     "explicacion": {
+      "@es": "Pregunta si está incluido.",
+      "@en": "She asked if it was included."
+     }
     },
     {
-     "texto": "How many nights do you include?",
-     "explicacion": "He doesn't ask at night."
+     "texto": {
+      "@es": "¿Cuántas noches incluye?",
+      "@en": "How many nights do you include?"
+     },
+     "explicacion": {
+      "@es": "No pregunta por las noches.",
+      "@en": "He doesn't ask at night."
+     }
     }
    ]
   },
   {
    "tipo": "huecos",
-   "pregunta": "Complete the sentence.",
+   "pregunta": {
+    "@es": "Completa la frase.",
+    "@en": "Complete the sentence."
+   },
    "frase": "Έχω ___ στο όνομα Μαρία.",
    "id": "el023-4",
    "opciones": [
     {
      "texto": "κράτηση",
-     "explicacion": "«Έχω κράτηση» means I have a reservation.",
+     "explicacion": {
+      "@es": "«Έχω κράτηση» significa tengo una reserva.",
+      "@en": "«Έχω κράτηση» means I have a reservation."
+     },
      "correcta": true
     },
     {
      "texto": "αναχώρηση",
-     "explicacion": "It means exit."
+     "explicacion": {
+      "@es": "Significa salida.",
+      "@en": "It means exit."
+     }
     },
     {
      "texto": "επιβεβαίωση",
-     "explicacion": "It means confirmation."
+     "explicacion": {
+      "@es": "Significa confirmación.",
+      "@en": "It means confirmation."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "Listen. What does that mean?",
+   "pregunta": {
+    "@es": "Escucha. ¿Qué significa?",
+    "@en": "Listen. What does that mean?"
+   },
    "audio": "Για δύο νύχτες.",
    "id": "el023-5",
    "opciones": [
     {
-     "texto": "For two nights.",
-     "explicacion": "«Νύχτες» means nights.",
+     "texto": {
+      "@es": "Para dos noches.",
+      "@en": "For two nights."
+     },
+     "explicacion": {
+      "@es": "«Νύχτες» significa noches.",
+      "@en": "«Νύχτες» means nights."
+     },
      "correcta": true
     },
     {
-     "texto": "For two rooms.",
-     "explicacion": "Rooms is «δωμάτια»."
+     "texto": {
+      "@es": "Para dos habitaciones.",
+      "@en": "For two rooms."
+     },
+     "explicacion": {
+      "@es": "Habitaciones es «δωμάτια».",
+      "@en": "Rooms is «δωμάτια»."
+     }
     },
     {
-     "texto": "Since 2: 00.",
-     "explicacion": "Since it's «από»."
+     "texto": {
+      "@es": "Desde las dos.",
+      "@en": "Since 2: 00."
+     },
+     "explicacion": {
+      "@es": "Desde es «από».",
+      "@en": "Since it's «από»."
+     }
     }
    ]
   },
   {
    "tipo": "ordenar",
-   "pregunta": "Order the words.",
+   "pregunta": {
+    "@es": "Ordena las palabras.",
+    "@en": "Order the words."
+   },
    "frase": "από τις επτά μέχρι τις δέκα",
-   "traduccion": "from seven to ten",
-   "explicacion": "«Μέχρι» means up.",
+   "traduccion": {
+    "@es": "desde las siete hasta las diez",
+    "@en": "from seven to ten"
+   },
+   "explicacion": {
+    "@es": "«Μέχρι» significa hasta.",
+    "@en": "«Μέχρι» means up."
+   },
    "id": "el023-6"
   },
   {
    "tipo": "escribir",
-   "pregunta": "Write in Greek: «reservation»",
+   "pregunta": {
+    "@es": "Escribe en griego: «reserva»",
+    "@en": "Write in Greek: «reservation»"
+   },
    "respuestas": [
     "κράτηση"
    ],
@@ -246,5 +381,8 @@
    "id": "el023-7"
   }
  ],
- "intro": "Confirm a reservation and give the basic data when you get to a hotel."
+ "intro": {
+  "@es": "Confirma una reserva y da los datos básicos al llegar a un hotel.",
+  "@en": "Confirm a reservation and give the basic data when you get to a hotel."
+ }
 }

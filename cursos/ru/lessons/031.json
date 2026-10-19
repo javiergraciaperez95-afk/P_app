@@ -1,7 +1,10 @@
 {
  "capitulo": 10,
  "titulo_ru": "Объявления и расписание",
- "titulo_es": "Read notices and schedules",
+ "titulo_es": {
+  "@es": "Leer avisos y horarios",
+  "@en": "Read notices and schedules"
+ },
  "palabras": {
   "объявление": {
    "es": "aviso, anuncio",
@@ -100,10 +103,19 @@
  "bloques": [
   {
    "tipo": "explicacion",
-   "titulo": "Daily warnings",
+   "titulo": {
+    "@es": "Avisos cotidianos",
+    "@en": "Daily warnings"
+   },
    "texto": [
-    "In a poster, **Открыто / Закрыто** can appear without a designated place. If the place is named, the form matches: **магазин открыт** (masculine), **касса закрыта** (feminine), **кафе открыто** (neutral).",
-    "For times, see the hours and words like **отправление** (departure from a transport) and **прибытие** (arrival). **Поезд отправляется** means «The train leaves»."
+    {
+     "@es": "En un cartel, **Открыто / Закрыто** pueden aparecer sin un lugar nombrado. Si se nombra el lugar, la forma concuerda: **магазин открыт** (masculino), **касса закрыта** (femenino), **кафе открыто** (neutro).",
+     "@en": "In a poster, **Открыто / Закрыто** can appear without a designated place. If the place is named, the form matches: **магазин открыт** (masculine), **касса закрыта** (feminine), **кафе открыто** (neutral)."
+    },
+    {
+     "@es": "Para horarios, fíjate en las horas y en palabras como **отправление** (salida de un transporte) y **прибытие** (llegada). **Поезд отправляется** significa «el tren sale».",
+     "@en": "For times, see the hours and words like **отправление** (departure from a transport) and **прибытие** (arrival). **Поезд отправляется** means «The train leaves»."
+    }
    ]
   },
   {
@@ -144,178 +156,337 @@
   },
   {
    "tipo": "test",
-   "pregunta": "How long is the store open?",
+   "pregunta": {
+    "@es": "¿Hasta qué hora está abierta la tienda?",
+    "@en": "How long is the store open?"
+   },
    "id": "ru031-1",
    "opciones": [
     {
      "texto": "20:00",
-     "explicacion": "The ad says «до 20:00».",
+     "explicacion": {
+      "@es": "El aviso dice «до 20:00».",
+      "@en": "The ad says «до 20:00»."
+     },
      "correcta": true
     },
     {
      "texto": "13:00",
-     "explicacion": "At that time, close the locker for the rest."
+     "explicacion": {
+      "@es": "A esa hora cierra la taquilla para el descanso.",
+      "@en": "At that time, close the locker for the rest."
+     }
     },
     {
      "texto": "12:40",
-     "explicacion": "That's the time of arrival of the train."
+     "explicacion": {
+      "@es": "Esa es la hora de llegada del tren.",
+      "@en": "That's the time of arrival of the train."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "What time is the locker closed for the rest?",
+   "pregunta": {
+    "@es": "¿A qué hora está cerrada la taquilla por el descanso?",
+    "@en": "What time is the locker closed for the rest?"
+   },
    "id": "ru031-2",
    "opciones": [
     {
-     "texto": "From 13: 00 to 14: 00.",
-     "explicacion": "«С 13:00 до 14:00» indicates the interval.",
+     "texto": {
+      "@es": "De 13:00 a 14:00.",
+      "@en": "From 13: 00 to 14: 00."
+     },
+     "explicacion": {
+      "@es": "«С 13:00 до 14:00» indica el intervalo.",
+      "@en": "«С 13:00 до 14:00» indicates the interval."
+     },
      "correcta": true
     },
     {
-     "texto": "10: 15 to 12: 40.",
-     "explicacion": "It's the train hours."
+     "texto": {
+      "@es": "De 10:15 a 12:40.",
+      "@en": "10: 15 to 12: 40."
+     },
+     "explicacion": {
+      "@es": "Son las horas del tren.",
+      "@en": "It's the train hours."
+     }
     },
     {
-     "texto": "Until 8: 00.",
-     "explicacion": "It's the shop schedule."
+     "texto": {
+      "@es": "Hasta las 20:00.",
+      "@en": "Until 8: 00."
+     },
+     "explicacion": {
+      "@es": "Es el horario de la tienda.",
+      "@en": "It's the shop schedule."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "Where's the entrance?",
+   "pregunta": {
+    "@es": "¿Dónde está la entrada?",
+    "@en": "Where's the entrance?"
+   },
    "id": "ru031-3",
    "opciones": [
     {
-     "texto": "Here.",
-     "explicacion": "«Здесь» means here.",
+     "texto": {
+      "@es": "Aquí.",
+      "@en": "Here."
+     },
+     "explicacion": {
+      "@es": "«Здесь» significa aquí.",
+      "@en": "«Здесь» means here."
+     },
      "correcta": true
     },
     {
-     "texto": "There.",
-     "explicacion": "There's the exit."
+     "texto": {
+      "@es": "Allí.",
+      "@en": "There."
+     },
+     "explicacion": {
+      "@es": "Allí está la salida.",
+      "@en": "There's the exit."
+     }
     },
     {
-     "texto": "On platform 2.",
-     "explicacion": "That's the train exit platform."
+     "texto": {
+      "@es": "En el andén 2.",
+      "@en": "On platform 2."
+     },
+     "explicacion": {
+      "@es": "Ese es el andén de salida del tren.",
+      "@en": "That's the train exit platform."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "What time does the train leave?",
+   "pregunta": {
+    "@es": "¿A qué hora sale el tren?",
+    "@en": "What time does the train leave?"
+   },
    "id": "ru031-4",
    "opciones": [
     {
-     "texto": "10: 15.",
-     "explicacion": "«Отправляется» indicates the output.",
+     "texto": {
+      "@es": "A las 10:15.",
+      "@en": "10: 15."
+     },
+     "explicacion": {
+      "@es": "«Отправляется» indica la salida.",
+      "@en": "«Отправляется» indicates the output."
+     },
      "correcta": true
     },
     {
-     "texto": "12: 40.",
-     "explicacion": "That's the time of arrival."
+     "texto": {
+      "@es": "A las 12:40.",
+      "@en": "12: 40."
+     },
+     "explicacion": {
+      "@es": "Esa es la hora de llegada.",
+      "@en": "That's the time of arrival."
+     }
     },
     {
-     "texto": "At 2: 00.",
-     "explicacion": "At that time the rest is over."
+     "texto": {
+      "@es": "A las 14:00.",
+      "@en": "At 2: 00."
+     },
+     "explicacion": {
+      "@es": "A esa hora termina el descanso.",
+      "@en": "At that time the rest is over."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "How long has he been out?",
+   "pregunta": {
+    "@es": "¿Desde qué andén sale?",
+    "@en": "How long has he been out?"
+   },
    "id": "ru031-5",
    "opciones": [
     {
-     "texto": "From platform 2.",
+     "texto": {
+      "@es": "Desde el andén 2.",
+      "@en": "From platform 2."
+     },
      "explicacion": "«С платформы 2».",
      "correcta": true
     },
     {
-     "texto": "From the locker.",
-     "explicacion": "The locker is «касса»."
+     "texto": {
+      "@es": "Desde la taquilla.",
+      "@en": "From the locker."
+     },
+     "explicacion": {
+      "@es": "La taquilla es «касса».",
+      "@en": "The locker is «касса»."
+     }
     },
     {
-     "texto": "From the entrance.",
-     "explicacion": "The entry is «вход»."
+     "texto": {
+      "@es": "Desde la entrada.",
+      "@en": "From the entrance."
+     },
+     "explicacion": {
+      "@es": "La entrada es «вход».",
+      "@en": "The entry is «вход»."
+     }
     }
    ]
   },
   {
    "tipo": "traduccion",
-   "pregunta": "What does that mean?",
+   "pregunta": {
+    "@es": "¿Qué significa?",
+    "@en": "What does that mean?"
+   },
    "frase": "Прибытие в 12:40.",
    "id": "ru031-6",
    "opciones": [
     {
-     "texto": "Arrived at 12: 40.",
-     "explicacion": "«Прибытие» is arrival.",
+     "texto": {
+      "@es": "Llegada a las 12:40.",
+      "@en": "Arrived at 12: 40."
+     },
+     "explicacion": {
+      "@es": "«Прибытие» es llegada.",
+      "@en": "«Прибытие» is arrival."
+     },
      "correcta": true
     },
     {
-     "texto": "Exit at 12: 40.",
-     "explicacion": "Output is «отправление»."
+     "texto": {
+      "@es": "Salida a las 12:40.",
+      "@en": "Exit at 12: 40."
+     },
+     "explicacion": {
+      "@es": "Salida es «отправление».",
+      "@en": "Output is «отправление»."
+     }
     },
     {
-     "texto": "The locker opens at 12: 40.",
-     "explicacion": "«Касса» does not appear in this sentence."
+     "texto": {
+      "@es": "La taquilla abre a las 12:40.",
+      "@en": "The locker opens at 12: 40."
+     },
+     "explicacion": {
+      "@es": "«Касса» no aparece en esta frase.",
+      "@en": "«Касса» does not appear in this sentence."
+     }
     }
    ]
   },
   {
    "tipo": "huecos",
-   "pregunta": "Complete the sentence.",
+   "pregunta": {
+    "@es": "Completa la frase.",
+    "@en": "Complete the sentence."
+   },
    "frase": "Касса ___ на перерыв.",
    "id": "ru031-7",
    "opciones": [
     {
      "texto": "закрыта",
-     "explicacion": "The word matches касса, feminine.",
+     "explicacion": {
+      "@es": "La palabra concuerda con касса, femenino.",
+      "@en": "The word matches касса, feminine."
+     },
      "correcta": true
     },
     {
      "texto": "закрыто",
-     "explicacion": "This form is used with a neutral subject."
+     "explicacion": {
+      "@es": "Esta forma se usa con un sujeto neutro.",
+      "@en": "This form is used with a neutral subject."
+     }
     },
     {
      "texto": "открыт",
-     "explicacion": "It means «open» and it's masculine."
+     "explicacion": {
+      "@es": "Significa «abierto» y es masculino.",
+      "@en": "It means «open» and it's masculine."
+     }
     }
    ]
   },
   {
    "tipo": "test",
-   "pregunta": "Listen. What does that mean?",
+   "pregunta": {
+    "@es": "Escucha. ¿Qué significa?",
+    "@en": "Listen. What does that mean?"
+   },
    "audio": "Выход там.",
    "id": "ru031-8",
    "opciones": [
     {
-     "texto": "The exit is there.",
-     "explicacion": "«Выход» = output; «там» = there.",
+     "texto": {
+      "@es": "La salida está allí.",
+      "@en": "The exit is there."
+     },
+     "explicacion": {
+      "@es": "«Выход» = salida; «там» = allí.",
+      "@en": "«Выход» = output; «там» = there."
+     },
      "correcta": true
     },
     {
-     "texto": "The entrance is here.",
-     "explicacion": "Entry is «вход» and here is «здесь»."
+     "texto": {
+      "@es": "La entrada está aquí.",
+      "@en": "The entrance is here."
+     },
+     "explicacion": {
+      "@es": "Entrada es «вход» y aquí es «здесь».",
+      "@en": "Entry is «вход» and here is «здесь»."
+     }
     },
     {
-     "texto": "The train gets there.",
-     "explicacion": "Train is «поезд»."
+     "texto": {
+      "@es": "El tren llega allí.",
+      "@en": "The train gets there."
+     },
+     "explicacion": {
+      "@es": "Tren es «поезд».",
+      "@en": "Train is «поезд»."
+     }
     }
    ]
   },
   {
    "tipo": "ordenar",
-   "pregunta": "Order the words.",
+   "pregunta": {
+    "@es": "Ordena las palabras.",
+    "@en": "Order the words."
+   },
    "frase": "Поезд отправляется в 10:15.",
-   "traduccion": "The train leaves at 10: 15.",
-   "explicacion": "Train + leaves + at 10: 15.",
+   "traduccion": {
+    "@es": "El tren sale a las 10:15.",
+    "@en": "The train leaves at 10: 15."
+   },
+   "explicacion": {
+    "@es": "Tren + sale + a las 10:15.",
+    "@en": "Train + leaves + at 10: 15."
+   },
    "id": "ru031-9"
   },
   {
    "tipo": "vocabulario",
-   "titulo": "Vocabulary",
+   "titulo": {
+    "@es": "Vocabulario",
+    "@en": "Vocabulary"
+   },
    "palabras": [
     "объявление",
     "магазин",
@@ -335,6 +506,9 @@
    ]
   }
  ],
- "intro": "Read the notices and try to answer without translating word for word. Hide the text translations before doing the exercises; you can show them later to check.",
+ "intro": {
+  "@es": "Lee los avisos e intenta responder sin traducir palabra por palabra. Oculta las traducciones del texto antes de hacer los ejercicios; puedes mostrarlas después para comprobar.",
+  "@en": "Read the notices and try to answer without translating word for word. Hide the text translations before doing the exercises; you can show them later to check."
+ },
  "numero_curso": 31
 }

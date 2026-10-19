@@ -13,7 +13,7 @@ import { el, poner, enLinea } from '../js/dom.js';
 export const juego = {
   nombre: 'dianas',
   icono: '🎯',
-  tipos: ['test', 'huecos'],
+  tipos: ['test', 'traduccion', 'huecos'],
   sirve: () => true,
 };
 

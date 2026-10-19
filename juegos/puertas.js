@@ -12,7 +12,7 @@ import { el, poner, enLinea } from '../js/dom.js';
 export const juego = {
   nombre: 'puertas',
   icono: '🚪',
-  tipos: ['test'],
+  tipos: ['test', 'traduccion'],
   sirve: bloque => Array.isArray(bloque.opciones) && bloque.opciones.length >= 2 && bloque.opciones.some(o => o.correcta),
 };
 
