@@ -179,14 +179,18 @@ export async function iniciarNube() {
     reloj = null;
     const n = numeroCuenta();
     if (!n || cursosNube === null || !curso.id || !progresoEnLaNube()) return;
+    const cuerpo = JSON.stringify({ p_numero: n, p_datos: paraSubir() });
+    // keepalive (que sigue aunque se cierre la app) solo admite unos 64 KB; una copia más grande se sube de forma normal
+    // (en el móvil la app suele quedar en segundo plano y le da tiempo) y, si no, se subirá al volver
+    if (cuerpo.length > 60000) { subir(); return; }
     try {
       fetch(`${SUPABASE_URL}/rest/v1/rpc/paglot_guardar`, {
         method: 'POST',
         keepalive: true,
         headers: { apikey: SUPABASE_CLAVE_PUBLICA, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ p_numero: n, p_datos: paraSubir() }),
+        body: cuerpo,
       }).catch(() => {});
-    } catch { /* demasiado grande para keepalive: se subirá la próxima vez */ }
+    } catch { /* no se pudo: se subirá la próxima vez */ }
   });
   // si vuelve la conexión, se intenta otra vez
   window.addEventListener('online', () => { if (nube.estado !== 'guardada') subir(); });

@@ -83,9 +83,10 @@
 }
 
 /* El aviso de datos no empuja la página en el móvil (era lo que hacía que repaso, precios y el mapa no cupieran):
-   flota encima, abajo, hasta que se cierra */
+   flota encima, ARRIBA, hasta que se cierra. Abajo tapaba el botón de empezar de la portada (informe de usabilidad del
+   19-10); arriba solo tapa un momento la cabecera y el logo. */
 @media (max-width: 700px) {
-  .aviso-datos { position: fixed; left: 8px; right: 8px; bottom: 8px; z-index: 60; margin: 0; max-height: 40vh; overflow-y: auto; }
+  .aviso-datos { position: fixed; left: 8px; right: 8px; top: 8px; z-index: 60; margin: 0; max-height: 40vh; overflow-y: auto; font-size: .92rem; }
   .precios .pr-escenario { gap: 8px; }
   .panel-repaso { padding: 12px; }
 }
@@ -137,7 +138,6 @@ html.texto-grande { font-size: 112.5%; }
   .inicio-teatro .teatro-entradas .inicio-idioma { min-height: 0; justify-content: center; clip-path: none; }
   .inicio-teatro .teatro-entradas .entrada-talon { width: 100%; padding: 6px 2px; background: none; }
   .inicio-teatro .teatro-entradas .bandera { width: 26px; height: 17px; }
-  html.pm-activo .aviso-datos { bottom: 66px; }
 }
 
 /* Portada en el móvil, diapositiva 1: la escena de la web recolocada, no encogida. Ocupa todo el alto entre la cabecera
@@ -634,3 +634,9 @@ html.texto-grande { font-size: 112.5%; }
   body:not(:has(#app .inicio)) .cinta-hola { display: none; }
 }
 
+
+/* Perfil en un móvil bajito: el calendario de actividad con cuadritos algo más pequeños, para que quepa con su título
+   y sus datos en la misma diapositiva (en vietnamita los datos ocupan dos líneas) */
+@media (max-width: 700px) and (max-height: 700px) {
+  html.pm-activo .ac-calendario { max-width: calc(var(--semanas) * 25px); }
+}

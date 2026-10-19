@@ -246,7 +246,7 @@ function seccionActividad() {
       el('span', {}, '🔥 ', t('perfil.rachaAhora', { n: racha() })),
       el('span', {}, '🏆 ', t('perfil.rachaMejor', { n: mejorRacha() })),
       el('span', {}, '📅 ', t('perfil.diasActivos', { n: activos }))),
-    el('div', { class: 'ac-calendario', style: `--semanas:${SEMANAS}` }, celdas),
+    el('div', { class: 'ac-calendario', style: `--semanas:${SEMANAS}`, 'data-entera': '' }, celdas),
     el('p', { class: 'ac-leyenda aprox' }, t('perfil.menos'), ' ',
       [0, 1, 2, 3, 4].map(k => el('i', { class: `ac-dia ac-${k}`, 'aria-hidden': 'true' })), ' ', t('perfil.mas')));
 }

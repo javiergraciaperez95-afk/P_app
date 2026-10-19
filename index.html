@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <!-- Solo se cargan archivos de este sitio y los <script> en línea de esta página (sus hashes en script-src); publicar.py los recalcula al cambiar __VERSION__. -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-c920FhfDHThfIqlsIt0ZrUNsYS4qkx7Plyl1tOmjXyI=' 'sha256-HmUDMX1VRS5BmRfy2Qt05EBPKflz1nnzveLWsJusvXM=' 'sha256-i2JYOuti5Ah2S8EaTkBTkbMk46bg0jWJheA5ii3Mz2Q='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' https://iuniglsiqnfvnotmfgdo.supabase.co">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-c920FhfDHThfIqlsIt0ZrUNsYS4qkx7Plyl1tOmjXyI=' 'sha256-HmUDMX1VRS5BmRfy2Qt05EBPKflz1nnzveLWsJusvXM=' 'sha256-2a+M4sJwy5H2nW/bZVlBTL43ebWjy1XiHzvnP73ZkDI='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' https://iuniglsiqnfvnotmfgdo.supabase.co">
   <title>Paglot</title>
   <meta name="description" content="Paglot: aprende idiomas con tu tutora de píxeles · Learn languages with your pixel tutor · Học ngoại ngữ cùng cô giáo pixel.">
   <meta name="application-name" content="Paglot">
@@ -225,6 +225,32 @@
     if ('serviceWorker' in navigator && !['localhost', '127.0.0.1'].includes(location.hostname)) {
       addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
     }
+    // Si la app no llega a pintar nada (conexión muy lenta, un archivo que no llega, un navegador demasiado antiguo),
+    // en vez de quedarse en el logotipo para siempre se dice qué pasa y se ofrece volver a intentarlo. Sin import maps
+    // (Safari anterior a 16.4, Chrome anterior a 89…) la app no puede funcionar: se dice enseguida.
+    (() => {
+      const antiguo = !(window.HTMLScriptElement && HTMLScriptElement.supports && HTMLScriptElement.supports('importmap'));
+      const TEXTOS = {
+        es: ['Está tardando más de lo normal. Si no se abre, comprueba tu conexión y vuelve a intentarlo.', 'Tu navegador es demasiado antiguo para Paglot. Actualízalo o prueba con otro (Chrome, Firefox, Safari o Edge recientes).', 'Volver a intentarlo'],
+        en: ['This is taking longer than usual. If it doesn’t open, check your connection and try again.', 'Your browser is too old for Paglot. Update it or try another one (a recent Chrome, Firefox, Safari or Edge).', 'Try again'],
+        vi: ['Đang lâu hơn bình thường. Nếu không mở được, hãy kiểm tra kết nối và thử lại.', 'Trình duyệt của bạn quá cũ để dùng Paglot. Hãy cập nhật hoặc dùng trình duyệt khác (Chrome, Firefox, Safari hoặc Edge mới).', 'Thử lại'],
+      };
+      const avisar = () => {
+        const caja = document.querySelector('.arranque');
+        if (!document.body.classList.contains('arrancando') || !caja || caja.querySelector('.arranque-fallo')) return;
+        const [lento, viejo, boton] = TEXTOS[document.documentElement.lang] || TEXTOS.en;
+        const p = document.createElement('p');
+        p.className = 'arranque-fallo';
+        p.textContent = antiguo ? viejo : lento;
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'boton';
+        b.textContent = boton;
+        b.addEventListener('click', () => location.reload());
+        caja.append(p, b);
+      };
+      addEventListener('DOMContentLoaded', () => setTimeout(avisar, antiguo ? 0 : 15000));
+    })();
   </script>
 </head>
 <!-- «arrancando»: mientras carga la app solo se ve el logotipo; la clase se quita al pintar la primera pantalla (js/app.js). -->

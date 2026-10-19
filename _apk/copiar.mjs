@@ -29,5 +29,9 @@ let html = readFileSync(indice, 'utf8').replaceAll('__VERSION__', String(Date.no
 if (!html.includes(MODULO)) throw new Error('No encuentro dónde enganchar el puente en index.html');
 html = html.replace(MODULO, '  <script src="puente-apk.js"></script>\n' + MODULO);
 writeFileSync(indice, html);
+// La CSP de index.html lleva el hash de cada <script> en línea; al poner la versión cambian (el mapa de importación
+// lleva ?v=…), así que se rehacen como al publicar (_herramientas/publicar.py). Si no, la APK bloquearía el mapa.
+const rehacerCsp = `import sys; sys.path.insert(0, r'${join(origen, '_herramientas')}'); from pathlib import Path; from publicar import leer, recalcular_csp; p = Path(r'${indice}'); p.write_text(recalcular_csp(leer(p))[0], encoding='utf-8', newline='\\n')`;
+try { execFileSync('python', ['-c', rehacerCsp], { stdio: 'inherit' }); } catch { execFileSync('py', ['-3', '-c', rehacerCsp], { stdio: 'inherit' }); }
 cpSync(join(aqui, 'puente.js'), join(destino, 'puente-apk.js'));
 console.log('Copiado en', destino);

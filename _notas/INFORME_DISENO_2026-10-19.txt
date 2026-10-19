@@ -1,0 +1,610 @@
+# Paglot · Estudio de diseño (19-10-2026)
+
+Estudio de diseño de Paglot (web y APK): UX, interfaz, estilo pixel art, accesibilidad, movimiento, sonido, primera vez, retención y diseño en móvil. Está escrito para **tú**, que decides, y para quien vaya a rehacer las pantallas.
+
+**Cómo se ha hecho.**
+- Capturas en Chrome sin ventana con `_herramientas/foto.mjs` sobre el servidor de `localhost:8300`: escritorio 1280×800, móvil 390×844, móvil pequeño 322×645 y tema claro. Están en `C:\Users\javie\AppData\Local\Temp\diseno\` (nombres de archivo citados en cada apartado). Son unas 65 capturas, de las que he revisado en detalle unas 45.
+- Mediciones con JavaScript sobre esas mismas páginas: tamaños de botones, número de diapositivas, zoom y escala aplicados, banderas visibles en la portada de idiomas, contraste calculado con la fórmula WCAG a partir de los tokens de `css/styles.css`.
+- Lectura de código: `css/styles.css` (tokens), `css/movil.css`, `css/teatro.css`, `js/app.js` (rutas), `js/movil.js` (botón «atrás»), `js/paginas-movil.js` (diapositivas), `js/ajustes.js` (preferencias), `_notas/INFORME_ARREGLOS_2026-10-19.md` (lo ya arreglado hoy).
+- Investigación en la web el 19-10-2026 (ver capítulo 9). Donde la fuente es secundaria o no he podido leer el original, se dice.
+
+**Límites.** No he probado en móviles reales ni con personas (con TDAH o dislexia). Las capturas son de Chrome de escritorio con emulación de móvil, no de un Android. Hay dos hallazgos que hay que confirmar en un dispositivo antes de tocar código: la portada de idiomas en el móvil (ver 3.2) y el aviso de seguridad de la consola (ver 3.5).
+
+**Reglas del dueño que este informe respeta.** En el móvil nunca se encoge ni se hace zoom (todas las propuestas usan más diapositivas o más sitio, no escala); no se toca el arte de las escenas dibujadas a mano; ningún paso se completa solo tocando; lo fallado vuelve; sin culpa ni presión; purpurina sí, sin derrochar; las animaciones siguen usando `transform` y `opacity`.
+
+---
+
+## 1. Resumen ejecutivo
+
+Las diez mejoras más valiosas, ordenadas por impacto frente a esfuerzo (impacto y esfuerzo del 1 al 5; el detalle está en el capítulo 8):
+
+| # | Mejora | Impacto | Esfuerzo | Por qué |
+|---|---|---|---|---|
+| 1 | **Confirmar y arreglar la portada de idiomas en el móvil.** En la captura de 390 px solo se ven 3 de las 21 banderas; las que he medido del resto no se pintan (`display: none`) | 5 | 2 | Es la primera decisión del usuario. Si se confirma, es el fallo más caro de la app |
+| 2 | **El aviso de cookies deja de tapar la pantalla.** En el móvil ocupa entre un 19 % y un 25 % de la altura y tapa diapositivas y botones; en el escritorio se mete debajo del bocadillo de la tutora | 4 | 1 | Tapa lo que hay que leer en la primera visita, en casi todas las pantallas |
+| 3 | **Ninguna página exige curso sin dar salida.** Perfil, Reto, Frases, Prueba y Bienvenida, abiertas sin idioma elegido, muestran «Esta página se ha perdido» | 4 | 1 | Callejón sin salida en cuanto alguien llega por un enlace o por el menú |
+| 4 | **Botones a 44 px como mínimo.** Medidos: cabecera 38 px, ◀ ▶ 48×38, «Pausa» 36×34, «Ocultar» 69×28, botones del aviso 36 px | 4 | 1 | Déficit de atención y dedos grandes: fallan justo los controles que más se usan |
+| 5 | **Etiquetas claras en los iconos.** El «⇄» de la cabecera de curso no dice nada; el botón de cuenta se llama «Cuenta · Cuenta» | 3 | 1 | Afecta a todos y a los lectores de pantalla |
+| 6 | **Primera lección sin fricción.** Antes de la primera lección aparece el «carné de estudiante», cuyo botón principal es «Así me llamo». Hacer «Empezar ya» la opción principal y dejar el nombre para Perfil | 4 | 2 | Quita un paso antes del primer acierto; el nombre sigue siendo opcional |
+| 7 | **Racha y objetivo sin culpa.** Perfil muestra «Racha 0 días» y «Fallos 0». Pasar a «Aciertos» y «Vuelve cuando quieras», y ofrecer un objetivo de 5 minutos | 4 | 2 | Encaja con el déficit de atención y con lo que dice la investigación sobre culpa en las rachas |
+| 8 | **El «atrás» del móvil recorre las diapositivas.** Hoy, desde la diapositiva 5 de Sobre, «atrás» te manda a Inicio, no a la 4 | 4 | 3 | Es lo primero que nota quien usa la APK |
+| 9 | **Rail de pasos de la lección con nombre.** Son 13–19 iconos casi iguales (muchas estrellas), sin texto, de 28–40 px | 4 | 3 | Dice al alumno dónde está y qué le queda |
+| 10 | **Tamaño mínimo de texto de 12 px** (hoy hay 41 declaraciones por debajo) y etiquetas en pixel font solo para títulos y frases cortas | 3 | 2 | Lectura cansada, sobre todo con dislexia y en móvil |
+
+Lo que **está bien** y hay que conservar: la escena del teatro de idiomas (escritorio), la portada con su escenario y las tutoras, el sobre de la primera lección, la pizarra de los juegos de gramática, el tono de la tutora («Mmm… juraría que la había dejado por aquí»), el modo claro en papel, el repaso con su aviso de que está vacío, y que en el móvil las páginas ya no se encogen (medido hoy: cero elementos con zoom o escala en Sobre, Escuelas, Tienda y Perfil a 390 px, y en Contacto a 322 px).
+
+---
+
+## 2. Referentes
+
+### 2.1 Qué hacen las apps de idiomas grandes
+
+| App | Primera sesión | Lección y feedback | Hábito y gamificación | Lo que se queja la gente |
+|---|---|---|---|---|
+| **Duolingo** | Lección antes de crear cuenta (patrón de «onboarding invertido»): la primera pregunta llega en unos 30 segundos; el registro se pide después, con muros blandos y luego duros ([UXCam](https://uxcam.com/blog/10-apps-with-great-user-onboarding/); [Relaunch](https://relaunch.ai/blog/duolingo-onboarding-teardown-7-b-tests-behind-their-9-conver)) | Una acción por pantalla, «Comprobar» abajo, sonido y animación en cada respuesta | Racha, protector, ligas, rachas con amigos. Los mensajes de racha perdida usan culpa: «You made Duo sad» ([Decision Lab](https://thedecisionlab.com/insights/consumer-insights/streak-creep-the-perils-of-too-much-gamification); [Duolingo Guides](https://duolingoguides.com/does-duolingo-send-threatening-messages/)) | Ansiedad por la racha (lecciones a las 23:59 por miedo a perderla; quien la deja siente alivio) y notificaciones que sienten como vigilancia (son testimonios de blogs y foros, no datos; [Language App Guide](https://languageappguide.com/app-reviews/duolingo-review/); [Duolingo Guides](https://duolingoguides.com/why-duolingo-is-scary-the-psychology-behind-that-green-owl/)) |
+| **Babbel** | Cuestionario de nivel al registrarse; se puede repetir cuando se quiera. Solo en español, francés, italiano y alemán ([centro de ayuda de Babbel](https://support.babbel.com/hc/en-us/articles/20202703767442-Placement-quiz)) | No verificado hoy | No verificado hoy | Precio de por vida caro (según el informe anterior) |
+| **Busuu** | La evaluación inicial define el plan de estudio; útil para quien ya sabe algo ([Ling-App, comparativa 2026](https://ling-app.com/blog/language-learning-app-comparison/)) | Práctica con nativos | Certificados MCER ([ayuda de Busuu](https://help.busuu.com/hc/en-us/articles/16559434818321-What-are-Certificates-and-how-can-I-get-them)) | Opiniones dispares de la corrección |
+| **LingoDeer** | Sin test de nivel documentado en lo que he podido leer | Introduce la escritura (japonés, coreano, chino) con calma; notas de gramática claras y juegos de repaso ([LanguaVibe](https://languavibe.com/lingodeer-review/)) | No verificado hoy | Hablar poco; muros de pago agresivos ([Common Sense Media](https://www.commonsensemedia.org/app-reviews/lingodeer-learn-languages)) |
+| **Speak** | Chequeo de nivel rápido y elección de tema: se habla con la IA en minutos ([Languatalk](https://languatalk.com/blog/speak-app-review/)) | Práctica oral con IA; las explicaciones de gramática son flojas ([Make Headway](https://makeheadway.com/blog/speak-app-review/)) | No verificado hoy | Gramática débil; fallos de corrección señalados en reseñas |
+| **Drops, Memrise, Mondly** | No lo he podido verificar hoy. Lo que dice el informe anterior: Drops en 5 minutos visuales | — | — | — |
+
+Notas de fiabilidad: las cifras de Duolingo que circulan (un 20 % más de usuarios diarios con el registro retrasado, conversiones del 3 % al 8,9 %) vienen de terceros y no he podido verlas en la fuente original; no las uso como argumento. Las reseñas de los blogs de afiliados (Language App Guide, Ling-App y similares) son opinión, no datos.
+
+### 2.2 Qué se copia y qué no
+
+**Sí copiar:**
+- **Lección antes que la cuenta.** Paglot ya lo hace (el sobre de la lección 1 llega sin registro). Lo que falta es que la primera lección llegue antes del carné.
+- **Prueba de nivel visible desde el principio** (Babbel la repite cuando quieras; Busuu la usa para no repetir). Paglot la tiene en `#/prueba`, pero solo se entra desde el mapa y sin curso da 404 (ver 3.2).
+- **Frases de práctica** con un ritmo claro (Speak: «lo que vas a aprender hoy, en qué orden y por qué»). Paglot tiene el texto («lee la tarea, tapa el francés, di tus frases en voz alta»); falta que sea visible como plan del día.
+- **Notas de gramática cortas y en el momento** (LingoDeer). Paglot usa la tutora y el modo libro; es su punto fuerte, pero en el móvil son muchas pantallas.
+
+**No copiar:**
+- **Culpa y miedo a perder la racha.** Duolingo lo usa; sus usuarios se quejan de ello. El propio Paglot ya dice «sin culpa». Lo que hay en el aviso de la cuenta por número («si no abres Paglot en 7 días… se borran») es miedo en el primer contacto (ver 3.4).
+- **Muros de pago agresivos.** Es la queja más repetida de LingoDeer.
+- **Mensajes de la mascota triste.** Ni la tutora ni la mascota deben decir «me has dejado». Es el contrario de lo que pide el dueño.
+
+### 2.3 Pixel art: lo que hacen bien los juegos y las apps
+
+- **Separar capas.** Según un análisis de Celeste, el juego y la interfaz van por capas separadas y no se mezclan densidades de píxel ([Blake Crosley](https://blakecrosley.com/blog/pixel-art-world-on-iphone)). En Paglot conviene fijar una regla: qué malla usa cada tipo de elemento (escena, personaje, icono) y no cambiarla entre pantallas.
+- **Paleta limitada y malla fija.** Stardew Valley usa una paleta contenida y una malla de 16 px, y sus personajes siguen siendo legibles en pequeño ([Sprite AI](https://www.sprite-ai.art/blog/2d-pixel-art-style-guide); [Blake Crosley](https://blakecrosley.com/blog/pixel-art-world-on-iphone)).
+- **Escalado entero y vecino más cercano.** Las fuentes coinciden: nunca interpolar bilineal para pixel art (sale borroso), y escalar por números enteros (2×, 3×) porque los escalados fraccionarios dejan píxeles de anchos distintos ([GDQuest, Godot 4](https://www.gdquest.com/library/pixel_art_setup_godot4/); [tanalin.com](https://tanalin.com/en/articles/integer-scaling/)). En la web, `image-rendering: pixelated` ([the-pixel.art](https://the-pixel.art/articles/pixel-art-blurry-scaling-exporting/)). Paglot ya lo usa en `css/bienvenida.css` para el dibujo de la tutora; conviene revisar si las escenas de las diapositivas, que se recolocan a tamaños fraccionarios, sufren ese escalado.
+- **Fuentes pixel.** Ninguna fuente de las que he leído habla de fuentes pixel para lectura larga. Lo que sí dice el repaso académico de accesibilidad de texto: las formas cerradas, y las letras que se parecen (l, I, 1) se confunden a tamaños pequeños ([ACM, revisión de estándares de texto](https://dl.acm.org/doi/10.1145/3663547.3759692)). Es una inferencia mía, pero encaja con lo que se ve en Paglot: «Copiar» se lee como «Dopiar» en la captura de la cuenta (m22), y la «C» y la «D» son parecidas en esa fuente a ese tamaño.
+- **Guía de juegos.** La Game Accessibility Guidelines recomienda un tamaño de letra por defecto grande y, sobre todo, que el usuario pueda cambiarlo ([Game Accessibility Guidelines](https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/)). Paglot ya tiene «texto grande»; hay que comprobar que todas las diapositivas siguen sin tapar nada con él.
+
+---
+
+## 3. Auditoría pantalla por pantalla
+
+Las capturas están en `C:\Users\javie\AppData\Local\Temp\diseno\`. Los nombres de cada pantalla son los que aparecen aquí.
+
+### 3.1 Inicio y portada
+
+- **Escritorio** (`d01_inicio.png`): buen primer golpe de vista. Logo pixel, el escenario del teatro con tres tutoras, el botón rojo «Empezar» muy grande, la luna y las linternas. Jerarquía clara: una sola acción principal. Bien.
+- **Móvil** (`m01_inicio.png`, `s01_inicio.png` en 322 px): el logo y la escena se ven, pero el **aviso de cookies tapa la parte de abajo de la escena y las tutoras**, justo donde está la acción. La cabecera ocupa un 13 % de la altura con dos filas (cuatro iconos de 38 px y tres botones de 38 px de alto). La barra inferior ◀ ▶ mide 48×38. El indicador de progreso (5 casillas) está oculto para los lectores de pantalla, así que «Diapositiva 1 de 5» no se anuncia.
+- **Medido** (`x_tap_inicio.png`): idioma, sonido, tema y cuenta miden 38×38 px; «Inicio», «Idiomas» y «Paglot Max» 115×38; ◀ ▶ 48×38. Todos por debajo de los 44 px de Apple y de los 48 dp de Material, y del 44 px que el propio Paglot usa en sus tokens (`.boton { min-height: 44px }`). Por debajo de 24 px no hay ninguno, así que cumple el mínimo de WCAG 2.2 AA (2.5.8), pero no lo que pide la app.
+- **Carga en frío.** En las capturas de 4 segundos solo aparece el logo sobre fondo liso (el primer intento de `d01`, a los 4 segundos). A los 6–8 segundos ya hay contenido. Hace falta un esqueleto (la misma escena en gris) en vez de logo fijo.
+
+### 3.2 Idiomas (teatro) y portada de cursos
+
+- **Escritorio** (`d02_idiomas.png`, `d02b_idiomas_fondo.png`): **muy bien**. El teatro con el cartel «Paglot presenta», la tutora en el escenario, la ficha con las lecciones y el aviso honesto «Beta: falta la revisión a fondo de varios profesores». Las banderas de los lados funcionan como camafeos. Aviso: las banderas se usan como si fueran idiomas (la inglesa para el inglés, la china para el chino…); en el contexto del teatro se entiende, pero hay que tener cuidado con los países que tienen varias lenguas.
+- **Móvil** (`m02_idiomas.png`, `x_idiomas_conteo.png`, `x_idiomas_s2.png`): **fallo grave o, al menos, dudoso.** Solo se ven **3 banderas** (inglés, francés, alemán) en la parte de arriba y el resto del espacio está vacío. Medido con JavaScript a los 6 y a los 12 segundos: de las seis primeras banderas solo tres tienen caja visible; las otras tres tienen `display: none` y miden 0 px. En la captura no se ve ninguna más. `css/teatro.css` (a partir de la línea 342) prevé una rejilla de 7 × 3 con las 21 banderas para pantallas de 680 px o menos. Mi sospecha es que la paginación de diapositivas (`pm-alante`) no las muestra; tras pulsar ▶ la captura sigue igual (`x_idiomas_s2.png`). **Hay que confirmarlo en un móvil real antes de tocar código**: si se reproduce, es el peor fallo de la app para alguien que llega por primera vez.
+- **Acciones:** confirmar; después, rejilla de 21 banderas con nombre (7 × 3) siempre visible, o bien lista vertical con búsqueda si son demasiadas para el alto.
+
+### 3.3 Sobre, Precios, Tienda, Laboratorio, Escuelas, Empresas, Regala Max, FAQ, Contacto
+
+- **Sobre** (`d03_sobre.png`, `m03_sobre_1.png`, `m04_sobre_3.png`): la casa de madera con el cartel «Sobre Paglot» y la línea de tiempo «Nuestra historia» con la escalera pixel son de lo mejor del arte. En el móvil son **11 diapositivas**; hoy no hay zoom (medido), pero 11 toques para leer una página es demasiado. Propuesta: un índice de secciones arriba (como el mapa de lecciones) y tocar para saltar. En la línea de tiempo las fechas (en fuente pixel y a 390 px) se leen con dificultad; ampliarlas.
+- **Precios** (`d04_precios.png`, `m05_precios.png`): tres planes con tutoras de cada plan (buena idea), pero el mensaje es contradictorio: «Precio por anunciar» en dos planes, «Muy pronto» en los dos botones de pago, y arriba «Hoy Paglot es gratis». Quien mira precios sin un precio se va. Propuesta: mostrar solo el plan gratis hasta que haya precio, o escribir «Próximamente» en un solo sitio. En el móvil la tarjeta de Max queda tapada por el aviso de cookies.
+- **Tienda** (`d05_tienda.png`, `m06_tienda.png`): la biblioteca con los libros de colores (A1, A2, B1…) y la tendera es muy bonita. Problemas: «Mi cesta 0» con la cesta flotando sobre el toldo; en el móvil el aviso de cookies tapa los productos.
+- **Laboratorio** (`d06_laboratorio.png`, `m15_laboratorio.png`): el área de ideas tiene el tono justo («Propón una mejora, apoya las que te importan»). El **texto de ayuda del cuadro (placeholder) apenas se ve** («Ej.: Me ayudaría tener una práctica de escucha de 2 minutos…»), tanto en el escritorio como en el móvil. El fondo de rejilla técnica debajo del texto cansa (ver 5.3).
+- **Escuelas** (`d19_escuelas.png`, `m16_escuelas.png`): muy clara. La pizarra verde con «Un idioma que empieza en tu aula» es de las mejores escenas. Tiene dos botones, uno rojo («Hablemos de vuestro centro») y otro secundario («Calcular el precio»), con buen contraste.
+- **Empresas** (`m17_empresas.png`): «Idiomas para el trabajo de verdad» con dos botones claros. El aviso de cookies tapa el segundo botón en 390 px.
+- **Regala Max** (`m18_regala_max.png`): la tarjeta «Regala su próxima conversación» con la cuerda del colgante. Bien; la cuerda sale de la tarjeta sin motivo visible.
+- **FAQ** (`m19_faq.png`): la metáfora del archivador («Respuestas claras, sin rodeos», cajones de «Para empezar», «Planes y precios», «Aprender», «Cuenta y datos») es clara y de calidad. Problemas: los números de cada cajón (4, 4, 2) son diminutos y casi invisibles; el aviso de cookies tapa el cajón inferior.
+- **Contacto** (`m14_contacto.png`): la carta sobre papel rayado con la escena del buzón está bien pensada. Las líneas del papel son un fondo con trama detrás del texto (ver 5.3), y el texto pequeño de «Querido equipo de Paglot» y «Usuario de Paglot» en pixel font se lee con dificultad.
+
+### 3.4 Cuenta, Perfil y Entrar
+
+- **Entrar** (`m22_entrar.png`): la cuenta por número con el selector «Mi número · Ya tengo uno · Correo» es clara. Hay dos problemas de tono y de confianza:
+  1. Dice «Sin correo, si no abres Paglot en 7 días, esta cuenta y su progreso en la nube se borran». Es **miedo en la primera pantalla**, y contradice el «sin presión» del propio Paglot. Propuesta: frase tranquila («Guarda este número: con él recuperas tu progreso desde otro móvil») y el plazo, si existe, solo en Perfil y en ajustes.
+  2. El botón «Copiar» se lee como «Dopiar» en la captura (ver 2.3).
+  - El número aparece difuminado (buena decisión de privacidad).
+- **Perfil** (`d23_perfil_fr.png`, con curso; `m11_perfil.png` sin curso): en escritorio se ven «Tu nombre», «Tu progreso» (lecciones 0/300, estrellas 0/900, **aciertos 0, fallos 0**, en el cuaderno, repasos, **racha 0 días**). La tutora dice «Este es tu perfil. Dime cómo te llamas para felicitarte como es debido», que es cálido. Problemas: la tarjeta «Fallos» y «Racha 0 días» son estadísticas de culpa. Propuesta: «Aciertos» y «Repasos», y «Racha» con «Vuelve cuando quieras» cuando es 0. Sin curso, Perfil da 404 (ver 3.8).
+
+### 3.5 Lección (modo juego y modo libro), en escritorio y móvil
+
+- **Escritorio** (`d09_leccion001_fr.png`, `d10_leccion012_fr.png`, `d20_leccion001_claro.png`): el sobre de la lección 1 («Toca el sobre para abrirlo», botón «Abrir el sobre») y la pizarra de la lección 12 («Preposiciones de lugar», «Entendido ✓», «1 / 3») son muy buenos. La cabecera tiene logo, curso y beta, pestañas «Lecciones / Cuaderno / Repaso», hucha, «⇄», Ajustes y Cuenta. Problemas:
+  - **El aviso de cookies queda debajo del bocadillo de la tutora**: se ve la frase «Sin cookies de publicidad ni…» cortada a la izquierda, y los botones «Más información» y «Entendido» medio tapados. Es un solapamiento visible en casi todas las lecciones de escritorio.
+  - El **rail de pasos** (13 a 19 iconos) mezcla un sobre, una tarjeta, un cuaderno, una pelota y tres o cuatro estrellas sin nombre. Las estrellas no dicen cuántos pasos quedan ni cuáles son. La marca «Paso 1 de 19» es pequeña y en fuente pixel.
+  - «**⇄**» sin texto (ver 5.1).
+  - El contador de la sección («0 / 3», «1 / 3») es pequeño y gris.
+  - La tutora ocupa todo el pie de la pantalla en el escritorio (unos 200 px). Está bien para la voz, pero en lecciones largas es mucho espacio fijo. Ya tiene el botón «Ocultar ▼».
+- **Móvil** (`m08_leccion001_fr.png`, `m09_leccion012_fr.png`, `s04_leccion001_fr.png` en 322 px): la cabecera ocupa demasiado: «LECCIÓN 1» en letras muy pequeñas, el título en pixel, el subtítulo que se parte en dos líneas, «◀ Lecciones» (46×40), el libro (40 de alto), la fila de pasos con iconos de 34 px, «1/19» y «Pausa» (36×34). Medido (`x_tap_leccion.png`): **«Pausa» 36×34, «Ocultar ▼» 69×28, «◀ Lecciones» 46×40, «Modo libro» 57×40**, y los botones del aviso de 36 px. El cuadro de Atrás/Siguiente está bien colocado, pero el botón «Siguiente» desactivado (rosa sobre rosa) apenas se distingue.
+- **Lección en tema claro** (`d20_leccion001_claro.png`): el papel crema con textos marrón oscuro es muy legible (contraste de 15 a 1 en el texto principal) y el color de acento sigue viéndose.
+- **Sugerencia clave:** cuando «Siguiente» está desactivado, decir por qué («Termina el juego para seguir» o «Toca el sobre»). Hoy solo se ve apagado.
+
+### 3.6 Onboarding: el carné de estudiante y la bienvenida
+
+- **Carné** (`d08_lecciones_fr.png`, `d24_bienvenida_fr.png`, `m07_lecciones_fr.png`, `s08_lecciones_fr_claro_grande.png` en 390 px con tema claro y texto grande; el nombre del archivo lleva un 322 que no es real): el camino pixel con cinco banderas de paradas («Saltar» arriba a la derecha), el carné con su foto en blanco («?»), «Nombre», «Curso Francés», «Tutora Camille», la barra de progreso rayada y dos botones, «Así me llamo» y «Prefiero no decirlo». La tutora habla en francés «Bonjour! Soy tu tutora de francés…» con la traducción en el cuadro. Es una gran idea: el curso empieza enseguida.
+- **Problema:** el carné aparece **antes de la primera lección** y pide un nombre. El botón rojo es el de «Así me llamo»; «Prefiero no decirlo» queda a la derecha con menos peso. Para quien solo quiere aprender, es un paso más. Propuesta: que la opción principal sea «Empezar ya» (el nombre se pide después, en Perfil) y que «Así me llamo» sea secundaria. Mantener «Prefiero no decirlo», que es bueno.
+- **Bienvenida sin curso:** `#/bienvenida` abierta sin idioma da 404 (`d07_bienvenida.png`); con idioma, es el carné de arriba.
+- **Saltar:** el botón «Saltar» de la esquina es pequeño y no tiene el aspecto de botón (cuadro de madera con X). Hay que medirlo.
+
+### 3.7 Repaso, Cuaderno, Frases, Reto y Prueba de nivel
+
+- **Repaso** (`d12_repaso_fr.png`, `m10_repaso_fr.png`, `s06_repaso_fr.png`): las cifras «Para repasar / Nuevas / Repasadas hoy» con ceros, el botón «Empezar el repaso ▶» apagado (rojo oscuro) con la frase explicativa debajo («Tu cuaderno está vacío: termina una lección… Ir a las lecciones ▶») y el reto de velocidad con borde dorado. El estado vacío está muy bien resuelto. En 322 px la tutora y el aviso de cookies tapan las tarjetas.
+- **Cuaderno** (`d13_cuaderno_fr.png`, `m20_cuaderno_fr.png`): el resumen «0 en total · 0 nuevas · 0 para hoy» en dorado pequeño, «Ir al repaso ▶», el buscador, los filtros «Todo / Palabras / Frases» (el activo en dorado), «Tapar traducciones» (con un icono de cortina), el diccionario plegado. Buen estado vacío («Guarda palabras con la estrella ☆…»). Problema: los filtros son pequeños y la estrella está como símbolo de texto, no como icono.
+- **Frases** (`m25_frases_fr.png`): «Frases para hablar» con la explicación de cómo practicar. Buena pedagogía (leer, tapar, decir en voz alta, comparar). Solo se ve el primer grupo («Lo básico») y mucho espacio vacío; la lista completa de frases no se alcanza en la captura. Sin curso, da 404 (`m12_frases.png`).
+- **Reto** (`d25_reto_fr.png`, `m24_reto_fr.png`): la explicación «60 segundos… las rachas valen doble y triple; un fallo cuesta 3 segundos» es clara. El botón «¡Vamos!» aparece apagado y se explica con «Necesitas 8 palabras en tu cuaderno para jugar (tienes 0)», bien. Problema: la explicación de «un fallo cuesta 3 segundos» es una penalización de tiempo; con el criterio del dueño (lo fallado vuelve, sin culpa), conviene que sea «el fallo te quita 3 segundos y la palabra vuelve», o quitar la penalización en el modo de calma.
+- **Prueba de nivel** (`m27_prueba_fr.png`): «¿Ya sabes algo de francés? Contesta unas preguntas del curso, de fáciles a difíciles (6 tramos). Cuando se ponga difícil, paramos y empiezas justo ahí. Unos 5 minutos.» Copy excelente. Falta: entrada visible desde el primer momento (hoy solo desde el mapa, y sin curso, 404: `d16_prueba.png`).
+
+### 3.8 Páginas de error (404)
+
+- **«Esta página se ha perdido»** (`d07_bienvenida.png`, `d16_prueba.png`, `m11_perfil.png`, `m12_frases.png`, `m13_reto.png`): el 4-4 con la tutora y el bocadillo («Mmm… juraría que la había dejado por aquí», «¿Se la habrá llevado otra tutora?», «Por aquí no está. Por allí… tampoco.»). Es **el mejor texto de error que he visto en una app de idiomas**, y el dibujo es bonito.
+- **Problema:** en realidad no es una página perdida, sino una página que **necesita un idioma**. Según el código (`js/app.js`, línea 794 y siguientes), sin curso elegido «lo demás es la página perdida». Un enlace a Perfil, Reto o Frases llega aquí y no explica qué falta. Propuesta: en esas rutas, mensaje «Elige un idioma para ver esto» con el teatro de idiomas en un botón, y mantener el 404 solo para rutas que no existen.
+
+### 3.9 Tema claro, tema oscuro y texto grande
+
+- **Oscuro** (por defecto): fondo morado #463c58, paneles #574a6c, texto #f2ecf7. Es atmosférico y bonito; el contraste del texto principal es de 6,96 a 1 sobre el panel (AAA para texto normal).
+- **Claro** (papel de libro antiguo): fondo crema #efe4cc, panel #fffaf0, texto #231c2b, contraste del texto de 15,9 a 1 sobre el panel. Es la versión más legible del proyecto y debería ser la recomendada para la lectura larga.
+- **Texto grande:** se ve en `s08` (390 px, claro y grande): el carné sigue cabiendo. Hay que revisar todas las pantallas con texto grande, sobre todo la cabecera de curso, que ya es densa.
+
+### 3.10 Estados de carga, vacíos, errores y sonido
+
+- **Carga:** logo fijo durante varios segundos en frío (ver 3.1). Propuesta: esqueleto con la escena y un texto calmado («Preparando la clase…», que ya existe en `prueba.cargando`).
+- **Vacíos:** muy buenos en Repaso, Cuaderno, Reto y Laboratorio. Es un punto fuerte.
+- **Errores:** 404 bonito pero sin salida útil (ver 3.8). El aviso de cookies no tiene acción de cerrar en la esquina, solo «Entendido».
+- **Sonido:** los efectos (`efectos: true`) y los pitidos de la tutora (`vozTutora: true`) vienen activados por defecto (`js/ajustes.js`). Para alguien con TDAH puede ser un plus; para quien estudia en un bus, no. Propuesta: que el primer toque pregunte una vez («¿Sonidos? Sí / No») y que el modo silencio del móvil se respete en la APK.
+- **Movimiento:** hay modo calma y respeto de «reducir movimiento». En las capturas no se aprecian animaciones molestas.
+
+### 3.11 Aviso de cookies y consentimiento
+
+- Aparece en **casi todas las capturas del móvil** (portada, Sobre, Precios, Tienda, Escuelas, Empresas, Lección, Repaso, Frases, Prueba…). Mide unos 160 px de alto: alrededor del **19 % de la pantalla** de 390×844 y el **25 %** de la de 322×645.
+- Hay **dos textos distintos**: «Sin cookies de publicidad ni de seguimiento: solo se guarda en tu dispositivo lo necesario para funcionar» y «Paglot no usa cookies. Guarda tu progreso en este dispositivo y, de serie, una copia en la nube con un número al azar…». No he sabido qué decide cuál sale en cada momento: en las capturas aparecen los dos en pantallas distintas. Son dos mensajes que deberían ser uno. El segundo, además, mete demasiada información en un aviso pequeño.
+- **Propuesta:** un aviso de una o dos líneas en la parte de abajo, por encima de la barra de navegación, con «Entendido» y un enlace «Qué guardamos», sin los detalles de la nube; y que no tape la tutora ni el botón principal. Un único texto en las dos versiones.
+
+### 3.12 Resumen de la auditoría (qué es bueno y qué confunde)
+
+| Tema | Bien | Confunde |
+|---|---|---|
+| Identidad | Pixel art coherente, tutoras con personalidad, paleta morada y papel crema | Banderas como idiomas; «Beta» en casi todos los cursos |
+| Jerarquía | Una acción principal por pantalla («Empezar», «Abrir el sobre», «Empezar el repaso») | Cabecera de curso con 6 controles, de los que dos no se entienden |
+| Densidad | Pantallas de repaso y cuaderno limpias | Cabecera del móvil de 110 px; aviso de cookies; Frases largas |
+| Textos | Tono cálido, cortos, en español sencillo | «Muy pronto», «Precio por anunciar», «Copiar» ilegible, 404 sin salida |
+| Tap targets | Botones grandes en la portada | 36–40 px en la lección y la cabecera |
+| Contraste | Textos principales muy altos | Placeholders apagados; verde de acierto en 4,37 (ver 5.2) |
+| Motion | Animaciones a saltos con modo calma | Ninguna crítica grave |
+| Sonido | Efectos 8-bit y voz | Activado por defecto y sin pregunta |
+| Vacíos | Muy bien resueltos | — |
+| Errores | Tono de la tutora | Callejón sin salida sin curso |
+
+---
+
+## 4. UX del aprendizaje
+
+### 4.1 Onboarding (primera vez)
+
+- **Hoy:** portada → «Empezar» → (teatro de idiomas) → carné con nombre → lección 1. En el móvil, además, el aviso de cookies sobre la portada y la bienvenida.
+- **Propuesta:** la lección 1 debe aparecer en **tres toques** (portada, idioma, «Empezar ya»). El nombre pasa a Perfil, y la prueba de nivel aparece como «¿Ya sabes algo?» junto a «Empezar».
+- **Por qué:** Duolingo y Babbel ponen la primera acción antes del registro y el cuestionario de nivel al principio (ver 2.1). En un perfil con déficit de atención, cada pantalla intermedia es una oportunidad para irse.
+- **Evitar:** el cuestionario largo al inicio. La prueba de Paglot ya tiene el tono correcto («paramos y empiezas justo ahí»); conviene que se pueda hacer en 5 minutos.
+
+### 4.2 Flujo de la lección
+
+- **Lo que va bien:** la lección es una historia (sobre, pizarra, diálogo con la tutora), cada paso tiene una sola acción, la tutora explica con voz y texto, hay pausa y «Paso X de Y».
+- **Lo que hay que mejorar:**
+  - Rail de pasos con nombre (ver 3.5). Propuesta: al pasar el ratón o pulsar un paso, un nombre corto («Vocabulario», «Pizarra», «Frase»…) y un número de paso que no dependa del icono.
+  - Chunking: un bloque de 8–12 ítems por paso. Las fuentes de diseño para TDAH dan 15 minutos de tarea como tamaño cómodo ([Welcoming Web](https://welcomingweb.com/learn/designing-for-neurodiversity-adhd-ux); [Monster Math](https://www.monstermath.app/blog/adhd-friendly-app-design-what-to-look-for-and-what-to-avoid)). Paglot ya trabaja en pasos cortos; conviene decirlo en Ajustes («sesión de 5 minutos»).
+  - Desactivado con motivo visible (ver 3.5).
+  - El aviso de cookies no puede tapar la tutora ni los botones de la lección.
+
+### 4.3 Feedback tras cada respuesta
+
+- El feedback es sonoro, visual y con la tutora. Bien.
+- Hay que comprobar que **el color no es el único canal**: el verde de acierto (4,37 sobre el panel) y el rojo de fallo deben ir con icono y palabra (✓ «¡Bien!», ✗ «Casi, vuelve a verlo»).
+- El fallo debe ser **informativo y no castigador**: «Casi. Era «dans», dentro de» en vez de «Incorrecto». Y lo fallado vuelve, como pide el dueño.
+
+### 4.4 Repaso espaciado
+
+- La evidencia de la repetición espaciada es sólida: en la revisión de Cepeda y otros (2006) sobre 317 experimentos y 184 artículos, 259 de 271 comparaciones entre estudio repetido y espaciado mostraron beneficio ([Cepeda et al., 2006, Psychological Bulletin](https://www.yorku.ca/ncepeda/publications/CPVWR2006.html)). Un reanálisis de 2019 da un tamaño de efecto d = 0,85 para el material verbal (citado en la fuente anterior, no lo he leído en original).
+- Paglot usa un SM-2 simplificado: correcto. Propuesta: mostrar en cada tarjeta cuándo vuelve («mañana», «en 3 días») y una barra de fuerza por palabra (ya propuesta en el informe anterior como T19).
+- El texto de la pantalla es bueno («Si fallas, vuelve más tarde: sin agobios, así es como se queda»). Mantenerlo.
+
+### 4.5 Rachas, objetivos y recompensas
+
+- **Lo que hay:** racha con un día de descanso por semana (hecho el 19-10), hucha, cofres, logros, estrellas, reto de velocidad, purpurina.
+- **Propuestas:**
+  - **Objetivo diario de 5 minutos** (o 1 lección) como unidad. Con un objetivo pequeño se gana el hábito sin la presión de la racha. Las fuentes de diseño para TDAH consultadas recomiendan contar la sesión, no el rendimiento, y dejar que la persona elija el ritmo (ver 4.8).
+  - **Rachas que no se reinician a cero.** Las fuentes de TDAH consultadas proponen rachas que no vuelven a cero con un día fallado (ver 4.8).
+  - **Recompensas por esfuerzo, no por tocar.** La regla del dueño («ningún paso se completa solo tocando») es la correcta; la purpurina va bien si no se derrocha: un destello por lección terminada, no por cada toque.
+  - **Cofres y hucha:** hoy la hucha («0») y «⇄» no se explican; propuesta: etiqueta «Monedas: 0» y el cambio de curso con su nombre.
+- **Qué no hacer:** mensajes de culpa de la mascota ni de la tutora («me has dejado»), contadores de fallos a la vista, y avisos de racha a horas fijas sin pedirlo.
+
+### 4.6 Avisos (APK) y recordatorios
+
+- Hoy: hora elegible en Ajustes (hecho el 19-10 según el informe anterior).
+- Propuesta: si no se abre en dos días, **un** aviso amable («Tu tutora tiene una frase nueva») y nada más; nunca tristeza ni amenaza. Hay una revisión de 2014, citada en fuentes secundarias, según la cual las apelaciones repetidas a la culpa provocan resistencia; no la he leído en original.
+
+### 4.7 Tutora en el móvil
+
+- El bocadillo de la tutora se pliega a su cara al rato de hablar (hecho el 19-10). Bien.
+- Propuesta: un único botón «Silenciar a la tutora» visible en la cabecera del móvil (hoy el pitido se controla en Ajustes).
+
+### 4.8 Recomendaciones específicas para TDAH
+
+Las fuentes son de práctica y de blogs de diseño, no estándares formales ([Welcoming Web](https://welcomingweb.com/learn/designing-for-neurodiversity-adhd-ux); [Monster Math](https://www.monstermath.app/blog/adhd-friendly-app-design-what-to-look-for-and-what-to-avoid); [Permaintegratedhealth](https://permaintegratedhealth.com/2025/07/03/adhd-coping-mechanisms-and-a-perma-based-design-guide-for-ux-designers/)). Lo que encaja con Paglot:
+
+1. **Una tarea por pantalla** (ya se hace en la lección). Añadir un «modo enfoque» que oculte cabecera y tutora, para quien quiera.
+2. **Temporizadores de sesión, no de rendimiento.** Un temporizador «5 minutos» que avisa de que es buen momento para parar; nunca cuenta atrás contra el alumno (las cuentas atrás pueden aumentar la impulsividad, según las mismas fuentes).
+3. **Escala de intensidad flexible** (0–5) en vez de hecho o no hecho: «Hoy: 3 de 5» cuenta como un día.
+4. **Racha que no castiga** (ver 4.5).
+5. **Ningún paso bloqueado sin explicación** (ver 4.2).
+6. **Sin vergüenza:** la tutora nunca pone cara de apurada; lo que hoy ya hace.
+7. **Modo calma y texto grande** como ajustes visibles desde el primer día, no escondidos en Ajustes.
+
+---
+
+## 5. Accesibilidad
+
+### 5.1 Lectores de pantalla y nombres accesibles
+
+- **Bien:** hay `aria-live` en 18 módulos de JavaScript; los nombres de los idiomas llevan `lang` (`js/app.js`, líneas 436–453), así que el lector pronuncia cada curso en su idioma.
+- **Mal:**
+  - **«⇄»** en la cabecera de curso: no tiene texto visible (`x_tap_*`), y la captura del escritorio lo confirma. Propuesta: «Cambiar de idioma» con texto visible en escritorio y `aria-label` en móvil.
+  - **«Cuenta · Cuenta»**: el nombre accesible del botón de cuenta repite la palabra (medido en `x_tap_inicio.png`). Quitar la repetición.
+  - **Casillas de progreso** de la barra ◀ ▶: `aria-hidden`, así que el lector no dice en qué diapositiva se está. Propuesta: «Diapositiva 3 de 11», con `aria-live` cuando cambia.
+  - Las estrellas del rail de la lección sin número ni texto.
+  - Los contadores de fallos y aciertos sin contexto.
+
+### 5.2 Teclado y foco
+
+- **Bien:** `:focus-visible` con marco discontinuo amarillo de 3 px y desplazamiento de 4 px (`css/styles.css`, líneas 105–108); contraste del foco de 7,9 a 1 sobre el fondo oscuro y de 5,4 a 1 sobre el claro. Es visible.
+- **Hay que comprobar:** que al cerrar un diálogo («Ajustes», «Más información» del aviso, «Qué datos guardamos») el foco vuelva al botón que lo abrió (ya propuesto en el informe anterior, T59). Y que el orden de tabulación de la lección siga el de lectura.
+
+### 5.3 Dislexia y lectura larga (BDA)
+
+La guía de estilo de la British Dyslexia Association (edición de 2023) pide fuentes sans-serif sencillas (Arial, Verdana, Tahoma, Open Sans, etc.), un interlineado de alrededor de 1,5, espacios entre palabras más amplios que entre letras, y (en la edición de 2014) texto alineado a la izquierda, **sin mayúsculas para palabras enteras** y **fondos de un solo color, sin tramas ni dibujos detrás del texto** ([BDA, Dyslexia Style Guide 2023](https://cdn.bdadyslexia.org.uk/uploads/documents/Advice/style-guide/BDA-Style-Guide-2023.pdf); copia en [ako.ac.nz](https://ako.ac.nz/assets/Knowledge-centre/ALNACC-Resources/Dyslexia-resources/230907-Dyslexia-Friendly-Style-Guide.pdf)). Lo que dice Dyslexia Scotland es que no hay una ventaja consistente de las «fuentes para dislexia» específicas ([Dyslexia Scotland](https://dyslexiascotland.org.uk/wp-content/uploads/2025/09/formats.pdf)). Aplicado a Paglot:
+
+- **Fondos con trama:** el puntillado del fondo (`radial-gradient` en `body`, `css/styles.css` línea 76), la rejilla del laboratorio y las líneas del papel de Contacto están detrás del texto. Propuesta: en las páginas de lectura larga (Frases, Cuaderno, Contacto, FAQ, Sobre con texto), un fondo liso detrás del texto. El puntillado puede quedarse en los bordes.
+- **Mayúsculas:** hay muchas etiquetas en mayúsculas con espaciado amplio («LECCIÓN 1», «CARNÉ DE ESTUDIANTE», «PAGLOT ESCUELAS», «LA BIBLIOTECA PAGLOT», «NOMBRE», «CURSO»; `letter-spacing: .05em` y `text-transform: uppercase` en `css/styles.css` línea 248). Son etiquetas cortas, así que el daño es menor; pero el «LECCIÓN 1» de la cabecera de lección es el que más se lee. Propuesta: mayúsculas solo para etiquetas de una palabra, nunca para frases.
+- **Texto centrado:** los párrafos de cabecera de las diapositivas («Un poquito de Paglot, para llevar…», «Respuestas claras, sin rodeos») van centrados; la guía pide alineación a la izquierda para párrafos largos. Los titulares pueden quedarse centrados.
+- **Interlineado:** el cuerpo ya tiene `line-height: 1.55` (`body`), casi el 1,5 de la guía. Bien.
+- **Pixel font:** solo para títulos, botones y etiquetas cortas (`--fuente-pixel`). Lo que se ve en la captura de la cuenta («Dopiar») muestra el límite. Propuesta: fuente pixel solo en títulos y botones de menos de tres palabras; en cualquier frase de más de una línea, la fuente del sistema.
+
+### 5.4 Contraste (medido con la fórmula de WCAG)
+
+Calculado con los tokens de `css/styles.css`:
+
+| Par (fondo / texto) | Tema | Contraste | Resultado |
+|---|---|---|---|
+| Texto #f2ecf7 sobre panel #574a6c | Oscuro | 6,96 | AA y AAA para texto normal |
+| Texto suave #ddd3e8 sobre panel | Oscuro | 5,60 | AA |
+| Dorado #f4c84a sobre panel | Oscuro | 5,08 | AA |
+| Azul #8fd8ff sobre panel | Oscuro | 5,16 | AA |
+| **Verde #6fd38c sobre panel** | Oscuro | **4,37** | **Por debajo de 4,5 (AA para texto normal)** |
+| Blanco sobre rojo #d2353d (botón principal) | Oscuro | 4,86 | AA |
+| Texto #f2ecf7 sobre panel-2 #66587e | Oscuro | 5,55 | AA |
+| **Rojo #d2353d sobre panel** | Oscuro | **1,66** | **No usar como texto** (solo fondos y bordes) |
+| Texto sobre hover #75668f | Oscuro | 4,47 | Justo por debajo de 4,5 |
+| Texto #231c2b sobre panel #fffaf0 | Claro | 15,86 | AAA |
+| Texto suave #5d5168 sobre panel | Claro | 7,10 | AAA |
+| Verde #1d6b34 sobre panel | Claro | 6,30 | AA |
+| Rojo #c4262e sobre panel | Claro | 5,51 | AA |
+| Foco #1f4fd1 sobre fondo | Claro | 5,37 | AA para componentes |
+
+Propuesta de tokens corregidos (se mantiene el aspecto):
+- **Verde de acierto oscuro:** #8ee8a6 → 5,48 sobre el panel (o #9ff0b4, 6,00).
+- **Texto sobre hover oscuro:** subir el hover a #6f6086 o bajar el texto a #fbf8fc (más de 4,5).
+- **Placeholders:** en la captura son muy apagados (medidos a ojo, no con el valor de `::placeholder`; comprobar). Propuesta: color fijo de al menos 4,5 sobre el campo; por ejemplo #e6dff0 sobre #6a5c82 (4,67), a comprobar en la captura.
+- **Texto de error:** rojo-claro #ff8a8f sobre panel llega a 3,57: solo para iconos, no para frases.
+
+Además, hay **41 declaraciones de tamaño de letra por debajo de 12 px** (`0,6rem`, `0,7rem`…) en `css/*.css`: camafeos de idiomas (`.ti-camafeo-nombre` a 0,6rem), la placa de la portada, la etiqueta «LECCIÓN 1», los números de los cajones de la FAQ y algunos contadores. Ver el punto 10 del capítulo 1.
+
+### 5.5 Daltonismo
+
+- El progreso y los aciertos usan verde y rojo; con deuteranopía se confunden. Propuesta: icono y forma además del color (✓ y ✗, o una estrella llena frente a una vacía).
+- Las banderas de los camafeos y la pizarra usan colores (rojo, verde, azul): cuidado con los rótulos.
+- El botón «Siguiente» desactivado (rosa sobre rosa en el claro) se distingue por el color; añadir el texto «(bloqueado)» o un icono de candado.
+
+### 5.6 Texto grande, zoom y 200 %
+
+- WCAG 1.4.4 pide que el texto se pueda ampliar al 200 % sin perder contenido (criterio general; no he releído su texto hoy). En Paglot el modo «texto grande» hace ese papel; hay que comprobar que las diapositivas del móvil no se cortan. La regla del dueño impide escalar el contenido en el móvil, así que el texto grande de la app es el camino.
+- La Game Accessibility Guidelines pide que el tamaño sea ajustable; si no, un valor por defecto grande ([GAG](https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/)).
+
+### 5.7 Movimiento y sonido
+
+- **Movimiento:** WCAG 2.3.3 (AAA) pide poder desactivar las animaciones que el propio sitio inicia. Las fundidos y las transiciones simples se consideran aceptables; los paralelismos, zooms y giros son los que más molestan ([WCAG 2.3.3, resumen en AccessiBuild](https://accessibility.build/wcag/2-3-3)). Paglot tiene modo calma y `prefers-reduced-motion` (en más de 25 archivos CSS). Propuesta: que las diapositivas del móvil se deslicen con fundido en modo calma.
+- **Sonido:** la tutora habla con voz del dispositivo y pitidos. Para personas sordas o con hipoacusia, el texto de la tutora debe estar siempre visible, y así parece en las capturas. Propuesta: un ajuste «sin pitidos de la tutora» visible en la cabecera.
+
+### 5.8 Lista de correcciones de accesibilidad (ordenadas)
+
+1. Nombre accesible en «⇄», «Cuenta · Cuenta», cuadrados de progreso y estrellas (5.1).
+2. Botones a 44 px (capítulo 6).
+3. Placeholders con contraste suficiente (5.4).
+4. Verde de acierto a 5,48 y etiquetas con icono (5.4, 5.5).
+5. Foco devuelto al cerrar diálogos (5.2).
+6. Fondo liso en la lectura larga (5.3).
+7. Mayúsculas solo en etiquetas de una palabra (5.3).
+8. Texto mínimo de 12 px (5.4).
+
+---
+
+## 6. Sistema de diseño
+
+### 6.1 Tokens propuestos
+
+Se mantienen los tokens actuales (`css/styles.css`, líneas 9–39 y 41–64) y se añaden los que faltan. Valores en hexadecimal.
+
+**Color, tema oscuro (por defecto):**
+
+| Token | Actual | Propuesta | Uso |
+|---|---|---|---|
+| `--fondo` | #463c58 | #463c58 | Fondo de página |
+| `--fondo-punto` | #54486a | #54486a | Solo decoración, nunca detrás de texto largo |
+| `--panel` | #574a6c | #574a6c | Tarjetas, diapositivas |
+| `--panel-2` | #66587e | #66587e | Botones secundarios |
+| `--panel-hover` | #75668f | #6f6086 | Hover (texto ≥ 4,5) |
+| `--texto` | #f2ecf7 | #f2ecf7 | Texto principal (6,96) |
+| `--texto-suave` | #ddd3e8 | #ddd3e8 | Texto secundario (5,60) |
+| `--espanol` | #ffd98a | #ffd98a | Palabras en el idioma que se aprende |
+| `--verde` | #6fd38c | **#8ee8a6** | Acierto (5,48 sobre el panel) |
+| `--rojo` | #d2353d | #d2353d | Fondo de botón principal; nunca texto |
+| `--rojo-claro` | #ff8a8f | #ff8a8f | Solo iconos y bordes |
+| `--oro` | #f4c84a | #f4c84a | Enlaces, destacados |
+| `--foco` | #ffe14d | #ffe14d | Marco de foco |
+
+**Color, tema claro (papel):** se mantiene casi todo. El `--verde` (#1d6b34, 6,30) y el `--rojo` (#c4262e, 5,51) ya pasan AA. Propuesta: el tema claro como opción recomendada para lectura larga.
+
+**Espaciado:** escala de 4 px: 4 · 8 · 12 · 16 · 24 · 32 · 48. Hoy `--px: 4px` ya es la base de las sombras y los márgenes; se usa la misma escala para paddings.
+
+**Tipografía:**
+- Cuerpo: `system-ui` (sans-serif del sistema), 16–17 px (1,05 rem, ya así), interlineado 1,55.
+- Pequeño: 14 px (0,875 rem) para notas.
+- **Mínimo absoluto: 12 px**, para etiquetas de una palabra. Hoy hay 41 declaraciones por debajo.
+- Títulos (`h1` 1,8 rem, `h2` 1,3 rem, `h3` 1,05 rem) en Pixelify Sans, solo títulos, botones de pocas palabras y etiquetas.
+
+**Tamaño de tocado (`--tocar`):** 44 px mínimo en todo (Apple y Material usan 44–48; WCAG 2.5.8 pide 24 como mínimo AA, y 44 es el AAA de 2.5.5). En el móvil, los botones principales 48 px. Los iconos pueden verse de 24 px con un área de toque de 44 px (técnica C42 de WCAG).
+
+**Sombras y bordes "pixel":** `box-shadow` en escalera de 4 px (ya existe en `.caja`, `.boton`, `.tutora`, `.carta`). Propuesta: un único conjunto de tres niveles (reposo, elevado, pulsado) para todos los componentes, y el pulsado con `transform: translate(4px, 4px)` (animación con `transform`, según la regla del dueño).
+
+### 6.2 Píxel: reglas para que se vea nítido en cualquier pantalla
+
+1. **Malla de referencia.** Cada sprite se dibuja en una malla de 16 px (iconos y personajes) o 32 px (escenas). La malla no cambia entre pantallas.
+2. **Escalado entero cuando sea posible.** Iconos 16 px → 24 px, 32 px, 48 px (×1,5 no es entero; mejor ×2 = 32 px o ×3 = 48 px). Para una escena que se recoloca a tamaños fraccionarios, usar `image-rendering: pixelated` y aceptar la desigualdad mínima, o bien dibujar la escena a una resolución lógica menor (por ejemplo, la mitad del ancho del móvil) y escalarla en un factor entero, con el resto cubierto por la trama de fondo: más nítido, pero con márgenes. Probar en 322, 390 y 412 px antes de decidir.
+3. **Un solo `image-rendering: pixelated`** por tipo de elemento (sprites, escenas), no mezclado.
+4. **Paleta por escena.** Pocos colores por escena (ideal ≤ 16), coherentes con la paleta global. Celeste separa la interfaz del juego y no mezcla densidades ([the-pixel.art](https://the-pixel.art/articles/pixel-art-blurry-scaling-exporting/)).
+5. **Formatos:** PNG o WebP sin pérdidas para sprites; SVG para iconos cuando sea posible.
+6. **Retina:** no hace falta escalar las imágenes para pantallas de alta densidad si se usan sprites en ×2 o ×3 exactos.
+
+### 6.3 Iconos
+
+- Un solo juego de iconos en malla de 16 px, con un trazo de un píxel de la malla. Ya existe `js/iconos.js`: revisar si es ese el juego único.
+- Iconos con texto en cada botón de la cabecera y de la lección (ver 5.1).
+- Evitar símbolos Unicode en lugar de iconos («⇄», «☆», «◀», «▶», «📖»): dependen de la fuente del sistema y de la plataforma. Propuesta: sustituirlos por sprites.
+
+### 6.4 Componentes y reglas
+
+| Componente | Reglas |
+|---|---|
+| **Botón** | Mínimo 44 px de alto (48 en el móvil para acciones principales). Texto de la acción, no «Siguiente» solo. Desactivado: texto y candado, no solo color |
+| **Botón de icono** | 44×44 con nombre accesible siempre (`aria-label`) y texto visible en escritorio cuando sea posible; área de toque ≥ 44 |
+| **Tarjeta (`.caja`)** | Un solo borde, sombra en escalera, panel liso. Sin trama detrás de texto largo |
+| **Pestañas** | Máximo 4 en el móvil, en una fila, con texto. Activa en color y con subrayado de píxel |
+| **Diapositivas (móvil)** | Ver capítulo 7. Índice si hay más de 6 |
+| **Diálogo** | Foco al primer control; foco de vuelta al cerrar; Escape cierra |
+| **Aviso (toast)** | Una línea, abajo, sobre la barra de navegación, cierra solo en 6 segundos; nunca tapa la tutora |
+| **Globo de la tutora** | Reserva su hueco; se pliega a la cara tras unos segundos; nunca tapa el botón principal |
+| **Rail de pasos** | Icono + número + nombre al tocar; estado (hecho, actual, pendiente) con forma, no solo color |
+| **Campo de texto** | Etiqueta visible siempre (no solo placeholder); placeholder ≥ 4,5 de contraste |
+| **Estrellas y puntos** | Número junto al icono («2 de 3») |
+
+---
+
+## 7. Móvil y APK
+
+### 7.1 Sistema de diapositivas
+
+- **Hoy:** el móvil reparte cada página en diapositivas a pantalla completa; ◀ ▶ en la parte de abajo; un punto por diapositiva (las casillas). Medido hoy en 390×844: Sobre 11, Perfil 10, Escuelas 9, Tienda 8, Contacto 5 (322 px), Inicio 5. El criterio del dueño es «las que hagan falta», así que el número no es un fallo, pero 11 diapositivas para leer una página es mucho desplazamiento.
+- **Propuesta:**
+  1. Índice de secciones en las páginas de más de 6 diapositivas (como el índice de capítulos del mapa), con el título de cada sección.
+  2. Deslizar con el dedo además de ◀ ▶ (sin cambiar el arte).
+  3. Casillas con nombre accesible («Diapositiva 3 de 11»).
+  4. Botones ◀ ▶ a 48×48, dejando dentro la zona del pulgar.
+- **Lo que no se toca:** la escena dibujada a mano de cada diapositiva y la regla de no encoger.
+
+### 7.2 Zonas del pulgar
+
+- En el móvil, la zona fácil para el pulgar derecho es la mitad inferior y el tercio derecho. Hoy la cabecera (dos filas, 110 px) queda en la zona difícil, y la cuenta y los ajustes, arriba a la derecha, son lo más alejado del pulgar.
+- Propuesta: en el curso (no en las portadas), trasladar Ajustes, Cuenta y la hucha a una barra inferior de 3–4 iconos con texto, como propone el informe anterior (T49). Las portadas pueden conservar la cabecera.
+
+### 7.3 Áreas seguras
+
+- Hay `env(safe-area-inset-…)` en `css/styles.css`, `css/escenas.css` y `css/juego-ilustrado.css`. Hace falta comprobarlo en un Android con muesca o cámara en pantalla; no lo he podido probar.
+
+### 7.4 Botón «atrás» de Android
+
+- **Lo que hace hoy** (`js/movil.js`, líneas 63–75): en la pantalla principal cierra la app; en un juego pregunta si se quiere salir; en la bienvenida salta a las lecciones; en lo demás vuelve a la principal (`#/lecciones` o `#/`).
+- **Problema:** dentro de una página con diapositivas, «atrás» **no retrocede una diapositiva**: sale de la página. Quien está en la diapositiva 5 de Sobre y pulsa «atrás» vuelve a Inicio, no a la 4.
+- **Propuesta:** «atrás» primero vuelve a la diapositiva anterior, luego a la página anterior, y solo en la principal cierra la app. Esto encaja con el «predictive back» de Android: la versión actual de la guía de Android recomienda AndroidX Activity 1.6.0 o superior y sustituir `onBackPressed` y la interceptación de `KEYCODE_BACK` por la API nueva ([Android Developers, predictive back](https://developer.android.com/guide/navigation/custom-back/predictive-back-gesture), actualizada el 16-10-2026). Según una guía de terceros, un callback que se queda activado puede bloquear la vista previa del gesto; hay que vigilarlo.
+
+### 7.5 Percepción de rendimiento
+
+- Arranque en frío: logo fijo varios segundos (ver 3.1). Esqueleto con la escena.
+- Peso: el informe de hoy anterior mide unos 5,3 MB por pantalla en frío. Reducirlo ayuda más a la sensación de lentitud que cualquier animación.
+- Animaciones: solo `transform` y `opacity`, como pide el dueño; el informe anterior dice que las 15 animaciones que tocaban propiedades de diseño pasaron a `transform`/`opacity` el 19-10 (T34); conviene comprobarlo con una auditoría.
+- Diapositivas: el cambio debe ser inmediato. Si una diapositiva tarda, mostrar la anterior con un sutil fundido, no una pantalla en blanco.
+
+### 7.6 Tamaños de referencia
+
+Comprobar en 322×645 (el más pequeño), 360×740, 390×844 y 412×915, con tema claro y oscuro (la regla del dueño). Captura de referencia: `s01_inicio.png` (322), `m01_inicio.png` (390).
+
+---
+
+## 8. Plan de mejoras
+
+Impacto 1 (bajo) a 5 (alto). Esfuerzo 1 (muy poco) a 5 (mucho). Las tareas marcadas [D] necesitan decisión del dueño; [V] necesitan capturas antes y después.
+
+### 8.1 Rápido (menos de 1 hora)
+
+| ID | Pantalla | Problema | Propuesta | Impacto | Esfuerzo |
+|---|---|---|---|---|---|
+| R-01 | Todas (móvil y escritorio) | El aviso de cookies tapa contenido; dos textos distintos | Un solo aviso de 1–2 líneas sobre la barra de navegación, sin los detalles de la nube | 4 | 1 |
+| R-02 | Escritorio y móvil | Perfil, Reto, Frases, Prueba y Bienvenida sin curso dan 404 | Mensaje «Elige un idioma para ver esto» con botón al teatro | 4 | 1 |
+| R-03 | Cabecera y lección (móvil) | Botones de 36–40 px | Todos los controles a 44 px; ◀ ▶ a 48 px | 4 | 1 |
+| R-04 | Cabecera de curso | «⇄» sin texto | «Cambiar de idioma» visible en escritorio; `aria-label` en móvil | 3 | 1 |
+| R-05 | Cuenta (cabecera) | «Cuenta · Cuenta» | Quitar la repetición del nombre accesible | 2 | 1 |
+| R-06 | Lección | «Siguiente» desactivado sin explicación | Texto «Termina el juego para seguir» o icono de candado | 3 | 1 |
+| R-07 | Precios | «Precio por anunciar», «Muy pronto», «Hoy Paglot es gratis» | Un único mensaje («Próximamente») y mostrar solo el plan gratis hasta que haya precio [D] | 2 | 1 |
+| R-08 | Perfil | «Fallos 0» y «Racha 0 días» | «Aciertos» y «Repasos»; racha con «Vuelve cuando quieras» | 3 | 1 |
+| R-09 | Entrar (cuenta) | «Si no abres Paglot en 7 días… se borran» en la primera pantalla | Frase tranquila; el plazo solo en Perfil | 3 | 1 |
+| R-10 | Entrar (cuenta) | «Copiar» se lee como «Dopiar» | Botón con icono y texto en fuente de sistema | 2 | 1 |
+| R-11 | Laboratorio, Cuaderno, Nombre | Placeholders apagados | Color de placeholder con contraste ≥ 4,5 | 2 | 1 |
+| R-12 | Tokens | Verde de acierto 4,37 | `--verde` a #8ee8a6 (5,48) | 2 | 1 |
+| R-13 | Fondos | Trama detrás de textos largos (Frases, Contacto, Lab) | Fondo liso en páginas de lectura | 2 | 1 |
+| R-14 | Etiquetas | Mayúsculas en frases («LECCIÓN 1», cabeceras) | Mayúsculas solo para etiquetas de una palabra | 2 | 1 |
+| R-15 | Reto | «Un fallo cuesta 3 segundos» como castigo | Redactar como «la palabra vuelve» y dejar la penalización opcional | 2 | 1 |
+| R-16 | Diapositivas (móvil) | Casillas sin nombre | «Diapositiva n de N» con `aria-live` | 2 | 1 |
+
+### 8.2 Medio (de 1 hora a 1 día)
+
+| ID | Pantalla | Problema | Propuesta | Impacto | Esfuerzo |
+|---|---|---|---|---|---|
+| M-01 | Idiomas (móvil) | Solo 3 de 21 banderas visibles a 390 px (las demás, con `display: none` en las que he medido) | Confirmar en un móvil real y arreglar: rejilla de 7 × 3 con nombres [V] [D si cambia el diseño] | 5 | 2 |
+| M-02 | Lección (rail) | 13–19 iconos sin nombre; estrellas iguales | Nombre al tocar, número de paso, estado con forma [V] | 4 | 3 |
+| M-03 | Onboarding | El carné pide nombre antes de la primera lección | «Empezar ya» como opción principal; nombre en Perfil; «¿Ya sabes algo?» junto a «Empezar» [D] | 4 | 2 |
+| M-04 | Android (atrás) | «Atrás» sale de la página en vez de volver una diapositiva | Atrás = diapositiva anterior → página anterior → cerrar; API de predictive back | 4 | 3 |
+| M-05 | Diapositivas (móvil) | 11 diapositivas en Sobre, 10 en Perfil, 9 en Escuelas | Índice de secciones; deslizar; sin tocar el arte [V] | 3 | 2 |
+| M-06 | Carga | Logo fijo varios segundos | Esqueleto de la escena y texto calmado | 3 | 2 |
+| M-07 | Sonido | Efectos y pitidos activados sin preguntar | Primer uso: pregunta sí/no; silencio del móvil en la APK; «sin pitidos» en la cabecera | 3 | 2 |
+| M-08 | Racha y objetivos | Solo racha, sin objetivo pequeño | Objetivo diario de 5 minutos o 1 lección; racha que se congela [D] | 4 | 2 |
+| M-09 | Avisos (APK) | Aviso de tristeza o de amenaza posible | Un aviso amable tras dos días sin abrir; nada de culpa | 3 | 1 |
+| M-10 | Escala de píxel | Escenas fraccionarias; sprites con escalado no entero | Escala entera donde se pueda; `pixelated` consistente; probar 322/390/412 [V] | 3 | 3 |
+| M-11 | Cabecera (móvil) | Dos filas, 110 px, controles en zona difícil | Ajustes, Cuenta y hucha a barra inferior en el curso [V] | 4 | 3 |
+| M-12 | Lección (móvil) | Cabecera con 4 filas de texto y botones pequeños | Cabecera compacta: título, paso y pausa; libro y lecciones en barra [V] | 4 | 2 |
+| M-13 | Tutora | Globo y cookies tapan contenido en escritorio | Reserva de hueco y plegado tras unos segundos (ya propuesto; comprobar el solapamiento con el aviso) | 4 | 2 |
+| M-14 | Accesibilidad | Foco al cerrar diálogos sin comprobar | Devolver el foco al botón que abrió el diálogo | 3 | 2 |
+| M-15 | Repaso | Sin fecha de vuelta por tarjeta | «Vuelve mañana» / «en 3 días» en cada tarjeta | 3 | 2 |
+| M-16 | Modo enfoque | No existe | Oculta cabecera y tutora; una tarea por pantalla | 4 | 3 |
+| M-17 | Frases (móvil) | Lista larga con solo un grupo visible | Buscador, temas y una frase por tarjeta (ya propuesto como T45) [V] | 3 | 3 |
+| M-18 | Prueba de nivel | Solo en el mapa; sin curso da 404 | Entrada en el primer uso («¿Ya sabes algo?») y en Perfil | 4 | 2 |
+| M-19 | FAQ | Cajones con números diminutos | Números de 14 px mínimo y con texto («4 respuestas») | 2 | 1 |
+| M-20 | Contacto | Papel rayado detrás del texto | Fondo liso; líneas solo en la cabecera de la carta | 2 | 1 |
+
+### 8.3 Grande (más de 1 día)
+
+| ID | Pantalla | Problema | Propuesta | Impacto | Esfuerzo |
+|---|---|---|---|---|---|
+| G-01 | Todo el proyecto | 986 colores hex distintos y 155 `!important` (informe anterior) | Tokens y componentes del capítulo 6, por fases | 4 | 4 |
+| G-02 | Iconos | Símbolos Unicode y sprites mezclados | Juego único de iconos de 16 px, escalados ×2/×3 [V] | 3 | 4 |
+| G-03 | Hablar | Sin práctica oral (solo escuchar) | Ejercicio «Repite en voz alta» con reconocimiento opcional y nunca obligatorio (T16) [D] | 4 | 4 |
+| G-04 | Tamaño de texto | Texto ajustable solo en modo grande | Escala de 100 a 200 % sin romper las diapositivas [V] | 4 | 3 |
+| G-05 | Prueba con personas | Ninguna prueba con usuarios con TDAH o dislexia | Cuatro sesiones de 30 minutos con grabación (con permiso) antes de decidir el diseño final | 5 | 3 |
+| G-06 | Plan del día | No hay plan visible | Pantalla de inicio con el plan de hoy (5 minutos: repaso + una lección) | 4 | 4 |
+| G-07 | Curso (navegación) | Seis controles en cabecera | Aprender · Practicar · Cuaderno · Perfil (ya propuesto como T98) [D] | 4 | 3 |
+| G-08 | APK (accesibilidad) | Sin prueba en Android con lectores de pantalla | Prueba con TalkBack en dos móviles | 3 | 3 |
+
+### 8.4 Orden recomendado
+
+1. R-01, R-02, R-03 (las tres más visibles y más baratas).
+2. M-01 tras confirmar en móvil real (es el de más impacto).
+3. R-04 a R-16, en un solo lote con capturas antes y después.
+4. M-03, M-18 (primera vez y prueba de nivel).
+5. M-04 (atrás en Android) antes de cualquier prueba de la APK.
+6. M-02, M-11, M-12 (la lección en el móvil).
+7. G-05 (prueba con personas) antes de los cambios grandes de navegación (G-07).
+
+---
+
+## 9. Fuentes
+
+Todas las fuentes se consultaron el **19-10-2026**. Las marcadas como «secundaria» son blogs, guías de proveedor o reseñas; las cifras que vienen de ellas están señaladas en el texto.
+
+**Referentes de apps de idiomas y onboarding**
+- UXCam, «12 apps with great user onboarding (2026)»: https://uxcam.com/blog/10-apps-with-great-user-onboarding/ (secundaria)
+- Relaunch, análisis del onboarding de Duolingo: https://relaunch.ai/blog/duolingo-onboarding-teardown-7-b-tests-behind-their-9-conver (secundaria; cifras no verificadas)
+- Appcues (GoodUX), onboarding de Duolingo: https://goodux.appcues.com/blog/duolingo-user-onboarding (secundaria)
+- The UXologist, «How Duolingo guides a long first-use journey»: https://theuxologist.com/case-studies/habit-forming-within-onboarding (secundaria)
+- Decision Lab, «Streak creep: the perils of too much gamification»: https://thedecisionlab.com/insights/consumer-insights/streak-creep-the-perils-of-too-much-gamification (secundaria)
+- Duolingo Guides, «Does Duolingo send threatening messages?»: https://duolingoguides.com/does-duolingo-send-threatening-messages/ (secundaria)
+- Duolingo Guides, «Why Duolingo is scary»: https://duolingoguides.com/why-duolingo-is-scary-the-psychology-behind-that-green-owl/ (secundaria)
+- Language App Guide, «Duolingo review 2026»: https://languageappguide.com/app-reviews/duolingo-review/ (secundaria, opinión)
+- Unanswered.io, «Why everyone is canceling Duolingo in 2026»: https://unanswered.io/guide/why-is-everyone-canceling-duolingo (secundaria)
+- Babbel, centro de ayuda, «Placement quiz»: https://support.babbel.com/hc/en-us/articles/20202703767442-Placement-quiz (primaria, de la empresa)
+- Busuu, centro de ayuda, «What are certificates»: https://help.busuu.com/hc/en-us/articles/16559434818321-What-are-Certificates-and-how-can-I-get-them (primaria, de la empresa)
+- Ling-App, comparativa de apps de idiomas 2026: https://ling-app.com/blog/language-learning-app-comparison/ (secundaria)
+- LanguaVibe, reseña de LingoDeer: https://languavibe.com/lingodeer-review/ (secundaria)
+- Common Sense Media, LingoDeer: https://www.commonsensemedia.org/app-reviews/lingodeer-learn-languages (reseña)
+- Languatalk, reseña de Speak: https://languatalk.com/blog/speak-app-review/ (secundaria)
+- Make Headway, reseña de Speak: https://makeheadway.com/blog/speak-app-review/ (secundaria)
+- Duolingo Max, anuncio oficial: https://blog.duolingo.com/duolingo-max (del informe anterior)
+- Duolingo, rachas con amigos: https://blog.duolingo.com/friend-streak/ (del informe anterior)
+
+**Repetición espaciada**
+- Cepeda, Pashler, Vul, Wixted y Rohrer (2006), «Distributed practice in verbal recall tasks», Psychological Bulletin 132(3), 354–380: https://www.yorku.ca/ncepeda/publications/CPVWR2006.html (página del autor)
+
+**Pixel art**
+- GDQuest, «Setting up pixel art graphics in Godot 4»: https://www.gdquest.com/library/pixel_art_setup_godot4/ (tutorial, de proveedor de motor)
+- tanalin.com, «Integer scaling»: https://tanalin.com/en/articles/integer-scaling/ (artículo)
+- the-pixel.art, «Pixel art blurry? How to scale and export without blur»: https://the-pixel.art/articles/pixel-art-blurry-scaling-exporting/ (secundaria)
+- Sprite AI, «2D pixel art style guide: from 8-bit to modern HD»: https://www.sprite-ai.art/blog/2d-pixel-art-style-guide (secundaria; Stardew y Celeste)
+- Blake Crosley, «Pixel-art worlds on iPhone»: https://blakecrosley.com/blog/pixel-art-world-on-iphone (secundaria)
+- DBO Forums, «Celeste and the failure of modern pixel art aesthetics» (opinión): https://destiny.bungie.org/forum/index.php?mode=thread&id=171892
+
+**Accesibilidad y tipografía**
+- W3C, WCAG 2.2, «Understanding Target Size (Minimum)» (SC 2.5.8, nivel AA, 24×24 px; documento actualizado el 11-05-2026): https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html
+- AccessiBuild, «WCAG 2.5.8» y «WCAG 2.3.3»: https://accessibility.build/wcag/2-5-8 y https://accessibility.build/wcag/2-3-3 (secundaria)
+- WCAG 2.2 SC 2.5.8 (glosario): https://wcag22aa.org/new-criteria/target-size/ (secundaria)
+- Appetite UI, «Touch target size: 44 pt on iOS, 48 dp on Android»: https://www.appetiteui.com/blog/touch-target-size-ios-android (secundaria; las páginas originales de Apple y Material no se pudieron leer hoy)
+- Android Developers, «Add support for the predictive back gesture» (actualizada el 16-10-2026): https://developer.android.com/guide/navigation/custom-back/predictive-back-gesture
+- British Dyslexia Association, «Dyslexia Style Guide 2023»: https://cdn.bdadyslexia.org.uk/uploads/documents/Advice/style-guide/BDA-Style-Guide-2023.pdf (copia en https://ako.ac.nz/assets/Knowledge-centre/ALNACC-Resources/Dyslexia-resources/230907-Dyslexia-Friendly-Style-Guide.pdf)
+- Dyslexia Scotland, «Dyslexia-friendly typed content: a formatting guide»: https://dyslexiascotland.org.uk/wp-content/uploads/2025/09/formats.pdf
+- ACM, «A Review of Text Accessibility Standards, Guidelines, and Font Tool Limitations»: https://dl.acm.org/doi/10.1145/3663547.3759692
+- Game Accessibility Guidelines, «Use an easily readable default font size»: https://gameaccessibilityguidelines.com/use-an-easily-readable-default-font-size/
+- Microsoft, Xbox Accessibility Guideline 101 (texto): https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/101 (solo el resumen de búsqueda)
+
+**Diseño para TDAH**
+- Welcoming Web, «How to design for ADHD and neurodiversity in UX»: https://welcomingweb.com/learn/designing-for-neurodiversity-adhd-ux (secundaria)
+- Monster Math, «ADHD-friendly app design: what to look for and what to avoid»: https://www.monstermath.app/blog/adhd-friendly-app-design-what-to-look-for-and-what-to-avoid (secundaria)
+- Permaintegratedhealth, «ADHD coping mechanisms and a PERMA-based design guide for UX designers» (2025): https://permaintegratedhealth.com/2025/07/03/adhd-coping-mechanisms-and-a-perma-based-design-guide-for-ux-designers/ (secundaria)
+
+**Mercado y tiendas (del informe anterior, sin releer hoy)**
+- Ver el anexo B de `_notas/INFORME_ARREGLOS_2026-10-19.md`.
+
+---
+
+## Anexo A. Capturas revisadas
+
+Carpeta: `C:\Users\javie\AppData\Local\Temp\diseno\`. Escritorio 1280×800 (`d`), móvil 390×844 (`m`), móvil pequeño 322×645 (`s`), mediciones (`x_`, `chk_`).
+
+- **Inicio:** `d01_inicio.png`, `m01_inicio.png`, `s01_inicio.png`, `chk_inicio.png`, `x_tap_inicio.png`
+- **Idiomas:** `d02_idiomas.png`, `d02b_idiomas_fondo.png`, `m02_idiomas.png`, `x_idiomas_conteo.png`, `x_idiomas_s2.png`, `x_idiomas_rect.png`
+- **Sobre:** `d03_sobre.png`, `m03_sobre_1.png`, `m04_sobre_3.png`, `chk_sobre.png`
+- **Precios:** `d04_precios.png`, `m05_precios.png`
+- **Tienda:** `d05_tienda.png`, `m06_tienda.png`, `chk_tienda.png`
+- **Laboratorio:** `d06_laboratorio.png`, `m15_laboratorio.png`, `x_placeholder.png`
+- **Escuelas:** `d19_escuelas.png`, `m16_escuelas.png`, `chk_escuelas.png`
+- **Empresas:** `m17_empresas.png`
+- **Regala Max:** `m18_regala_max.png`
+- **FAQ:** `m19_faq.png`
+- **Contacto:** `m14_contacto.png`, `chk_contacto322.png`
+- **Entrar:** `m22_entrar.png`
+- **Perfil:** `d23_perfil_fr.png` (con curso), `m11_perfil.png` (404 sin curso), `chk_perfil.png`
+- **Carné y bienvenida:** `d08_lecciones_fr.png`, `d24_bienvenida_fr.png`, `m07_lecciones_fr.png`, `s08_lecciones_fr_claro_grande.png` (en realidad 390×844, tema claro y texto grande)
+- **Lección:** `d09_leccion001_fr.png`, `d10_leccion012_fr.png`, `d20_leccion001_claro.png`, `m08_leccion001_fr.png`, `m09_leccion012_fr.png`, `s04_leccion001_fr.png`, `x_tap_leccion.png`
+- **Repaso:** `d12_repaso_fr.png`, `m10_repaso_fr.png`, `s06_repaso_fr.png`
+- **Cuaderno:** `d13_cuaderno_fr.png`, `m20_cuaderno_fr.png`
+- **Frases:** `m25_frases_fr.png`, `m12_frases.png` (404 sin curso)
+- **Reto:** `d25_reto_fr.png`, `m24_reto_fr.png`, `m13_reto.png` (404 sin curso)
+- **Prueba de nivel:** `m27_prueba_fr.png`, `d16_prueba.png` (404 sin curso)
+- **404:** `d07_bienvenida.png` (la bienvenida sin curso), `d16_prueba.png`, `m11_perfil.png`, `m12_frases.png`, `m13_reto.png`
+- **Capturas sin revisión a fondo:** `s02_sobre.png`, `s03_lecciones_fr.png`, `s05_perfil.png`, `s07_laboratorio.png`, `m21_prueba.png`, `m23_legal.png`, `d14_frases.png`, `d15_reto.png`, `d17_contacto.png`, `d18_faq.png`, `d21_lecciones_en_ui.png`, `d22_inicio_claro.png` (sin cargar: solo el logo)
+
+## Anexo B. Problemas de consola
+
+- En las capturas de la bienvenida y de la prueba apareció una vez un aviso de la política de contenido (CSP) por un script en línea con un hash que no está en `index.html`. No se ha reproducido en las demás capturas y puede venir de la herramienta de captura. Hay que revisar la consola de un navegador real antes de concluir nada.
+- Errores de red `ERR_CONNECTION_REFUSED` en varias capturas en paralelo: el servidor estático no aguanta muchas pestañas a la vez. Las capturas buenas se hicieron de una en una.
+
+## Anexo C. Medidas de contraste y de tamaño
+
+- Contraste: ver 5.4 (calculado con la fórmula de WCAG a partir de los tokens de `css/styles.css`).
+- Tamaños de tocado medidos en 390×844 (`x_tap_inicio.png`, `x_tap_leccion.png`): «Idioma» 38×38; «Activar los sonidos» 38×38; «Cambiar a modo claro» 38×38; «Cuenta · Cuenta» 38×38; «◀» 48×38; «▶» 48×38; «Inicio», «Idiomas», «Paglot Max» 115×38; «◀ Lecciones» 46×40; «Modo libro» 57×40; «Pausa» 36×34; «Ocultar ▼» 69×28; «Más información» 129×36; «Entendido» 87×36.
+- Diapositivas medidas (390×844 salvo indicación): Inicio 5; Sobre 11; Escuelas 9; Tienda 8; Perfil 10; Contacto 5 (322×645). Zoom y escala: 0 en todas.

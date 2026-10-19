@@ -4,7 +4,7 @@ import { el, poner } from '../dom.js';
 import { t, tr, idioma, locale } from '../i18n.js';
 import { CURSOS } from '../cursos.js';
 import { curso, hayCurso, nombreCurso, NOMBRES_TUTORAS, esBeta, paraQuien } from '../curso.js';
-import { entrarEnCurso } from '../sin-terminar.js';
+import { entrarEnCurso, avisoSinTerminar } from '../sin-terminar.js';
 import { dibujoDe } from '../tutor-sprite.js';
 import { sonar } from '../sonidos.js';
 import { VOCES, OTROS } from '../creditos.js';
@@ -111,7 +111,9 @@ export function pintarElegirCurso(contenedor) {
     const paises = textoPaises(c);
     const empezar = estudiando
       ? el('a', { class: 'ti-boton', href: '#/lecciones', onclick: () => sonar('pagina') }, t('cursos.volver', { curso: c.nativo }))
-      : el('button', { type: 'button', class: 'ti-boton', disabled: pronto, onclick: () => empezarCon(c) }, pronto ? t('cursos.pronto') : t('idi.si'));
+      // (un curso que aún no está explicado en tu idioma dice «Muy pronto»; al tocarlo, sale el aviso: ver sin-terminar.js)
+      : el('button', { type: 'button', class: 'ti-boton', disabled: pronto, onclick: () => empezarCon(c) },
+        pronto || paraQuien(c, i18n) === 'pronto' ? t('cursos.pronto') : t('idi.si'));
     return [
       el('div', { class: 'ti-cartel-cabeza' },
         el('span', { class: 'ti-cartel-numero' }, t('idi.numero', { n: String(n + 1).padStart(2, '0') })),
@@ -204,6 +206,7 @@ export function pintarElegirCurso(contenedor) {
 
   // ----- ¡Empezamos!: aplausos, la tutora lo celebra y se elige el curso -----
   function empezarCon(c) {
+    if (paraQuien(c, i18n) === 'pronto') { avisoSinTerminar(c); return; }
     sonar('fanfarria');
     despues(500, () => sonar('aplausos'));
     sprite?.gesto('celebrar');
@@ -220,6 +223,8 @@ export function pintarElegirCurso(contenedor) {
       el('span', { class: 'ti-camafeo-nombre', lang: c.lang }, c.nativo),
       esBeta(c) ? el('span', { class: 'etiqueta-beta ti-camafeo-beta', 'aria-hidden': 'true' }, 'β') : null);
     b.addEventListener('click', () => {
+      // en el móvil las banderas van en otra diapositiva: se vuelve al escenario para ver a la tutora
+      b.dispatchEvent(new CustomEvent('pm-ir', { bubbles: true, detail: 0 }));
       if (n === actual) return;
       sonar('voltear');
       presentar(n, n > actual ? 'der' : 'izq');
@@ -263,6 +268,8 @@ export function pintarElegirCurso(contenedor) {
   // contenido no cabe, se encoge entero (zoom), como la escalera de precios.
   function encajar() {
     if (!teatro.isConnected) return;
+    // en el móvil nunca se encoge: va en dos diapositivas (el escenario y las banderas, ver DIAPOSITIVAS en app.js)
+    if (matchMedia('(max-width: 700px)').matches) { teatro.style.zoom = ''; teatro.style.minHeight = ''; medirCartel(); return; }
     teatro.style.zoom = '1';
     teatro.style.minHeight = '0px';
     medirCartel();

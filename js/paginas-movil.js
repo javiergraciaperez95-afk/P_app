@@ -5,6 +5,7 @@
 // o deslizando el dedo de lado. Estilos en css/escenas.css (.pm-*).
 import { el, poner } from './dom.js';
 import { sonar } from './sonidos.js';
+import { t } from './i18n.js';
 
 export const esMovil = () => window.matchMedia('(max-width: 700px)').matches;
 
@@ -21,10 +22,10 @@ export function paginarEnMovil(app, { fijas = null } = {}) {
   let paginas = [];
   let actual = 0;
   let vivo = true;
-  const nav = el('nav', { class: 'pm-nav', 'aria-label': 'Páginas' },
-    el('button', { type: 'button', class: 'pm-atras', 'aria-label': '◀', onclick: () => ir(actual - 1) }, '◀'),
+  const nav = el('nav', { class: 'pm-nav', 'aria-label': t('pm.diapositivas') },
+    el('button', { type: 'button', class: 'pm-atras', 'aria-label': t('idi.anterior'), onclick: () => ir(actual - 1) }, '◀'),
     el('span', { class: 'pm-puntos', 'aria-hidden': 'true' }),
-    el('button', { type: 'button', class: 'pm-alante', 'aria-label': '▶', onclick: () => ir(actual + 1) }, '▶'));
+    el('button', { type: 'button', class: 'pm-alante', 'aria-label': t('idi.siguiente'), onclick: () => ir(actual + 1) }, '▶'));
   document.body.append(nav);
 
   const enFlujo = k => {
@@ -177,9 +178,10 @@ export function paginarEnMovil(app, { fijas = null } = {}) {
     nav.querySelector('.pm-alante').disabled = n === paginas.length - 1;
   }
 
-  // lo que ocupa de verdad la página ya puesta; si se pasa, se encoge todo lo de la vista
+  // lo que ocupa de verdad la página ya puesta; si se pasa, se encoge todo lo de la vista. La tutora que habla no cuenta:
+  // tapa un momento lo de abajo y se pliega (tutor.js); encoger la página por ella la hacía saltar al plegarse.
   function encoger() {
-    const limite = tope();
+    const limite = window.innerHeight - nav.offsetHeight - 4;
     let zoom = 1;
     for (let vez = 0; vez < 4; vez++) {
       // solo la caja de la vista: lo que una animación de entrada desplaza un momento (transform) no cuenta
@@ -234,6 +236,9 @@ export function paginarEnMovil(app, { fijas = null } = {}) {
   // y la entrada de la vista (vista-entra) la desplaza mientras dura: al acabar, se mide de nuevo
   const alAcabarEntrada = e => { if (e.target === raiz) luego(0); };
   app.addEventListener('animationend', alAcabarEntrada);
+  // una pantalla puede pedir ir a una diapositiva: elemento.dispatchEvent(new CustomEvent('pm-ir', { bubbles: true, detail: 0 }))
+  const alPedirIr = e => ir(Number(e.detail) || 0);
+  app.addEventListener('pm-ir', alPedirIr);
   repartir();
 
   return () => {
@@ -244,6 +249,7 @@ export function paginarEnMovil(app, { fijas = null } = {}) {
     tardes.forEach(clearTimeout);
     app.removeEventListener('click', alPulsar);
     app.removeEventListener('animationend', alAcabarEntrada);
+    app.removeEventListener('pm-ir', alPedirIr);
     app.removeEventListener('input', alEscribir);
     app.removeEventListener('pointerdown', alBajar);
     app.removeEventListener('pointerup', alSubir);

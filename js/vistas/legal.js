@@ -24,8 +24,8 @@ export const DATOS_DISPOSITIVO = [
   ['cuenta', ['paglot-cuenta', 'paglot-nube-apagada']],
   ['laboratorio', ['paglot-laboratorio-ideas-v1', 'paglot-laboratorio-votos-v1', 'paglot-laboratorio-quien']],
   ['pestana', ['idiomas-abierta', 'idiomas-desarrollador', 'paglot-sin-terminar', 'paglot-recien', 'paglot-contacto-asunto']],
-  ['pruebas', ['paglot-sin-nube', 'paglot-juego-forzado', 'paglot-bienvenida-paso']],
-  ['copiaApp', ['paglot-…']],
+  ['pruebas', ['paglot-sin-nube', 'paglot-juego-forzado', 'paglot-bienvenida-paso', 'paglot-prueba-almacen']],
+  ['copiaApp', ['caché «paglot-» + versión']],
 ];
 
 const parrafo = clave => el('p', {}, enLinea(t(clave)));

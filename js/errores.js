@@ -27,6 +27,18 @@ function esNuestro(archivo) {
   try { return new URL(archivo, location.href).origin === location.origin; } catch { return false; }
 }
 
+/** El mensaje sin nada que pueda ser de la persona (lo pide el informe legal del 19-10): sin correos, sin números largos
+ *  (el de la cuenta), sin lo que va detrás de «?» o «#» en una dirección y sin textos largos entre comillas (podrían ser
+ *  algo que ha escrito). Lo corto entre comillas (el nombre de una propiedad) se queda: ayuda a encontrar el fallo. */
+export function limpiarMensaje(texto) {
+  return String(texto ?? '')
+    .replace(/[\w.+-]+@[\w-]+(\.[\w-]+)+/g, '[correo]')
+    .replace(/\d[\d\s-]{5,}\d/g, '[número]')
+    .replace(/(https?:\/\/[^\s?#'"]*)[?#][^\s'"]*/g, '$1')
+    .replace(/(["'«`])([^"'»`]{25,})(["'»`])/g, '$1…$3')
+    .slice(0, 300);
+}
+
 // Ruido conocido que no es un fallo de la app.
 const RUIDO = /ResizeObserver loop|Script error\.?$|AbortError|The operation was aborted|NetworkError|Failed to fetch|Load failed/i;
 
@@ -39,9 +51,10 @@ function mandar(mensaje, donde) {
   const corto = String(donde ?? '').replace(location.origin + '/', '').replace(/\?v=[^:]*/, '');
   rpc('paglot_error', {
     p: {
-      mensaje: String(mensaje).slice(0, 300),
+      mensaje: limpiarMensaje(mensaje),
       donde: corto.slice(0, 200),
-      pantalla: location.hash.split('?')[0].slice(0, 80),
+      // solo una ruta de la app («#/leccion/012»): nunca lo que traen los enlaces de los correos (#access_token=…)
+      pantalla: (location.hash.match(/^#\/[\w/-]*/)?.[0] ?? '').slice(0, 80),
       curso: curso.id,
       version: VERSION,
       navegador: navegador(),

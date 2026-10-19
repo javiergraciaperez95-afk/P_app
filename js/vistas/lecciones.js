@@ -444,8 +444,8 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
     document.documentElement.classList.add('pm-activo');
     if (flotante) flotante.remove();
     const titulo = el('b', { class: 'cm-diapo-num' });
-    const atras = el('button', { type: 'button', class: 'pm-atras', 'aria-label': '◀', onclick: () => mostrar(actual - 1) }, '◀');
-    const alante = el('button', { type: 'button', class: 'pm-alante', 'aria-label': '▶', onclick: () => mostrar(actual + 1) }, '▶');
+    const atras = el('button', { type: 'button', class: 'pm-atras', 'aria-label': t('idi.anterior'), onclick: () => mostrar(actual - 1) }, '◀');
+    const alante = el('button', { type: 'button', class: 'pm-alante', 'aria-label': t('idi.siguiente'), onclick: () => mostrar(actual + 1) }, '▶');
     // el número del centro abre la lista de capítulos: con veintitantos, ir de uno en uno sería eterno
     const indice = el('ol', { class: 'cm-indice', hidden: true, 'aria-label': t('lecciones.capitulos') },
       diapos.map((d, i) => el('li', {}, el('button', { type: 'button', onclick: () => { cerrarIndice(); mostrar(i); } },

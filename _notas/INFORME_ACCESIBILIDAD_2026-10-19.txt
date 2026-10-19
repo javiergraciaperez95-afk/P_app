@@ -1,0 +1,636 @@
+# Informe de accesibilidad e inclusión: Paglot
+
+**Fecha:** 19 de octubre de 2026
+**Producto:** Paglot, aplicación web de aprendizaje de idiomas (pixel art) y APK para Android (Capacitor)
+**Versión revisada:** copia de trabajo del repositorio (rama main, último commit 3d787e75; hay cambios sin confirmar en el árbol). El repositorio no se ha modificado.
+**Alcance:** interfaz web servida en localhost:8300 (portada, idiomas, lecciones, bienvenida, perfil, cuaderno, repaso, reto, prueba, sobre, laboratorio, contacto, precios, social, escuelas, empresas, tienda, guías, Regala Max, créditos, aviso legal, FAQ), en escritorio (1200 px), tabletas y móviles (390, 360 y 320 px), con tema claro y oscuro, en las tres lenguas de interfaz (español, inglés y vietnamita), y revisión del código de js/, css/ e index.html. La APK no se ha probado en un dispositivo real.
+
+---
+
+## 1. Resumen ejecutivo
+
+**Veredicto.** Paglot tiene una base accesible sólida para una aplicación de su tamaño: todos los controles revisados tienen nombre accesible, todas las imágenes tienen texto alternativo, hay enlace de salto y puntos de referencia (regiones) correctos, el idioma de las partes en otra lengua se marca en los ejercicios y en las burbujas de la tutora, existen modo calma, texto grande, tema claro y oscuro, y los ejercicios de escucha ofrecen una alternativa escrita. Sin embargo, **hoy no cumple WCAG 2.2 nivel AA**: hay al menos cuatro incumplimientos claros (contraste, animaciones sin pausa, banner que tapa controles y objetivos táctiles pequeños), un fallo funcional grave (pantalla en blanco en un caso concreto de interfaz vietnamita) y un conflicto con la regla del propietario sobre el móvil (el paginador todavía encoge el contenido con zoom).
+
+**Cifras de la medición.** Se han hecho más de 60 mediciones automáticas de 30 pantallas en tres anchos (320, 390 y 1200 px), en tema claro y oscuro, y en las tres lenguas de interfaz.
+
+| Indicador | Resultado |
+|---|---|
+| Controles interactivos sin nombre accesible | 0 en todas las pantallas medidas |
+| Imágenes sin texto alternativo | 0 de 3 a 4 por pantalla |
+| Pares de texto y fondo que no llegan a 4,5:1 (distintos, tema oscuro) | De 1 a 22 por pantalla; portada 13, precios 22, social 11, tienda 11, escuelas 10 |
+| Animaciones infinitas visibles por defecto (sin modo calma) | Portada 207 (tema oscuro) y 220 (tema claro); precios 39; social 14 |
+| Desbordamiento horizontal a 320 px | Ninguno (pero el móvil encoge con zoom, véase A04) |
+| Objetivos táctiles menores de 24 px (AA) | 1 real (campana de escuelas, 28 x 21 px) y casos con etiqueta asociada (casillas de perfil, radios de contacto) |
+| Objetivos táctiles menores de 44 px (recomendación AAA y Android) | Portada 45 de 67; perfil 114 de 148; lección en móvil 7 de 11 |
+| Textos menores de 14 px | Portada 46, idiomas 49, precios 56, legal 44, tienda 48 |
+| Pantallas sin encabezado de nivel 1 | Bienvenida (carné de estudiante) y el primer acceso a lecciones |
+
+**Diez mejoras prioritarias** (la lista completa, con esfuerzo y criterio, está en el capítulo 9):
+
+| # | ID | Problema | Propuesta resumida | Criterio | Gravedad |
+|---|---|---|---|---|---|
+| 1 | A01 | Pantalla en blanco con interfaz vietnamita y curso de francés | Corregir la selección de idioma de interfaz cuando el curso no lo ofrece y no dejar la pantalla en estado de carga | Robustez (EN 301 549) | Crítica |
+| 2 | A02 | Textos sobre fondos de color con contraste insuficiente | Ajustar tokens y colores fijos (verde, rojo, dorado, etiquetas) | 1.4.3 | Alta |
+| 3 | A03 | 207 animaciones infinitas en la portada sin pausa visible | Botón «Pausar animaciones» en cabecera o portada; calma por defecto si el sistema lo pide | 2.2.2 | Alta |
+| 4 | A04 | El móvil encoge páginas con zoom (hasta 50 %) | Repartir en más diapositivas, sin zoom (regla del propietario) | 1.4.4, 1.4.10 | Alta |
+| 5 | A05 | El aviso de cookies tapa botones principales en pantallas pequeñas | Aviso compacto, desplazable y fuera del área de acción | 2.4.11, 1.4.10 | Alta |
+| 6 | A06 | Flechas del paginador llamadas «◀» y «▶»; nombre «Páginas» en español fijo | Nombres «Página anterior» y «Página siguiente» traducidos | 2.4.6, 4.1.2 | Alta |
+| 7 | A07 | Hashes de la política de seguridad (CSP) que no coinciden con dos scripts de index.html | Volver a calcularlos con publicar.py antes de cada publicación | Técnico (arranque y seguridad) | Alta |
+| 8 | A08 | Botón de campana de 28 x 21 px y casillas de 22 px | Área táctil mínima de 24 x 24 px (idealmente 48 dp en Android) | 2.5.8 | Media |
+| 9 | A09 | Sin encabezado de nivel 1 en la bienvenida | Título visible «Carné de estudiante» como h1 | 1.3.1, 2.4.6 | Media |
+| 10 | A10 | Etiquetas de 11 a 12 px en varias pantallas | Mínimo de 14 px para texto; 12 px solo para decoración sin información | 1.4.4 (espíritu), legibilidad | Media-alta |
+
+**Qué no se ha podido comprobar.** Lectores de pantalla reales (NVDA, VoiceOver, TalkBack), navegación completa con teclado, prueba con personas usuarias con déficit de atención o dislexia, prueba de espaciado de texto, zoom del navegador al 200 %, prueba de destellos con herramienta homologada y la APK en un teléfono Android. Estos puntos aparecen como «No verificado» en el capítulo 3.
+
+---
+
+## 2. Marco legal y normativo
+
+### 2.1 Qué establece cada norma y desde cuándo
+
+| Norma o estándar | Qué exige o recomienda | Desde cuándo | Aplicación a Paglot |
+|---|---|---|---|
+| WCAG 2.2 (W3C) | Criterios técnicos de accesibilidad web, en niveles A, AA y AAA | Recomendación W3C de 5 de octubre de 2023; la página consultada lleva fecha de 12 de diciembre de 2024 | Referencia técnica voluntaria y base de EN 301 549 |
+| EN 301 549 V3.2.1 (ETSI) | Requisitos europeos de accesibilidad de productos TIC (web, software, documentos) | Vigente como referencia de presunción de conformidad | Referencia para contratos y licitaciones; base de esta auditoría |
+| EN 301 549 V4.1.1 (ETSI) | Versión alineada con WCAG 2.2 y con la Ley de Accesibilidad europea | Publicada el 2 de septiembre de 2026 según fuentes secundarias; la cita en el Diario Oficial de la UE se prevé para el 16 de diciembre de 2026 | Recomendable como referencia nueva; hasta la cita oficial, la V3.2.1 sigue siendo la de presunción (confirmar en ETSI) |
+| Directiva (UE) 2019/882 (Ley Europea de Accesibilidad, EAA) | Requisitos de accesibilidad de determinados productos y servicios de consumo | Aplicable desde el 28 de junio de 2025 | Solo si Paglot presta un servicio incluido en su ámbito y no es microempresa (véase 2.3) |
+| Ley 11/2023, de 8 de mayo (España) | Transpone la EAA en su título I (arts. 1 a 31) | En vigor el 28 de junio de 2025 (disposición final decimoctava, según fuentes secundarias) | Igual que la EAA en España. Artículos clave: 2.2 (ámbito), 3.3 (microempresas), 13 (información) |
+| Real Decreto 1112/2018 | Accesibilidad de sitios web y aplicaciones móviles del sector público | Desde 2018 | No obliga a Paglot. Sí a las administraciones que publiquen o integren Paglot en sus propios sitios o apps |
+| Real Decreto Legislativo 1/2013 (LGDPD) | Derecho general de accesibilidad universal; régimen sancionador supletorio | Desde 2013 | Marco general; las sanciones de la Ley 11/2023 se rigen por él en lo no previsto |
+
+### 2.2 Qué dice la Ley 11/2023 sobre el ámbito (art. 2.2)
+
+Según el texto consolidado del BOE, el artículo 2.2 incluye, entre los servicios destinados a consumidores: servicios de comunicaciones electrónicas, servicios de acceso a medios audiovisuales, determinados elementos de transporte de viajeros (sitios web, aplicaciones, billetes), servicios bancarios para consumidores, **libros electrónicos y sus programas especializados**, **comercio electrónico**, sitios y aplicaciones de suministro de electricidad, agua y gas, sitios y aplicaciones de agencias de viajes, y redes sociales. Una aplicación educativa gratuita no aparece como tal en esa lista. Las obligaciones de comercio electrónico alcanzan a la venta en línea de cualquier producto o servicio, según la fuente secundaria consultada.
+
+### 2.3 Aplicación a Paglot, caso por caso
+
+| Parte de Paglot | ¿Entra en el ámbito? | Base | Comentario |
+|---|---|---|---|
+| Web y app gratuitas de aprendizaje (lecciones, juegos, cuaderno) | Probablemente no como servicio incluido | Art. 2.2 de la Ley no lo nombra | Se recomienda cumplir WCAG 2.2 AA como buena práctica y como argumento comercial |
+| Tienda, planes Paglot Max y Regala Max, si se pueden comprar en línea | Sí, como comercio electrónico | Art. 2.2 de la Ley y anexo I de la Directiva | Pero la microempresa queda exenta si cumple los límites (véase siguiente fila) |
+| Exención de microempresa | Probablemente aplicable a una persona desarrolladora sin plantilla | Art. 3.3 de la Ley: los prestadores de servicios que sean microempresas quedan fuera de los requisitos del tercer párrafo del art. 3.1 | Límites según fuentes secundarias: menos de 10 personas y facturación o balance no superiores a 2 millones de euros. La definición exacta remite a la Recomendación 2003/361/CE; confirmar con asesoría |
+| Exención: lo que no cubre | Los productos | Fuentes secundarias | La APK es software, no un producto físico; aun así conviene revisar la lectura de la ley |
+| Paglot Escuelas y Empresas (venta a centros) | Por lo general no como consumo | El ámbito de la EAA se refiere a consumidores | Pero los pliegos de contratación pública suelen exigir accesibilidad: revisar cada licitación |
+| Si una administración pública integra Paglot en su web o app | Sí, para esa administración | RD 1112/2018 | Obligación del organismo, no de Paglot; será un requisito contractual habitual |
+
+**Conclusión práctica.** Mientras Paglot sea gratuita y sin ventas en línea, no se aprecia una obligación legal directa. Si la tienda vende en línea, la exención de microempresa probablemente cubre a la persona desarrolladora, pero solo si se cumplen los límites y se documenta. En ningún caso conviene afirmar que la aplicación «cumple la ley» hasta que se corrijan los hallazgos del capítulo 3. Este informe no es asesoramiento jurídico: los límites exactos y la aplicación a un caso concreto deben confirmarse con un abogado o una gestoría.
+
+### 2.4 Declaración de accesibilidad
+
+La Ley 11/2023 no usa el nombre «declaración de accesibilidad» para los prestadores de servicios. Su artículo 13 exige a los prestadores que entran en el ámbito que incluyan en sus condiciones generales, o en un documento equivalente, información sobre cómo el servicio cumple los requisitos de accesibilidad; que esa información esté disponible en formatos accesibles; y que se mantenga actualizada mientras el servicio funcione (arts. 13.2 y 13.4). Para la Administración pública, el modelo es el del RD 1112/2018.
+
+**Recomendación.** Publicar una página «Accesibilidad» en la web (ruta propuesta #/accesibilidad, junto a #/legal) aunque la microempresa quede exenta. Su contenido mínimo:
+
+1. Fecha de la última revisión y método (auditoría automática y manual, con indicación de lo no verificado).
+2. Nivel de cumplimiento declarado (por ejemplo, «parcial», con lista de limitaciones conocidas: ejercicios de oído sin voz, zoom en el móvil, etc.).
+3. Compromisos y plazos para corregir las limitaciones.
+4. Contacto para reportar barreras y plazo de respuesta.
+5. Procedimiento de reclamación y vía de contacto alternativa (correo y formulario).
+
+### 2.5 Régimen sancionador
+
+Según el capítulo XI de la Ley 11/2023 (fuente secundaria consultada), la vigilancia corresponde a las comunidades autónomas y a Ceuta y Melilla, y las infracciones se sancionan con el régimen sectorial aplicable y, en lo no previsto, con el título III del RDL 1/2013. El texto consultado no recoge importes en la parte leída; no se citan cifras en este informe.
+
+---
+
+## 3. Auditoría WCAG 2.2 AA por criterio
+
+### 3.1 Método y límites
+
+- **Medición automática en Chrome sin ventana**, con scripts propios en la carpeta temporal de la auditoría (no en el repositorio). Cada pantalla se mide en varios anchos y en tema claro u oscuro. Se comprueban: nombres accesibles, texto alternativo, encabezados, tamaño de objetivos, tamaño de letra, contraste (fondo sólido por capas; las pantallas con imagen de fondo se omiten), animaciones infinitas visibles, desbordamiento horizontal, zoom en línea, regiones dinámicas, diálogos e identificadores duplicados. Los resultados están en `resultados/*.json` de la misma carpeta.
+- **Revisión de código** de js/, css/ e index.html, con búsquedas dirigidas (aria, roles, alt, lang, movimiento, fuentes, escalado).
+- **Capturas** de pantalla en la carpeta temporal (7 imágenes), usadas como evidencia.
+- **Limitación.** Los contrastes se calculan con el color de fondo sólido de cada elemento: en fondos con imagen o degradado el valor es aproximado. No se han usado lectores de pantalla ni teclado completo. Las cifras son indicativas y sirven para priorizar; no sustituyen una auditoría con personas usuarias.
+
+### 3.2 Resumen por criterio
+
+Leyenda: **Cumple**, **Cumple parcial**, **No cumple**, **No verificado**, **No aplica**. Los identificadores A01 a A28 remiten a la lista de hallazgos del apartado 3.3.
+
+#### Perceptible
+
+| Criterio | Nivel | Estado | Evidencia y hallazgos |
+|---|---|---|---|
+| 1.1.1 Contenido no textual | A | Cumple | 0 imágenes sin alt en 60 mediciones; los dibujos pixel de la portada tienen aria-hidden; los lienzos de las tutoras son decorativos y no tienen nombre (0 lienzos sin nombre) |
+| 1.2.1 Solo audio y solo vídeo | A | Cumple parcial | Los ejercicios de escucha usan la voz del dispositivo y un texto oculto que se muestra si no hay voz (exercises.js:281). Falta comprobar el texto con lector de pantalla (A13) |
+| 1.2.2 Subtítulos | A | No aplica | No hay vídeo pregrabado |
+| 1.3.1 Información y relaciones | A | Cumple parcial | Regiones correctas (una main, de 3 a 4 nav, header y footer). Faltan encabezados en la bienvenida (A09) y hay identificadores duplicados (A11) |
+| 1.3.2 Secuencia significativa | A | No verificado | El orden visual del móvil depende del paginador; no se ha comprobado el orden de lectura |
+| 1.3.3 Características sensoriales | A | Cumple | Las instrucciones son de texto («Toca el sobre para abrirlo») |
+| 1.3.4 Orientación | AA | No verificado | No se ha probado en horizontal |
+| 1.3.5 Identificar la finalidad de los campos | AA | Cumple | Hay autocomplete para correo, nombre, nickname, código de un solo uso y usuario |
+| 1.4.1 Uso del color | A | No verificado | Hace falta revisar que los enlaces del texto se distingan por algo más que el color |
+| 1.4.2 Control del audio | A | No verificado | La tutora habla al empezar lecciones (leccion.js:200 y :583) y hay pitidos de la tutora activados por defecto (A13) |
+| 1.4.3 Contraste (mínimo) | AA | No cumple | Hasta 22 pares distintos por pantalla por debajo de 4,5:1 (A02, capítulo 4) |
+| 1.4.4 Cambio de tamaño del texto | AA | Cumple parcial | El texto grande sube solo al 112,5 % (movil.css:100); el móvil reduce el contenido con zoom (A04); no se ha probado al 200 % |
+| 1.4.5 Imágenes de texto | AA | Cumple | El texto es texto real, aunque se muestre con fuente pixel |
+| 1.4.10 Reflujo | AA | Cumple parcial | No hay desplazamiento horizontal a 320 px, pero el contenido se encoge con zoom en lecciones (0,78), idiomas (0,87) y precios (0,62) (A04) |
+| 1.4.11 Contraste no textual | AA | Cumple parcial | Los contornos de foco (6,2 a 7,9:1 en oscuro; 5,4 a 6,5:1 en claro) y los bordes cumplen. Hay dibujos de adorno con contraste bajo (retrato 1,70:1 y 1,32:1) que no deben transmitir información |
+| 1.4.12 Espaciado del texto | AA | No verificado | Pendiente de prueba con el marcador de espaciado |
+| 1.4.13 Contenido al pasar o enfocar | AA | Cumple | Las fichas de palabra se cierran con Escape (leccion.js:85) |
+
+#### Operable
+
+| Criterio | Nivel | Estado | Evidencia y hallazgos |
+|---|---|---|---|
+| 2.1.1 Teclado | A | Cumple parcial | Enlace de salto, controles nativos y flechas en el paginador (que ignoran los campos de texto). No se ha recorrido el flujo completo de lecciones y juegos con teclado |
+| 2.1.2 Sin trampas de teclado | A | Cumple | Los diálogos se cierran con Escape; no se ha encontrado trampa |
+| 2.1.4 Atajos de una tecla | A | Cumple | No hay atajos de letras; solo las flechas del paginador |
+| 2.2.1 Tiempo ajustable | A | No verificado | El reto rápido dura 60 s y cada fallo quita 3 s (reto.js:15-16). No se ha comprobado que pueda pausarse o ampliarse (A12) |
+| 2.2.2 Pausar, detener, ocultar | A | No cumple | Hasta 207 animaciones infinitas visibles en la portada sin control en esa pantalla (A03) |
+| 2.3.1 Tres destellos o menos | A | Cumple | Los parpadeos tienen como mucho dos cambios por segundo; el botón de empezar hace 2,5 destellos por segundo durante 1,6 s (A20) |
+| 2.4.1 Saltar bloques | A | Cumple | Enlace «Saltar al contenido» (index.html:232) y main con id app |
+| 2.4.2 Páginas con título | A | Cumple | Cada pantalla tiene título («Sobre Paglot · Paglot», «Bonjour ! · Français · Paglot») |
+| 2.4.3 Orden del foco | A | No verificado | Pendiente de recorrido con teclado |
+| 2.4.4 Propósito de los enlaces | A | Cumple | Los enlaces tienen texto propio. «Más información» aparece sin contexto en el aviso de cookies |
+| 2.4.5 Varias formas de encontrar | AA | Cumple | Menú, pie, portada y buscador de idiomas |
+| 2.4.6 Encabezados y etiquetas | AA | Cumple parcial | Faltan encabezados (A09) y las flechas del paginador tienen nombres poco útiles (A06) |
+| 2.4.7 Foco visible | AA | Cumple | Contorno de 3 px en amarillo o azul (styles.css:105-108 y :592). Excepción en cabecera.css:265, que cambia el fondo al enfocar |
+| 2.4.11 Foco no oculto (mínimo) | AA | No cumple | El aviso de cookies tapa la acción principal de la lección en 320 x 568 (A05, captura scr_leccion_fr_320.png) |
+| 2.5.1 Gestos de puntero | A | Cumple | El deslizamiento del móvil tiene alternativa con botones (paginador) |
+| 2.5.2 Cancelación del puntero | A | Cumple | Los controles actúan al soltar; pointerdown solo arranca la música (js/juego/motor.js:185) |
+| 2.5.3 Etiqueta en el nombre | A | Cumple | El nombre coincide con el símbolo visible, aunque no ayuda (A06) |
+| 2.5.4 Activación por movimiento | A | Cumple | No hay funciones activadas por movimiento del dispositivo |
+| 2.5.7 Movimientos de arrastre | AA | Cumple | No se han encontrado controles que solo funcionen arrastrando; los deslizadores son nativos |
+| 2.5.8 Tamaño mínimo del objetivo | AA | No cumple | Campana de escuelas de 28 x 21 px (A08); casillas de 22 x 22 px con etiqueta asociada |
+
+#### Comprensible
+
+| Criterio | Nivel | Estado | Evidencia y hallazgos |
+|---|---|---|---|
+| 3.1.1 Idioma de la página | A | Cumple | El atributo lang cambia con la lengua de interfaz (i18n.js:159). Antes de cargar el script, index.html:2 dice «en» (A21) |
+| 3.1.2 Idioma de las partes | AA | Cumple | El texto en la lengua del curso lleva lang (exercises.js:94, :143, :164, :224, :230, :281; leccion.js:42) |
+| 3.2.1 Al recibir el foco | A | Cumple | No se ha encontrado cambio de contexto al enfocar |
+| 3.2.2 Al introducir datos | A | No verificado | Pendiente: cambiar de idioma o de curso no debe alterar la página sin aviso |
+| 3.2.3 Navegación coherente | AA | Cumple | Cabecera y pie iguales en todas las pantallas |
+| 3.2.4 Identificación coherente | AA | Cumple | Mismos nombres y banderas en todo el sitio |
+| 3.2.6 Ayuda coherente | A | Cumple | Ayuda en el mismo sitio (pie) |
+| 3.3.1 Identificación de errores | A | No verificado | Pendiente de prueba con formularios (contacto, perfil) en estado de error |
+| 3.3.2 Etiquetas o instrucciones | A | Cumple | Los campos tienen etiqueta (0 campos sin nombre) |
+| 3.3.3 Sugerencia de error | AA | No verificado | Pendiente |
+| 3.3.4 Prevención de errores | AA | No verificado | Pendiente (formularios de contacto y de compra) |
+| 3.3.7 Entrada redundante | A | No aplica | No hay formularios de varios pasos |
+| 3.3.8 Autenticación accesible | AA | Cumple | Código de un solo uso con autocomplete y campo de usuario; no se exige memorizar ni transcribir un test complejo |
+
+#### Robusto
+
+| Criterio | Nivel | Estado | Evidencia y hallazgos |
+|---|---|---|---|
+| 4.1.1 Procesamiento | A | Cumple parcial | Identificadores duplicados en las banderas (A11). En WCAG 2.2 este criterio está obsoleto, pero conviene corregirlo |
+| 4.1.2 Nombre, función, valor | A | Cumple parcial | 0 controles sin nombre; nombres genéricos en el paginador (A06); diálogos con rol |
+| 4.1.3 Mensajes de estado | AA | No verificado | Hay de 1 a 7 regiones dinámicas por pantalla; falta comprobar que anuncian bien con un lector de pantalla |
+
+**Recuento de criterios revisados (A y AA, 53 en total):** 26 cumplen, 9 cumplen parcialmente, 4 no cumplen, 12 no se han podido verificar y 2 no aplican.
+
+### 3.3 Hallazgos concretos
+
+Gravedad: **Crítica** (bloquea el uso), **Alta** (barrera para un grupo amplio), **Media** (dificulta), **Baja** (mejora).
+
+#### A01. Pantalla en blanco con interfaz vietnamita y curso de francés (Crítica)
+
+- **Qué pasa.** Con la lengua de interfaz en vietnamita y el curso de francés, la app no pinta nada: la página queda con el fondo y la clase `arrancando` (index.html:231), que oculta todo hasta la primera pantalla. Ocurre en las tres pruebas. El curso de francés solo ofrece español e inglés como lenguas de interfaz (index.html:35-40; i18n.js:18-41), y la app debería caer a español o inglés.
+- **Lo que no pasa.** Con curso de español y lengua vietnamita, la bienvenida se pinta bien (captura scr_vi_bienvenida_es.png). Sin curso elegido, la portada en vietnamita también se pinta.
+- **Evidencia.** Captura vi_fr_escritorio.png (fondo vacío); medición `resultados/vi_fr_diag.json` (ni un elemento interactivo, `#app` con 186 caracteres). La clase `arrancando` se quita en js/app.js:793 al pintar la primera pantalla; en este caso no llega a ejecutarse. No aparece error en la consola de la prueba, así que la causa exacta hay que depurarla en js/i18n.js (función `pedido`).
+- **Criterio.** Robustez (EN 301 549): el usuario se queda sin contenido y sin mensaje. No hay criterio WCAG directo.
+- **Propuesta.** Corregir la selección de idioma y, pase lo que pase, pintar una pantalla de error con texto en la lengua disponible y un botón para volver al inicio.
+
+#### A02. Contraste insuficiente en textos y controles (Alta)
+
+- **Tokens del tema oscuro** (css/styles.css, líneas 10-40): el verde sobre el panel da 4,37:1 y el verde sobre el fondo de acierto (verde-fondo) da 3,24:1; el rojo como texto sobre el fondo da 2,11:1 (no debe usarse como texto); el texto sobre el panel en hover (panel-hover) da 4,47:1; el blanco sobre el rojo en hover (rojo-hover) da 4,02:1.
+- **Colores fijos fuera de los tokens** (más graves): `.pie-subir-flecha` (pie.css:370), 2,09:1; `.nav-max` del menú (cabecera.css:202), 3,81:1; `.casa-paso-numero` (sobre.css:432), 1,02 a 1,11:1 sobre tarjetas pastel; `.tn-eyebrow` (tienda.css:50), 2,66:1; `.lb-etiqueta` (laboratorio.css:85), 1,88:1; `.fq-cuantas` (faq.css:79), 2,34:1; `.rc-letrero-pantalla` (social.css:200), 2,78:1; números 1 y 2 de escuelas, 2,90:1; `.pr-nombre` («Plus», precios), 1,98:1; y etiqueta de Regala Max, 2,60:1.
+- **Pantallas más afectadas** (pares distintos por debajo del umbral, tema oscuro): precios 22, social 11, tienda 11, escuelas 10, guías 9, Regala Max 8, sobre 6, portada 13, bienvenida 5, lecciones 5, FAQ 5.
+- **Propuesta.** Subir la luminosidad del verde y el rojo como texto en oscuro, ajustar el dorado del menú y las etiquetas, y no usar colores pastel con texto pequeño. Mantener el arte: cambiar el color del texto o del fondo de la etiqueta, no el dibujo.
+- **Criterio.** 1.4.3 (AA), 1.4.11 para los contornos.
+
+#### A03. Animaciones infinitas sin pausa en la portada (Alta)
+
+- **Medición.** Portada en tema oscuro: 207 animaciones infinitas visibles (ondear 80, banderín 64, farolillo 30, público 12, ruedas 12, paseo, flotar, vapor y otras); en tema claro, 220. Precios 39, social 14, sobre 7.
+- **Dónde está el control.** Modo calma: sin valor guardado sigue la preferencia «reducir movimiento» del sistema (js/ajustes.js:56-57); en calma, las animaciones se reproducen una vez (css/movil.css:96) y se ocultan las chispas (movil.css:97). El interruptor está en Perfil → Ajustes (js/vistas/perfil.js:364; etiqueta en es.js:593). En la portada no se ha encontrado ningún control de este tipo.
+- **Criterio.** 2.2.2 (A): el contenido en movimiento que dura más de cinco segundos necesita un mecanismo de pausa. El modo calma lo cumple solo si la persona lo encuentra; por defecto (sin preferencia del sistema) no.
+- **Propuesta.** Botón «Pausar animaciones» visible en la cabecera de la portada (y en el pie), que recuerde la elección; mantener la preferencia del sistema como valor inicial; limitar a una repetición las animaciones decorativas que no están en la pantalla principal.
+
+#### A04. El móvil encoge contenido con zoom (Alta; conflicto con la regla del propietario)
+
+- **Qué pasa.** La regla del propietario es no encoger ni hacer zoom en el móvil, y repartir en más diapositivas. El código todavía lo hace:
+  - Paginador: `ENCOGER_MIN = 0,5` (js/paginas-movil.js:11) y el zoom en las líneas 188 a 190, para cualquier página que no quepa.
+  - Precios: `ENCOGER_MIN = 0,62` (js/vistas/precios.js:584) y el zoom por sección en las líneas 625 y 633.
+  - Teatro de idiomas: js/vistas/cursos.js:269-291, con zoom mínimo de 0,4, también en escritorio cuando la pantalla es baja.
+  - Estilo fijo: `.pr-hucha-escena { zoom: .66 }` (css/precios.css:1084).
+- **Medido.** Lección en 320 x 568: zoom 0,78 en el bloque de explicación (captura scr_leccion_fr_320.png). Idiomas: zoom 0,865 a 320 px y 0,918 a 390 px (captura scr_idiomas_movil.png).
+- **Criterio.** 1.4.4 y 1.4.10. El zoom reduce el tamaño de letra y no se ajusta a la preferencia de texto grande.
+- **Propuesta.** Eliminar el zoom en el móvil y repartir el contenido en más diapositivas, sin cambiar el arte. Si una pantalla no cabe, dividirla en dos. Dejar el zoom solo para el teatro de escritorio, o sustituirlo por un diseño en tarjetas.
+
+#### A05. Aviso de cookies sobre los controles principales (Alta)
+
+- **Qué pasa.** En 320 x 568 el aviso ocupa la mitad inferior de la pantalla y tapa el botón «Abrir el sobre» de la primera lección (captura scr_leccion_fr_320.png). En 390 x 844 cubre la parte baja del contenido (captura scr_idiomas_movil.png).
+- **Texto.** El aviso es largo (unas 60 palabras; js/i18n/es.js:1164) y mezcla la política de datos con la copia en la nube.
+- **Criterio.** 2.4.11 (AA, foco no oculto) y 1.4.10.
+- **Propuesta.** Aviso compacto de una o dos líneas que se pueda plegar, situado en la parte de arriba o en una barra, sin tapar el contenido activo. Texto más breve.
+
+#### A06. Paginador con nombres poco útiles y en español fijo (Alta)
+
+- **Qué pasa.** Las flechas tienen como nombre el propio símbolo: `aria-label: '◀'` y `'▶'` (js/paginas-movil.js:25 y :27), lo que lee un lector de pantalla como «triángulo negro». El nombre del bloque de navegación, «Páginas» (paginas-movil.js:24), está fijo en español: en las interfaces inglesa y vietnamita se leerá en español. Hay 23 y 24 apariciones en las mediciones.
+- **Criterio.** 2.4.6 y 4.1.2 (nombre significativo); 3.1.2 si se lee en otra lengua.
+- **Propuesta.** Textos traducidos «Página anterior», «Página siguiente» y «Páginas de la pantalla» en js/i18n, y que el número de página se anuncie en una región de estado.
+
+#### A07. Hashes de la política de seguridad que no coinciden (Alta; técnico)
+
+- **Qué pasa.** La política de contenido (index.html:7) lista tres hashes de scripts en línea. Recalculados hoy, solo el tercer script (index.html:223) coincide. El de arranque de tema, idioma y calma (index.html:21) y el importmap (index.html:110) no coinciden. En la prueba, Chrome bloqueó el importmap y registró el error de CSP.
+- **Consecuencias.** Es probable que el tema, la calma y el texto grande se apliquen tarde (parpadeo al cargar), y que el importmap no se aplique. Conviene confirmarlo en la versión publicada.
+- **Propuesta.** Recalcular los hashes con `_herramientas/publicar.py` cada vez que se cambie index.html, y añadir una comprobación al publicar. Eliminar de la política el dominio de Supabase si ya no se usa (véase A23).
+
+#### A08. Objetivos táctiles pequeños (Media)
+
+- **2.5.8 (AA, 24 x 24 px).** Campana de escuelas en móvil: 28 x 21 px (`.ce-campana`, css/escuelas.css:95). Las casillas de perfil («Efectos de sonido», «Pitidos de la tutora», «Modo calma»; js/vistas/perfil.js:363-365) son de 22 x 22 px; cumplen si su etiqueta es parte del objetivo, lo que hay que comprobar. Las casillas de contacto son de 1 x 1 px (contacto.js:93, clase `solo-lector`) y dependen de que el foco se vea en la etiqueta.
+- **2.5.5 (AAA, 44 x 44 px) y Android (48 dp).** Portada 45 de 67; perfil 114 de 148; lección en móvil 7 de 11; precios en móvil 24 de 24.
+- **Propuesta.** Área mínima de 24 px en todos los controles; 48 px en los botones principales del móvil.
+
+#### A09. Sin encabezado de nivel 1 en la bienvenida (Media)
+
+- **Qué pasa.** La bienvenida (carné de estudiante) no tiene h1: el título «Carné de estudiante» es un span (js/vistas/bienvenida.js, zona del carné, líneas 451-456). Las mediciones dan h1 = 0 en la bienvenida y en el primer acceso a lecciones (captura scr_bienvenida_fr_escritorio.png).
+- **Criterio.** 1.3.1 y 2.4.6.
+- **Propuesta.** Dar a «Paglot» o al título del carné el nivel de encabezado 1 y mantener el dibujo como decoración.
+
+#### A10. Textos de 11 a 12 px (Media-alta)
+
+- **Medido.** Textos menores de 14 px: portada 46 (de ellos 40 menores de 12 px, por ejemplo «Nº 01» a 11,5 px e «inglés» a 11,8 px), idiomas 49 (41 menores de 12 px), precios 56 (8), legal 44 (37), tienda 48 (25), social 41 (26), lección en móvil 39 (7).
+- **Origen.** Etiquetas en fuente pixel con tamaños de 0,72 a 0,80 rem: `.tn-eyebrow` (tienda.css:50), `.fq-cuantas` (faq.css:79), `.lb-etiqueta` (laboratorio.css:85), `.casa-paso-numero` (sobre.css:432).
+- **Criterio.** 1.4.4 en espíritu, y uso real para personas con dislexia, déficit de atención o visión reducida.
+- **Propuesta.** Mínimo de 14 px para cualquier texto con información; 12 px solo para decoración. Subir el tamaño de las etiquetas en la tipografía pixel y comprobar que la lección en móvil se reparte en más diapositivas.
+
+#### A11. Identificadores duplicados en las banderas (Baja)
+
+- **Qué pasa.** La bandera del Reino Unido tiene `clipPath id="uk-campo"` y `"uk-diag"` (js/cursos.js:25). Se repite en la portada y en la lista de idiomas, y las mediciones dan dos identificadores duplicados en esas pantallas.
+- **Criterio.** 4.1.1 (obsoleto en WCAG 2.2, pero conviene corregirlo).
+- **Propuesta.** Generar identificadores únicos por instancia.
+
+#### A12. Reto rápido de 60 segundos (Media; por verificar)
+
+- **Qué pasa.** El reto dura 60 s y cada fallo resta 3 s (js/vistas/reto.js:15-16). No se ha visto una forma de pausarlo, ampliarlo ni desactivarlo.
+- **Criterio.** 2.2.1 (AA): el tiempo debe poder ajustarse o desactivarse, salvo excepciones.
+- **Propuesta.** Opción «Sin límite de tiempo» o «Dar más tiempo» en el reto, y un aviso previo con el tiempo total.
+
+#### A13. Voz automática de la tutora y pitidos por defecto (Media; por verificar)
+
+- **Qué pasa.** La tutora habla al empezar una lección (leccion.js:200 y :583) y los pitidos de la tutora están activados por defecto (ajustes.js:23-24, `efectos: true`, `vozTutora: true`). No se ha comprobado si la voz puede detenerse con el botón de sonido.
+- **Criterio.** 1.4.2 (A): si el audio suena solo y dura más de tres segundos, debe poder detenerse o silenciarse.
+- **Propuesta.** Botón visible «Silenciar la voz de la tutora» en la lección, y que el botón general de sonido también cancele la voz (sonidos.js).
+
+#### A14. Texto que se escribe letra a letra (Media)
+
+- **Qué pasa.** La tutora escribe el texto letra a letra. En la captura scr_vi_bienvenida_es.png, a los cuatro segundos, la frase aparece cortada («cô gọi em là gì nh»).
+- **Criterio.** Cognitivo, y 4.1.3 si un lector de pantalla anuncia el texto a medio escribir.
+- **Propuesta.** Botón «Mostrar todo» o tocar la burbuja para completar, y anunciar solo el texto final en una región de estado.
+
+#### A15. Diacríticos vietnamitas en títulos (Media)
+
+- **Qué pasa.** La fuente pixel (PixelifySans.woff2) no contiene ệ, ơ, ư, ộ, ế, ồ ni ữ: solo tiene đ entre las letras vietnamitas (comprobado con fontTools, 574 glifos). Los títulos en vietnamita caen a `ui-monospace` (css/styles.css:34). La familia Be Vietnam Pro sí tiene esas letras (css/fuentes.css), pero solo se declara en peso 700 y se usa en algunos lugares (cabecera.css:27; pie.css:443).
+- **Criterio.** 3.1.2 y 1.4.8 (AAA) en espíritu; legibilidad en vietnamita.
+- **Propuesta.** Regla `:root:lang(vi) h1, h2, h3 { font-family: "Be Vietnam Pro" }`, declarar los pesos 400 y 600, y revisar el resto de elementos.
+
+#### A16. Ajustes de texto insuficientes (Media)
+
+- **Qué pasa.** El texto grande sube solo al 112,5 % (css/movil.css:100). No hay escala intermedia (125, 150 %) y el ajuste está en Perfil, sin acceso rápido.
+- **Criterio.** 1.4.4 (AA). Hay que probarlo al 200 % del navegador.
+- **Propuesta.** Tres niveles (normal, grande, muy grande) y un acceso rápido en la cabecera o en la primera lección. Comprobar que el móvil reparte de nuevo las diapositivas al cambiar el tamaño.
+
+#### A17. Ejercicios de oído que dependen de la voz (Media)
+
+- **Qué pasa.** Sin voz del dispositivo, los ejercicios de oído se quitan (exercises.js:76; leccion.js:547; repaso.js:79-86; practica.js:71). Hay texto oculto con la transcripción (exercises.js:281), que aparece en modo sin voz visible, pero el ejercicio no se puede hacer.
+- **Criterio.** Inclusión y 1.2.1. Afecta a personas sin voz del dispositivo, en dispositivos baratos o con idiomas sin voz instalada.
+- **Propuesta.** Ofrecer la transcripción como alternativa de respuesta (elegir la frase que se oye leyendo) y, para idiomas con voz pobre, audios grabados opcionales.
+
+#### A18. Lenguaje del aviso de cookies (Baja)
+
+- **Qué pasa.** Texto largo y con dos mensajes a la vez (datos en el dispositivo y copia en la nube). El botón «Entendido» no explica qué pasa al pulsarlo.
+- **Criterio.** 3.1.5 (AAA) y carga cognitiva.
+- **Propuesta.** Dos frases cortas, enlace a la política y botones «Lo entiendo» y «Más información sobre mis datos».
+
+#### A19. Nombre redundante del botón de cuenta (Baja)
+
+- **Qué pasa.** El botón de cuenta se llama «Cuenta · Cuenta» en todas las pantallas (cuenta.titulo, es.js:1060).
+- **Propuesta.** Un nombre, por ejemplo «Mi cuenta» o «Mi perfil».
+
+#### A20. Destellos del botón de empezar (Baja)
+
+- **Qué pasa.** `.inicio-plataforma.brilla .inicio-empezar { animation: inicio-brillar .4s steps(1) 4 }` (css/inicio.css:256-257): cuatro ciclos de 0,4 s con cambio de color, es decir, 2,5 destellos por segundo durante 1,6 s. Cumple 2.3.1, pero con poco margen.
+- **Propuesta.** Un solo ciclo o desactivarlo en modo calma.
+
+#### A21. Idioma inicial del documento (Baja)
+
+- **Qué pasa.** index.html:2 declara `lang="en"`; el idioma correcto se pone con JavaScript. Si el script falla, los lectores de pantalla leerán en inglés.
+- **Propuesta.** Poner `lang="es"` por defecto, porque el idioma principal de la app es el español.
+
+#### A22. Banderas como símbolo de idioma (Baja; inclusión)
+
+- **Qué pasa.** Los idiomas se representan con banderas de países (cuerda de banderas en la portada; js/cursos.js:25). El inglés queda ligado al Reino Unido, el español a España, y el vietnamita y el chino a sus países. Los nombres de los idiomas en su propia lengua («Français», «Deutsch», «日本語», «Tiếng Việt») sí son una buena práctica.
+- **Propuesta.** Mostrar primero el nombre del idioma y usar la bandera solo como adorno (ya tiene aria-label).
+
+#### A23. Referencias residuales a Supabase (Media; privacidad)
+
+- **Qué pasa.** js/config.js:4 define `SUPABASE_URL`, y hay referencias en js/nube.js, js/errores.js, js/vistas/laboratorio.js y js/vistas/legal.js. La política de contenido aún permite conexiones a su dominio (index.html:7). La memoria del proyecto indica que Supabase se quitó y que la app usa una API propia; el código aún lo referencia, así que conviene confirmarlo.
+- **Propuesta.** Confirmar qué está en uso, retirar las referencias y la conexión permitida, y actualizar el aviso de cookies y de datos.
+
+#### A24. Declaración de accesibilidad inexistente (Media)
+
+- Ver el apartado 2.4. **Propuesta.** Página #/accesibilidad con la información mínima.
+
+#### A25. Pruebas pendientes (Media)
+
+- **Pendiente:** recorrido completo con teclado; lectores de pantalla (NVDA y VoiceOver en escritorio, TalkBack en Android); APK en un teléfono real con la escala de fuente del sistema al máximo; zoom del navegador al 200 %; prueba de espaciado de texto (1.4.12); prueba de destellos con herramienta homologada; pruebas con personas usuarias con déficit de atención, dislexia o baja visión.
+
+#### A26. Lenguaje inclusivo y lectura fácil (Baja)
+
+- En js/i18n/es.js no se han encontrado desdoblamientos con arroba ni formas con barra, aunque no se ha hecho una revisión léxica completa de los textos. **Propuesta.** Una pasada de revisión de los textos del sistema y de las tutoras, con criterios de lectura fácil en las instrucciones.
+
+#### A27. Lo que está bien hecho (para mantener)
+
+- Todos los controles tienen nombre; las imágenes tienen alt; hay enlace de salto y regiones; el idioma por partes se marca en los ejercicios y en las burbujas de la tutora; los diálogos se cierran con Escape; el modo calma se activa con la preferencia del sistema; hay texto grande y tema claro; las fuentes van dentro de la app (sin peticiones a Google); el paginador ofrece botones además del deslizamiento; la APK y la web funcionan sin conexión (sw.js); los ejercicios de oído se omiten sin voz en lugar de bloquear la lección; las voces se eligen entre las que funcionan sin conexión (sonidos.js:471-473).
+
+#### A28. Sonidos al pasar el ratón (Baja; déficit de atención)
+
+- Al pasar el ratón por un elemento pulsable suena un «roce» (chispa.js, `pointerover`), además de cada pulsación. Para personas con sensibilidad al ruido o con déficit de atención, puede ser excesivo. **Propuesta.** Desactivar el sonido de roce por defecto y dejarlo solo en el modo de efectos completos.
+
+---
+
+## 4. Contraste: tabla de pares de colores
+
+Calculado con la fórmula de luminancia relativa de WCAG 2.x sobre los tokens de css/styles.css (líneas 10-40 para el tema oscuro y 42-64 para el claro, con herencia de los valores no redefinidos). «Sí» o «No» según el umbral: 4,5:1 para texto y 3:1 para elementos no textuales.
+
+### 4.1 Tema oscuro (por defecto)
+
+| Par | Texto o componente / fondo | Ratio | ¿Pasa? |
+|---|---|---|---|
+| Texto sobre fondo | #f2ecf7 / #463c58 | 8,85:1 | Sí |
+| Texto sobre panel | #f2ecf7 / #574a6c | 6,96:1 | Sí |
+| Texto sobre panel-2 | #f2ecf7 / #66587e | 5,55:1 | Sí |
+| Texto sobre panel-hover | #f2ecf7 / #75668f | 4,47:1 | No (por 0,03) |
+| Texto suave sobre fondo | #ddd3e8 / #463c58 | 7,11:1 | Sí |
+| Texto suave sobre panel | #ddd3e8 / #574a6c | 5,60:1 | Sí |
+| Texto suave sobre panel-2 | #ddd3e8 / #66587e | 4,46:1 | No |
+| Español (resalte) sobre fondo | #ffd98a / #463c58 | 7,59:1 | Sí |
+| Español (resalte) sobre panel | #ffd98a / #574a6c | 5,98:1 | Sí |
+| Enlace (oro) sobre fondo | #f4c84a / #463c58 | 6,45:1 | Sí |
+| Enlace (oro) sobre panel | #f4c84a / #574a6c | 5,08:1 | Sí |
+| Azul sobre panel | #8fd8ff / #574a6c | 5,16:1 | Sí |
+| Verde sobre panel | #6fd38c / #574a6c | 4,37:1 | No |
+| Verde sobre verde-fondo | #6fd38c / #3a6e4a | 3,24:1 | No |
+| Rojo sobre fondo | #d2353d / #463c58 | 2,11:1 | No (no usar como texto) |
+| Rojo claro sobre fondo | #ff8a8f / #463c58 | 4,53:1 | Sí (justo) |
+| Texto sobre rojo-fondo | #f2ecf7 / #7d3840 | 7,21:1 | Sí |
+| Texto sobre verde-fondo | #f2ecf7 / #3a6e4a | 5,16:1 | Sí |
+| Blanco sobre rojo (botón) | #ffffff / #d2353d | 4,86:1 | Sí |
+| Blanco sobre rojo-hover | #ffffff / #e2464e | 4,02:1 | No |
+| Foco sobre fondo | #ffe14d / #463c58 | 7,88:1 | Sí (no textual) |
+| Foco sobre panel | #ffe14d / #574a6c | 6,20:1 | Sí (no textual) |
+| Línea sobre fondo | #e8e0f0 / #463c58 | 7,99:1 | Sí (no textual) |
+| Línea sobre panel | #e8e0f0 / #574a6c | 6,29:1 | Sí (no textual) |
+| Retrato sobre fondo | #6a5c86 / #463c58 | 1,70:1 | No (solo decoración) |
+
+### 4.2 Tema claro
+
+| Par | Texto o componente / fondo | Ratio | ¿Pasa? |
+|---|---|---|---|
+| Texto sobre fondo | #231c2b / #efe4cc | 13,08:1 | Sí |
+| Texto sobre panel | #231c2b / #fffaf0 | 15,86:1 | Sí |
+| Texto sobre panel-2 | #231c2b / #f3e7cd | 13,46:1 | Sí |
+| Texto sobre panel-hover | #231c2b / #ead9b4 | 11,85:1 | Sí |
+| Texto suave sobre fondo | #5d5168 / #efe4cc | 5,85:1 | Sí |
+| Texto suave sobre panel | #5d5168 / #fffaf0 | 7,10:1 | Sí |
+| Texto suave sobre panel-2 | #5d5168 / #f3e7cd | 6,02:1 | Sí |
+| Español (resalte) sobre fondo | #9a2f1f / #efe4cc | 5,94:1 | Sí |
+| Español (resalte) sobre panel | #9a2f1f / #fffaf0 | 7,21:1 | Sí |
+| Enlace (oro) sobre fondo | #7a4d00 / #efe4cc | 5,76:1 | Sí |
+| Enlace (oro) sobre panel | #7a4d00 / #fffaf0 | 6,99:1 | Sí |
+| Azul sobre panel | #1f5fa8 / #fffaf0 | 6,19:1 | Sí |
+| Verde sobre panel | #1d6b34 / #fffaf0 | 6,30:1 | Sí |
+| Verde sobre verde-fondo | #1d6b34 / #cdeccf | 5,15:1 | Sí |
+| Rojo sobre fondo | #c4262e / #efe4cc | 4,54:1 | Sí (justo) |
+| Rojo claro sobre fondo | #a8222a / #efe4cc | 5,68:1 | Sí |
+| Texto sobre rojo-fondo | #231c2b / #f6cfcf | 11,59:1 | Sí |
+| Texto sobre verde-fondo | #231c2b / #cdeccf | 12,96:1 | Sí |
+| Blanco sobre rojo (botón) | #ffffff / #c4262e | 5,73:1 | Sí |
+| Blanco sobre rojo-hover | #ffffff / #a81f27 | 7,27:1 | Sí |
+| Foco sobre fondo | #1f4fd1 / #efe4cc | 5,37:1 | Sí (no textual) |
+| Foco sobre panel | #1f4fd1 / #fffaf0 | 6,52:1 | Sí (no textual) |
+| Línea sobre fondo | #2b2233 / #efe4cc | 12,06:1 | Sí (no textual) |
+| Línea sobre panel | #2b2233 / #fffaf0 | 14,63:1 | Sí (no textual) |
+| Retrato sobre fondo | #d9c7a3 / #efe4cc | 1,32:1 | No (solo decoración) |
+
+**Lectura.** El tema claro cumple casi todo. El oscuro tiene problemas en los verdes, en el rojo usado como texto y en los estados de hover. El problema grave está en los colores fijos de las páginas, que no pasan por los tokens.
+
+### 4.3 Colores fijos medidos en las páginas (tema oscuro)
+
+Medición de la página con fondo sólido por capas; valores aproximados.
+
+| Elemento (archivo) | Pantalla | Texto / fondo | Ratio | Mínimo | Tamaño |
+|---|---|---|---|---|---|
+| Flecha «subir» del pie (pie.css:370) | Todas | #ee6f86 / #6a5c82 | 2,09 | 4,5 | 12,8 px |
+| Enlace Paglot Max (cabecera.css:202) | Todas | #f4c84a / #6a5c82 | 3,81 | 4,5 | 15,7 px |
+| Número del paso (sobre.css:432) | Sobre | #ffe28a / #cdeac0 | 1,02 | 4,5 | 12,8 px |
+| Número del paso, otra tarjeta (sobre.css:432) | Sobre | #ffe28a / #c5dcf2 | 1,11 | 4,5 | 12,8 px |
+| Etiqueta de tienda (tienda.css:50) | Tienda | #ee6f86 / #5a4d70 | 2,66 | 4,5 | 11,8 px |
+| Etiqueta de laboratorio (laboratorio.css:85) | Laboratorio, guías | #4f7fc0 / #5a4d70 | 1,88 | 4,5 | 12,5 px |
+| Contador de FAQ (faq.css:79) | FAQ | #4e342c / #8e6a54 | 2,34 | 4,5 | 11,5 px |
+| Letrero de social (social.css:200) | Social | #7f7676 / #3a323f | 2,78 | 4,5 | 10,6 px |
+| Números 1 y 2 (escuelas) | Escuelas | #ffffff / #ee6f86 | 2,90 | 4,5 | 16,8 px |
+| Precio «Plus» (precios) | Precios | #3f86c4 / #5a4d70 | 1,98 | 3 | 24,8 px |
+| Libro de precios (precios) | Precios | #ffffff / #f08a4b | 2,49 | 4,5 | 12,8 px |
+| Etiqueta Regala Max | Regala Max | #9c2f42 / #b8956a | 2,60 | 4,5 | 12,8 px |
+| Texto de la tarjeta de idiomas (inicio) | Portada | #6d5b50 / #ecc9cf | 4,24 | 4,5 | 11,8 px |
+| Botón de sonido (icono) | Todas | #ddd0e0 / #6a5c82 | 4,09 | 3 (no textual) | 18,4 px |
+
+---
+
+## 5. Teclado y lector de pantalla
+
+### 5.1 Lo que se ha comprobado
+
+- **Enlace de salto** «Saltar al contenido» (index.html:232), que lleva a `main#app` (con tabindex -1 para recibir el foco).
+- **Regiones** por página: una main; de 3 a 4 nav; 3 header; 1 footer. Un h1 en casi todas las pantallas (excepto la bienvenida, A09).
+- **Nombres**: 0 controles sin nombre en las 60 mediciones. Los dibujos decorativos llevan aria-hidden.
+- **Regiones dinámicas**: de 1 a 7 por pantalla (aria-live o role status/alert). Falta comprobar cómo las anuncia un lector.
+- **Diálogos**: hay de 1 a 4 por pantalla (fichas de palabra, «En pausa» y otros). Se cierran con Escape (leccion.js:85).
+- **Foco visible**: contorno de 3 px (styles.css:105-108) y contorno con fondo en los campos (styles.css:592).
+- **Paginador**: el deslizamiento tiene alternativa con botones y con flechas del teclado; las flechas se ignoran dentro de campos de texto (paginas-movil.js, alTeclado).
+- **Juegos**: se manejan con controles nativos (botones y enlaces); el arrastre no es obligatorio (js/juego/motor.js).
+
+### 5.2 Lo que falta
+
+- **Nombres del paginador** en símbolos y en español fijo (A06).
+- **Encabezados** en la bienvenida (A09).
+- **Foco oculto** por el aviso de cookies (A05).
+- **Recorrido completo** con teclado no hecho: orden del foco en lecciones, juegos, perfil y formularios.
+- **Pruebas con lectores** no hechas: NVDA y VoiceOver en escritorio; TalkBack en Android.
+
+### 5.3 Recomendaciones para los juegos
+
+Los juegos (35 archivos en juegos/) deben tener un modo de teclado completo, o al menos una alternativa de respuesta por botones con nombre. Cada juego debería anunciar su instrucción una vez al empezar y su resultado al terminar (región de estado), sin repetirla en cada movimiento.
+
+---
+
+## 6. Movimiento, sonido y carga cognitiva
+
+### 6.1 Movimiento
+
+- **Animaciones infinitas.** Medidas en la portada (207 o 220), precios (39), social (14), sobre (7). Su control está en Perfil; no hay acceso rápido (A03).
+- **Preferencia del sistema.** La calma sigue a «reducir movimiento» si la persona no ha elegido (js/ajustes.js:56-57; index.html:21). Es correcto, pero la preferencia del sistema no siempre está activada.
+- **Calma.** Limita las animaciones a una repetición y oculta las chispas y el confeti (movil.css:93-97). Reduce las animaciones de cada componente con `prefers-reduced-motion` (unos 18 archivos de estilo lo contemplan).
+- **Chispas y rebotes.** Se lanzan con cada pulsación (chispa.js); se desactivan en calma.
+
+### 6.2 Destellos y epilepsia
+
+- Ningún parpadeo supera tres destellos por segundo. Los más rápidos tienen como mucho dos cambios por segundo: jg-maquina-parpadea (1 s), rc-parpadeo (1,1 s) y jg-tren-parpadea (1,2 s). El botón de empezar hace 2,5 destellos por segundo durante 1,6 s (A20).
+- El cambio de color de pr-brillo (1,6 s, 4 pasos) afecta a un área pequeña (90 x 70 px, opacidad 0,18), por lo que es de bajo riesgo.
+- **Pendiente.** Una prueba con herramienta homologada (por ejemplo, Harding FPA) sobre una grabación de la portada y de la lección.
+
+### 6.3 Sonido
+
+- **Efectos de 8 bits.** Activados por defecto (ajustes.js:23-24). Cada pulsación suena, y el roce con el ratón también (A28). Para personas con déficit de atención o con sensibilidad al ruido, conviene que el valor inicial sea más discreto.
+- **Voz de la tutora.** Pitidos mientras habla la tutora, activados por defecto. Y la voz empieza sola al entrar en una lección (A13).
+- **Música.** Empieza con el primer toque en la pantalla de juegos (js/juego/motor.js:185) y se detiene con su botón.
+
+### 6.4 Carga cognitiva
+
+- **Burbujas de texto con animación de escritura** (A14).
+- **Aviso de cookies largo** (A18).
+- **Lección en móvil con muchas piezas.** Hay que repartirla en más diapositivas (regla del propietario).
+- **Modo calma y texto grande** están en Perfil, sin atajo.
+
+---
+
+## 7. Lectura: fuentes, dislexia, idiomas y vietnamita
+
+### 7.1 Fuentes
+
+- **Títulos.** Pixelify Sans (css/fuentes.css; assets/fonts/PixelifySans.woff2) en h1 a h3 (styles.css:89-98). Es legible en tamaño grande, pero menos en pequeño y en párrafos.
+- **Cabecera.** Tiny5 y Be Vietnam Pro (css/cabecera.css:26-27).
+- **Texto corrido.** Fuente del sistema (system-ui, styles.css:35), 16,8 px (1,05 rem) con interlineado de 1,55 (styles.css:80-81). Es una buena base.
+- **Sin peticiones externas.** Las fuentes van dentro de la app; no hay Google Fonts.
+- **Dislexia.** Las fuentes pixel no están pensadas para dislexia y las mayúsculas espaciadas (`text-transform: uppercase` con letter-spacing de .1 a .12 em) lo dificultan. Recomendación: una opción de fuente legible para lectura (por ejemplo, Atkinson Hyperlegible, con licencia SIL OFL; confirmar antes de incluirla) y evitar mayúsculas en frases.
+- **Tamaños.** Ver A10 y A16.
+
+### 7.2 Idiomas y atributo lang
+
+- El atributo lang de la página cambia con la lengua de interfaz (i18n.js:159), y las partes en la lengua del curso llevan lang (exercises.js y leccion.js). Es correcto.
+- Las burbujas de la tutora llevan lang según su idioma (medición leccion_fr_escritorio.json: los globos de la tutora llevan lang).
+- Antes de que cargue el script, el documento es «en» (A21).
+
+### 7.3 Vietnamita con diacríticos
+
+- **Fuente pixel.** No tiene ệ, ơ, ư, ộ, ế, ồ ni ữ (A15). Los títulos caen a una fuente de sistema monoespaciada.
+- **Cuerpo.** Usa la fuente del sistema, que suele tener vietnamita. En Android hay que probarlo.
+- **Captura.** En scr_vi_bienvenida_es.png los títulos «THẺ HỌC VIÊN», «TÊN» y «KHÓA HỌC» se leen, aunque con dos fuentes distintas.
+
+### 7.4 Texto grande y preferencias del sistema
+
+- La preferencia de texto grande sube un 12,5 %. En escritorio, la medición de lección con texto grande dio 0 textos menores de 14 px (frente a 8 en el normal). Es un buen efecto, pero insuficiente (A16).
+- En Android, la escala de fuente del sistema debe aplicarse dentro del WebView. No se ha probado en un dispositivo (A25).
+
+---
+
+## 8. Inclusión
+
+### 8.1 Representación de las tutoras
+
+- Cada idioma tiene su tutora (por ejemplo, Camille para el francés, Lucía para el español). Son sprites dibujados a mano, con rasgos distintos.
+- **Pendiente.** Revisar la diversidad de la plantilla visual (tonos de piel, peinados, edades, personas con diferencias físicas visibles) y documentar el criterio. No se ha hecho una revisión formal.
+- Permitir elegir o cambiar la tutora sería una opción de inclusión. Conviene documentar el criterio de diseño de cada tutora.
+
+### 8.2 Lenguaje
+
+- No se han encontrado desdoblamientos con arroba ni con barra en el texto del sistema (A26).
+- Los textos de las lecciones están en la lengua del curso, sin lenguaje inclusivo marcado. Recomendable una revisión de los textos de las tutoras con criterios de lectura fácil.
+
+### 8.3 Culturas y banderas
+
+- Los idiomas se representan con banderas de países (A22). Una misma lengua se asocia a un país concreto (inglés con el Reino Unido, por ejemplo), lo que puede excluir a personas de otros países que hablan esa lengua.
+- Los nombres de los idiomas en su propia lengua son un acierto.
+
+### 8.4 Edad
+
+- **Niños.** En España, el consentimiento para el tratamiento de datos a partir de los 14 años está previsto en el artículo 7 de la LOPDGDD (Ley Orgánica 3/2018); la fuente oficial es el BOE (véase capítulo 10). Hay que revisar el aviso de cookies y el consentimiento de la copia en la nube si la app la ofrece a menores de esa edad.
+- **Personas mayores.** Los textos pequeños (A10), los objetivos pequeños (A08) y el zoom (A04) afectan más a este grupo. El modo de texto grande les ayudaría si tuviera más niveles (A16).
+
+### 8.5 Dispositivos baratos, datos móviles y sin conexión
+
+- **Peso de la web.** js/ 1,5 MB, css/ 665 KB y assets/ 321 KB sin comprimir. Las fuentes van incluidas (tres familias, en varios subconjuntos).
+- **APK.** `Paglot-prueba.apk` ocupa unos 34 MB. Es pesada para teléfonos con poco almacenamiento; conviene separar los cursos que no se usan.
+- **Sin conexión.** sw.js guarda la app; las voces del dispositivo se eligen entre las que funcionan sin conexión (sonidos.js:471-473). Es un punto fuerte.
+- **Pendiente.** Medir el peso de las lecciones por curso y el tiempo de carga en red móvil lenta.
+
+### 8.6 Coste
+
+- Las correcciones de la prioridad alta (capítulo 9) son de bajo coste técnico, sobre todo las de contraste, CSP, nombres y tamaños. Las de mayor coste son el paginador sin zoom (A04) y la revisión de textos (A26).
+- Una auditoría externa con una persona experta y pruebas con usuarios tiene un coste aparte que no se incluye en este informe.
+
+---
+
+## 9. Plan de mejoras priorizado
+
+Esfuerzo estimado en horas de desarrollo: **S** (menos de un día), **M** (de uno a tres días), **L** (más de una semana). Todas las propuestas respetan las reglas del propietario: en el móvil no se encoge el contenido (se reparte en más diapositivas) y se conserva el arte dibujado a mano (se cambia el color del texto o del fondo, o se mueve el texto, nunca el dibujo).
+
+| ID | Problema | Propuesta | Criterio WCAG | Impacto | Esfuerzo | Prioridad |
+|---|---|---|---|---|---|---|
+| A01 | Pantalla en blanco con vietnamita y curso de francés | Corregir pedido() en i18n.js y pintar error con texto si no hay idioma válido | Robustez | Muy alto | S-M | P0 |
+| A07 | CSP con hashes desactualizados | Recalcular con publicar.py y comprobar en la versión publicada | Técnico | Alto | S | P0 |
+| A06 | Paginador con símbolos y «Páginas» en español | Textos traducidos en js/i18n; anunciar número de página | 2.4.6, 4.1.2 | Alto | S | P0 |
+| A05 | Aviso de cookies que tapa controles | Aviso compacto y plegable, fuera de la zona de acción | 2.4.11, 1.4.10 | Alto | S | P0 |
+| A03 | 207 animaciones infinitas sin pausa | Botón «Pausar animaciones» en cabecera; calma por defecto con la preferencia del sistema | 2.2.2 | Alto | S-M | P0 |
+| A02 | Contraste insuficiente (tokens y colores fijos) | Ajustar verdes, rojo de texto, dorado, etiquetas y números; probar con la tabla del capítulo 4 | 1.4.3, 1.4.11 | Alto | M | P1 |
+| A04 | Zoom en el móvil (paginador, precios, teatro) | Repartir en más diapositivas; eliminar ENCOGER y zoom en móvil (regla del propietario) | 1.4.4, 1.4.10 | Alto | L | P1 |
+| A08 | Objetivos de 21 a 28 px | Área mínima de 24 px; 48 px en botones principales del móvil | 2.5.8 (AAA 2.5.5) | Medio | S | P1 |
+| A09 | Sin h1 en la bienvenida | Título de nivel 1 en el carné | 1.3.1, 2.4.6 | Medio | S | P1 |
+| A10 | Textos de 11 a 12 px | Mínimo de 14 px en información; ajustar etiquetas pixel | 1.4.4 | Alto (mayores, dislexia, TDAH) | M | P1 |
+| A12 | Reto de 60 s sin ajuste | Opción de tiempo ampliable o sin límite | 2.2.1 | Medio | S | P1 |
+| A13 | Voz automática de la tutora | Botón visible para silenciar la voz; que el botón de sonido la cancele | 1.4.2 | Medio | S | P1 |
+| A16 | Texto grande solo al 112,5 % | Tres niveles y acceso rápido; probar al 200 % | 1.4.4 | Medio | S-M | P1 |
+| A15 | Diacríticos vietnamitas en títulos | Regla de fuente para vi con Be Vietnam Pro (pesos 400 y 600) | 3.1.2 (espíritu) | Medio | S | P1 |
+| A23 | Referencias residuales a Supabase | Confirmar el uso, retirar referencias y dominio de la política | Privacidad | Medio | S | P1 |
+| A24 | Sin declaración de accesibilidad | Página #/accesibilidad con el contenido del apartado 2.4 | Ley 11/2023 (art. 13, si aplica) | Medio | S | P1 |
+| A11 | Identificadores duplicados en banderas | Identificadores únicos por instancia | 4.1.1 | Bajo | S | P2 |
+| A14 | Texto que se escribe letra a letra | Botón «Mostrar todo»; anuncio final | 4.1.3, cognitivo | Medio | S | P2 |
+| A17 | Ejercicios de oído sin voz | Respuesta por transcripción; audios opcionales | 1.2.1, inclusión | Medio | M | P2 |
+| A18 | Aviso de cookies largo | Texto breve con dos opciones claras | Cognitivo | Bajo | S | P2 |
+| A19 | «Cuenta · Cuenta» | Un nombre | 2.4.6 | Bajo | S | P2 |
+| A20 | Destellos del botón de empezar | Un ciclo o desactivar en calma | 2.3.1 (margen) | Bajo | S | P2 |
+| A21 | lang="en" por defecto | Poner lang="es" | 3.1.1 | Bajo | S | P2 |
+| A22 | Banderas como símbolo de idioma | Nombre del idioma primero; bandera como adorno | Inclusión | Bajo | S | P2 |
+| A26 | Revisión de lenguaje y lectura fácil | Pasada de revisión de textos del sistema y tutoras | Inclusión, 3.1.5 (AAA) | Medio | M | P2 |
+| A28 | Sonido al pasar el ratón | Roce desactivado por defecto | Déficit de atención | Bajo | S | P2 |
+| A25 | Pruebas pendientes | Teclado completo, NVDA/VoiceOver, TalkBack, 200 %, 1.4.12, Harding, personas usuarias | Todos | Alto (validación) | M-L | P1 |
+
+**Orden sugerido.** Primero A01, A07, A06, A05 y A03 (P0, unos pocos días). Después los contrastes (A02), los textos y objetivos (A08, A09, A10), el paginador sin zoom (A04) y las pruebas pendientes (A25). Las mejoras P2 pueden ir en las siguientes versiones.
+
+**Verificación tras cada cambio.** Repetir las mediciones de este informe (carpeta temporal `accesibilidad`, script `auditoria.mjs`) y la tabla de contraste (`contraste.mjs`), y comprobar las capturas en 320, 390 y 1200 px, en claro y oscuro, y en las tres lenguas.
+
+---
+
+## 10. Fuentes
+
+Las fuentes marcadas como «consultada» se leyeron en esta sesión; las marcadas como «secundaria» son resúmenes de terceros y deben confirmarse con el texto oficial; las marcadas como «referencia» no se leyeron aquí.
+
+1. **WCAG 2.2**, W3C, Recomendación. https://www.w3.org/TR/WCAG22/ (consultada; la fecha de la recomendación es el 5 de octubre de 2023 y la página consultada lleva fecha de 12 de diciembre de 2024; de ella se toman los criterios nuevos de 2.2 y los de tamaño de objetivo).
+2. **Comprensión de WCAG 2.2**, W3C. https://www.w3.org/WAI/WCAG22/Understanding/ (referencia).
+3. **Tamaño mínimo del objetivo (2.5.8)**, W3C. https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html (referencia).
+4. **Tres destellos o menos (2.3.1)**, W3C. https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html (referencia).
+5. **Foco no oculto (mínimo) (2.4.11)**, W3C. https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html (referencia).
+6. **Ley 11/2023, de 8 de mayo**, por la que se trasponen varias Directivas de la Unión Europea (título I, accesibilidad), BOE. https://www.boe.es/eli/es/l/2023/05/08/11 (consultada, texto consolidado: arts. 2.2, 3.3, 13.2 y 13.4, capítulo XI).
+7. **Directiva (UE) 2019/882**, Ley Europea de Accesibilidad, EUR-Lex. https://eur-lex.europa.eu/eli/dir/2019/882/oj (referencia; el texto no se pudo leer en esta sesión; las fechas y la exención se toman de la Ley y de fuentes secundarias).
+8. **Claves de la próxima entrada en vigor de la Ley de Accesibilidad en España**, Cuatrecasas. https://www.cuatrecasas.com/es/global/propiedad-intelectual/art/claves-proxima-entrada-vigor-ley-accesibilidad-espana (secundaria, consultada: disposición final decimoctava, ámbito, declaración e información, sanciones).
+9. **EN 301 549 V4.1.1**, comentario de DEQUE sobre la publicación y el alineamiento con WCAG 2.2. https://www.deque.com/blog/en-301-549-v4-1-1-is-final-what-changed-what-it-means-and-what-you-should-do/ (secundaria, consultada en búsqueda; fecha de publicación de 2 de septiembre de 2026 y cita en el Diario Oficial prevista para el 16 de diciembre de 2026, según la fuente; confirmar).
+10. **European accessibility act ICT standards update**, DWT. https://www.dwt.com/insights/2026/09/european-accessibility-act-ict-standards-update (secundaria, consultada en búsqueda).
+11. **EN 301 549**, ETSI. https://www.etsi.org/deliver/etsi_en/301500_301599/301549/ (referencia; la versión 3.2.1 es la de presunción en la fecha de este informe, según fuentes secundarias).
+12. **Real Decreto 1112/2018, de 7 de septiembre**, accesibilidad de los sitios web y aplicaciones para dispositivos móviles del sector público, BOE. https://www.boe.es/eli/es/rd/2018/09/07/1112 (referencia).
+13. **Real Decreto Legislativo 1/2013**, Texto refundido de la Ley General de derechos de las personas con discapacidad, BOE. https://www.boe.es/eli/es/rdlg/2013/11/29/1 (referencia).
+14. **Ley Orgánica 3/2018**, de protección de datos personales y garantía de los derechos digitales (art. 7, edad del consentimiento), BOE. https://www.boe.es/eli/es/lo/2018/12/05/3 (referencia).
+15. **Recomendación 2003/361/CE**, definición de microempresa, EUR-Lex. https://eur-lex.europa.eu/eli/reco/2003/361/oj (referencia).
+
+---
+
+## Anexo. Archivos generados en esta auditoría
+
+Todo está en la carpeta temporal `C:\Users\javie\AppData\Local\Temp\accesibilidad\` (fuera del repositorio):
+
+- Scripts: `auditoria.mjs` (mediciones en Chrome), `contraste.mjs` (contrastes de los tokens).
+- Resultados: `resultados\*.json` (una medición por pantalla, anchura y tema).
+- Capturas: `scr_inicio_escritorio.png`, `scr_leccion_fr_320.png`, `scr_idiomas_movil.png`, `scr_bienvenida_fr_escritorio.png`, `scr_lecciones_vi_con_es.png`, `scr_vi_bienvenida_es.png`, `vi_fr_escritorio.png`.

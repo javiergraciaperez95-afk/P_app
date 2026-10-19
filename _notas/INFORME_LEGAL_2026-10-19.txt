@@ -1,0 +1,804 @@
+# Paglot · Informe de riesgos legales (19-10-2026)
+
+Para: Javier · Ámbito: web (cursos, pantallas, cuenta en la nube, laboratorio), APK de Android, planes de pago, escuelas y empresas, y más adelante libros impresos, PDF y merchandising · Estado: análisis para decidir antes de publicar y de cobrar.
+
+**Aviso: esto no es asesoramiento jurídico ni fiscal.** Es un análisis de riesgos hecho con las fuentes que se han podido consultar el 19-10-2026. Varias búsquedas devolvieron resúmenes de terceros (blogs, consultoras, prensa); donde no se ha podido leer el texto oficial, se dice. Antes de tomar decisiones con dinero, con datos de terceros o con una marca, hay que confirmarlo con un abogado, un asesor fiscal o un gestor (lista en el capítulo 20).
+
+**Cómo leer este informe**
+- Semáforo: ROJO = bloquea la publicación en las tiendas o la web. ÁMBAR = hay que resolverlo antes de cobrar o de activar esa función. VERDE = vigilancia o más adelante.
+- Verificación: [V] leído en el texto oficial o en la página oficial; [S] fuente secundaria (blog, consultora o prensa) sin confirmar en el BOE, el DOUE o la web del organismo; [E] estimación propia o conocimiento general no comprobado hoy.
+- Costes: orientativos, en euros y sin IVA salvo que se diga. Son estimaciones mías salvo que se cite una fuente.
+
+---
+
+## 1. Resumen ejecutivo
+
+Paglot está técnicamente bastante avanzado, pero hoy no se puede publicar tal cual. El problema más serio no es de forma jurídica, sino de **coherencia entre lo que dice el aviso legal y lo que hace la app**. Lo he comprobado en el código:
+
+- La copia en la nube está activada de serie y se sube al abrir la app. La copia incluye el **nombre que escribe la persona** (`todosLosDatos()` devuelve también `perfil.nombre`), pero el aviso dice «sin tu nombre» en `aviso.texto` y en `legal.resumen`.
+- Esa subida automática también ocurre si quien usa la app es menor de 14 años. El aviso de menores dice que hay que pedir permiso antes de poner el nombre, cosa que el código no hace.
+- El aviso dice que los errores no llevan «nada de lo que hayas escrito». El código envía el texto del error sin ningún filtro de datos personales (el filtro propuesto en el informe de bases de datos, B13, no está hecho).
+
+Con esos tres puntos, un inspector o una queja de un usuario tendría base para sancionar. Se resuelven en el propio código y en el texto, sin coste de abogado si se hace bien.
+
+**Los bloqueos (ROJO):**
+
+| Id | Riesgo | Qué hacer | Quién |
+|---|---|---|---|
+| R1 | Responsable sin rellenar (`TITULAR` vacío en js/config.js) | Rellenar nombre, NIF, domicilio y correo de contacto | Javier |
+| R2 | Aviso legal que no coincide con la app (nombre en la nube, nube de serie, errores, IP, encargados) | Corregir el texto (lista en el capítulo 2) y revisarlo con un abogado | Javier y abogado |
+| R3 | Nube activada de serie: no hay consentimiento válido y se sube el nombre de menores | Pasar a elección expresa en el primer uso, con «solo en este dispositivo» igual de visible | Javier (código) |
+| R4 | Supabase: contrato de encargado, región y transferencias sin documentar | Aceptar y guardar el DPA, anotar la región y los subencargados, documentarlo en el registro | Javier |
+| R5 | Google Play pide una URL pública de política de privacidad y, si hay cuentas, una vía web para pedir el borrado | Comprar dominio, publicar la página legal y una página de borrado | Javier |
+| R6 | Cuenta de desarrollador: la cuenta personal necesita una prueba cerrada con testers durante 14 días antes de producción | Crear la cuenta, verificar identidad y empezar la prueba cerrada | Javier |
+| R7 | appId `com.javiergp.idiomas`: no se puede cambiar después de subirla a Google Play y revela el nombre personal | Decidirlo antes de la primera subida (por ejemplo con un dominio propio) | Javier |
+| R8 | Secretos (contraseñas de base de datos y una clave de Resend) en la carpeta de material antiguo | Retirarlos de esa carpeta y rotar las credenciales | Javier |
+| R9 | Cuenta por número: sin límite de intentos, consultas que revelan si un número existe y el correo completo | Confirmar que se han ejecutado los arreglos de `_herramientas/supabase-errores-e-ideas.sql` (sección 4) y revisar lo que queda | Javier |
+
+**Lo que hay que resolver antes de cobrar (ÁMBAR):** alta de autónomo y facturación compatible con Verifactu; IVA (21 % y 4 % en libros, umbral de 10.000 € de la UE, papel de Google Play); botón de desistimiento y renuncia al desistimiento de contenido digital; pagos dentro de la app (Google Play Billing); moderación del laboratorio; marca «Paglot»; créditos de las herramientas de traducción; ISBN y depósito legal; obligaciones del merchandising; contratos B2B con escuelas y empresas; ventas en Vietnam, México y otros países; pruebas con menores; mensajes sobre salud (TDAH).
+
+**Lo que se puede dejar para más adelante (VERDE):** reglamento de IA (transparencia, que ya es aplicable desde el 2-8-2026), accesibilidad (la microempresa tiene exención en servicios), ciberresiliencia, propuesta de Ley de Equidad Digital (Digital Fairness Act), la verificación de desarrolladores de Android para APK fuera de Play, y las leyes de otros países.
+
+El listado completo de acciones, con plazo, coste y responsable, está en el capítulo 19.
+
+---
+
+## 2. Qué hace hoy la app (base del análisis)
+
+### 2.1 Datos que salen del dispositivo
+
+| Dato | Dónde se guarda | Sale del dispositivo | Observación |
+|---|---|---|---|
+| Número de cuenta de 16 cifras | Dispositivo y tabla `paglot_cuentas` (en claro) | Sí, si la nube está activada | Pseudónimo: sigue siendo dato personal (considerando 26 RGPD) |
+| Progreso del curso: nombre del perfil, lecciones, aciertos y fallos, actividad diaria con fechas, cuaderno con palabras y su origen, estrellas, cofres, logros | Dispositivo | Sí, de serie | Incluye el nombre (R2, R3) |
+| Correo (opcional) | Supabase Auth y la tabla (en claro) | Sí, solo si se pone | Sirve para no caducar y recuperar el número |
+| Avisos de errores: mensaje del error, archivo y línea, pantalla, curso, versión y navegador | Tabla `paglot_errores` | Sí, siempre que haya error | Sin filtro de datos personales (R2); 90 días |
+| Ideas del laboratorio: texto, nombre opcional, votos y marca aleatoria del dispositivo | Tablas `paglot_ideas`, `paglot_votos`, `paglot_denuncias` | Sí, si hay nube | Públicas para todos; la marca aleatoria es identificador |
+| Formulario de contacto | Nada | No | No envía nada (lo dice la pantalla y la FAQ) |
+| Región para precios: zona horaria e idioma del dispositivo | Solo en memoria | No | Lo dice el aviso; no se guarda |
+| Voz | Voz del dispositivo o del navegador | El texto puede ir al proveedor del navegador o del teléfono | Lo dice el aviso; fuera de nuestro control |
+| Tipografías | Dentro de la app (`assets/fonts`) | No | No hay Google Fonts: no hay transferencia a Google por la fuente |
+| Analítica y publicidad | No hay | No | Según los informes internos; confirmar con una búsqueda antes de publicar |
+
+### 2.2 Dónde el aviso no coincide con la app
+
+| Lo que dice el aviso | Lo que hace el código | Acción |
+|---|---|---|
+| «Sin tu nombre» (`aviso.texto`) y «sin tu nombre ni tu correo» (`legal.resumen`) | El nombre viaja en la copia de la nube | Decirlo, o no subir el nombre (R2) |
+| «De serie, una copia en la nube» con el aviso de cookies | La nube se activa sola al abrir la app y sin preguntar | Elección explícita en el primer uso (R3) |
+| Menores: «pide permiso antes de poner tu nombre» | El nombre se sube sin permiso si la nube está activa | Consentimiento para la nube o no sincronizar sin consentimiento (R3) |
+| Errores: «ni nada de lo que hayas escrito» | `errores.js` manda el mensaje del error (hasta 300 caracteres) sin filtro | Filtrar correos y números largos antes de enviar, o matizar el texto |
+| «No usamos tu dirección IP» (región) | La IP llega al alojamiento de la web y a Supabase (no la guarda la app) | Decir quién la recibe y cuánto la conserva |
+| «Supabase» como único tercero | Hay alojamiento web, correo de códigos (Supabase), posible copia de seguridad y dominio | Listar todos los encargados (capítulo 4.6) |
+| «Paglot no usa cookies» | Usa almacenamiento local (localStorage), que la ley trata igual | Mantener la frase, pero añadir la base jurídica (capítulo 5) |
+| Fundadores: «Plus para siempre» y 2.000 plazas | `config.js`: 2.000 plazas y 39,99 €; el informe de mercado habla de 500 plazas y 99 € | Definir una sola cifra y qué significa «para siempre» (capítulo 7) |
+
+---
+
+## 3. Forma jurídica y fiscal
+
+### 3.1 Autónomo o sociedad limitada
+
+- **Autónomo (persona física)** para empezar: alta en el RETA y en el censo de la AEAT, sin notario. Responsabilidad ilimitada. Recomendable mientras el beneficio sea bajo o medio [S, informe de mercado].
+- **Sociedad limitada**: capital de 1 € (Ley Crea y Crece, Ley 18/2022 [V]) y gastos de constitución de unos 600 a 3.000 € según la fuente [S]. Conviene a partir de un beneficio sostenido de unos 40.000 a 50.000 € al año [E].
+- Decisión recomendada: autónomo con tarifa plana, y revisar a los seis meses.
+
+### 3.2 Alta, censo e IAE
+
+- Alta en la Seguridad Social (RETA) y en el censo de empresarios (modelos 036 o 037) con los epígrafes que correspondan. Los epígrafes exactos (edición de libros, programación informática, comercio de merchandising) no se han verificado: hay que confirmarlos en la AEAT o con el asesor antes del alta [S, informe de mercado].
+- Las personas físicas están exentas de pagar la cuota del IAE (Ley de Haciendas Locales, art. 82.1.b [E]), pero sí deben darse de alta en el censo.
+- Licencia municipal: solo si hay local abierto al público. Una actividad en línea no la necesita [S].
+
+### 3.3 Cuota de autónomo
+
+- Tarifa plana de 80 €/mes durante 12 meses desde el alta, con posible prórroga según rendimientos [S: Billin, Billeo, informe de mercado].
+- Desde 2023 la cuota depende de los rendimientos netos reales, en tramos. Según las fuentes consultadas, en 2026 la cuota mínima tras la tarifa plana sería de unos 205,88 €/mes (unos 2.471 € al año) [S]. Los tramos intermedios dan cifras distintas en las fuentes: hay que confirmarlo en la Seguridad Social.
+
+### 3.4 IRPF e IVA
+
+- **IRPF**: pago fraccionado trimestral con el modelo 130 (20 % del rendimiento neto acumulado), aunque salga cero [S: Guía Fiscal, Billeo]. Renta anual en el modelo 100.
+- **IVA**: modelo 303 trimestral; resumen anual en el 390; el 349 para operaciones intracomunitarias B2B (escuelas o empresas de otros países de la UE) [E/S].
+- **Tipos**: 21 % en cursos, app, suscripciones y merchandising. Libros impresos al 4 % (Ley 37/1992, art. 91 [V]). Libros electrónicos y publicaciones digitales al 4 % desde el 23-4-2020 según fuentes que citan el Real Decreto-ley 15/2020 [S]. Hay que confirmarlo con la consulta a la DGT.
+- **Riesgo del pack Max** (app más libros en un solo precio): mezcla de tipos. Si la prestación principal es la app, el tipo es el 21 %; si son los libros, el 4 %. Separar el precio de los libros y el de la app en la factura, o consultar a la DGT [S].
+- **Umbral de la UE**: las ventas de servicios digitales y de bienes a consumidores de otros países de la UE tienen un umbral común de 10.000 € al año. Por encima se aplica el IVA del país del cliente y hay que registrarse en la ventanilla única (OSS, alta con el modelo 035 y declaración trimestral con el modelo 369) [S: Directiva 2006/112/CE]. Con Google Play como vendedor, Google cobra y liquida el IVA de las ventas que hace en la UE [S]. Para ventas por la web (por ejemplo con Stripe), la obligación es de Paglot.
+- Consultar antes de vender a otros países de la UE con la web (no con Google Play).
+
+### 3.5 Facturación y Verifactu
+
+- Requisitos de factura: Real Decreto 1619/2012 [E].
+- **Verifactu** (Real Decreto 1007/2023 [V]): la fecha vigente hasta ahora era el 1-7-2027 para autónomos, según el Real Decreto-ley 15/2025 (BOE de 3-12-2025) [S: fiscal-impuestos.com, Maldita]. Los anuncios de principios de octubre de 2026 hablan de trasladar las obligaciones a octubre de 2028 [S: cms.law y medios]. **No está confirmado el instrumento legal de ese cambio ni su fecha en el BOE.** Recomendación: usar desde el principio un programa de facturación que cumpla Verifactu, sin esperar a la fecha.
+- **Facturación electrónica B2B** (factura entre empresas y profesionales): Real Decreto 238/2026 (31-3-2026) y Orden HAC/1028/2026 de 2-10-2026, según fuentes [S]. Calendario: octubre de 2027 para empresas con más de 8 M€ de facturación; octubre de 2028 para el resto. Paglot entra en el segundo grupo si vende a empresas o autónomos (escuelas y empresas, capítulo 15).
+
+### 3.6 Ayudas en Aragón
+
+- Tarifa plana nacional: ver 3.3.
+- INAEM, ayuda al inicio de actividad: solo para personas en paro e inscritas como demandantes. Según un boletín de la SEPE, la convocatoria 2026 tiene plazo hasta el 30-10-2026 [S]. Verificar en el BOA si aplica.
+- IAF (Instituto Aragonés de Fomento): no se ha encontrado una convocatoria de 2026 que encaje [S].
+
+### 3.7 Costes orientativos
+
+- Gestoría online en Zaragoza: 80 € + IVA al mes (incluye alta, IVA e IRPF trimestrales y software de facturación; renta y cuentas aparte) [S: Billeo, con precio de referencia]. Unos 1.160 € al año con IVA.
+- Software de facturación compatible con Verifactu: 10 a 30 €/mes [E].
+- Consulta fiscal puntual sobre IVA y OSS: 100 a 300 € [E].
+
+### 3.8 Riesgos fiscales de otros países
+
+- Vietnam: Decreto 252/2026 (en vigor desde el 1-7-2026): la plataforma o el comprador deben retener y pagar el IVA de los proveedores extranjeros; si no, el proveedor debe registrarse [S: EY, KPMG, Baker McKenzie].
+- México: IVA del 16 % sobre servicios digitales de proveedores extranjeros; registro en el SAT y declaración mensual [S].
+- Detalle en el capítulo 16.
+
+---
+
+## 4. Protección de datos (RGPD y LOPDGDD)
+
+### 4.1 Roles
+
+- **Responsable**: Javier, como persona física que ejerce una actividad. Figura en el aviso (R1).
+- **Encargados** (tratan datos por encargo y necesitan contrato del artículo 28 RGPD): Supabase (base de datos, autenticación y envío de códigos), el alojamiento de la web o del servidor, el proveedor de correo si se usa, y Cloudflare si se usa. Cada uno debe tener su acuerdo firmado o aceptado.
+- **Responsables independientes**: Google (Play y sus servicios), Stripe (pagos) y el proveedor del navegador o del teléfono (voz). Su política propia se enlaza en el aviso.
+
+### 4.2 Base jurídica de cada tratamiento
+
+| Tratamiento | Base propuesta | Comentario |
+|---|---|---|
+| Progreso solo en el dispositivo | No hay tratamiento por parte de Paglot (los datos no salen) | Cumple la ley de cookies con información (capítulo 5) |
+| Copia en la nube del progreso y del nombre | Consentimiento (art. 6.1.a) si es opcional. Contrato (art. 6.1.b) solo si la persona la pide expresamente | Hoy está activada de serie: no vale como consentimiento (R3) |
+| Número de cuenta | Mismo que la copia en la nube | Es pseudónimo, pero identifica a la persona para quien lo conoce |
+| Correo para no caducar y recuperar el número | Contrato (art. 6.1.b): lo pone la persona | Guardarlo en claro es más de lo necesario; valorar guardar solo una huella |
+| Avisos de errores | Interés legítimo (art. 6.1.f) con una ponderación escrita | Solo si no contienen datos personales; hoy no hay filtro (R2) |
+| Ideas del laboratorio y votos | Contrato o consentimiento (la persona publica voluntariamente) | Lo publicado es público: avisar de que no pongan datos personales. Los menores de 14 necesitan permiso de sus padres para publicar (capítulo 18) |
+| Formulario de contacto (cuando envíe) | Contrato o interés legítimo, según la consulta | Definir la conservación cuando se conecte |
+| Analítica futura | Interés legítimo con ponderación, o consentimiento si hay identificador | No activar sin esta decisión (capítulo 4.11) |
+
+### 4.3 Protección de datos desde el diseño y por defecto
+
+El artículo 25 RGPD obliga a que, por defecto, los datos personales no se hagan accesibles sin la intervención de la persona [V, RGPD]. Una copia de la cuenta que se sube al abrir la app sin preguntar choca con ese principio. La solución más sencilla es una pantalla de primer uso con dos opciones de igual peso: «Guardar también en la nube» y «Solo en este dispositivo», con una explicación de lo que se sube en cada caso. Si se elige la nube, el consentimiento tiene que ser libre, específico, informado e inequívoco (art. 4.11 y art. 7 RGPD). Una casilla marcada de antemano no vale (considerando 32).
+
+### 4.4 Menores
+
+- Edad para consentir por sí mismo en servicios de la sociedad de la información: 14 años (art. 7 LOPDGDD [V]). Por debajo, lo da el padre, la madre o el tutor.
+- Con la nube opcional y con el consentimiento de los padres para menores, el riesgo baja mucho. Paglot no puede saber la edad sin pedirla; preguntarla de forma neutra (sin bloquear) en el primer uso es una opción, pero tiene su propio riesgo.
+- Google Play: si la app se declara para niños menores de 13 años, entra la política de Familias (capítulo 12). Declarar otro público (por ejemplo, de 13 años en adelante) exige que el contenido y el diseño sean coherentes con esa edad [S].
+
+### 4.5 Registro de actividades (artículo 30)
+
+Puede parecer que no hace falta, porque hay menos de 250 empleados. Pero la excepción no aplica cuando el tratamiento no es ocasional, y aquí lo es (la nube y los errores funcionan en cada uso). Tener el registro es obligatorio en la práctica. Plantilla propuesta en el informe de bases de datos (apartado 9.7): responsable, actividades, finalidades, bases, categorías de datos, destinatarios, transferencias, plazos y medidas [S, informe interno]. Coste: 0 €, plazo: antes de publicar.
+
+### 4.6 Encargados y contratos (artículo 28)
+
+- **Supabase**: el contrato (DPA) se acepta con las condiciones del servicio; las guías de terceros dicen que la versión 1 es de 1-8-2026 [S]. Descargar y guardar la versión aceptada, con fecha. Su página oficial contiene el DPA y las cláusulas tipo [V: supabase.com/legal/customer-resources/data-processing-addendum].
+- **Alojamiento web y servidor**: contrato de encargado del proveedor (cada uno publica el suyo).
+- **Correo** (si se usa uno propio, como Resend): contrato.
+- **Copia de seguridad**: contrato.
+- Listar a todos en el aviso (R2).
+
+### 4.7 Transferencias fuera de la UE (artículos 44 a 49)
+
+- Supabase indica que, si se usa una región de la UE, la base de datos y la autenticación se quedan en esa región; los flujos a subencargados (Singapur y Estados Unidos según su FAQ) van con cláusulas tipo (Decisión (UE) 2021/914 [V]) y medidas adicionales [V: supabase.com/legal/privacy-resources/data-residency-and-transfers-faq].
+- Ojo: elegir la región «Europa» general incluye Londres y Zúrich, que no son miembros de la UE; para una residencia estricta en la UE hay que elegir una región concreta de la UE [S].
+- Si Supabase está adherido al Marco de Privacidad de Datos UE-EE. UU. (Decisión de Ejecución (UE) 2023/1795 [V]), se puede apoyar en ella; hay que comprobarlo en su lista de certificados.
+- Acción: anotar la región del proyecto, los subencargados y el mecanismo de transferencia (R4).
+
+### 4.8 Conservación
+
+| Dato | Plazo actual | Comentario |
+|---|---|---|
+| Cuenta anónima sin uso | Se borra a los 7 días sin uso | Lo hace la base de datos (`paglot_limpiar`) |
+| Cuenta con correo | Hasta que se borra | Correcto |
+| Avisos de errores | 90 días | Los iguales del mismo día se agrupan |
+| Ideas del laboratorio | Hasta que se retiran | Hay que decir quién puede pedir la retirada |
+| Progreso en el dispositivo | Hasta que se borra o se reinicia | Lo borra «Borrar todos mis datos» |
+| Registros del alojamiento y de Supabase | Según el proveedor | No consta en el código: hay que anotarlo |
+
+### 4.9 Derechos y cómo se ejercen
+
+- Acceso y portabilidad: «Copia de seguridad» descarga un JSON con el progreso (ya existe).
+- Rectificación: cambiar el nombre (ya existe).
+- Supresión: «Borrar mi cuenta» y «Borrar todos mis datos» (ya existen).
+- Oposición y limitación: apagar la nube (ya existe).
+- Reclamación: AEPD (ya figura en el aviso).
+- Plazo para responder a una petición de derechos: un mes (art. 12.3 RGPD [V]). Hay que decir por dónde se piden (un correo).
+- Identificación: el número de cuenta es la única llave. Para atender peticiones de otras personas, pedir el número y, si hay correo unido, la confirmación con el código del correo. No dar datos solo con el número si el correo no está verificado.
+
+### 4.10 Brechas de seguridad (artículos 33 y 34)
+
+- Si hay una brecha que suponga riesgo, aviso a la AEPD en un máximo de 72 horas desde que se tiene constancia (formulario de la sede electrónica) [V, RGPD].
+- Si el riesgo es alto, avisar también a las personas afectadas (art. 34).
+- Hay que llevar un registro interno de incidentes aunque no se notifiquen. El informe de bases de datos (apartado 9.6) tiene un plan de respuesta de cinco pasos.
+
+### 4.11 Evaluación de impacto (artículo 35)
+
+No es obligatoria hoy: no hay perfilado, no hay analítica y los datos son limitados [E]. Pasa a ser probable si se añade analítica con identificadores, si se usan datos de menores a gran escala o si se usa inteligencia artificial sobre el alumno. La lista de la AEPD de tratamientos que requieren evaluación de impacto debe consultarse antes de cada novedad [S].
+
+### 4.12 Delegado de protección de datos (artículo 37 y LOPDGDD art. 34)
+
+No es obligatorio para Paglot hoy [E]. Revisarlo si el tratamiento de menores crece a gran escala o si hay seguimiento sistemático.
+
+### 4.13 Sanciones
+
+Hasta 10 M€ o el 2 % de la facturación mundial por infracciones de algunas obligaciones, y hasta 20 M€ o el 4 % por otras (art. 83 RGPD [V]). Para una persona física con un pequeño negocio, lo más probable es un apercibimiento o una sanción moderada, pero el riesgo reputacional y el de la tienda (Google puede retirar la app) son mayores.
+
+### 4.14 Textos que hay que cambiar en el aviso
+
+1. Decir el nombre en la nube (R2) y corregir «sin tu nombre».
+2. Describir la elección de la nube y su base.
+3. Describir qué incluye el aviso de errores y cómo se filtra.
+4. Decir quién recibe la IP y durante cuánto tiempo.
+5. Listar todos los encargados.
+6. Explicar la transferencia fuera de la UE si la hay.
+7. Rellenar el titular y mantener la fecha de actualización.
+8. Explicar que las ideas del laboratorio son públicas y que el nombre es opcional.
+9. Explicar cómo ejercer los derechos.
+10. Comprobar que no queda ninguna referencia a una contraseña cifrada (el informe de bases de datos la señalaba y en el texto que leí hoy ya no aparece) y añadir la analítica al aviso si llega a haberla.
+
+---
+
+## 5. Cookies y almacenamiento en el dispositivo
+
+- La norma que regula el almacenamiento en el equipo del usuario es el artículo 22.2 de la LSSI (Ley 34/2002 [V]). Exige información clara y completa y, con carácter general, consentimiento. Quedan fuera el almacenamiento técnico y el estrictamente necesario para prestar un servicio que la persona ha pedido expresamente.
+- La AEPD aplica esa norma a cualquier mecanismo de almacenamiento (no solo a las cookies), según sus guías de 2023 y de 2024 sobre medición [S]. **No he podido leer el texto de la guía de cookies de la AEPD: el PDF que devolvió la búsqueda no era la guía.** Hay que confirmarlo en www.aepd.es/guias antes de decidir.
+- Situación actual: no hay cookies de terceros, ni publicidad, ni analítica. El almacenamiento local es necesario para estudiar sin conexión. El número de cuenta solo es necesario si la persona quiere la nube: por eso la elección de la nube (capítulo 4.3) también resuelve la cuestión de las cookies.
+- El aviso que sale la primera vez («Sin cookies. ...») informa, pero no sustituye al enlace a la política completa. Mantenerlo y enlazar a `#/legal`.
+- Analítica futura: si no hay identificador en el dispositivo y no se guarda la IP, el encaje es más sencillo. Con identificador hace falta consentimiento. Las condiciones de la guía de 2024 para herramientas de medición deben leerse en el texto oficial [S].
+
+---
+
+## 6. LSSI-CE: aviso legal y comunicaciones comerciales
+
+- **Identificación del prestador** (art. 10 LSSI [V]): nombre o razón social, domicilio, correo de contacto y, en el caso del autónomo, su NIF. Hoy el aviso tiene huecos en el titular (R1).
+- **Información antes de contratar** (art. 27 LSSI [V]): pasos para contratar, si el contrato se guarda y cómo corregir errores antes de pagar. Hay que mostrarlo antes del pago (web y, en la app, en la hoja de compra de Google Play).
+- **Comunicaciones comerciales** (art. 21 LSSI [V]): los correos de promoción solo con consentimiento previo; deben identificarse como comerciales. No hay envíos hoy. Las notificaciones de la app (recordatorio diario) son informativas y se piden con permiso, lo cual es correcto.
+- **Sanciones de la LSSI** (art. 39 [E]): hasta 30.000 € las leves, 150.000 € las graves y 600.000 € las muy graves. Revisar la cifra en el texto de la ley.
+- **Conservación de contratos y de pruebas**: la factura y la copia del pedido se guardan según la normativa fiscal (cuatro años para la prescripción tributaria [E]).
+
+---
+
+## 7. Consumidores (TRLGDCU, contenidos digitales y venta a distancia)
+
+### 7.1 Marco
+
+- Texto refundido de la Ley General para la Defensa de los Consumidores y Usuarios (RDL 1/2007 [V]), con el régimen de los contratos a distancia (arts. 92 y siguientes [E]).
+- Contenidos y servicios digitales: Real Decreto-ley 7/2021 [V], que traspone la Directiva (UE) 2019/770. Garantía legal de conformidad de tres años para el contenido digital suministrado de una vez y durante la duración del contrato en los de suministro continuo [S].
+- Bienes (merchandising y libros impresos): garantía legal de tres años (arts. 114 y siguientes TRLGDCU [E]).
+
+### 7.2 Derecho de desistimiento (14 días)
+
+- Los contratos a distancia tienen 14 días de desistimiento (art. 102 y siguientes TRLGDCU [E]).
+- **Contenido digital** (cursos, suscripciones): el derecho se pierde si la ejecución empieza con el consentimiento previo expreso de la persona y con el reconocimiento de que pierde el derecho (art. 103 m) TRLGDCU [E]). Hay que pedir una casilla específica en el pago («empiezo ahora y entiendo que pierdo el derecho de desistimiento»), no un texto escondido en las condiciones.
+- **Bienes confeccionados según las especificaciones del cliente o claramente personalizados** quedan fuera del desistimiento (art. 103 c) TRLGDCU [E]). Cuidado con el merchandising con nombre o con dibujo personal.
+- **Botón de desistimiento y de cancelación**: la Directiva (UE) 2023/2673 [V] introduce una función de desistimiento en línea para los contratos a distancia celebrados en interfaces en línea, aplicable en la UE desde el 19-6-2026 según las fuentes. La OCU afirmaba en junio de 2026 que España no la había incorporado [S]; una fuente lo niega [S]. **No está confirmado el estado de la transposición en España a 19-10-2026.** Recomendación: un botón visible de «desistir» y de «darse de baja» desde el primer día, aunque no sea obligatorio todavía. Coincide con el diseño sin presión que quiere Paglot.
+
+### 7.3 Suscripciones, renovaciones y precios
+
+- Precio final con impuestos incluidos y unidad de precio (Directiva 98/6/CE y TRLGDCU [E]). El precio que se muestra en la tienda debe coincidir con el de la web.
+- **Rebajas**: el precio anterior de referencia es el más bajo de los 30 días anteriores a la rebaja (Directiva (UE) 2019/2161 [V]). Vale también para «Fundadores» si se presenta como rebaja.
+- **Plazas limitadas**: si se dice «2.000 plazas» o «quedan pocas», tiene que ser cierto. Un contador falso es práctica engañosa (Ley 3/1991 de competencia desleal, art. 5 [E]).
+- **«Para siempre»**: definir qué significa (la vida del servicio, la del producto o la de la persona). Si se cierra el servicio, qué ocurre con el pago. Cláusula clara y compensación prevista [E].
+- Renovaciones automáticas: avisar antes de la renovación y no subir el precio sin consentimiento expreso. No he confirmado las reglas concretas de aviso previo a la renovación: revisar la normativa de consumo vigente y la futura propuesta de la Comisión (capítulo 21) [E].
+- **Propuesta de la Comisión (Digital Fairness Act)**: se prevé presentarla en noviembre de 2026, según fuentes de septiembre; cubriría diseños engañosos, suscripciones y la publicidad con influencers [S]. Vigilar.
+
+### 7.4 Regalos y tarjetas regalo
+
+- Para «Regala Max» (suscripción regalo): no hay un plazo mínimo de validez fijado en la ley que haya encontrado; la práctica administrativa analiza las caducidades caso por caso como cláusulas abusivas (arts. 85 a 91 TRLGDCU [E]). Hay sanciones de consumo a empresas que caducaban tarjetas sin devolver el dinero [S: Consumo, Junta de Andalucía].
+- Recomendación: validez larga (al menos un año), canje sencillo, reembolso si caduca o si no se puede usar, y sin cargos por activar.
+- Con Google Play: los códigos o tarjetas regalo tienen una excepción en la política de pagos. Si se venden como producto dentro de la app, pasan por Google Play Billing (capítulo 12).
+
+### 7.5 Condiciones generales y reclamaciones
+
+- Condiciones generales accesibles y previas a la compra (art. 27 LSSI y TRLGDCU [V/E]). Sin cláusulas abusivas (arts. 82 y siguientes TRLGDCU [E]).
+- Derecho a una vía de resolución alternativa de litigios: informar de ello (Ley 7/2017 [V]). La plataforma europea de resolución de litigios en línea dejó de funcionar en julio de 2025 [S].
+- Hojas de reclamaciones: comprobar si la actividad en línea debe tenerla y cómo se publica (Real Decreto 1080/1991 y normativa de Aragón [E]).
+
+### 7.6 Tratos a los menores
+
+Ver capítulo 18.
+
+---
+
+## 8. Contenido generado por usuarios: laboratorio de ideas (DSA y responsabilidad)
+
+### 8.1 Qué es
+
+Las ideas que escriben las personas son públicas, se votan y se pueden denunciar. Es un servicio de alojamiento de información a petición de un usuario, y por eso entra en la regulación de servicios digitales (Reglamento (UE) 2022/2065, DSA [V]).
+
+### 8.2 Obligaciones aplicables a una microempresa
+
+- Las microempresas y pequeñas empresas (menos de 10 o 50 empleados y, según el caso, hasta 2 M€ o 10 M€ de facturación) quedan fuera de la sección 3 del DSA, que contiene las obligaciones adicionales de las plataformas en línea (art. 19 [S]). Pero el artículo 24.3 (publicar el número de usuarios activos mensuales en la UE) sigue aplicándose según alguna fuente [S]: verificar.
+- Sí se aplican, a cualquier servicio de alojamiento: el punto de contacto (art. 11), las condiciones con información sobre las restricciones (art. 14), el mecanismo de notificación y acción (art. 16) y la motivación de las decisiones (art. 17) [S].
+- Responsabilidad (LSSI, art. 16 [V]): el alojamiento no responde del contenido ajeno si no tiene conocimiento efectivo y actúa con diligencia cuando lo tiene. La denuncia debe llegar a alguien que decida.
+
+### 8.3 Lo que ya existe y lo que falta
+
+- Existe: botón de denuncia (con icono de bandera); ocultación automática con tres denuncias de dispositivos distintos; límites por día y por hora; filtro de enlaces; nombre opcional; normas de la comunidad (`#/guias`).
+- Falta: una dirección de contacto para denuncias fuera de la app; un plazo de respuesta publicado; un procedimiento escrito de decisión (quién revisa, criterios, qué se le dice a quien publicó y cómo puede recurrir); y un registro de las decisiones.
+- Política de la tienda (Google Play, política de contenido generado por usuarios): exige moderación, denuncias dentro de la app, bloqueo de usuarios y términos claros. Hay que cumplirla para la APK [S].
+
+### 8.4 Riesgos concretos
+
+- Menores que escriben su nombre o datos personales en una idea pública (capítulo 18).
+- Insultos, datos de terceros o publicidad: las normas lo prohíben; falta el procedimiento.
+- Ideas falsas sobre otros cursos o sobre la competencia: revisar antes de ocultar (libertad de expresión y competencia desleal).
+- Votaciones: «reseñas falsas» están prohibidas en la publicidad (Directiva 2019/2161 [V]). Los votos son para ordenar ideas, no para valorar productos, pero si se usan en la tienda o en la web para vender, cuidado.
+
+**Semáforo: ÁMBAR** (antes de activar la sala para todo el público con la nube): poner un correo de contacto, un procedimiento escrito y un registro de decisiones.
+
+---
+
+## 9. Propiedad intelectual e industrial
+
+### 9.1 Marca «Paglot»
+
+- La búsqueda en la web no encontró ninguna marca ni app llamada «Paglot». Sí hay apps parecidas con «Polyglot» en la tienda de Apple (por ejemplo «Polyglot Trainer», «Polyglot - Master Languages», «Polyglot Factory») [S]. La similitud puede generar confusión y es un motivo de oposición en algunos casos [E].
+- Hay que buscar en EUIPO (marca de la UE) y en la OEPM (marca española), y en las clases que correspondan: clase 9 (software descargable), clase 16 (libros impresos y materiales impresos), clase 25 (ropa), clase 41 (educación y formación) y, si hay juegos, clase 28 [E].
+- Tasas: no he podido verificar las tasas de 2026. De memoria, la tasa básica en línea de EUIPO para una clase ronda los 850 € [E]; la OEPM tiene tasas propias y se actualizan en la ley de presupuestos [S]. Hay que consultar ambas webs. Una fuente indica que EUIPO tiene un fondo para pymes que reembolsa el 75 % de las tasas de registro en 2026 [S]; verificar en EUIPO.
+- Coste orientativo: búsqueda y consulta con un agente de la propiedad industrial, 300 a 600 € [E]; registro de la marca en España y en la UE para tres o cuatro clases, según la tasa oficial verificada.
+- Plazo: antes de invertir en la identidad visual, las tiendas y los libros (ÁMBAR).
+
+### 9.2 Dominio y nombres
+
+- Comprar `paglot.app` o `paglot.es` y reservar también las variantes que se vayan a usar. Coste orientativo: 10 a 25 € al año [E].
+- El appId de Android (R7) debe basarse en el dominio propio si se tiene.
+
+### 9.3 Obras propias (lecciones, textos, dibujos, tutoras)
+
+- Las lecciones, los textos, las ilustraciones y las tutoras son obras protegidas por el texto refundido de la Ley de Propiedad Intelectual (RDL 1/1996 [V]) si son creaciones originales de una persona. El código del software también está protegido (art. 96 TRLPI [E]).
+- Registro de la propiedad intelectual: opcional, con tasa baja. Sirve como prueba de fecha y autoría [E].
+
+### 9.4 Contenido hecho con inteligencia artificial
+
+- La protección de una obra exige creación humana. El contenido generado íntegramente por una IA puede quedar sin protección en España y en la UE [E]. Las condiciones comerciales de Anthropic indican que el cliente es dueño de los resultados sujeto a sus condiciones y a su política de uso [V: anthropic.com/legal/commercial-terms]. Esto resuelve la titularidad frente al proveedor, pero no garantiza que el resultado sea original frente a terceros.
+- Recomendación: documentar qué se hizo a mano (revisión, corrección, selección, diseño de la estructura) en cada lección, y guardar el registro de versiones. Así hay trazabilidad y protección donde la haya.
+- Plazo: antes de vender libros, que son el producto más visible (ÁMBAR).
+
+### 9.5 Licencias de tipografías (OFL)
+
+- Pixelify Sans, Tiny5 y Be Vietnam Pro tienen licencia SIL Open Font License 1.1 [V: `assets/fonts/OFL.txt`, `js/creditos.js`]. Permite uso comercial, incrustación en apps y en libros. Obligaciones: incluir el texto de la licencia con la distribución del software de fuentes y no vender la fuente por separado [V: openfontlicense.org].
+- En el APK: que `OFL.txt` llegue al paquete (`www/`) y que los créditos aparezcan en la página de créditos (ya aparecen).
+- Source Sans 3, citada en el informe de mercado para los libros, también es OFL [S]. No se usa en la app (no hay referencias en el código).
+
+### 9.6 Datos abiertos, modelos de traducción y corpus
+
+Aquí está uno de los puntos más delicados de créditos y licencias. Lo que consta:
+
+- **Argos Translate** (la traducción automática de las explicaciones al inglés de 18 cursos, beta): el código tiene licencia MIT o CC0 [S: página del proyecto]. Verificar la licencia del paquete concreto `translate-es_en` en su archivo `metadata.json`.
+- **Modelos OPUS-MT** (de los que Argos parte): licencia CC BY 4.0 según fuentes de la comunidad [S]. Obliga a citar la fuente (Helsinki-NLP / OPUS) si el modelo se distribuye o se usa de forma visible. Los corpus de OPUS tienen licencias distintas según el origen [S]. Recomendación: añadir una línea de crédito en `js/creditos.js` («Traducción automática con Argos Translate y modelos OPUS-MT, licencia CC BY 4.0»).
+- **Tatoeba**: las frases tienen licencia CC BY 2.0 FR, que permite el uso comercial con atribución [S]. Los audios tienen licencias individuales (algunos son CC BY-SA o no tienen licencia pública): no hay audios en la app, así que no aplica.
+- **Wiktionary**: contenido bajo CC BY-SA 4.0 [E]. Si un diccionario de la app se construye a partir de Wiktionary, la base derivada debe tener la misma licencia (compartir igual) y citar la fuente. Esto es un riesgo serio para un producto cerrado.
+- **spaCy**: el código es MIT; los modelos tienen licencias que dependen de los datos de entrenamiento (algunos, de Wikipedia, son CC BY-SA) [E]. Verificar modelo a modelo.
+- **Discrepancia**: la memoria del proyecto menciona Wiktionary, Tatoeba, spaCy y Argos para el curso de danés. **En el repositorio actual no aparecen Wiktionary, Tatoeba ni spaCy** (la búsqueda solo encontró Argos en `_herramientas/traducir_cursos_en.py`). Hay que confirmar, con el autor de los scripts, si esos datos se usaron y en qué parte del curso (ver el capítulo 19, acción 9).
+
+**Semáforo: ÁMBAR** (antes de publicar los cursos y de vender libros): créditos, confirmación de los corpus y, si Wiktionary se usó, decisión sobre la licencia de la base de datos (compartir igual o rehacer esa parte).
+
+### 9.7 Voces y audio
+
+- La app no lleva audios grabados: lee con la voz del dispositivo (`speechSynthesis`, o la del teléfono en la APK). No hay licencia que pagar ni que citar, y el aviso lo explica [V].
+- Si se graban audios en el futuro, cada voz necesita su contrato o su licencia escrita, y el derecho de imagen y de voz de la persona (Ley Orgánica 1/1982, art. 7 [V]). `js/creditos.js` ya tiene el campo para eso.
+
+### 9.8 Marcas de terceros en el texto
+
+- No he encontrado en el código comparaciones con marcas de la competencia (Duolingo, Babbel, Busuu, Memrise), salvo en los informes internos. Si se hacen comparaciones en la web o en la tienda, deben ser veraces, comparar elementos objetivos y no denigrar (Ley 3/1991, competencia desleal, incluida la publicidad comparativa [E]).
+
+---
+
+## 10. Reglamento de inteligencia artificial (AI Act)
+
+### 10.1 Calendario
+
+- Reglamento (UE) 2024/1689 [V]. La obligación de alfabetización en IA (art. 4) es aplicable desde el 2-2-2025 [E]. Las prohibiciones (art. 5) desde el 2-2-2025 [E]. Las obligaciones de transparencia del artículo 50 son aplicables desde el 2-8-2026 según comentarios de la fecha [S]. Hay un reglamento de simplificación (ómnibus digital) que retrasa algunas obligaciones de alto riesgo; las fuentes citan un plazo de 2-12-2026 para el marcado de contenido sintético de sistemas ya en el mercado antes del 2-8-2026 [S]. **Verificar en EUR-Lex.**
+
+### 10.2 Qué aplica a Paglot
+
+- **Interacción con un sistema de IA** (art. 50.1): si la app tiene un chat con IA, hay que avisar. Las tutoras actuales son personajes con frases escritas: no es IA en tiempo real. Si se añade un tutor que genera respuestas con un modelo, avisar al usuario (ÁMBAR en ese caso).
+- **Contenido generado** (art. 50.2 y 50.4): los proveedores de sistemas de IA generativa marcan el contenido; el que publica texto generado por IA para informar al público sobre asuntos de interés público debe avisar. Las lecciones no son ese caso [E]. Recomendación: indicar en el aviso legal y en los créditos que las explicaciones se han elaborado con ayuda de IA y se han revisado; es transparencia voluntaria y reduce riesgo de reclamación.
+- **Prohibiciones** (art. 5.1.f): reconocimiento de emociones en centros educativos está prohibido (salvo razones médicas o de seguridad) [V]. Por eso no conviene usar la cámara ni el micrófono para deducir la atención o el estado de ánimo del alumno (por ejemplo, en la app para la atención). Si se hace algo así, sería una práctica prohibida o de alto riesgo.
+- **Obligaciones del usuario de IA** (art. 26 y siguientes, para sistemas de alto riesgo): no aplican a Paglot hoy [E].
+- **Ley española de gobernanza de la IA**: en tramitación; no he confirmado su estado [E].
+
+**Semáforo: VERDE** (salvo el chat con IA, que sería ÁMBAR).
+
+---
+
+## 11. Accesibilidad (Ley 11/2023 y la Directiva europea de accesibilidad)
+
+- La Ley 11/2023 [V] traspone la Directiva (UE) 2019/882 (Acta Europea de Accesibilidad). Aplicable desde el 28-6-2025 [S: Fieldfisher].
+- **Microempresas** (menos de 10 empleados y menos de 2 M€ de volumen o balance): exentas de las obligaciones cuando prestan servicios, pero no cuando venden productos [S]. Los libros impresos y el merchandising son productos; los servicios de comercio electrónico y los libros electrónicos figuran como servicios en la directiva [S]. Por tanto, es probable que el comercio electrónico y los libros electrónicos estén exentos por el tamaño, y los productos físicos no. Verificar el texto de la ley, en especial el artículo de exención.
+- **Buenas prácticas** (y de utilidad real, dado el público de Paglot): contraste de color suficiente, navegación con teclado, nombres accesibles en botones, texto alternativo para las imágenes, lectura con lector de pantalla y tamaño de texto ajustable (la app ya tiene «texto grande» y «modo calma»). Recomendación: auditoría básica frente a WCAG 2.1 AA antes de lanzar (coste de 500 a 1.500 € si se contrata [E]; una revisión propia con un lector de pantalla no cuesta nada).
+
+**Semáforo: VERDE.**
+
+---
+
+## 12. Tiendas de aplicaciones
+
+### 12.1 Google Play: cuenta y verificación
+
+- **Cuenta de desarrollador**: pago único de 25 USD [S: informe de mercado]. Verificación de identidad (documento de identidad) para cuentas personales; organización con número D-U-N-S si es una empresa [E].
+- **Prueba cerrada obligatoria** para cuentas personales creadas después del 13-11-2023: una prueba cerrada con testers inscritos sin interrupción durante 14 días antes de poder pedir producción. **La página oficial consultada hoy (ayuda 14151465) dice 12 testers; otras guías dicen 20.** Verificar en Play Console, que muestra la cifra vigente [V/S]. Los testers que se dan de baja antes de los 14 días no cuentan; si vuelven, los días tienen que ser seguidos [V].
+- Planificar: con una APK firmada, 14 días de prueba cerrada como mínimo, antes de la primera publicación en producción (R6).
+- **Verificación de desarrolladores de Android** (para apps instaladas fuera de Play en ciertos dispositivos): desde el 30-9-2026 en Brasil, Indonesia, Singapur y Tailandia; ampliación global en 2027 [S: Google]. Las apps sin registrar siguen pudiéndose instalar con procedimientos avanzados, pero la experiencia empeora. Si la APK se distribuye desde la web, hay que registrarse como desarrollador en la consola de Android (ÁMBAR en 2027, VERDE hoy).
+
+### 12.2 Google Play: formularios y políticas
+
+- **Formulario de seguridad de datos (Data safety)**: declarar datos recogidos (identificadores de cuenta, progreso, contenido creado por usuarios, diagnósticos de errores, correo si se pone, nombre si se pone), finalidades y si se comparten. Debe coincidir exactamente con el aviso legal (R2) [V: políticas de Google Play].
+- **Eliminación de cuenta**: si la app permite crear una cuenta, debe permitir empezar la eliminación desde la propia app y tener una página web, localizable sin instalar la app, para pedir el borrado. La página debe nombrar la app o el desarrollador tal como figuran en Google Play, y los pasos extra (por ejemplo, cancelar una suscripción) deben estar explicados [V: support.google.com/googleplay/android-developer/answer/13327111]. La cuenta por número genera dudas: la app la crea sola, pero el número es una cuenta a efectos prácticos. Recomendación: tratarla como cuenta (R5). La página pedirá el número y, si hay correo verificado, confirmará con el código.
+- **URL de política de privacidad**: obligatoria en la ficha y accesible desde la app [V].
+- **Contenido generado por usuarios**: declarar en la ficha que hay ideas públicas, con moderación y denuncias (capítulo 8) [V].
+- **Clasificación de contenido y público objetivo**: cuestionarios de la tienda. Si se declara público infantil (menos de 13 años), entran la política de Familias y sus restricciones de publicidad y datos [S].
+- **Anuncios**: declarar que no hay anuncios (coherente con el diseño).
+- **Permisos**: además de los que pone Capacitor por defecto (acceso a internet, entre otros), la app usa la notificación local y no pide alarmas exactas (`isExactNotification: false`) [V: `_apk/puente.js`]. Revisar el manifiesto que genera la APK antes de enviarla a revisión.
+- **Nivel de API objetivo**: cada año hay que apuntar a la versión reciente de Android que exige Google [E].
+
+### 12.3 Pagos dentro de la app
+
+- Las **suscripciones y los bienes digitales** vendidos dentro de la APK deben cobrarse con Google Play Billing [V: política de pagos]. Excepciones: bienes físicos, tarjetas regalo, algunas ventas entre personas y servicios regulados. La política permite sistemas de pago alternativos en el Espacio Económico Europeo según el programa de la Ley de Mercados Digitales [V]: revisar si compensa.
+- La comisión del servicio es del 15 % en suscripciones según fuentes [S]; hay que confirmarlo en la consola.
+- La venta por la web (Stripe u otro) es posible para productos que no se venden dentro de la app. La web debe explicarlo con claridad y no tener menos ventajas que la app sin justificación.
+- **Cofres y azar**: la app tiene cofres que se ganan con el progreso (no se compran). Si se vendieran cofres con contenido aleatorio, habría que mostrar las probabilidades (política de Google sobre cajas de botín [E]) y revisar la regulación española de juego (capítulo 18).
+
+### 12.4 APK distribuida fuera de Google Play
+
+- El archivo `Paglot-prueba.apk` (en la raíz) sirve para probar. Antes de compartirlo, firmarlo con clave de publicación y dejar claro que es una versión de prueba.
+- Las instalaciones fuera de la tienda muestran advertencias de seguridad en Android; ofrecer una página con instrucciones y la huella del certificado (SHA-256) [E].
+- Descargas: si un usuario descarga la APK, la fuente debe ser oficial (la web de Paglot). No se descargan archivos de fuentes no oficiales.
+
+### 12.5 App Store (si hay iPhone)
+
+- Cuenta de desarrollador: 99 USD al año [S: Apple].
+- Revisión más estricta: cuenta eliminable desde la app; pagos con el sistema de Apple para bienes digitales; política de contenido generado por usuarios; declaraciones de privacidad (etiquetas nutricionales de privacidad) [E].
+- Por ahora no hay iPhone en el plan. Anotar la fecha en la que se decida.
+
+---
+
+## 13. Venta de libros (impresos y PDF)
+
+- **ISBN**: un ISBN por formato. La tapa blanda y el PDF llevan cada uno el suyo [S: informe de mercado]. El catálogo completo (6 libros por 21 idiomas) implicaría 126 ISBN en papel y otros tantos en PDF, con un coste que no se ha podido verificar (estimado entre 45 y 130 € por ISBN [S, no verificado]). La Agencia Española del ISBN la gestiona la Federación de Gremios de Editores (FGEE) [S]. **Consultar las tarifas en la web oficial antes de decidir el número de títulos.**
+- **Código de barras (EAN-13)**: lo asigna GS1 España [S]; la tarifa no se ha verificado.
+- **Depósito legal**:
+  - Aragón: Decreto 61/2025, de 11 de junio, publicado en el BOA de 23-6-2025 [S: INAP y consulta pública del Gobierno de Aragón], que sustituye al Decreto 181/2012. Regula el depósito del patrimonio bibliográfico, sonoro, visual, audiovisual y digital. **El número de ejemplares y el procedimiento no se han verificado** (el informe de mercado cita 4 ejemplares, de la norma anterior).
+  - Estatal: Ley 23/2011 de depósito legal [V] y Real Decreto 635/2015 sobre publicaciones en línea [V]. Verificar si un PDF vendido en línea debe depositarse en la Biblioteca Nacional. Es probable que sí [E].
+  - Coste orientativo: unos 15 € por título si se entregan cuatro ejemplares de impresión [S: tabla de KDP, estimación].
+- **IVA**: 4 % para libros impresos (art. 91 Ley 37/1992 [V]) y, según fuentes, también para libros electrónicos desde 2020 [S]. Consultar a la DGT si el libro electrónico va incluido en un pack con la app (capítulo 3.4).
+- **Precio fijo** (Ley 10/2007 de la lectura, del libro y de las bibliotecas [V]): el régimen de precio fijo afecta a la venta de libros al público en España. No he verificado si cubre los libros electrónicos o cómo encaja un pack. Consultar [E].
+- **Contratos con autores y colaboradores**: si participan traductores, ilustradores o revisores, contrato escrito de edición o de cesión de derechos (arts. 58 y siguientes TRLPI [E]). Sin contrato, el derecho de explotación no está claro.
+- **Impresión bajo demanda**: el impresor es encargado de tratamiento de los datos de los compradores si recibe pedidos con nombres y direcciones (contrato del artículo 28 RGPD). Las plataformas de autoedición tienen condiciones propias de exclusividad y de regalías que hay que leer.
+- **Garantía y devoluciones**: libros físicos vendidos a distancia tienen 14 días de desistimiento y garantía de tres años (capítulo 7).
+- **Entrega del pack Max**: definir la fecha y el procedimiento si un libro llega dañado o no llega.
+
+**Semáforo: ÁMBAR** (antes de vender libros). El ISBN conviene pedirlo con antelación, porque su tarifa y su plazo no se han verificado.
+
+---
+
+## 14. Merchandising bajo demanda
+
+### 14.1 Seguridad de producto
+
+- Reglamento (UE) 2023/988 (seguridad general de los productos, aplicable desde el 13-12-2024 [V]): el producto debe tener una persona responsable en la UE (un fabricante o un importador), la trazabilidad y la información de seguridad. Si Paglot vende con su marca un producto fabricado fuera de la UE, Paglot es el responsable y debe identificarse en el producto, el envase o la web [E].
+- Textiles: etiquetado de la composición con los nombres de fibra del Reglamento (UE) 1007/2011 [V] y el idioma que exija el lugar de venta (en España, castellano para el consumidor [E]).
+
+### 14.2 Responsabilidad ampliada del productor
+
+- **Textiles**: España tiene un proyecto de real decreto de responsabilidad ampliada del productor textil, notificado a Bruselas el 27-5-2026, según una fuente [S]. La directiva europea de residuos (Directiva (UE) 2025/1892 según fuentes [S]) fija el plazo de trasposición en 17-6-2027, con una prórroga de un año para microempresas (menos de 10 empleados y menos de 2 M€). El borrador obliga a los productores a registrarse, adherirse a un sistema colectivo y financiar la recogida. Una microempresa que pone prendas con su marca en el mercado puede ser productor. Consultar antes de vender prendas [E].
+- **Envases**: el Real Decreto 1055/2022 [V] obliga a registrar en el Registro de Productores de Producto a quien pone envases en el mercado, con un número ENV que debe figurar en documentos comerciales, y a declarar anualmente. Hay un debate sobre exenciones para pequeños comerciantes, sin confirmación oficial [S]. Consultar con un gestor.
+
+### 14.3 Devoluciones y garantía
+
+- Derecho de desistimiento de 14 días (capítulo 7). No aplica a los productos personalizados (art. 103 c) TRLGDCU [E]). Un producto con el nombre de la persona es personalizado; uno con el logo de Paglot, no [E].
+- Garantía legal de tres años para productos físicos [E]. Si el proveedor falla, Paglot responde frente al cliente y reclama al proveedor.
+- Recomendación: escribir la política de devoluciones en la tienda, con el criterio de personalización, antes de vender.
+
+### 14.4 Proveedores y aduanas
+
+- Los proveedores fuera de la UE generan IVA a la importación y, en su caso, aranceles; un proveedor en la UE evita esa complicación. El informe de mercado indica que un proveedor de impresión dejó de enviar desde Barcelona a terceros a partir de 1-3-2026 [S]: confirmar el cambio antes de elegirlo.
+- Contrato con el proveedor: responsabilidad por defectos, plazos de producción, tratamiento de los datos de los compradores (encargado del tratamiento) y propiedad de los diseños.
+
+**Semáforo: ÁMBAR** (antes de vender merchandising).
+
+---
+
+## 15. Escuelas y empresas (venta B2B)
+
+### 15.1 Contrato
+
+- Con escuelas y empresas, la relación es B2B: no aplican las normas de consumidores, pero sí las condiciones generales que se firmen. Redactar un contrato de licencia con: objeto, precios sin IVA, duración, renovación, número de licencias, soporte, nivel de servicio, limitación de responsabilidad, confidencialidad, propiedad intelectual de los cursos a medida y de los contenidos del cliente, y ley aplicable y juzgados.
+- Si la escuela es pública, la contratación debe seguir la Ley de Contratos del Sector Público (Ley 9/2017 [V]). Un contrato menor de servicios tiene un límite de cuantía (15.000 € para servicios, según la ley [E]). Por encima, licitación. Conviene consultar a la administración del centro.
+
+### 15.2 Datos de alumnos y de empleados
+
+- Si la escuela da a Paglot datos de alumnos (nombre, progreso, resultados) o crea cuentas para sus alumnos, la escuela es responsable y Paglot es encargado: hace falta un contrato del artículo 28 RGPD con las instrucciones, la seguridad, los subencargados y la devolución o el borrado al final [V].
+- Si Paglot decide para qué se usan los datos (por ejemplo, para mejorar el producto), es responsable en esa parte y necesita base propia. Evitarlo.
+- Empresas: el progreso individual de empleados no se entrega al empleador sin base legal y sin información. Ofrecer solo informes agregados (sin nombres) salvo que el empleado dé su consentimiento y sin consecuencias en su contrato [E].
+- Menores: la AEPD y la normativa educativa exigen una protección especial (capítulo 18).
+
+### 15.3 LOPIVI
+
+- La Ley Orgánica 8/2021 de protección integral de la infancia (LOPIVI [V]) obliga a las entidades que desarrollan actividades con menores a tener protocolos de protección y a comprobar que el personal que trabaja con menores no tiene antecedentes por delitos sexuales (art. 13 [E]). Si Paglot da talleres o clases presenciales con menores, aplica. Si solo vende licencias a escuelas, la obligación recae sobre la escuela.
+
+### 15.4 Factura y pagos B2B
+
+- Factura electrónica B2B: calendario de 2027 y 2028 (capítulo 3.5). Plataformas públicas o privadas de intercambio [S].
+- Pagos: transferencia o cobro con factura. Un pago por adelantado de una escuela pública tiene sus reglas de plazos [E].
+
+### 15.5 Cursos a medida
+
+- Contrato de encargo: quién es el titular de la obra (cesión o licencia), si el cliente puede publicarla, si Paglot puede reutilizar partes, y quién responde del contenido que aporta el cliente (datos de terceros, marcas, imágenes).
+
+**Semáforo: ÁMBAR** (antes del primer contrato).
+
+---
+
+## 16. Otros mercados
+
+El precio de cada zona (A a D) incluye países con normas de datos y fiscales muy distintas. La regla práctica es vender allí a través de la tienda (Google Play) o de un comerciante de registro, y no con una pasarela directa, hasta tener el asesoramiento local.
+
+| País | Norma principal | Situación | Riesgo y acción | Semáforo |
+|---|---|---|---|---|
+| Vietnam | Ley 91/2025/QH15 de protección de datos personales (sustituye al Decreto 13/2023), en vigor desde el 1-1-2026 [S: Tilleke] | Se aplica a organizaciones extranjeras que tratan datos de ciudadanos vietnamitas. Expedientes de transferencia y evaluación de impacto; consentimiento de menores (a partir de los 7 años, el del menor y el de su padre, madre o tutor, según el decreto anterior [S]) | Aviso en vietnamita, evaluación de impacto de transferencia y registro según el decreto de desarrollo (no confirmado) | ÁMBAR antes de vender |
+| Vietnam (fiscal) | Decreto 252/2026 (30-6-2026, en vigor el 1-7-2026) [S: EY, KPMG] | Retención del IVA por la plataforma o registro del proveedor | Vender a través de la tienda o registrarse en el portal fiscal | ÁMBAR |
+| México | Nueva Ley Federal de Protección de Datos Personales en Posesión de los Particulares (en vigor el 21-3-2025 [S: EY]) | Aviso de privacidad propio, consentimiento libre, específico e informado; autoridad: Secretaría Anticorrupción y Buen Gobierno | Aviso en español con los requisitos de la ley; revisar el reglamento | ÁMBAR |
+| México (fiscal) | IVA del 16 % en servicios digitales de extranjeros [S] | Registro en el SAT y declaración mensual | Tienda o comerciante de registro | ÁMBAR |
+| Argentina | Ley 25.326 [E] | Régimen de IVA digital propio, no verificado | Consultar | VERDE |
+| Colombia | Ley 1581 de 2012 y decreto reglamentario [E] | Registro de bases de datos según tamaño [E] | Consultar | VERDE |
+| Brasil | LGPD (Ley 13.709/2018) [E] | Se aplica a tratamientos de datos de personas en Brasil sin necesidad de sede | Aviso y base legal en portugués | VERDE |
+| Chile | Ley 21.719 (nueva ley de datos, en vigor en diciembre de 2026 [E]) | Ajustar antes de la entrada en vigor | Revisar | VERDE |
+| Reino Unido | UK GDPR, Ley de Protección de Datos de 2018 y la Ley de Uso y Acceso de Datos de 2025 [E] | Tasa anual al ICO [E]; Ley de Seguridad en Línea (2023) para servicios con contenido de usuarios [E]; código para la infancia del ICO [E] | Declarar la tasa; evaluar la ley de seguridad en línea para el laboratorio | VERDE |
+| Estados Unidos | COPPA (norma revisada, cumplimiento obligatorio desde el 22-4-2026 [S]) | Solo si hay usuarios menores de 13 años en EE. UU. (la política de la app lo prohíbe) | Bloquear o pedir consentimiento verificable; impuestos estatales vía la tienda [E] | VERDE |
+| China | Ley de Protección de Información Personal (PIPL) y registro (ICP) para alojar en China [E] | Zona C incluye China en la lista de precios | No ofrecer ni alojar en China sin asesoría específica [E] | ÁMBAR (no activar) |
+| Rusia | Ley federal 242-FZ de localización de datos personales [E]; sanciones internacionales | Zona C incluye Rusia | No vender sin asesoría sobre sanciones y localización [E] | ÁMBAR (no activar) |
+| Otros (Indonesia, Tailandia, India, Filipinas, Turquía, Sudáfrica, Perú, Israel, Emiratos y otros de las zonas B, C y D) | Leyes de datos y de consumo propias [E] | No verificado en esta investigación | Revisar país a país antes de abrirlo | VERDE |
+
+**Sanciones**: antes de abrir un país, comprobar las listas de sanciones de la UE y de Estados Unidos (y la política de la pasarela de pago). Un cobro a un país sancionado puede ser delito [E].
+
+---
+
+## 17. Seguridad (RGPD artículo 32)
+
+### 17.1 Obligación
+
+La ley exige medidas técnicas y organizativas proporcionadas: cifrado en tránsito, control de acceso, copias de seguridad, registro de incidentes y revisiones periódicas [V, RGPD art. 32].
+
+### 17.2 Hallazgos del informe de bases de datos (19-10-2026)
+
+- El número es la única llave y no tiene límite de intentos. Con la clave pública, cualquiera puede llamar a las funciones de lectura. El arreglo de limitación de intentos (`paglot_fallo`) está en el SQL de 19-10 (sección 4). **Confirmar que se ha ejecutado.**
+- `paglot_vincular` no comprobaba si la cuenta ya tenía correo. El SQL de 19-10 lo corrige. Confirmar.
+- `paglot_correo` devolvía el correo completo. El SQL de 19-10 lo enmascara. Confirmar.
+- Las cuotas globales (500 cuentas nuevas cada 10 minutos, 300 errores, 60 ideas por hora) pueden agotarse por un atacante y dejar a todos sin registro. Riesgo de disponibilidad, no de datos.
+- Pérdida de datos entre dispositivos: el informe de bases de datos describía el guardado como una escritura sin mezcla. El código actual lee antes de escribir (`subir()` llama a `paglot_leer` y `juntarSiCambio` une las copias) [V: js/nube.js]. Hay que confirmarlo con una prueba de dos dispositivos antes de publicar.
+- `paglot_error` y `paglot_idea_nueva` aceptan texto libre. Hay que filtrar datos personales antes de guardar (B13).
+- Material antiguo con secretos (R8). Rotar las credenciales de base de datos y la clave de correo, y retirar los archivos de la carpeta compartida.
+
+### 17.3 Recomendaciones antes de publicar
+
+- Revisión independiente de seguridad (prueba de penetración ligera) de la base de datos y de la web: 500 a 1.500 € [E]. Es proporcionada para una app con cuentas.
+- Copia de seguridad de la base de datos, probada (restaurar en un entorno de prueba) [E].
+- Cabeceras de seguridad y política de contenido en la web (Content-Security-Policy) [E].
+- Registro de incidentes y plan de respuesta (capítulo 4.10).
+- Si se sale de Supabase a un servidor propio (plan del informe de bases de datos), el responsable de seguridad y de copias pasa a ser Javier: un VPS mal configurado es un riesgo mayor que la base gestionada [E].
+
+**Semáforo: ROJO** en R8 y R9; ÁMBAR en lo demás.
+
+---
+
+## 18. Salud, menores y juego
+
+### 18.1 Mensajes sobre salud (TDAH y atención)
+
+- La app «de déficit de atención» puede ser un producto sanitario si se presenta como medio para diagnosticar, tratar, compensar o controlar un trastorno, o si informa decisiones clínicas (Reglamento (UE) 2017/745, MDR [V], regla 11 del anexo VIII; el régimen español antiguo, Real Decreto 1591/2009 [E], debe revisarse porque el reglamento europeo lo ha sustituido en gran parte [S]).
+- Recomendación: presentarla como herramienta de entrenamiento de la atención y de hábitos de estudio, sin promesas clínicas ni de mejora de un trastorno. Revisar pantallas, tienda y textos de marketing con un abogado sanitario o especialista en productos sanitarios antes de publicar [E].
+- Datos de salud: si una persona dice tener TDAH en el laboratorio, en el contacto o en una prueba de usabilidad, es un dato de salud (art. 9 RGPD [V]). No pedirlo. El informe de usabilidad (apartado 5.8) ya lo recoge para el reclutamiento: basta con «dificultades de atención», sin diagnóstico.
+
+### 18.2 Menores
+
+- Edad de consentimiento: 14 años en España (art. 7 LOPDGDD [V]).
+- **Protección de menores en entornos digitales**: proyecto de ley orgánica en tramitación en el Congreso (septiembre de 2026), que eleva a 16 años la edad mínima para registrarse en redes sociales y crea obligaciones de control parental para los fabricantes de terminales [S: Ministerio de Justicia y prensa]. No se ha aprobado. Si se aprueba, la definición de red social debe mirarse, porque el laboratorio podría aproximarse a ella.
+- **Pruebas de usabilidad con menores** (informe de usabilidad, perfil de 12 años): consentimiento de los padres o tutores, derecho a la propia imagen y voz (LO 1/1982), grabación mínima y borrado en un plazo corto. Para menores de 14 años, el consentimiento lo da el padre, la madre o el tutor; para los de 14 a 17, conviene también el de sus padres por el derecho a la imagen y la voz [E]. No hacer pruebas con menores hasta tener el consentimiento y el texto revisados (ÁMBAR).
+- **Edad en la tienda**: declarar un público de 13 años o más, coherente con el diseño y con la nube opcional (capítulo 12.2).
+- **Publicidad dirigida a menores**: evitar mensajes que presionen para comprar o que hagan sentir inferior a quien no compra. La normativa de publicidad y de consumo lo trata con especial cuidado [E].
+
+### 18.3 Juego y azar
+
+- Cajas de botín (loot boxes): la Ley 13/2011 del juego [V] no las regula expresamente. Hubo un anteproyecto de 2022 que proponía prohibirlas a menores de 18 años y tratarlas como juego de azar [S: Osborne Clarke]. No he confirmado su estado; no está aprobado a 19-10-2026 según lo que he encontrado [E].
+- Recomendación: no vender elementos aleatorios con dinero real. Si se venden, informar de las probabilidades (exigido por Google Play [E]) y no ofrecerlos a menores.
+- Los cofres de la app se ganan con el progreso (no se compran). Mantener esa regla.
+
+### 18.4 Inteligencia artificial y emociones
+
+- Reconocimiento de emociones en educación: prohibido por el AI Act (art. 5.1.f [V]). No usar la cámara para estimar la atención. Ver capítulo 10.
+
+**Semáforo: ÁMBAR** (mensajes de salud y pruebas con menores) y **VERDE** (leyes de menores y de juego en tramitación).
+
+---
+
+## 19. Checklist ordenada
+
+Responsables: **J** = Javier; **G** = gestor o asesoría; **A** = abogado; **F** = asesor fiscal; **P** = agente de la propiedad industrial.
+
+| # | Acción | Quién | Coste orientativo | Plazo | Semáforo |
+|---|---|---|---|---|---|
+| 1 | Rellenar el titular (nombre, NIF, domicilio, correo) en js/config.js | J | 0 € | Ya | ROJO |
+| 2 | Corregir el aviso legal (lista del capítulo 2 y 4.14) | J y A | Revisión de A: 300 a 600 € [E] | 2 semanas | ROJO |
+| 3 | Cambiar la nube a elección expresa en el primer uso, con igual peso para «solo aquí» | J | 0 € (trabajo de código) | 2 semanas | ROJO |
+| 4 | Aceptar y guardar el DPA de Supabase; anotar región, subencargados y mecanismo de transferencia | J | 0 € | 1 semana | ROJO |
+| 5 | Comprar dominio, publicar página legal y página de solicitud de borrado | J | 10 a 25 €/año [E] | Antes de Play | ROJO |
+| 6 | Cuenta de Google Play, verificación de identidad y prueba cerrada de 14 días | J | 25 USD una vez [S] | Antes de Play | ROJO |
+| 7 | Decidir el appId definitivo | J | 0 € | Antes de la primera subida | ROJO |
+| 8 | Retirar secretos del material antiguo y rotar credenciales | J | 0 € | Ya | ROJO |
+| 9 | Confirmar la ejecución de los arreglos de seguridad de Supabase y revisar lo que queda | J | 0 € | 1 semana | ROJO |
+| 10 | Filtrar datos personales en los avisos de errores o matizar el texto | J | 0 € | Antes de publicar | ROJO |
+| 11 | Registro de actividades de tratamiento | J (con A) | 0 € | Antes de publicar | ROJO |
+| 12 | Política de privacidad, términos y condiciones de compra, y botón de desistir y de baja | J y A | Incluido en el punto 2 | Antes de cobrar | ÁMBAR |
+| 13 | Casilla de renuncia al desistimiento de contenido digital en el pago | J | 0 € | Antes de cobrar | ÁMBAR |
+| 14 | Alta de autónomo, epígrafes del censo y tarifa plana | J y G | 80 €/mes de tarifa plana y gestoría de 80 € + IVA/mes [S] | Antes de cobrar | ÁMBAR |
+| 15 | Software de facturación compatible con Verifactu y cuenta bancaria del negocio | J y G | 10 a 30 €/mes [E] | Antes de cobrar | ÁMBAR |
+| 16 | Consulta fiscal: IVA 21 % y 4 %, tipo del pack Max, OSS, Google Play como vendedor | F | 100 a 300 € [E] | Antes de cobrar | ÁMBAR |
+| 17 | Pagos: Google Play Billing para la app y web para el resto; revisar la excepción de tarjetas regalo | J | Comisión del 15 % [S] | Antes de cobrar | ÁMBAR |
+| 18 | Precio final con impuestos incluidos; definir «Fundadores» (plazas y duración); quitar contadores falsos | J y A | 0 € | Antes de cobrar | ÁMBAR |
+| 19 | Moderación del laboratorio: correo de contacto, procedimiento escrito y registro de decisiones | J | 0 € | Antes de activar la sala | ÁMBAR |
+| 20 | Quitar o aclarar la página Social (enlaces de ejemplo) y el formulario de contacto sin destino | J | 0 € | Antes de publicar | ÁMBAR |
+| 21 | Búsqueda de la marca «Paglot» en EUIPO y OEPM; registro en las clases necesarias | P | Búsqueda y consulta: 300 a 600 € [E]; tasas oficiales por verificar | Antes de invertir en identidad | ÁMBAR |
+| 22 | Créditos de Argos, OPUS-MT y demás herramientas; confirmar corpus (Wiktionary, Tatoeba, spaCy) | J | 0 € | Antes de publicar cursos | ÁMBAR |
+| 23 | Revisión de la licencia de la base de datos si se usó Wiktionary | A | Según presupuesto [E] | Antes de vender libros | ÁMBAR |
+| 24 | ISBN: consultar tarifas y decidir número de títulos; depósito legal (Aragón y estatal) | J y G | Por verificar (ISBN) [E]; unos 15 € por título de depósito [S] | Antes de vender libros | ÁMBAR |
+| 25 | Contratos con ilustradores, traductores y revisores | J y A | Según presupuesto [E] | Antes de vender libros | ÁMBAR |
+| 26 | Merchandising: proveedor en la UE, persona responsable en la UE, etiquetado textil, política de devoluciones y personalización | J y A | Muestras del proveedor | Antes de vender merch | ÁMBAR |
+| 27 | Merchandising: EPR (textil en borrador; envases RD 1055/2022) | G | Por consultar [E] | Antes de vender merch | ÁMBAR |
+| 28 | Contrato B2B (licencia), encargo de tratamiento para escuelas y empresas, y ley de contratación pública | A | Según presupuesto [E] | Antes del primer contrato | ÁMBAR |
+| 29 | Pruebas con menores: consentimiento parental y texto revisado | J y A | Incluido en el punto 2 | Antes de la primera prueba | ÁMBAR |
+| 30 | Mensajes de salud (TDAH): revisar frente al MDR | A (sanitario) | Según presupuesto [E] | Antes de publicar | ÁMBAR |
+| 31 | Vietnam y México: aviso local, asesoría fiscal y de datos; sin venta directa hasta entonces | A y F locales | 300 a 800 € de traducción y revisión [E] | Antes de vender allí | ÁMBAR |
+| 32 | China y Rusia: no activar sin asesoría | A | Según presupuesto [E] | Antes de activar | ÁMBAR |
+| 33 | Revisión de seguridad de la base de datos y la web | J (con tercero) | 500 a 1.500 € [E] | Antes de publicar | ÁMBAR |
+| 34 | Auditoría básica de accesibilidad (WCAG 2.1 AA) | J | 0 € (revisión propia) o 500 a 1.500 € [E] | Antes de publicar | VERDE |
+| 35 | Registro de la obra y del software en la propiedad intelectual (opcional) | J | Tasa baja [E] | Cuando convenga | VERDE |
+| 36 | Vigilar: transposición de la Directiva 2023/2673, Verifactu, B2B, CRA, AI Act y Ley de Equidad Digital | J | 0 € | Trimestral | VERDE |
+| 37 | Registro de desarrollador de Android para APK fuera de Play | J | Por verificar | Antes de 2027 | VERDE |
+| 38 | Decidir sobre la analítica (con interés legítimo documentado o consentimiento) | J y A | Según presupuesto [E] | Antes de activarla | VERDE |
+
+---
+
+## 20. Qué debe revisar un profesional
+
+- **Abogado (protección de datos y consumo)**: aviso legal, política de privacidad, términos de compra, condiciones de suscripción, desistimiento, renuncia al desistimiento, regalos, moderación del laboratorio, pruebas con menores, y el contrato con escuelas y empresas.
+- **Abogado sanitario o especialista en productos sanitarios**: textos sobre TDAH y atención.
+- **Asesor fiscal o gestor**: alta, cuotas, IRPF, IVA (21 % y 4 %), pack Max, OSS, Verifactu, facturación B2B, retenciones de Vietnam y de México, EPR de envases y textil.
+- **Agente de la propiedad industrial**: búsqueda y registro de la marca en la UE y en España.
+- **Abogado de contratación pública**: si una escuela o una administración contrata.
+- **Asesor en edición (ISBN, depósito legal y contratos de edición)**: si se venden libros.
+- **Abogados locales**: Vietnam, México, y cualquier país que se abra con volumen.
+
+---
+
+## 21. Fechas clave (cronología)
+
+| Fecha | Qué ocurre | Estado a 19-10-2026 |
+|---|---|---|
+| 13-11-2023 | Desde esta fecha, las cuentas personales de Google Play necesitan la prueba cerrada | Vigente [V] |
+| 28-6-2025 | Accesibilidad europea (Ley 11/2023) | Vigente [S] |
+| 1-1-2026 | Ley de datos personales de Vietnam (Ley 91/2025) | Vigente [S] |
+| 22-4-2026 | Norma de COPPA revisada: cumplimiento obligatorio | Vigente [S] |
+| 31-3-2026 | Real Decreto 238/2026 (factura electrónica B2B) | Publicado [S] |
+| 19-6-2026 | Directiva 2023/2673 (botón de desistimiento): aplicable en la UE | Aplicable en la UE; España sin confirmar [S] |
+| 1-7-2026 | Decreto 252/2026 de Vietnam (IVA de proveedores digitales extranjeros) | Vigente [S] |
+| 2-8-2026 | Transparencia del AI Act (artículo 50) | Aplicable según comentarios [S] |
+| 11-9-2026 | Obligaciones de notificación de la ciberresiliencia (CRA) | Aplicable [S] |
+| 30-9-2026 | Verificación de desarrolladores de Android en Brasil, Indonesia, Singapur y Tailandia | Iniciada según fuentes [S] |
+| 30-10-2026 | Plazo de la ayuda del INAEM (solo si aplica) | Según boletín [S] |
+| Noviembre de 2026 (previsto) | Propuesta de Ley de Equidad Digital de la Comisión | Pendiente [S] |
+| 2-12-2026 | Marcado de contenido sintético de sistemas ya en el mercado (AI Act) | Según comentarios [S] |
+| 1-1-2027 o 1-7-2027 | Verifactu (RDL 15/2025) | Modificado según anuncios de octubre de 2026 [S] |
+| 11-12-2027 | Obligaciones principales de la ciberresiliencia (CRA) | Previsto [S] |
+| 6-10-2027 y 6-10-2028 | Factura electrónica B2B (según tamaño) | Según Orden HAC/1028/2026 [S] |
+| 2027 | Verificación de desarrolladores de Android a nivel global | Previsto [S] |
+| 17-6-2027 y 17-4-2028 | Directiva europea de residuos textiles (trasposición y sistemas) | Previsto [S] |
+
+---
+
+## 22. Fuentes
+
+Todas consultadas el 19-10-2026. [V] = texto oficial o página oficial leída; [S] = fuente secundaria (no se ha confirmado en el texto oficial).
+
+**Normativa (España)**
+- Ley Orgánica 3/2018 de protección de datos (LOPDGDD): https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673 [V]
+- Ley 34/2002 de servicios de la sociedad de la información (LSSI-CE): https://www.boe.es/eli/es/l/2002/07/11/34/con [V]
+- Real Decreto Legislativo 1/2007 (TRLGDCU): https://www.boe.es/eli/es/rdlg/2007/11/16/1/con [V]
+- Real Decreto-ley 7/2021 (contenidos y servicios digitales): https://www.boe.es/eli/es/rdl/2021/04/27/7/con [V]
+- Ley 11/2023 (accesibilidad): https://www.boe.es/eli/es/l/2023/05/08/11/con [V]
+- Ley 37/1992 (IVA): https://www.boe.es/eli/es/l/1992/12/28/37/con [V]
+- Real Decreto 1619/2012 (facturación): https://www.boe.es/eli/es/rd/2012/11/30/1619/con [E]
+- Real Decreto 1007/2023 (Verifactu): https://www.boe.es/eli/es/rd/2023/12/05/1007/con [V]
+- Real Decreto-ley 15/2025 (aplazamiento de Verifactu): https://www.fiscal-impuestos.com/node/40339 [S] (consultar el BOE de 3-12-2025)
+- Ley 18/2022 (Crea y Crece): https://www.boe.es/eli/es/l/2022/09/22/18/con [V]
+- Ley 23/2011 (depósito legal): https://www.boe.es/eli/es/l/2011/07/20/23/con [V]
+- Real Decreto 635/2015 (publicaciones en línea): https://www.boe.es/eli/es/rd/2015/07/10/635/con [V]
+- Decreto 61/2025 de Aragón (depósito legal): https://www.boe.es/ccaa/boa/2025/132/d00001-00001.pdf [S] (leer en el BOA)
+- Ley 10/2007 (lectura, libro y bibliotecas): https://www.boe.es/eli/es/l/2007/06/22/10/con [V]
+- Real Decreto-ley 1/1996 (propiedad intelectual): https://www.boe.es/eli/es/rdlg/1996/04/12/1/con [V]
+- Ley 17/2001 (marcas): https://www.boe.es/eli/es/l/2001/12/07/17/con [V]
+- Ley 3/1991 (competencia desleal): https://www.boe.es/eli/es/l/1991/01/10/3/con [V]
+- Ley Orgánica 1/1982 (derecho al honor, a la intimidad y a la propia imagen): https://www.boe.es/eli/es/lo/1982/05/05/1/con [V]
+- Ley 7/2017 (resolución alternativa de litigios de consumo): https://www.boe.es/eli/es/l/2017/11/02/7/con [V]
+- Ley 9/2017 (contratos del sector público): https://www.boe.es/eli/es/l/2017/11/08/9/con [V]
+- Ley Orgánica 8/2021 (LOPIVI): https://www.boe.es/eli/es/lo/2021/06/04/8/con [V]
+- Ley 13/2011 (regulación del juego): https://www.boe.es/eli/es/l/2011/05/27/13/con [V]
+- Ley 7/2022 (residuos): https://www.boe.es/eli/es/l/2022/04/08/7/con [V]
+- Real Decreto 1055/2022 (envases): https://www.boe.es/eli/es/rd/2022/12/27/1055/con [V]
+- Real Decreto 238/2026 y Orden HAC/1028/2026 (factura electrónica B2B): https://cms.law/en/esp/publication/factura-electronica-b2b-arranca-la-cuenta-atras-y-veri-factu-se-aplaza-a-2028 [S]
+
+**Normativa (Unión Europea)**
+- Reglamento (UE) 2016/679 (RGPD): https://eur-lex.europa.eu/eli/reg/2016/679/oj [V]
+- Reglamento (UE) 2022/2065 (DSA): https://eur-lex.europa.eu/eli/reg/2022/2065/oj [V]
+- Reglamento (UE) 2024/1689 (AI Act): https://eur-lex.europa.eu/eli/reg/2024/1689/oj [V]
+- Reglamento (UE) 2024/2847 (ciberresiliencia, CRA): https://eur-lex.europa.eu/eli/reg/2024/2847/oj [V]
+- Reglamento (UE) 2023/988 (seguridad general de los productos): https://eur-lex.europa.eu/eli/reg/2023/988/oj [V]
+- Reglamento (UE) 1007/2011 (denominación de fibras textiles): https://eur-lex.europa.eu/eli/reg/2011/1007/oj [V]
+- Reglamento (UE) 2017/745 (productos sanitarios, MDR): https://eur-lex.europa.eu/eli/reg/2017/745/oj [V]
+- Reglamento (UE) 2017/1001 (marca de la UE): https://eur-lex.europa.eu/eli/reg/2017/1001/oj [V]
+- Directiva (UE) 2019/882 (accesibilidad, EAA): https://eur-lex.europa.eu/eli/dir/2019/882/oj [V]
+- Directiva (UE) 2019/770 (contenidos digitales): https://eur-lex.europa.eu/eli/dir/2019/770/oj [V]
+- Directiva (UE) 2011/83 (derechos de los consumidores), modificada por la 2023/2673: https://eur-lex.europa.eu/eli/dir/2011/83/oj [V]; https://eur-lex.europa.eu/eli/dir/2023/2673/oj [V]
+- Directiva (UE) 2019/2161 (mejor aplicación de la normativa de consumo, rebajas y reseñas): https://eur-lex.europa.eu/eli/dir/2019/2161/oj [V]
+- Directiva 2006/112/CE (IVA): https://eur-lex.europa.eu/eli/dir/2006/112/oj [V]
+- Decisión de Ejecución (UE) 2021/914 (cláusulas contractuales tipo): https://eur-lex.europa.eu/eli/dec_impl/2021/914/oj [V]
+- Decisión de Ejecución (UE) 2023/1795 (Marco de Privacidad de Datos UE-EE. UU.): https://eur-lex.europa.eu/eli/dec_impl/2023/1795/oj [V]
+- Directiva (UE) 2025/1892 (residuos, según fuentes): [S]
+
+**Autoridades y guías**
+- AEPD, guías (cookies, medición, privacidad desde el diseño, evaluación de impacto): https://www.aepd.es/guias [V para el índice; el texto de la guía de cookies no se pudo leer]
+- Agencia Tributaria, modelos e IVA (modelo 035, 036, 037, 130, 303, 369, OSS): https://sede.agenciatributaria.gob.es [E, consultar]
+- Comisión Europea, ciberresiliencia: https://digital-strategy.ec.europa.eu/en/policies/cra-reporting [S]
+- Oficina Española de Patentes y Marcas: https://www.oepm.es [E, consultar tasas]
+- EUIPO: https://euipo.europa.eu [E, consultar tasas]
+
+**Tiendas y plataformas**
+- Google Play, eliminación de cuenta: https://support.google.com/googleplay/android-developer/answer/13327111 [V]
+- Google Play, requisitos de prueba cerrada para cuentas personales: https://support.google.com/googleplay/android-developer/answer/14151465 [V; cifra de testers en discusión]
+- Google Play, política de pagos: https://support.google.com/googleplay/android-developer/answer/10281818 [V]
+- Google Play, política para desarrolladores: https://play.google.com/about/developer-content-policy/ [V]
+- Android, verificación de desarrolladores: https://developer.android.com/developer-verification [S]
+- Apple, programa para pequeños desarrolladores: https://developer.apple.com/app-store/small-business-program/ [V, según informe de mercado]
+- Supabase, DPA: https://supabase.com/legal/customer-resources/data-processing-addendum [V]
+- Supabase, residencia de datos y transferencias: https://supabase.com/legal/privacy-resources/data-residency-and-transfers-faq [V]
+- Anthropic, condiciones comerciales: https://www.anthropic.com/legal/commercial-terms [V]
+
+**Fiscal y mercado (fuentes secundarias)**
+- Cuotas de autónomo: https://declarando.es/tramites-autonomo/cuota-autonomos [S]
+- Verifactu, aplazamiento: https://maldita.es/malditobulo/20251203/hacienda-retrasa-a-2027-la-entrada-en-vigor-de-verifactu-el-sistema-de-verificacion-de-facturas-para-pymes-y-autonomos [S]
+- Vietnam, Decreto 252/2026: https://www.ey.com/en_vn/technical/tax/tax-and-law-updates/digital-tax-regulatory-update-in-vietnam [S]
+- Vietnam, nueva ley de datos (Ley 91/2025): https://tilleke.com/insights/vietnams-new-personal-data-protection-law-a-closer-look [S]
+- México, nueva ley de datos: https://www.ey.com/es_mx/technical/tax/boletines-fiscales/nueva-ley-federal-proteccion-datos-personal-posesion-particulares [S]
+- Directiva 2023/2673, estado en España (OCU): https://www.ocu.org/organizacion/prensa/notas-de-prensa/2026/normabotondesistimiento190626 [S]
+- Directiva 2023/2673, versión contraria (El Español): https://www.elespanol.com/omicrono/20260603/va-entrar-vigor-partir-junio-tiendas-online-nuevo-boton-cancelar-compra-facilmente/1003744271473_0.html [S]
+- Accesibilidad, transposición española: https://www.fieldfisher.com/es-es/locations/espana/actualidad/accesibilidad-obligatoria-claves-de-la-transposicion-accesibility-act [S]
+- AI Act, transparencia desde el 2-8-2026: https://www.goodwinlaw.com/en/insights/publications/2026/08/alerts-technology-dpc-eu-ai-act-transparency-obligations-now-in-force [S]
+- Ley de protección de menores en entornos digitales: https://www.mjusticia.gob.es/es/institucional/gabinete-comunicacion/noticias-ministerio/100925-tramitacion-lo-proteccion-menores-entornos [S]
+- Ley de Equidad Digital (Digital Fairness Act), calendario: https://accesspartnership.com/?p=20989 [S]
+- Anteproyecto de loot boxes (2022): https://www.osborneclarke.com/es/insights/el-gobierno-de-espana-publica-el-anteproyecto-de-ley-de-loot-boxes-y-propone-prohibir-su [S]
+- Tarjetas regalo, caducidad (Consumo): https://www.consumoresponde.es/node/63725 [S]
+- Decreto 61/2025 de Aragón, sobre el depósito legal (INAP): https://laadministracionaldia.inap.es/noticia.asp?id=1256226 [S]
+- Textiles, responsabilidad ampliada del productor (proyecto de real decreto): https://www.reconomy.com/2026/07/06/spain-textile-epr-decree/ [S]
+- Envases, preguntas frecuentes (Ecoembes): https://ecoembes.com/landing/envases-servicio/faqs [S]
+- Licencias de las herramientas de traducción (Argos y OPUS-MT): https://github.com/argosopentech/argos-translate y https://huggingface.co/Helsinki-NLP/opus-mt-es-en [S, verificar la licencia del paquete concreto]
+- Tatoeba, licencia: https://tatoeba.org [S]
+- Creative Commons BY-SA 4.0 (Wiktionary): https://creativecommons.org/licenses/by-sa/4.0/ [V]
+- Creative Commons BY 4.0: https://creativecommons.org/licenses/by/4.0/ [V]
+- SIL Open Font License 1.1: https://openfontlicense.org/ [V]
+- COPPA (norma revisada): https://www.ftc.gov/legal-library/browse/rules/childrens-online-privacy-protection-rule-coppa [S]
+
+**Fuentes internas de Paglot (19-10-2026)**
+- js/vistas/legal.js; js/i18n/es.js (claves legal.* y aviso.*); js/config.js; js/nube.js; js/progress.js (`copiaCompleta`, `todosLosDatos`); js/errores.js; js/vistas/laboratorio.js; js/vistas/contacto.js; js/vistas/perfil.js; js/creditos.js; css/fuentes.css; assets/fonts/OFL.txt; js/cursos.js; _herramientas/supabase-cuentas.sql; _herramientas/supabase-errores-e-ideas.sql; _apk/capacitor.config.json; _apk/puente.js; _herramientas/traducir_cursos_en.py.
+- _notas/INFORME_MERCADO_2026-10-19.txt; _notas/INFORME_BASES_DE_DATOS_2026-10-19.txt; _notas/INFORME_METRICAS_2026-10-19.txt; _notas/INFORME_USABILIDAD_2026-10-19.txt; _notas/INFORME_ARREGLOS_2026-10-19.md; _notas/PREGUNTAS_PARA_TERMINAR.txt.
+
+---
+
+## Anexo: qué no se ha podido verificar
+
+- **Texto del BOE o del DOUE** de la mayoría de las normas: se han usado resúmenes. Los artículos marcados [E] deben confirmarse.
+- **Guía de cookies de la AEPD**: el PDF devuelto no era la guía. El criterio sobre localStorage se ha deducido de la norma y de resúmenes.
+- **Estado de la transposición de la Directiva 2023/2673 en España**: fuentes contradictorias.
+- **Fecha de Verifactu**: julio de 2027 (RDL 15/2025) frente a octubre de 2028 (anuncios de octubre de 2026). El instrumento legal del segundo no está confirmado.
+- **Número de testers de Google Play**: 12 en la página oficial consultada hoy; 20 en guías de terceros.
+- **Tarifas**: ISBN, EAN, EUIPO, OEPM, Apple y precios de proveedores de merchandising no se han verificado.
+- **Depósito legal de Aragón**: número de ejemplares y procedimiento del Decreto 61/2025 no confirmados.
+- **Corpus de la traducción y del curso de danés**: la memoria del proyecto menciona Wiktionary, Tatoeba y spaCy; no aparecen en el repositorio actual. Hay que confirmar con el autor de los scripts.
+- **Estado de la ley de protección de menores, de la ley de juego (loot boxes) y de la ley de gobernanza de la IA en España**: no confirmados a 19-10-2026.
+- **Leyes de Colombia, Argentina, Chile, Brasil, Indonesia, India y otros países**: no investigadas en detalle; solo como orientación.
+- **Ayuda del INAEM**: plazo según un boletín, no según el BOA.

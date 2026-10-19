@@ -30,6 +30,7 @@ import { pintarPerdida } from './vistas/perdida.js';
 import { iniciarLogros, comprobarLogros } from './logros.js';
 import { iniciarNube } from './nube.js';
 import { curso, hayCurso, nombreDelCurso, esBeta, paraQuien, lenguaDelAlumno, cambiarDeCurso } from './curso.js';
+import { PRECIOS_VISIBLES } from './config.js';
 import { avisoPendiente } from './sin-terminar.js';
 import './movil.js';
 import './chispa.js';
@@ -132,8 +133,9 @@ function porAlto(piezas, { marco = 40, hueco = 12 } = {}) {
   let pagina = [];
   let usado = 0;
   let cajaActual = null;
-  // una rejilla más alta que media diapositiva va por filas (las piezas que empiezan a la misma altura)
-  const trozos = piezas.filter(Boolean).flatMap(p => (p.getBoundingClientRect().height > alto / 2 && p.children.length > 1 ? filas(p) : [p]));
+  // una rejilla más alta que media diapositiva va por filas (las piezas que empiezan a la misma altura), salvo las que
+  // llevan data-entera: el calendario de Perfil, partido, recolocaba sus cuadritos en menos columnas y salían enormes
+  const trozos = piezas.filter(Boolean).flatMap(p => (p.getBoundingClientRect().height > alto / 2 && p.children.length > 1 && !p.hasAttribute('data-entera') ? filas(p) : [p]));
   for (const trozo of trozos) {
     const fila = [].concat(trozo);
     const pieza = fila[0];
@@ -246,6 +248,8 @@ const DIAPOSITIVAS = {
       credenciales[0], credenciales[1], credenciales[2], [credenciales[3], $('.of-pronto')],
       calculadora.slice(0, 5), [...calculadora.slice(5), $('.of-mesa-grande')], ...resto];
   },
+  // «Elige el idioma»: el escenario (la tutora y su programa) y, en otra, las banderas de todos los idiomas
+  idiomas: () => [app.querySelector('.ti-centro'), [...app.querySelectorAll('.ti-camafeo')]],
   // El perfil: sus cajas por piezas (los hijos de cada caja), repartidas según lo que miden
   perfil: () => porAlto([...app.children].flatMap(c => (c.classList.contains('caja') ? [...c.children] : [c]))),
   // Escuelas: el colegio, el tablón y el temario en dos, la calculadora y su clase, la circular y el final. Los títulos
@@ -656,8 +660,9 @@ async function navegar({ cambioDeIdioma = false } = {}) {
     const i = contenido.resultados.findIndex(r => r.id === parametro);
     const resultado = contenido.resultados[i] && await leccionCompleta(contenido.resultados[i]);
     if (estePase !== pase) return;
-    if (!resultado || resultado.error) {
-      pintarNoEncontrada(t('app.leccionNoAbre', { id: parametro }));
+    if (!resultado || resultado.error || !resultado.leccion) {
+      // (sin conexión y sin la lección guardada en el dispositivo, cargarLeccion no trae lección ni error)
+      pintarNoEncontrada(t(resultado?.sinConexion ? 'app.leccionSinConexion' : 'app.leccionNoAbre', { id: parametro }));
     } else {
       // la siguiente en el orden del curso (por capítulos), no en el de los archivos
       const enOrden = agrupar(contenido.resultados, contenido.capitulos).flatMap(g => g.lecciones).filter(r => !r.error);
@@ -793,10 +798,15 @@ function quitarArranque() {
 
 let pasesSinCurso = 0;
 /** Sin curso elegido: solo las pantallas de la web (la portada, elegir idioma, precios…); lo demás es la página perdida. */
+const PANTALLAS_DE_CURSO = ['lecciones', 'leccion', 'repaso', 'cuaderno', 'frases', 'reto', 'prueba', 'perfil', 'bienvenida', 'practica'];
+
 function pintarSinCurso({ cambioDeIdioma = false } = {}) {
   limpiarVista?.();
   limpiarVista = null;
   const ruta = location.hash.startsWith('#/') ? location.hash.slice(2).split('/')[0] : '';
+  // Una pantalla de curso (perfil, repaso, una lección…) sin curso elegido no es una página perdida: primero hay que
+  // elegir idioma (antes acababa en «Esta página se ha perdido», un callejón sin salida).
+  if (PANTALLAS_DE_CURSO.includes(ruta)) { location.replace('#/idiomas'); return; }
   // Lo que no es una ruta («#/algo») no es una página perdida: son, por ejemplo, los datos que traen los enlaces de los correos.
   const pantalla = esGeneral(ruta) ? ruta : ruta ? 'perdida' : 'inicio';
   document.body.classList.toggle('en-inicio', PORTADAS.includes(pantalla));
@@ -811,7 +821,23 @@ function pintarSinCurso({ cambioDeIdioma = false } = {}) {
   if (!cambioDeIdioma) window.scrollTo(0, 0);
 }
 
+/** true si el navegador deja guardar datos (sin eso no se puede elegir curso ni guardar el progreso). */
+function hayAlmacenamiento() {
+  try { localStorage.setItem('paglot-prueba-almacen', '1'); localStorage.removeItem('paglot-prueba-almacen'); return true; } catch { return false; }
+}
+
 async function iniciar() {
+  if (!hayAlmacenamiento()) {
+    aplicarIdioma();
+    aplicarTema();
+    poner(app, el('section', { class: 'caja tarjeta-error', role: 'alert' },
+      el('h1', {}, t('app.sinAlmacenamientoTitulo')), el('p', {}, t('app.sinAlmacenamientoTexto')),
+      el('button', { type: 'button', class: 'boton', onclick: () => location.reload() }, t('app.reintentar'))));
+    quitarArranque();
+    return;
+  }
+  // sin precios (hasta el informe de mercado), «Precio por anunciar» ocupa el sitio de las cifras: va en letra más pequeña
+  document.documentElement.classList.toggle('sin-precios', !PRECIOS_VISIBLES);
   aplicarIdioma();
   iniciarPie();
   aplicarTema();

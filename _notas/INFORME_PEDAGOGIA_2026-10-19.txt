@@ -1,0 +1,657 @@
+# Paglot · Informe de pedagogía y eficacia del aprendizaje
+
+Fecha: 19-10-2026. Alcance: 21 cursos (6.000 lecciones medidas en sus archivos, 17 lecciones leídas en detalle), código de `js/` y `juegos/`, y fuentes de la sección 10. Ningún archivo del repositorio se ha modificado para este informe.
+
+---
+
+## 1. Resumen ejecutivo
+
+**Veredicto.** El curso de español (`cursos/es`, 320 lecciones, 26 capítulos) es el único revisado y con una secuencia pedagógica completa: cada lección tiene explicación gramatical explícita, diálogo, vocabulario, lectura y siempre al menos un ejercicio de escribir y uno de ordenar. Eso encaja con lo que la investigación recomienda (recuperación activa, gramática explícita, retroalimentación sobre la tarea). Sus problemas son de nivel y de medida: lecciones A1 con subjuntivo y léxico literario, ningún ejercicio de escucha, y cero datos de aprendizaje.
+
+Los 20 cursos beta no están listos para enseñar. Medido hoy: el 55 % de las lecciones de francés no tienen ningún ejercicio de escribir ni de ordenar; la traducción automática introduce errores que cambian el sentido («Certeza» pasa a «Cherry», «acusativo» a «in charge», «nombre» a «name»); hay bloques de vocabulario vacíos; y th y zh usan etiquetas ACTFL y HSK en lugar de MCER.
+
+La prueba de nivel tiene baja fiabilidad: tres preguntas por tramo, solo de reconocimiento, y un alumno que adivina pasa un tramo en uno de cada cuatro intentos.
+
+**No hay evidencia propia de eficacia.** No existe analítica, ni pre/post test, ni medida de retención. Ninguna afirmación de que Paglot «funciona» puede hacerse hoy con datos.
+
+**Diez recomendaciones principales** (impacto y esfuerzo de 1 a 5; la tabla completa está en la sección 9):
+
+1. Añadir producción a todas las lecciones beta: al menos un ejercicio de escribir y uno de ordenar por lección, empezando por fr, pt, ja y vi. (Impacto 5, esfuerzo 3.)
+2. Pasar un validador de traducción sobre todos los cursos (patrones «name», «in charge», «Cherry», «♪», bloques vacíos, español dentro del inglés) y revisar por IA y después por profesores. (Impacto 5, esfuerzo 2.)
+3. Revisar el nivel de las lecciones A1 del español (ejemplo: `cursos/es/lessons/001.json`, bloque b5) y comprobar en el DPD el ítem «a lo mejor» de `cursos/es/lessons/120.json` (b9) antes de tocarlo. (Impacto 4, esfuerzo 2.)
+4. Rehacer la prueba de nivel con 12–15 preguntas por tramo, con producción y con escucha cuando haya voz, decisión con margen de error y validación frente a un examen externo. (Impacto 4, esfuerzo 4.)
+5. Medir antes de presumir: eventos de aprendizaje sin cookies (acierto a la primera por tipo de ejercicio, retención a 7 y 30 días) y un pre/post test con examen externo en una cohorte piloto. (Impacto 5, esfuerzo 3.)
+6. Llevar los fallos de lección al calendario de repaso, y no solo a la sección Práctica. (Impacto 4, esfuerzo 3.)
+7. Ajustar el repaso: objetivo de retención de alrededor del 90 %, variación aleatoria de intervalos y registro local de respuestas para calibrar. (Impacto 3, esfuerzo 3.)
+8. Revisar la gamificación: que las estrellas no castiguen el error, que los logros premien la calidad y no solo el volumen (hay un logro «repasos1000»), y que la racha siga sin culpa. (Impacto 3, esfuerzo 2.)
+9. Adaptar la carga para personas con TDAH: por defecto 10–15 entradas de glosario (hoy llegan a 60), análisis sintáctico plegado y un objetivo diario de 1 a 5 minutos. (Impacto 4, esfuerzo 2.)
+10. Etiquetar con honestidad: marcar «beta» en cada curso, quitar el MCER donde no existe (th, zh) y presentar B2 como objetivo, no como promesa. (Impacto 3, esfuerzo 1.)
+
+**Qué conservar.** La secuencia del curso de español, los refuerzos que explican cada opción incorrecta, la regla de no avanzar sin pensar, la repetición que devuelve lo fallado, el modo calma y la ausencia de presión en los textos.
+
+---
+
+## 2. Marco teórico breve con fuentes
+
+Este apartado resume lo que dice la investigación y qué implica para Paglot. Donde solo he podido leer un resumen o una fuente secundaria, lo indico. Las fuentes completas con enlace están en la sección 10.
+
+### 2.1 Input comprensible y cobertura léxica
+
+Krashen (1982) propuso la hipótesis del input: se adquiere lengua al entender mensajes ligeramente por encima del propio nivel (el «i+1»). Es la idea de fondo de la mayoría de los cursos. No he podido enlazar una copia libre verificada del libro; lo cito como fuente bibliográfica.
+
+La condición práctica es la cobertura léxica. Nation (2006) estima que, para comprender sin ayuda un texto con el 98 % de las palabras conocidas, hacen falta unas 8.000–9.000 familias de palabras en texto escrito y 6.000–7.000 en habla espontánea. Van Zeeland y Schmitt (2012), según la replicación publicada en *Language Teaching* (año no verificado), sostienen que para escuchar puede bastar el 95 % con 2.000–3.000 familias. La conclusión práctica para A1 es que el texto debe tener casi todo lo conocido, o que la ayuda (un glosario) debe cubrir lo que falta.
+
+**Implicación para Paglot.** En A1, las lecturas deben ser casi totalmente comprensibles con lo ya visto. Los textos de `cursos/es` de A1 no cumplen esta condición (ver sección 4).
+
+### 2.2 Práctica de recuperación (efecto de prueba)
+
+Roediger y Karpicke (2006) comparan tests de recuerdo libre con releer el mismo texto. A los 5 minutos ganaba releer; a los 2 días y a la semana, ganaba el test, aunque releer hacía sentir más seguro al alumno. Dunlosky et al. (2013), en una revisión publicada por la Association for Psychological Science, puntúan con utilidad alta la práctica de recuperación y el repaso espaciado; con utilidad baja, releer, subrayar y resumir.
+
+**Implicación.** Responder preguntas cuenta más que releer, pero el tipo de ejercicio importa: la literatura que he leído compara sobre todo recuerdo libre con releer, no opción múltiple con escritura. Que tres opciones por reconocimiento tengan el mismo efecto que escribir la respuesta es una inferencia mía y no está demostrado. En el curso de español, el 21 % de los bloques son «test» y el 19 % «huecos», ambos de elegir entre opciones.
+
+### 2.3 Repetición espaciada
+
+Cepeda et al. (2006) reúnen 839 evaluaciones de 317 experimentos sobre práctica distribuida. El intervalo óptimo entre sesiones crece con el tiempo que se quiere retener, y ambos factores actúan juntos.
+
+Bahrick et al. (1993) siguieron durante nueve años a cuatro personas que aprendían 300 pares de palabras. Con intervalos más largos el aprendizaje era un poco más lento, pero la retención era mucho mayor: trece sesiones separadas 56 días retenían como veintiséis sesiones separadas 14 días. La muestra es muy pequeña y hay que tratarla como indicio.
+
+Settles y Meeder (2016), con datos de Duolingo, presentan un modelo de regresión de vida media (HLR) que predice cuándo olvidará un alumno una palabra. Según una reseña, reduce el error de predicción en más de un 45 % frente a las referencias; no he podido leer la cifra en el artículo.
+
+El algoritmo FSRS (Ye, Su y Cao, 2022) modela cada tarjeta con dificultad, estabilidad y recuperabilidad, y programa el repaso para un objetivo de retención (por defecto el 90 %). Anki lo ofrece como opción desde 2023. Según la explicación consultada, tiene más parámetros que SM-2 y se ajusta con los datos de cada usuario.
+
+**Implicación.** La repetición espaciada está bien respaldada. Paglot la aplica solo a las tarjetas del cuaderno (sección 5).
+
+### 2.4 Intercalado
+
+Brunmair y Richter (2019) reúnen 59 estudios y 238 tamaños de efecto: el intercalado (mezclar tipos de problema o conceptos) mejora el aprendizaje con un tamaño medio de g = 0,42, y el efecto es mayor cuando los elementos se parecen y hay que distinguirlos.
+
+**Implicación.** Conviene intercalar exactamente donde hay que discriminar: *ser* y *estar*, *por* y *para*, artículos, indicativo y subjuntivo. No he comprobado si el repaso mezcla tarjetas de distintas lecciones, y conviene hacerlo; en las lecciones, los ejercicios van agrupados por punto gramatical.
+
+### 2.5 Producción
+
+Swain (1985 y revisiones posteriores) sostiene que producir lengua obliga a notar los huecos del propio conocimiento. La evidencia de que la producción enseña formas concretas es mixta. Solo he leído resúmenes secundarios de esta línea (ver fuentes).
+
+**Implicación.** Los ejercicios de reconocimiento no bastan. En Paglot falta la producción oral por completo, y la escrita es muy corta (una frase o una palabra).
+
+### 2.6 Retroalimentación
+
+Hattie y Timperley (2007) concluyen que la retroalimentación sobre la tarea y sobre cómo mejorar tiene más efecto que el elogio o las recompensas. Wisniewski, Zierer y Hattie (2020) reportan un efecto medio de d = 0,48 en 435 estudios (solo en resumen secundario).
+
+**Implicación.** Los refuerzos de Paglot («Correcto: …», «Incorrecto: esto indica…») explican la regla, lo que es bueno. En muchos casos no dicen cómo recordarla la próxima vez.
+
+### 2.7 Instrucción explícita frente a implícita
+
+Norris y Ortega (2000), en *Language Learning* 50, hacen un meta-análisis de la instrucción de lenguas extranjeras que encuentra efectos favorables a la instrucción. Goo et al. (meta-análisis de seguimiento, año y revista no verificados) añaden 23 estudios y concluyen que la explícita supera a la implícita. Spada y Tomita (2010) encuentran que la instrucción explícita da ventaja también en retención diferida, y que el mayor efecto está en estructuras complejas. Todo esto solo lo he leído en resúmenes; el texto original no fue accesible.
+
+Plonsky y Oswald (2014) advierten que en investigación de segundas lenguas los tamaños de efecto típicos son mayores de lo que sugieren los cortes de Cohen, y que hay que interpretarlos según el campo.
+
+**Implicación.** El enfoque explícito de `cursos/es` (un bloque `gramatica` antes de los ejercicios) tiene respaldo. En los cursos beta, la gramática explícita existe pero depende de una traducción que hoy es deficiente.
+
+### 2.8 Carga cognitiva
+
+Sweller, van Merriënboer y Paas (2019) resumen la teoría de la carga cognitiva: la memoria de trabajo es limitada, la información nueva pasa por ella, y el diseño debe reducir la carga que no ayuda al aprendizaje (carga ajena).
+
+**Implicación.** Una lección de Paglot tiene de media 11–13 bloques, un glosario de hasta 60 entradas (`cursos/es/lessons/001.json`), análisis sintáctico en los diálogos, animaciones y sonido en cada pulsación. Cada elemento puede ser útil, pero juntos pesan más de lo que una memoria de trabajo limitada puede llevar, y eso pesa más con TDAH.
+
+### 2.9 Motivación y gamificación
+
+Deci, Koestner y Ryan (1999), en un meta-análisis de 128 experimentos, encuentran que las recompensas tangibles y esperadas reducen el interés libre por la tarea (tamaños de efecto entre −0,28 y −0,40 según el tipo de recompensa). Cameron y Pierce (1994) habían concluido lo contrario, y el debate sigue abierto.
+
+Sailer y Homner (2020) meta-analizan la gamificación en educación: efecto pequeño sobre el aprendizaje cognitivo (g = 0,49, k = 19), sobre la motivación (g = 0,36, k = 16) y sobre la conducta (g = 0,25, k = 9). El efecto cognitivo se sostiene solo en los estudios de mayor rigor.
+
+Hanus y Fox (2015), en un estudio longitudinal de aula con insignias, monedas y tabla de clasificación, encuentran efectos positivos al principio y negativos después sobre la motivación y la satisfacción (fuente secundaria).
+
+La única evidencia sobre rachas que he encontrado es de la propia empresa: una prueba A/B de Duolingo que cambió la meta diaria y la racha, con un +3,3 % de retención a los 14 días. No es una comparación entre quien tiene racha y quien no, que estaría sesgada.
+
+**Implicación.** La gamificación sirve para la práctica y poco para el aprendizaje a largo plazo, salvo que esté ligada a la tarea. Las recompensas tangibles y no condicionadas son las más arriesgadas.
+
+### 2.10 Dificultades deseables
+
+Bjork y Bjork (2011) defienden que espaciar, intercalar y probar hacen el aprendizaje más difícil en el momento, pero mejor después; la dificultad ayuda solo si el alumno tiene base para afrontarla, y si no, se vuelve indeseable. El rendimiento durante el aprendizaje puede engañar.
+
+**Implicación.** El diseño de Paglot («no se avanza sin pensar», «lo fallado vuelve») es coherente con esto, siempre que el nivel sea el adecuado. Un texto A1 con subjuntivo no es una dificultad deseable, sino indeseable.
+
+### 2.11 TDAH y aprendizaje
+
+Polanczyk et al. (2007) reúnen 102 estudios y 171.756 personas y dan una prevalencia mundial agrupada de 5,29 %, con variación grande según el método.
+
+Sonuga-Barke et al. (2010) describen la aversión al retardo: preferencia por recompensas pequeñas e inmediatas frente a grandes y diferidas. La evidencia es mixta; no todas las personas con TDAH la muestran.
+
+Sobre TDAH y aprendizaje de lenguas extranjeras, la búsqueda no encontró estudios primarios controlados sólidos: hay descripciones, estudios de un solo caso y muestras pequeñas. Las recomendaciones que siguen son extrapolaciones de la atención y la memoria de trabajo, no resultados de estudios de idiomas.
+
+**Implicación.** Sesiones cortas, retroalimentación inmediata (Paglot ya tiene sonido y animación en cada respuesta, lo que es bueno), pocas opciones por pantalla y recompensas cercanas en el tiempo. La racha y los cofres son recompensas diferidas: conviene que haya también una recompensa inmediata y pequeña.
+
+### 2.12 MCER y niveles
+
+El *Companion Volume* del MCER (Consejo de Europa, 2020) describe competencias mediante descriptores. No da listas de vocabulario ni de gramática por nivel. Las cifras de tamaño de vocabulario por nivel que circulan son de terceros: Milton y Alexiou (2020) sitúan B2 en unos 3.250–3.750 ítems léxicos, y Nation en unos 4.000 familias. Ambas cifras cambian según el método.
+
+Un ejemplo de validación externa es el de Duolingo English Test, cuya alineación con el MCER fue revisada por el CIOL con un estudio dirigido por una empresa psicométrica independiente y por un investigador de CRELLA (Universidad de Bedfordshire). Su escala asigna B2 entre 100 y 125 puntos. Sirve para ver qué significa «validar» un nivel: un estudio externo, no una etiqueta.
+
+**Implicación.** Los niveles A1–B2 de `cursos/es` son etiquetas internas. Para decir «B2» con fundamento hace falta una prueba externa o un estudio de validación.
+
+### 2.13 Horas hasta un nivel
+
+El Foreign Service Institute de EE. UU. estima que el español requiere unas 600–750 horas de clase para la competencia profesional (ILR 3), que una fuente secundaria equipara a B2/C1. Son horas de clase intensiva para adultos ya bilingües o con experiencia, no de autoestudio, así que no son directamente comparables.
+
+Vesselinov y Grego (2012), encargados por Duolingo, dicen que 34 horas de Duolingo equivalen a un curso universitario de nivel inicial. Participaron 156 personas y terminaron 90. La ganancia media fue de 8,1 puntos por hora y la mediana de 3,9. No fue revisado por pares, y la muestra no era representativa (edad media de 35 años y 69 % con estudios universitarios, según una crítica).
+
+Loewen, Isbell y Sporn (2020) publicaron en *Foreign Language Annals* un estudio sobre instrucción con aplicaciones (DOI 10.1111/flan.12454). No he podido leer sus resultados.
+
+**Implicación.** Las 320 lecciones de `cursos/es` equivalen, con estimación propia de 15–25 minutos por lección, a unas 80–130 horas de estudio directo. Eso no permite prometer B2 para la mayoría. B2 debe presentarse como objetivo y medirse.
+
+---
+
+## 3. Análisis del diseño de lección
+
+### 3.1 Estructura de una lección de español
+
+`cursos/es/lessons/001.json` tiene 9 bloques, que es el patrón general del curso (media de 11,6 bloques por lección):
+
+| Bloque | Tipo | Contenido |
+|---|---|---|
+| b1 | explicación | Saludos y registro, en español con traducción al inglés y al vietnamita |
+| b2 | diálogo | Seis frases en una panadería, con análisis de cada frase |
+| b3 | vocabulario | 10 palabras |
+| b4 | gramática | Concordancia de «buenos/buenas», con dos ejemplos |
+| b5 | texto | Lectura literaria de nueve frases en dos párrafos |
+| b6 | test | Tres opciones, cada una con refuerzo |
+| b7 | huecos | Tres opciones |
+| b8 | ordenar | Una frase de tres palabras |
+| b9 | escribir | Una respuesta válida: «gracias» |
+
+Además, el campo `palabras` tiene 60 entradas con pronunciación y categoría, de las que el bloque de vocabulario enseña solo 10.
+
+**Lo que funciona.** La secuencia es entrada, luego reconocimiento y después producción. Cada opción incorrecta tiene su refuerzo, que explica por qué está mal (por ejemplo, «Buenas» iría con «tardes» o «noches»). Eso es lo que pide la retroalimentación sobre la tarea.
+
+**Lo que falta.** No hay ningún bloque de escucha en el curso (ver 3.4), la producción escrita es de una frase, la oral no existe y la lectura de A1 excede el nivel (sección 4).
+
+### 3.2 Carga de ejercicios por lección
+
+Recuento de todo el curso de español (320 lecciones, 2.107 ejercicios): 770 «test» (2,4 por lección), 697 «huecos» (2,2), 320 «ordenar» (1 por lección) y 320 «escribir» (1 por lección). Es decir, de unos 6,6 ejercicios por lección, dos son de producción (ordenar y escribir): el 30 %.
+
+El resto de bloques son explicación, diálogo, vocabulario, gramática y texto, una vez por lección.
+
+### 3.3 Progresión
+
+El curso tiene 26 capítulos: 6 de A1, 4 de A2, 8 de B1 y 8 de B2. Las lecciones se reparten así según su nivel: A1 59, A2 63, B1 92, B2 106. Los títulos de capítulo son claros (por ejemplo, «B2 · La persona») y la secuencia gramatical tiene sentido: `ser` y `estar` (lección 10), luego la compra y los colores (lección 50), el futuro de suposición (lección 120) y el subjuntivo con «sin que» (lección 250).
+
+Hay pocos capítulos A2 (4) en comparación con B1 y B2 (8 cada uno). Conviene revisarlo, porque el paso de A1 a B1 se hace sin un nivel intermedio bien marcado.
+
+### 3.4 Comprensión oral
+
+En `cursos/es` no hay ningún bloque de escucha: ningún bloque tiene el campo `audio`, en las 320 lecciones. La app tiene botones de «escuchar» que leen textos y diálogos con la voz del dispositivo (ver `_notas/INFORME_ARREGLOS_2026-10-19.md`, área 12), pero eso no es un ejercicio de comprensión oral. El código oculta los ejercicios de solo oído si el dispositivo no tiene voz (`js/lessons.js`, `soloOido`), así que en español no pasa nada porque no hay ninguno.
+
+Entre los cursos beta, la proporción de bloques con audio varía: vi 15,2 %, fr 4,0 %, ja 3,4 %, ko 4,6 %, de 0 %, en 2,5 %. El resto, menos del 10 %.
+
+### 3.5 Expresión
+
+La escritura es de una o dos frases. La comparación de respuestas es tolerante: quita mayúsculas y signos (`js/exercises.js`, `normalizarRespuesta`), ignora tildes (línea 193) y acepta errores pequeños de una o dos letras (`casiIgual`). Es una buena decisión para no castigar la ortografía de un principiante, aunque no mide ortografía.
+
+La producción oral no existe. El arreglo de «repite en voz alta» está pendiente en el informe de arreglos (T16).
+
+### 3.6 Gramática explícita e implícita
+
+En español, cada lección tiene un bloque `gramatica` con ejemplos (en `001.json` son dos). En los cursos beta, la gramática está en bloques `explicacion` con tablas (`tabla`). El modelo es coherente con la evidencia de instrucción explícita (2.7), pero la calidad de la explicación depende de la traducción, y en los beta eso hoy falla (sección 4).
+
+### 3.7 Vocabulario por lección y reciclaje
+
+En español, el bloque de vocabulario tiene 13,0 palabras de media (entre 7 y 30). El glosario, sin embargo, tiene de media 32,9 entradas por lección, y 24,5 de ellas son nuevas respecto a las lecciones anteriores. El alumno ve muchas más palabras de las que el bloque de vocabulario le pide practicar.
+
+Medido por la forma escrita exacta, solo el 5,9 % de las entradas de una lección reaparece en las diez siguientes. Es una medida que subestima el reciclaje (no lematiza y no cuenta las formas conjugadas), pero indica que el repaso de vocabulario dentro del curso es débil.
+
+Como orientación de diseño, entre 10 y 15 palabras nuevas por lección y un repaso intercalado de las anteriores es razonable. No he encontrado una fuente primaria que fije esa cifra, así que la presento como criterio, no como dato.
+
+### 3.8 Tabla comparativa de los 21 cursos
+
+Medido hoy sobre los archivos de `cursos/*/lessons`. «Producción» son los bloques de ordenar y escribir. «Reciclaje» es el porcentaje de entradas de glosario que reaparecen en las diez lecciones siguientes (medido por forma exacta).
+
+| Curso | Lecciones | Capítulos | Bloques/lección | Test % | Huecos % | Traducción % | Ordenar % | Escribir % | Lecciones sin producción % | Entradas de palabras/lección | Bloques con audio % | Reciclaje 10 lecciones % |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| da | 304 | 34 | 10,7 | 28,1 | 16,9 | 7,8 | 9,2 | 2,4 | 2,0 | 15,0 | 8,5 | 12,6 |
+| de | 308 | 38 | 12,8 | 25,6 | 17,6 | 12,3 | 7,0 | 0,0 | 11,0 | 18,7 | 0,0 | 6,2 |
+| el | 300 | 28 | 10,0 | 22,0 | 10,0 | 10,0 | 10,0 | 10,0 | 0,0 | 8,8 | 10,0 | 27,8 |
+| en | 300 | 34 | 11,9 | 31,7 | 15,9 | 8,1 | 7,3 | 4,8 | 11,3 | 12,4 | 2,5 | 8,9 |
+| **es** | **320** | **26** | **11,6** | **20,8** | **18,8** | **0,0** | **8,6** | **8,6** | **0,0** | **32,9** | **0,0** | **5,9** |
+| fr | 300 | 33 | 10,3 | 32,2 | 15,2 | 9,7 | 4,4 | 0,0 | 55,0 | 9,5 | 4,0 | 20,6 |
+| id | 124 | 13 | 12,8 | 29,2 | 11,3 | 16,9 | 7,8 | 2,0 | 0,0 | 17,5 | 11,3 | 0,2 |
+| it | 265 | 34 | 12,1 | 29,1 | 13,9 | 11,5 | 7,8 | 0,0 | 6,0 | 20,1 | 0,8 | 3,0 |
+| ja | 300 | 40 | 12,2 | 28,2 | 17,2 | 12,5 | 6,2 | 0,0 | 24,0 | 9,9 | 3,4 | 2,8 |
+| ko | 300 | 35 | 11,3 | 36,6 | 13,0 | 10,4 | 8,2 | 0,0 | 8,3 | 10,6 | 4,6 | 2,4 |
+| nl | 300 | 33 | 10,2 | 22,2 | 9,9 | 16,7 | 9,4 | 12,2 | 0,0 | 7,5 | 7,6 | 1,6 |
+| no | 157 | 17 | 12,1 | 27,3 | 16,7 | 10,1 | 8,2 | 7,4 | 0,0 | 21,7 | 8,2 | 0,6 |
+| pl | 229 | 25 | 12,3 | 25,2 | 8,8 | 17,5 | 8,1 | 8,0 | 0,0 | 15,2 | 8,1 | 0,1 |
+| pt | 263 | 32 | 12,7 | 30,2 | 14,5 | 10,8 | 5,8 | 2,8 | 25,1 | 14,3 | 3,2 | 4,3 |
+| ro | 184 | 27 | 11,6 | 21,9 | 10,2 | 14,6 | 6,0 | 8,3 | 1,1 | 14,7 | 5,8 | 0,5 |
+| ru | 325 | 35 | 9,8 | 31,4 | 9,5 | 9,2 | 9,9 | 1,0 | 3,4 | 11,3 | 4,8 | 8,6 |
+| sv | 304 | 28 | 10,4 | 26,9 | 9,6 | 9,6 | 9,6 | 9,6 | 0,0 | 6,4 | 6,7 | 0,8 |
+| th | 281 | 5 | 9,1 | 22,4 | 11,0 | 11,0 | 11,0 | 0,0 | 0,0 | 4,1 | 1,7 | 83,0 |
+| tr | 295 | 38 | 10,7 | 31,6 | 8,4 | 9,4 | 9,4 | 9,4 | 0,0 | 11,7 | 9,4 | 0,6 |
+| vi | 300 | 29 | 13,8 | 46,9 | 10,8 | 7,8 | 6,3 | 0,0 | 20,3 | 36,9 | 15,2 | 37,5 |
+| zh | 298 | 6 | 12,2 | 28,2 | 9,9 | 11,1 | 8,2 | 5,6 | 0,0 | 10,7 | 2,8 | 25,4 |
+
+Lecturas principales:
+
+- Nueve cursos (es, el, id, no, pl, sv, th, tr y zh) tienen producción en todas sus lecciones. Las peores son fr (55 %), pt (25 %), ja (24 %) y vi (20 %).
+- th tiene 4,1 entradas de glosario por lección y un 83 % de reaparición en diez lecciones: vocabulario muy repetido. Es un indicio de lecciones casi iguales, y debe revisarse cuando esté terminado. No lo he muestreado.
+- El informe de arreglos de hoy daba 3 lecciones para th y 93 para zh. Los archivos medidos para este informe tienen 281 y 298, así que estos cursos cambian durante el día. Las cifras de esta tabla son las de los archivos en el momento de medir.
+- ro también ha cambiado durante la sesión: la primera medida daba 154 lecciones y la tabla, 184.
+
+---
+
+## 4. Análisis del contenido real muestreado
+
+### 4.1 Método y muestra
+
+Muestra: `cursos/es` en 001, 010, 050, 120 y 250; y fr, de y ja en 001, 020, 080 y 200, con sus `capitulos.json`. Son 17 lecciones de más de 6.000. Las leí con un visor auxiliar en el directorio temporal de sesión (no está en el repositorio), que saca cada bloque con sus textos en cada idioma y las opciones marcadas como correctas.
+
+Esto no es una auditoría completa. Lo que encuentro en estas 17 lecciones se repite en el recuento de la sección 4.6, y permite pensar que el problema es sistemático.
+
+### 4.2 Español
+
+**es/001 (A1, capítulo 1, «Primeros pasos»).**
+- Funciona: un diálogo con contexto (la panadería), una explicación clara de la concordancia de «buenos/buenas», y refuerzos por opción.
+- Problema 1: el bloque b5 (texto, registro literario) incluye «La panadería de la esquina abre **antes de que salga el sol**», que es subjuntivo, con vocabulario como «mostrador», «recién hecho», «protegerse» o «bolsillos». Para un A1 es input ininteligible sin glosario. El glosario tiene 60 entradas, y el bloque de vocabulario solo 10.
+- Problema 2: el bloque b8 (ordenar) es una frase de tres palabras, «Hasta luego, Pablo»; la tarea no exige pensar mucho.
+- Veredicto: buena lección para su contenido, con un texto por encima del nivel declarado.
+
+**es/010 (A1, capítulo 2, «Quién eres»).**
+- Funciona: la explicación de *ser* y *estar* (identidad y origen frente a lugar y estado temporal), y un test de origen en el que cada opción tiene su refuerzo («Estoy en Madrid… indica dónde estás ahora mismo»). El bloque b9 acepta dos respuestas válidas.
+- Veredicto: lección sólida, sin problemas graves.
+
+**es/050 (A1, capítulo 6, «Compras y salud»).**
+- Funciona: la concordancia de colores (`blanco/blanca/blancos/blancas`) y de *llevar* y *quedar* con la prenda, con refuerzos bien hechos. Hay siete ejercicios, con dos de producción (ordenar y escribir), y el de *quedar* (b10, singular frente a plural) es un buen ejercicio de discriminación.
+- Problema: el bloque b8 (ordenar) pide ordenar una frase que ya está en orden canónico («Me quedan bien estos pantalones»), así que el ejercicio no exige nada.
+- Veredicto: buena lección.
+
+**es/120 (B1, capítulo 11, «Opinar y prever»).**
+- Funciona: la explicación del futuro de suposición (*Estará en casa*, *Serán las diez*) es de las mejores del curso. El bloque b5 (texto) narra una escena con sentido y un final sorprendente.
+- Punto a verificar: el bloque b9, «A lo mejor ____ en casa», tiene las opciones *esté* (marcada incorrecta, con el refuerzo «The subjunctive is not used with «a lo mejor»»), *está* (correcta) y *estar*. La norma general es el indicativo con «a lo mejor», pero no puedo confirmarlo: la entrada del Diccionario panhispánico de dudas no se pudo abrir (error 403). Antes de cambiar nada hay que consultarlo en el DPD. Si el subjuntivo se admite en alguna variedad, el ítem no debería marcarlo como error.
+- Veredicto: buena lección con un ítem dudoso.
+
+**es/250 (B2, capítulo 22, «La persona»).**
+- Funciona: el subjuntivo con «sin que» (b10), los verbos en *-ecer* (b7), el falso amigo *embarazada* (b12) y el registro de *fallecer* frente a *morir* (b6). El texto (b5) es literario y de nivel B2.
+- Veredicto: lección sólida y bien nivelada.
+
+**Conclusión sobre el español.** El nivel declarado de los capítulos B1 y B2 se corresponde con el contenido. Los capítulos A1 tienen textos literarios por encima del nivel, lo que contradice el principio de la sección 2.1. Y no hay escucha.
+
+### 4.3 Francés
+
+**fr/001 (A1, «Saludos y presentaciones»).**
+- Funciona: la distinción *tu/vous*, con diálogos en contexto.
+- Problema: la explicación en inglés de *Je m'appelle* dice «My name is Je m-appelle.», un fallo de traducción automática visible para cualquier lector en inglés.
+
+**fr/020 (A1, «Comida y bebida»).**
+- Funciona: la tabla «Cantidades» (*beaucoup de, un peu de, trop de, un kilo de*) es clara.
+- Problema: las explicaciones en inglés dicen «Il faut + name.» y «Combien de + name food.», donde el original español decía «+ nombre», es decir, sustantivo. En inglés, «name» significa nombre propio o nombre de algo, así que la regla queda confusa.
+- Veredicto: buen contenido, explicación rota para quien estudia en inglés.
+
+**fr/080 (B1, capítulo 19, «Hace falta que vengas»).**
+- Funciona: el subjuntivo tras expresiones de duda y opinión (*je doute que, je ne pense pas que*) frente al indicativo con *c'est certain que*, con una tabla comparativa. Hay buenos ejercicios: subjuntivo de *être* y *avoir*, y una traducción de «Je ne pense pas que Thomas soit là».
+- Problema 1: el título de la explicación en español es «Certeza y posibilidad» y el inglés dice «Cherry and possibility».
+- Problema 2: la pregunta en inglés del ítem fr080-1 dice «What's the way after «je ne pense pas que»?», y *modo* se ha traducido como *way*.
+- Problema 3: la explicación en inglés dice «With «je ne pense pas que» it is used subjunctive.», sin artículo ni concordancia.
+- Veredicto: contenido bueno, traducción que le resta claridad a la regla.
+
+**fr/200 (B1, capítulo 15, «Una noticia local breve»).**
+- Funciona: el texto es un aviso real de formación con fechas, condiciones y un pedido de documentación.
+- Problema: solo siete bloques y cinco palabras de vocabulario. Ningún ejercicio de producción. Los ítems piden buscar una frase copiada del texto (fr200-1: la respuesta correcta es literalmente la frase del aviso), y los distractores son frases de la misma lectura. Es comprensión de búsqueda, no de lectura.
+- Veredicto: la etiqueta B1 es plausible para el texto, pero la lección no llega a B1 en tareas.
+
+### 4.4 Alemán
+
+**de/001 (A1, «Saludos y presentaciones»).**
+- Funciona: *Du* y *Sie*, con diálogos y ejercicios de *Ich heiße*, bien graduados.
+- Problema: el título de la explicación en inglés dice «You and you.», cuando debería distinguir el tú informal y el usted formal.
+
+**de/020 (A1, «Números y familia»).**
+- Funciona: *es gibt* con acusativo, con una tabla de artículos y ejercicios de *kein* frente a *ein*. Dieciocho bloques.
+- Problema: la explicación en inglés traduce «Es gibt + número + plural + lugar» como «It's gibt + number + plural + place»: deja la expresión fija en alemán, y «It's» parece un error (la expresión significa «there is/are»). Y en el ejercicio de020-9, la explicación de *keinen* dice «masculine in charge.», por «acusativo».
+
+**de/080 (A2, capítulo 11, «Vivir y mudarse»).**
+- Funciona: el nivel A2 es plausible, con el destino y el acusativo (*in die Küche*, *ins Bad*), y ejercicios de *auf* y *in* con sentido.
+- Problema: el título de la explicación «Destino: acusativo» se traduce como «Destination: Indicative», y la tabla «Artículo en acusativo» como «Article in charge». Son errores de vocabulario gramatical que confunden la regla.
+
+**de/200 (B2, capítulo 26, «Estudio y relaciones»).**
+- Funciona: el nivel B2 es plausible, con *zwar … aber* frente a *obwohl* y el correlato concesivo.
+- Problema 1: el título en inglés de la explicación es «Confederative Matiz versus obwohl»: la traducción de «Matiz concesivo frente a obwohl» no tiene sentido.
+- Problema 2: el título en inglés del diálogo dice «Wohnungssuhe im Vorort» (la palabra correcta es *Wohnungssuche*).
+- Problema 3: el bloque de vocabulario tiene solo tres palabras (*anspruchsvoll*, *Stadtrand*, *Verkehrsanbindung*) para una lección B2, y no tiene ejercicios de escribir ni de ordenar.
+- Veredicto: buen nivel gramatical; vocabulario y traducción por debajo.
+
+### 4.5 Japonés
+
+**ja/001 (A1, capítulo 1, «El hiragana»).**
+- Funciona: la pedagogía es muy buena. Explica que cada signo es una sílaba, da la tabla de las primeras filas, tiene lectura en voz alta de palabras y ejercicios de lectura de cada signo.
+- Problema 1: en la lectura en voz alta, *かお* (cara) se traduce como «Heads» en inglés.
+- Problema 2: la explicación del ítem ja001-8 contiene «Su@-@ shi.», un marcador de la herramienta que ha quedado en el texto.
+- Problema 3: «Derogation from row t.» debería ser «Exception from row t.».
+- Veredicto: el mejor diseño de los cursos beta. Hay que limpiar las traducciones.
+
+**ja/020 (A1, capítulo 3, «Personas y familia», partícula の).**
+- Problema 1: el bloque de vocabulario (`vocabulario`, «Vocabulario en contexto») tiene el campo `palabras` vacío. La lección tiene cuatro entradas de glosario en total.
+- Problema 2: el título de la explicación es una frase completa («の une dos nombres: el primero identifica al dueño…»). Es un título demasiado largo.
+- Problema 3: en el ítem ja020-1, la respuesta correcta repite la regla que acaba de explicarse. Eso mide la lectura de la explicación, no la comprensión de la partícula.
+- Veredicto: lección incompleta. No hay ejercicios de escribir.
+
+**ja/080 (A2, capítulo 12, «Dar, recibir y hacer favores»).**
+- Funciona: la contraposición *〜てしまう* (acabar del todo o sin querer) frente a *〜ておく* (dejarlo hecho de antemano), con tabla y ejemplos bien pensados. Tiene ejercicios de ordenar y lectura de un mensaje antes de un viaje.
+- Problema 1: la explicación en inglés contiene texto en español: «With the form て + しまいます You say something I know **acabó del todo**».
+- Problema 2: en los ítems ja080-8 y ja080-9, el campo `explicacion` tiene solo japonés (`鍵 と 切符 を かばん に 入れておきます.` y `出発 の 前 に.`). El alumno que lee en inglés o en español no recibe explicación.
+- Problema 3: «del todo» se traduce como «at all» («I already ate the cake at all»).
+- Veredicto: buen contenido, con explicaciones que faltan o están mezcladas.
+
+**ja/200 (B2, capítulo 29, «Hablar de temas»).**
+- Funciona: *〜といえば* frente a *〜というと*, con una lectura sobre Kioto.
+- Problema 1: los títulos en inglés llevan el símbolo «♪» («♪ といえば: talking about ♪»), un marcador que no debería estar en el texto.
+- Problema 2: los distractores son fáciles de descartar por la categoría gramatical. En ja200-5, para un hueco de sustantivo, las opciones son *たべます* y *いく* (verbos). En ja200-6, para «es difícil», las opciones son *おいしい* y *きれい* (adjetivos de otro sentido). Un B2 los descarta sin entender la expresión.
+- Problema 3: el ejercicio de ordenar (ja200-9) son tres palabras.
+- Veredicto: nivel B2 declarado, pero la dificultad real es de A2–B1.
+
+### 4.6 Patrones que se repiten en el corpus
+
+Estos recuentos se han hecho sobre el texto crudo de los archivos. Las cadenas «in charge», «Cherry», «Derogation» y «♪» solo aparecen en el inglés, así que el recuento es fiable; el de «+ name» también es específico.
+
+| Patrón | Dónde (recuento) | Problema |
+|---|---|---|
+| «+ name» por «nombre» (sustantivo) | vi 29, ja 11, fr 8, de 8, pt 8, it 3, zh 2, th 2, da 2 | La regla gramatical queda confusa |
+| «in charge» por «acusativo» | zh 6, de 8, ru 5, pl 5, no 5, nl 4, it 3, fr 2, id 1, sv 1, ja 1, vi 1 | Confunde el caso con un significado distinto |
+| «Cherry» por «certeza» | ru 2, fr 2, it 1, pt 1, da 1 | Error de vocabulario en un título |
+| «Derogation» por «excepción» | ja 3, fr 1, pt 1, ro 1, de 1, vi 1 | Palabra rara y equivocada |
+| Símbolo «♪» en los textos | ja 75, vi 29, pl 4, de 3, da 3, ko 3, en 1 | Marcador que ha quedado en la app |
+| Bloques de vocabulario sin palabras | de 46, ko 25, tr 9, ja 7, nl 6, ru 5, en 3, it 1, el 1 | El bloque aparece vacío |
+
+Las cifras indican dónde se repite el patrón; no son el total de errores. Un muestreo de 17 lecciones no basta para estimar la tasa de error de cada curso, pero sí para afirmar que el problema es sistemático.
+
+### 4.7 Nivel real frente al declarado
+
+- **Español:** los capítulos B1 y B2 se corresponden con su contenido. Los A1 tienen textos literarios por encima del nivel (es/001).
+- **Francés:** B1 (fr/200) con ejercicios de búsqueda, no de comprensión. El nivel declarado es plausible para el texto, no para la tarea.
+- **Alemán:** A2 (de/080) y B2 (de/200) son plausibles en gramática, pero el vocabulario de B2 es escaso.
+- **Japonés:** B2 (ja/200) con distractores fáciles. El nivel real parece A2–B1.
+- **Th y zh:** usan etiquetas no MCER (ACTFL: Novice, Intermediate, Advanced, Superior, Distinguished; y HSK 1–6). No las he muestreado.
+
+---
+
+## 5. Repaso y memoria
+
+### 5.1 Qué hace `js/srs.js`
+
+- Cada tarjeta tiene `repeticiones`, `intervalo`, `facilidad` (inicia en 2,5, mínimo 1,3, máximo 3,0), `lapsos` y `vence`.
+- Cuatro botones: otra vez (1), difícil (2), bien (3) y fácil (4).
+- Otra vez: el intervalo vuelve a 0, la facilidad baja 0,2 y la tarjeta reaparece en un minuto.
+- Difícil en una tarjeta nueva: reaparece en 10 minutos. Difícil en una tarjeta ya aprendida: intervalo × 1,2.
+- Bien en una tarjeta nueva: 1 día. Fácil en una nueva: 4 días. Bien en una aprendida: intervalo × facilidad. Fácil: intervalo × facilidad × 1,3.
+- Dominada: intervalo de 21 días o más.
+- Se aplica solo a las tarjetas del cuaderno (`js/vistas/repaso.js` llama a `programar`). Los ejercicios de lección que se fallan van a la sección Práctica (`js/vistas/practica.js`, con `ejerciciosFallados`), sin calendario.
+
+### 5.2 Comparación con SM-2 y FSRS
+
+| Aspecto | `srs.js` | SM-2 (versión clásica, sin enlace) | FSRS (Ye et al., 2022) |
+|---|---|---|---|
+| Estado por tarjeta | repeticiones, intervalo, facilidad, lapsos | repeticiones, intervalo, factor de facilidad | dificultad, estabilidad, recuperabilidad |
+| Escala | 4 botones | 0–5 | 4 botones |
+| Primeros intervalos | 1 día (bien) o 4 (fácil) | 1 y 6 días | calculados desde la estabilidad inicial |
+| Tras un fallo | intervalo 0, reaparece en 1 min | reinicia repeticiones | reaprendizaje con estabilidad reducida |
+| Objetivo de retención | no existe | no existe | explícito (90 % por defecto) |
+| Variación aleatoria | no | no | sí |
+| Ajuste con datos del usuario | no | no | sí (parámetros optimizados) |
+
+### 5.3 Observaciones
+
+1. El algoritmo es razonable: es la familia de Anki con cuatro botones y pasos de aprendizaje. Como base, es suficiente.
+2. El repaso alcanza solo al cuaderno. Un ejercicio fallado en la lección 40 no vuelve en la semana siguiente, salvo que el alumno guarde la palabra. Esa es la brecha más importante del repaso.
+3. No hay objetivo de retención ni variación aleatoria. Sin variación, tarjetas aprendidas el mismo día vuelven juntas.
+4. La facilidad tiene un tope de 3,0. Limita los intervalos largos para las palabras fáciles. Conviene justificarlo o subirlo.
+5. Los logros de volumen («repasos100», «repasos1000», «palabras500») premian pulsar más, no recordar mejor.
+6. El «reto rápido» de 60 segundos (`js/vistas/reto.js`) no es diario: es un juego sobre el cuaderno. Conviene no describirlo como reto diario.
+7. No hay evidencia de que el algoritmo funcione para Paglot: no hay registro de respuestas ni curvas de retención.
+
+### 5.4 Recomendaciones
+
+1. Llevar los fallos de lección al mismo programa de repaso (como tarjetas temporales), y mantener la sección Práctica como vista de consulta. (Impacto 4, esfuerzo 3.)
+2. Añadir variación aleatoria pequeña a los intervalos. Es un cambio de una línea y evita que las tarjetas se agrupen. (Impacto 2, esfuerzo 1.)
+3. Fijar un objetivo de retención (alrededor del 90 %) y ajustar los intervalos a él, o pasar a una variante FSRS cuando haya datos. (Impacto 3, esfuerzo 3.)
+4. Registrar las respuestas en el dispositivo, con consentimiento, para calibrar los parámetros sin enviar datos personales. (Impacto 3, esfuerzo 3.)
+5. Dar prioridad a las tarjetas de producción (escribir) sobre las de reconocimiento. (Impacto 3, esfuerzo 2.)
+6. Reemplazar los logros de volumen por logros de calidad (por ejemplo, palabras dominadas sin fallar). (Impacto 2, esfuerzo 1.)
+
+---
+
+## 6. Prueba de nivel
+
+### 6.1 Cómo funciona (`js/vistas/prueba.js`)
+
+- Agrupa las lecciones por capítulos en seis tramos.
+- En cada tramo hace tres preguntas tomadas al azar de los ejercicios de test, traducción o huecos de las lecciones (solo con opciones, sin los de solo oído).
+- Dos aciertos pasan el tramo; dos fallos lo paran; con uno y uno, decide una tercera pregunta.
+- Al parar, propone empezar en el primer capítulo de ese tramo y lo guarda como punto de inicio.
+
+### 6.2 Análisis
+
+**Validez de contenido: buena.** Las preguntas salen del propio curso, así que miden lo que el curso enseña.
+
+**Validez de constructo: desconocida.** Nadie ha comprobado que la prueba mida el nivel MCER del alumno.
+
+**Fiabilidad: baja.** Con tres preguntas por tramo y tres opciones (lo habitual en `cursos/es`), un alumno que adivina pasa un tramo con probabilidad de 7/27, algo más de una vez de cada cuatro. Es decir, el 74 % de los que adivinan se para en el primer tramo. El resultado es seguro, pero no mide nada. Esto es cálculo propio: probabilidad de dos aciertos antes de dos fallos con p = 1/3.
+
+**Ubicación gruesa.** El inicio cae en el primer capítulo de un tramo, y cada tramo tiene unos cuatro o cinco capítulos (unas 50 lecciones). Un alumno puede repetir hasta 50 lecciones que ya sabe o saltarse 50 que no sabe.
+
+**Formato de respuesta limitado.** Solo reconocimiento. No hay producción ni escucha, así que no detecta si el alumno sabe escribir, aunque reconozca la forma correcta.
+
+**Calidad de los ítems no calibrada.** Un ítem de nivel B2 como ja200-5 (distractores de otra categoría) tiene una dificultad real muy distinta de la de un ítem de A1. La prueba los trata igual.
+
+**No hay opción «no lo sé».** Un alumno sin conocimiento sigue adivinando, y eso contamina el resultado.
+
+### 6.3 Mejoras
+
+1. Subir a 12–15 preguntas por tramo y añadir producción (escribir) y escucha cuando haya voz. (Impacto 4, esfuerzo 4.)
+2. Calibrar la dificultad de cada ítem con respuestas reales (modelo de Rasch o de dos parámetros) y pasar a una prueba adaptativa cuando haya suficientes datos. Es un trabajo de semanas con cientos de alumnos. (Impacto 4, esfuerzo 5.)
+3. Añadir «no lo sé» como opción, y no contarla ni como acierto ni como fallo para la decisión. (Impacto 2, esfuerzo 1.)
+4. Indicar el resultado con un margen, por ejemplo «entre A2 y B1», y no con un capítulo exacto. (Impacto 3, esfuerzo 2.)
+5. Validar la prueba frente a un examen externo con certificación MCER en una muestra de alumnos. (Impacto 5, esfuerzo 4.)
+6. Medir la fiabilidad (por ejemplo, KR-20 sobre los ítems) y publicarla. (Impacto 2, esfuerzo 2.)
+
+Lo que hay que conservar: la prueba es corta, no tiene temporizador y no presiona. Eso es bueno para TDAH.
+
+---
+
+## 7. Gamificación y motivación
+
+### 7.1 Qué hay en la app
+
+- **Racha:** un día de descanso cada 7 días (`DESCANSO = 7` en `js/progress.js`). Un día sin estudiar no la rompe si en los 7 anteriores no se usó otro descanso.
+- **Hucha:** monedas, una por estrella (`juegos/motor.js`).
+- **Cofres:** uno por capítulo, que se abre al terminarlo.
+- **Estrellas:** 3 si hay dos fallos o menos, 2 si hay hasta seis, 1 en el resto. Se guarda la mejor de cada lección, y se puede volver a jugar.
+- **Logros:** 26 en total. 22 se calculan a partir de los datos (lecciones terminadas, cofres, nivel, estrellas perfectas, racha, cuaderno, dominadas, repasos) y 4 los dan sucesos concretos (`js/logros.js`).
+- **Misiones de hoy**, que cuentan lecciones con tres estrellas.
+- **Reto rápido** de 60 segundos sobre el cuaderno.
+- **Tutora**, que anima sin presionar («sin culpa», según el documento de diseño).
+
+### 7.2 Qué dice la evidencia
+
+- Sailer y Homner (2020): la gamificación tiene un efecto pequeño sobre el aprendizaje cognitivo, menor sobre la motivación y pequeño sobre la conducta. El efecto cognitivo se mantiene solo en los estudios más rigurosos.
+- Deci, Koestner y Ryan (1999): las recompensas tangibles o esperadas, cuando no dependen de la calidad de la tarea, reducen el interés libre por ella (efecto entre −0,28 y −0,40). Es un efecto debatido, pero consistente.
+- Hanus y Fox (2015): los efectos motivacionales de un sistema de puntos pueden invertirse con el tiempo.
+- Duolingo (empresa): una prueba A/B de su racha con +3,3 % de retención a los 14 días. No es un estudio independiente.
+
+### 7.3 Riesgos y buenas prácticas
+
+| Elemento | Riesgo | Buena práctica | Acción |
+|---|---|---|---|
+| Estrellas por fallos | Castiga el error. Un principiante que acierta a base de intentos saca una estrella y lo lee como fracaso. Choca con «lo fallado vuelve» | Dar una estrella mínima por completar. Mostrar los aciertos a la primera como información, no como criterio | Cambiar el mínimo (P-06) |
+| Racha | Presión. Sin embargo, el descanso semanal la hace suave | Mantener el descanso y el «sin culpa» | Conservar |
+| Cofres por capítulo | Recompensa diferida y tangible, sin relación con la calidad | Que el cofre sea una sorpresa informativa, no una condición | Mantener, sin ligarlo a estrellas |
+| Logros de volumen | Premian pulsar más, no recordar mejor | Logros de calidad: palabras dominadas sin fallo, semanas con repaso a tiempo | Cambiar (P-07) |
+| Sonido y animación en cada pulsación | Mucho estímulo: útil para TDAH, pero puede saturar | Modo calma por defecto en lecciones largas | Revisar el valor por defecto |
+| Reto rápido | Competición consigo mismo: puede agobiar | Sin marcador de récord visible en primer plano | Revisar |
+| Tutora sin presión | Bueno | Mantener | Conservar |
+
+---
+
+## 8. Cómo medir la eficacia
+
+### 8.1 Situación actual
+
+No hay analítica (el arreglo T65 está pendiente de elegir hosting). No hay pre/post test ni medida de retención. Por tanto, no se puede decir si Paglot enseña.
+
+### 8.2 Diseños posibles
+
+**A. Pre/post con cohorte.** Alumnos que hacen una prueba externa con certificación MCER al inicio y tras 8–12 semanas. Para detectar un tamaño de efecto de d = 0,4 con potencia del 80 % en un diseño de dos grupos hacen falta unos 100 alumnos por grupo (cálculo propio con la fórmula estándar). Un solo grupo sin control es más débil: no separa el efecto de la app del de otras fuentes de estudio.
+
+**B. Pruebas A/B de funciones.** Por ejemplo, racha frente a sin racha, o estrellas frente a sin estrellas. Requiere asignación aleatoria al instalar, registro privado de resultados y consentimiento.
+
+**C. Indicadores dentro de la app.** Sin datos personales: acierto a la primera por tipo de ejercicio, retención de palabras del cuaderno a 7 y 30 días, errores que reaparecen, lecciones terminadas por semana y tiempo por tarea.
+
+**D. Calibración de niveles.** Pasar un test de tamaño de vocabulario y de gramática a muestras de alumnos de cada capítulo, y comparar con las cifras de terceros de la sección 2.12 (no con una cifra oficial).
+
+**E. Cualitativo.** Entrevistas breves con alumnos y revisión de profesores de cada idioma.
+
+### 8.3 Métricas y objetivos orientativos
+
+Los objetivos los deben fijar los profesores; estos son ejemplos.
+
+| Métrica | Cómo se mide | Objetivo orientativo |
+|---|---|---|
+| Acierto a la primera en reconocimiento | Ejercicios test y huecos, primer intento | Más del 80 % en capítulos ya dominados |
+| Acierto a la primera en producción | Escribir y ordenar, primer intento | Más del 60 % al cerrar el capítulo |
+| Retención de palabras del cuaderno a 7 días | Repaso espaciado con datos locales | Alrededor del 90 % |
+| Progreso frente a prueba externa | Pre/post con examen MCER | A fijar con los datos del piloto |
+| Abandono en la primera semana | Usuarios que vuelven el día 2 y el día 7 | A fijar |
+
+### 8.4 Precauciones con muestras pequeñas
+
+- Bahrick et al. (1993) tienen cuatro participantes. Sirven para la hipótesis, no para el tamaño del efecto.
+- Vesselinov y Grego (2012) tienen 156 inicios y 90 finales, sin revisión por pares y con financiación de la empresa.
+- Plonsky y Oswald (2014) recomiendan interpretar los tamaños de efecto dentro del campo.
+- Hay que informar intervalos de confianza, no solo valores p, y registrar el diseño antes de recoger datos.
+
+---
+
+## 9. Plan de mejoras priorizado
+
+Impacto y esfuerzo de 1 (bajo) a 5 (alto). Son estimaciones mías a partir del código y de la muestra, no mediciones.
+
+Las mejoras de la sección 9.2 corresponden a la futura **revisión de los JSON**, la fase final del proyecto. Se harán primero por IA con reglas y comprobaciones, y después por profesores de cada idioma. Los validadores de la sección 9.1 (P-13 y P-14) se necesitan para ambas fases, así que conviene hacerlos antes.
+
+### 9.1 Código (la app)
+
+| ID | Área | Problema | Propuesta | Impacto | Esfuerzo |
+|---|---|---|---|---|---|
+| P-01 | Prueba de nivel | Tres preguntas por tramo, solo reconocimiento, adivinar pasa un tramo 1 de cada 4 veces | 12–15 preguntas por tramo, con producción y escucha cuando haya voz; decisión con margen | 4 | 4 |
+| P-02 | Repaso | Los fallos de lección no entran en el calendario | Enviar los fallos al mismo programa de repaso como tarjetas temporales; mantener Práctica | 4 | 3 |
+| P-03 | Repaso | Sin objetivo de retención ni variación aleatoria | Objetivo de retención (alrededor del 90 %) y variación pequeña de intervalos | 3 | 3 |
+| P-04 | Medida | Sin datos de aprendizaje | Eventos sin cookies: acierto a la primera por tipo, retención a 7 y 30 días, lecciones por semana | 5 | 3 |
+| P-05 | Medida | Sin pre/post test | Cohorte piloto con examen externo y protocolo de consentimiento | 5 | 3 |
+| P-06 | Gamificación | Las estrellas penalizan el error | Estrella mínima por completar; los aciertos a la primera como información | 3 | 2 |
+| P-07 | Gamificación | Logros de volumen (repasos1000, palabras500) | Logros de calidad: palabras dominadas sin fallo, repasos a tiempo | 2 | 1 |
+| P-08 | Carga cognitiva | Glosario de hasta 60 entradas; análisis sintáctico visible | Glosario por defecto de 10–15 entradas; análisis plegado; modo calma por defecto en lecciones largas | 4 | 2 |
+| P-09 | TDAH | No hay objetivo diario pequeño elegible (pendiente, T54) | Objetivo de 1–5 minutos elegible en Ajustes | 4 | 2 |
+| P-10 | Producción | Sin escritura libre ni habla | Escritura libre con retroalimentación y «repite en voz alta» opcional con reconocimiento | 4 | 4 |
+| P-11 | Escucha | Ningún ejercicio de escucha en español; calidad de voz del dispositivo variable | Ejercicios de escucha con texto oculto; aviso cuando no hay voz para el idioma | 3 | 3 |
+| P-12 | Retroalimentación | Refuerzos que dicen qué está mal, no cómo recordarlo | Plantilla de refuerzo: qué, por qué y cómo recordarlo (la plantilla en código, el texto en JSON) | 3 | 2 |
+| P-13 | Validación | El auditor no marca vacíos ni traducciones rotas | Añadir al auditor: vocabulario vacío, «name», «in charge», «♪», «@», explicación solo en japonés o con español en inglés | 4 | 1 |
+| P-14 | Validación | Sin comprobación de niveles ni de reciclaje | Informe automático de reciclaje y de producción por lección en `auditar_estatico.py` | 3 | 2 |
+| P-15 | Transparencia | Los cursos beta no se marcan en la lección | Aviso «beta» y «revisado» por curso y por lección | 3 | 1 |
+| P-16 | Niveles | Etiquetas ACTFL (th) y HSK (zh) mostradas como si fueran MCER | Mostrar la escala del curso, no el MCER, hasta tener equivalencias verificadas | 2 | 1 |
+
+### 9.2 Revisión de los JSON (fase final: IA y después profesores)
+
+| ID | Área | Problema | Propuesta | Impacto | Esfuerzo |
+|---|---|---|---|---|---|
+| C-01 | Español, A1 | Textos literarios con subjuntivo en A1 (`es/001`, b5) | Reescribir a A1 o mover a A2 con glosario | 4 | 2 |
+| C-02 | Español, B1 | Ítem «a lo mejor + subjuntivo» marcado como error (`es/120`, b9) | Consultar en el DPD; aceptar la forma si procede | 3 | 1 |
+| C-03 | Traducción | «nombre» como «name», «acusativo» como «in charge», «certeza» como «Cherry», «modo» como «way», «Destino» como «Indicative» | Corrección por lotes (IA) y revisión de profesores | 5 | 2 |
+| C-04 | Traducción | Explicaciones solo en japonés o con español en inglés (`ja/080`, ja080-8, ja080-9, y el texto «acabó del todo») | Traducir y revisar | 4 | 1 |
+| C-05 | Traducción | Restos de herramienta («Su@-@», «♪», «Heads», «Derogation», «Wohnungssuhe») | Limpieza automática y revisión | 3 | 1 |
+| C-06 | Vocabulario | Bloques de vocabulario vacíos (de 46, ko 25, tr 9, ja 7…) | Rellenar desde las palabras de la lección | 4 | 2 |
+| C-07 | Producción | 55 % de las lecciones de fr sin escribir ni ordenar; pt 25 %, ja 24 %, vi 20 % | Añadir un escribir y un ordenar por lección | 5 | 3 |
+| C-08 | Lecciones finas | `ja/020` con cuatro palabras, `de/200` con tres en el vocabulario, `fr/200` con siete bloques | Ampliar vocabulario y ejercicios | 3 | 3 |
+| C-09 | Distractores | Opciones de otra categoría gramatical (`ja/200`, ja200-5 y ja200-6) | Distractores de la misma categoría | 3 | 2 |
+| C-10 | Nivel | Texto B1 en A1 (`es/001`); ejercicios de búsqueda en B1 (`fr/200`); B2 fácil (`ja/200`) | Revisión de nivel por lección con vocabulario y gramática | 4 | 4 |
+| C-11 | Glosario | 60 entradas en `es/001`, con 10 en el bloque de vocabulario | Priorizar las del bloque; el resto como glosario opcional | 3 | 2 |
+| C-12 | Reciclaje | 5,9 % de reaparición en diez lecciones (español) | Repaso intercalado de vocabulario en las lecciones posteriores | 4 | 3 |
+| C-13 | Traducción | Comparaciones con el español en las explicaciones en inglés (ya listadas en T11) | Quitarlas en la traducción al inglés y revisar | 3 | 2 |
+| C-14 | Th y zh | Cursos con 5 y 6 capítulos y etiquetas no MCER; reciclaje del 83 % en th | Reorganizar capítulos y niveles con el mismo criterio que el español; revisar antes de publicar | 3 | 3 |
+| C-15 | Audición | Ningún ejercicio de escucha en español | Crear uno o dos por capítulo con texto de apoyo | 3 | 3 |
+
+**Orden recomendado.** Primero P-13 (validador), para detectar los errores de C-03 a C-06. Después C-03 a C-06 (lo que se ve), luego C-07 y C-08 (producción y lecciones finas), después C-01, C-02 y C-10 (nivel). Los cambios de código (P-01 a P-12) pueden ir en paralelo.
+
+**Lo que no hay que tocar.** La secuencia de `cursos/es`, la explicación explícita, los refuerzos por opción y la estructura de bloques. Los cambios de contenido deben hacerse sobre el JSON, no sobre el motor.
+
+---
+
+## 10. Fuentes
+
+**Adquisición y procesamiento del input**
+
+- Krashen, S. (1982). *Principles and Practice in Second Language Acquisition*. Pergamon. Sin copia libre verificada.
+- Nation, P. (2006). How large a vocabulary is needed for reading and listening? *Canadian Modern Language Review*, 63(1), 59–81. https://www.wgtn.ac.nz/__data/assets/pdf_file/0018/1626120/2006-How-large-a-vocab.pdf
+- van Zeeland, H. y Schmitt, N. (2012), con replicación en *Language Teaching* (año no verificado). https://www.cambridge.org/core/journals/language-teaching/article/how-much-vocabulary-is-needed-to-use-english-replication-of-van-zeeland-schmitt-2012-nation-2006-and-cobb-2007/1D217A56A2E0056E67802A6A8360FDDE
+
+**Práctica de recuperación y repaso**
+
+- Roediger, H. L. y Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. *Psychological Science*, 17(3), 249–255. https://www.jstor.org/stable/40064526 (copia: https://psychology.ecu.edu/wp-content/pv-uploads/sites/216/2019/03/Roediger-Karpicke-2006.pdf)
+- Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J. y Willingham, D. T. (2013). Improving students' learning with effective learning techniques. *Psychological Science in the Public Interest*, 14(1), 4–58. https://doi.org/10.1177/1529100612453266
+- Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T. y Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. *Psychological Bulletin*, 132(3), 354–380. https://doi.org/10.1037/0033-2909.132.3.354
+- Bahrick, H. P., Bahrick, L. E., Bahrick, A. S. y Bahrick, P. E. (1993). Maintenance of foreign language vocabulary and the spacing effect. *Psychological Science*, 4(5), 316–321. https://doi.org/10.1111/j.1467-9280.1993.tb00571.x
+- Settles, B. y Meeder, B. (2016). A trainable spaced repetition model for language learning. *ACL 2016*, 1848–1858. https://aclanthology.org/P16-1174/
+- Ye, J., Su, J. y Cao, Y. (2022). A stochastic shortest path algorithm for optimizing spaced repetition scheduling. *KDD 2022*, 4381–4390. Explicación consultada: https://domenic.me/fsrs/ (el artículo original no se pudo abrir).
+
+**Intercalado, producción y retroalimentación**
+
+- Brunmair, M. y Richter, T. (2019). Similarity matters: A meta-analysis of interleaved learning and its moderators. *Psychological Bulletin*, 145(11). https://doi.org/10.1037/bul0000209
+- Swain, M. (1985 y 2005). Citado en resúmenes secundarios. Sin enlace verificado.
+- Hattie, J. y Timperley, H. (2007). The power of feedback. *Review of Educational Research*, 77(1), 81–112. https://doi.org/10.3102/003465430298487
+- Wisniewski, B., Zierer, K. y Hattie, J. (2020). Citado en resumen secundario, cifras no verificadas.
+
+**Instrucción explícita y tamaños de efecto**
+
+- Norris, J. M. y Ortega, L. (2000). Effectiveness of L2 instruction: A research synthesis and quantitative meta-analysis. *Language Learning*, 50(3), 417–528. https://doi.org/10.1111/0023-8333.00136
+- Spada, N. y Tomita, Y. (2010). Interactions between type of instruction and type of language feature: A meta-analysis. *Language Learning*, 60(2). https://doi.org/10.1111/j.1467-9922.2010.00561.x
+- Plonsky, L. y Oswald, F. L. (2014). How big is "big"? Interpreting effect sizes in L2 research. *Language Learning*, 64(4), 878–912. https://experts.nau.edu/en/publications/how-big-is-big-interpreting-effect-sizes-in-l2-research/
+
+**Carga cognitiva y dificultades deseables**
+
+- Sweller, J., van Merriënboer, J. J. G. y Paas, F. (2019). Cognitive architecture and instructional design: 20 years later. *Educational Psychology Review*, 31, 261–292. https://link.springer.com/article/10.1007/s10648-019-09465-5
+- Bjork, E. L. y Bjork, R. A. (2011). Making things hard on yourself, but in a good way. En *Psychology and the Real World*, 56–64. https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf
+
+**Motivación y gamificación**
+
+- Deci, E. L., Koestner, R. y Ryan, R. M. (1999). A meta-analytic review of experiments examining the effects of extrinsic rewards on intrinsic motivation. *Psychological Bulletin*, 125(6), 627–668. https://depts.washington.edu/techdocs/papers/deciExtrinsicRewardsAndIntrinsicMotivation99.pdf
+- Sailer, M. y Homner, L. (2020). The gamification of learning: A meta-analysis. *Educational Psychology Review*, 32(1), 77–112. https://link.springer.com/article/10.1007/s10648-019-09498-w
+- Hanus, M. D. y Fox, J. (2015). Assessing the effects of gamification in the classroom. *Computers & Education*, 80, 152–161. https://doi.org/10.1016/j.compedu.2014.08.019
+- Duolingo (blog de la empresa, fecha no verificada). Prueba de racha: https://blog.duolingo.com/improving-the-streak (fuente de empresa, no revisada).
+
+**Aprendizaje de lenguas con aplicaciones**
+
+- Vesselinov, R. y Grego, J. (2012). Duolingo effectiveness study: Final report. https://static.duolingo.com/s3/DuolingoReport_Final.pdf (informe encargado por la empresa, sin revisión por pares).
+- Loewen, S., Isbell, D. y Sporn, J. (2020). *Foreign Language Annals*, 53(2), 209–233. https://doi.org/10.1111/flan.12454 (no leído en detalle).
+
+**TDAH**
+
+- Polanczyk, G. et al. (2007). The worldwide prevalence of ADHD: A systematic review and metaregression analysis. *American Journal of Psychiatry*, 164(6), 942–948. https://doi.org/10.1176/ajp.2007.164.6.942
+- Sonuga-Barke, E. J. S. et al. (2010). Revisión sobre la aversión al retardo en el TDAH. *Neuropsychology Review*, 20, 86–102. https://doi.org/10.1007/s11065-009-9115-0 (autoría completa no verificada).
+
+**MCER y niveles**
+
+- Consejo de Europa (2020). *Common European Framework of Reference for Languages: Learning, teaching, assessment. Companion volume*. https://www.coe.int/lang-cefr
+- Milton, J. y Alexiou, T. (2020), citado en tabla de terceros (cifras no verificadas): https://languagetestingasia.springeropen.com/articles/10.1186/s40468-017-0036-1/tables/1
+- Chartered Institute of Linguists (2023). Validación de la alineación CEFR del Duolingo English Test (CIOL). https://www.ciol.org.uk/sites/default/files/DET-CEFR-Alignment-CIOL-Validated.pdf
+- Foreign Service Institute, dificultad de las lenguas (en Wikibooks, fuente secundaria). https://en.wikibooks.org/wiki/Language_Learning_Difficulty_for_English_Speakers
+
+**Referencias de contexto del proyecto**
+
+- Real Academia Española, Diccionario panhispánico de dudas (no consultado: la entrada «a lo mejor» devolvió 403). https://www.rae.es/dpd/
+- `_notas/INFORME_ARREGLOS_2026-10-19.md` (estado de la app y de los cursos hoy).
+
+---
+
+## Limitaciones de este informe
+
+- La muestra son 17 lecciones de más de 6.000. Las conclusiones sobre el contenido son indicios sistemáticos, no tasas de error.
+- Las cifras de la tabla 3.8 son de hoy. th, zh y ro cambian mientras se escribe.
+- Varias fuentes solo las he leído en resúmenes (Krashen, Swain, Norris y Ortega, Spada y Tomita, Hanus y Fox, Wisniewski, Goo, Loewen, Vesselinov y Grego). Lo indico en el texto.
+- No pude abrir la entrada «a lo mejor» del DPD ni los artículos de Wiley (error 403). El punto sobre el subjuntivo queda pendiente de comprobar.
+- Los tiempos por lección (15–25 minutos) y los impactos y esfuerzos de la sección 9 son estimaciones propias.
+- No se ha probado la app en un dispositivo: la lectura de la voz y los avisos se basa en el código y en el informe de arreglos.
