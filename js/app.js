@@ -118,15 +118,30 @@ const PAGINADAS_CURSO = new Set(['perfil', 'cuaderno', 'frases']);
 function paginarCursoEnMovil(seccion) {
   if (!esMovil()) return;
   if (!PAGINADAS_CURSO.has(seccion)) return;
-  const deshacer = paginarEnMovil(app);
+  const deshacer = paginarEnMovil(app, { fijas: DIAPOSITIVAS[seccion] });
   const antes = limpiarVista;
   limpiarVista = () => { deshacer(); antes?.(); };
 }
 
-/** En el móvil no hay pie debajo de todo: sus enlaces van en la última página de la portada. */
-function enlacesDelPie() {
-  const grupos = document.querySelector('#pie-sitio .pie-grupos');
-  return grupos ? el('nav', { class: 'inicio-pie-movil', 'aria-label': 'Paglot' }, grupos.cloneNode(true)) : null;
+// Las pantallas que en el móvil van en pocas diapositivas grandes (como mucho 5), una por bloque, en vez de partirse solas
+const DIAPOSITIVAS = {
+  inicio: () => {
+    const $ = sel => app.querySelector(sel);
+    return [[$('.inicio-cabeza'), $('.inicio-trio'), $('.inicio-suelo')], $('.inicio-bajo'), $('.inicio-pasillo'), $('.inicio-teatro'), $('.inicio-pie-pag')];
+  },
+};
+
+/** En el móvil no hay pie debajo de todo: el pie de verdad (con sus tutoras charlando) es la última diapositiva de la
+ *  portada. Devuelve la función que lo vuelve a poner en su sitio. */
+function pieEnLaPortada() {
+  const pie = document.getElementById('pie-sitio');
+  const portada = app.querySelector('.inicio');
+  if (!pie || !portada) return () => {};
+  const padre = pie.parentNode;
+  const siguiente = pie.nextSibling;
+  const envoltorio = el('div', { class: 'inicio-pie-pag' }, pie);
+  portada.append(envoltorio);
+  return () => { padre.insertBefore(pie, siguiente); envoltorio.remove(); };
 }
 
 /** Pinta una pantalla general y guarda la función que la apaga, si la tiene. */
@@ -135,9 +150,11 @@ function pintarGeneral(ruta) {
   if (pantalla.titulo) titulo(t(pantalla.titulo));
   else document.title = t('app.nombre');
   const apagar = pantalla.pintar(app);
-  if (ruta === 'inicio' && esMovil()) app.firstElementChild?.append(enlacesDelPie() ?? '');
-  const deshacer = PAGINADAS.has(ruta) && esMovil() ? paginarEnMovil(app) : null;
-  limpiarVista = deshacer || typeof apagar === 'function' ? () => { deshacer?.(); if (typeof apagar === 'function') apagar(); } : null;
+  const devolverPie = ruta === 'inicio' && esMovil() ? pieEnLaPortada() : null;
+  const deshacer = PAGINADAS.has(ruta) && esMovil() ? paginarEnMovil(app, { fijas: DIAPOSITIVAS[ruta] }) : null;
+  limpiarVista = deshacer || devolverPie || typeof apagar === 'function'
+    ? () => { deshacer?.(); devolverPie?.(); if (typeof apagar === 'function') apagar(); }
+    : null;
 }
 
 const contenido = { resultados: [], capitulos: [], errorCapitulos: null };
@@ -636,6 +653,7 @@ async function iniciar() {
     try { sessionStorage.setItem('idiomas-abierta', '1'); } catch { /* sin almacenamiento */ }
     document.body.classList.add('sin-curso', 'sin-tutora');
     window.addEventListener('hashchange', () => pintarSinCurso());
+    window.matchMedia('(max-width: 700px)').addEventListener('change', () => pintarSinCurso());
     pintarSinCurso();
     quitarArranque();
     iniciarNube();
@@ -657,6 +675,11 @@ async function iniciar() {
   }
 
   window.addEventListener('hashchange', () => navegar());
+  // Las diapositivas del móvil se deciden al pintar: al cruzar ese ancho (girar una tableta, el modo móvil de F12)
+  // se vuelve a pintar la pantalla. Una lección a medias no se corta.
+  window.matchMedia('(max-width: 700px)').addEventListener('change', () => {
+    if (!document.body.classList.contains('en-leccion')) navegar();
+  });
   // Si la voz aparece o desaparece (se instala una, se va la conexión), se repinta la pantalla en el mismo sitio:
   // cambian los ejercicios de oído. En un repaso o en un juego no se interrumpe.
   window.addEventListener('voz-cambiada', () => {

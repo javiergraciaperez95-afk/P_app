@@ -1,0 +1,38 @@
+RESUMEN DE LA NOCHE · 18-10-2026 · Paglot
+
+HECHO
+1. Limpieza
+   - La lentitud venía de "posible_old": tenía copias enteras del proyecto (con su .git) dentro de la carpeta de trabajo.
+     Todo eso está ahora FUERA, en C:\Users\javie\Pictures\Paglot_material_antiguo (no se ha borrado nada).
+   - Fuera la carpeta vacía Idiomas, los build regenerables de _apk/android (20 000 archivos) y la demo animaciones-tutoras.html.
+   - Script _herramientas/buscar_huerfanos.py: ningún .js ni .css sin usar.
+
+2. Traducción al inglés (Argos, beta) de los 18 cursos: fr de ja it ko zh pt ru tr nl sv el pl no id da ro th.
+   - Las frases en las que se perdían las marcas se quedan en español (coreano 288, el resto entre 0 y 34).
+   - La calidad es la de una traducción automática (ej.: «artículo» → "item"). Todos llevan la etiqueta Beta.
+
+3. Móvil (sin scroll de página, todo con diapositivas)
+   - Mapa de lecciones: un capítulo por pantalla, con ◀ n/N ▶ y deslizar; empieza en el capítulo actual.
+   - Lección: sin la cabecera de la app, y cada paso se encoge lo justo para caber.
+   - Repaso y Precios caben: el culpable era el aviso de datos, que ahora flota abajo.
+   - Hueco reservado para la tutora en las pantallas por páginas.
+
+4. Mejoras
+   - Lección: «Paso X de Y» y botón ⏸ Pausa (Seguir / Salir de la lección).
+   - Perfil → Comodidad:
+     - Modo calma: sin animaciones en bucle ni chispas o sonidos de adorno. Se activa solo si el móvil pide "reducir movimiento".
+     - Texto grande.
+
+5. Comprobado con script: inicio, lecciones, lección, práctica, frases, cuaderno, repaso, reto, perfil, precios, legal e idiomas
+   a 390x844 (es, pt, ko) y en escritorio (ja, interfaz vi). Sin errores.
+
+6. Git: commits e8e768c9 y 21e02119, subidos a GitHub (main).
+
+7. APK: Paglot-prueba.apk en la carpeta raíz, 27,0 MB. NO probada en un móvil ni en el emulador.
+
+PENDIENTE / TU DECISIÓN
+- Probar la APK en un móvil de verdad.
+- El modo calma también para los latidos útiles (pista, logo de carga): ¿te vale así?
+- Tailandés solo tiene 4 lecciones.
+- Revisión humana de las traducciones (empezar por coreano, que tiene más frases en español).
+- Mejoras grandes del informe integral aún sin hacer: hablar (reconocimiento de voz), prueba de nivel y aviso a la hora que elija el usuario.

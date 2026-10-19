@@ -340,7 +340,7 @@ export function pintarInicio(contenedor) {
           el('p', {}, t(`inicio.${f.clave}.texto`)))),
       paseo);
     x.figura.addEventListener('click', () => { sonar('saludo'); parada = 2400; if (x.sprite) x.sprite.andando = false; x.gesto('firma'); });
-    zonas.push(zona(tramo, () => [x], {
+    zonas.push(zona(paseo, () => [x], { // su trozo de suelo (en el móvil el tramo no tiene caja propia)
       alVer: () => {
         if (quieta) { despues(300 + i * 250, repetirQuieta); reloj = setInterval(repetirQuieta, 3200); return; }
         parada = 400 + i * 700; // no echan a andar todas a la vez

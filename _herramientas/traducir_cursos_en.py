@@ -26,7 +26,7 @@ import time
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
-APP = RAIZ / 'Paglot'
+APP = RAIZ
 CURSOS = ['fr', 'de', 'ja', 'it', 'ko', 'zh', 'pt', 'ru', 'tr', 'nl', 'sv', 'el', 'pl', 'no', 'id', 'da', 'ro', 'th']
 NO_LATINOS = {'ja', 'zh', 'ko', 'ru', 'el', 'th'}
 MODELO = Path(os.environ.get('ARGOS_MODELO', Path(os.environ.get('TEMP', '.')) / 'argos' / 'translate-es_en-1_9'))

@@ -1,16 +1,16 @@
-// Copia la app web (../Paglot, con todos los cursos) a www/, que es lo que Capacitor mete dentro de la APK.
+// Copia la app web (la carpeta de arriba, con todos los cursos) a www/, que es lo que Capacitor mete dentro de la APK.
 // Uso: node copiar.mjs
 import { cpSync, rmSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
-import { join, dirname, sep } from 'node:path';
+import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 
 const aqui = dirname(fileURLToPath(import.meta.url));
-const origen = join(aqui, '..', 'Paglot');
+const origen = join(aqui, '..');
 const destino = join(aqui, 'www');
 
-// Lo que no hace falta dentro de la app: material de trabajo, servidor local y cosas de publicación web.
-const FUERA = ['.nojekyll', 'sw.js', 'LEEME.txt'];
+// Solo lo que es la app; lo demás (el proyecto de la APK, herramientas, notas, git…) se queda fuera.
+const APP = ['index.html', 'manifest.webmanifest', 'assets', 'css', 'cursos', 'js', 'juegos'];
 
 // Primero, el índice y el diccionario de cada curso al día (la app los lee al arrancar).
 // (si la herramienta no está, se usan los índices que ya tiene cada curso)
@@ -19,10 +19,7 @@ if (existsSync(indices)) execFileSync(process.execPath, [indices], { stdio: 'inh
 else console.log('Sin _herramientas/generar_indices.mjs: se usan los índices que ya hay en cada curso.');
 
 rmSync(destino, { recursive: true, force: true });
-cpSync(origen, destino, {
-  recursive: true,
-  filter: ruta => !FUERA.some(f => ruta === join(origen, f) || ruta.startsWith(join(origen, f) + sep)),
-});
+for (const parte of APP) cpSync(join(origen, parte), join(destino, parte), { recursive: true });
 
 // La marca de versión que en la web pone la publicación automática.
 const indice = join(destino, 'index.html');

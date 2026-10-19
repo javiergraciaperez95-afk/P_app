@@ -13,7 +13,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-CONFIG = (Path(__file__).resolve().parent.parent / 'Paglot' / 'js' / 'config.js').read_text(encoding='utf-8')
+CONFIG = (Path(__file__).resolve().parent.parent / 'js' / 'config.js').read_text(encoding='utf-8')
 URL = re.search(r"SUPABASE_URL = '([^']+)'", CONFIG).group(1)
 CLAVE = re.search(r"SUPABASE_CLAVE_PUBLICA = '([^']+)'", CONFIG).group(1)
 

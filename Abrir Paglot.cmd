@@ -16,7 +16,7 @@ $apps = @(
   @{ Nombre = 'Paglot'; Puerto = 8100 }
 )
 $carpetas = @{}
-foreach ($a in $apps) { $carpetas[$a.Puerto] = $raiz + $a.Nombre + '\' }
+foreach ($a in $apps) { $carpetas[$a.Puerto] = $raiz }
 $puerto = $apps[0].Puerto
 
 $edge = @(

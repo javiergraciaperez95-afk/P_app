@@ -10,8 +10,10 @@ export const esMovil = () => window.matchMedia('(max-width: 700px)').matches;
 
 const ENCOGER_MIN = 0.5;
 
-/** Pagina el contenido de `app` (la vista ya pintada). Devuelve la función que lo deshace. */
-export function paginarEnMovil(app) {
+/** Pagina el contenido de `app` (la vista ya pintada). Devuelve la función que lo deshace.
+ *  Con `fijas` (una función que da las páginas: un bloque o una lista de bloques cada una), cada página va entera, sin partirla: si no cabe,
+ *  se encoge (así la portada son pocas diapositivas grandes en vez de muchos trocitos). */
+export function paginarEnMovil(app, { fijas = null } = {}) {
   // la vista suele ser un solo bloque; si son varios (título + secciones, como el perfil), se reparte la vista entera
   const raiz = app.childElementCount > 1 ? app : app.firstElementChild;
   if (!raiz) return () => {};
@@ -69,9 +71,11 @@ export function paginarEnMovil(app) {
     const guardado = paginas[actual]?.bloques[0];
     limpiar();
     const alto = sitio();
+    // el alto de una página, para que el CSS pueda llenar la pantalla en vez de dejar huecos (--pm-alto)
+    document.documentElement.style.setProperty('--pm-alto', `${Math.floor(alto)}px`);
     adornos.clear();
-    const bloques = bloquesDe(raiz, alto, []);
-    paginas = [];
+    const bloques = fijas ? [] : bloquesDe(raiz, alto, []);
+    paginas = fijas ? fijas().map(g => ({ arriba: 0, bloques: [].concat(g).filter(k => k && enFlujo(k)) })).filter(p => p.bloques.length) : [];
     let pagina = null;
     let esperando = []; // un adorno va con el bloque que lo sigue, sin decidir dónde se corta
     for (const b of bloques) {
@@ -128,7 +132,8 @@ export function paginarEnMovil(app) {
     const tope = window.innerHeight - nav.offsetHeight - 4 - huecoTutora();
     let zoom = 1;
     for (let vez = 0; vez < 4; vez++) {
-      const abajo = Math.max(raiz.getBoundingClientRect().bottom, document.documentElement.scrollHeight - (nav.hidden ? 0 : nav.offsetHeight) - 4);
+      // solo la caja de la vista: lo que una animación de entrada desplaza un momento (transform) no cuenta
+      const abajo = raiz.getBoundingClientRect().bottom;
       const arriba = raiz.getBoundingClientRect().top;
       if (abajo <= tope + 1 || zoom <= ENCOGER_MIN) return;
       zoom = Math.max(ENCOGER_MIN, zoom * (tope - arriba) / (abajo - arriba));
@@ -174,15 +179,21 @@ export function paginarEnMovil(app) {
   }) : null;
   vigiaTutora?.observe(tutora);
   // lo que se pinta un poco después (tutoras, imágenes, textos que llegan) cambia las medidas
-  const tardes = [setTimeout(() => luego(0), 400), setTimeout(() => luego(0), 1500)];
+  const tardes = [setTimeout(() => luego(0), 400), setTimeout(() => luego(0), 1500), setTimeout(() => luego(0), 3000)];
+  if (document.readyState !== 'complete') window.addEventListener('load', () => luego(0), { once: true });
+  // y la entrada de la vista (vista-entra) la desplaza mientras dura: al acabar, se mide de nuevo
+  const alAcabarEntrada = e => { if (e.target === raiz) luego(0); };
+  app.addEventListener('animationend', alAcabarEntrada);
   repartir();
 
   return () => {
     vivo = false;
+    document.documentElement.style.removeProperty('--pm-alto');
     vigiaTutora?.disconnect();
     clearTimeout(pendiente);
     tardes.forEach(clearTimeout);
     app.removeEventListener('click', alPulsar);
+    app.removeEventListener('animationend', alAcabarEntrada);
     app.removeEventListener('input', alEscribir);
     app.removeEventListener('pointerdown', alBajar);
     app.removeEventListener('pointerup', alSubir);

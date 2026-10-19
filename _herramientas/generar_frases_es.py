@@ -1,4 +1,4 @@
-"""Genera Paglot/cursos/es/phrases/frases.json (la pantalla «Frases») a partir de los diálogos de las lecciones v2.
+"""Genera cursos/es/phrases/frases.json (la pantalla «Frases») a partir de los diálogos de las lecciones v2.
 
     python _herramientas/generar_frases_es.py
 
@@ -8,7 +8,7 @@ Una categoría por capítulo y, dentro, un grupo por lección con las frases de 
 import json
 from pathlib import Path
 
-CURSO = Path(__file__).resolve().parent.parent / 'Paglot' / 'cursos' / 'es'
+CURSO = Path(__file__).resolve().parent.parent / 'cursos' / 'es'
 leer = lambda p: json.loads(p.read_text(encoding='utf-8'))
 
 capitulos = leer(CURSO / 'lessons' / 'capitulos.json')

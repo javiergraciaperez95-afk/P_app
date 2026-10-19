@@ -18,7 +18,7 @@ import urllib.request
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
-APP = RAIZ / 'Paglot'
+APP = RAIZ
 PUERTO = 8300
 SALIDA = RAIZ / '_notas' / 'revision_paglot.json'
 CHROME = r'C:\Program Files\Google\Chrome\Application\chrome.exe'

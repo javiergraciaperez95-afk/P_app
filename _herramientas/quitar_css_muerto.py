@@ -1,6 +1,6 @@
 """Quita de un CSS las reglas cuyos selectores usan solo clases que ya no existen en la app.
 
-    python _herramientas/quitar_css_muerto.py Paglot/css/cabecera.css cuenta-avatar cabecera-crear …
+    python _herramientas/quitar_css_muerto.py css/cabecera.css cuenta-avatar cabecera-crear …
 
 Solo borra la regla entera (selectores + llaves) cuando TODOS sus selectores contienen alguna de las clases dadas;
 no reformatea nada más. Al final quita los @media que se hayan quedado vacíos.

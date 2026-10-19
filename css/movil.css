@@ -1,0 +1,366 @@
+/* =====================================================================
+   EL MÓVIL, SUAVE (se carga la última)
+   En el móvil (html.movil-suave lo pone js/suave.js, sin «reducir movimiento») lo que late en bucle se mueve solo con
+   transform u opacity: las sombras, anchos, colores y recortes animados obligan a repintar en cada fotograma y es lo
+   que da la sensación de ir a trompicones. Lo puramente decorativo, quieto.
+   ===================================================================== */
+
+@keyframes suave-latido { 50% { transform: scale(1.06); } }
+@keyframes suave-parpadeo { 50% { opacity: .55; } }
+@keyframes suave-entra-der { from { opacity: 0; transform: translateX(28px); } }
+@keyframes suave-entra-izq { from { opacity: 0; transform: translateX(-28px); } }
+
+/* lo que avisa (la palabra que hay que buscar, lo que hay que rodear, el cofre, el día de hoy, la pista) */
+.movil-suave .jg .palabra.jg-brilla,
+.movil-suave .jg .palabra.jg-luciernaga,
+.movil-suave .cm-extra-cofre,
+.movil-suave .rp-ficha.pista { animation: suave-latido 1.2s cubic-bezier(.37, 0, .63, 1) infinite; }
+.movil-suave .jg-rodea,
+.movil-suave .ac-dia.hoy { animation: suave-parpadeo 1.4s cubic-bezier(.37, 0, .63, 1) infinite; }
+
+/* adornos: quietos */
+.movil-suave .pie-pajaros i,
+.movil-suave .pr-tele .tv-s,
+.movil-suave .pr-tele-brillo,
+.movil-suave .rc-bombillas,
+.movil-suave .rc-letrero-pantalla,
+.movil-suave .rc-rec { animation: none; }
+/* la barra de la hucha se llena con transform (no con el ancho) */
+.movil-suave .pr-hucha-barra > i > i { width: 100%; transform-origin: left center; animation: suave-llenar 3s cubic-bezier(.22, 1, .36, 1) infinite alternate; }
+@keyframes suave-llenar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* el paso de una diapositiva a otra (js/paginas-movil.js) */
+.pm-entra-der { animation: suave-entra-der .26s cubic-bezier(.22, 1, .36, 1) both; }
+.pm-entra-izq { animation: suave-entra-izq .26s cubic-bezier(.22, 1, .36, 1) both; }
+
+/* tocar responde al momento: sin el retraso del doble toque y sin el destello gris del navegador */
+@media (max-width: 700px) {
+  html { -webkit-tap-highlight-color: transparent; }
+  a, button, [role="button"], label, summary { touch-action: manipulation; }
+  /* el contenido no se mueve de lado al tocar cerca del borde */
+  body { overscroll-behavior-x: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pm-entra-der, .pm-entra-izq { animation: none; }
+}
+
+/* el pie de la web, como última diapositiva de la portada en el móvil (js/app.js, pieEnLaPortada): ver más abajo */
+
+/* La lección en el móvil: sin la cabecera de la app (la lección ya tiene su «volver») y sin huecos de más abajo,
+   para que cada paso quepa en la pantalla (el paso se encoge lo justo si aun así no cabe: juegos/motor.js, ajustar) */
+@media (max-width: 700px) {
+  body.en-leccion .cabecera { display: none; }
+  body.en-leccion main { padding-top: 8px; padding-bottom: calc(var(--alto-tutora) + 14px + var(--borde-abajo)); }
+  body.en-leccion .jg { padding-bottom: 0; }
+  body.en-leccion .jg-pie { margin-top: 10px; padding: 6px 12px; }
+  body.en-leccion .jg-pista { margin: 4px 0 8px; }
+}
+
+/* El mapa de lecciones en el móvil: un capítulo por pantalla (js/vistas/lecciones.js); la lista se desplaza por dentro */
+@media (max-width: 700px) {
+  .cm-diapos { height: var(--cm-alto, 70vh); overflow: hidden; display: block; }
+  .cm-diapos > .cm-lado, .cm-diapos .cm-tramo { height: var(--cm-alto, 70vh); overflow-y: auto; overscroll-behavior: contain; }
+  .cm-diapos .cm-principal, .cm-diapos .cm-mapa { height: 100%; margin: 0; padding: 0; }
+  .cm-diapos .cm-tramo { display: flex; flex-direction: column; margin: 0; overflow: hidden; }
+  .cm-diapos .cm-tramo > .cm-cartel { flex: none; pointer-events: none; }
+  .cm-diapos .cm-tramo > .cm-cartel .cm-cartel-flecha { display: none; }
+  .cm-diapos .cm-camino { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+  .cm-diapo-num { font: 700 .9rem var(--fuente-pixel); color: var(--h-tinta); }
+  /* lo que tapa la tutora flotante se queda como hueco al final de lo que se desliza (--cm-hueco, js/vistas/lecciones.js) */
+  .cm-diapos .cm-camino { padding-bottom: calc(30px + var(--cm-hueco, 0px)); }
+  .cm-diapos > .cm-lado { padding-bottom: var(--cm-hueco, 0px); }
+}
+
+/* El aviso de datos no empuja la página en el móvil (era lo que hacía que repaso, precios y el mapa no cupieran):
+   flota encima, abajo, hasta que se cierra */
+@media (max-width: 700px) {
+  .aviso-datos { position: fixed; left: 8px; right: 8px; bottom: 8px; z-index: 60; margin: 0; max-height: 40vh; overflow-y: auto; }
+  .precios .pr-escenario { gap: 8px; }
+  .panel-repaso { padding: 12px; }
+}
+
+/* ===== Modo calma (html.modo-calma, js/ajustes.js; de serie si el sistema pide «reducir movimiento») =====
+   Nada de adornos en bucle: cada animación se hace una sola vez y se queda quieta (lo que avisa sigue marcado por su
+   color o su borde). Sin chispas ni confeti. Los sonidos de adorno los apaga js/chispa.js. */
+html.modo-calma *, html.modo-calma *::before, html.modo-calma *::after { animation-iteration-count: 1 !important; }
+html.modo-calma .chispa, html.modo-calma .fiesta-confeti { display: none !important; }
+
+/* ===== Texto grande (html.texto-grande, js/ajustes.js) ===== */
+html.texto-grande { font-size: 112.5%; }
+
+/* ===== La lección: «Paso X de Y» y la pausa, junto a la fila de pasos (juegos/motor.js) ===== */
+.jg-ruta { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 4px 14px; margin: 18px 0 14px; }
+.jg-ruta .jg-camino { margin: 0; }
+.jg-ruta-lado { display: flex; align-items: center; gap: 10px; }
+.jg-cuenta { font: 700 .78rem var(--fuente-pixel); letter-spacing: .06em; color: var(--h-suave); white-space: nowrap; }
+.jg-cuenta-corta { display: none; }
+.jg-pausar { min-height: 38px; min-width: 42px; padding: 4px 10px; }
+.jg-pausa { width: min(340px, calc(100% - 32px)); padding: 22px 20px 18px; border: 0; text-align: center; color: var(--h-tinta); background: var(--h-papel); box-shadow: 0 0 0 4px var(--h-borde), 6px 8px 0 0 var(--h-sombra); }
+.jg-pausa::backdrop { background: rgba(10, 8, 16, .62); }
+.jg-pausa[open] { animation: jg-pausa-entra .18s cubic-bezier(.22, 1, .36, 1) both; }
+@keyframes jg-pausa-entra { from { opacity: 0; transform: scale(.94); } }
+.jg-pausa h2 { margin: 0 0 6px; font-family: var(--fuente-pixel); }
+.jg-pausa p { margin: 0 0 16px; }
+.jg-pausa-botones { display: flex; flex-direction: column; gap: 10px; }
+@media (prefers-reduced-motion: reduce) { .jg-pausa[open] { animation: none; } }
+@media (max-width: 700px) {
+  .jg-ruta { flex-wrap: nowrap; gap: 8px; margin: 6px -12px 8px; padding-right: 12px; }
+  .jg-ruta .jg-camino { flex: 1; min-width: 0; margin: 0; }
+  .jg-ruta-lado { flex: none; gap: 6px; }
+  .jg-cuenta { font-size: .66rem; letter-spacing: 0; }
+  .jg-cuenta-larga { display: none; }
+  .jg-cuenta-corta { display: inline; }
+  .jg-pausar { min-height: 34px; min-width: 36px; padding: 2px 8px; }
+}
+
+
+/* La portada en el móvil: cinco diapositivas (escenario, mercado, pasillo, teatro y enlaces; js/app.js, DIAPOSITIVAS).
+   Para que cada una quepa sin encogerse demasiado: en el pasillo solo pasea la tutora del último tablón y en el teatro
+   las entradas son solo banderas. El aviso de datos queda por encima de la barra ◀ ▶. */
+@media (max-width: 700px) {
+  .inicio-teatro .teatro-entradas { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+  .inicio-teatro .teatro-entradas .entrada-numero,
+  .inicio-teatro .teatro-entradas .entrada-cuerpo,
+  .inicio-teatro .teatro-entradas .entrada-sello { display: none; }
+  .inicio-teatro .teatro-entradas { width: 100%; margin-top: 14px; padding: 2px; }
+  .inicio-teatro .teatro-entradas .inicio-idioma { min-height: 0; justify-content: center; clip-path: none; }
+  .inicio-teatro .teatro-entradas .entrada-talon { width: 100%; padding: 6px 2px; background: none; }
+  .inicio-teatro .teatro-entradas .bandera { width: 26px; height: 17px; }
+  html.pm-activo .aviso-datos { bottom: 66px; }
+}
+
+/* Portada en el móvil, diapositiva 1: la escena de la web recolocada, no encogida. Ocupa todo el alto entre la cabecera
+   y la barra ◀ ▶ (--pm-alto, de js/paginas-movil.js): arriba el logotipo y el nombre, en medio el cielo y abajo la
+   universidad con las tres tutoras y el botón, de pie en el suelo. El saludo de la cabecera va en una sola línea
+   (sin su botón: el de la escena ya dice «Continuar»). */
+@media (max-width: 700px) {
+  body.en-inicio .cinta-hola { padding: 6px 12px; }
+  body.en-inicio .cabecera .hola-seguir { display: none; }
+  body.en-inicio .hola-texto { gap: 2px 12px; font-size: .82rem; }
+  body.en-inicio .hola-texto strong { flex-basis: 100%; font-size: .92rem; }
+
+  /* todo se mide con el alto que hay (--h): en un móvil bajito o con el saludo arriba, las piezas se hacen más
+     pequeñas en vez de encoger la escena entera (que dejaría franjas a los lados) */
+  html.pm-activo .inicio-escenario { --h: var(--pm-alto, 674px); box-sizing: border-box; display: flex; flex-direction: column; min-height: calc(var(--h) + 4px); padding: clamp(8px, calc(var(--h) * .033), 22px) 0 0; }
+  html.pm-activo .inicio-cabeza { padding: 0 16px; }
+  html.pm-activo .inicio-logo { --l: clamp(56px, calc(var(--h) * .18), 120px); width: var(--l); height: var(--l); }
+  html.pm-activo .inicio-nombre { margin: 0 0 4px; font-size: clamp(2.6rem, min(22vw, calc(var(--h) * .135)), 5.8rem); }
+  html.pm-activo .inicio-lema { font-size: clamp(.92rem, calc(var(--h) * .0255), 1.12rem); }
+  html.pm-activo .inicio-trio { --t: clamp(88px, calc(var(--h) * .27), 160px); margin-top: auto; }
+  html.pm-activo .inicio-universidad { --u-alto: clamp(150px, calc(var(--h) * .55), 342px); width: calc(var(--u-alto) * 2.632); height: var(--u-alto); }
+  html.pm-activo .inicio-trio .tutora-lienzo { width: calc(var(--t) * .75); height: var(--t); }
+  html.pm-activo .boton-arriba .tutora-lienzo { height: calc(var(--t) * 1.219); }
+  html.pm-activo .boton-arriba .inicio-globo { bottom: calc(100% - var(--t) * .26); }
+  html.pm-activo .inicio-figura.boton-izq { margin-right: calc(var(--t) * -.16); }
+  html.pm-activo .inicio-figura.boton-der { margin-left: calc(var(--t) * -.16); }
+  html.pm-activo .inicio-trio .inicio-empezar { min-height: calc(var(--t) * .4); padding: calc(var(--t) * .04) calc(var(--t) * .1) calc(var(--t) * .06); font-size: clamp(.95rem, calc(var(--t) * .13), 1.3rem); }
+  html.pm-activo .inicio-empezar { max-width: 176px; }
+}
+
+/* Portada en el móvil, diapositiva 2: el mercado. Como en la web, pero en vertical: los farolillos arriba, la pancarta
+   colgada en alto con la cuerda de banderas debajo, y abajo las dos tutoras de pie, grandes, con los palos largos que
+   suben hasta la tela; detrás, los puestos del mercado. Todo con el alto que hay (--h); en pantallas bajitas la cuerda
+   de banderas se quita (las banderas vuelven en el teatro, diapositiva 4). */
+@media (max-width: 700px) {
+  html.pm-activo .inicio-escenario:has(> .inicio-cabeza.pm-oculto) { padding-top: 0; }
+  html.pm-activo .inicio-bajo {
+    --t: clamp(96px, calc(var(--h) * .24), 150px);
+    --w: calc(var(--t) * .75);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: clamp(40px, calc(var(--h) * .085), 64px) 0 0;
+    box-shadow: none;
+  }
+  html.pm-activo .mercado-farolillos { top: clamp(6px, calc(var(--h) * .02), 14px); gap: 26px; }
+  html.pm-activo .inicio-mercado { --m: clamp(110px, calc(var(--h) * .26), 192px); width: calc(var(--m) * 10); height: var(--m); }
+  html.pm-activo .pancarta-escena {
+    --lado: calc(var(--w) * .8);
+    --palo-izq: calc(var(--w) * .6);
+    --palo-der: calc(var(--w) * .11);
+    --hasta-palo: calc(var(--w) * .16);
+    flex: 1;
+    grid-template-columns: var(--lado) minmax(0, 1fr) var(--lado);
+    align-items: stretch;
+  }
+  html.pm-activo .pancarta-tutora .tutora-lienzo { width: var(--w); height: var(--t); }
+  html.pm-activo .lado-izq .inicio-figura { margin-left: calc(var(--w) * -.2); }
+  html.pm-activo .lado-der .inicio-figura { margin-right: calc(var(--w) * -.2); }
+  html.pm-activo .lado-izq .inicio-globo { left: 66%; }
+  html.pm-activo .lado-der .inicio-globo { left: 34%; }
+  html.pm-activo .pancarta-centro { justify-content: flex-start; padding-top: 0; }
+  html.pm-activo .pancarta { padding: 30px 8px 34px; outline-offset: -10px; }
+  html.pm-activo .pancarta .inicio-texto { padding: 0 8px; }
+  html.pm-activo .pancarta .inicio-datos { gap: 4px 12px; flex-wrap: nowrap; }
+  html.pm-activo .pancarta .inicio-texto { font-size: clamp(.86rem, calc(var(--h) * .0245), 1.05rem); }
+  html.pm-activo .pancarta .inicio-datos strong { font-size: clamp(1.4rem, calc(var(--h) * .048), 2.1rem); }
+  html.pm-activo .pancarta .inicio-datos span { font-size: .66rem; }
+  html.pm-activo .pancarta-cuerda { gap: 10px 6px; margin: 24px 0 0; padding: 0; }
+  html.pm-activo .ondea-tira { width: 6px; height: 16px; }
+  html.pm-activo .ondea-dentro { left: calc(var(--k) * -6px); width: 24px; height: 16px; }
+  html.pm-activo .ondea-dentro .bandera { width: 24px; height: 16px; }
+  html.pm-activo .pancarta-suelo { margin: 0; }
+}
+@media (max-width: 700px) and (max-height: 700px) {
+  html.pm-activo .pancarta-cuerda, html.pm-activo .pancarta .inicio-otro { display: none; }
+}
+
+/* Portada en el móvil, diapositiva 3: el pasillo de «así se aprende», como en la web: arriba los banderines y el letrero,
+   en la pared los cuatro tablones (dos y dos) y abajo, de lado a lado, el zócalo de madera y el suelo de baldosas con
+   las cuatro tutoras paseando entre macetas (cada una en su cuarto de pantalla). Medidas con el alto que hay (--h);
+   en pantallas bajitas los tablones solo llevan el título. */
+@media (max-width: 700px) {
+  html.pm-activo .inicio-pasillo {
+    --h: var(--pm-alto, 674px);
+    --t: clamp(72px, calc(var(--h) * .155), 128px);
+    --zocalo: calc(var(--t) * .5);
+    --suelo: 26px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(var(--h) - 12px); /* el escenario sube 20 px bajo la cabecera; el pasillo empieza tras el hueco de arriba (16 px) */
+    margin: 0 calc(50% - 50vw); /* de borde a borde de la pantalla */
+    padding: 0 10px;
+    box-shadow: none;
+    background:
+      linear-gradient(var(--h-borde), var(--h-borde)) 0 calc(100% - var(--suelo) + 3px) / 100% 3px no-repeat,
+      repeating-conic-gradient(var(--p-baldosa) 0 25%, var(--p-baldosa-2) 0 50%) 0 100% / 48px 27px repeat-x,
+      linear-gradient(var(--p-madera-luz), var(--p-madera-luz)) 0 calc(100% - var(--suelo) - var(--zocalo)) / 100% 3px no-repeat,
+      linear-gradient(var(--p-madera-2), var(--p-madera-2)) 0 calc(100% - var(--suelo) - var(--zocalo) + 3px) / 100% 5px no-repeat,
+      repeating-linear-gradient(90deg, var(--p-madera) 0 45px, var(--p-madera-2) 45px 48px) 0 calc(100% - var(--suelo)) / 100% var(--zocalo) no-repeat,
+      linear-gradient(var(--h-borde), var(--h-borde)) 0 0 / 100% 3px no-repeat,
+      linear-gradient(var(--p-moldura), var(--p-moldura)) 0 3px / 100% 12px no-repeat,
+      repeating-linear-gradient(90deg, var(--p-moldura) 0 8px, transparent 8px 16px) 0 15px / 100% 6px no-repeat,
+      var(--p-pared);
+  }
+  html.pm-activo .pasillo-letrero { padding: clamp(30px, calc(var(--h) * .06), 50px) 8px clamp(10px, calc(var(--h) * .026), 22px); }
+  html.pm-activo .pasillo-letrero span { font-size: clamp(1.05rem, calc(var(--h) * .036), 1.6rem); }
+  html.pm-activo .pasillo-tramos {
+    flex: 1;
+    width: 100%;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: auto auto 1fr;
+    gap: 8px 8px;
+  }
+  html.pm-activo .pasillo-tramo { display: contents; }
+  html.pm-activo .pasillo-tramo::before, html.pm-activo .pasillo-tramo::after, html.pm-activo .pasillo-aplique { display: none; }
+  html.pm-activo .pasillo-tramo:nth-child(1) .tablon { grid-area: 1 / 1 / 2 / 3; }
+  html.pm-activo .pasillo-tramo:nth-child(2) .tablon { grid-area: 1 / 3 / 2 / 5; }
+  html.pm-activo .pasillo-tramo:nth-child(3) .tablon { grid-area: 2 / 1 / 3 / 3; }
+  html.pm-activo .pasillo-tramo:nth-child(4) .tablon { grid-area: 2 / 3 / 3 / 5; }
+  html.pm-activo .pasillo-tramo:nth-child(1) .pasillo-paseo { grid-area: 3 / 1; }
+  html.pm-activo .pasillo-tramo:nth-child(2) .pasillo-paseo { grid-area: 3 / 2; }
+  html.pm-activo .pasillo-tramo:nth-child(3) .pasillo-paseo { grid-area: 3 / 3; }
+  html.pm-activo .pasillo-tramo:nth-child(4) .pasillo-paseo { grid-area: 3 / 4; }
+  html.pm-activo .tablon { margin: 0; padding: 9px; }
+  html.pm-activo .tablon-papel { padding: 14px 8px 20px; }
+  html.pm-activo .tablon-papel h3 { font-size: clamp(.7rem, calc(var(--h) * .0205), .84rem); }
+  html.pm-activo .tablon-papel p { margin-top: 6px; font-size: clamp(.7rem, calc(var(--h) * .0205), .84rem); line-height: 1.28; }
+  html.pm-activo .pasillo-paseo { align-self: end; height: calc(var(--t) + 14px); margin: 0 -4px; background: none; box-shadow: none; }
+  html.pm-activo .pasillo-tutora { bottom: 8px; }
+  html.pm-activo .pasillo-tutora .tutora-lienzo { width: calc(var(--t) * .75); height: var(--t); }
+  html.pm-activo .pasillo-maceta { bottom: 6px; width: calc(var(--t) * .34); height: calc(var(--t) * .38); }
+}
+@media (max-width: 700px) and (max-height: 700px) {
+  html.pm-activo .tablon-papel p { display: none; }
+}
+
+/* Portada en el móvil, diapositiva 4: el teatro de los idiomas, de borde a borde: el cartel de bombillas, el escenario
+   (que crece con el alto que hay, y con él la tutora y su foco), la placa con su nombre y, abajo, las entradas de los
+   21 idiomas en banderas. En pantallas bajitas se quita la frase de debajo del cartel. */
+@media (max-width: 700px) {
+  html.pm-activo .inicio-teatro {
+    --h: var(--pm-alto, 674px);
+    --e: clamp(110px, calc(var(--h) - 440px), 330px);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(var(--h) - 12px);
+    padding: clamp(16px, calc(var(--h) * .04), 30px) 12px 12px;
+  }
+  html.pm-activo .teatro-cartel { margin: 0 auto 8px; padding: 14px 18px; }
+  html.pm-activo .teatro-cartel h2 { font-size: clamp(1.05rem, calc(var(--h) * .034), 1.5rem); }
+  html.pm-activo .inicio-teatro .inicio-seccion-texto { margin: 6px auto 12px; font-size: .88rem; }
+  html.pm-activo .teatro { width: 100%; }
+  html.pm-activo .teatro-escena { height: var(--e); }
+  html.pm-activo .teatro-publico { top: calc(var(--e) + 9px); }
+  html.pm-activo .teatro-tutora .tutora-lienzo { width: calc(var(--e) * .45); height: calc(var(--e) * .6); }
+  html.pm-activo .teatro-tutora .inicio-globo { bottom: calc(100% - var(--e) * .07); }
+  html.pm-activo .teatro-foco { width: calc(var(--e) * .95); margin-left: calc(var(--e) * -.475); }
+  html.pm-activo .teatro-placa { margin-top: 14px; padding: 8px 16px 8px 12px; }
+  html.pm-activo .inicio-teatro .teatro-entradas { margin: auto 0 0; padding-top: 14px; }
+}
+@media (max-width: 700px) and (max-height: 700px) {
+  html.pm-activo .inicio-teatro { --e: clamp(110px, calc(var(--h) - 250px), 330px); }
+  html.pm-activo .inicio-teatro .inicio-seccion-texto, html.pm-activo .teatro-placa { display: none; }
+  html.pm-activo .inicio-teatro .teatro-entradas { grid-template-columns: repeat(11, 1fr); gap: 6px 2px; padding-top: 12px; }
+  html.pm-activo .inicio-teatro .teatro-entradas li { filter: none; }
+  html.pm-activo .inicio-teatro .teatro-entradas .inicio-idioma { background: none; }
+  html.pm-activo .inicio-teatro .teatro-entradas .entrada-talon { padding: 2px 0; }
+  html.pm-activo .inicio-teatro .teatro-entradas .bandera { width: 24px; height: 16px; }
+}
+
+/* Portada en el móvil, diapositiva 5: el pie de la web, el de verdad (js/app.js, pieEnLaPortada), de borde a borde:
+   el cielo con la ciudad, el logotipo y las cuatro tutoras charlando sobre el suelo (esta parte crece con el alto que
+   sobra), los tres carteles de enlaces más apretados (dos y uno, el de ayuda en dos columnas), la guirnalda y la base. */
+@media (max-width: 700px) {
+  html.pm-activo .inicio-pie-pag {
+    --h: var(--pm-alto, 674px);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(var(--h) - 12px);
+    margin: 0 calc(50% - 50vw);
+  }
+  html.pm-activo .inicio-pie-pag .pie-sitio { flex: 1; display: flex; flex-direction: column; margin-top: 0; }
+  /* como en la web: dos tutoras a cada lado del logotipo, en una sola fila (las tutoras, según el ancho) */
+  html.pm-activo .inicio-pie-pag .pie-escena {
+    --w: clamp(48px, calc((100vw - 120px) / 4 + 6px), 84px);
+    flex: 1;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    grid-template-areas: "izq marca der";
+    align-content: end;
+    padding-top: 14px;
+  }
+  html.pm-activo .inicio-pie-pag .pie-tutora { width: var(--w); height: calc(var(--w) * 4 / 3); }
+  html.pm-activo .inicio-pie-pag .pie-figura { margin: 0 -8px; }
+  html.pm-activo .inicio-pie-pag .pie-tutoras { padding-top: 34px; }
+  html.pm-activo .inicio-pie-pag .pie-marca { padding: 0 0 8px; }
+  html.pm-activo .inicio-pie-pag .pie-logo { width: clamp(52px, calc(var(--h) * .11), 96px); height: clamp(52px, calc(var(--h) * .11), 96px); }
+  html.pm-activo .inicio-pie-pag .pie-nombre { font-size: clamp(1.8rem, 9vw, 2.4rem); }
+  html.pm-activo .inicio-pie-pag .pie-lema { padding: 2px 8px; font-size: .7rem; }
+  html.pm-activo .inicio-pie-pag .pie-firma { flex-basis: auto; order: 0; }
+  html.pm-activo .inicio-pie-pag .pie-base-interior { gap: 4px 14px; font-size: .78rem; }
+  html.pm-activo .inicio-pie-pag .pie-interior { padding: 14px 10px 12px; }
+  html.pm-activo .inicio-pie-pag .pie-grupos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 10px; }
+  html.pm-activo .inicio-pie-pag .pie-grupo { padding: 14px 8px 8px; gap: 0; }
+  html.pm-activo .inicio-pie-pag .pie-grupo:nth-child(3) { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; }
+  html.pm-activo .inicio-pie-pag .pie-grupo:nth-child(3) h2 { grid-column: 1 / -1; }
+  html.pm-activo .inicio-pie-pag .pie-grupo h2 { margin-bottom: 4px; font-size: .92rem; }
+  html.pm-activo .inicio-pie-pag .pie-grupo a { padding: 3px 4px; font-size: .8rem; line-height: 1.25; }
+  html.pm-activo .inicio-pie-pag .pie-subir { display: none; }
+  html.pm-activo .inicio-pie-pag .pie-base-interior { padding-top: 8px; padding-bottom: 8px; }
+}
+@media (max-width: 700px) and (max-height: 760px) {
+  html.pm-activo .inicio-pie-pag .pie-grupos { grid-template-columns: 1fr; gap: 10px; }
+  html.pm-activo .inicio-pie-pag .pie-grupo, html.pm-activo .inicio-pie-pag .pie-grupo:nth-child(3) { display: flex; flex-flow: row wrap; gap: 2px 14px; padding: 12px 8px 6px; }
+  html.pm-activo .inicio-pie-pag .pie-grupo h2 { flex-basis: 100%; }
+  html.pm-activo .inicio-pie-pag .pie-grupo a::before { display: none; }
+  html.pm-activo .inicio-pie-pag .pie-grupo a { padding: 1px 3px; font-size: .76rem; }
+  html.pm-activo .inicio-pie-pag .pie-grupo { padding: 11px 8px 5px; }
+  html.pm-activo .inicio-pie-pag .pie-grupo h2 { margin-bottom: 2px; font-size: .84rem; }
+  html.pm-activo .inicio-pie-pag .pie-interior { padding: 10px 10px 8px; }
+  html.pm-activo .inicio-pie-pag .pie-guirnalda { flex-wrap: nowrap; overflow: hidden; }
+  html.pm-activo .inicio-pie-pag .pie-base-interior { padding-top: 5px; padding-bottom: 5px; }
+  html.pm-activo .inicio-pie-pag .pie-firma { display: none; }
+}
+@media (max-width: 700px) {
+  html.pm-activo .inicio-pie-pag .pie-guirnalda { height: 20px; overflow: hidden; }
+}
+@media (max-width: 700px) and (max-height: 700px) {
+  html.pm-activo .inicio-pie-pag .pie-grupo h2 { display: none; }
+  html.pm-activo .inicio-pie-pag .pie-grupo { padding-top: 10px; }
+  html.pm-activo .inicio-pie-pag .pie-grupos { gap: 8px; }
+}
