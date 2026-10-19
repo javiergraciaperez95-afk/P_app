@@ -358,3 +358,20 @@
 @media (prefers-reduced-motion: reduce) {
   .rc-cartel h1, .rc-bombillas, .rc-bombillas::before, .rc-bombillas::after, .rc-letrero-pantalla, .rc-notas i, .rc-rec, .rc-maquina.activa * { animation: none !important; }
 }
+
+/* ===== Móvil por páginas (js/paginas-movil.js): cada fila de máquinas cabe en la pantalla sin encoger nada. Los
+   tamaños siguen el alto de la página (--pm-alto): en un móvil bajito, las pantallas, los mandos y las
+   instrucciones de cada máquina son más bajos; en un móvil alto, quedan como estaban. ===== */
+@media (max-width: 700px) {
+  html.pm-activo .rc-sala { padding-top: clamp(70px, calc(var(--pm-alto) * .15), 86px); padding-bottom: clamp(14px, calc(var(--pm-alto) * .04), 44px); }
+  html.pm-activo .rc-cartel { margin-bottom: clamp(20px, calc(var(--pm-alto) * .05), 40px); }
+  html.pm-activo .rc-maquina { padding-bottom: clamp(10px, calc(var(--pm-alto) * .025), 16px); }
+  html.pm-activo .rc-marquesina { min-height: clamp(36px, calc(var(--pm-alto) * .09), 46px); }
+  html.pm-activo .rc-marco { margin-top: clamp(6px, calc(var(--pm-alto) * .015), 12px); padding: clamp(4px, calc(var(--pm-alto) * .011), 7px); }
+  html.pm-activo .rc-pantalla { height: clamp(78px, calc(var(--pm-alto) * .2), 128px); }
+  html.pm-activo .rc-mandos { height: clamp(28px, calc(var(--pm-alto) * .06), 40px); margin-top: clamp(6px, calc(var(--pm-alto) * .015), 10px); }
+  html.pm-activo .rc-instrucciones { margin-top: clamp(6px, calc(var(--pm-alto) * .015), 12px); padding: clamp(5px, calc(var(--pm-alto) * .012), 9px); }
+  html.pm-activo .rc-instrucciones h3 { margin-bottom: 2px; }
+  html.pm-activo .rc-instrucciones p { font-size: .78rem; line-height: 1.35; }
+  html.pm-activo .rc-ranura { min-height: clamp(34px, calc(var(--pm-alto) * .08), 44px); margin: clamp(6px, calc(var(--pm-alto) * .015), 10px) 10px 4px; }
+}

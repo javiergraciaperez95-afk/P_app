@@ -144,3 +144,16 @@ html.pm-activo body main { padding-bottom: 0; }
 .pm-puntos i { width: 10px; height: 10px; background: var(--h-papel); box-shadow: 0 0 0 2px var(--h-borde); }
 .pm-puntos i.pm-ya { background: var(--h-rosa); }
 .pm-puntos b { font: 700 .9rem var(--fuente-pixel); color: var(--h-tinta); }
+
+/* ===== Legal, créditos y producto (#/legal, #/creditos, #/producto) en el móvil por páginas (js/paginas-movil.js).
+   Una caja que no cabe en la página (más del 85 % de su alto) se parte, y su título queda solo en la página de antes.
+   En un móvil bajito, las cajas del aviso legal son algo más compactas para que ninguna pase de ese tamaño. ===== */
+@media (max-width: 700px) {
+  html.pm-activo .creditos-lista { margin-bottom: clamp(8px, calc(var(--pm-alto) * .02), 16px); }
+  html.pm-activo .creditos-lista > li { padding: clamp(6px, calc(var(--pm-alto) * .014), 10px) 12px; }
+}
+@media (max-width: 700px) and (max-height: 700px) {
+  html.pm-activo .legal .caja { padding: 10px 12px; }
+  html.pm-activo .legal .caja p { margin: 0 0 6px; line-height: 1.4; }
+  html.pm-activo .legal .caja h2 { margin-bottom: 4px; }
+}

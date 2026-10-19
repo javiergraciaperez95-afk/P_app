@@ -140,3 +140,27 @@
   .fq-mesa.llegan > *, .fq-ficha[open] .fq-respuesta { animation: none; }
   .fq-cajon { transition: none; }
 }
+
+/* ===== Móvil por páginas (js/paginas-movil.js): el fichero y la placa caben en la pantalla sin encoger nada. Los
+   tamaños siguen el alto de la página (--pm-alto): en un móvil bajito, los cajones, la placa y el suelo son más bajos;
+   el buscador va justo debajo de la placa, y la placa deja un hueco que manda el fichero a su página. ===== */
+@media (max-width: 700px) {
+  html.pm-activo .fq-biblioteca { padding-top: clamp(16px, calc(var(--pm-alto) * .04), 50px); }
+  html.pm-activo .fq-placa { margin-bottom: 40px; padding: clamp(14px, calc(var(--pm-alto) * .03), 22px) 18px; }
+  html.pm-activo .fq-placa h1 { margin: 4px 0 6px; font-size: clamp(1.45rem, calc(var(--pm-alto) * .034), 2rem); }
+  html.pm-activo .fq-fichero { padding: clamp(6px, calc(var(--pm-alto) * .016), 14px); }
+  html.pm-activo .fq-cajones { gap: 6px; }
+  html.pm-activo .fq-cajon { min-height: clamp(72px, calc(var(--pm-alto) * .11), 96px); gap: 6px; padding: clamp(6px, calc(var(--pm-alto) * .012), 12px) 8px 6px; }
+  html.pm-activo .fq-busqueda { margin-bottom: 8px; }
+  html.pm-activo .fq-portaetiquetas span { font-size: .78rem; }
+  html.pm-activo .fq-suelo { height: clamp(16px, calc(var(--pm-alto) * .04), 70px); margin-top: clamp(6px, calc(var(--pm-alto) * .02), 26px); }
+  /* la mesa de lectura: menos aire arriba y abajo (el hueco de la página no cuenta para el reparto) */
+  html.pm-activo .fq-lectura { padding: clamp(12px, calc(var(--pm-alto) * .03), 46px) 16px clamp(16px, calc(var(--pm-alto) * .04), 70px); }
+  html.pm-activo .fq-mesa { gap: clamp(10px, calc(var(--pm-alto) * .02), 16px); }
+  html.pm-activo .fq-fin { margin-top: clamp(16px, calc(var(--pm-alto) * .05), 40px); }
+}
+
+/* En un móvil bajito, la placa va sola en su página: el hueco de debajo es lo que la separa del fichero. */
+@media (max-width: 700px) and (max-height: 760px) {
+  html.pm-activo .fq-placa { margin-bottom: clamp(40px, calc(var(--pm-alto) - 450px), 200px); }
+}

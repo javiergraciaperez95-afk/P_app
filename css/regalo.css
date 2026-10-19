@@ -371,3 +371,38 @@
   .rg-guirnalda, .rg-pista, .rg-caja.envolviendo, .rg-confeti i, .rg-postal.mece, .rg-caja:hover .rg-tapa { animation: none !important; }
   .rg-caja, .rg-caja-cuerpo, .rg-tapa, .rg-tarjeta, .rg-lazo { transition: none; }
 }
+
+/* ===== Móvil por páginas (js/paginas-movil.js): el taller y el tendedero caben en la pantalla sin encoger nada. Los
+   tamaños siguen el alto de la página (--pm-alto): en un móvil bajito, la hoja del pedido es más compacta (así cabe
+   entera en su página) y cada postal del tendedero va en la suya. ===== */
+@media (max-width: 700px) {
+  html.pm-activo .rg-taller { padding-top: clamp(14px, calc(var(--pm-alto) * .03), 54px); }
+  html.pm-activo .rg-titulo { margin-bottom: clamp(12px, calc(var(--pm-alto) * .03), 20px); }
+  html.pm-activo .rg-mostrador { height: clamp(70px, calc(var(--pm-alto) * .2), 150px); }
+  html.pm-activo .rg-pedido { margin: clamp(8px, calc(var(--pm-alto) * .02), 26px) 0 clamp(10px, calc(var(--pm-alto) * .03), 36px); padding: clamp(14px, calc(var(--pm-alto) * .04), 26px) 10px clamp(8px, calc(var(--pm-alto) * .02), 14px); }
+  html.pm-activo .rg-hoja { padding: clamp(10px, calc(var(--pm-alto) * .025), 20px) clamp(10px, calc(var(--pm-alto) * .03), 20px) clamp(10px, calc(var(--pm-alto) * .025), 18px); }
+  html.pm-activo .rg-hoja h2 { margin-bottom: clamp(6px, calc(var(--pm-alto) * .017), 14px); font-size: clamp(1.05rem, calc(var(--pm-alto) * .027), 1.3rem); }
+  html.pm-activo .rg-opciones { margin-bottom: clamp(6px, calc(var(--pm-alto) * .017), 12px); }
+  html.pm-activo .rg-resumen { min-height: 2.2em; margin-bottom: 4px; }
+  html.pm-activo .rg-explica { line-height: 1.45; }
+  html.pm-activo .rg-comprar { margin-top: clamp(8px, calc(var(--pm-alto) * .02), 14px); }
+  html.pm-activo .rg-nota { margin-top: 6px; }
+  /* el tendedero: la tutora de abajo (de su alto según la pantalla) y las postales, con menos aire */
+  html.pm-activo .rg-taller, html.pm-activo .rg-tendedero { --rg-tutora: clamp(90px, calc(var(--pm-alto) * .16), 128px); }
+  html.pm-activo .rg-tendedero { padding-top: clamp(10px, calc(var(--pm-alto) * .02), 30px); padding-bottom: calc(var(--rg-tutora) + 26px); }
+  html.pm-activo .rg-tendedora { bottom: 12px; }
+  html.pm-activo .rg-tendedora .tutora-lienzo { width: calc(var(--rg-tutora) * .75); height: var(--rg-tutora); }
+  html.pm-activo .rg-postales { gap: clamp(8px, calc(var(--pm-alto) * .02), 22px); }
+  html.pm-activo .rg-postal, html.pm-activo .rg-postal-2 { margin-top: clamp(6px, calc(var(--pm-alto) * .012), 26px); padding: clamp(12px, calc(var(--pm-alto) * .028), 22px) clamp(14px, calc(var(--pm-alto) * .03), 20px) clamp(12px, calc(var(--pm-alto) * .028), 20px); }
+}
+/* Las postales tienen un alto mínimo: la hoja del pedido no comparte página con la primera, y dos postales caben (o
+   no) en una según la pantalla. Cada tamaño de móvil tiene su alto. */
+@media (max-width: 700px) {
+  html.pm-activo .rg-postal { min-height: 238px; }
+}
+@media (max-width: 700px) and (max-height: 700px) {
+  html.pm-activo .rg-postal { min-height: 240px; }
+}
+@media (max-width: 700px) and (min-height: 701px) and (max-height: 760px) {
+  html.pm-activo .rg-postal { min-height: 195px; }
+}
