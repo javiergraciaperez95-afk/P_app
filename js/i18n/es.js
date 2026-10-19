@@ -81,7 +81,7 @@ export default {
   'analisis.titulo': "Análisis de la frase",
   'analisis.boton': "Análisis",
   'leccion.numero': "Lección {id}",
-  'leccion.progreso': "Ejercicios: {completados}/{total} · Aciertos: {aciertos} · Fallos: {errores}",
+  'leccion.progreso': "Ejercicios: {completados}/{total} · Aciertos: {aciertos}",
   'leccion.terminar': "Terminar la lección",
   'leccion.faltan': ({ n }) => `¡Eh, eh! No tan deprisa: te ${plural(n, 'queda', 'quedan')} ${n} ${plural(n, 'ejercicio', 'ejercicios')}. ${plural(n, 'Hazlo', 'Hazlos')} y luego presumimos.`,
   'leccion.terminadaTutora': ({ n }) => `¡Lección terminada! ${n} ${plural(n, 'acierto', 'aciertos')}. Sabía que lo conseguirías con una tutora como yo. Estoy orgullosa de ti.`,

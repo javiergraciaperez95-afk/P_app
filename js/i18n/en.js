@@ -125,7 +125,7 @@ export default {
 
   // ----- Lección -----
   'leccion.numero': 'Lesson {id}',
-  'leccion.progreso': 'Exercises: {completados}/{total} · Correct: {aciertos} · Mistakes: {errores}',
+  'leccion.progreso': 'Exercises: {completados}/{total} · Correct: {aciertos}',
   'leccion.terminar': 'Finish lesson',
   'leccion.faltan': ({ n }) => `Whoa, whoa! Not so fast: you still have ${n} ${plural(n, 'exercise', 'exercises')} left. Do ${plural(n, 'it', 'them')} and then we can show off.`,
   'leccion.terminadaTutora': ({ n }) => `Lesson complete! ${n} correct ${plural(n, 'answer', 'answers')}. I knew you’d make it with a tutor like me. I’m proud of you.`,

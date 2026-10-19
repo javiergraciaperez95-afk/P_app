@@ -20,6 +20,9 @@ create table if not exists public.paglot_cuentas (
   usada   timestamptz not null default now()
 );
 
+-- la última escritura (leer también cuenta como uso, pero no como escritura): ver paglot_guardar
+alter table public.paglot_cuentas add column if not exists escrita timestamptz not null default now();
+
 alter table public.paglot_cuentas enable row level security;
 revoke all on public.paglot_cuentas from anon, authenticated;
 
@@ -39,16 +42,27 @@ begin
   return v;
 end $$;
 
--- Guarda el progreso (crea la cuenta si no existe). Como mucho 2 MB por cuenta.
+-- Guarda el progreso (crea la cuenta si no existe). Límites (19-10-2026): como mucho 2 MB por cuenta, una escritura
+-- cada 2 segundos por cuenta (la app sube a los 3 s de cada cambio: más seguido es un bucle o un abuso) y, para que
+-- nadie llene la tabla con números al azar, como mucho 500 cuentas nuevas cada 10 minutos (las que ya existen siguen
+-- guardando).
 create or replace function public.paglot_guardar(p_numero text, p_datos jsonb)
 returns boolean language plpgsql security definer set search_path = public as $$
+declare v_escrita timestamptz;
 begin
   if p_numero !~ '^[0-9]{16}$' then raise exception 'número no válido'; end if;
   if octet_length(p_datos::text) > 2000000 then raise exception 'demasiados datos'; end if;
+  select escrita into v_escrita from paglot_cuentas where numero = p_numero;
+  if found then
+    if v_escrita > now() - interval '2 seconds' then raise exception 'demasiado seguido'; end if;
+  elsif (select count(*) from paglot_cuentas where creada > now() - interval '10 minutes') >= 500 then
+    raise exception 'demasiadas cuentas nuevas';
+  end if;
   insert into paglot_cuentas (numero, datos) values (p_numero, p_datos)
-  on conflict (numero) do update set datos = excluded.datos, usada = now();
+  on conflict (numero) do update set datos = excluded.datos, usada = now(), escrita = now();
   return true;
 end $$;
+create index if not exists paglot_cuentas_creada on public.paglot_cuentas (creada);
 
 -- ¿Existe esta cuenta? (para entrar con un número en otro dispositivo)
 create or replace function public.paglot_existe(p_numero text)

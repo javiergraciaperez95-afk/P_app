@@ -158,7 +158,7 @@ export default {
 
   // ----- Lección -----
   'leccion.numero': 'Bài {id}',
-  'leccion.progreso': 'Bài tập: {completados}/{total} · Đúng: {aciertos} · Sai: {errores}',
+  'leccion.progreso': 'Bài tập: {completados}/{total} · Đúng: {aciertos}',
   'leccion.terminar': 'Hoàn thành bài học',
   'leccion.faltan': 'Ê, ê! Từ từ đã: em còn {n} bài tập chưa làm. Làm xong rồi mình khoe sau.',
   'leccion.terminadaTutora': 'Xong bài rồi! {n} câu đúng. Cô biết là có cô giáo như cô thì em sẽ làm được mà. Cô tự hào về em.',
