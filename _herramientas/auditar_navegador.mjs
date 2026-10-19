@@ -93,7 +93,7 @@ async function abrir(ruta, previo, tam) {
   await cdp('Emulation.setDeviceMetricsOverride', { width: tam.ancho, height: tam.alto, deviceScaleFactor: 1, mobile: tam.movil });
   await cdp('Page.navigate', { url: 'about:blank' });
   await espera(150);
-  const { identifier } = await cdp('Page.addScriptToEvaluateOnNewDocument', { source: `try{localStorage.clear();sessionStorage.clear();${previo}}catch{}` });
+  const { identifier } = await cdp('Page.addScriptToEvaluateOnNewDocument', { source: `try{localStorage.clear();sessionStorage.clear();localStorage.setItem('paglot-sin-nube','1');${previo}}catch{}` });
   await cdp('Page.navigate', { url: `http://localhost:${puerto}/index.html#/${ruta}` });
   await espera(3200);
   await cdp('Page.removeScriptToEvaluateOnNewDocument', { identifier });

@@ -1,4 +1,5 @@
-# Comprueba los cursos y las traducciones en cada subida y en cada cambio propuesto (ver _herramientas/comprobar.py).
+# Comprueba los cursos y las traducciones en cada subida y en cada cambio propuesto (ver _herramientas/comprobar.py) y,
+# como prueba de humo, abre en Chrome una lección de cada curso en sus dos idiomas (_herramientas/probar_cursos.mjs).
 name: Comprobar
 
 on:
@@ -15,3 +16,15 @@ jobs:
           python-version: '3.12'
       - name: Comprobar cursos e idiomas
         run: python _herramientas/comprobar.py
+
+  humo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Servir la app
+        run: python3 -m http.server 8300 >/dev/null 2>&1 &
+      - name: Una lección de cada curso en sus dos idiomas
+        run: CHROME="$(command -v google-chrome || command -v chromium-browser || command -v chromium)" node _herramientas/probar_cursos.mjs 8300

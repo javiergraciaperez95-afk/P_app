@@ -1,8 +1,10 @@
 // Abre una lección de cada curso en sus dos idiomas de interfaz (Chrome sin ventana) y avisa de lo que falla:
 // errores de consola, la tarjeta de error, «[object Object]» o «@es»/«@en» a la vista, o la página en otro idioma.
 //   node _herramientas/probar_cursos.mjs [puerto=8300] [lección=010]
-// Necesita la app servida en http://localhost:<puerto> (la raíz del repo).
+// Necesita la app servida en http://localhost:<puerto> (la raíz del repo). Env CHROME: otro Chrome (en GitHub Actions,
+// el de Linux; ver .github/workflows/comprobar.yml).
 import { spawn } from 'node:child_process';
+import os from 'node:os';
 
 const puerto = process.argv[2] ?? '8300';
 const leccion = process.argv[3] ?? '010';
@@ -10,8 +12,8 @@ const CURSOS = ['es', 'en', 'fr', 'de', 'it', 'pt', 'ja', 'ko', 'zh', 'ru', 'tr'
 const IDIOMAS = c => (c === 'es' ? ['en', 'vi'] : ['es', 'en']);
 
 const depuracion = 9300 + Math.floor(Math.random() * 300);
-const chrome = spawn('C:/Program Files/Google/Chrome/Application/chrome.exe', ['--headless=new', `--remote-debugging-port=${depuracion}`,
-  '--window-size=1280,900', `--user-data-dir=${process.env.TEMP}/cdp-cursos-${depuracion}`, 'about:blank']);
+const chrome = spawn(process.env.CHROME || 'C:/Program Files/Google/Chrome/Application/chrome.exe', ['--headless=new', `--remote-debugging-port=${depuracion}`,
+  '--window-size=1280,900', `--user-data-dir=${os.tmpdir()}/cdp-cursos-${depuracion}`, ...(process.platform === 'linux' ? ['--no-sandbox'] : []), 'about:blank']);
 let lista;
 for (let i = 0; i < 60; i++) { await new Promise(r => setTimeout(r, 250)); try { lista = await (await fetch(`http://127.0.0.1:${depuracion}/json`)).json(); break; } catch {} }
 const ws = new WebSocket(lista.find(x => x.type === 'page').webSocketDebuggerUrl);
@@ -33,7 +35,7 @@ for (const c of CURSOS) {
     errores = [];
     await cdp('Page.navigate', { url: 'about:blank' });
     await espera(100);
-    const previo = `try{localStorage.clear();localStorage.setItem('idiomas-ajustes',JSON.stringify({idioma:'${i}',efectos:false,vozTutora:false}));` +
+    const previo = `try{localStorage.clear();localStorage.setItem('paglot-sin-nube','1');localStorage.setItem('idiomas-ajustes',JSON.stringify({idioma:'${i}',efectos:false,vozTutora:false}));` +
       `localStorage.setItem('idiomas-curso','${c}');localStorage.setItem('idiomas-beta-${c}','1');localStorage.setItem('idiomas-aviso-visto','1');` +
       `localStorage.setItem('idiomas-bienvenida-vista','1');localStorage.setItem('idiomas-modo-leccion','libro');sessionStorage.setItem('idiomas-abierta','1');}catch{}`;
     const { identifier } = await cdp('Page.addScriptToEvaluateOnNewDocument', { source: previo });

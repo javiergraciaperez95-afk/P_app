@@ -27,7 +27,7 @@ const espera = ms => new Promise(r => setTimeout(r, ms));
 const valor = async expr => (await cdp('Runtime.evaluate', { expression: expr, awaitPromise: true, returnByValue: true }))?.result?.value;
 await cdp('Runtime.enable'); await cdp('Page.enable'); await cdp('Log.enable');
 await cdp('Emulation.setDeviceMetricsOverride', { width: +ancho, height: +alto, deviceScaleFactor: 1, mobile: true });
-await cdp('Page.addScriptToEvaluateOnNewDocument', { source: `try{sessionStorage.setItem('idiomas-abierta','1');localStorage.setItem('idiomas-aviso-visto','1');localStorage.setItem('idiomas-bienvenida-vista','1');localStorage.setItem('idiomas-ajustes',JSON.stringify({idioma:'${idioma}',efectos:false,vozTutora:false}));${process.env.PREVIO ?? ''}}catch{}` });
+await cdp('Page.addScriptToEvaluateOnNewDocument', { source: `try{sessionStorage.setItem('idiomas-abierta','1');localStorage.setItem('idiomas-aviso-visto','1');localStorage.setItem('idiomas-bienvenida-vista','1');localStorage.setItem('paglot-sin-nube','1');localStorage.setItem('idiomas-ajustes',JSON.stringify({idioma:'${idioma}',efectos:false,vozTutora:false}));${process.env.PREVIO ?? ''}}catch{}` });
 await cdp('Page.navigate', { url: `http://localhost:${process.env.PUERTO ?? 8300}/index.html#/${ruta}` });
 await espera(Number(process.env.ESPERA ?? 3500));
 

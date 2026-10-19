@@ -14,7 +14,10 @@ import { curso } from './curso.js';
 const CLAVE_NUMERO = 'paglot-cuenta';
 const ESPERA_SUBIDA = 3000;
 
-export const nubeActiva = Boolean(SUPABASE_URL && SUPABASE_CLAVE_PUBLICA);
+// Las pruebas automáticas (_herramientas/probar_cursos.mjs, la auditoría, las capturas) la apagan: cada una abre la app
+// como nueva y, si no, crearía una cuenta de prueba en la nube.
+const sinNube = (() => { try { return localStorage.getItem('paglot-sin-nube') === '1'; } catch { return false; } })();
+export const nubeActiva = Boolean(SUPABASE_URL && SUPABASE_CLAVE_PUBLICA) && !sinNube;
 
 /** estado: apagada · conectando · guardada · sin-conexion · error. ultima: fecha de la última subida buena. */
 export const nube = { estado: nubeActiva ? 'conectando' : 'apagada', ultima: null };

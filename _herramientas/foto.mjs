@@ -23,7 +23,7 @@ await cdp('Runtime.enable'); await cdp('Page.enable'); await cdp('Log.enable');
 const movil = +ancho < 768;
 await cdp('Emulation.setDeviceMetricsOverride', { width: +ancho, height: +alto, deviceScaleFactor: 1, mobile: movil });
 const previo = process.env.PREVIO ?? '';
-await cdp('Page.addScriptToEvaluateOnNewDocument', { source: `try{if(!sessionStorage.getItem('idiomas-abierta'))sessionStorage.setItem('idiomas-abierta','1');localStorage.setItem('idiomas-ajustes',JSON.stringify({idioma:'${idioma}',efectos:false,vozTutora:false}));${previo}}catch{}` });
+await cdp('Page.addScriptToEvaluateOnNewDocument', { source: `try{if(!sessionStorage.getItem('idiomas-abierta'))sessionStorage.setItem('idiomas-abierta','1');localStorage.setItem('paglot-sin-nube','1');localStorage.setItem('idiomas-ajustes',JSON.stringify({idioma:'${idioma}',efectos:false,vozTutora:false}));${previo}}catch{}` });
 await cdp('Page.navigate', { url: `http://localhost:${process.env.PUERTO ?? 8300}/index.html#/${ruta}` });
 await new Promise(r => setTimeout(r, +esperaMs));
 if (js) { const r = await cdp('Runtime.evaluate', { expression: js, awaitPromise: true, returnByValue: true, replMode: true }); console.log('js:', JSON.stringify(r?.result?.value ?? r?.exceptionDetails?.exception?.description ?? r)); await new Promise(r2 => setTimeout(r2, 1200)); }
