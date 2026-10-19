@@ -943,13 +943,13 @@ function marcarId(bloque, ejercicio) {
   // «audio»: texto en el idioma del curso que se escucha (ejercicios de comprensión oral).
   if (textoValido(bloque.audio)) {
     ejercicio.audio = bloque.audio.trim();
-    // Sin voz en el dispositivo, el texto se enseña escrito y el ejercicio pasa a ser de lectura.
-    // Pero si lo que se oye es justo la respuesta (un dictado, ordenar la frase, «elige lo que oyes»),
-    // escrito no tiene sentido: ese ejercicio solo existe cuando hay voz.
+    // Todo lo que hay que escuchar solo existe cuando el dispositivo tiene voz: sin ella, para el alumno es como si
+    // no estuviera (decisión del 19-10; antes, si se podía, se enseñaba escrito). El índice lo apunta igual
+    // (_herramientas/marcar_oido.py), para que el mapa no lo cuente como pendiente.
+    ejercicio.soloOido = true;
     const oido = soloLetras(ejercicio.audio);
     const buena = soloLetras(ejercicio.opciones?.find(o => o.correcta)?.texto);
-    if (['escribir', 'ordenar'].includes(ejercicio.tipo) || buena === oido) ejercicio.soloOido = true;
-    else if (buena && ejercicio.frase && oido.includes(buena)) ejercicio.audioRevela = true;
+    if (buena && buena !== oido && ejercicio.frase && oido.includes(buena)) ejercicio.audioRevela = true;
   } else if (bloque.audio === true && textoValido(bloque.frase)) {
     // En los huecos se oye la frase completa, con la respuesta correcta en su sitio.
     // Las pistas entre paréntesis, como «(our)», no se leen.

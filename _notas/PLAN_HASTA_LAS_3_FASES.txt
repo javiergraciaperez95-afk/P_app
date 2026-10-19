@@ -1,0 +1,77 @@
+PAGLOT · PLAN PARA DEJARLO TODO LISTO ANTES DE LAS 3 ÚLTIMAS FASES (19-10-2026)
+==============================================================================
+
+Sale de tus respuestas en _notas/PREGUNTAS_PARA_TERMINAR.txt. Al terminar este plan, lo único que debería quedar
+es lo de las 3 últimas fases (monetización, bases de datos y revisión de los JSON) y lo que necesita tus manos
+(probar en tu móvil, ejecutar SQL en Supabase, crear cuentas).
+
+Marcas: [ ] por hacer · [x] hecho · [~] hecho a medias (se explica)
+
+
+1. QUÉ CURSOS VE CADA UNO (A1)
+   [ ] Cada uno ve los cursos según el idioma de su interfaz (que al principio es el del móvil o el navegador):
+       - interfaz en inglés  → no sale el curso de inglés;
+       - interfaz en español → no sale el curso de español;
+       - interfaz en vietnamita → no sale el de vietnamita, y cualquier curso que no sea el de español enseña
+         «¡AÚN NO HEMOS TERMINADO!» con las tutoras en grande y te devuelve al inicio.
+   [ ] El curso de inglés, solo con la interfaz en español (más adelante, también en vietnamita).
+   [ ] Si alguien ya tenía elegido un curso que ya no le toca (por ejemplo, interfaz en vietnamita y curso de
+       francés), al abrir le sale el mismo aviso y vuelve al inicio, sin perder su progreso.
+   [ ] No se generan traducciones al vietnamita: solo español e inglés en todos los cursos (salvo el de español).
+
+2. SIN VOZ, FUERA LO QUE HAY QUE ESCUCHAR (A8)
+   [ ] Al abrir un curso se mira si el dispositivo tiene voz de ese idioma (en el navegador y en la APK).
+   [ ] Si no la tiene: los ejercicios de escuchar (dictados, «¿qué has oído?»…) no salen y no cuentan para
+       terminar la lección; los botones de altavoz desaparecen. Para el alumno es como si no existieran.
+
+3. AVISO BETA Y PRUEBA DE NIVEL (A2, B4)
+   [ ] Texto nuevo del aviso beta: tiene que pasar una revisión a fondo por varios tutores, así que puede haber
+       errores, aunque en principio nada grave. En los dos idiomas de cada curso.
+   [ ] La bienvenida (al empezar un curso) ofrece la prueba de nivel.
+
+4. PÁGINAS DE PAGO SIN PRECIOS (D3)
+   [ ] Paglot Max, Tienda, Escuelas, Empresas y Regala Max se quedan, pero sin ninguna cifra: «Precio por
+       anunciar» o similar, sin romper los dibujos. Los precios vuelven tras el informe de mercado.
+
+5. MÓVIL (B1, B2, B3)
+   [x] La tutora que se pliega: se queda así (B1). El perfil en diapositivas: se queda así (B2).
+   [ ] La lección en modo libro en 322×645: partir en dos las tablas y explicaciones largas para que nada se
+       encoja (B3).
+
+6. NUBE: ERRORES ANÓNIMOS Y LABORATORIO COMPARTIDO (C3, D2)
+   [ ] Informe de errores anónimo: si la app falla, se manda a Supabase el error, la pantalla, el curso, la
+       versión y el navegador (nada personal, sin número de cuenta). Con límite para no llenar la tabla.
+   [ ] Estantería de ideas del laboratorio compartida: ideas y votos en Supabase, iguales para todos. Límites de
+       longitud y de ritmo, un voto por dispositivo, sin enlaces, y las ideas con varias denuncias se ocultan.
+   [ ] El SQL de las dos tablas en _herramientas/ (lo ejecutas tú en Supabase, como el de las cuentas). Mientras
+       no esté, la app sigue como hoy (errores sin mandar; ideas en el navegador).
+
+7. AVISO LEGAL Y COOKIES CON TODOS LOS DATOS (C3)
+   [ ] El aviso legal y el de cookies enumeran TODO lo que se guarda, sin excepciones: en el dispositivo (cada
+       clave), en la nube (cuenta, progreso, correo si se pone), los errores anónimos y las ideas del laboratorio.
+       Para qué, cuánto tiempo y cómo borrarlo.
+   [ ] La comprobación automática avisa si aparece una clave de almacenamiento nueva que no está en el aviso.
+
+8. APK (E1, E2)
+   [ ] Avisos: no se pide permiso al abrir por primera vez. Al terminar la primera lección, la tutora pregunta
+       si quieres un recordatorio diario (y a qué hora); solo si dices que sí se pide el permiso de Android.
+   [ ] El recordatorio no salta los días que ya has estudiado.
+   [ ] Al girar el móvil o volver a la app no se pierde nada (revisar el manifiesto y guardar la pantalla).
+   [ ] Lista corta de qué mirar cuando pruebes la APK en tu móvil (_notas/PROBAR_LA_APK.txt) y APK rehecha.
+
+9. LIMPIEZA Y FORMA DE TRABAJAR (F1, F2, F4)
+   [ ] El material antiguo (C:\Users\javie\Pictures\Paglot_material_antiguo) a la papelera de reciclaje (si
+       quieres que desaparezca del todo, vacías tú la papelera).
+   [ ] Subir a GitHub al terminar cada bloque; si la prueba de GitHub sale en rojo, arreglarla.
+   [ ] Pasar todas las comprobaciones (comprobar.py, prueba de humo, auditoría del navegador) antes de cerrar.
+
+10. LO QUE SE QUEDA PARA LAS 3 ÚLTIMAS FASES (no se toca ahora)
+   - Informe de mercado y monetización: precios, pasarela de pago, qué es gratis y qué Max.
+   - Bases de datos: servidor propio con PHP, correo de las cuentas, formulario de contacto, cuentas que caducan
+     (C1, C2, D1). Las tablas de Supabase de hoy se pasarán allí.
+   - Revisión de los JSON: rehacer con IA (el modelo más barato) todo el contenido traducido, adaptado a
+     angloparlantes (sin «en español decimos…») y, cuando toque, a vietnamitaparlantes; nombres nuevos para los
+     capítulos juntados (A6, lo decido yo); el vietnamita B1-B2 del curso de español (A7). Dejaré escritas las
+     normas y las herramientas para que esa fase empiece directamente.
+   - Fuera de todo: el juego de «repite en voz alta» (B5: no se hace), chino y tailandés (otro agente), redes
+     sociales (las haces tú).

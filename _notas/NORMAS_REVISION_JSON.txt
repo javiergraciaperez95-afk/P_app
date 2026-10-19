@@ -1,0 +1,48 @@
+PAGLOT · NORMAS PARA LA FASE DE REVISIÓN DE LOS JSON (preparado el 19-10-2026)
+==============================================================================
+
+Es la última de las 3 fases. La hará una IA (el modelo más barato que sirva: Claude Haiku), lección a lección,
+siguiendo estas normas; después, profesores humanos (cuando la app esté terminada). Respuestas del usuario que la
+definen: A4 (rehacer con IA todos los JSON), A5 (adaptar a angloparlantes y vietnamitaparlantes), A6 (los nombres
+de los capítulos los decide Claude), A7 (el vietnamita B1-B2 del curso de español, también aquí).
+
+QUÉ SE REVISA
+- Todos los cursos menos chino y tailandés mientras los lleve otro agente (cuando acaben, también, con la
+  conversión de siempre: {"@es","@en"}, capítulos de 8-12 lecciones con nivel, «ordena las palabras»).
+- Por curso: lessons/NNN.json, lessons/capitulos.json, phrases/frases.json e indice/ (el índice se rehace al final).
+- El curso de español: el inglés y el vietnamita de las explicaciones (A7: el vietnamita B1-B2 sin revisar).
+
+NORMAS (la IA las recibe tal cual, con la lección y su índice)
+1. No tocar la estructura: mismos bloques, mismo orden, mismos «id» de ejercicio (el progreso se guarda por id),
+   mismos campos. Solo se cambian textos.
+2. Texto del idioma que se estudia (campo del curso: «fr», «de»…): solo se corrige si está MAL (gramática, ortografía,
+   acentos, palabra que no existe, registro raro para el nivel). Se apunta cada cambio en un registro aparte.
+3. Explicaciones en dos idiomas {"@es": …, "@en": …}:
+   - «@es» es para hispanohablantes: puede comparar con el español («en español decimos…»).
+   - «@en» se REESCRIBE (no se traduce palabra por palabra) para angloparlantes: sin comparaciones con el español
+     salvo que ayuden; si comparaba con el español, se compara con el inglés o se quita (A5; lista de 1.916 casos en
+     _notas/auditoria/explicaciones_es.json).
+   - Mismo contenido gramatical y mismos ejemplos en los dos; tono cercano, frases cortas (app para TDAH).
+4. Traducciones de frases y palabras (es/en): naturales, del mismo registro, que encajen con la frase original; en
+   «traduce» y «ordena», la opción buena tiene que ser inequívoca y las malas, claramente malas.
+5. Términos de gramática: los habituales en cada idioma («presente continuo» → «present continuous», nunca
+   «continuous presence»). Lista común por curso para que no cambien de una lección a otra.
+6. Nivel MCER: el vocabulario y la gramática de una lección no pasan del nivel de su capítulo (A1–B2). Si algo pasa,
+   se apunta (no se reescribe la lección entera).
+7. Nada de datos personales, marcas, política, religión, contenido para adultos; ejemplos variados en género y origen.
+8. Vietnamita (de momento solo en el curso de español): mismo criterio que el inglés; «em/cô» como en el resto de la
+   interfaz; sin traducciones al vietnamita en los demás cursos hasta que se decida (A1).
+9. Capítulos (A6, decidido): cada capítulo juntado recibe un nombre nuevo de 2 a 5 palabras que resuma lo que enseña
+   («Saludos y primeros datos»), en @es y @en; la descripción, una frase. Se escriben en lessons/capitulos.json.
+10. Lo que no se pueda arreglar con seguridad se marca en el registro (archivo, bloque, motivo) en vez de inventar.
+
+CÓMO SE HACE (herramientas ya hechas en _herramientas/)
+- Por trozos de lecciones, como retraducir_protegido.py (--trozos): la IA recibe el JSON y devuelve el JSON.
+- Después de cada curso: py -3 _herramientas/comprobar.py (estructura, @es/@en, sin ZQX), marcar_oido.py y
+  anadir_ordenar.py si hiciera falta, probar_cursos.mjs (abre una lección de cada curso) y una muestra a mano.
+- El aviso «beta» se queda hasta la revisión humana (A2), con el texto nuevo («falta la revisión a fondo de varios
+  profesores; puede haber algún error, nada grave»).
+
+COSTE ORIENTATIVO
+Unas 400.000 frases y explicaciones; con Haiku, del orden de 20-60 € en total (estimación del 19-10). Se puede hacer
+por cursos, empezando por los más buscados (inglés, francés, alemán, italiano, portugués).

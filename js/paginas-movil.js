@@ -78,13 +78,26 @@ export function paginarEnMovil(app, { fijas = null } = {}) {
     paginas = fijas ? fijas().map(g => ({ arriba: 0, bloques: [].concat(g).filter(k => k && enFlujo(k)) })).filter(p => p.bloques.length) : [];
     let pagina = null;
     let esperando = []; // un adorno va con el bloque que lo sigue, sin decidir dónde se corta
+    // Lo que añaden arriba y abajo los contenedores de un bloque (relleno y borde de su caja, de la caja de su caja…):
+    // al enseñar solo unos bloques del medio, la caja sigue poniendo su relleno de arriba y de abajo. Sin contarlo, las
+    // páginas salían unos píxeles más altas que la pantalla y se encogían (modo libro en un móvil de 322×645).
+    const marcos = new Map();
+    const marco = n => {
+      if (!n || n === raiz.parentElement) return 0;
+      if (!marcos.has(n)) {
+        const e = getComputedStyle(n);
+        marcos.set(n, parseFloat(e.paddingTop) + parseFloat(e.paddingBottom) + parseFloat(e.borderTopWidth) + parseFloat(e.borderBottomWidth)
+          + marco(n.parentElement));
+      }
+      return marcos.get(n);
+    };
     for (const b of bloques) {
       if (adornos.has(b)) { esperando.push(b); continue; }
       // los adornos de otro contenedor se quedan en la página de antes
       const ajenos = esperando.filter(d => !d.parentElement.contains(b));
       if (ajenos.length && pagina) { pagina.bloques.push(...ajenos); esperando = esperando.filter(d => !ajenos.includes(d)); }
       const c = b.getBoundingClientRect();
-      if (!pagina || (c.bottom - pagina.arriba > alto && pagina.bloques.length)) {
+      if (!pagina || (c.bottom - pagina.arriba + marco(b.parentElement) > alto && pagina.bloques.length)) {
         pagina = { arriba: c.top, bloques: [] };
         paginas.push(pagina);
       }
@@ -93,14 +106,53 @@ export function paginarEnMovil(app, { fijas = null } = {}) {
     }
     if (esperando.length) { if (!pagina) paginas.push(pagina = { arriba: 0, bloques: [] }); pagina.bloques.push(...esperando); }
     // cada página sabe qué contenedores tiene que dejar a la vista
-    for (const p of paginas) {
-      p.vivos = new Set();
-      for (const b of p.bloques) for (let n = b; n && n !== raiz; n = n.parentElement) p.vivos.add(n);
-    }
-    poner(nav.querySelector('.pm-puntos'), paginas.length > 12 ? el('b', {}) : paginas.map(() => el('i', {})));
-    nav.hidden = paginas.length < 2;
+    for (const p of paginas) p.vivos = vivosDe(p.bloques);
+    pintarPuntos();
     const vuelta = guardado ? paginas.findIndex(p => p.bloques.includes(guardado)) : -1;
     ir(vuelta >= 0 ? vuelta : Math.min(actual, paginas.length - 1), false);
+  }
+
+  function pintarPuntos() {
+    poner(nav.querySelector('.pm-puntos'), paginas.length > 12 ? el('b', {}) : paginas.map(() => el('i', {})));
+    nav.hidden = paginas.length < 2;
+  }
+
+  const vivosDe = bloques => {
+    const vivos = new Set();
+    for (const b of bloques) for (let n = b; n && n !== raiz; n = n.parentElement) vivos.add(n);
+    return vivos;
+  };
+
+  // se esconde todo lo que tiene bloques de otras páginas y no está en esta
+  function ensenar(n) {
+    const vivos = paginas[n].vivos;
+    raiz.style.zoom = '';
+    for (const p of paginas) for (const k of p.vivos) k.classList.toggle('pm-oculto', !vivos.has(k));
+  }
+
+  // hasta dónde puede llegar una página: la barra de abajo y la tutora no son suyas
+  const tope = () => window.innerHeight - nav.offsetHeight - 4 - huecoTutora();
+
+  // Si la página ya puesta no cabe y tiene varios bloques, los que se salen pasan a una página nueva justo detrás (lo
+  // calculado al repartir puede quedarse corto: márgenes que se juntan, la cabecera de una tabla…). Así solo se encoge
+  // cuando un bloque, él solo, no cabe en la pantalla.
+  function partirSiNoCabe(n) {
+    if (fijas) return false; // las diapositivas fijas (escenas dibujadas) van enteras
+    const p = paginas[n];
+    const reales = p.bloques.filter(b => !adornos.has(b));
+    const limite = tope() + 1;
+    let fuera = reales.findIndex((b, i) => i > 0 && b.getBoundingClientRect().bottom > limite);
+    // si ningún bloque se sale pero la página sí (el relleno de abajo de su caja), se va el último
+    if (fuera < 0 && reales.length > 1 && raiz.getBoundingClientRect().bottom > limite) fuera = reales.length - 1;
+    if (fuera < 0) return false;
+    const corte = p.bloques.indexOf(reales[fuera]);
+    const nueva = { arriba: 0, bloques: p.bloques.slice(corte) };
+    p.bloques = p.bloques.slice(0, corte);
+    p.vivos = vivosDe(p.bloques);
+    nueva.vivos = vivosDe(nueva.bloques);
+    paginas.splice(n + 1, 0, nueva);
+    pintarPuntos();
+    return true;
   }
 
   function ir(n, conSonido = true) {
@@ -108,11 +160,9 @@ export function paginarEnMovil(app, { fijas = null } = {}) {
     if (conSonido && n !== actual) sonar('pagina');
     const sentido = n > actual ? 'der' : n < actual ? 'izq' : '';
     actual = n;
-    const vivos = paginas[n].vivos;
-    raiz.style.zoom = '';
-    // se esconde todo lo que tiene bloques de otras páginas y no está en esta
-    for (const p of paginas) for (const k of p.vivos) k.classList.toggle('pm-oculto', !vivos.has(k));
+    ensenar(n);
     window.scrollTo(0, 0);
+    for (let vez = 0; vez < 6 && partirSiNoCabe(n); vez++) ensenar(n);
     encoger();
     // la página nueva entra deslizándose desde el lado hacia el que se va (solo transform y opacity)
     if (sentido) {
@@ -129,14 +179,14 @@ export function paginarEnMovil(app, { fijas = null } = {}) {
 
   // lo que ocupa de verdad la página ya puesta; si se pasa, se encoge todo lo de la vista
   function encoger() {
-    const tope = window.innerHeight - nav.offsetHeight - 4 - huecoTutora();
+    const limite = tope();
     let zoom = 1;
     for (let vez = 0; vez < 4; vez++) {
       // solo la caja de la vista: lo que una animación de entrada desplaza un momento (transform) no cuenta
       const abajo = raiz.getBoundingClientRect().bottom;
       const arriba = raiz.getBoundingClientRect().top;
-      if (abajo <= tope + 1 || zoom <= ENCOGER_MIN) return;
-      zoom = Math.max(ENCOGER_MIN, zoom * (tope - arriba) / (abajo - arriba));
+      if (abajo <= limite + 1 || zoom <= ENCOGER_MIN) return;
+      zoom = Math.max(ENCOGER_MIN, zoom * (limite - arriba) / (abajo - arriba));
       raiz.style.zoom = zoom.toFixed(3);
     }
   }

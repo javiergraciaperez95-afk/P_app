@@ -101,6 +101,36 @@ def comprobar_csp():
     return [] if recalcular_csp(html)[0] == html else ['index.html: rehazla con python _herramientas/publicar.py --csp']
 
 
+def comprobar_datos_guardados():
+    """Cada clave que el código guarda en el dispositivo está en la lista del aviso legal (DATOS_DISPOSITIVO de
+    js/vistas/legal.js): «el usuario tiene que saber todos los datos que guardamos sobre él, sin excepciones»."""
+    legal = (RAIZ / 'js' / 'vistas' / 'legal.js').read_text(encoding='utf-8')
+    bloque = legal[legal.index('export const DATOS_DISPOSITIVO'):]
+    bloque = bloque[:bloque.index('];')]
+    listadas = set(re.findall(r"'([^']+)'", bloque))
+    # «P-» es el prefijo de cada curso (espanol-, ingles-…) y «…» quiere decir «y lo que siga» (P-tarjeta:…)
+    prefijos = set(re.findall(r'"prefijo": "([^"]+)"', (RAIZ / 'js' / 'cursos.js').read_text(encoding='utf-8')))
+    abiertas = [x[:-1].rstrip(':') for x in listadas if x.endswith('…')]
+
+    def esta(clave):
+        if clave in listadas or any(clave.startswith(a) for a in abiertas):
+            return True
+        cabeza, _, resto = clave.partition('-')
+        return cabeza in prefijos and bool(resto) and esta(f'P-{resto}')
+    archivos = [*(RAIZ / 'js').rglob('*.js'), *(RAIZ / 'juegos').rglob('*.js'), RAIZ / '_apk' / 'puente.js']
+    errores = []
+    for archivo in archivos:
+        if 'i18n' in archivo.parts or not archivo.exists():
+            continue
+        texto = archivo.read_text(encoding='utf-8')
+        claves = set(re.findall(r"\bCLAVE[A-Z_]*\s*=\s*'([^']+)'", texto))
+        claves |= set(re.findall(r"(?:localStorage|sessionStorage)\.(?:setItem|getItem|removeItem)\('([^']+)'", texto))
+        claves |= {f'P-{c}' for c in re.findall(r"\bclave\('([^']+)'\)", texto)}
+        for c in sorted(c for c in claves if not esta(c)):
+            errores.append(f'{relativa(archivo)}: «{c}» no está en DATOS_DISPOSITIVO (js/vistas/legal.js) ni, por tanto, en el aviso legal')
+    return errores
+
+
 def mostrar(titulo, errores, detalle=''):
     estado = 'OK' if not errores else f'FALLA ({len(errores)})'
     print(f'{titulo}: {estado}{detalle}')
@@ -121,7 +151,9 @@ def main():
     mostrar('4. Objetos con @es y @en', errores_objetos)
     errores_csp = comprobar_csp()
     mostrar('5. CSP de index.html al día', errores_csp)
-    for errores in (errores_json, errores_i18n, errores_zq, errores_objetos, errores_csp):
+    errores_datos = comprobar_datos_guardados()
+    mostrar('6. Todo lo que se guarda, en el aviso legal', errores_datos)
+    for errores in (errores_json, errores_i18n, errores_zq, errores_objetos, errores_csp, errores_datos):
         fallos += len(errores)
     print('Todo correcto.' if not fallos else f'{fallos} fallo(s).')
     return 1 if fallos else 0

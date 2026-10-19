@@ -2,9 +2,12 @@
 // node _herramientas/foto.mjs <ruta> <salida.png> [ancho] [alto] [js antes] [idioma] [espera ms]
 import { spawn } from 'node:child_process';
 import fs from 'node:fs';
+import os from 'node:os';
 const [ruta, salida, ancho = '1200', alto = '900', js = '', idioma = 'en', esperaMs = '3000'] = process.argv.slice(2);
 const puerto = 9000 + Math.floor(Math.random() * 400);
-const chrome = spawn('C:/Program Files/Google/Chrome/Application/chrome.exe', ['--headless=new', `--remote-debugging-port=${puerto}`, `--window-size=${ancho},${alto}`, '--hide-scrollbars', `--user-data-dir=${process.env.TEMP}/cdp-foto-${puerto}`, 'about:blank']);
+// un perfil de Chrome nuevo cada vez (y se borra al acabar): con uno viejo se colaba lo guardado en otra prueba
+const perfil = fs.mkdtempSync(`${os.tmpdir()}/cdp-paglot-`);
+const chrome = spawn('C:/Program Files/Google/Chrome/Application/chrome.exe', ['--headless=new', `--remote-debugging-port=${puerto}`, `--window-size=${ancho},${alto}`, '--hide-scrollbars', `--user-data-dir=${perfil}`, 'about:blank']);
 let lista;
 for (let i = 0; i < 40; i++) { await new Promise(r => setTimeout(r, 250)); try { lista = await (await fetch(`http://127.0.0.1:${puerto}/json`)).json(); break; } catch {} }
 const ws = new WebSocket(lista.find(x => x.type === 'page').webSocketDebuggerUrl);
@@ -30,4 +33,5 @@ if (js) { const r = await cdp('Runtime.evaluate', { expression: js, awaitPromise
 const f = await cdp('Page.captureScreenshot', { format: 'png' });
 fs.writeFileSync(salida, Buffer.from(f.data, 'base64'));
 if (errores.length) console.log('errores:', [...new Set(errores)].slice(0, 5).join('\n'));
-ws.close(); chrome.kill(); process.exit(0);
+ws.close(); chrome.kill();
+setTimeout(() => { try { fs.rmSync(perfil, { recursive: true, force: true }); } catch { /* aún abierto */ } process.exit(0); }, 600);

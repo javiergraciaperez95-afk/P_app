@@ -6,6 +6,7 @@
 import { el, poner, alAzar } from '../dom.js';
 import { t } from '../i18n.js';
 import { sonar } from '../sonidos.js';
+import { PRECIOS_VISIBLES } from '../config.js';
 import { crearElenco } from './elenco.js';
 
 // las preguntas, por cajones; enlace: [ruta, clave del texto del botón]
@@ -18,6 +19,10 @@ const CAJONES = [
 ];
 
 const normalizar = texto => texto.toLocaleLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+
+// respuestas con un descuento o una cifra de precio (la 15 dice «hasta el 70 %»): sin precios visibles, dicen que llegarán luego
+const CON_PRECIO = new Set([15]);
+const respuesta = n => (!PRECIOS_VISIBLES && CON_PRECIO.has(n) ? t('precio.nota') : t(`faq.a${n}`));
 
 export function pintarFaq(root) {
   const elenco = crearElenco();
@@ -33,10 +38,10 @@ export function pintarFaq(root) {
     const ficha = el('details', { class: 'fq-ficha', 'data-cajon': cajon.id },
       el('summary', { 'data-sonido': 'papel' }, el('span', { class: 'fq-ficha-numero', 'aria-hidden': 'true' }, String(n).padStart(3, '0')), el('span', { class: 'fq-pregunta' }, t(`faq.q${n}`))),
       el('div', { class: 'fq-respuesta' },
-        el('p', {}, t(`faq.a${n}`)),
+        el('p', {}, respuesta(n)),
         href && el('a', { class: 'es-boton es-boton-papel', href, onclick: () => sonar('pagina') }, t(clave), ' →')));
     ficha.addEventListener('toggle', () => { if (ficha.open) bibliotecaria.gesto('asentir'); });
-    return { ficha, cajon: cajon.id, texto: normalizar(`${t(`faq.q${n}`)} ${t(`faq.a${n}`)}`) };
+    return { ficha, cajon: cajon.id, texto: normalizar(`${t(`faq.q${n}`)} ${respuesta(n)}`) };
   }));
 
   const mesa = el('div', { class: 'fq-mesa', 'aria-live': 'polite' });

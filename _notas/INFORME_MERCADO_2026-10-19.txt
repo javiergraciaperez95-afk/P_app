@@ -1,0 +1,888 @@
+# Paglot · Estudio de mercado y costes (19-10-2026)
+
+Para: Javier. Ámbito: app de idiomas Paglot (web + APK), libros impresos y PDF, merchandising, escuelas y empresas.
+Método: lectura del código y de los planes de Paglot (solo lectura), búsqueda en internet y lectura directa de las webs oficiales que se pudieron abrir (fecha de lectura: 19-10-2026). Las cifras llevan una etiqueta de fuente entre corchetes [F..] (lista completa al final). Lo que no se ha podido verificar está marcado como «estimación» o «no verificado».
+
+Nota sobre las cifras: los precios de las apps en euros para España no aparecen en ninguna web oficial que se haya podido leer; los precios de competidores son de agregadores en dólares y se convierten a euros con 1 USD = 0,90 € (supuesto, no verificado). Los agregadores de precios son de baja fiabilidad: se usan para ordenar magnitudes, no para fijar precios exactos.
+
+---
+
+## 1. Resumen ejecutivo
+
+**Qué hay.** Paglot tiene 21 cursos, tutoras pixel por idioma, minijuegos, repaso espaciado y un diseño pensado para déficit de atención. Hoy es gratis y no cobra nada. La web y la APK ya tienen páginas de precios, libros, tienda, escuelas, empresas y regalos, todas con «Precio por anunciar» (`PRECIOS_VISIBLES = false`, js/config.js).
+
+**Mercado.** El líder, Duolingo, tuvo en el segundo trimestre de 2026 unos 58,7 millones de usuarios diarios, 12,7 millones de suscriptores de pago y 298,5 millones de dólares de ingresos en el trimestre (+18 %) [F26]. El mercado es grande pero muy concentrado: la mayoría de apps de idiomas cobran entre 75 y 170 € al año en su plan completo (véase el capítulo 2). Hay hueco para un producto barato y amable, no para uno caro sin contenido propio probado.
+
+**Lo más importante que sale del estudio:**
+
+1. **El precio anual Max de 399 € está fuera de mercado.** Duolingo Max ronda los 168 USD al año (≈ 151 €) [F4] y Speak Premium Plus 165 USD (≈ 148 €) [F14]. Con 399 € Paglot cuesta unas 2,6 veces Duolingo Max (con 1 USD ≈ 0,90 €). Propuesta: **Max 129 €/año** y **Plus 39,99 €/año** en zona A (España y países de renta alta).
+2. **El Plus de 14,99 €/año está por debajo del coste de servir y atender a un usuario de pago** si se suman tienda, IVA, autónomo y soporte. Propuesta: 39,99 €/año (ver capítulo 3).
+3. **La tienda se queda con un 15 %** de cada suscripción (Google Play y, en general, Apple con el programa para pequeños desarrolladores) [F57][F59]. Además, el IVA del 21 % se paga sobre el precio: de 14,99 € pagados en tienda, Paglot recibe unos **10,53 €** netos antes de impuestos propios (estimación con el supuesto de que la comisión se calcula sobre el precio sin IVA).
+4. **Autónomo primero.** Tarifa plana de 80 €/mes durante 12 meses [F32][F33]; después, la cuota mínima en 2026 es de **205,88 €/mes** (≈ 2.471 €/año) [F29][F30]. Con ~27,96 € de ingreso neto medio por pagador en el conjunto de zonas (estimación), hacen falta unos **115 pagadores el primer año y 160 el segundo** para cubrir costes fijos sin marketing (capítulo 9).
+5. **Libros: viables, con dos avisos.** Un A5 de 250 páginas en blanco y negro cuesta unos **3,75 €** de impresión con la tabla oficial de KDP para España [F67]; a color estándar, 6,75 €. El PVP de 24,90 € (IVA 4 %) deja un margen de unos 15 € por libro antes de marketing. Pero el catálogo completo (6 libros × 21 idiomas = 126 títulos) implica 126 ISBN, cuyo precio en España **no se ha podido verificar** (capítulo 6).
+6. **Merchandising: solo cuatro artículos aguantan el margen.** Camiseta, capucha, sudadera y bolsa dejan entre 4 y 11 € por unidad; taza, funda, póster, lienzo, calendario y postales dejan entre 0,5 y 4 € y no compensan la publicidad (capítulo 7). Y Printful ya no envía desde Barcelona a terceros desde el 1 de marzo de 2026 [F74].
+7. **Impuestos a vigilar:** Verifactu (aplazado a 1 de julio de 2027 para autónomos, pendiente de convalidar) [F34][F35]; OSS para ventas a otros países de la UE (modelo 369) [F37]; IVA digital de Vietnam (Decreto 252/2026, vigente desde el 1 de julio de 2026) [F39][F40]; IVA del 16 % en México para proveedores extranjeros [F41][F42]. **Recomendación: vender en Vietnam y México solo a través de la tienda o de un comerciante de registro (merchant of record), no por Stripe directo.**
+8. **Escuelas y empresas están baratas en el papel.** Con el plan actual, un centro de 20 alumnos pagaría 150 € al año por todo el contenido (7,50 € por alumno), y una unidad a medida de 10 lecciones cuesta 450 € cuando, con un cálculo simple de horas, lleva unas 60 horas (estimación): conviene subirlos (capítulo 3.4).
+
+**Recomendación de precios en una tabla** (IVA incluido, zona A = España y países de renta alta; detalle en el capítulo 3):
+
+| Concepto | Config. actual (js/config.js) | Propuesta zona A | Propuesta zona B | Propuesta zona C | Propuesta zona D |
+|---|---|---|---|---|---|
+| Plus mensual | 2,49 € | 4,99 € | 2,99 € | 1,99 € | 0,99 € |
+| Plus anual | 14,99 € | 39,99 € | 23,99 € | 15,99 € | 7,99 € |
+| Max mensual | 34,99 € | 14,99 € | 8,99 € | 5,99 € | 2,99 € |
+| Max anual | 399 € | 129 € | 77,99 € | 51,99 € | 25,99 € |
+| Familia (hasta 6) anual | 24,99 € | 79 € | 47,99 € | 31,99 € | 15,99 € |
+| Fundadores (Plus de por vida) | 39,99 € | 99 € (500 plazas) | 59 € | 39 € | 19 € |
+
+Zonas B, C y D a 0,60, 0,40 y 0,20 veces la zona A: es la misma lógica que ya usa js/config.js, pero con otra base.
+
+---
+
+## 2. Competencia
+
+### 2.1 Precios de referencia (agregadores, en dólares, convertidos a euros con 1 USD ≈ 0,90 €)
+
+Las cifras de Duolingo, Babbel, Busuu y Memrise vienen de agregadores (Subger, Toolradar, Capterra) y no de las webs oficiales de España, que no se pudieron leer [F1][F2][F6][F8][F10]. Están marcadas con «(agg.)». Las de LingoDeer son de su página oficial y se leyeron el 19-10-2026 [F13].
+
+| App | Modelo | Precio mensual (≈ €) | Precio anual (≈ €) | Otros | Fuente |
+|---|---|---|---|---|---|
+| Duolingo Super | Freemium + suscripción; anuncios en gratis | ≈ 6,3 € con plan anual (6,99 USD/mes); ≈ 11,7 € mensual (12,99 USD, agg.) | ≈ 75 € (83,88 USD) | Familia ≈ 108 €/año (119,99 USD, 6 personas) | [F2][F3] |
+| Duolingo Max | Suscripción premium con IA | ≈ 27 € (29,99 USD, mensual) | ≈ 151 € (168 USD) | Funciones de IA (según informe interno) | [F2][F4] |
+| Babbel | Suscripción sin plan gratis | ≈ 12,6 € (13,95 USD) | ≈ 75 € (83,40 USD) | En Alemania un ranking de 2025 cita 8,99 €/mes (sin URL fiable) | [F6][F7] |
+| Busuu Premium | Freemium | ≈ 6,1–12,6 € (agg.) | ≈ 74–151 € (rango agregado) | En Alemania, 9,69 €/mes Premium y 11,90 €/mes Premium Plus (sin URL fiable) | [F8][F9] |
+| Memrise Pro | Freemium | ≈ 8 € (8,99 USD) | ≈ 54 € (60 USD) | Plan básico gratis (agg.) | [F10] |
+| Mondly | Freemium + Premium | ≈ 9 € (9,99 USD) | ≈ 43 € (47,99 USD); de por vida ≈ 81 € | Cifras de 2024 | [F11] |
+| Rosetta Stone | Suscripción / compra | no verificado | no verificado | Comparativas lo sitúan por encima de Mondly | sin URL fiable |
+| Pimsleur | Suscripción de audio | ≈ 18 € (19,95 USD, Premium) | ≈ 216 € (estimación a partir del mensual) | 51 idiomas | [F12] |
+| LingoDeer (oficial) | Freemium + Premium | ≈ 13,5 € (14,99 USD); trimestral ≈ 36 € | ≈ 86 € (95,99 USD); 3 años ≈ 171 €; 6 años ≈ 216 € | Sin plan de por vida visible; sin prueba gratis visible | [F13] |
+| Speak Premium | Suscripción de conversación con IA | ≈ 16 € (17,99 USD) | ≈ 76 € (83,99 USD) | Premium Plus ≈ 36 €/mes y ≈ 148 €/año | [F14] |
+| ELSA Speak | Freemium + Premium | no verificado | ≈ 144 € (159,99 USD, listado web) | Lifetime 249,99 USD (listado) | [F16] |
+| Drops | Freemium | ≈ 12 € (13 USD, tabla sin fecha) | no verificado | Versión gratis | sin URL fiable |
+| Preply / italki | Marketplace de clases con tutores | Precio fijado por cada tutor | Comisión a tutor 18–33 % (Preply) y 15→21 % (italki), fuentes afiliadas | Para el alumno la clase la pone el tutor | [F17][F18] |
+
+Lectura: **la mediana de las apps de idiomas con plan completo está entre 75 y 150 € al año**. Paglot Plus a 14,99 € está en el extremo bajo y Max a 399 € en el extremo alto sin contenido propio que lo sostenga. La propuesta de 39,99 € (Plus) y 129 € (Max) cae en el centro de la horquilla y por debajo de Duolingo Max.
+
+### 2.2 Modelo, puntos fuertes y débiles, valoraciones
+
+| App | Modelo | Puntos fuertes | Puntos débiles | Valoraciones (cuando se han leído) |
+|---|---|---|---|---|
+| Duolingo | Freemium con anuncios; Super y Max | Hábito, racha, escala (58,7 M DAU) [F26]; Vietnam es mercado prioritario [F21][F22] | Presión de la racha; anuncios | No verificado en esta sesión |
+| LingoDeer | Freemium; muchas opciones de pago | Gramática clara; cursos de asiáticas y europeas | Quejas por muros de pago (según informe interno del 19-10) | 4,8★ App Store (27 k) y 4,4★ Google Play (448 k), según el informe de arreglos [F84] |
+| Babbel | Suscripción sin gratis | Babbel Speak con IA (informe interno) | Sin plan gratis; ofertas promocionales frecuentes | No verificado |
+| Busuu | Freemium; certificados MCER | Certificados MCER y correcciones de nativos (informe interno) | Precios varían mucho por país según agregadores | No verificado |
+| Memrise | Freemium | Plan básico gratuito (agg.) | Calidad irregular según comparativas (no verificado) | No verificado |
+| Mondly | Freemium | Reconocimiento de voz (informe interno) | Precio de cifras de 2024 | No verificado |
+| Pimsleur | Suscripción | Método oral con audio | Precio alto frente a apps gratuitas; poco visual | No verificado |
+| Speak | Suscripción con IA | Conversación con IA | Precio alto frente a Premium de otras apps (agg.) | No verificado |
+| ELSA | Freemium | Pronunciación con reconocimiento de voz; base de usuarios en Asia | Solo inglés (no verificado en esta sesión) | No verificado |
+| italki / Preply | Marketplace | Tutores reales; flexibilidad | Coste por clase alto; comisiones; calidad dependiente del tutor | No verificado |
+
+### 2.3 Vietnam: quién compite por el alumno de español y de inglés
+
+- **Duolingo** es el referente. Según un artículo de KrASIA sin fecha visible, Duolingo tenía unos 2,2 millones de usuarios en Vietnam en los 12 meses anteriores y unos 500.000 activos al mes [F21]. Un reportaje de Viet Nam News sitúa a Vietnam como mercado prioritario y dice que el inglés es el idioma más estudiado [F22]. Estas cifras pueden ser de 2024 o anteriores.
+- **Descargas:** según Statista, Duolingo tuvo unos 10 millones de descargas en Vietnam entre enero y octubre de 2023, y Cake unas 608.000; AppMagic situaba a Vietnam con el 27 % de las descargas de apps de idiomas de la región Asia-Pacífico en el primer semestre de 2024 [F23].
+- **Apps de español en Vietnam:** los rankings vietnamitas citan Duolingo (que la fuente de 2025 sitúa en unos 6,99 USD al mes en su plan de pago) [F19], Open Language (unos 30 USD al mes, misma fuente) [F19], apps locales como «Học từ tiếng Tây Ban Nha A1-B2» (gratis con compras dentro de la app) y «5000 cụm từ» (gratis), y LingoHut (sin registro) [F20]. Son apps baratas o gratis; ninguna se presenta como curso completo con tutor.
+- **Academias presenciales:** un ranking de centros de Ho Chi Minh (fuente promocional, sin tarifas) menciona centros que cubren de A1 a C1 con grupos de 4 a 10 alumnos [no verificado en tarifas]. **No se han encontrado tarifas de 2025–2026 en VND para cursos de español en Hanói ni Ho Chi Minh**: queda como hueco de investigación.
+- **Tutorías uno a uno:** Preply e italki están presentes en Vietnam, pero no se ha encontrado un precio local fiable.
+
+**Conclusión para Vietnam:** el alumno vietnamita que quiere español (o inglés) ya tiene Duolingo, apps gratis y academias caras. Paglot puede entrar con el curso de español para vietnamitas (ya explicado en vietnamita e inglés), con un precio muy bajo y sin presión. Pero el precio de Vietnam (zona D) tiene que ser una décima parte del de España y el volumen de pago es incierto.
+
+### 2.4 Latinoamérica (México, Argentina, Colombia)
+
+- **Mexico:** no se han encontrado precios de Duolingo en pesos mexicanos. El IVA para servicios digitales de proveedores extranjeros es del 16 % y debe cobrarlo el proveedor, que tiene que registrarse en el SAT [F41][F42] (fuentes de asesoría y de Adobe; no del SAT).
+- **Argentina y Colombia:** no se han verificado precios ni tipos de IVA digital en esta sesión [no verificado].
+- **Mercado de español:** según el Instituto Cervantes (edición 2025, citada por prensa), el español tiene unos 635 millones de hablantes potenciales y más de 24 millones de estudiantes activos de español como lengua extranjera [F24]. Otra fuente cifra más de 500 millones de hablantes nativos [F25]. Son cifras para el mercado de quien aprende español, no de quien aprende otro idioma desde el español.
+
+Para Paglot, el segmento natural de los 20 cursos restantes (explicados en español) es **hispanohablante que aprende inglés, francés, japonés, etc.**: Spain y Latinoamérica. Ese es un mercado con mucha competencia (Duolingo) y con precios en euros que la mayoría de LatAm no puede pagar. Por eso la zona C (MX, AR, CO, BR…) con precios a 0,40 veces la zona A es necesaria.
+
+### 2.5 Dónde puede diferenciarse Paglot
+
+| Diferencial | Quién lo tiene hoy | Cómo se defiende |
+|---|---|---|
+| Ritmo sin presión (sin racha que castiga, sin ligas) | Nadie lo ofrece como promesa; Duolingo usa la racha | Mantenerlo y comunicarlo |
+| Pixel art y tutoras por idioma | Duolingo tiene mascota; no tutoras por idioma | Marca visual reconocible; dibujo ya hecho |
+| 21 idiomas con explicación en español e inglés | Pocos; la mayoría explica en inglés | Respetar el «cada idioma en dos lenguas» de la regla |
+| Español para vietnamitas con explicación en vietnamita e inglés | Casi nadie lo tiene en Vietnam | Es el nicho más defendible, con ventana de volumen pequeña |
+| Libro físico incluido en Max | Ninguna de las apps de la tabla de precios incluye libros impresos (según lo leído) | Coste de envío controlado (solo zonas A y B) |
+| Sin correo ni contraseña para empezar (cuenta con número de 16 cifras) | Duolingo también permite empezar antes de crear cuenta (informe interno) | Argumento de privacidad, no de exclusividad |
+
+Riesgo: el diferencial «sin presión» vende poco si no hay pruebas de aprendizaje; hace falta una prueba de nivel y datos de retención (ver riesgos).
+
+---
+
+## 3. Precios recomendados
+
+### 3.1 Lo que hay hoy en el código
+
+Fuente: js/config.js (ZONAS, ESCUELAS, EMPRESAS) y js/vistas/precios.js, regalo.js, escuelas.js, empresas.js, tienda.js [F85].
+
+| Zona | Países (muestra) | Plus mes | Plus año | Familia | Fundadores | Max mes | Max año | Libros |
+|---|---|---|---|---|---|---|---|---|
+| A | US, GB, DE, FR, IT, NL, SE, NO, DK, JP, AU, CA, CH, AT, BE, IE, FI, ES, KR, NZ, SG, IL, LU, IS | 2,49 € | 14,99 € | 24,99 € | 39,99 € | 34,99 € | 399 € | impresos |
+| B | PT, PL, GR, RO, CZ, HU, CL, UY, SK, SI, EE, LV, LT, HR, TW, SA, AE, QA, KW, BH, OM, CY, MT, HK | 1,49 € | 8,99 € | 14,99 € | 24,99 € | 21,99 € | 249 € | impresos |
+| C | MX, BR, TR, CN, TH, AR, CO, PE, RU, UA, MY, ZA, CR, DO, EC, GT, BG, RS, KZ, PA | 0,99 € | 5,99 € | 9,99 € | 14,99 € | 13,99 € | 149 € | PDF |
+| D | VN, ID, IN, PH, EG, NG, PK, BD, KE, MA, DZ, TN, LK, NP, GH, ET, TZ, UG, BO, VE | 0,49 € | 2,99 € | 4,99 € | 7,99 € | 8,99 € | 99 € | PDF |
+
+Además: Escuelas con tramos del 50 %, 60 % y 70 % sobre el Plus anual (desde 20, 100 y 500 alumnos); Empresas con tramos del 20 %, 35 % y 50 % (desde 5, 25 y 100 personas) y un máximo del 30 % para Max; unidad de 10 lecciones a medida por 450 € (zona A). Todo sin IVA. Los precios no se cobran aún y no se muestran (`PRECIOS_VISIBLES = false`).
+
+### 3.2 Diagnóstico de los precios actuales
+
+1. **Plus anual (14,99 €) está en el extremo bajo del mercado.** Duolingo Super ronda los 75 € al año, Babbel 75 €, Speak Premium 76 € [F2][F6][F14]. Un plan de 14,99 € obliga a vender muchísimo para cubrir costes: con la tienda y el IVA se quedan 10,53 € (capítulo 4), y un autónomo necesita ~2.471 € de cuota al año después del primer año (capítulo 5).
+2. **Max anual (399 €) está fuera de mercado.** Es 2,6 veces Duolingo Max (≈ 151 €) [F4], 2,7 veces Speak Premium Plus (≈ 148 €) [F14] y 2,8 veces ELSA en su listado web (≈ 144 €) [F16]. Max incluye 6 libros impresos: con la tabla de KDP, 6 libros de 150–250 páginas cuestan unos 15–23 € de impresión en blanco y negro, o 26–41 € a color estándar; con un envío de una caja a España (estimación de 4–5 €), el conjunto sale a unos 19–28 € en blanco y negro y 30–46 € a color. Eso deja poco margen a un precio de 399 € cuando, en la práctica, pocos usuarios lo compran (conversiones de 1 a 5 %, capítulo 9).
+3. **Max mensual (34,99 €) es casi 1,3 veces Duolingo Max mensual (29,99 USD ≈ 27 €)** [F2], y 34,99 € al mes son 420 € al año: el mensual compite con el anual de 399 € y lo deja sin sentido.
+4. **Plus mensual (2,49 €) y anual (14,99 €)** implican que el anual ahorra un 50 % sobre 12 mensualidades (29,88 €). Es un descuento alto para un producto que todavía no ha demostrado retención.
+5. **Zonas B, C y D** están bien pensadas (0,60 / 0,40 / 0,20 veces la zona A). El problema es la base A, no la escala. Con la base A corregida, la zona D sale a 7,99 €/año, que es un precio razonable para Vietnam y Filipinas (estimación).
+6. **Escuelas y empresas están infravaloradas.** Un centro de 20 alumnos con el tramo del 50 % paga 7,50 € por alumno (150 € al año por todo) [F85]. Una unidad a medida de 10 lecciones (450 €) lleva unas 60 horas de trabajo a 30 € la hora (estimación) = 1.800 €. Las empresas de 5 personas pagan 59,96 € al año. Son precios de regalo que además exigen soporte.
+
+### 3.3 Propuesta de precios (IVA incluido, consumidor final)
+
+**Zona A** (base 100 %): España, Alemania, Francia, Italia, Países Bajos, Reino Unido, EE. UU., Japón, Corea y similares.
+
+| Plan | Mensual | Anual | Equivalente mensual del anual | Ahorro anual frente a 12 mensualidades | Qué incluye |
+|---|---|---|---|---|---|
+| Gratis | 0 € | 0 € | — | — | 3 lecciones nuevas al día, repaso sin límite, 1 práctica al día, cuaderno de 50 palabras |
+| Plus | 4,99 € | 39,99 € | 3,33 € | 33 % | Todo lo gratis sin límites de lecciones y prácticas; sin anuncios; cuaderno ilimitado |
+| Max | 14,99 € | 129 € | 10,75 € | 28 % | Plus + simulacros, certificado, 6 libros del idioma (impresos), trajes |
+| Familia (hasta 6 personas) | — | 79 € | 6,58 € por persona al mes (13,17 € al año) | — | Plus para seis cuentas |
+| Fundadores (Plus de por vida) | — | 99 € (pago único) | — | — | 500 plazas; sin ampliación de precio |
+| Regala Max | — | 129 € (año) / 14,99 € (mes) | — | — | Mismos precios que Max, con caja y tarjeta |
+
+**Zonas B, C y D** (multiplicador sobre la zona A, redondeado):
+
+| Plan | Zona A | Zona B (0,60) | Zona C (0,40) | Zona D (0,20) |
+|---|---|---|---|---|
+| Plus mensual | 4,99 € | 2,99 € | 1,99 € | 0,99 € |
+| Plus anual | 39,99 € | 23,99 € | 15,99 € | 7,99 € |
+| Max mensual | 14,99 € | 8,99 € | 5,99 € | 2,99 € |
+| Max anual | 129 € | 77,99 € | 51,99 € | 25,99 € |
+| Familia anual | 79 € | 47,99 € | 31,99 € | 15,99 € |
+| Fundadores | 99 € | 59 € | 39 € | 19 € |
+
+Zona C y D: el Max no incluye libros impresos (solo PDF), como ya dice config.js: el envío a México, Brasil o Vietnam de 6 libros no sale a cuenta (estimación de envío y tarifa de impresión no verificadas para esos destinos).
+
+**Razones de la propuesta:**
+
+- **Plus a 39,99 € frente a 75 €:** la mitad del precio de Duolingo Super, con una gratis más generosa que la de Duolingo (repaso ilimitado y sin anuncios en gratis según el diseño de la app). Así Paglot se coloca como alternativa barata sin entrar en la guerra de precios de las apps grandes.
+- **Max a 129 € frente a 151 €:** por debajo de Duolingo Max, y con un producto físico que los demás no dan. Con los 6 libros a color (30–46 €, estimación, ver 3.2), el margen de Max sale de 96 € netos (tabla del capítulo 4) menos esos libros: unos 50–65 € netos por usuario al año si los libros van a color, más si van en blanco y negro. Es suficiente.
+- **Fundadores a 99 €:** un Plus de por vida. Con 500 plazas, 49.500 € brutos (en el momento de la venta). Riesgo: el coste de servir a un usuario dura años (servidores, soporte, mantenimiento). Recomendación: poner 500 plazas, revisar a los 24 meses y no ofrecer Max de por vida.
+- **Familia a 79 €:** 13,17 € por persona al año frente a 108 € de Duolingo Family [F2]. Es el plan que más usa un hogar con niños.
+- **Mensuales más caros que el anual:** el mensual de 4,99 € sirve para probar sin compromiso. El descuento anual de un 33 % es el incentivo principal.
+
+### 3.4 Escuelas, empresas, regalos y a medida
+
+**Escuelas** (precio sin IVA; la licencia es Plus anual por alumno):
+
+| Tramo | Alumnos | Propuesta actual (config) | Propuesta nueva (zona A, precio por alumno/año) | Ejemplo 20 alumnos (nueva) |
+|---|---|---|---|---|
+| Base | 1–19 | 14,99 € (sin descuento) | 39,99 € | 5 alumnos = 290 € (cuota mínima) |
+| Tramo 1 | 20–99 | 7,50 € (−50 %) | 29,99 € (−25 %) | 599,80 € |
+| Tramo 2 | 100–499 | 6,00 € (−60 %) | 23,99 € (−40 %) | 2.399 € a 100 alumnos |
+| Tramo 3 | 500 o más | 4,50 € (−70 %) | 17,99 € (−55 %) | Desde 8.995 € a 500 alumnos |
+| Cuota mínima por centro | — | ninguna | 290 € al año | Soporte, factura y puesta en marcha |
+
+**Empresas** (por persona y año, sin IVA):
+
+| Tramo | Personas | Propuesta nueva | Ejemplo |
+|---|---|---|---|
+| Base | 1–4 | 39,99 € | Mínimo 300 € al año por cuenta |
+| Tramo 1 | 5–24 | 31,99 € (−20 %) | 5 personas = 300 € (mínimo) |
+| Tramo 2 | 25–99 | 25,99 € (−35 %) | 25 personas = 650 € |
+| Tramo 3 | 100 o más | 19,99 € (−50 %) | 100 personas = 1.999 € |
+
+Max para empresas: 129 € por persona con descuento máximo del 30 % (≈ 90 €); el cálculo es el mismo que el de Max.
+
+**Unidades a medida** (10 lecciones con el temario del centro o de la empresa): propuesta de 1.200 € a 1.800 € sin IVA (estimación: 40–60 horas de trabajo a 30 € la hora). Si el cliente permite publicar la unidad para todos, descuento del 40 % (cesión). El precio de 450 € actual no cubre ni el tiempo.
+
+**Regalos.** El precio de regalo es el de Max (mes o año). La caja grande (año) lleva los 6 libros; la pequeña (mes) no. Coste de la caja con libros (estimación): 6 libros (25–35 €) + caja (1–2 €) en zonas A y B; el regalo de un mes no lleva libros.
+
+**Escuelas y empresas no pasan por las tiendas**: se facturan directamente con IVA del 21 % (B2B) [F85]. Hay que hacer factura y, en el caso de empresas, valorar la bonificación de formación de FUNDAE (no verificado en esta sesión).
+
+### 3.5 Precios y el poder adquisitivo
+
+La zonificación por poder adquisitivo tiene sentido si la tienda cobra en la moneda local y si se pueden fijar precios por país. Google Play y Apple ya hacen esa conversión por país con sus tramos (no verificado en detalle). Recomendación: fijar en la tienda los precios de cada zona con esa herramienta y no con tipos de cambio manuales.
+
+Para la zona D (Vietnam), 7,99 € al año equivalen a unos 0,67 € al mes. Con la comisión de la tienda del 15 % y un IVA del 8–10 % (según el régimen de Vietnam; ver capítulo 5), el ingreso neto por usuario es de unos 6,2 € al año (estimación: 7,99 / 1,10 × 0,85 ≈ 6,17 €). Por debajo de unos 5 € netos al año, un usuario de pago no cubre ni la parte de servidor y soporte que le toca (estimación). Por eso el suelo práctico de la zona D es 7,99 € al año.
+
+---
+
+## 4. Costes de cobrar
+
+### 4.1 Tiendas de aplicaciones
+
+**Google Play** (página oficial de tarifas, leída el 19-10-2026) [F57]:
+
+| Concepto | Tarifa | Cuándo se aplica |
+|---|---|---|
+| Suscripciones renovables (Plus, Max) en EE. UU., Reino Unido y EEE | 10 % + 5 % de tasa de facturación = 15 % total | Desde el 30-6-2026 (España está en el EEE) |
+| Suscripciones renovables en el resto de mercados | 15 % | Hasta que se actualice cada mercado |
+| Otras compras dentro de la app (no suscripción), instalaciones nuevas | 20 % + 5 % (EE. UU., Reino Unido, EEE), con tramo del 30 % por encima de 1 M USD en otros mercados | Desde el 30-6-2026 |
+| Tasa de facturación | 5 % sobre la compra con Google Play Billing | Solo si se usa Google Play Billing |
+| Primer millón de USD de ingresos anuales | Tramo estándar; por encima del millón, hasta 30 % en otras transacciones | — |
+
+Para Paglot (suscripciones), **la comisión efectiva es el 15 %** en España. La página oficial menciona pagos alternativos y enlaces web en el EEE con condiciones, pero no da tarifas concretas: queda como «no verificado».
+
+**Apple App Store** [F59][F60][F61]:
+
+| Concepto | Tarifa | Fuente |
+|---|---|---|
+| Programa para pequeños desarrolladores (ingresos netos hasta 1 M USD al año, incluyendo cuentas asociadas) | 15 % | Oficial (developer.apple.com) |
+| Suscripciones tras el primer año | La página oficial menciona una reducción adicional (10 %) para suscripciones tras el primer año y para los términos alternativos de la UE; no queda claro si se acumula | Oficial, ambigua |
+| Membresía Apple Developer | 99 USD al año (≈ 90 €) | Conocimiento general; la página oficial no lo recoge en la lectura; comprobar en apple.com/programs |
+| Cambio en la UE (anunciado en agosto de 2026, vigente desde el 1-10-2026 según prensa) | Tasa de 5 % (Core Technology Commission) en lugar de la tasa por instalación; compras dentro de la app 26 %; pagos alternativos 20 %; enlaces web 15 %; con reducciones para programas (15 % o 10 %) | Prensa [F60][F61]; cifras contradictorias entre medios |
+
+Nota: el programa de pequeños desarrolladores de Apple usa el dólar para el umbral de 1 M USD. Con ingresos previstos de cientos de miles de euros al año, la comisión de Apple seguirá en el 15 % mientras se cumpla el umbral.
+
+**Impuesto de la tienda (IVA):** según un artículo de 2026 de un proveedor, en la UE y el Reino Unido el IVA de los consumidores lo recauda la tienda y el desarrollador conserva la obligación de contabilizar [no verificado en fuentes oficiales]. Hay que confirmarlo con la asesoría.
+
+### 4.2 Cobros en la web
+
+| Pasarela o servicio | Tarifa | Fuente | Observaciones |
+|---|---|---|---|
+| Stripe, tarjetas europeas estándar (EEE) | 1,5 % + 0,25 € | Oficial, leída el 19-10-2026 [F62] | Sin cuota mensual ni de alta en pagos estándar |
+| Stripe, tarjetas premium del EEE | 2,8 % + 0,25 € | Oficial [F62] | Tarjetas premium |
+| Stripe, tarjetas del Reino Unido | 2,5 % + 0,25 € | Oficial [F62] | — |
+| Stripe, tarjetas internacionales | 3,15 % + 0,25 € | Oficial [F62] | Más un 2 % si hay conversión de moneda |
+| Stripe, disputa recibida | 20 € por disputa | Oficial [F62] | Si se contesta a mano, esos 20 € se devuelven solo si se gana la disputa |
+| Stripe, Smart Disputes | 30 % del importe disputado si se gana; sin cobro si se pierde | Oficial [F62] | Opcional |
+| PayPal, comercio en España | 2,90 % + 0,35 € (según un blog de 2026; el 3,4 % aparece en una FAQ de baja calidad) | Secundaria [F63] | Verificar en la tabla de comerciantes |
+| Bizum (a través del banco adquirente) | Entre 0,5 % y 1,2 % según volumen (estimación de un proveedor) | Proveedor [F64][F65] | No hay tarifa pública única; se negocia con el banco |
+| Lemon Squeezy o Paddle (comerciante de registro) | 5 % + 0,50 USD por transacción | Competidor, sin verificar en la web oficial [F66] | Ellos cobran y declaran el IVA en cada país |
+| Gumroad (PDF) | 10 % + procesamiento (≈ 13 % total) | Competidor [F66] | Tarifas de 2026 según un agregador |
+| Payhip (PDF, plan gratis) | 5 % + procesamiento (≈ 8 %) | Competidor [F66] | Plan de pago incierto |
+
+### 4.3 Cuánto queda a Paglot
+
+Cálculo por cada 100 € pagados por el cliente (IVA del 21 % incluido, precio de zona A). Supuesto: la comisión de la tienda se calcula sobre el precio sin IVA; la de la pasarela, sobre el importe cobrado.
+
+| Canal | Ingreso neto por 100 € | Coste total (IVA + comisiones) | Observación |
+|---|---|---|---|
+| Google Play, suscripción (15 %) | 70,24 € | 29,76 € | IVA 17,36 € + comisión 12,40 € |
+| App Store, suscripción (15 %) | 70,24 € | 29,76 € | Igual que Google con el programa de pequeños |
+| Stripe, tarjeta EEE (web) | 80,89 € | 19,11 € | IVA 17,36 € + pasarela 1,75 € |
+| Stripe, tarjeta internacional (web) | 79,24 € | 20,76 € | Sin conversión |
+| Stripe, tarjeta internacional con conversión | 77,24 € | 22,76 € | Con el 2 % de conversión |
+| Comerciante de registro 5 % + 0,46 € | 77,18 € | 22,82 € | Incluye el IVA de cada país |
+| Gumroad (PDF), 10 % + 0,50 € | 72,14 € | 27,86 € | Solo para libros digitales |
+
+**Cifras por suscripción (IVA 21 %, 60 % de compras por tienda y 40 % por web):**
+
+| Precio pagado | Neto sin IVA | Neto tras tienda (15 %) | Neto tras Stripe EEE | Neto mixto (60/40) |
+|---|---|---|---|---|
+| Plus 14,99 € (actual) | 12,39 € | 10,53 € | 11,91 € | 11,08 € |
+| Plus 39,99 € (propuesta) | 33,05 € | 28,09 € | 32,20 € | 29,73 € |
+| Max 129 € (propuesta) | 106,61 € | 90,62 € | 104,43 € | 96,14 € |
+| Max 399 € (actual) | 329,75 € | 280,29 € | 323,52 € | 297,58 € |
+
+El IVA de cada venta (2,60 € sobre un Plus de 14,99 €) no es ingreso de Paglot: hay que reservarlo para el modelo 303.
+
+### 4.4 Devoluciones y contracargos
+
+- **Tiendas:** la devolución a un usuario revierte la comisión; el IVA también se devuelve al usuario, así que el coste de una devolución en la tienda es prácticamente el ingreso neto del pago. La política de devolución tiene que coincidir con las reglas de cada tienda.
+- **Web:** cada contracargo (disputa) cuesta 20 € en Stripe [F62], lo que supone más que todo el ingreso neto de un Plus de 14,99 € (11,91 €). Con una tasa de contracargo del 1 % sobre ventas de 39,99 €, el coste extra es de unos 0,20 € por venta (estimación). Límite de alerta: menos del 0,5 % de transacciones con disputa.
+- **Derecho de desistimiento:** en España, el contenido digital tiene 14 días de desistimiento, que se pierden si el usuario acepta la ejecución inmediata y reconoce que pierde el derecho (conocimiento general, a confirmar en el TRLGDCU). La web necesita un botón de cancelación claro (ver capítulo 5.9).
+
+### 4.5 Divisas
+
+- Stripe aplica un 2 % adicional cuando hay conversión [F62]. Para zonas B, C y D, cobrar en moneda local es necesario: si no, el usuario paga un tipo de cambio que puede parecer caro. El comerciante de registro hace la conversión dentro de su tarifa (no verificado).
+- Para Vietnam, México, Argentina o Colombia, el tipo de cambio es volátil: fijar el precio en moneda local y revisarlo cada trimestre, no en euros.
+- PayPal y las pasarelas locales no se han verificado para divisas.
+
+### 4.6 Quién recauda el IVA de cada venta
+
+| Destino | Qué pasa | Qué hace Paglot | Fuente |
+|---|---|---|---|
+| España (B2C) | IVA 21 % sobre apps, cursos y merchandising (no sobre libros: 4 %, ver capítulo 5) | Declarar en el modelo 303 | Conocimiento general; ver capítulo 5 |
+| UE (otros países, B2C) | IVA del país del consumidor; por encima de 10.000 € al año de ventas transfronterizas, OSS | Registro OSS (modelo 369) o usar tienda o comerciante de registro | [F37][F38] |
+| Vietnam (B2C) | Decreto 252/2026 en vigor desde el 1-7-2026: el proveedor extranjero debe registrarse y pagar el IVA, o la plataforma lo retiene; facturación electrónica | Usar la tienda; si no, registrarse en el portal fiscal de Vietnam | [F39][F40] |
+| México (B2C) | IVA del 16 % sobre servicios digitales de proveedores extranjeros; registro en el SAT; declaración mensual | Usar la tienda o un comerciante de registro | [F41][F42] |
+| Argentina, Colombia | Regímenes de IVA digital propios | No verificado | — |
+
+---
+
+## 5. Impuestos y obligaciones en España y Aragón
+
+Aviso: este capítulo es un análisis para decidir, no asesoramiento fiscal. Antes de dar de alta la actividad hay que confirmar cada fecha y cada tipo en la AEAT, la Seguridad Social o una asesoría. Las cifras de 2026 vienen de guías de terceros salvo que se indique lo contrario.
+
+### 5.1 Autónomo o sociedad limitada
+
+| Criterio | Autónomo (persona física) | Sociedad limitada (SL) |
+|---|---|---|
+| Alta y coste inicial | Alta en el RETA y censo; sin notario | Escritura, registro y gestoría: 600–1.500 € (Billeo) o 1.500–3.000 € (Quipu), según la fuente [F48][F49] |
+| Capital | No hace falta | 1 € (Ley Crea y Crece), aunque las guías recomiendan 3.000 € de solvencia [F48] |
+| Cuota de Seguridad Social | 80 €/mes el primer año con tarifa plana; después, desde 205,88 €/mes [F29][F32][F33] | Si el administrador trabaja para la sociedad, cotiza en el RETA según sus funciones (no verificado en detalle) |
+| Impuesto sobre beneficios | IRPF (escala progresiva, pago fraccionado del 20 %) [F43][F44] | Impuesto sobre Sociedades: 25 % general; micro-empresas con un tipo menor (19–21 % o 21–22 %, según la fuente) [F45][F46][F47] |
+| Responsabilidad | Ilimitada (con todo el patrimonio) | Limitada al capital |
+| Gestión contable | Contabilidad sencilla (estimación directa simplificada) | Cuentas anuales, Registro, depósito de cuentas |
+| Cuándo conviene | Primeros 1–2 años, ingresos bajos o medios | Beneficio sostenido de unos 40.000–50.000 € al año, socios o inversión externa (estimación) |
+
+Recomendación: **empezar como autónomo** con tarifa plana y pasar a SL solo cuando el beneficio anual supere el punto en que el IS (19–25 %) compense los costes de la sociedad (estimación: 40.000–50.000 €).
+
+### 5.2 Cuota de autónomos en 2026
+
+Desde 2023 la cuota depende de los rendimientos netos reales, en 15 tramos. El tipo sobre la base es del 31,5 % (incluye el MEI de 0,9 % en 2026) [F29][F30]. Una fuente (Wolters Kluwer) habla del 31,4 % de la tabla de 2025 [F31]; se usa el 31,5 % de las demás.
+
+| Tramo (rendimientos netos mensuales) | Base mínima | Cuota mínima (31,5 %) | Base máxima | Cuota máxima (31,5 %) |
+|---|---|---|---|---|
+| Hasta 670 € | 653,59 € | 205,88 €/mes (2.471 €/año) | ≈ 719 € (la fuente da la cuota máxima) | 226,47 €/mes |
+| Más de 6.000 € | 1.928,10 € | 607,35 €/mes (7.288 €/año) | 5.101,20 € | 1.606,88 €/mes (19.283 €/año) |
+
+Los tramos intermedios no se han podido verificar: las fuentes dan cifras distintas para el tramo de 901 a 1.166,70 € (base mínima 849,67 € o 898,69 €) [F29][F30]. Con el tramo 1 se puede calcular el mínimo; el coste real de un autónomo con ingresos medios estará entre esos dos extremos.
+
+**Tarifa plana:** 80 €/mes durante 12 meses desde el alta. Se puede prorrogar 12 meses más si los rendimientos netos previstos son inferiores al SMI anual de 2026 (17.094 €) [F32][F33]. Una guía indica que con el MEI la cuota real queda en 88,64 €/mes (1.063,68 € al año) [F33]: conviene usar 88,64 € como cifra prudente.
+
+**Lo que cuesta al año:**
+
+| Concepto | Año 1 | Año 2 (cuota mínima) |
+|---|---|---|
+| Cuota de autónomo | 960–1.064 € (tarifa plana) | 2.471 € (tramo mínimo) |
+| Gestoría (ver 5.11) | 1.162 € (80 € + IVA al mes) | 1.162 € |
+
+La cuota es gasto deducible para el IRPF del autónomo (conocimiento general, a confirmar).
+
+### 5.3 IRPF: modelo 130
+
+- Quien tributa por estimación directa presenta el **modelo 130** cada trimestre como pago fraccionado del IRPF [F43][F44].
+- Base: el 20 % del rendimiento neto acumulado desde el 1 de enero, menos las retenciones y los pagos de trimestres anteriores [F43].
+- Fechas 2026: 20 de abril, 20 de julio, 20 de octubre y 30 de enero de 2027 [F43]. Se presenta aunque salga cero o negativo.
+- Reducción del 5 % del rendimiento neto en la estimación simplificada, con tope de 2.000 € [F44] (una guía de 2026 cita también una cuantía fija por rendimientos bajos; no verificada).
+- Ejemplo de la fuente: ingresos acumulados de 18.000 € y gastos de 6.000 € hasta junio = 2.400 € de pago a cuenta por el 20 % de 12.000 € [F43].
+- El IRPF final de la renta anual (escala estatal y autonómica) puede ser mayor: el tipo marginal llega al 47 % en las rentas más altas (conocimiento general; a confirmar con el tramo aragonés).
+
+### 5.4 IVA: tipos y modelos
+
+| Concepto | Tipo | Base | Fuente |
+|---|---|---|---|
+| Cursos, app, suscripciones, escuelas, empresas | 21 % | Ley del IVA (conocimiento general) | — |
+| Merchandising (camiseta, taza…) | 21 % | Entrega de bienes | — |
+| Libros impresos | 4 % | Ley 37/1992, art. 91 | [F36] |
+| Libros electrónicos y publicaciones digitales | 4 % desde el 23-4-2020 (Real Decreto-ley 15/2020) | [F36] | Consultas de la DGT: audiolibros, préstamo digital y libro con QR en 4 % si el libro es el elemento principal [F36] |
+| Max (app + libros en un solo precio) | Riesgo de tipo mixto | La prestación principal decide el tipo | Recomendación: separar el precio de los libros del de la app o consultar a la DGT |
+
+Modelos principales (con periodicidad según la guía de cada fuente):
+
+- **303** (IVA, trimestral para autónomos en la mayoría de casos; conocimiento general).
+- **390** (resumen anual de IVA).
+- **130** (IRPF fraccionado, trimestral) [F43].
+- **349** (operaciones intracomunitarias B2B: escuelas o empresas de otros países de la UE; no verificado).
+- **369** (régimen OSS para ventas B2C a otros países de la UE). Periodicidad: el proyecto de orden citado por PwC habla de trimestre [F37]; una guía habla de mensual [F38]. Confirmar en la sede de la AEAT. El alta se hace con el modelo 035 [F38].
+- Umbral de ventas B2C transfronterizas: 10.000 € anuales en el conjunto de la UE, por encima del cual se aplica el IVA del país del consumidor (norma general; un blog lo cita y no se ha verificado en el BOE).
+
+### 5.5 Ventas fuera de la UE
+
+| País | Norma | Tipo | Qué hacer | Fuente |
+|---|---|---|---|---|
+| Vietnam | Decreto 252/2026/ND-CP, vigente desde el 1-7-2026: pagos a proveedores extranjeros de comercio electrónico y plataformas; facturación electrónica extendida a proveedores extranjeros | Tipo general 10 %; reducción temporal al 8 % en la mayoría de servicios de TI hasta el 31-12-2026 (una guía de proveedor; verificar) | Vender a través de la tienda (la plataforma retiene) o registrarse en el portal fiscal vietnamita | [F39][F40] |
+| México | IVA de servicios digitales de proveedores extranjeros desde 2020; registro en el SAT, cobro del IVA en el precio, declaración mensual (día 17 del mes siguiente) | 16 % | Usar tienda o comerciante de registro | [F41][F42] |
+| Argentina, Colombia, Brasil | No verificado | — | Comerciante de registro | — |
+
+### 5.6 Facturación: Verifactu y facturación electrónica
+
+- El **Real Decreto-ley 15/2025** (de 2-12-2025, BOE de 3-12-2025) aplaza Verifactu: **1-1-2027** para sociedades y **1-7-2027** para el resto, incluidos los autónomos [F34][F35]. Pendiente de convalidación en el Congreso según las noticias de diciembre de 2025: no se ha encontrado la convalidación definitiva.
+- Recomendación práctica: elegir desde el principio un programa de facturación que cumpla Verifactu (coste estimado 10–30 €/mes; no verificado) y no esperar a la fecha.
+- La facturación electrónica entre empresas (B2B) tiene su propio calendario (no verificado en esta sesión).
+
+### 5.7 IAE, epígrafes y licencias
+
+- Las personas físicas que ejercen actividad empresarial están exentas del pago de la cuota de IAE (conocimiento general de la Ley de Haciendas Locales; a confirmar), pero sí hay que darse de alta en el censo con el epígrafe que corresponda.
+- Los epígrafes exactos (edición de libros, programación informática, venta al por menor de merchandising) **no se han verificado** en esta sesión: hay que consultarlos en la AEAT antes del alta.
+- Licencia municipal: solo si hay local abierto al público (no aplica a una actividad online). Zaragoza: no verificado.
+
+### 5.8 Consumo: desistimiento y bajas
+
+- **Contenido digital (cursos, app):** 14 días de desistimiento, que se pierden si el usuario acepta la ejecución inmediata y lo reconoce (conocimiento general del TRLGDCU; a confirmar en el BOE).
+- **Directiva (UE) 2023/2673:** exige una función de desistimiento en línea (un botón visible) para contratos a distancia, aplicable desde el **19-6-2026** en toda la UE. La OCU y Que.es afirman que España no la había incorporado en junio de 2026 [F54][F55]; El Español informa de lo contrario [F56]. **Estado sin confirmar.** Recomendación: poner un botón de desistimiento y de baja visible desde el primer día, aunque no sea obligatorio todavía (encaja con el diseño sin presión de Paglot).
+- **Precio y renovación:** avisar antes de cada renovación automática y no cobrar subidas sin consentimiento (conocimiento general; a confirmar).
+
+### 5.9 Protección de datos (RGPD) y costes que genera
+
+- **Delegado de protección de datos:** no es obligatorio por defecto; solo si el tratamiento principal es a gran escala o con datos sensibles (art. 37 RGPD; conocimiento general). Paglot, con cuentas sin correo, no encaja en esos supuestos, pero hay que revisarlo cuando haya usuarios menores de edad a gran escala.
+- **Registro de actividades de tratamiento** (art. 30 RGPD): conviene tenerlo aunque sea una hoja; no cuesta nada.
+- **Menores:** en España el consentimiento válido para servicios de la sociedad de la información es a partir de los 14 años (LOPDGDD, art. 7; conocimiento general).
+- **Transferencias internacionales:** Supabase, Google, Stripe y los proveedores de correo usan cláusulas contractuales tipo; la política de privacidad tiene que decirlo.
+- **Coste:** la parte legal (política, términos, cláusulas, registro) se puede hacer en 300–900 € una vez (estimación); mantenimiento anual, unos 100–200 € (estimación).
+
+### 5.10 Libros y depósito legal
+
+- **Depósito legal (Aragón):** el Decreto 61/2025, de 11 de junio (BOA de 23-6-2025) regula el depósito legal aragonés y sustituye al de 2012, que pedía 4 ejemplares [F53]. El número de ejemplares del decreto de 2025 no se ha confirmado. Coste de 4 ejemplares de un libro de 250 páginas en blanco y negro: unos 15 € de impresión (estimación con la tabla de KDP). Es obligatorio si el editor está domiciliado en Aragón (según el decreto de 2012 que cita la fuente).
+- **ISBN:** ver capítulo 6.4.
+
+### 5.11 Gestoría y asesoría en Aragón
+
+- Rango general de 2026: 30–80 € al mes según servicios [F50].
+- Ejemplo en Zaragoza (Billeo, red de asesorías online): 80 € al mes + IVA con hasta 15 facturas por trimestre; 95 € + IVA con hasta 100 facturas (incluye alta de autónomo, modelos trimestrales de IVA e IRPF y software de facturación; renta anual y cuentas aparte) [F51]. Coste con IVA: 96,80 € al mes (1.162 € al año).
+- Recomendación: pedir presupuesto a tres gestorías (presencial y online), con la lista de modelos y el número de facturas por trimestre.
+
+### 5.12 Ayudas en Aragón
+
+| Ayuda | Quién puede | Importe o plazo | Estado | Fuente |
+|---|---|---|---|---|
+| Ayuda al inicio de actividad (INAEM) | Personas en paro que se dan de alta como autónomos; requiere alta en RETA, censo de empresarios e inscripción como demandante (con excepciones) | Inversión mínima de 2.000 a 4.500 € según el municipio; solicitud en el mes siguiente al inicio; convocatoria 2026 con plazo hasta el 30-10-2026 | Vigente según el boletín de la SEPE; verificar en el BOA | [F52] |
+| Contratación indefinida (INAEM, 2026) | Empresas que contraten | Unos 2,25 M€ de presupuesto; plazo del 1-5 al 22-10-2026, por orden de entrada | Plazo casi cerrado; solo aplica si se contrata | [F52] (dato de un boletín; verificar) |
+| IAF (Instituto Aragonés de Fomento) | Proyectos de empresa | No se ha encontrado convocatoria 2026 | No verificado | — |
+| Tarifa plana nacional | Cualquier autónomo nuevo | 80 €/mes durante 12 meses | Vigente | [F32][F33] |
+
+El INAEM solo aplica si la persona está en paro y se inscribe como demandante. Paglot, de momento, no encaja (es una actividad propia, no una contratación), y el plazo de contratación está casi cerrado. Hay que mirar la convocatoria del IAF cuando exista.
+
+### 5.13 Lo que hay que resolver antes de cobrar
+
+1. Alta como autónomo con tarifa plana (epígrafes del censo confirmados con la asesoría).
+2. Cuenta bancaria del negocio y software de facturación compatible con Verifactu.
+3. Decidir las tiendas (Google Play y, si hay iPhone, Apple) y el comerciante de registro para la web.
+4. Revisar con la asesoría el tipo de IVA del pack Max (app + libros).
+5. Confirmar el estado de la Directiva 2023/2673 en España y preparar el botón de desistimiento.
+6. Comprobar la OSS antes de vender a clientes de otros países de la UE.
+
+---
+
+## 6. Libros impresos bajo demanda y PDF
+
+### 6.1 Especificaciones del libro
+
+Basado en el borrador que hay en el archivo de la marca [F86]:
+
+- **Formato:** A5 (148 × 210 mm), rústica cosida.
+- **Extensión del borrador de inglés A1:** 173 páginas («Libro del alumno», edición 1.0, octubre de 2026, «incluido con Paglot Max»). Hay también un borrador de 45 páginas (A5) de «English A1» [F86].
+- **Color:** el borrador lleva la tutora y el logo. No se ha verificado si el interior está pensado a color; se recomienda color en A1 (tutora, dibujos) y blanco y negro en gramática y examen si el coste lo exige.
+- **Tipografías:** Source Sans 3 y Pixelify Sans, ambas bajo licencia SIL OFL 1.1 [F86]: se pueden usar en un libro impreso comercial.
+- **Páginas por tipo de libro (supuesto para el cálculo):** 150 (gramática, examen), 250 (A2, B1) y 350 (B2, libros completos de dos niveles). Son estimaciones; el borrador real de A1 tiene 173.
+
+### 6.2 Coste de impresión por ejemplar
+
+Tabla oficial de Amazon KDP para Amazon.es (la misma que para Alemania, Francia, Italia, Países Bajos, Irlanda y Bélgica), en euros, papel crema o blanco, formato regular (≤ 6,12 in de ancho o ≤ 9 in de alto) [F67]. Fórmula: coste fijo + páginas × coste por página.
+
+| Páginas | Blanco y negro (0,75 € + 0,012 €/pág., ≥ 111 pág.) | Color estándar (0,75 € + 0,024 €/pág., 72–600 pág.) | Color premium (0,75 € + 0,0525 €/pág., 42–828 pág.) |
+|---|---|---|---|
+| 150 | 2,55 € | 4,35 € | 8,62 € |
+| 173 (borrador A1) | 2,83 € | 4,90 € | 9,83 € |
+| 250 | 3,75 € | 6,75 € | 13,88 € |
+| 350 | 4,95 € | 9,15 € | 19,12 € |
+
+Notas:
+- Hasta 110 páginas en blanco y negro, el coste es fijo de 2,05 € (formato regular) [F67].
+- Papel offwhite o «groundwood» (más barato): ~5 % menos por página [F67].
+- La tabla no detalla la cubierta: se supone incluida en el coste fijo (no verificado).
+- Para otros proveedores (Lulu, IngramSpark, Bubok, BoD, una imprenta local) no se han encontrado tarifas verificables en 2026 [F68][F69][F71][F72]. Se toma la tabla de Amazon como referencia mínima: el coste de otros proveedores suele ser mayor (estimación).
+
+### 6.3 Proveedores de impresión bajo demanda
+
+| Proveedor | Qué ofrece | Coste y cuotas | Distribución | Observaciones | Fuente |
+|---|---|---|---|---|---|
+| Amazon KDP | Impresión y venta en Amazon.es | Tabla de 6.2; sin cuota de alta | Amazon (regalía del 60 % del PVP sin IVA menos el coste de impresión) | Precio mínimo = coste de impresión / 0,60 | [F67] |
+| IngramSpark | Impresión y distribución a librerías y otras tiendas | Cuota de alta de 49 USD eliminada en febrero de 2026 (según reseñas); tarifa de acceso al mercado de 1,875 % del PVP desde el 1-2-2026; revisiones: fuentes contradictorias | Amplia (librerías, bibliotecas) | Necesita ISBN propio | [F68] |
+| Lulu | Impresión por pedido en EE. UU. y Europa | Sin cuota; precio por pedido (impresión, embalaje y envío); la calculadora no incluye el IVA europeo | Venta directa y tiendas | Envíos a Europa caros en pedidos pequeños (un caso de Reino Unido: £5–9 por libro) | [F69][F70] |
+| Bubok (España) | Impresión bajo demanda en España | Sin tarifas 2026 verificadas; regalía del 50–85 % según una fuente sin fiabilidad | Su tienda y distribución | Verificar en bubok.es | [F71] |
+| BoD (España) | Impresión bajo demanda para editoriales | Precio fijo en España con IVA fijado por el autor (contrato de marzo de 2026); copias para uso propio con envío aparte | Logista Libros (según fuente de 2019) | Para autores y editoriales | [F72] |
+| Imprenta local en Aragón | Tiradas de 100–300 ejemplares | No verificado | Venta directa | Pedir presupuesto con las mismas páginas | — |
+
+Recomendación: **KDP para la distribución en Amazon** (sin inversión) y **impresión propia en tiradas pequeñas o a través de un POD** para la tienda de Paglot (venta directa, con control del envío y de la calidad). Antes de decidir, pedir dos pruebas (una por proveedor), con el mismo PDF y el mismo papel: el coste de una prueba está en 10–25 € (estimación).
+
+### 6.4 Márgenes y regalías
+
+**Regalía en KDP** (60 % del precio sin IVA menos el coste de impresión, con el IVA del libro al 4 %) [F67]:
+
+| PVP (IVA 4 % incluido) | Precio sin IVA | Regalía, 250 pág. B/N (60 % − 3,75 €) | Regalía, 250 pág. color estándar (60 % − 6,75 €) |
+|---|---|---|---|
+| 14,90 € | 14,33 € | 4,85 € | 1,85 € |
+| 19,90 € | 19,13 € | 7,73 € | 4,73 € |
+| 24,90 € | 23,94 € | 10,62 € | 7,62 € |
+| 29,90 € | 28,75 € | 13,50 € | 10,50 € |
+
+Precio mínimo de venta en Amazon para 250 páginas en blanco y negro: 3,75 € / 0,60 = **6,25 €** sin IVA.
+
+**Venta directa (tienda de Paglot)**, PVP 24,90 € con IVA del 4 %, 250 páginas:
+
+| Concepto | Blanco y negro (250 pág.) | Color estándar (173 pág., A1) |
+|---|---|---|
+| PVP | 24,90 € | 24,90 € |
+| Precio sin IVA (÷ 1,04) | 23,94 € | 23,94 € |
+| Impresión (tabla KDP como proxy) | −3,75 € | −4,90 € |
+| Pasarela (Stripe 1,5 % + 0,25 €) | −0,62 € | −0,62 € |
+| Envío a España (estimación) | −4,00 € | −4,00 € |
+| Embalaje (estimación) | −0,50 € | −0,50 € |
+| **Margen antes de marketing e IRPF** | **15,07 €** | **13,92 €** |
+
+Los costes de envío a Vietnam o México no son verificables; la tienda de Paglot no debe enviar libros a zonas C y D (ya lo dice config.js).
+
+**PDF** (PVP de 9,90 €, IVA del 4 %):
+
+| Plataforma | Coste aproximado | Neto para Paglot |
+|---|---|---|
+| Stripe directo | 1,5 % + 0,25 € | 9,12 € |
+| Lemon Squeezy o Paddle (comerciante de registro) | 5 % + 0,50 USD | 8,56 € |
+| Gumroad | 10 % + procesamiento (≈ 13 %) | 8,03 € |
+
+Fuentes de comisiones de Lemon Squeezy, Paddle y Gumroad: competidores y agregadores, no verificadas en la web oficial [F66]. El IVA del 4 % en el PDF depende de que se trate de libro electrónico y no de un servicio (capítulo 5.4).
+
+### 6.5 ISBN, depósito legal y código de barras
+
+- **ISBN.** La Agencia Española del ISBN la gestiona desde 2010 la Federación de Gremios de Editores de España (FGEE) [F73]. Las tarifas de 2026 **no se han podido verificar**. Una FAQ de baja calidad cita un mínimo de 45 € (no fiable), y una petición pública critica que los autores-editores paguen más que las editoriales grandes (no verificado) [F73].
+- **Un ISBN por formato:** la tapa blanda y el PDF son formatos distintos y cada uno lleva su ISBN [F73, búsqueda]. Un e-book sin ISBN no se puede vender en algunas tiendas (no verificado).
+- **Escala del catálogo:** 6 libros × 21 idiomas = **126 ISBN** para el papel, y otros 126 si cada uno tiene PDF. Con una estimación de 45–130 € por ISBN: entre 5.670 € y 16.380 € en papel (estimación, sin tarifa verificada). Es el coste que más pesa en el plan de libros.
+  - Recomendación: empezar con el español (6 libros en papel + 6 PDF = 12 ISBN, entre 540 € y 1.560 €, estimación) y ampliar cuando haya demanda.
+- **Depósito legal en Aragón:** el Decreto 61/2025 (BOA de 23-6-2025) [F53] sustituye al de 2012 (4 ejemplares). Coste de los ejemplares: 4 × 3,75 € = 15 € por título (estimación con la tabla de KDP).
+- **Código de barras (EAN-13):** lo asigna GS1 España (AECOC) [búsqueda]; la tarifa no se ha verificado. El EAN del libro se deriva del ISBN.
+- **KDP y el ISBN:** KDP puede asignar un ISBN gratuito en algunos casos, pero entonces Amazon figura como editor (conocimiento general; no verificado para España).
+
+### 6.6 Calidad de impresión del pixel art
+
+- **Resolución:** archivo a 300 ppi a tamaño final (A5 = 1.748 × 2.480 px) y píxeles escalados con **vecino más próximo** (nearest neighbour) por un número entero. Nunca interpolar: el pixel art se emborrona (conocimiento general).
+  - Ejemplo: una tutora de 48 × 64 px impresa a 2,8 cm de ancho. A 300 ppi, 2,8 cm son 336 px; con un factor entero de ×7, cada píxel del dibujo ocupa 7 px de impresión (unos 0,6 mm) y se ve nítido. Si el factor no es entero (×7,4 para 3 cm), los píxeles quedan de tamaños distintos y el dibujo se ve borroso.
+- **Color:** el RGB de pantalla no se imprime igual. Convertir a CMYK con el perfil del proveedor y pedir una prueba de color antes de la tirada (conocimiento general).
+- **Papel:** crema 80–90 g para el texto en blanco y negro; blanco 80 g para el color; cubierta de 300 g mate (propuesta; el coste exacto depende del proveedor).
+- **Encuadernación:** rústica cosida; el KDP exige un mínimo de 24 páginas (tabla de 6.2).
+- **Pruebas:** dos ejemplares de muestra de cada proveedor (A1 completo): ver el color de la tutora, el texto pequeño y la encuadernación.
+
+### 6.7 Envío de libros (estimación)
+
+| Caso | Coste estimado |
+|---|---|
+| Un libro en España (correo ligero) | 4–5 € |
+| Caja de 6 libros (Max anual) en España | 6–9 € (una caja) |
+| Libros a Vietnam, México, Brasil | No verificado; por eso zonas C y D solo PDF |
+
+---
+
+## 7. Merchandising bajo demanda
+
+### 7.1 Productos y precios de la tienda
+
+Según js/vistas/tienda.js [F85] (precios con IVA, todavía sin cobrar):
+
+| Producto | PVP | Opciones |
+|---|---|---|
+| Camiseta | 24,90 € | S, M, L, XL |
+| Capucha | 44,90 € | S, M, L, XL |
+| Sudadera | 39,90 € | S, M, L, XL |
+| Bolsa de tela (tote) | 18,90 € | Natural, negra |
+| Taza | 14,90 € | Clara, oscura |
+| Funda de móvil | 19,90 € | iPhone 15, iPhone 16, Samsung Galaxy S24 |
+| Póster | 12,90 € | A4, A3 |
+| Lienzo | 34,90 € | 20 × 30 cm, 30 × 40 cm |
+| Calendario de pared | 16,90 € | Único |
+| Postales (set de 6) | 9,90 € | Único |
+
+### 7.2 Proveedores
+
+| Proveedor | Qué se sabe | Precios | Ubicación de producción | Fuente |
+|---|---|---|---|---|
+| Printful | Precios en dólares; cargos en USD; desde el 1-3-2026 deja de aceptar mercancía de terceros en Riga, Barcelona, Reino Unido y Canadá, y el almacén es solo de EE. UU. (según fuente de 2026) | Camiseta Bella+Canvas 3001: 10,46 € + 4,49 € de envío a Alemania o Austria (catálogo de septiembre de 2026, dato de búsqueda); 2025 en dólares: capucha 22,19 USD, sudadera 18,79 USD, taza 5,95 USD, póster 5,39 USD (con bajadas del 6–9 %) | EE. UU.; antiguas instalaciones en Europa | [F74][F87][F88] |
+| Printify | Socios en el Reino Unido, Alemania, República Checa, Polonia y Letonia; España no aparece | Precio y envío fijados por cada socio | Reino Unido, DE, CZ, PL, LV | [F75] |
+| Gelato | Lista España como lugar de producción; catálogo de camisetas, sudaderas, tazas, pósteres, lienzos, fundas y bolsas | No verificado (sin cifras en la página) | España, entre otros 18 países (lista de Gelato) | [F76] |
+| Spreadshirt | Producción en Leipzig, Legnica (Polonia) y Krupka (República Checa, la más reciente) | No verificado (última cifra fiable de 2013) | Alemania, Polonia, Chequia, EE. UU., Brasil | [F77] |
+
+Recomendación: **Gelato** para pedir la comparación con España como origen (verificar los precios con una cuenta de prueba, sin pedidos), o **Printify** con un socio de la UE. Evitar pedidos desde EE. UU. (aduana y IVA a la importación).
+
+### 7.3 Márgenes por artículo
+
+Cálculo: PVP con IVA del 21 %; neto = PVP / 1,21; margen = neto − coste del producto − envío − pasarela (1,5 % + 0,25 €). Los costes marcados «est.» son estimaciones a partir de precios de Printful de 2025 en dólares (no verificados en euros). No incluye embalaje (0,50 €), publicidad, devoluciones ni el envío del cliente (se supone incluido en el PVP).
+
+| Producto | PVP | Neto sin IVA | Coste producto | Envío | Pasarela | Margen | % sobre PVP |
+|---|---|---|---|---|---|---|---|
+| Camiseta | 24,90 € | 20,58 € | 10,46 € (dato Printful) | 4,49 € (dato Printful) | 0,62 € | **5,01 €** | 20 % |
+| Capucha | 44,90 € | 37,11 € | 20,00 € (est.) | 5,00 € (est.) | 0,92 € | **11,18 €** | 25 % |
+| Sudadera | 39,90 € | 32,98 € | 17,00 € (est.) | 5,00 € (est.) | 0,85 € | **10,13 €** | 25 % |
+| Bolsa de tela | 18,90 € | 15,62 € | 7,00 € (est.) | 4,00 € (est.) | 0,53 € | **4,09 €** | 22 % |
+| Funda de móvil | 19,90 € | 16,45 € | 9,00 € (est.) | 4,00 € (est.) | 0,55 € | **2,90 €** | 15 % |
+| Taza | 14,90 € | 12,31 € | 5,40 € (est.) | 4,50 € (est.) | 0,47 € | **1,94 €** | 13 % |
+| Lienzo 30 × 40 | 34,90 € | 28,84 € | 18,00 € (est.) | 6,00 € (est.) | 0,77 € | **4,07 €** | 12 % |
+| Póster A3 | 12,90 € | 10,66 € | 4,90 € (est.) | 4,00 € (est.) | 0,44 € | **1,32 €** | 10 % |
+| Postales (6) | 9,90 € | 8,18 € | 3,50 € (est.) | 3,50 € (est.) | 0,40 € | **0,78 €** | 8 % |
+| Calendario | 16,90 € | 13,97 € | 9,00 € (est.) | 4,00 € (est.) | 0,50 € | **0,46 €** | 3 % |
+
+Lectura: **la camiseta, la capucha, la sudadera y la bolsa son los únicos productos con margen razonable**. La taza, la funda, el póster, el lienzo, las postales y el calendario no cubren ni el envío de un pedido suelto ni la publicidad. Los precios de esos productos deberían subir un 40–60 % o venderse en lotes (por ejemplo, tres postales o cinco pósteres) o salir de la tienda hasta que haya volumen.
+
+### 7.4 Calidad de cada técnica
+
+| Producto | Técnica habitual | Notas |
+|---|---|---|
+| Camiseta, sudadera, capucha | Impresión directa (DTG) o bordado para logos pequeños | DTG para dibujos de color; el blanco sobre oscuro necesita pretratamiento; probar la muestra |
+| Bolsa de tela | Serigrafía o DTG sobre algodón 100 % | El color del pixel art se ve bien en serigrafía con pocos colores |
+| Taza | Sublimación en cerámica blanca | Colores vivos; lavavajillas según el fabricante |
+| Póster, postales | Impresión digital en papel mate de 170–200 g | El pixel art se ve bien a A3 y A4 |
+| Lienzo | Impresión digital en bastidor de madera | Revisar el formato 20 × 30 y 30 × 40 con muestra |
+| Funda | Impresión UV sobre modelo | Cada modelo de móvil necesita su plantilla |
+
+### 7.5 Ubicación de producción y aduanas
+
+- Un pedido producido fuera de la UE (p. ej., desde EE. UU.) puede generar IVA a la importación y gestión aduanera (conocimiento general; los envíos de hasta 150 € requieren registro en el régimen IOSS del IVA, a confirmar).
+- Producción en la UE (Gelato España, Printify con socios en DE, CZ, PL o LV, Spreadshirt en CZ o PL) evita esas gestiones (conocimiento general).
+- Los plazos de entrega en la UE suelen estar entre 5 y 10 días laborables (estimación).
+
+### 7.6 Qué hacer con el merchandising
+
+1. Empezar con **camiseta, sudadera y bolsa** en un solo proveedor de la UE, con muestras antes de publicar.
+2. Taza solo si el precio sube a 17,90 € o más (estimación).
+3. Calendario, póster, lienzo y postales: solo bajo pedido de lotes con impresor local, o fuera de la tienda de momento.
+4. Revisar la política de devolución: el derecho de desistimiento de 14 días se aplica también al merchandising comprado a distancia (conocimiento general).
+
+---
+
+## 8. Otros costes de un año
+
+Los costes marcados «est.» son estimaciones propias; el resto viene de las fuentes indicadas.
+
+| Concepto | Año 1 | Cada año después | Base | Fuente |
+|---|---|---|---|---|
+| Dominio (.com o .es) | 15 € | 15 € | est. | — |
+| Web estática (hosting) | 0 € | 0 € | plan gratuito de un proveedor de hosting (est.; no verificado) | — |
+| Backend (Supabase) | 0 € con el plan gratuito (500 MB; el proyecto se pausa tras 7 días sin uso) | ≈ 378 € (plan Pro de 25 USD al mes más cómputo, unos 35 USD al mes) | sin verificar en la web de Supabase | [F80][F81] |
+| Correo transaccional (confirmaciones, contraseñas) | 0–20 € | 0–120 € | est. | — |
+| Google Play (cuenta de desarrollador) | 25 USD (≈ 23 €) una vez | 0 € | fuentes de 2026 | [F78] |
+| Apple Developer Program | 99 USD (≈ 90 €) | ≈ 90 € | conocimiento general; no verificado en la web oficial | [F79] |
+| Cuota de autónomo | 960–1.064 € (tarifa plana) | 2.471 € como mínimo | capítulo 5.2 | [F29][F32][F33] |
+| Gestoría (80 € + IVA al mes, Zaragoza) | 1.162 € | 1.162 € | precio de un proveedor en Zaragoza | [F51] |
+| Software de facturación compatible con Verifactu | 120–360 € | 120–360 € | est. | — |
+| Textos legales (privacidad, términos, desistimiento, cookies) | 300–900 € | 100–200 € de revisión | est. | — |
+| Seguro de responsabilidad civil | 0–150 € | 100–250 € | est. | — |
+| Analítica sin cookies (autoalojada o de pago) | 0–110 € | 0–110 € | est. | — |
+| ISBN (12 títulos del español: 6 papel + 6 PDF) | 540–1.560 € | Según nuevos títulos | rango de 45–130 € por ISBN (no verificado) | [F73] |
+| Depósito legal (Aragón) | 15 € por título | 15 € por título nuevo | 4 ejemplares a 3,75 € | [F53][F67] |
+| Ilustración de nuevas tutoras | 0 € (propio) o 500–2.000 € por tutora | — | est. | — |
+| Publicidad de pago (ver abajo) | 3.000–6.000 € | Según resultados | est. | [F27][F28] |
+| Soporte al usuario | 0 € (propio) | 2–5 horas a la semana con 1.000 usuarios activos | est. | — |
+| Imprevistos | 10 % del total | 10 % del total | est. | — |
+
+**Publicidad.** Un proveedor de datos sitúa el coste por instalación (CPI) del sector educación en Meta en unos 104 USD de media global, con el CPI de todas las industrias en 13,43 USD; es un conjunto de datos orientativo y no tiene España, Vietnam ni Latinoamérica [F27]. Una fuente de benchmarks de tiendas da un rango genérico de 1,50–4,00 USD por instalación en Google Play y 1,50–3,50 USD en iOS, sin fecha ni metodología [F28]. Propuesta de trabajo (estimación, no verificada): **1,5–4 € por instalación en España y zona A; 0,3–1 € en zona D**. Con una conversión de la ficha de la tienda del 34,4 % en Google Play y del 18,1 % en iOS y una retención a día 30 del 2 % (dato de un proveedor de benchmarks) [F28], el coste por pagador empieza a ser alto si la conversión a pago es inferior al 2 %.
+
+---
+
+## 9. Escenarios y punto de equilibrio
+
+### 9.1 Supuestos
+
+- **Precio de la propuesta:** Plus 39,99 € y Max 129 €, en zona A, con una mezcla de 80 % Plus y 20 % Max (estimación).
+- **Canal:** 60 % de compras en tienda (15 % de comisión) y 40 % en web (Stripe EEE, 1,5 % + 0,25 €).
+- **IVA:** 21 % en todas las zonas (simplificación; en Vietnam el IVA es menor y el resultado sería algo mejor).
+- **Zonas:** factor medio de 0,65 sobre zona A (40 % zona A, 20 % zona B, 25 % zona C, 15 % zona D; estimación de la mezcla de pagadores).
+- **Ingreso neto medio por pagador y año:** 43,02 € en zona A y **27,96 € con el factor de zonas** (cálculo del capítulo 4).
+- **Costes fijos del año 1:** 3.211 € (tarifa plana 960 €, gestoría 1.162 €, textos legales 600 €, otros 300 €, cuentas de tiendas 114 €, dominio y correo 75 €).
+- **Costes fijos del año 2:** 4.477 € (cuota mínima 2.471 €, gestoría 1.162 €, Supabase 378 €, Apple 91 €, dominio y correo 75 €, otros 300 €).
+- **Sin** IRPF, sin libros, sin merchandising, sin escuelas ni empresas, y sin bajas (churn). Los pagadores medios del año son los usuarios activos al mes por el porcentaje de conversión.
+
+### 9.2 Punto de equilibrio
+
+| Escenario | Pagadores para cubrir costes fijos | Con 6.000 € de publicidad |
+|---|---|---|
+| Año 1 | **115** | 329 |
+| Año 2 | **160** | 375 |
+| Solo la cuota mínima de autónomo (año 2) | **88** | — |
+| Solo la tarifa plana (año 1) | 34 | — |
+
+Con el 2 % de conversión, la cuota mínima de autónomo se paga con **unos 4.400 usuarios activos al mes**; con el 5 %, con unos 1.760.
+
+### 9.3 Beneficio antes de IRPF, año 2, sin publicidad (euros al año)
+
+| Usuarios activos al mes | Conversión 1 % | 2 % | 3 % | 5 % |
+|---|---|---|---|---|
+| 2.000 | −3.917 | −3.358 | −2.799 | −1.681 |
+| 10.000 | −1.681 | 1.115 | 3.912 | 9.504 |
+| 30.000 | 3.912 | 12.300 | 20.688 | 37.465 |
+
+Pagadores (media del año): 2.000 usuarios = 20 / 40 / 60 / 100; 10.000 = 100 / 200 / 300 / 500; 30.000 = 300 / 600 / 900 / 1.500.
+
+### 9.4 Lo mismo con 6.000 € de publicidad al año
+
+| Usuarios activos al mes | 1 % | 2 % | 3 % | 5 % |
+|---|---|---|---|---|
+| 2.000 | −9.917 | −9.358 | −8.799 | −7.681 |
+| 10.000 | −7.681 | −4.885 | −2.088 | 3.504 |
+| 30.000 | −2.088 | 6.300 | 14.688 | 31.465 |
+
+### 9.5 Escenario con los precios actuales de config.js
+
+Con Plus 14,99 € y Max 399 €, la mezcla importa mucho:
+
+- Si 1 de cada 5 pagadores compra Max (20 %): ingreso neto de 68,38 € por pagador en zona A y unos 44,45 € con el factor de zonas. **Es irreal**: ningún comparable vende Max a 399 € con esa proporción.
+- Si el 2 % compra Max (98 % Plus): ingreso neto de 16,81 € en zona A y **unos 10,93 € con el factor de zonas**. Con esa mezcla, el punto de equilibrio de año 2 sube a unos **410 pagadores** (4.477 € / 10,93 €).
+
+Conclusión: con los precios actuales el negocio necesita unos 2,5 veces más pagadores que con la propuesta para cubrir los mismos costes, y con una mezcla de Max que nadie ha demostrado.
+
+### 9.6 Lo que no entra en el modelo
+
+- **Libros:** cada Max anual lleva 6 libros (30–46 € de impresión y envío a color, estimación): si el 20 % de los pagadores son Max, el coste de libros sale de la mezcla anterior. El margen de Max (96 € netos) queda en unos 50–65 € tras los libros.
+- **Merchandising:** un margen medio de 5 € por pedido de camiseta o sudadera; ver capítulo 7.
+- **Escuelas y empresas:** con los precios propuestos (capítulo 3.4), un centro de 20 alumnos paga unos 600 € al año y una empresa de 25 personas unos 650 € (sin IVA). Son ventas de pocos clientes y mucho soporte: no se pueden comparar con las suscripciones de consumo.
+- **Impuestos personales:** el IRPF del autónomo se paga sobre el beneficio neto con el pago fraccionado del 20 % (capítulo 5.3).
+
+---
+
+## 10. Calidad y riesgos
+
+| Riesgo | Impacto | Probabilidad (est.) | Cómo mitigarlo |
+|---|---|---|---|
+| Explicaciones en cursos beta traducidas por máquina (informe interno del 19-10: explicaciones en inglés con comparaciones con el español) | Devoluciones, malas valoraciones, reclamaciones | Alta | Vender solo los cursos revisados (español para inglés y vietnamita, y los demás en beta sin cobrar); una revisión humana de un curso piloto antes de cobrar |
+| Voces del dispositivo que no existen en algunos Android (th, el, ro… según el informe interno) | Un curso «mudo» se considera roto | Media | Mostrar la voz disponible antes de comprar; el aviso ya existe (T17 del informe) |
+| Devoluciones y contracargos (20 € por disputa en Stripe) | Un contracargo cuesta más que el ingreso neto de un Plus de 14,99 € | Media | Política de devolución visible; factura clara; límite de alerta del 0,5 % |
+| Competencia gratuita (Duolingo y apps gratuitas en Vietnam) | Menos conversión a pago | Alta | Diferenciar por tono sin presión, pixel art y tutoras, con una prueba de nivel gratuita |
+| Cambios de comisiones de tiendas (Google desde el 30-6-2026; Apple en la UE desde octubre de 2026 según prensa) | Menos margen en tienda | Media | Revisar cada trimestre; ofrecer la web en el EEE si se verifica que compensa; no depender de un solo canal |
+| Fiscalidad internacional (OSS, Vietnam, México) | Sanciones o pagos atrasados de IVA | Media | Tienda o comerciante de registro en zonas C y D; registro OSS antes de superar 10.000 € en otros países de la UE |
+| Fundadores (Plus de por vida) y Max con libros | Coste de servir a usuarios durante años | Media | Tope de 500 plazas; ningún Max de por vida; revisar a los 24 meses |
+| Calidad de los libros (color, encuadernación, devoluciones) | Devoluciones y mala imagen | Media | Dos pruebas de cada proveedor; garantía; prueba de color antes de la tirada |
+| Un solo desarrollador (libros, merch, soporte, legal) | Retrasos, errores, agotamiento | Alta | Pedidos automáticos a un POD; catálogo corto; soporte con plantillas; contratar ayuda cuando haya volumen |
+| ISBN a escala (126 títulos en papel) | Coste de 5.670–16.380 € (estimación) | Alta si se hace todo a la vez | Empezar con el español (12 ISBN) y ampliar con la demanda |
+| Privacidad: la hucha con anuncios choca con la promesa de privacidad (informe interno) | Pérdida de confianza | Media | Anuncios solo a petición; sin cookies de seguimiento |
+| Divisas (VND, MXN, ARS) | Precios que pierden valor | Media | Precios en moneda local y revisión trimestral |
+| Normativa de bajas y desistimiento (Directiva 2023/2673, aplicable desde el 19-6-2026; transposición sin confirmar) | Sanciones o quejas | Media | Botón de baja y desistimiento desde el primer día |
+| Ausencia de datos de aprendizaje (día 1, 7, 30, prueba de nivel) | No se puede demostrar el valor del pago | Alta | Medir los eventos del informe interno antes de cobrar; decidir precios con datos a los 3 meses |
+| Escuelas y empresas: ventas largas, licitaciones públicas y soporte pesado | Ingresos tardíos y costes altos | Alta | Piloto con 2–3 centros de Aragón; cuota mínima; unidades a medida con anticipo |
+
+---
+
+## 11. Plan de acción recomendado
+
+Ordenado por dependencia. Los plazos son propuestos.
+
+1. **Decidir los precios de zona A** (Plus 39,99 €, Max 129 €, Familia 79 €, Fundadores 99 € con 500 plazas) y el mensaje (español primero). Plazo: esta semana. Decisión de Javier.
+2. **Pedir tres presupuestos de asesoría en Zaragoza** (80 € + IVA como referencia) con la lista de modelos del capítulo 5 y la consulta sobre el tipo de IVA del pack Max. Plazo: 2 semanas.
+3. **Confirmar las cifras marcadas como no verificadas** (lista del Anexo A). Plazo: 2 semanas, con la asesoría y las webs oficiales de AEAT, Seguridad Social, Google, Apple, la Agencia del ISBN y el BOA.
+4. **Alta como autónomo con tarifa plana** antes de la primera venta, con los epígrafes confirmados. Plazo: antes de cobrar.
+5. **Cuenta bancaria del negocio y software de facturación compatible con Verifactu.** Plazo: mes 1.
+6. **Cuentas de tienda:** Google Play (25 USD) cuando esté decidido el appId (informe interno, T95); Apple Developer (99 USD) si hay iPhone. Plazo: mes 1.
+7. **Web de pago:** Stripe en modo de prueba o un comerciante de registro; política de devolución, términos, privacidad y botón de baja. Plazo: mes 1–2.
+8. **Libros:** pedir dos pruebas de impresión del A1 (173 páginas, A5, color) a KDP y a una imprenta o POD español; decidir el proveedor; confirmar tarifas de ISBN con la Agencia y el depósito legal con la Biblioteca de Aragón. Plazo: mes 2.
+9. **Merch:** muestras de camiseta, sudadera y bolsa con un proveedor de la UE (Gelato o Printify). Plazo: mes 2–3.
+10. **Lanzamiento de pago:** zona A primero (España y países con tienda local), con precios en las demás zonas y sin vender libros fuera de A y B. Plazo: mes 3.
+11. **Medir** conversión, retención a 7 y 30 días, devoluciones y coste por instalación; revisar los precios con esos datos. Plazo: mes 3–6.
+12. **Piloto con 2–3 centros o empresas de Aragón** con el nuevo tramo de precios y la unidad a medida. Plazo: mes 3–6.
+13. **Revisión a 6 meses:** si el beneficio anual supera unos 40.000–50.000 €, estudiar la SL; si no, seguir como autónomo.
+14. **Vigilar** la transposición de la Directiva 2023/2673, la convalidación de Verifactu y la OSS.
+
+---
+
+## Anexo A. Lo que no se ha podido verificar
+
+- Precios de las apps de idiomas en euros para España (ninguna web oficial de precios de Duolingo, Babbel, Busuu o Memrise se pudo leer; solo LingoDeer en USD).
+- Precios de Rosetta Stone, Drops y ELSA en España y en Vietnam.
+- Precios en pesos mexicanos, reales o pesos argentinos de las apps.
+- Tarifas de cursos de español en Vietnam (VND).
+- Tarifas de ISBN y del código de barras GS1 en 2026.
+- Tarifas de Bubok, Lulu e IngramSpark por unidad para libros de 150–350 páginas en España.
+- Precios en euros de Printful, Printify, Gelato y Spreadshirt para los productos de la tienda (salvo la camiseta Bella+Canvas 3001).
+- Tramos intermedios de la cuota de autónomos 2026 (fuentes contradictorias en el tramo de 901 a 1.166 €).
+- Tipo del impuesto de sociedades para micro-empresas (19/21 % o 21/22 %) y la duración del 15 % para empresas de nueva creación (2 o 4 años).
+- Estado de la convalidación de Verifactu (aplazado al 1-7-2027 para autónomos).
+- Transposición en España de la Directiva (UE) 2023/2673 (botón de desistimiento).
+- Tipos de IVA digital en Argentina y Colombia; tipo reducido de Vietnam (8 % o 10 %) para 2027.
+- Tasas de Apple en la UE a partir del 1-10-2026 (las fuentes dan cifras distintas).
+- Costes de envío de libros a Vietnam o México.
+- Paridad 1 USD = 0,90 € (supuesto).
+- Datos de paridad de poder adquisitivo por país (no se pudieron obtener).
+
+## Anexo B. Método y fórmulas
+
+- Regalía KDP: 60 % × (PVP / 1,04) − coste de impresión. Precio mínimo: coste de impresión / 0,60 [F67].
+- Coste de impresión KDP: fijo + páginas × coste por página (tabla de 6.2) [F67].
+- Neto de una suscripción: (precio / 1,21) × (1 − 15 %) en tienda; (precio / 1,21) − (1,5 % × precio + 0,25 €) en web [F57][F62].
+- Cuota de autónomo: base × 31,5 % [F29][F30].
+- Escenarios: pagadores = usuarios activos al mes × conversión; beneficio = pagadores × 27,96 € − costes fijos (sin IRPF).
+- Ingreso neto por pagador con factor de zonas: zona A × 0,65 (estimación).
+- Todas las cifras de euros se redondean a céntimos; las de escenarios, a euros.
+
+---
+
+## Fuentes
+
+Todas las URL se consultaron el **19-10-2026**. «Leída» significa que se abrió la página; «búsqueda» significa que el dato viene de un resumen de búsqueda y no se abrió la página completa; en ese caso el dato debe confirmarse. Las fuentes de afiliados o de proveedores que venden el servicio se marcan «(parte interesada)».
+
+**Competencia y precios**
+- [F1] Duolingo, página en español (leída; no muestra precios): https://es.duolingo.com/
+- [F2] Subger, Duolingo (búsqueda; agregador): https://subger.com/es/vendor/duolingo-inc
+- [F3] Toolradar, precios de Duolingo (búsqueda; agregador): https://toolradar.com/tools/duolingo/pricing
+- [F4] Artículo sobre Duolingo Max (búsqueda; parte interesada): https://dev.to/incubadora_6c1fc80706dda7/duolingo-max-gpt-4-worth-paying-for-in-2026-2o71
+- [F6] Subger, Babbel (búsqueda; agregador): https://subger.com/en/service/babbel
+- [F7] TestPrepInsight, precio de Babbel (búsqueda; agregador): https://testprepinsight.com/resources/how-much-does-babbel-cost/
+- [F8] Subger, Busuu (búsqueda; agregador): https://subger.com/ro/service/busuu
+- [F9] Capterra, comparativa Busuu vs Memrise (búsqueda): https://www.capterra.com/compare/210762-234180/Busuu-vs-Memrise
+- [F10] Subger, Memrise (búsqueda; agregador): https://subger.com/en/service/memrise
+- [F11] Lingopie, revisión de Mondly 2026 (búsqueda; parte interesada): https://lingopie.com/blog/mondly-review/
+- [F12] Subger, Pimsleur (búsqueda; agregador): https://subger.com/es/service/pimsleur-sub
+- [F13] LingoDeer, página oficial de precios (leída; en USD): https://www.lingodeer.com/pricing
+- [F14] Recurdash, precios de Speak (búsqueda; agregador): https://recurdash.com/subscription-pricing/speak
+- [F15] SpeakShark, precios de Speak en Brasil (búsqueda; parte interesada): https://speakshark.com/blog/speak-app-price-brazil-2026
+- [F16] OpenTheRank, precios de ELSA (búsqueda; agregador): https://opentherank.com/education-pricing/elsa-speak/
+- [F17] Pensight, comisiones de Preply (búsqueda; parte interesada): https://pensight.com/post/how-much-does-preply-actually-cost-tutors-2026-commission-breakdown
+- [F18] Pensight, comisiones de italki (búsqueda; parte interesada): https://pensight.com/post/italki-commission-teachers
+
+**Vietnam y Latinoamérica**
+- [F19] Viettel Store, apps para aprender español en Vietnam (búsqueda; artículo de 2025): https://viettelstore.vn/tin-tuc/app-hoc-tieng-tay-ban-nha-tot-nhat
+- [F20] Univext, ranking de apps en Vietnam (búsqueda; parte interesada, vende cursos): https://univext.com/vi/blog/146/app-hoc-tieng-tay-ban-nha-tot-nhat-2026-xep-hang-thuc-te
+- [F21] KrASIA, Duolingo y Vietnam (búsqueda; sin fecha visible): https://kr-asia.com/duolingo-plots-expansion-in-vietnam
+- [F22] Viet Nam News, Duolingo en Vietnam (búsqueda): https://bizhub.vietnamnews.vn/duolingo-viet-nam-a-key-priority-market-post370082.html
+- [F23] Statista, apps de idiomas en mercados seleccionados de APAC (búsqueda): https://fr.statista.com/statistics/1339734/language-learning-apps-selected-markets-apac/
+- [F24] El Mundo (El Salvador), El español alcanza 635 millones de hablantes en 2025, según el Instituto Cervantes (búsqueda): https://diario.elmundo.sv/el-mundo/el-espanol-alcanza-los-635-millones-de-hablantes-en-2025-y-consolida-su-presencia-global
+- [F25] La República, el español supera los 500 millones de hablantes nativos (búsqueda): https://www.larepublica.co/ocio/el-idioma-espanol-supero-por-primera-vez-los-500-millones-de-hablantes-nativos-4258141
+- [F26] Duolingo, formulario 8-K del segundo trimestre de 2026 en la SEC (búsqueda; documento oficial): https://www.sec.gov/Archives/edgar/data/0001562088/000162828026053299/q2fy26duolingo6-30x26share.htm
+
+**Publicidad y costes de tecnología**
+- [F27] Superads, CPI por industria en Meta (búsqueda; conjunto orientativo): https://www.superads.ai/facebook-ads-costs/cost-per-app-install/education
+- [F28] AppsOps, benchmarks de precios de apps educativas 2026 (búsqueda; sin detalle): https://appsops.store/blog/app-store-education-app-pricing-2026
+- [F80] Toolradar, precios de Supabase 2026 (búsqueda): https://toolradar.com/blog/supabase-pricing-2026
+- [F81] Jetadmin, guía de precios de Supabase 2026 (búsqueda): https://www.jetadmin.io/blog/supabase-pricing-2026-guide-to-plans-limits-and-real-world-costs/
+- [F78] Magora Systems, coste de la cuenta de Google Play (búsqueda; parte interesada): https://magora-systems.com/google-play-developer-account-cost/
+- [F79] AMBSA Digital, coste del Apple Developer Program (búsqueda; parte interesada): https://ambsandigital.com/?p=11104
+
+**Impuestos y obligaciones**
+- [F29] Declarando, cuota de autónomos y tramos (búsqueda): https://declarando.es/tramites-autonomo/cuota-autonomos
+- [F30] Billin, tabla de cuotas de autónomos 2026 (búsqueda): https://www.billin.net/blog/?p=19310
+- [F31] Wolters Kluwer, cuotas de autónomos 2026 (búsqueda): https://www.wolterskluwer.com/es-es/expert-insights/cuotas-autonomos-2026
+- [F32] Billin, requisitos de la tarifa plana (búsqueda): https://www.billin.net/blog/requisitos-cumplir-tarifa-plana
+- [F33] Billeo, tarifa plana 2026 (búsqueda; parte interesada): https://www.billeo.es/blog/tarifa-plana-autonomos-2026
+- [F34] Fiscal-impuestos, aplazamiento de Verifactu a 2027 (búsqueda): https://www.fiscal-impuestos.com/node/40339
+- [F35] Maldita.es, Hacienda retrasa a 2027 Verifactu (búsqueda): https://maldita.es/malditobulo/20251203/hacienda-retrasa-a-2027-la-entrada-en-vigor-de-verifactu-el-sistema-de-verificacion-de-facturas-para-pymes-y-autonomos
+- [F36] El Derecho, IVA del 4 % para libros electrónicos y revistas electrónicas (búsqueda; resumen de fiscalistas): https://elderecho.com/?p=269452
+- [F37] PwC Tax & Legal, nuevo régimen de IVA del comercio electrónico (búsqueda): https://periscopiofiscalylegal.pwc.es/nuevo-regimen-iva-del-comercio-electronico-las-nuevas-obligaciones-de-declaracion-e-informacion/
+- [F38] Guía Fiscal, modelo 369 paso a paso (búsqueda; parte interesada): https://guiafiscal.es/iva/modelo-369-paso-a-paso/
+- [F39] EY, actualización fiscal digital en Vietnam (búsqueda): https://www.ey.com/en_vn/technical/tax/tax-and-law-updates/digital-tax-regulatory-update-in-vietnam
+- [F40] VATupdate, nuevas reglas de IVA en Vietnam para proveedores digitales extranjeros (búsqueda): https://www.vatupdate.com/2026/08/06/vietnam-issues-new-vat-rules-for-foreign-digital-platform-suppliers/
+- [F41] Kintsugi, guía de IVA de México 2026 (búsqueda; parte interesada): https://trykintsugi.com/es-419/sales-tax-guides/latam/mexico
+- [F42] Adobe, cargos de IVA en México (búsqueda): https://helpx.adobe.com/es/account/individual/billing-and-payments/taxes/vat-charges-in-mexico.html
+- [F43] Guía Fiscal, calculadora del modelo 130 (búsqueda): https://guiafiscal.es/calculadoras/modelo-130/
+- [F44] Billeo, modelo 130 (búsqueda; parte interesada): https://www.billeo.es/blog/modelo-130-irpf-autonomos
+- [F45] Interforo, tipos reducidos del impuesto de sociedades para pymes 2026 (búsqueda): https://interforoabogados.com/contenido-legal/tipos-reducidos-impuesto-sociedades-pymes-2026/
+- [F46] Raisin, impuesto de sociedades 2026 (búsqueda): https://www.raisin.com/es-es/tributacion/impuesto-sociedades/
+- [F47] Merca2, nuevo modelo 200 de 2026 (búsqueda): https://www.merca2.es/2026/06/02/nuevo-modelo-200-impuesto-sociedades-2026-2388211/
+- [F48] Billeo, cuánto cuesta crear una empresa en España (búsqueda; parte interesada): https://www.billeo.es/blog/cuanto-cuesta-crear-una-empresa-en-espana
+- [F49] Quipu, cuánto cuesta crear una SL (búsqueda; parte interesada): https://getquipu.com/blog/cuanto-cuesta-crear-sl/
+- [F50] OIE, gestorías online para autónomos 2026 (búsqueda; parte interesada): https://www.oie.es/gestorias-online-para-autonomos
+- [F51] Billeo, gestoría online en Zaragoza (búsqueda; parte interesada): https://www.billeo.es/gestoria-zuera
+- [F52] SEPE, boletín de Garantía Juvenil con ofertas de empleo y autoempleo de Aragón (búsqueda): https://www.sepe.es/HomeSepe/encontrar-trabajo/Garantia-Juvenil/publicaciones-estadistica/publicaciones/newsletters-garantia-juvenil/boletin-garantiajuvenil-secciones-158/aragon2/empleo2
+- [F53] Gobierno de Aragón, consulta pública del depósito legal (búsqueda): https://aplicaciones.aragon.es/agoab/documentos/consultas-publicas/232478348000/Ficha%20consulta%20p%C3%BAblica.pdf
+- [F54] OCU, nota de prensa sobre el botón de desistimiento (búsqueda): https://www.ocu.org/organizacion/prensa/notas-de-prensa/2026/normabotondesistimiento190626
+- [F55] Que.es, España y el botón de desistimiento (búsqueda): https://www.que.es/2026/06/20/boton-desistimiento-espana-ocu-retraso/
+- [F56] El Español, botón para cancelar compras (búsqueda; informa en sentido contrario): https://www.elespanol.com/omicrono/20260603/va-entrar-vigor-partir-junio-tiendas-online-nuevo-boton-cancelar-compra-facilmente/1003744271473_0.html
+
+**Tiendas y pasarelas**
+- [F57] Google Play, tarifas de servicio (leída; oficial): https://support.google.com/googleplay/android-developer/answer/112622
+- [F58] Pricepush, cambios de Google Play en 2026 (búsqueda; parte interesada): https://pricepush.app/blog/google-play-subscription-fees-2026-real-math
+- [F82] Adapty, cambios de facturación de Google Play (búsqueda): https://adapty.io/blog/google-play-billing-changes-subscriptions-fees
+- [F59] Apple, programa para pequeños desarrolladores (leída; oficial): https://developer.apple.com/app-store/small-business-program/
+- [F60] Daring Fireball, acuerdo de Apple con la UE sobre pagos (búsqueda): https://daringfireball.net/2026/08/apple_eu_business_terms_conceding_little
+- [F61] Channel Insider, comisiones de Apple en la UE (búsqueda): https://www.channelinsider.com/news-and-trends/news-apple-eu-app-store-fees-emea-belgium/
+- [F62] Stripe, precios para España (leída; oficial): https://stripe.com/es/pricing
+- [F63] Rankia, comisiones de PayPal (búsqueda): https://www.rankia.com/blog/cuentas-corrientes/3283914-paypal-tarifas-comisiones-reclamaciones-hacienda-mas
+- [F64] BBVA, cómo cobrar con Bizum (búsqueda; parte interesada): https://www.bbva.com/es/es/empresas/guia-para-cobrar-con-bizum-en-tu-negocio-soluciones-de-bbva-para-tienda-fisica-online-y-venta-a-distancia/
+- [F65] Zunapro, Bizum en comercio electrónico (búsqueda; parte interesada): https://www.zunapro.com/spain/es/blog/bizum-metodos-pago-ecommerce
+- [F66] Fungies, alternativas a Gumroad 2026 (búsqueda; competidor): https://fungies.io/best-gumroad-alternatives-2026/
+
+**Libros**
+- [F67] Amazon KDP, costes de impresión de libros de bolsillo (leída; oficial): https://kdp.amazon.com/en_GB/help/topic/G201834340
+- [F68] Reseña de IngramSpark 2026 (búsqueda; parte interesada): https://selfpublishing.com/ingramspark
+- [F69] Lulu, costes de la autoedición (búsqueda; parte interesada): https://blog.lulu.com/print-on-demand-costs-for-authors/
+- [F70] Lulu, envíos internacionales (búsqueda; parte interesada): https://blog.lulu.com/international-book-shipping/
+- [F71] Genbeta, prueba de Bubok (búsqueda; datos antiguos): https://www.genbeta.com/web/bubok-probamos-el-servicio-de-impresion-bajo-demanda
+- [F72] BoD España, modelo de contrato para editoriales de marzo de 2026 (búsqueda): https://www.bod.com.es/bodfiles/ES-Storage/documents/Downloads/06.03.26_ES_Buchvertrag_Muster.pdf
+- [F73] Escritores.org, el registro de libros pasa a manos privadas (búsqueda; artículo de 2010): https://www.escritores.org/recursos-para-escritores/recursos-2/articulos-de-interes/3659-el-registro-de-libros-en-espana-pasa-a-manos-privadas
+
+**Merchandising**
+- [F74] Dato de Printful sobre Barcelona y Riga (búsqueda; URL no identificada en el resumen): sin URL fiable.
+- [F75] E-commerce Platforms, mejores empresas de POD en Europa (búsqueda): https://ecommerce-platforms.com/es/articles/best-print-on-demand-companies-in-europe
+- [F76] Gelato, página de producción en España (búsqueda): https://www.gelato.com/es/print-on-demand/españa
+- [F77] Textilwirtschaft, Spreadshirt abre producción en Krupka (búsqueda): https://www.textilwirtschaft.de/fashion-management/spreadshirt-startet-produktion-in-tschechien-126263
+- [F87] Catálogo de Printful de septiembre de 2026 (búsqueda; URL no identificada): sin URL fiable.
+- [F88] Precios de Printful de 2025 en dólares (búsqueda; blog; URL no identificada): sin URL fiable.
+
+**Documentos internos (solo lectura)**
+- [F84] _notas/INFORME_ARREGLOS_2026-10-19.md (informe de arreglos de la app).
+- [F85] js/config.js, js/vistas/precios.js, js/vistas/tienda.js, js/vistas/regalo.js, js/vistas/escuelas.js y js/vistas/empresas.js.
+- [F86] Carpeta «Paglot - archivo (fuera de la app)/Marca y libros/pdf»: Paglot_Ingles_A1_Libro_Completo.pdf (173 páginas, A5), Paglot_English_A1.pdf (45 páginas, A5), Paglot_Manual_Integral.pdf y guías de estilo (339 × 212 mm).

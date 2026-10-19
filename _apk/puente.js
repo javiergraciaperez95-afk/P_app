@@ -18,83 +18,52 @@
         : ['es', 'vi'].find(i => (navigator.language ?? '').toLowerCase().startsWith(i)) ?? 'en';
       const TEXTOS = {
         es: {
-          hola: '¡Hola! Te damos la bienvenida a Paglot ✨',
-          holaCuerpo: 'Tu tutora te espera: hoy puedes dar tu primer paso.',
           diario: '🔥 ¿Un ratito de idiomas?',
           diarioCuerpo: 'Con una lección o unas tarjetas basta para que la llama siga viva.',
         },
         en: {
-          hola: 'Hello! Welcome to Paglot ✨',
-          holaCuerpo: 'Your tutor is waiting: you can take your first step today.',
           diario: '🔥 A few minutes of language?',
           diarioCuerpo: 'One lesson or a few cards is enough to keep the flame alive.',
         },
         vi: {
-          hola: 'Xin chào! Chào mừng bạn đến với Paglot ✨',
-          holaCuerpo: 'Cô giáo đang chờ bạn: hôm nay bắt đầu bước đầu tiên nhé.',
           diario: '🔥 Học một chút nhé?',
           diarioCuerpo: 'Một bài học hoặc vài thẻ là đủ để giữ lửa.',
         },
       }[lengua];
 
-      // El recordatorio diario, a la hora que se elige en Perfil → Ajustes (19:00 si no se ha elegido; «no», ninguno).
+      // El recordatorio diario (19-10-2026). Al abrir la app por primera vez no se pide nada: al terminar la primera
+      // lección, la app pregunta si se quiere y a qué hora (js/recordatorio.js), y solo entonces Android pide permiso.
+      // Se programan avisos sueltos para los próximos 7 días a esa hora, sin el de hoy si ya se ha estudiado: así no
+      // avisa a quien ya ha hecho su rato, y quien deja la app una semana deja de recibir avisos.
       const ID_DIARIO = 730010;
-      const programarDiario = async hora => {
-        await notificaciones.cancel({ notifications: [{ id: ID_DIARIO }] }).catch(() => {});
-        if (!hora || hora === 'no') return;
-        const [h, m] = String(hora).split(':').map(Number);
-        await notificaciones.schedule({
-          notifications: [{
-            id: ID_DIARIO,
-            title: TEXTOS.diario,
-            body: TEXTOS.diarioCuerpo,
-            schedule: { on: { hour: h, minute: m || 0 } },
-            // sin alarma exacta: si no, Android abre los ajustes de «Alarmas y recordatorios» al instalar
-            isExactNotification: false,
-          }],
-        });
+      const DIAS = 7;
+      const programarDiario = async (hora, yaHoy) => {
+        await notificaciones.cancel({ notifications: Array.from({ length: DIAS }, (_, d) => ({ id: ID_DIARIO + d })) }).catch(() => {});
+        if (!/^\d\d:\d\d$/.test(hora ?? '')) return;
+        const [h, m] = hora.split(':').map(Number);
+        const avisos = [];
+        for (let d = 0; d < DIAS; d++) {
+          const cuando = new Date();
+          cuando.setDate(cuando.getDate() + d);
+          cuando.setHours(h, m, 0, 0);
+          if (cuando <= new Date() || (d === 0 && yaHoy)) continue;
+          // sin alarma exacta: si no, Android abre los ajustes de «Alarmas y recordatorios»
+          avisos.push({ id: ID_DIARIO + d, title: TEXTOS.diario, body: TEXTOS.diarioCuerpo, schedule: { at: cuando }, isExactNotification: false });
+        }
+        if (avisos.length) await notificaciones.schedule({ notifications: avisos });
       };
-      window.PaglotRecordatorio = async hora => {
-        let permiso = await notificaciones.checkPermissions();
-        if (permiso.display !== 'granted' && hora !== 'no') permiso = await notificaciones.requestPermissions();
-        if (permiso.display !== 'granted' && hora !== 'no') return false;
-        await programarDiario(hora);
+      /** Pone el recordatorio a esa hora ('no': ninguno). Con «pedir», si hace falta pide permiso; devuelve si se pudo. */
+      window.PaglotRecordatorio = async (hora, { pedir = true, yaHoy = false } = {}) => {
+        if (hora !== 'no') {
+          let permiso = await notificaciones.checkPermissions();
+          if (permiso.display !== 'granted' && pedir) permiso = await notificaciones.requestPermissions();
+          if (permiso.display !== 'granted') return false;
+        }
+        await programarDiario(hora, yaHoy);
         return true;
       };
-
-      // La bienvenida del primer inicio y el recordatorio. La marca se guarda antes de pedir permiso para no volver a
-      // interrumpir en aperturas posteriores.
-      const clavePrimerAviso = 'paglot_welcome_notification_v5';
-      try {
-        if (!localStorage.getItem(clavePrimerAviso)) {
-          localStorage.setItem(clavePrimerAviso, 'attempted');
-          void (async () => {
-            try {
-              let permiso = await notificaciones.checkPermissions();
-              if (permiso.display !== 'granted') {
-                permiso = await notificaciones.requestPermissions();
-              }
-              if (permiso.display !== 'granted') return;
-
-              await notificaciones.schedule({
-                notifications: [{
-                  id: 730002,
-                  title: TEXTOS.hola,
-                  body: TEXTOS.holaCuerpo,
-                  schedule: { at: new Date(Date.now() + 1000) },
-                  isExactNotification: false,
-                }],
-              });
-              await programarDiario(ajustes.recordatorio ?? '19:00');
-            } catch (error) {
-              localStorage.removeItem(clavePrimerAviso);
-              console.warn('No se pudieron programar las notificaciones.', error);
-            }
-          })();
-        }
-      } catch (error) {
-        console.warn('No se pudo guardar el estado de las notificaciones.', error);
-      }
+      // (las versiones de prueba anteriores programaban un aviso que se repetía solo: se quita)
+      notificaciones.cancel({ notifications: [{ id: 730002 }] }).catch(() => {});
     }
   }
 

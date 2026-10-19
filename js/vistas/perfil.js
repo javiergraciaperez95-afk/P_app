@@ -1,4 +1,4 @@
-// Pantalla «Perfil»: nombre, progreso, ajustes, copia de seguridad y reinicio. Todo se guarda solo en este dispositivo.
+// Pantalla «Perfil»: nombre, cuenta en la nube, progreso, ajustes, copia de seguridad, reinicio y «borrar todos mis datos».
 
 import { el, poner, enLinea } from '../dom.js';
 import { t, locale, IDIOMAS_VISIBLES, idioma, cambiarIdioma } from '../i18n.js';
@@ -16,6 +16,7 @@ import { LOGROS, logrosGanados, comprobarLogros } from '../logros.js';
 import {
   nubeActiva, nube, alCambiarNube, numeroCuenta, numeroBonito, usarNumero, borrarCuentaNube,
   pedirCodigo, comprobarCodigo, unirCorreo, recuperarConCorreo, correoDeLaCuenta,
+  progresoEnLaNube, apagarNube, encenderNube, borrarTodo,
 } from '../nube.js';
 
 function estadisticas(resultados) {
@@ -65,6 +66,22 @@ function seccionNombre() {
 // ----- La cuenta (al estilo Mullvad): el número, entrar con otro y, si se quiere, un correo -----
 function seccionCuenta(repintar) {
   if (!nubeActiva) return null;
+  // apagada por la persona: solo se explica y se puede volver a encender
+  if (!progresoEnLaNube()) {
+    const encender = el('button', { type: 'button', class: 'boton boton-principal' }, t('cuenta2.encender'));
+    encender.addEventListener('click', async () => {
+      encender.disabled = true;
+      await encenderNube();
+      sonar('fanfarria');
+      decir(t('cuenta2.encendida'), 'contenta');
+      repintar();
+    });
+    return el('section', { class: 'caja cu-cuenta' },
+      el('h2', {}, t('cuenta2.titulo')),
+      el('p', { class: 'cu-estado cu-desactivada' }, t('cuenta2.estado.desactivada')),
+      el('p', { class: 'aprox' }, t('cuenta2.apagadaTexto')),
+      el('div', { class: 'botonera' }, encender));
+  }
   const numero = numeroCuenta();
   const estado = el('p', { class: 'cu-estado', 'aria-live': 'polite' });
   const pintarEstado = () => {
@@ -165,6 +182,15 @@ function seccionCuenta(repintar) {
     try { await borrarCuentaNube(); sonar('quitar'); decir(t('cuenta2.borrada'), 'sorprendida'); repintar(); }
     catch { sonar('mal'); decir(t('cuenta2.sinConexion'), 'confundida'); }
   });
+  // dejar de guardar en la nube sin borrar lo que hay allí (sin correo, caduca solo a los 7 días)
+  const apagar = el('button', { type: 'button', class: 'boton boton-mini' }, t('cuenta2.apagar'));
+  apagar.addEventListener('click', () => {
+    if (!confirm(t('cuenta2.apagarConfirmar'))) return;
+    apagarNube();
+    sonar('interruptor');
+    decir(t('cuenta2.apagada'), 'pensando');
+    repintar();
+  });
 
   return el('section', { class: 'caja cu-cuenta' },
     el('h2', {}, t('cuenta2.titulo')),
@@ -174,7 +200,7 @@ function seccionCuenta(repintar) {
     estado,
     formEntrar,
     zonaCorreo,
-    el('div', { class: 'botonera' }, borrar));
+    el('div', { class: 'botonera' }, apagar, borrar));
 }
 
 // ----- La actividad de las últimas 12 semanas, como un calendario de cuadritos -----
@@ -382,9 +408,11 @@ function seccionAjustes() {
 
   return el('section', { class: 'caja' },
     el('h2', {}, t('ajustes.titulo')),
-    el('h3', { id: 'titulo-idioma' }, t('ajustes.idioma')),
-    el('p', { class: 'aprox' }, t('ajustes.idiomaAyuda')),
-    idiomas,
+    // (el curso de inglés solo se explica en español: no hay nada que elegir)
+    ...(IDIOMAS_VISIBLES.length > 1 ? [
+      el('h3', { id: 'titulo-idioma' }, t('ajustes.idioma')),
+      el('p', { class: 'aprox' }, t('ajustes.idiomaAyuda')),
+      idiomas] : []),
     el('h3', { id: 'titulo-tema' }, t('ajustes.tema')),
     tema,
     el('h3', {}, t('ajustes.sonido')),
@@ -465,6 +493,23 @@ function seccionReinicio(repintar) {
     boton);
 }
 
+// Borrar todo lo que Paglot guarda de esta persona: la cuenta en la nube y todo lo del dispositivo, de todos los cursos.
+function seccionBorrarTodo() {
+  const boton = el('button', { type: 'button', class: 'boton boton-peligro' }, t('borrarTodo.boton'));
+  boton.addEventListener('click', async () => {
+    if (!confirm(t('borrarTodo.confirmar'))) return;
+    boton.disabled = true;
+    sonar('quitar');
+    await borrarTodo();
+    location.hash = '#/';
+    location.reload();
+  });
+  return el('section', { class: 'caja zona-peligro' },
+    el('h2', {}, t('borrarTodo.titulo')),
+    el('p', {}, t('borrarTodo.texto')),
+    boton);
+}
+
 export function pintarPerfil(app, { resultados, capitulos = [] }) {
   const repintar = () => pintarPerfil(app, { resultados, capitulos });
   poner(app,
@@ -478,6 +523,7 @@ export function pintarPerfil(app, { resultados, capitulos = [] }) {
     seccionLogros(),
     seccionAjustes(),
     seccionCopia(repintar),
-    seccionReinicio(repintar));
+    seccionReinicio(repintar),
+    seccionBorrarTodo());
   decir(nombre() ? t('perfil.tutora', { nombre: nombre() }) : t('perfil.tutoraSinNombre'));
 }

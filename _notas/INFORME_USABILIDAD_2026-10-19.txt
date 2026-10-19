@@ -1,0 +1,586 @@
+# Paglot · Informe de usabilidad con estudiantes (19-10-2026)
+
+Evaluación experta simulando cinco perfiles reales (parte A) y kit listo para pruebas con personas de verdad (parte B). Todo lo que sigue se basa en la app tal como está en el repo el 19-10-2026, en capturas hechas ese mismo día y en fuentes públicas, que se citan al final.
+
+---
+
+## Cómo leer este informe
+
+**Qué es y qué no es.** No hay usuarios todavía. La parte A es una evaluación experta: un evaluador recorre la app con las metas, el idioma y el contexto de cinco perfiles ficticios (Linh, Marta, Pablo, Carmen y John). No mide comportamiento real: predice dónde se atascaría alguien así, y esa predicción hay que confirmarla con personas reales (parte B). Un evaluador solo también es una limitación: la práctica habitual recomienda varios evaluadores independientes y promediar sus gravedades.
+
+**Cómo se capturó.** Chrome sin ventana con `_herramientas/foto.mjs`, en tres tamaños: móvil 390×844 (el de referencia), móvil 360×740 (un Android de gama baja aproximado) y escritorio 1280×900. Cada captura usa un perfil de navegador nuevo, así que los avisos de la primera visita aparecen en todas. Se dejaron desactivados los efectos de sonido, la voz de la tutora y la copia en la nube (`paglot-sin-nube`): **el audio, la voz y la sincronización no se han evaluado**. Las capturas están en `C:\Users\javie\AppData\Local\Temp\usabilidad\` (18 archivos, citados por nombre en el informe).
+
+**Gravedad.** Escala de Nielsen de 0 a 4: 0 no es un problema real; 1 cosmético; 2 menor (poca urgencia); 3 mayor (arreglar pronto); 4 catástrofe (arreglar antes de publicar). Es la escala que usa NN/g, citada en las fuentes.
+
+**Datos de rendimiento.** Los pesos, peticiones y número de diapositivas vienen de la auditoría del 19-10 (`_notas/INFORME_ARREGLOS_2026-10-19.md`), no de una medición nueva en esta sesión.
+
+---
+
+## 1. Resumen ejecutivo
+
+**Veredicto.** Paglot tiene una base muy cuidada: la portada, el escenario de los idiomas, la tutora que explica cada frase, los juegos de la lección y el tono de los textos (sobre todo en vietnamita) son reconocibles y agradables. Pero el recorrido de una persona nueva en el móvil **se atasca en la primera pantalla y en la elección del curso**, justo donde más se decide si la gente sigue. Para público mayor (Carmen) y para quien tiene dificultades de atención, se suman un texto grande que apenas cambia la pantalla y una lección con demasiados controles pequeños y contadores contradictorios. Hay además un problema de transparencia con los avisos de privacidad que conviene revisar con un asesor antes de la primera prueba con menores.
+
+**Las diez cosas más graves**, ordenadas por gravedad:
+
+| # | Problema | Dónde | Gravedad | Quién lo sufre más |
+|---|---|---|---|---|
+| 1 | El aviso de privacidad de la primera visita tapa el botón «Bắt đầu» de la portada y parte del selector, el perfil y la lección. | Portada, selector, perfil, lección (móvil) | 3 | Linh, Carmen |
+| 2 | En el selector del móvil, la tarjeta del curso está en la segunda página. Tocar una bandera no la muestra; hay que pulsar ▶ después. | Selector de idiomas (móvil) | 3 | Linh, Carmen, Marta |
+| 3 | Con la interfaz en vietnamita se ofrece «¡Empezamos!» en 19 de los 20 cursos, pero solo el de español está explicado en vietnamita. Al pulsar, la app recarga y dice «AÚN NO HEMOS TERMINADO». | Selector de idiomas | 3 | Linh |
+| 4 | Dos avisos de privacidad dicen cosas distintas («solo se guarda en tu dispositivo» frente a «copia en la nube por defecto»), y la copia en la nube va activa de serie también para menores de 14 años. | Avisos, perfil, Legal | 3 (riesgo legal) | Pablo y sus familias |
+| 5 | El «texto grande» sube solo un 12,5 % (de 16 a 18 px) y los botones de la lección miden 34–40 px de alto. | Lección, cabecera | 3 | Carmen |
+| 6 | Pantallas del móvil reducidas con zoom (0,61–0,91 a 390×844, y hasta 0,54 a 322×645). Va contra la regla de no encoger nunca. | Sobre, escuelas, empresas, contacto, perfil, laboratorio | 3 | Linh, Carmen |
+| 7 | Frases muestra 50 diapositivas en el móvil y 31.640 nodos en escritorio. | Frases | 3 | Linh (móvil de gama baja) |
+| 8 | El arranque en frío descarga unos 5,3 MB y unas 180 peticiones, también para la portada. | Todas | 3 | Linh (datos y móvil lento) |
+| 9 | Los contadores de la lección no cuadran («Paso 1 de 14» y «1/13» a la vez) y los pasos son iconos sin texto. | Lección | 2 | Marta, Carmen |
+| 10 | «Empezar repaso» tiene aspecto de botón activo con 0 tarjetas; el motivo aparece debajo. | Repaso | 2 | Linh, Carmen |
+
+**Lo que hay que conservar:** el escenario de la portada y el selector; la bienvenida como carné de estudiante con la tutora; el aviso de «no terminado» (su tono es amable, aunque llegue tarde); el aviso de «beta» tan honesto; los juegos de la lección y el modo libro; el saltar la bienvenida; el repaso con textos que quitan presión («Sai thì thẻ sẽ quay lại sau — đừng lo»); las cuentas sin correo.
+
+**Qué hacer primero.** Los puntos 1, 2, 3 y 4 son la primera tanda (son P0 en el plan del capítulo 6). Después, el texto grande y los botones (5), el zoom (6) y el rendimiento (7 y 8). Antes de la prueba con menores, el 4 es obligatorio.
+
+---
+
+## 2. Evaluación heurística (las diez de Nielsen)
+
+**Método.** Se miró cada pantalla del recorrido contra las diez heurísticas de Nielsen (NN/g, 1994, revisada en 2024). Cada hallazgo lleva su captura y una gravedad 0–4. Son hallazgos de un solo evaluador: confirmarlos en la parte B.
+
+### H1. Visibilidad del estado del sistema
+
+- **H1-1 · Selector de idiomas en el móvil (gravedad 3, U02).** Sin tarjetas en la primera página, la zona central queda vacía, con tres banderas arriba (`02_linh_idiomas_movil_vi.png`). Nada dice que la tarjeta está en la página siguiente, ni que hay siete páginas (los puntos de abajo no tienen texto).
+- **H1-2 · Contadores de la lección (gravedad 2, U04).** En la lección 1 del español, la barra dice «Bước 1 / 10» (vi) o «Step 1 of 10»; a la derecha de la pausa aparece «1/9». En el curso de inglés, «Paso 1 de 14» convive con «1/13» (`10_marta_leccion001_en_es.png`, `11_pablo_leccion010_fr_es.png`: «Paso 1 de 15» y «1/14»). Siempre es uno menos de los pasos totales. El alumno no sabe cuánto le queda.
+- **H1-3 · Repaso sin tarjetas (gravedad 2, U10).** Los contadores 0 / 0 / 0 están bien, pero el botón «Bắt đầu ôn tập ▶» sale en rojo fuerte, con aspecto de activo. El texto que dice por qué no hay nada, «Sổ tay của em đang trống…», aparece debajo (`07_linh_repaso_vacio_vi.png`).
+
+### H2. Relación entre el sistema y el mundo real
+
+- **Lo que funciona.** Las metáforas son concretas y cercanas: el sobre que se abre para empezar la lección, el carné de estudiante para el nombre, el teatro para elegir idioma, la tutora que habla desde el escenario. Los textos vietnamitas hablan como una profesora cercana («cô kể cho em nghe hết», `13_linh_sobre_360_vi.png`).
+- **H2-1 · Iconos de paso sin nombre (gravedad 2, U04).** Los diez pasos de la lección son emojis (✉️ 🔤 🧩 🎈 🚂 🏁). Un niño los entiende; una persona de 67 años que no los conoce, probablemente no sin ayuda.
+- **H2-2 · Jerga de la casa (gravedad 1).** «Modo libro / modo juego», «hucha», «cofres», «racha», «sincronizar», «copia en la nube». Cada término tiene su explicación en algún sitio, pero no en el punto donde aparece.
+- **H2-3 · Número de cursos y tono (gravedad 1, U17, U18).** En el selector en vietnamita, el español aparece como «Số 02» y en inglés como «No. 01»: el número de un mismo curso cambia con el idioma. En el selector en vietnamita, el título habla de «em» («Chọn ngôn ngữ em muốn học!») y la tarjeta de «bạn» («gia sư … của bạn»).
+
+### H3. Control y libertad del usuario
+
+- **Lo que funciona.** «Saltar ✕» en la bienvenida; «Quay lại» desactivado en el primer paso (no se puede retroceder de más); pausa (⏸) y cambio entre modo juego y modo libro, que se recuerda.
+- **H3-1 · «Empezamos» no tiene vuelta atrás (gravedad 3, U03).** Al pulsar «¡Empezamos!» en un curso no disponible, la app recarga y expulsa al alumno. No hay forma de cancelar ni de elegir otro sin esa recarga.
+- **H3-2 · El aviso de privacidad solo ofrece «Đã hiểu» (gravedad 2, U07).** Acepta sin opción de elegir. La copia en la nube, que es lo que se activa de serie, se puede apagar, pero no se ofrece en el propio aviso.
+- **H3-3 · Cambiar de curso recarga la página (gravedad 1).** Es razonable para simplificar el código, pero hace perder la posición (el selector se vuelve a montar).
+
+### H4. Consistencia y estándares
+
+- **H4-1 · Dos sistemas de navegación entre cursos (gravedad 2, U02).** En el escenario hay flechas ‹ › para pasar de curso, y abajo hay una barra ◀ ▶ para pasar de página. Las dos hacen cosas parecidas con gestos distintos.
+- **H4-2 · Dos avisos de privacidad (gravedad 3, U07).** En la portada y en las lecciones aparece el corto («solo se guarda en tu dispositivo lo necesario»). En el perfil y en Legal, el largo («de serie, una copia en la nube»). En el escritorio, la lección de inglés mostró el largo sobre el cuadro de la tutora (`16_john_leccion001_escritorio_en.png`). Son textos contradictorios en la misma sesión.
+- **H4-3 · «Empezamos» frente a un curso que no está listo (gravedad 3, U03).** El botón «Próximamente» existe para cursos marcados como tales, pero ninguno lo está. Lo que decide si un curso se puede abrir es el idioma de la interfaz (`paraQuien` en `js/curso.js`), y el selector no lo tiene en cuenta: por eso la misma pantalla ofrece «¡Empezamos!» en cursos que luego no abren.
+
+### H5. Prevención de errores
+
+- **H5-1 · Opciones que no funcionan (gravedad 3, U03).** Es el mismo problema de H3-1, visto desde la prevención: la app deja pulsar algo que sabe que no va a funcionar para esa persona.
+- **H5-2 · Botones pequeños juntos en la lección (gravedad 2, U05).** En el móvil de 390 px, el botón de volver mide 46×40, el del libro («Modo libro») 57×40 y la pausa 36×34, todos juntos en la cabecera (medidas en la interfaz en inglés, con texto normal). Un toque torpe cambia de modo sin querer.
+- **H5-3 · Repaso con aspecto activo (gravedad 2, U10).** Pulsar algo que no hace nada es un error de diseño que el alumno no puede evitar.
+
+### H6. Reconocer antes que recordar
+
+- **H6-1 · Iconos sin texto en la barra de pasos (gravedad 2, U04).** Para saber qué es cada paso hay que recordarlo. Un toque de texto al pasar (o una etiqueta fija en el paso actual) lo resolvería.
+- **H6-2 · «Modo libro» como icono (gravedad 2, U11).** El libro es un icono sin texto en la cabecera de la lección. El alumno que no lo conoce no sabe que puede leer la lección entera.
+- **H6-3 · Cabecera del curso con monedas y flechas (gravedad 1, U20).** El «0» de la hucha y el botón «⇄» no dicen qué son ni qué hacen más que con el título al pasar el ratón.
+
+### H7. Flexibilidad y eficiencia de uso
+
+- **Lo que funciona.** Modo juego y modo libro, modo calma, texto grande, saltar la bienvenida, prueba de nivel opcional (aparece en el mapa mientras hay menos de tres lecciones hechas).
+- **H7-1 · Sin duración estimada (gravedad 2, U14).** La lección no dice cuánto va a tardar (ni en la lista ni al abrirla). Para alguien con dificultades de atención, saber que son «unos 5 minutos» cambia la decisión de empezar.
+- **H7-2 · Sin objetivo diario pequeño (gravedad 1, U14).** El plan de mejoras ya lo recoge (T54 del informe de arreglos).
+
+### H8. Diseño estético y minimalista
+
+- **H8-1 · La portada del móvil va cargada (gravedad 2, U12).** En `01_linh_inicio_movil_vi.png` hay cuatro botones de cabecera, tres de navegación y una barra inferior, además del aviso. Es mucho para la primera pantalla.
+- **H8-2 · La lección tiene demasiadas cosas a la vez (gravedad 2).** Título, subtítulo, diez pasos, contador, instrucción, la tutora, los botones de atrás y siguiente. Los juegos ayudan a que no se lea todo, pero el ritmo visual es intenso para alguien con déficit de atención.
+- **H8-3 · El perfil mezcla estadísticas que juzgan (gravedad 1, U19).** En el perfil en inglés aparecen «Mistakes 0» (fallos) y «Streak 0 days». Choca con la regla de no presionar.
+
+### H9. Ayudar a reconocer, diagnosticar y recuperarse de errores
+
+- **Lo que funciona.** El aviso de «no terminado» dice qué pasa, por qué y qué hacer, con un tono amable: «CHÚNG MÌNH CHƯA LÀM XONG! … bạn quay lại sớm nhé!» (`04_linh_frances_aun_no_vi.png`).
+- **H9-1 · El mensaje llega tarde y con una sola salida (gravedad 2, U22).** Solo ofrece «Về trang đầu». Debería ofrecer también «Elegir otro idioma» (que sí hay).
+- **Lo que no se ha podido evaluar.** No se capturaron respuestas correctas o incorrectas en la lección, así que la retroalimentación de error queda por ver en la parte B.
+
+### H10. Ayuda y documentación
+
+- **Lo que funciona.** El aviso de beta explica con honradez el estado del curso: «puede que encuentres algún error, aunque en principio nada grave» (`beta.texto`). Hay páginas de ayuda (FAQ, Guías, Contacto) y «Xem thêm» en el aviso de cookies.
+- **H10-1 · La ayuda vive fuera del recorrido (gravedad 2).** Nada en la lección explica el modo libro ni cómo volver al juego; las páginas de ayuda están lejos del punto donde aparece la duda.
+
+---
+
+## 3. Recorrido cognitivo por persona y flujo
+
+**Método.** Se aplica el recorrido cognitivo de Wharton y otros (1994), en la forma que resume NN/g: en cada paso se responde si el usuario (1) querrá conseguir el objetivo correcto, (2) verá la acción correcta, (3) la asociará con el resultado que busca y (4) verá que avanza. Un «no» en cualquiera marca el paso como fallo (NN/g, 2022). Los flujos son los que pide el encargo: primer arranque, elegir curso, bienvenida, lección 1, repaso y perfil con cuenta.
+
+**Flujo.**
+- **S0** Primera apertura (portada).
+- **S1** Elegir curso (selector).
+- **S2** Bienvenida (carné, nombre, palabra, prueba, final).
+- **S3** Lección 1 (en modo juego).
+- **S4** Repaso.
+- **S5** Perfil y cuenta.
+
+Las tablas indican la gravedad 0–4 y dónde se atasca cada persona. Donde no hay captura se indica.
+
+### Linh · 24 años · vietnamita · aprende español · Android de gama baja (360–390 px)
+
+| Paso | Qué intenta | (1) objetivo | (2) ve la acción | (3) asocia | (4) ve progreso | Gravedad | Dónde se atasca |
+|---|---|---|---|---|---|---|---|
+| S0 Portada | Empezar | sí | no | sí | — | 3 | El aviso tapa «Bắt đầu ▶» (`01_linh_inicio_movil_vi.png`). Tiene que cerrarlo para verlo. |
+| S1 Selector | Encontrar su curso | sí | a medias | no | no | 3 | Página 1 sin tarjeta. Tocar la bandera no la enseña. Hay que pulsar ▶ (`02_linh…`, `02e_linh…`). |
+| S1b Francés por error | Entrar en un curso | sí | sí | sí | no | 3 | «¡Empezamos!» → recarga → «AÚN NO HEMOS TERMINADO» (`04_linh_frances_aun_no_vi.png`). Pierde confianza. |
+| S2 Bienvenida | Decir su nombre | sí | sí | sí | sí | 1 | Carné claro: «TÊN», «GIA SƯ Lucía», «Đó là tên em». La tutora escribe despacio. Puede saltarlo. |
+| S3 Lección 1 | Abrir el sobre, seguir | sí | sí | a medias | a medias | 2 | «Mở phong thư» se entiende. Los iconos de paso no, ni el «1/9» frente al «Bước 1 / 10». |
+| S4 Repaso | Ver qué repasar | sí | sí | sí | — | 1 | Estado vacío claro y amable (`07_linh_repaso_vacio_vi.png`). El botón parece activo. |
+| S5 Perfil | Poner su nombre y ver su progreso | sí | sí | sí | sí | 2 | El aviso de seis líneas tapa la mitad de abajo (`08_linh_perfil_vi.png`). |
+
+Sus tres puntos más graves: S0, S1 y S1b. Si no sale del S1, no llega a la lección.
+
+### Marta · 35 años · español · aprende inglés después del trabajo · TDAH · móvil 390×844
+
+| Paso | Qué intenta | (1) | (2) | (3) | (4) | Gravedad | Dónde se atasca |
+|---|---|---|---|---|---|---|---|
+| S0 Portada | Empezar | sí | a medias | sí | — | 2 | El aviso tapa el botón; lo cierra rápido. |
+| S1 Selector | Elegir inglés | sí | a medias | sí | no | 2 | Mismo problema de la página 2. Ya conoce la mecánica de otras apps. |
+| S2 Bienvenida | Carné, nombre, palabras | sí | sí | sí | sí | 1 | Bien: tutora en inglés, textos en español, «Así me llamo / Prefiero no decirlo» (`09_marta_lecciones_en_es.png`). Son 5 o 6 pasos seguidos, y eso cansa a la atención. |
+| S3 Lección 1 (en) | 14 pasos | sí | sí | sí | a medias | 2 | No hay duración. «Paso 1 de 14» frente a «1/13». «Modo libro» como icono. |
+| S4 Repaso | Repasar | sí | sí | — | — | 1 | Bien explicado. El reto se abre con 8 palabras: buena meta. |
+| S5 Perfil | Ver su progreso y la cuenta | sí | a medias | a medias | sí | 2 | Cuenta, nube y progreso en la misma pantalla que el aviso. |
+
+Marta llega a la lección 1 sin problemas graves. Lo que le costará con el tiempo es la falta de duraciones y de objetivo diario (H7-1) y el cansancio de la bienvenida.
+
+### Pablo · 12 años · español · aprende francés para el colegio · móvil 390×844
+
+| Paso | Qué intenta | (1) | (2) | (3) | (4) | Gravedad | Dónde se atasca |
+|---|---|---|---|---|---|---|---|
+| S0 Portada | Empezar | sí | a medias | sí | — | 2 | El aviso tapa el botón. Palabras como «cookies» o «copia en la nube» no le dicen nada. |
+| S1 Selector | Elegir francés | sí | a medias | sí | no | 2 | Misma página 2. Lo resuelve con un poco de prueba. |
+| S2 Bienvenida | Decir cómo se llama | sí | sí | sí | sí | 1 | Puede poner «Prefiero no decirlo». Ojo al consentimiento: menor de 14 años (ver 5.8). |
+| S3 Lección 10 (fr) | Lección de artículos | sí | sí | sí | a medias | 1 | Explicaciones en español (las necesita). 15 pasos cortos: aguanta bien. |
+| S4 Repaso | Repasar | sí | sí | — | — | 1 | Estado vacío comprensible. |
+| S5 Perfil | Cuenta y copia en la nube | a medias | sí | a medias | sí | 3 (legal) / 1 (uso) | La copia en la nube va activa de serie. Que un menor de 14 años tenga que encontrar y apagarla, sin los padres, es un riesgo legal (U07). |
+
+### Carmen · 67 años · español · aprende italiano · texto grande · móvil 390×844
+
+| Paso | Qué intenta | (1) | (2) | (3) | (4) | Gravedad | Dónde se atasca |
+|---|---|---|---|---|---|---|---|
+| S0 Portada | Empezar | a medias | no | sí | — | 3 | El botón queda bajo el aviso (`01_linh…` tiene la misma disposición). El texto del aviso es pequeño y largo. |
+| S1 Selector | Elegir italiano | a medias | no | a medias | no | 3 | Página 2, dos sistemas de navegación (‹ › y ▶) y 20 tarjetas para elegir. |
+| S2 Bienvenida | Decir su nombre | sí | sí | sí | sí | 2 | «Saltar ✕» pequeño pero visible. La tutora escribe despacio. |
+| S3 Lección 1 (it) | Sobre, pasos | sí | a medias | a medias | no | 3 | Botones de cabecera de 34–40 px de alto. Los iconos de paso no dicen nada. Con texto grande (`12_carmen_leccion001_it_grande_es.png`) el título sube de 18,4 a 20,7 px: poco. |
+| S4 Repaso | Repasar | sí | sí | — | — | 2 | El lenguaje de repaso espaciado («tarjetas», «mazos») no es el suyo. |
+| S5 Perfil | Su nombre y ajustes | a medias | sí | a medias | sí | 2 | «Sincronizar», «copia en la nube»: vocabulario técnico. |
+
+Carmen es la persona que más se verá afectada por U01, U02, U05 y U06 a la vez. Con lo que hay hoy, la lección se puede seguir, pero el primer día lo más probable es que pida ayuda a alguien o lo deje.
+
+### John · 30 años · inglés · aprende español · escritorio 1280×900
+
+| Paso | Qué intenta | (1) | (2) | (3) | (4) | Gravedad | Dónde se atasca |
+|---|---|---|---|---|---|---|---|
+| S0 Portada | Empezar | sí | sí | sí | — | 0 | «Get started» visible y claro (`14_john_inicio_escritorio_en.png`). |
+| S1 Selector | Elegir español | sí | sí | sí | — | 1 | Tarjetas claras (`15_john_idiomas_escritorio_en.png`). El «0» de cada tarjeta no se explica. |
+| S2 Bienvenida | — | — | — | — | — | — | No capturada en escritorio. Por código, igual que el móvil. |
+| S3 Lección 1 | Pasos | sí | sí | sí | a medias | 2 | El aviso de cookies tapa la esquina del cuadro de la tutora (`16_john_leccion001_escritorio_en.png`). Contador «Step 1 of 9» frente a «Step 1 of 10». |
+| S4 Repaso | — | — | — | — | — | — | No capturado. Igual que el móvil (gravedad 1). |
+| S5 Perfil | Ver su progreso | sí | sí | sí | sí | 1 | «Mistakes 0» y «Streak 0 days» sin contexto (`17_john_perfil_escritorio_en.png`). Choca con «sin presión». |
+
+John es el que mejor lo tiene. El escritorio tiene espacio, y los problemas son de superposición y de contadores.
+
+### Matriz resumen (gravedad 0–4)
+
+| Persona | S0 Portada | S1 Selector | S2 Bienvenida | S3 Lección 1 | S4 Repaso | S5 Perfil |
+|---|---|---|---|---|---|---|
+| Linh (vi, móvil) | 3 | 3 | 1 | 2 | 1 | 2 |
+| Marta (es, móvil) | 2 | 2 | 1 | 2 | 1 | 2 |
+| Pablo (es, 12 años, móvil) | 2 | 2 | 1 | 1 | 1 | 3 (legal) |
+| Carmen (es, 67 años, móvil) | 3 | 3 | 2 | 3 | 2 | 2 |
+| John (en, escritorio) | 0 | 1 | — | 2 | — | 1 |
+
+**Lectura.** Las dos columnas críticas son S0 y S1, comunes a todas las personas del móvil. Corregirlas no cuesta mucho y cambia el resultado de todo lo demás. S3 es lo que más distingue a Carmen (texto y controles) de Marta (ritmo y duraciones). S5 es donde está el problema legal.
+
+---
+
+## 4. Textos y microcopia
+
+**Criterios.** Claridad (¿se entiende a la primera?), tono (¿suena a la persona que tutoriza y al público?) y longitud (¿cabe sin tapar nada?). Los textos vienen de `js/i18n/es.js`, `en.js` y `vi.js` y de las capturas. Las frases en vietnamita están vistas en pantalla; las de es y en también en el código.
+
+| Pantalla | Español | Inglés | Vietnamita | Comentario |
+|---|---|---|---|---|
+| Portada, aviso corto | «Sin cookies de publicidad ni de seguimiento: solo se guarda en tu dispositivo lo necesario para funcionar.» | «No advertising or tracking cookies: only what the app needs is stored on your device.» | «Không có cookie quảng cáo hay theo dõi: chỉ lưu trên thiết bị những gì cần để ứng dụng hoạt động.» | Claro y corto. Pero dice «solo en tu dispositivo», y el aviso largo dice lo contrario (ver abajo). |
+| Aviso largo (perfil, Legal) | «Paglot no usa cookies. Guarda tu progreso en este dispositivo y, de serie, una copia en la nube con un número al azar…» | «…and, by default, a copy in the cloud under a random number…» | «…và, mặc định, một bản sao trên đám mây với một số ngẫu nhiên…» | «De serie» es jerga que no todos entienden. Hay que decir «por defecto» o, mejor, preguntar. |
+| Bienvenida (nombre) | «¡Hola! Soy tu tutora de inglés. Antes de empezar: ¿cómo te llamo?» | «Hello! I’m your English tutor. Before we start: what should I call you?» | «Cô nên gọi em là gì?» (perfil) | Muy bien. El trato de «tú» o «em» debe ser siempre el mismo (ver abajo). |
+| Carné | «Así me llamo» / «Prefiero no decirlo» | — | «Đó là tên em» / «Em không muốn nói» | Dos opciones claras, sin culpa. |
+| Lección, instrucción | «Toca el sobre para abrirlo.» | «Tap the envelope to open it.» | «Chạm vào phong thư để mở.» | Consistente en los tres idiomas. |
+| Lección, contador | «Paso 1 de 14» frente a «1/13» | «Step 1 of 10» frente a «Step 1 of 9» | «Bước 1 / 10» frente a «1/9» | Dos cifras para lo mismo. Hay que dejar una (ver U04). |
+| Aviso de no terminado | «¡AÚN NO HEMOS TERMINADO! Este curso todavía no está explicado en tu idioma. Estamos trabajando en ello: ¡vuelve pronto!» | «WE’RE NOT FINISHED YET! This course isn’t explained in your language yet…» | «CHÚNG MÌNH CHƯA LÀM XONG! Khóa học này chưa có phần giải thích bằng tiếng Việt. Chúng mình đang làm: bạn quay lại sớm nhé!» | Amable, honesto y sin culpa. Llega demasiado tarde (H9-1). |
+| Aviso de beta | «…puede que encuentres algún error, aunque en principio nada grave.» | «…you may find the odd mistake, though nothing serious. Its English explanations were translated automatically…» | «…có thể còn vài lỗi nhỏ, nhưng không có gì nghiêm trọng.» | Muy honesto. Sirve de modelo. |
+| Repaso vacío (cuaderno) | «Tu cuaderno está vacío: termina una lección y sus palabras llegarán aquí.» | — | «Sổ tay của em đang trống: học xong một bài thì từ của bài đó sẽ vào đây.» | Bien: dice qué hacer. |
+| Repaso (explicación) | — | — | «Mỗi thẻ là một trò chơi nhỏ: chọn, ghép hoặc viết câu trả lời. Sai thì thẻ sẽ quay lại sau — đừng lo, nhờ vậy mà em nhớ lâu.» | Muy buen texto: convierte el error en parte del juego. |
+| Sobre | «Una app pequeña, hecha con cariño, para aprender idiomas de verdad.» | — | «Một ứng dụng nhỏ, làm bằng cả tấm lòng, để học ngoại ngữ thật sự.» | Buen lema. |
+| Selector (vietnamita) | — | — | Título «Chọn ngôn ngữ em muốn học!»; tarjeta «¡Hola! Mình là Lucía, gia sư tiếng Tây Ban Nha của bạn.» | Mezcla «em» (el título) con «bạn» y «mình» (la tutora). |
+| Tarjeta del curso (dato) | — | «About 600 million people speak it.» (tarjeta del español, `15_john_idiomas_escritorio_en.png`) | «Khoảng 600 triệu người nói ngôn ngữ này.» (tarjeta del español); «Khoảng 1.500 triệu người nói ngôn ngữ này.» (tarjeta del inglés) | En vietnamita se diría «1,5 tỷ» (tỷ = mil millones). Lo tiene que revisar un hablante nativo. |
+| Cuenta sin conectar | «⚠ Las cuentas aún no están conectadas: falta configurar Supabase.» | «⚠ Accounts aren’t connected yet: Supabase still needs to be set up.» | «⚠ Tài khoản chưa được kết nối: Supabase chưa được cấu hình.» | **Riesgo:** es un texto de desarrollo. Si llega a producción, asusta. Comprobar que no se ve en la versión publicada (U24). |
+
+**Problemas de tono y coherencia.**
+- **Tratamiento en vietnamita.** Se mezclan «em» (alumno), «bạn» (tutora en el selector) y «mình» (tutora en el carné). Conviene elegir uno para el alumno («em» parece el acertado, con la tutora como «cô») y aplicarlo en todas las pantallas.
+- **Jerga de privacidad.** «De serie», «copia en la nube», «sincronizar», «cookies»: cuando Pablo (12) o Carmen (67) leen eso, no entienden qué les pasa a sus datos. Basta una frase: «Guardamos tu progreso aquí. ¿Quieres una copia de seguridad en la nube?».
+- **Cifras de la portada.** «21 LANGUAGES, 5,214 LESSONS» (en la portada en inglés) puede prometer más de lo que Linh puede usar: con la interfaz en vietnamita, solo el español está explicado. La promesa de la portada debería decir qué idiomas se pueden estudiar desde cada interfaz.
+- **Mensajes de error.** El aviso de «no terminado» debería tener una segunda salida: «Elegir otro idioma» (H9-1).
+
+---
+
+## 5. Kit de pruebas reales
+
+Este capítulo sirve para probar la app con personas de verdad. Está pensado para que el titular lo pueda ejecutar sin una empresa de investigación, pero con las precauciones mínimas. Donde se escribe «se recomienda» es práctica habitual, no una norma; donde hay cifras de fuentes, se citan.
+
+### 5.1 Objetivos del estudio
+
+1. ¿Puede una persona nueva empezar a estudiar en menos de dos minutos, sin ayuda, desde la portada en su propio idioma? (S0–S2)
+2. ¿Encuentra y entiende el selector de idiomas en el móvil, y elige el curso que quiere? (S1)
+3. ¿Entiende qué pasa en la lección (pasos, modo juego, modo libro) y cuánto le queda? (S3)
+4. ¿Sabe encontrar el repaso y lo que significa? (S4)
+5. ¿Entiende qué se guarda, dónde y si se comparte con la nube? (S5)
+6. ¿Cuál es la puntuación de usabilidad (SUS) en cada grupo, y cómo se compara con la media de 68? (todas)
+7. ¿Qué tamaño de letra y de botón necesita quien tiene más de 60 años para no pedir ayuda? (Carmen y similares)
+
+### 5.2 Perfiles a reclutar y dónde encontrarlos
+
+**Cuántos.** Se recomienda probar con **5 personas por perfil en cada ronda** (NN/g recomienda 5 para estudios cualitativos y dice que con 5 se encuentran casi tantos problemas como con más). La cifra de «el 85 % de los problemas» que circula viene de un modelo de 1993 con supuestos discutidos: no es una garantía. Para medias de SUS con intervalos estrechos, NN/g pide al menos 20 personas en estudios cuantitativos.
+
+| Perfil | Criterios de inclusión | Ronda | Dónde encontrarlos (España) | Dónde encontrarlos (Vietnam) | Notas |
+|---|---|---|---|---|---|
+| A. Linh (vietnamita, aprende español) | 18–35 años, lengua materna vietnamita, móvil Android (preferiblemente de gama baja), sin conocimientos de español o A1 | 1 | — | Universidades con departamento de español (la Universidad de Hanói tiene uno, según una nota de la UNAM); grupos de estudiantes de idiomas; socio local | Sesión en vietnamita con moderador vietnamita. Ver 5.8 para el consentimiento. |
+| B. Marta (español, con TDAH, aprende inglés) | 25–45 años, aprende inglés o francés por su cuenta, dice tener dificultades de atención (autodeclarado, **sin pedir diagnóstico**) | 1 | Asociaciones de TDAH: la federación nacional (FEAADAH) y sus miembros regionales; grupos de adultos con TDAH | — | No preguntar por diagnósticos ni medicación: son datos de salud (art. 9 RGPD). |
+| C. Carmen (español, 60+, aprende italiano) | 60–75 años, móvil propio, texto grande en uso | 1 | Centros de mayores, universidades para mayores, centros de día (con permiso del centro) | — | Sesión presencial con un tiempo más corto y pausas. |
+| D. John (inglés, aprende español, escritorio) | 25–45 años, habla inglés como lengua materna o de trabajo, ordenador propio | 2 | Paneles de investigación de mercado (de pago) | Paneles en inglés en otros países | Ya puede hacerse en remoto. |
+| E. Pablo (español, 12–14 años, aprende francés) | 12–14 años, con un padre, madre o tutor presente y con consentimiento escrito | 3 | AMPA de colegios (con permiso del centro); amistades de la familia | — | **Solo cuando el protocolo de consentimiento de 5.8 esté cerrado** y con un asesor revisándolo. |
+
+**Por qué este orden.** La primera ronda son adultos (A, B, C), que pueden dar su propio consentimiento y no necesitan protocolo infantil. La segunda ronda son adultos de escritorio (D) y, tras las correcciones de la primera, otra vez los perfiles A y B para comprobar que lo arreglado funciona. La tercera ronda son menores (E), cuando todo el papeleo esté listo.
+
+**Vietnam: horario.** España está en UTC+2 hasta el 25-10-2026 y en UTC+1 desde el 26-10; Vietnam está en UTC+7 todo el año. Diferencia: **5 horas hasta el 25-10 y 6 horas después**. Conviene fijar sesiones a primera hora de la tarde en Vietnam (la mañana en España).
+
+**Vietnam: verificar antes de contratar.** La búsqueda no encontró un centro del Instituto Cervantes en Vietnam (sí en Manila y en Bangkok); hay que confirmarlo en su web. Tampoco se ha verificado la asociación de estudiantes de español en el país. Se recomienda un socio local (agencia de investigación o profesor de la universidad) que haga de contacto.
+
+### 5.3 Guion de tareas
+
+Cada tarea tiene un objetivo, un criterio de éxito y un tiempo máximo. Se lee en la lengua del participante. Las tareas se presentan en orden, pero el moderador puede saltar la T8 si el participante no lo necesita.
+
+| # | Tarea (lo que se le pide) | Éxito | Tiempo máx. | Pantallas |
+|---|---|---|---|---|
+| T1 | «Abre Paglot y encuentra cómo empezar a estudiar.» | Llega al selector sin ayuda | 2 min | S0 |
+| T2 | «Elige el idioma que quieres estudiar.» | Abre la bienvenida o la lección del curso elegido. Si elige uno no disponible, lo cuenta y se anota | 2 min | S1 |
+| T3 | «Completa la bienvenida: di cómo quieres que te llamemos y guarda una palabra.» | Nombre guardado o salto explícito | 3 min | S2 |
+| T4 | «Haz la primera lección hasta el final.» | Llega a la pantalla final sin ayuda | 10 min | S3 |
+| T5 | «Pasa la lección a modo libro y vuelve al juego.» | Encuentra el botón y entiende la diferencia (lo dice con sus palabras) | 1 min | S3 |
+| T6 | «Encuentra las palabras que has guardado y repásalas.» | Encuentra el repaso. Si no hay tarjetas, dice por qué | 2 min | S4 |
+| T7 | «Cambia el idioma de la pantalla al tuyo.» | Lo cambia y el texto cambia | 1 min | Cabecera |
+| T8 | «Haz el texto más grande.» (opcional) | Encuentra Ajustes y el texto grande en menos de 1 min | 1 min | Ajustes |
+| T9 | «Encuentra la prueba de nivel.» | La encuentra y la abre | 1 min | Mapa |
+| T10 | «Entra en tu perfil, pon tu nombre y dime qué pasa con la nube.» | Pone el nombre y explica con sus palabras qué se guarda y dónde | 3 min | S5 |
+| T11 | «Dime qué tiene la versión gratuita.» (comprensión) | Responde con una frase correcta | 1 min | Precios |
+
+**Notas para perfiles concretos.** Linh: en T2 se espera que pruebe otro idioma (es un buen dato: anótalo). Pablo: en T10 el padre o la madre responde las preguntas de cuenta. Carmen: T8 se hace al principio, para que el resto de tareas se vean ya con el texto grande.
+
+### 5.4 Guion del moderador (pensar en voz alta)
+
+**Antes.** Un moderador y, si es posible, un observador que toma notas (y cronometra). Un móvil del mismo modelo que el del participante o uno de referencia, con el repo de la app abierto en el navegador y la app limpia (sin progreso). Grabación con consentimiento (5.8).
+
+**Apertura (5 min, en la lengua del participante).**
+
+> «Gracias por venir. Queremos saber qué es fácil y qué es difícil en esta aplicación. No la estamos evaluando a usted: la evaluamos nosotros. No hay respuestas buenas ni malas. Puede parar cuando quiera. Vamos a grabar la pantalla y su voz, como le hemos explicado en el papel. ¿Tiene alguna pregunta antes de empezar?»
+
+**Pensar en voz alta (se explica antes de la primera tarea).**
+
+> «Mientras usa la aplicación, diga en voz alta lo que piensa: qué mira, qué espera que pase y qué hace. No tiene que explicarlo bien; lo que se le ocurra vale.»
+
+**Ejercicio de calentamiento (2 min, con una aplicación neutra o con la calculadora del móvil).** Sirve para comprobar que habla en voz alta. Si no lo hace, se le recuerda con la frase «¿qué está pensando ahora?».
+
+**Preguntas de sondeo (neutras).** Se usan solo cuando el participante se queda parado más de 30 segundos o cuando dice algo interesante:
+- «¿Qué está mirando ahora?»
+- «¿Qué espera que pase al tocar eso?»
+- «¿Qué le parece lo que ha pasado?»
+- «¿Qué haría ahora si estuviera en casa?»
+
+**Lo que el moderador no dice nunca.**
+- «Lo está haciendo bien» / «Eso no era». El participante no debe saber si acierta.
+- «Pulse ahí» (no señalar la pantalla).
+- Explicaciones de cómo funciona la app antes de que el participante lo intente.
+- «¿Le ha gustado?» como primera pregunta (se pregunta después, con la escala).
+
+**Cuando ayudar.** Si el participante lleva más de tres minutos atascado en una tarea, el moderador pregunta si quiere dejarla y pasar a la siguiente. Se anota «ayuda necesaria» y se sigue. Nunca se da la solución sin anotarlo.
+
+**Después de cada tarea.** Escala SEQ (Single Ease Question): «En general, ¿qué tan fácil o difícil le ha resultado esta tarea?», de 1 (muy difícil) a 7 (muy fácil). Se pregunta en la lengua del participante.
+
+**Cierre (5 min).** Cuestionario SUS (5.5), preguntas abiertas (5.6), agradecimiento y pago. Se dice qué pasará con los datos y cómo retirar el consentimiento.
+
+**Versión vietnamita (frases clave, a revisar por un hablante nativo).**
+
+- Apertura: «Cảm ơn bạn đã tham gia. Chúng tôi muốn biết ứng dụng này dễ hay khó dùng ở chỗ nào. Không có câu trả lời đúng hay sai.»
+- Pensar en voz alta: «Khi dùng ứng dụng, xin bạn nói to những gì bạn đang nghĩ: bạn nhìn thấy gì, bạn mong điều gì sẽ xảy ra, và bạn làm gì.»
+- Sondeo: «Bạn đang nhìn vào đâu?» / «Bạn nghĩ điều gì sẽ xảy ra khi bấm vào đó?»
+- Cierre: «Cảm ơn bạn rất nhiều.»
+
+### 5.5 Cuestionarios SUS (español, inglés y vietnamita)
+
+La SUS tiene diez afirmaciones con cinco respuestas (de «totalmente en desacuerdo» a «totalmente de acuerdo»). Puntuación estándar: en las impares (1, 3, 5, 7, 9) se resta 1 a la respuesta; en las pares (2, 4, 6, 8, 10) se resta la respuesta a 5; se suman los diez resultados y se multiplican por 2,5. El resultado va de 0 a 100 y **no es un porcentaje**: la media de unos 500 estudios es 68 (MeasuringU).
+
+**Versión en español (traducción de trabajo).** Hay una validación en español publicada en JMIR Human Factors (2020; traducción directa e inversa, y fiabilidad alfa de Cronbach de 0,81). Este texto **no es la versión validada**: es una traducción propia para esta prueba y hay que contrastarla con la publicada antes de usarla para comparar resultados con otros estudios.
+
+1. Creo que me gustaría usar esta aplicación con frecuencia.
+2. Encuentro esta aplicación innecesariamente compleja.
+3. Creo que la aplicación es fácil de usar.
+4. Creo que necesitaría ayuda de una persona técnica para poder usar esta aplicación.
+5. Encuentro que las distintas funciones de esta aplicación están bien integradas.
+6. Creo que hay demasiada incoherencia en esta aplicación.
+7. Imagino que la mayoría de la gente aprendería a usar esta aplicación muy rápido.
+8. Encuentro esta aplicación muy incómoda de usar.
+9. Me he sentido muy seguro o segura usando esta aplicación.
+10. He tenido que aprender muchas cosas antes de poder empezar a usarla.
+
+Escala: 1 = totalmente en desacuerdo · 2 · 3 · 4 · 5 = totalmente de acuerdo.
+
+**Versión en inglés.** La SUS original (Brooke, 1996) en inglés, sin cambios:
+
+1. I think that I would like to use this system frequently.
+2. I found the system unnecessarily complex.
+3. I thought the system was easy to use.
+4. I think that I would need the support of a technical person to be able to use this system.
+5. I found the various functions in this system were well integrated.
+6. I thought there was too much inconsistency in this system.
+7. I would imagine that most people would learn to use this system very quickly.
+8. I found the system very cumbersome to use.
+9. I felt very confident using the system.
+10. I needed to learn a lot of things before I could get going with this system.
+
+**Versión en vietnamita (traducción de trabajo).** La búsqueda no encontró ninguna versión vietnamita validada de la SUS. Este texto es una traducción propia: **antes de usarla hay que hacer retrotraducción (traducir de vuelta al inglés con otra persona) y revisión de un hablante nativo.**
+
+1. Tôi nghĩ rằng tôi muốn sử dụng ứng dụng này thường xuyên.
+2. Tôi thấy ứng dụng này phức tạp một cách không cần thiết.
+3. Tôi thấy ứng dụng này dễ sử dụng.
+4. Tôi nghĩ rằng tôi sẽ cần sự hỗ trợ của người có chuyên môn kỹ thuật để sử dụng ứng dụng này.
+5. Tôi thấy các chức năng trong ứng dụng này được kết hợp tốt với nhau.
+6. Tôi thấy ứng dụng này có quá nhiều chỗ không nhất quán.
+7. Tôi nghĩ hầu hết mọi người sẽ học cách sử dụng ứng dụng này rất nhanh.
+8. Tôi thấy ứng dụng này rất rườm rà khi sử dụng.
+9. Tôi cảm thấy rất tự tin khi sử dụng ứng dụng này.
+10. Tôi phải học nhiều điều trước khi có thể bắt đầu dùng ứng dụng này.
+
+Escala: 1 = Hoàn toàn không đồng ý … 5 = Hoàn toàn đồng ý.
+
+**Escala SEQ (después de cada tarea).** 1 a 7, de «muy difícil» a «muy fácil». Su media por tarea indica dónde se atasca la gente, sin depender del tamaño de la muestra.
+
+**Para niños (Pablo y compañía).** La SUS en su forma escrita no es adecuada para menores de 12 años. Se recomienda una escala de caritas de cinco niveles, leída en voz alta, y preguntas sencillas («¿te ha gustado?», «¿ha sido fácil?»). No se ha verificado en esta búsqueda una fuente validada para ello; hay que decidirlo con el asesor del protocolo.
+
+### 5.6 Preguntas abiertas
+
+Al final de la sesión, en este orden:
+1. «¿Qué es lo que más le ha gustado de la aplicación?»
+2. «¿Qué es lo que menos le ha gustado?»
+3. «¿Hubo algún momento en el que no supiera qué hacer? ¿Qué pensó en ese momento?»
+4. «¿Qué esperaba encontrar al abrir la aplicación y qué encontró?»
+5. «Si pudiera cambiar una cosa, ¿cuál sería?»
+6. «¿Usaría esta aplicación en su día a día? ¿Cuándo?»
+7. «¿Le ha parecido claro lo que se guarda de sus datos?»
+8. (Para Carmen y similares) «¿Ha podido leer todo sin esfuerzo? ¿Qué le costaba más?»
+9. (Para Marta y similares) «¿Cuánto tiempo cree que le llevaría una lección? ¿Le ayudaría saberlo antes?»
+10. (Para Linh) «¿Qué idioma le gustaría que tuviera la pantalla de elegir curso?»
+
+### 5.7 Métricas
+
+| Métrica | Cómo se calcula | Para qué |
+|---|---|---|
+| Tasa de éxito por tarea | Completadas sin ayuda / intentos. Se cuenta «con ayuda» aparte | Objetivo 1 |
+| Tiempo en tarea | Desde que el moderador la lee hasta que el participante la termina o la deja | Objetivo 1, 3 |
+| Toques erróneos | Toques que no llevan a nada útil (solo en móvil: se cuentan en vídeo) | Objetivo 2, 7 |
+| SEQ por tarea | Media de 1–7 por tarea | Objetivo 2–5 |
+| SUS | Puntuación 0–100 por participante; media por grupo | Objetivo 6 |
+| Cambios de pantalla (retrocesos) | Veces que vuelve a una pantalla anterior sin que se le pida | Objetivo 3 |
+| Comentarios de pensar en voz alta | Códigos: «expectativa rota», «no lo veo», «no lo entiendo», «me gusta» | Todos |
+
+**Interpretación.** SUS: la media es 68 y quien saca 68 está en el centro de la distribución (grado C); quien saca 80,3 o más entra en el 10 % superior (MeasuringU). Tasas de éxito: un porcentaje bajo en una tarea con varias personas marca un problema aunque el número de participantes sea pequeño. La SEQ por tarea, con cinco o seis personas, sirve para ordenar las tareas, no para hacer estadística.
+
+### 5.8 Consentimiento informado (RGPD, LOPDGDD y menores)
+
+**Principios.**
+- **Consentimiento libre, específico, informado e inequívoco** (art. 6.1.a y art. 7 RGPD). Se pide por escrito o con una casilla que se marca a mano; nunca con una casilla ya marcada.
+- **Datos mínimos.** Grabar solo la pantalla y la voz; no el rostro si no es necesario. Las notas se hacen con códigos (P01, P02…), no con nombres.
+- **Datos de salud** (art. 9 RGPD). Si se pregunta por el TDAH o por un diagnóstico, es un dato de salud: hace falta consentimiento explícito y no se debe necesitar. Para reclutar basta con el criterio «dice tener dificultades de atención», sin diagnóstico ni medicación. Aun así es un dato de salud: se usa solo para elegir a la persona, no se guarda en las notas de la sesión, y el consentimiento de la sesión lo cubre de forma explícita.
+- **Menores en España.** El artículo 7 de la LOPDGDD dice que el tratamiento de los datos de un menor solo puede basarse en su consentimiento cuando es mayor de catorce años. Por debajo de esa edad, lo da quien ejerce la patria potestad o la tutela. La AEPD indica que entre 14 y 18 años el menor puede consentir por sí mismo, salvo que una norma exija la asistencia de sus padres. **Recomendación práctica:** para las pruebas con grabación de voz e imagen de cualquier menor, pedir también el consentimiento del padre o de la madre.
+- **Menores en Vietnam.** Según un resumen del Decreto 13/2023, el tratamiento de datos de un menor de siete años o más requiere el consentimiento del menor y de un padre o tutor, y el responsable debe verificar la edad antes de tratar los datos. Hay que confirmar si está vigente una ley de protección de datos de 2025 que lo sustituya (no verificado).
+- **Imagen.** Grabar a una persona y publicar el vídeo exige su consentimiento aparte (derecho a la propia imagen). Las grabaciones no se publican fuera del equipo.
+
+**Texto propuesto (español, para revisión por un asesor).**
+
+> **Consentimiento para la prueba de usabilidad de Paglot**
+>
+> **Responsable:** [nombre o razón social del titular y dirección de contacto, pendientes de rellenar: ver `js/config.js`].
+>
+> **Qué haremos.** Una sesión de unos 45 minutos en la que usted usará la aplicación y dirá en voz alta lo que piensa. Grabaremos la pantalla y su voz.
+>
+> **Para qué.** Para saber qué es fácil y qué es difícil en la aplicación y mejorarla. No se usará para publicidad ni para perfilar a nadie.
+>
+> **Qué datos.** La grabación de pantalla y de voz; las notas de quien observa, sin nombres; el tramo de edad y su experiencia con aplicaciones. No le pediremos datos de salud.
+>
+> **Base legal.** Su consentimiento (art. 6.1.a del RGPD).
+>
+> **Cuánto tiempo.** Las grabaciones se borrarán como máximo [X] meses después de la sesión. Las notas, sin nombres, se conservarán [Y].
+>
+> **Quién accede.** El equipo de Paglot. [Indicar si hay encargados, por ejemplo, la herramienta de videollamada.]
+>
+> **Sus derechos.** Puede pedir acceder a sus datos, corregirlos, borrarlos o limitar su uso, y puede retirar su consentimiento en cualquier momento, sin que tenga ninguna consecuencia para usted. Para ello, escriba a [correo].
+>
+> **Voluntario.** Puede dejar la sesión cuando quiera. Recibirá [incentivo] aunque no la termine.
+>
+> **Menores.** Si tiene menos de 14 años, este consentimiento lo firma su padre, madre o tutor (art. 7 LOPDGDD).
+>
+> **Imagen.** No publicaremos grabaciones con su rostro o voz sin pedirle un permiso aparte.
+>
+> Nombre, fecha y firma: ____________________
+
+**Versión vietnamita.** Hay que traducirla con un hablante nativo y revisarla con un asesor vietnamita, sobre todo los apartados de transferencia de datos a España (el Decreto 13 tiene requisitos para la transferencia al extranjero que conviene consultar).
+
+**Antes de la primera sesión.** Un asesor revisa el texto (el titular de la app, los datos de la sección 5.8 y la transferencia de Vietnam a España). También conviene que la app no guarde datos de los participantes: las pruebas se hacen con una cuenta de prueba y sin copia en la nube.
+
+### 5.9 Herramientas
+
+**Presencial (la más fiable para Carmen y para Pablo).**
+- Móvil del participante o uno de referencia, sujeto en un soporte, con grabación de pantalla nativa del móvil o de un programa como scrcpy (Android, con cable y depuración USB activada): requiere un poco de técnica.
+- Grabación de la voz con un micrófono de pinza o el del ordenador del moderador.
+- Ordenador del moderador para tomar notas y cronometrar.
+
+**Remoto moderado (para Linh, para John y para perfiles dispersos).**
+- Videollamada con compartir pantalla (Google Meet, Zoom o Teams). NN/g recomienda elegir una herramienta fácil de usar para el participante y para quien observa; no hace falta que sea la misma para todos.
+- Para el móvil, el participante comparte pantalla si la herramienta lo permite; si no, se graba con el grabador de pantalla del móvil y se sube el archivo al terminar.
+- Lo que se graba: la pantalla y la voz. Se guarda en almacenamiento de la UE o con garantías, con acceso restringido.
+
+**No moderado (para una tercera ronda cuantitativa, más adelante).** Plataformas de pruebas no moderadas (Maze, Lookback u otras) que dan tareas y graban. Son útiles para medir tasas de éxito con más personas, pero no para entender el porqué. Comprobar en la web del proveedor los planes, el precio y dónde se guardan los datos. NN/g y varias guías recomiendan no usar estas pruebas como sustituto de las sesiones moderadas.
+
+### 5.10 Incentivos
+
+Pagar por el tiempo es lo justo y mejora la asistencia. Propuesta orientativa (no verificada en fuentes): **20–25 € en vale o transferencia para 45–60 minutos**, con el mismo importe para menores (se paga al padre o madre). En Vietnam, el equivalente en dong por transferencia bancaria o billetera electrónica, según el cambio del día. Conviene guardar el justificante y consultar las obligaciones fiscales de cada país.
+
+### 5.11 Cómo analizar y priorizar
+
+1. **Transcribir las notas por tarea y participante** con el código del participante (P01…).
+2. **Agrupar los hallazgos** en una tabla: problema, tarea, participantes que lo sufren (n de N), gravedad (0–4 de Nielsen, que dan dos personas: el moderador y el observador), citas textuales.
+3. **Prioridad** = gravedad × número de participantes afectados. Un problema de gravedad 3 que sufren dos de cinco se trata antes que uno de gravedad 2 que sufren cuatro.
+4. **Problemas P0**: impiden terminar una tarea clave (S0–S2) o sugieren riesgo legal. Se arreglan antes de la siguiente ronda.
+5. **Validar**: después de los arreglos, repetir las tareas con la misma persona o con una nueva del mismo perfil. Un problema se da por cerrado solo si no vuelve a aparecer.
+
+### 5.12 Calendario orientativo
+
+| Semana | Qué | Quién |
+|---|---|---|
+| 1 | Recruit (perfiles A, B, C y D); consentimiento revisado por el asesor | Titular |
+| 2 | Ronda 1 (A, B, C) con 5 personas por perfil, en español y en vietnamita | Moderador y observador |
+| 3 | Análisis de la ronda 1 y plan de arreglos (capítulo 6) | Titular |
+| 4 | Arreglos P0 y P1; se verifican con capturas | Titular |
+| 5–6 | Ronda 2 (D y de nuevo A y B) | Moderador y observador |
+| 7–8 | Protocolo para menores cerrado; ronda 3 (E) con padres | Titular, asesor |
+
+---
+
+## 6. Plan de mejoras priorizado
+
+**Reglas que no se negocian** (del encargo y de `_notas/INFORME_ARREGLOS_2026-10-19.md`): en el móvil no se encoge nada con zoom: si no cabe, se pone otra diapositiva; el arte dibujado a mano se conserva; las animaciones solo cambian `transform` y `opacity`; todo texto va por `t('clave')` en `es`, `en` y `vi`.
+
+**Esfuerzo.** S = menos de 2 horas. M = de 2 a 8 horas. L = más de 8 horas. Son estimaciones.
+
+**Relación con el informe de arreglos.** Donde un problema ya tiene tarea (T), se indica para no duplicar trabajo. Las nuevas llevan U.
+
+| ID | P | Pantalla | Problema | Propuesta | Gravedad | Esfuerzo | Relación |
+|---|---|---|---|---|---|---|---|
+| U01 | P0 | Portada, selector, perfil, lección (móvil) | El aviso de la primera visita tapa el botón de empezar y parte del contenido | Aviso en una franja fija que no tape ni CTA ni escena; se pliega al pulsar «Đã hiểu» y se recuerda. Probar en 390×844 y 322×645 | 3 | M | Parecido a T48 (globo de la tutora) |
+| U02 | P0 | Selector de idiomas (móvil) | La tarjeta está en la página 2; tocar una bandera no la muestra; dos sistemas de navegación | Que tocar una bandera pase a su tarjeta; en móvil, quitar ‹ › del escenario o dejar solo una navegación; mostrar «1 de 20» | 3 | M | Regla 1 (diapositivas) |
+| U03 | P0 | Selector de idiomas | «¡Empezamos!» en cursos que no están explicados en el idioma del alumno (19 de 20 con interfaz vi) | El botón solo se activa si `paraQuien` es «si». Si es «pronto», se muestra «Aún no en tu idioma» deshabilitado y con una explicación. Sin recarga | 3 | S | — |
+| U07 | P0 | Avisos, perfil, Legal | Dos textos contradictorios (solo dispositivo frente a copia en la nube por defecto); copia en la nube de serie también para menores de 14 | Un único texto y un enlace a Legal. Decidir (con asesor) si la copia en la nube es opcional desde el principio, o si para menores de 14 no se activa sin consentimiento de un adulto. Revisar la base jurídica | 3 | M + legal | T24 (aviso legal) |
+| U05 | P1 | Lección, cabecera | Botones de 34–40 px; texto grande solo +12,5 %; iconos de paso sin texto | Botones de 44–48 px con separación; dos niveles de texto grande (125 % y 150 %) y comprobar el 200 % sin pérdida de contenido (WCAG 1.4.4); reflow a 320 px (WCAG 1.4.10), sin zoom en móvil | 3 | M | T46, T37 |
+| U06 | P1 | Sobre, escuelas, empresas, contacto, perfil, laboratorio | Reducción con zoom (0,61–0,91 a 390×844) | Repartir en más diapositivas, como manda la regla 1 | 3 | M–L | T39–T45 |
+| U08 | P1 | Frases | 50 diapositivas en el móvil; 31.640 nodos en escritorio | Paginar o buscar, y temas con una frase por tarjeta | 3 | M | T38, T45 |
+| U09 | P1 | Arranque (todas las pantallas) | ~5,3 MB y ~180 peticiones en frío | Cargar diccionario y lecciones solo cuando hacen falta; idioma de la interfaz solo | 3 | M | T30–T33 |
+| U04 | P1 | Lección | Dos contadores que no cuadran («Paso 1 de 14» y «1/13»); pasos sin texto | Un solo contador («Paso 1 de 14») y la etiqueta del paso al tocarlo | 2 | S | T05 (relacionado) |
+| U10 | P1 | Repaso | «Empezar repaso» parece activo sin tarjetas | Estado desactivado visible (gris, sin sombra) y motivo justo encima del botón | 2 | S | T18 (revisar) |
+| U22 | P1 | Aviso de «no terminado» | Solo una salida | Añadir «Elegir otro idioma» | 2 | S | — |
+| U24 | P1 | Cuenta | Texto de desarrollo «Supabase» visible si no está configurado | Comprobar que no aparece en la versión publicada; si hace falta, texto de «en mantenimiento» | 2 | S | T23 |
+| U12 | P2 | Portada (móvil) | Cuatro botones de cabecera, tres de navegación y una barra inferior | Ajustes en un solo botón (⚙) | 2 | M | — |
+| U13 | P2 | Lección (escritorio) | El aviso y el globo de la tutora se superponen | Reservar el hueco del globo (T48) y ocultar el aviso en la lección | 2 | S | T48 |
+| U11 | P2 | Lección | «Modo libro» solo con icono | Etiqueta de texto («Leer como libro» / «Jugar») | 2 | S | — |
+| U14 | P2 | Lista de lecciones y lección | Sin duración estimada ni objetivo diario | «≈ 5 min» en la lista; objetivo diario opcional de 5 o 10 minutos | 2 | S–M | T54 |
+| U15 | P2 | Bienvenida | Secuencia de 5–6 pasos sin atajo visible; la tutora escribe despacio | «Saltar» más visible; velocidad de la tutora en modo calma | 1 | S | — |
+| U16 | P2 | Lección, pausa | Botones juntos con tamaños distintos | Espaciado mínimo de 8 px entre controles | 2 | S | U05 |
+| U17 | P3 | Selector (vi) | «1.500 triệu» en vez de «1,5 tỷ»; tratamiento mixto «em / bạn / mình» | Revisión por hablante nativo y un solo tratamiento para el alumno | 1 | S | — |
+| U18 | P3 | Selector | El número del curso cambia con la interfaz (Nº 01 o 02) | Numerar siempre según el catálogo fijo | 1 | S | — |
+| U19 | P3 | Perfil | «Mistakes» y «Streak» sin contexto | Ocultar fallos o presentarlos sin juicio (T58) | 1 | S | T58 |
+| U20 | P3 | Cabecera del curso | «0» de la hucha y «⇄» sin explicar | Etiqueta y `title`/`aria-label` (T58) | 1 | S | T58 |
+| U21 | P3 | Repaso | Lenguaje de repaso espaciado («tarjetas», «mazos») | Frase de ayuda: «Son las palabras que toca repasar hoy» | 1 | S | — |
+| U23 | — | Proceso | Ninguna prueba con personas reales | Ejecutar la ronda 1 (capítulo 5) antes de la mayoría de arreglos P1 | — | M | — |
+
+**Orden recomendado.**
+1. **Primera tanda (P0):** U01, U02, U03 y U07 (con el asesor para U07). Son el primer recorrido de Linh, Marta, Pablo y Carmen.
+2. **Segunda tanda (P1):** U05 y U06 (para Carmen y para cualquiera con el móvil pequeño), U08 y U09 (rendimiento), U04, U10, U22 y U24.
+3. **Tercera tanda (P2 y P3):** el resto.
+4. **Después de cada tanda:** ronda de pruebas (capítulo 5) con las mismas tareas.
+
+**Decisiones que necesita el titular.**
+
+| ID | Decisión | Recomendación |
+|---|---|---|
+| D1 | ¿La copia en la nube se activa de serie también para usuarios que pueden ser menores de 14 años? | Desactivada por defecto hasta que haya consentimiento; revisar con un asesor antes de la prueba con Pablo |
+| D2 | Con la interfaz en vietnamita, ¿se muestran los 20 cursos o solo el español? | Mostrar solo el español (o los cursos explicados), y el resto en «Aún no», con un aviso sencillo |
+| D3 | ¿Qué tamaño de texto grande se ofrece? | Dos niveles, 125 % y 150 %, y comprobar el 200 % (WCAG 1.4.4) |
+| D4 | ¿Presupuesto para incentivos y para un socio local en Vietnam? | Ronda 1 de unas 15 personas (A, B, C); presupuesto orientativo a estimar |
+| D5 | Datos del titular para el consentimiento (ver `js/config.js`) | Rellenar antes de la primera sesión |
+| D6 | ¿Probar con menores en la primera ronda? | No: tercera ronda, con protocolo cerrado |
+
+---
+
+## 7. Fuentes
+
+**Métodos y evaluación**
+- Nielsen, J. Diez heurísticas de usabilidad (NN/g; publicado el 24-4-1994, revisado el 30-1-2024). https://www.nngroup.com/articles/ten-usability-heuristics/
+- NN/g. Cuántos usuarios de prueba (5 para estudios cualitativos; 20 para cuantitativos; 15 para clasificación de tarjetas; 39 para mapas de calor). https://www.nngroup.com/articles/how-many-test-users/
+- NN/g. Cómo valorar la gravedad de los problemas de usabilidad (escala 0–4; 1-11-1994). https://www.nngroup.com/articles/how-to-rate-the-severity-of-usability-problems/
+- NN/g. Recorridos cognitivos (13-2-2022): pasos, participantes y las cuatro preguntas. https://www.nngroup.com/articles/cognitive-walkthroughs/
+- Wharton, C., Rieman, J., Lewis, C. y Polson, P. (1994). Resumen del método en un curso de la DePaul University. https://facsrv.cdm.depaul.edu/~cmiller/hci460/materials/cw.html
+- Pensar en voz alta: estudio de la UEA sobre métodos de pensar en voz alta. https://ueaeprints.uea.ac.uk/id/eprint/61487/ y referencia a la guía de NN/g en https://your.wa.gov/cx-resources/think-aloud-testing/
+- NN/g. Pruebas remotas moderadas (20-4-2020): siete pasos. https://www.nngroup.com/articles/moderated-remote-usability-test/
+- Pruebas no moderadas (guía de Adobe XD, proveedor). https://xd.adobe.com/ideas/process/user-testing/moderated-vs-unmoderated-usability-testing
+
+**Escalas**
+- SUS (Brooke, 1996; referencia del método): https://www.measuringu.com/sus/
+- Interpretación de la SUS: media 68, grados y percentiles (MeasuringU). https://measuringu.com/interpret-sus-score/
+- Validación de la SUS en español (JMIR Human Factors, 2020; traducción directa e inversa, fiabilidad 0,81): https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7773510/
+- Validación de la SUS en español (Journal of Audiovisual Translation, 2019; muestra pequeña): https://jatjournal.org/index.php/jat/article/view/77
+
+**Pruebas con niños y mayores**
+- Hanna, L., Risden, K. y Alexander, K. (1997). Guidelines for usability testing with children. Interactions, 4(5). Referencia bibliográfica: https://www.scinapse.io/papers/1980460982 (no se ha leído el texto completo).
+- NN/g. Pruebas de usabilidad con menores (vídeo y consejos): https://www.nngroup.com/videos/usability-testing-minors/
+- Tamaño mínimo de texto para la web (regla de usability.gov 11.8, citada por SortSite; 12 pt mínimo y 14 pt recomendado a partir de 65 años). https://www.powermapper.com/products/sortsite/rules/usefonttoosmall/ (fuente secundaria; el original no se ha abierto)
+
+**Accesibilidad**
+- WCAG 2.2, 2.5.8 Tamaño de objetivo mínimo (24×24 px, nivel AA; excepción por espaciado): https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html
+- WCAG 2.5.5 (nivel AAA, 44×44 px): https://tabnav.com/academy/wcag/success-criterion-2.5.8 (fuente secundaria que lo menciona)
+- WCAG 1.4.10 Reflow (320 px sin desplazamiento bidimensional, nivel AA): https://www.w3.org/WAI/WCAG22/Understanding/reflow.html
+- WCAG 1.4.4 Resize text (200 %): https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html (URL conocida; no abierta en esta sesión)
+- W3C, Making Content Usable for People with Cognitive and Learning Disabilities (borrador de trabajo de 2020; recomendaciones complementarias a WCAG): https://www.w3.org/TR/2020/WD-coga-usable-20200717/Overview-mutiple-pages.html
+- Android: tamaño mínimo de 48 dp para elementos interactivos. https://support.google.com/accessibility/android/answer/7101858?hl=en-GB
+
+**Privacidad, consentimiento y menores**
+- Ley Orgánica 3/2018 (LOPDGDD), art. 7: consentimiento de los menores a partir de los 14 años. https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673
+- AEPD. Infografía sobre el consentimiento de los menores. https://www.aepd.es/infografias/infografia-consentimiento-menores.pdf
+- EDPB. Directrices 03/2022 sobre patrones de diseño engañosos (los avisos que obligan a elegir, o que ocultan la opción de rechazar, entran aquí). https://www.edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-032022-deceptive-design-patterns-social-media_en
+- Guía de cookies de la AEPD: el botón de rechazo debe tener el mismo peso visual que el de aceptar (resumen de un despacho, no del documento original). https://www.ecija.com/actualidad-insights/nota-informativa-actualizacion-de-la-guia-sobre-el-uso-de-cookies-con-plazo-de-implantacion-hasta-el-11-de-enero-de-2024/
+- Decreto 13/2023/ND-CP de Vietnam, datos de menores (resumen, fuente secundaria): https://lawnet.vn/thong-tin-phap-luat/en/chinh-sach-moi/regulations-on-processing-of-children-s-personal-data-in-vietnam-115442.html y https://trustarc.com/regulations/vietnam-pdpd/
+
+**Contexto de público**
+- FEAADAH, federación española de asociaciones de TDAH (mencionada en una noticia de CSIF sobre una jornada con la federación): https://www.csif.es/contenido/nacional/general/349141 (la situación actual de las asociaciones no se ha verificado)
+- Español en Vietnam: departamento de español de la Universidad de Hanói (nota de la UNAM): https://revista.unaminternacional.unam.mx/en/nota/4/en-vietnam-tambien-se-habla-espanol-el-departamento-de-espanol-de-la-universidad-de-hanoi y nota de la Embajada de España en Hanói: https://exteriores.gob.es/Embajadas/hanoi/es/Comunicacion/Noticias/Documents/Aprende%20espa%C3%B1ol%20y%20disfrutar%C3%A1s%20de%20la%20vida%20-%20Volumen%20I.pdf
+
+**Lo que no se ha podido verificar** (y que hay que comprobar antes de citarlo fuera del equipo):
+- La duración recomendada de las sesiones con niños (la búsqueda no la encontró; el artículo de NN/g no se pudo abrir).
+- La versión vigente de las directrices del W3C sobre COGA (la búsqueda solo encontró borradores de 2018–2020).
+- La SUS original de Brooke (1996) no se ha abierto: la escala se cita a través de MeasuringU.
+- La guía de cookies de la AEPD no se ha abierto: el resumen es de un despacho.
+- Una posible ley vietnamita de protección de datos de 2025 que sustituiría al Decreto 13/2023 (se mencionó, sin confirmar).
+- La existencia de un centro del Instituto Cervantes o de una asociación de estudiantes de español en Vietnam (no se encontró).
+- Las cifras de incentivos y el coste de los paneles: son orientativas.

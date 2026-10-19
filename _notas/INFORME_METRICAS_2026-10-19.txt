@@ -1,0 +1,472 @@
+# Paglot · Informe de métricas y retención (19-10-2026)
+
+Qué medir, cómo y con qué herramientas, antes de activar ninguna analítica. Hoy la app no mide el uso de nadie: este informe es un plan, no una lectura de datos. Lo que sí hay, y cómo se ha leído, está en el capítulo 1 y en el 8.
+
+## 1. Resumen ejecutivo
+
+**Estado actual.** No hay analítica de uso. En el código no hay ningún script de medición (ni en index.html ni en js/). Las coincidencias que devuelve la búsqueda de «analytics» están en textos de lecciones y en el texto en inglés del aviso. Lo único que sale de la app hoy es:
+
+- los informes de error anónimos (js/errores.js, que llama a la función paglot_error de Supabase), y
+- la copia del progreso en la nube (js/nube.js).
+
+**Hallazgo más urgente: el aviso legal no describe lo que hace la app.**
+
+- El aviso dice «Sin cuenta: nada sale de tu dispositivo» y «no hay herramientas de análisis» (claves legal.datos.sinCuenta y legal.datos.nada en js/i18n/es.js).
+- Pero la nube se activa sola en cada arranque (js/app.js, líneas 838 y 886) y crea un número de 16 cifras sin pedir nada (js/nube.js, numeroCuenta). Cada dispositivo sube su progreso completo.
+- Los errores se envían también sin cuenta, y el aviso no los menciona. El comentario de js/errores.js dice que sí lo hace; no es así.
+
+Hay que corregirlo antes de publicar la app y, desde luego, antes de añadir ninguna analítica (capítulo 8).
+
+**Recomendación en una frase.** Empezar con contadores propios, sin identificadores y agregados por día, enviados al servidor PHP que ya se planea (sin cookies ni almacenamiento en el dispositivo). La retención por persona solo con consentimiento explícito, apagado por defecto.
+
+**Otros hallazgos del código.**
+
+- El aviso diario de la APK (_apk/puente.js) se programa a una hora fija y se repite cada día, sin comprobar si ya se ha estudiado. Es el mayor riesgo de fatiga de notificaciones.
+- El reto de 60 segundos (js/vistas/reto.js) no escribe actividad: no suma a la racha ni a las misiones del día. Quien solo juega al reto no sostiene el hábito que la app intenta medir.
+- Las cuentas anónimas se borran a los 7 días sin uso (_herramientas/supabase-cuentas.sql, función paglot_limpiar). Es bueno para la privacidad, pero corta cualquier medición de retención a partir del día 7.
+- El permiso de notificaciones se pide en el primer arranque, antes de que la persona vea ningún valor (puente.js). Lo habitual es pedirlo tras la primera lección.
+- Según el código de js/vistas/bienvenida.js, el paso de la bienvenida no se guarda: si se recarga a mitad, empieza de nuevo (verificar en el móvil).
+
+**Benchmarks.** Los datos públicos son escasos y no siempre comparables. Duolingo publica usuarios diarios (58,7 millones en el segundo trimestre de 2026), pero no una retención D1, D7 o D30 en el sentido habitual: su «retención de usuarios actuales» (84 %, según la prensa) mide si un usuario diario vuelve al día siguiente. Para apps educativas, el D30 va del 2 % al 8 % según la fuente. Todo lo que sigue se presenta como orientativo.
+
+**Plan.** Veinte acciones (capítulo 9). Primero, el aviso legal y la decisión sobre la nube (M01 y M02). Después, diecisiete eventos de fase 1 en un endpoint propio (M03 a M05). Después, retención con consentimiento y los experimentos sobre notificaciones.
+
+## 2. Métricas clave
+
+### 2.1 Definiciones y referencias
+
+Antes de la tabla, dos definiciones que valen para todas las métricas:
+
+- **Usuario activo en un día:** tiene al menos un evento de aprendizaje (leccion_terminada, ejercicio_respondido o repaso_tarjeta). Abrir la app no cuenta.
+- **Retención Dn:** de los usuarios de una cohorte (la semana de su primera apertura), porcentaje con actividad de aprendizaje n días naturales después de ese primer día.
+
+| Métrica | Definición en Paglot | Eventos que la alimentan | Referencia externa (orientativa) | Cómo leerla |
+|---|---|---|---|---|
+| Activación (primera lección) | Porcentaje de instalaciones nuevas con leccion_terminada el mismo día del primer arranque | app_inicio, leccion_terminada | Sin referencia fiable para idiomas. Fijar la línea base propia durante 4 semanas | Dice si la primera sesión entrega valor |
+| Activación de la bienvenida | Porcentaje que llega al paso «fin» o a la primera lección | bienvenida_paso, bienvenida_saltada | Ninguna publicada | Embudo de seis pasos; el abandono por paso es la lectura útil |
+| Retención D1 | Cohorte con actividad al día siguiente | Actividad diaria | Educación: alrededor del 14–15 % (proveedor, passion.io). Todas las apps: alrededor del 25 % (compilación 2025–2026, fuente secundaria) | No comparar con «abrió la app» |
+| Retención D7 | Cohorte con actividad al séptimo día | Actividad diaria | Sin dato fiable de educación. Todas las apps: alrededor del 11–13 % (secundaria) | Es la cifra que más decide si el hábito empieza |
+| Retención D30 | Cohorte con actividad al día 30 | Actividad diaria | Educación: del 2 % (AppsFlyer, vía Business of Apps) al 8 % (OneSignal 2024). Duolingo: alrededor del 12 %, estimación de un tercero (AppMagic) | Las fuentes difieren hasta cuatro veces; usar solo la tendencia propia |
+| DAU / MAU | Usuarios activos en un día entre usuarios activos en 30 días | Actividad diaria | Duolingo, segundo trimestre de 2026: 58,7 M de DAU y 140,6 M de MAU (cifra de un tercero), es decir, alrededor del 42 % | Techo de referencia, no objetivo para una app pequeña |
+| Rachas | Porcentaje con racha de al menos 3 y de al menos 7 días; uso del día de descanso; en qué día de la semana se rompen | Derivado de la actividad diaria (progress.js, racha()) | Duolingo dice que su «Streak Wager» (apostar monedas por 7 días de racha) mejora la retención D7 un 14 % relativo | Informativa; no es objetivo (ver 2.3) |
+| Lecciones por usuario activo y día | leccion_terminada dividido entre días activos | leccion_terminada, app_inicio | Ninguna | Frecuencia pesa más que volumen |
+| Repasos hechos frente a pendientes | Tarjetas repasadas en la sesión frente al backlog al cerrar el día | repaso_tarjeta, repaso_fin; pendientesDeHoy() | Ninguna | Un backlog que sube cada semana indica sobrecarga |
+| Finalización de lección | Lecciones terminadas entre lecciones abiertas, por curso y capítulo | leccion_abierta, leccion_terminada | Ninguna | Las lecciones largas bajan la cifra: separar por número de pasos |
+| Abandono por paso | Porcentaje que llega a cada paso del modo juego (n de total) | paso_juego, pantalla_vista | Ninguna | Señala qué bloque es demasiado difícil o aburrido |
+| Prueba de nivel | Inicios, finales, tramo en el que para, y porcentaje que empieza desde un capítulo mayor que el 1 | prueba_inicio, prueba_tramo, prueba_fin | Ninguna | Sirve para comprobar que la prueba acierta: la retención de quien empieza en un capítulo alto debe ser igual o mejor que la de quien empieza desde cero |
+| Errores por sesión | error_app dividido entre app_inicio | error_app, app_inicio | Ninguna | Salud técnica; también por versión y navegador |
+| Conversión futura | Del precio visto al pago; de la prueba al pago; abandono mensual | Ninguno todavía (los pagos dicen «Muy pronto») | Duolingo: 12,7 M de suscriptores de pago frente a 58,7 M de DAU (alrededor del 22 %, no es una tasa de conversión exacta) | Solo cuando haya cobros reales |
+
+### 2.2 Candidatas a métrica principal (North Star)
+
+| Candidata | Ventaja | Riesgo | Veredicto |
+|---|---|---|---|
+| A. Porcentaje de usuarios nuevos con al menos 3 días de aprendizaje en sus primeras dos semanas | Mide hábito, no atracones; los datos son limpios | Tarda dos semanas en tener resultado | Principal, provisional |
+| B. Lecciones y repasos completados por semana y usuario activo | Mide valor directo | Puede premiar sesiones largas, que no encajan con la atención de muchos usuarios | Métrica de apoyo |
+| C. Racha media | Sencilla de explicar | Fomenta presión y culpa, justo lo que la app evita | Solo informativa |
+
+### 2.3 Lo que no conviene usar como métrica principal
+
+- **Racha media o días con racha.** Incentiva la presión y la culpa. Es un dato para entender la distribución, nunca un objetivo de equipo.
+- **Días abiertos.** Mide curiosidad, no aprendizaje.
+- **Puntos del reto.** Es un juego aparte y no escribe actividad.
+
+## 3. Taxonomía de eventos
+
+**Principios.**
+
+- Nombres en castellano, en minúsculas con guiones bajos, sin datos personales.
+- **Prohibido:** el nombre (también el del carné de la bienvenida), el correo, el número de cuenta, cualquier texto escrito por la persona, las respuestas literales, la dirección IP guardada, la cadena de navegador completa y la geolocalización.
+- **Permitido:** código de curso, número de capítulo, ruta sin identificadores, plataforma, versión, booleanos y valores agrupados. Agrupaciones: 0 / 1 / 2–5 / 6–20 / 21 o más; minutos: menos de 1 / 1–5 / 5–15 / más de 15.
+- **Regla de agregación:** ninguna celda se publica con menos de 5 personas o eventos.
+- **Fases.** F1 son los diecisiete eventos del primer lote (ver capítulo 9, M05). F2 y F3 se añaden después.
+
+| Evento | Fase | Cuándo se dispara | Propiedades (sin datos personales) | Dónde (archivo · función) |
+|---|---|---|---|---|
+| app_inicio | F1 | Cada arranque de la app, web o APK | plataforma (web/apk), movil (sí/no), version, curso (código o «ninguno») | js/app.js · arranque (bloque antes de iniciarNube, líneas 830–886) |
+| pantalla_vista | F1 | Cada cambio de ruta, con la ruta sin identificadores | ruta (leccion, repaso, perfil…), movil, curso | js/app.js · navegar() y el listener de hashchange (línea 856) |
+| curso_cambiado | F2 | Al elegir otro idioma de curso | desde, hasta (códigos de idioma) | js/app.js · navegar({ cambioDeIdioma }) |
+| idioma_interfaz_cambiado | F2 | Al cambiar el idioma de la interfaz | de, a (es/en/vi) | js/vistas/perfil.js · selector de idioma de Ajustes |
+| error_app | F1 | Error no controlado (ya existe como paglot_error) | mensaje (300 caracteres), donde, pantalla, curso, version, navegador | js/errores.js · mandar() |
+| guardado_fallido | F1 | La escritura en el almacenamiento del navegador falla (lleno o bloqueado) | navegador | js/progress.js · escribir() (rama catch; dispara el evento guardado-fallido) |
+| bienvenida_inicio | F2 | Se muestra la bienvenida | curso | js/vistas/bienvenida.js · pintarBienvenida() |
+| bienvenida_paso | F1 | Se llega a cada paso de la bienvenida | paso (nombre, toca, explica, guarda, prueba, fin), n | js/vistas/bienvenida.js · ir(i) |
+| bienvenida_saltada | F1 | Pulsa «Saltar» | paso_actual | js/vistas/bienvenida.js · terminar() (botón Saltar) |
+| bienvenida_nombre | F2 | Responde al carné de estudiante | con_nombre (sí/no); nunca el nombre | js/vistas/bienvenida.js · pasoNombre() → responder() |
+| bienvenida_prueba_fallo | F2 | Falla una pregunta del poste de cruce | intento (1, 2, 3 o más) | js/vistas/bienvenida.js · pasoPrueba() |
+| bienvenida_fin | F2 | Elige la salida de la pantalla final | destino (leccion, prueba, lecciones) | js/vistas/bienvenida.js · pasoFin() → terminar() |
+| mapa_abierto | F2 | Se pinta el mapa de lecciones | terminadas, total, capitulos (números) | js/vistas/lecciones.js · pintarLecciones() |
+| mapa_capitulo | F2 | Abre o pliega un capítulo | capitulo (número), accion (abrir/plegar) | js/vistas/lecciones.js · tramo() (clic en el cartel) |
+| mapa_busqueda | F2 | Elige un resultado de la búsqueda | largo_consulta (número), resultados | js/vistas/lecciones.js · buscador() |
+| mision_pulsada | F2 | Pulsa una misión del día | mision (leccion, repaso, estrellas), hecha (sí/no) | js/vistas/lecciones.js · misionesDeHoy() (fila) |
+| dia_completo | F2 | Completa las tres misiones; una vez al día | racha (agrupada) | js/vistas/lecciones.js · misionesDeHoy() |
+| cofre_abierto | F2 | Abre un cofre de capítulo | capitulo, primera_vez | js/vistas/lecciones.js · cofre() (dispara cofre-abierto) |
+| tarjeta_mapa | F2 | Pulsa una tarjeta del panel del mapa (prueba, repaso, reto, logros) | tarjeta (nombre) | js/vistas/lecciones.js · tarjetaPrueba(), tarjetaRepaso(), tarjetaLogros(); js/vistas/reto.js · enlaceReto() |
+| palabra_del_dia_girada | F3 | Gira la tarjeta de la palabra del día | ninguna | js/vistas/lecciones.js · tarjetaPalabra() (giro) |
+| leccion_abierta | F1 | Primera vez que se abre una lección | leccion (código del curso, p. ej. fr/010), capitulo, nivel, modo (juego/libro) | js/vistas/leccion.js · pintarLeccion() y pintarLibro() (marcarAbierta); js/juego/motor.js · pintarJuego() |
+| modo_leccion_cambiado | F2 | Cambia entre modo juego y modo libro | a (juego/libro) | js/vistas/leccion.js · preferir() |
+| ejercicio_respondido | F1 | Responde un bloque (test, huecos, traducción, escribir, ordenar) | tipo_bloque, acierto (sí/no), intento (1, 2, 3 o más) | js/exercises.js · crearEjercicio() → resolver() (registrarRespuesta) |
+| paso_juego | F1 | Completa un paso del modo juego | juego, tipo_bloque, n, total | juegos/motor.js · pintarJuegoDeLeccion() → ir() (anotarPaso, línea 287) |
+| leccion_terminada | F1 | Primera vez que se termina una lección | estrellas (0–3), modo, capitulo, fallos (agrupados), minutos (agrupados) | juegos/motor.js · final() (marcarTerminada, línea 227); js/vistas/leccion.js · pintarFinal() (línea 562) |
+| leccion_perfecta | F2 | Tres estrellas en una lección | ninguna | juegos/motor.js · final() (anotarPerfecta, línea 231) |
+| ficha_palabra | F2 | Abre la ficha de una palabra o frase | tipo (palabra/frase), origen (leccion, lecciones, repaso) | js/vistas/leccion.js · abrirFicha() |
+| escuchar | F3 | Pulsa «escuchar» | con_voz (sí/no), idioma | js/comunes.js · botonEscuchar() |
+| voz_no_disponible | F2 | Un curso no tiene voz en el dispositivo | idioma, plataforma | js/sonidos.js · hayVoz() (cuando devuelve que no) |
+| palabra_guardada | F2 | Guarda una palabra o frase en el cuaderno | origen (leccion, bienvenida, palabra_dia, ficha), tipo | js/comunes.js · botonGuardar(); js/progress.js · guardarEnCuaderno() y guardarVariasEnCuaderno() |
+| palabra_quitada | F3 | Quita una tarjeta del cuaderno | dias_en_cuaderno (agrupados) | js/progress.js · quitarDelCuaderno() |
+| repaso_inicio | F1 | Pulsa «Empezar repaso» | pendientes (agrupados), nuevas (agrupados) | js/vistas/repaso.js · inicio() (botón empezar) |
+| repaso_tarjeta | F2 | Termina una tarjeta (nota automática) | nota (1–4), modo, segundos (agrupados), tropiezos (agrupados) | js/vistas/repaso.js · pintarJuego() → cerrar() |
+| repaso_fin | F1 | Termina la sesión de repaso | tarjetas (agrupadas), aciertos_pct (agrupado), racha_max (agrupada) | js/vistas/repaso.js · fin() |
+| repaso_abandono | F2 | Pulsa «Terminar» antes del final | hechas (agrupadas) | js/vistas/repaso.js · pintarJuego() (botón de la cabecera) |
+| reto_inicio | F2 | Empieza una partida del reto | tarjetas (agrupadas) | js/vistas/reto.js · cuentaAtras() y jugar() |
+| reto_fin | F2 | Termina una partida (ya existe como reto-terminado) | puntos (agrupados), aciertos, fallos, record (sí/no) | js/vistas/reto.js · terminar() |
+| prueba_inicio | F1 | Pulsa «Empezar» en la prueba de nivel | tramos | js/vistas/prueba.js · portada() |
+| prueba_tramo | F2 | Decide un tramo de la prueba | tramo, aciertos, fallos, resultado (pasa, para, desempate) | js/vistas/prueba.js · preguntar() y siguienteTramo() |
+| prueba_fin | F1 | Muestra el resultado de la prueba | tramo_final, desde_cero (sí/no), elige (empezar_ahi, desde_cero) | js/vistas/prueba.js · final() y empezarEn() |
+| prueba_aplicada | F3 | Primera vez que el mapa usa el punto de la prueba | capitulo | js/vistas/lecciones.js · pintarLecciones() (variable desde) |
+| recordatorio_cambiado | F2 | Cambia la hora del recordatorio | hora (mañana, tarde, noche, no) | js/vistas/perfil.js · selector de recordatorio (window.PaglotRecordatorio, líneas 396–402) |
+| notificacion_abierta | F1 (nuevo) | Se abre la app desde una notificación | tipo (diario, bienvenida) | _apk/puente.js · listener de notificaciones (no existe hoy; añadir) |
+| permiso_notificaciones | F1 (nuevo) | Respuesta a la petición de permiso del sistema | concedido (sí/no), momento (primer_arranque, tras_leccion) | _apk/puente.js · bloque del primer aviso (líneas 65–97) |
+| nube_sincronizada | F1 | Subida de progreso correcta o fallida | resultado (ok, sin_conexion, error), kb (agrupados) | js/nube.js · subir() |
+| correo_vinculado | F3 | Se une un correo a la cuenta (el correo no se guarda en el evento) | ninguna | js/nube.js · unirCorreo() |
+| cuenta_recuperada | F3 | Entrada con número o con correo | metodo (numero, correo) | js/nube.js · usarNumero() y recuperarConCorreo() |
+| copia_guardada / copia_cargada | F3 | Descarga o carga de la copia de seguridad | kb (agrupados) | js/progress.js · copiaCompleta() / importarCopia() (llamadas desde Perfil) |
+| progreso_reiniciado | F2 | Pulsa «Reiniciar» | con_cuaderno (sí/no) | js/progress.js · reiniciarProgreso() |
+| logro_ganado | F2 | Se gana un logro | logro (identificador) | js/logros.js · ganar() |
+| aviso_datos_visto | F3 | Pulsa «Entendido» en el aviso de datos | ninguna | js/vistas/legal.js · pintarAvisoDeDatos() (cerrar) |
+| legal_visto | F3 | Abre el aviso legal | ninguna | js/vistas/legal.js · pintarLegal() |
+
+## 4. Herramientas
+
+Los precios y las condiciones se comprobaron el 19-10-2026 en las páginas de cada proveedor o en GitHub, salvo donde se indica «según terceros». Las afirmaciones de cumplimiento son del proveedor y no están verificadas por una autoridad.
+
+| Opción | Coste | Alojamiento | Cookies y consentimiento | Esfuerzo | Notas |
+|---|---|---|---|---|---|
+| Plausible Cloud | Desde 9 $/mes (la página muestra $; sin plan gratis; prueba de 30 días) | UE («made and hosted in the EU», según la web) | Sin cookies, sin banner (afirmación del proveedor) | Bajo: script muy ligero y panel listo | Buena para páginas y embudos sencillos. No mide retención por persona por diseño. Edición comunitaria con licencia AGPL-3.0 (según terceros) |
+| Umami | Gratis si se autoaloja. Licencia MIT (verificado en GitHub). Precios de la nube contradictorios según terceros | Donde se aloje; un VPS en la UE | Sin cookies (afirmación del proveedor y de terceros) | Medio: Node.js y PostgreSQL | Cómodo si ya hay VPS. Hay que mantenerlo y parchearlo |
+| Matomo | Community gratis, sin límite de visitas (verificado en matomo.org). Cloud desde unos 29/mes, moneda poco clara | Cloud en Frankfurt (verificado) | Modo de cumplimiento CNIL. Con la configuración estricta (IP con 2 bytes, 25 meses, sin mapas de calor) Matomo afirma que puede usarse sin consentimiento. Afirma también que cubre España: dato propio, no verificado | Medio-alto: muchas opciones que hay que bloquear | Potente. Exige configurar con mucho cuidado |
+| PostHog EU | Gratis hasta 1 millón de eventos al mes y 1 proyecto; de pago por eventos después (posthog.com/faq) | Nube UE disponible (posthog.com/eu) | Usa identificadores de persona: la retención exige consentimiento | Medio: embudos, cohortes y SDK | La mejor opción de producto si hay consentimiento. Es un encargado de tratamiento y necesita contrato |
+| GoatCounter | Gratis para uso moderado y no comercial (verificado en goatcounter.com). Sin precio público claro para uso comercial | Ubicación de los datos no indicada (verificado). Se puede autoalojar como un único binario | Sin cookies ni identificadores (afirmación del proveedor) | Muy bajo | Solo contadores de páginas; sin retención por persona. El uso comercial futuro (Plus y Max) es una incógnita |
+| Firebase Analytics (GA4) | Gratis | Datos en EE. UU. por defecto según un competidor (no verificado en la documentación de Google) | Obliga a banner y a Consent Mode. El SDK recoge identificadores al arrancar (fuente secundaria) | Medio | Descartar: complica el consentimiento y la ficha de datos de Google Play (support.google.com/analytics/answer/11582702) |
+
+### 4.1 Recomendación
+
+- **Opción 1 (recomendada para la fase 1): contadores propios** en el servidor PHP que ya está previsto (tarea T64 del informe de arreglos). Sin cookies, sin almacenamiento en el dispositivo, sin identificadores, agregados por día. El único coste es el hosting que ya hay que pagar.
+- **Opción 2 (si se quiere un panel ya): Plausible Cloud o Umami propio**, solo para las páginas públicas (portada y páginas de curso, tarea T57), no para la lección.
+- **Opción 3 (fase 3, con consentimiento): PostHog EU** para embudos y cohortes, con contrato de encargado de tratamiento.
+- **No recomiendo Firebase/GA4** en ningún caso.
+
+### 4.2 Diseño: los eventos van al servidor PHP propio
+
+**Cliente (js/analitica.js, nuevo).** Una sola función `medir(nombre, propiedades)` que:
+
+1. valida el nombre y las propiedades contra la lista blanca del capítulo 3 (la misma lista que el servidor);
+2. añade plataforma, versión y curso;
+3. guarda los eventos en memoria y los envía en lote con `navigator.sendBeacon` cada 30 segundos y al ocultarse la página;
+4. no usa localStorage, cookies ni identificadores, y respeta `navigator.doNotTrack`.
+
+Si no hay conexión, los eventos se descartan. No se guardan en el dispositivo, para no crear un almacenamiento nuevo.
+
+**Servidor (endpoint PHP, nuevo).** `POST /api/eventos`:
+
+- acepta solo los nombres y las propiedades de la lista blanca, y rechaza el resto;
+- agrega en una tabla de contadores, sin filas por persona:
+
+```sql
+create table eventos_diarios (
+  dia date not null,
+  nombre text not null,
+  plataforma text not null,
+  curso text not null default '',
+  propiedad text not null default '',
+  n integer not null default 0,
+  primary key (dia, nombre, plataforma, curso, propiedad)
+);
+-- cada lote: insert ... on conflict (dia, nombre, plataforma, curso, propiedad)
+--            do update set n = eventos_diarios.n + excluded.n;
+```
+
+- **la IP no se guarda**: el PHP no la escribe en ningún registro, y el servidor web debe configurarse para no registrarla o para borrarla a los 7 días. Es el punto más fácil de olvidar.
+
+**Panel.** Consultas SQL guardadas o una página privada con gráficos (capítulo 5).
+
+**Retención con consentimiento (fase 3).** Un segundo endpoint `/api/activo` recibe un identificador aleatorio que solo se genera en el dispositivo tras el consentimiento. El servidor guarda, por día, un HMAC-SHA256 de ese identificador con un secreto del servidor. El número de cuenta nunca se envía. El identificador de medición es distinto del de la cuenta, así que la medición no depende de la nube.
+
+**Con este diseño no hace falta banner de cookies para la fase 1** (ver capítulo 8). La regla de agregación (celdas de al menos 5) evita que alguien pueda identificar a una persona por una combinación rara de propiedades.
+
+### 4.3 Qué se puede contar hoy, sin tocar la app
+
+La tabla paglot_cuentas (Supabase) guarda, por cuenta, la fecha de creación (creada) y la última vez que se usó (usada, que se actualiza con cada lectura y escritura del progreso). Para el propietario, solo lectura:
+
+```sql
+select date_trunc('day', creada) as dia, count(*) as cuentas
+from paglot_cuentas group by 1 order by 1;
+```
+
+Eso da las instalaciones con sincronización por día, incluidas las que se borran a los 7 días. Sirve para tener una cifra de partida, pero no es una medida de retención (las cuentas sin uso desaparecen justo antes del día 7). Además, usar esos datos para analizar el comportamiento es un uso distinto del que describe el aviso: hay que decidirlo y anunciarlo antes.
+
+## 5. Paneles
+
+### 5.1 Diario (cinco minutos)
+
+- **Errores:** error_app nuevos, con versión y navegador; guardado_fallido por encima de cero.
+- **Nube:** nube_sincronizada con resultado error o sin_conexion, en proporción a las subidas.
+- **Entrada:** app_inicio del día, por plataforma.
+- **Bienvenida:** embudo del día (paso 1 hasta fin).
+- **Contenido:** lecciones terminadas por curso (los cinco primeros) y tasa de acierto por tipo de bloque (ejercicio_respondido), con celdas de al menos 5.
+
+### 5.2 Semanal (treinta minutos)
+
+- **Retención:** D1 y D7 de la cohorte de la semana anterior (cuando exista la fase 3, con consentimiento).
+- **Actividad:** DAU y WAU de la semana; MAU solo cuando haya 30 días de datos.
+- **Hábito:** lecciones y repasos por usuario activo; porcentaje con al menos 3 días activos en 14 días.
+- **Lección:** abandono por paso (paso_juego, n de total).
+- **Repaso:** backlog medio al cerrar el día; repaso_abandono frente a repaso_fin.
+- **Prueba de nivel:** inicios, finales y tramo de parada.
+- **Misiones:** días con las tres misiones (dia_completo sobre usuarios activos).
+- **Logros:** logro_ganado por semana; si nadie llega a la racha de 7 días, la racha es demasiado dura.
+- **Umbrales de alerta:** D1 que baja más de un 20 % frente a la media de las cuatro semanas anteriores, o más de un error por cada 100 sesiones.
+
+### 5.3 Mensual
+
+- **D30, D60 y D90 por cohorte.** Lally y colegas (2010) estimaron una mediana de 66 días para que una conducta diaria se vuelva automática, con un rango de 18 a 254 días. Por eso no basta con mirar D30.
+- **Desglose por curso y por capítulo**, con el nivel MCER del capítulo.
+
+### 5.4 Plantilla de tabla de cohortes (sin datos todavía)
+
+| Cohorte (semana de la primera apertura) | Usuarios | D0 | D1 | D3 | D7 | D14 | D30 | D60 | D90 |
+|---|---|---|---|---|---|---|---|---|---|
+| 2026-W43 (desde el 19-10) | — | 100 % | — | — | — | — | — | — | — |
+| 2026-W44 | — | 100 % | — | — | — | — | — | — | — |
+| 2026-W45 | — | 100 % | — | — | — | — | — | — | — |
+
+Una segunda plantilla, por plataforma (web frente a APK), con las mismas columnas, permite ver si la APK retiene mejor (el aviso y el permiso tienen efecto aquí).
+
+## 6. Retención
+
+### 6.1 Mecánicas actuales
+
+| Mecánica | Cómo funciona (código) | Fortaleza | Riesgo | Cómo medirla |
+|---|---|---|---|---|
+| Racha con día de descanso | js/progress.js · racha(): un día sin actividad no la corta si en los 7 días anteriores no se usó el descanso; el día de descanso no suma | Quita la culpa del primer fallo | Sigue siendo una cadena: el día 8 pesa más | Porcentaje de usuarios que usan el descanso; rachas rotas por día de la semana |
+| Recordatorio diario | _apk/puente.js · programarDiario(): hora por defecto 19:00 (repetición diaria del sistema) | Recuerda sin ser una alarma | No comprueba si ya se ha estudiado: fatiga y pérdida del permiso | Aperturas desde notificación (no existe aún); desactivaciones del permiso |
+| Repaso sin autoevaluación | js/vistas/repaso.js: la nota la decide la respuesta (fallo, tropiezo, acierto, rápido) con js/srs.js (SM-2 simplificado) | Obliga a pensar; no depende de cómo se siente la persona | El backlog crece si no se repasa; 40 pendientes son una lista de deberes | Backlog al cerrar el día; porcentaje de tarjetas acertadas a los 7 días |
+| Cofres de capítulo | js/vistas/lecciones.js · cofre(): solo se abren al completar el capítulo | Meta clara y cercana | «Casi» (7 de 8) frustra; los capítulos de 8 a 12 lecciones (tarea T12) lo agravan | Porcentaje de capítulos con cofre abierto |
+| Logros | js/logros.js: 26 logros; tres de racha (3, 7 y 30 días) | Vitrina sin presión | Los de racha reintroducen la presión | Logros por usuario; porcentaje que llega a la racha de 7 días |
+| Reto de 60 segundos | js/vistas/reto.js: récord personal; no escribe actividad | Juego corto y divertido | Fuera de la racha y de las misiones: no sostiene el hábito | Partidas por usuario; porcentaje que pasa del reto a una lección en 24 horas |
+| Misiones del día | js/vistas/lecciones.js · misionesDeHoy(): una lección, un repaso (hasta 10) y una lección con tres estrellas | Objetivos pequeños y claros (encaja con la atención) | Las tres estrellas exigen perfección; el repaso puede ser inalcanzable con 30 pendientes | Porcentaje de días con las tres misiones |
+| Palabra del día | js/vistas/lecciones.js · tarjetaPalabra(): tarjeta que se gira | Exposición sin esfuerzo | Puede competir con el repaso | Giros y guardados desde la palabra |
+| Prueba de nivel | js/vistas/prueba.js: seis tramos, dos aciertos pasan | Respeta a quien ya sabe algo | Quien recibe «desde cero» por error se aburre | Abandono del día 1 según el tramo de parada |
+| Bienvenida | js/vistas/bienvenida.js: seis pasos (carné, palabras, explicación, guardar, prueba, final) | Primera acción real en el primer minuto | Sin estado entre pasos; «Saltar» no deja rastro | Embudo por paso |
+| Tutora Lucía | js/vistas/lecciones.js · crearLucia(): ánimos al tocarla | Compañía pixel, sin culpa | Puede ser ruido si se repite | Clics sobre la tutora (no se mide hoy) |
+
+### 6.2 Fortalezas y riesgos
+
+**Fortalezas.** El diseño ya evita la culpa en lo esencial: la racha tiene día de descanso, los fallos vuelven, el repaso no depende de autoevaluación y, según el informe de arreglos, la lección ya no muestra contadores de fallos. Cada pulsación responde con sonido y animación, lo que da retroalimentación inmediata (lo que sugieren las revisiones sobre gamificación para TDAH, ver R10 en 6.3).
+
+**Riesgos.**
+
+- **Notificaciones fijas.** El aviso de las 19:00 no sabe si ya se ha estudiado. La presión de un aviso que llega cuando ya se ha cumplido es el camino más corto a apagarlo. Los datos del sector muestran que el permiso se pierde con facilidad: según Batch, en Android la aceptación bajó de un 85 % a un 67 % en un año (secundaria).
+- **Presión por la racha.** Un estudio de caso sobre Duolingo (arXiv, 2022; 15 personas entrevistadas) describe usuarios que sienten que el diseño explota su resistencia a perder lo ganado. Un análisis de 23.000 comentarios de Reddit (tesis de Utrecht, 2025) concluye que la gamificación genera presiones que dañan la motivación intrínseca. Un ensayo de The Decision Lab (marzo de 2026) describe el «streak creep»: se juega para no perder la racha, no para aprender.
+- **Backlog.** Un repaso con cientos de tarjetas pendientes produce evitación. Hoy no hay límite visible.
+- **Reto desconectado.** El reto es divertido, pero no cuenta para nada que la app mida, así que no construye hábito.
+- **Bienvenida sin estado.** Quien se va a mitad y vuelve tendrá que empezar de nuevo.
+
+**Nota sobre la cita del informe de arreglos.** El informe de arreglos cita un «estudio de IDC 2026» sobre «obligación gamificada». No he encontrado ese estudio. «IDC» puede referirse a la conferencia Interaction Design and Children, y la página que el informe enlaza trata de patrones de abandono en apps educativas gamificadas para niños. Hasta verificarlo, no citarlo como consultora.
+
+### 6.3 Propuestas con base en investigación
+
+Cada propuesta tiene hipótesis, cambio, métrica y forma de medirla. Las basadas en datos del sector están marcadas como tales; las que son solo hipótesis, también.
+
+| ID | Hipótesis (base) | Cambio | Métrica principal | Cómo medirla | Riesgo |
+|---|---|---|---|---|---|
+| R1 | Un aviso que aparece solo cuando hace falta protege el permiso. La base es el sector: un estudio de Airship citado por shno.co (63 millones de usuarios) indica que quien recibió avisos en sus primeros 90 días retuvo tres veces más, pero es una correlación de un proveedor. Lo de la actividad es hipótesis | Tras cada día con actividad, reprogramar el aviso para el día siguiente (cancelar y programar en puente.js) | Desactivaciones del permiso; D7 | Experimento por versión hasta tener consentimiento (ver 7.1) | Si el aviso no llega nunca, el hábito se pierde en silencio |
+| R2 | El hábito necesita repetición diaria. Lally y colegas: mediana de 66 días, con un rango de 18 a 254 | Objetivo diario pequeño: 1 lección o 5 minutos, sin culpa (tarea T54 del informe) | Porcentaje de días con objetivo cumplido; D30 | Experimento con consentimiento | Un objetivo bajo puede reducir el progreso por día |
+| R3 | Pedir el permiso antes de dar valor baja la aceptación. Dato del sector: en educación, la aceptación de notificaciones ronda el 37–40 % (OneSignal, 2024) | Pedir el permiso tras la primera lección terminada, no al arrancar (puente.js) | Porcentaje de permisos concedidos; D7 | Registrar permiso_notificaciones con el momento y comparar versiones | Menos avisos en los primeros días |
+| R4 | Un segundo gesto diario de bajo esfuerzo ayuda a la frecuencia. Es hipótesis | Las partidas del reto suman a la actividad del día (no a las misiones) | D1 y sesiones por semana | Experimento con consentimiento o comparación de versiones | Puede quitar tiempo a las lecciones |
+| R5 | Quien vuelve tras tres o más días necesita un primer paso pequeño, no un recordatorio de lo perdido. Es hipótesis | Pantalla de vuelta con cinco tarjetas fáciles y sin mencionar la racha perdida | Porcentaje que vuelve a estudiar 24 horas después | Evento repaso_inicio con origen «vuelta» | Puede parecer condescendiente; probar el texto |
+| R6 | Un montón de pendientes provoca evitación. Es hipótesis, coherente con la atención variable | Mostrar como máximo 30 tarjetas pendientes y aplazar el resto con un botón | Backlog medio; sesiones abandonadas con más de 30 pendientes | repaso_abandono y backlog al cerrar el día | Palabras olvidadas si se aplazan demasiado |
+| R7 | Un paso que se pierde al recargar frustra. Es un defecto a corregir | Guardar el paso de la bienvenida en sessionStorage (sesión, no dispositivo) | Porcentaje que llega a fin | bienvenida_paso y bienvenida_fin | Ninguno relevante |
+| R8 | La memoria, no la racha, es lo que el alumno quiere sentir. Base: la regresión de vida media de Duolingo (Settles y Meeder, ACL 2016), citada en el informe de arreglos; no la he revisado aquí | Mostrar en el cuaderno la fuerza estimada de cada palabra (tarea T19) | Porcentaje de tarjetas acertadas a los 7 días | repaso_tarjeta por antigüedad de la tarjeta | Complejidad visual en el cuaderno |
+| R9 | Una notificación que apela a perder algo genera ansiedad. Es hipótesis | Cambiar «para que la llama siga viva» por un mensaje neutro (la tutora te espera) | Desactivaciones del permiso; aperturas | Experimento A/B | Efecto probablemente pequeño: solo con mucho volumen |
+| R10 | Las herramientas para TDAH dan peso a la retroalimentación inmediata y a la recompensa calibrada. Base: una revisión de 12 estudios de aprendizaje gamificado para estudiantes neurodivergentes y un metaanálisis de 24 ensayos aleatorizados con 1.948 participantes sobre juegos para TDAH (resúmenes de congreso). La evidencia es todavía escasa | Medir y promover las sesiones cortas completas (1 a 5 minutos) | Porcentaje de sesiones de menos de 5 minutos que terminan en una lección o un repaso | leccion_terminada y repaso_fin por minutos | Hipótesis, no prueba |
+
+## 7. Experimentos A/B
+
+### 7.1 Método
+
+1. **Por escrito antes de empezar:** hipótesis, métrica principal, dos métricas de control (errores y desactivaciones) y la regla de decisión.
+2. **Tamaño de muestra fijado de antemano** (tabla de 7.2).
+3. **Asignación aleatoria por persona.** Sin identificador no hay experimento limpio. Hasta tener consentimiento, la alternativa es comparar versiones de la app: menos rigor, y hay que anotarlo en el informe.
+4. **Dos ciclos semanales completos** (de lunes a domingo) como mínimo, para que el fin de semana no sesgue el resultado.
+5. **No mirar y decidir a la vez.** Se puede mirar a diario, pero la decisión se toma al final. Si se quiere parar antes de tiempo, hay que usar un método secuencial: Johari, Pekelis y Walsh (arXiv, 2015; versión en Operations Research, 2021) proponen p-valores siempre válidos, que mantienen su validez aunque se mire en cualquier momento.
+6. **Un experimento por pantalla a la vez**, y un registro de todos los que se hacen.
+
+### 7.2 Tamaños de muestra (cálculo propio)
+
+Dos proporciones, nivel de significación del 5 % bilateral, potencia del 80 %, fórmula estándar. Cifras por variante:
+
+| Métrica (de → a) | Efecto | Por variante | Comentario |
+|---|---|---|---|
+| D1: 25 % → 30 % | +5 puntos | alrededor de 1.250 | Solo con mucho tráfico |
+| D1: 25 % → 35 % | +10 puntos | alrededor de 330 | Efecto grande, plausible con un cambio de permiso o de recordatorio |
+| D7: 10 % → 13 % | +3 puntos | alrededor de 1.770 | Fuera del alcance de una app pequeña |
+| D30: 5 % → 7 % | +2 puntos | alrededor de 2.210 | Fuera del alcance durante mucho tiempo |
+
+Con 200 personas por variante, solo se detectan diferencias de unos 12 puntos (aproximación). La calculadora de Evan Miller (evanmiller.org/ab-testing/sample-size.html) permite comprobar cualquier caso.
+
+Ejemplo ilustrativo (cifra hipotética, no tenemos datos): si llegan 100 instalaciones nuevas al mes, un experimento de D1 con +10 puntos necesita unas 660 instalaciones nuevas (330 por lado), es decir, unos siete meses.
+
+### 7.3 Qué probar primero
+
+Ordenado por efecto esperado frente a coste:
+
+1. **R1, recordatorio que se calla** si ya se estudió. Efecto grande esperado en desactivaciones; medible en semanas.
+2. **R3, permiso tras la primera lección.** Muestra = instalaciones, muy medible.
+3. **R2, objetivo diario de 5 minutos.** Requiere consentimiento para medir la retención.
+4. **R4, el reto cuenta como actividad.**
+5. **R5, vuelta sin culpa.**
+6. **R9, texto de la notificación.** Efecto pequeño: solo tiene sentido con mucho volumen.
+
+### 7.4 Métodos para pocos usuarios
+
+- **Entrevistas cualitativas:** 5 a 8 personas por ronda, con antigüedad mixta, cada dos semanas.
+- **Pruebas en persona** con el móvil de la persona, grabando solo la pantalla y con permiso expreso.
+- **Encuesta corta** dentro de la app, opt-in y sin datos personales.
+
+### 7.5 Protecciones (guardrails)
+
+Ningún experimento se da por bueno si sube el número de error_app o de guardado_fallido, si suben las desactivaciones del permiso, o si llegan quejas al formulario de contacto.
+
+## 8. Privacidad y aviso legal
+
+### 8.1 Lo que dice hoy el aviso frente a lo que hace la app
+
+| Texto actual (clave) | Realidad en el código | Acción |
+|---|---|---|
+| «Sin cuenta: nada sale de tu dispositivo» (legal.datos.sinCuenta) | js/nube.js sube el progreso de cada dispositivo al arrancar, con un número creado sin preguntar (js/app.js, líneas 838 y 886) | Reescribir: explicar la copia automática en la nube y cómo desactivarla, o hacerla opt-in (M02) |
+| «No hay publicidad, no hay herramientas de análisis» (legal.datos.nada) | Cierto hoy | Actualizar al añadir cualquier analítica |
+| «Tu contraseña (cifrada: nadie puede leerla)» (legal.datos.conCuenta) | js/nube.js solo usa código por correo (auth otp y verify); no hay contraseña | Corregir el texto para que coincida con el flujo real |
+| Errores (no aparece en el aviso) | js/errores.js envía el mensaje del error, el lugar del código, la pantalla, el curso, la versión y el navegador, sin cuenta. El comentario del archivo dice que lo cuenta el aviso legal | Añadir lo que se envía y el plazo de 90 días (paglot_errores) |
+| «Se conservan mientras tengas la cuenta» (legal.uso.texto) | Las cuentas anónimas sin uso se borran a los 7 días (paglot_limpiar); los errores, a los 90 | Escribir los plazos reales |
+| Base jurídica: «los tratamos porque tú creas la cuenta» | Hay cuentas creadas automáticamente, sin que la persona las cree | Revisar la base: ejecución del servicio o consentimiento para la copia en la nube |
+| «Paglot no usa cookies de publicidad, de análisis ni de terceros» (legal.cookies.texto) | Cierto hoy. Si se guarda un identificador en el almacenamiento para medir, deja de serlo | Actualizar según la decisión del capítulo 4 |
+| Fecha de actualización (config.js, LEGAL_ACTUALIZADO = 17-10-2026) | Desactualizada | Cambiarla al publicar la corrección |
+| Datos del titular (config.js, TITULAR) | El aviso muestra «pendiente» si un dato está vacío | Comprobar que están completos |
+
+### 8.2 Qué añadir al aviso si hay analítica
+
+- **Qué se mide**, en lenguaje llano, con un resumen de la lista de eventos (capítulo 3).
+- **Qué no se mide**: nombre, correo, número de cuenta, texto escrito, respuestas, dirección IP.
+- **Finalidad**: mejorar la app y detectar errores.
+- **Base jurídica**: interés legítimo (artículo 6.1.f del RGPD), con la ponderación documentada por escrito; o consentimiento (artículo 6.1.a) cuando haya identificador.
+- **Quién trata los datos**: el propio titular y, si se usa, el proveedor como encargado (artículo 28), con su país y sus garantías.
+- **Plazos**: datos en bruto, 90 días propuestos; agregados, sin límite.
+- **Derechos**: acceso, supresión y oposición (artículo 21 si se usa el interés legítimo). Indicar cómo desactivar la medición en Perfil.
+- **Cookies y almacenamiento**: si no hay nada en el dispositivo, decirlo. Si hay un identificador, listarlo con nombre, finalidad y duración.
+- **Registros del servidor**: qué se guarda y cuánto tiempo, y que no se guarda la IP.
+
+### 8.3 Marco legal
+
+- **Ley 34/2002 (LSSI), artículo 22.2.** El almacenamiento o el acceso a datos en el equipo de la persona exige información clara y completa y consentimiento. Quedan fuera el almacenamiento técnico y el estrictamente necesario para un servicio que la persona ha pedido expresamente. Texto consolidado en el BOE: boe.es/eli/es/l/2002/07/11/34/con.
+- **AEPD.** Dos guías: «Guía sobre el uso de las cookies» (julio de 2023) y «Guía uso de cookies para herramientas de medición de audiencia» (enero de 2024). No he podido leer el PDF oficial (el archivo devuelto era binario). Los resúmenes de terceros dicen que el consentimiento no hace falta solo si la medición es exclusiva del editor, produce estadísticas anónimas, no cruza los datos con otros tratamientos ni los cede a terceros, informa al usuario y limita la conservación (máximo 25 meses). **Verificar antes de decidir.**
+- **RGPD.** Un identificador seudonimizado sigue siendo dato personal (considerando 26). Por tanto, la analítica sin cookies necesita base jurídica si guarda la IP o un identificador.
+- **Regla práctica.** Sin nada en el dispositivo y sin IP guardada, el riesgo es bajo y el encaje legal es más fácil. Con identificador en el dispositivo, hace falta consentimiento.
+- **Revisión.** Antes de publicar, la ponderación del interés legítimo y el aviso deberían revisarse con un abogado. Este informe no sustituye esa revisión.
+
+### 8.4 Interfaz de consentimiento (solo si hay identificador)
+
+- **Apagado por defecto**, sin casilla marcada de antemano.
+- **Dos botones con el mismo peso**: «Ayudar con datos anónimos» y «No, gracias». Sin muro de cookies: la app funciona igual en los dos casos.
+- **Texto breve** con enlace al aviso legal, y el mismo control en Perfil, en un apartado de privacidad.
+- **Guardar la elección** (un valor en el almacenamiento es necesario para recordar el consentimiento).
+- **Revocar en un toque**, que borra el identificador y detiene el envío.
+- **No pedir consentimiento antes de la primera lección.** La primera visita sigue con el aviso actual (aviso-datos), que ya dice que no hay cookies de seguimiento.
+
+## 9. Plan priorizado
+
+Los identificadores M son de este informe; las referencias T son del informe de arreglos del 19-10-2026.
+
+| ID | Acción | Impacto | Esfuerzo | Depende de |
+|---|---|---|---|---|
+| M01 | Corregir el aviso legal: copia automática en la nube, errores, plazos, contraseña | Alto (legal) | Bajo | — |
+| M02 | Decidir si la copia en la nube es automática u opt-in, y documentarlo | Alto | Medio | M01 |
+| M03 | Endpoint PHP de eventos con lista blanca y tabla de contadores; IP sin registrar | Alto | Medio | Hosting (T64), M01 |
+| M04 | js/analitica.js con medir() y envío en lote con sendBeacon | Alto | Bajo | M03 |
+| M05 | Fase 1: los diecisiete eventos marcados F1 en el capítulo 3 (los dos de la APK, con M07) | Alto | Bajo | M04 |
+| M06 | Panel diario y semanal en SQL o en una página privada | Medio | Bajo | M03, M05 |
+| M07 | Eventos de la APK: notificacion_abierta y permiso_notificaciones | Medio | Bajo | M03 |
+| M08 | R1, recordatorio que se calla si ya se estudió (experimento por versión hasta tener consentimiento) | Alto | Medio | M05 |
+| M09 | R3, permiso de notificaciones tras la primera lección | Alto | Bajo | M07 |
+| M10 | R2, objetivo diario de 5 minutos (T54) | Alto | Medio | M05 |
+| M11 | R7, bienvenida con estado y embudo por paso | Medio | Bajo | M05 |
+| M12 | Retención con consentimiento (activo_diario con HMAC) | Alto (datos) | Medio | M01, M02 |
+| M13 | Cohortes semanales y D1, D7, D30 en el panel | Alto | Medio | M12 |
+| M14 | Entrevistas: 5 a 8 personas por ronda, cada dos semanas | Alto | Bajo | — |
+| M15 | R4 y R5 (reto como actividad; vuelta sin culpa) como experimentos | Medio | Bajo | M10 |
+| M16 | Revisión jurídica de la ponderación de interés legítimo y del aviso | Alto | Medio (fuera de la app) | M01 |
+| M17 | PostHog EU con consentimiento, si M12 funciona y se quieren embudos ricos | Medio | Medio | M12, contrato de encargado |
+| M18 | Plausible o Umami para las páginas públicas (T57) | Bajo | Bajo | T57, T64 |
+| M19 | Descartar Firebase y GA4 (decisión, sin coste) | — | — | — |
+| M20 | Decidir el plazo de borrado de cuentas anónimas (hoy 7 días) frente a la retención | Medio | Bajo | M02 |
+
+## 10. Fuentes
+
+Las cifras de Duolingo proceden de su informe oficial salvo que se indique otra cosa. Los benchmarks de educación son de proveedores de herramientas y no son datos primarios.
+
+**Duolingo y retención**
+
+- Resultados del segundo trimestre de 2026 (formulario 8-K ante la SEC): https://www.sec.gov/Archives/edgar/data/0001562088/000162828026053299/q2fy26duolingo6-30x26share.htm (58,7 M de DAU; 12,7 M de suscriptores de pago).
+- Carta a accionistas, mismo trimestre: https://duolingo.gcs-web.com/static-files/3c8277ee-bc94-4f5d-9b77-0db3e46f88b8
+- Blog de Duolingo sobre las rachas (Streak Wager: +14 % relativo en D7; Weekend Amulet: +4 % de vuelta a la semana): https://blog.duolingo.com/how-streaks-keep-duolingo-learners-committed-to-their-language-goals
+- Tasa de retención de usuarios actuales (vuelven al día siguiente), 84 % en el segundo trimestre de 2026 (cifra de la prensa; secundaria): https://pulse2.com/duolingo-daily-active-users-reach-58-7-million-as-retention-hits-record-84-and-social-accounts-top-1-billion-organic-impressions/
+- D30 de Duolingo, 12 % (estimación de AppMagic a través de Udonis; secundaria): https://www.blog.udonis.co/mobile-marketing/mobile-apps/duolingo
+- MAU de 140,6 M: cifra de un análisis de terceros que comenta la carta; no la he encontrado en la carta oficial, así que tratarla como orientativa. Resultado general del trimestre: https://www.barchart.com/story/news/3672969/duolingo-reports-second-quarter-2026-results
+
+**Benchmarks de educación y de notificaciones**
+
+- Retención de educación, D1 (vendedor): https://cms.passion.io/blog/mobile-app-retention-benchmarks-for-creators-course-coaching-apps
+- D30 de educación, 2 % (AppsFlyer, vía Business of Apps): https://businessofapps.com/?p=98187
+- Benchmarks de OneSignal 2024 (D1, D7, D30 y aceptación de notificaciones): https://onesignal.com/mobile-app-benchmarks-2024
+- Benchmarks de notificaciones de Airship 2026 (incluye la relación con la retención en los primeros 90 días): https://www.airship.com/mobile-app-push-notification-benchmarks-for-2026/
+- Aceptación de notificaciones de Pushwoosh 2025, vía Business of Apps: https://www.businessofapps.com/?p=101648
+
+**Gamificación, hábitos y TDAH**
+
+- Lally, van Jaarsveld, Potts y Wardle (2010), «How are habits formed»: https://doi.org/10.1002/ejsp.674 (mediana de 66 días; resumen divulgativo: https://bps.org.uk/research-digest/how-form-habit)
+- Estudio de caso sobre el mal uso de la gamificación en una app de idiomas (Duolingo), arXiv 2203.16175: https://arxiv.org/pdf/2203.16175
+- «Streak creep» (The Decision Lab, marzo de 2026): https://thedecisionlab.com/insights/consumer-insights/streak-creep-the-perils-of-too-much-gamification
+- Revisión de juegos serios para TDAH, arXiv 2105.02970: https://arxiv.org/pdf/2105.02970
+- Metaanálisis de intervenciones gamificadas para TDAH en niños y adolescentes (resumen de seminario; 24 ensayos): https://www.psychiatry.hku.hk/dept-events-3/gamified-digital-interventions-for-children-and-adolescents-with-adhd%3A-a-systematic-review-and-meta-analysis-of-game-elements
+
+**Experimentos**
+
+- Johari, Pekelis y Walsh, «Always Valid Inference: Bringing Sequential Analysis to A/B Testing», arXiv 1512.04922: https://arxiv.org/abs/1512.04922
+- Calculadora de tamaño de muestra de Evan Miller: https://evanmiller.org/ab-testing/sample-size.html
+
+**Herramientas**
+
+- Plausible (precios, alojamiento en la UE, prueba de 30 días): https://plausible.io/#pricing
+- Umami (licencia MIT y autoalojamiento): https://github.com/umami-software/umami
+- Matomo (Community gratis; Cloud en Frankfurt): https://matomo.org/pricing/
+- Matomo, configuración para la exención CNIL: https://matomo.org/faq/how-do-i-configure-matomo-without-tracking-consent-for-french-visitors-cnil-exemption/
+- PostHog (plan gratis y nube UE): https://posthog.com/faq y https://posthog.com/eu
+- GoatCounter (uso gratis moderado y autoalojamiento): https://www.goatcounter.com/
+- Google Analytics y la ficha de datos de Google Play: https://support.google.com/analytics/answer/11582702
+- Firebase y el RGPD, fuente secundaria de un competidor: https://www.simpleanalytics.com/is-gdpr-compliant/firebase
+
+**Legal**
+
+- Ley 34/2002 (LSSI), texto consolidado: https://www.boe.es/eli/es/l/2002/07/11/34/con
+- AEPD, guía de uso de cookies para herramientas de medición de audiencia (enero de 2024). El PDF no se pudo leer; enlace de referencia: https://www.aepd.es/guias/guia-cookies-analiticas-externas.pdf . Resúmenes de terceros: https://www.iubenda.com/es/?p=150018
+- Reglamento (UE) 2016/679 (RGPD): https://eur-lex.europa.eu/eli/reg/2016/679/oj
+
+## 11. Limitaciones de este informe
+
+- Los benchmarks de educación proceden de proveedores de herramientas. No son datos primarios y difieren hasta cuatro veces en el D30.
+- No he leído el PDF oficial de la AEPD. Los resúmenes sobre sus condiciones son de terceros y deben verificarse.
+- Las cifras de precio de Plausible, Umami, Matomo y GoatCounter cambian con frecuencia y en algunos casos son contradictorias. Verificar antes de contratar.
+- No he consultado la base de datos de Supabase, así que no sé cuántas cuentas hay ni cómo se usan.
+- El «2,4 veces» de la racha de 7 días aparece en resúmenes, pero no lo he encontrado en el post oficial de Duolingo, así que no se usa.
+- El «estudio de IDC 2026» del informe de arreglos no lo he podido verificar (ver 6.2).
+- Las referencias a líneas de código corresponden al estado del repositorio el 19-10-2026.

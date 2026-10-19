@@ -18,6 +18,7 @@ import * as teatro from './teatro.js';
 import * as cartas from './cartas.js';
 import * as linterna from './linterna.js';
 import * as tabla from './tabla.js';
+import { hayVoz } from '../js/sonidos.js';
 
 // Los tres primeros juegos se escribieron antes del catálogo: aquí se declara para qué sirven.
 const JUEGOS = [
@@ -42,7 +43,8 @@ const SALTO = { explicacion: 0, dialogo: 1, vocabulario: 2, gramatica: 3, texto:
  * de ese tipo van ya en la lección (los ejercicios se repiten: así cada uno sale distinto).
  */
 export function elegir(tipo, bloque, ctx, n, k = 0) {
-  const candidatos = JUEGOS.filter(j => j.tipos.includes(tipo) && (!j.sirve || j.sirve(bloque, ctx)));
+  // los juegos de escuchar («oido: true») solo salen si el dispositivo tiene voz
+  const candidatos = JUEGOS.filter(j => j.tipos.includes(tipo) && (!j.oido || hayVoz()) && (!j.sirve || j.sirve(bloque, ctx)));
   if (!candidatos.length) return null;
   // Para probar un juego: localStorage «paglot-juego-forzado» = { "dialogo": "telefono" }
   const forzado = probar()[tipo];

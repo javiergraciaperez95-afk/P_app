@@ -675,6 +675,8 @@ export function pintarBienvenida(contenedor, { resultados }) {
         el('span', { class: 'bv-banderines', 'aria-hidden': 'true' })),
       el('div', { class: 'bv-botones' },
         empezar,
+        // para quien ya sabe algo: la prueba de nivel propone por dónde empezar (vistas/prueba.js)
+        el('button', { type: 'button', class: 'es-boton es-boton-papel', onclick: () => terminar('#/prueba') }, t('bienvenida.fin.prueba')),
         el('button', { type: 'button', class: 'es-boton es-boton-papel', onclick: () => terminar('#/lecciones') }, t('bienvenida.fin.lecciones'))));
     sonar('fanfarria');
     sprite.reaccionar('contenta', 1800);
@@ -721,7 +723,11 @@ export function pintarBienvenida(contenedor, { resultados }) {
       sprite.gesto('saludar');
       sonar('saludo');
     }
-    pasoNombre();
+    // Para probar un paso (solo en desarrollo): localStorage «paglot-bienvenida-paso» = su número (99, el final)
+    let paso = 0;
+    try { paso = Number(localStorage.getItem('paglot-bienvenida-paso')) || 0; } catch { /* sin almacenamiento */ }
+    if (paso) ir(Math.min(paso, pasos.length - 1));
+    else pasoNombre();
   })();
 
   return () => {

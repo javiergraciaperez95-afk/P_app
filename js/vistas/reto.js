@@ -6,7 +6,7 @@
 
 import { el, poner, barajar } from '../dom.js';
 import { t, tr } from '../i18n.js';
-import { tarjetas } from '../progress.js';
+import { tarjetas, anotarReto } from '../progress.js';
 import { sonar, sonarAcierto } from '../sonidos.js';
 import { decir } from '../tutor.js';
 import { LANG, clave } from '../curso.js';
@@ -170,6 +170,7 @@ export function pintarReto(app) {
       const antes = leerMejor();
       const record = puntos > antes;
       if (record) guardarMejor(puntos);
+      if (puntos > 0) anotarReto(); // cuenta para la racha del día
       window.dispatchEvent(new CustomEvent('reto-terminado', { detail: { puntos } }));
       sonar(record ? 'fanfarria' : 'fin');
       const copa = el('p', { class: 'jg-final-copa', 'aria-hidden': 'true' }, record ? '🏆' : '⚡');

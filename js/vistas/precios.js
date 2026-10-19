@@ -8,6 +8,7 @@
 //
 // TODAVÍA NO SE COBRA NADA ni se aplica ningún límite: los botones de pago dicen «Muy pronto».
 // Los precios están en config.js (ZONAS) y la región se adivina en js/region.js; los textos, en i18n/ (claves «pr.*»).
+// Con PRECIOS_VISIBLES en false (config.js) no sale ninguna cifra: cada precio dice «Precio por anunciar».
 
 import { el, poner } from '../dom.js';
 import { t, locale } from '../i18n.js';
@@ -15,7 +16,7 @@ import { CURSOS } from '../cursos.js';
 import { curso, hayCurso, NOMBRES_TUTORAS } from '../curso.js';
 import { dibujoDe } from '../tutor-sprite.js';
 import { sonar } from '../sonidos.js';
-import { PLAZAS_FUNDADORES, LECCIONES_GRATIS_AL_DIA } from '../config.js';
+import { PLAZAS_FUNDADORES, LECCIONES_GRATIS_AL_DIA, PRECIOS_VISIBLES } from '../config.js';
 import { preciosDeSuZona } from '../region.js';
 import { nubes, luna, sol, dibujoPixel, conContorno, maceta } from './inicio-decorado.js';
 
@@ -220,10 +221,11 @@ export function pintarPrecios(contenedor) {
   const tPlus = tutoraViva(repartir()[0]);
   const tMax = tutoraViva(principal);
 
+  // sin cifras, las líneas pequeñas («al mes», «por persona»…) no se crean
   const precioPlus = el('p', { class: 'pr-precio' });
-  const porPlus = el('p', { class: 'pr-por' });
+  const porPlus = PRECIOS_VISIBLES ? el('p', { class: 'pr-por' }) : null;
   const precioMax = el('p', { class: 'pr-precio' });
-  const porMax = el('p', { class: 'pr-por' });
+  const porMax = PRECIOS_VISIBLES ? el('p', { class: 'pr-por' }) : null;
   const lista = claves => el('ul', { class: 'pr-lista' }, claves.map(([clave, datos, marca]) => el('li', {}, t(clave, datos ?? undefined), marca ?? null)));
 
   // En el móvil los tres planes van uno debajo de otro, recogidos: «Qué incluye» despliega la lista de cada uno.
@@ -247,7 +249,7 @@ export function pintarPrecios(contenedor) {
   const peldanoGratis = peldano('gratis', tGratis, [
     el('p', { class: 'pr-nombre' }, t('pr.gratis.nombre')),
     el('p', { class: 'pr-lema' }, t('pr.gratis.lema')),
-    el('p', { class: 'pr-precio' }, euros(0)),
+    el('p', { class: 'pr-precio' }, euros(0)), // gratis es gratis: este sí se enseña siempre
     el('p', { class: 'pr-por' }, t('pr.siempre')),
     lista([['pr.g1'], ['pr.g2', { n: LECCIONES_GRATIS_AL_DIA }], ['pr.g3'], ['pr.g4'], ['pr.g5']]),
     el('a', { class: 'pr-boton', href: hayCurso ? '#/lecciones' : '#/idiomas', onclick: () => sonar('pagina') },
@@ -271,7 +273,7 @@ export function pintarPrecios(contenedor) {
 
   // el pago: anual o mensual
   const ahorro = Math.round((1 - z.plusAno / (z.plusMes * 12)) * 100);
-  const bAnual = el('button', { type: 'button', onclick: () => cambiarPago('ano') }, t('pr.anual'), el('span', { class: 'pr-ahorro' }, t('pr.ahorra', { n: ahorro })));
+  const bAnual = el('button', { type: 'button', onclick: () => cambiarPago('ano') }, t('pr.anual'), PRECIOS_VISIBLES ? el('span', { class: 'pr-ahorro' }, t('pr.ahorra', { n: ahorro })) : null);
   const bMensual = el('button', { type: 'button', onclick: () => cambiarPago('mes') }, t('pr.mensual'));
 
   const contenidoArriba = el('div', { class: 'pr-arriba' },
@@ -281,7 +283,10 @@ export function pintarPrecios(contenedor) {
       el('p', { class: 'pr-texto' }, t('pr.texto')),
       el('div', { class: 'pr-controles' },
         el('div', { class: 'pr-pago', role: 'group', 'aria-label': t('precios.elegir') }, bAnual, bMensual),
-        el('p', { class: 'pr-region' }, t('pr.region'), ' ', el('a', { class: 'pr-como', href: '#/legal', onclick: () => sonar('pagina') }, t('pr.regionComo'), el('span', { class: 'pr-globito', role: 'tooltip' }, t('pr.regionGlobo')))))),
+        // sin cifras, bajo el pago va la nota de que los precios llegarán más adelante (una sola vez en la página)
+        PRECIOS_VISIBLES
+          ? el('p', { class: 'pr-region' }, t('pr.region'), ' ', el('a', { class: 'pr-como', href: '#/legal', onclick: () => sonar('pagina') }, t('pr.regionComo'), el('span', { class: 'pr-globito', role: 'tooltip' }, t('pr.regionGlobo'))))
+          : el('p', { class: 'pr-region' }, t('precio.nota')))),
     el('ol', { class: 'pr-escalera' }, peldanoGratis, peldanoPlus, peldanoMax),
     el('p', { class: 'pr-nota-oral' }, t('pr.nota.oral')));
   const escenario = el('section', { class: 'pr-escenario' },
@@ -379,7 +384,7 @@ export function pintarPrecios(contenedor) {
   // 4. Familia y Fundadores
   // =====================================================================
   const precioFamilia = el('p', { class: 'pr-precio pr-precio-medio' });
-  const porFamilia = el('p', { class: 'pr-por' });
+  const porFamilia = PRECIOS_VISIBLES ? el('p', { class: 'pr-por' }) : null;
   const precioFundadores = el('p', { class: 'pr-precio pr-precio-medio' });
 
   // Familia: una casita con chimenea y las seis tutoras dentro, cada una con su barrita de progreso; hacen la ola
@@ -540,7 +545,7 @@ export function pintarPrecios(contenedor) {
             el('span', { class: 'pr-firma-nombre' }, 'Pa', el('i', {}, 'glot')),
             el('span', { class: 'pr-firma-trazo' })))),
       el('div', { class: 'pr-rodillo pr-rodillo-abajo', 'aria-hidden': 'true' })),
-    el('p', { class: 'pr-aviso' }, t('pr.aviso')));
+    el('p', { class: 'pr-aviso' }, t(PRECIOS_VISIBLES ? 'pr.aviso' : 'pr.aviso.sinPrecio')));
 
   // ----- Los precios de la zona y el tipo de pago elegidos -----
   function pintarPreciosZona() {
@@ -554,6 +559,11 @@ export function pintarPrecios(contenedor) {
       void nodo.offsetWidth;
       nodo.classList.add('pr-salta');
     };
+    // sin cifras (hasta el informe de mercado): cada precio dice «Precio por anunciar»
+    if (!PRECIOS_VISIBLES) {
+      for (const nodo of [precioPlus, precioMax, precioFamilia, precioFundadores]) poner2(nodo, t('precio.porAnunciar'));
+      return;
+    }
     poner2(precioPlus, euros(anual ? z.plusAno : z.plusMes));
     porPlus.textContent = anual ? t('pr.alAnoEquivale', { p: euros(Math.round(z.plusAno / 12 * 100) / 100) }) : t('pr.alMes');
     poner2(precioMax, euros(anual ? z.maxAno : z.maxMes));
@@ -564,7 +574,7 @@ export function pintarPrecios(contenedor) {
   }
 
   // ----- Montaje -----
-  poner(contenedor, el('div', { class: 'precios' }, escenario, seccionHucha, seccionColeccion, seccionExtras, seccionTabla, seccionPromesas));
+  poner(contenedor, el('div', { class: PRECIOS_VISIBLES ? 'precios' : 'precios precios-sin-cifras' }, escenario, seccionHucha, seccionColeccion, seccionExtras, seccionTabla, seccionPromesas));
   pintarPreciosZona();
 
   // ----- En el móvil, el resto no va debajo: cada sección se abre a pantalla completa desde unos botones.

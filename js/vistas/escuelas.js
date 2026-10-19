@@ -8,7 +8,7 @@
 import { el, poner } from '../dom.js';
 import { t, locale } from '../i18n.js';
 import { sonar } from '../sonidos.js';
-import { ESCUELAS, ZONAS } from '../config.js';
+import { ESCUELAS, ZONAS, PRECIOS_VISIBLES } from '../config.js';
 import { preciosDeSuZona } from '../region.js';
 import { sol, luna, nubes, dibujoPixel, conContorno } from './inicio-decorado.js';
 import { crearElenco, lienzo } from './elenco.js';
@@ -83,6 +83,8 @@ export function pintarEscuelas(root) {
   const z = preciosDeSuZona();
   const escala = z.plusAno / ZONAS.A.plusAno;
   const euros = n => n.toLocaleString(locale(), { style: 'currency', currency: 'EUR', minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
+  // sin cifras (PRECIOS_VISIBLES = false): cada precio dice «Precio por anunciar»
+  const precioTexto = n => (PRECIOS_VISIBLES ? euros(n) : t('precio.porAnunciar'));
   const porAlumno = descuento => Math.round(z.plusAno * (1 - descuento) * 100) / 100;
   const tramoDe = n => [...ESCUELAS.tramos].reverse().find(tr => n >= tr.desde) ?? ESCUELAS.tramos[0];
   const unidad = Math.round(ESCUELAS.unidadMedida * escala);
@@ -115,7 +117,8 @@ export function pintarEscuelas(root) {
       el('div', { class: 'ce-pizarra' },
         el('span', { class: 'ce-etiqueta' }, t('esc.etiqueta')),
         el('h1', {}, t('esc.titulo')),
-        el('p', {}, t('esc.lema')),
+        // sin cifras, el lema (que habla de «mitad de precio») se cambia por la nota de que los precios llegarán luego
+        el('p', {}, PRECIOS_VISIBLES ? t('esc.lema') : t('esc.lema.sinPrecio')),
         el('div', { class: 'ce-botones' },
           el('a', { class: 'es-boton', href: '#/contacto', onclick: contactar }, t('esc.contactar')),
           el('a', { class: 'es-boton es-boton-papel', href: '#esc-calculadora', onclick: e => { e.preventDefault(); sonar('tiza'); calculadora.scrollIntoView({ behavior: quieto ? 'auto' : 'smooth', block: 'start' }); } }, t('esc.verPrecios'))),
@@ -136,8 +139,8 @@ export function pintarEscuelas(root) {
     el('h2', { id: 'ce-tablon', class: 'ce-titulo-seccion' }, t('esc.tablon')),
     el('ul', { class: 'ce-tablon' },
       nota('ce-nota-aula', t('esc.aula.etiqueta'), t('esc.aula.titulo'), t('esc.aula.texto')),
-      nota('ce-nota-pack', t('esc.pack.etiqueta', { precio: euros(porAlumno(ESCUELAS.tramos[ESCUELAS.tramos.length - 1].descuento)) }), t('esc.pack.titulo'), t('esc.pack.texto')),
-      nota('ce-nota-medida', t('esc.medida.etiqueta', { precio: euros(unidad) }), t('esc.medida.titulo'), t('esc.medida.texto')),
+      nota('ce-nota-pack', PRECIOS_VISIBLES ? t('esc.pack.etiqueta', { precio: euros(porAlumno(ESCUELAS.tramos[ESCUELAS.tramos.length - 1].descuento)) }) : t('precio.porAnunciar'), t('esc.pack.titulo'), t('esc.pack.texto')),
+      nota('ce-nota-medida', PRECIOS_VISIBLES ? t('esc.medida.etiqueta', { precio: euros(unidad) }) : t('precio.porAnunciar'), t('esc.medida.titulo'), t('esc.medida.texto')),
       nota('ce-nota-libros', t('esc.libros.etiqueta'), t('esc.libros.titulo'), t('esc.libros.texto'))),
     el('p', { class: 'ce-pronto' }, el('span', { 'aria-hidden': 'true' }, '✎ '), t('esc.pronto')));
 
@@ -148,20 +151,21 @@ export function pintarEscuelas(root) {
   const numero = el('input', { type: 'number', class: 'ce-numero', min: 20, max: 99999, step: 1, value: 120, 'aria-label': t('esc.calc.alumnos') });
   const precio = el('strong', { class: 'ce-precio' });
   const total = el('strong', { class: 'ce-total' });
-  const descuento = el('span', { class: 'ce-descuento' });
+  const descuento = PRECIOS_VISIBLES ? el('span', { class: 'ce-descuento' }) : null;
   const aula = el('div', { class: 'ce-aula', 'aria-hidden': 'true' });
+  // los tramos son de precio: sin cifras quedan solo los rangos de alumnos
   const tramos = el('ol', { class: 'ce-tramos' }, ESCUELAS.tramos.map((tr, i) => el('li', {},
     el('b', {}, `${tr.desde}${i < ESCUELAS.tramos.length - 1 ? `–${ESCUELAS.tramos[i + 1].desde - 1}` : '+'}`),
-    el('span', {}, euros(porAlumno(tr.descuento))))));
+    PRECIOS_VISIBLES ? el('span', {}, euros(porAlumno(tr.descuento))) : null)));
   let pupitres = 0;
   function calcular(n, desde) {
     n = Math.max(20, Math.min(99999, Math.round(Number(n) || 20)));
     if (desde !== barra) barra.value = String(Math.min(1500, n));
     if (desde !== numero) numero.value = String(n);
     const tr = tramoDe(n);
-    precio.textContent = euros(porAlumno(tr.descuento));
-    total.textContent = euros(Math.round(porAlumno(tr.descuento) * n));
-    descuento.textContent = t('esc.calc.descuento', { n: Math.round(tr.descuento * 100) });
+    precio.textContent = precioTexto(porAlumno(tr.descuento));
+    total.textContent = precioTexto(Math.round(porAlumno(tr.descuento) * n));
+    if (descuento) descuento.textContent = t('esc.calc.descuento', { n: Math.round(tr.descuento * 100) });
     [...tramos.children].forEach((li, i) => li.classList.toggle('actual', ESCUELAS.tramos[i] === tr));
     // los pupitres: uno por cada diez alumnos (hasta 60), y los nuevos llegan dando un saltito
     const quiere = Math.min(60, Math.ceil(n / 10));
@@ -199,8 +203,8 @@ export function pintarEscuelas(root) {
       el('ul', { class: 'ce-ideas' }, [1, 2, 3, 4].map(i => el('li', { class: 'es-papel' }, el('span', { class: 'ce-idea-libro', 'aria-hidden': 'true' }), t(`esc.medida.idea${i}`)))),
       el('div', { class: 'ce-medida-precio es-papel' },
         el('span', { class: 'ce-nota-etiqueta' }, t('esc.medida.precio')),
-        el('p', { class: 'ce-medida-cifra' }, euros(unidad)),
-        el('p', {}, t('esc.medida.mitad', { precio: euros(Math.round(unidad / 2)) })))),
+        el('p', { class: 'ce-medida-cifra' }, precioTexto(unidad)),
+        PRECIOS_VISIBLES ? el('p', {}, t('esc.medida.mitad', { precio: euros(Math.round(unidad / 2)) })) : null)),
     el('ol', { class: 'ce-horario' }, [1, 2, 3, 4].map(i => el('li', {}, el('b', {}, String(i)), t(`esc.paso${i}`)))),
     el('p', { class: 'ce-horario-nota' }, t('esc.pasos.dura')));
 

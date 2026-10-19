@@ -8,12 +8,15 @@ import { spawn } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import os from 'node:os';
 
 const puerto = process.argv[2] ?? '8300';
 const raiz = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const depuracion = 9300 + Math.floor(Math.random() * 300);
+// un perfil de Chrome nuevo cada vez (y se borra al acabar): con uno viejo se colaba lo guardado en otra prueba
+const perfil = fs.mkdtempSync(`${os.tmpdir()}/cdp-paglot-`);
 const chrome = spawn('C:/Program Files/Google/Chrome/Application/chrome.exe', ['--headless=new', `--remote-debugging-port=${depuracion}`,
-  '--window-size=1280,900', '--hide-scrollbars', `--user-data-dir=${process.env.TEMP}/cdp-auditoria-${depuracion}`, 'about:blank']);
+  '--window-size=1280,900', '--hide-scrollbars', `--user-data-dir=${perfil}`, 'about:blank']);
 let lista;
 for (let i = 0; i < 60; i++) { await new Promise(r => setTimeout(r, 250)); try { lista = await (await fetch(`http://127.0.0.1:${depuracion}/json`)).json(); break; } catch {} }
 const ws = new WebSocket(lista.find(x => x.type === 'page').webSocketDebuggerUrl);
@@ -135,4 +138,5 @@ for (const c of ['es', 'fr', 'de', 'ja', 'vi', 'en', 'zh', 'th']) {
 fs.mkdirSync(path.join(raiz, '_notas', 'auditoria'), { recursive: true });
 fs.writeFileSync(path.join(raiz, '_notas', 'auditoria', 'navegador.json'), JSON.stringify(resultado, null, 1));
 console.log('Fin.');
-ws.close(); chrome.kill(); process.exit(0);
+ws.close(); chrome.kill();
+setTimeout(() => { try { fs.rmSync(perfil, { recursive: true, force: true }); } catch { /* aún abierto */ } process.exit(0); }, 600);

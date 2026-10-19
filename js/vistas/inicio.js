@@ -9,7 +9,8 @@ import { el, poner } from '../dom.js';
 import { t, locale, idioma } from '../i18n.js';
 import { icono } from '../iconos.js';
 import { CURSOS } from '../cursos.js';
-import { curso, hayCurso, elegirCurso, nombreCurso, NOMBRES_TUTORAS } from '../curso.js';
+import { curso, hayCurso, nombreCurso, NOMBRES_TUTORAS, paraQuien } from '../curso.js';
+import { entrarEnCurso } from '../sin-terminar.js';
 import { dibujoDe } from '../tutor-sprite.js';
 import { SALTO_PISA } from '../tutora-base.js';
 import { sonar } from '../sonidos.js';
@@ -188,6 +189,8 @@ export function pintarInicio(contenedor) {
   const numero = n => n.toLocaleString(locale());
   const totalLecciones = CURSOS.reduce((suma, c) => suma + (c.lecciones || 0), 0);
   const disponibles = CURSOS.filter(c => !c.proximamente);
+  // las banderas y las entradas que se pueden tocar: sin el curso de tu propio idioma
+  const paraTi = disponibles.filter(c => paraQuien(c, idioma()) !== 'no');
   const otras = disponibles.filter(c => !['es', 'en', 'zh'].includes(c.id));
   for (let i = otras.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -210,7 +213,7 @@ export function pintarInicio(contenedor) {
       });
       return el('li', {}, el('button', {
         type: 'button', class: 'cuerda-bandera', title: c.nativo, 'aria-label': c.nativo, lang: c.lang,
-        onclick: () => { sonar('pagina'); elegirCurso(c.id); },
+        onclick: () => { sonar('pagina'); entrarEnCurso(c); },
       }, tiras));
     };
     const curva = curvaDeTela();
@@ -234,7 +237,7 @@ export function pintarInicio(contenedor) {
               dato(disponibles.length, 'tutoras')),
             hayCurso ? el('a', { class: 'inicio-otro', href: '#/idiomas', onclick: () => sonar('pagina') }, t('inicio.otroIdioma')) : null)),
           el('span', { class: 'pancarta-flecos', 'aria-hidden': 'true', style: `clip-path: ${curva.flecos}` })),
-          el('ul', { class: 'pancarta-cuerda' }, disponibles.map(ondea))),
+          el('ul', { class: 'pancarta-cuerda' }, paraTi.map(ondea))),
         lado(der, 'der')),
       el('div', { class: 'pancarta-suelo', 'aria-hidden': 'true' }));
     // de vez en cuando saludan con la mano libre, se guiñan o asienten (sin soltar el palo)
@@ -390,7 +393,7 @@ export function pintarInicio(contenedor) {
     const b = el('button', {
       type: 'button', class: `inicio-idioma entrada${c.id === curso.id ? ' actual' : ''}`, disabled: pronto, 'data-id': c.id,
       title: pronto ? `${traducido} · ${t('cursos.pronto')}` : traducido,
-      onclick: () => { sonar('pagina'); elegirCurso(c.id); },
+      onclick: () => { sonar('pagina'); entrarEnCurso(c); },
     },
     // el talón (bandera y número de la entrada) y el cuerpo (el idioma en su lengua y en la tuya)
     el('span', { class: 'entrada-talon' }, bandera(c), el('span', { class: 'entrada-numero' }, `Nº ${String(n + 1).padStart(2, '0')}`)),
@@ -407,7 +410,7 @@ export function pintarInicio(contenedor) {
     }
     return el('li', {}, b);
   };
-  const lista = el('ul', { class: 'inicio-idiomas teatro-entradas' }, CURSOS.map(ficha));
+  const lista = el('ul', { class: 'inicio-idiomas teatro-entradas' }, CURSOS.filter(c => paraQuien(c, i) !== 'no').map(ficha));
 
   // el público: cabecitas de espaldas, cada una con su pelo; al tocar a la tutora se emocionan
   const PELOS = ['#2b1d1a', '#7a4a2a', '#d9a441', '#b8402e', '#4a3a46', '#2b1d1a', '#9a6a3a', '#1f1a2e', '#c86a2a', '#5a3a28', '#2b1d1a', '#d9a441'];

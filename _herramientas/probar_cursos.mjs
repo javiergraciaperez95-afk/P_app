@@ -5,15 +5,19 @@
 // el de Linux; ver .github/workflows/comprobar.yml).
 import { spawn } from 'node:child_process';
 import os from 'node:os';
+import fs from 'node:fs';
 
 const puerto = process.argv[2] ?? '8300';
 const leccion = process.argv[3] ?? '010';
 const CURSOS = ['es', 'en', 'fr', 'de', 'it', 'pt', 'ja', 'ko', 'zh', 'ru', 'tr', 'nl', 'sv', 'el', 'pl', 'no', 'vi', 'id', 'da', 'ro', 'th'];
-const IDIOMAS = c => (c === 'es' ? ['en', 'vi'] : ['es', 'en']);
+// los idiomas de cada curso, como idiomasDe en js/curso.js (el de inglés, solo en español)
+const IDIOMAS = c => (c === 'es' ? ['en', 'vi'] : c === 'en' ? ['es'] : ['es', 'en']);
 
 const depuracion = 9300 + Math.floor(Math.random() * 300);
+// un perfil de Chrome nuevo cada vez (y se borra al acabar): con uno viejo se colaba lo guardado en otra prueba
+const perfil = fs.mkdtempSync(`${os.tmpdir()}/cdp-paglot-`);
 const chrome = spawn(process.env.CHROME || 'C:/Program Files/Google/Chrome/Application/chrome.exe', ['--headless=new', `--remote-debugging-port=${depuracion}`,
-  '--window-size=1280,900', `--user-data-dir=${os.tmpdir()}/cdp-cursos-${depuracion}`, ...(process.platform === 'linux' ? ['--no-sandbox'] : []), 'about:blank']);
+  '--window-size=1280,900', `--user-data-dir=${perfil}`, ...(process.platform === 'linux' ? ['--no-sandbox'] : []), 'about:blank']);
 let lista;
 for (let i = 0; i < 60; i++) { await new Promise(r => setTimeout(r, 250)); try { lista = await (await fetch(`http://127.0.0.1:${depuracion}/json`)).json(); break; } catch {} }
 const ws = new WebSocket(lista.find(x => x.type === 'page').webSocketDebuggerUrl);
@@ -57,4 +61,5 @@ for (const c of CURSOS) {
   }
 }
 console.log(fallos ? `${fallos} con fallos.` : 'Todo bien.');
-ws.close(); chrome.kill(); process.exit(fallos ? 1 : 0);
+ws.close(); chrome.kill();
+setTimeout(() => { try { fs.rmSync(perfil, { recursive: true, force: true }); } catch { /* aún abierto */ } process.exit(fallos ? 1 : 0); }, 600);

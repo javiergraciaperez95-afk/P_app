@@ -133,6 +133,7 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
   let numeroEjercicio = 0;
   for (const b of leccion.bloques) {
     if (b.error) continue;
+    if (b.soloOido && !hayVoz()) continue; // sin voz, lo que hay que escuchar no existe
     const tipo = tipoDe(b);
     const k = vistos[tipo] = (vistos[tipo] ?? -1) + 1;
     const juego = elegir(tipo, b, ctxEleccion, n, k);

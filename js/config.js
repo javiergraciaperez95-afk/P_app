@@ -13,7 +13,7 @@ export const TITULAR = {
   correo: '',     // correo de contacto para peticiones sobre los datos
 };
 // Fecha de la última vez que se cambió el aviso legal (cámbiala al tocar sus textos).
-export const LEGAL_ACTUALIZADO = '17-10-2026';
+export const LEGAL_ACTUALIZADO = '19-10-2026';
 
 // ----- Precios (pantalla #/precios). Todavía no se cobra nada ni se aplica el límite: es el plan. -----
 // Lecciones nuevas que se pueden empezar cada día en el plan gratis.
@@ -45,6 +45,8 @@ export const ZONAS = {
     paises: ['VN', 'ID', 'IN', 'PH', 'EG', 'NG', 'PK', 'BD', 'KE', 'MA', 'DZ', 'TN', 'LK', 'NP', 'GH', 'ET', 'TZ', 'UG', 'BO', 'VE'],
   },
 };
+// Los precios no se enseñan hasta el informe de mercado (decisión del 19-10-2026): las páginas de pago dicen «Precio por anunciar».
+export const PRECIOS_VISIBLES = false;
 // Plazas del plan «Fundadores» (Plus para siempre con un solo pago).
 export const PLAZAS_FUNDADORES = 2000;
 

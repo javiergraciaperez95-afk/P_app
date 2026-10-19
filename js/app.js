@@ -5,6 +5,8 @@
 // Sin curso elegido solo existen las pantallas de la web. La cuenta es al estilo Mullvad (js/nube.js).
 
 import './suave.js'; // lo primero: en el móvil, todo se mueve suave
+import './errores.js'; // los fallos de la app se apuntan (anónimos) en la nube
+import './recordatorio.js'; // en la APK, el aviso diario (se ofrece al terminar la primera lección)
 import { el, poner } from './dom.js';
 import { activarDesarrollador } from './desarrollador.js';
 import { icono } from './iconos.js';
@@ -27,7 +29,8 @@ import { pintarBienvenida, bienvenidaVista } from './vistas/bienvenida.js';
 import { pintarPerdida } from './vistas/perdida.js';
 import { iniciarLogros, comprobarLogros } from './logros.js';
 import { iniciarNube } from './nube.js';
-import { curso, hayCurso, nombreDelCurso, esBeta } from './curso.js';
+import { curso, hayCurso, nombreDelCurso, esBeta, paraQuien, lenguaDelAlumno, cambiarDeCurso } from './curso.js';
+import { avisoPendiente } from './sin-terminar.js';
 import './movil.js';
 import './chispa.js';
 
@@ -426,6 +429,8 @@ const selectorIdioma = document.getElementById('sel-idioma');
 const listaIdiomas = document.getElementById('lista-idiomas');
 
 function pintarSelectorIdioma() {
+  // el curso de inglés solo se explica en español: sin nada que elegir, no se enseña
+  selectorIdioma.closest('.idioma-menu').hidden = IDIOMAS_VISIBLES.length < 2;
   const actual = IDIOMAS.find(i => i.clave === idioma());
   const automatico = ajuste('idioma') === 'auto';
   poner(selectorIdioma,
@@ -815,6 +820,14 @@ async function iniciar() {
   pintarBotonTema();
   pintarBotonSonido();
 
+  // Un curso elegido que ya no te toca (con la interfaz en vietnamita, uno que aún no está explicado en vietnamita): se
+  // vuelve al inicio sin curso y allí, ya en tu idioma, se te dice que aún no hemos terminado. Su progreso se queda.
+  if (hayCurso && paraQuien(curso, lenguaDelAlumno()) === 'pronto') {
+    try { sessionStorage.setItem('paglot-sin-terminar', curso.id); } catch { /* sin almacenamiento */ }
+    cambiarDeCurso();
+    return;
+  }
+
   if (!hayCurso) {
     try { sessionStorage.setItem('idiomas-abierta', '1'); } catch { /* sin almacenamiento */ }
     document.body.classList.add('sin-curso', 'sin-tutora');
@@ -822,6 +835,7 @@ async function iniciar() {
     window.matchMedia('(max-width: 700px)').addEventListener('change', () => pintarSinCurso());
     pintarSinCurso();
     quitarArranque();
+    avisoPendiente();
     iniciarNube();
     return;
   }

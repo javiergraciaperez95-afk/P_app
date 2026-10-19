@@ -3,7 +3,8 @@
 import { el, poner } from '../dom.js';
 import { t, tr, idioma, locale } from '../i18n.js';
 import { CURSOS } from '../cursos.js';
-import { curso, hayCurso, elegirCurso, nombreCurso, NOMBRES_TUTORAS, esBeta } from '../curso.js';
+import { curso, hayCurso, nombreCurso, NOMBRES_TUTORAS, esBeta, paraQuien } from '../curso.js';
+import { entrarEnCurso } from '../sin-terminar.js';
 import { dibujoDe } from '../tutor-sprite.js';
 import { sonar } from '../sonidos.js';
 import { VOCES, OTROS } from '../creditos.js';
@@ -84,7 +85,9 @@ export function pintarElegirCurso(contenedor) {
   const esperar = ms => new Promise(r => despues(ms, r));
   const i18n = idioma();
   const numero = n => new Intl.NumberFormat(locale()).format(n);
-  let actual = Math.max(0, hayCurso ? CURSOS.findIndex(c => c.id === curso.id) : 0);
+  // sin el curso de tu propio idioma (con la interfaz en inglés no sale el de inglés…)
+  const LISTA = CURSOS.filter(c => paraQuien(c, i18n) !== 'no');
+  let actual = Math.max(0, hayCurso ? LISTA.findIndex(c => c.id === curso.id) : 0);
 
   // ----- la actriz: un solo lienzo; cambia de dibujo cada vez que sale una tutora nueva -----
   const lienzo = el('canvas', { class: 'tutora-lienzo', width: 48, height: 64 });
@@ -140,7 +143,7 @@ export function pintarElegirCurso(contenedor) {
     if (getComputedStyle(cartel).position === 'absolute') return; // en el ordenador flota sobre el escenario
     const antes = [...cartel.childNodes];
     let mayor = 0;
-    CURSOS.forEach((c, n) => { poner(cartel, ...contenidoCartel(c, n)); mayor = Math.max(mayor, cartel.offsetHeight); });
+    LISTA.forEach((c, n) => { poner(cartel, ...contenidoCartel(c, n)); mayor = Math.max(mayor, cartel.offsetHeight); });
     poner(cartel, ...antes);
     cartel.style.minHeight = `${mayor}px`;
   }
@@ -153,7 +156,7 @@ export function pintarElegirCurso(contenedor) {
     if (ocupada) { pendiente = [n, desde]; return; }
     ocupada = true;
     const turno = ++turnoPresentacion;
-    const c = CURSOS[n];
+    const c = LISTA[n];
     actual = n;
     marcarCamafeo();
     silencio();
@@ -196,8 +199,8 @@ export function pintarElegirCurso(contenedor) {
     });
     if (pendiente) { const [m, d] = pendiente; pendiente = null; presentar(m, d); }
   }
-  const siguiente = () => { sonar('flecha'); presentar((actual + 1) % CURSOS.length, 'der'); };
-  const anterior = () => { sonar('flecha'); presentar((actual - 1 + CURSOS.length) % CURSOS.length, 'izq'); };
+  const siguiente = () => { sonar('flecha'); presentar((actual + 1) % LISTA.length, 'der'); };
+  const anterior = () => { sonar('flecha'); presentar((actual - 1 + LISTA.length) % LISTA.length, 'izq'); };
 
   // ----- ¡Empezamos!: aplausos, la tutora lo celebra y se elige el curso -----
   function empezarCon(c) {
@@ -206,11 +209,11 @@ export function pintarElegirCurso(contenedor) {
     sprite?.gesto('celebrar');
     decir(t('idi.si'));
     teatro.classList.add('aplaude');
-    despues(1500, () => elegirCurso(c.id));
+    despues(1500, () => { teatro.classList.remove('aplaude'); entrarEnCurso(c); });
   }
 
   // ----- el programa de abajo: un camafeo por tutora -----
-  const camafeos = CURSOS.map((c, n) => {
+  const camafeos = LISTA.map((c, n) => {
     const b = el('button', { type: 'button', class: 'ti-camafeo', 'aria-label': `${c.nativo} · ${nombreEn(c, i18n)}`, title: nombreEn(c, i18n) },
       el('span', { class: 'ti-camafeo-marco' }, camafeo(c, n)),
       banderaSola(c, 'ti-camafeo-bandera'),
@@ -253,7 +256,7 @@ export function pintarElegirCurso(contenedor) {
     el('div', { class: 'ti-publico', 'aria-hidden': 'true' }, cabezas(18))),
     ladoDer);
 
-  poner(cartel, ...contenidoCartel(CURSOS[actual], actual));
+  poner(cartel, ...contenidoCartel(LISTA[actual], actual));
   poner(contenedor, teatro);
 
   // Todo el teatro cabe en la pantalla, sin desplazar: ocupa justo el alto que queda bajo la cabecera y, si su

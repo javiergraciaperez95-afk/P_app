@@ -9,7 +9,7 @@ import { el, poner, alAzar } from '../dom.js';
 import { t, locale } from '../i18n.js';
 import { CURSOS } from '../cursos.js';
 import { sonar } from '../sonidos.js';
-import { EMPRESAS, ZONAS } from '../config.js';
+import { EMPRESAS, ZONAS, PRECIOS_VISIBLES } from '../config.js';
 import { preciosDeSuZona } from '../region.js';
 import { sol, luna, nubes, dibujoPixel, conContorno } from './inicio-decorado.js';
 import { crearElenco, tutoraPintada, lienzo } from './elenco.js';
@@ -54,6 +54,8 @@ export function pintarEmpresas(root) {
   const z = preciosDeSuZona();
   const escala = z.plusAno / ZONAS.A.plusAno;
   const euros = n => n.toLocaleString(locale(), { style: 'currency', currency: 'EUR', minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
+  // sin cifras (PRECIOS_VISIBLES = false): cada precio dice «Precio por anunciar»
+  const precioTexto = n => (PRECIOS_VISIBLES ? euros(n) : t('precio.porAnunciar'));
   const plusCon = d => Math.round(z.plusAno * (1 - d) * 100) / 100;
   const maxPersona = Math.round(z.maxAno * (1 - EMPRESAS.maxDescuento));
   const tramoDe = n => [...EMPRESAS.tramos].reverse().find(tr => n >= tr.desde) ?? EMPRESAS.tramos[0];
@@ -99,9 +101,10 @@ export function pintarEmpresas(root) {
   const credenciales = el('section', { class: 'of-credenciales-seccion', 'aria-labelledby': 'of-credenciales' },
     el('h2', { id: 'of-credenciales', class: 'of-titulo-seccion' }, t('emp.credenciales')),
     el('ul', { class: 'of-credenciales' },
-      credencial('of-c-equipo', t('emp.equipo.titulo'), t('emp.equipo.precio', { precio: euros(plusCon(EMPRESAS.tramos[EMPRESAS.tramos.length - 1].descuento)) }), [t('emp.equipo.1'), t('emp.equipo.2')]),
-      credencial('of-c-max', t('emp.max.titulo'), t('emp.max.precio', { precio: euros(maxPersona) }), [t('emp.max.1'), t('emp.max.2')]),
-      credencial('of-c-sector', t('emp.sector.titulo'), t('emp.sector.precio', { precio: euros(Math.round(EMPRESAS.unidadSector * escala)) }), [t('emp.sector.1'), t('emp.sector.2')]),
+      credencial('of-c-equipo', t('emp.equipo.titulo'), PRECIOS_VISIBLES ? t('emp.equipo.precio', { precio: euros(plusCon(EMPRESAS.tramos[EMPRESAS.tramos.length - 1].descuento)) }) : t('precio.porAnunciar'), [t('emp.equipo.1'), t('emp.equipo.2')]),
+      // «Max con un 30 % menos» es un descuento: sin cifras, la viñeta pasa a «6 libros de tu idioma»
+      credencial('of-c-max', t('emp.max.titulo'), PRECIOS_VISIBLES ? t('emp.max.precio', { precio: euros(maxPersona) }) : t('precio.porAnunciar'), [PRECIOS_VISIBLES ? t('emp.max.1') : t('pr.m2'), t('emp.max.2')]),
+      credencial('of-c-sector', t('emp.sector.titulo'), PRECIOS_VISIBLES ? t('emp.sector.precio', { precio: euros(Math.round(EMPRESAS.unidadSector * escala)) }) : t('precio.porAnunciar'), [t('emp.sector.1'), t('emp.sector.2')]),
       credencial('of-c-plantilla', t('emp.plantilla.titulo'), t('emp.plantilla.precio'), [t('emp.plantilla.1'), t('emp.plantilla.2')])),
     el('p', { class: 'of-pronto' }, t('emp.pronto')));
 
@@ -113,7 +116,7 @@ export function pintarEmpresas(root) {
   const numero = el('input', { type: 'number', class: 'of-numero', min: 5, max: 99999, value: 25, 'aria-label': t('emp.calc.personas') });
   const precio = el('strong', { class: 'of-precio' });
   const total = el('strong', { class: 'of-total' });
-  const descuento = el('span', { class: 'of-descuento' });
+  const descuento = PRECIOS_VISIBLES ? el('span', { class: 'of-descuento' }) : null;
   const planes = ['plus', 'max'].map(clave => el('button', {
     type: 'button', class: 'of-plan', 'aria-pressed': String(clave === plan),
     onclick: () => { plan = clave; planes.forEach((b, i) => b.setAttribute('aria-pressed', String(['plus', 'max'][i] === plan))); calcular(numero.value); sonar(clave === 'max' ? 'brindis' : 'elegir'); },
@@ -129,9 +132,9 @@ export function pintarEmpresas(root) {
     if (desde !== numero) numero.value = String(n);
     const tr = tramoDe(n);
     const porPersona = plan === 'max' ? maxPersona : plusCon(tr.descuento);
-    precio.textContent = euros(porPersona);
-    total.textContent = euros(Math.round(porPersona * n));
-    descuento.textContent = t('esc.calc.descuento', { n: Math.round((plan === 'max' ? EMPRESAS.maxDescuento : tr.descuento) * 100) });
+    precio.textContent = precioTexto(porPersona);
+    total.textContent = precioTexto(Math.round(porPersona * n));
+    if (descuento) descuento.textContent = t('esc.calc.descuento', { n: Math.round((plan === 'max' ? EMPRESAS.maxDescuento : tr.descuento) * 100) });
     // cuando llega alguien nuevo a la mesa, se oye cómo se sienta
     const sentadas = Math.min(n, sillas.length);
     if (desde && sentadas > ocupadas) sonar('silla');
@@ -177,11 +180,11 @@ export function pintarEmpresas(root) {
     el('div', { class: 'of-sectores-rejilla' },
       el('div', { class: 'of-sectores-lista', role: 'group', 'aria-label': t('emp.sectores.titulo') }, botonesSector),
       muestra),
-    el('p', { class: 'of-sectores-precio' }, t('emp.sectores.precio', {
+    el('p', { class: 'of-sectores-precio' }, PRECIOS_VISIBLES ? t('emp.sectores.precio', {
       precio: euros(Math.round(EMPRESAS.unidadSector * escala)),
       cedida: euros(Math.round(EMPRESAS.unidadCedida * escala)),
       extra: euros(Math.round(EMPRESAS.lenguaExtra * escala)),
-    })));
+    }) : t('precio.porAnunciar')));
 
   // =====================================================================
   // 5. La plantilla que acaba de llegar: cada tutora saluda en su idioma

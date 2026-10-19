@@ -2,7 +2,9 @@
 // matraces y la mesa de trabajo. En el laboratorio, cada idea es un matraz en la estantería y cada voto, una gota:
 // el líquido sube con los votos. La idea nueva se escribe en la ficha de la mesa, junto a un matraz que se llena y
 // burbujea mientras escribes. Las normas son carteles de seguridad colgados en la pared.
-// Las ideas y los votos se guardan solo en este navegador (lo dice la nota): no hay votación compartida todavía.
+// Las ideas y los votos son los mismos para todos: están en la nube (_herramientas/supabase-errores-e-ideas.sql). Cada
+// dispositivo vota con una marca al azar, no con su número de cuenta. Sin nube (pruebas, sin conexión o mientras esa
+// tabla no exista) se guardan solo en este navegador, como antes, y lo dice la nota.
 // Colores en css/laboratorio.css; textos en «comunidadExtra.*» y «lab.*».
 
 import { el, poner, alAzar } from '../dom.js';
@@ -10,9 +12,11 @@ import { t } from '../i18n.js';
 import { sonar } from '../sonidos.js';
 import { dibujoPixel, conContorno } from './inicio-decorado.js';
 import { crearElenco } from './elenco.js';
+import { nubeActiva, rpc } from '../nube.js';
 
 const CLAVE_IDEAS = 'paglot-laboratorio-ideas-v1';
 const CLAVE_VOTOS = 'paglot-laboratorio-votos-v1';
+const CLAVE_QUIEN = 'paglot-laboratorio-quien';
 const COLORES = ['rosa', 'menta', 'cielo', 'oro', 'lila'];
 
 // los pictogramas de los carteles de seguridad (12×12): corazón, candado, bocadillo, caracol y escoba
@@ -30,6 +34,21 @@ function leerIdeas() {
     return Array.isArray(valor) ? valor.filter(i => i && typeof i.id === 'string' && typeof i.texto === 'string' && Number.isFinite(i.votos)) : [];
   } catch { return []; }
 }
+
+/** La marca al azar con la que este dispositivo propone, vota y avisa en la nube (32 cifras hexadecimales). */
+function quien() {
+  try {
+    let q = localStorage.getItem(CLAVE_QUIEN);
+    if (!/^[0-9a-f]{32}$/.test(q ?? '')) {
+      q = [...crypto.getRandomValues(new Uint8Array(16))].map(b => b.toString(16).padStart(2, '0')).join('');
+      localStorage.setItem(CLAVE_QUIEN, q);
+    }
+    return q;
+  } catch { return null; }
+}
+
+/** El motivo de un fallo de la nube, para decirlo con palabras: «enlace», «limite» o cualquier otro. */
+const motivo = error => String(error?.detalle?.message ?? '').trim();
 
 function leerVotos() {
   try { const valor = JSON.parse(localStorage.getItem(CLAVE_VOTOS) ?? '[]'); return new Set(Array.isArray(valor) ? valor : []); }
@@ -101,7 +120,10 @@ export function pintarLaboratorio(root) {
   const elenco = crearElenco();
   const { quieto, despues } = elenco;
   let ideas = leerIdeas();
-  const votos = leerVotos();
+  let votos = leerVotos();
+  let enLaNube = false; // las ideas de la nube ya han llegado
+  const avisadas = new Set();
+  const marca = nubeActiva ? quien() : null;
   const estado = el('p', { class: 'lb-estado', role: 'status', 'aria-live': 'polite' });
   const total = el('span', { class: 'lb-total' });
   const lista = el('ul', { class: 'lb-formulas' });
@@ -109,6 +131,7 @@ export function pintarLaboratorio(root) {
   cientifica.alTocar = () => { cientifica.gesto('pensar'); cientifica.decir(alAzar(t('lab.tutora.toca')), 2800); };
 
   function guardar() {
+    if (enLaNube) return true;
     try {
       localStorage.setItem(CLAVE_IDEAS, JSON.stringify(ideas));
       localStorage.setItem(CLAVE_VOTOS, JSON.stringify([...votos]));
@@ -128,12 +151,21 @@ export function pintarLaboratorio(root) {
         type: 'button', class: 'lb-gota', 'aria-pressed': String(votada),
         'aria-label': t(votada ? 'comunidadExtra.retirarVoto' : 'comunidadExtra.votar', { idea: idea.texto, n: idea.votos }),
         onclick: () => {
-          if (votos.has(idea.id)) { votos.delete(idea.id); idea.votos = Math.max(0, idea.votos - 1); sonar('quitar'); }
+          const si = !votos.has(idea.id);
+          if (!si) { votos.delete(idea.id); idea.votos = Math.max(0, idea.votos - 1); sonar('quitar'); }
           else { votos.add(idea.id); idea.votos += 1; sonar('gota'); despues(160, () => sonar('burbuja')); cientifica.gesto('aplaudir'); }
           const ok = guardar();
           pintarIdeas();
           lista.querySelector(`[data-id="${idea.id}"]`)?.classList.add('burbujea');
-          estado.textContent = ok ? t('comunidadExtra.voteUpdatedInThisBrowser') : t('comunidadExtra.theVoteCouldNotBe');
+          if (!enLaNube) { estado.textContent = ok ? t('comunidadExtra.voteUpdatedInThisBrowser') : t('comunidadExtra.theVoteCouldNotBe'); return; }
+          rpc('paglot_votar', { p_quien: marca, p_idea: idea.id, p_si: si })
+            .then(n => { idea.votos = n; estado.textContent = t('lab.votoGuardado'); pintarIdeas(); })
+            .catch(() => {
+              // no se ha podido: se deja como estaba
+              if (si) { votos.delete(idea.id); idea.votos = Math.max(0, idea.votos - 1); } else { votos.add(idea.id); idea.votos += 1; }
+              pintarIdeas();
+              estado.textContent = t('lab.errorNube');
+            });
         },
       }, el('span', { class: 'lb-gota-icono', 'aria-hidden': 'true' }), el('span', {}, votada ? t('lab.gotaPuesta') : t('lab.gota')), el('b', {}, String(idea.votos)));
       return el('li', { class: `lb-formula ${n === 0 && idea.votos ? 'lb-primera' : ''}`.trim(), 'data-id': idea.id },
@@ -141,7 +173,19 @@ export function pintarLaboratorio(root) {
         el('div', { class: 'lb-etiqueta-formula' },
           el('p', {}, idea.texto),
           el('small', {}, idea.autora || t('comunidadExtra.paglotCommunity'))),
-        boton);
+        boton,
+        // en la nube, cualquiera puede avisar de una idea que no cumple las normas (con tres avisos se oculta)
+        enLaNube && el('button', {
+          type: 'button', class: 'lb-avisar', title: t('lab.denunciar'), 'aria-label': t('lab.denunciar'), disabled: avisadas.has(idea.id),
+          onclick: e => {
+            e.currentTarget.disabled = true;
+            avisadas.add(idea.id);
+            sonar('papel');
+            rpc('paglot_denunciar', { p_quien: marca, p_idea: idea.id })
+              .then(() => { estado.textContent = t('lab.denunciada'); })
+              .catch(() => { avisadas.delete(idea.id); estado.textContent = t('lab.errorNube'); pintarIdeas(); });
+          },
+        }, '⚑'));
     }) : el('li', { class: 'lb-vacio' }, matraz('cielo', 0.04), el('p', {}, t('comunidadExtra.thereAreNoIdeasYet'))));
   }
 
@@ -159,17 +203,32 @@ export function pintarLaboratorio(root) {
     evento.preventDefault();
     const texto = entrada.value.trim();
     if (!texto) { entrada.focus(); sonar('mal'); cientifica.gesto('negar'); return; }
-    ideas.push({ id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`, texto, autora: autora.value.trim(), votos: 0, creada: Date.now() });
-    const ok = guardar();
-    entrada.value = '';
-    autora.value = '';
-    frascoMesa.style.setProperty('--nivel', '6%');
-    pintarIdeas();
-    estado.textContent = ok ? t('comunidadExtra.ideaAddedYouCanNow') : t('comunidadExtra.theIdeaWasAddedBut');
-    sonar('pop');
-    despues(140, () => sonar('bien'));
-    cientifica.gesto('celebrar');
-    cientifica.decir(t('lab.tutora.nueva'), 2600);
+    const nueva = { id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`, texto, autora: autora.value.trim(), votos: 0, creada: Date.now() };
+    const puesta = () => {
+      ideas.push(nueva);
+      const ok = guardar();
+      entrada.value = '';
+      autora.value = '';
+      frascoMesa.style.setProperty('--nivel', '6%');
+      pintarIdeas();
+      estado.textContent = enLaNube ? t('lab.ideaGuardada') : ok ? t('comunidadExtra.ideaAddedYouCanNow') : t('comunidadExtra.theIdeaWasAddedBut');
+      sonar('pop');
+      despues(140, () => sonar('bien'));
+      cientifica.gesto('celebrar');
+      cientifica.decir(t('lab.tutora.nueva'), 2600);
+    };
+    if (!enLaNube) { puesta(); return; }
+    const enviar = formulario.querySelector('button[type="submit"]');
+    enviar.disabled = true;
+    rpc('paglot_idea_nueva', { p_quien: marca, p_texto: texto, p_autora: nueva.autora })
+      .then(id => { nueva.id = id; puesta(); })
+      .catch(error => {
+        const m = motivo(error);
+        estado.textContent = t(m === 'enlace' ? 'lab.sinEnlaces' : m === 'limite' ? 'lab.limite' : 'lab.errorNube');
+        sonar('mal');
+        cientifica.gesto('negar');
+      })
+      .finally(() => { enviar.disabled = false; });
   } },
     el('h2', { id: 'lb-proponer' }, t('comunidadExtra.putYourIdeaOnThe')),
     el('p', {}, t('comunidadExtra.aClearSuggestionHelpsUs')),
@@ -190,11 +249,12 @@ export function pintarLaboratorio(root) {
       formulario),
     el('span', { class: 'lb-suelo', 'aria-hidden': 'true' }));
 
+  const nota = el('p', { class: 'lb-prototipo' }, t('comunidadExtra.prototypeSuggestionsAndVotesAre'));
   const estanteria = el('section', { class: 'lb-estanteria', 'aria-labelledby': 'lb-ideas' },
     el('header', { class: 'lb-estanteria-cabecera' },
       el('div', {}, el('span', { class: 'lb-etiqueta' }, t('comunidadExtra.theBoard')), el('h2', { id: 'lb-ideas' }, t('lab.estanteria'))),
       total),
-    el('p', { class: 'lb-prototipo' }, t('comunidadExtra.prototypeSuggestionsAndVotesAre')),
+    nota,
     estado,
     lista);
 
@@ -203,5 +263,16 @@ export function pintarLaboratorio(root) {
   elenco.vigilar(sala);
   despues(700, () => { cientifica.gesto('saludar'); sonar('burbuja'); cientifica.decir(t('lab.tutora.hola'), 3200); });
   if (quieto) frascoMesa.classList.remove('burbujea');
+  // las ideas de todos: si llegan, sustituyen a las de este navegador
+  if (marca) {
+    rpc('paglot_ideas_ver', { p_quien: marca }).then(deTodos => {
+      if (!Array.isArray(deTodos) || !root.isConnected) return;
+      enLaNube = true;
+      ideas = deTodos;
+      votos = new Set(deTodos.filter(i => i.votada).map(i => i.id));
+      nota.textContent = t('lab.compartida');
+      pintarIdeas();
+    }).catch(() => { /* sin conexión o sin la tabla: se queda en este navegador */ });
+  }
   return () => elenco.apagar();
 }

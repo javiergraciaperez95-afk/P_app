@@ -20,6 +20,7 @@ const conTrad = (lista, ctx) => lista.filter(f => f.es && textoTrad(f, ctx));
 export const juego = {
   nombre: 'telefono',
   icono: '📞',
+  oido: true, // sin voz no sale (ver catalogo.js)
   tipos: ['dialogo'],
   sirve(bloque, ctx) {
     if (conTrad(bloque.frases ?? [], ctx).length < 2) return false;

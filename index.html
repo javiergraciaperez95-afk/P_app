@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <!-- Solo se cargan archivos de este sitio y los <script> en línea de esta página (sus hashes en script-src); publicar.py los recalcula al cambiar __VERSION__. -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-S4pFW3ywX+KKRniZH+yTJf8mGvO6XvMCi7O1Zg8rZNI=' 'sha256-IAmdMA6qk5kImGepf5g+ltV1PajVsKz3E9vr3JZ/n6o=' 'sha256-i2JYOuti5Ah2S8EaTkBTkbMk46bg0jWJheA5ii3Mz2Q='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' https://iuniglsiqnfvnotmfgdo.supabase.co">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-c920FhfDHThfIqlsIt0ZrUNsYS4qkx7Plyl1tOmjXyI=' 'sha256-HmUDMX1VRS5BmRfy2Qt05EBPKflz1nnzveLWsJusvXM=' 'sha256-i2JYOuti5Ah2S8EaTkBTkbMk46bg0jWJheA5ii3Mz2Q='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' https://iuniglsiqnfvnotmfgdo.supabase.co">
   <title>Paglot</title>
   <meta name="description" content="Paglot: aprende idiomas con tu tutora de píxeles · Learn languages with your pixel tutor · Học ngoại ngữ cùng cô giáo pixel.">
   <meta name="application-name" content="Paglot">
@@ -29,12 +29,12 @@
       const calma = typeof a.calma === 'boolean' ? a.calma : matchMedia('(prefers-reduced-motion: reduce)').matches;
       document.documentElement.classList.toggle('modo-calma', calma);
       document.documentElement.classList.toggle('texto-grande', a.texto === 'grande');
-      // los idiomas de la interfaz según el curso, como en js/i18n.js: el de español va en inglés o vietnamita; los demás,
-      // en español o inglés; sin curso (la portada y la web), los tres
+      // los idiomas de la interfaz según el curso, como idiomasDe en js/curso.js: el de español va en inglés o
+      // vietnamita; el de inglés, en español; los demás, en español o inglés; sin curso (la portada y la web), los tres
       const curso = localStorage.getItem('idiomas-curso');
-      const compatibles = new Set(!curso ? ['es', 'en', 'vi'] : curso === 'es' ? ['en', 'vi'] : ['es', 'en']);
+      const compatibles = new Set(!curso ? ['es', 'en', 'vi'] : curso === 'es' ? ['en', 'vi'] : curso === 'en' ? ['es'] : ['es', 'en']);
       const detectar = () => [...(navigator.languages ?? []), navigator.language ?? '']
-        .map(x => x.toLowerCase().replaceAll('_', '-').split('-')[0]).find(x => compatibles.has(x)) ?? 'en';
+        .map(x => x.toLowerCase().replaceAll('_', '-').split('-')[0]).find(x => compatibles.has(x)) ?? (compatibles.has('en') ? 'en' : 'es');
       document.documentElement.lang = a.idioma && a.idioma !== 'auto' && compatibles.has(a.idioma) ? a.idioma : detectar();
       // los textos de ese idioma se piden ya, a la vez que el resto de la app (js/i18n.js solo carga el idioma en uso)
       if (document.documentElement.lang !== 'en') {
@@ -170,6 +170,9 @@
         "./js/suave.js": "./js/suave.js?v=__VERSION__",
         "./js/progress.js": "./js/progress.js?v=__VERSION__",
         "./js/sonidos.js": "./js/sonidos.js?v=__VERSION__",
+        "./js/sin-terminar.js": "./js/sin-terminar.js?v=__VERSION__",
+        "./js/errores.js": "./js/errores.js?v=__VERSION__",
+        "./js/recordatorio.js": "./js/recordatorio.js?v=__VERSION__",
         "./js/srs.js": "./js/srs.js?v=__VERSION__",
         "./js/tutor-sprite.js": "./js/tutor-sprite.js?v=__VERSION__",
         "./js/tutor.js": "./js/tutor.js?v=__VERSION__",

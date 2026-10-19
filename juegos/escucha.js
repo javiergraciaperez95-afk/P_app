@@ -25,6 +25,7 @@ const usables = (bloque, ctx) => {
 export const juego = {
   nombre: 'escucha',
   icono: '👂',
+  oido: true, // sin voz no sale (ver catalogo.js)
   tipos: ['vocabulario'],
   sirve(bloque, ctx) {
     const propias = usables(bloque, ctx);

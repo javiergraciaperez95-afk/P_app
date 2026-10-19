@@ -5,13 +5,16 @@
 // - Con el número se entra desde otro dispositivo (se juntan los dos progresos).
 // - Una cuenta anónima que no se usa en 7 días se borra sola (lo hace la base de datos). Si se le añade un
 //   correo (con un código que llega por correo), ya no caduca y el número se puede recuperar con ese correo.
-// Todo va por las funciones de Para_lodriga/paglot-cuentas.sql, con fetch (sin librería).
+// - Se puede apagar (Perfil → Cuenta): desde ahí no se sube ni se baja nada hasta que se vuelva a encender. Borrar
+//   la cuenta de la nube también la apaga, para que no se vuelva a subir nada sin que la persona lo pida.
+// Todo va por las funciones de _herramientas/supabase-cuentas.sql, con fetch (sin librería).
 
 import { SUPABASE_URL, SUPABASE_CLAVE_PUBLICA } from './config.js';
 import { copiaCompleta, importarCopia, alCambiar } from './progress.js';
 import { curso } from './curso.js';
 
 const CLAVE_NUMERO = 'paglot-cuenta';
+const CLAVE_APAGADA = 'paglot-nube-apagada';
 const ESPERA_SUBIDA = 3000;
 
 // Las pruebas automáticas (_herramientas/probar_cursos.mjs, la auditoría, las capturas) la apagan: cada una abre la app
@@ -19,8 +22,14 @@ const ESPERA_SUBIDA = 3000;
 const sinNube = (() => { try { return localStorage.getItem('paglot-sin-nube') === '1'; } catch { return false; } })();
 export const nubeActiva = Boolean(SUPABASE_URL && SUPABASE_CLAVE_PUBLICA) && !sinNube;
 
-/** estado: apagada · conectando · guardada · sin-conexion · error. ultima: fecha de la última subida buena. */
-export const nube = { estado: nubeActiva ? 'conectando' : 'apagada', ultima: null };
+/** false si la persona ha apagado la nube en este dispositivo (Perfil → Cuenta): su progreso no sale de aquí. */
+export function progresoEnLaNube() {
+  try { return localStorage.getItem(CLAVE_APAGADA) !== '1'; } catch { return true; }
+}
+
+/** estado: apagada · conectando · guardada · sin-conexion · error · desactivada (la ha apagado la persona).
+ *  ultima: fecha de la última subida buena. */
+export const nube = { estado: !nubeActiva ? 'apagada' : progresoEnLaNube() ? 'conectando' : 'desactivada', ultima: null };
 const oyentes = new Set();
 function avisar(estado) {
   nube.estado = estado;
@@ -54,7 +63,7 @@ export const limpiarNumero = n => String(n ?? '').replace(/\D/g, '');
 const ESPERA_MAXIMA = 8000;
 const conLimite = () => (typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(ESPERA_MAXIMA) : undefined);
 
-async function rpc(funcion, datos = {}, token = null) {
+export async function rpc(funcion, datos = {}, token = null) {
   const respuesta = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${funcion}`, {
     method: 'POST',
     headers: { apikey: SUPABASE_CLAVE_PUBLICA, 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
@@ -94,22 +103,40 @@ let reloj = null;
 let subiendo = null;
 let iniciada = false;
 let cursosNube = null; // lo último que se leyó de la nube (null: aún no se ha podido leer)
+// Cada subida del curso de ahora lleva la hora («cuando»). Si al releer la nube su hora no es la de lo último que se
+// subió o se juntó aquí, otro dispositivo ha cambiado este curso entretanto: se junta antes de escribir, para no pisarlo.
+let ultimaMarca = null;
 
 const cursosDe = remoto => (remoto?.cursos ?? (remoto?.version === 2 ? { es: remoto } : {}));
-const paraSubir = () => ({ version: 3, cursos: { ...cursosNube, [curso.id]: copiaCompleta() } });
+const paraSubir = () => ({ version: 3, cursos: { ...cursosNube, [curso.id]: { ...copiaCompleta(), cuando: Date.now() } } });
+
+/** Junta en este dispositivo la copia de la nube del curso de ahora, si es de otro momento. */
+function juntarSiCambio() {
+  const remoto = curso.id ? cursosNube?.[curso.id] : null;
+  if (!remoto || remoto.version !== 2 || (remoto.cuando ?? null) === ultimaMarca) return false;
+  ultimaMarca = remoto.cuando ?? null;
+  importarCopia(remoto);
+  window.dispatchEvent(new Event('datos-sincronizados'));
+  return true;
+}
 
 async function subir() {
+  if (!nubeActiva || !progresoEnLaNube() || !curso.id) return;
   const numero = numeroCuenta();
-  if (!nubeActiva || !numero || !curso.id) return;
+  if (!numero) return;
   try {
     if (cursosNube === null) await bajarYJuntar(numero);
     // justo antes de escribir se releen los demás cursos: otro dispositivo puede haberlos cambiado desde que se
     // abrió la app, y subir la copia de entonces los pisaría (el curso de ahora va tal cual está aquí)
-    else cursosNube = { ...cursosDe(await rpc('paglot_leer', { p_numero: numero })) };
+    else {
+      cursosNube = { ...cursosDe(await rpc('paglot_leer', { p_numero: numero })) };
+      juntarSiCambio();
+    }
     const datos = paraSubir();
     subiendo = rpc('paglot_guardar', { p_numero: numero, p_datos: datos });
     await subiendo;
     cursosNube = datos.cursos;
+    ultimaMarca = datos.cursos[curso.id].cuando;
     avisar('guardada');
   } catch (e) {
     avisar(e.estado ? 'error' : 'sin-conexion');
@@ -126,18 +153,13 @@ function subirLuego() {
 async function bajarYJuntar(numero) {
   const remoto = await rpc('paglot_leer', { p_numero: numero });
   cursosNube = { ...cursosDe(remoto) };
-  const mio = curso.id ? cursosNube[curso.id] : null;
-  if (mio && mio.version === 2) {
-    importarCopia(mio);
-    window.dispatchEvent(new Event('datos-sincronizados'));
-    return true;
-  }
-  return false;
+  ultimaMarca = null;
+  return juntarSiCambio();
 }
 
 /** Al abrir la app: junta lo de la nube y se pone a subir los cambios. */
 export async function iniciarNube() {
-  if (!nubeActiva || iniciada) return;
+  if (!nubeActiva || !progresoEnLaNube() || iniciada) return;
   iniciada = true;
   const numero = numeroCuenta();
   if (!numero) { avisar('error'); return; }
@@ -156,7 +178,7 @@ export async function iniciarNube() {
     clearTimeout(reloj);
     reloj = null;
     const n = numeroCuenta();
-    if (!n || cursosNube === null || !curso.id) return;
+    if (!n || cursosNube === null || !curso.id || !progresoEnLaNube()) return;
     try {
       fetch(`${SUPABASE_URL}/rest/v1/rpc/paglot_guardar`, {
         method: 'POST',
@@ -182,13 +204,46 @@ export async function usarNumero(texto) {
   await subir();
 }
 
-/** Borra la cuenta de la nube y empieza otra (el progreso del dispositivo se queda). */
+/** Borra la cuenta de la nube y apaga la nube en este dispositivo: el progreso se queda aquí y ya no se sube nada.
+ *  Si se vuelve a encender, se empieza con un número nuevo. */
 export async function borrarCuentaNube() {
   const numero = numeroCuenta();
   await rpc('paglot_borrar', { p_numero: numero });
   try { localStorage.setItem(CLAVE_NUMERO, numeroNuevo()); } catch { /* sin almacenamiento */ }
-  cursosNube = {};
-  await subir();
+  apagarNube();
+}
+
+/** Deja de subir y bajar el progreso en este dispositivo (lo que ya hay en la nube se queda hasta que caduque o se borre). */
+export function apagarNube() {
+  try { localStorage.setItem(CLAVE_APAGADA, '1'); } catch { /* sin almacenamiento */ }
+  clearTimeout(reloj);
+  reloj = null;
+  cursosNube = null;
+  avisar('desactivada');
+}
+
+/** Vuelve a guardar el progreso en la nube: junta lo de allí con lo de aquí y sigue subiendo los cambios. */
+export async function encenderNube() {
+  try { localStorage.removeItem(CLAVE_APAGADA); } catch { /* sin almacenamiento */ }
+  avisar('conectando');
+  if (iniciada) {
+    try { await bajarYJuntar(numeroCuenta()); await subir(); } catch (e) { avisar(e.estado ? 'error' : 'sin-conexion'); }
+  } else {
+    await iniciarNube();
+  }
+}
+
+/** Borra todo lo de Paglot: la cuenta en la nube (si la hay) y todo lo guardado en este dispositivo, de todos los
+ *  cursos. Después hay que recargar la app. */
+export async function borrarTodo() {
+  if (nubeActiva && progresoEnLaNube()) {
+    try { await rpc('paglot_borrar', { p_numero: numeroCuenta() }); } catch { /* sin conexión: caducará sola a los 7 días */ }
+  }
+  try { await window.PaglotRecordatorio?.('no'); } catch { /* sin APK */ }
+  clearTimeout(reloj);
+  reloj = null;
+  try { localStorage.clear(); } catch { /* sin almacenamiento */ }
+  try { sessionStorage.clear(); } catch { /* sin almacenamiento */ }
 }
 
 // ----- El correo (opcional): para que la cuenta no caduque y para recuperar el número -----

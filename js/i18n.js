@@ -5,7 +5,7 @@
 
 import { ajuste, cambiarAjuste, idiomaDispositivo } from './ajustes.js';
 import en from './i18n/en.js';
-import { curso, hayCurso, nombreDelCurso, nombreTutora, saludo } from './curso.js';
+import { curso, hayCurso, idiomasDe, nombreDelCurso, nombreTutora, saludo } from './curso.js';
 
 export const IDIOMAS = [
   { clave: 'es', nombre: 'Español', corto: 'ES', locale: 'es-ES' },
@@ -13,9 +13,9 @@ export const IDIOMAS = [
   { clave: 'vi', nombre: 'Tiếng Việt', corto: 'VI', locale: 'vi-VN' },
 ];
 
-// Cada curso se explica en dos idiomas: el de español, en inglés y vietnamita; todos los demás, en español e
-// inglés. Antes de elegir curso (la portada y las páginas de la web) se ofrecen los tres.
-const DEL_CURSO = !hayCurso ? ['es', 'en', 'vi'] : curso.id === 'es' ? ['en', 'vi'] : ['es', 'en'];
+// Cada curso se explica en sus idiomas (ver idiomasDe en curso.js). Antes de elegir curso (la portada y las páginas
+// de la web) se ofrecen los tres.
+const DEL_CURSO = !hayCurso ? ['es', 'en', 'vi'] : idiomasDe(curso);
 export const IDIOMAS_VISIBLES = IDIOMAS.filter(i => DEL_CURSO.includes(i.clave));
 const visible = i => DEL_CURSO.includes(i);
 
@@ -32,12 +32,12 @@ function cargarTextos(i) {
   cargando[i] ??= CARGAR[i]().then(m => { TEXTOS[i] = m.default; }).catch(() => { delete cargando[i]; });
   return cargando[i];
 }
-// El elegido; si este curso no lo tiene, el del dispositivo; y si tampoco, inglés.
+// El elegido; si este curso no lo tiene, el del dispositivo; y si tampoco, inglés (o, en el curso de inglés, español).
 const pedido = () => {
   const i = ajuste('idioma');
   if (visible(i)) return i;
   const d = idiomaDispositivo();
-  return visible(d) ? d : 'en';
+  return visible(d) ? d : visible('en') ? 'en' : DEL_CURSO[0];
 };
 await cargarTextos(pedido());
 

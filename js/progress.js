@@ -265,6 +265,12 @@ export function anotarPaso() {
   guardar();
 }
 
+/** Un reto rápido terminado: es repasar el cuaderno, así que cuenta como un repaso para la racha y las misiones. */
+export function anotarReto() {
+  anotarActividad('repasos');
+  guardar();
+}
+
 /** Una lección con 3 estrellas hoy (para las misiones del día). */
 export function anotarPerfecta() {
   anotarActividad('perfectas');
@@ -278,6 +284,7 @@ export function marcarTerminada(idLeccion) {
   anotarActividad('lecciones');   // y para las misiones de hoy
   l.t = Date.now();
   guardar();
+  window.dispatchEvent(new CustomEvent('leccion-terminada', { detail: { id: idLeccion } }));
 }
 
 export function marcarAbierta(idLeccion) {

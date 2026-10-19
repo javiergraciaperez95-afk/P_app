@@ -9,6 +9,7 @@ import { idioma, locale, t } from '../i18n.js';
 import { CURSOS } from '../cursos.js';
 import { curso, hayCurso, nombreCurso } from '../curso.js';
 import { sonar } from '../sonidos.js';
+import { PRECIOS_VISIBLES } from '../config.js';
 import { dibujoPixel, conContorno } from './inicio-decorado.js';
 import { crearElenco, tutoraPintada, lienzo } from './elenco.js';
 
@@ -87,6 +88,8 @@ export function pintarTienda(root) {
   const elenco = crearElenco();
   const { despues } = elenco;
   const euros = centimos => new Intl.NumberFormat(locale(), { style: 'currency', currency: 'EUR' }).format(centimos / 100);
+  // sin cifras (PRECIOS_VISIBLES = false): cada precio dice «Precio por anunciar»
+  const precioTexto = centimos => (PRECIOS_VISIBLES ? euros(centimos) : t('precio.porAnunciar'));
   const productos = [
     { id: 'camiseta', categoria: 'ropa', precio: 2490, nombre: t('tienda.oneMoreWordTShirt'), texto: t('tienda.takeYourLoveOfLearning'), opciones: ['S', 'M', 'L', 'XL'], etiqueta: t('tienda.size'), acento: 'rosa' },
     { id: 'capucha', categoria: 'ropa', precio: 4490, nombre: t('tienda.studyModeHoodie'), texto: t('tienda.aHoodYourFavouriteCorner'), opciones: ['S', 'M', 'L', 'XL'], etiqueta: t('tienda.size'), acento: 'lavanda' },
@@ -195,11 +198,11 @@ export function pintarTienda(root) {
               el('button', { type: 'button', 'aria-label': t('tienda.removeOne'), onclick: () => cambiarCantidad(i, -1) }, '−'),
               el('span', {}, String(linea.cantidad)),
               el('button', { type: 'button', 'aria-label': t('tienda.addOne'), disabled: linea.cantidad >= 99, onclick: () => cambiarCantidad(i, 1) }, '+'))),
-          el('div', { class: 'tn-linea-precio' }, el('strong', {}, euros(dato.precio * linea.cantidad)),
+          el('div', { class: 'tn-linea-precio' }, el('strong', {}, precioTexto(dato.precio * linea.cantidad)),
             el('button', { type: 'button', class: 'tn-quitar', 'aria-label': t('tienda.quitarProducto', { producto: dato.nombre }), onclick: () => cambiarCantidad(i, 0, true) }, t('tienda.remove'))));
       })) : el('div', { class: 'tn-vacio' }, el('span', { class: 'tn-cesta-icono tn-cesta-grande', 'aria-hidden': 'true' }), el('h3', {}, t('tienda.thereIsStillRoomFor')), el('p', {}, t('tienda.pickABookOrA')), el('button', { type: 'button', class: 'es-boton es-boton-papel', onclick: () => bolsa.close() }, t('tienda.keepBrowsing'))),
       cesta.length ? el('footer', { class: 'tn-bolsa-resumen' },
-        el('p', { class: 'tn-subtotal' }, el('span', {}, t('tienda.demoTotal')), el('strong', {}, euros(total))),
+        el('p', { class: 'tn-subtotal' }, el('span', {}, t('tienda.demoTotal')), el('strong', {}, precioTexto(total))),
         el('button', { type: 'button', class: 'es-boton', disabled: true }, t('tienda.purchasingComingSoon')),
         el('p', { class: 'tn-nota' }, t('tienda.thisBagIsAPreview'))) : null);
   }
@@ -208,7 +211,7 @@ export function pintarTienda(root) {
     const form = el('form', { class: 'tn-detalle-info', onsubmit: evento => { evento.preventDefault(); anadir(p.id, Number(variantes.value)); detalle.close(); } },
       el('span', { class: 'tn-eyebrow' }, categorias.find(c => c[0] === p.categoria)[1]),
       el('h2', { id: 'tn-detalle-titulo' }, p.nombre), el('p', {}, p.texto),
-      el('p', { class: 'tn-detalle-precio' }, euros(p.precio)), el('label', { for: 'tn-variante' }, p.etiqueta), variantes,
+      el('p', { class: 'tn-detalle-precio' }, precioTexto(p.precio)), el('label', { for: 'tn-variante' }, p.etiqueta), variantes,
       el('button', { type: 'submit', class: 'es-boton' }, t('tienda.addToMyBag'), ' +'),
       el('p', { class: 'tn-nota' }, t('tn.muestra')));
     poner(detalle, cerrar(detalle), el('div', { class: `tn-detalle-foto tn-fondo-${p.acento}` }, dibujoProducto(p, 'tn-dibujo-grande')), form);
@@ -282,7 +285,7 @@ export function pintarTienda(root) {
   const formatos = ['papel', 'pdf'].map(formato => el('button', {
     type: 'button', class: 'tn-formato', 'aria-pressed': String(formato === formatoLibro),
     onclick: () => { formatoLibro = formato; actualizarLibro(); sonar('elegir'); },
-  }, el('span', {}, formato === 'papel' ? t('tienda.printed') : 'PDF'), el('small', {}, euros(PRECIO_LIBRO[formato]))));
+  }, el('span', {}, formato === 'papel' ? t('tienda.printed') : 'PDF'), el('small', {}, precioTexto(PRECIO_LIBRO[formato]))));
   function actualizarLibro(nuevosLibros = false) {
     const c = cursos.find(item => item.id === idiomaLibro);
     idiomaNombre.textContent = nombreCurso(c, idioma());
@@ -296,7 +299,7 @@ export function pintarTienda(root) {
       }));
     }
     [...libros.children].forEach(b => b.setAttribute('aria-pressed', String(b.dataset.nivel === nivelLibro)));
-    libroPrecio.textContent = euros(PRECIO_LIBRO[formatoLibro]);
+    libroPrecio.textContent = precioTexto(PRECIO_LIBRO[formatoLibro]);
     libroFormato.textContent = `${nombreNivel(nivelLibro)} · ${formatoLibro === 'papel' ? t('tienda.printedEdition2') : t('tienda.digitalEditionPdf')}`;
     libroNota.textContent = formatoLibro === 'papel' ? t('tienda.toUnderlineTakeNotesAnd') : t('tienda.takeYourNextWordsWith');
     formatos.forEach((b, i) => b.setAttribute('aria-pressed', String(['papel', 'pdf'][i] === formatoLibro)));
@@ -324,7 +327,7 @@ export function pintarTienda(root) {
               el('div', {}, libroFormato, libroPrecio),
               el('button', { type: 'button', class: 'es-boton', onclick: () => anadir('libro', formatoLibro, idiomaLibro, nivelLibro) }, t('tienda.addBook'), ' +')),
             libroNota),
-          el('p', { class: 'tn-muestra' }, el('span', { 'aria-hidden': 'true' }, '✦'), t('tienda.demoStoreSamplePricesPurchasing'))),
+          el('p', { class: 'tn-muestra' }, el('span', { 'aria-hidden': 'true' }, '✦'), PRECIOS_VISIBLES ? t('tienda.demoStoreSamplePricesPurchasing') : t('precio.nota'))),
         el('div', { class: 'tn-puerta' },
           el('span', { class: 'tn-abierto', 'aria-hidden': 'true' }, t('tn.abierto')),
           tendera.figura))),
@@ -344,8 +347,9 @@ export function pintarTienda(root) {
   } });
   let buscando = null;
   elenco.alApagar(() => clearTimeout(buscando));
-  const ordenar = el('select', { 'aria-label': t('tienda.sortProducts'), onchange: () => { orden = ordenar.value; pintarCatalogo(); } },
-    el('option', { value: 'coleccion' }, t('tienda.ourSelection')), el('option', { value: 'menor' }, t('tienda.priceLowToHigh')), el('option', { value: 'mayor' }, t('tienda.priceHighToLow')));
+  // ordenar por precio solo con precios visibles; sin ellos, el desplegable no tiene nada que ordenar
+  const ordenar = PRECIOS_VISIBLES ? el('select', { 'aria-label': t('tienda.sortProducts'), onchange: () => { orden = ordenar.value; pintarCatalogo(); } },
+    el('option', { value: 'coleccion' }, t('tienda.ourSelection')), el('option', { value: 'menor' }, t('tienda.priceLowToHigh')), el('option', { value: 'mayor' }, t('tienda.priceHighToLow'))) : null;
   const filtros = categorias.map(([id, nombre]) => el('button', { type: 'button', class: 'tn-filtro', 'aria-pressed': String(id === categoria), onclick: () => { categoria = id; pintarCatalogo(); sonar('elegir'); } }, nombre));
   function pintarCatalogo() {
     const visibles = productos.filter(p => (categoria === 'todo' || p.categoria === categoria) && normalizar(`${p.nombre} ${p.texto}`).includes(normalizar(busqueda)));
@@ -354,7 +358,7 @@ export function pintarTienda(root) {
     contador.textContent = t('tienda.descubrimientos', { n: visibles.length });
     poner(rejilla, visibles.length ? visibles.map(p => el('li', { class: 'tn-producto' },
       el('button', { type: 'button', class: `tn-producto-foto tn-fondo-${p.acento}`, 'aria-label': t('tienda.verProducto', { producto: p.nombre }), onclick: () => verProducto(p) }, dibujoProducto(p)),
-      el('span', { class: 'tn-etiqueta-precio' }, euros(p.precio)),
+      el('span', { class: 'tn-etiqueta-precio' }, precioTexto(p.precio)),
       el('div', { class: 'tn-producto-info' },
         el('span', { class: 'tn-eyebrow' }, categorias.find(c => c[0] === p.categoria)[1]),
         el('h3', {}, p.nombre), el('p', {}, p.texto),

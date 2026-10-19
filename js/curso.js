@@ -4,6 +4,7 @@
 // Cambiar de curso recarga la página, así el resto del programa puede leer «curso» como algo fijo.
 
 import { CURSOS } from './cursos.js';
+import { ajuste, idiomaDispositivo } from './ajustes.js';
 
 const CLAVE_CURSO = 'idiomas-curso';
 
@@ -63,6 +64,23 @@ export const nombreDelCurso = idioma => nombreCurso(curso, idioma);
 
 /** El saludo del idioma sin signos, para frases como «¡Hola, Ana!». */
 export const saludo = curso.hola.replace(/^[¡¿\s]+|[!！.。\s]+$/gu, '');
+
+/** En qué idiomas se explica cada curso: el de español, en inglés y vietnamita; el de inglés, en español (más adelante,
+ *  también en vietnamita); todos los demás, en español e inglés. */
+export const idiomasDe = c => (c.id === 'es' ? ['en', 'vi'] : c.id === 'en' ? ['es'] : ['es', 'en']);
+
+/** El idioma de quien estudia: el que eligió para la interfaz o, si no eligió ninguno, el de su móvil o navegador. */
+export function lenguaDelAlumno() {
+  const i = ajuste('idioma');
+  return ['es', 'en', 'vi'].includes(i) ? i : idiomaDispositivo();
+}
+
+/** Si un curso es para quien usa la interfaz en «lengua»: 'si'; 'no' (es su propio idioma: no se le enseña) o 'pronto'
+ *  (aún no está explicado en su idioma: sale en la lista, pero al entrar le decimos que no hemos terminado). */
+export function paraQuien(c, lengua) {
+  if (c.id === lengua) return 'no';
+  return idiomasDe(c).includes(lengua) ? 'si' : 'pronto';
+}
 
 /** Los cursos que están revisados a fondo; los demás llevan el aviso de «beta» (ver vistas/lecciones.js). */
 export const CURSOS_REVISADOS = ['es'];

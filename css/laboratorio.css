@@ -335,3 +335,21 @@
   html.pm-activo .lb-sala-normas .lb-letrero { margin-bottom: 40px; }
   html.pm-activo .lb-cartel { min-height: calc(var(--pm-alto) * .33 + 2px); }
 }
+
+/* avisar de una idea que no cumple las normas (solo con las ideas de la nube): una banderita al lado de la gota */
+.lb-avisar {
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: end;
+  min-width: 40px;
+  min-height: 40px;
+  margin-bottom: 14px;
+  border: 0;
+  font-size: 1rem;
+  color: var(--h-suave);
+  background: transparent;
+  cursor: pointer;
+}
+.lb-avisar:hover:not(:disabled) { color: #c4262e; }
+.lb-avisar:disabled { opacity: .4; cursor: default; }
+.lb-avisar:focus-visible { outline: 3px dashed var(--h-tinta); outline-offset: 2px; }
