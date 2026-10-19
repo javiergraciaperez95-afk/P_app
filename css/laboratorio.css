@@ -328,6 +328,10 @@
 /* En un móvil bajito, las normas se reparten de dos en dos: el letrero (o el hueco que deja) y cada cartel ocupan
    lo justo para que no quepa uno más en la página. */
 @media (max-width: 700px) and (max-height: 760px) {
+  /* la ficha de las ideas, entera también en inglés */
+  html.pm-activo .lb-ficha textarea { height: 44px; }
+  html.pm-activo .lb-ficha > p { margin-bottom: 4px; font-size: .82rem; line-height: 1.32; }
+  html.pm-activo .lb-ficha label { font-size: .84rem; }
   html.pm-activo .lb-sala-normas .lb-letrero { margin-bottom: 40px; }
   html.pm-activo .lb-cartel { min-height: calc(var(--pm-alto) * .33 + 2px); }
 }

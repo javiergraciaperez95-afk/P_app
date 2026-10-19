@@ -184,6 +184,22 @@ const DIAPOSITIVAS = {
       ...juntos($('.casa-cartel'), $('.casa-mostrador-escena')),
       ...juntos($('.casa-buzon-escena'), [$('.casa-empezar'), $('.casa-acera'), $('.casa-gracias')])];
   },
+  // Regala Max: el taller (el título con la escena de la caja, y la hoja del pedido) y el tendedero de postales, de dos
+  // en dos; en un móvil bajito, cada pieza en la suya. Fijas: repartidas solas, el inglés (más corto) juntaba la hoja con
+  // una postal y no cabían.
+  'regala-max': () => {
+    const $ = sel => app.querySelector(sel);
+    const postales = [...app.querySelectorAll('.rg-postal')];
+    if (altoDePagina() >= 600) return [[$('.rg-titulo'), $('.rg-escena')], $('.rg-pedido'), postales.slice(0, 2), postales.slice(2)];
+    return [$('.rg-titulo'), $('.rg-escena'), $('.rg-pedido'), ...postales];
+  },
+  // FAQ: la placa con el fichero de cajones, y la mesa de lectura con sus fichas y el final; en un móvil bajito, cada
+  // pieza en la suya. Fijas: repartidas solas, cambiaban de una vez a otra (y con el inglés no cabían).
+  faq: () => {
+    const $ = sel => app.querySelector(sel);
+    if (altoDePagina() >= 600) return [[$('.fq-placa'), $('.fq-mostrador')], [$('.fq-contador'), $('.fq-mesa'), $('.fq-fin')]];
+    return [$('.fq-placa'), $('.fq-mostrador'), [$('.fq-contador'), $('.fq-mesa')], $('.fq-fin')];
+  },
   // Contacto: la carta va en tres (la ventana con el principio de la carta, los sellos del asunto, y el mensaje con el
   // matasellos y el botón); en un móvil bajito, en cinco.
   contacto: () => {

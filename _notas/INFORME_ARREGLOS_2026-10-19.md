@@ -88,10 +88,10 @@ traducciones flojas («un/une» → «a, a»). Entra en T11.
 | Modo juego en toda lección jugable; juegos para traducción y tablas | T01 T02 T03 T05 |
 | La nube relee los demás cursos antes de subir; límites de escritura en el SQL (falta ejecutarlo en Supabase) | T20 T21 T23 |
 | Portada en frío más ligera: el diccionario (2,6 MB) solo en lección, cuaderno y bienvenida; páginas y pantallas menos usadas con `import()`; solo el idioma de interfaz en uso | T30 T31 T32 |
-| CSP con hashes, service worker con versión y límite, comprobaciones en GitHub Actions (`comprobar.py`, también la CSP), `publicar.py` (una hoja de estilos y la versión puesta) | T22 T33 T35 T60 |
+| CSP con hashes, service worker con versión y límite, comprobaciones en GitHub Actions (`comprobar.py`, también la CSP) y prueba de humo (una lección de cada curso en sus dos idiomas, en Chrome), `publicar.py` (una hoja de estilos y la versión puesta); las pruebas automáticas ya no crean cuentas en la nube | T22 T33 T35 T60 T61 |
 | 15 animaciones a `transform`/`opacity`; fuente pixel en woff2 | T34 T37 |
 | Frases: de 31.646 a 536 nodos; Repaso: el motivo junto al botón desactivado | T38 T18 |
-| Móvil sin encoger en 322×645, 360×740, 390×844 y 412×915: Sobre, Escuelas, Empresas, Tienda (vuelve la puerta con la tendera), Contacto, Perfil; texto y escena en diapositivas distintas en los móviles bajitos; las reglas de la portada ya no se cuelan en otras páginas | T40 T41 T42 T43 T44 T39 (en parte) |
+| Móvil sin encoger en 322×645, 360×740 y 390×844 (y 412×915): Sobre, Escuelas, Empresas, Tienda (vuelve la puerta con la tendera), Contacto, Perfil, Precios, FAQ, Guías, Laboratorio, Social, Regala Max, Legal y Créditos; texto y escena en diapositivas distintas en los móviles bajitos; las reglas de la portada ya no se cuelan en otras páginas | T39 T40 T41 T42 T43 T44 T45 |
 | La tutora deja abajo el hueco que ocupa de verdad y, en el móvil, se pliega a solo su cara al rato de hablar | T48 T29 |
 | Mapa del móvil: índice de capítulos desde la barra ◀ ▶ | T47 |
 | Prueba de nivel opcional (`#/prueba`), ofrecida en el mapa mientras hay menos de tres lecciones hechas | T50 |
@@ -111,15 +111,15 @@ tarjeta del cuaderno enseña su nivel con puntos), T59 (0 botones sin nombre en 
 - **T62**: APK de publicación firmada (necesita tu clave de firma y tu cuenta de Google Play). La de prueba está rehecha.
 - **T65** analítica (después de elegir hosting) y **T63** prueba en móviles reales.
 - **T13**: el curso de tailandés tiene 3 lecciones; ¿se oculta o se queda como «en construcción»?
-- **Ojo:** a las 10:40 aparecieron 205 borradores de lecciones de chino (`cursos/zh/lessons/094.json` a `298.json`) y
-  `cursos/zh/plantillas/` que no son de esta sesión. No se han tocado ni subido a git; no salen en la app porque no
-  están en el índice.
+- Las lecciones de chino y tailandés las está escribiendo otro agente: esta sesión no las ha tocado ni subido.
 
 ### Para más adelante (no urgente)
 
-T04 más juegos, T11 y T15 listados de explicaciones, T16 «repite en voz alta», T36 tokens de color, T55 compartir,
-T56 claves de almacenamiento, T57 páginas por curso y sitemap, T61 prueba de humo en CI, T66 informe de errores
-anónimo; en el móvil, la lección en modo libro y Frases aún se encogen un 3–8 % en 322×645.
+T04 más juegos, T15 listado de lecturas difíciles, T16 «repite en voz alta», T36 tokens de color, T55 compartir,
+T56 claves de almacenamiento, T57 páginas por curso y sitemap, T66 informe de errores anónimo (decidir antes si se
+mandan datos); revisar las 1.916 explicaciones en inglés que hablan del español (listadas en
+`_notas/auditoria/explicaciones_es.json`, T11); en el móvil, la lección en modo libro aún se encoge un 3–8 % en
+algunas diapositivas de 322×645 (el modo juego, que es el de siempre, no).
 
 ---
 
