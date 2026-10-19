@@ -126,3 +126,35 @@ document.addEventListener('input', e => {
 document.addEventListener('change', e => {
   if (e.target instanceof HTMLSelectElement && !e.target.closest('[data-sin-efectos]') && !calma() && sonoHace() > 80) sonar('elegir');
 });
+// ----- Al acertar: el «golpe» de Celeste (informe de estilos de pixel art del 19-10, idea 1) -----
+// Lo último que se ha tocado se queda un instante un poco más grande (cuatro fotogramas) y salen dos destellos en
+// cruz en esquinas opuestas. Breve y sin repetir; nada en modo calma. Se engancha al sonido «bien», que suena en los
+// ejercicios, los juegos, el repaso y el reto: las pantallas no tienen que saber nada.
+let ultimaTocada = null;
+let tocadaEn = 0;
+const apuntar = nodo => {
+  const pieza = nodo instanceof Element ? nodo.closest(`${PULSABLE}, .opcion, .juego-opcion, .respuesta-ordenar`) : null;
+  if (pieza) { ultimaTocada = pieza; tocadaEn = performance.now(); }
+};
+document.addEventListener('pointerdown', e => apuntar(e.target), true);
+document.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') apuntar(document.activeElement); }, true);
+
+function destello(x, y, retraso) {
+  const d = document.createElement('span');
+  d.className = 'destello';
+  d.style.left = `${Math.round(x)}px`;
+  d.style.top = `${Math.round(y)}px`;
+  d.style.animationDelay = `${retraso}ms`;
+  setTimeout(() => d.remove(), 420 + retraso);
+  document.body.append(d);
+}
+
+window.addEventListener('paglot-suceso', e => {
+  if (e.detail?.nombre !== 'bien' || quieto()) return;
+  if (!ultimaTocada?.isConnected || performance.now() - tocadaEn > 2500) return;
+  animar(ultimaTocada, 'acierto-golpe');
+  const c = ultimaTocada.getBoundingClientRect();
+  if (!c.width) return;
+  destello(c.right - 6, c.top + 4, 0);
+  destello(c.left + 8, c.bottom - 6, 70);
+});

@@ -1907,3 +1907,15 @@ html.modo-calma .sin-terminar { animation: none; }
 .boton-mini::after { content: ""; position: absolute; inset: -4px 0; }
 /* El texto de ayuda de los campos, legible (antes casi no se veía) */
 ::placeholder { color: var(--texto-suave); opacity: .85; }
+/* ===== Al acertar (js/chispa.js): el «golpe» de cuatro fotogramas y dos destellos en cruz ===== */
+.acierto-golpe { animation: acierto-golpe .28s steps(4); }
+@keyframes acierto-golpe { 0% { scale: 1; } 25%, 60% { scale: 1.06; } 100% { scale: 1; } }
+/* un destello pixel: una cruz de cuadritos de 2 px que crece y se apaga (solo transform y opacity) */
+.destello {
+  position: fixed; z-index: 500; width: 2px; height: 2px; margin: -1px 0 0 -1px; pointer-events: none;
+  background: #fffbe8;
+  box-shadow: 0 -2px 0 #fffbe8, 0 -4px 0 #ffe28a, 0 2px 0 #fffbe8, 0 4px 0 #ffe28a, -2px 0 0 #fffbe8, -4px 0 0 #ffe28a, 2px 0 0 #fffbe8, 4px 0 0 #ffe28a;
+  opacity: 0;
+  animation: destellar .36s steps(4) forwards;
+}
+@keyframes destellar { 0% { opacity: 1; transform: scale(.5); } 40% { opacity: 1; transform: scale(2); } 100% { opacity: 0; transform: scale(1.2); } }

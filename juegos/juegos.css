@@ -262,4 +262,29 @@ body.tutora-oculta .jg-pie { bottom: calc(62px + var(--borde-abajo, 0px)); }
   .jg-escenario { min-height: 0; }
   .jg-pie { margin-top: 12px; }
 }
-
+/* ===== El aula detrás de cada juego (front del 19-10): pared, zócalo con su moldura y suelo de tablas con rodapié.
+   Antes el juego flotaba sobre el fondo liso. De día, papel y madera clara. ===== */
+.jg-escenario {
+  --pared: #43385a; --zocalo: #3a304f; --moldura: #2c2340; --suelo: #5b4351; --rodapie: #2c2340; --junta: rgba(0, 0, 0, .18);
+  position: relative;
+  padding: 10px 0 34px;
+  background:
+    /* el suelo de tablas y el rodapié */
+    linear-gradient(var(--rodapie), var(--rodapie)) left 0 bottom 22px / 100% 4px no-repeat,
+    repeating-linear-gradient(90deg, transparent 0 46px, var(--junta) 46px 48px) left 0 bottom 0 / 100% 22px no-repeat,
+    linear-gradient(var(--suelo), var(--suelo)) left 0 bottom 0 / 100% 22px no-repeat,
+    /* el zócalo: paneles de madera con su moldura arriba */
+    linear-gradient(var(--moldura), var(--moldura)) left 0 bottom calc(30% + 26px) / 100% 4px no-repeat,
+    repeating-linear-gradient(90deg, transparent 0 56px, var(--moldura) 56px 58px) left 0 bottom 26px / 100% 30% no-repeat,
+    linear-gradient(var(--zocalo), var(--zocalo)) left 0 bottom 26px / 100% 30% no-repeat,
+    /* la pared, con papel de rayas suaves */
+    repeating-linear-gradient(90deg, transparent 0 22px, rgba(255, 255, 255, .035) 22px 26px),
+    var(--pared);
+  box-shadow: 0 0 0 3px var(--h-borde), 5px 7px 0 3px rgba(0, 0, 0, .2);
+}
+:root[data-tema="claro"] .jg-escenario { --pared: #f3e7cd; --zocalo: #e3cfa4; --moldura: #b88a5a; --suelo: #c9925e; --rodapie: #7c4f30; --junta: rgba(0, 0, 0, .14); }
+@media (max-width: 700px) {
+  /* en el móvil el aula llega hasta la tutora: así no queda un hueco vacío debajo de los botones */
+  body.en-leccion .jg { display: flex; flex-direction: column; min-height: calc(100dvh - 8px - var(--alto-tutora-real, var(--alto-tutora)) - 14px - var(--borde-abajo, 0px)); }
+  body.en-leccion .jg-escenario { flex: 1 1 auto; box-shadow: 0 0 0 3px var(--h-borde); }
+}

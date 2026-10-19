@@ -719,13 +719,44 @@ function dibujarSendero(lista) {
   svg.setAttribute('aria-hidden', 'true');
   svg.setAttribute('width', String(Math.ceil(caja.width)));
   svg.setAttribute('height', String(Math.ceil(lista.scrollHeight)));
-  for (const [clase, trazo] of [['cm-sendero-base', d], ['cm-sendero-hecho', dHecho]]) {
+  // el camino de tierra (borde y tierra, a escalones) y, encima, las piedras: el recorrido va en dorado
+  for (const [clase, trazo] of [['cm-sendero-borde', d], ['cm-sendero-tierra', d], ['cm-sendero-base', d], ['cm-sendero-hecho', dHecho]]) {
     if (!trazo) continue;
     const p = document.createElementNS(ns, 'path');
     p.setAttribute('d', trazo);
     p.setAttribute('class', clase);
     svg.append(p);
   }
+  // a los lados del camino, entre parada y parada (donde no hay textos), matas de hierba y alguna flor
+  const plantas = document.createElementNS(ns, 'g');
+  plantas.setAttribute('class', 'cm-plantas');
+  const U = 3; // un píxel del dibujo son 3 de pantalla, como el resto de la escena
+  const cuadro = (x, y, w, h, clase) => {
+    const r = document.createElementNS(ns, 'rect');
+    for (const [k, v] of Object.entries({ x: Math.round(x), y: Math.round(y), width: w * U, height: h * U, class: clase })) r.setAttribute(k, v);
+    plantas.append(r);
+  };
+  for (let k = 1; k < puntos.length; k++) {
+    const [x0, y0] = puntos[k - 1];
+    const [x1, y1] = puntos[k];
+    const mx = (x0 + x1) / 2;
+    const my = (y0 + y1) / 2;
+    const lado = k % 2 ? 1 : -1; // un lado y el otro, alternando
+    const x = mx + lado * 40;
+    if (x < 14 || x > caja.width - 14) continue;
+    if (k % 3 === 0) { // una flor: tallo, hoja y corola
+      cuadro(x, my - U, 1, 4, 'cm-tallo');
+      cuadro(x + U, my + U, 1, 1, 'cm-hierba');
+      cuadro(x - U, my - 3 * U, 3, 2, k % 2 ? 'cm-flor' : 'cm-flor-b');
+      cuadro(x, my - 3 * U, 1, 1, 'cm-flor-centro');
+    } else { // una mata: tres hojas de distinto alto
+      cuadro(x - 2 * U, my, 1, 3, 'cm-hierba');
+      cuadro(x - U, my - 2 * U, 1, 5, 'cm-hierba');
+      cuadro(x, my - U, 1, 4, 'cm-hierba-b');
+      cuadro(x + U, my + U, 1, 2, 'cm-hierba');
+    }
+  }
+  svg.append(plantas);
   lista.prepend(svg);
 }
 

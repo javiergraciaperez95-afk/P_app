@@ -764,4 +764,25 @@ a.cm-extra:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--
 .pn-opcion.pn-buena { border-color: var(--verde); background: color-mix(in srgb, var(--verde) 22%, var(--panel-2)); }
 .pn-opcion.pn-mala { border-color: var(--rojo, #c8445a); background: color-mix(in srgb, var(--rojo, #c8445a) 22%, var(--panel-2)); }
 .pn-nota { min-height: 1.4em; margin: 0; font-weight: 700; }
-
+/* ===== El camino de tierra (informe de estilos: «el mapa de lecciones como un camino», Minish Cap) =====
+   Dos trazos anchos con los bordes a escalones (crispEdges) bajo las piedras de siempre. */
+.cm-tramo { --tierra-borde: #352b47; --tierra: #54465f; --piedra: #7d6c86; }
+:root[data-tema="claro"] .cm-tramo { --tierra-borde: #cdb88e; --tierra: #eadbb7; --piedra: #b9a27a; }
+.cm-sendero-borde, .cm-sendero-tierra { shape-rendering: crispEdges; stroke-linecap: square; }
+.cm-sendero-borde { stroke: var(--tierra-borde); stroke-width: 34; }
+.cm-sendero-tierra { stroke: var(--tierra); stroke-width: 26; }
+.cm-sendero-base { stroke: var(--piedra); }
+@media (max-width: 700px) {
+  .cm-sendero-borde { stroke-width: 28; }
+  .cm-sendero-tierra { stroke-width: 21; }
+}
+/* las matas y flores de los lados del camino */
+.cm-plantas rect { shape-rendering: crispEdges; }
+.cm-hierba { fill: #4f8a5c; }
+.cm-hierba-b { fill: #3c6b48; }
+.cm-tallo { fill: #3c6b48; }
+.cm-flor { fill: #ff8ad8; }
+.cm-flor-b { fill: #ffe28a; }
+.cm-flor-centro { fill: #fff4dc; }
+:root[data-tema="claro"] .cm-hierba { fill: #6fae6a; }
+:root[data-tema="claro"] .cm-hierba-b, :root[data-tema="claro"] .cm-tallo { fill: #4e8a50; }

@@ -221,3 +221,24 @@ html.pm-activo body main { padding-bottom: 0; }
 .cartel-dibujo .il-M { fill: #6e4224; }
 .cartel-dibujo .il-c { fill: #8fd8ff; }
 .cartel-dibujo .il-v { fill: #7a5ac8; }
+/* ===== La ficha de productos (#/producto): cada producto con su placa dorada numerada y su franja de color ===== */
+.producto-lista { display: grid; gap: 14px; }
+.producto-fila { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 6px 18px; border-left: 8px solid var(--franja, var(--oro)); }
+.producto-fila:nth-child(1) { --franja: #6fae6a; }
+.producto-fila:nth-child(2) { --franja: #4f7fc0; }
+.producto-fila:nth-child(3) { --franja: #f4c84a; }
+.producto-fila:nth-child(4) { --franja: #d2353d; }
+.producto-numero {
+  display: grid; place-items: center; width: 48px; height: 48px;
+  font: 700 1.2rem var(--fuente-pixel); color: #2b1d1a;
+  background: linear-gradient(#ffe58a 0 50%, #f4c84a 50%);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, .5), inset 0 -3px 0 rgba(0, 0, 0, .18), 0 0 0 3px var(--linea), 3px 4px 0 3px var(--sombra);
+}
+.producto-fila h2 { margin: 0 0 4px; }
+.producto-fila p { margin: 0; }
+.comunidad-pie { font-size: .85rem; color: var(--texto-suave); }
+@media (max-width: 700px) {
+  .producto-fila { grid-template-columns: auto minmax(0, 1fr); }
+  .producto-fila > .boton { grid-column: 2; justify-self: start; }
+  .producto-numero { width: 40px; height: 40px; font-size: 1rem; }
+}

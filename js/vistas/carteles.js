@@ -88,6 +88,16 @@ const DIBUJOS = {
     R(1, 19, 20, 4, 'w'); R(1, 22, 20, 1, 'p');          // el rollo de abajo
     C(14, 16, 2.6, 'r'); R(14, 16, 1, 1, 'R'); R(13, 18, 1, 3, 'r'); R(15, 18, 1, 3, 'r'); // el sello
   }),
+  // el poste de señales de «una forma de aprender para cada camino»: tres flechas de colores sobre un poste de madera
+  producto: () => lienzo(24, 24, R => {
+    R(11, 2, 3, 21, 'm'); R(13, 2, 1, 21, 'M');            // el poste, con su lado en sombra
+    R(10, 1, 5, 1, 'M');                                    // el remate
+    R(3, 4, 16, 4, 'r'); R(2, 5, 1, 2, 'r'); R(3, 7, 16, 1, 'R'); // flecha a la izquierda (roja)
+    R(8, 10, 15, 4, 'b'); R(23, 11, 1, 2, 'b'); R(8, 13, 15, 1, 'B'); // flecha a la derecha (azul)
+    R(2, 16, 14, 4, 'o'); R(1, 17, 1, 2, 'o'); R(2, 19, 14, 1, 'O'); // flecha a la izquierda (dorada)
+    R(5, 5, 6, 1, 'w'); R(11, 11, 7, 1, 'w'); R(5, 17, 5, 1, 'M'); // lo escrito en cada tabla
+    R(7, 22, 3, 1, 'v'); R(15, 22, 4, 1, 'v');              // la hierba al pie
+  }),
   // la medalla de los créditos, con su cinta
   creditos: () => lienzo(20, 24, (R, C) => {
     for (let i = 0; i < 9; i++) { R(4 + Math.floor(i / 3), i, 4, 1, 'b'); R(12 - Math.floor(i / 3), i, 4, 1, 'r'); }
