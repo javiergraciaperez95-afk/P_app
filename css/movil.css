@@ -618,3 +618,8 @@ html.texto-grande { font-size: 112.5%; }
   html.pm-activo .lg-pieza-nombre { font-size: .62rem; }
   html.pm-activo .lg-pieza-medalla { width: 40px; height: 40px; font-size: 1.2rem; }
 }
+
+/* Frases en el móvil: el índice de bloques repite la lista de categorías (que ya se abren al tocarlas): fuera */
+@media (max-width: 700px) {
+  html.pm-activo main:has(.categoria) .indice { display: none; }
+}

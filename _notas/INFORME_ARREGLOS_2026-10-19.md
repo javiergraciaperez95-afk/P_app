@@ -17,14 +17,17 @@ Hay dos auditorías que hay que volver a pasar al terminar y que no deben empeor
 - `node _herramientas/auditar_navegador.mjs 8300` → `_notas/auditoria/navegador.json`
 
 **Reglas que no se negocian** (vienen del usuario; romperlas es peor que no arreglar):
-1. **Móvil (≤ 700 px) = diapositivas, sin scroll de página, como mucho 5 por pantalla.** Cada diapositiva es una escena de
+1. **Móvil (≤ 700 px) = diapositivas, sin scroll de página, las que hagan falta pero sin cargarse el arte** (corregido
+   por el usuario el 19-10: no hay un máximo de 5). Cada diapositiva es una escena de
    la web **recolocada** para el formato vertical, de borde a borde y del alto exacto entre la cabecera y la barra ◀ ▶
    (`--pm-alto`). **Nunca se arregla encogiendo**: si `paginas-movil.js` aplica `zoom`, salen franjas a los lados y eso es
    un fallo. Los tamaños se calculan con el alto (`clamp(min, calc(var(--h) * k), max)`). Se agrupa con `DIAPOSITIVAS`
    en `js/app.js` y el CSS va en `css/movil.css` bajo `html.pm-activo`. Ejemplo bueno: la portada (5 diapositivas).
 2. **Animaciones solo con `transform` y `opacity`.** En el ordenador se mantiene el estilo «a saltos» (`steps()`); en el
    móvil `js/suave.js` lo suaviza solo.
-3. **Textos siempre con `t('clave')`** y la clave en `js/i18n/en.js` **y** `js/i18n/vi.js` (la interfaz es inglés y vietnamita).
+3. **Textos siempre con `t('clave')`** y la clave en `js/i18n/en.js`, `es.js` **y** `vi.js`. Cada curso se explica en
+   dos idiomas: **el de español, en inglés y vietnamita; todos los demás, en español e inglés** (regla del 19-10). El
+   contenido de los cursos lleva `{"@es": …, "@en": …}` donde cambia (ver `js/lessons.js`, `elegirIdiomaContenido`).
 4. **Pensado para personas con déficit de atención**: todo lo que se pulsa responde (sonido + animación), nada se completa
    solo con tocar, lo fallado vuelve; sin culpa ni presión (nada de «has perdido tu racha»). La tutora no pone cara
    «apurada» ante un error del alumno.
@@ -73,6 +76,52 @@ portada móvil a pantalla completa, cuentas sin correo (número de 16 cifras), r
 
 Nuevo visto al probar: en las tablas de los cursos beta las cabeceras siguen en español («Masculino, Femenino») y hay
 traducciones flojas («un/une» → «a, a»). Entra en T11.
+
+## 1 ter. Estado al cierre del 19-10 (segunda tanda de arreglos)
+
+### Hecho
+
+| Qué | Tareas |
+|---|---|
+| **Todos los cursos en español e inglés** (el de español, en inglés y vietnamita): interfaz en español nueva (`js/i18n/es.js`), el español original de las explicaciones recuperado de git y el inglés de máquina al lado (beta), elegido al cargar según la interfaz | T10 y regla nueva |
+| Inglés de máquina rehecho donde estropeaba las letras del curso (ja, ko, zh, ru, el, th, vi: unas 12.000 explicaciones) y sin inventos en los títulos que ya estaban en el idioma del curso | — |
+| Modo juego en toda lección jugable; juegos para traducción y tablas | T01 T02 T03 T05 |
+| La nube relee los demás cursos antes de subir; límites de escritura en el SQL (falta ejecutarlo en Supabase) | T20 T21 T23 |
+| Portada en frío más ligera: el diccionario (2,6 MB) solo en lección, cuaderno y bienvenida; páginas y pantallas menos usadas con `import()`; solo el idioma de interfaz en uso | T30 T31 T32 |
+| CSP con hashes, service worker con versión y límite, comprobaciones en GitHub Actions (`comprobar.py`, también la CSP), `publicar.py` (una hoja de estilos y la versión puesta) | T22 T33 T35 T60 |
+| 15 animaciones a `transform`/`opacity`; fuente pixel en woff2 | T34 T37 |
+| Frases: de 31.646 a 536 nodos; Repaso: el motivo junto al botón desactivado | T38 T18 |
+| Móvil sin encoger en 322×645, 360×740, 390×844 y 412×915: Sobre, Escuelas, Empresas, Tienda (vuelve la puerta con la tendera), Contacto, Perfil; texto y escena en diapositivas distintas en los móviles bajitos; las reglas de la portada ya no se cuelan en otras páginas | T40 T41 T42 T43 T44 T39 (en parte) |
+| La tutora deja abajo el hueco que ocupa de verdad y, en el móvil, se pliega a solo su cara al rato de hablar | T48 T29 |
+| Mapa del móvil: índice de capítulos desde la barra ◀ ▶ | T47 |
+| Prueba de nivel opcional (`#/prueba`), ofrecida en el mapa mientras hay menos de tres lecciones hechas | T50 |
+| Capítulos de 8–12 lecciones y nivel A1–B2 en los cursos beta (francés: de 98 a 33 capítulos) | T12 |
+| «Ordena las palabras» en 530 lecciones beta que no tenían ejercicio de producción | T14 |
+| Un día de descanso por semana en la racha; sin contador de fallos a la vista en la lección | T53 T58 |
+| Avisos de la APK para cualquier curso en es/en/vi y hora del recordatorio elegible en Ajustes | T52 |
+| Herramientas nuevas: `probar_cursos.mjs` (una lección de cada curso en sus dos idiomas), `diapositivas.mjs` (hoja de contactos de las diapositivas), `foto.mjs`, `juntar_es_en.py`, `retraducir_protegido.py`, `sin_traducir_lo_ajeno.py`, `agrupar_capitulos.py`, `anadir_ordenar.py` | — |
+
+Ya estaban hechos: T17 (la tutora explica cómo instalar la voz al pulsar escuchar; el Perfil dice si la hay), T19 (cada
+tarjeta del cuaderno enseña su nivel con puntos), T59 (0 botones sin nombre en la auditoría).
+
+### Pendiente de ti (no se puede hacer sin tu decisión o tus cuentas)
+
+- **T90–T92, T94, T95, T64, T24** de la sección 6: mensaje, precios, pasarela, social, appId, hosting y aviso legal.
+- **T23**: ejecutar `_herramientas/supabase-cuentas.sql` en Supabase (SQL Editor → pegar todo → Run).
+- **T62**: APK de publicación firmada (necesita tu clave de firma y tu cuenta de Google Play). La de prueba está rehecha.
+- **T65** analítica (después de elegir hosting) y **T63** prueba en móviles reales.
+- **T13**: el curso de tailandés tiene 3 lecciones; ¿se oculta o se queda como «en construcción»?
+- **Ojo:** a las 10:40 aparecieron 205 borradores de lecciones de chino (`cursos/zh/lessons/094.json` a `298.json`) y
+  `cursos/zh/plantillas/` que no son de esta sesión. No se han tocado ni subido a git; no salen en la app porque no
+  están en el índice.
+
+### Para más adelante (no urgente)
+
+T04 más juegos, T11 y T15 listados de explicaciones, T16 «repite en voz alta», T36 tokens de color, T55 compartir,
+T56 claves de almacenamiento, T57 páginas por curso y sitemap, T61 prueba de humo en CI, T66 informe de errores
+anónimo; en el móvil, la lección en modo libro y Frases aún se encogen un 3–8 % en 322×645.
+
+---
 
 ## 2. Método
 
