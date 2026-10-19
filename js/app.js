@@ -140,6 +140,68 @@ const DIAPOSITIVAS = {
       ...juntos($('.casa-cartel'), $('.casa-mostrador-escena')),
       ...juntos($('.casa-buzon-escena'), [$('.casa-empezar'), $('.casa-acera'), $('.casa-gracias')])];
   },
+  // Contacto: la carta va en tres (la ventana con el principio de la carta, los sellos del asunto, y el mensaje con el
+  // matasellos y el botón); en un móvil bajito, en cinco.
+  contacto: () => {
+    const $ = sel => app.querySelector(sel);
+    if (altoDePagina() >= 600) {
+      return [[$('.ct-lado'), $('.ct-cabecera'), $('.ct-saludo'), $('.ct-lineas')], $('.ct-asuntos'),
+        [$('.ct-linea-mensaje'), $('.ct-pie-carta'), $('.ct-envio')]];
+    }
+    return [$('.ct-lado'), [$('.ct-cabecera'), $('.ct-saludo'), $('.ct-lineas')], $('.ct-asuntos'), $('.ct-linea-mensaje'),
+      [$('.ct-pie-carta'), $('.ct-envio')]];
+  },
+  // La tienda: la fachada (el letrero y la puerta con la tendera), el escaparate en dos (los libros; elegir idioma y
+  // formato, que en un móvil bajito también va en dos), la entrada de la colección, los estantes de cuatro en cuatro (de dos en dos en un móvil bajito) y el
+  // mostrador. Al filtrar o buscar se vuelve a repartir (paginas-movil.js).
+  tienda: () => {
+    const $ = sel => app.querySelector(sel);
+    const productos = [...app.querySelectorAll('.tn-rejilla > li')];
+    const bajo = altoDePagina() < 600;
+    const estantes = [];
+    for (let i = 0; i < productos.length; i += bajo ? 2 : 4) estantes.push(productos.slice(i, i + (bajo ? 2 : 4)));
+    return [[$('.tn-letrero'), $('.tn-puerta')], [$('.tn-escaparate-titulo'), $('.tn-escaparate h2'), $('.tn-libros'), $('.tn-balda')],
+      ...(bajo ? [[$('.tn-config-idioma'), $('.tn-formatos')], [$('.tn-libro-comprar'), $('.tn-libro-nota'), $('.tn-muestra')]]
+        : [[$('.tn-libro-config'), $('.tn-muestra')]]),
+      [$('.tn-interior-cabecera'), $('.tn-filtros'), $('.tn-herramientas')], ...estantes,
+      ...(bajo ? [$('.tn-mostrador-encima'), $('.tn-preguntas')] : [$('.tn-mostrador')])];
+  },
+  // Empresas: la sala, las credenciales en dos, el configurador, los sectores en dos, la plantilla, el proceso en dos y el
+  // final. En un móvil bajito, la sala va en dos (el ventanal con la mesa, luego la pizarra), una credencial por
+  // diapositiva y el configurador en dos.
+  empresas: () => {
+    const $ = sel => app.querySelector(sel);
+    const $$ = sel => [...app.querySelectorAll(sel)];
+    const credenciales = $$('.of-credencial');
+    const calculadora = $$('.of-calc > *');
+    const resto = [[$('.of-entradilla'), $('.of-sectores-lista')], [$('.of-muestra'), $('.of-sectores-precio')], $('.of-plantilla'),
+      $('.of-pasos'), $('.of-avisos'), $('.of-fin')];
+    if (altoDePagina() >= 600) {
+      return [$('.of-sala'), credenciales.slice(0, 2), [...credenciales.slice(2), $('.of-pronto')], $('.of-equipo'), ...resto];
+    }
+    return [[$('.of-ventanal'), $('.of-mesa-escena')], $('.of-pizarra'),
+      credenciales[0], credenciales[1], credenciales[2], [credenciales[3], $('.of-pronto')],
+      calculadora.slice(0, 5), [...calculadora.slice(5), $('.of-mesa-grande')], ...resto];
+  },
+  // Escuelas: el colegio, el tablón y el temario en dos, la calculadora y su clase, la circular y el final. Los títulos
+  // de sección no se reparten: salen en todas las de su sección. En un móvil bajito, la pizarra de la entrada aparte, una
+  // nota del tablón por diapositiva y la calculadora, el precio y la circular en dos.
+  escuelas: () => {
+    const $ = sel => app.querySelector(sel);
+    const $$ = sel => [...app.querySelectorAll(sel)];
+    const notas = $$('.ce-nota');
+    const panel = $$('.ce-calc-panel > *');
+    const puntos = $$('.ce-circular li');
+    if (altoDePagina() >= 600) {
+      return [$('.ce-colegio'), notas.slice(0, 2), [...notas.slice(2), $('.ce-pronto')], $('.ce-calc-panel'), $('.ce-clase'),
+        $('.ce-ideas'), [$('.ce-medida-precio'), $('.ce-horario'), $('.ce-horario-nota')], $('.ce-circular-seccion'), $('.ce-fin')];
+    }
+    return [[$('.ce-edificio'), $('.ce-maestra'), $('.ce-alumnas')], $('.ce-pizarra'),
+      notas[0], notas[1], notas[2], [notas[3], $('.ce-pronto')],
+      panel.slice(0, 5), panel.slice(5), $('.ce-clase'),
+      $('.ce-ideas'), $('.ce-medida-precio'), [$('.ce-horario'), $('.ce-horario-nota')],
+      [$('.ce-circular h2'), $('.ce-circular-lema'), ...puntos.slice(0, 2)], [...puntos.slice(2), $('.ce-firma')], $('.ce-fin')];
+  },
 };
 
 /** En el móvil no hay pie debajo de todo: el pie de verdad (con sus tutoras charlando) es la última diapositiva de la

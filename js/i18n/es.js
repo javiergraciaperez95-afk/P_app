@@ -728,7 +728,7 @@ export default {
   'pie.marca': "Inicio de Paglot",
   'pie.firma': "Hecho con píxeles y paciencia.",
   'pie.subir': "Volver arriba",
-  'cabecera.llamaViva': ({ n }) => `${n} ${n === 1 ? 'día' : 'días'} seguidos. Mantén viva la llama: basta una lección o unas tarjetas al día.`,
+  'cabecera.llamaViva': ({ n }) => `${n} ${n === 1 ? 'día' : 'días'} seguidos. Mantén viva la llama: basta una lección o unas tarjetas al día (un día de descanso a la semana no la apaga).`,
   'cabecera.llamaMucha': ({ n }) => `¡${n} días seguidos! Esta llama es enorme. Yo traería nubes de azúcar.`,
   'cabecera.llamaApagada': "La llama se ha apagado… pero una lección hoy la vuelve a encender. ¿Vamos?",
   'cabecera.racha': "Días seguidos: {n}",

@@ -836,7 +836,7 @@ export default {
   'pie.firma': 'Made with pixels and patience.',
   'pie.subir': 'Back to top',
   // cabecera (antes y después de iniciar sesión)
-  'cabecera.llamaViva': ({ n }) => `${n} ${n === 1 ? 'day' : 'days'} in a row. Keep the flame alive: one lesson or a few cards a day is enough.`,
+  'cabecera.llamaViva': ({ n }) => `${n} ${n === 1 ? 'day' : 'days'} in a row. Keep the flame alive: one lesson or a few cards a day is enough (one day off a week won’t put it out).`,
   'cabecera.llamaMucha': ({ n }) => `${n} days in a row! This flame is enormous. I’d bring marshmallows.`,
   'cabecera.llamaApagada': 'The flame is out… but one lesson today lights it up again. Shall we?',
   'cabecera.racha': 'Days in a row: {n}',

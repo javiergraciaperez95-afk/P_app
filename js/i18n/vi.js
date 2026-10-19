@@ -842,7 +842,7 @@ export default {
   'pie.firma': 'Được tạo bằng pixel và sự kiên nhẫn.',
   'pie.subir': 'Lên đầu trang',
   // cabecera (antes y después de iniciar sesión)
-  'cabecera.llamaViva': ({ n }) => `${n} ngày liên tiếp. Giữ lửa nhé: mỗi ngày một bài hoặc vài thẻ là đủ.`,
+  'cabecera.llamaViva': ({ n }) => `${n} ngày liên tiếp. Giữ lửa nhé: mỗi ngày một bài hoặc vài thẻ là đủ (nghỉ một ngày mỗi tuần cũng không tắt).`,
   'cabecera.llamaMucha': ({ n }) => `${n} ngày liên tiếp! Ngọn lửa này to quá. Cô muốn nướng kẹo dẻo luôn.`,
   'cabecera.llamaApagada': 'Ngọn lửa tắt rồi… nhưng hôm nay học một bài là nó cháy lại. Mình học nhé?',
   'cabecera.racha': 'Số ngày liên tiếp: {n}',

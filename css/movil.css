@@ -477,3 +477,132 @@ html.texto-grande { font-size: 112.5%; }
   html.pm-activo .casa-valores { gap: 6px; }
   html.pm-activo .casa-valor-texto p { line-height: 1.32; }
 }
+
+/* Escuelas en el móvil (js/app.js, DIAPOSITIVAS.escuelas): cada sección del alto que hay (--h), con su contenido en
+   medio. El colegio: el edificio arriba, las tutoras en el patio delante de la puerta y la pizarra de la entrada abajo. */
+@media (max-width: 700px) {
+  html.pm-activo .escuelas { --h: var(--pm-alto, 674px); --t: clamp(84px, calc(var(--h) * .19), 128px); }
+  html.pm-activo .escuelas > section { box-sizing: border-box; min-height: calc(var(--h) - 14px); display: flex; flex-direction: column; justify-content: center; }
+  html.pm-activo .ce-colegio { justify-content: flex-start; min-height: calc(var(--h) + 6px); }
+  html.pm-activo .ce-edificio { flex: none; width: min(100%, calc(var(--h) * .62 * 2)); margin: clamp(8px, calc(var(--h) * .03), 24px) auto 0; }
+  html.pm-activo .ce-delante { flex: 1; align-content: flex-start; min-height: 0; padding: 0 14px 14px; }
+  html.pm-activo .ce-maestra, html.pm-activo .ce-alumnas { margin-top: calc(var(--t) * -.55); }
+  html.pm-activo .ce-maestra .tutora-lienzo { width: calc(var(--t) * .75); height: var(--t); }
+  html.pm-activo .ce-alumna .tutora-lienzo { width: calc(var(--t) * .52); height: calc(var(--t) * .69); }
+  html.pm-activo .ce-pizarra { margin: auto 0 34px; padding: 14px 16px; }
+  html.pm-activo .ce-pizarra h1 { margin: 4px 0 6px; font-size: clamp(1.4rem, calc(var(--h) * .042), 1.9rem); }
+  html.pm-activo .ce-pizarra p { margin-bottom: 10px; font-size: clamp(.84rem, calc(var(--h) * .0145), .95rem); line-height: 1.45; }
+  html.pm-activo .ce-pizarra .ce-botones { gap: 8px; }
+  html.pm-activo .ce-pizarra-patas { height: 30px; }
+  /* en un móvil bajito el colegio va en dos: el edificio con las tutoras de pie sobre el patio, y luego la pizarra sola
+     en medio del patio */
+  html.pm-activo .ce-colegio:has(.ce-pizarra.pm-oculto) .ce-edificio { margin-top: auto; }
+  html.pm-activo .ce-colegio:has(.ce-pizarra.pm-oculto) .ce-delante { flex: 0 0 auto; min-height: 32%; }
+  html.pm-activo .ce-colegio:has(.ce-maestra.pm-oculto) .ce-delante { align-content: center; }
+  /* el resto, algo más apretado y con la letra según el alto */
+  html.pm-activo .ce-tablon-seccion { padding: 24px 12px 70px; }
+  html.pm-activo .ce-tablon { gap: 18px; padding: 22px 14px; }
+  html.pm-activo .ce-titulo-seccion { margin-bottom: 14px; font-size: clamp(1.15rem, calc(var(--h) * .03), 1.5rem); }
+  html.pm-activo .escuelas p, html.pm-activo .ce-ideas li, html.pm-activo .ce-circular li { font-size: clamp(.8rem, calc(var(--h) * .0138), .92rem); line-height: 1.42; }
+  html.pm-activo .ce-calc-panel { padding: 14px 14px; }
+  html.pm-activo .ce-medida { padding: 14px 0; }
+  html.pm-activo .ce-medida-cifra { font-size: clamp(2.2rem, calc(var(--h) * .06), 3.2rem); }
+  html.pm-activo .ce-horario { margin-top: 16px; }
+  html.pm-activo .ce-horario li { padding: 10px; }
+  html.pm-activo .ce-circular-seccion { padding: 24px 14px; }
+  html.pm-activo .ce-fin { padding: 24px 0; }
+}
+
+/* Empresas en el móvil (js/app.js, DIAPOSITIVAS.empresas): cada sección del alto que hay (--h), con su contenido en medio.
+   La sala: el ventanal con la ciudad arriba, la pizarra blanca y la mesa de la reunión abajo. */
+@media (max-width: 700px) {
+  html.pm-activo .empresas { --h: var(--pm-alto, 674px); }
+  html.pm-activo .empresas > section { box-sizing: border-box; min-height: calc(var(--h) - 14px); display: flex; flex-direction: column; justify-content: center; margin-top: 0; margin-bottom: 0; }
+  html.pm-activo .of-sala { justify-content: flex-start; }
+  html.pm-activo .of-ventanal { flex: none; height: clamp(110px, calc(var(--h) * .25), 200px); margin-bottom: 14px; }
+  html.pm-activo .of-pizarra { padding: 14px 16px 22px; }
+  html.pm-activo .of-pizarra h1 { margin: 4px 0 6px; font-size: clamp(1.4rem, calc(var(--h) * .042), 1.9rem); }
+  html.pm-activo .of-mesa-escena { margin-top: auto; }
+  html.pm-activo .of-sala:has(.of-pizarra.pm-oculto) .of-ventanal { flex: 1; max-height: none; height: auto; }
+  html.pm-activo .empresas p, html.pm-activo .empresas li { font-size: clamp(.8rem, calc(var(--h) * .0138), .92rem); line-height: 1.42; }
+  html.pm-activo .of-titulo-seccion { margin-bottom: 14px; font-size: clamp(1.15rem, calc(var(--h) * .03), 1.5rem); }
+  html.pm-activo .of-calc { padding: 14px; }
+  html.pm-activo .of-resultado { grid-template-columns: 1fr 1fr; gap: 10px; }
+  html.pm-activo .of-plantilla { justify-content: space-between; padding-top: 30px; }
+  /* las credenciales con su cinta más corta, la mesa del configurador más baja y los pasos en fila (número y texto) */
+  html.pm-activo .of-credenciales-seccion, html.pm-activo .of-sectores, html.pm-activo .of-proceso, html.pm-activo .of-equipo { padding-top: 14px; padding-bottom: 14px; }
+  html.pm-activo .of-credenciales { gap: clamp(30px, calc(var(--h) * .06), 44px); padding-top: clamp(30px, calc(var(--h) * .06), 44px); }
+  html.pm-activo .of-cinta { height: clamp(30px, calc(var(--h) * .06), 44px); }
+  html.pm-activo .of-credencial-cabecera { padding: 12px 14px 8px; }
+  html.pm-activo .of-credencial-precio { margin: 8px 14px 6px; }
+  html.pm-activo .of-credencial ul { padding-bottom: 12px; }
+  html.pm-activo .of-equipo { gap: 14px; }
+  html.pm-activo .of-mesa-grande { padding-top: 8px; }
+  html.pm-activo .of-sector { min-height: 0; padding-top: clamp(6px, calc(var(--h) * .014), 12px); padding-bottom: clamp(6px, calc(var(--h) * .014), 12px); }
+  html.pm-activo .of-sectores-lista { gap: clamp(6px, calc(var(--h) * .014), 12px); }
+  html.pm-activo .of-muestra { padding: 14px; }
+  html.pm-activo .of-muestra h3 { margin: 6px 0 10px; }
+  html.pm-activo .of-muestra li { padding: 7px 10px; }
+  html.pm-activo .of-pasos { gap: clamp(6px, calc(var(--h) * .014), 12px); padding: 14px; }
+  html.pm-activo .of-pasos li { flex-direction: row; align-items: center; gap: 12px; padding: clamp(8px, calc(var(--h) * .018), 14px) 12px; }
+}
+
+/* La tienda en el móvil (js/app.js, DIAPOSITIVAS.tienda): la fachada entera (el letrero, el toldo y la puerta abierta con
+   la tendera, que en la web estrecha no cabía), el escaparate de libros, los estantes y el mostrador, cada uno del alto
+   que hay (--h). */
+@media (max-width: 700px) {
+  html.pm-activo .tienda { --h: var(--pm-alto, 674px); }
+  html.pm-activo .tn-fachada { box-sizing: border-box; min-height: calc(var(--h) + 6px); display: flex; flex-direction: column; padding-top: 14px; }
+  html.pm-activo .tn-edificio { flex: 1; display: flex; flex-direction: column; }
+  html.pm-activo .tn-planta { flex: 1; padding-top: 10px; }
+  html.pm-activo .tn-puerta { display: flex; min-height: 0; height: auto; }
+  html.pm-activo .tn-interior, html.pm-activo .tn-mostrador { box-sizing: border-box; min-height: calc(var(--h) - 14px); display: flex; flex-direction: column; justify-content: center; }
+  /* el letrero y la tendera, según el alto; el escaparate llena la planta con sus libros o con lo que se elige */
+  html.pm-activo .tn-letrero { padding: clamp(10px, calc(var(--h) * .025), 16px) 14px 34px; }
+  html.pm-activo .tn-letrero h1 { font-size: clamp(1.45rem, calc(var(--h) * .045), 2.1rem); }
+  html.pm-activo .tn-letrero p { font-size: clamp(.8rem, calc(var(--h) * .0145), .95rem); line-height: 1.4; }
+  html.pm-activo .tn-puerta .tutora-lienzo { width: clamp(72px, calc(var(--h) * .17), 120px); height: clamp(96px, calc(var(--h) * .227), 160px); }
+  html.pm-activo .tn-abierto { top: clamp(14px, calc(var(--h) * .05), 60px); }
+  html.pm-activo .tn-escaparate { display: flex; flex-direction: column; justify-content: center; }
+  html.pm-activo .tn-libros { gap: clamp(10px, calc(var(--h) * .03), 22px) 10px; }
+  html.pm-activo .tn-producto-foto { height: clamp(92px, calc(var(--h) * .17), 130px); }
+  html.pm-activo .tn-rejilla { gap: 30px 12px; }
+  html.pm-activo .tn-interior { padding: clamp(12px, calc(var(--h) * .04), 40px) 12px; }
+  html.pm-activo .tn-interior-cabecera h2 { font-size: clamp(1.25rem, calc(var(--h) * .036), 1.6rem); }
+  html.pm-activo .tn-filtros { gap: 18px 10px; }
+  html.pm-activo .tn-herramientas { margin: clamp(12px, calc(var(--h) * .03), 22px) 0 0; }
+  html.pm-activo .tn-edificio { padding-top: clamp(8px, calc(var(--h) * .02), 18px); }
+  html.pm-activo .tn-escaparate { padding: 12px; }
+  html.pm-activo .tn-libro-config { gap: 8px 12px; padding: 12px; }
+}
+
+/* Contacto en el móvil (js/app.js, DIAPOSITIVAS.contacto): la escena del alto que hay (--h), con la carta en medio; la
+   ventana a la calle, más baja según el alto. */
+@media (max-width: 700px) {
+  html.pm-activo .correo-paglot { --h: var(--pm-alto, 674px); }
+  html.pm-activo .ct-escena { box-sizing: border-box; min-height: calc(var(--h) - 14px); align-content: center; padding-top: 12px; }
+  html.pm-activo .ct-lado { margin-bottom: 18px; }
+  html.pm-activo .ct-ventana { height: clamp(120px, calc(var(--h) * .24), 250px); }
+  html.pm-activo .ct-sitio-carta { margin-top: clamp(64px, calc(var(--h) * .13), 90px); padding-bottom: 14px; } /* la escritora asoma por encima */
+  html.pm-activo .ct-carta { padding-top: 18px; padding-bottom: 16px; }
+  html.pm-activo .ct-cabecera h1 { font-size: clamp(1.35rem, calc(var(--h) * .04), 1.9rem); }
+  html.pm-activo .ct-carta p { font-size: clamp(.8rem, calc(var(--h) * .0138), .92rem); }
+  html.pm-activo .ct-sellos { gap: clamp(8px, calc(var(--h) * .016), 12px); }
+  html.pm-activo .ct-linea textarea { min-height: 0; height: clamp(100px, calc(var(--h) * .19), 196px); }
+  html.pm-activo .ct-pie-carta, html.pm-activo .ct-envio { margin-top: 12px; }
+  html.pm-activo .ct-escena { padding-top: 6px; }
+  html.pm-activo .ct-pie-carta { grid-template-columns: 92px minmax(0, 1fr); gap: 12px; }
+  html.pm-activo .ct-matasellos { width: 92px; height: 92px; }
+  /* en la primera, la escritora se asoma por delante del alféizar en vez de pedir sitio */
+  html.pm-activo .ct-lado:not(.pm-oculto) + .ct-sitio-carta { margin-top: 36px; }
+  html.pm-activo .ct-sello label { min-height: clamp(64px, calc(var(--h) * .14), 92px); padding: 6px 4px; gap: 3px; }
+  html.pm-activo .ct-sello-icono { width: clamp(24px, calc(var(--h) * .052), 36px); }
+}
+/* sola en su diapositiva (móvil bajito), la ventana ocupa todo */
+@media (max-width: 700px) and (max-height: 760px) {
+  html.pm-activo .ct-carta { padding: 12px 12px 12px 32px; }
+  html.pm-activo .ct-sitio-carta { padding-bottom: 6px; }
+  html.pm-activo .ct-linea { gap: 2px; }
+  html.pm-activo .ct-lineas { gap: 8px; }
+  html.pm-activo .ct-lado:has(+ .ct-sitio-carta .ct-cabecera.pm-oculto) .ct-ventana { height: calc(var(--h) - 80px); }
+}

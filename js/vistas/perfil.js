@@ -3,7 +3,7 @@
 import { el, poner, enLinea } from '../dom.js';
 import { t, locale, IDIOMAS_VISIBLES, idioma, cambiarIdioma } from '../i18n.js';
 import {
-  nombre, cambiarNombre, resumenLeccion, tarjetas, racha, actividad, reiniciarProgreso,
+  nombre, cambiarNombre, resumenLeccion, tarjetas, racha, mejorRacha, actividad, reiniciarProgreso,
   copiaCompleta, importarCopia,
 } from '../progress.js';
 import { etapa } from '../srs.js';
@@ -180,21 +180,6 @@ function seccionCuenta(repintar) {
 // ----- La actividad de las últimas 12 semanas, como un calendario de cuadritos -----
 const claveDia = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
-/** La racha más larga de toda la historia (días seguidos con algo hecho). */
-function mejorRacha(dias) {
-  const fechas = Object.keys(dias).sort();
-  let mejor = 0;
-  let seguidos = 0;
-  let anterior = null;
-  for (const f of fechas) {
-    const d = new Date(`${f}T12:00:00`);
-    seguidos = anterior && Math.round((d - anterior) / 86400000) === 1 ? seguidos + 1 : 1;
-    mejor = Math.max(mejor, seguidos);
-    anterior = d;
-  }
-  return mejor;
-}
-
 function seccionActividad() {
   const dias = actividad() ?? {};
   const SEMANAS = 12;
@@ -233,7 +218,7 @@ function seccionActividad() {
     el('h2', {}, t('perfil.actividad')),
     el('div', { class: 'ac-datos' },
       el('span', {}, '🔥 ', t('perfil.rachaAhora', { n: racha() })),
-      el('span', {}, '🏆 ', t('perfil.rachaMejor', { n: mejorRacha(dias) })),
+      el('span', {}, '🏆 ', t('perfil.rachaMejor', { n: mejorRacha() })),
       el('span', {}, '📅 ', t('perfil.diasActivos', { n: activos }))),
     el('div', { class: 'ac-calendario', style: `--semanas:${SEMANAS}` }, celdas),
     el('p', { class: 'ac-leyenda aprox' }, t('perfil.menos'), ' ',

@@ -404,17 +404,41 @@ export function actividad() {
   return datos.actividad;
 }
 
-/** Días seguidos con actividad, contando hacia atrás desde hoy (o ayer). */
+// Un día sin estudiar no rompe la racha si en los 7 anteriores no se gastó otro: es el día de descanso de la semana
+// (se salta sin sumar). Dos días seguidos sin nada sí la apagan.
+const DESCANSO = 7;
+const claveDeDia = x => `${x.getFullYear()}-${String(x.getMonth() + 1).padStart(2, '0')}-${String(x.getDate()).padStart(2, '0')}`;
+const conActividad = d => Boolean(datos.actividad[claveDeDia(d)]);
+const otroDia = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+
+/** Días seguidos con actividad, contando hacia atrás desde hoy (o ayer), con su día de descanso por semana. */
 export function racha() {
   let dias = 0;
-  const d = new Date();
-  const clave = x => `${x.getFullYear()}-${String(x.getMonth() + 1).padStart(2, '0')}-${String(x.getDate()).padStart(2, '0')}`;
-  if (!datos.actividad[clave(d)]) d.setDate(d.getDate() - 1);
-  while (datos.actividad[clave(d)]) {
-    dias += 1;
-    d.setDate(d.getDate() - 1);
+  let descanso = -DESCANSO; // el último día de descanso gastado, en días hacia atrás
+  let d = new Date();
+  if (!conActividad(d)) d = otroDia(d, -1);
+  for (let atras = 0; atras < 3660; atras++, d = otroDia(d, -1)) {
+    if (conActividad(d)) dias += 1;
+    else if (dias && atras - descanso >= DESCANSO && conActividad(otroDia(d, -1))) descanso = atras;
+    else break;
   }
   return dias;
+}
+
+/** La racha más larga de toda la historia, con la misma regla del día de descanso. */
+export function mejorRacha() {
+  const fechas = Object.keys(datos.actividad).sort();
+  if (!fechas.length) return 0;
+  let mejor = 0;
+  let seguidos = 0;
+  let descanso = -DESCANSO;
+  const fin = new Date(`${fechas[fechas.length - 1]}T12:00:00`);
+  for (let d = new Date(`${fechas[0]}T12:00:00`), n = 0; d <= fin; d = otroDia(d, 1), n++) {
+    if (conActividad(d)) mejor = Math.max(mejor, ++seguidos);
+    else if (seguidos && n - descanso >= DESCANSO && conActividad(otroDia(d, 1))) descanso = n;
+    else seguidos = 0;
+  }
+  return mejor;
 }
 
 export function actividadDeHoy() {
