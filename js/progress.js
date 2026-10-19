@@ -441,6 +441,14 @@ export function mejorRacha() {
   return mejor;
 }
 
+/** La lección desde la que empezar según la prueba de nivel (vistas/prueba.js), o null si no se hizo o salió «desde cero». */
+export function inicioDePrueba() {
+  try { return localStorage.getItem(clave('prueba')); } catch { return null; }
+}
+export function guardarInicioDePrueba(id) {
+  try { if (id) localStorage.setItem(clave('prueba'), id); else localStorage.removeItem(clave('prueba')); } catch { /* sin almacenamiento */ }
+}
+
 export function actividadDeHoy() {
   return datos.actividad[hoy()] ?? { ejercicios: 0, repasos: 0 };
 }
@@ -458,7 +466,7 @@ export function reiniciarProgreso({ vaciarCuaderno = false } = {}) {
   }
   datos = { ...vacio(), reiniciado: ahora, perfil: datos.perfil, cuaderno };
   // también lo que guardan aparte el modo juego y el camino (los logros ganados se quedan)
-  for (const nombre of ['juego2', 'estrellas', 'cofres', 'dia-completo', 'camino-abiertos']) {
+  for (const nombre of ['juego2', 'estrellas', 'cofres', 'dia-completo', 'camino-abiertos', 'prueba']) {
     try { localStorage.removeItem(clave(nombre)); } catch { /* sin almacenamiento */ }
   }
   guardar({ tarjetas: 'todas' });

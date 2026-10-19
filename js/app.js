@@ -650,6 +650,11 @@ async function navegar({ cambioDeIdioma = false } = {}) {
     if (contenido.sinConexion && !contenido.resultados.length) avisoSinConexion();
     else limpiarVista = pintarLecciones(app, contenido);
     avisoBeta();
+  } else if (seccion === 'prueba') {
+    titulo(t('prueba.titulo'));
+    const pintarPrueba = await vista('prueba', 'pintarPrueba');
+    if (estePase !== pase) return;
+    limpiarVista = pintarPrueba(app, { ...contenido, leccionCompleta });
   } else if (seccion === 'practica') {
     titulo(t('menu.practica'));
     const pintarPractica = await vista('practica', 'pintarPractica');

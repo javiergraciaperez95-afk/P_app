@@ -6,7 +6,7 @@
 
 import { el, poner } from '../dom.js';
 import { t, tr } from '../i18n.js';
-import { resumenLeccion, hayProgreso, nombre, actividadDeHoy, racha } from '../progress.js';
+import { resumenLeccion, hayProgreso, nombre, actividadDeHoy, racha, inicioDePrueba } from '../progress.js';
 import { pendientesDeHoy } from '../cabecera.js';
 import { decir } from '../tutor.js';
 import { sonar } from '../sonidos.js';
@@ -105,8 +105,10 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
   const validas = grupos.flatMap(g => g.lecciones.filter(r => r.leccion));
   const estados = new Map(validas.map(r => [r.leccion.id, estadoDe(r.leccion)]));
   const terminadas = validas.filter(r => estados.get(r.leccion.id).estado === 'terminada').length;
-  // La lección que toca: la primera sin terminar, en el orden del curso.
-  const toca = validas.find(r => estados.get(r.leccion.id).estado !== 'terminada')?.leccion ?? null;
+  // La lección que toca: la primera sin terminar, en el orden del curso (desde donde dijo la prueba de nivel, si se hizo).
+  const sinTerminar = r => estados.get(r.leccion.id).estado !== 'terminada';
+  const desde = Math.max(0, validas.findIndex(r => r.leccion.id === inicioDePrueba()));
+  const toca = (validas.slice(desde).find(sinTerminar) ?? validas.find(sinTerminar))?.leccion ?? null;
   const capituloToca = toca ? String(toca.capitulo ?? 'sin') : null;
   // la lección que se acaba de terminar (la pone el modo juego): su parada lo celebra una vez
   let recien = null;
@@ -418,7 +420,7 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
   const lado = el('aside', { class: 'cm-lado' },
     cabecera,
     misiones,
-    el('div', { class: 'cm-extras' }, avisoCofre(), tarjetaRepaso(), enlaceReto(), tarjetaPalabra(apagar), tarjetaLogros()));
+    el('div', { class: 'cm-extras' }, tarjetaPrueba(terminadas), avisoCofre(), tarjetaRepaso(), enlaceReto(), tarjetaPalabra(apagar), tarjetaLogros()));
 
   poner(app, el('div', { class: 'cm-pantalla' },
     lado,
@@ -560,6 +562,15 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
 // ---------------------------------------------------------------------------
 
 /** Lo que toca repasar hoy, con su botón. */
+/** La prueba de nivel, mientras se está empezando (menos de tres lecciones terminadas). */
+function tarjetaPrueba(terminadas) {
+  if (terminadas >= 3) return null;
+  return el('a', { class: 'cm-extra cm-extra-prueba', href: '#/prueba', 'data-sonido': 'pagina' },
+    el('span', { class: 'cm-extra-icono', 'aria-hidden': 'true' }, '🧭'),
+    el('span', { class: 'cm-extra-titulo' }, t('prueba.anuncio')),
+    el('span', { class: 'cm-extra-texto' }, t('prueba.anuncioTexto')));
+}
+
 function tarjetaRepaso() {
   const n = pendientesDeHoy();
   const total = tarjetas().length;
