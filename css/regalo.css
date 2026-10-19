@@ -378,7 +378,12 @@
 @media (max-width: 700px) {
   html.pm-activo .rg-taller { padding-top: clamp(14px, calc(var(--pm-alto) * .03), 54px); }
   html.pm-activo .rg-titulo { margin-bottom: clamp(12px, calc(var(--pm-alto) * .03), 20px); }
-  html.pm-activo .rg-mostrador { height: clamp(70px, calc(var(--pm-alto) * .2), 150px); }
+  html.pm-activo .rg-mostrador { height: clamp(70px, calc(var(--pm-alto) * .17), 150px); }
+  /* la escena, más baja en los móviles medianos (360×780, 375×812): con el título encima no cabía y se encogía todo */
+  html.pm-activo .rg-escena { height: clamp(262px, calc(var(--pm-alto) * 1.1 - 414px), 330px); }
+  /* en un móvil bajito el título va solo (en medio de la pared) y la escena sola, con su alto de siempre */
+  html.pm-activo .rg-taller:has(> .rg-titulo.pm-oculto) .rg-escena { height: 330px; }
+  html.pm-activo .rg-taller:has(> .rg-titulo:not(.pm-oculto)):has(> .rg-escena.pm-oculto) { min-height: var(--pm-alto); align-content: center; }
   html.pm-activo .rg-pedido { margin: clamp(8px, calc(var(--pm-alto) * .02), 26px) 0 clamp(10px, calc(var(--pm-alto) * .03), 36px); padding: clamp(14px, calc(var(--pm-alto) * .04), 26px) 10px clamp(8px, calc(var(--pm-alto) * .02), 14px); }
   html.pm-activo .rg-hoja { padding: clamp(10px, calc(var(--pm-alto) * .025), 20px) clamp(10px, calc(var(--pm-alto) * .03), 20px) clamp(10px, calc(var(--pm-alto) * .025), 18px); }
   html.pm-activo .rg-hoja h2 { margin-bottom: clamp(6px, calc(var(--pm-alto) * .017), 14px); font-size: clamp(1.05rem, calc(var(--pm-alto) * .027), 1.3rem); }
@@ -398,7 +403,8 @@
 /* Las postales tienen un alto mínimo: la hoja del pedido no comparte página con la primera, y dos postales caben (o
    no) en una según la pantalla. Cada tamaño de móvil tiene su alto. */
 @media (max-width: 700px) {
-  html.pm-activo .rg-postal { min-height: 238px; }
+  /* dos por diapositiva: más bajas en los móviles medianos (360×780, 375×812), que si no se encogían */
+  html.pm-activo .rg-postal { min-height: clamp(195px, calc(var(--pm-alto) * .5 - 100px), 238px); }
 }
 @media (max-width: 700px) and (max-height: 700px) {
   /* la hoja del pedido sola en su diapositiva, también con la cabecera del curso (más alta) */

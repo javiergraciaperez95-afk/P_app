@@ -375,3 +375,30 @@
   html.pm-activo .rc-instrucciones p { font-size: .78rem; line-height: 1.35; }
   html.pm-activo .rc-ranura { min-height: clamp(34px, calc(var(--pm-alto) * .08), 44px); margin: clamp(6px, calc(var(--pm-alto) * .015), 10px) 10px 4px; }
 }
+/* En el móvil, la sala llena la diapositiva y lo que se ve va en medio (dos huecos que crecen, arriba y abajo). En la
+   primera (el letrero solo, sin máquinas) la moqueta asoma abajo con el reflejo de los neones, para que no quede media
+   pantalla de pared vacía; la moqueta solo ocupa lo que sobra (se encoge antes de empujar nada a otra diapositiva). */
+@media (max-width: 700px) {
+  html.pm-activo .rc-sala { display: flex; flex-direction: column; min-height: var(--pm-alto); }
+  html.pm-activo .rc-sala::before, html.pm-activo .rc-sala::after { content: ""; flex: 1 1 0; }
+  html.pm-activo .rc-sala:has(> .rc-fila.pm-oculto) { padding-bottom: 0; }
+  html.pm-activo .rc-sala:has(> .rc-fila.pm-oculto)::before { flex-basis: 0; }
+  html.pm-activo .rc-sala:has(> .rc-fila.pm-oculto)::after {
+    flex: 0 1 calc(var(--pm-alto) * .2);
+    min-height: 0;
+    margin: 14px -10px 0;
+    background-color: var(--moqueta);
+    background-image:
+      linear-gradient(#0f0a18 0 4px, transparent 4px),
+      linear-gradient(transparent 4px, rgba(238, 111, 134, .28) 4px, transparent 40%),
+      conic-gradient(at 6px 6px, transparent 75%, var(--moqueta-a) 0),
+      conic-gradient(at 6px 6px, transparent 75%, var(--moqueta-b) 0),
+      conic-gradient(at 4px 10px, transparent 75%, var(--moqueta-c) 0),
+      linear-gradient(45deg, transparent 46%, #3d2d5c 46% 54%, transparent 54%);
+    background-size: 100% 100%, 100% 100%, 64px 64px, 64px 64px, 64px 64px, 32px 32px;
+    background-position: 0 0, 0 0, 8px 18px, 40px 46px, 22px 50px, 0 0;
+    background-repeat: no-repeat, no-repeat, repeat, repeat, repeat, repeat;
+  }
+  html.pm-activo .rc-sala:has(> .rc-fila.pm-oculto) > .rc-cartel { margin-top: auto; }
+  html.pm-activo .rc-sala:has(> .rc-fila.pm-oculto) > .rc-nota { margin-bottom: auto; }
+}

@@ -584,8 +584,15 @@ html.texto-grande { font-size: 112.5%; }
 @media (max-width: 700px) {
   html.pm-activo .correo-paglot { --h: var(--pm-alto, 674px); }
   html.pm-activo .ct-escena { box-sizing: border-box; min-height: calc(var(--h) - 14px); align-content: center; padding-top: 12px; }
-  html.pm-activo .ct-lado { margin-bottom: 18px; }
-  html.pm-activo .ct-ventana { height: clamp(120px, calc(var(--h) * .24), 250px); }
+  html.pm-activo .ct-lado { margin-bottom: 10px; }
+  /* la calle, más pequeña (con transform, desde el pie) para que por encima de las casas se vea el cielo con la luna:
+     a lo ancho de la ventana las casas la llenaban entera */
+  html.pm-activo .ct-ventana { height: clamp(120px, calc(var(--h) * .26), 250px); }
+  html.pm-activo .ct-casas { left: -30%; width: 160%; bottom: 24px; transform: scale(.625); transform-origin: 50% 100%; }
+  html.pm-activo .ct-acera { height: 26px; }
+  html.pm-activo .ct-cartera { bottom: 16px; }
+  html.pm-activo .ct-buzon { bottom: 8px; width: 54px; }
+  html.pm-activo .ct-lineas { margin-bottom: 12px; }
   html.pm-activo .ct-sitio-carta { margin-top: clamp(64px, calc(var(--h) * .13), 90px); padding-bottom: 14px; } /* la escritora asoma por encima */
   html.pm-activo .ct-carta { padding-top: 18px; padding-bottom: 16px; }
   html.pm-activo .ct-cabecera h1 { font-size: clamp(1.35rem, calc(var(--h) * .04), 1.9rem); }

@@ -86,8 +86,9 @@ export function pintarContacto(root) {
     const entrada = el('input', { id, ...atributos });
     return { entrada, nodo: el('div', { class: 'ct-linea' }, el('label', { for: id }, texto), entrada) };
   }
-  const usuario = linea(t('comunidad.paglotUsername'), { name: 'usuario', autocomplete: 'username', required: true, maxlength: 60 });
-  const correo = linea(t('comunidad.emailRegisteredWithPaglot'), { name: 'correo', type: 'email', autocomplete: 'email', inputmode: 'email', required: true, maxlength: 254 });
+  // sin cuentas con nombre de usuario: el nombre para saludar y el correo para contestar
+  const usuario = linea(t('comunidad.tuNombre'), { name: 'usuario', autocomplete: 'name', required: true, maxlength: 60 });
+  const correo = linea(t('comunidad.tuCorreo'), { name: 'correo', type: 'email', autocomplete: 'email', inputmode: 'email', required: true, maxlength: 254 });
   const sellos = ASUNTOS.map(([valor, clave, color], i) => {
     const id = `contacto-asunto-${valor}`;
     return el('div', { class: `ct-sello ct-sello-${color}` },

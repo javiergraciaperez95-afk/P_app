@@ -195,8 +195,9 @@ const DIAPOSITIVAS = {
   'regala-max': () => {
     const $ = sel => app.querySelector(sel);
     const postales = [...app.querySelectorAll('.rg-postal')];
-    if (altoDePagina() >= 600) return [[$('.rg-titulo'), $('.rg-escena')], $('.rg-pedido'), postales.slice(0, 2), postales.slice(2)];
-    return [$('.rg-titulo'), $('.rg-escena'), $('.rg-pedido'), ...postales];
+    // el mostrador va con la escena: sin decirlo, se quedaba a la vista en todas y tapaba el título (sube 60 px)
+    if (altoDePagina() >= 600) return [[$('.rg-titulo'), $('.rg-escena'), $('.rg-mostrador')], $('.rg-pedido'), postales.slice(0, 2), postales.slice(2)];
+    return [$('.rg-titulo'), [$('.rg-escena'), $('.rg-mostrador')], $('.rg-pedido'), ...postales];
   },
   // FAQ: la placa con el fichero de cajones, y la mesa de lectura con sus fichas y el final; en un móvil bajito, cada
   // pieza en la suya. Fijas: repartidas solas, cambiaban de una vez a otra (y con el inglés no cabían).
