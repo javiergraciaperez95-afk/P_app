@@ -146,7 +146,11 @@ export function elegirIdiomaContenido(dato) {
   };
   return andar(dato);
 }
-const leerContenido = texto => elegirIdiomaContenido(JSON.parse(texto.replace(/^﻿/, '')));
+// Algunos JSON traen el salto de línea escrito como «\n» con letras (en el JSON, «\\n») en vez de uno de verdad: todas
+// las lecciones del curso de español (19-10-2026). Se arregla al leer, para que no salga en pantalla en ningún modo
+// (libro, juego, tutora); los JSON se rehacen en su fase.
+const sinSaltosEscritos = texto => texto.replace(/^﻿/, '').replace(/(?<!\\)\\\\n/g, '\\n');
+const leerContenido = texto => elegirIdiomaContenido(JSON.parse(sinSaltosEscritos(texto)));
 
 // Versión del despliegue (la pone el workflow en index.html). Evita que la caché sirva JSON viejos.
 const VERSION = new URL(import.meta.url).searchParams.get('v');
@@ -385,7 +389,7 @@ async function leerCatalogo(id, clave) {
   let datos = {};
   try {
     const respuesta = await fetch(conVersion(archivo), { cache: 'no-cache' });
-    if (respuesta.ok) datos = JSON.parse((await respuesta.text()).replace(/^﻿/, ''));
+    if (respuesta.ok) datos = JSON.parse(sinSaltosEscritos(await respuesta.text()));
   } catch {
     datos = {};
   }

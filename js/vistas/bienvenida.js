@@ -18,7 +18,7 @@ import { crearSprite } from '../tutor-sprite.js';
 import { sonar, pitidoVoz, pronunciar, hayVoz } from '../sonidos.js';
 import { nombre, cambiarNombre, estaEnCuaderno, guardarEnCuaderno } from '../progress.js';
 import { analizarFrase } from './leccion.js';
-import { sol, luna, nubes, universidad, dibujoPixel, conContorno } from './inicio-decorado.js';
+import { sol, luna, nubes, universidad, dibujoPixel, conContorno, conHalo } from './inicio-decorado.js';
 import { lienzo } from './elenco.js';
 
 const CLAVE_VISTA = 'idiomas-bienvenida-vista';
@@ -258,8 +258,10 @@ export function pintarBienvenida(contenedor, { resultados }) {
   const camino = el('div', { class: 'bv-camino' });
   camino.style.clipPath = recorteCamino();
   const decorado = (rejilla, clase, x, y, escala) => {
-    const nodo = el('span', { class: `bv-cosa ${clase}`, style: `--x:${x};--y:${y};--e:${escala}` }, dibujo(rejilla, 'bv-cosa-dibujo'));
-    return nodo;
+    const figura = dibujo(rejilla, 'bv-cosa-dibujo');
+    // las farolas alumbran de noche (conHalo: solo con el tema oscuro, sin animación)
+    if (rejilla === FAROLA) conHalo(figura, ['bv-y'], { radio: 3 });
+    return el('span', { class: `bv-cosa ${clase}`, style: `--x:${x};--y:${y};--e:${escala}` }, figura);
   };
   const paisaje = el('div', { class: 'bv-paisaje', 'aria-hidden': 'true' },
     el('div', { class: 'inicio-cielo' }, sol(), luna(), nubes()),

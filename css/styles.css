@@ -1762,8 +1762,29 @@ body.en-inicio main { max-width: 1040px; }
 .perdida h1 { margin: 6px 0 0; }
 .perdida-texto { margin: 0; color: var(--texto-suave); }
 /* la tutora va y viene buscando */
-.perdida-busca { width: min(100%, 420px); padding-top: 64px; border-bottom: 4px solid var(--linea); margin-bottom: 14px; }
-.perdida-paseo { width: 96px; animation: buscar 6s steps(40) infinite alternate; }
+/* el camino: hierba a escalones por arriba, tierra con piedrecitas y su borde oscuro; el poste de señales, en medio */
+.perdida-busca {
+  position: relative;
+  width: min(100%, 420px);
+  padding: 64px 0 20px;
+  margin-bottom: 14px;
+  background:
+    conic-gradient(at 3px 3px, transparent 75%, #8a6a44 0) 6px calc(100% - 4px) / 23px 9px repeat-x,
+    conic-gradient(at 3px 3px, transparent 75%, #d2ad7e 0) 15px calc(100% - 9px) / 31px 9px repeat-x,
+    linear-gradient(transparent calc(100% - 24px), #241a2e calc(100% - 24px) calc(100% - 21px), #5fa86a calc(100% - 21px) calc(100% - 16px),
+      #3f7d4f calc(100% - 16px) calc(100% - 14px), #b48a5a calc(100% - 14px));
+}
+.perdida-busca::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 24px;
+  height: 6px;
+  background: conic-gradient(at 3px 3px, #5fa86a 75%, transparent 0) 4px 0 / 26px 6px repeat-x, conic-gradient(at 3px 3px, #78d693 75%, transparent 0) 17px 3px / 39px 3px repeat-x;
+}
+.perdida-poste { position: absolute; left: 50%; bottom: 17px; width: 108px; height: auto; transform: translateX(-50%); filter: drop-shadow(4px 4px 0 rgba(0, 0, 0, .25)); }
+.perdida-paseo { position: relative; z-index: 1; width: 96px; animation: buscar 6s steps(40) infinite alternate; }
 .perdida-paseo .sobre-salto { animation: paso .3s infinite; }
 @keyframes buscar { from { transform: translateX(0); } to { transform: translateX(calc(min(100vw - 32px, 420px) - 96px)); } }
 @media (prefers-reduced-motion: reduce) {
@@ -1777,6 +1798,8 @@ body.en-inicio main { max-width: 1040px; }
   .perdida-numero img { width: 56px; }
   .perdida h1 { font-size: 1.4rem; }
   .perdida-busca { padding-top: 50px; margin-bottom: 8px; }
+  /* en medio de la pantalla, no arriba con media pantalla vacía debajo */
+  .perdida { min-height: calc(100dvh - 160px); justify-content: center; }
 }
 
 /* ===== Precios: en css/precios.css ===== */
@@ -1919,3 +1942,27 @@ html.modo-calma .sin-terminar { animation: none; }
   animation: destellar .36s steps(4) forwards;
 }
 @keyframes destellar { 0% { opacity: 1; transform: scale(.5); } 40% { opacity: 1; transform: scale(2); } 100% { opacity: 0; transform: scale(1.2); } }
+/* ===== La lección en modo libro: cada bloque lleva su marcapáginas de tela asomando por arriba, de un color por clase
+   de bloque (la etiqueta del bloque, del mismo color), como las cintas de un libro de texto. El pico, a escalones. ===== */
+body.en-leccion #app > .caja { --cinta: var(--texto-suave); position: relative; }
+body.en-leccion #app > .caja.explicacion, body.en-leccion #app > .caja.final-leccion { --cinta: #f4c84a; }
+body.en-leccion #app > .caja.gramatica { --cinta: #8fb4ff; }
+body.en-leccion #app > .caja.dialogo { --cinta: #6fd0e6; }
+body.en-leccion #app > .caja:has(> .vocabulario) { --cinta: #78d693; }
+body.en-leccion #app > .caja.ejercicio { --cinta: #ee6f86; }
+body.en-leccion #app > .caja > .etiqueta-bloque { color: #2b1d1a; background: var(--cinta); box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .18); }
+body.en-leccion #app > .caja::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--px) * -1 - 6px);
+  right: 22px;
+  width: 16px;
+  height: 36px;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, .3) 0 3px, transparent 3px 12px, rgba(0, 0, 0, .2) 12px),
+    linear-gradient(rgba(0, 0, 0, .25) 0 6px, transparent 6px),
+    var(--cinta);
+  clip-path: polygon(0 0, 16px 0, 16px 100%, 12px 100%, 12px calc(100% - 3px), 10px calc(100% - 3px), 10px calc(100% - 6px),
+    6px calc(100% - 6px), 6px calc(100% - 3px), 4px calc(100% - 3px), 4px 100%, 0 100%);
+}

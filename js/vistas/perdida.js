@@ -1,5 +1,6 @@
 // Página perdida: una dirección que no existe (o una lección que no se puede abrir).
-// Una tutora confundida la busca de un lado a otro. Cabe en la pantalla sin desplazar.
+// Una tutora confundida la busca de un lado a otro, por un camino de tierra con un poste de señales en medio (cada
+// flecha a un sitio). Cabe en la pantalla sin desplazar.
 
 import { el, poner, alAzar } from '../dom.js';
 import { t } from '../i18n.js';
@@ -7,6 +8,7 @@ import { CURSOS } from '../cursos.js';
 import { curso, hayCurso } from '../curso.js';
 import { dibujoDe } from '../tutor-sprite.js';
 import { sonar } from '../sonidos.js';
+import { ilustracion } from './carteles.js';
 
 /** Pinta la página. «detalle» es un texto opcional (por ejemplo, qué lección no se abre). Devuelve la función que la apaga. */
 export function pintarPerdida(contenedor, detalle = '') {
@@ -30,12 +32,15 @@ export function pintarPerdida(contenedor, detalle = '') {
   }).catch(() => { tutora.hidden = true; });
   tutora.addEventListener('click', () => { sonar(alAzar(['saludo', 'cosquillas', 'sorpresa'])); sprite?.reaccionar('cosquillas', 900); globo.textContent = alAzar(frases); });
 
+  const poste = ilustracion('producto');
+  poste?.classList.add('perdida-poste');
+
   poner(contenedor,
     el('section', { class: 'perdida' },
       el('p', { class: 'perdida-numero', 'aria-hidden': 'true' }, '4', el('img', { src: 'assets/logo.svg', alt: '', width: 96, height: 96 }), '4'),
       el('h1', {}, t('perdida.titulo')),
       el('p', { class: 'perdida-texto' }, detalle || t('perdida.texto')),
-      el('div', { class: 'perdida-busca' }, el('div', { class: 'perdida-paseo' }, tutora)),
+      el('div', { class: 'perdida-busca' }, poste, el('div', { class: 'perdida-paseo' }, tutora)),
       el('p', { class: 'inicio-botones' },
         hayCurso && el('a', { class: 'boton boton-principal', href: '#/lecciones' }, t('menu.lecciones')),
         el('a', { class: hayCurso ? 'boton' : 'boton boton-principal', href: '#/inicio' }, t('inicio.titulo')))));
