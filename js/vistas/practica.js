@@ -9,6 +9,7 @@ import { ejerciciosFallados } from '../progress.js';
 import { decir } from '../tutor.js';
 import { sonar, hayVoz } from '../sonidos.js';
 import { LANG } from '../curso.js';
+import { conCartel } from './carteles.js';
 
 const TANDA = 10;
 
@@ -75,9 +76,9 @@ export function pintarPractica(app, { resultados, leccionCompleta }) {
 
   const nFallos = ejerciciosFallados().length;
   poner(app,
-    el('section', { class: 'intro-vista' },
+    conCartel(el('section', { class: 'intro-vista' },
       el('h1', {}, t('menu.practica')),
-      el('p', {}, t('practica.intro'))),
+      el('p', {}, t('practica.intro'))), 'practica'),
     el('div', { class: 'botonera' },
       el('button', { type: 'button', class: 'boton boton-principal con-voz', onclick: oido }, t('practica.botonOido', { n: TANDA })),
       el('button', { type: 'button', class: 'boton', onclick: fallos }, t('practica.botonFallos', { n: nFallos }))),

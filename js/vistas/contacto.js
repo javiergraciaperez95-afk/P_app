@@ -7,7 +7,7 @@
 import { el, poner } from '../dom.js';
 import { t } from '../i18n.js';
 import { sonar } from '../sonidos.js';
-import { sol, luna, dibujoPixel, conContorno } from './inicio-decorado.js';
+import { sol, luna, dibujoPixel, conContorno, conHalo } from './inicio-decorado.js';
 import { crearElenco, lienzo } from './elenco.js';
 
 // ---------------------------------------------------------------------------
@@ -68,7 +68,8 @@ const ASUNTOS = [
 export function pintarContacto(root) {
   const elenco = crearElenco();
   const { quieto, despues } = elenco;
-  const dibujo = (rejilla, clase) => dibujoPixel(rejilla, clase, 'ct');
+  // de noche las ventanas de la ciudad alumbran (conHalo: solo de noche, sin animación)
+  const dibujo = (rejilla, clase) => conHalo(dibujoPixel(rejilla, clase, 'ct'), ['ct-w'], { radio: 1.8 });
   const n = () => Math.floor(Math.random() * 7) + 2;
   let a = n();
   let b = n();

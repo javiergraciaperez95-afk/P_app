@@ -9,6 +9,7 @@ import { decir } from '../tutor.js';
 import { sonar, pronunciarSeguido, callar, ayudaVoz } from '../sonidos.js';
 import { tarjetaError } from './lecciones.js';
 import { LANG } from '../curso.js';
+import { conCartel } from './carteles.js';
 
 let contador = 0;
 let tapado = false;
@@ -140,11 +141,11 @@ export function pintarFrases(app, { categorias, avisos, error }) {
   });
 
   poner(app,
-    el('section', { class: 'intro-vista' },
+    conCartel(el('section', { class: 'intro-vista' },
       el('h1', {}, t('frases.titulo')),
       el('p', {}, t('frases.intro')),
       el('p', { class: 'aprox' }, t('frases.comoPracticar')),
-      tapar),
+      tapar), 'frases'),
     error && tarjetaError(error),
     avisos.length > 0 && el('details', { class: 'caja tarjeta-error' },
       el('summary', {}, t('comun.avisosArchivo', { archivo: 'phrases/frases.json', n: avisos.length })),

@@ -117,7 +117,14 @@
   padding: 8px 6px 8px 12px;
   aspect-ratio: 3 / 4.2;
   color: #fff;
-  background: linear-gradient(90deg, rgba(0, 0, 0, .22) 0 6px, transparent 6px), var(--tapa);
+  /* volumen a escalones (informe de arte: «las tarjetas son de color plano»): el lomo con su pliegue de luz, un brillo
+     arriba, sombra abajo y, a la derecha, el canto de las páginas */
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, .3) 0 6px, rgba(255, 255, 255, .28) 6px 8px, rgba(0, 0, 0, .1) 8px 10px, transparent 10px),
+    linear-gradient(270deg, #f3e7c9 0 3px, #d6c49e 3px 4px, rgba(0, 0, 0, .18) 4px 6px, transparent 6px),
+    linear-gradient(rgba(255, 255, 255, .2) 0 3px, transparent 3px),
+    linear-gradient(0deg, rgba(0, 0, 0, .2) 0 4px, transparent 4px),
+    var(--tapa);
   box-shadow: 0 0 0 3px var(--h-borde), 4px 6px 0 3px rgba(0, 0, 0, .2);
   overflow: hidden;
 }

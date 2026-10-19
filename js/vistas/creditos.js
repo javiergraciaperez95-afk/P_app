@@ -5,6 +5,7 @@ import { t, tr, idioma } from '../i18n.js';
 import { CURSOS } from '../cursos.js';
 import { hayCurso, nombreCurso } from '../curso.js';
 import { VOCES, OTROS } from '../creditos.js';
+import { conCartel } from './carteles.js';
 
 function bandera(c) {
   const hueco = el('span', { class: 'curso-bandera', 'aria-hidden': 'true' });
@@ -23,8 +24,7 @@ export function pintarCreditos(contenedor) {
 
   poner(contenedor,
     el('section', { class: 'creditos' },
-      el('h1', {}, t('creditos.titulo')),
-      el('p', { class: 'caja' }, t('creditos.gracias')),
+      conCartel(el('section', { class: 'intro-vista' }, el('h1', {}, t('creditos.titulo')), el('p', {}, t('creditos.gracias'))), 'creditos'),
       porCurso.length > 0 && el('h2', {}, t('creditos.voces')),
       porCurso.length > 0 && el('ul', { class: 'creditos-lista' }, porCurso.map(({ c, voces }) =>
         el('li', { class: 'caja' },

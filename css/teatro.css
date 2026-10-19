@@ -394,7 +394,9 @@ html:has(.teatro-idiomas), body:has(.teatro-idiomas) { height: 100%; min-height:
   .ti-tablas { height: 18px; }
   .ti-candilejas { top: -6px; }
   .ti-candilejas i { width: 10px; height: 8px; }
-  .ti-publico { display: none; }
+  /* el público, también en el móvil: llena el hueco de debajo del escenario con cabecitas (antes quedaba vacío) */
+  .ti-publico { height: 40px; margin-top: -6px; gap: 6px; }
+  .ti-publico i { width: 34px; height: 40px; }
 }
 /* móviles bajitos: el escenario se recoge un poco para que lo demás no tenga que encogerse tanto */
 @media (max-width: 680px) and (max-height: 760px) {
@@ -416,4 +418,29 @@ html:has(.teatro-idiomas), body:has(.teatro-idiomas) { height: 100%; min-height:
 @media (prefers-reduced-motion: reduce) {
   .ti-telon, .ti-actriz, .ti-cartel, .ti-globo, .ti-camafeo { transition: none; }
   .ti-cartel.entra > *, .ti-boton, .ti-palco-gente i, .ti-publico i { animation: none !important; }
+}
+/* la β de «beta» en las fichas pequeñas parecía un 8 (o una B) y sale en 20 de 21: era ruido. El aviso beta va en la
+   ficha grande del escenario. */
+.ti-camafeo-beta { display: none; }
+/* En el móvil, la segunda diapositiva es el programa de mano: 4 columnas con la cara de cada tutora en su marco dorado
+   (como en el ordenador), la bandera y el nombre entero. Antes eran banderitas con el nombre cortado y media pantalla
+   vacía. */
+@media (max-width: 680px) {
+  .teatro-idiomas { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px 6px; padding-top: 12px; }
+  .ti-camafeo { width: auto; padding: 6px 2px 4px; background: rgba(0, 0, 0, .16); box-shadow: 0 0 0 2px rgba(0, 0, 0, .3); }
+  .ti-camafeo-marco { display: block; width: 48px; height: 48px; box-shadow: 0 0 0 2px var(--oro), 0 0 0 4px #000, 3px 4px 0 2px rgba(0, 0, 0, .3); }
+  .ti-camafeo-bandera { margin-top: 7px; }
+  .ti-camafeo-bandera svg { width: 27px; height: 18px; }
+  .ti-camafeo-nombre { max-width: 100%; margin-top: 5px; font-size: .66rem; white-space: normal; overflow-wrap: anywhere; text-align: center; }
+  .ti-camafeo[aria-current="true"] { background: rgba(255, 220, 120, .16); box-shadow: 0 0 0 2px var(--oro); }
+  .ti-camafeo[aria-current="true"] .ti-camafeo-nombre { color: var(--oro-luz); text-shadow: 2px 2px 0 rgba(0, 0, 0, .45); }
+  .ti-camafeo[aria-current="true"] .ti-camafeo-marco { box-shadow: 0 0 0 2px var(--oro-luz), 0 0 0 4px #000, 0 0 14px 4px rgba(255, 220, 120, .5); }
+}
+@media (max-width: 680px) and (max-height: 700px) {
+  .teatro-idiomas { gap: 6px 5px; padding-top: 8px; }
+  .ti-camafeo { padding: 4px 2px 3px; }
+  .ti-camafeo-marco { width: 34px; height: 34px; }
+  .ti-camafeo-bandera { margin-top: 4px; }
+  .ti-camafeo-bandera svg { width: 22px; height: 15px; }
+  .ti-camafeo-nombre { margin-top: 3px; font-size: .6rem; }
 }

@@ -10,6 +10,7 @@ import { diccionarioCompleto } from './leccion.js';
 import { sonar } from '../sonidos.js';
 import { decir } from '../tutor.js';
 import { LANG } from '../curso.js';
+import { conCartel } from './carteles.js';
 
 const FILTROS = ['todas', 'palabra', 'frase'];
 
@@ -217,11 +218,11 @@ export function pintarCuaderno(app) {
     }));
 
   poner(app,
-    el('section', { class: 'intro-vista' },
+    conCartel(el('section', { class: 'intro-vista' },
       el('h1', {}, t('menu.cuaderno')),
       el('p', {}, t('cuaderno.intro')),
       resumenEl,
-      el('a', { class: 'boton boton-principal', href: '#/repaso' }, t('cuaderno.irRepaso'))),
+      el('a', { class: 'boton boton-principal', href: '#/repaso' }, t('cuaderno.irRepaso'))), 'cuaderno'),
     el('div', { class: 'barra-herramientas' },
       el('div', { class: 'campo' }, el('label', { for: 'buscar' }, t('cuaderno.buscar')), buscador),
       filtros,

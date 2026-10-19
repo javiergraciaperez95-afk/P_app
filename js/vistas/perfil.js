@@ -13,6 +13,7 @@ import { decir } from '../tutor.js';
 import { curso } from '../curso.js';
 import { todasLasEstrellas } from '../../juegos/motor.js';
 import { LOGROS, logrosGanados, comprobarLogros } from '../logros.js';
+import { conCartel } from './carteles.js';
 import {
   nubeActiva, nube, alCambiarNube, numeroCuenta, numeroBonito, usarNumero, borrarCuentaNube,
   pedirCodigo, comprobarCodigo, unirCorreo, recuperarConCorreo, correoDeLaCuenta,
@@ -513,8 +514,8 @@ function seccionBorrarTodo() {
 export function pintarPerfil(app, { resultados, capitulos = [] }) {
   const repintar = () => pintarPerfil(app, { resultados, capitulos });
   poner(app,
-    el('section', { class: 'intro-vista' },
-      el('h1', {}, nombre() ? t('perfil.de', { nombre: nombre() }) : t('menu.perfil'))),
+    conCartel(el('section', { class: 'intro-vista' },
+      el('h1', {}, nombre() ? t('perfil.de', { nombre: nombre() }) : t('menu.perfil'))), 'perfil'),
     seccionNombre(),
     seccionCuenta(repintar),
     seccionProgreso(resultados),

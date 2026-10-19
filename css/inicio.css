@@ -39,6 +39,14 @@ body.en-inicio { overflow-x: clip; } /* el escenario va de lado a lado de la ven
   background: linear-gradient(var(--h-cielo) 0 58%, var(--i-horizonte) 58% 78%, var(--i-horizonte-2) 78%);
 }
 :root[data-tema="oscuro"] .inicio-escenario { --i-horizonte: #30234a; --i-horizonte-2: #3a2a56; }
+/* de noche, el cielo se oscurece hacia arriba en dos franjas: da profundidad sin degradados lisos (pixel art) */
+:root[data-tema="oscuro"] .inicio-escenario {
+  background:
+    /* el paso de una franja a otra, tramado (un damero de píxeles), como en el pixel art de verdad */
+    repeating-conic-gradient(#4a3c67 0 25%, #53456f 0 50%) left 0 top 12% / 8px 8px repeat-x,
+    repeating-conic-gradient(#53456f 0 25%, #5c4d7a 0 50%) left 0 top 26% / 8px 8px repeat-x,
+    linear-gradient(#4a3c67 0 12%, #53456f 12% 26%, var(--h-cielo) 26% 58%, var(--i-horizonte) 58% 78%, var(--i-horizonte-2) 78%);
+}
 .inicio-cielo { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
 /* las estrellas (solo de noche): dos capas que titilan a destiempo */
 .inicio-cielo::before, .inicio-cielo::after {
@@ -915,8 +923,11 @@ body.en-inicio { overflow-x: clip; } /* el escenario va de lado a lado de la ven
   position: relative;
   height: 310px;
   overflow: hidden;
+  /* el telón del fondo: pliegues de terciopelo en tres tonos (luz, medio y sombra) y, arriba, penumbra a franjas: la luz
+     viene del foco de abajo (informe de arte del 19-10: «el telón del fondo es liso») */
   background:
-    repeating-linear-gradient(90deg, #3b1a28 0 22px, #331522 22px 26px),
+    linear-gradient(rgba(12, 4, 14, .42) 0 10%, rgba(12, 4, 14, .28) 10% 20%, rgba(12, 4, 14, .14) 20% 30%, transparent 30%),
+    repeating-linear-gradient(90deg, #29111d 0 3px, #3b1a28 3px 9px, #4b2333 9px 13px, #57293a 13px 15px, #3b1a28 15px 22px, #301521 22px 26px),
     #331522;
 }
 /* el foco: un cono de luz que baja hasta la tutora, y su círculo en el suelo */

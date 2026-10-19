@@ -34,6 +34,42 @@ function svg(rejilla, clase, prefijo) {
   return dibujo;
 }
 
+/**
+ * Halo cálido alrededor de las luces encendidas (ventanas, farolas, lámparas): una copia de esos trazos, desenfocada y
+ * sumada encima (modo pantalla), sin tocar el dibujo. Es estático, no se anima (informe de arte del 19-10, idea 1), y el
+ * CSS solo lo enseña de noche (css/escenas.css, .halo-luz). «clases»: las de los trazos que dan luz («u-w», «u-x»…).
+ */
+export function conHalo(dibujo, clases, { radio = 2.2, color = '#ffb86b' } = {}) {
+  const id = `halo-luz-${String(radio).replace('.', '-')}`;
+  if (!document.getElementById(id)) {
+    const defs = document.createElementNS(SVG, 'svg');
+    defs.setAttribute('width', '0');
+    defs.setAttribute('height', '0');
+    defs.setAttribute('aria-hidden', 'true');
+    defs.style.position = 'absolute';
+    defs.innerHTML = `<filter id="${id}" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB">`
+      + `<feGaussianBlur stdDeviation="${radio}"/></filter>`;
+    document.body.append(defs);
+  }
+  const grupo = document.createElementNS(SVG, 'g');
+  grupo.setAttribute('class', 'halo-luz');
+  grupo.setAttribute('filter', `url(#${id})`);
+  for (const clase of clases) {
+    for (const trazo of dibujo.querySelectorAll(`.${clase}`)) {
+      const copia = trazo.cloneNode();
+      copia.removeAttribute('class');
+      copia.setAttribute('fill', color);
+      // la luz sale un poco más allá del cristal (un trazo alrededor) y luego se difumina
+      copia.setAttribute('stroke', color);
+      copia.setAttribute('stroke-width', String(radio * 0.8));
+      copia.setAttribute('stroke-linejoin', 'round');
+      grupo.append(copia);
+    }
+  }
+  if (grupo.childElementCount) dibujo.append(grupo);
+  return dibujo;
+}
+
 // ---------------------------------------------------------------------------
 // La universidad: fachada clásica con columnas, frontón, torre del reloj con bandera, dos alas y árboles.
 // Letras: a muro · b muro en sombra · c molduras · r tejado · w ventana · x ventana que parpadea de noche
@@ -132,7 +168,8 @@ export function universidad() {
     apagada.setAttribute('class', 'u-xo');
     parpadea.before(apagada);
   }
-  return dibujo;
+  // de noche, las ventanas encendidas alumbran la fachada (la que parpadea no: su halo se quedaría encendido)
+  return conHalo(dibujo, ['u-w']);
 }
 
 // ---------------------------------------------------------------------------

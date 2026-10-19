@@ -11,6 +11,7 @@ import { sonar, sonarAcierto } from '../sonidos.js';
 import { decir } from '../tutor.js';
 import { LANG, clave } from '../curso.js';
 import { confeti } from '../fiesta.js';
+import { conCartel } from './carteles.js';
 
 const DURACION = 60;        // segundos
 const CASTIGO = 3;          // segundos que quita un fallo
@@ -56,9 +57,9 @@ export function pintarReto(app) {
     const empezar = el('button', { type: 'button', class: 'es-boton es-boton-grande rt-empezar', disabled: !puede, 'data-sonido': 'arcade' }, t('reto.empezar'));
     empezar.addEventListener('click', () => cuentaAtras(cartas));
     poner(app,
-      el('section', { class: 'intro-vista' },
+      conCartel(el('section', { class: 'intro-vista' },
         el('h1', {}, t('reto.titulo')),
-        el('p', {}, t('reto.intro', { s: DURACION, castigo: CASTIGO }))),
+        el('p', {}, t('reto.intro', { s: DURACION, castigo: CASTIGO }))), 'reto'),
       el('section', { class: 'caja rt-portada' },
         el('div', { class: 'rt-rayo', 'aria-hidden': 'true' }, '⚡'),
         el('p', { class: 'rt-record' }, t('reto.mejor'), ' ', el('strong', {}, String(mejor))),

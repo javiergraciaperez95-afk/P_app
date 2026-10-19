@@ -6,6 +6,7 @@ import { t } from '../i18n.js';
 import { hayCurso } from '../curso.js';
 import { sonar } from '../sonidos.js';
 import { TITULAR, LEGAL_ACTUALIZADO } from '../config.js';
+import { conCartel } from './carteles.js';
 
 const CLAVE_AVISO = 'idiomas-aviso-visto';
 
@@ -38,8 +39,9 @@ export function pintarLegal(contenedor) {
 
   poner(contenedor,
     el('article', { class: 'legal' },
-      el('h1', {}, t('legal.titulo')),
-      el('p', { class: 'meta' }, t('legal.actualizado', { fecha: LEGAL_ACTUALIZADO })),
+      conCartel(el('section', { class: 'intro-vista' },
+        el('h1', {}, t('legal.titulo')),
+        el('p', { class: 'meta' }, t('legal.actualizado', { fecha: LEGAL_ACTUALIZADO }))), 'legal'),
       el('p', { class: 'legal-resumen caja' }, t('legal.resumen')),
       bloque('legal.quien.titulo', parrafo('legal.quien.texto'),
         el('ul', { class: 'legal-titular' },

@@ -710,3 +710,7 @@
   .casa-humo i, .casa-desfile-fila, .casa-guia.entra { animation: none !important; }
   .casa-hoja, .casa-marco, .casa-hito-texto, .casa-foco::after, .casa-ficha { transition: none; }
 }
+/* la bombilla de la buhardilla: además de sus aros a escalones, un halo redondo y suave (solo de noche, sin animación) */
+.casa-bombilla::before { content: ""; position: absolute; left: -44px; top: -12px; width: 90px; height: 90px; display: none; pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 196, 110, .38), rgba(255, 196, 110, .12) 45%, transparent 70%); mix-blend-mode: screen; }
+:root[data-tema="oscuro"] .casa-bombilla::before { display: block; }

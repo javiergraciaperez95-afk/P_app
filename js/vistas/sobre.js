@@ -16,7 +16,7 @@ import { CURSOS } from '../cursos.js';
 import { curso, hayCurso } from '../curso.js';
 import { sonar } from '../sonidos.js';
 import { TITULAR } from '../config.js';
-import { sol, luna, nubes, maceta, dibujoPixel, conContorno } from './inicio-decorado.js';
+import { sol, luna, nubes, maceta, dibujoPixel, conContorno, conHalo } from './inicio-decorado.js';
 import { crearElenco, tutoraPintada, lienzo } from './elenco.js';
 
 const HITOS = ['h1', 'h2', 'h3', 'h4'];
@@ -295,8 +295,9 @@ export function pintarSobre(contenedor) {
   // El tejado y la buhardilla
   // =====================================================================
   const tejado = el('div', { class: 'casa-tejado', 'aria-hidden': 'true' },
-    dibujoPixel(rejillaTejado(262, 46, { banda: 13, chimenea: [190, 14], ojo: [131, 20, 8] }), 'casa-tejado-ancho', 'cp'),
-    dibujoPixel(rejillaTejado(92, 34, { banda: 7, chimenea: [64, 8], ojo: [46, 17, 5] }), 'casa-tejado-estrecho', 'cp'),
+    // de noche el ojo de buey encendido alumbra el tejado (conHalo: solo de noche, sin animación)
+    conHalo(dibujoPixel(rejillaTejado(262, 46, { banda: 13, chimenea: [190, 14], ojo: [131, 20, 8] }), 'casa-tejado-ancho', 'cp'), ['cp-w'], { radio: 3 }),
+    conHalo(dibujoPixel(rejillaTejado(92, 34, { banda: 7, chimenea: [64, 8], ojo: [46, 17, 5] }), 'casa-tejado-estrecho', 'cp'), ['cp-w'], { radio: 2 }),
     el('span', { class: 'casa-humo' }, el('i', {}), el('i', {}), el('i', {})));
 
   const guia = elenco.tutora(elenco.protagonista(), 'casa-guia');

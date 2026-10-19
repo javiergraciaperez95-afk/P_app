@@ -10,7 +10,7 @@ import { t, locale } from '../i18n.js';
 import { sonar } from '../sonidos.js';
 import { ESCUELAS, ZONAS, PRECIOS_VISIBLES } from '../config.js';
 import { preciosDeSuZona } from '../region.js';
-import { sol, luna, nubes, dibujoPixel, conContorno } from './inicio-decorado.js';
+import { sol, luna, nubes, dibujoPixel, conContorno, conHalo } from './inicio-decorado.js';
 import { crearElenco, lienzo } from './elenco.js';
 
 // ---------------------------------------------------------------------------
@@ -79,7 +79,8 @@ const PUPITRE = (() => {
 export function pintarEscuelas(root) {
   const elenco = crearElenco();
   const { quieto, despues, alApagar } = elenco;
-  const dibujo = (rejilla, clase) => dibujoPixel(rejilla, clase, 'ce');
+  // de noche las ventanas encendidas alumbran (conHalo: solo de noche, sin animación)
+  const dibujo = (rejilla, clase) => conHalo(dibujoPixel(rejilla, clase, 'ce'), ['ce-w']);
   const z = preciosDeSuZona();
   const escala = z.plusAno / ZONAS.A.plusAno;
   const euros = n => n.toLocaleString(locale(), { style: 'currency', currency: 'EUR', minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });

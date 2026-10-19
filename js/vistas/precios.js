@@ -561,7 +561,10 @@ export function pintarPrecios(contenedor) {
     };
     // sin cifras (hasta el informe de mercado): cada precio dice «Precio por anunciar»
     if (!PRECIOS_VISIBLES) {
-      for (const nodo of [precioPlus, precioMax, precioFamilia, precioFundadores]) poner2(nodo, t('precio.porAnunciar'));
+      for (const nodo of [precioPlus, precioMax, precioFamilia, precioFundadores]) {
+        poner2(nodo, t('precio.porAnunciar'));
+        nodo.classList.add('pr-sin-cifra'); // un texto, no una cifra: letra más contenida (css/precios.css)
+      }
       return;
     }
     poner2(precioPlus, euros(anual ? z.plusAno : z.plusMes));

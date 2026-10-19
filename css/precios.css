@@ -1255,3 +1255,11 @@
 }
 @keyframes pr-panel-entra { from { transform: translateY(24px); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .pr-seccion.pr-panel { animation: none; } }
+/* «Precio por anunciar» ocupa el sitio de la cifra: en letra más contenida, que no grite dos veces lo mismo */
+.pr-precio.pr-sin-cifra { font-size: 1.35rem; line-height: 1.2; color: var(--h-suave); }
+@media (max-width: 760px) {
+  .pr-bloque .pr-precio.pr-sin-cifra { font-size: 1.05rem; }
+  /* el bocadillo de la tutora de cada plan sale hacia la derecha: centrado en ella se salía de la pantalla */
+  .pr-peldano .pr-globo { left: 4px; transform: scale(0); transform-origin: 14px 100%; }
+  .pr-peldano .inicio-figura.habla .pr-globo { transform: scale(1); }
+}

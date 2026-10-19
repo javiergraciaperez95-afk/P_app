@@ -11,7 +11,7 @@ import { CURSOS } from '../cursos.js';
 import { sonar } from '../sonidos.js';
 import { EMPRESAS, ZONAS, PRECIOS_VISIBLES } from '../config.js';
 import { preciosDeSuZona } from '../region.js';
-import { sol, luna, nubes, dibujoPixel, conContorno } from './inicio-decorado.js';
+import { sol, luna, nubes, dibujoPixel, conContorno, conHalo } from './inicio-decorado.js';
 import { crearElenco, tutoraPintada, lienzo } from './elenco.js';
 
 /** La ciudad por el ventanal: edificios de alturas distintas con sus ventanas (x se enciende de noche). */
@@ -50,7 +50,8 @@ const SALUDAN = ['vi', 'zh', 'pt', 'ro', 'ru', 'id', 'fr', 'th'];
 export function pintarEmpresas(root) {
   const elenco = crearElenco();
   const { quieto, despues, alApagar } = elenco;
-  const dibujo = (rejilla, clase) => dibujoPixel(rejilla, clase, 'of');
+  // de noche, las oficinas con la luz encendida («x») alumbran (conHalo: solo de noche, sin animación)
+  const dibujo = (rejilla, clase) => conHalo(dibujoPixel(rejilla, clase, 'of'), ['of-x'], { radio: 1.6 });
   const z = preciosDeSuZona();
   const escala = z.plusAno / ZONAS.A.plusAno;
   const euros = n => n.toLocaleString(locale(), { style: 'currency', currency: 'EUR', minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });

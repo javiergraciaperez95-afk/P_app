@@ -22,6 +22,7 @@ import { LANG, curso, nombreDelCurso } from '../curso.js';
 import { diccionarioCompleto } from './leccion.js';
 import { confeti } from '../fiesta.js';
 import { enlaceReto } from './reto.js';
+import { conCartel } from './carteles.js';
 
 const NUEVAS_POR_SESION = 20;
 const VOLVER_EN_SESION = 20 * 60 * 1000; // lo que vence en menos de 20 min vuelve a salir hoy
@@ -132,9 +133,9 @@ export function pintarRepaso(app) {
     });
 
     poner(app,
-      el('section', { class: 'intro-vista' },
+      conCartel(el('section', { class: 'intro-vista' },
         el('h1', {}, t('menu.repaso')),
-        el('p', {}, t('repaso.introActivo'))),
+        el('p', {}, t('repaso.introActivo'))), 'repaso'),
       el('section', { class: 'caja panel-repaso' },
         hayAlgo ? mazo : null,
         el('dl', { class: 'contadores' },

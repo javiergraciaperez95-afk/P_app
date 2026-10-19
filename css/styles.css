@@ -2,6 +2,8 @@
 @font-face {
   font-family: "Pixelify Sans";
   src: url("../assets/fonts/PixelifySans.woff2") format("woff2");
+  /* sin el €: en esta letra se dibuja como un 0 con una raya; así sale con la letra siguiente, que se lee */
+  unicode-range: U+0000-20AB, U+20AD-FFFF;
   font-weight: 400 700;
   font-display: swap;
 }
@@ -21,7 +23,7 @@
   --rojo: #d2353d;
   --rojo-hover: #e2464e;
   --rojo-claro: #ff8a8f;
-  --verde: #6fd38c;
+  --verde: #78d693; /* (antes #6fd38c: 4,37:1 sobre el panel; así llega a 4,55:1, informe de arte del 19-10) */
   --verde-fondo: #3a6e4a;
   --rojo-fondo: #7d3840;
   --oro: #f4c84a;
@@ -1883,3 +1885,25 @@ html.modo-calma .sin-terminar { animation: none; }
 .recordatorio-oferta::backdrop { background: rgba(20, 14, 28, .7); }
 .recordatorio-oferta h2 { margin-top: 0; font-size: 1.2rem; }
 .recordatorio-oferta .botonera { justify-content: center; flex-wrap: wrap; }
+
+/* ===== Acabado (informe de arte y de diseño del 19-10) ===== */
+/* Los botones con relieve de 2 px: luz arriba y sombra abajo; al pulsar, al revés, y el botón se hunde. */
+.boton {
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, .16), inset 0 -3px 0 rgba(0, 0, 0, .2),
+    0 calc(var(--px) * -1) 0 0 var(--linea), 0 var(--px) 0 0 var(--linea),
+    calc(var(--px) * -1) 0 0 0 var(--linea), var(--px) 0 0 0 var(--linea),
+    var(--px) calc(var(--px) * 2) 0 0 var(--sombra), calc(var(--px) * 2) var(--px) 0 0 var(--sombra);
+}
+.boton:active:not(:disabled) {
+  box-shadow:
+    inset 0 3px 0 rgba(0, 0, 0, .28), inset 0 -1px 0 rgba(255, 255, 255, .08),
+    0 calc(var(--px) * -1) 0 0 var(--linea), 0 var(--px) 0 0 var(--linea),
+    calc(var(--px) * -1) 0 0 0 var(--linea), var(--px) 0 0 0 var(--linea);
+}
+/* Zona táctil de 44 px como mínimo en los botones pequeños, sin cambiar lo que se ve ni mover nada (la zona invisible
+   sobresale un poco por arriba y por abajo). */
+.boton-mini { position: relative; }
+.boton-mini::after { content: ""; position: absolute; inset: -4px 0; }
+/* El texto de ayuda de los campos, legible (antes casi no se veía) */
+::placeholder { color: var(--texto-suave); opacity: .85; }

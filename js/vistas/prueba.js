@@ -11,6 +11,7 @@ import { sonar } from '../sonidos.js';
 import { decir } from '../tutor.js';
 import { guardarInicioDePrueba } from '../progress.js';
 import { agrupar } from './lecciones.js';
+import { conCartel } from './carteles.js';
 
 const TRAMOS = 6;
 const TIPOS = ['test', 'traduccion', 'huecos'];
@@ -22,7 +23,7 @@ export function pintarPrueba(app, { resultados, capitulos, leccionCompleta }) {
   for (let i = 0; i < grupos.length; i += porTramo) tramos.push(grupos.slice(i, i + porTramo));
   let vivo = true;
   const caja = el('section', { class: 'caja pn-caja', 'aria-live': 'polite' });
-  poner(app, el('section', { class: 'intro-vista' }, el('h1', {}, t('prueba.titulo'))), caja);
+  poner(app, conCartel(el('section', { class: 'intro-vista' }, el('h1', {}, t('prueba.titulo'))), 'prueba'), caja);
 
   let tramo = 0;
   let cola = [];

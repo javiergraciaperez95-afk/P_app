@@ -16,7 +16,7 @@ import {
   nubeActiva, nube, alCambiarNube, numeroCuenta, numeroBonito, limpiarNumero, usarNumero,
   pedirCodigo, comprobarCodigo, unirCorreo, recuperarConCorreo, correoDeLaCuenta,
 } from '../nube.js';
-import { sol, luna, nubes, maceta, dibujoPixel, conContorno } from './inicio-decorado.js';
+import { sol, luna, nubes, maceta, dibujoPixel, conContorno, conHalo } from './inicio-decorado.js';
 
 // ---------------------------------------------------------------------------
 // Los dibujos de la plaza (rejillas de letras; los colores, en css/entrar.css)
@@ -425,13 +425,14 @@ export function pintarEntrar(contenedor) {
   const petalos = el('div', { class: 'en-petalos', 'aria-hidden': 'true' }, Array.from({ length: 16 }, (_, i) => el('i', { style: `--n:${i}` })));
   const escena = el('section', { class: 'academia-entrada' },
     el('div', { class: 'inicio-cielo', 'aria-hidden': 'true' }, sol(), luna(), nubes()),
-    dibujoPixel(rejillaAcademia(), 'en-academia', 'ac'),
+    // de noche las ventanas, la puerta abierta y las farolas alumbran (conHalo: solo de noche, sin animación)
+    conHalo(dibujoPixel(rejillaAcademia(), 'en-academia', 'ac'), ['ac-w', 'ac-g']),
     el('div', { class: 'en-puerta-luz', 'aria-hidden': 'true' }),
     el('div', { class: 'en-plaza', 'aria-hidden': 'true' }),
     dibujoPixel(rejillaCerezo(), 'en-cerezo en-cerezo-izq', 'cz'),
     dibujoPixel(rejillaCerezo(), 'en-cerezo en-cerezo-der', 'cz'),
-    el('span', { class: 'en-farola en-farola-izq', 'aria-hidden': 'true' }, dibujoPixel(rejillaFarola(), 'en-farola-dibujo', 'fa'), el('i')),
-    el('span', { class: 'en-farola en-farola-der', 'aria-hidden': 'true' }, dibujoPixel(rejillaFarola(), 'en-farola-dibujo', 'fa'), el('i')),
+    el('span', { class: 'en-farola en-farola-izq', 'aria-hidden': 'true' }, conHalo(dibujoPixel(rejillaFarola(), 'en-farola-dibujo', 'fa'), ['fa-y'], { radio: 3 }), el('i')),
+    el('span', { class: 'en-farola en-farola-der', 'aria-hidden': 'true' }, conHalo(dibujoPixel(rejillaFarola(), 'en-farola-dibujo', 'fa'), ['fa-y'], { radio: 3 }), el('i')),
     el('span', { class: 'en-maceta en-maceta-izq', 'aria-hidden': 'true' }, maceta(1)),
     el('span', { class: 'en-maceta en-maceta-der', 'aria-hidden': 'true' }, maceta(2)),
     petalos,
