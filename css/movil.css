@@ -385,3 +385,22 @@ html.texto-grande { font-size: 112.5%; }
   html.pm-activo .inicio-pie-pag .pie-grupo h2 { padding-bottom: 1px; }
   html.pm-activo .inicio-pie-pag .pie-grupo a { min-height: 30px; }
 }
+/* El pie del móvil, versión final: todos los enlaces en una sola rejilla de dos columnas, fila a fila (como mucho queda
+   un hueco, al final); cada botón lleva a la izquierda la franja del color de su grupo y la flecha del mismo color. */
+@media (max-width: 700px) {
+  html.pm-activo .inicio-pie-pag .pie-grupos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 10px; }
+  html.pm-activo .inicio-pie-pag .pie-grupo { display: contents; }
+  html.pm-activo .inicio-pie-pag .pie-grupo h2 { display: none; }
+  html.pm-activo .inicio-pie-pag .pie-grupo a {
+    min-height: clamp(30px, calc(var(--h) * .06), 40px);
+    padding: 4px 18px 4px 14px;
+    font-size: .8rem;
+    box-shadow: inset 5px 0 0 var(--celo), 0 0 0 2px var(--h-borde), 3px 3px 0 2px var(--h-sombra);
+  }
+  html.pm-activo .inicio-pie-pag .pie-grupo a::after { color: var(--celo); font-size: .6rem; }
+  html.pm-activo .inicio-pie-pag .pie-grupo a:active { box-shadow: inset 5px 0 0 var(--celo), 0 0 0 2px var(--h-borde), 1px 1px 0 2px var(--h-sombra); }
+}
+@media (max-width: 700px) and (max-height: 700px) {
+  html.pm-activo .inicio-pie-pag .pie-grupo a { min-height: 28px; font-size: .72rem; }
+  html.pm-activo .inicio-pie-pag .pie-grupos { gap: 6px 8px; }
+}
