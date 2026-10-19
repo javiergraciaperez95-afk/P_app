@@ -144,8 +144,10 @@
 .rp-ficha:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--sombra); }
 .rp-ficha.usada { visibility: hidden; }
 .rp-ficha.tiembla { animation: rp-mal .35s steps(8); background: var(--rojo-fondo); }
-.rp-ficha.pista { animation: rp-pista 1s steps(2) infinite; }
-@keyframes rp-pista { 50% { box-shadow: 0 5px 0 var(--sombra), 0 0 0 4px var(--oro); } }
+/* el pulso dorado es un ::after que aparece y desaparece (solo opacity); la sombra de la ficha no cambia */
+.rp-ficha.pista { position: relative; }
+.rp-ficha.pista::after { content: ""; position: absolute; inset: -3px; box-shadow: 0 5px 0 var(--sombra), 0 0 0 4px var(--oro); opacity: 0; pointer-events: none; animation: rp-pista 1s steps(2) infinite; }
+@keyframes rp-pista { 50% { opacity: 1; } }
 
 /* escribir */
 .rp-escribir { display: flex; gap: 10px; align-items: center; }
@@ -192,7 +194,7 @@
   .rp-opcion { min-height: 50px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .rp-racha.encendida, .rp-ficha.pista, .rp-carta.bien, .rp-carta.mal { animation: none; }
+  .rp-racha.encendida, .rp-ficha.pista, .rp-ficha.pista::after, .rp-carta.bien, .rp-carta.mal { animation: none; }
 }
 
 /* =====================================================================

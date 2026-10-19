@@ -1916,4 +1916,6 @@ export default {
   'beta.corto': "Beta: aún sin revisar por un profesor. Lo iremos mejorando.",
   'beta.vale': "Entendido, empecemos",
   'beta.etiqueta': "Beta",
+  'frases.verMas': "Ver {n} más ▼",
+  'repaso.sinQueRepasar': "Hoy no toca repasar nada. Las siguientes tarjetas volverán solas.",
 };

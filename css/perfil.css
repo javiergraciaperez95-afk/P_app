@@ -33,8 +33,10 @@
 :root[data-tema="claro"] .ac-dia.ac-3 { background: #3f9a5c; }
 :root[data-tema="claro"] .ac-dia.ac-4 { background: #1d6b34; }
 .ac-dia.ac-futuro { opacity: .25; cursor: default; }
-.ac-dia.hoy { box-shadow: 0 0 0 2px var(--oro); animation: ac-hoy 1.6s steps(2) infinite; }
-@keyframes ac-hoy { 50% { box-shadow: 0 0 0 3px var(--oro); } }
+/* el anillo de «hoy» pasa de 2px a 3px a saltos: el de 3px es un ::after que aparece y desaparece (solo opacity) */
+.ac-dia.hoy { position: relative; box-shadow: 0 0 0 2px var(--oro); }
+.ac-dia.hoy::after { content: ""; position: absolute; inset: -2px; box-shadow: 0 0 0 3px var(--oro); opacity: 0; pointer-events: none; animation: ac-hoy 1.6s steps(2) infinite; }
+@keyframes ac-hoy { 50% { opacity: 1; } }
 .ac-leyenda { display: flex; align-items: center; gap: 4px; margin: 10px 0 0; font-size: .8rem; }
 .ac-leyenda i.ac-dia { width: 14px; height: 14px; cursor: default; }
 
@@ -57,7 +59,7 @@
 .nv-barra > span { display: block; height: 100%; background: var(--nivel); transform-origin: left; transform: scaleX(var(--avance, 0)); }
 .nv-cuenta { font: 700 .9rem var(--fuente-pixel); }
 
-@media (prefers-reduced-motion: reduce) { .ac-dia.hoy { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .ac-dia.hoy, .ac-dia.hoy::after { animation: none; } }
 
 /* ----- La cuenta (al estilo Mullvad) ----- */
 .cu-fila { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 8px 0; }

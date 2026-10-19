@@ -1,0 +1,17 @@
+# Comprueba los cursos y las traducciones en cada subida y en cada cambio propuesto (ver _herramientas/comprobar.py).
+name: Comprobar
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  comprobar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Comprobar cursos e idiomas
+        run: python _herramientas/comprobar.py

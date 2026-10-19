@@ -18,22 +18,10 @@ import { iniciarPie, pintarPie } from './pie.js';
 import { decir } from './tutor.js';
 import { agrupar, pintarLecciones } from './vistas/lecciones.js';
 import { pintarLeccion, cerrarFicha, ponerDiccionarioGlobal, ponerDiccionario } from './vistas/leccion.js';
-import { pintarCuaderno } from './vistas/cuaderno.js';
-import { pintarRepaso } from './vistas/repaso.js';
 import { pintarReto } from './vistas/reto.js';
-import { pintarPerfil } from './vistas/perfil.js';
-import { pintarCreditos } from './vistas/creditos.js';
-import { pintarFrases } from './vistas/frases.js';
-import { pintarPractica } from './vistas/practica.js';
 import { pintarElegirCurso } from './vistas/cursos.js';
 import { pintarLegal, pintarAvisoDeDatos } from './vistas/legal.js';
-import { pintarSobre } from './vistas/sobre.js';
 import { paginarEnMovil, esMovil } from './paginas-movil.js';
-import { pintarEntrar } from './vistas/entrar.js';
-import { pintarPrecios } from './vistas/precios.js';
-import { pintarSocial, pintarContacto, pintarProducto, pintarTienda } from './vistas/comunidad.js';
-import { pintarEscuelas, pintarEmpresas, pintarRegalo } from './vistas/productos.js';
-import { pintarGuias, pintarFaq, pintarLaboratorio } from './vistas/comunidad-extra.js';
 import { pintarInicio } from './vistas/inicio.js';
 import { pintarBienvenida, bienvenidaVista } from './vistas/bienvenida.js';
 import { pintarPerdida } from './vistas/perdida.js';
@@ -81,29 +69,33 @@ const SECCIONES = [
   { ruta: 'repaso', icono: 'repaso' },
 ];
 
+// El código de las pantallas que no son la portada, la lista ni la lección se pide al abrirlas (js/vistas/<nombre>.js):
+// así la portada arranca sin descargar precios, perfil, frases…
+const vista = (archivo, funcion) => import(`./vistas/${archivo}.js`).then(m => m[funcion]);
+
 // Las pantallas generales (no de un curso): se pintan igual con curso elegido o sin él, no esperan a que lleguen
 // las lecciones y no llevan menú de curso ni tutora. titulo: clave del texto de la pestaña (sin ella, solo «Paglot»).
 // Para añadir una pantalla nueva basta con ponerla aquí.
 const GENERALES = {
   inicio: { pintar: pintarInicio },
-  entrar: { titulo: 'entrar.titulo', pintar: pintarEntrar },
-  precios: { titulo: 'precios.titulo', pintar: pintarPrecios },
-  sobre: { titulo: 'sobre.titulo', pintar: pintarSobre },
-  social: { titulo: 'pagina.social', pintar: pintarSocial },
-  contacto: { titulo: 'pagina.contacto', pintar: pintarContacto },
-  producto: { titulo: 'pagina.producto', pintar: pintarProducto },
-  escuelas: { titulo: 'pagina.escuelas', pintar: pintarEscuelas },
-  empresas: { titulo: 'pagina.empresas', pintar: pintarEmpresas },
-  'regala-max': { titulo: 'pagina.regalo', pintar: pintarRegalo },
-  tienda: { titulo: 'pagina.tienda', pintar: pintarTienda },
-  guias: { titulo: 'pagina.guias', pintar: pintarGuias },
-  faq: { titulo: 'pagina.faq', pintar: pintarFaq },
-  laboratorio: { titulo: 'pagina.laboratorio', pintar: pintarLaboratorio },
+  entrar: { titulo: 'entrar.titulo', cargar: () => vista('entrar', 'pintarEntrar') },
+  precios: { titulo: 'precios.titulo', cargar: () => vista('precios', 'pintarPrecios') },
+  sobre: { titulo: 'sobre.titulo', cargar: () => vista('sobre', 'pintarSobre') },
+  social: { titulo: 'pagina.social', cargar: () => vista('comunidad', 'pintarSocial') },
+  contacto: { titulo: 'pagina.contacto', cargar: () => vista('comunidad', 'pintarContacto') },
+  producto: { titulo: 'pagina.producto', cargar: () => vista('comunidad', 'pintarProducto') },
+  escuelas: { titulo: 'pagina.escuelas', cargar: () => vista('productos', 'pintarEscuelas') },
+  empresas: { titulo: 'pagina.empresas', cargar: () => vista('productos', 'pintarEmpresas') },
+  'regala-max': { titulo: 'pagina.regalo', cargar: () => vista('productos', 'pintarRegalo') },
+  tienda: { titulo: 'pagina.tienda', cargar: () => vista('comunidad', 'pintarTienda') },
+  guias: { titulo: 'pagina.guias', cargar: () => vista('comunidad-extra', 'pintarGuias') },
+  faq: { titulo: 'pagina.faq', cargar: () => vista('comunidad-extra', 'pintarFaq') },
+  laboratorio: { titulo: 'pagina.laboratorio', cargar: () => vista('comunidad-extra', 'pintarLaboratorio') },
   idiomas: { titulo: 'cursos.titulo', pintar: pintarElegirCurso, sinPortada: true },
-  creditos: { titulo: 'creditos.titulo', pintar: pintarCreditos, sinPortada: true },
+  creditos: { titulo: 'creditos.titulo', cargar: () => vista('creditos', 'pintarCreditos'), sinPortada: true },
   legal: { titulo: 'legal.titulo', pintar: pintarLegal, sinPortada: true },
   // los enlaces de los correos antiguos: la cuenta ya no va por enlace, sino por código (ver vistas/entrar.js)
-  enlace: { titulo: 'entrar.titulo', pintar: pintarEntrar },
+  enlace: { titulo: 'entrar.titulo', cargar: () => vista('entrar', 'pintarEntrar') },
 };
 // Las portadas llevan la cabecera de la web (Inicio, Idiomas, Paglot Max) en lugar del menú del curso.
 const PORTADAS = Object.keys(GENERALES).filter(ruta => !GENERALES[ruta].sinPortada);
@@ -123,11 +115,30 @@ function paginarCursoEnMovil(seccion) {
   limpiarVista = () => { deshacer(); antes?.(); };
 }
 
-// Las pantallas que en el móvil van en pocas diapositivas grandes (como mucho 5), una por bloque, en vez de partirse solas
+// El alto de una diapositiva del móvil (lo pone js/paginas-movil.js antes de pedir las diapositivas)
+const altoDePagina = () => parseFloat(document.documentElement.style.getPropertyValue('--pm-alto')) || window.innerHeight;
+
+// Las pantallas que en el móvil van en diapositivas grandes, una por escena, en vez de partirse solas
 const DIAPOSITIVAS = {
   inicio: () => {
     const $ = sel => app.querySelector(sel);
     return [[$('.inicio-cabeza'), $('.inicio-trio'), $('.inicio-suelo')], $('.inicio-bajo'), $('.inicio-pasillo'), $('.inicio-teatro'), $('.inicio-pie-pag')];
+  },
+  // Sobre Paglot: un piso de la casa por diapositiva (el tejado con la buhardilla; la historia y el libro del método, en dos)
+  // y la calle al final. En un móvil bajito, el texto y su escena van cada uno en la suya, y la historia, cuadro a cuadro.
+  sobre: () => {
+    const $ = sel => app.querySelector(sel);
+    const hitos = [...app.querySelectorAll('.casa-hito')];
+    const bajo = altoDePagina() < 600;
+    const juntos = (texto, escena) => (bajo ? [texto, escena] : [[texto, escena].flat()]);
+    return [[$('.casa-tejado'), $('.casa-buhardilla')], $('.casa-salon'),
+      ...(bajo ? hitos : [hitos.slice(0, 2), hitos.slice(2)]),
+      $('.casa-pasillo'),
+      ...juntos($('.casa-pergamino'), $('.casa-mapa')),
+      $('.casa-pagina-izq'), $('.casa-pagina-der'),
+      ...juntos($('.casa-plano'), $('.casa-maquina')),
+      ...juntos($('.casa-cartel'), $('.casa-mostrador-escena')),
+      ...juntos($('.casa-buzon-escena'), [$('.casa-empezar'), $('.casa-acera'), $('.casa-gracias')])];
   },
 };
 
@@ -144,12 +155,15 @@ function pieEnLaPortada() {
   return () => { padre.insertBefore(pie, siguiente); envoltorio.remove(); };
 }
 
-/** Pinta una pantalla general y guarda la función que la apaga, si la tiene. */
-function pintarGeneral(ruta) {
+/** Pinta una pantalla general y guarda la función que la apaga, si la tiene. sigue(): si sigue tocando esta pantalla
+ *  cuando llega su código (si entretanto se ha ido a otra, no se pinta). */
+async function pintarGeneral(ruta, sigue = () => true) {
   const pantalla = GENERALES[ruta];
+  const pintar = pantalla.pintar ?? await pantalla.cargar();
+  if (!sigue()) return;
   if (pantalla.titulo) titulo(t(pantalla.titulo));
   else document.title = t('app.nombre');
-  const apagar = pantalla.pintar(app);
+  const apagar = pintar(app);
   const devolverPie = ruta === 'inicio' && esMovil() ? pieEnLaPortada() : null;
   const deshacer = PAGINADAS.has(ruta) && esMovil() ? paginarEnMovil(app, { fijas: DIAPOSITIVAS[ruta] }) : null;
   limpiarVista = deshacer || devolverPie || typeof apagar === 'function'
@@ -405,21 +419,28 @@ function cargarCurso() {
     // cuyos ejercicios dependen de ella (ver navegar). Si aparece más tarde, «voz-cambiada» repinta la pantalla.
     // Con índice (indice/lecciones.json) basta un archivo para la lista; cada lección se carga al abrirla.
     // Sin índice (un curso al que aún no se le ha generado) se descargan todas, como antes.
-    const diccionario = cargarDiccionario();
     contenido.voces = prepararVoces();
     const [indice, { capitulos, error }] = await Promise.all([cargarIndice(), cargarCapitulos()]);
-    const cargadas = indice ?? await descubrirLecciones();
-    contenido.diccionario = diccionario.then(mapa => {
-      if (mapa) ponerDiccionario(mapa);
-      else ponerDiccionarioGlobal(cargadas);
-    });
-    const resultados = cargadas;
+    const resultados = indice ?? await descubrirLecciones();
     Object.assign(contenido, { resultados, capitulos, errorCapitulos: error ?? null, sinConexion: Boolean(resultados.sinConexion) });
     cursoCargado = true;
     comprobarLogros();
   })();
   return cargaDelCurso;
 }
+
+// El diccionario del curso (indice/diccionario.json) pesa mucho (2,6 MB el de español): solo lo piden la lección,
+// el cuaderno y la bienvenida, o se trae cuando el navegador está libre dentro del curso. Nunca desde la portada.
+let cargaDelDiccionario = null;
+function cargarElDiccionario() {
+  cargaDelDiccionario ??= cargarDiccionario().then(async mapa => {
+    if (mapa) { ponerDiccionario(mapa); return; }
+    await cargarCurso(); // sin diccionario, se monta con las palabras de las lecciones
+    ponerDiccionarioGlobal(contenido.resultados);
+  });
+  return cargaDelDiccionario;
+}
+const cuandoEsteLibre = fn => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 4000 }) : setTimeout(fn, 2000));
 
 // Lecciones completas ya cargadas, por idioma de la interfaz (los textos de las v2 dependen de él).
 const completas = new Map();
@@ -496,8 +517,10 @@ async function navegar({ cambioDeIdioma = false } = {}) {
 
   // La lección, el cuaderno (su buscador) y la bienvenida usan el diccionario del curso.
   if (['leccion', 'cuaderno', 'bienvenida'].includes(seccion)) {
-    await contenido.diccionario;
+    await cargarElDiccionario();
     if (estePase !== pase) return;
+  } else if (!esGeneral(seccion)) {
+    cuandoEsteLibre(cargarElDiccionario);
   }
 
   if (seccion === 'leccion') {
@@ -521,26 +544,36 @@ async function navegar({ cambioDeIdioma = false } = {}) {
     avisoBeta();
   } else if (seccion === 'practica') {
     titulo(t('menu.practica'));
+    const pintarPractica = await vista('practica', 'pintarPractica');
+    if (estePase !== pase) return;
     pintarPractica(app, { ...contenido, leccionCompleta });
   } else if (seccion === 'frases') {
     titulo(t('menu.frases'));
     contenido.frases ??= await cargarFrases();
     if (estePase !== pase) return;
+    const pintarFrases = await vista('frases', 'pintarFrases');
+    if (estePase !== pase) return;
     pintarFrases(app, contenido.frases);
   } else if (seccion === 'cuaderno') {
     titulo(t('menu.cuaderno'));
+    const pintarCuaderno = await vista('cuaderno', 'pintarCuaderno');
+    if (estePase !== pase) return;
     pintarCuaderno(app);
   } else if (seccion === 'repaso') {
     titulo(t('menu.repaso'));
+    const pintarRepaso = await vista('repaso', 'pintarRepaso');
+    if (estePase !== pase) return;
     limpiarVista = pintarRepaso(app);
   } else if (seccion === 'reto') {
     titulo(t('reto.titulo'));
     limpiarVista = pintarReto(app);
   } else if (seccion === 'perfil') {
     titulo(t('menu.perfil'));
+    const pintarPerfil = await vista('perfil', 'pintarPerfil');
+    if (estePase !== pase) return;
     pintarPerfil(app, contenido);
   } else if (esGeneral(seccion)) {
-    pintarGeneral(seccion);
+    await pintarGeneral(seccion, () => estePase === pase);
   } else if (seccion === 'bienvenida') {
     // La bienvenida busca su frase de ejemplo en las primeras lecciones: solo esas se cargan enteras.
     const primeras = await Promise.all(contenido.resultados.filter(r => !r.error).slice(0, 8).map(leccionCompleta));
@@ -624,20 +657,22 @@ function quitarArranque() {
   pintarAvisoDeDatos();
 }
 
+let pasesSinCurso = 0;
 /** Sin curso elegido: solo las pantallas de la web (la portada, elegir idioma, precios…); lo demás es la página perdida. */
 function pintarSinCurso({ cambioDeIdioma = false } = {}) {
   limpiarVista?.();
   limpiarVista = null;
   const ruta = location.hash.startsWith('#/') ? location.hash.slice(2).split('/')[0] : '';
   // Lo que no es una ruta («#/algo») no es una página perdida: son, por ejemplo, los datos que traen los enlaces de los correos.
-  const vista = esGeneral(ruta) ? ruta : ruta ? 'perdida' : 'inicio';
-  document.body.classList.toggle('en-inicio', PORTADAS.includes(vista));
+  const pantalla = esGeneral(ruta) ? ruta : ruta ? 'perdida' : 'inicio';
+  document.body.classList.toggle('en-inicio', PORTADAS.includes(pantalla));
   pintarMarca();
-  if (vista === 'perdida') {
+  const este = ++pasesSinCurso;
+  if (pantalla === 'perdida') {
     titulo(t('perdida.titulo'));
     limpiarVista = pintarPerdida(app);
   } else {
-    pintarGeneral(vista);
+    pintarGeneral(pantalla, () => este === pasesSinCurso);
   }
   if (!cambioDeIdioma) window.scrollTo(0, 0);
 }

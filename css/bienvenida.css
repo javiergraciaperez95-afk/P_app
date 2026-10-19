@@ -142,14 +142,24 @@ body.en-bienvenida .aviso-datos { display: none; }
   top: var(--horizonte);
   bottom: 0;
   background-color: var(--camino);
-  background-image:
-    conic-gradient(at 4px 4px, transparent 75%, var(--camino-2) 0),
-    conic-gradient(at 2px 2px, transparent 75%, var(--camino-2) 0);
-  background-size: 38px 26px, 22px 18px;
-  background-position: 0 0, 11px 9px;
 }
-.bienvenida.camina .bv-camino { animation: bv-avanza var(--paseo, .76s) steps(8); }
-@keyframes bv-avanza { from { background-position: 0 -52px, 11px -27px; } to { background-position: 0 0, 11px 9px; } }
+/* las dos capas de piedrecitas son pseudo-elementos que suben y bajan con transform (no con background-position);
+   se alargan hacia arriba para que al moverse no quede hueco, y el recorte del camino deja fuera lo que sobre */
+.bv-camino::before, .bv-camino::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; }
+.bv-camino::before {
+  top: -52px;
+  background: conic-gradient(at 4px 4px, transparent 75%, var(--camino-2) 0) 0 0 / 38px 26px;
+  transform: translateY(52px);
+}
+.bv-camino::after {
+  top: -36px;
+  background: conic-gradient(at 2px 2px, transparent 75%, var(--camino-2) 0) 11px 0 / 22px 18px;
+  transform: translateY(45px);
+}
+.bienvenida.camina .bv-camino::before { animation: bv-avanza var(--paseo, .76s) steps(8); }
+.bienvenida.camina .bv-camino::after { animation: bv-avanza-b var(--paseo, .76s) steps(8); }
+@keyframes bv-avanza { from { transform: translateY(0); } to { transform: translateY(52px); } }
+@keyframes bv-avanza-b { from { transform: translateY(9px); } to { transform: translateY(45px); } }
 /* árboles, farolas y flores: se acercan (bajan, se apartan y crecen) según se avanza */
 .bv-cosa {
   position: absolute;
@@ -697,5 +707,5 @@ body.en-bienvenida .aviso-datos { display: none; }
   .bv-dialogo { margin-top: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .bienvenida *, .bienvenida *::before { animation: none !important; transition: none !important; }
+  .bienvenida *, .bienvenida *::before, .bienvenida *::after { animation: none !important; transition: none !important; }
 }

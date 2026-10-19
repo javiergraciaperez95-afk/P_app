@@ -60,22 +60,36 @@
   0%, 91%, 93%, 95%, 100% { opacity: 1; }
   92%, 94% { opacity: .55; }
 }
-/* la ristra de bombillas alrededor, que «corre» */
+/* la ristra de bombillas alrededor, que «corre»: dos capas iguales que se turnan (solo opacity; el fondo no se mueve) */
 .rc-bombillas {
   position: absolute;
   inset: -12px;
   pointer-events: none;
   --b: #ffe28a;
-  background:
-    repeating-linear-gradient(90deg, var(--b) 0 6px, transparent 6px 20px) 0 0 / 100% 6px no-repeat,
-    repeating-linear-gradient(90deg, var(--b) 0 6px, transparent 6px 20px) 0 100% / 100% 6px no-repeat,
-    repeating-linear-gradient(180deg, var(--b) 0 6px, transparent 6px 20px) 0 0 / 6px 100% no-repeat,
-    repeating-linear-gradient(180deg, var(--b) 0 6px, transparent 6px 20px) 100% 0 / 6px 100% no-repeat;
-  animation: rc-bombillas 1.2s steps(1) infinite;
 }
-@keyframes rc-bombillas {
-  50% { background-position: 10px 0, 10px 100%, 0 10px, 100% 10px; }
+.rc-bombillas::before, .rc-bombillas::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(90deg, var(--b) 0 6px, transparent 6px 20px),
+    repeating-linear-gradient(90deg, var(--b) 0 6px, transparent 6px 20px),
+    repeating-linear-gradient(180deg, var(--b) 0 6px, transparent 6px 20px),
+    repeating-linear-gradient(180deg, var(--b) 0 6px, transparent 6px 20px);
+  background-size: 100% 6px, 100% 6px, 6px 100%, 6px 100%;
+  background-repeat: no-repeat;
 }
+.rc-bombillas::before {
+  background-position: 0 0, 0 100%, 0 0, 100% 0;
+  animation: rc-bombillas-a 1.2s steps(1) infinite;
+}
+.rc-bombillas::after {
+  background-position: 10px 0, 10px 100%, 0 10px, 100% 10px;
+  opacity: 0;
+  animation: rc-bombillas-b 1.2s steps(1) infinite;
+}
+@keyframes rc-bombillas-a { 50% { opacity: 0; } }
+@keyframes rc-bombillas-b { 50% { opacity: 1; } }
 .rc-encargada { position: absolute !important; left: 22px; bottom: calc(100% - 4px); z-index: 3; }
 .rc-encargada .tutora-lienzo { width: 84px; height: 112px; }
 
@@ -282,9 +296,10 @@
 .rc-video i { display: grid; place-items: center; width: 24px; height: 16px; font-style: normal; font-size: .6rem; color: #fff; background: #e8424e; }
 .rc-rec { position: absolute; right: 18px; top: 64px; font: 700 .6rem var(--fuente-pixel); color: #ff6b6b; animation: rc-parpadeo 1s steps(1) infinite; }
 .rc-barra { position: absolute; left: 92px; right: 12px; bottom: 10px; height: 5px; background: #4a3a5a; }
-.rc-barra i { display: block; width: 20%; height: 100%; background: #e8424e; }
+/* las barras se estiran con scaleX (transform), no con el ancho */
+.rc-barra i { display: block; width: 100%; height: 100%; background: #e8424e; transform: scaleX(.2); transform-origin: 0 50%; }
 .rc-youtube.activa .rc-barra i { animation: rc-barra 3s steps(10) both; }
-@keyframes rc-barra { to { width: 100%; } }
+@keyframes rc-barra { to { transform: scaleX(1); } }
 
 /* Facebook: dos amigas que charlan y corazones que suben */
 .rc-amiga { left: auto !important; right: 8px; }
@@ -301,10 +316,10 @@
 .rc-hoja { position: absolute; left: 10px; bottom: 100%; display: flex; flex-direction: column; gap: 5px; width: 44px; height: 46px; padding: 7px 6px; background: #fff; box-shadow: 0 0 0 2px #0f0a18; }
 .rc-hoja b { display: block; height: 3px; width: 100%; background: #6d6470; }
 .rc-hoja b:nth-child(3) { width: 60%; }
-.rc-x.activa .rc-hoja b { animation: rc-linea .6s steps(4) both; }
+.rc-x.activa .rc-hoja b { animation: rc-linea .6s steps(4) both; transform-origin: 0 50%; }
 .rc-x.activa .rc-hoja b:nth-child(2) { animation-delay: .6s; }
 .rc-x.activa .rc-hoja b:nth-child(3) { animation-delay: 1.2s; }
-@keyframes rc-linea { from { width: 0; } }
+@keyframes rc-linea { from { transform: scaleX(0); } }
 
 /* Discord: el ordenador con la charla del grupo */
 .rc-monitor { position: absolute; right: 10px; top: 14px; display: flex; flex-direction: column; gap: 5px; width: 70px; height: 52px; padding: 7px; background: #1a1630; box-shadow: 0 0 0 4px #c3b5ff, 0 0 0 6px #0f0a18; }
@@ -341,5 +356,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .rc-cartel h1, .rc-bombillas, .rc-letrero-pantalla, .rc-notas i, .rc-rec, .rc-maquina.activa * { animation: none !important; }
+  .rc-cartel h1, .rc-bombillas, .rc-bombillas::before, .rc-bombillas::after, .rc-letrero-pantalla, .rc-notas i, .rc-rec, .rc-maquina.activa * { animation: none !important; }
 }

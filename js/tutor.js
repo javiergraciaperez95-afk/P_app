@@ -207,6 +207,12 @@ botonOcultar.addEventListener('click', () => ocultar(!caja.classList.contains('o
 
 try { if (localStorage.getItem('idiomas-tutora-oculta')) ocultar(true); } catch { /* sin almacenamiento */ }
 pintarBotonOcultar();
+// Abajo se deja el hueco que ocupa de verdad (cambia con el texto y al plegarla): así nunca tapa el final de la página.
+if ('ResizeObserver' in window) {
+  new ResizeObserver(() => {
+    document.documentElement.style.setProperty('--alto-tutora-real', `${Math.ceil(caja.getBoundingClientRect().height)}px`);
+  }).observe(caja);
+}
 ponerExpresion('normal');
 
 window.addEventListener('idioma-cambiado', () => {

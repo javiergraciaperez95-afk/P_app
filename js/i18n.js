@@ -19,8 +19,8 @@ const DEL_CURSO = !hayCurso ? ['es', 'en', 'vi'] : curso.id === 'es' ? ['en', 'v
 export const IDIOMAS_VISIBLES = IDIOMAS.filter(i => DEL_CURSO.includes(i.clave));
 const visible = i => DEL_CURSO.includes(i);
 
-// Al abrir solo se cargan los textos del idioma en uso (y el inglés, que es el de reserva): son unos 90 KB por idioma.
-// El otro llega después, cuando el navegador está libre (para cambiar de idioma al momento).
+// Al abrir solo se cargan los textos del idioma en uso (y el inglés, que es el de reserva): unos 130 KB por idioma.
+// Los demás se piden al elegirlos.
 const CARGAR = {
   es: () => import('./i18n/es.js'),
   vi: () => import('./i18n/vi.js'),
@@ -40,9 +40,6 @@ const pedido = () => {
   return visible(d) ? d : 'en';
 };
 await cargarTextos(pedido());
-const cargarElResto = () => Object.keys(CARGAR).filter(visible).forEach(cargarTextos);
-if ('requestIdleCallback' in window) requestIdleCallback(cargarElResto, { timeout: 5000 });
-else setTimeout(cargarElResto, 3000);
 
 export function idioma() {
   const i = pedido();

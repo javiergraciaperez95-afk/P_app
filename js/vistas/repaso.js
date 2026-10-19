@@ -119,7 +119,9 @@ export function pintarRepaso(app) {
       Array.from({ length: Math.min(12, Math.max(1, Math.ceil((pendientes + nuevas) / 10))) }, (_, k) =>
         el('span', { style: `--k:${k}` })));
 
-    const empezar = el('button', { type: 'button', class: 'es-boton es-boton-grande rp-empezar', disabled: !hayAlgo, 'data-sonido': 'voltear' }, t('repaso.empezar'));
+    // sin nada que repasar el botón se apaga, y el motivo va justo debajo de él
+    const motivo = !hayAlgo && (todas.length ? t('repaso.sinQueRepasar') : t('repaso.vacioActivo'));
+    const empezar = el('button', { type: 'button', class: 'es-boton es-boton-grande rp-empezar', disabled: !hayAlgo, 'aria-describedby': motivo ? 'rp-motivo' : null, 'data-sonido': 'voltear' }, t('repaso.empezar'));
     empezar.addEventListener('click', () => {
       cola = crearCola();
       reserva = crearReserva();
@@ -140,8 +142,8 @@ export function pintarRepaso(app) {
           el('div', {}, el('dt', {}, t('repaso.nuevas')), el('dd', {}, String(nuevas))),
           el('div', {}, el('dt', {}, t('repaso.hoy')), el('dd', {}, String(hoy.repasos)))),
         empezar,
-        el('div', { class: 'rp-reto' }, enlaceReto()),
-        !todas.length && el('p', {}, t('repaso.vacioActivo'), ' ', el('a', { href: '#/lecciones' }, t('repaso.vacioIr')))),
+        motivo && el('p', { class: 'aprox rp-motivo', id: 'rp-motivo' }, motivo, !todas.length && [' ', el('a', { href: '#/lecciones' }, t('repaso.vacioIr'))]),
+        el('div', { class: 'rp-reto' }, enlaceReto())),
     );
 
     if (!todas.length) decir(t('repaso.tutoraVacio'), 'confundida');

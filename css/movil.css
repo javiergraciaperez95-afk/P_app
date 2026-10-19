@@ -18,8 +18,18 @@
 .movil-suave .jg-rodea,
 .movil-suave .ac-dia.hoy { animation: suave-parpadeo 1.4s cubic-bezier(.37, 0, .63, 1) infinite; }
 
+/* sus brillos (los aros y halos de encima, que en la web se encienden y apagan) se quedan quietos: ya late la pieza */
+.movil-suave .jg .palabra.jg-luciernaga::before,
+.movil-suave .cm-extra-cofre::after,
+.movil-suave .rp-ficha.pista::after,
+.movil-suave .ac-dia.hoy::after { animation: none; }
+
 /* adornos: quietos */
 .movil-suave .pie-pajaros i,
+.movil-suave .pie-pajaros i::before,
+.movil-suave .pie-pajaros i::after,
+.movil-suave .rc-bombillas::before,
+.movil-suave .rc-bombillas::after,
 .movil-suave .pr-tele .tv-s,
 .movil-suave .pr-tele-brillo,
 .movil-suave .rc-bombillas,
@@ -51,7 +61,7 @@
    para que cada paso quepa en la pantalla (el paso se encoge lo justo si aun así no cabe: juegos/motor.js, ajustar) */
 @media (max-width: 700px) {
   body.en-leccion .cabecera { display: none; }
-  body.en-leccion main { padding-top: 8px; padding-bottom: calc(var(--alto-tutora) + 14px + var(--borde-abajo)); }
+  body.en-leccion main { padding-top: 8px; padding-bottom: calc(var(--alto-tutora-real, var(--alto-tutora)) + 14px + var(--borde-abajo)); }
   body.en-leccion .jg { padding-bottom: 0; }
   body.en-leccion .jg-pie { margin-top: 10px; padding: 6px 12px; }
   body.en-leccion .jg-pista { margin: 4px 0 8px; }
@@ -150,8 +160,8 @@ html.texto-grande { font-size: 112.5%; }
   html.pm-activo .inicio-trio { --t: clamp(88px, calc(var(--h) * .27), 160px); margin-top: auto; }
   html.pm-activo .inicio-universidad { --u-alto: clamp(150px, calc(var(--h) * .55), 342px); width: calc(var(--u-alto) * 2.632); height: var(--u-alto); }
   html.pm-activo .inicio-trio .tutora-lienzo { width: calc(var(--t) * .75); height: var(--t); }
-  html.pm-activo .boton-arriba .tutora-lienzo { height: calc(var(--t) * 1.219); }
-  html.pm-activo .boton-arriba .inicio-globo { bottom: calc(100% - var(--t) * .26); }
+  html.pm-activo .inicio .boton-arriba .tutora-lienzo { height: calc(var(--t) * 1.219); }
+  html.pm-activo .inicio .boton-arriba .inicio-globo { bottom: calc(100% - var(--t) * .26); }
   html.pm-activo .inicio-figura.boton-izq { margin-right: calc(var(--t) * -.16); }
   html.pm-activo .inicio-figura.boton-der { margin-left: calc(var(--t) * -.16); }
   html.pm-activo .inicio-trio .inicio-empezar { min-height: calc(var(--t) * .4); padding: calc(var(--t) * .04) calc(var(--t) * .1) calc(var(--t) * .06); font-size: clamp(.95rem, calc(var(--t) * .13), 1.3rem); }
@@ -174,9 +184,9 @@ html.texto-grande { font-size: 112.5%; }
     padding: clamp(40px, calc(var(--h) * .085), 64px) 0 0;
     box-shadow: none;
   }
-  html.pm-activo .mercado-farolillos { top: clamp(6px, calc(var(--h) * .02), 14px); gap: 26px; }
+  html.pm-activo .inicio .mercado-farolillos { top: clamp(6px, calc(var(--h) * .02), 14px); gap: 26px; }
   html.pm-activo .inicio-mercado { --m: clamp(110px, calc(var(--h) * .26), 192px); width: calc(var(--m) * 10); height: var(--m); }
-  html.pm-activo .pancarta-escena {
+  html.pm-activo .inicio .pancarta-escena {
     --lado: calc(var(--w) * .8);
     --palo-izq: calc(var(--w) * .6);
     --palo-der: calc(var(--w) * .11);
@@ -185,26 +195,26 @@ html.texto-grande { font-size: 112.5%; }
     grid-template-columns: var(--lado) minmax(0, 1fr) var(--lado);
     align-items: stretch;
   }
-  html.pm-activo .pancarta-tutora .tutora-lienzo { width: var(--w); height: var(--t); }
-  html.pm-activo .lado-izq .inicio-figura { margin-left: calc(var(--w) * -.2); }
-  html.pm-activo .lado-der .inicio-figura { margin-right: calc(var(--w) * -.2); }
-  html.pm-activo .lado-izq .inicio-globo { left: 66%; }
-  html.pm-activo .lado-der .inicio-globo { left: 34%; }
-  html.pm-activo .pancarta-centro { justify-content: flex-start; padding-top: 0; }
-  html.pm-activo .pancarta { padding: 30px 8px 34px; outline-offset: -10px; }
-  html.pm-activo .pancarta .inicio-texto { padding: 0 8px; }
-  html.pm-activo .pancarta .inicio-datos { gap: 4px 12px; flex-wrap: nowrap; }
-  html.pm-activo .pancarta .inicio-texto { font-size: clamp(.86rem, calc(var(--h) * .0245), 1.05rem); }
-  html.pm-activo .pancarta .inicio-datos strong { font-size: clamp(1.4rem, calc(var(--h) * .048), 2.1rem); }
-  html.pm-activo .pancarta .inicio-datos span { font-size: .66rem; }
-  html.pm-activo .pancarta-cuerda { gap: 10px 6px; margin: 24px 0 0; padding: 0; }
-  html.pm-activo .ondea-tira { width: 6px; height: 16px; }
-  html.pm-activo .ondea-dentro { left: calc(var(--k) * -6px); width: 24px; height: 16px; }
-  html.pm-activo .ondea-dentro .bandera { width: 24px; height: 16px; }
-  html.pm-activo .pancarta-suelo { margin: 0; }
+  html.pm-activo .inicio .pancarta-tutora .tutora-lienzo { width: var(--w); height: var(--t); }
+  html.pm-activo .inicio .lado-izq .inicio-figura { margin-left: calc(var(--w) * -.2); }
+  html.pm-activo .inicio .lado-der .inicio-figura { margin-right: calc(var(--w) * -.2); }
+  html.pm-activo .inicio .lado-izq .inicio-globo { left: 66%; }
+  html.pm-activo .inicio .lado-der .inicio-globo { left: 34%; }
+  html.pm-activo .inicio .pancarta-centro { justify-content: flex-start; padding-top: 0; }
+  html.pm-activo .inicio .pancarta { padding: 30px 8px 34px; outline-offset: -10px; }
+  html.pm-activo .inicio .pancarta .inicio-texto { padding: 0 8px; }
+  html.pm-activo .inicio .pancarta .inicio-datos { gap: 4px 12px; flex-wrap: nowrap; }
+  html.pm-activo .inicio .pancarta .inicio-texto { font-size: clamp(.86rem, calc(var(--h) * .0245), 1.05rem); }
+  html.pm-activo .inicio .pancarta .inicio-datos strong { font-size: clamp(1.4rem, calc(var(--h) * .048), 2.1rem); }
+  html.pm-activo .inicio .pancarta .inicio-datos span { font-size: .66rem; }
+  html.pm-activo .inicio .pancarta-cuerda { gap: 10px 6px; margin: 24px 0 0; padding: 0; }
+  html.pm-activo .inicio .ondea-tira { width: 6px; height: 16px; }
+  html.pm-activo .inicio .ondea-dentro { left: calc(var(--k) * -6px); width: 24px; height: 16px; }
+  html.pm-activo .inicio .ondea-dentro .bandera { width: 24px; height: 16px; }
+  html.pm-activo .inicio .pancarta-suelo { margin: 0; }
 }
 @media (max-width: 700px) and (max-height: 700px) {
-  html.pm-activo .pancarta-cuerda, html.pm-activo .pancarta .inicio-otro { display: none; }
+  html.pm-activo .inicio .pancarta-cuerda, html.pm-activo .inicio .pancarta .inicio-otro { display: none; }
 }
 
 /* Portada en el móvil, diapositiva 3: el pasillo de «así se aprende», como en la web: arriba los banderines y el letrero,
@@ -235,36 +245,36 @@ html.texto-grande { font-size: 112.5%; }
       repeating-linear-gradient(90deg, var(--p-moldura) 0 8px, transparent 8px 16px) 0 15px / 100% 6px no-repeat,
       var(--p-pared);
   }
-  html.pm-activo .pasillo-letrero { padding: clamp(30px, calc(var(--h) * .06), 50px) 8px clamp(10px, calc(var(--h) * .026), 22px); }
-  html.pm-activo .pasillo-letrero span { font-size: clamp(1.05rem, calc(var(--h) * .036), 1.6rem); }
-  html.pm-activo .pasillo-tramos {
+  html.pm-activo .inicio .pasillo-letrero { padding: clamp(30px, calc(var(--h) * .06), 50px) 8px clamp(10px, calc(var(--h) * .026), 22px); }
+  html.pm-activo .inicio .pasillo-letrero span { font-size: clamp(1.05rem, calc(var(--h) * .036), 1.6rem); }
+  html.pm-activo .inicio .pasillo-tramos {
     flex: 1;
     width: 100%;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-template-rows: auto auto 1fr;
     gap: 8px 8px;
   }
-  html.pm-activo .pasillo-tramo { display: contents; }
-  html.pm-activo .pasillo-tramo::before, html.pm-activo .pasillo-tramo::after, html.pm-activo .pasillo-aplique { display: none; }
-  html.pm-activo .pasillo-tramo:nth-child(1) .tablon { grid-area: 1 / 1 / 2 / 3; }
-  html.pm-activo .pasillo-tramo:nth-child(2) .tablon { grid-area: 1 / 3 / 2 / 5; }
-  html.pm-activo .pasillo-tramo:nth-child(3) .tablon { grid-area: 2 / 1 / 3 / 3; }
-  html.pm-activo .pasillo-tramo:nth-child(4) .tablon { grid-area: 2 / 3 / 3 / 5; }
-  html.pm-activo .pasillo-tramo:nth-child(1) .pasillo-paseo { grid-area: 3 / 1; }
-  html.pm-activo .pasillo-tramo:nth-child(2) .pasillo-paseo { grid-area: 3 / 2; }
-  html.pm-activo .pasillo-tramo:nth-child(3) .pasillo-paseo { grid-area: 3 / 3; }
-  html.pm-activo .pasillo-tramo:nth-child(4) .pasillo-paseo { grid-area: 3 / 4; }
-  html.pm-activo .tablon { margin: 0; padding: 9px; }
-  html.pm-activo .tablon-papel { padding: 14px 8px 20px; }
-  html.pm-activo .tablon-papel h3 { font-size: clamp(.7rem, calc(var(--h) * .0205), .84rem); }
-  html.pm-activo .tablon-papel p { margin-top: 6px; font-size: clamp(.7rem, calc(var(--h) * .0205), .84rem); line-height: 1.28; }
-  html.pm-activo .pasillo-paseo { align-self: end; height: calc(var(--t) + 14px); margin: 0 -4px; background: none; box-shadow: none; }
-  html.pm-activo .pasillo-tutora { bottom: 8px; }
-  html.pm-activo .pasillo-tutora .tutora-lienzo { width: calc(var(--t) * .75); height: var(--t); }
-  html.pm-activo .pasillo-maceta { bottom: 6px; width: calc(var(--t) * .34); height: calc(var(--t) * .38); }
+  html.pm-activo .inicio .pasillo-tramo { display: contents; }
+  html.pm-activo .inicio .pasillo-tramo::before, html.pm-activo .inicio .pasillo-tramo::after, html.pm-activo .inicio .pasillo-aplique { display: none; }
+  html.pm-activo .inicio .pasillo-tramo:nth-child(1) .tablon { grid-area: 1 / 1 / 2 / 3; }
+  html.pm-activo .inicio .pasillo-tramo:nth-child(2) .tablon { grid-area: 1 / 3 / 2 / 5; }
+  html.pm-activo .inicio .pasillo-tramo:nth-child(3) .tablon { grid-area: 2 / 1 / 3 / 3; }
+  html.pm-activo .inicio .pasillo-tramo:nth-child(4) .tablon { grid-area: 2 / 3 / 3 / 5; }
+  html.pm-activo .inicio .pasillo-tramo:nth-child(1) .pasillo-paseo { grid-area: 3 / 1; }
+  html.pm-activo .inicio .pasillo-tramo:nth-child(2) .pasillo-paseo { grid-area: 3 / 2; }
+  html.pm-activo .inicio .pasillo-tramo:nth-child(3) .pasillo-paseo { grid-area: 3 / 3; }
+  html.pm-activo .inicio .pasillo-tramo:nth-child(4) .pasillo-paseo { grid-area: 3 / 4; }
+  html.pm-activo .inicio .tablon { margin: 0; padding: 9px; }
+  html.pm-activo .inicio .tablon-papel { padding: 14px 8px 20px; }
+  html.pm-activo .inicio .tablon-papel h3 { font-size: clamp(.7rem, calc(var(--h) * .0205), .84rem); }
+  html.pm-activo .inicio .tablon-papel p { margin-top: 6px; font-size: clamp(.7rem, calc(var(--h) * .0205), .84rem); line-height: 1.28; }
+  html.pm-activo .inicio .pasillo-paseo { align-self: end; height: calc(var(--t) + 14px); margin: 0 -4px; background: none; box-shadow: none; }
+  html.pm-activo .inicio .pasillo-tutora { bottom: 8px; }
+  html.pm-activo .inicio .pasillo-tutora .tutora-lienzo { width: calc(var(--t) * .75); height: var(--t); }
+  html.pm-activo .inicio .pasillo-maceta { bottom: 6px; width: calc(var(--t) * .34); height: calc(var(--t) * .38); }
 }
 @media (max-width: 700px) and (max-height: 700px) {
-  html.pm-activo .tablon-papel p { display: none; }
+  html.pm-activo .inicio .tablon-papel p { display: none; }
 }
 
 /* Portada en el móvil, diapositiva 4: el teatro de los idiomas, de borde a borde: el cartel de bombillas, el escenario
@@ -280,21 +290,21 @@ html.texto-grande { font-size: 112.5%; }
     min-height: calc(var(--h) - 12px);
     padding: clamp(16px, calc(var(--h) * .04), 30px) 12px 12px;
   }
-  html.pm-activo .teatro-cartel { margin: 0 auto 8px; padding: 14px 18px; }
-  html.pm-activo .teatro-cartel h2 { font-size: clamp(1.05rem, calc(var(--h) * .034), 1.5rem); }
+  html.pm-activo .inicio .teatro-cartel { margin: 0 auto 8px; padding: 14px 18px; }
+  html.pm-activo .inicio .teatro-cartel h2 { font-size: clamp(1.05rem, calc(var(--h) * .034), 1.5rem); }
   html.pm-activo .inicio-teatro .inicio-seccion-texto { margin: 6px auto 12px; font-size: .88rem; }
-  html.pm-activo .teatro { width: 100%; }
-  html.pm-activo .teatro-escena { height: var(--e); }
-  html.pm-activo .teatro-publico { top: calc(var(--e) + 9px); }
-  html.pm-activo .teatro-tutora .tutora-lienzo { width: calc(var(--e) * .45); height: calc(var(--e) * .6); }
-  html.pm-activo .teatro-tutora .inicio-globo { bottom: calc(100% - var(--e) * .07); }
-  html.pm-activo .teatro-foco { width: calc(var(--e) * .95); margin-left: calc(var(--e) * -.475); }
-  html.pm-activo .teatro-placa { margin-top: 14px; padding: 8px 16px 8px 12px; }
+  html.pm-activo .inicio .teatro { width: 100%; }
+  html.pm-activo .inicio .teatro-escena { height: var(--e); }
+  html.pm-activo .inicio .teatro-publico { top: calc(var(--e) + 9px); }
+  html.pm-activo .inicio .teatro-tutora .tutora-lienzo { width: calc(var(--e) * .45); height: calc(var(--e) * .6); }
+  html.pm-activo .inicio .teatro-tutora .inicio-globo { bottom: calc(100% - var(--e) * .07); }
+  html.pm-activo .inicio .teatro-foco { width: calc(var(--e) * .95); margin-left: calc(var(--e) * -.475); }
+  html.pm-activo .inicio .teatro-placa { margin-top: 14px; padding: 8px 16px 8px 12px; }
   html.pm-activo .inicio-teatro .teatro-entradas { margin: auto 0 0; padding-top: 14px; }
 }
 @media (max-width: 700px) and (max-height: 700px) {
   html.pm-activo .inicio-teatro { --e: clamp(110px, calc(var(--h) - 250px), 330px); }
-  html.pm-activo .inicio-teatro .inicio-seccion-texto, html.pm-activo .teatro-placa { display: none; }
+  html.pm-activo .inicio-teatro .inicio-seccion-texto, html.pm-activo .inicio .teatro-placa { display: none; }
   html.pm-activo .inicio-teatro .teatro-entradas { grid-template-columns: repeat(11, 1fr); gap: 6px 2px; padding-top: 12px; }
   html.pm-activo .inicio-teatro .teatro-entradas li { filter: none; }
   html.pm-activo .inicio-teatro .teatro-entradas .inicio-idioma { background: none; }
@@ -403,4 +413,67 @@ html.texto-grande { font-size: 112.5%; }
 @media (max-width: 700px) and (max-height: 700px) {
   html.pm-activo .inicio-pie-pag .pie-grupo a { min-height: 28px; font-size: .72rem; }
   html.pm-activo .inicio-pie-pag .pie-grupos { gap: 6px 8px; }
+}
+
+/* Sobre Paglot en el móvil: un piso de la casa por diapositiva (js/app.js, DIAPOSITIVAS.sobre), del alto que hay entre
+   la cabecera y la barra ◀ ▶ (--h). El tejado va con la buhardilla, la historia en dos y la calle al final. */
+@media (max-width: 700px) {
+  html.pm-activo .casa-paglot { --h: var(--pm-alto, 674px); padding: 0; }
+  html.pm-activo .casa-paglot .casa { display: flex; flex-direction: column; min-height: var(--h); }
+  html.pm-activo .casa-cuerpo { flex: 1; display: flex; flex-direction: column; }
+  html.pm-activo .casa-piso { flex: 1; box-sizing: border-box; display: flex; flex-direction: column; }
+  html.pm-activo .casa-calle { box-sizing: border-box; min-height: var(--h); display: flex; flex-direction: column; justify-content: space-between; margin: 0; }
+  html.pm-activo .casa-piso { padding: clamp(18px, calc(var(--h) * .04), 30px) 14px clamp(22px, calc(var(--h) * .045), 34px); }
+  html.pm-activo .casa-paglot .es-papel { padding: 12px 13px; }
+  html.pm-activo .casa-piso p { font-size: clamp(.78rem, calc(var(--h) * .0136), .92rem); line-height: 1.45; }
+  html.pm-activo .casa-calle { justify-content: space-evenly; }
+  html.pm-activo .casa-piso h2 { font-size: clamp(1.15rem, calc(var(--h) * .021), 1.4rem); }
+
+  /* la historia: los cuadros se encienden al pasar por ellos con la rueda; aquí se ven todos encendidos */
+  html.pm-activo .casa-hito { padding-bottom: 12px; }
+  html.pm-activo .casa-hito .casa-hito-texto { opacity: 1; }
+  html.pm-activo .casa-hito .casa-marco { filter: none; width: 52px; height: 52px; }
+  html.pm-activo .casa-hito .casa-icono { width: 30px; }
+  html.pm-activo .casa-cuadro { padding-top: 8px; }
+  html.pm-activo .casa-escalera .casa-historia { flex: 1; align-content: center; }
+
+  /* el método: el libro (una página por diapositiva), con sus marcapáginas arriba, centrado en la pared y la mesa en el suelo */
+  html.pm-activo .casa-estudio { padding-top: clamp(58px, calc(var(--h) * .11), 72px); }
+  html.pm-activo .casa-escritorio { padding-bottom: clamp(100px, calc(var(--h) * .23), 150px); }
+  html.pm-activo .casa-mesa { height: clamp(100px, calc(var(--h) * .23), 150px); }
+  html.pm-activo .casa-escritorio { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  html.pm-activo .casa-pagina p { font-size: clamp(.86rem, calc(var(--h) * .016), 1rem); }
+
+  /* las tres puertas, algo más bajas */
+  html.pm-activo .casa-valores { gap: clamp(10px, calc(var(--h) * .02), 20px); }
+  html.pm-activo .casa-valor { gap: 14px; }
+  html.pm-activo .casa-puerta { height: clamp(78px, calc(var(--h) * .19), 148px); width: clamp(56px, calc(var(--h) * .13), 92px); }
+  html.pm-activo .casa-curiosa .tutora-lienzo { width: clamp(42px, calc(var(--h) * .1), 72px); height: clamp(56px, calc(var(--h) * .133), 96px); }
+  html.pm-activo .casa-valor-texto h3 { font-size: clamp(.9rem, calc(var(--h) * .017), 1.05rem); }
+
+  /* la misión, el taller y la tienda: el texto arriba y la escena ocupa lo que queda; sus piezas se miden con ese
+     alto (cqh), con las proporciones de la web */
+  html.pm-activo .casa-mapas, html.pm-activo .casa-taller, html.pm-activo .casa-tienda { display: flex; flex-direction: column; align-items: stretch; justify-content: center; gap: 12px; }
+  html.pm-activo .casa-mapa { flex: 1 1 0; min-height: 190px; height: auto; margin: 36px 6px 6px; }
+  html.pm-activo .casa-maquina, html.pm-activo .casa-mostrador-escena { flex: 1 1 0; min-height: 190px; height: auto; max-width: none; container-type: size; }
+  html.pm-activo .casa-maquina { --u: min(1cqh, .8947cqw); --x: calc(50cqw - var(--u) * 55.9); --y: calc(50cqh - var(--u) * 50); } /* mide 380 × 340: u es su centésima de alto; x e y, su esquina */
+  html.pm-activo .casa-rueda-1 { left: calc(var(--x) + var(--u) * 8.8); top: calc(var(--y) + var(--u) * 34.1); width: calc(var(--u) * 37.6); }
+  html.pm-activo .casa-rueda-2 { left: calc(var(--x) + var(--u) * 32.9); top: calc(var(--y) + var(--u) * 18.8); width: calc(var(--u) * 29.4); }
+  html.pm-activo .casa-rueda-3 { left: calc(var(--x) + var(--u) * 53.5); top: calc(var(--y) + var(--u) * 30.6); width: calc(var(--u) * 31.8); }
+  html.pm-activo .casa-maquina .casa-paso-1 { left: calc(var(--x) + var(--u) * 6.5); top: calc(var(--y) + var(--u) * 77); }
+  html.pm-activo .casa-maquina .casa-paso-2 { left: calc(var(--x) + var(--u) * 30.6); top: calc(var(--y) + var(--u) * 1.8); }
+  html.pm-activo .casa-maquina .casa-paso-3 { left: calc(var(--x) + var(--u) * 62.9); top: calc(var(--y) + var(--u) * 65.3); }
+  html.pm-activo .casa-maquina .casa-paso { min-height: 32px; padding: 4px 8px; font-size: .78rem; }
+  html.pm-activo .casa-mecanica { right: calc(var(--x) - var(--u) * 4.7); bottom: var(--y); }
+  html.pm-activo .casa-mecanica .tutora-lienzo { width: calc(var(--u) * 42.4); height: calc(var(--u) * 56.5); }
+  html.pm-activo .casa-tienda { padding-top: 46px; }
+  html.pm-activo .casa-mostrador-escena { --u: min(1cqh, .9167cqw); } /* mide 360 × 330 */
+  html.pm-activo .casa-estanteria { bottom: calc(var(--u) * 12.1); width: calc(var(--u) * 80); }
+  html.pm-activo .casa-tendera { bottom: calc(var(--u) * 22.4); }
+  html.pm-activo .casa-tendera .tutora-lienzo { width: calc(var(--u) * 43.6); height: calc(var(--u) * 58); }
+  html.pm-activo .casa-mostrador { height: calc(var(--u) * 29.1); }
+}
+@media (max-width: 700px) and (max-height: 700px) {
+  html.pm-activo .casa-valores { gap: 6px; }
+  html.pm-activo .casa-valor-texto p { line-height: 1.32; }
 }

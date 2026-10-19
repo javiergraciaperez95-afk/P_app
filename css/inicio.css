@@ -227,22 +227,29 @@ body.en-inicio { overflow-x: clip; } /* el escenario va de lado a lado de la ven
 .inicio-plataforma.pisado .inicio-empezar,
 .inicio-plataforma.pisado .boton-arriba { transform: translateY(5px); }
 .inicio-plataforma.pisado .inicio-empezar { box-shadow: inset 0 calc(var(--b) * 1.5) 0 rgba(0, 0, 0, .25), 0 calc(var(--b) * -1) 0 0 var(--h-borde), 0 var(--b) 0 0 var(--h-borde), calc(var(--b) * -1) 0 0 0 var(--h-borde), var(--b) 0 0 0 var(--h-borde); }
-/* polvillo que sale por los lados al caer */
-.inicio-plataforma::after {
+/* polvillo que sale por los lados al caer: cada lado es un pseudo sin fondo (solo sus puntos) que se aleja y se borra */
+.inicio-plataforma::before, .inicio-plataforma::after {
   content: "";
   position: absolute;
+  z-index: 1;
   bottom: 70px;
   left: 50%;
   width: 6px;
   height: 6px;
   opacity: 0;
-  background: var(--h-papel);
   pointer-events: none;
 }
-.inicio-plataforma.pisado::after { animation: inicio-polvo .26s steps(3) both; }
-@keyframes inicio-polvo {
-  from { opacity: 1; box-shadow: -40px 0 0 var(--h-papel), 34px 0 0 var(--h-papel), -48px -6px 0 var(--h-papel), 42px -6px 0 var(--h-papel); }
-  to { opacity: 0; box-shadow: -70px -14px 0 var(--h-papel), 64px -14px 0 var(--h-papel), -84px -24px 0 var(--h-papel), 78px -24px 0 var(--h-papel); }
+.inicio-plataforma::before { box-shadow: -40px 0 0 var(--h-papel), -48px -6px 0 var(--h-papel); }
+.inicio-plataforma::after { box-shadow: 34px 0 0 var(--h-papel), 42px -6px 0 var(--h-papel); }
+.inicio-plataforma.pisado::before { animation: inicio-polvo-izq .26s steps(3) both; }
+.inicio-plataforma.pisado::after { animation: inicio-polvo-der .26s steps(3) both; }
+@keyframes inicio-polvo-izq {
+  from { opacity: 1; }
+  to { opacity: 0; transform: translate(-33px, -16px); }
+}
+@keyframes inicio-polvo-der {
+  from { opacity: 1; }
+  to { opacity: 0; transform: translate(33px, -16px); }
 }
 .inicio-plataforma.apretujado .inicio-empezar { animation: inicio-apretujar .36s steps(1) infinite; }
 @keyframes inicio-apretujar { 50% { transform: scaleX(.93) scaleY(1.05); } }
@@ -1178,6 +1185,6 @@ body.en-inicio { overflow-x: clip; } /* el escenario va de lado a lado de la ven
 
 @media (prefers-reduced-motion: reduce) {
   .teatro-cartel::before, .teatro-cartel::after, .telon, .teatro-publico i, .paseante, .paseante svg, .farolillo, .inicio-mercado .x-s, .pancarta::before, .ondea-tira, .pasillo-banderines i, .pasillo-aplique::before, .inicio-cielo::before, .inicio-cielo::after, .sol-a, .sol-b, .inicio-nube, .inicio-universidad .u-x, .inicio-logo, .inicio-empezar::before,
-  .inicio-plataforma.apretujado .inicio-empezar, .inicio-plataforma.brilla .inicio-empezar, .inicio-plataforma.pisado::after { animation: none; }
+  .inicio-plataforma.apretujado .inicio-empezar, .inicio-plataforma.brilla .inicio-empezar, .inicio-plataforma.pisado::before, .inicio-plataforma.pisado::after { animation: none; }
   .inicio-plataforma.pisado .inicio-empezar, .inicio-plataforma.pisado .boton-arriba { transform: none; }
 }

@@ -422,7 +422,7 @@
 .cm-flotante {
   position: fixed;
   right: max(16px, var(--borde-der));
-  bottom: calc(var(--alto-tutora) + 44px + var(--borde-abajo));
+  bottom: calc(var(--alto-tutora-real, var(--alto-tutora)) + 44px + var(--borde-abajo));
   z-index: 25;
   margin: 0;
   padding: 8px 14px;
@@ -700,17 +700,18 @@ a.cm-extra:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--
 @keyframes cm-recien { 0% { transform: scale(.6); } 40% { transform: scale(1.25); } 70% { transform: scale(.95); } 100% { transform: scale(1); } }
 @keyframes cm-recien-estrella { from { transform: rotate(-200deg) scale(0); } to { transform: rotate(0) scale(1); } }
 
-/* el aviso del cofre sin abrir */
+/* el aviso del cofre sin abrir: el marco dorado es un ::after que parpadea (solo opacity) */
 .cm-extra-cofre {
+  position: relative;
   margin: 0;
   font: inherit;
   text-align: left;
   border-color: var(--dorado);
   cursor: pointer;
-  animation: cm-cofre-aviso 1.4s steps(2) infinite;
 }
+.cm-extra-cofre::after { content: ""; position: absolute; inset: -3px; box-shadow: 4px 4px 0 var(--sombra), 0 0 0 3px var(--dorado); opacity: 0; pointer-events: none; animation: cm-cofre-aviso 1.4s steps(2) infinite; }
 .cm-extra-cofre:hover { background: var(--panel-2); }
-@keyframes cm-cofre-aviso { 50% { box-shadow: 4px 4px 0 var(--sombra), 0 0 0 3px var(--dorado); } }
+@keyframes cm-cofre-aviso { 50% { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
-  .cm-parada.recien .cm-nodo-cara, .cm-parada.recien .cm-nodo-estrella, .cm-extra-cofre { animation: none; }
+  .cm-parada.recien .cm-nodo-cara, .cm-parada.recien .cm-nodo-estrella, .cm-extra-cofre, .cm-extra-cofre::after { animation: none; }
 }

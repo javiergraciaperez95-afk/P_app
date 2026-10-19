@@ -1,7 +1,7 @@
 /* ===== Fuente pixel (títulos, botones y menú) ===== */
 @font-face {
   font-family: "Pixelify Sans";
-  src: url("../assets/fonts/PixelifySans.ttf") format("truetype");
+  src: url("../assets/fonts/PixelifySans.woff2") format("woff2");
   font-weight: 400 700;
   font-display: swap;
 }
@@ -80,7 +80,7 @@ body {
   font-size: 1.05rem;
   line-height: 1.55;
   font-variant-ligatures: none; /* la fuente pixel tiene una «fi» rara */
-  padding-bottom: calc(var(--alto-tutora) + 36px);
+  padding-bottom: calc(var(--alto-tutora-real, var(--alto-tutora)) + 36px);
   overflow-x: hidden;
 }
 
@@ -531,6 +531,12 @@ main:focus { outline: none; }
 .categoria { margin-bottom: 22px; }
 .categoria h2 { border-left: calc(var(--px) * 2) solid var(--rojo); padding-left: 10px; }
 .categoria h2:focus { outline: none; }
+/* El título del bloque es el desplegable (sin la flecha de serie del navegador) */
+.categoria > summary { display: block; cursor: pointer; list-style: none; }
+.categoria > summary::-webkit-details-marker { display: none; }
+.categoria > summary h2::before { content: '▸ '; }
+.categoria[open] > summary h2::before { content: '▾ '; }
+.frases-mas { margin-top: 8px; }
 
 .tarjeta-cuaderno {
   display: flex;
@@ -1619,7 +1625,7 @@ body.sin-tutora main { padding-bottom: 32px; }
   --borde-der: var(--safe-area-inset-right, env(safe-area-inset-right, 0px));
 }
 body { padding: var(--borde-arriba) var(--borde-der) 0 var(--borde-izq); }
-main { padding-bottom: calc(var(--alto-tutora) + 36px + var(--borde-abajo)); }
+main { padding-bottom: calc(var(--alto-tutora-real, var(--alto-tutora)) + 36px + var(--borde-abajo)); }
 body.sin-tutora main { padding-bottom: calc(32px + var(--borde-abajo)); }
 .tutora { bottom: calc(14px + var(--borde-abajo)); }
 .juego { padding-top: calc(8px + var(--borde-arriba)); padding-bottom: calc(4px + var(--borde-abajo)); }

@@ -3,13 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- Solo se cargan archivos de este sitio y los <script> en línea de esta página (sus hashes en script-src); publicar.py los recalcula al cambiar __VERSION__. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-S4pFW3ywX+KKRniZH+yTJf8mGvO6XvMCi7O1Zg8rZNI=' 'sha256-hn1lrKZ7wDT5Bw+GXFUgLvkq7i1YL4aSMDi4yB9SpP0=' 'sha256-i2JYOuti5Ah2S8EaTkBTkbMk46bg0jWJheA5ii3Mz2Q='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' https://iuniglsiqnfvnotmfgdo.supabase.co">
   <title>Paglot</title>
-  <meta name="description" content="Paglot: learn languages with your pixel tutor · Học ngoại ngữ cùng cô giáo pixel.">
+  <meta name="description" content="Paglot: aprende idiomas con tu tutora de píxeles · Learn languages with your pixel tutor · Học ngoại ngữ cùng cô giáo pixel.">
   <meta name="application-name" content="Paglot">
   <meta name="apple-mobile-web-app-title" content="Paglot">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Paglot">
-  <meta property="og:description" content="Learn languages with your pixel tutor · Học ngoại ngữ cùng cô giáo pixel.">
+  <meta property="og:description" content="Aprende idiomas con tu tutora de píxeles · Learn languages with your pixel tutor · Học ngoại ngữ cùng cô giáo pixel.">
   <meta property="og:image" content="assets/icono-512.png">
   <meta name="theme-color" content="#14111c">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -27,7 +29,10 @@
       const calma = typeof a.calma === 'boolean' ? a.calma : matchMedia('(prefers-reduced-motion: reduce)').matches;
       document.documentElement.classList.toggle('modo-calma', calma);
       document.documentElement.classList.toggle('texto-grande', a.texto === 'grande');
-      const compatibles = new Set(['en', 'vi']);
+      // los idiomas de la interfaz según el curso, como en js/i18n.js: el de español va en inglés o vietnamita; los demás,
+      // en español o inglés; sin curso (la portada y la web), los tres
+      const curso = localStorage.getItem('idiomas-curso');
+      const compatibles = new Set(!curso ? ['es', 'en', 'vi'] : curso === 'es' ? ['en', 'vi'] : ['es', 'en']);
       const detectar = () => [...(navigator.languages ?? []), navigator.language ?? '']
         .map(x => x.toLowerCase().replaceAll('_', '-').split('-')[0]).find(x => compatibles.has(x)) ?? 'en';
       document.documentElement.lang = a.idioma && a.idioma !== 'auto' && compatibles.has(a.idioma) ? a.idioma : detectar();
@@ -43,7 +48,7 @@
   <!-- Las letras de la portada (alfabeto latino) se piden ya: si no, se descubren al pintar y el texto cambia de letra a media carga. -->
   <link rel="preload" href="assets/fonts/bevietnampro-03.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/tiny5-08.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/PixelifySans.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/PixelifySans.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/fuentes.css?v=__VERSION__">
   <link rel="stylesheet" href="css/proteccion-texto.css?v=__VERSION__">
   <script src="js/proteccion-texto.js?v=__VERSION__"></script>
@@ -118,6 +123,7 @@
         "./js/exercises.js": "./js/exercises.js?v=__VERSION__",
         "./js/i18n.js": "./js/i18n.js?v=__VERSION__",
         "./js/i18n/en.js": "./js/i18n/en.js?v=__VERSION__",
+        "./js/i18n/es.js": "./js/i18n/es.js?v=__VERSION__",
         "./js/i18n/vi.js": "./js/i18n/vi.js?v=__VERSION__",
         "./js/iconos.js": "./js/iconos.js?v=__VERSION__",
         "./js/juego/efectos.js": "./js/juego/efectos.js?v=__VERSION__",

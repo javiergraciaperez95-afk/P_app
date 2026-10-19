@@ -286,9 +286,10 @@
 .pr-hucha-barra { top: 8px; left: 170px; right: 0; display: flex; align-items: center; gap: 10px; }
 .pr-hucha-barra span { font: 700 .95rem var(--fuente-pixel); color: var(--h-tinta); }
 .pr-hucha-barra > i { position: relative; flex: 1; height: 24px; background: var(--h-papel); box-shadow: 0 0 0 3px var(--h-borde), 3px 5px 0 2px var(--h-sombra); }
-.pr-hucha-barra > i > i { position: absolute; inset: 0 auto 0 0; width: 0; background: repeating-linear-gradient(90deg, var(--marca-oro) 0 14px, #d9a63a 14px 18px); animation: pr-llenar 12s steps(4) infinite; }
+/* la barra se llena con scaleX (transform), no con el ancho */
+.pr-hucha-barra > i > i { position: absolute; inset: 0 auto 0 0; width: 100%; transform: scaleX(0); transform-origin: 0 50%; background: repeating-linear-gradient(90deg, var(--marca-oro) 0 14px, #d9a63a 14px 18px); animation: pr-llenar 12s steps(4) infinite; }
 .pr-hucha-barra b { font: 700 .85rem var(--fuente-pixel); color: var(--h-tinta); }
-@keyframes pr-llenar { 0% { width: 0; } 100% { width: 100%; } }
+@keyframes pr-llenar { 0% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
 
 /* el texto, en un cartel de papel clavado en la pared */
 .pr-hucha-texto {
@@ -792,9 +793,9 @@
 .pr-tabla tbody tr.pr-activa { background: rgba(244, 241, 230, .09); }
 .pr-tabla tbody tr.pr-activa .pr-fila-que { color: #fff; text-shadow: 0 0 6px rgba(255, 255, 255, .5); }
 /* la tiza subraya la fila señalada */
-.pr-fila-que::after { content: ""; position: absolute; left: 0; bottom: -5px; width: 0; height: 3px; background: #ffe066; opacity: .85; }
+.pr-fila-que::after { content: ""; position: absolute; left: 0; bottom: -5px; width: 100%; height: 3px; background: #ffe066; opacity: .85; transform: scaleX(0); transform-origin: 0 50%; }
 .pr-activa .pr-fila-que::after { animation: pr-subraya .5s steps(6) forwards; }
-@keyframes pr-subraya { to { width: 100%; } }
+@keyframes pr-subraya { to { transform: scaleX(1); } }
 .pr-activa td.pr-si .pr-check { animation: pr-tic .5s steps(2); }
 @keyframes pr-tic { 50% { transform: scale(1.35); } }
 .pr-no { color: rgba(244, 241, 230, .4); }
@@ -920,10 +921,10 @@
 .pr-rodillo::before, .pr-rodillo::after { content: ""; position: absolute; top: -6px; width: 22px; height: 34px; background: linear-gradient(#f4c84a 0 8px, #c7922a 8px 24px, #8a6418 24px); box-shadow: 0 0 0 3px #000; }
 .pr-rodillo::before { left: -28px; }
 .pr-rodillo::after { right: -28px; }
-/* sin abrir, el papel no ocupa nada; al abrirse baja a ritmo constante hasta su alto (--alto lo mide precios.js) */
+/* sin abrir, el papel no ocupa nada; al abrirse se despliega desde arriba a ritmo constante (scaleY: solo transform) */
 .pr-promesas:not(.pr-visto) .pr-papel { max-height: 0; }
-.pr-visto .pr-papel { animation: pr-desenrolla 1.2s steps(12) backwards; }
-@keyframes pr-desenrolla { from { max-height: 0; } to { max-height: var(--alto, 800px); } }
+.pr-visto .pr-papel { transform-origin: 50% 0; animation: pr-desenrolla 1.2s steps(12) backwards; }
+@keyframes pr-desenrolla { from { transform: scaleY(0); } to { transform: scaleY(1); } }
 .pr-papel {
   overflow: hidden;
   padding: 0 44px;
@@ -989,9 +990,9 @@
 .pr-firma-nombre { font: 700 2rem var(--fuente-pixel); color: var(--tinta); transform: rotate(-4deg); }
 .pr-firma-nombre i { font-style: normal; color: #c77a00; }
 .pr-firma-trazo { display: block; width: 100%; height: 4px; margin-top: 4px; background: var(--tinta); transform: rotate(-4deg); transform-origin: 0 50%; }
-.pr-promesas:not(.pr-visto) .pr-firma { clip-path: inset(0 100% 0 0); }
-.pr-visto .pr-firma { animation: pr-firmar .9s steps(9) both; animation-delay: 3.6s; }
-@keyframes pr-firmar { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 -10px 0 0); } }
+.pr-promesas:not(.pr-visto) .pr-firma { transform: scaleX(0); transform-origin: 0 50%; }
+.pr-visto .pr-firma { transform-origin: 0 50%; animation: pr-firmar .9s steps(9) both; animation-delay: 3.6s; }
+@keyframes pr-firmar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 .pr-promesas .pr-aviso { margin: 30px auto 0 !important; max-width: 46em !important; font-size: .85rem; color: var(--h-suave); }
 
@@ -1066,8 +1067,8 @@
   .pr-ver::after { content: ""; width: 10px; height: 6px; background: var(--color); clip-path: polygon(0 0, 100% 0, 100% 34%, 70% 34%, 70% 67%, 30% 67%, 30% 34%, 0 34%); transition: transform .15s steps(2); }
   .pr-abierto .pr-ver::after { transform: scaleY(-1); }
   .pr-bloque .pr-lista { grid-area: lista; display: none; margin: 8px 0 2px -66px; }
-  .pr-abierto .pr-bloque .pr-lista { display: block; animation: pr-despliega .25s steps(4); }
-  @keyframes pr-despliega { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
+  .pr-abierto .pr-bloque .pr-lista { display: block; transform-origin: 50% 0; animation: pr-despliega .25s steps(4); }
+  @keyframes pr-despliega { from { transform: scaleY(0); } to { transform: scaleY(1); } }
   .pr-cinta { top: -11px; right: 10px; }
   .pr-texto { font-size: .88rem; margin-bottom: 10px; }
   .pr-controles { gap: 6px 14px; }

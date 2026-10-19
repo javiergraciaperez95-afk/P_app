@@ -43,8 +43,10 @@ body.tutora-oculta .jg-pie { bottom: calc(62px + var(--borde-abajo, 0px)); }
 .jg-seguir { margin-top: 14px; }
 
 /* La palabra que hay que encontrar: brilla a saltos */
-.jg .palabra.jg-brilla, .jg .palabra.jg-luciernaga { position: relative; z-index: 1; color: #2b1d1a; background: var(--oro); box-shadow: 0 0 0 3px var(--oro-2); animation: jg-brillo 1.1s steps(2) infinite; }
-@keyframes jg-brillo { 50% { box-shadow: 0 0 0 3px var(--oro-2), 0 0 0 7px rgba(244, 200, 74, .45); } }
+/* La palabra que hay que encontrar: brilla a saltos (el halo es un ::before que aparece y desaparece; solo opacity) */
+.jg .palabra.jg-brilla, .jg .palabra.jg-luciernaga { position: relative; z-index: 1; color: #2b1d1a; background: var(--oro); box-shadow: 0 0 0 3px var(--oro-2); }
+.jg .palabra.jg-brilla::before, .jg .palabra.jg-luciernaga::before { content: ""; position: absolute; inset: 0 0 -2px; z-index: -1; box-shadow: 0 0 0 7px rgba(244, 200, 74, .45); opacity: 0; pointer-events: none; animation: jg-brillo 1.1s steps(2) infinite; }
+@keyframes jg-brillo { 50% { opacity: 1; } }
 .jg .palabra.jg-encontrada { color: #2b1d1a; background: #9fe0a0; box-shadow: 0 0 0 3px #3f8a4a; }
 
 /* ===================== La pizarra ===================== */
@@ -222,7 +224,7 @@ body.tutora-oculta .jg-pie { bottom: calc(62px + var(--borde-abajo, 0px)); }
   .jg-noche { padding: 52px 14px 24px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .jg *, .jg { animation: none !important; transition: none !important; }
+  .jg *, .jg *::before, .jg { animation: none !important; transition: none !important; }
 }
 
 /* ----- La lección en el móvil: toda la pantalla para jugar (body.en-leccion lo pone js/app.js) -----

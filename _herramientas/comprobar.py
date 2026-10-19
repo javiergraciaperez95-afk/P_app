@@ -1,0 +1,131 @@
+"""Comprobaciones de Paglot que se hacen en cada cambio (y en GitHub Actions, .github/workflows/comprobar.yml).
+
+    python _herramientas/comprobar.py
+
+1. Todos los .json de cursos/ se leen bien (utf-8, con o sin BOM).
+2. js/i18n/en.js, es.js y vi.js tienen las mismas claves. Las que acaban en @es solo van en en.js y vi.js.
+3. Ningún archivo de cursos/ tiene ZQX o ZQY seguido de cifras (texto de prueba que no debe llegar a la app).
+4. Cada objeto JSON de cursos/ con @es o @en tiene solo esas dos claves, y las dos son texto.
+5. La CSP de index.html lleva el hash de cada <script> en línea (si no, la app no arranca): se rehace con
+   python _herramientas/publicar.py --csp
+
+Sale con código 1 si algo falla y dice qué y dónde. No cambia ningún archivo.
+"""
+import json
+import re
+import sys
+from pathlib import Path
+
+RAIZ = Path(__file__).resolve().parent.parent
+CURSOS = RAIZ / 'cursos'
+I18N = RAIZ / 'js' / 'i18n'
+MAXIMO_LISTADO = 20  # cuántos fallos se escriben por comprobación
+# Las claves empiezan la línea o van detrás de una coma (en en.js y vi.js hay dos en la misma línea).
+CLAVE = re.compile(r"(?:^|,)\s*'([^']+)'\s*:", re.M)
+ZQ = re.compile(rb'ZQ[XY][0-9]')
+
+
+def relativa(ruta):
+    return ruta.relative_to(RAIZ).as_posix()
+
+
+def comprobar_i18n():
+    """Mismas claves en los tres idiomas de la interfaz (las @es, solo en en.js y vi.js)."""
+    errores = []
+    claves = {}
+    for idioma in ('en', 'es', 'vi'):
+        texto = (I18N / f'{idioma}.js').read_text(encoding='utf-8')
+        claves[idioma] = [m.group(1) for m in CLAVE.finditer(texto)]
+    es, en, vi = (set(claves[i]) for i in ('es', 'en', 'vi'))
+    arroba_es = sorted(k for k in es if k.endswith('@es'))
+    if arroba_es:
+        errores.append('es.js tiene claves que acaban en @es (solo deben ir en en.js y vi.js): ' + ', '.join(arroba_es))
+    if en - vi:
+        errores.append('solo en en.js: ' + ', '.join(sorted(en - vi)))
+    if vi - en:
+        errores.append('solo en vi.js: ' + ', '.join(sorted(vi - en)))
+    # en.js y vi.js deben tener lo de es.js, salvo las claves @es, que no van en es.js
+    sin_arroba = {k for k in en if not k.endswith('@es')}
+    if es - sin_arroba:
+        errores.append('solo en es.js: ' + ', '.join(sorted(es - sin_arroba)))
+    if sin_arroba - es:
+        errores.append('falta en es.js: ' + ', '.join(sorted(sin_arroba - es)))
+    return errores, {i: len(c) for i, c in claves.items()}
+
+
+def revisar_objetos(dato, camino, ruta, errores):
+    """Recorre el JSON buscando objetos con @es o @en y comprueba sus claves."""
+    if isinstance(dato, dict):
+        if '@es' in dato or '@en' in dato:
+            claves = set(dato)
+            donde = f'{relativa(ruta)} {camino or "(raiz)"}'
+            if claves != {'@es', '@en'}:
+                errores.append(f'{donde}: claves {sorted(claves)} (deben ser solo @es y @en)')
+            elif not (isinstance(dato['@es'], str) and isinstance(dato['@en'], str)):
+                errores.append(f'{donde}: @es y @en deben ser texto')
+        for clave, valor in dato.items():
+            revisar_objetos(valor, f'{camino}.{clave}', ruta, errores)
+    elif isinstance(dato, list):
+        for n, valor in enumerate(dato):
+            revisar_objetos(valor, f'{camino}[{n}]', ruta, errores)
+
+
+def comprobar_cursos():
+    """JSON legibles, sin marcas ZQX/ZQY y objetos @es/@en bien formados."""
+    errores_json, errores_zq, errores_objetos = [], [], []
+    total = 0
+    for ruta in sorted(CURSOS.rglob('*')):
+        if not ruta.is_file():
+            continue
+        bruto = ruta.read_bytes()
+        for m in ZQ.finditer(bruto):
+            linea = bruto.count(b'\n', 0, m.start()) + 1
+            errores_zq.append(f'{relativa(ruta)}:{linea} {m.group().decode("ascii")}')
+        if ruta.suffix != '.json':
+            continue
+        total += 1
+        try:
+            dato = json.loads(bruto.decode('utf-8-sig'))
+        except (ValueError, UnicodeDecodeError) as fallo:
+            errores_json.append(f'{relativa(ruta)}: no se lee como JSON ({fallo})')
+            continue
+        revisar_objetos(dato, '', ruta, errores_objetos)
+    return (errores_json, total), errores_zq, errores_objetos
+
+
+def comprobar_csp():
+    """Los hashes de la CSP de index.html, comparados con los de sus <script> en línea de ahora."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from publicar import leer, recalcular_csp
+    html = leer(RAIZ / 'index.html')
+    return [] if recalcular_csp(html)[0] == html else ['index.html: rehazla con python _herramientas/publicar.py --csp']
+
+
+def mostrar(titulo, errores, detalle=''):
+    estado = 'OK' if not errores else f'FALLA ({len(errores)})'
+    print(f'{titulo}: {estado}{detalle}')
+    for error in errores[:MAXIMO_LISTADO]:
+        print(f'   - {error}')
+    if len(errores) > MAXIMO_LISTADO:
+        print(f'   ... y {len(errores) - MAXIMO_LISTADO} más')
+
+
+def main():
+    fallos = 0
+    (errores_json, total), errores_zq, errores_objetos = comprobar_cursos()
+    mostrar('1. JSON de cursos/', errores_json, f' ({total} archivos)')
+    errores_i18n, cuentas = comprobar_i18n()
+    mostrar('2. Claves de en.js, es.js y vi.js', errores_i18n,
+            ' (' + ', '.join(f'{i} {n}' for i, n in cuentas.items()) + ')')
+    mostrar('3. Sin ZQX/ZQY seguido de cifras en cursos/', errores_zq)
+    mostrar('4. Objetos con @es y @en', errores_objetos)
+    errores_csp = comprobar_csp()
+    mostrar('5. CSP de index.html al día', errores_csp)
+    for errores in (errores_json, errores_i18n, errores_zq, errores_objetos, errores_csp):
+        fallos += len(errores)
+    print('Todo correcto.' if not fallos else f'{fallos} fallo(s).')
+    return 1 if fallos else 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

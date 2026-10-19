@@ -45,15 +45,62 @@ function botonEscucharTodas(frases) {
   return boton;
 }
 
+/** Lo que va dentro de un bloque o de un grupo se pinta al abrirlo por primera vez (y se queda pintado). */
+function pintarAlAbrir(desplegable, pintar) {
+  let pintado = false;
+  desplegable.addEventListener('toggle', () => {
+    if (!desplegable.open || pintado) return;
+    pintado = true;
+    desplegable.append(...pintar().filter(Boolean));
+  });
+}
+
+/** Las frases de una lista se pintan de 30 en 30: «Ver más» añade la siguiente tanda (así ninguna lista pesa de golpe). */
+const TANDA = 30;
+
+/** Lista de frases por tandas (ver TANDA). */
+function listaFrases(frases, origen) {
+  const lista = el('ul', { class: 'lista-frases' });
+  const mas = el('button', { type: 'button', class: 'boton boton-mini frases-mas', 'data-sonido': 'pagina' });
+  const bloque = el('div', {}, lista, mas);
+  let pintadas = 0;
+  const pintarTanda = () => {
+    const hasta = Math.min(frases.length, pintadas + TANDA);
+    lista.append(...frases.slice(pintadas, hasta).map(f => tarjetaFrase(f, origen)));
+    pintadas = hasta;
+    if (pintadas < frases.length) mas.textContent = t('frases.verMas', { n: Math.min(TANDA, frases.length - pintadas) });
+    else mas.remove();
+  };
+  mas.addEventListener('click', pintarTanda);
+  pintarTanda();
+  return bloque;
+}
+
+/** Un grupo (una tarea): sus frases solo se pintan al abrirlo. */
 function seccionGrupo(g, categoria) {
-  return el('details', { class: 'caja grupo-frases' },
+  const grupo = el('details', { class: 'caja grupo-frases' },
     el('summary', {},
       el('span', { class: 'grupo-titulo' }, tr(g.titulo)),
-      g.tarea && el('span', { class: 'grupo-tarea' }, tr(g.tarea))),
+      g.tarea && el('span', { class: 'grupo-tarea' }, tr(g.tarea))));
+  pintarAlAbrir(grupo, () => [
     el('div', { class: 'botonera' },
       botonEscucharTodas(g.frases),
       g.leccion && el('a', { class: 'boton boton-mini', href: `#/leccion/${g.leccion}` }, t('frases.enLeccion', { id: g.leccion }))),
-    el('ul', { class: 'lista-frases' }, g.frases.map(f => tarjetaFrase(f, origenDe(categoria, g.titulo)))));
+    listaFrases(g.frases, origenDe(categoria, g.titulo)),
+  ]);
+  return grupo;
+}
+
+/** Un bloque (categoría): su título es el desplegable; dentro, sus frases y grupos (solo al abrirlo, plegado al principio). */
+function seccionCategoria(c, i) {
+  const seccion = el('details', { class: 'categoria', id: `cat-${i}` },
+    el('summary', {}, el('h2', { tabindex: '-1' }, tr(c.titulo))));
+  pintarAlAbrir(seccion, () => [
+    c.descripcion && el('p', { class: 'aprox' }, tr(c.descripcion)),
+    c.frases.length > 0 && listaFrases(c.frases, origenDe(c.titulo)),
+    ...c.grupos.map(g => seccionGrupo(g, c.titulo)),
+  ]);
+  return seccion;
 }
 
 /** «Frases · Categoría · Grupo» (se guarda en el cuaderno y se traduce al enseñarlo). */
@@ -73,6 +120,7 @@ export function pintarFrases(app, { categorias, avisos, error }) {
     if (!destino) return;
     e.preventDefault();
     const seccion = document.getElementById(destino);
+    if (seccion) seccion.open = true; // si el bloque está plegado, se despliega (y se pintan sus frases)
     seccion?.scrollIntoView({ behavior: 'smooth' });
     seccion?.querySelector('h2')?.focus();
   });
@@ -102,11 +150,7 @@ export function pintarFrases(app, { categorias, avisos, error }) {
       el('summary', {}, t('comun.avisosArchivo', { archivo: 'phrases/frases.json', n: avisos.length })),
       el('ul', {}, avisos.map(a => el('li', {}, a)))),
     indice,
-    categorias.map((c, i) => el('section', { class: 'categoria', id: `cat-${i}` },
-      el('h2', { tabindex: '-1' }, tr(c.titulo)),
-      c.descripcion && el('p', { class: 'aprox' }, tr(c.descripcion)),
-      c.frases.length > 0 && el('ul', { class: 'lista-frases' }, c.frases.map(f => tarjetaFrase(f, origenDe(c.titulo)))),
-      c.grupos.map(g => seccionGrupo(g, c.titulo)))),
+    categorias.map((c, i) => seccionCategoria(c, i)),
     !categorias.length && !error && el('p', { class: 'caja' }, t('frases.ninguna')));
   pintarTapar();
 

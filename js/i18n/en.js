@@ -2037,4 +2037,6 @@ export default {
   'beta.corto': 'Beta: automatic English translation, not yet reviewed. We’ll improve it.',
   'beta.vale': 'Got it, let’s start',
   'beta.etiqueta': 'Beta',
+  'frases.verMas': 'Show {n} more ▼',
+  'repaso.sinQueRepasar': 'Nothing is due today. The next cards come back on their own.',
 };

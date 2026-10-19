@@ -108,17 +108,34 @@ body.con-pie .pie-sitio, .inicio-pie-pag .pie-sitio {
 
 /* de día, unos pájaros que cruzan aleteando */
 .pie-pajaros { position: absolute; top: 38px; left: 0; display: flex; gap: 14px; animation: pajaros 38s steps(380) infinite; pointer-events: none; }
+/* las dos posturas del ala son dos capas (::before y ::after) que se turnan con opacity; el recorte es fijo */
 .pie-pajaros i {
   display: block;
+  position: relative;
   width: 12px;
   height: 6px;
+}
+.pie-pajaros i::before, .pie-pajaros i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
   background: #8a6a5a;
+}
+.pie-pajaros i::before {
   clip-path: polygon(0 0, 17% 0, 17% 33%, 33% 33%, 33% 67%, 67% 67%, 67% 33%, 83% 33%, 83% 0, 100% 0, 100% 33%, 83% 33%, 83% 67%, 67% 67%, 67% 100%, 33% 100%, 33% 67%, 17% 67%, 17% 33%, 0 33%);
   animation: aleteo .5s steps(1) infinite;
 }
-.pie-pajaros i:nth-child(2) { margin-top: 10px; animation-delay: -.2s; }
-.pie-pajaros i:nth-child(3) { margin-top: 4px; animation-delay: -.35s; }
-@keyframes aleteo { 50% { clip-path: polygon(0 67%, 33% 67%, 33% 33%, 67% 33%, 67% 67%, 100% 67%, 100% 100%, 0 100%); } }
+.pie-pajaros i::after {
+  clip-path: polygon(0 67%, 33% 67%, 33% 33%, 67% 33%, 67% 67%, 100% 67%, 100% 100%, 0 100%);
+  opacity: 0;
+  animation: aleteo-abajo .5s steps(1) infinite;
+}
+.pie-pajaros i:nth-child(2) { margin-top: 10px; }
+.pie-pajaros i:nth-child(3) { margin-top: 4px; }
+.pie-pajaros i:nth-child(2)::before, .pie-pajaros i:nth-child(2)::after { animation-delay: -.2s; }
+.pie-pajaros i:nth-child(3)::before, .pie-pajaros i:nth-child(3)::after { animation-delay: -.35s; }
+@keyframes aleteo { 50% { opacity: 0; } }
+@keyframes aleteo-abajo { 50% { opacity: 1; } }
 @keyframes pajaros { from { transform: translateX(-80px); } to { transform: translateX(calc(100vw + 40px)); } }
 :root[data-tema="oscuro"] .pie-pajaros { display: none; }
 
@@ -151,7 +168,7 @@ body.con-pie .pie-sitio, .inicio-pie-pag .pie-sitio {
   .molino-aspas { width: 26px; height: 26px; margin: -13px 0 0 -13px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .aspas-a, .aspas-b, .pie-pajaros, .pie-pajaros i, .pie-fugaz { animation: none; }
+  .aspas-a, .aspas-b, .pie-pajaros, .pie-pajaros i, .pie-pajaros i::before, .pie-pajaros i::after, .pie-fugaz { animation: none; }
 }
 
 .pie-tutoras { position: relative; display: flex; align-items: flex-end; min-width: 0; }

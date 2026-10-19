@@ -2044,4 +2044,6 @@ export default {
   'beta.corto': 'Beta: bản dịch tiếng Anh tự động, chưa được kiểm tra. Chúng mình sẽ cải thiện.',
   'beta.vale': 'Đã hiểu, bắt đầu thôi',
   'beta.etiqueta': 'Beta',
+  'frases.verMas': 'Xem thêm {n} câu ▼',
+  'repaso.sinQueRepasar': 'Hôm nay chưa có thẻ nào đến hạn. Các thẻ tiếp theo sẽ tự quay lại.',
 };
