@@ -14,7 +14,7 @@ import { dibujoDe } from '../tutor-sprite.js';
 import { sonar } from '../sonidos.js';
 import {
   nubeActiva, nube, alCambiarNube, numeroCuenta, numeroBonito, limpiarNumero, usarNumero,
-  pedirCodigo, comprobarCodigo, unirCorreo, recuperarConCorreo, correoDeLaCuenta,
+  pedirCodigo, comprobarCodigo, unirCorreo, recuperarConCorreo, correoDeLaCuenta, progresoEnLaNube, encenderNube,
 } from '../nube.js';
 import { sol, luna, nubes, maceta, dibujoPixel, conContorno, conHalo } from './inicio-decorado.js';
 
@@ -289,11 +289,14 @@ export function pintarEntrar(contenedor) {
   });
   const barra = el('div', { class: 'en-pestanas en-pestanas-3', role: 'group', 'aria-label': t('cuenta.opciones') }, pestanas, el('span', { class: 'en-pestanas-marca', 'aria-hidden': 'true' }));
 
+  // con la nube apagada no hay número que guardar: la tutora explica dónde se queda el progreso
+  const saludoCuenta = () => progresoEnLaNube() ? 'entrar.tutora' : 'entrar.tutoraSinNube';
+
   function cambiar(nuevo, { conSonido = true } = {}) {
     if (conSonido) sonar('elegir');
     modo = nuevo;
     pintarFicha();
-    if (modo === 'cuenta') { tFicha.decir(t('entrar.tutora')); tFicha.gesto('saludar'); tIzq.gesto('invitarDer'); }
+    if (modo === 'cuenta') { tFicha.decir(t(saludoCuenta())); tFicha.gesto('saludar'); tIzq.gesto('invitarDer'); }
     if (modo === 'numero') { tFicha.decir(t('entrar.tutoraNumero')); tFicha.gesto('guino'); tDer.gesto('invitarIzq'); }
     if (modo === 'correo') { tFicha.decir(t('cuenta2.correoAyuda')); tFicha.gesto('pensar'); }
     cuerpo.querySelector('input')?.focus({ preventScroll: true });
@@ -301,6 +304,23 @@ export function pintarEntrar(contenedor) {
 
   // El número de este dispositivo: tapado hasta que se toca (la de la derecha no mira; si se enseña, espía).
   function fichaCuenta() {
+    // la nube va apagada hasta que se enciende (19-10): sin ella no hay número que enseñar, se ofrece encenderla
+    if (!progresoEnLaNube()) {
+      const encender = el('button', { type: 'button', class: 'en-boton' }, t('cuenta2.encender'));
+      encender.addEventListener('click', async () => {
+        encender.disabled = true;
+        await encenderNube();
+        sonar('fanfarria');
+        tFicha.gesto('celebrar');
+        tFicha.decir(t('cuenta2.encendida'));
+        pintarFicha();
+      });
+      return el('div', { class: 'en-dentro' },
+        el('p', {}, t('cuenta2.apagadaTexto')),
+        el('div', { class: 'en-botones' }, encender),
+        el('a', { class: 'en-boton en-boton-claro', href: destino, onclick: () => sonar('pagina') },
+          hayCurso ? t('inicio.continuar', { curso: curso.nativo }) : t('inicio.empezar')));
+    }
     const numero = numeroCuenta();
     let visible = false;
     const cifras = el('button', { type: 'button', class: 'en-numero tapado', 'aria-pressed': 'false', 'aria-label': t('cuenta2.ver'), title: t('cuenta2.ver') },
@@ -454,7 +474,7 @@ export function pintarEntrar(contenedor) {
 
   // La bienvenida, y de vez en cuando alguna hace algo (si no está tapándose los ojos).
   despues(500, () => {
-    tFicha.decir(t(modo === 'numero' ? 'entrar.tutoraNumero' : modo === 'correo' ? 'cuenta2.correoAyuda' : 'entrar.tutora'));
+    tFicha.decir(t(modo === 'numero' ? 'entrar.tutoraNumero' : modo === 'correo' ? 'cuenta2.correoAyuda' : saludoCuenta()));
     tFicha.gesto('saludar');
     tIzq.gesto('invitarDer');
   });
