@@ -287,6 +287,8 @@ export default {
   'lecciones.ejercicios': '{hechos}/{total} bài tập',
   'lecciones.otras': 'Các bài khác',
   'lecciones.capitulo': 'Chương {n}',
+  'lecciones.capitulos': 'Các chương',
+  'lecciones.elegirCapitulo': 'Đến một chương',
   'lecciones.terminadas': 'Đã xong {hechas}/{total} bài',
   'lecciones.plegarTodos': '▸ Thu gọn tất cả',
   'lecciones.desplegarTodos': '▾ Mở rộng tất cả',

@@ -66,6 +66,7 @@ function terminarPagina() {
   poner(texto, ...enLinea(textoCompleto));
   const hayMas = indice < paginas.length - 1;
   mostrarSiguiente(hayMas);
+  if (!hayMas) plegarLuego();
   if (!hayMas && EXPRESIONES_PASAJERAS.includes(sprite.expresion)) {
     clearTimeout(volverANormal);
     volverANormal = setTimeout(() => ponerExpresion('normal'), 6000);
@@ -117,6 +118,7 @@ export function escucharTutora(fn) {
  */
 export function decir(mensaje, expresion = 'normal') {
   for (const fn of oyentes) fn(mensaje, expresion);
+  desplegar();
   clearTimeout(volverANormal);
   clearTimeout(temporizador);
   const lista = Array.isArray(mensaje) ? mensaje : [mensaje];
@@ -137,6 +139,25 @@ function avanzar() {
     mostrarPagina();
   }
 }
+
+// En el móvil, cuando acaba de hablar (y no le quedan páginas), al rato se pliega a solo su cara en una esquina: así
+// deja la pantalla para la lección. Vuelve al hablar o al tocarla.
+const enMovil = window.matchMedia('(max-width: 700px)');
+const ESPERA_PLEGAR = 6000;
+let plegar = null;
+function plegarLuego() {
+  clearTimeout(plegar);
+  if (!enMovil.matches) return;
+  plegar = setTimeout(() => {
+    if (escribiendo || !botonSiguiente.hidden || caja.contains(document.activeElement)) { plegarLuego(); return; }
+    caja.classList.add('plegada');
+  }, ESPERA_PLEGAR);
+}
+function desplegar() {
+  clearTimeout(plegar);
+  caja.classList.remove('plegada');
+}
+enMovil.addEventListener('change', () => { if (!enMovil.matches) desplegar(); });
 
 function pintarBotonOcultar() {
   const oculta = caja.classList.contains('oculta');
@@ -194,6 +215,8 @@ function tocar(zona) {
 }
 
 retrato.addEventListener('click', e => {
+  // plegada, tocarla la despliega con lo último que dijo
+  if (caja.classList.contains('plegada')) { desplegar(); plegarLuego(); return; }
   // Con ratón o dedo se mira dónde ha tocado; con teclado cuenta como la cara.
   const caja = canvas.getBoundingClientRect();
   const enCara = e.detail === 0 || (e.clientY - caja.top) / caja.height < 0.6;

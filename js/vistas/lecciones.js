@@ -444,7 +444,34 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
     const titulo = el('b', { class: 'cm-diapo-num' });
     const atras = el('button', { type: 'button', class: 'pm-atras', 'aria-label': '◀', onclick: () => mostrar(actual - 1) }, '◀');
     const alante = el('button', { type: 'button', class: 'pm-alante', 'aria-label': '▶', onclick: () => mostrar(actual + 1) }, '▶');
-    const nav = el('nav', { class: 'pm-nav', 'aria-label': t('menu.lecciones') }, atras, el('span', { class: 'pm-puntos' }, titulo), alante);
+    // el número del centro abre la lista de capítulos: con veintitantos, ir de uno en uno sería eterno
+    const indice = el('ol', { class: 'cm-indice', hidden: true, 'aria-label': t('lecciones.capitulos') },
+      diapos.map((d, i) => el('li', {}, el('button', { type: 'button', onclick: () => { cerrarIndice(); mostrar(i); } },
+        el('b', {}, i === 0 ? '★' : d.dataset?.cap && /^\d+$/.test(d.dataset.cap) ? d.dataset.cap : String(i)),
+        el('span', {}, i === 0 ? t('camino.misionesTitulo') : d.querySelector('.cm-cartel-titulo')?.textContent ?? ''),
+        i > 0 ? el('small', {}, d.querySelector('.cm-cartel-cuenta')?.textContent ?? '') : null))));
+    const abrirIndice = el('button', {
+      type: 'button', class: 'cm-diapo-boton', 'aria-expanded': 'false', title: t('lecciones.elegirCapitulo'),
+      onclick: () => (indice.hidden ? abrir() : cerrarIndice()),
+    }, titulo, el('span', { 'aria-hidden': 'true' }, ' ▴'));
+    function abrir() {
+      [...indice.children].forEach((li, i) => li.firstChild.setAttribute('aria-current', String(i === actual)));
+      indice.hidden = false;
+      abrirIndice.setAttribute('aria-expanded', 'true');
+      sonar('abrir');
+      indice.children[actual]?.scrollIntoView({ block: 'center' });
+      indice.children[actual]?.firstChild.focus({ preventScroll: true });
+    }
+    function cerrarIndice() {
+      if (indice.hidden) return;
+      indice.hidden = true;
+      abrirIndice.setAttribute('aria-expanded', 'false');
+    }
+    const fueraDelIndice = e => { if (!nav.contains(e.target)) cerrarIndice(); };
+    const escape = e => { if (e.key === 'Escape' && !indice.hidden) { cerrarIndice(); abrirIndice.focus(); } };
+    document.addEventListener('pointerdown', fueraDelIndice);
+    document.addEventListener('keydown', escape);
+    const nav = el('nav', { class: 'pm-nav', 'aria-label': t('menu.lecciones') }, atras, el('span', { class: 'pm-puntos' }, abrirIndice), alante, indice);
     document.body.append(nav);
     const medir = () => {
       pantalla.style.setProperty('--cm-alto',
@@ -487,6 +514,8 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
     mostrar(inicial > 0 ? inicial : (diapos.length > 1 ? 1 : 0), 'der');
     apagar.push(() => {
       removeEventListener('resize', medir);
+      document.removeEventListener('pointerdown', fueraDelIndice);
+      document.removeEventListener('keydown', escape);
       nav.remove();
       document.documentElement.classList.remove('pm-activo');
     });

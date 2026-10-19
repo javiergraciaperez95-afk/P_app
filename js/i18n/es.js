@@ -297,6 +297,8 @@ export default {
   'lecciones.ejercicios': ({ hechos, total }) => `${hechos}/${total} ${plural(total, 'ejercicio', 'ejercicios')}`,
   'lecciones.otras': "Otras lecciones",
   'lecciones.capitulo': "Capítulo {n}",
+  'lecciones.capitulos': "Capítulos",
+  'lecciones.elegirCapitulo': "Ir a un capítulo",
   'lecciones.terminadas': ({ hechas, total }) => `${hechas}/${total} ${plural(total, 'lección terminada', 'lecciones terminadas')}`,
   'lecciones.plegarTodos': "▸ Plegar todo",
   'lecciones.desplegarTodos': "▾ Desplegar todo",

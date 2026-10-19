@@ -606,3 +606,15 @@ html.texto-grande { font-size: 112.5%; }
   html.pm-activo .ct-lineas { gap: 8px; }
   html.pm-activo .ct-lado:has(+ .ct-sitio-carta .ct-cabecera.pm-oculto) .ct-ventana { height: calc(var(--h) - 80px); }
 }
+
+/* El perfil en el móvil (js/app.js, DIAPOSITIVAS.perfil): los datos del progreso de dos en dos y la vitrina de logros
+   más apretada, para que quepan en menos diapositivas. */
+@media (max-width: 700px) {
+  html.pm-activo .datos { grid-template-columns: 1fr 1fr; gap: 8px; }
+  html.pm-activo .dato { padding: 8px 10px; }
+  html.pm-activo .dato-valor { font-size: 1.25rem; }
+  html.pm-activo .lg-vitrina { grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 8px; }
+  html.pm-activo .lg-pieza { gap: 3px; padding: 6px 2px 5px; }
+  html.pm-activo .lg-pieza-nombre { font-size: .62rem; }
+  html.pm-activo .lg-pieza-medalla { width: 40px; height: 40px; font-size: 1.2rem; }
+}

@@ -787,6 +787,11 @@ input[type="range"] { width: min(100%, 300px); accent-color: var(--rojo); }
 .tutora.oculta .tutora-retrato { display: none; }
 .tutora.oculta .tutora-dialogo { padding: 0; }
 .tutora.oculta .tutora-botones { margin: 0; }
+/* plegada (móvil, al rato de hablar: js/tutor.js): solo su cara, en la esquina; tocarla la despliega */
+.tutora.plegada { min-height: 0; width: auto; left: auto; right: 10px; transform: none; padding: 4px; gap: 0; }
+.tutora.plegada .tutora-dialogo { display: none; }
+.tutora.plegada .tutora-retrato { margin: 0; }
+.tutora.plegada .tutora-canvas { width: 48px; height: 60px; }
 
 /* ===== Móvil ===== */
 @media (max-width: 600px) {

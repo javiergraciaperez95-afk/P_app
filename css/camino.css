@@ -715,3 +715,37 @@ a.cm-extra:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--
 @media (prefers-reduced-motion: reduce) {
   .cm-parada.recien .cm-nodo-cara, .cm-parada.recien .cm-nodo-estrella, .cm-extra-cofre, .cm-extra-cofre::after { animation: none; }
 }
+
+/* El índice de capítulos del móvil: se abre desde el número de la barra ◀ ▶ (js/vistas/lecciones.js) */
+.pm-nav .cm-diapo-boton { width: auto; min-width: 72px; padding: 0 12px; font-size: .9rem; }
+.cm-indice {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: calc(100% + 10px);
+  max-height: min(62vh, 480px);
+  overflow-y: auto;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: var(--h-papel);
+  box-shadow: 0 0 0 3px var(--h-borde), 4px 6px 0 3px var(--h-sombra);
+}
+.cm-indice li + li { box-shadow: 0 -2px 0 color-mix(in srgb, var(--h-borde) 25%, transparent); }
+.pm-nav .cm-indice button {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: auto;
+  min-height: 44px;
+  padding: 6px 8px;
+  font: 600 .9rem var(--h-texto);
+  text-align: left;
+  background: none;
+  box-shadow: none;
+}
+.pm-nav .cm-indice button[aria-current="true"] { background: color-mix(in srgb, var(--h-rosa) 22%, transparent); }
+.cm-indice b { font-family: var(--fuente-pixel); color: var(--h-rosa); }
+.cm-indice small { font-weight: 700; color: var(--h-suave); white-space: nowrap; }

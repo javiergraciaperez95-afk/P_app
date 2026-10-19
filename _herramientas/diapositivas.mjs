@@ -1,6 +1,7 @@
 // Hoja de contactos de una pantalla del móvil: captura cada diapositiva (Chrome sin ventana) y las junta en una imagen.
 //   node _herramientas/diapositivas.mjs <ruta sin #/> <salida.png> [ancho=390] [alto=844] [idioma=es]
-// Env PUERTO (8300 por defecto) y PREVIO (JS antes de cargar, p. ej. para elegir curso). Por cada diapositiva dice el
+// Env PUERTO (8300 por defecto), PREVIO (JS antes de cargar, p. ej. para elegir curso) y ESPERA (ms antes de empezar;
+// en las pantallas del curso conviene 10000, para que la tutora ya se haya plegado). Por cada diapositiva dice el
 // zoom (1 = no se encoge) y cuánto hueco queda debajo del contenido.
 import { spawn } from 'node:child_process';
 import fs from 'node:fs';
@@ -28,7 +29,7 @@ await cdp('Runtime.enable'); await cdp('Page.enable'); await cdp('Log.enable');
 await cdp('Emulation.setDeviceMetricsOverride', { width: +ancho, height: +alto, deviceScaleFactor: 1, mobile: true });
 await cdp('Page.addScriptToEvaluateOnNewDocument', { source: `try{sessionStorage.setItem('idiomas-abierta','1');localStorage.setItem('idiomas-aviso-visto','1');localStorage.setItem('idiomas-bienvenida-vista','1');localStorage.setItem('idiomas-ajustes',JSON.stringify({idioma:'${idioma}',efectos:false,vozTutora:false}));${process.env.PREVIO ?? ''}}catch{}` });
 await cdp('Page.navigate', { url: `http://localhost:${process.env.PUERTO ?? 8300}/index.html#/${ruta}` });
-await espera(3500);
+await espera(Number(process.env.ESPERA ?? 3500));
 
 const total = (await valor(`document.querySelectorAll('.pm-puntos i').length || Number((document.querySelector('.pm-puntos b')?.textContent || '1/1').split('/')[1]) || 1`)) || 1;
 const fotos = [];

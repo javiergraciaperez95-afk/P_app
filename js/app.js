@@ -118,6 +118,50 @@ function paginarCursoEnMovil(seccion) {
 // El alto de una diapositiva del móvil (lo pone js/paginas-movil.js antes de pedir las diapositivas)
 const altoDePagina = () => parseFloat(document.documentElement.style.getPropertyValue('--pm-alto')) || window.innerHeight;
 
+/**
+ * Reparte unas piezas en diapositivas según lo que miden de verdad, sin partir ninguna: cada diapositiva lleva las que
+ * caben una tras otra. Un título (h2, h3) no se queda solo al final: pasa a la siguiente con lo suyo. Cada caja que
+ * empieza en una diapositiva suma su marco (relleno y borde).
+ */
+function porAlto(piezas, { marco = 40, hueco = 12 } = {}) {
+  const alto = altoDePagina() * 0.97;
+  const paginas = [];
+  let pagina = [];
+  let usado = 0;
+  let cajaActual = null;
+  // una rejilla más alta que media diapositiva va por filas (las piezas que empiezan a la misma altura)
+  const trozos = piezas.filter(Boolean).flatMap(p => (p.getBoundingClientRect().height > alto / 2 && p.children.length > 1 ? filas(p) : [p]));
+  for (const trozo of trozos) {
+    const fila = [].concat(trozo);
+    const pieza = fila[0];
+    const caja = pieza.closest('.caja') ?? pieza;
+    const mide = Math.max(...fila.map(f => f.getBoundingClientRect().height)) + hueco + (caja !== cajaActual ? marco : 0);
+    if (pagina.length && usado + mide > alto) {
+      // el título suelto del final se va con lo que sigue
+      const titulos = [];
+      while (pagina.length && /^H[1-4]$/.test(pagina[pagina.length - 1].tagName)) titulos.unshift(pagina.pop());
+      if (pagina.length) paginas.push(pagina);
+      pagina = titulos;
+      usado = titulos.reduce((n, t) => n + t.getBoundingClientRect().height + hueco, marco);
+    }
+    pagina.push(...fila);
+    usado += mide;
+    cajaActual = caja;
+  }
+  if (pagina.length) paginas.push(pagina);
+  return paginas;
+}
+/** Los hijos de una rejilla o lista, agrupados por filas. */
+function filas(contenedor) {
+  const grupos = new Map();
+  for (const hijo of contenedor.children) {
+    const arriba = Math.round(hijo.getBoundingClientRect().top);
+    if (!grupos.has(arriba)) grupos.set(arriba, []);
+    grupos.get(arriba).push(hijo);
+  }
+  return [...grupos.values()];
+}
+
 // Las pantallas que en el móvil van en diapositivas grandes, una por escena, en vez de partirse solas
 const DIAPOSITIVAS = {
   inicio: () => {
@@ -183,6 +227,8 @@ const DIAPOSITIVAS = {
       credenciales[0], credenciales[1], credenciales[2], [credenciales[3], $('.of-pronto')],
       calculadora.slice(0, 5), [...calculadora.slice(5), $('.of-mesa-grande')], ...resto];
   },
+  // El perfil: sus cajas por piezas (los hijos de cada caja), repartidas según lo que miden
+  perfil: () => porAlto([...app.children].flatMap(c => (c.classList.contains('caja') ? [...c.children] : [c]))),
   // Escuelas: el colegio, el tablón y el temario en dos, la calculadora y su clase, la circular y el final. Los títulos
   // de sección no se reparten: salen en todas las de su sección. En un móvil bajito, la pizarra de la entrada aparte, una
   // nota del tablón por diapositiva y la calculadora, el precio y la circular en dos.
