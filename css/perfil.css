@@ -84,3 +84,35 @@
 .cu-sin-conexion, .cu-error { color: var(--oro); }
 .cu-correo { margin-top: 10px; padding-top: 10px; border-top: 2px dashed var(--panel-hover); }
 .cu-correo h3 { margin: 0 0 4px; font-size: 1rem; }
+
+/* Estadísticas (js/vistas/estadisticas.js, de pago) */
+.estadisticas h3 { margin: 18px 0 8px; font-size: 1rem; }
+.estadisticas h3 small { font-weight: 500; }
+.est-sello { display: inline-block; padding: 1px 6px; font: 700 .7rem var(--fuente-pixel); vertical-align: middle; color: #15121d; background: var(--oro); }
+.est-datos { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; }
+.est-dato { display: grid; gap: 2px; padding: 8px 10px; background: var(--panel-2); border: 2px solid var(--linea); }
+.est-dato strong { font: 700 1.3rem var(--fuente-pixel); color: var(--oro); text-transform: capitalize; }
+.est-dato span { font-size: .8rem; color: var(--texto-suave); }
+/* barras de una serie: oro, finas, con 2 px de hueco entre ellas y el extremo redondeado arriba */
+.es-barras { display: flex; align-items: flex-end; gap: 2px; height: 120px; padding: 0 0 18px; border-bottom: 1px solid var(--texto-suave); }
+.es-barra { position: relative; flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; cursor: default; }
+.es-barra i { display: block; height: calc(var(--alto) * 100%); min-height: 2px; background: var(--oro); border-radius: 4px 4px 0 0; }
+.es-barra:hover i { filter: brightness(1.15); outline: 2px solid var(--texto); }
+.es-barra small { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); margin-top: 3px; font-size: .72rem; color: var(--texto-suave); white-space: nowrap; }
+.est-prevision { height: 90px; }
+/* la memoria: un tono de claro (nueva) a oscuro (dominada) */
+.est-memoria { display: flex; gap: 2px; height: 26px; }
+.est-tramo { min-width: 4px; }
+.est-tramo:first-child { border-radius: 4px 0 0 4px; }
+.est-tramo:last-child { border-radius: 0 4px 4px 0; }
+.est-nueva { background: #f8e3a0; }
+.est-aprendiendo { background: #f4c84a; }
+.est-repaso { background: #c7922a; }
+.est-dominada { background: #8a6418; }
+.est-leyenda { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 8px 0 0; padding: 0; list-style: none; font-size: .85rem; color: var(--texto-suave); }
+.est-leyenda i { display: inline-block; width: 12px; height: 12px; margin-right: 5px; vertical-align: -1px; border-radius: 2px; }
+.est-leyenda b { color: var(--texto); }
+.est-cuestan { display: grid; gap: 4px; margin: 0; padding-left: 22px; }
+.est-cuestan li span { font-weight: 700; margin-right: 8px; }
+.est-nota { margin-top: 14px; font-size: .8rem; }
+.estadisticas.bloqueada .est-lista-bloqueo { margin: 6px 0 12px; padding-left: 20px; }

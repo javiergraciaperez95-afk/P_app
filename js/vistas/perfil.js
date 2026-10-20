@@ -14,6 +14,7 @@ import { curso } from '../curso.js';
 import { todasLasEstrellas } from '../../juegos/motor.js';
 import { LOGROS, logrosGanados, comprobarLogros } from '../logros.js';
 import { conCartel } from './carteles.js';
+import { seccionEstadisticas } from './estadisticas.js';
 import {
   nubeActiva, nube, alCambiarNube, numeroCuenta, numeroBonito, usarNumero, borrarCuentaNube,
   pedirCodigo, comprobarCodigo, unirCorreo, recuperarConCorreo, correoDeLaCuenta,
@@ -527,6 +528,7 @@ export function pintarPerfil(app, { resultados, capitulos = [] }) {
     seccionNombre(),
     seccionCuenta(repintar),
     seccionProgreso(resultados),
+    seccionEstadisticas(),
     seccionActividad(),
     seccionNiveles(resultados, capitulos),
     seccionSimulacros(),
