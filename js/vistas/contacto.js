@@ -9,6 +9,7 @@ import { t } from '../i18n.js';
 import { sonar } from '../sonidos.js';
 import { sol, luna, dibujoPixel, conContorno, conHalo } from './inicio-decorado.js';
 import { crearElenco, lienzo } from './elenco.js';
+import { crearCaptcha } from '../captcha.js';
 
 // ---------------------------------------------------------------------------
 // Dibujos (prefijo «ct»): k contorno · r/R rojo · o/O oro · p papel · g/G gris · a/A azul · v verde · m/M madera
@@ -70,9 +71,6 @@ export function pintarContacto(root) {
   const { quieto, despues } = elenco;
   // de noche las ventanas de la ciudad alumbran (conHalo: solo de noche, sin animación)
   const dibujo = (rejilla, clase) => conHalo(dibujoPixel(rejilla, clase, 'ct'), ['ct-w'], { radio: 1.8 });
-  const n = () => Math.floor(Math.random() * 7) + 2;
-  let a = n();
-  let b = n();
 
   const escritora = elenco.tutora(elenco.protagonista(), 'ct-escritora');
   const cartera = elenco.tutora(elenco.otra(), 'ct-cartera');
@@ -96,14 +94,8 @@ export function pintarContacto(root) {
       el('label', { for: id }, dibujo(conContorno(ICONOS[valor]), 'ct-sello-icono'), el('span', {}, t(clave))));
   });
   const mensaje = el('textarea', { id: 'contacto-mensaje', name: 'mensaje', rows: 7, required: true, maxlength: 4000 });
-  const pregunta = el('span', { class: 'ct-matasellos-cuenta', 'aria-hidden': 'true' });
-  const captcha = el('input', { id: 'contacto-captcha', name: 'captcha', type: 'number', inputmode: 'numeric', required: true, 'aria-label': t('comunidad.captchaAnswer') });
-  const etiquetaCaptcha = el('label', { for: 'contacto-captcha', class: 'ct-matasellos-texto' });
-  const ponerCuenta = () => {
-    pregunta.textContent = `${a} + ${b} =`;
-    etiquetaCaptcha.textContent = t('comunidad.captcha', { a, b });
-  };
-  ponerCuenta();
+  // el captcha de verdad (Cloudflare Turnstile, js/captcha.js): sin superarlo no se envía
+  const captcha = crearCaptcha();
   const estado = el('p', { class: 'ct-estado', role: 'status', 'aria-live': 'polite' });
   const enviar = el('button', { type: 'submit', class: 'es-boton ct-enviar' }, el('span', { class: 'ct-sobrecito', 'aria-hidden': 'true' }), t('comunidad.send'));
   const form = el('form', { class: 'ct-carta', novalidate: true },
@@ -119,10 +111,8 @@ export function pintarContacto(root) {
       el('div', { class: 'ct-sellos' }, sellos)),
     el('div', { class: 'ct-linea ct-linea-mensaje' }, el('label', { for: 'contacto-mensaje' }, t('comunidad.message')), mensaje),
     el('div', { class: 'ct-pie-carta' },
-      el('div', { class: 'ct-matasellos' }, pregunta, captcha),
-      el('div', { class: 'ct-pie-texto' },
-        etiquetaCaptcha,
-        el('p', { class: 'ct-nota' }, t('comunidad.thisCheckHelpsPreventAutomated')))),
+      captcha.nodo,
+      el('p', { class: 'ct-nota' }, t('captcha.nota'))),
     el('div', { class: 'ct-envio' }, enviar, estado));
 
   // la tutora del escritorio va «apuntando» lo que escribes
@@ -156,7 +146,7 @@ export function pintarContacto(root) {
     if (invalido) { fallo(invalido.type === 'email' ? t('form.correoValido') : t('form.rellena'), invalido); return; }
     if (!form.querySelector('input[name="asunto"]:checked')) { fallo(t('comunidad.chooseASubject'), form.querySelector('input[name="asunto"]')); return; }
     if (!mensaje.value.trim()) { fallo(t('form.rellena'), mensaje); return; }
-    if (Number(captcha.value) !== a + b) { fallo(t('comunidad.thatAnswerIsNotCorrect'), captcha); return; }
+    if (!captcha.token()) { fallo(t('captcha.falta'), captcha.nodo.querySelector('iframe') ?? enviar); return; }
     // ¡al buzón!
     estado.className = 'ct-estado bien';
     estado.textContent = t('comunidad.formValidatedEmailDeliveryWill');
@@ -171,8 +161,7 @@ export function pintarContacto(root) {
       despues(3200, () => escena.classList.remove('vuela'));
     }
     form.reset();
-    a = n(); b = n();
-    ponerCuenta();
+    captcha.reiniciar();
   });
 
   // ----- La escena -----

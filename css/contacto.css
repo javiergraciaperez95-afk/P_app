@@ -322,3 +322,18 @@
 @media (prefers-reduced-motion: reduce) {
   .ct-sello label, .ct-sello.estampa label, .ct-escena.vuela .ct-sobre, .ct-escena.vuela .ct-carta { animation: none !important; transition: none; }
 }
+
+/* El captcha (Cloudflare Turnstile): el widget y, debajo, su nota */
+.ct-pie-carta { grid-template-columns: minmax(0, 1fr); gap: 8px; justify-items: start; }
+.captcha { display: grid; gap: 6px; min-height: 65px; }
+.captcha-caja { min-height: 65px; }
+.captcha-aviso { margin: 0; font-size: .85rem; color: var(--h-suave, inherit); }
+.captcha-aviso:empty { display: none; }
+/* el bocadillo de la escritora, a su lado (encima se salía por arriba de la diapositiva) */
+@media (max-width: 700px) {
+  html.pm-activo .correo-paglot .es-tutora .es-globo { left: calc(100% + 6px); bottom: 20%; max-width: min(180px, 48vw); text-align: left; translate: 50% 0; }
+  html.pm-activo .correo-paglot .es-tutora .es-globo::before, html.pm-activo .correo-paglot .es-tutora .es-globo::after { display: none; }
+}
+html.pm-activo .ct-pie-carta { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+html.pm-activo .ct-pie-carta .ct-nota { font-size: .78rem; line-height: 1.35; }
+.ct-pie-carta, html.pm-activo .ct-pie-carta { display: flex; flex-direction: column; align-items: flex-start; }

@@ -2,6 +2,10 @@
 // Solo la clave PÚBLICA («publishable»); nunca la secreta. Si se dejan vacías, la app guarda solo en el dispositivo.
 
 export const SUPABASE_URL = 'https://iuniglsiqnfvnotmfgdo.supabase.co';
+// Captcha de los formularios (Cloudflare Turnstile, js/captcha.js). Esta es la clave de PRUEBAS de Cloudflare (deja
+// pasar siempre): al publicar, cámbiala por la del sitio (dash.cloudflare.com → Turnstile → paglot.eu) y pon la secreta
+// en el servidor (api/config.php), que es quien comprueba el token.
+export const TURNSTILE_CLAVE = '1x00000000000000000000AA';
 export const SUPABASE_CLAVE_PUBLICA = 'sb_publishable_dZDATuXD7GFWilF-SnWXyw_KVWjyX4P';
 
 // Quién responde de la app y de los datos: sale en la página «Aviso legal y privacidad» (#/legal).
@@ -19,7 +23,7 @@ export const LEGAL_ACTUALIZADO = '19-10-2026';
 // FICTICIOS de momento: cámbialos por las páginas de verdad cuando existan.
 export const APOYO = {
   patreon: 'https://www.patreon.com/paglot-ejemplo',
-  cafe: 'https://www.buymeacoffee.com/paglot-ejemplo',
+  cafe: 'https://www.buymeacoffee.com/paglot',
 };
 
 // ----- Precios (pantalla #/precios). Todavía no se cobra nada ni se aplica el límite: es el plan. -----
