@@ -87,3 +87,22 @@ addEventListener('scroll', () => {
 
 alCambiar(() => pintarCabecera());
 alCambiarNube(() => pintarCuenta());
+
+// Si en un móvil estrecho el nombre de la app (o la línea del curso) no cabe entero, mejor no mostrarlo que verlo cortado.
+// La columna de la marca la reparte la rejilla, así que esconder los textos no cambia su ancho y no hay vaivén.
+const marcaTextos = document.querySelector('.marca-textos');
+function ajustarMarca() {
+  if (!marcaTextos) return;
+  marcaTextos.classList.remove('no-cabe');
+  const ancho = marcaTextos.clientWidth + 1;
+  const titulo = marcaTextos.querySelector('.marca-titulo');
+  const linea = marcaTextos.querySelector('.marca-curso');
+  const tituloCorta = titulo && titulo.scrollWidth > ancho;
+  const lineaCorta = linea && !linea.hidden && linea.scrollWidth > ancho;
+  marcaTextos.classList.toggle('no-cabe', Boolean(tituloCorta || lineaCorta));
+}
+if (marcaTextos && 'ResizeObserver' in window) {
+  new ResizeObserver(() => requestAnimationFrame(ajustarMarca)).observe(marcaTextos);
+  new MutationObserver(() => requestAnimationFrame(ajustarMarca)).observe(marcaTextos, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['hidden'] });
+  document.fonts?.ready.then(ajustarMarca);
+}
