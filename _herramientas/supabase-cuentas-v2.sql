@@ -248,3 +248,14 @@ grant execute on function public.paglot_yo(), public.paglot_poner_nombre(text), 
   public.paglot_canjear(text), public.paglot_familia_anadir(integer), public.paglot_familia_quitar(integer), public.paglot_familia_estado(),
   public.paglot_borrar_cuenta() to authenticated;
 grant execute on function public.paglot_fundadores_restantes() to anon, authenticated;
+
+-- ----- Las cuentas antiguas (número de 16 cifras, sin correo): se borran (decisión del 20-10-2026) -----
+-- Ya no se usan: desde el 20-10-2026 hace falta cuenta con correo y contraseña.
+do $$ begin
+  if to_regclass('public.paglot_cuentas') is not null then
+    delete from public.paglot_cuentas;
+  end if;
+end $$;
+drop function if exists public.paglot_leer(text), public.paglot_guardar(text, jsonb), public.paglot_existe(text),
+  public.paglot_vincular(text), public.paglot_mi_numero(), public.paglot_correo(text), public.paglot_borrar(text), public.paglot_limpiar();
+drop table if exists public.paglot_cuentas;

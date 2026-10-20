@@ -3,7 +3,8 @@
     python _herramientas/publicar.py [carpeta_salida]
     python _herramientas/publicar.py --csp      # solo pone al día la CSP del index.html del proyecto (ver abajo)
 
-Copia index.html, manifest.webmanifest, sw.js, .nojekyll, assets, css, cursos, js y juegos a la carpeta de salida
+Copia index.html, manifest.webmanifest, sw.js, .nojekyll, assets, css, cursos, js, juegos, api (sin config.php),
+simulacros, muestras, robots.txt, sitemap.xml y pago.html a la carpeta de salida
 (por defecto %TEMP%/paglot-publicar, que se vacía antes). Y solo en la copia:
 - cambia __VERSION__ por <código corto de git>-<aaaammddHHMM> en los .html, .js y .css;
 - une en una sola las hojas de estilo que enlaza index.html (css/paglot-<versión>.css) y ajusta sus url(...);
@@ -25,7 +26,8 @@ from datetime import datetime
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
-LISTA = ['index.html', 'manifest.webmanifest', 'sw.js', '.nojekyll', 'assets', 'css', 'cursos', 'js', 'juegos']
+LISTA = ['index.html', 'manifest.webmanifest', 'sw.js', '.nojekyll', 'assets', 'css', 'cursos', 'js', 'juegos',
+         'api', 'simulacros', 'muestras', 'robots.txt', 'sitemap.xml', 'pago.html']
 # una línea entera con <link rel="stylesheet">, con su sangría y su salto de línea
 ENLACE_CSS = re.compile(r'[ \t]*<link\b[^>]*\brel="stylesheet"[^>]*>\n?')
 HREF = re.compile(r'\bhref="([^"]+)"')
@@ -54,8 +56,11 @@ def version_actual():
 def copiar(destino):
     for nombre in LISTA:
         origen = RAIZ / nombre
+        if not origen.exists():
+            continue
         if origen.is_dir():
-            shutil.copytree(origen, destino / nombre)
+            # la configuración del servidor (con sus claves) no sale nunca del servidor
+            shutil.copytree(origen, destino / nombre, ignore=shutil.ignore_patterns('config.php'))
         else:
             shutil.copy2(origen, destino / nombre)
 
