@@ -393,7 +393,8 @@ export function pintarInicio(contenedor) {
     const b = el('button', {
       type: 'button', class: `inicio-idioma entrada${c.id === curso.id ? ' actual' : ''}`, disabled: pronto, 'data-id': c.id,
       title: pronto ? `${traducido} · ${t('cursos.pronto')}` : traducido,
-      onclick: () => { sonar('pagina'); entrarEnCurso(c); },
+      // tocar una entrada solo saca a su tutora al escenario (no lleva a las lecciones)
+      onclick: () => { if (pronto) return; sonar('pagina'); fija = true; enEscena = disponibles.indexOf(c); presentar(c); },
     },
     // el talón (bandera y número de la entrada) y el cuerpo (el idioma en su lengua y en la tuya)
     el('span', { class: 'entrada-talon' }, bandera(c), el('span', { class: 'entrada-numero' }, `Nº ${String(n + 1).padStart(2, '0')}`)),

@@ -657,3 +657,12 @@ html.texto-grande { font-size: 112.5%; }
    (Los juegos sí se encogen: su tablero se queda con el sitio que sobra y «Comprobar» sigue encima del teclado.) */
 html.teclado .pm-nav,
 html.teclado body:not(.modo-juego) .tutora { visibility: hidden; pointer-events: none; }
+/* el pie de la portada: los enlaces de borde a borde a cualquier ancho (con margin: auto, en la columna flex se encogían) */
+@media (max-width: 700px) {
+  html.pm-activo .inicio-pie-pag .pie-interior { align-self: stretch; width: auto; max-width: none; margin: 0; }
+  html.pm-activo .inicio-pie-pag .pie-base-interior { max-width: none; }
+}
+/* el botón de la portada se parte solo por los espacios («Continue with / 한국어 ▶»), nunca dentro de una palabra */
+@media (max-width: 700px) {
+  html.pm-activo .inicio-empezar { word-break: keep-all; overflow-wrap: normal; text-wrap: balance; }
+}
