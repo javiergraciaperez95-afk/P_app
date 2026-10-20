@@ -803,6 +803,11 @@ async function navegar({ cambioDeIdioma = false } = {}) {
     const pintarRepaso = await vista('repaso', 'pintarRepaso');
     if (estePase !== pase) return;
     limpiarVista = pintarRepaso(app);
+  } else if (seccion === 'simulacros') {
+    titulo(t('sim.cabecera'));
+    const pintarSimulacros = await vista('simulacros', 'pintarSimulacros');
+    if (estePase !== pase) return;
+    await pintarSimulacros(app);
   } else if (seccion === 'reto') {
     titulo(t('reto.titulo'));
     limpiarVista = pintarReto(app);

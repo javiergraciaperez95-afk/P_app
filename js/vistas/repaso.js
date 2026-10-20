@@ -201,7 +201,8 @@ export function pintarRepaso(app) {
         todas.length ? formas : null,
         rebeldes ? el('p', { class: 'aprox rp-rebeldes' }, t('repaso.rebeldesHay', { n: rebeldes })) : null,
         todas.length ? botonAvisos() : null,
-        el('div', { class: 'rp-reto' }, enlaceReto())),
+        el('div', { class: 'rp-reto' }, enlaceReto()),
+        el('p', { class: 'rp-simulacros' }, el('a', { class: 'es-boton es-boton-papel', href: '#/simulacros' }, '📄 ', t('sim.enlace')))),
     );
 
     if (!todas.length) decir(t('repaso.tutoraVacio'), 'confundida');

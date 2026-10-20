@@ -305,3 +305,19 @@
   .rp-forma { grid-template-columns: minmax(0, 1fr); grid-template-areas: "nombre" "texto"; padding: 6px 26px 6px 8px; }
   .rp-forma-icono { display: none; }
 }
+
+/* Simulacros de examen (js/vistas/simulacros.js) y su enlace desde el repaso */
+.rp-simulacros { margin: 12px 0 0; text-align: center; }
+.sm-reglas ul { margin: 6px 0 0; padding-left: 20px; }
+.sm-lista { display: grid; gap: 10px; margin: 14px 0; padding: 0; list-style: none; }
+.sm-tarjeta { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px; margin: 0; }
+.sm-tarjeta.bloqueada { opacity: .8; }
+.sm-nivel { display: grid; place-items: center; min-width: 52px; height: 52px; padding: 0 6px; font: 700 1.2rem var(--fuente-pixel); color: #15121d; background: var(--oro); border: 3px solid var(--linea); }
+.sm-textos h2 { margin: 0 0 2px; font-size: 1.05rem; }
+.sm-textos p { margin: 0; font-size: .88rem; color: var(--texto-suave); }
+.sm-descargar { margin: 0; white-space: nowrap; }
+.sm-pronto { text-align: center; }
+@media (max-width: 520px) {
+  .sm-tarjeta { grid-template-columns: auto minmax(0, 1fr); }
+  .sm-descargar { grid-column: 1 / -1; text-align: center; }
+}

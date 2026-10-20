@@ -511,6 +511,14 @@ function seccionBorrarTodo() {
     boton);
 }
 
+/** Los simulacros de examen: un enlace a #/simulacros (PDF para practicar por tu cuenta, sin nota). */
+function seccionSimulacros() {
+  return el('section', { class: 'caja' },
+    el('h2', {}, t('sim.cabecera')),
+    el('p', {}, t('sim.perfil')),
+    el('a', { class: 'boton', href: '#/simulacros' }, t('sim.enlace')));
+}
+
 export function pintarPerfil(app, { resultados, capitulos = [] }) {
   const repintar = () => pintarPerfil(app, { resultados, capitulos });
   poner(app,
@@ -521,6 +529,7 @@ export function pintarPerfil(app, { resultados, capitulos = [] }) {
     seccionProgreso(resultados),
     seccionActividad(),
     seccionNiveles(resultados, capitulos),
+    seccionSimulacros(),
     seccionLogros(),
     seccionAjustes(),
     seccionCopia(repintar),

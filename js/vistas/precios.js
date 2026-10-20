@@ -490,7 +490,7 @@ export function pintarPrecios(contenedor) {
     ['pr.t.lecciones', String(LECCIONES_GRATIS_AL_DIA), '∞', '∞'],
     ['pr.t.repaso', '∞', '∞', '∞'],
     ['pr.t.practica', 'pr.v.limitado', '∞', '∞'],
-    ['pr.t.simulacros', null, 'pr.v.alMes', '∞', '*'],
+    ['pr.t.simulacros', null, 'pr.v.unPdf', 'pr.v.todos', '*'],
     ['pr.t.certificado', null, 'pr.v.dePago', SI, '**'],
     ['pr.t.familia', null, 'pr.v.conFamilia', SI],
     ['pr.t.trajes', 'pr.v.dePago', 'pr.v.dePago', 'pr.v.dePago'],
