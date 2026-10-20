@@ -27,8 +27,12 @@ import { estaDentro, alCambiarCuenta } from './cuenta.js';
 import { iniciarAvisos } from './avisos.js';
 import { banderaIdioma } from './banderas-idioma.js';
 import { curso } from './curso.js';
+import { ponerPixeles } from './pixeles.js';
 import './movil.js';
 import './chispa.js';
+
+// los emojis se cambian por dibujos pixel hechos con código (js/pixeles.js): en algunos móviles no se ven bien
+ponerPixeles();
 
 const app = document.getElementById('app');
 const menu = document.getElementById('menu');
