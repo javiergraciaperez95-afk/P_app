@@ -281,7 +281,7 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
     boton.addEventListener('click', () => {
       if (!completo) {
         boton.classList.remove('tiembla'); void boton.offsetWidth; boton.classList.add('tiembla');
-        decir(t('camino.cofreCerradoTutora', { faltan: total - hechas }), 'pensando');
+        decir(t('camino.cofreCerradoTutora', { faltan: total - hechas }), 'pensando', { abrir: true });
         return;
       }
       if (!boton.classList.contains('abierto')) {
@@ -293,7 +293,7 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
         setTimeout(() => sonar('moneda'), 450);
         confeti(boton);
         lucia.celebrar();
-        decir(t('camino.cofreTutora', { n: capitulo?.numero ?? '' }), 'contenta');
+        decir(t('camino.cofreTutora', { n: capitulo?.numero ?? '' }), 'contenta', { abrir: true });
       } else {
         boton.classList.remove('estalla'); void boton.offsetWidth; boton.classList.add('estalla');
         sonar('moneda');
@@ -660,7 +660,7 @@ function misionesDeHoy({ irALeccion }) {
       el('span', { class: 'cm-mision-cuenta' }, m.cuenta));
     boton.setAttribute('aria-label', `${t(`camino.mision.${m.id}`)} · ${m.hecho ? t('camino.misionHecha') : m.cuenta}`);
     boton.addEventListener('click', () => {
-      if (m.hecho) { decir(t('camino.misionYaHecha'), 'contenta'); return; }
+      if (m.hecho) { decir(t('camino.misionYaHecha'), 'contenta', { abrir: true }); return; }
       m.ir();
     });
     return el('li', {}, boton);

@@ -1,0 +1,278 @@
+/* =====================================================================
+   LA LECCIÓN Y LUCÍA (rediseño del 20-10)
+   ---------------------------------------------------------------------
+   · Lucía solo aparece cuando se la llama: el botón con su cara (.llamar-tutora) en las cabeceras y su bocadillo
+     (.tutora) que se abre encima de todo y se cierra al tocar fuera. Ya no ocupa sitio en ninguna pantalla.
+   · La lección (.lp), en los dos modos: arriba ✕, barra de progreso, Lucía y el cambio de modo; abajo «Continuar».
+     En el móvil el modo juego es una pantalla fija y el juego se desplaza dentro (nunca se encoge el texto). El modo
+     libro se lee bajando, con la barra de abajo pegada.
+   · Los ejercicios (test, huecos, ordenar, escribir): tarjetas grandes y redondeadas, pensadas para el dedo.
+   ===================================================================== */
+
+/* ----- Lucía ya no reserva sitio abajo ----- */
+html body, html body.en-leccion { --alto-tutora: 0px; --alto-tutora-real: 0px; }
+html body.tutora-oculta { padding-bottom: 0; }
+
+/* ----- El botón para llamarla ----- */
+.llamar-tutora {
+  position: relative;
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 2px solid var(--h-borde, var(--linea));
+  border-radius: 50%;
+  background: var(--ph-rojo);
+  cursor: pointer;
+  overflow: visible;
+}
+.llamar-tutora img { width: 100%; height: 100%; border-radius: 50%; image-rendering: pixelated; }
+.llamar-tutora:active { transform: scale(.94); }
+.llamar-tutora:focus-visible { outline: 3px solid var(--foco); outline-offset: 2px; }
+.llamar-tutora-punto {
+  position: absolute; top: -2px; right: -2px; width: 12px; height: 12px; border-radius: 50%;
+  background: var(--ph-oro); box-shadow: 0 0 0 2px var(--fondo);
+  animation: lp-punto 1.6s ease-in-out infinite;
+}
+.llamar-tutora-punto[hidden] { display: none; }
+@keyframes lp-punto { 50% { transform: scale(1.25); } }
+.cabecera-botones .llamar-tutora { width: 36px; height: 36px; margin-right: 2px; }
+
+/* ----- Su bocadillo: escondido hasta que se la llama ----- */
+.tutora.cerrada { display: none !important; }
+html body .tutora {
+  z-index: 90;
+  bottom: calc(12px + var(--borde-abajo, 0px));
+  border-radius: 18px;
+  box-shadow: 0 0 0 2px var(--linea), 0 12px 32px rgba(0, 0, 0, .35);
+  animation: lp-sube .22s ease-out both;
+}
+html body .tutora .tutora-retrato { border-radius: 12px; overflow: hidden; }
+html body .tutora .tutora-texto { max-height: 40vh; font-size: 1rem; line-height: 1.45; }
+html body .tutora .tutora-botones .boton-mini { min-height: 36px; border-radius: 10px; }
+html.teclado body .tutora { visibility: visible; pointer-events: auto; }
+@keyframes lp-sube { from { opacity: 0; transform: translate(-50%, 16px); } }
+@media (max-width: 600px) {
+  html body .tutora { left: 8px; right: 8px; width: auto; transform: none; }
+  html body .tutora .tutora-canvas { width: 72px; height: 90px; }
+  @keyframes lp-sube { from { opacity: 0; transform: translateY(16px); } }
+}
+
+/* ----- Nota flotante (lo que no puede esperar a que se llame a Lucía) ----- */
+.nota-flotante {
+  position: fixed; z-index: 95; left: 50%; bottom: calc(96px + var(--borde-abajo, 0px)); transform: translateX(-50%);
+  width: min(460px, calc(100% - 32px)); padding: 12px 16px; border-radius: 14px;
+  font-size: .98rem; line-height: 1.4; color: #fff; background: #2a1620;
+  box-shadow: 0 0 0 2px var(--ph-oro), 0 10px 26px rgba(0, 0, 0, .35);
+  animation: lp-nota .2s ease-out both; cursor: pointer;
+}
+@keyframes lp-nota { from { opacity: 0; transform: translate(-50%, 10px); } }
+
+/* =====================================================================
+   La lección: cabecera, progreso y pie
+   ===================================================================== */
+.lp {
+  --lp-radio: 16px;
+  --lp-borde: color-mix(in srgb, var(--linea) 22%, transparent);
+  --lp-tarjeta: var(--panel);
+  width: min(760px, 100%);
+  margin: 0 auto;
+  font-family: var(--fuente-texto);
+}
+.lp-cabecera { display: flex; align-items: center; gap: 10px; padding: 4px 0 6px; }
+.lp-icono {
+  flex: none; display: inline-grid; place-items: center; width: 40px; height: 40px; padding: 0;
+  font-size: 1.15rem; line-height: 1; color: var(--texto); text-decoration: none;
+  background: var(--panel); border: 2px solid var(--lp-borde); border-radius: 12px; cursor: pointer;
+}
+.lp-icono:active { transform: scale(.94); }
+.lp-salir { font-weight: 800; }
+.lp-cabecera .llamar-tutora.lp-icono { border-radius: 50%; border-color: var(--ph-oro); background: var(--ph-rojo); }
+.lp-progreso { flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; }
+.lp-barra { flex: 1; height: 12px; border-radius: 99px; background: var(--panel-2); overflow: hidden; }
+.lp-barra-relleno {
+  display: block; height: 100%; width: 0; border-radius: inherit;
+  background: linear-gradient(90deg, var(--ph-oro), #ff9f1c);
+  transition: width .45s cubic-bezier(.3, 1.4, .5, 1);
+}
+.lp-cuenta { flex: none; min-width: 2.6em; text-align: right; font-weight: 800; font-size: .9rem; color: var(--texto-suave); font-variant-numeric: tabular-nums; }
+.lp-titulo { margin: 0 0 8px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: .92rem; color: var(--texto-suave); }
+.lp-titulo strong { color: var(--espanol); font-size: 1rem; }
+.lp-numero { font-weight: 800; text-transform: uppercase; letter-spacing: .06em; font-size: .75rem; color: var(--texto-suave); }
+
+/* el escenario: sin el aula dibujada; el juego en limpio */
+body .jg.lp .jg-escenario { min-height: 0; padding: 4px 2px 16px; background: none; box-shadow: none; }
+body .jg.lp .jg-paso { margin: 0; }
+
+/* la franja de aviso (aciertos y fallos de los juegos) */
+.lp-aviso {
+  flex: none; margin: 8px 0 0; padding: 10px 14px; border-radius: 14px; max-height: 30vh; overflow-y: auto;
+  font-size: .98rem; line-height: 1.4; cursor: pointer; animation: lp-aviso .2s ease-out both;
+}
+.lp-aviso[hidden] { display: none; }
+.lp-aviso-bien { color: var(--texto); background: var(--verde-fondo); box-shadow: inset 0 0 0 2px var(--verde); }
+.lp-aviso-ojo { color: var(--texto); background: color-mix(in srgb, var(--ph-oro) 22%, var(--panel)); box-shadow: inset 0 0 0 2px var(--ph-oro); }
+@keyframes lp-aviso { from { opacity: 0; transform: translateY(8px); } }
+
+/* el pie: «Continuar» grande, siempre a mano */
+.lp-pie { display: flex; align-items: center; gap: 10px; padding: 10px 0 0; }
+body .jg.lp .jg-pie { position: static; margin: 0; padding: 10px 0 0; background: none; box-shadow: none; }
+.lp-atras {
+  flex: none; width: 52px; height: 52px; padding: 0; font-size: 1.1rem; color: var(--texto);
+  background: var(--panel); border: 2px solid var(--lp-borde); border-radius: 14px; cursor: pointer;
+}
+.lp-atras:disabled { opacity: .35; cursor: default; }
+.lp-seguir {
+  flex: 1; min-height: 52px; padding: 10px 18px; border: 0; border-radius: 14px; cursor: pointer;
+  font: 800 1.1rem var(--fuente-texto); letter-spacing: .02em; color: #fff; background: var(--ph-rojo);
+  box-shadow: 0 4px 0 #7d0a1d; transition: transform .08s, box-shadow .08s, background-color .2s;
+}
+.lp-seguir:active { transform: translateY(3px); box-shadow: 0 1px 0 #7d0a1d; }
+.lp-seguir.lp-bloqueado { color: var(--texto-suave); background: var(--panel-2); box-shadow: 0 4px 0 color-mix(in srgb, var(--panel-2) 60%, #000); }
+.lp-seguir.jg-listo { animation: lp-listo 1.2s ease-in-out infinite; }
+.lp-seguir.jg-listo::after { content: " ▶"; }
+@keyframes lp-listo { 50% { transform: scale(1.03); } }
+.lp-seguir.tiembla { animation: jg-tiembla .3s steps(4); }
+.lp-seguir:focus-visible, .lp-atras:focus-visible, .lp-icono:focus-visible { outline: 3px solid var(--foco); outline-offset: 2px; }
+
+/* ----- Móvil: el modo juego es una pantalla fija; el juego se desplaza dentro ----- */
+@media (max-width: 700px) {
+  body.en-leccion main { padding: 0 !important; }
+  body.en-leccion .jg.lp {
+    position: fixed; z-index: 5; inset: var(--borde-arriba, 0px) 0 var(--borde-abajo, 0px) 0;
+    display: flex; flex-direction: column; width: auto; height: auto; margin: 0; padding: 8px 12px 12px;
+    overflow: hidden; background: var(--fondo);
+  }
+  body.en-leccion .jg.lp > * { flex: none; }
+  body.en-leccion .jg.lp .jg-escenario {
+    flex: 1 1 0; min-height: 0; display: block; padding: 4px 2px 20px;
+    overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+  }
+  body.en-leccion .jg.lp .jg-pie .lp-seguir { min-height: 54px; }
+  body.en-leccion.en-libro main { padding: 0 12px !important; }
+}
+
+/* =====================================================================
+   Modo libro
+   ===================================================================== */
+.lp-libro-hoja { padding-bottom: 8px; }
+.lp-cabecera-libro { position: sticky; top: var(--borde-arriba, 0px); z-index: 20; margin: 0 -12px; padding: 8px 12px; background: var(--fondo); box-shadow: 0 1px 0 var(--lp-borde); }
+.lp-portada { padding: 14px 4px 6px; }
+.lp-portada h1 { margin: 2px 0 2px; font-size: clamp(1.6rem, 6vw, 2.2rem); color: var(--espanol); }
+.lp-portada .titulo-trad { margin: 0; font-size: 1.05rem; color: var(--texto-suave); }
+.lp-intro { margin: 12px 0 0; padding: 12px 14px; border-radius: 14px; background: var(--panel); line-height: 1.5; }
+.lp-pie-libro {
+  position: sticky; bottom: var(--borde-abajo, 0px); z-index: 20; margin: 12px -12px 0; padding: 10px 12px 12px;
+  background: var(--fondo); box-shadow: 0 -1px 0 var(--lp-borde);
+}
+.lp-pie-texto { flex: none; font-weight: 800; font-size: .92rem; color: var(--texto-suave); }
+.lp-pie-libro .lp-seguir { font-size: 1rem; }
+body.en-libro .menu { display: none; }
+
+/* los bloques del libro: tarjetas limpias, sin el borde pixel */
+.lp .caja {
+  margin: 0 0 14px; padding: 16px; border-radius: var(--lp-radio); background: var(--lp-tarjeta);
+  box-shadow: 0 0 0 2px var(--lp-borde), 0 3px 0 var(--lp-borde);
+}
+body.en-leccion .lp .caja::after { display: none; }
+.lp .caja > .etiqueta-bloque, body.en-leccion #app .lp .caja > .etiqueta-bloque {
+  display: inline-block; margin: 0 0 8px; padding: 3px 10px; border-radius: 99px;
+  font: 800 .72rem var(--fuente-texto); letter-spacing: .08em; text-transform: uppercase;
+  color: #2a1620; background: var(--cinta, var(--ph-oro)); box-shadow: none;
+}
+.lp .caja.explicacion { --cinta: #f4c84a; }
+.lp .caja.gramatica { --cinta: #8fb4ff; }
+.lp .caja.dialogo { --cinta: #6fd0e6; }
+.lp .caja:has(> .vocabulario) { --cinta: #78d693; }
+.lp .caja.ejercicio { --cinta: #ff8fa3; }
+.lp .bloque-titulo { margin: 0 0 8px; font-size: 1.2rem; line-height: 1.3; }
+.lp .caja p, .lp .caja li { line-height: 1.55; }
+.lp .tabla-contenedor { border-radius: 12px; }
+.lp .boton { border-radius: 12px; box-shadow: 0 0 0 2px var(--lp-borde), 0 3px 0 var(--lp-borde); font-family: var(--fuente-texto); font-weight: 700; }
+.lp .boton:active { transform: translateY(2px); box-shadow: 0 0 0 2px var(--lp-borde); }
+.lp .boton-principal { box-shadow: 0 3px 0 #7d0a1d; }
+
+/* =====================================================================
+   Los ejercicios (test, huecos, traducción, ordenar, escribir) en la lección
+   ===================================================================== */
+.lp .caja.ejercicio { padding: 18px 16px 14px; }
+.lp .jg-ejercicio .caja.ejercicio { margin: 0; }
+.lp .ejercicio-pregunta { margin: 4px 0 12px; font-size: 1.18rem; font-weight: 800; line-height: 1.35; }
+.lp .ejercicio-frase {
+  margin: 0 0 14px; padding: 14px 16px; border-radius: 14px; font-size: 1.35rem; line-height: 1.5; font-weight: 700;
+  background: var(--panel-2);
+}
+.lp .hueco { min-width: 3em; margin: 0 2px; padding: 0 6px; border-bottom: 3px solid var(--ph-oro); border-radius: 4px 4px 0 0; }
+.lp .opciones { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 0; }
+@media (min-width: 701px) { .lp .opciones { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); } }
+.lp .opcion {
+  width: 100%; min-height: 58px; margin: 0; padding: 12px 14px; gap: 12px;
+  font: 600 1.08rem/1.35 var(--fuente-texto); text-align: left; color: var(--texto);
+  background: var(--lp-tarjeta); border: 2px solid var(--lp-borde); border-radius: 14px;
+  box-shadow: 0 3px 0 var(--lp-borde);
+}
+.lp .opcion:hover:not(:disabled) { border-color: var(--ph-oro); }
+.lp .opcion:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 1px 0 var(--lp-borde); }
+.lp .opcion-letra {
+  display: inline-grid; place-items: center; width: 32px; height: 32px; padding: 0; border-radius: 10px;
+  font: 800 .95rem var(--fuente-texto); background: var(--panel-2); color: var(--texto-suave);
+}
+.lp .opcion-texto { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.lp .opcion-marca { font: 800 .8rem var(--fuente-texto); }
+.lp .opcion.es-correcta { border-color: var(--verde); background: var(--verde-fondo); box-shadow: 0 3px 0 var(--verde); }
+.lp .opcion.es-correcta .opcion-letra { color: #fff; background: #2e8b4e; }
+.lp .opcion.es-fallo { border-color: var(--rojo-claro); background: var(--rojo-fondo); box-shadow: 0 3px 0 var(--rojo-claro); }
+.lp .opcion.es-fallo .opcion-letra { color: #fff; background: var(--ph-rojo); }
+.lp .opcion.es-neutra:disabled { opacity: .5; }
+
+.lp .respuesta-ordenar {
+  display: flex; flex-wrap: wrap; align-content: flex-start; gap: 8px; min-height: 66px; margin: 0 0 12px; padding: 10px;
+  border: 2px dashed var(--lp-borde); border-radius: 14px; background: var(--panel-2);
+}
+.lp .respuesta-ordenar.es-correcta { border: 2px solid var(--verde); background: var(--verde-fondo); }
+.lp .respuesta-ordenar.es-fallo { border: 2px solid var(--rojo-claro); background: var(--rojo-fondo); }
+.lp .banco-palabras { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+.lp .pieza {
+  min-height: 46px; padding: 8px 14px; font: 700 1.1rem var(--fuente-texto); color: var(--espanol);
+  background: var(--lp-tarjeta); border: 2px solid var(--lp-borde); border-radius: 12px; box-shadow: 0 3px 0 var(--lp-borde);
+}
+.lp .pieza:disabled { opacity: .3; box-shadow: none; }
+.lp .pieza-elegida, .lp .pieza-elegida:disabled { opacity: 1; background: var(--panel); }
+
+.lp .formulario-escribir { display: grid; gap: 10px; }
+.lp .fila-escribir { display: flex; flex-wrap: wrap; gap: 10px; }
+.lp .fila-escribir :is(input, textarea) {
+  flex: 1 1 220px; min-width: 0; min-height: 54px; padding: 12px 14px; font: 600 1.15rem var(--fuente-texto);
+  color: var(--texto); background: var(--panel-2); border: 2px solid var(--lp-borde); border-radius: 14px;
+}
+.lp .fila-escribir :is(input, textarea):focus { outline: none; border-color: var(--ph-oro); }
+.lp .fila-escribir .boton { flex: 1 1 140px; min-height: 54px; margin: 0; }
+.lp .letras-especiales { display: flex; flex-wrap: wrap; gap: 6px; }
+.lp .letras-especiales .boton { min-width: 44px; min-height: 44px; margin: 0; padding: 4px 10px; font-size: 1.1rem; }
+
+.lp .controles-audio { gap: 8px; margin: 0 0 14px; }
+.lp .controles-audio .boton { margin: 0; }
+.lp .botonera { display: flex; flex-wrap: wrap; gap: 8px; }
+.lp .botonera .boton { margin: 0; }
+
+.lp .feedback {
+  margin-top: 14px; padding: 12px 14px; border: 0; border-radius: 14px; line-height: 1.45;
+  background: var(--panel-2); animation: lp-aviso .2s ease-out both;
+}
+.lp .feedback.bien { background: var(--verde-fondo); box-shadow: inset 0 0 0 2px var(--verde); }
+.lp .feedback.mal { background: var(--rojo-fondo); box-shadow: inset 0 0 0 2px var(--rojo-claro); }
+.lp .feedback.autoevaluacion { box-shadow: inset 0 0 0 2px var(--azul); }
+.lp .feedback-titulo { margin: 0 0 4px; font: 800 1.05rem var(--fuente-texto); }
+.lp .feedback p { margin: 0 0 4px; }
+.lp .ejercicio-pie { justify-content: space-between; gap: 8px; margin-top: 10px; padding: 0; font-size: .85rem; color: var(--texto-suave); }
+.lp .ejercicio-pie .boton { margin: 0; min-height: 38px; }
+
+/* ----- Los juegos: los textos y los botones, más legibles en el móvil ----- */
+.lp .jg-encabezado h2 { font-family: var(--fuente-texto); font-weight: 800; }
+.lp .jg-paso > * > .jg-pista { border-radius: 12px; box-shadow: inset 0 0 0 2px var(--ph-oro); font-family: var(--fuente-texto); }
+.lp .jg-final { border-radius: 18px; }
+/* los botones y contadores de los juegos con la letra de texto (la pixelada confundía «8» con «S») */
+.lp .es-boton { font-family: var(--fuente-texto); font-weight: 800; letter-spacing: 0; }
+.lp .jg-cuenta { font: 800 .9rem var(--fuente-texto); }

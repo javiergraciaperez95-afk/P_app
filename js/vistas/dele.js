@@ -512,7 +512,7 @@ function pintarFinalExpresion(app, examen, prueba, reloj, tareas, evaluaciones, 
   const resultado = el('section', { class: 'caja dl-resultado', hidden: true, 'aria-live': 'polite' });
   const guardar = el('button', { type: 'button', class: 'boton boton-principal boton-grande' }, '💾 ', t('ph.dele.guardarNota'));
   guardar.addEventListener('click', () => {
-    if (!evaluaciones.every(e => e.completa())) { decir(t('ph.dele.faltaAuto'), 'pensando'); sonar('duda'); return; }
+    if (!evaluaciones.every(e => e.completa())) { decir(t('ph.dele.faltaAuto'), 'pensando', { abrir: true }); sonar('duda'); return; }
     reloj.parar();
     const puntos = Math.round((25 * evaluaciones.reduce((s, e) => s + e.puntos(), 0) / maximo) * 10) / 10;
     poner(resultado,

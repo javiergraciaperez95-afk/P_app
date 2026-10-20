@@ -279,4 +279,21 @@ export default {
   'ph.aviso.rachaCuerpo': 'Đừng để mất chuỗi ngày học nhé: một bài hay vài thẻ là đủ.',
   'ph.aviso.oferta': 'Mỗi ngày cô gửi em một lời nhắc vào giờ em chọn: câu hỏi CCSE trong ngày, thẻ cần ôn hoặc bài học tiếp theo. Hôm nào em đã học rồi thì cô không làm phiền.',
   'ph.aviso.ajusteAyuda': 'Mỗi ngày một lời nhắc với câu hỏi CCSE, thẻ cần ôn hoặc bài học tiếp theo.',
+
+  // ----- Lucía (solo cuando se la llama) y la lección -----
+  'ph.tutora.hola': 'Chào em! Cô là Lucía. Khi cần, em cứ gọi cô: chạm vào một từ để xem nghĩa, hoặc vào dấu «?» của câu để cô giải thích.',
+  'ph.tutora.llamar': 'Gọi cô Lucía',
+  'ph.tutora.cerrar': 'Đóng',
+  'ph.lec.salir': 'Thoát bài học',
+  'ph.lec.progreso': 'Bước {n} trên {total}',
+  'ph.lec.continuar': 'Tiếp tục',
+  'ph.lec.atras': 'Bước trước',
+  'ph.lec.hazlo': 'Làm xong bước này để tiếp tục',
+  'ph.lec.libro': 'Chế độ sách',
+  'ph.lec.juego': 'Chế độ trò chơi',
+  'ph.lec.ejercicios': 'Bài tập {hechos}/{total}',
+  'ph.lec.faltan': 'Còn {n} bài tập chưa làm.',
+  'ph.lec.irFalta': 'Đi tới bài chưa làm',
+  'ph.lec.ok': 'Đúng rồi!',
+  'ph.lec.ojo': 'Chú ý',
 };

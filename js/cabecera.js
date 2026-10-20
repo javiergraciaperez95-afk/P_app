@@ -6,7 +6,7 @@ import { icono } from './iconos.js';
 import { t } from './i18n.js';
 import { tarjetas, racha, alCambiar } from './progress.js';
 import { tocaRepasar, esNueva } from './srs.js';
-import { decir } from './tutor.js';
+import { decir, botonTutora } from './tutor.js';
 import { sonar } from './sonidos.js';
 import { nube, alCambiarNube } from './nube.js';
 
@@ -19,9 +19,9 @@ llama.addEventListener('click', () => {
   const dias = racha();
   llama.classList.remove('aviva'); void llama.offsetWidth; llama.classList.add('aviva');
   sonar(dias ? 'fuegos' : 'nada');
-  decir(t(dias >= 7 ? 'cabecera.llamaMucha' : dias ? 'cabecera.llamaViva' : 'cabecera.llamaApagada', { n: dias }), dias ? 'contenta' : 'pensando');
+  decir(t(dias >= 7 ? 'cabecera.llamaMucha' : dias ? 'cabecera.llamaViva' : 'cabecera.llamaApagada', { n: dias }), dias ? 'contenta' : 'pensando', { abrir: true });
 });
-document.querySelector('.cabecera-botones')?.prepend(llama);
+document.querySelector('.cabecera-botones')?.prepend(botonTutora(), llama);
 
 /** Tarjetas que tocan hoy: las pendientes más las nuevas (como mucho 20, igual que en la pantalla de repaso). */
 export function pendientesDeHoy() {

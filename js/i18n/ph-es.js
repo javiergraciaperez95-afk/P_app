@@ -270,4 +270,21 @@ export default {
   'ph.aviso.rachaCuerpo': 'No pierdas la racha: con una lección o unas tarjetas basta.',
   'ph.aviso.oferta': 'Cada día te mando un aviso a la hora que elijas: la pregunta del CCSE del día, las tarjetas que tocan o la próxima lección. Si ese día ya has estudiado, no te molesto.',
   'ph.aviso.ajusteAyuda': 'Un aviso al día con la pregunta del CCSE, las tarjetas que tocan o la próxima lección.',
+
+  // ----- Lucía (solo cuando se la llama) y la lección -----
+  'ph.tutora.hola': '¡Hola! Soy Lucía. Llámame cuando quieras: toca una palabra para ver qué significa o el «?» de una frase y te la explico.',
+  'ph.tutora.llamar': 'Llamar a Lucía',
+  'ph.tutora.cerrar': 'Cerrar',
+  'ph.lec.salir': 'Salir de la lección',
+  'ph.lec.progreso': 'Paso {n} de {total}',
+  'ph.lec.continuar': 'Continuar',
+  'ph.lec.atras': 'Paso anterior',
+  'ph.lec.hazlo': 'Termina este paso para seguir',
+  'ph.lec.libro': 'Modo libro',
+  'ph.lec.juego': 'Modo juego',
+  'ph.lec.ejercicios': 'Ejercicios {hechos}/{total}',
+  'ph.lec.faltan': 'Te quedan {n} ejercicios por hacer.',
+  'ph.lec.irFalta': 'Ir al que falta',
+  'ph.lec.ok': '¡Bien!',
+  'ph.lec.ojo': 'Ojo',
 };

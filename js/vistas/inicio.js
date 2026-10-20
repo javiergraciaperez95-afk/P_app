@@ -52,7 +52,7 @@ export function pintarInicio(app, contenido) {
   const saludo = t(hora < 12 ? 'ph.inicio.buenosDias' : hora < 20 ? 'ph.inicio.buenasTardes' : 'ph.inicio.buenasNoches');
   const fecha = new Date().toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' });
   const tutora = el('button', { type: 'button', class: 'ph-tutora-grande', 'aria-label': t('tutora.tocar'), 'data-sonido': 'cosquillas' }, canvas);
-  tutora.addEventListener('click', () => { sprite.reaccionar?.('cosquillas'); sprite.gesto?.('firma'); decir(t('ph.inicio.animo'), 'contenta'); });
+  tutora.addEventListener('click', () => { sprite.reaccionar?.('cosquillas'); sprite.gesto?.('firma'); decir(t('ph.inicio.animo'), 'contenta', { abrir: true }); });
 
   const hola = el('section', { class: 'ph-hola' },
     tutora,
@@ -155,7 +155,7 @@ export function pintarInicio(app, contenido) {
       try { localStorage.setItem(CLAVE_PRESENTADA, '1'); } catch { /* sin almacenamiento */ }
       sonar('fanfarria');
       pintarInicio(app, contenido);
-      decir(t('ph.bienvenida.encantada', { nombre: campo.value.trim() || 'Phương' }), 'contenta');
+      decir(t('ph.bienvenida.encantada', { nombre: campo.value.trim() || 'Phương' }), 'contenta', { abrir: true });
     });
     return caja;
   })();

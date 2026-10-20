@@ -1,9 +1,12 @@
-// Cuadro de diálogo de la tutora: texto con efecto máquina de escribir,
-// páginas y expresiones.
+// Cuadro de diálogo de la tutora: texto con efecto máquina de escribir, páginas y expresiones.
+// Lucía solo aparece cuando se la llama: está escondida y en las cabeceras hay un botón con su cara (botonTutora()).
+// Lo que dice mientras está escondida se guarda y el botón enseña un puntito; al llamarla lo cuenta. Solo se abre
+// sola con decir(…, …, { abrir: true }) (cuando lo pide quien la usa: el «?» de una frase, por ejemplo). Los avisos de
+// algo que no ha funcionado (sin voz…) salen además en una nota pequeña que se va sola.
 
 import { crearSprite, EXPRESIONES_VALIDAS } from './tutor-sprite.js';
 import { t } from './i18n.js';
-import { enLinea, poner } from './dom.js';
+import { el, enLinea, poner } from './dom.js';
 import { pitidoVoz, sonar } from './sonidos.js';
 
 const VELOCIDAD = 22; // milisegundos por letra
@@ -66,7 +69,6 @@ function terminarPagina() {
   poner(texto, ...enLinea(textoCompleto));
   const hayMas = indice < paginas.length - 1;
   mostrarSiguiente(hayMas);
-  if (!hayMas) plegarLuego();
   if (!hayMas && EXPRESIONES_PASAJERAS.includes(sprite.expresion)) {
     clearTimeout(volverANormal);
     volverANormal = setTimeout(() => ponerExpresion('normal'), 6000);
@@ -116,19 +118,84 @@ export function escucharTutora(fn) {
  * Hace hablar a la tutora.
  * mensaje: un texto, o una lista de páginas (textos u objetos { texto, expresion }).
  */
-export function decir(mensaje, expresion = 'normal') {
+export function decir(mensaje, expresion = 'normal', { abrir = false } = {}) {
   for (const fn of oyentes) fn(mensaje, expresion);
-  desplegar();
+  const lista = (Array.isArray(mensaje) ? mensaje : [mensaje])
+    .filter(Boolean)
+    .map(p => (typeof p === 'string' ? { texto: p } : { ...p }));
+  if (lista.length === 0) return;
+  if (!lista[0].expresion) lista[0].expresion = expresion;
+  paginas = lista;
+  indice = 0;
+  if (abrir || abierta()) { abrirCaja(); return; }
+  ponerPendiente(true);
+  if (['apurada', 'confundida', 'sorprendida'].includes(expresion)) nota(lista[0].texto);
+}
+
+const abierta = () => !caja.classList.contains('cerrada');
+let pendiente = false;
+function ponerPendiente(si) {
+  pendiente = si;
+  window.dispatchEvent(new CustomEvent('tutora-pendiente', { detail: si }));
+}
+
+function abrirCaja() {
   clearTimeout(volverANormal);
   clearTimeout(temporizador);
-  const lista = Array.isArray(mensaje) ? mensaje : [mensaje];
-  paginas = lista
-    .filter(Boolean)
-    .map(p => (typeof p === 'string' ? { texto: p } : p));
-  if (paginas.length === 0) return;
-  if (!paginas[0].expresion) paginas[0].expresion = expresion;
-  indice = 0;
+  const era = abierta();
+  caja.classList.remove('cerrada');
+  document.body.classList.add('tutora-abierta');
+  if (!era) gesto(['asomarse', 'saludar']);
+  ponerPendiente(false);
   mostrarPagina();
+}
+
+function cerrarCaja() {
+  if (!abierta()) return;
+  clearTimeout(temporizador);
+  escribiendo = false;
+  sprite.hablando = false;
+  caja.classList.add('cerrada');
+  document.body.classList.remove('tutora-abierta');
+}
+
+/** Llama a Lucía: cuenta lo último que tenía que decir o, si no hay nada, saluda y explica cómo ayuda. */
+export function llamarTutora() {
+  if (abierta()) { cerrarCaja(); return; }
+  if (!paginas.length) paginas = [{ texto: t('ph.tutora.hola'), expresion: 'contenta' }];
+  indice = 0;
+  sonar('abrir');
+  abrirCaja();
+}
+
+/** El botón con la cara de Lucía para las cabeceras. El puntito dice que tiene algo que contar. */
+export function botonTutora(clase = '') {
+  const punto = el('span', { class: 'llamar-tutora-punto', 'aria-hidden': 'true', hidden: !pendiente });
+  const boton = el('button', {
+    type: 'button', class: `llamar-tutora ${clase}`.trim(), 'data-sonido': 'nada',
+    title: t('ph.tutora.llamar'), 'aria-label': t('ph.tutora.llamar'),
+  }, el('img', { src: 'assets/icono-192.png', alt: '', width: 40, height: 40 }), punto);
+  boton.addEventListener('click', e => { e.stopPropagation(); llamarTutora(); });
+  const alPendiente = e => {
+    if (!boton.isConnected) { window.removeEventListener('tutora-pendiente', alPendiente); return; }
+    punto.hidden = !e.detail;
+  };
+  window.addEventListener('tutora-pendiente', alPendiente);
+  return boton;
+}
+
+// Una nota pequeña abajo, que se va sola (para lo que no puede esperar a que se llame a Lucía).
+let notaEl = null;
+let notaFin = null;
+export function nota(texto, tipo = 'aviso') {
+  if (!texto) return;
+  notaEl?.remove();
+  clearTimeout(notaFin);
+  const n = el('div', { class: `nota-flotante nota-${tipo}`, role: 'status' }, ...enLinea(texto));
+  n.addEventListener('click', () => n.remove());
+  document.body.append(n);
+  notaEl = n;
+  notaFin = setTimeout(() => n.remove(), 5000);
 }
 
 function avanzar() {
@@ -138,39 +205,6 @@ function avanzar() {
     indice += 1;
     mostrarPagina();
   }
-}
-
-// En el móvil, cuando acaba de hablar (y no le quedan páginas), al rato se pliega a solo su cara en una esquina: así
-// deja la pantalla para la lección. Vuelve al hablar o al tocarla.
-const enMovil = window.matchMedia('(max-width: 700px)');
-const ESPERA_PLEGAR = 6000;
-let plegar = null;
-function plegarLuego() {
-  clearTimeout(plegar);
-  if (!enMovil.matches) return;
-  plegar = setTimeout(() => {
-    if (escribiendo || !botonSiguiente.hidden || caja.contains(document.activeElement)) { plegarLuego(); return; }
-    caja.classList.add('plegada');
-  }, ESPERA_PLEGAR);
-}
-function desplegar() {
-  clearTimeout(plegar);
-  caja.classList.remove('plegada');
-}
-enMovil.addEventListener('change', () => { if (!enMovil.matches) desplegar(); });
-
-function pintarBotonOcultar() {
-  const oculta = caja.classList.contains('oculta');
-  botonOcultar.textContent = t(oculta ? 'tutora.mostrar' : 'tutora.ocultar');
-  botonOcultar.setAttribute('aria-expanded', String(!oculta));
-}
-
-function ocultar(oculta) {
-  if (!oculta && caja.classList.contains('oculta')) gesto(['asomarse', 'saludar']);
-  caja.classList.toggle('oculta', oculta);
-  document.body.classList.toggle('tutora-oculta', oculta);
-  pintarBotonOcultar();
-  try { localStorage.setItem('idiomas-tutora-oculta', oculta ? '1' : ''); } catch { /* sin almacenamiento */ }
 }
 
 // ---------------------------------------------------------------------------
@@ -215,8 +249,6 @@ function tocar(zona) {
 }
 
 retrato.addEventListener('click', e => {
-  // plegada, tocarla la despliega con lo último que dijo
-  if (caja.classList.contains('plegada')) { desplegar(); plegarLuego(); return; }
   // Con ratón o dedo se mira dónde ha tocado; con teclado cuenta como la cara.
   const caja = canvas.getBoundingClientRect();
   const enCara = e.detail === 0 || (e.clientY - caja.top) / caja.height < 0.6;
@@ -226,16 +258,19 @@ retrato.addEventListener('click', e => {
 botonSiguiente.addEventListener('click', avanzar);
 // Tocar el texto mientras se escribe lo completa de golpe.
 texto.addEventListener('click', () => { if (escribiendo) terminarPagina(); });
-botonOcultar.addEventListener('click', () => ocultar(!caja.classList.contains('oculta')));
+botonOcultar.addEventListener('click', cerrarCaja);
+// tocar fuera de ella (o Escape, o cambiar de pantalla) la vuelve a esconder
+document.addEventListener('pointerdown', e => {
+  if (abierta() && !caja.contains(e.target) && !e.target.closest?.('.llamar-tutora, .ficha-palabra')) cerrarCaja();
+}, { capture: true });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && abierta()) cerrarCaja(); });
+window.addEventListener('hashchange', cerrarCaja);
 
-try { if (localStorage.getItem('idiomas-tutora-oculta')) ocultar(true); } catch { /* sin almacenamiento */ }
-pintarBotonOcultar();
-// Abajo se deja el hueco que ocupa de verdad (cambia con el texto y al plegarla): así nunca tapa el final de la página.
-if ('ResizeObserver' in window) {
-  new ResizeObserver(() => {
-    document.documentElement.style.setProperty('--alto-tutora-real', `${Math.ceil(caja.getBoundingClientRect().height)}px`);
-  }).observe(caja);
+function pintarBotonOcultar() {
+  botonOcultar.textContent = `✕ ${t('ph.tutora.cerrar')}`;
 }
+caja.classList.add('cerrada');
+pintarBotonOcultar();
 ponerExpresion('normal');
 
 window.addEventListener('idioma-cambiado', () => {
@@ -307,8 +342,7 @@ window.addEventListener('hashchange', () => {
   else if (Date.now() - ultimoSaludo > 45000) { ultimoSaludo = Date.now(); gesto('saludar'); }
 });
 
-// Al abrir la app, y al volver a ella tras un rato, se asoma y saluda.
-gesto(['asomarse', 'saludar']);
+// Al volver a la app tras un rato, se asoma y saluda.
 let ocultaDesde = 0;
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) { ocultaDesde = Date.now(); return; }
@@ -329,7 +363,7 @@ function actividad() {
 }
 for (const tipo of ['pointerdown', 'keydown', 'wheel', 'touchstart']) document.addEventListener(tipo, actividad, { passive: true, capture: true });
 setInterval(() => {
-  if (document.hidden || caja.classList.contains('oculta')) return;
+  if (document.hidden || !abierta()) return;
   const quieta = Date.now() - ultimaActividad;
   if (quieta > 150000) { sprite.dormida = true; return; }
   if (quieta < 25000 || Date.now() < proximaEspera || escribiendo || sprite.escuchando || sprite.ocupada?.()) return;

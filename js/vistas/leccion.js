@@ -4,13 +4,12 @@ import { el, textoConFormato, poner, enLinea } from '../dom.js';
 import { t, tr, origenTarjeta } from '../i18n.js';
 import { normalizarPalabra } from '../lessons.js';
 import { crearEjercicio } from '../exercises.js';
-import { decir } from '../tutor.js';
-import { resumenLeccion, marcarTerminada, marcarAbierta } from '../progress.js';
+import { decir, botonTutora, nota } from '../tutor.js';
+import { resumenLeccion, marcarTerminada, marcarAbierta, estadoEjercicio } from '../progress.js';
 import { botonEscuchar, botonGuardar, analisisDesplegable, textoAnalisis, apuntarPalabrasDeLeccion } from '../comunes.js';
 import { sonar, pronunciarSeguido, callar, ayudaVoz, hayVoz } from '../sonidos.js';
 import { cargarJuego, pintarJuego } from '../juego/motor.js';
 import { hayJuego, pintarJuegoDeLeccion } from '../../juegos/motor.js';
-import { paginarEnMovil, esMovil } from '../paginas-movil.js';
 import { LANG } from '../curso.js';
 
 /** Género: «m» o «f» (también «m/f» para las palabras que admiten los dos). */
@@ -196,7 +195,7 @@ function explicarFrase(frase, palabras) {
   }
   for (const nota of frase.notas) paginas.push({ texto: tr(nota), expresion: 'pensando' });
   sonar('pagina');
-  decir(paginas);
+  decir(paginas, 'normal', { abrir: true });
 }
 
 // ---------------------------------------------------------------------------
@@ -492,9 +491,9 @@ export function pintarLeccion(contenedor, resultado, siguiente) {
       });
     } else {
       const conJuego = guion || hayJuego(resultado.leccion);
-      pintarLibro(contenedor, resultado, siguiente, conJuego ? () => { preferir('juego'); mostrar(guion); window.scrollTo(0, 0); } : null);
-      // en el móvil el libro no se desplaza: va por páginas, como el modo juego va por pasos
-      if (esMovil()) limpiar = paginarEnMovil(contenedor);
+      // el libro se lee bajando, como un libro de verdad (antes, en el móvil, iba por páginas medidas que cortaban
+      // los bloques y no dejaban avanzar)
+      limpiar = pintarLibro(contenedor, resultado, siguiente, conJuego ? () => { preferir('juego'); mostrar(guion); window.scrollTo(0, 0); } : null);
     }
   };
   cargarJuego(resultado.leccion.id).then(guion => { if (abierta) mostrar(guion); });
@@ -505,31 +504,15 @@ export function pintarLeccion(contenedor, resultado, siguiente) {
 }
 
 function pintarLibro(contenedor, resultado, siguiente, alJuego) {
-  const { avisos } = resultado;
   // Las palabras propias de la lección mandan sobre las del resto del curso.
   const propias = resultado.leccion.palabras;
   const leccion = { ...resultado.leccion, palabras: new Map([...diccionarioGlobal, ...propias]) };
   marcarAbierta(leccion.id);
   origenActual = origenTarjeta('leccion.numero', { id: leccion.numero_curso });
 
-  const progreso = el('p', { class: 'aprox' });
-  const actualizar = () => {
-    const r = resumenLeccion(leccion.id, leccion.idsEjercicios);
-    progreso.textContent = textoProgreso(r);
-    pintarFinal(r);
-  };
-
-  const cabecera = el('header', { class: 'cabecera-leccion' },
-    el('a', { class: 'boton boton-mini volver', href: '#/lecciones' }, `◀ ${t('menu.lecciones')}`),
-    alJuego && el('button', { type: 'button', class: 'boton boton-mini boton-principal', onclick: alJuego }, t('juego.jugar')),
-    el('p', { class: 'etiqueta-bloque' }, t('leccion.numero', { id: leccion.numero_curso })),
-    el('h1', { class: 'titulo-es', lang: LANG }, leccion.titulo_es),
-    leccion.titulo && el('p', { class: 'titulo-trad' }, tr(leccion.titulo)),
-    progreso);
-
-  // (los avisos del archivo eran para quien escribe las lecciones: en la app no se enseñan)
-  const avisosEl = null;
-
+  // Cuentan los ejercicios que se ven (sin voz no salen los de oído). Antes se contaban los del archivo en el momento
+  // de pulsar «Terminar»: si la voz del móvil llegaba tarde, faltaban ejercicios que no estaban y no se podía acabar.
+  const ejercicios = []; // { id, nodo }
   let numero = 0;
   const bloques = leccion.bloques.map(b => {
     if (b.error) return bloqueConError(b);
@@ -541,39 +524,79 @@ function pintarLibro(contenedor, resultado, siguiente, alJuego) {
     if (b.tipo === 'imagen') return bloqueImagen(b);
     if (b.soloOido && !hayVoz()) return null; // ejercicio de oído y el dispositivo no tiene voz
     numero += 1;
-    return crearEjercicio(b, leccion.id, numero, actualizar);
+    const nodo = crearEjercicio(b, leccion.id, numero, () => actualizar());
+    if (b.id) ejercicios.push({ id: b.id, nodo });
+    return nodo;
   });
+  const ids = ejercicios.map(e => e.id);
+
+  const barra = el('span', { class: 'lp-barra-relleno' });
+  const cuenta = el('span', { class: 'lp-cuenta' });
+  const cabecera = el('header', { class: 'lp-cabecera lp-cabecera-libro' },
+    el('a', { class: 'lp-icono lp-salir', href: '#/lecciones', 'aria-label': t('ph.lec.salir'), title: t('ph.lec.salir') }, '✕'),
+    el('div', { class: 'lp-progreso' }, el('span', { class: 'lp-barra' }, barra), cuenta),
+    botonTutora('lp-icono'),
+    alJuego && el('button', { type: 'button', class: 'lp-icono lp-libro', onclick: alJuego, 'aria-label': t('ph.lec.juego'), title: t('ph.lec.juego') }, '🎮'));
+  const portada = el('section', { class: 'lp-portada' },
+    el('p', { class: 'lp-numero' }, t('leccion.numero', { id: leccion.numero_curso })),
+    el('h1', { class: 'titulo-es', lang: LANG }, leccion.titulo_es),
+    leccion.titulo && el('p', { class: 'titulo-trad' }, tr(leccion.titulo)),
+    leccion.intro && el('p', { class: 'lp-intro' }, tr(leccion.intro)));
 
   const final = el('section', { class: 'caja final-leccion' });
+  const pieTexto = el('span', { class: 'lp-pie-texto' });
+  const pieBoton = el('button', { type: 'button', class: 'lp-seguir' });
+  const pie = el('nav', { class: 'lp-pie lp-pie-libro' }, pieTexto, pieBoton);
 
-  function pintarFinal(r) {
-    const faltan = r.total - r.completados;
-    const botonTerminar = el('button', { type: 'button', class: 'boton boton-principal' }, t('leccion.terminar'));
-    botonTerminar.addEventListener('click', () => {
-      if (faltan > 0) {
-        decir(t('leccion.faltan', { n: faltan }), 'pensando');
-        return;
-      }
+  const faltaPrimero = () => ejercicios.find(e => !estadoEjercicio(leccion.id, e.id).completado);
+  function terminar() {
+    const r = resumenLeccion(leccion.id, ids);
+    const falta = faltaPrimero();
+    if (falta) {
+      nota(t('ph.lec.faltan', { n: r.total - r.completados }));
+      falta.nodo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+    if (!r.terminada) {
       marcarTerminada(leccion.id);
       const nuevas = apuntarPalabrasDeLeccion(leccion, propias);
       sonar('fin');
       decir([t('leccion.terminadaTutora', { n: r.aciertos }), nuevas ? t('leccion.apuntadas', { n: nuevas }) : null].filter(Boolean).join(' '), 'contenta');
-      actualizar();
-      final.querySelector('a, button')?.focus();
-    });
+      try { sessionStorage.setItem('paglot-recien', leccion.id); } catch { /* sin almacenamiento */ }
+    }
+    actualizar();
+    final.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 
-    poner(final, 
+  function actualizar() {
+    const r = resumenLeccion(leccion.id, ids);
+    barra.style.width = `${r.total ? Math.round((r.completados / r.total) * 100) : 100}%`;
+    cuenta.textContent = `${r.completados}/${r.total}`;
+    pieTexto.textContent = t('ph.lec.ejercicios', { hechos: r.completados, total: r.total });
+    const listo = r.completados >= r.total;
+    if (r.terminada) {
+      pieBoton.textContent = siguiente ? t('leccion.siguiente') : t('comun.volverLecciones');
+      pieBoton.onclick = () => { location.hash = siguiente ? `#/leccion/${siguiente}` : '#/lecciones'; };
+    } else if (listo) {
+      pieBoton.textContent = t('leccion.terminar');
+      pieBoton.onclick = terminar;
+    } else {
+      pieBoton.textContent = t('ph.lec.irFalta');
+      pieBoton.onclick = () => faltaPrimero()?.nodo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    pieBoton.classList.toggle('lp-bloqueado', !listo && !r.terminada);
+    poner(final,
       el('h2', {}, t(r.terminada ? 'leccion.terminada' : 'leccion.fin')),
       el('p', { class: 'resumen' }, textoProgreso(r)),
-      r.terminada ? null : botonTerminar,
+      r.terminada ? null : el('button', { type: 'button', class: 'boton boton-principal', onclick: terminar }, t('leccion.terminar')),
       r.terminada && propias.size ? el('a', { class: 'boton boton-principal', href: '#/repaso' }, t('leccion.repasarAhora')) : null,
       siguiente
         ? el('a', { class: 'boton', href: `#/leccion/${siguiente}` }, t('leccion.siguiente'))
         : el('a', { class: 'boton', href: '#/lecciones' }, t('comun.volverLecciones')));
   }
 
-  poner(contenedor, ...[cabecera, avisosEl, ...bloques, final].filter(Boolean));
+  poner(contenedor, el('article', { class: 'lp lp-libro-hoja' }, cabecera, portada, ...bloques.filter(Boolean), final, pie));
   actualizar();
-
-  decir(leccion.intro ? tr(leccion.intro) : t('leccion.introTutora', { titulo: leccion.titulo_es }));
+  document.body.classList.add('en-libro');
+  return () => document.body.classList.remove('en-libro');
 }
