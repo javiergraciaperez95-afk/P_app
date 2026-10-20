@@ -30,6 +30,7 @@ import { pintarBienvenida, bienvenidaVista } from './vistas/bienvenida.js';
 import { pintarPerdida } from './vistas/perdida.js';
 import { iniciarLogros, comprobarLogros } from './logros.js';
 import { iniciarNube } from './nube.js';
+import { iniciarAvisosRepaso } from './avisos-repaso.js';
 import { curso, hayCurso, nombreDelCurso, esBeta, paraQuien, lenguaDelAlumno, cambiarDeCurso } from './curso.js';
 import { PRECIOS_VISIBLES } from './config.js';
 import { avisoPendiente } from './sin-terminar.js';
@@ -951,6 +952,7 @@ async function iniciar() {
   }
   await primera;
   quitarArranque();
+  iniciarAvisosRepaso();
   // el progreso en la nube (Supabase): se junta con el del dispositivo y se sube al cambiar
   iniciarNube();
   // si de la nube llega progreso nuevo, se repinta la pantalla (salvo en mitad de una lección, un repaso o un reto)

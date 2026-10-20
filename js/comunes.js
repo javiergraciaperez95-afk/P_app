@@ -2,25 +2,53 @@
 
 import { el } from './dom.js';
 import { icono } from './iconos.js';
-import { t, tr, origenTarjeta } from './i18n.js';
+import { t, tr, idioma, origenTarjeta } from './i18n.js';
 import { pronunciar, sonar, ayudaVoz } from './sonidos.js';
 import { estaEnCuaderno, guardarEnCuaderno, guardarVariasEnCuaderno, quitarDelCuaderno } from './progress.js';
 import { decir } from './tutor.js';
 import { LANG } from './curso.js';
 
 /**
- * Al terminar una lección, sus palabras pasan al cuaderno y, con eso, al repaso.
- * palabras: las propias de la lección (Map). Devuelve cuántas se han añadido ahora.
+ * Al terminar una lección, sus palabras pasan al cuaderno y, con eso, al repaso. Con ellas van también unas pocas
+ * frases cortas de la lección (las de traducir y ordenar, y los ejemplos y diálogos), con su traducción.
+ * palabras: las propias de la lección (Map). Devuelve cuántas tarjetas se han añadido ahora.
  * Las fichas «ocultas» (nombres, palabra + partícula…) solo sirven para tocarlas en las frases: no se apuntan.
  */
 export function apuntarPalabrasDeLeccion(leccion, palabras = leccion.palabras) {
   const origen = origenTarjeta('cuaderno.deLeccion', { id: leccion.id, titulo: leccion.titulo_es });
-  const nuevas = guardarVariasEnCuaderno([...palabras.values()].filter(v => !v.oculta).map(v => ({
-    es: v.es, trad: v.trad, pron: v.pron, nota: v.nota || v.consejo,
-    tipo: v.es.includes(' ') ? 'frase' : 'palabra', origen,
-  })));
+  const nuevas = guardarVariasEnCuaderno([
+    ...[...palabras.values()].filter(v => !v.oculta).map(v => ({
+      es: v.es, trad: v.trad, pron: v.pron, nota: v.nota || v.consejo,
+      tipo: v.es.includes(' ') ? 'frase' : 'palabra', origen,
+    })),
+    ...frasesDeLeccion(leccion).map(f => ({ ...f, tipo: 'frase', origen })),
+  ]);
   if (nuevas) window.dispatchEvent(new CustomEvent('cuaderno-cambiado', { detail: null }));
   return nuevas;
+}
+
+const FRASES_POR_LECCION = 6;
+const PALABRAS_POR_FRASE = 8;
+
+/** Las frases de la lección que merecen tarjeta: cortas, con traducción y sin huecos. Como mucho seis. */
+function frasesDeLeccion(leccion) {
+  const texto = x => String(typeof x === 'string' ? x : x?.es ?? '').trim();
+  const lista = [];
+  const meter = (es, trad) => {
+    const frase = texto(es);
+    const palabras = frase.split(/\s+/).length;
+    if (!frase || !trad || frase.includes('_') || palabras < 2 || palabras > PALABRAS_POR_FRASE) return;
+    if (lista.some(f => f.es === frase)) return;
+    lista.push({ es: frase, trad });
+  };
+  const enMiIdioma = s => (s && String(s).trim() ? { [idioma()]: String(s).trim() } : null);
+  for (const b of leccion.bloques ?? []) {
+    if (b.tipo === 'traduccion') meter(b.frase, enMiIdioma(b.opciones?.find(o => o.correcta)?.texto));
+    else if (b.tipo === 'ordenar') meter(b.frase, enMiIdioma(tr(b.traduccion)));
+    else if (b.tipo === 'gramatica') for (const f of b.ejemplos ?? []) meter(f.es, f.trad);
+    else if (b.tipo === 'dialogo' || b.tipo === 'texto') for (const f of b.frases ?? []) meter(f.es, f.trad);
+  }
+  return lista.slice(0, FRASES_POR_LECCION);
 }
 
 /** Botón 🔊 que lee el texto con la voz del dispositivo. Solo se ve si hay voz (clase «con-voz»). */

@@ -259,3 +259,49 @@
 @media (prefers-reduced-motion: reduce) {
   .cm-extra-reto .cm-extra-icono, .rt-rayo, .rt-barra.apurado > span { animation: none; }
 }
+
+/* ----- Otras formas de repasar (portada): fichas en rejilla, dos por fila en el móvil ----- */
+.rp-formas-titulo { margin: 18px 0 8px; font-size: 1rem; color: var(--texto-suave); }
+.rp-formas { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; text-align: left; }
+.rp-forma {
+  position: relative;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  grid-template-areas: "icono nombre" "icono texto";
+  align-items: center;
+  column-gap: 8px;
+  min-height: 56px;
+  padding: 8px 30px 8px 8px;
+  font: inherit;
+  color: var(--texto);
+  text-align: left;
+  background: var(--panel-2);
+  border: 3px solid var(--linea);
+  box-shadow: 3px 3px 0 var(--sombra);
+  cursor: pointer;
+  transition: transform .1s steps(2);
+}
+.rp-forma:hover:not(:disabled) { transform: translateY(-2px); }
+.rp-forma:active:not(:disabled) { transform: translateY(2px); box-shadow: 1px 1px 0 var(--sombra); }
+.rp-forma:disabled { opacity: .5; cursor: not-allowed; }
+.rp-forma-icono { grid-area: icono; font-size: 1.3rem; text-align: center; }
+.rp-forma-nombre { grid-area: nombre; font: 700 .9rem var(--fuente-pixel); line-height: 1.15; }
+.rp-forma-texto { grid-area: texto; font-size: .78rem; line-height: 1.25; color: var(--texto-suave); }
+.rp-forma-n { position: absolute; top: 6px; right: 6px; min-width: 20px; padding: 1px 4px; font: 700 .75rem var(--fuente-pixel); text-align: center; color: #15121d; background: var(--oro); }
+.rp-rebeldes { margin: 10px 0 0; font-size: .85rem; }
+
+/* el interruptor de los avisos */
+.rp-avisos { display: flex; align-items: flex-start; gap: 10px; margin: 14px auto 0; max-width: 460px; padding: 10px; text-align: left; background: var(--fondo-punto); border: 2px dashed var(--linea); cursor: pointer; }
+.rp-avisos input { flex: none; width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--verde); }
+.rp-avisos-textos { display: grid; gap: 2px; font-weight: 700; }
+.rp-avisos-textos small { font-weight: 500; font-size: .78rem; }
+
+/* el final: las falladas, para mirarlas otra vez */
+.rp-final-falladas { display: grid; gap: 6px; max-width: 460px; margin: 10px auto; padding: 0; list-style: none; text-align: left; }
+.rp-final-falladas li { display: grid; grid-template-columns: minmax(0, auto) minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 6px 8px; background: var(--panel-2); border: 2px solid var(--linea); }
+.rp-final-falladas li > span:first-child { font-weight: 700; }
+@media (max-width: 400px) {
+  .rp-formas { grid-template-columns: 1fr 1fr; gap: 6px; }
+  .rp-forma { grid-template-columns: minmax(0, 1fr); grid-template-areas: "nombre" "texto"; padding: 6px 26px 6px 8px; }
+  .rp-forma-icono { display: none; }
+}
