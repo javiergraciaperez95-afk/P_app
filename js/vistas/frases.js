@@ -50,9 +50,19 @@ function botonEscucharTodas(frases) {
 function pintarAlAbrir(desplegable, pintar) {
   let pintado = false;
   desplegable.addEventListener('toggle', () => {
-    if (!desplegable.open || pintado) return;
-    pintado = true;
-    desplegable.append(...pintar().filter(Boolean));
+    if (!desplegable.open) return;
+    if (!pintado) {
+      pintado = true;
+      desplegable.append(...pintar().filter(Boolean));
+    }
+    // lo que se abre entra suave y, si el título se ha ido arriba, se baja hasta él sin saltos
+    desplegable.classList.remove('se-abre'); void desplegable.offsetWidth; desplegable.classList.add('se-abre');
+    const titulo = desplegable.querySelector(':scope > summary');
+    const arriba = titulo.getBoundingClientRect().top;
+    const cabecera = document.querySelector('.cabecera')?.getBoundingClientRect().bottom ?? 0;
+    if (arriba < cabecera + 8 || arriba > window.innerHeight * 0.6) {
+      window.scrollTo({ top: window.scrollY + arriba - cabecera - 12, behavior: 'smooth' });
+    }
   });
 }
 

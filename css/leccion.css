@@ -356,3 +356,7 @@ html.pm-activo .cabecera { top: 0; }
 /* las cifras con letra de texto (la pixelada confunde 5 con S y 8 con B), con sombra dura para que sigan siendo pixel */
 .rp2-hoy-n strong { font-family: var(--fuente-texto); font-weight: 900; }
 .rp2-cifras dd, .rp2-etapa strong, .rp2-cuenta { font-family: var(--fuente-texto); font-weight: 900; text-shadow: 2px 2px 0 color-mix(in srgb, var(--sombra) 35%, transparent); }
+/* frases: lo que se despliega entra suave */
+details.se-abre > :not(summary) { animation: fr-entra .28s ease-out both; }
+@keyframes fr-entra { from { opacity: 0; transform: translateY(-6px); } }
+@media (prefers-reduced-motion: reduce) { details.se-abre > :not(summary) { animation: none; } }
