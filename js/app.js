@@ -173,22 +173,25 @@ function filas(contenedor) {
 
 // Las pantallas que en el móvil van en diapositivas grandes, una por escena, en vez de partirse solas
 const DIAPOSITIVAS = {
-  // Paglot Max: los planes y, detrás, cada sección en su diapositiva (antes se abrían desde unos botones). La Hucha va
-  // con su cuarto si caben juntos; la tabla de Comparar, con sus notas debajo; Promesas, el pergamino entero.
+  // Paglot Max en seis diapositivas, cada una con todo lo suyo a la vez (sin partir una sección en trozos): los planes;
+  // la Hucha (explicación y cuarto); la colección entera (libros y envío); Familia y Fundadores juntas; la tabla de
+  // Comparar con sus notas; y las promesas. El CSS de html.pm-activo (css/precios.css) las compacta para que quepan.
   precios: () => {
     const $ = sel => app.querySelector(sel);
-    const alto = altoDePagina() * 0.97;
+    const alto = altoDePagina() * 0.98;
     const mide = k => (k ? k.getBoundingClientRect().height : 0);
-    const juntasSiCaben = (...piezas) => (piezas.reduce((n, k) => n + mide(k) + 12, 40) <= alto ? [piezas] : piezas.map(k => [k]));
+    // juntas si caben enteras sin encogerse; si no (un móvil bajito), en dos diapositivas
+    const juntasOPartidas = (primera, segunda) =>
+      ([...primera, ...segunda].reduce((n, k) => n + mide(k) + 8, 20) <= alto ? [[...primera, ...segunda]] : [primera, segunda]);
     return [
       $('.pr-escenario'),
-      ...juntasSiCaben($('.pr-hucha-texto'), $('.pr-hucha-escena')),
-      ...porAlto([$('.pr-coleccion > .pr-etiqueta'), $('.pr-coleccion > h2'), $('.pr-coleccion > .pr-entradilla'), $('.pr-estanteria'),
-        $('.pr-coleccion > .pr-dos, .pr-coleccion > .pr-envio-pdf'), $('.pr-col-otro')]),
-      $('.pr-familia'), $('.pr-fundadores'),
-      [$('.pr-aula-titulo'), $('.pr-pizarra'), $('.pr-notas')],
+      ...juntasOPartidas([$('.pr-hucha-escena')], [$('.pr-hucha-texto')]),
+      ...juntasOPartidas([$('.pr-coleccion > .pr-etiqueta'), $('.pr-coleccion > h2'), $('.pr-coleccion > .pr-entradilla'), $('.pr-estanteria')],
+        [$('.pr-coleccion > .pr-dos, .pr-coleccion > .pr-envio-pdf'), $('.pr-col-otro')]),
+      [$('.pr-familia'), $('.pr-fundadores')],
+      ...juntasOPartidas([$('.pr-aula-titulo'), $('.pr-pizarra')], [$('.pr-notas')]),
       [$('.pr-pergamino'), $('.pr-promesas > .pr-aviso')],
-    ];
+    ].map(g => [].concat(g).filter(Boolean));
   },
   inicio: () => {
     const $ = sel => app.querySelector(sel);

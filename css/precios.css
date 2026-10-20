@@ -1288,3 +1288,117 @@ html.pm-activo .pr-comparar .pr-notas p:last-child { margin-bottom: 0; }
 @keyframes pr-capa-entra { from { opacity: 0; } }
 @keyframes pr-hoja-sube { from { transform: translateY(40px); } }
 @media (prefers-reduced-motion: reduce) { .pr-incluye-capa, .pr-incluye { animation: none; } }
+
+/* =====================================================================
+   Móvil, seis diapositivas (DIAPOSITIVAS.precios en js/app.js): cada sección entera en una, sin encogerse.
+   Todo se compacta con tamaños fijos legibles (nunca menos de 12 px de letra) y lo que sobra de alto se reparte.
+   ===================================================================== */
+html.pm-activo .precios > .pr-seccion { gap: 8px; padding: 10px 12px; justify-content: space-evenly; }
+html.pm-activo .precios .pr-etiqueta { font-size: .72rem; padding: 3px 8px; }
+html.pm-activo .precios .pr-seccion h2 { font-size: 1.3rem; line-height: 1.15; }
+html.pm-activo .precios .pr-nota-pronto { margin-top: 6px; padding: 5px 8px; font-size: .78rem; }
+html.pm-activo .precios .pr-seccion .pr-boton { min-height: 40px; }
+
+/* 2. La Hucha: el cuarto arriba, como una ventana pequeña, y la explicación debajo */
+html.pm-activo .pr-hucha { grid-template-columns: minmax(0, 1fr); }
+html.pm-activo .pr-hucha-escena { order: -1; zoom: .5; align-self: center; }
+html.pm-activo .pr-hucha-texto { order: 0; padding: 14px 14px 12px; }
+html.pm-activo .pr-hucha-texto::before, html.pm-activo .pr-hucha-texto::after { width: 40px; height: 12px; top: -6px; }
+html.pm-activo .pr-hucha-texto h2 { margin-bottom: 4px; }
+html.pm-activo .pr-hucha-texto .pr-entradilla { margin: 0 0 8px; font-size: .84rem; line-height: 1.4; }
+html.pm-activo .pr-pasos { gap: 5px; margin-bottom: 8px; }
+html.pm-activo .pr-pasos li { gap: 8px; font-size: .84rem; line-height: 1.25; }
+html.pm-activo .pr-pasos b { width: 24px; height: 24px; font-size: .8rem; box-shadow: 0 0 0 2px var(--h-borde); }
+html.pm-activo .pr-regla { padding: 6px 9px; font-size: .78rem; line-height: 1.35; }
+html.pm-activo .pr-hucha-texto .pr-boton { width: 100%; min-width: 0; margin-top: 8px; }
+
+/* 3. La colección: título, los seis libros en una fila de tres por dos, bajitos, y el envío en dos fichas */
+html.pm-activo .pr-coleccion > .pr-entradilla, html.pm-activo .pr-coleccion > .pr-col-otro { padding: 6px 9px; font-size: .78rem; line-height: 1.35; }
+html.pm-activo .pr-coleccion > h2 { font-size: 1.25rem; }
+html.pm-activo .pr-estante { gap: 6px; row-gap: 8px; }
+html.pm-activo .pr-libro { height: 92px; }
+html.pm-activo .pr-libro .pr-libro-tutora { display: none; }
+html.pm-activo .pr-tabla-madera { height: 10px; }
+html.pm-activo .pr-tabla-madera i { display: none; }
+html.pm-activo .pr-dos { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+html.pm-activo .pr-dos .pr-carta { margin: 0; padding: 8px; font-size: .78rem; line-height: 1.3; }
+html.pm-activo .pr-dos .pr-carta h3, html.pm-activo .pr-dos .pr-carta strong { font-size: .86rem; }
+html.pm-activo .pr-dos .pr-carta p { margin: 2px 0 0; }
+html.pm-activo .pr-dos .pr-caja { width: 44px; height: auto; margin: 0 auto 2px; }
+html.pm-activo .pr-camino { gap: 2px; margin-top: 4px; }
+html.pm-activo .pr-camino li { font-size: .6rem; }
+
+/* 4. Familia y Fundadores en la misma diapositiva: el dibujo a la izquierda y el texto a la derecha */
+html.pm-activo .pr-extras { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+html.pm-activo .pr-extras > .pr-carta {
+  display: grid; grid-template-columns: 96px minmax(0, 1fr); column-gap: 10px; align-items: center;
+  padding: 10px 12px; max-width: 520px;
+}
+html.pm-activo .pr-extras > .pr-carta > :first-child { grid-row: 1 / span 6; align-self: center; }
+html.pm-activo .pr-extras > .pr-carta > :not(:first-child) { grid-column: 2; margin: 0; }
+html.pm-activo .pr-extras .pr-casa { width: 96px; margin: 0; padding-top: 6px; zoom: .42; width: 228px; }
+html.pm-activo .pr-extras .pr-carne { zoom: .5; margin: 0; }
+html.pm-activo .pr-extras h3 { font-size: 1.05rem; }
+html.pm-activo .pr-extras .pr-carta > p:not(.pr-precio):not(.pr-por):not(.pr-nota-pronto) { font-size: .8rem; line-height: 1.3; }
+html.pm-activo .pr-extras .pr-precio { font-size: 1.5rem; line-height: 1.1; }
+html.pm-activo .pr-extras .pr-por { font-size: .74rem; }
+html.pm-activo .pr-extras .pr-boton { min-height: 38px; margin-top: 6px; padding: 0 8px; font-size: .85rem; }
+
+/* 5. Comparar: la pizarra entera y legible (filas apretadas, letra de 12 px) y las notas debajo */
+html.pm-activo .pr-pizarra { padding: 8px; }
+html.pm-activo .pr-pizarra-dentro { padding: 22px 6px 6px; }
+html.pm-activo .pr-pizarra-dentro::before, html.pm-activo .pr-pizarra-dentro::after { font-size: .62rem; top: 5px; }
+html.pm-activo .pr-tabla { font-size: .76rem; }
+html.pm-activo .pr-tabla th, html.pm-activo .pr-tabla td { padding: 4px 4px; line-height: 1.2; }
+html.pm-activo .pr-tabla thead th { padding: 2px 4px 5px; font-size: .9rem; }
+html.pm-activo .pr-repisa { display: none; }
+html.pm-activo .pr-comparar .pr-aula-titulo { font-size: 1.2rem; }
+html.pm-activo .pr-comparar .pr-notas { font-size: .72rem; padding: 6px 8px; }
+
+/* 6. Promesas: el pergamino a todo el ancho, iconos y sellos pequeños */
+html.pm-activo .pr-pergamino { margin: 0 16px !important; }
+html.pm-activo .pr-papel { padding: 0 10px; }
+html.pm-activo .pr-papel h2 { margin: 12px auto 0 !important; font-size: 1.15rem; }
+html.pm-activo .pr-papel h2::after { margin-top: 6px; width: 110px; height: 4px; }
+html.pm-activo .pr-juras { margin-top: 6px; }
+html.pm-activo .pr-juras li { grid-template-columns: 32px minmax(0, 1fr) 24px; gap: 8px; padding: 6px 0; border-bottom-width: 2px; }
+html.pm-activo .pr-jura-icono { width: 32px; height: 32px; box-shadow: 0 0 0 2px var(--tinta); }
+html.pm-activo .pr-icono-promesa { width: 22px; }
+html.pm-activo .pr-juras p { font-size: .8rem; line-height: 1.3; }
+html.pm-activo .pr-lacre { width: 24px; height: 24px; font-size: .7rem; }
+html.pm-activo .pr-firma { padding: 2px 4px 8px; }
+html.pm-activo .pr-firma-nombre { font-size: 1.15rem; }
+html.pm-activo .pr-promesas .pr-aviso { margin-top: 8px !important; font-size: .75rem; line-height: 1.35; }
+html.pm-activo .pr-comparar .pr-pizarra, html.pm-activo .pr-comparar .pr-notas, html.pm-activo .pr-comparar .pr-aula-titulo { margin: 0 !important; }
+html.pm-activo .pr-tabla { font-size: .72rem; }
+html.pm-activo .pr-tabla th, html.pm-activo .pr-tabla td { padding: 3px 3px; line-height: 1.15; border-bottom-width: 1px; }
+html.pm-activo .pr-tabla tbody th { width: 46%; }
+html.pm-activo .pr-comparar .pr-notas { font-size: .7rem; line-height: 1.3; padding: 5px 8px; }
+html.pm-activo .pr-comparar .pr-notas p { margin-bottom: 2px; }
+/* la colección: las fichas de envío sin la caja dibujada y con el camino de entregas en una línea */
+html.pm-activo .pr-dos .pr-caja { display: none; }
+html.pm-activo .pr-libro { height: 78px; padding: 8px 6px 8px 12px; }
+/* el pergamino: a todo el ancho de la diapositiva */
+html.pm-activo .pr-promesas { display: flex; align-items: stretch; }
+html.pm-activo .pr-pergamino { width: auto; max-width: none !important; align-self: stretch; }
+/* letra de 12 px como mínimo en todas las diapositivas */
+html.pm-activo .pr-tabla { font-size: .75rem; }
+html.pm-activo .pr-tabla th, html.pm-activo .pr-tabla td { padding: 2px 3px; }
+html.pm-activo .pr-comparar .pr-notas { font-size: .75rem; }
+html.pm-activo .precios .pr-etiqueta { font-size: .75rem; }
+html.pm-activo .pr-camino li { font-size: .75rem; }
+html.pm-activo .pr-extras .pr-por { font-size: .75rem; }
+/* el pergamino, más bajito: rodillos finos y la firma pequeña */
+html.pm-activo .pr-rodillo { height: 14px; }
+html.pm-activo .pr-rodillo::before, html.pm-activo .pr-rodillo::after { top: -4px; height: 22px; }
+html.pm-activo .pr-firma { margin-top: 0; padding: 0 4px 6px; }
+@media (max-height: 700px) {
+  html.pm-activo .pr-hucha-escena { zoom: .42; }
+}
+/* los libros bajitos: sin la marca de arriba (se montaba con el nivel) y el nivel a un tamaño que cabe («EXAMEN») */
+html.pm-activo .pr-libro-marca { display: none; }
+html.pm-activo .pr-libro { justify-content: center; }
+html.pm-activo .pr-libro b { font-size: 1.05rem; }
+html.pm-activo .pr-libro-nombre { font-size: .75rem; line-height: 1.2; text-align: center; }
+html.pm-activo .pr-promesas { gap: 4px; padding-bottom: 4px; }
+html.pm-activo .pr-papel h2 { margin-top: 8px !important; }
