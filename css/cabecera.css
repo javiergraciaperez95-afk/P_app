@@ -407,6 +407,10 @@ body.en-estudio .marca-titulo { font-size: 1.35rem; }
   .avatar { font-size: 1.1rem; }
   .cinta-hola { padding: 8px 12px; }
   .cabecera-ajustes-panel { padding: 10px; gap: 6px; flex-wrap: wrap; max-width: calc(100vw - 24px); }
+  /* la lista de idiomas se ancla a la cabecera (no al botón) y ocupa el ancho de la pantalla */
+  .idioma-menu { position: static; }
+  .idioma-lista { top: 56px; left: 12px; right: 12px; width: auto; min-width: 0; grid-template-columns: minmax(0, 1fr); }
+  .idioma-opcion { min-height: 44px; }
 }
 @media (max-width: 460px) {
   .cinta-hola { flex-wrap: wrap; }
