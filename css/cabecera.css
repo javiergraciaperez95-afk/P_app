@@ -249,7 +249,6 @@ body.en-inicio #btn-curso { display: none; } /* en la portada ya hay un botón p
 .sel-idioma-nombre { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sel-idioma-auto { flex: none; padding: 2px 4px; font-size: .58rem; line-height: 1; letter-spacing: .04em; color: var(--marca-oro); background: var(--h-papel); }
 .sel-idioma-flecha { flex: none; font-size: .8rem; }
-.sel-idioma-corto { display: none; font-family: var(--h-pixel); font-weight: 500; font-size: 1rem; }
 .sel-idioma[aria-expanded="true"] { background: var(--h-resalte); }
 .idioma-menu { position: relative; display: inline-flex; }
 .idioma-lista, .cuenta-panel, .cabecera-ajustes-panel {
@@ -365,8 +364,7 @@ body.en-estudio .marca-titulo { font-size: 1.35rem; }
 }
 @media (max-width: 1240px) {
   /* sitio justo: el idioma de la interfaz se queda en su código (ES, EN…) */
-  .sel-idioma-nombre, .sel-idioma-auto { display: none; }
-  .sel-idioma-corto { display: inline; }
+  .sel-idioma-nombre, .sel-idioma-auto { display: none; } /* sitio justo: solo la bandera */
   .cabecera-nav .btn { padding: 0 10px; }
   .cabecera-fila { gap: 10px 12px; }
 }
@@ -483,3 +481,8 @@ body.en-inicio .cabecera-llama { display: none; }
 @media (max-width: 374px) {
   body:not(.en-estudio) .cabecera .marca-textos { display: none; }
 }
+
+/* Banderas de los idiomas de la interfaz (js/banderas-idioma.js): SVG, nunca emojis */
+.bandera-idioma { flex: none; width: 21px; height: 14px; box-shadow: 0 0 0 1px var(--h-borde); }
+.idioma-marca-bandera { width: auto; height: auto; padding: 0; background: none; }
+.idioma-opcion[aria-checked="true"] .idioma-opcion-detalle { color: var(--marca-oro); font-weight: 700; }

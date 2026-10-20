@@ -31,6 +31,7 @@ import { pintarPerdida } from './vistas/perdida.js';
 import { iniciarLogros, comprobarLogros } from './logros.js';
 import { iniciarNube } from './nube.js';
 import { iniciarAvisosRepaso } from './avisos-repaso.js';
+import { banderaIdioma } from './banderas-idioma.js';
 import { curso, hayCurso, nombreDelCurso, esBeta, paraQuien, lenguaDelAlumno, cambiarDeCurso } from './curso.js';
 import { PRECIOS_VISIBLES } from './config.js';
 import { avisoPendiente } from './sin-terminar.js';
@@ -532,8 +533,8 @@ function pintarSelectorIdioma() {
   const actual = IDIOMAS.find(i => i.clave === idioma());
   const automatico = ajuste('idioma') === 'auto';
   poner(selectorIdioma,
+    banderaIdioma(actual.clave),
     el('span', { lang: actual.clave, class: 'sel-idioma-nombre' }, actual.nombre),
-    el('span', { class: 'sel-idioma-corto', 'aria-hidden': 'true' }, actual.corto), // en pantallas medianas
     automatico ? el('span', { class: 'sel-idioma-auto', title: t('ajustes.automatico') }, 'AUTO') : null,
     el('span', { class: 'sel-idioma-flecha', 'aria-hidden': 'true' }, '▾'));
   selectorIdioma.title = automatico ? `${t('ajustes.automatico')} · ${actual.nombre}` : actual.nombre;
@@ -552,8 +553,9 @@ function pintarSelectorIdioma() {
         type: 'button', class: 'idioma-opcion', role: 'menuitemradio', lang: i.clave,
         'aria-checked': String(seleccionado),
         onclick: () => { sonar('clic'); cerrarIdiomas(); cambiarIdioma(i.clave); },
-      }, el('span', { class: 'idioma-marca', 'aria-hidden': 'true' }, seleccionado ? '✓' : i.corto),
-      el('span', { class: 'idioma-opcion-nombre' }, i.nombre));
+      }, el('span', { class: 'idioma-marca idioma-marca-bandera', 'aria-hidden': 'true' }, banderaIdioma(i.clave)),
+      el('span', { class: 'idioma-opcion-nombre' }, i.nombre),
+      seleccionado ? el('span', { class: 'idioma-opcion-detalle', 'aria-hidden': 'true' }, '✓') : null);
     }));
 }
 
