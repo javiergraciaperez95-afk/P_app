@@ -211,7 +211,7 @@ export function pintarEscuelas(root) {
       el('div', { class: 'ce-medida-precio es-papel' },
         el('span', { class: 'ce-nota-etiqueta' }, t('esc.medida.precio')),
         el('p', { class: 'ce-medida-cifra' }, precioTexto(unidad)),
-        PRECIOS_VISIBLES ? el('p', {}, t('esc.medida.mitad', { precio: euros(Math.round(unidad / 2)) })) : null)),
+        PRECIOS_VISIBLES ? el('p', {}, t('esc.medida.mitad', { precio: euros(Math.round(unidad * 0.6)) })) : null)),
     el('ol', { class: 'ce-horario' }, [1, 2, 3, 4].map(i => el('li', {}, el('b', {}, String(i)), t(`esc.paso${i}`)))),
     el('p', { class: 'ce-horario-nota' }, t('esc.pasos.dura')));
 
