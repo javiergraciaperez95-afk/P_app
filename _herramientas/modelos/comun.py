@@ -128,7 +128,10 @@ def escribir_json(ruta, datos, sangria=1):
 
 
 def ids_originales(c):
+    # las lecciones originales (lessons/) se archivaron el 20-10-2026: si ya no están, valen las de la primera carpeta
     carpeta = os.path.join(CURSOS_DIR, c, 'lessons')
+    if not os.path.isdir(carpeta):
+        carpeta = os.path.join(CURSOS_DIR, c, lenguas_de(c)[0])
     return sorted(n[:-5] for n in os.listdir(carpeta) if re.fullmatch(r'\d{3}\.json', n))
 
 
