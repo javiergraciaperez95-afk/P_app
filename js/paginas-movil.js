@@ -6,6 +6,7 @@
 import { el, poner } from './dom.js';
 import { sonar } from './sonidos.js';
 import { t } from './i18n.js';
+import { altoPantalla, tecladoAbierto } from './teclado.js';
 
 export const esMovil = () => window.matchMedia('(max-width: 700px)').matches;
 
@@ -36,11 +37,12 @@ export function paginarEnMovil(app, { fijas = null } = {}) {
   const tutora = document.querySelector('.tutora');
   const huecoTutora = () => {
     if (!tutora || document.body.matches('.tutora-oculta, .sin-tutora') || !tutora.offsetHeight) return 0;
-    const borde = nav.hidden ? window.innerHeight : nav.getBoundingClientRect().top;
+    const borde = nav.hidden ? altoPantalla() : nav.getBoundingClientRect().top;
     return Math.max(0, borde - tutora.getBoundingClientRect().top + 6);
   };
   // el sitio que hay para una página: la pantalla menos la cabecera, la barra de abajo y la tutora
-  const sitio = () => window.innerHeight - app.getBoundingClientRect().top - window.scrollY - nav.offsetHeight - 8 - huecoTutora();
+  // (siempre el alto sin teclado: al escribir, la página no se reparte de nuevo en el hueco que deja)
+  const sitio = () => altoPantalla() - app.getBoundingClientRect().top - window.scrollY - nav.offsetHeight - 8 - huecoTutora();
 
   // lo decorativo (escondido a los lectores, o sin texto ni nada que pulsar) no es un bloque: se queda con su
   // contenedor y se estira con él (una escalera dibujada, un hueco, una tutora de adorno)
@@ -67,8 +69,12 @@ export function paginarEnMovil(app, { fijas = null } = {}) {
     for (const k of raiz.querySelectorAll('.pm-oculto')) k.classList.remove('pm-oculto');
   }
 
+  let trasTeclado = false;
   function repartir() {
     if (!vivo) return;
+    // con el teclado abierto no se toca nada; se reparte al cerrarse
+    if (tecladoAbierto()) { trasTeclado = true; return; }
+    trasTeclado = false;
     const guardado = paginas[actual]?.bloques[0];
     limpiar();
     const alto = sitio();
@@ -132,7 +138,7 @@ export function paginarEnMovil(app, { fijas = null } = {}) {
   }
 
   // hasta dónde puede llegar una página: la barra de abajo y la tutora no son suyas
-  const tope = () => window.innerHeight - nav.offsetHeight - 4 - huecoTutora();
+  const tope = () => altoPantalla() - nav.offsetHeight - 4 - huecoTutora();
 
   // Si la página ya puesta no cabe y tiene varios bloques, los que se salen pasan a una página nueva justo detrás (lo
   // calculado al repartir puede quedarse corto: márgenes que se juntan, la cabecera de una tabla…). Así solo se encoge
@@ -181,7 +187,7 @@ export function paginarEnMovil(app, { fijas = null } = {}) {
   // lo que ocupa de verdad la página ya puesta; si se pasa, se encoge todo lo de la vista. La tutora que habla no cuenta:
   // tapa un momento lo de abajo y se pliega (tutor.js); encoger la página por ella la hacía saltar al plegarse.
   function encoger() {
-    const limite = window.innerHeight - nav.offsetHeight - 4;
+    const limite = altoPantalla() - nav.offsetHeight - 4;
     let zoom = 1;
     for (let vez = 0; vez < 4; vez++) {
       // solo la caja de la vista: lo que una animación de entrada desplaza un momento (transform) no cuenta
@@ -197,7 +203,7 @@ export function paginarEnMovil(app, { fijas = null } = {}) {
   let pendiente = 0;
   const luego = (ms = 60) => { clearTimeout(pendiente); pendiente = setTimeout(() => requestAnimationFrame(repartir), ms); };
   const alPulsar = () => luego(80);
-  const alCambiar = () => { if (!document.activeElement?.matches('input, textarea, select')) luego(120); };
+  const alCambiar = () => { if (!tecladoAbierto() && (trasTeclado || !document.activeElement?.matches('input, textarea, select'))) luego(120); };
   const alTeclado = e => {
     if (e.target.closest?.('input, textarea, select, [contenteditable]')) return;
     if (e.key === 'ArrowRight') ir(actual + 1);
@@ -236,8 +242,15 @@ export function paginarEnMovil(app, { fijas = null } = {}) {
   // y la entrada de la vista (vista-entra) la desplaza mientras dura: al acabar, se mide de nuevo
   const alAcabarEntrada = e => { if (e.target === raiz) luego(0); };
   app.addEventListener('animationend', alAcabarEntrada);
-  // una pantalla puede pedir ir a una diapositiva: elemento.dispatchEvent(new CustomEvent('pm-ir', { bubbles: true, detail: 0 }))
-  const alPedirIr = e => ir(Number(e.detail) || 0);
+  // una pantalla puede pedir ir a una diapositiva: elemento.dispatchEvent(new CustomEvent('pm-ir', { bubbles: true, detail: 0 }));
+  // o, con un elemento en detail, a la diapositiva donde está ese elemento
+  const alPedirIr = e => {
+    const objetivo = e.detail;
+    if (objetivo instanceof Element) {
+      const n = paginas.findIndex(p => p.bloques.some(b => b.contains(objetivo) || objetivo.contains(b)));
+      if (n >= 0) ir(n);
+    } else ir(Number(objetivo) || 0);
+  };
   app.addEventListener('pm-ir', alPedirIr);
   repartir();
 

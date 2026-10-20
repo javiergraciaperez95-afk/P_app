@@ -47,12 +47,17 @@ export function textoConFormato(texto) {
   const parrafos = Array.isArray(texto) ? texto : String(texto).split(/\n\s*\n/);
   for (const parrafo of parrafos) {
     const lineas = String(parrafo).split('\n').map(l => l.trim()).filter(Boolean);
-    if (lineas.length === 0) continue;
-    if (lineas.every(l => l.startsWith('- '))) {
-      fragmento.append(el('ul', {}, lineas.map(l => el('li', {}, enLinea(l.slice(2))))));
-    } else {
-      fragmento.append(el('p', {}, enLinea(lineas.join(' '))));
+    // las líneas seguidas que empiezan por «- » son una lista y las demás, un párrafo. Pueden ir en el mismo bloque
+    // («Así:» y debajo la lista): antes todo se juntaba en un párrafo con los guiones dentro
+    let texto = [];
+    let lista = [];
+    const cerrarTexto = () => { if (texto.length) fragmento.append(el('p', {}, enLinea(texto.join(' ')))); texto = []; };
+    const cerrarLista = () => { if (lista.length) fragmento.append(el('ul', {}, lista.map(l => el('li', {}, enLinea(l))))); lista = []; };
+    for (const l of lineas) {
+      if (l.startsWith('- ')) { cerrarTexto(); lista.push(l.slice(2)); } else { cerrarLista(); texto.push(l); }
     }
+    cerrarTexto();
+    cerrarLista();
   }
   return fragmento;
 }

@@ -9,3 +9,27 @@
 .jg-tabla-fila.tocada td { background: rgba(244, 200, 74, .22); }
 .jg-tabla-fila.tocada td:first-child { box-shadow: inset 4px 0 0 var(--marca-oro, #f4c84a); }
 .jg-tabla .jg-entendido { align-self: center; }
+.jg-tabla-aviso { font-weight: 700; }
+/* las páginas de las tablas largas */
+.jg-tabla-paginas { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.jg-tabla-paso { min-width: 48px; min-height: 44px; padding: 4px 12px; }
+.jg-tabla-rango { font: 700 .85rem var(--fuente-pixel); color: var(--h-suave); }
+@media (max-width: 700px) {
+  /* nunca se sale de la pantalla: las columnas se reparten el ancho y el texto parte donde haga falta */
+  .jg-tabla .tabla { width: 100%; table-layout: fixed; font-size: .9rem; }
+  .jg-tabla .tabla th, .jg-tabla .tabla td { padding: 6px 7px; overflow-wrap: anywhere; }
+  .jg-tabla .tabla th { font-size: .75rem; }
+  /* las anchas: una ficha por fila, con el nombre de cada columna al lado de su dato */
+  .jg-tabla.ancha .tabla, .jg-tabla.ancha .tabla tbody { display: block; }
+  .jg-tabla.ancha .tabla-contenedor { overflow: visible; }
+  .jg-tabla.ancha .jg-tabla-fila { display: block; margin: 0 0 10px; background: var(--h-papel); box-shadow: 0 0 0 3px var(--h-borde); }
+  .jg-tabla.ancha .jg-tabla-fila td { display: flex; gap: 10px; padding: 5px 10px; background: none !important; border: 0; }
+  .jg-tabla.ancha .jg-tabla-fila td::before { content: attr(data-col); flex: 0 0 38%; font: 700 .75rem/1.6 var(--fuente-pixel); color: var(--h-suave); overflow-wrap: anywhere; }
+  .jg-tabla.ancha .jg-tabla-fila td + td { box-shadow: inset 0 1px 0 rgba(0, 0, 0, .08); }
+  .jg-tabla.ancha .jg-tabla-fila.tocada { background: rgba(244, 200, 74, .32); box-shadow: 0 0 0 3px var(--h-borde), inset 6px 0 0 var(--marca-oro, #f4c84a); }
+  .jg-tabla.ancha .jg-tabla-fila.tocada td:first-child { box-shadow: none; }
+}
+@media (max-width: 700px) {
+  /* sin encabezados (no cuadraban con las columnas), la ficha va sin nombres al lado */
+  .jg-tabla.ancha .jg-tabla-fila td[data-col=""]::before { content: none; }
+}

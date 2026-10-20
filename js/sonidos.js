@@ -261,6 +261,12 @@ const EFECTOS = {
   },
   // Llamar a la puerta: toc, toc.
   llamar: ctx => [0, 0.16].forEach(t0 => { barrido(ctx, 220, 110, t0, 0.07, 'triangle', 0.12); ruido(ctx, t0, 0.03, 0.05, { tipo: 'lowpass', f: 900 }); }),
+  // Meter la llave en la cerradura (el juego de la llave): clic metálico.
+  llave: ctx => {
+    ruido(ctx, 0, 0.02, 0.06, { tipo: 'highpass', f: 3500 });
+    nota(ctx, 1760, 0.03, 0.04, 'square', 0.02);
+    ruido(ctx, 0.09, 0.02, 0.05, { tipo: 'highpass', f: 2500 });
+  },
   // Descorchar: «pop».
   pop: ctx => { barrido(ctx, 260, 1300, 0, 0.05, 'square', 0.04); ruido(ctx, 0, 0.04, 0.05, { f: 1800 }); },
   // Confeti: chispitas agudas que caen.

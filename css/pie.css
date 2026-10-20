@@ -10,7 +10,7 @@
 .pie-sitio { display: none; }
 .pie-fuera, .pie-fuera *, .pie-fuera *::before, .pie-fuera *::after { animation-play-state: paused !important; }
 /* Con poco contenido el pie no se queda a media pantalla: la página ocupa al menos toda la ventana y el pie va abajo del todo */
-body.con-pie { display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
+body.con-pie { display: flex; flex-direction: column; min-height: 100vh; min-height: var(--alto-app, 100dvh); }
 /* el pie es lo último de la página: sin el hueco que se deja abajo para la tutora (aquí no hay tutora), aunque se haya ocultado */
 body.con-pie, body.con-pie.tutora-oculta { padding-bottom: 0; }
 body.con-pie > main { flex: 1 0 auto; width: 100%; box-sizing: border-box; }
@@ -429,6 +429,10 @@ body.con-pie .pie-sitio, .inicio-pie-pag .pie-sitio {
   .pie-grupo:nth-child(3) { grid-column: 1 / -1; }
   .pie-base-interior { justify-content: center; text-align: center; }
   .pie-firma { flex-basis: 100%; order: -1; }
+  /* solo las dos de los extremos: las de dentro no cabían junto al logo y salían chafadas */
+  .pie-figura[data-n="1"], .pie-figura[data-n="2"] { display: none; }
+  .pie-tutoras[data-pie-tutoras="izq"] { justify-content: flex-start; }
+  .pie-tutoras[data-pie-tutoras="der"] { justify-content: flex-end; }
 }
 @media (max-width: 460px) {
   .pie-interior { padding: 30px 16px 36px; }

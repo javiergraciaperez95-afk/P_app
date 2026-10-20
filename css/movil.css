@@ -63,8 +63,7 @@
   body.en-leccion .cabecera { display: none; }
   body.en-leccion main { padding-top: 8px; padding-bottom: calc(var(--alto-tutora-real, var(--alto-tutora)) + 14px + var(--borde-abajo)); }
   body.en-leccion .jg { padding-bottom: 0; }
-  body.en-leccion .jg-pie { margin-top: 10px; padding: 6px 12px; }
-  body.en-leccion .jg-pista { margin: 4px 0 8px; }
+  /* el pie y la instrucción de cada juego: en juegos/juegos.css (la lección es una pantalla fija) */
 }
 
 /* El mapa de lecciones en el móvil: un capítulo por pantalla (js/vistas/lecciones.js); la lista se desplaza por dentro */
@@ -86,7 +85,11 @@
    flota encima, ARRIBA, hasta que se cierra. Abajo tapaba el botón de empezar de la portada (informe de usabilidad del
    19-10); arriba solo tapa un momento la cabecera y el logo. */
 @media (max-width: 700px) {
-  .aviso-datos { position: fixed; left: 8px; right: 8px; top: 8px; z-index: 60; margin: 0; max-height: 40vh; overflow-y: auto; font-size: .92rem; }
+  /* debajo de la barra de estado del teléfono (en la APK la app llega hasta arriba), compacto y con los dos botones a lo ancho */
+  .aviso-datos { position: fixed; left: calc(8px + var(--borde-izq, 0px)); right: calc(8px + var(--borde-der, 0px)); top: calc(6px + var(--borde-arriba, 0px)); z-index: 60; margin: 0; padding: 10px 12px; max-height: 40vh; overflow-y: auto; font-size: .85rem; line-height: 1.4; }
+  .aviso-datos p { margin: 0 0 8px; }
+  .aviso-datos-botones { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0; }
+  .aviso-datos-botones .boton { width: 100%; min-height: 44px; margin: 0; justify-content: center; text-align: center; }
   .precios .pr-escenario { gap: 8px; }
   .panel-repaso { padding: 12px; }
 }
@@ -647,3 +650,10 @@ html.texto-grande { font-size: 112.5%; }
 @media (max-width: 700px) and (max-height: 700px) {
   html.pm-activo .ac-calendario { max-width: calc(var(--semanas) * 25px); }
 }
+
+/* ===== Con el teclado abierto (html.teclado, js/teclado.js) =====
+   La app se queda con el alto de antes (--alto-app) y el teclado tapa lo de abajo, como una hoja encima: nada se
+   aplasta ni se recoloca. Lo que va pegado abajo de la ventana subiría con el teclado y taparía el campo: se aparta.
+   (Los juegos sí se encogen: su tablero se queda con el sitio que sobra y «Comprobar» sigue encima del teclado.) */
+html.teclado .pm-nav,
+html.teclado body:not(.modo-juego) .tutora { visibility: hidden; pointer-events: none; }

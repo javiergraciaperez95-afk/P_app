@@ -59,7 +59,8 @@ export function crear(bloque, ctx) {
   const modelo = el('div', { class: 'jg-maquina-modelo', hidden: true });
   const final = el('div', { class: 'jg-maquina-final', hidden: true, 'aria-live': 'polite' });
   const entrada = el('input', {
-    type: 'text', class: 'jg-maquina-entrada', lang: ctx.LANG, autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false',
+    // sin autocorrección ni sugerencias: Gboard cambiaba las palabras que se escriben a propósito
+    type: 'text', class: 'jg-maquina-entrada', lang: ctx.LANG, autocomplete: 'off', autocapitalize: 'off', autocorrect: 'off', spellcheck: 'false',
     enterkeyhint: 'done', 'aria-label': t('jg.maquina.papel'),
   });
   const comprobar = el('button', { type: 'submit', class: 'es-boton jg-maquina-palanca' }, `↵ ${t('jg.maquina.comprobar')}`);
@@ -202,6 +203,7 @@ export function crear(bloque, ctx) {
     aparato,
     nota,
     final);
-  luego(() => entrada.focus({ preventScroll: true }), 60);
+  // en el ordenador se puede escribir ya; en el móvil no: el teclado saldría solo y taparía la pregunta (se toca el papel)
+  if (!window.matchMedia('(pointer: coarse)').matches) luego(() => entrada.focus({ preventScroll: true }), 60);
   return { nodo, apagar: () => { for (const id of temporizadores) clearTimeout(id); temporizadores.clear(); } };
 }

@@ -25,7 +25,7 @@ export const DATOS_DISPOSITIVO = [
   ['cuenta', ['paglot-cuenta', 'paglot-nube', 'paglot-nube-apagada']],
   ['laboratorio', ['paglot-laboratorio-ideas-v1', 'paglot-laboratorio-votos-v1', 'paglot-laboratorio-quien']],
   ['pestana', ['idiomas-abierta', 'idiomas-desarrollador', 'paglot-sin-terminar', 'paglot-recien', 'paglot-contacto-asunto']],
-  ['pruebas', ['paglot-sin-nube', 'paglot-juego-forzado', 'paglot-bienvenida-paso', 'paglot-prueba-almacen']],
+  ['pruebas', ['paglot-sin-nube', 'paglot-juego-forzado', 'paglot-probador', 'paglot-bienvenida-paso', 'paglot-prueba-almacen']],
   ['copiaApp', ['caché «paglot-» + versión']],
 ];
 

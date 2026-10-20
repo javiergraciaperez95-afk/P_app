@@ -9,12 +9,14 @@
 
 import { el, poner } from '../js/dom.js';
 
-const POR_TABLERO = 6;
+// parejas por tablero: seis en el ordenador; en el móvil cuatro (ocho cartas en dos filas de cuatro: más no caben bien)
+const POR_TABLERO = window.matchMedia('(max-width: 700px)').matches ? 4 : 6;
 
 const usables = (bloque, ctx) => {
   const vistas = new Set();
   return (bloque.palabras ?? []).map(p => ctx.entrada(p)).filter(f => {
-    if (!f || !f.es || f.propio || vistas.has(f.es) || !ctx.tr(f)) return false;
+    // con su significado en tu idioma, y distinto de la palabra: si no, salían dos cartas iguales en el mismo idioma
+    if (!f || !f.es || f.propio || vistas.has(f.es) || !ctx.tr(f) || ctx.tr(f) === f.es) return false;
     vistas.add(f.es);
     return true;
   });
@@ -31,7 +33,7 @@ export function crear(bloque, ctx) {
   const { t, tr, sonar } = ctx;
   // dos tableros como mucho: el resto de palabras ya se ve en las cartas y va al cuaderno
   const fichas = ctx.barajar(usables(bloque, ctx)).slice(0, POR_TABLERO * 2);
-  const significado = f => tr(f) || f.es;
+  const significado = f => tr(f);
   const esperas = [];
   const luego = (ms, fn) => { esperas.push(setTimeout(fn, ctx.quieto ? 0 : ms)); };
 

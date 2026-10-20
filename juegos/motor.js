@@ -28,6 +28,7 @@ import { LANG, clave } from '../js/curso.js';
 import { elegir, probar, hayJuegoPara } from './catalogo.js';
 import { esDesarrollador } from '../js/desarrollador.js';
 import { confeti } from '../js/fiesta.js';
+import { altoPantalla, tecladoAbierto } from '../js/teclado.js';
 import './lista.js';
 
 const EJERCICIOS = ['test', 'traduccion', 'huecos', 'ordenar', 'escribir'];
@@ -260,6 +261,15 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
         el('a', { class: 'es-boton es-boton-papel', href: '#/repaso' }, t('leccion.repasarAhora'))));
   }
 
+  // cada paso se avisa (lo escucha el probador de juegos, js/probador.js): qué juego hay en pantalla y cuáles tiene la lección
+  let avisados = 0;
+  const avisarPaso = paso => window.dispatchEvent(new CustomEvent('paglot-paso', {
+    detail: {
+      leccion: leccion.numero_curso ?? leccion.id, actual, total: pasos.length, final: !paso, primero: avisados++ === 0,
+      nombre: paso?.nombre, icono: paso?.icono, tipo: paso && tipoDe(paso.bloque), nombres: pasos.map(p => p.nombre),
+    },
+  }));
+
   function ir(i) {
     callar();
     apagarPaso?.();
@@ -268,10 +278,13 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
     guardar();
     pintarCamino();
     atras.disabled = actual === 0;
+    avisarPaso(pasos[actual]);
     if (actual === pasos.length) {
       adelante.hidden = true;
       poner(escenario, final());
       setTimeout(() => confeti(escenario.querySelector('.jg-final-copa'), 34), 250);
+      vigiaJuego?.disconnect();
+      requestAnimationFrame(ajustar);
       return;
     }
     adelante.hidden = false;
@@ -297,28 +310,50 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
     apagarPaso = apagar ?? null;
     poner(escenario, el('section', { class: `jg-paso jg-paso-${tipoDe(paso.bloque)} jg-juego-${paso.nombre}` }, nodo));
     if (!ctx.quieto) escenario.firstChild.classList.add('entra');
+    escenario.scrollTop = 0;
     raiz.scrollIntoView?.({ block: 'start', behavior: 'auto' });
+    vigiaJuego?.disconnect();
+    vigiaJuego?.observe(nodo);
     requestAnimationFrame(ajustar);
   }
 
-  // En el móvil el paso tiene que caber entre la fila de pasos y el pie: si es más alto, se encoge lo justo
-  // (hasta el 78 %, para que todo siga siendo fácil de tocar). Se vuelve a medir al tocar algo y al girar el móvil.
+  // En el móvil la lección es una pantalla fija: la cabecera, los pasos, el aula con el juego y Atrás/Siguiente, sin
+  // desplazar la página. La lección llega justo hasta la tutora; el aula se queda con el alto que sobra y el juego se
+  // encaja dentro: si es más alto, se encoge lo justo (hasta el 62 %) y, si aun así no cabe, se desplaza dentro del aula.
+  // Con el teclado abierto (la máquina de escribir) todo se encaja en lo que queda a la vista, encima del teclado.
+  // Se vuelve a medir cuando el juego cambia de tamaño (ResizeObserver), al tocar algo y al girar el móvil.
   const enMovil = window.matchMedia('(max-width: 700px)');
+  let altoNatural = 0;
   function ajustar() {
     const seccion = escenario.firstElementChild;
-    if (!seccion) return;
-    seccion.style.zoom = '';
-    if (!enMovil.matches) return;
+    raiz.style.height = '';
+    escenario.classList.remove('jg-desborda');
+    if (seccion) seccion.style.zoom = '';
+    if (!enMovil.matches || !raiz.isConnected) return;
     const tutora = document.getElementById('tutora');
-    const abajo = adelante.offsetHeight + 28 + (tutora && !document.body.classList.contains('tutora-oculta') ? tutora.offsetHeight + 14 : 62);
-    const sitio = window.innerHeight - (escenario.getBoundingClientRect().top + window.scrollY) - abajo;
-    const alto = seccion.getBoundingClientRect().height;
-    if (alto > sitio && sitio > 120) seccion.style.zoom = String(Math.max(0.78, sitio / alto).toFixed(3));
+    const conTutora = tutora && tutora.offsetHeight && !tecladoAbierto() && !document.body.classList.contains('tutora-oculta');
+    const suelo = tecladoAbierto() ? window.innerHeight : (conTutora ? tutora.getBoundingClientRect().top : altoPantalla());
+    raiz.style.height = `${Math.max(360, Math.floor(suelo - 8 - raiz.getBoundingClientRect().top))}px`;
+    if (!seccion) return;
+    const e = getComputedStyle(escenario);
+    const libre = escenario.clientHeight - parseFloat(e.paddingTop) - parseFloat(e.paddingBottom);
+    const alto = altoNatural = seccion.getBoundingClientRect().height;
+    if (alto <= libre + 1) return;
+    const zoom = Math.max(0.62, libre / alto);
+    seccion.style.zoom = zoom.toFixed(3);
+    if (alto * zoom > libre + 1) escenario.classList.add('jg-desborda');
   }
   let medida = 0;
-  const reajustar = () => { clearTimeout(medida); medida = setTimeout(() => requestAnimationFrame(ajustar), 140); };
+  const reajustar = () => { clearTimeout(medida); medida = setTimeout(() => requestAnimationFrame(ajustar), 120); };
   escenario.addEventListener('click', reajustar);
   window.addEventListener('resize', reajustar);
+  // el juego crece o mengua solo (cartas que se giran, fichas que se van, frases que llegan): se vuelve a encajar
+  const vigiaJuego = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(() => {
+    const seccion = escenario.firstElementChild;
+    if (!seccion || !enMovil.matches) return;
+    const z = parseFloat(seccion.style.zoom) || 1;
+    if (Math.abs(seccion.getBoundingClientRect().height / z - altoNatural) > 4) reajustar();
+  }) : null;
 
   atras.addEventListener('click', () => { sonar('pagina'); ir(actual - 1); });
   // con teclado, Intro (fuera de los campos y botones) pasa al siguiente paso cuando ya está hecho
@@ -339,11 +374,12 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
   elenco.vigilar(escenario);
   // el pie va pegado justo encima de la tutora: se mide lo que ocupa de verdad (su texto la hace crecer)
   const tutora = document.querySelector('.tutora');
-  const medir = () => raiz.style.setProperty('--alto-tutora-real', `${tutora?.offsetHeight || 0}px`);
+  // y cuando crece (su texto) o mengua, la lección se vuelve a encajar encima: si no, tapaba Atrás y Siguiente
+  const medir = () => { raiz.style.setProperty('--alto-tutora-real', `${tutora?.offsetHeight || 0}px`); reajustar(); };
   const vigiaTutora = tutora && typeof ResizeObserver !== 'undefined' ? new ResizeObserver(medir) : null;
   vigiaTutora?.observe(tutora);
   medir();
   ir(actual);
   if (actual === 0) decir(leccion.intro ? tr(leccion.intro) : t('leccion.introTutora', { titulo: leccion.titulo_es }));
-  return () => { clearTimeout(medida); window.removeEventListener('resize', reajustar); callar(); apagarPaso?.(); elenco.apagar(); window.removeEventListener('paglot-suceso', alSuceso); document.removeEventListener('keydown', alTeclear); vigiaTutora?.disconnect(); };
+  return () => { clearTimeout(medida); vigiaJuego?.disconnect(); raiz.style.height = ''; window.removeEventListener('resize', reajustar); callar(); apagarPaso?.(); elenco.apagar(); window.removeEventListener('paglot-suceso', alSuceso); document.removeEventListener('keydown', alTeclear); vigiaTutora?.disconnect(); };
 }

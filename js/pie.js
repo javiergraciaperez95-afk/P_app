@@ -41,7 +41,7 @@ let pendientes = [];  // temporizadores de la escenita en curso
 let ultimaEscena = -1;
 let siguiente = 0;    // por qué tutora empieza la próxima escenita
 
-/** Cuatro tutoras al azar; si hay curso elegido, la suya va entre ellas. */
+/** Cuatro tutoras al azar; si hay curso elegido, la suya va la primera (en el móvil solo quedan las de los extremos). */
 function elegirTutoras() {
   const libres = CURSOS.filter(c => !c.proximamente && c.id !== curso.id);
   for (let i = libres.length - 1; i > 0; i--) {
@@ -49,7 +49,7 @@ function elegirTutoras() {
     [libres[i], libres[j]] = [libres[j], libres[i]];
   }
   const lista = libres.slice(0, hayCurso ? CUANTAS - 1 : CUANTAS);
-  if (hayCurso) lista.splice(1, 0, curso);
+  if (hayCurso) lista.unshift(curso);
   return lista;
 }
 

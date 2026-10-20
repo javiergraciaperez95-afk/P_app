@@ -15,7 +15,7 @@ const MAX_CARTON = 9;
 const usables = (bloque, ctx) => {
   const vistas = new Set();
   return (bloque.palabras ?? []).map(p => ctx.entrada(p)).filter(f => {
-    if (!f || !f.es || f.propio || vistas.has(f.es) || !ctx.tr(f)) return false;
+    if (!f || !f.es || f.propio || vistas.has(f.es) || !ctx.tr(f) || ctx.tr(f) === f.es) return false;
     vistas.add(f.es);
     return true;
   });
@@ -48,7 +48,7 @@ export function crear(bloque, ctx) {
   const { t, tr, sonar, elenco } = ctx;
   // un cartón: el resto de palabras ya se ve en las cartas y va al cuaderno
   const fichas = ctx.barajar(usables(bloque, ctx)).slice(0, MAX_CARTON);
-  const significado = f => tr(f) || f.es;
+  const significado = f => tr(f);
   const esperas = [];
   const luego = (ms, fn) => { esperas.push(setTimeout(fn, ctx.quieto ? 0 : ms)); };
 

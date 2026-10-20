@@ -79,6 +79,12 @@ const PUPITRE = (() => {
 export function pintarEscuelas(root) {
   const elenco = crearElenco();
   const { quieto, despues, alApagar } = elenco;
+  // «Calcular precio»: en el ordenador baja hasta la calculadora; en el móvil la página va en diapositivas (nada se
+  // desplaza, por eso el botón no hacía nada): salta a la diapositiva de la calculadora
+  const irA = destino => {
+    if (document.documentElement.classList.contains('pm-activo')) destino.dispatchEvent(new CustomEvent('pm-ir', { bubbles: true, detail: destino }));
+    else destino.scrollIntoView({ behavior: quieto ? 'auto' : 'smooth', block: 'start' });
+  };
   // de noche las ventanas encendidas alumbran (conHalo: solo de noche, sin animación)
   const dibujo = (rejilla, clase) => conHalo(dibujoPixel(rejilla, clase, 'ce'), ['ce-w']);
   const z = preciosDeSuZona();
@@ -122,7 +128,7 @@ export function pintarEscuelas(root) {
         el('p', {}, PRECIOS_VISIBLES ? t('esc.lema') : t('esc.lema.sinPrecio')),
         el('div', { class: 'ce-botones' },
           el('a', { class: 'es-boton', href: '#/contacto', onclick: contactar }, t('esc.contactar')),
-          el('a', { class: 'es-boton es-boton-papel', href: '#esc-calculadora', onclick: e => { e.preventDefault(); sonar('tiza'); calculadora.scrollIntoView({ behavior: quieto ? 'auto' : 'smooth', block: 'start' }); } }, t('esc.verPrecios'))),
+          el('a', { class: 'es-boton es-boton-papel', href: '#esc-calculadora', onclick: e => { e.preventDefault(); sonar('tiza'); irA(calculadora); } }, t('esc.verPrecios'))),
         el('span', { class: 'ce-pizarra-patas', 'aria-hidden': 'true' })),
       maestra.figura,
       el('div', { class: 'ce-alumnas' }, alumnas.map(a => a.figura))));

@@ -390,7 +390,7 @@
 /* Móvil: la escena cabe en una sola pantalla, sin pie ni scroll (js/app.js quita el pie en #/entrar) */
 /* ===================================================================== */
 @media (max-width: 640px) {
-  html:has(.academia-entrada), body:has(.academia-entrada) { overflow: hidden; height: 100vh; height: 100dvh; }
+  html:has(.academia-entrada), body:has(.academia-entrada) { overflow: hidden; height: 100vh; height: var(--alto-app, 100dvh); }
   body:has(.academia-entrada) { padding-bottom: 0; display: flex; flex-direction: column; }
   body:has(.academia-entrada) main { flex: 1 1 0; min-height: 0; width: 100%; max-width: none; padding: 0; display: flex; flex-direction: column; }
   .academia-entrada { flex: 1; min-height: 0; margin: 0; }

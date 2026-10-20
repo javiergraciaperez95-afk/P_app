@@ -12,7 +12,8 @@
 import { el, poner } from '../js/dom.js';
 import { lectura, altos } from './ayuda-trozos.js';
 
-const COLORES = ['#f08a80', '#f7c948', '#8fd694', '#8fb8f0', '#c9a6ec', '#84dbd5'];
+// doce luces bien distintas: con seis, la séptima función repetía color con la segunda y dos opciones se veían iguales
+const COLORES = ['#f08a80', '#f7c948', '#8fd694', '#8fb8f0', '#c9a6ec', '#84dbd5', '#ffa65c', '#e58fc8', '#b9d65a', '#a3a8ff', '#ffd9a0', '#7fc7a8'];
 
 /** Las etiquetas de función distintas de toda la lección, en orden de aparición (para repartir colores y falsas opciones). */
 function etiquetasDe(ctx) {

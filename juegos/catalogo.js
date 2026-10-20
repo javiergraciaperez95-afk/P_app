@@ -53,6 +53,8 @@ export function elegir(tipo, bloque, ctx, n, k = 0) {
 }
 
 export const todos = () => JUEGOS.map(j => j.nombre);
+/** Todos los juegos con su icono, los tipos de bloque que juegan y si hace falta voz (para el probador, js/probador.js). */
+export const catalogo = () => JUEGOS.map(({ nombre, icono, tipos, oido }) => ({ nombre, icono, tipos, oido: Boolean(oido) }));
 
 /** Si algún juego sabe jugar este tipo de bloque. */
 export const hayJuegoPara = tipo => JUEGOS.some(j => j.tipos.includes(tipo));

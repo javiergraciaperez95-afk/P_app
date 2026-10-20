@@ -49,6 +49,14 @@ body.tutora-oculta .jg-pie { bottom: calc(62px + var(--borde-abajo, 0px)); }
 @keyframes jg-brillo { 50% { opacity: 1; } }
 .jg .palabra.jg-encontrada { color: #2b1d1a; background: #9fe0a0; box-shadow: 0 0 0 3px #3f8a4a; }
 
+/* ===================== Contraste sobre los tableros oscuros =====================
+   Los ejemplos en cursiva (.cursiva) y las palabras que se tocan (.palabra) van en el rojo del idioma que se estudia:
+   sobre la pizarra verde, el azul de la lectura o la noche de la linterna no se leían. Ahí van en un dorado claro. */
+.jg-pizarra-marco :is(.cursiva, .palabra), .jg-noche .cursiva { color: #ffd98a; }
+.jg-pizarra-marco .palabra { border-bottom-color: rgba(255, 217, 138, .6); }
+.jg-pizarra-marco .palabra:hover, .jg-pizarra-marco .palabra[aria-expanded="true"] { color: #2b1d1a; background: #ffd98a; }
+.jg-pizarra-texto ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
+
 /* ===================== La pizarra ===================== */
 .jg-pizarra { position: relative; padding-bottom: 34px; }
 .jg-pizarra-marco { padding: 22px 26px; color: #f1f6ec; background: #2f5a3e; box-shadow: inset 0 0 0 10px var(--madera), inset 0 0 0 13px var(--madera-2), 0 0 0 3px var(--h-borde), 8px 10px 0 3px rgba(0, 0, 0, .25); }
@@ -156,7 +164,7 @@ body.tutora-oculta .jg-pie { bottom: calc(62px + var(--borde-abajo, 0px)); }
 .jg-luna { position: absolute; top: 14px; right: 20px; width: 34px; height: 34px; background: #f4e7a8; box-shadow: -8px 0 0 0 #141a33 inset; }
 .jg-estrellas { position: absolute; inset: 0; background: radial-gradient(#fff 1px, transparent 1.5px) 0 0 / 46px 38px; opacity: .35; pointer-events: none; }
 .jg-pagina { position: relative; display: grid; gap: 16px; max-height: 50vh; overflow-y: auto; }
-.jg-parrafo { margin: 0; font-size: 1.2rem; line-height: 1.9; color: #3a4266; }
+.jg-parrafo { margin: 0; font-size: 1.2rem; line-height: 1.9; color: #8f9ad0; } /* apagada pero legible: antes, azul oscuro sobre azul marino */
 .jg-frase-texto { transition: color .3s steps(3); }
 .jg-frase-texto .palabra { color: inherit; }
 .jg-frase-texto.alumbrada { color: #2b1d1a; background: #fff1b0; box-shadow: 0 0 0 4px #fff1b0, 0 0 24px 10px rgba(255, 230, 140, .45); }
@@ -218,8 +226,16 @@ body.tutora-oculta .jg-pie { bottom: calc(62px + var(--borde-abajo, 0px)); }
   .jg-papel .tutora-lienzo { width: 72px; height: 96px; }
   .jg-linea { font-size: 1.15rem; }
   .jg-pizarra-marco { padding: 18px 16px; }
-  .jg-mesa-cartas { padding: 12px; }
-  .jg-mesa-cartas:has(.jg-carta) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .jg-mesa-cartas { padding: 10px; }
+  /* seis cartas en dos filas de tres: caben enteras sin encoger */
+  .jg-mesa-cartas:has(.jg-carta) { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .jg-carta { height: 118px; }
+  .jg-carta > span { padding: 6px 4px; gap: 3px; }
+  .jg-carta-cara strong { font-size: 1rem; line-height: 1.15; overflow-wrap: anywhere; }
+  .jg-carta-cara em { font-size: .75rem; }
+  .jg-carta-cara span { font-size: .78rem; line-height: 1.2; overflow-wrap: anywhere; }
+  .jg-carta-dorso i { width: 34px; height: 34px; font-size: 1.2rem; }
+  .jg-ficha-pareja { min-height: 48px; padding: 8px 10px; font-size: .95rem; overflow-wrap: anywhere; }
   .jg-parrafo { font-size: 1.05rem; }
   .jg-noche { padding: 52px 14px 24px; }
 }
@@ -283,8 +299,58 @@ body.tutora-oculta .jg-pie { bottom: calc(62px + var(--borde-abajo, 0px)); }
   box-shadow: 0 0 0 3px var(--h-borde), 5px 7px 0 3px rgba(0, 0, 0, .2);
 }
 :root[data-tema="claro"] .jg-escenario { --pared: #f3e7cd; --zocalo: #e3cfa4; --moldura: #b88a5a; --suelo: #c9925e; --rodapie: #7c4f30; --junta: rgba(0, 0, 0, .14); }
-@media (max-width: 700px) {
-  /* en el móvil el aula llega hasta la tutora: así no queda un hueco vacío debajo de los botones */
-  body.en-leccion .jg { display: flex; flex-direction: column; min-height: calc(100dvh - 8px - var(--alto-tutora-real, var(--alto-tutora)) - 14px - var(--borde-abajo, 0px)); }
-  body.en-leccion .jg-escenario { flex: 1 1 auto; box-shadow: 0 0 0 3px var(--h-borde); }
+
+/* ===== Lo primero, qué hay que hacer (repaso de los juegos, 19-10) =====
+   Cada juego trae su cabecera (.jg-encabezado) y su instrucción (.jg-pista). La instrucción va justo debajo del título,
+   en una franja que se lee sobre cualquier fondo, antes que el tablero: si en unos segundos no se entiende qué hacer, el
+   juego ha fallado. */
+.jg-paso > :has(> .jg-encabezado) { display: flex; flex-direction: column; }
+.jg-paso > * > .jg-encabezado { order: -2; }
+.jg-paso > * > .jg-pista {
+  order: -1;
+  margin: 0 0 12px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  line-height: 1.35;
+  color: var(--h-tinta);
+  background: var(--h-papel);
+  box-shadow: 0 0 0 3px var(--oro-2), 3px 4px 0 0 var(--h-sombra);
 }
+.jg-paso > * > .jg-pista::before { content: "👉 "; }
+.jg-paso > * > .jg-pista:empty { display: none; }
+.jg-paso .jg-encabezado h2 { font-size: clamp(1.1rem, 4.6vw, 1.6rem); line-height: 1.2; }
+
+/* ===== Móvil: la lección es una pantalla fija (juegos/motor.js, ajustar) =====
+   La cabecera, los pasos, el aula con el juego y Atrás/Siguiente, todo a la vista y sin desplazar la página: la lección
+   llega justo hasta la tutora y el aula se queda con el alto que sobra. El juego se encaja dentro (se encoge lo justo);
+   si aun así no cabe, se desplaza dentro del aula, nunca la página. Lo que se mueve (entradas, cartas que se giran) no
+   puede empujar nada: lo que se sale del aula, se recorta. */
+@media (max-width: 700px) {
+  body.en-leccion .jg { display: flex; flex-direction: column; min-height: 0; padding-bottom: 0; overflow: hidden; }
+  body.en-leccion .jg > * { flex: none; }
+  body.en-leccion .jg-cabecera { gap: 6px; }
+  body.en-leccion .jg-titulo h1 { font-size: 1.05rem; margin: 0; }
+  body.en-leccion .jg-camino { margin-top: 4px; margin-bottom: 6px; }
+  body.en-leccion .jg-escenario {
+    flex: 1 1 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 8px 28px;
+    overflow: hidden;
+    box-shadow: 0 0 0 3px var(--h-borde);
+  }
+  body.en-leccion .jg-escenario.jg-desborda { overflow-y: auto; overscroll-behavior: contain; }
+  /* más pequeño que el aula: centrado; más grande: empieza arriba y se desplaza dentro */
+  body.en-leccion .jg-paso { flex: none; margin: auto 0; }
+  body.en-leccion .jg-pie { position: static; margin: 8px 0 0; padding: 0; background: none; box-shadow: none; }
+  body.en-leccion .jg-pie .es-boton { min-height: 44px; }
+  .jg-paso > * > .jg-pista { margin-bottom: 10px; padding: 7px 10px; font-size: .95rem; }
+}
+
+/* ===== Contraste sobre el papel claro de los juegos (cartas, carteles, bocadillos…), en los dos temas =====
+   En el tema oscuro, los ejemplos en cursiva y las palabras van en dorado claro (pensado para fondos oscuros) y sobre el
+   papel crema no se leían (19-10, sobres en alemán). Aquí van siempre en tinta oscura. */
+.jg-paso :is([class*="carta"]:not([class*="dorso"]), [class*="cartel"], [class*="bocadillo"], [class*="papel"], .jg-sobres-carta) :is(.cursiva, .palabra) { color: #9a2f1f; }
+.jg-paso :is([class*="carta"]:not([class*="dorso"]), [class*="cartel"], [class*="bocadillo"], [class*="papel"], .jg-sobres-carta) strong { color: #2b1d1a; }
+.jg-paso :is([class*="carta"]:not([class*="dorso"]), [class*="cartel"], [class*="bocadillo"], [class*="papel"]) .palabra { border-bottom-color: #9a2f1f; }

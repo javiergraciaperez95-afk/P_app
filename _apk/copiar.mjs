@@ -1,6 +1,6 @@
 // Copia la app web (la carpeta de arriba, con todos los cursos) a www/, que es lo que Capacitor mete dentro de la APK.
 // Uso: node copiar.mjs
-import { cpSync, rmSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { cpSync, rmSync, readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
@@ -18,8 +18,36 @@ const indices = join(aqui, '..', '_herramientas', 'generar_indices.mjs');
 if (existsSync(indices)) execFileSync(process.execPath, [indices], { stdio: 'inherit' });
 else console.log('Sin _herramientas/generar_indices.mjs: se usan los índices que ya hay en cada curso.');
 
+// Lo que hay en las carpetas de la app pero la app no lee: las plantillas, scripts e informes con los que se
+// escribieron los cursos (cursos/<código>/plantillas, *.py, *.md). Fuera, que solo engordan la APK.
+const SOBRA = /[\\/](plantillas|__pycache__)$|\.(py|md)$/;
+
 rmSync(destino, { recursive: true, force: true });
-for (const parte of APP) cpSync(join(origen, parte), join(destino, parte), { recursive: true });
+for (const parte of APP) cpSync(join(origen, parte), join(destino, parte), { recursive: true, filter: (r) => !SOBRA.test(r) });
+
+// Los JSON de los cursos se guardan con sangrías para leerlos a mano; en la APK van sin espacios (mismo contenido).
+// Del análisis sintáctico la app solo lee unidades → texto, funcion y partes (js/lessons.js, aplanar);
+// lo demás (oracion, sujeto, nucleo) se queda en el proyecto, no en la APK.
+const SINTAXIS_SOBRA = new Set(['oracion', 'sujeto', 'nucleo']);
+const podarSintaxis = (v) => {
+  if (Array.isArray(v)) v.forEach(podarSintaxis);
+  else if (v && typeof v === 'object') for (const k of Object.keys(v)) SINTAXIS_SOBRA.has(k) ? delete v[k] : podarSintaxis(v[k]);
+};
+const recorrer = (v) => {
+  if (Array.isArray(v)) v.forEach(recorrer);
+  else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) k === 'sintaxis' ? podarSintaxis(x) : recorrer(x);
+};
+(function compactar(dir) {
+  for (const e of readdirSync(dir, { withFileTypes: true })) {
+    const r = join(dir, e.name);
+    if (e.isDirectory()) compactar(r);
+    else if (e.name.endsWith('.json')) {
+      const datos = JSON.parse(readFileSync(r, 'utf8'));
+      recorrer(datos);
+      writeFileSync(r, JSON.stringify(datos));
+    }
+  }
+})(join(destino, 'cursos'));
 
 // La marca de versión que en la web pone la publicación automática.
 const indice = join(destino, 'index.html');

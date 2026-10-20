@@ -1,0 +1,154 @@
+PAGLOT · LO QUE QUEDA ANTES DE LAS 3 ÚLTIMAS FASES (19-10-2026)
+=================================================================
+
+Sale de leer los 14 informes del 19-10 y de comprobar en la app lo que dicen (muchos fallos que señalan ya están
+arreglados, y algunas propuestas no compensan). Cada tarea dice qué, por qué (comprobado o no) y cómo se verifica.
+Marcas: [ ] por hacer · [?] comprobar antes de tocar · [tú] decisión tuya.
+
+Ya hecho (no se repite): contraste AA en los dos temas, zonas táctiles de 44 px, letra mínima de 12 px, móvil sin
+zoom, aviso de datos arriba, nube apagada de serie, pantallas sin curso → elegir idioma, h1 en la bienvenida,
+«Cuenta · Cuenta», lang="es", fuente del vietnamita, destello de la portada, reto «sin prisa», selector del móvil
+en 2 diapositivas, Frases ligera, repaso vacío desactivado, CSP comprobada en comprobar.py, juegos/tabla.js en el
+mapa de módulos, front repasado vista por vista.
+
+
+0 · LIMPIEZA
+------------
+[ ] 0.1 Quitar el botón de pausar animaciones (#btn-calma, textos calma.*, CSS .icono-pausa, el evento
+        'comodidad-cambiada') y la regla que escondía «Paglot» en móviles estrechos. Sobra: el modo calma ya lo
+        hace y la app se pone en calma sola si el sistema pide menos movimiento (js/ajustes.js:53).
+
+
+1 · LA LECCIÓN Y EL PRIMER DÍA (lo que nota todo el mundo)
+----------------------------------------------------------
+[ ] 1.1 Un solo contador de pasos. COMPROBADO en fr/010 (390 px): el carril dice «Paso 1 de 15» y el contador
+        «1/14». El carril cuenta el paso final y el contador no. Sacar el total de un solo sitio (juegos/motor.js
+        :215-216) y debajo del carril, el nombre del paso actual («Vocabulario», «Diálogo»…), que también sale al
+        tocar cada icono. Comprobar: lecciones de 9, 14 y 19 pasos, móvil y escritorio, es/en/vi.
+[?] 1.2 «Siguiente» desactivado sin explicación (diseño R-06): mirar si pasa; si pasa, una línea «Termina el juego
+        para seguir» junto al botón.
+[ ] 1.3 Duración en cada lección: «≈ 5 min» en el mapa y al abrirla, calculada con los pasos (unos 40 s por paso,
+        redondeado). Ayuda a decidir empezar (TDAH).
+[ ] 1.4 Bienvenida más corta: en el carné, «Empezar ya» como botón principal y el nombre opcional (se puede poner
+        luego en Perfil). Que recuerde el paso si se recarga a mitad (hoy vuelve a empezar).
+[ ] 1.5 El aviso «¡Aún no hemos terminado!» con una segunda salida: «Elegir otro idioma».
+[ ] 1.6 Texto grande en dos niveles: grande 125 % y muy grande 150 % (hoy 112,5 %, casi no se nota). Riesgo: en
+        322×645 saldrán más diapositivas; revisar que ninguna encoja ni deje a nadie atrapado.
+[ ] 1.7 Aviso de datos en dos frases («Sin cookies. Tu progreso se queda en este dispositivo.») con «Entendido» y
+        «Más información». Lo de la nube y los avisos de errores, en Legal (hoy son tres frases largas).
+
+
+2 · SIN CULPA Y APRENDER MEJOR
+------------------------------
+[ ] 2.1 Fin de lección y Perfil: «Aciertos a la primera» en vez de «Fallos ✖» (juegos/motor.js:253 y Perfil);
+        racha con «vuelve cuando quieras».
+[?] 2.2 Caducidad de la cuenta (7 días sin abrir) dicha con calma y solo en Perfil, no en la primera pantalla de
+        Entrar (mirar cómo quedó tras el repaso del front).
+[ ] 2.3 Objetivo diario opcional en Ajustes (apagado / 5 / 10 minutos), que se cumple con una lección o con
+        repaso; la portada del curso dice cuánto queda. Sin avisos de culpa.
+[ ] 2.4 Lo que se falla en una lección vuelve en el repaso espaciado (hoy solo va a Práctica): tarjeta temporal
+        con el mismo ejercicio, que desaparece al acertarla dos veces. Es lo que más mejora el aprendizaje.
+[ ] 2.5 Repaso: variación pequeña al azar (±5 %) en los días de vuelta, para que no vuelvan todas juntas.
+[ ] 2.6 Estrellas justas: hoy 3 estrellas con 0-2 fallos, sin mirar cuántos pasos tiene la lección (una de 19
+        pasos sale peor que una de 9). Pasar a proporción de aciertos a la primera; completar da siempre 1.
+[ ] 2.7 Logros de calidad: añadir «palabras dominadas sin fallo» y «repasos a tiempo»; los de volumen
+        (repasos1000, palabras500) se quedan para quien ya los tenga, pero no se anuncian como meta.
+[ ] 2.8 Prueba de nivel algo más fiable: de 3 a 6 preguntas por tramo, pasa con 5, y una de escribir. (El informe
+        pide 12-15: demasiado larga para alguien con TDAH; 6 ya baja mucho el acierto por suerte.)
+[ ] 2.9 Glosario: las 12 primeras palabras y «ver todas» (hay lecciones con 60); el análisis de la frase plegado.
+[ ] 2.10 Niveles honestos: chino y tailandés enseñan su escala (HSK, ACTFL) y no A1-B2; distintivo «beta» también
+        dentro de la lección. Solo código de la app: no se tocan cursos/zh ni cursos/th.
+
+
+3 · MÓVIL Y APK
+---------------
+[ ] 3.1 «Atrás» de Android. COMPROBADO en js/movil.js:63: siempre manda a #/lecciones o a #/ y solo cierra la
+        pregunta del juego. Nuevo orden: diapositiva anterior → cerrar lo abierto (ficha de palabra, menú,
+        diálogos) → página anterior de verdad → salir solo en la principal.
+[ ] 3.2 «Descargar copia» en la APK. COMPROBADO: usa un enlace blob con download (perfil.js:446) y la APK no tiene
+        el plugin de archivos, así que no guarda nada aunque diga que sí. Como la nube ya es opcional, esa copia es
+        la única salvaguarda de mucha gente: hacerla con los plugins de archivos y compartir de Capacitor.
+[tú] 3.3 Android mínimo: propongo dejar minSdk 24. El informe teme las WebView viejas de Android 7-9, pero esa
+        WebView se actualiza desde la Play Store y, si es vieja, ya sale el aviso de «actualiza» al arrancar.
+[tú] 3.4 Copia de seguridad de Android (allowBackup): propongo dejarla; a quien no usa la nube le salva el
+        progreso al cambiar de móvil. Se dice en el aviso legal.
+
+
+4 · QUE NADA SE PIERDA NI SE ROMPA
+----------------------------------
+[ ] 4.1 Datos dañados: antes de ignorarlos, guardarlos aparte (…-roto-<fecha>) y avisar «hemos recuperado lo que
+        se pudo».
+[ ] 4.2 Sin sitio para guardar: aviso «no se ha podido guardar tu progreso» (hoy solo sale en la consola).
+[ ] 4.3 Cambiar los pocos Array.at y replaceAll (juegos/cartas.js, desorden.js, ajustes.js, bienvenida.js) y
+        proteger showModal en la tienda: 15 minutos, y los móviles con Chrome 86-92 dejan de fallar en los juegos.
+        (Los sustitutos de replaceChildren no hacen falta: sin él ya sale el aviso de navegador antiguo.)
+
+
+5 · VELOCIDAD (el arranque en un móvil normal, de unos 4 s a unos 2 s)
+----------------------------------------------------------------------
+COMPROBADO: index.html carga 55 hojas de estilo y un solo modulepreload.
+[ ] 5.1 en.js solo cuando hace falta (interfaz en inglés o texto que falte). Seguro: es y vi tienen las mismas
+        claves.
+[ ] 5.2 Minijuegos, los dos motores y las vistas del curso con import(): la portada deja de bajar 50 módulos.
+[ ] 5.3 Al publicar: una hoja común y otra por pantalla (la vista espera a su hoja antes de pintar, sin parpadeo),
+        modulepreload de los módulos del arranque, CSS minificado, JSON sin sangría en la copia publicada y en la
+        APK, y fuera de la APK los archivos de trabajo. El repo no cambia.
+[ ] 5.4 js/suave.js en una pasada y js/paginas-movil.js sin repartir si nada ha cambiado. Riesgo: diapositivas;
+        probar con diapositivas.mjs en los 6 tamaños.
+[ ] 5.5 Diccionario partido por idioma de interfaz, con los consejos aparte (español: 2,6 MB → 0,5 MB).
+[ ] 5.6 Pancarta de la portada: un dibujo por bandera en vez de 84 copias animadas. Toca el arte: te la enseño
+        antes de subirla.
+[ ] 5.7 Quitar textos y CSS que no usa nadie (incluidos los de «falta configurar Supabase», que ya no se ven).
+[ ] 5.8 Límites en comprobar.py (peso de la portada, número de hojas) para que no vuelva a crecer.
+
+
+6 · ACCESIBILIDAD Y DETALLES
+----------------------------
+[ ] 6.1 Página #/accesibilidad: fecha, método, nivel «parcial», limitaciones conocidas, compromisos, contacto y vía
+        de reclamación. Enlazada desde el pie y Legal.
+[ ] 6.2 Al cerrar un diálogo, el foco vuelve al botón que lo abrió.
+[?] 6.3 El texto que la tutora escribe letra a letra: que tocarlo lo complete (mirar si ya lo hace).
+[ ] 6.4 Cabecera del curso: «⇄» y la hucha con nombre visible en escritorio y aria-label en el móvil.
+[?] 6.5 Placeholders: medir su contraste (styles.css:1937 les baja la opacidad).
+
+
+7 · ANTES DE ENSEÑARLA A NADIE (código, no de las fases)
+--------------------------------------------------------
+[ ] 7.1 Página Social: los enlaces de ejemplo, fuera o con «muy pronto» (informe legal, punto 20).
+[?] 7.2 Créditos: Argos, OPUS-MT, Wiktionary, Tatoeba y spaCy con sus licencias (informe legal, punto 22).
+
+
+8 · CIERRE
+----------
+[ ] 8.1 Revisión entera: comprobar.py, probar_cursos.mjs, auditar_navegador.mjs, diapositivas.mjs (322, 360, 375,
+        390, 412 y escritorio), contraste, es/en/vi, claro/oscuro, texto grande.
+[ ] 8.2 APK rehecha y _notas/PROBAR_LA_APK.txt al día (atrás, descargar copia, texto grande).
+[ ] 8.3 PLAN_HASTA_LAS_3_FASES al día y push.
+
+
+LO QUE NO HAGO, Y POR QUÉ
+-------------------------
+- Botón de pausa: lo cubre el modo calma y la preferencia del sistema.
+- Modo enfoque, ajustes en barra inferior, iconos y colores del proyecto rehechos de cero: mucho trabajo, riesgo de
+  romper el arte y el usuario apenas lo notaría.
+- Paralaje, ciclo de día y noche, más animación: va contra la calma y gasta batería.
+- Preguntar por el sonido al primer uso o quitar el roce al pasar el ratón: el sonido es parte del diseño (TDAH) y
+  ya hay botón de silencio a la vista.
+- Sustitutos de zoom para Firefox viejo: ya no hay zoom en el móvil. Respaldos de cqw, :has() y AbortSignal: son
+  navegadores de 2021-2022, hoy casi nadie.
+- Aviso de «versión nueva, recarga»: el service worker ya se actualiza solo y los módulos llevan ?v=.
+- Prueba de nivel de 15 preguntas por tramo: demasiado larga (ver 2.8).
+- Marcado FAQPage para Google: Google dejó de mostrarlo.
+
+VA A LAS FASES, NO AHORA
+------------------------
+- Fase A: precios, cobros, libros, tienda, ficha de Google Play, páginas para Google (SEO), dominio.
+- Fase B: servidor PHP, formulario de contacto que envíe, errores e ideas en el servidor, analítica sin cookies.
+- Fase C: el validador de traducciones (se hace al empezarla), vocabulario vacío (alemán 46, coreano 25…), «Cherry»
+  y compañía, más escribir y escuchar, trato «em» en vietnamita, «1,5 tỷ», nivel de las lecturas A1 del español.
+
+TUS MANOS
+---------
+[tú] Pegar _herramientas/supabase-errores-e-ideas.sql en Supabase y ejecutarlo · probar la APK · titular en
+     js/config.js · appId definitivo antes de subir a Play · dominio · retirar las contraseñas del material antiguo ·
+     cuando esté el bloque 1, una prueba con 3-5 personas (el kit está en el informe de usabilidad, capítulo 5).

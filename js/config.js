@@ -15,6 +15,13 @@ export const TITULAR = {
 // Fecha de la última vez que se cambió el aviso legal (cámbiala al tocar sus textos).
 export const LEGAL_ACTUALIZADO = '19-10-2026';
 
+// ----- Ayudar sin suscribirse: los botones de Patreon y Buy Me a Coffee encima de los precios (#/precios) -----
+// FICTICIOS de momento: cámbialos por las páginas de verdad cuando existan.
+export const APOYO = {
+  patreon: 'https://www.patreon.com/paglot-ejemplo',
+  cafe: 'https://www.buymeacoffee.com/paglot-ejemplo',
+};
+
 // ----- Precios (pantalla #/precios). Todavía no se cobra nada ni se aplica el límite: es el plan. -----
 // Lecciones nuevas que se pueden empezar cada día en el plan gratis.
 export const LECCIONES_GRATIS_AL_DIA = 3;

@@ -62,6 +62,8 @@ if (piezas?.App) {
   // Botón «atrás»: en la pantalla principal cierra la app; en un juego pregunta; en lo demás vuelve a la principal.
   piezas.App.addListener('backButton', async () => {
     if (cerrarPregunta) { cerrarPregunta(false); return; }
+    // una pantalla con algo suyo abierto encima (una hoja, un panel) lo cierra primero: escucha «paglot-atras» y lo cancela
+    if (!document.dispatchEvent(new Event('paglot-atras', { cancelable: true }))) return;
     if (enJuego()) {
       if (await salirDelJuego()) location.hash = '#/lecciones';
     } else if (location.hash === '#/bienvenida') {

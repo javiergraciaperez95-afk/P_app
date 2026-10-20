@@ -5,13 +5,14 @@
 // Sin curso elegido solo existen las pantallas de la web. La cuenta es al estilo Mullvad (js/nube.js).
 
 import './suave.js'; // lo primero: en el móvil, todo se mueve suave
+import './teclado.js'; // y al escribir, el teclado del móvil no descompone la pantalla
 import './errores.js'; // los fallos de la app se apuntan (anónimos) en la nube
 import './recordatorio.js'; // en la APK, el aviso diario (se ofrece al terminar la primera lección)
 import { el, poner } from './dom.js';
 import { activarDesarrollador } from './desarrollador.js';
 import { icono } from './iconos.js';
 import { descubrirLecciones, cargarIndice, cargarDiccionario, cargarLeccion, cargarCapitulos, cargarFrases } from './lessons.js';
-import { ajuste, aplicarTema, temaActual, cambiarAjuste, aplicarComodidad } from './ajustes.js';
+import { ajuste, aplicarTema, temaActual, cambiarAjuste, aplicarComodidad, modoCalma } from './ajustes.js';
 import { t, tr, aplicarIdioma, IDIOMAS, IDIOMAS_VISIBLES, idioma, cambiarIdioma } from './i18n.js';
 import { sonar, prepararVoces, callar } from './sonidos.js';
 import { alCambiar, hayProgreso } from './progress.js';
@@ -34,6 +35,7 @@ import { PRECIOS_VISIBLES } from './config.js';
 import { avisoPendiente } from './sin-terminar.js';
 import './movil.js';
 import './chispa.js';
+import './probador.js'; // el probador de juegos del modo desarrollador (siete toques en el logo)
 
 const app = document.getElementById('app');
 const menu = document.getElementById('menu');
@@ -45,7 +47,7 @@ abrirAjustes.className = 'btn';
 const panelAjustes = document.createElement('div');
 panelAjustes.className = 'cabecera-ajustes-panel';
 ajustesCabecera.append(abrirAjustes, panelAjustes);
-const controlesAjustes = ['.idioma-menu', '#btn-sonido', '#btn-tema'].map(s => controlesCabecera.querySelector(s));
+const controlesAjustes = ['.idioma-menu', '#btn-sonido', '#btn-tema', '#btn-calma'].map(s => controlesCabecera.querySelector(s));
 // Sin sesión no hay avatar (con su «Mi perfil»): el perfil va dentro de Ajustes.
 const enlacePerfil = el('a', { class: 'btn ajustes-perfil', href: '#/perfil', onclick: () => { ajustesCabecera.open = false; } });
 const pintarEnlacePerfil = () => {
@@ -98,6 +100,8 @@ const GENERALES = {
   idiomas: { titulo: 'cursos.titulo', pintar: pintarElegirCurso, sinPortada: true },
   creditos: { titulo: 'creditos.titulo', cargar: () => vista('creditos', 'pintarCreditos'), sinPortada: true },
   legal: { titulo: 'legal.titulo', pintar: pintarLegal, sinPortada: true },
+  // el probador de juegos (herramienta interna, sin enlace: ver js/probador.js)
+  desarrollador: { cargar: () => vista('probador', 'pintarProbador'), sinPortada: true },
   // los enlaces de los correos antiguos: la cuenta ya no va por enlace, sino por código (ver vistas/entrar.js)
   enlace: { titulo: 'entrar.titulo', cargar: () => vista('entrar', 'pintarEntrar') },
 };
@@ -105,7 +109,7 @@ const GENERALES = {
 const PORTADAS = Object.keys(GENERALES).filter(ruta => !GENERALES[ruta].sinPortada);
 const esGeneral = ruta => Object.hasOwn(GENERALES, ruta);
 // En el móvil estas páginas no se desplazan: van por páginas del alto de la pantalla (js/paginas-movil.js).
-const PAGINADAS = new Set(['inicio', 'sobre', 'social', 'contacto', 'producto', 'escuelas', 'empresas', 'regala-max', 'tienda', 'guias', 'faq',
+const PAGINADAS = new Set(['inicio', 'precios', 'sobre', 'social', 'contacto', 'producto', 'escuelas', 'empresas', 'regala-max', 'tienda', 'guias', 'faq',
   'laboratorio', 'legal', 'creditos', 'idiomas']);
 // Las del curso que también van por páginas en el móvil (la lección en modo libro lo hace en vistas/leccion.js).
 const PAGINADAS_CURSO = new Set(['perfil', 'cuaderno', 'frases']);
@@ -169,9 +173,27 @@ function filas(contenedor) {
 
 // Las pantallas que en el móvil van en diapositivas grandes, una por escena, en vez de partirse solas
 const DIAPOSITIVAS = {
+  // Paglot Max: los planes y, detrás, cada sección en su diapositiva (antes se abrían desde unos botones). La Hucha va
+  // con su cuarto si caben juntos; la tabla de Comparar, con sus notas debajo; Promesas, el pergamino entero.
+  precios: () => {
+    const $ = sel => app.querySelector(sel);
+    const alto = altoDePagina() * 0.97;
+    const mide = k => (k ? k.getBoundingClientRect().height : 0);
+    const juntasSiCaben = (...piezas) => (piezas.reduce((n, k) => n + mide(k) + 12, 40) <= alto ? [piezas] : piezas.map(k => [k]));
+    return [
+      $('.pr-escenario'),
+      ...juntasSiCaben($('.pr-hucha-texto'), $('.pr-hucha-escena')),
+      ...porAlto([$('.pr-coleccion > .pr-etiqueta'), $('.pr-coleccion > h2'), $('.pr-coleccion > .pr-entradilla'), $('.pr-estanteria'),
+        $('.pr-coleccion > .pr-dos, .pr-coleccion > .pr-envio-pdf'), $('.pr-col-otro')]),
+      $('.pr-familia'), $('.pr-fundadores'),
+      [$('.pr-aula-titulo'), $('.pr-pizarra'), $('.pr-notas')],
+      [$('.pr-pergamino'), $('.pr-promesas > .pr-aviso')],
+    ];
+  },
   inicio: () => {
     const $ = sel => app.querySelector(sel);
-    return [[$('.inicio-cabeza'), $('.inicio-trio'), $('.inicio-suelo')], $('.inicio-bajo'), $('.inicio-pasillo'), $('.inicio-teatro'), $('.inicio-pie-pag')];
+    // en el móvil, «Elige entre 21 idiomas» (el teatro) va justo después de la portada y la presentación, la penúltima
+    return [[$('.inicio-cabeza'), $('.inicio-trio'), $('.inicio-suelo')], $('.inicio-teatro'), $('.inicio-pasillo'), $('.inicio-bajo'), $('.inicio-pie-pag')];
   },
   // Sobre Paglot: un piso de la casa por diapositiva (el tejado con la buhardilla; la historia y el libro del método, en dos)
   // y la calle al final. En un móvil bajito, el texto y su escena van cada uno en la suya, y la historia, cuadro a cuadro.
@@ -350,6 +372,17 @@ function pintarBotonTema() {
   boton.title = boton.getAttribute('aria-label');
 }
 
+// Pausar las animaciones (el modo calma) a la vista en la cabecera, no solo en Perfil: la portada tiene más de doscientas
+// que no paran (informe de accesibilidad, A03). Pausado, el botón enseña ▶ para volver a moverlas.
+function pintarBotonCalma() {
+  const boton = document.getElementById('btn-calma');
+  const quieto = modoCalma();
+  boton.setAttribute('aria-pressed', String(quieto));
+  boton.setAttribute('aria-label', t(quieto ? 'calma.mover' : 'calma.pausar'));
+  boton.title = boton.getAttribute('aria-label');
+  boton.classList.toggle('pausado', quieto);
+}
+
 function pintarBotonSonido() {
   const boton = document.getElementById('btn-sonido');
   const on = Boolean(ajuste('efectos'));
@@ -500,6 +533,10 @@ document.getElementById('btn-tema').addEventListener('click', () => {
   cambiarAjuste('tema', temaActual() === 'oscuro' ? 'claro' : 'oscuro');
   sonar('interruptor');
 });
+document.getElementById('btn-calma').addEventListener('click', () => {
+  cambiarAjuste('calma', !modoCalma());
+  pintarBotonCalma();
+});
 document.getElementById('btn-sonido').addEventListener('click', () => {
   const on = !ajuste('efectos');
   cambiarAjuste('efectos', on);
@@ -508,6 +545,7 @@ document.getElementById('btn-sonido').addEventListener('click', () => {
 });
 window.addEventListener('tema-cambiado', pintarBotonTema);
 window.addEventListener('efectos-cambiado', pintarBotonSonido);
+window.addEventListener('comodidad-cambiada', pintarBotonCalma);
 
 // Al cambiar de idioma se repinta todo: cabecera, menú y la pantalla abierta.
 window.addEventListener('idioma-cambiado', () => {
@@ -518,6 +556,7 @@ window.addEventListener('idioma-cambiado', () => {
   pintarMarca();
   pintarBotonTema();
   pintarBotonSonido();
+  pintarBotonCalma();
   if (!hayCurso) { pintarSinCurso({ cambioDeIdioma: true }); return; }
   pintarMenu();
   navegar({ cambioDeIdioma: true });
@@ -616,12 +655,9 @@ async function navegar({ cambioDeIdioma = false } = {}) {
   const hash = location.hash.startsWith('#/') ? location.hash.slice(2) : '';
   const [ruta, parametro] = hash.split('/');
   let seccion = ruta || 'lecciones';
-  // #/desarrollador: acceso para revisar la app (todas las lecciones y sus pasos cuentan como hechos, ver desarrollador.js).
-  if (seccion === 'desarrollador') {
-    activarDesarrollador();
-    history.replaceState(null, '', '#/lecciones');
-    seccion = 'lecciones';
-  }
+  // #/desarrollador: acceso para revisar la app (todas las lecciones y sus pasos cuentan como hechos, ver desarrollador.js)
+  // y el probador de juegos (js/probador.js). Se llega también con siete toques seguidos en el logo de la cabecera.
+  if (seccion === 'desarrollador') activarDesarrollador();
   // La primera vez que alguien sin progreso llega a sus lecciones, antes pasa por la bienvenida.
   if (seccion === 'lecciones' && !bienvenidaOfrecida && !bienvenidaVista() && !hayProgreso()) {
     history.replaceState(null, '', '#/bienvenida');
@@ -847,6 +883,7 @@ async function iniciar() {
   pintarMarca();
   pintarBotonTema();
   pintarBotonSonido();
+  pintarBotonCalma();
 
   // Un curso elegido que ya no te toca (con la interfaz en vietnamita, uno que aún no está explicado en vietnamita): se
   // vuelve al inicio sin curso y allí, ya en tu idioma, se te dice que aún no hemos terminado. Su progreso se queda.

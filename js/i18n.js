@@ -151,6 +151,9 @@ export function tr(valor) {
   // Si la interfaz y el curso usan el mismo código, ese campo es el texto estudiado,
   // no su traducción. La traducción disponible por defecto está en «en».
   const i = idioma() === curso.campo ? 'en' : idioma();
+  // En las palabras y frases de los cursos de otros idiomas, «es» es el texto que se estudia y la traducción al español
+  // va en «tes» (ver js/lessons.js). Sin esto, con la interfaz en español salía el mismo idioma en los dos lados.
+  if (i === 'es' && typeof valor.tes === 'string' && valor.tes) return valor.tes;
   return valor[i] ?? valor.en ?? valor.es ?? Object.values(valor).find(v => v !== null && v !== undefined) ?? '';
 }
 

@@ -16,7 +16,8 @@ const minusc = c => c.toLocaleLowerCase();
 const usables = (bloque, ctx) => {
   const vistas = new Set();
   return (bloque.palabras ?? []).map(p => ctx.entrada(p)).filter(f => {
-    if (!f || !f.es || f.propio || vistas.has(f.es)) return false;
+    // con significado en tu idioma (es la pista): sin él, la pista era la propia palabra, es decir, la respuesta
+    if (!f || !f.es || f.propio || vistas.has(f.es) || !ctx.tr(f) || ctx.tr(f) === f.es) return false;
     if (Array.from(f.es.replace(/\s+/g, '')).length < 2) return false;
     vistas.add(f.es);
     return true;
@@ -78,7 +79,7 @@ export function crear(bloque, ctx) {
       return x;
     });
 
-    const significadoNodo = el('p', { class: 'jg-letras-significado' }, tr(f) || f.es);
+    const significadoNodo = el('p', { class: 'jg-letras-significado' }, tr(f));
     const segunda = el('p', { class: 'jg-letras-segunda', hidden: true }, f.pron ? t('jg.letras.pron', { pron: f.pron }) : '');
     const palabra = el('div', { class: 'jg-letras-palabra', lang: ctx.LANG, 'aria-label': t('jg.letras.palabra') }, casillas.map(x => x.nodo));
     const bandeja = el('div', { class: 'jg-letras-bandeja' }, fichasLetra.map(x => x.boton));

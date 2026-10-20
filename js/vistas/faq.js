@@ -8,6 +8,7 @@ import { t } from '../i18n.js';
 import { sonar } from '../sonidos.js';
 import { PRECIOS_VISIBLES } from '../config.js';
 import { crearElenco } from './elenco.js';
+import { esMovil } from '../paginas-movil.js';
 
 // las preguntas, por cajones; enlace: [ruta, clave del texto del botón]
 const CAJONES = [
@@ -71,6 +72,8 @@ export function pintarFaq(root) {
       sonar('cajon');
       bibliotecaria.gesto('senalar');
       pintarFichas();
+      // en el móvil, el cajón abierto lleva solo a la diapositiva de sus preguntas
+      if (esMovil()) setTimeout(() => mesa.dispatchEvent(new CustomEvent('pm-ir', { bubbles: true, detail: mesa })), 280);
     });
     return boton;
   });

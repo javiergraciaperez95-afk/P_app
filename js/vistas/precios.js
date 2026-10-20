@@ -16,9 +16,11 @@ import { CURSOS } from '../cursos.js';
 import { curso, hayCurso, NOMBRES_TUTORAS } from '../curso.js';
 import { dibujoDe } from '../tutor-sprite.js';
 import { sonar } from '../sonidos.js';
-import { PLAZAS_FUNDADORES, LECCIONES_GRATIS_AL_DIA, PRECIOS_VISIBLES } from '../config.js';
+import { PLAZAS_FUNDADORES, LECCIONES_GRATIS_AL_DIA, PRECIOS_VISIBLES, APOYO } from '../config.js';
 import { preciosDeSuZona } from '../region.js';
 import { nubes, luna, sol, dibujoPixel, conContorno, maceta } from './inicio-decorado.js';
+import { altoPantalla } from '../teclado.js';
+import { esMovil } from '../paginas-movil.js';
 
 const CADA_GESTO = 3800;
 
@@ -233,6 +235,8 @@ export function pintarPrecios(contenedor) {
     const li = el('li', { class: `pr-peldano pr-${plan}` });
     const ver = el('button', { type: 'button', class: 'pr-ver', 'aria-expanded': 'false' }, t('pr.verIncluye'));
     ver.addEventListener('click', () => {
+      // en el móvil, la lista se abre en una hoja encima (desplegada dentro empujaba la página y se cortaba)
+      if (esMovil()) { abrirIncluye(plan, li, ver); tutora.gesto('presentarIzq'); return; }
       const abierto = li.classList.toggle('pr-abierto');
       // en el móvil, uno abierto cada vez, y lo de arriba se vuelve a encajar en la pantalla
       if (abierto && innerWidth <= 640) for (const otro of li.parentElement.querySelectorAll('.pr-abierto')) if (otro !== li) { otro.classList.remove('pr-abierto'); otro.querySelector('.pr-ver').setAttribute('aria-expanded', 'false'); }
@@ -246,6 +250,34 @@ export function pintarPrecios(contenedor) {
     poner(li, tutora.figura, el('div', { class: 'pr-bloque' }, cuerpo));
     return li;
   };
+  // La hoja de «Qué incluye» del móvil: el nombre del plan, su lista y, si lleva asteriscos, la nota que los explica
+  let cerrarIncluye = null;
+  function abrirIncluye(plan, li, ver) {
+    cerrarIncluye?.();
+    const lista = li.querySelector('.pr-lista').cloneNode(true);
+    const volver = el('button', { type: 'button', class: 'pr-boton' }, t('pr.menu.cerrar'));
+    const hoja = el('div', { class: `pr-incluye pr-${plan}` },
+      el('p', { class: 'pr-nombre' }, li.querySelector('.pr-nombre').textContent),
+      lista,
+      lista.textContent.includes('*') ? el('p', { class: 'pr-incluye-nota' }, t('pr.nota.oral')) : null,
+      volver);
+    const capa = el('div', { class: 'pr-incluye-capa', role: 'dialog', 'aria-modal': 'true', 'aria-label': t('pr.verIncluye') }, hoja);
+    const alTecla = e => { if (e.key === 'Escape') cerrarIncluye(); };
+    cerrarIncluye = () => {
+      cerrarIncluye = null;
+      capa.remove();
+      removeEventListener('keydown', alTecla);
+      ver.focus({ preventScroll: true });
+    };
+    capa.addEventListener('click', e => { if (e.target === capa) { sonar('cerrar'); cerrarIncluye(); } });
+    volver.addEventListener('click', () => { sonar('cerrar'); cerrarIncluye(); });
+    addEventListener('keydown', alTecla);
+    document.body.append(capa);
+    sonar('abrir');
+    volver.focus({ preventScroll: true });
+  }
+  apagar.push(() => cerrarIncluye?.());
+
   const peldanoGratis = peldano('gratis', tGratis, [
     el('p', { class: 'pr-nombre' }, t('pr.gratis.nombre')),
     el('p', { class: 'pr-lema' }, t('pr.gratis.lema')),
@@ -276,8 +308,16 @@ export function pintarPrecios(contenedor) {
   const bAnual = el('button', { type: 'button', onclick: () => cambiarPago('ano') }, t('pr.anual'), PRECIOS_VISIBLES ? el('span', { class: 'pr-ahorro' }, t('pr.ahorra', { n: ahorro })) : null);
   const bMensual = el('button', { type: 'button', onclick: () => cambiarPago('mes') }, t('pr.mensual'));
 
+  // encima de los precios, para quien solo quiere echar una mano sin suscribirse
+  const apoyo = (clase, href, icono, nombre) => el('a', { class: `pr-apoyo-boton ${clase}`, href, target: '_blank', rel: 'noopener', onclick: () => sonar('clic') },
+    el('span', { 'aria-hidden': 'true' }, icono), nombre);
   const contenidoArriba = el('div', { class: 'pr-arriba' },
     el('div', { class: 'pr-cabeza' },
+      el('div', { class: 'pr-apoyo' },
+        el('p', {}, t('pr.apoyo.texto')),
+        el('div', { class: 'pr-apoyo-botones' },
+          apoyo('pr-apoyo-patreon', APOYO.patreon, '♥', 'Patreon'),
+          apoyo('pr-apoyo-cafe', APOYO.cafe, '☕', 'Buy Me a Coffee'))),
       el('span', { class: 'pr-etiqueta' }, t('precios.titulo')),
       el('h1', { class: 'pr-titulo' }, t('pr.titulo')),
       el('p', { class: 'pr-texto' }, t('pr.texto')),
@@ -373,7 +413,7 @@ export function pintarPrecios(contenedor) {
     el('span', { class: 'pr-etiqueta' }, t('pr.max.nombre')),
     el('h2', {}, t('pr.col.titulo')),
     el('p', { class: 'pr-entradilla' }, t('pr.col.texto', { tutora: NOMBRES_TUTORAS[principal.id] ?? '' })),
-    el('div', { class: 'pr-estanteria' },
+    el('div', { class: 'pr-estanteria', 'data-entera': '' }, // en las diapositivas del móvil va entera
       estante,
       el('div', { class: 'pr-tabla-madera', 'aria-hidden': 'true' }, el('i'), el('i')),
       el('div', { class: 'pr-escalera-mano', 'aria-hidden': 'true' }, dibujoPixel(ESCALERA, 'pr-escalera-dibujo', 'lp'), tEscalera.figura)),
@@ -580,140 +620,34 @@ export function pintarPrecios(contenedor) {
   poner(contenedor, el('div', { class: PRECIOS_VISIBLES ? 'precios' : 'precios precios-sin-cifras' }, escenario, seccionHucha, seccionColeccion, seccionExtras, seccionTabla, seccionPromesas));
   pintarPreciosZona();
 
-  // ----- En el móvil, el resto no va debajo: cada sección se abre a pantalla completa desde unos botones.
-  // Nada se desplaza: lo que no cabe se reparte en páginas (flechas, puntos o deslizar el dedo) y cada página
-  // se encoge lo justo para caber.
-  let abierta = null;
-  const ENCOGER_MIN = 0.62;
-  const piezasDe = s => [...s.children].filter(k => !k.matches('.pr-panel-cerrar, .pr-paginas') && getComputedStyle(k).position !== 'absolute');
-  const altoDe = k => { const e = getComputedStyle(k); return Math.max(k.offsetHeight, k.scrollHeight) + parseFloat(e.marginTop) + parseFloat(e.marginBottom); };
-  function paginar(s) {
-    const piezas = piezasDe(s);
-    for (const k of piezas) { k.classList.remove('pr-oculta'); k.style.zoom = ''; }
-    const e = getComputedStyle(s);
-    const sitio = s.clientHeight - parseFloat(e.paddingTop) - parseFloat(e.paddingBottom);
-    const paginas = [];
-    let lista = [];
-    let suma = 0;
-    for (const k of piezas) {
-      const h = altoDe(k);
-      if (lista.length && suma + h > sitio) { paginas.push({ lista, suma }); lista = []; suma = 0; }
-      lista.push(k);
-      suma += h;
-    }
-    if (lista.length) paginas.push({ lista, suma });
-    for (const p of paginas) p.zoom = Math.max(ENCOGER_MIN, Math.min(1, sitio / p.suma));
-    s.paginas = paginas;
-    const nav = s.querySelector('.pr-paginas');
-    nav.hidden = paginas.length < 2;
-    poner(nav.querySelector('.pr-puntos'), paginas.map(() => el('i', { class: 'pr-punto' })));
-    irA(s, Math.min(s.pagina ?? 0, paginas.length - 1), false);
-  }
-  // lo medido antes de encoger no siempre coincide con lo que ocupa después: se mide la página ya puesta y se corrige
-  function ajustar(s) {
-    const p = s.paginas?.[s.pagina];
-    if (!p) return;
-    const e = getComputedStyle(s);
-    const sitio = s.clientHeight - parseFloat(e.paddingTop) - parseFloat(e.paddingBottom);
-    const marco = s.getBoundingClientRect();
-    const arriba = marco.top + parseFloat(e.paddingTop);
-    const abajo = marco.bottom - parseFloat(e.paddingBottom);
-    for (let vez = 0; vez < 4; vez++) {
-      const cajas = p.lista.map(k => k.getBoundingClientRect());
-      const top = Math.min(...cajas.map(c => c.top));
-      const bottom = Math.max(...cajas.map(c => c.bottom));
-      if (top >= arriba - 1 && bottom <= abajo + 1) return;
-      const alto = Math.max(bottom - top, 2 * Math.max(bottom - (arriba + abajo) / 2, (arriba + abajo) / 2 - top));
-      p.zoom = Math.max(0.5, p.zoom * sitio / alto);
-      for (const k of p.lista) k.style.zoom = p.zoom.toFixed(3);
-    }
-  }
-  function irA(s, n, conSonido = true) {
-    const paginas = s.paginas;
-    if (!paginas || n < 0 || n >= paginas.length) return;
-    if (conSonido && n !== s.pagina) sonar('pagina');
-    s.pagina = n;
-    paginas.forEach((p, i) => p.lista.forEach(k => { k.classList.toggle('pr-oculta', i !== n); k.style.zoom = i === n && p.zoom < 1 ? p.zoom.toFixed(3) : ''; }));
-    ajustar(s);
-    const nav = s.querySelector('.pr-paginas');
-    nav.querySelectorAll('.pr-punto').forEach((d, i) => d.classList.toggle('pr-punto-ya', i === n));
-    nav.querySelector('.pr-atras').disabled = n === 0;
-    nav.querySelector('.pr-alante').disabled = n === paginas.length - 1;
-  }
-  const cerrarPanel = () => {
-    if (!abierta) return;
-    for (const k of piezasDe(abierta)) { k.classList.remove('pr-oculta'); k.style.zoom = ''; }
-    abierta.classList.remove('pr-panel');
-    document.documentElement.classList.remove('pr-con-panel');
-    abierta = null;
-    sonar('cerrar');
-  };
-  const abrirPanel = seccion => {
-    abierta = seccion;
-    seccion.pagina = 0;
-    seccion.classList.add('pr-panel');
-    seccion.classList.remove('pr-fuera');
-    vistas.add(seccion);
-    actualizar();
-    document.documentElement.classList.add('pr-con-panel');
-    sonar('abrir');
-    if (seccion === seccionPromesas) { mirarPergamino(); despues(1400, () => { if (abierta === seccion) paginar(seccion); }); }
-    paginar(seccion);
-    seccion.querySelector('.pr-panel-cerrar').focus({ preventScroll: true });
-  };
-  const menu = [['hucha', seccionHucha], ['coleccion', seccionColeccion], ['extras', seccionExtras], ['comparar', seccionTabla], ['promesas', seccionPromesas]];
-  for (const [, s] of menu) {
-    s.prepend(el('button', { type: 'button', class: 'pr-panel-cerrar', onclick: cerrarPanel }, '◀ ', t('pr.menu.cerrar')));
-    s.append(el('nav', { class: 'pr-paginas', hidden: true },
-      el('button', { type: 'button', class: 'pr-atras', 'aria-label': '◀', onclick: () => irA(s, s.pagina - 1) }, '◀'),
-      el('span', { class: 'pr-puntos', 'aria-hidden': 'true' }),
-      el('button', { type: 'button', class: 'pr-alante', 'aria-label': '▶', onclick: () => irA(s, s.pagina + 1) }, '▶')));
-    // el pergamino se desenrolla después de abrir: al acabar, se vuelve a repartir
-    let repartir2 = 0;
-    const alAcabar = e => {
-      if (s !== abierta || !e.target.closest('.pr-pergamino') || repartir2) return;
-      repartir2 = requestAnimationFrame(() => { repartir2 = 0; if (s === abierta) paginar(s); });
-    };
-    s.addEventListener('transitionend', alAcabar);
-    s.addEventListener('animationend', alAcabar);
-    // deslizar el dedo de lado también pasa de página
-    let x0 = null;
-    s.addEventListener('pointerdown', e => { if (s === abierta) x0 = e.clientX; });
-    s.addEventListener('pointerup', e => {
-      if (x0 === null) return;
-      const dx = e.clientX - x0;
-      x0 = null;
-      if (Math.abs(dx) > 50) irA(s, s.pagina + (dx < 0 ? 1 : -1));
-    });
-  }
-  contenidoArriba.append(el('nav', { class: 'pr-menu-movil', 'aria-label': t('pr.menu.titulo') },
-    menu.map(([clave, s]) => el('button', { type: 'button', onclick: () => abrirPanel(s) }, t(`pr.menu.${clave}`)))));
-  const alTeclado = e => {
-    if (!abierta) return;
-    if (e.key === 'Escape') cerrarPanel();
-    else if (e.key === 'ArrowRight') irA(abierta, abierta.pagina + 1);
-    else if (e.key === 'ArrowLeft') irA(abierta, abierta.pagina - 1);
-  };
-  const alCambiarTamano = () => { if (abierta) { if (innerWidth > 640) cerrarPanel(); else paginar(abierta); } };
-  addEventListener('keydown', alTeclado);
-  addEventListener('resize', alCambiarTamano);
-  apagar.push(() => { removeEventListener('keydown', alTeclado); removeEventListener('resize', alCambiarTamano); document.documentElement.classList.remove('pr-con-panel'); });
+  // ----- En el móvil la página va en diapositivas, como las demás pantallas (DIAPOSITIVAS.precios en js/app.js): los
+  // planes y, detrás, cada sección. El «atrás» de Android cierra antes la hoja de «Qué incluye» (js/movil.js).
+  const enDiapositivas = esMovil();
+  const alAtras = e => { if (cerrarIncluye) { sonar('cerrar'); cerrarIncluye(); e.preventDefault(); } };
+  document.addEventListener('paglot-atras', alAtras);
+  apagar.push(() => document.removeEventListener('paglot-atras', alAtras));
 
   // ----- Que lo de arriba (de «Precios» a los tres planes) quepa siempre en la pantalla, sin desplazar -----
   const cabecera = document.querySelector('.cabecera');
   const suelo = escenario.querySelector('.inicio-suelo');
   function encajar() {
     if (!encendida) return;
-    const sitio = window.innerHeight - cabecera.getBoundingClientRect().height;
-    escenario.style.minHeight = `${Math.round(sitio)}px`;
     contenidoArriba.style.zoom = '';
+    escenario.style.minHeight = '';
+    // en el móvil el escenario es la primera diapositiva y su alto lo pone el CSS (--pm-alto); en el ordenador llena la
+    // ventana desde donde empieza de verdad (bajo la cabecera) hasta abajo, con el alto sin teclado
+    const enDiapos = document.documentElement.classList.contains('pm-activo');
+    const sitio = enDiapos ? escenario.clientHeight
+      : Math.floor(altoPantalla() - Math.max(cabecera.getBoundingClientRect().bottom, escenario.getBoundingClientRect().top + scrollY));
+    if (!enDiapos) escenario.style.minHeight = `${sitio}px`;
     const estilo = getComputedStyle(escenario);
-    const libre = sitio - suelo.offsetHeight - parseFloat(estilo.paddingTop) - 8;
+    const libre = sitio - suelo.offsetHeight - parseFloat(estilo.paddingTop) - parseFloat(estilo.paddingBottom) - 8;
     const escala = Math.min(1, libre / contenidoArriba.offsetHeight);
     if (escala < 1) contenidoArriba.style.zoom = Math.max(0.55, escala).toFixed(3);
   }
   const vigia = new ResizeObserver(() => requestAnimationFrame(encajar));
   vigia.observe(cabecera);
+  vigia.observe(escenario); // en el móvil cambia con la diapositiva (--pm-alto)
   window.addEventListener('resize', encajar);
   document.fonts?.ready.then(encajar);
   apagar.push(() => { vigia.disconnect(); window.removeEventListener('resize', encajar); });
@@ -750,6 +684,8 @@ export function pintarPrecios(contenedor) {
       for (const e of entradas) {
         if (e.isIntersecting) vistas.add(e.target); else vistas.delete(e.target);
         e.target.classList.toggle('pr-fuera', !e.isIntersecting); // fuera de pantalla, sus animaciones de CSS se paran
+        // en las diapositivas el pergamino se desenrolla cada vez que se llega al suyo (la animación vuelve a empezar)
+        if (enDiapositivas && e.target === seccionPromesas && e.isIntersecting) sonarPergamino();
       }
       actualizar();
     });
@@ -758,6 +694,13 @@ export function pintarPrecios(contenedor) {
   } else { for (const s of raiz.children) vistas.add(s); actualizar(); }
   // el pergamino se desenrolla (una sola vez) cuando ya se ve bien: su parte de arriba pasa de media pantalla,
   // o no se puede bajar más. Se mide lo que ocupa el papel para que baje a ritmo constante.
+  // se oye cómo se desenrolla, cómo cae cada sello (al ritmo del css) y la firma
+  function sonarPergamino() {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('modo-calma')) return;
+    sonar('papel');
+    seccionPromesas.querySelectorAll('.pr-lacre').forEach((_, n) => despues(1200 + n * 450 + 260, () => sonar('sello')));
+    despues(3600, () => sonar('tiza'));
+  }
   const mirarPergamino = () => {
     const abajoDelTodo = innerHeight + scrollY >= document.documentElement.scrollHeight - 4;
     if (seccionPromesas.getBoundingClientRect().top > innerHeight * 0.55 && !abajoDelTodo) return;
@@ -765,16 +708,15 @@ export function pintarPrecios(contenedor) {
     papel.style.setProperty('--alto', `${papel.scrollHeight}px`);
     seccionPromesas.classList.add('pr-visto');
     removeEventListener('scroll', mirarPergamino);
-    // se oye cómo se desenrolla, cómo cae cada sello (al ritmo del css) y la firma
-    if (!(matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('modo-calma'))) {
-      sonar('papel');
-      seccionPromesas.querySelectorAll('.pr-lacre').forEach((_, n) => despues(1200 + n * 450 + 260, () => sonar('sello')));
-      despues(3600, () => sonar('tiza'));
-    }
+    sonarPergamino();
   };
-  addEventListener('scroll', mirarPergamino, { passive: true });
-  apagar.push(() => removeEventListener('scroll', mirarPergamino));
-  mirarPergamino();
+  // en el móvil ya va desenrollado (así mide lo que ocupa de verdad al repartir las diapositivas)
+  if (enDiapositivas) seccionPromesas.classList.add('pr-visto');
+  else {
+    addEventListener('scroll', mirarPergamino, { passive: true });
+    apagar.push(() => removeEventListener('scroll', mirarPergamino));
+    mirarPergamino();
+  }
   despues(600, () => tMax.decir(t('pr.saludo', { nombre: NOMBRES_TUTORAS[principal.id] ?? '' })));
 
   return () => {

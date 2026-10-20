@@ -41,7 +41,7 @@ export function crear(bloque, ctx) {
   const cola = ctx.barajar(fichas.map(f => ({ f, vistas: 0, vuelta: false }))).slice(0, MAX);
   const total = cola.length;
   let hechas = 0;
-  const significado = f => tr(f) || f.es;
+  const significado = f => { const s = tr(f); return s && s !== f.es ? s : '…'; };
 
   const escena = el('div', { class: 'jg-escucha-mesa' });
   const pista = el('p', { class: 'jg-pista' });

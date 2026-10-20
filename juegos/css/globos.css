@@ -25,7 +25,8 @@
 
 .jg-globos-globo { position: relative; width: 112px; padding: 0 0 36px; border: 0; cursor: pointer; background: transparent; color: #fff; animation: jg-globos-sube .9s steps(8) both, jg-globos-mece 3.2s steps(2) .9s infinite; animation-delay: var(--d), calc(var(--d) + .9s); }
 .jg-globos-cuerpo { display: grid; place-items: center; min-height: 104px; padding: 12px 10px; background: var(--c); border-radius: 48% 48% 46% 46% / 54% 54% 46% 46%; box-shadow: 0 0 0 3px var(--h-borde), inset -9px -9px 0 rgba(0, 0, 0, .16), inset 9px 9px 0 rgba(255, 255, 255, .22); }
-.jg-globos-palabra { font-size: 1.15rem; font-weight: 800; line-height: 1.15; text-align: center; color: #fff; text-shadow: 2px 2px 0 rgba(0, 0, 0, .45); overflow-wrap: anywhere; }
+/* en una plaquita clara: en blanco sobre el globo amarillo o el verde no se leía */
+.jg-globos-palabra { padding: 2px 7px; font-size: 1.1rem; font-weight: 800; line-height: 1.15; text-align: center; color: #2b1d1a; background: #fffaf0; box-shadow: 0 0 0 2px var(--h-borde); overflow-wrap: anywhere; }
 .jg-globos-hilo { position: absolute; left: calc(50% - 1px); bottom: 0; width: 2px; height: 36px; background: var(--h-borde); }
 .jg-globos-cuerpo { position: relative; transition: transform .12s steps(2); }
 .jg-globos-cuerpo::after { content: ""; position: absolute; left: calc(50% - 6px); bottom: -8px; width: 12px; height: 8px; background: var(--c); clip-path: polygon(0 100%, 50% 0, 100% 100%); filter: brightness(.8); }

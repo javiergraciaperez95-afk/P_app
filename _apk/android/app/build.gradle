@@ -17,6 +17,12 @@ android {
         }
     }
     buildTypes {
+        // La APK de prueba también va reducida (R8): el código Android pasa de ~3 MB a una fracción y cabe en el chat.
+        debug {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

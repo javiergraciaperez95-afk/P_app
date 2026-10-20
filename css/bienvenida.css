@@ -17,7 +17,7 @@ body.en-bienvenida .aviso-datos { display: none; }
   --pasos: 5;
   --f: calc(var(--p) / var(--pasos)); /* 0 al empezar, 1 al llegar */
   --horizonte: 44%;
-  --horizonte-alto: 44dvh;
+  --horizonte-alto: calc(var(--alto-app, 100dvh) * .44);
   --hz: #fae2b6;
   --montes: #d6c9a6;
   --montes-2: #c4b58f;
@@ -36,7 +36,7 @@ body.en-bienvenida .aviso-datos { display: none; }
   flex-direction: column;
   align-items: center;
   height: 100vh;
-  height: 100dvh;
+  height: var(--alto-app, 100dvh); /* sin el teclado: al escribir el nombre no se aplasta (js/teclado.js) */
   padding: calc(6px + var(--borde-arriba, 0px)) calc(12px + var(--borde-der, 0px)) calc(12px + var(--borde-abajo, 0px)) calc(12px + var(--borde-izq, 0px));
   overflow: hidden;
   background: var(--h-cielo);
@@ -628,11 +628,11 @@ body.en-bienvenida .aviso-datos { display: none; }
   .bv-escena { padding-bottom: calc(64px * var(--k) - 22px); }
 }
 @media (max-width: 899px) {
-  .bienvenida { --horizonte: 40%; --horizonte-alto: 40dvh; }
+  .bienvenida { --horizonte: 40%; --horizonte-alto: calc(var(--alto-app, 100dvh) * .40); }
   .bv-arbol { width: 96px; }
 }
 @media (max-width: 640px) {
-  .bienvenida { --k: 2; --horizonte: 30%; --horizonte-alto: 30dvh; padding-left: calc(8px + var(--borde-izq, 0px)); padding-right: calc(8px + var(--borde-der, 0px)); }
+  .bienvenida { --k: 2; --horizonte: 30%; --horizonte-alto: calc(var(--alto-app, 100dvh) * .30); padding-left: calc(8px + var(--borde-izq, 0px)); padding-right: calc(8px + var(--borde-der, 0px)); }
   .bv-barra { gap: 10px; }
   .bv-bandera { width: 26px; }
   .bv-bandera-icono { width: 22px; height: 18px; padding: 3px 5px; left: 6px; }
@@ -670,7 +670,7 @@ body.en-bienvenida .aviso-datos { display: none; }
 }
 /* pantallas bajas (el móvil tumbado): el objeto a la izquierda y el diálogo a la derecha, todo más recogido */
 @media (max-height: 520px) {
-  .bienvenida { --horizonte: 34%; --horizonte-alto: 34dvh; display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 36%); grid-template-rows: auto minmax(0, 1fr); column-gap: 16px; align-items: stretch; }
+  .bienvenida { --horizonte: 34%; --horizonte-alto: calc(var(--alto-app, 100dvh) * .34); display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 36%); grid-template-rows: auto minmax(0, 1fr); column-gap: 16px; align-items: stretch; }
   .bv-barra { grid-column: 1 / -1; max-width: none; }
   .bv-ruta { height: 44px; }
   .bv-mini, .bv-cosa.bv-farola { display: none; }

@@ -108,6 +108,34 @@
 .pr-escenario > .inicio-suelo { flex: none; }
 .pr-cabeza { position: relative; max-width: 900px; margin: 0 auto; }
 .pr-cabeza .pr-etiqueta { margin-bottom: 8px; }
+/* Ayudar sin suscribirse: Patreon y Buy Me a Coffee, encima de los precios */
+.pr-apoyo { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 12px; margin: 0 auto 14px; }
+.pr-apoyo p { margin: 0; font-weight: 700; font-size: .9rem; color: var(--h-suave); }
+.pr-apoyo-botones { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.pr-apoyo-boton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 4px 12px;
+  font: 700 .8rem var(--fuente-pixel);
+  color: #15121d;
+  text-decoration: none;
+  box-shadow: 0 -3px 0 0 var(--h-borde), 0 3px 0 0 var(--h-borde), -3px 0 0 0 var(--h-borde), 3px 0 0 0 var(--h-borde), 3px 4px 0 0 var(--h-sombra);
+  transition: transform .1s steps(2);
+}
+.pr-apoyo-boton:hover { transform: translateY(-2px); }
+.pr-apoyo-boton:active { transform: translateY(2px); }
+.pr-apoyo-boton:focus-visible { outline: 3px dashed var(--marca-oro); outline-offset: 4px; }
+.pr-apoyo-patreon { background: #ff8a8f; }
+.pr-apoyo-cafe { background: #ffdd00; }
+@media (max-width: 640px) {
+  .pr-apoyo { gap: 6px 10px; margin-bottom: 10px; }
+  .pr-apoyo p { font-size: .8rem; }
+  .pr-apoyo-boton { min-height: 32px; padding: 2px 10px; font-size: .74rem; }
+  .pr-apoyo-boton::after { content: ""; position: absolute; inset: -6px -3px; } /* zona táctil de 44 px */
+}
 .pr-titulo { margin: 0 0 6px; font-size: clamp(1.8rem, 3.8vw, 2.7rem); line-height: 1.05; text-shadow: 3px 3px 0 var(--h-sombra); text-wrap: balance; }
 .pr-texto { margin: 0 auto 14px; max-width: 46em; color: var(--h-suave); font-weight: 600; font-size: .98rem; line-height: 1.45; text-wrap: balance; }
 
@@ -1131,7 +1159,6 @@
   .pr-escenario { padding-top: 8px; }
   .pr-region { font-size: .62rem; }
   .pr-escalera { padding-top: 0; }
-  .pr-menu-movil { margin-top: 4px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1166,100 +1193,6 @@
 .pr-como:hover .pr-globito, .pr-como:focus-visible .pr-globito { transform: translateX(-50%) scale(1); }
 @media (prefers-reduced-motion: reduce) { .pr-globito { transition: none; } }
 
-/* ===================================================================== */
-/* Móvil: solo los planes en pantalla; el resto se abre a pantalla completa desde .pr-menu-movil (js/vistas/precios.js) */
-/* ===================================================================== */
-.pr-menu-movil, .pr-panel-cerrar { display: none; }
-@media (max-width: 640px) {
-  html:has(.precios), body:has(.precios) { overflow: hidden; }
-  body main:has(> .precios) { padding-bottom: 0; }
-  .precios > .pr-seccion:not(.pr-panel) { display: none; }
-  .pr-menu-movil { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 8px; }
-  .pr-menu-movil button {
-    min-height: 36px;
-    padding: 4px 10px;
-    font: 700 .82rem var(--fuente-pixel);
-    color: var(--h-tinta);
-    background: var(--h-papel);
-    border: 0;
-    box-shadow: 0 -3px 0 0 var(--h-borde), 0 3px 0 0 var(--h-borde), -3px 0 0 0 var(--h-borde), 3px 0 0 0 var(--h-borde), 3px 4px 0 0 var(--h-sombra);
-    cursor: pointer;
-    transition: transform .1s steps(2);
-    -webkit-tap-highlight-color: transparent;
-  }
-  /* en una sola fila si cabe */
-  .pr-menu-movil button { position: relative; min-height: 32px; padding-inline: clamp(4px, 1.4vw, 10px); font-size: clamp(.75rem, 3.1vw, .82rem); }
-  .pr-menu-movil button::after { content: ""; position: absolute; inset: -6px -3px; }
-  .pr-menu-movil button:active { transform: translateY(2px); }
-  .pr-menu-movil button:focus-visible { outline: 3px dashed var(--marca-oro); outline-offset: 3px; }
-  /* la sección abierta tapa toda la pantalla, cabecera incluida; nada se desplaza: lo que no cabe va en páginas */
-  .pr-seccion.pr-panel {
-    position: fixed;
-    inset: 0;
-    z-index: 60;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0;
-    padding: 52px 12px 60px;
-    overflow: hidden;
-    background: var(--h-cielo);
-    animation: pr-panel-entra .2s steps(4);
-  }
-  .pr-panel > * { flex: none; }
-  /* abierta se ve siempre: que no se quede parada por «fuera de pantalla» */
-  .pr-panel.pr-fuera, .pr-panel.pr-fuera * { animation-play-state: running !important; }
-  .pr-panel > .pr-oculta { display: none !important; }
-  .pr-seccion.pr-panel > .pr-paginas:not([hidden]) {
-    position: absolute !important;
-    left: 0;
-    right: 0;
-    bottom: 8px;
-    z-index: 20 !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-  }
-  .pr-paginas button {
-    width: 44px;
-    height: 40px;
-    font: 700 1rem var(--fuente-pixel);
-    color: var(--h-tinta);
-    background: var(--h-papel);
-    border: 0;
-    box-shadow: 0 -3px 0 0 var(--h-borde), 0 3px 0 0 var(--h-borde), -3px 0 0 0 var(--h-borde), 3px 0 0 0 var(--h-borde), 3px 4px 0 0 var(--h-sombra);
-    cursor: pointer;
-    transition: transform .1s steps(2);
-  }
-  .pr-paginas button:active { transform: translateY(2px); }
-  .pr-paginas button:disabled { opacity: .35; cursor: default; }
-  .pr-puntos { display: flex; gap: 6px; }
-  .pr-punto { width: 10px; height: 10px; background: var(--h-papel); box-shadow: 0 0 0 2px var(--h-borde); }
-  .pr-punto-ya { background: var(--h-rosa); }
-  /* la pizarra sin las alumnas de cada fila: la tabla cabe entera y son 10 tutoras menos animándose */
-  .pr-pizarra .pr-fila-quien { display: none; }
-  .pr-seccion.pr-panel > .pr-panel-cerrar {
-    position: absolute !important;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 20 !important;
-    display: flex;
-    align-items: center;
-    min-height: 44px;
-    padding: 6px 14px;
-    font: 700 .9rem var(--fuente-pixel);
-    color: #fff;
-    background: var(--h-rosa);
-    border: 0;
-    box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .18), 0 3px 0 0 var(--h-borde);
-    cursor: pointer;
-  }
-  :root[data-tema="oscuro"] .pr-panel .pr-panel-cerrar { color: #1b0f14; }
-}
-@keyframes pr-panel-entra { from { transform: translateY(24px); opacity: 0; } }
-@media (prefers-reduced-motion: reduce) { .pr-seccion.pr-panel { animation: none; } }
 /* «Precio por anunciar» ocupa el sitio de la cifra: en letra más contenida, que no grite dos veces lo mismo */
 .pr-precio.pr-sin-cifra { font-size: 1.35rem; line-height: 1.2; color: var(--h-suave); }
 @media (max-width: 760px) {
@@ -1268,3 +1201,90 @@
   .pr-peldano .pr-globo { left: 4px; transform: scale(0); transform-origin: 14px 100%; }
   .pr-peldano .inicio-figura.habla .pr-globo { transform: scale(1); }
 }
+
+/* ===================================================================== */
+/* Móvil: la página va en diapositivas como las demás (html.pm-activo, DIAPOSITIVAS.precios en js/app.js): los planes y,
+   detrás, una sección por diapositiva, cada una llenando su alto (--pm-alto) */
+/* ===================================================================== */
+.pr-incluye-capa { display: none; }
+html.pm-activo body main:has(> .precios) { padding-top: 0; } /* cada diapositiva llena justo su alto, sin encogerse */
+html.pm-activo .pr-escenario { height: var(--pm-alto); min-height: 0 !important; margin-top: 0; padding-top: 10px; }
+html.pm-activo .precios > .pr-seccion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  min-height: var(--pm-alto);
+  padding: 14px 12px;
+}
+html.pm-activo .precios > .pr-seccion > * { margin-top: 0; margin-bottom: 0; }
+/* la nota de los asteriscos va en la hoja de «Qué incluye» */
+html.pm-activo .pr-escalera + .pr-nota-oral { display: none; }
+
+/* La Hucha: la explicación arriba y el cuarto debajo (o cada uno en su diapositiva si no caben juntos) */
+html.pm-activo .pr-hucha-escena { align-self: center; margin-inline: 0; }
+
+/* Libros: los textos en una placa (sobre las estanterías no se leían) y los seis libros en dos filas de tres */
+html.pm-activo .pr-coleccion > .pr-entradilla,
+html.pm-activo .pr-coleccion > .pr-col-otro {
+  padding: 10px 12px;
+  font-size: .88rem;
+  line-height: 1.45;
+  color: #f3e6d2;
+  background: rgba(24, 14, 22, .86);
+  box-shadow: 0 -3px 0 0 #000, 0 3px 0 0 #000, -3px 0 0 0 #000, 3px 0 0 0 #000;
+}
+html.pm-activo .pr-coleccion > h2 { font-size: 1.5rem; }
+html.pm-activo .pr-estante { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; row-gap: 14px; padding: 0 4px; }
+html.pm-activo .pr-libro { height: 150px; }
+html.pm-activo .pr-libro .pr-libro-tutora .tutora-lienzo { width: 48px; height: 64px; }
+html.pm-activo .pr-escalera-mano { display: none; }
+
+/* Extras: las casitas del barrio, abajo de la diapositiva, detrás de la tarjeta */
+html.pm-activo .pr-extras > .pr-carta { margin: 0 auto; width: 100%; max-width: 520px; }
+
+/* Comparar: la pizarra sin las alumnas de cada fila (cabe entera) y las notas, compactas debajo, sin taparla */
+html.pm-activo .pr-pizarra .pr-fila-quien { display: none; }
+html.pm-activo .pr-comparar .pr-aula-titulo { margin-bottom: 0; }
+html.pm-activo .pr-comparar .pr-notas { padding: 8px 10px; font-size: .75rem; line-height: 1.35; background: var(--h-papel); box-shadow: 0 -3px 0 0 var(--h-borde), 0 3px 0 0 var(--h-borde), -3px 0 0 0 var(--h-borde), 3px 0 0 0 var(--h-borde); }
+html.pm-activo .pr-comparar .pr-notas p { margin: 0 0 4px; padding: 0; background: none !important; box-shadow: none !important; }
+html.pm-activo .pr-comparar .pr-notas p:last-child { margin-bottom: 0; }
+
+/* «Qué incluye» se abre en una hoja encima de los planes: desplegada dentro de la tarjeta empujaba todo y se cortaba */
+@media (max-width: 700px) {
+  .pr-incluye-capa {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: calc(12px + var(--borde-arriba, 0px)) 10px calc(12px + var(--borde-abajo, 0px));
+    background: rgba(20, 16, 28, .55);
+    animation: pr-capa-entra .15s steps(3);
+  }
+  .pr-incluye {
+    width: 100%;
+    max-width: 480px;
+    max-height: 100%;
+    overflow-y: auto;
+    padding: 18px 16px 16px;
+    text-align: left;
+    background: var(--h-papel);
+    box-shadow: inset 0 10px 0 var(--color), 0 -3px 0 0 var(--h-borde), 0 3px 0 0 var(--h-borde), -3px 0 0 0 var(--h-borde), 3px 0 0 0 var(--h-borde), 4px 6px 0 0 var(--h-sombra);
+    animation: pr-hoja-sube .2s steps(4);
+  }
+  .pr-incluye.pr-gratis { --color: #5fae6a; }
+  .pr-incluye.pr-plus { --color: #4f9fd8; }
+  .pr-incluye.pr-max { --color: var(--marca-oro); }
+  .pr-incluye .pr-nombre { margin: 6px 0 4px; font: 700 1.3rem var(--fuente-pixel); }
+  .pr-incluye .pr-lista { margin: 8px 0 12px; }
+  .pr-incluye .pr-lista li { font-size: .92rem; margin-bottom: 8px; }
+  .pr-incluye-nota { margin: 0 0 12px; font-size: .76rem; line-height: 1.35; color: var(--h-suave); }
+  .pr-incluye .pr-boton { width: 100%; min-height: 44px; }
+  /* las nubes del cielo no tapan los planes */
+  .pr-arriba { z-index: 2; }
+}
+@keyframes pr-capa-entra { from { opacity: 0; } }
+@keyframes pr-hoja-sube { from { transform: translateY(40px); } }
+@media (prefers-reduced-motion: reduce) { .pr-incluye-capa, .pr-incluye { animation: none; } }

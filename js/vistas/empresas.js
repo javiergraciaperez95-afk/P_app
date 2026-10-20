@@ -1,8 +1,8 @@
 // Pantalla «Paglot Empresas» (#/empresas): la sala de reuniones. Por el ventanal se ve la ciudad (de noche, con las
 // oficinas encendidas); en la pizarra blanca, el título; la tutora que presenta, al lado, y el equipo sentado a la
 // mesa. Después: las credenciales con las cuatro ofertas, el configurador del equipo (la mesa se llena de tutoras),
-// los cursos de cada sector con lecciones de ejemplo, la bienvenida a la plantilla extranjera (cada tutora saluda en
-// su idioma), el proceso, FUNDAE y facturas. Todavía no se cobra: la página invita a escribirnos.
+// los cursos de cada sector con lecciones de ejemplo, los equipos internacionales (cada tutora saluda en su idioma),
+// el proceso y las facturas. Todavía no se cobra: la página invita a escribirnos.
 // Precios en js/config.js (EMPRESAS); plan en el PDF de escuelas y empresas. Colores en css/empresas.css.
 
 import { el, poner, alAzar } from '../dom.js';
@@ -50,6 +50,12 @@ const SALUDAN = ['vi', 'zh', 'pt', 'ro', 'ru', 'id', 'fr', 'th'];
 export function pintarEmpresas(root) {
   const elenco = crearElenco();
   const { quieto, despues, alApagar } = elenco;
+  // «Calcular precio»: en el ordenador baja hasta la calculadora; en el móvil la página va en diapositivas (nada se
+  // desplaza, por eso el botón no hacía nada): salta a la diapositiva de la calculadora
+  const irA = destino => {
+    if (document.documentElement.classList.contains('pm-activo')) destino.dispatchEvent(new CustomEvent('pm-ir', { bubbles: true, detail: destino }));
+    else destino.scrollIntoView({ behavior: quieto ? 'auto' : 'smooth', block: 'start' });
+  };
   // de noche, las oficinas con la luz encendida («x») alumbran (conHalo: solo de noche, sin animación)
   const dibujo = (rejilla, clase) => conHalo(dibujoPixel(rejilla, clase, 'of'), ['of-x'], { radio: 1.6 });
   const z = preciosDeSuZona();
@@ -83,7 +89,7 @@ export function pintarEmpresas(root) {
         el('p', {}, t('emp.lema')),
         el('div', { class: 'of-botones' },
           el('a', { class: 'es-boton', href: '#/contacto', onclick: contactar }, t('emp.contactar')),
-          el('a', { class: 'es-boton es-boton-papel', href: '#emp-equipo', onclick: e => { e.preventDefault(); sonar('flecha'); configurador.scrollIntoView({ behavior: quieto ? 'auto' : 'smooth', block: 'start' }); } }, t('emp.calcular'))),
+          el('a', { class: 'es-boton es-boton-papel', href: '#emp-equipo', onclick: e => { e.preventDefault(); sonar('flecha'); irA(configurador); } }, t('emp.calcular'))),
         el('span', { class: 'of-rotuladores', 'aria-hidden': 'true' }, el('i', {}), el('i', {}), el('i', {})))),
     el('div', { class: 'of-mesa-escena' },
       ponente.figura,
@@ -188,7 +194,7 @@ export function pintarEmpresas(root) {
     }) : t('precio.porAnunciar')));
 
   // =====================================================================
-  // 5. La plantilla que acaba de llegar: cada tutora saluda en su idioma
+  // 5. Un equipo, muchos idiomas: cada tutora saluda en el suyo
   // =====================================================================
   const saludan = SALUDAN.map(id => CURSOS.find(c => c.id === id)).filter(Boolean);
   const plantilla = el('section', { class: 'of-plantilla', 'aria-labelledby': 'of-plantilla-titulo' },
@@ -200,13 +206,12 @@ export function pintarEmpresas(root) {
       tutoraPintada(c)))));
 
   // =====================================================================
-  // 6. El proceso, FUNDAE y facturas
+  // 6. El proceso y las facturas
   // =====================================================================
   const proceso = el('section', { class: 'of-proceso', 'aria-labelledby': 'of-proceso-titulo' },
     el('h2', { id: 'of-proceso-titulo', class: 'of-titulo-seccion' }, t('emp.pasos.titulo')),
     el('ol', { class: 'of-pasos' }, [1, 2, 3, 4, 5].map(i => el('li', {}, el('b', {}, String(i)), el('span', {}, t(`emp.paso${i}`))))),
     el('div', { class: 'of-avisos' },
-      el('div', { class: 'es-papel' }, el('h3', {}, t('emp.fundae.titulo')), el('p', {}, t('emp.fundae.texto'))),
       el('div', { class: 'es-papel' }, el('h3', {}, t('emp.factura.titulo')), el('p', {}, t('emp.factura.texto')))));
 
   const fin = el('section', { class: 'of-fin' },

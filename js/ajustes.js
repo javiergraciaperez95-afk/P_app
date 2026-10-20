@@ -62,6 +62,7 @@ export function aplicarComodidad() {
   const raiz = document.documentElement;
   raiz.classList.toggle('modo-calma', modoCalma());
   raiz.classList.toggle('texto-grande', ajustes.texto === 'grande');
+  window.dispatchEvent(new Event('comodidad-cambiada'));
 }
 
 pideQuietud.addEventListener?.('change', () => {
