@@ -46,24 +46,67 @@ function botonEscucharTodas(frases) {
   return boton;
 }
 
+/** Baja (o sube) la página hasta el elemento despacio y frenando al final, dejándolo justo debajo de la cabecera. */
+function deslizarHasta(elemento) {
+  const cabecera = document.querySelector('.cabecera')?.getBoundingClientRect().bottom ?? 0;
+  const desde = window.scrollY;
+  const hasta = Math.max(0, desde + elemento.getBoundingClientRect().top - cabecera - 12);
+  const distancia = hasta - desde;
+  if (Math.abs(distancia) < 2) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { window.scrollTo(0, hasta); return; }
+  const duracion = Math.min(1100, 450 + Math.abs(distancia) * 0.25);
+  const inicio = performance.now();
+  const suave = x => 1 - Math.pow(1 - x, 3);
+  const paso = ahora => {
+    const x = Math.min(1, (ahora - inicio) / duracion);
+    window.scrollTo(0, desde + distancia * suave(x));
+    if (x < 1) requestAnimationFrame(paso);
+  };
+  requestAnimationFrame(paso);
+}
+
 /** Lo que va dentro de un bloque o de un grupo se pinta al abrirlo por primera vez (y se queda pintado). */
 function pintarAlAbrir(desplegable, pintar) {
   let pintado = false;
-  desplegable.addEventListener('toggle', () => {
-    if (!desplegable.open) return;
-    if (!pintado) {
-      pintado = true;
-      desplegable.append(...pintar().filter(Boolean));
-    }
-    // lo que se abre entra suave y, si el título se ha ido arriba, se baja hasta él sin saltos
-    desplegable.classList.remove('se-abre'); void desplegable.offsetWidth; desplegable.classList.add('se-abre');
-    const titulo = desplegable.querySelector(':scope > summary');
-    const arriba = titulo.getBoundingClientRect().top;
-    const cabecera = document.querySelector('.cabecera')?.getBoundingClientRect().bottom ?? 0;
-    if (arriba < cabecera + 8 || arriba > window.innerHeight * 0.6) {
-      window.scrollTo({ top: window.scrollY + arriba - cabecera - 12, behavior: 'smooth' });
+  let animacion = null;
+  const titulo = () => desplegable.querySelector(':scope > summary');
+  const quieto = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Abrir y cerrar crece y mengua de verdad (la altura, poco a poco), en vez de aparecer de golpe.
+  const animar = (desde, hasta, alAcabar) => {
+    animacion?.cancel();
+    desplegable.style.overflow = 'hidden';
+    animacion = desplegable.animate({ height: [`${desde}px`, `${hasta}px`] }, { duration: Math.min(650, 260 + Math.abs(hasta - desde) * 0.35), easing: 'cubic-bezier(.25, .8, .25, 1)' });
+    animacion.onfinish = () => { animacion = null; desplegable.style.overflow = ''; alAcabar?.(); };
+    animacion.oncancel = () => { desplegable.style.overflow = ''; };
+  };
+  desplegable.addEventListener('click', e => {
+    const s = titulo();
+    if (!s || !s.contains(e.target) || e.target.closest('a, button:not(summary)')) return;
+    e.preventDefault();
+    if (quieto()) { desplegable.open = !desplegable.open; return; }
+    const antes = desplegable.offsetHeight;
+    if (desplegable.open && !animacion) {
+      // cerrar: mengua hasta el título y entonces se cierra
+      animar(antes, s.offsetHeight + (desplegable.offsetHeight - desplegable.clientHeight), () => { desplegable.open = false; });
+    } else if (!desplegable.open) {
+      desplegable.open = true; // el «toggle» pinta lo de dentro
+      const despues = desplegable.offsetHeight;
+      animar(antes, despues, () => llevarALaVista(s));
     }
   });
+  desplegable.addEventListener('toggle', () => {
+    if (!desplegable.open || pintado) return;
+    pintado = true;
+    desplegable.append(...pintar().filter(Boolean));
+  });
+  // al acabar de abrirse, si el título se ha ido arriba, se baja hasta él despacio
+  function llevarALaVista(s) {
+    const arriba = s.getBoundingClientRect().top;
+    const cabecera = document.querySelector('.cabecera')?.getBoundingClientRect().bottom ?? 0;
+    if (arriba < cabecera + 8 || arriba > window.innerHeight * 0.75) {
+      deslizarHasta(s);
+    }
+  }
 }
 
 /** Las frases de una lista se pintan de 30 en 30: «Ver más» añade la siguiente tanda (así ninguna lista pesa de golpe). */
@@ -131,9 +174,11 @@ export function pintarFrases(app, { categorias, avisos, error }) {
     if (!destino) return;
     e.preventDefault();
     const seccion = document.getElementById(destino);
-    if (seccion) seccion.open = true; // si el bloque está plegado, se despliega (y se pintan sus frases)
-    seccion?.scrollIntoView({ behavior: 'smooth' });
-    seccion?.querySelector('h2')?.focus();
+    if (!seccion) return;
+    seccion.open = true; // si el bloque está plegado, se despliega (y se pintan sus frases)
+    // el foco sin mover la página (antes, el foco hacía saltar de golpe hasta el bloque)
+    seccion.querySelector('h2')?.focus({ preventScroll: true });
+    deslizarHasta(seccion);
   });
 
   const tapar = el('button', { type: 'button', class: 'boton', 'aria-pressed': String(tapado) });
