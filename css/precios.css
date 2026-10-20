@@ -1402,3 +1402,27 @@ html.pm-activo .pr-libro b { font-size: 1.05rem; }
 html.pm-activo .pr-libro-nombre { font-size: .75rem; line-height: 1.2; text-align: center; }
 html.pm-activo .pr-promesas { gap: 4px; padding-bottom: 4px; }
 html.pm-activo .pr-papel h2 { margin-top: 8px !important; }
+/* Familia y Fundadores, cada una en su diapositiva: el dibujo arriba, grande, y el texto debajo */
+html.pm-activo .pr-extras > .pr-carta { display: flex; flex-direction: column; align-items: stretch; text-align: center; padding: 14px; }
+html.pm-activo .pr-extras > .pr-carta > :first-child { align-self: center; }
+html.pm-activo .pr-extras .pr-casa { zoom: .7; width: 340px; margin: 0 auto 8px; }
+html.pm-activo .pr-extras .pr-carne { zoom: .8; margin: 0 auto 10px; }
+html.pm-activo .pr-extras h3 { font-size: 1.3rem; margin: 4px 0; }
+html.pm-activo .pr-extras .pr-carta > p:not(.pr-precio):not(.pr-por):not(.pr-nota-pronto) { font-size: .92rem; line-height: 1.4; }
+html.pm-activo .pr-extras .pr-precio { font-size: 2rem; }
+html.pm-activo .pr-extras .pr-boton { min-height: 44px; margin-top: 10px; }
+/* en móviles bajitos, la Hucha y la colección se compactan un poco más para caber enteras */
+@media (max-height: 700px) {
+  html.pm-activo .pr-hucha-escena { zoom: .36; }
+  html.pm-activo .pr-hucha-texto { padding: 10px 12px; }
+  html.pm-activo .pr-hucha-texto .pr-entradilla { font-size: .78rem; margin-bottom: 6px; }
+  html.pm-activo .pr-pasos li { font-size: .78rem; }
+  html.pm-activo .pr-regla { font-size: .75rem; padding: 4px 8px; }
+  html.pm-activo .pr-hucha-texto .pr-boton { margin-top: 6px; min-height: 36px; }
+  html.pm-activo .precios .pr-nota-pronto { display: none; }
+  html.pm-activo .pr-coleccion > .pr-entradilla, html.pm-activo .pr-coleccion > .pr-col-otro { font-size: .75rem; padding: 4px 8px; }
+  html.pm-activo .pr-libro { height: 58px; padding: 4px; }
+  html.pm-activo .pr-libro-nombre { display: none; }
+  html.pm-activo .pr-estante { row-gap: 6px; }
+  html.pm-activo .pr-dos .pr-carta { padding: 6px; font-size: .75rem; }
+}

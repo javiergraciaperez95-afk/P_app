@@ -181,17 +181,19 @@ const DIAPOSITIVAS = {
     const $ = sel => app.querySelector(sel);
     const alto = altoDePagina() * 0.98;
     const mide = k => (k ? k.getBoundingClientRect().height : 0);
-    // juntas si caben enteras sin encogerse; si no (un móvil bajito), en dos diapositivas
-    const juntasOPartidas = (primera, segunda) =>
-      ([...primera, ...segunda].reduce((n, k) => n + mide(k) + 8, 20) <= alto ? [[...primera, ...segunda]] : [primera, segunda]);
+    // las notas de la tabla van con ella si caben; si no, detrás de las promesas (que no se queden entre medias)
+    const tabla = [$('.pr-aula-titulo'), $('.pr-pizarra')];
+    const notasCaben = [...tabla, $('.pr-notas')].reduce((n, k) => n + mide(k) + 8, 20) <= alto;
     return [
       $('.pr-escenario'),
-      ...juntasOPartidas([$('.pr-hucha-escena')], [$('.pr-hucha-texto')]),
-      ...juntasOPartidas([$('.pr-coleccion > .pr-etiqueta'), $('.pr-coleccion > h2'), $('.pr-coleccion > .pr-entradilla'), $('.pr-estanteria')],
-        [$('.pr-coleccion > .pr-dos, .pr-coleccion > .pr-envio-pdf'), $('.pr-col-otro')]),
-      [$('.pr-familia'), $('.pr-fundadores')],
-      ...juntasOPartidas([$('.pr-aula-titulo'), $('.pr-pizarra')], [$('.pr-notas')]),
+      [$('.pr-hucha-escena'), $('.pr-hucha-texto')],
+      [$('.pr-coleccion > .pr-etiqueta'), $('.pr-coleccion > h2'), $('.pr-coleccion > .pr-entradilla'), $('.pr-estanteria'),
+        $('.pr-coleccion > .pr-dos, .pr-coleccion > .pr-envio-pdf'), $('.pr-col-otro')],
+      $('.pr-familia'),
+      $('.pr-fundadores'),
+      notasCaben ? [...tabla, $('.pr-notas')] : tabla,
       [$('.pr-pergamino'), $('.pr-promesas > .pr-aviso')],
+      notasCaben ? null : $('.pr-notas'),
     ].map(g => [].concat(g).filter(Boolean));
   },
   inicio: () => {
