@@ -167,3 +167,22 @@
   html.pm-activo .fq-fin { margin-top: 10px; }
   html.pm-activo .fq-placa { margin-bottom: clamp(40px, calc(var(--pm-alto) - 450px), 200px); }
 }
+
+/* En el móvil (DIAPOSITIVAS.faq en js/app.js) cada sección llena su diapositiva y reparte lo que lleva: sin huecos */
+@media (max-width: 700px) {
+  html.pm-activo .fichero-faq > section { box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-evenly; gap: 12px; min-height: var(--pm-alto); }
+  html.pm-activo .fichero-faq .fq-mostrador { flex: 0 0 auto; }
+}
+html.pm-activo .fichero-faq > section { min-height: calc(var(--pm-alto) - 12px); }
+html.pm-activo .fichero-faq .fq-placa { margin-bottom: 0; }
+html.pm-activo .fichero-faq .fq-suelo { margin-top: 0; }
+@media (max-width: 700px) and (max-height: 700px) {
+  html.pm-activo .fq-biblioteca { padding-top: 8px; }
+  html.pm-activo .fq-placa { padding: 10px 12px; }
+  html.pm-activo .fq-placa h1 { font-size: 1.25rem; margin: 2px 0 4px; }
+  html.pm-activo .fq-placa p { font-size: .82rem; line-height: 1.35; margin: 0; }
+  html.pm-activo .fq-cajon { min-height: 58px; padding: 4px 6px; gap: 4px; }
+  html.pm-activo .fq-fichero { padding: 5px; }
+  html.pm-activo .fq-busqueda { margin-bottom: 4px; }
+  html.pm-activo .fq-suelo { height: 10px; }
+}

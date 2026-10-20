@@ -196,6 +196,56 @@ const DIAPOSITIVAS = {
       notasCaben ? null : $('.pr-notas'),
     ].map(g => [].concat(g).filter(Boolean));
   },
+  // Guías comunitarias: el letrero, los cinco carteles y el cierre, metiendo en cada diapositiva todos los que caben
+  // (la sala llena siempre el alto: css/laboratorio.css reparte lo que lleva cada una)
+  guias: () => {
+    const $ = sel => app.querySelector(sel);
+    const sala = $('.lb-sala-normas');
+    if (!sala) return [];
+    const e = getComputedStyle(sala);
+    const alto = altoDePagina() - parseFloat(e.paddingTop) - 34;
+    const piezas = [$('.lb-sala-normas .lb-letrero'), ...app.querySelectorAll('.lb-cartel'), $('.lb-pie-normas')].filter(Boolean);
+    const paginas = [];
+    let pagina = [];
+    let usado = 0;
+    for (const p of piezas) {
+      const mide = p.getBoundingClientRect().height + 14;
+      if (pagina.length && usado + mide > alto) { paginas.push(pagina); pagina = []; usado = 0; }
+      pagina.push(p);
+      usado += mide;
+    }
+    if (pagina.length) paginas.push(pagina);
+    return paginas;
+  },
+  // Preguntas frecuentes: el fichero entero (placa, buscador y cajones) en una y la mesa de lectura con sus fichas y el
+  // «¿No está tu ficha?» en otra; si las fichas abiertas no caben, se reparten por alto. Cada sección llena la diapositiva.
+  faq: () => {
+    const $ = sel => app.querySelector(sel);
+    const lectura = [$('.fq-contador'), $('.fq-mesa'), $('.fq-fin')].filter(Boolean);
+    const mide = lectura.reduce((n, k) => n + k.getBoundingClientRect().height + 14, 30);
+    const fichas = $('.fq-mesa') ? [...$('.fq-mesa').children] : [];
+    return [
+      [$('.fq-placa'), $('.fq-mostrador')],
+      ...(mide <= altoDePagina() || !fichas.length ? [lectura] : porAlto([$('.fq-contador'), ...fichas, $('.fq-fin')], { marco: 0 })),
+    ];
+  },
+  // Laboratorio de ideas: el letrero con la mesa (la tutora y la ficha para proponer) si caben juntos, y la estantería
+  // con las ideas (por alto si hay muchas). Cada sala llena su diapositiva (css/laboratorio.css).
+  laboratorio: () => {
+    const $ = sel => app.querySelector(sel);
+    const sala = $('.lb-sala:not(.lb-sala-normas)');
+    if (!sala) return [];
+    const arriba = parseFloat(getComputedStyle(sala).paddingTop);
+    const mide = k => (k ? k.getBoundingClientRect().height + 12 : 0);
+    // juntos aunque se pasen un poco (se encogen como mucho un 6 %): solos, el letrero dejaba media pared vacía
+    const caben = arriba + mide($('.lb-letrero')) + mide($('.lb-mesa-escena')) + 20 <= altoDePagina() * 1.06;
+    const ideas = [...app.querySelectorAll('.lb-formulas > li')];
+    const cabecera = [$('.lb-estanteria-cabecera'), $('.lb-prototipo'), $('.lb-estado')];
+    const estanteria = cabecera.concat(ideas).reduce((n, k) => n + mide(k), 40) <= altoDePagina()
+      ? [[...cabecera, $('.lb-formulas')]]
+      : porAlto([...cabecera, ...ideas], { marco: 0 });
+    return [...(caben ? [[$('.lb-letrero'), $('.lb-mesa-escena')]] : [$('.lb-letrero'), $('.lb-mesa-escena')]), ...estanteria];
+  },
   inicio: () => {
     const $ = sel => app.querySelector(sel);
     // en el móvil, «Elige entre 21 idiomas» (el teatro) va justo después de la portada y la presentación, la penúltima
@@ -226,13 +276,6 @@ const DIAPOSITIVAS = {
     // el mostrador va con la escena: sin decirlo, se quedaba a la vista en todas y tapaba el título (sube 60 px)
     if (altoDePagina() >= 600) return [[$('.rg-titulo'), $('.rg-escena'), $('.rg-mostrador')], $('.rg-pedido'), postales.slice(0, 2), postales.slice(2)];
     return [$('.rg-titulo'), [$('.rg-escena'), $('.rg-mostrador')], $('.rg-pedido'), ...postales];
-  },
-  // FAQ: la placa con el fichero de cajones, y la mesa de lectura con sus fichas y el final; en un móvil bajito, cada
-  // pieza en la suya. Fijas: repartidas solas, cambiaban de una vez a otra (y con el inglés no cabían).
-  faq: () => {
-    const $ = sel => app.querySelector(sel);
-    if (altoDePagina() >= 600) return [[$('.fq-placa'), $('.fq-mostrador')], [$('.fq-contador'), $('.fq-mesa'), $('.fq-fin')]];
-    return [$('.fq-placa'), $('.fq-mostrador'), [$('.fq-contador'), $('.fq-mesa')], $('.fq-fin')];
   },
   // Contacto: la carta va en tres (la ventana con el principio de la carta, los sellos del asunto, y el mensaje con el
   // matasellos y el botón); en un móvil bajito, en cinco.
