@@ -1,24 +1,23 @@
 // Preferencias de este dispositivo: idioma, tema, sonidos y voz.
 // No se sincronizan: cada dispositivo puede tener las suyas.
 
-export const CLAVE_AJUSTES = 'idiomas-ajustes';
-const CLAVE_ANTIGUA = 'espanol-ajustes'; // de cuando la app era solo de español
-// Idiomas de la interfaz (cada curso ofrece dos de ellos: ver i18n.js).
-const IDIOMAS_INTERFAZ = new Set(['es', 'en', 'vi']);
+export const CLAVE_AJUSTES = 'phuong-ajustes';
+// Idiomas de la interfaz: vietnamita (el de siempre) o español (para practicar «en inmersión»).
+const IDIOMAS_INTERFAZ = new Set(['vi', 'es']);
 
-/** Idioma preferido por el navegador/WebView (en Capacitor, el del dispositivo Android). */
+/** Idioma preferido por el navegador/WebView (en Capacitor, el del dispositivo Android); si no es ninguno de los dos, vietnamita. */
 export function idiomaDispositivo() {
   const preferencias = [...(navigator.languages ?? []), navigator.language ?? ''];
   for (const preferencia of preferencias) {
     const codigo = preferencia.toLowerCase().replaceAll('_', '-').split('-')[0];
     if (IDIOMAS_INTERFAZ.has(codigo)) return codigo;
   }
-  return 'en';
+  return 'vi';
 }
 
 const PREDETERMINADOS = {
-  // Automático sigue el idioma del navegador/WebView hasta que la persona elija uno manualmente.
-  idioma: 'auto',
+  // La app es para una estudiante vietnamita: empieza en vietnamita (se cambia en Ajustes).
+  idioma: 'vi',
   tema: 'auto',       // auto · oscuro · claro
   efectos: true,      // sonidos 8-bit de la interfaz
   vozTutora: true,    // pitidos mientras habla la tutora
@@ -32,7 +31,7 @@ let ajustes = cargar();
 
 function cargar() {
   try {
-    return { ...PREDETERMINADOS, ...JSON.parse(localStorage.getItem(CLAVE_AJUSTES) ?? localStorage.getItem(CLAVE_ANTIGUA)) };
+    return { ...PREDETERMINADOS, ...JSON.parse(localStorage.getItem(CLAVE_AJUSTES)) };
   } catch {
     return { ...PREDETERMINADOS };
   }

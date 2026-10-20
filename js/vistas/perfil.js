@@ -1,11 +1,8 @@
-// Pantalla «Perfil»: nombre, cuenta en la nube, progreso, ajustes, copia de seguridad, reinicio y «borrar todos mis datos».
+// Pantalla «Perfil»: nombre, la cuenta (el código y la nube), progreso, ajustes y reinicio.
 
 import { el, poner, enLinea } from '../dom.js';
 import { t, locale, IDIOMAS_VISIBLES, idioma, cambiarIdioma } from '../i18n.js';
-import {
-  nombre, cambiarNombre, resumenLeccion, tarjetas, racha, mejorRacha, actividad, reiniciarProgreso,
-  copiaCompleta, importarCopia,
-} from '../progress.js';
+import { nombre, cambiarNombre, resumenLeccion, tarjetas, racha, mejorRacha, actividad, reiniciarProgreso } from '../progress.js';
 import { etapa } from '../srs.js';
 import { ajuste, cambiarAjuste, modoCalma } from '../ajustes.js';
 import { prepararVoces, nombreVoz, pronunciar, sonar, ayudaVoz, abrirInstalacionDeVoces } from '../sonidos.js';
@@ -15,9 +12,10 @@ import { todasLasEstrellas } from '../../juegos/motor.js';
 import { LOGROS, logrosGanados, comprobarLogros } from '../logros.js';
 import { conCartel } from './carteles.js';
 import { seccionEstadisticas } from './estadisticas.js';
-import { PALETAS, paletaActual, cambiarPaleta, puedeUsar } from '../paletas.js';
-import { nube, alCambiarNube, borrarTodo } from '../nube.js';
-import { usuario, haySesion, refrescarUsuario, salir, borrarCuenta, canjearRegalo, familiaEstado, familiaInvitar, familiaUnirse, familiaQuitar, textoDeError } from '../servidor.js';
+import { nube, alCambiarNube, guardarYa } from '../nube.js';
+import { codigoActual, recordado, recordar, bloquear } from '../cuenta.js';
+import { selectorAviso } from '../avisos.js';
+import { respuestasCcse, simulacrosCcse } from '../examenes.js';
 
 function estadisticas(resultados) {
   const lecciones = resultados.filter(r => r.leccion);
@@ -63,127 +61,63 @@ function seccionNombre() {
   return el('section', { class: 'caja' }, el('h2', {}, t('perfil.tuNombre')), form);
 }
 
-// ----- La cuenta (al estilo Mullvad): el número, entrar con otro y, si se quiere, un correo -----
-/** La cuenta: número, correo y plan (comprobado en el servidor), canjear un regalo, la familia, salir y borrarla. */
-function seccionCuenta(repintar) {
-  if (!haySesion()) {
-    return el('section', { class: 'caja cu-cuenta' },
-      el('h2', {}, t('cuenta2.titulo')),
-      el('p', {}, t('cuenta3.sinSesion')),
-      el('a', { class: 'boton boton-principal', href: '#/entrar' }, t('cuenta3.entrar')));
-  }
-  const u = usuario() ?? {};
-  const fecha = f => new Date(f).toLocaleDateString(locale(), { day: 'numeric', month: 'long', year: 'numeric' });
-  const textoPlan = () => {
-    const x = usuario() ?? {};
-    if (x.dev) return t('cuenta3.planDev');
-    const base = t(`cuenta3.plan.${x.plan ?? 'gratis'}`);
-    const extra = [x.fundador ? t('cuenta3.fundador') : null, x.familia === 'miembro' ? t('cuenta3.deFamilia') : null,
-      x.hasta ? t('cuenta3.hasta', { fecha: fecha(x.hasta) }) : (x.plan && x.plan !== 'gratis' ? t('cuenta3.siempre') : null)].filter(Boolean);
-    return [base, ...extra].join(' · ');
-  };
-  const plan = el('p', { class: `cu-plan cu-plan-${u.plan ?? 'gratis'}` }, textoPlan());
+// ----- La cuenta: el código, la nube, «Guardar ahora», recordar el código y bloquear -----
+function seccionCuenta() {
+  const codigo = codigoActual() ?? '';
   const estado = el('p', { class: 'cu-estado', 'aria-live': 'polite' });
-  const pintarEstado = () => { estado.className = `cu-estado cu-${nube.estado}`; estado.textContent = t(`cuenta2.estado.${nube.estado}`); };
+  const pintarEstado = () => {
+    estado.className = `cu-estado cu-${nube.estado}`;
+    const hora = nube.ultima ? nube.ultima.toLocaleTimeString(locale(), { hour: '2-digit', minute: '2-digit' }) : null;
+    estado.textContent = t(`ph.nube.${nube.estado}`) + (nube.estado === 'guardada' && hora ? ` · ${hora}` : '');
+  };
   pintarEstado();
   const quitar = alCambiarNube(() => { if (!estado.isConnected) { quitar(); return; } pintarEstado(); });
-  // lo que diga el servidor ahora mismo (el plan puede haber cambiado en otro dispositivo)
-  refrescarUsuario().then(() => { if (plan.isConnected) plan.textContent = textoPlan(); }).catch(() => {});
 
-  // canjear un regalo (el código de la tarjeta o del correo)
-  const codigoRegalo = el('input', { type: 'text', autocomplete: 'off', maxlength: '24', placeholder: 'PGM-XXXX-XXXX-XXXX', 'aria-label': t('cuenta3.codigoRegalo') });
-  const canjear = el('button', { type: 'submit', class: 'boton' }, t('cuenta3.canjear'));
-  const formRegalo = el('form', { class: 'cu-fila' }, codigoRegalo, canjear);
-  formRegalo.addEventListener('submit', async e => {
-    e.preventDefault();
-    if (!codigoRegalo.value.trim()) { codigoRegalo.focus(); return; }
-    canjear.disabled = true;
-    try {
-      await canjearRegalo(codigoRegalo.value);
-      sonar('fanfarria');
-      decir(t('cuenta3.regaloCanjeado'), 'contenta');
-      repintar();
-    } catch (error) {
-      sonar('mal');
-      decir(textoDeError(error), 'confundida');
-    } finally { canjear.disabled = false; }
+  const guardar = el('button', { type: 'button', class: 'boton boton-mini' }, '☁️ ', t('ph.perfil.guardarYa'));
+  guardar.addEventListener('click', async () => {
+    guardar.disabled = true;
+    await guardarYa();
+    guardar.disabled = false;
+    sonar(nube.estado === 'guardada' ? 'guardar' : 'mal');
   });
-
-  // la familia: quien la paga invita por correo; quien recibe la invitación escribe aquí su código
-  const zonaFamilia = el('div', { class: 'cu-familia' });
-  const pintarFamilia = f => {
-    if (!f) {
-      const codigo = el('input', { type: 'text', autocomplete: 'off', maxlength: '12', 'aria-label': t('cuenta3.codigoFamilia'), placeholder: 'ABCD1234' });
-      const unirme = el('button', { type: 'submit', class: 'boton' }, t('cuenta3.unirme'));
-      const form = el('form', { class: 'cu-fila' }, codigo, unirme);
-      form.addEventListener('submit', async e => {
-        e.preventDefault();
-        unirme.disabled = true;
-        try { await familiaUnirse(codigo.value); await refrescarUsuario(); sonar('fanfarria'); decir(t('cuenta3.enFamilia'), 'contenta'); repintar(); }
-        catch (error) { sonar('mal'); decir(textoDeError(error), 'confundida'); }
-        finally { unirme.disabled = false; }
-      });
-      poner(zonaFamilia, el('h3', {}, t('cuenta3.familia')), el('p', { class: 'aprox' }, t('cuenta3.familiaAyuda')), form);
-      return;
-    }
-    const lista = el('ul', { class: 'cu-miembros' }, f.miembros.map(m => el('li', {}, `${m.nombre || '—'} · ${m.numero}`,
-      f.soyTitular ? el('button', { type: 'button', class: 'boton boton-mini', onclick: async () => { await familiaQuitar(m.numero); repintar(); } }, t('cuenta3.quitar')) : null)));
-    const partes = [el('h3', {}, t('cuenta3.familia'), ' ', el('span', { class: 'aprox' }, `${f.miembros.length}/${f.plazas}`)), lista];
-    if (f.soyTitular && f.miembros.length < f.plazas) {
-      const correo = el('input', { type: 'email', autocomplete: 'off', placeholder: t('cuenta2.correoEjemplo'), 'aria-label': t('cuenta2.correo') });
-      const invitar = el('button', { type: 'submit', class: 'boton' }, t('cuenta3.invitar'));
-      const form = el('form', { class: 'cu-fila' }, correo, invitar);
-      form.addEventListener('submit', async e => {
-        e.preventDefault();
-        if (!correo.checkValidity() || !correo.value.trim()) { correo.focus(); return; }
-        invitar.disabled = true;
-        try { await familiaInvitar(correo.value.trim()); sonar('volar'); decir(t('cuenta3.invitado', { correo: correo.value.trim() }), 'contenta'); correo.value = ''; }
-        catch (error) { sonar('mal'); decir(textoDeError(error), 'confundida'); }
-        finally { invitar.disabled = false; }
-      });
-      partes.push(el('p', { class: 'aprox' }, t('cuenta3.invitarAyuda')), form);
-    } else if (!f.soyTitular) {
-      partes.push(el('button', { type: 'button', class: 'boton boton-mini', onclick: async () => { await familiaQuitar(u.numero); await refrescarUsuario(); repintar(); } }, t('cuenta3.salirFamilia')));
-    }
-    poner(zonaFamilia, ...partes);
-  };
-  pintarFamilia(null);
-  familiaEstado().then(f => { if (zonaFamilia.isConnected) pintarFamilia(f); }).catch(() => {});
-
-  const botonSalir = el('button', { type: 'button', class: 'boton boton-mini' }, t('cuenta3.salir'));
-  botonSalir.addEventListener('click', async () => {
-    await salir();
+  const casilla = el('input', { type: 'checkbox', id: 'cu-recordar' });
+  casilla.checked = recordado();
+  casilla.addEventListener('change', () => { recordar(casilla.checked); sonar('interruptor'); });
+  const cerrar = el('button', { type: 'button', class: 'boton boton-mini' }, '🔒 ', t('ph.perfil.bloquear'));
+  cerrar.addEventListener('click', async () => {
+    await guardarYa();
     sonar('cerrar');
-    location.hash = '#/entrar';
-  });
-  // borrar la cuenta: hace falta la contraseña (la de desarrollo no se puede borrar)
-  const claveBorrar = el('input', { type: 'password', autocomplete: 'current-password', 'aria-label': t('cuenta3.clave'), placeholder: t('cuenta3.clave') });
-  const botonBorrar = el('button', { type: 'submit', class: 'boton boton-mini boton-peligro' }, t('cuenta2.borrar'));
-  const formBorrar = el('form', { class: 'cu-fila' }, claveBorrar, botonBorrar);
-  formBorrar.addEventListener('submit', async e => {
-    e.preventDefault();
-    if (!confirm(t('cuenta3.borrarConfirmar'))) return;
-    try { await borrarCuenta(claveBorrar.value); sonar('quitar'); decir(t('cuenta2.borrada'), 'sorprendida'); location.hash = '#/entrar'; }
-    catch (error) { sonar('mal'); decir(textoDeError(error), 'confundida'); }
+    bloquear();
   });
 
   return el('section', { class: 'caja cu-cuenta' },
-    el('h2', {}, t('cuenta2.titulo')),
+    el('h2', {}, t('ph.perfil.cuenta')),
     el('dl', { class: 'datos' },
-      dato(t('cuenta3.numero'), String(u.numero ?? '—')),
-      dato(t('cuenta2.correo'), u.correo ?? '—')),
-    plan,
-    u.dev || u.plan === 'max' ? null : el('a', { class: 'boton boton-principal', href: '#/precios' }, t('cuenta3.mejorar')),
+      dato(t('ph.perfil.codigo'), `${codigo.slice(0, 2)}••`),
+      dato(t('ph.perfil.nube'), 'Supabase')),
     estado,
-    el('h3', {}, t('cuenta3.regalo')),
-    formRegalo,
-    zonaFamilia,
-    el('div', { class: 'botonera' },
-      el('a', { class: 'boton boton-mini', href: '#/entrar/clave' }, t('cuenta3.cambiarClave')),
-      botonSalir),
-    el('details', { class: 'cu-borrar' }, el('summary', {}, t('cuenta2.borrar')), el('p', { class: 'aprox' }, t('cuenta3.borrarAyuda')), formBorrar));
+    nube.estado === 'sin-instalar' ? el('p', { class: 'aprox' }, t('ph.perfil.sinInstalar')) : null,
+    el('p', { class: 'aprox' }, t('ph.perfil.cuentaTexto')),
+    el('div', { class: 'campo-casilla' }, casilla, el('label', { for: 'cu-recordar' }, t('ph.codigo.recordar'))),
+    el('div', { class: 'botonera' }, guardar, cerrar));
 }
 
+/** Lo de los exámenes de la nacionalidad: el CCSE (preguntas dominadas y simulacros). */
+function seccionExamenes() {
+  const respuestas = Object.values(respuestasCcse());
+  const dominadas = respuestas.filter(r => r.racha >= 2).length;
+  const sims = simulacrosCcse();
+  const mejor = sims.reduce((m, s) => Math.max(m, s.aciertos), 0);
+  return el('section', { class: 'caja' },
+    el('h2', {}, '🏛️ ', t('ph.perfil.examenes')),
+    el('dl', { class: 'datos' },
+      dato(t('ph.perfil.ccseVistas'), `${respuestas.length}/300`),
+      dato(t('ph.perfil.ccseDominadas'), `${dominadas}/300`),
+      dato(t('ph.perfil.ccseSimulacros'), String(sims.length), sims.length ? t('ph.perfil.ccseMejor', { n: mejor }) : null)),
+    el('p', { class: 'botonera' },
+      el('a', { class: 'boton boton-mini', href: '#/ccse' }, 'CCSE'),
+      el('a', { class: 'boton boton-mini', href: '#/dele' }, 'DELE')));
+}
 // ----- La actividad de las últimas 12 semanas, como un calendario de cuadritos -----
 const claveDia = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
@@ -302,28 +236,6 @@ function seccionProgreso(resultados) {
       dato(t('perfil.racha'), t('srs.dias', { n: r }), t('perfil.rachaDetalle'))));
 }
 
-/** Los temas de color: la de siempre para todos; dos más con Plus y todas con Max (las demás, con su candado). */
-function selectorPaletas() {
-  const grupo = el('div', { class: 'paletas', role: 'group', 'aria-labelledby': 'titulo-paleta' });
-  const pintar = () => poner(grupo, PALETAS.map(p => {
-    const libre = puedeUsar(p.id);
-    const b = el('button', {
-      type: 'button', class: `paleta${libre ? '' : ' cerrada'}`, 'aria-pressed': String(paletaActual() === p.id),
-      'data-sonido': libre ? 'clic' : 'nada', title: libre ? '' : t(p.plan === 'plus' ? 'paleta.conPlus' : 'paleta.conMax'),
-    },
-    el('span', { class: 'paleta-muestra', 'data-paleta-muestra': p.id, 'aria-hidden': 'true' }),
-    el('span', {}, t(`paleta.${p.id}`)),
-    libre ? null : el('small', {}, p.plan === 'plus' ? 'PLUS' : 'MAX'));
-    b.addEventListener('click', () => {
-      if (!cambiarPaleta(p.id)) { decir(t(p.plan === 'plus' ? 'paleta.conPlus' : 'paleta.conMax'), 'pensando'); return; }
-      pintar();
-    });
-    return b;
-  }));
-  pintar();
-  return grupo;
-}
-
 function interruptor(id, texto, nombreAjuste, alCambiar) {
   const casilla = el('input', { id, type: 'checkbox' });
   casilla.checked = Boolean(ajuste(nombreAjuste));
@@ -394,36 +306,21 @@ function seccionAjustes() {
   prepararVoces().then(pintarVoz);
   window.addEventListener('voz-cambiada', alCambiarVoz);
 
-  // el aviso diario solo existe en la APK (_apk/puente.js): a qué hora, o ninguno
-  const HORAS = ['no', '09:00', '13:00', '19:00', '21:00'];
-  const recordatorio = window.PaglotRecordatorio && el('div', { class: 'filtros', role: 'group', 'aria-labelledby': 'titulo-recordatorio' },
-    HORAS.map(hora => {
-      const b = el('button', { type: 'button', class: 'boton boton-mini', 'aria-pressed': String(ajuste('recordatorio') === hora) },
-        hora === 'no' ? t('ajustes.recordatorioNo') : hora);
-      b.addEventListener('click', async () => {
-        sonar('interruptor');
-        if (!await window.PaglotRecordatorio(hora)) return;
-        cambiarAjuste('recordatorio', hora);
-        recordatorio.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
-      });
-      return b;
-    }));
+  // el aviso diario solo existe en la APK (js/avisos.js): a qué hora, o ninguno
+  const recordatorio = selectorAviso();
 
   return el('section', { class: 'caja' },
     el('h2', {}, t('ajustes.titulo')),
-    // (el curso de inglés solo se explica en español: no hay nada que elegir)
-    ...(IDIOMAS_VISIBLES.length > 1 ? [
-      el('h3', { id: 'titulo-idioma' }, t('ajustes.idioma')),
-      el('p', { class: 'aprox' }, t('ajustes.idiomaAyuda')),
-      idiomas] : []),
+    el('h3', { id: 'titulo-idioma' }, t('ajustes.idioma')),
+    el('p', { class: 'aprox' }, t('ph.perfil.idiomaAyuda')),
+    idiomas,
     el('h3', { id: 'titulo-tema' }, t('ajustes.tema')),
     tema,
-    el('h3', { id: 'titulo-paleta' }, t('paleta.titulo')),
-    selectorPaletas(),
     el('h3', {}, t('ajustes.sonido')),
     interruptor('ajuste-efectos', t('ajustes.efectos'), 'efectos', activo => activo && sonar('bien')),
     interruptor('ajuste-voz-tutora', t('ajustes.pitidos'), 'vozTutora'),
-    recordatorio && el('h3', { id: 'titulo-recordatorio' }, t('ajustes.recordatorio')),
+    recordatorio && el('h3', {}, '🔔 ', t('ajustes.recordatorio')),
+    recordatorio && el('p', { class: 'aprox' }, t('ph.aviso.ajusteAyuda')),
     recordatorio,
     el('h3', {}, t('ajustes.comodidad')),
     calma,
@@ -440,61 +337,6 @@ function seccionAjustes() {
       class: 'boton con-voz',
       onclick: () => pronunciar(curso.hola || curso.nativo),
     }, t('ajustes.probarVoz')));
-}
-
-function seccionCopia(repintar) {
-  const descargar = el('button', { type: 'button', class: 'boton' }, t('copia.descargar'));
-  descargar.addEventListener('click', async () => {
-    const fecha = new Date().toISOString().slice(0, 10);
-    const nombreArchivo = `${curso.prefijo}-progreso-${fecha}.json`;
-    const texto = JSON.stringify(copiaCompleta(), null, 2);
-    // en la APK el enlace de descarga no hace nada: se guarda el archivo con el plugin de archivos y se abre «Compartir»
-    // (Drive, correo, WhatsApp…). Sin los plugins (una APK vieja), se copia al portapapeles.
-    const nativos = window.Capacitor?.isNativePlatform?.() ? window.Capacitor.Plugins : null;
-    if (nativos) {
-      try {
-        const { uri } = await nativos.Filesystem.writeFile({ path: nombreArchivo, data: texto, directory: 'CACHE', encoding: 'utf8' });
-        await nativos.Share.share({ title: t('copia.descargar'), files: [uri], dialogTitle: t('copia.compartir') });
-        sonar('guardar');
-        decir(t('copia.descargadaTutora'), 'contenta');
-      } catch {
-        try { await navigator.clipboard.writeText(texto); decir(t('copia.copiadaPortapapeles'), 'contenta'); } catch { decir(t('copia.noSePudo'), 'confundida'); }
-      }
-      return;
-    }
-    const archivo = new Blob([texto], { type: 'application/json' });
-    const enlace = el('a', { href: URL.createObjectURL(archivo), download: nombreArchivo });
-    document.body.append(enlace);
-    enlace.click();
-    enlace.remove();
-    setTimeout(() => URL.revokeObjectURL(enlace.href), 1000);
-    sonar('guardar');
-    decir(t('copia.descargadaTutora'), 'contenta');
-  });
-
-  const selector = el('input', { id: 'cargar-copia', type: 'file', accept: '.json,application/json', class: 'solo-lector' });
-  const cargar = el('label', { for: 'cargar-copia', class: 'boton', tabindex: '0', role: 'button' }, t('copia.cargar'));
-  cargar.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selector.click(); } });
-  selector.addEventListener('change', async () => {
-    const archivo = selector.files?.[0];
-    if (!archivo) return;
-    try {
-      const ok = importarCopia(JSON.parse(await archivo.text()));
-      if (!ok) throw new Error();
-      sonar('bien');
-      repintar();
-      decir(t('copia.cargadaTutora'), 'contenta');
-    } catch {
-      sonar('mal');
-      decir(t('copia.noValida'), 'confundida');
-    }
-    selector.value = '';
-  });
-
-  return el('section', { class: 'caja' },
-    el('h2', {}, t('copia.titulo')),
-    el('p', {}, t('copia.texto')),
-    el('div', { class: 'botonera' }, descargar, cargar, selector));
 }
 
 function seccionReinicio(repintar) {
@@ -514,47 +356,20 @@ function seccionReinicio(repintar) {
     boton);
 }
 
-// Borrar todo lo que Paglot guarda de esta persona: la cuenta en la nube y todo lo del dispositivo, de todos los cursos.
-function seccionBorrarTodo() {
-  const boton = el('button', { type: 'button', class: 'boton boton-peligro' }, t('borrarTodo.boton'));
-  boton.addEventListener('click', async () => {
-    if (!confirm(t('borrarTodo.confirmar'))) return;
-    boton.disabled = true;
-    sonar('quitar');
-    await borrarTodo();
-    location.hash = '#/';
-    location.reload();
-  });
-  return el('section', { class: 'caja zona-peligro' },
-    el('h2', {}, t('borrarTodo.titulo')),
-    el('p', {}, t('borrarTodo.texto')),
-    boton);
-}
-
-/** Los simulacros de examen: un enlace a #/simulacros (PDF para practicar por tu cuenta, sin nota). */
-function seccionSimulacros() {
-  return el('section', { class: 'caja' },
-    el('h2', {}, t('sim.cabecera')),
-    el('p', {}, t('sim.perfil')),
-    el('a', { class: 'boton', href: '#/simulacros' }, t('sim.enlace')));
-}
-
 export function pintarPerfil(app, { resultados, capitulos = [] }) {
   const repintar = () => pintarPerfil(app, { resultados, capitulos });
   poner(app,
     conCartel(el('section', { class: 'intro-vista' },
       el('h1', {}, nombre() ? t('perfil.de', { nombre: nombre() }) : t('menu.perfil'))), 'perfil'),
     seccionNombre(),
-    seccionCuenta(repintar),
+    seccionCuenta(),
+    seccionExamenes(),
     seccionProgreso(resultados),
     seccionEstadisticas(),
     seccionActividad(),
     seccionNiveles(resultados, capitulos),
-    seccionSimulacros(),
     seccionLogros(),
     seccionAjustes(),
-    seccionCopia(repintar),
-    seccionReinicio(repintar),
-    seccionBorrarTodo());
+    seccionReinicio(repintar));
   decir(nombre() ? t('perfil.tutora', { nombre: nombre() }) : t('perfil.tutoraSinNombre'));
 }

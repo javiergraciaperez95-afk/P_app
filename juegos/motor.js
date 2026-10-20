@@ -26,7 +26,6 @@ import { analizarFrase, botonPalabra } from '../js/vistas/leccion.js';
 import { crearElenco } from '../js/vistas/elenco.js';
 import { LANG, clave } from '../js/curso.js';
 import { elegir, probar, hayJuegoPara } from './catalogo.js';
-import { esDesarrollador } from '../js/desarrollador.js';
 import { confeti } from '../js/fiesta.js';
 import { altoPantalla, tecladoAbierto } from '../js/teclado.js';
 import './lista.js';
@@ -144,7 +143,7 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
   }
   const avance = leerAvance(leccion.id);
   const hechos = new Set(avance.hechos);
-  const dev = esDesarrollador(); // todo cuenta como hecho y los hitos llevan a su paso
+  const dev = false; // (el modo desarrollador de Paglot ya no existe: nada cuenta como hecho sin hacerlo)
   const estaHecho = i => dev || hechos.has(i);
   let actual = Math.min(avance.paso, pasos.length);
   // fallos de esta partida (cada juego hace sonar «mal» al fallar): deciden las estrellas del final

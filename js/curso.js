@@ -1,31 +1,14 @@
-// El curso (el idioma que se estudia) elegido en este dispositivo.
-// La app es una sola para todos los idiomas: el programa es el mismo y lo que cambia es la carpeta
-// de contenido (cursos/<id>/), la tutora, la voz y dónde se guarda el progreso. Todo eso sale de aquí.
-// Cambiar de curso recarga la página, así el resto del programa puede leer «curso» como algo fijo.
+// El curso de Phuong App: siempre español, explicado en vietnamita (cursos/es/vi/). Aquí sale todo lo del curso: la
+// carpeta de contenido, la tutora, la voz y el nombre con el que se guarda el progreso en el dispositivo.
 
 import { CURSOS } from './cursos.js';
-import { ajuste, idiomaDispositivo } from './ajustes.js';
 
-const CLAVE_CURSO = 'idiomas-curso';
+/** Siempre hay curso (es el único). Se deja para el código que antes elegía idioma. */
+export const hayCurso = true;
 
-function leerElegido() {
-  try {
-    const id = localStorage.getItem(CLAVE_CURSO);
-    const c = CURSOS.find(x => x.id === id && !x.proximamente);
-    if (c) return c;
-    // quien ya estudiaba español cuando la app era solo de español sigue en su curso sin tener que elegirlo
-    if (!id && localStorage.getItem('espanol-datos')) {
-      localStorage.setItem(CLAVE_CURSO, 'es');
-      return CURSOS.find(x => x.id === 'es');
-    }
-  } catch { /* sin almacenamiento */ }
-  return null;
-}
+export const curso = CURSOS.find(c => c.id === 'es');
 
-const elegido = leerElegido();
-
-// Nombre propio de cada tutora, elegido según el idioma que se está aprendiendo.
-// Se mantienen en escritura local cuando existe, para que suenen naturales en cada curso.
+// Nombre propio de cada tutora: Lucía es la de español; las demás son sus compañeras en los minijuegos.
 export const NOMBRES_TUTORAS = {
   en: 'Emily', es: 'Lucía', fr: 'Camille', de: 'Anna', ja: 'Yui',
   it: 'Sofia', ko: '민지', zh: '小雨', pt: 'Inês', ru: 'Анна',
@@ -33,67 +16,25 @@ export const NOMBRES_TUTORAS = {
   no: 'Nora', vi: 'Linh', id: 'Sari', da: 'Freja', ro: 'Ana', th: 'มะลิ',
 };
 
-/** false mientras no se ha elegido idioma: se enseña la pantalla «Elige el idioma». */
-export const hayCurso = Boolean(elegido);
-
-/** Nombre de la tutora del idioma elegido, o null antes de elegir un curso. */
-export const nombreTutora = NOMBRES_TUTORAS[elegido?.id] ?? null;
-
-export const curso = elegido ?? {
-  id: '', carpeta: 'cursos/_ninguno', campo: 'es', lang: 'es', voz: 'es-ES', prefijo: 'idiomas', tabla: '',
-  nativo: '', nombre: {}, hola: '', letras: [], sprite: '',
-};
+export const nombreTutora = NOMBRES_TUTORAS.es;
 
 /** Código del idioma que se estudia, para el atributo lang de sus textos. */
 export const LANG = curso.lang;
 
-/** Nombre con el que este curso guarda algo en el dispositivo: cada curso tiene lo suyo. */
+/** Nombre con el que el curso guarda algo en el dispositivo. */
 export const clave = nombre => `${curso.prefijo}-${nombre}`;
 
-/** Ruta de un archivo de contenido de este curso. */
+/** Ruta de un archivo de contenido del curso. */
 export const ruta = archivo => `${curso.carpeta}/${archivo}`;
 
-/** Nombre del idioma estudiado, adaptado al idioma de la interfaz cuando es posible. */
+/** Nombre del idioma estudiado, en el idioma de la interfaz. */
 export function nombreCurso(c, idioma) {
-  if (c.nombre[idioma]) return c.nombre[idioma];
-  // cursos.js trae los nombres en inglés, español, portugués, vietnamita y chino; para el resto lo dice el navegador.
-  try { return new Intl.DisplayNames([idioma], { type: 'language' }).of(c.lang) ?? c.nombre.en ?? c.nativo; }
-  catch { return c.nombre.en ?? c.nativo; } // navegador sin Intl.DisplayNames
+  return c.nombre?.[idioma] ?? c.nombre?.es ?? c.nativo;
 }
 export const nombreDelCurso = idioma => nombreCurso(curso, idioma);
 
 /** El saludo del idioma sin signos, para frases como «¡Hola, Ana!». */
 export const saludo = curso.hola.replace(/^[¡¿\s]+|[!！.。\s]+$/gu, '');
 
-/** En qué idiomas se explica cada curso: en español, inglés y vietnamita, menos en el propio idioma del curso (cada
- *  uno tiene su carpeta cursos/<curso>/<es|en|vi>/, ver _herramientas/modelos/LEEME.txt). */
-export const idiomasDe = c => ['es', 'en', 'vi'].filter(i => i !== c.id);
-
-/** El idioma de quien estudia: el que eligió para la interfaz o, si no eligió ninguno, el de su móvil o navegador. */
-export function lenguaDelAlumno() {
-  const i = ajuste('idioma');
-  return ['es', 'en', 'vi'].includes(i) ? i : idiomaDispositivo();
-}
-
-/** Si un curso es para quien usa la interfaz en «lengua»: 'si'; 'no' (es su propio idioma: no se le enseña) o 'pronto'
- *  (aún no está explicado en su idioma: sale en la lista, pero al entrar le decimos que no hemos terminado). */
-export function paraQuien(c, lengua) {
-  if (c.id === lengua) return 'no';
-  return idiomasDe(c).includes(lengua) ? 'si' : 'pronto';
-}
-
-/** Los cursos que están revisados a fondo; los demás llevan el aviso de «beta» (ver vistas/lecciones.js). */
-export const CURSOS_REVISADOS = ['es'];
-export const esBeta = c => !CURSOS_REVISADOS.includes(c.id);
-
-export function elegirCurso(id) {
-  try { localStorage.setItem(CLAVE_CURSO, id); } catch { /* sin almacenamiento */ }
-  location.hash = '#/lecciones';
-  location.reload();
-}
-
-export function cambiarDeCurso() {
-  try { localStorage.removeItem(CLAVE_CURSO); } catch { /* sin almacenamiento */ }
-  location.hash = '#/';
-  location.reload();
-}
+/** La lengua en la que se explican las lecciones: siempre vietnamita (la interfaz puede ir en vietnamita o español). */
+export const LENGUA_DEL_ALUMNO = 'vi';

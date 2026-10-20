@@ -27,7 +27,7 @@ import { diccionarioCompleto } from './leccion.js';
 import { confeti } from '../fiesta.js';
 import { enlaceReto } from './reto.js';
 import { conCartel } from './carteles.js';
-import { botonAvisos } from '../avisos-repaso.js';
+import { botonAvisos } from '../avisos.js';
 
 const NUEVAS_POR_SESION = 20;
 const VOLVER_EN_SESION = 20 * 60 * 1000; // lo que vence en menos de 20 min vuelve a salir hoy

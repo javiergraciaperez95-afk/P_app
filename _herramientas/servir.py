@@ -31,5 +31,5 @@ class Servidor(ThreadingHTTPServer):
 if __name__ == '__main__':
     puerto = int(sys.argv[1]) if len(sys.argv) > 1 else 8300
     with Servidor(('127.0.0.1', puerto), partial(SinCache, directory=str(RAIZ))) as servidor:
-        print(f'Paglot en http://localhost:{puerto}/index.html')
+        print(f'Phuong App en http://localhost:{puerto}/index.html')
         servidor.serve_forever()

@@ -1,16 +1,14 @@
-// Estadísticas del perfil (de pago: Plus o Max). Todo sale de lo guardado en el dispositivo; nada se envía.
+// Estadísticas del perfil. Todo sale del progreso guardado:
 //   · los últimos 30 días: ejercicios y repasos de cada día (una barra por día);
 //   · la memoria del cuaderno: cuántas tarjetas están nuevas, aprendiéndose, en repaso o dominadas;
 //   · los repasos que tocan los próximos 7 días;
 //   · el ritmo: días activos del mes, media por día activo y el día de la semana que más estudias;
 //   · lo que más cuesta: las tarjetas que más se han olvidado.
-// En el plan gratis se ve el título, lo que trae y el enlace a los planes (sin datos dibujados detrás).
 import { el } from '../dom.js';
 import { t, locale } from '../i18n.js';
 import { LANG } from '../curso.js';
 import { actividad, tarjetas } from '../progress.js';
 import { etapa, esNueva } from '../srs.js';
-import { tienePlan } from '../planes.js';
 
 const DIA = 24 * 60 * 60 * 1000;
 const claveDeDia = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -25,15 +23,7 @@ function barras(puntos, { etiqueta, clase = '' }) {
 }
 
 export function seccionEstadisticas() {
-  const caja = el('section', { class: 'caja estadisticas' }, el('h2', {}, t('est.titulo'), ' ', el('span', { class: 'est-sello' }, 'PLUS')));
-  if (!tienePlan('plus')) {
-    caja.append(
-      el('p', {}, t('est.bloqueado')),
-      el('ul', { class: 'est-lista-bloqueo' }, ['est.b1', 'est.b2', 'est.b3', 'est.b4'].map(k => el('li', {}, t(k)))),
-      el('a', { class: 'boton boton-principal', href: '#/precios' }, t('est.verPlanes')));
-    caja.classList.add('bloqueada');
-    return caja;
-  }
+  const caja = el('section', { class: 'caja estadisticas' }, el('h2', {}, t('est.titulo')));
 
   const dias = actividad() ?? {};
   const hoy = new Date();

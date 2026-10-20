@@ -4,8 +4,6 @@ import { el, poner } from '../dom.js';
 import { t, tr, origenTarjeta, textoOrigen, idioma, locale } from '../i18n.js';
 import { icono } from '../iconos.js';
 import { tarjetas, quitarDelCuaderno, guardarEnCuaderno, estaEnCuaderno } from '../progress.js';
-import { puedeGuardarAMano } from '../limites.js';
-import { avisarMuro } from './muro.js';
 import { etapa, tocaRepasar, esNueva } from '../srs.js';
 import { botonEscuchar, botonGuardar } from '../comunes.js';
 import { diccionarioCompleto } from './leccion.js';
@@ -102,7 +100,6 @@ function formularioNueva(repintar) {
       return;
     }
     // La traducción se guarda en el idioma en que se ha escrito.
-    if (!puedeGuardarAMano()) { avisarMuro('cuaderno'); return; }
     guardarEnCuaderno({ es: texto, trad: { [idioma()]: trad.value.trim() }, tipo: texto.includes(' ') ? 'frase' : 'palabra', origen: origenTarjeta('cuaderno.aMano') });
     sonar('guardar');
     decir(t('comun.apuntado', { texto }), 'contenta');

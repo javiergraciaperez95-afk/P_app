@@ -1,10 +1,8 @@
-// Lo que hace falta cuando la app va instalada en un móvil (empaquetada con Capacitor):
-// el botón «atrás» de Android, la pregunta antes de salir de un juego y los enlaces de los correos.
-// En el navegador casi nada de esto se activa; solo la pregunta al salir del juego.
+// Lo que hace falta cuando la app va instalada en el móvil (empaquetada con Capacitor): el botón «atrás» de Android y
+// la pregunta antes de salir de un juego. En el navegador solo se activa la pregunta al salir del juego.
 
 import { t } from './i18n.js';
 import { el } from './dom.js';
-import { hayCurso } from './curso.js';
 import { sonar } from './sonidos.js';
 
 const piezas = window.Capacitor?.isNativePlatform?.() ? window.Capacitor.Plugins : null;
@@ -44,21 +42,21 @@ export function confirmar(texto, { si, no }) {
 
 const enJuego = () => Boolean(document.querySelector('.juego'));
 
-/** Antes de salir de una lección en modo juego se pregunta. Devuelve true si se puede salir. */
+/** Antes de salir de una lección en modo juego (o de un examen a medias) se pregunta. Devuelve true si se puede salir. */
 export function salirDelJuego() {
+  if (document.querySelector('[data-examen-en-curso]')) {
+    return confirmar(t('ph.examen.salirPregunta'), { si: t('ph.examen.salirSi'), no: t('ph.examen.salirNo') });
+  }
   if (!enJuego()) return Promise.resolve(true);
   return confirmar(t('juego.salir.pregunta'), { si: t('juego.salir.si'), no: t('juego.salir.no') });
 }
 
 // --- Solo instalada ---------------------------------------------------------------------------
 
-/** Pantallas principales: el inicio, la lista de lecciones y la de elegir idioma (sin curso elegido, todo menos los créditos). */
-function enPrincipal() {
-  const hash = location.hash;
-  return hayCurso ? ['', '#/', '#/inicio', '#/lecciones', '#/idiomas'].includes(hash) : !['#/creditos', '#/legal', '#/sobre', '#/entrar', '#/precios'].includes(hash);
-}
+/** La pantalla de inicio (y la del código): «atrás» desde ellas cierra la app. */
+const enPrincipal = () => ['', '#/', '#/inicio', '#/codigo'].includes(location.hash);
 
-// Las pantallas por las que se ha pasado, para que «atrás» vuelva a la anterior de verdad (y no siempre a la lista)
+// Las pantallas por las que se ha pasado, para que «atrás» vuelva a la anterior de verdad
 const pasadas = [location.hash];
 let volviendo = false;
 window.addEventListener('hashchange', () => {
@@ -68,33 +66,21 @@ window.addEventListener('hashchange', () => {
 });
 
 if (piezas?.App) {
-  // Botón «atrás»: primero cierra lo abierto y vuelve a la diapositiva anterior (paginas-movil.js escucha «paglot-atras»);
-  // después, a la pantalla anterior; en la principal sin nada detrás cierra la app; en un juego pregunta.
+  // Botón «atrás»: primero cierra lo abierto (las pantallas escuchan «paglot-atras» y lo cancelan); después, a la
+  // pantalla anterior; en el inicio sin nada detrás cierra la app; en un juego o un examen pregunta.
   piezas.App.addListener('backButton', async () => {
     if (cerrarPregunta) { cerrarPregunta(false); return; }
-    // una pantalla con algo suyo abierto encima (una hoja, un panel) lo cierra primero: escucha «paglot-atras» y lo cancela
     if (!document.dispatchEvent(new Event('paglot-atras', { cancelable: true }))) return;
-    if (enJuego()) {
-      if (await salirDelJuego()) location.hash = '#/lecciones';
-    } else if (location.hash === '#/bienvenida') {
-      location.hash = '#/lecciones'; // «atrás» en la bienvenida la salta
+    if (enJuego() || document.querySelector('[data-examen-en-curso]')) {
+      if (await salirDelJuego()) location.hash = enJuego() ? '#/lecciones' : '#/inicio';
+    } else if (enPrincipal() || document.body.classList.contains('bloqueada')) {
+      piezas.App.exitApp();
     } else if (pasadas.length > 1) {
       pasadas.pop();
       volviendo = true;
       location.hash = pasadas[pasadas.length - 1];
-    } else if (enPrincipal()) {
-      piezas.App.exitApp();
     } else {
-      location.hash = hayCurso ? '#/lecciones' : '#/';
+      location.hash = '#/inicio';
     }
-  });
-
-  // Enlaces de los correos (confirmar la cuenta, cambiar la contraseña): abren la app con los datos detrás de «#».
-  // Se recarga con ellos para que la parte de cuentas los lea igual que en la web.
-  piezas.App.addListener('appUrlOpen', ({ url }) => {
-    const i = url.indexOf('#');
-    if (i < 0 || !/access_token=|error_description=|type=/.test(url)) return;
-    location.hash = url.slice(i);
-    location.reload();
   });
 }

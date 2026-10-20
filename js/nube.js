@@ -1,27 +1,23 @@
-// El progreso en la nube, con la cuenta (correo y contraseña, ver js/servidor.js): desde el 20-10-2026 hace falta una
-// cuenta para estudiar, así que con sesión abierta el progreso se guarda siempre en la nube.
-// - El progreso de cada curso (todo lo de copiaCompleta) se sube al rato de cada cambio y, al abrir, se junta con el
-//   de la nube sin perder nada. En el dispositivo queda una copia para poder estudiar sin conexión.
-// - En local va a Supabase y en el hosting al servidor propio (PHP): lo decide servidor.js.
-// - El laboratorio de ideas y los avisos de errores usan rpc(): en local, las funciones de Supabase; en el hosting,
-//   las mismas llamadas al PHP (api/index.php, rutas «rpc/…»).
+// El progreso en la nube (Supabase), con la cuenta del código (js/cuenta.js).
+// - Todo el progreso (lo de copiaCompleta en progress.js: lecciones, cuaderno, juegos, CCSE y DELE) se sube al rato de
+//   cada cambio y, al entrar, se junta con el de la nube sin perder nada. En el móvil queda siempre una copia, así se
+//   estudia igual sin conexión.
+// - Supabase solo deja llamar a dos funciones (_herramientas/supabase-phuong.sql), y las dos piden el código. Hasta
+//   que se instalen, se usan las de Paglot (ver leerDeLaNube).
+
 import { SUPABASE_URL, SUPABASE_CLAVE_PUBLICA } from './config.js';
 import { copiaCompleta, importarCopia, alCambiar } from './progress.js';
-import { curso } from './curso.js';
-import { motor, haySesion, alCambiarSesion, leerProgreso, guardarProgreso, refrescarUsuario, salir } from './servidor.js';
+import { codigoActual, alCambiarCuenta } from './cuenta.js';
 
 const ESPERA_SUBIDA = 3000;
-const API = window.Capacitor?.isNativePlatform?.() ? 'https://paglot.eu/api/' : `${location.origin}/api/`;
+const ESPERA_MAXIMA = 12000;
 
-// Las pruebas automáticas (capturas, auditorías) la apagan: abren la app como nueva cada vez.
-const sinNube = (() => { try { return localStorage.getItem('paglot-sin-nube') === '1'; } catch { return false; } })();
-export const nubeActiva = (motor === 'php' || Boolean(SUPABASE_URL && SUPABASE_CLAVE_PUBLICA)) && !sinNube;
+// Las pruebas automáticas la apagan: abren la app como nueva cada vez.
+const sinNube = (() => { try { return localStorage.getItem('phuong-sin-nube') === '1'; } catch { return false; } })();
+export const nubeActiva = Boolean(SUPABASE_URL && SUPABASE_CLAVE_PUBLICA) && !sinNube;
 
-/** Con cuenta, el progreso siempre va a la nube. */
-export const progresoEnLaNube = () => nubeActiva && haySesion();
-
-/** estado: apagada (sin cuenta) · conectando · guardada · sin-conexion · error. ultima: la última subida buena. */
-export const nube = { estado: progresoEnLaNube() ? 'conectando' : 'apagada', ultima: null };
+/** estado: apagada · conectando · guardada · sin-conexion · sin-instalar (falta el SQL en Supabase) · error. */
+export const nube = { estado: 'apagada', ultima: null };
 const oyentes = new Set();
 function avisar(estado) {
   nube.estado = estado;
@@ -30,89 +26,132 @@ function avisar(estado) {
 }
 export function alCambiarNube(fn) { oyentes.add(fn); return () => oyentes.delete(fn); }
 
-// ----- Llamadas sueltas (laboratorio, errores) -----
-const ESPERA_MAXIMA = 8000;
-export async function rpc(funcion, datos = {}) {
-  const enPhp = motor === 'php';
-  const respuesta = await fetch(enPhp ? `${API}?r=rpc/${funcion}` : `${SUPABASE_URL}/rest/v1/rpc/${funcion}`, {
-    method: 'POST',
-    headers: enPhp ? { 'Content-Type': 'application/json' } : { apikey: SUPABASE_CLAVE_PUBLICA, 'Content-Type': 'application/json' },
-    body: JSON.stringify(datos),
-    signal: AbortSignal.timeout?.(ESPERA_MAXIMA),
-  });
-  if (!respuesta.ok) {
-    const error = new Error(`nube ${respuesta.status}`);
-    error.estado = respuesta.status;
-    try { error.detalle = await respuesta.json(); } catch { /* sin cuerpo */ }
-    throw error;
+const fallo = (codigo, detalle) => Object.assign(new Error(codigo), { codigo, detalle });
+
+/** Llama a una función de Supabase. Devuelve su respuesta o lanza un error con «codigo». */
+async function rpc(funcion, datos) {
+  let r;
+  try {
+    r = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${funcion}`, {
+      method: 'POST',
+      headers: { apikey: SUPABASE_CLAVE_PUBLICA, 'Content-Type': 'application/json' },
+      body: JSON.stringify(datos),
+      signal: AbortSignal.timeout?.(ESPERA_MAXIMA),
+    });
+  } catch {
+    throw fallo('sin-conexion');
   }
-  const texto = await respuesta.text();
-  return texto ? JSON.parse(texto) : null;
+  const texto = await r.text();
+  let cuerpo = null;
+  try { cuerpo = texto ? JSON.parse(texto) : null; } catch { /* sin JSON */ }
+  // la función no existe todavía: falta pegar el SQL en Supabase
+  if (r.status === 404 || cuerpo?.code === 'PGRST202' || cuerpo?.code === '42883') throw fallo('sin-instalar', cuerpo);
+  if (!r.ok) throw fallo('error', cuerpo);
+  if (cuerpo?.error) throw fallo(cuerpo.error, cuerpo); // «codigo» o «demasiados»
+  return cuerpo;
+}
+
+// Mientras no se haya pegado _herramientas/supabase-phuong.sql en Supabase, el progreso va a las funciones que ya
+// tenía el proyecto de Paglot (cuentas de 16 cifras: el número sale del código). Esas cuentas se borran solas tras 7 días
+// sin usarse, pero el móvil guarda siempre su copia y la vuelve a subir al abrir la app. En cuanto existe
+// phuong_leer, se usa esa (y lo del móvil se sube allí).
+let motor = null; // 'phuong' · 'antiguo'
+const numeroAntiguo = codigo => String(codigo).repeat(16).slice(0, 16);
+
+/** Trae lo guardado en la nube: { datos, cuando }. Lanza «codigo», «sin-conexion», «sin-instalar»… */
+export async function leerDeLaNube(codigo) {
+  if (motor !== 'antiguo') {
+    try {
+      const r = await rpc('phuong_leer', { p_codigo: codigo });
+      motor = 'phuong';
+      return r;
+    } catch (e) {
+      if (e.codigo !== 'sin-instalar') throw e;
+      motor = 'antiguo';
+    }
+  }
+  const d = await rpc('paglot_leer', { p_numero: numeroAntiguo(codigo) });
+  return d?.phuong ? { datos: d.datos, cuando: d.cuando ?? null } : { datos: null, cuando: null };
+}
+
+function guardarEnLaNube(codigo, datos, cuando) {
+  if (motor === 'antiguo') return rpc('paglot_guardar', { p_numero: numeroAntiguo(codigo), p_datos: { phuong: true, cuando, datos } });
+  return rpc('phuong_guardar', { p_codigo: codigo, p_datos: datos, p_cuando: cuando });
 }
 
 // ----- Subir y bajar -----
-// Para no pisar lo de otro dispositivo, cada copia lleva su hora («cuando»): si al leer la nube su hora no es la de lo
-// último que se subió o se juntó aquí, otro dispositivo cambió este curso y se junta antes de escribir.
+// Cada copia lleva su hora («cuando»): si al leer la nube su hora no es la de lo último que se subió o se juntó aquí,
+// otro móvil cambió algo y se junta antes de escribir.
 let reloj = null;
 let iniciada = false;
 let ultimaMarca = null;
+let ultimaSubida = 0;
+let cola = Promise.resolve();
+
+const activa = () => nubeActiva && Boolean(codigoActual());
 
 async function bajarYJuntar() {
-  if (!curso.id) return false;
-  const remoto = (await leerProgreso())?.[curso.id];
-  if (!remoto?.datos || remoto.datos.version !== 2 || (remoto.cuando ?? null) === ultimaMarca) return false;
-  ultimaMarca = remoto.cuando ?? null;
-  importarCopia(remoto.datos);
+  const r = await leerDeLaNube(codigoActual());
+  const remoto = r?.datos;
+  if (!remoto || remoto.version !== 2 || (r.cuando ?? null) === ultimaMarca) return false;
+  ultimaMarca = r.cuando ?? null;
+  importarCopia(remoto);
   window.dispatchEvent(new Event('datos-sincronizados'));
   return true;
 }
 
-async function subir() {
-  if (!progresoEnLaNube() || !curso.id) return;
-  try {
-    await bajarYJuntar();
-    const cuando = Date.now();
-    await guardarProgreso(curso.id, copiaCompleta(), cuando);
-    ultimaMarca = cuando;
-    avisar('guardada');
-  } catch (e) {
-    avisar(e.codigo === 'sin-conexion' ? 'sin-conexion' : 'error');
-  }
-}
-function subirLuego() {
-  if (!progresoEnLaNube()) return;
-  clearTimeout(reloj);
-  reloj = setTimeout(subir, ESPERA_SUBIDA);
+function subir() {
+  // una subida detrás de otra, nunca dos a la vez
+  cola = cola.then(async () => {
+    if (!activa()) return;
+    try {
+      await bajarYJuntar();
+      // las funciones de Paglot no dejan escribir dos veces en menos de 2 segundos
+      const espera = 2500 - (Date.now() - ultimaSubida);
+      if (espera > 0) await new Promise(r => setTimeout(r, espera));
+      const cuando = Date.now();
+      ultimaSubida = cuando;
+      await guardarEnLaNube(codigoActual(), copiaCompleta(), cuando);
+      ultimaMarca = cuando;
+      avisar('guardada');
+    } catch (e) {
+      avisar(['sin-conexion', 'sin-instalar'].includes(e.codigo) ? e.codigo : 'error');
+    }
+  });
+  return cola;
 }
 
-/** Al abrir la app (y al entrar en la cuenta): pone al día el plan, junta lo de la nube y sube los cambios. */
-export async function iniciarNube() {
+function subirLuego() {
+  if (!activa()) return;
+  clearTimeout(reloj);
+  reloj = setTimeout(() => { reloj = null; subir(); }, ESPERA_SUBIDA);
+}
+
+/** Sube ya lo pendiente (el botón «Guardar ahora» del perfil). */
+export function guardarYa() {
+  clearTimeout(reloj);
+  reloj = null;
+  if (!activa()) return Promise.resolve();
+  avisar('conectando');
+  return subir();
+}
+
+/** Al entrar en la app: junta lo de la nube y sube los cambios; desde ahí, sube al rato de cada cambio. */
+export function iniciarNube() {
   if (!nubeActiva) return;
   if (!iniciada) {
     iniciada = true;
     alCambiar(subirLuego);
-    for (const evento of ['logro-ganado', 'cofre-abierto', 'reto-terminado']) window.addEventListener(evento, subirLuego);
+    for (const evento of ['examen-cambiado', 'logro-ganado', 'cofre-abierto', 'reto-terminado']) window.addEventListener(evento, subirLuego);
     // al irse de la app, lo pendiente se sube ya (en el móvil suele quedar en segundo plano y le da tiempo)
     document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'hidden' && reloj) { clearTimeout(reloj); reloj = null; subir(); }
+      if (document.visibilityState === 'hidden' && reloj) guardarYa();
+      if (document.visibilityState === 'visible' && activa()) subirLuego(); // y al volver, lo de otro móvil
     });
-    window.addEventListener('online', () => { if (nube.estado !== 'guardada') subir(); });
-    // al entrar o salir de la cuenta
-    alCambiarSesion(u => { if (u) { avisar('conectando'); subir(); } else avisar('apagada'); });
+    window.addEventListener('online', () => { if (nube.estado !== 'guardada') subirLuego(); });
+    alCambiarCuenta(c => { if (c) { avisar('conectando'); subir(); } else { clearTimeout(reloj); avisar('apagada'); } });
   }
-  if (!haySesion()) { avisar('apagada'); return; }
+  if (!activa()) { avisar('apagada'); return; }
   avisar('conectando');
-  try { await refrescarUsuario(); } catch { /* sin conexión: vale lo último que se supo */ }
-  await subir();
-}
-
-/** Borra todo lo de Paglot en este dispositivo (y cierra la sesión). Después hay que recargar la app.
- *  Borrar la cuenta del servidor se hace aparte (Perfil → Cuenta → Borrar mi cuenta). */
-export async function borrarTodo() {
-  try { await salir(); } catch { /* sin conexión */ }
-  try { await window.PaglotRecordatorio?.('no'); } catch { /* sin APK */ }
-  clearTimeout(reloj);
-  reloj = null;
-  try { localStorage.clear(); } catch { /* sin almacenamiento */ }
-  try { sessionStorage.clear(); } catch { /* sin almacenamiento */ }
+  subir();
 }

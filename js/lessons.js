@@ -3,14 +3,13 @@
 // Los demás textos (explicaciones, notas, preguntas…) pueden ser un texto o { "en": "…", "vi": "…" }.
 
 import { t, idioma } from './i18n.js';
-import { curso, ruta, idiomasDe } from './curso.js';
+import { curso, ruta, LENGUA_DEL_ALUMNO } from './curso.js';
 import { LANG } from './curso.js';
 import { hayVoz } from './sonidos.js';
 
-// Las lecciones de cada curso están en una carpeta por idioma del alumno (cursos/<curso>/<es|en|vi>/NNN.json, con
-// los modelos de _herramientas/modelos/). Se usa la del idioma de la interfaz en cuanto está montada (tiene su
-// indice.json); mientras no, las antiguas de lessons/.
-const LENGUA = idiomasDe(curso).includes(idioma()) ? idioma() : idiomasDe(curso)[0];
+// Las lecciones están en la carpeta del idioma del alumno (cursos/es/vi/NNN.json): siempre explicadas en vietnamita,
+// vaya la interfaz en vietnamita o en español.
+const LENGUA = LENGUA_DEL_ALUMNO;
 const NUEVA = ruta(`${LENGUA}/`);
 let CARPETA = ruta('lessons/');
 let indiceNuevo = null;

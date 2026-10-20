@@ -14,7 +14,6 @@ import { nuevaTarjeta } from './srs.js';
 import { LANG } from './curso.js';
 import { clave } from './curso.js';
 import { compactarOrigen } from './i18n.js';
-import { esDesarrollador } from './desarrollador.js';
 
 const CLAVE = clave('datos');
 const PREFIJO_TARJETA = `${clave('tarjeta')}:`;
@@ -283,6 +282,12 @@ export function anotarReto() {
   guardar();
 }
 
+/** Una pregunta del CCSE o una prueba del DELE (js/examenes.js): también es estudiar, cuenta para la racha. */
+export function anotarEstudio(campo) {
+  anotarActividad(campo);
+  guardar();
+}
+
 /** Una lección con 3 estrellas hoy (para las misiones del día). */
 export function anotarPerfecta() {
   anotarActividad('perfectas');
@@ -326,7 +331,7 @@ export function resumenLeccion(idLeccion, idsEjercicios) {
     errores += e.errores;
   }
   const total = idsEjercicios.length;
-  const terminada = Boolean(guardada?.terminada) || esDesarrollador();
+  const terminada = Boolean(guardada?.terminada);
   let estado = 'nueva';
   if (terminada) estado = 'terminada';
   else if (guardada && (completados > 0 || guardada.abierta)) estado = 'curso';
@@ -550,8 +555,9 @@ export function unirDatos(local, remoto) {
     perfil: masReciente(a.perfil, b.perfil),
     lecciones: unir(a.lecciones, b.lecciones, unirLeccion),
     cuaderno: unir(a.cuaderno, b.cuaderno, masReciente),
+    // cada día, lo más que se hizo de cada cosa (ejercicios, repasos, lecciones, preguntas del CCSE…) en uno u otro móvil
     actividad: unir(a.actividad, b.actividad, (x, y) => (x && y
-      ? { ejercicios: Math.max(x.ejercicios, y.ejercicios), repasos: Math.max(x.repasos, y.repasos), t: Math.max(x.t, y.t) }
+      ? Object.fromEntries([...new Set([...Object.keys(x), ...Object.keys(y)])].map(k => [k, Math.max(x[k] ?? 0, y[k] ?? 0)]))
       : x ?? y)),
   };
 }
@@ -560,8 +566,12 @@ export function unirDatos(local, remoto) {
  * Copia de seguridad: se junta con lo que ya hay (no se pierde nada).
  * Devuelve false si el archivo no parece una copia de esta app.
  */
-// Lo que el modo juego y el camino guardan aparte: avance de cada lección, estrellas, cofres y logros.
-const EXTRAS = ['juego2', 'estrellas', 'cofres', 'logros'];
+// Lo que el modo juego y el camino guardan aparte (avance de cada lección, estrellas, cofres y logros) y el progreso
+// de los exámenes (js/examenes.js: el CCSE y el DELE, mapas cuyas entradas llevan la hora «t» de su último cambio).
+const EXAMENES = ['ccse', 'ccse-sim', 'dele', 'examenes-dias'];
+const EXTRAS = ['juego2', 'estrellas', 'cofres', 'logros', ...EXAMENES];
+/** Junta dos mapas { clave: { …, t } } quedándose con la entrada más reciente de cada clave. */
+const unirPorHora = (a, b) => unirMapas(a ?? {}, b ?? {}, masReciente, x => x && typeof x === 'object');
 const leerExtra = nombre => { try { return JSON.parse(localStorage.getItem(clave(nombre))); } catch { return null; } };
 const escribirExtra = (nombre, valor) => { try { localStorage.setItem(clave(nombre), JSON.stringify(valor)); } catch { /* sin almacenamiento */ } };
 
@@ -586,6 +596,9 @@ export function importarCopia(copia) {
   if (Array.isArray(e.cofres)) escribirExtra('cofres', [...new Set([...(leerExtra('cofres') ?? []), ...e.cofres])]);
   if (e.logros && typeof e.logros === 'object') escribirExtra('logros', { ...e.logros, ...(leerExtra('logros') ?? {}) });
   if (e.juego2 && typeof e.juego2 === 'object') escribirExtra('juego2', { ...e.juego2, ...(leerExtra('juego2') ?? {}) });
+  for (const nombre of EXAMENES) {
+    if (e[nombre] && typeof e[nombre] === 'object') escribirExtra(nombre, unirPorHora(leerExtra(nombre), e[nombre]));
+  }
   return true;
 }
 
