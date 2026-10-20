@@ -49,3 +49,9 @@ export function preciosDeSuZona() {
   const pais = paisProbable();
   return ZONAS[Object.keys(ZONAS).find(z => ZONAS[z].paises.includes(pais)) ?? 'B'];
 }
+
+/** La letra de la zona de esa persona (A, B, C o D; si no se sabe, la B). El servidor cobra el precio de esa zona. */
+export function zonaDeSuPais() {
+  const pais = paisProbable();
+  return Object.keys(ZONAS).find(z => ZONAS[z].paises.includes(pais)) ?? 'B';
+}

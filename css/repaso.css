@@ -321,3 +321,10 @@
   .sm-tarjeta { grid-template-columns: auto minmax(0, 1fr); }
   .sm-descargar { grid-column: 1 / -1; text-align: center; }
 }
+
+/* La Hucha (js/vistas/hucha.js) */
+.hucha-saldo { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin: 0 0 8px; }
+.hucha-saldo strong { font: 700 2rem var(--fuente-pixel); color: var(--oro); }
+.hucha-barra { height: 18px; margin-bottom: 6px; background: var(--fondo-punto); border: 3px solid var(--linea); overflow: hidden; }
+.hucha-barra i { display: block; height: 100%; background: var(--oro); transform: scaleX(var(--avance, 0)); transform-origin: left center; }
+.hucha-mensaje:empty { display: none; }

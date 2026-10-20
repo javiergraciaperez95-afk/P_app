@@ -6,7 +6,8 @@
 // 3. La colección de Max: los 6 libros del idioma en una estantería, y cómo llegan.
 // 4. Familia y Fundadores. 5. Qué incluye cada plan. 6. Las promesas.
 //
-// TODAVÍA NO SE COBRA NADA ni se aplica ningún límite: los botones de pago dicen «Muy pronto».
+// Los botones de pago van a js/comprar.js (Stripe, en paglot.eu): sin cuenta, primero a crearla. Fundadores se cierra solo
+// cuando el servidor dice que no quedan plazas. La Hucha lleva a su pantalla (#/hucha).
 // Los precios están en config.js (ZONAS) y la región se adivina en js/region.js; los textos, en i18n/ (claves «pr.*»).
 // Con PRECIOS_VISIBLES en false (config.js) no sale ninguna cifra: cada precio dice «Precio por anunciar».
 
@@ -18,6 +19,8 @@ import { dibujoDe } from '../tutor-sprite.js';
 import { sonar } from '../sonidos.js';
 import { PLAZAS_FUNDADORES, LECCIONES_GRATIS_AL_DIA, PRECIOS_VISIBLES, APOYO } from '../config.js';
 import { preciosDeSuZona } from '../region.js';
+import { comprar } from '../comprar.js';
+import { plazasFundadores as plazasDeFundadores } from '../servidor.js';
 import { nubes, luna, sol, dibujoPixel, conContorno, maceta } from './inicio-decorado.js';
 import { altoPantalla } from '../teclado.js';
 import { esMovil } from '../paginas-movil.js';
@@ -215,6 +218,11 @@ export function pintarPrecios(contenedor) {
     const nota = el('p', { class: 'pr-nota-pronto', role: 'status', hidden: true }, t('precios.prontoTutora'));
     return [el('button', { type: 'button', class: `pr-boton ${clase}`.trim(), onclick: pronto(quien, quien ? null : nota) }, t('precios.pronto')), nota];
   };
+  // el botón de comprar: producto() da lo que se compra según el pago elegido (anual o mensual)
+  const botonComprar = (quien, producto, clase = '', texto = 'pr.comprar') => [el('button', {
+    type: 'button', class: `pr-boton ${clase}`.trim(), 'data-sonido': 'nada',
+    onclick: () => { quien?.gesto('celebrar'); comprar(producto(), { quien }); },
+  }, t(texto))];
 
   // =====================================================================
   // 1. La escalera
@@ -293,14 +301,14 @@ export function pintarPrecios(contenedor) {
     el('p', { class: 'pr-lema' }, t('pr.plus.lema')),
     precioPlus, porPlus,
     lista([['pr.p1'], ['pr.p2'], ['pr.p4', null, '*'], ['pr.p5']]),
-    ...botonPronto(tPlus),
+    ...botonComprar(tPlus, () => (pago === 'ano' ? 'plus-ano' : 'plus-mes')),
   ]);
   const peldanoMax = peldano('max', tMax, [
     el('p', { class: 'pr-nombre' }, t('pr.max.nombre')),
     el('p', { class: 'pr-lema' }, t('pr.max.lema')),
     precioMax, porMax,
     lista([['pr.m1'], ['pr.m2'], ['pr.m3', null, '*'], ['pr.m4'], ['pr.m6']]),
-    ...botonPronto(tMax, 'pr-boton-oro'),
+    ...botonComprar(tMax, () => (pago === 'ano' ? 'max-ano' : 'max-mes'), 'pr-boton-oro'),
   ]);
 
   // el pago: anual o mensual
@@ -370,7 +378,7 @@ export function pintarPrecios(contenedor) {
       el('p', { class: 'pr-entradilla' }, t('pr.hucha.texto')),
       el('ol', { class: 'pr-pasos' }, ['pr.hucha.paso1', 'pr.hucha.paso2', 'pr.hucha.paso3'].map((k, i) => el('li', {}, el('b', {}, String(i + 1)), t(k)))),
       el('p', { class: 'pr-regla' }, t('pr.hucha.regla')),
-      ...botonPronto(tHucha)));
+      el('a', { class: 'pr-boton', href: '#/hucha', onclick: () => sonar('moneda') }, t('pr.hucha.abrir'))));
 
   // =====================================================================
   // 3. La colección de Max
@@ -467,6 +475,8 @@ export function pintarPrecios(contenedor) {
     numero.textContent = `Nº ${String(plaza).padStart(4, '0')}`;
   };
 
+  const plazasFundadores = el('p', { class: 'pr-fun-plazas', role: 'status' });
+  let cartaFundadores = null;
   const seccionExtras = el('section', { class: 'pr-seccion pr-extras' },
     el('div', { class: 'inicio-cielo pr-barrio-cielo', 'aria-hidden': 'true' }, nubes()),
     dibujoPixel(rejillaBarrio(), 'pr-barrio', 'bz'),
@@ -476,14 +486,22 @@ export function pintarPrecios(contenedor) {
       el('h3', {}, t('pr.fam.titulo')),
       el('p', {}, t('pr.fam.texto')),
       precioFamilia, porFamilia,
-      ...botonPronto(null)),
-    el('div', { class: 'pr-carta pr-fundadores' },
+      ...botonComprar(null, () => 'familia-ano')),
+    cartaFundadores = el('div', { class: 'pr-carta pr-fundadores' },
       carne,
       el('h3', {}, t('pr.fun.titulo')),
       el('p', {}, t('pr.fun.texto', { n: PLAZAS_FUNDADORES.toLocaleString(locale()) })),
       precioFundadores,
       el('p', { class: 'pr-por' }, t('pr.fun.unPago')),
-      ...botonPronto(null, 'pr-boton-oro')));
+      el('p', { class: 'pr-fun-sin-libros' }, t('pr.fun.sinLibros')),
+      plazasFundadores,
+      ...botonComprar(null, () => 'fundadores', 'pr-boton-oro')));
+  // las plazas que quedan las dice el servidor; con 0, Fundadores desaparece (ya no se vende)
+  plazasDeFundadores().then(n => {
+    if (!cartaFundadores.isConnected && !cartaFundadores.parentNode) return;
+    if (n <= 0) { cartaFundadores.remove(); return; }
+    plazasFundadores.textContent = t('pr.fun.quedan', { n: n.toLocaleString(locale()) });
+  }).catch(() => {});
 
   // =====================================================================
   // 5. Qué incluye cada plan

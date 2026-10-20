@@ -102,6 +102,7 @@ const GENERALES = {
   guias: { titulo: 'pagina.guias', cargar: () => vista('comunidad-extra', 'pintarGuias') },
   faq: { titulo: 'pagina.faq', cargar: () => vista('comunidad-extra', 'pintarFaq') },
   laboratorio: { titulo: 'pagina.laboratorio', cargar: () => vista('comunidad-extra', 'pintarLaboratorio') },
+  hucha: { titulo: 'pr.hucha.titulo', cargar: () => vista('hucha', 'pintarHucha'), sinPortada: true },
   idiomas: { titulo: 'cursos.titulo', pintar: pintarElegirCurso, sinPortada: true },
   creditos: { titulo: 'creditos.titulo', cargar: () => vista('creditos', 'pintarCreditos'), sinPortada: true },
   legal: { titulo: 'legal.titulo', pintar: pintarLegal, sinPortada: true },

@@ -1,0 +1,83 @@
+PAGLOT · LOS PAYWALLS (lo que es de pago, cómo se comprueba y qué falta para cobrar)
+Actualizado el 20-10-2026
+==================================================================================================================
+
+0. CUENTA OBLIGATORIA
+   · Sin cuenta (correo + contraseña) no se entra en NADA del curso: lecciones, repaso, cuaderno, práctica, perfil,
+     simulacros… (js/app.js → a #/entrar). Excepción: el modo desarrollador (#/desarrollador o 7 toques en el logo).
+   · La cuenta 78910021 es la de desarrollo: todo desbloqueado, siempre, y protegida contra el borrado (disparadores en
+     api/esquema.sql y en _herramientas/supabase-cuentas-v2.sql). Se le pone correo y contraseña con:
+       php api/herramientas/cuenta-dev.php tu@correo.com "contraseña larga"          (servidor)
+       select paglot_hacer_dev('tu@correo.com');                                     (Supabase, en local)
+
+1. PLAN GRATIS (límites: js/limites.js; números en js/config.js)
+   · 3 lecciones NUEVAS al día. Las ya empezadas se siguen y se repiten sin límite.
+   · 1 ronda de «Práctica» al día.
+   · 50 palabras guardadas A MANO en el cuaderno (las de las lecciones terminadas no cuentan).
+   · El repaso, siempre gratis y sin límite.
+   · Pantalla del aviso: js/vistas/muro.js (con enlace a los planes, al repaso y a la Hucha).
+
+2. PLUS (mes 4,99 € · año 39,99 € en la zona A)
+   · Sin los límites del punto 1.
+   · Estadísticas del perfil (js/vistas/estadisticas.js).
+   · 2 temas de color más: Bosque y Océano (js/paletas.js).
+   · 1 simulacro de examen completo en PDF (el que elija, para siempre).
+
+3. MAX (mes 14,99 € · año 129 € en la zona A)
+   · Todo lo de Plus.
+   · Todos los temas de color: Cereza, Atardecer y Carbón.
+   · Todos los simulacros de examen en PDF.
+   · El certificado de nivel Paglot en PDF (sin validez legal ni académica: lo dice el propio certificado).
+   · Con el pago ANUAL, los 6 libros del idioma (impresión bajo demanda: Lulu, ver _notas/IMPRESION_BAJO_DEMANDA.txt).
+
+4. FAMILIA (79 €/año en la zona A)
+   · Plus para la titular y hasta 5 personas más, cada una con su cuenta. La titular invita por correo desde
+     Perfil → Cuenta → Familia; la otra persona escribe el código (api: familia/invitar y familia/unirse).
+
+5. FUNDADORES (99 € una vez en la zona A)
+   · Plus PARA SIEMPRE. NO incluye libros (lo dice la tarjeta de #/precios).
+   · Solo 500 plazas: el servidor las cuenta (fundadores/plazas) y, al llegar a 0, la tarjeta desaparece y el servidor
+     rechaza el pago (fundadores-agotado).
+
+6. REGALOS (Regala Max: 1 mes o 1 año)
+   · Se pagan como un Max, pero el comprador recibe por correo un código único PGM-XXXX-XXXX-XXXX de un solo uso.
+   · Se canjea en Perfil → Cuenta → Canjear un regalo. El plan empieza el día que se canjea.
+   · Las tarjetas físicas (PDF con QR a paglot.eu): py _herramientas/pdf/regalos.py max-ano 10 es
+   · En la base de datos solo se guarda la HUELLA del código (SHA-256), nunca el código.
+
+7. LA HUCHA (#/hucha)
+   · Para quien no puede pagar: ve anuncios cuando quiere (nunca en una lección) y cada anuncio suma céntimos.
+   · Con lo ahorrado se compra 1 mes de Plus o de Max (api: hucha/gastar).
+   · Cada recompensa la confirma la RED DE ANUNCIOS directamente al servidor, firmada (api: hucha/recompensa con
+     HMAC): la app no puede inventarse monedas. Tope de anuncios al día en api/config.php.
+   · FALTA: conectar una red de anuncios con recompensa y verificación en el servidor (AdMob «rewarded» con SSV en la
+     APK). Mientras tanto el botón «Ver un anuncio» dice «Muy pronto».
+
+8. TRAJES Y JUEGOS: se compran aparte en la tienda (no van en ningún plan). FALTA la tienda con cobro.
+
+==================================================================================================================
+LA DOBLE COMPROBACIÓN DEL PAGO
+   1. Stripe avisa al servidor (webhook firmado: api/?r=pagos/stripe). El servidor apunta el plan en SU base de datos
+      (tabla suscripciones) y TAMBIÉN en Supabase (paglot_apuntar_concesion, con la clave service_role).
+   2. Cada vez que se pregunta por el plan (api/inc/planes.php → plan_de), una concesión solo vale si está en las DOS
+      bases (paglot_concesion_valida en Supabase). Si alguien tocara una sola, no tendría plan. La respuesta de
+      Supabase se guarda 6 horas para no preguntar en cada petición.
+   3. La app solo REFLEJA el plan (js/planes.js). Lo que cuesta dinero de verdad lo vuelve a comprobar el servidor al
+      darlo (exigir_plan en api/inc/planes.php).
+   · En local (localhost) no hay cobros: el motor es Supabase y solo vale la cuenta de desarrollo o los regalos.
+
+==================================================================================================================
+LO QUE FALTA PARA EMPEZAR A COBRAR (pasos para ti)
+   1. Hosting con PHP 8.1+ y MySQL/MariaDB: subir la web y la carpeta api/; importar api/esquema.sql.
+   2. Copiar api/config.example.php como api/config.php y rellenarlo: base de datos, Resend (clave y dominio
+      paglot.eu verificado), Turnstile (clave secreta), Supabase (service_role), Stripe (clave secreta y la del webhook).
+   3. En Supabase: ejecutar _herramientas/supabase-cuentas-v2.sql y poner {{ .Token }} en las plantillas de correo
+      (Confirm signup, Magic Link, Reset Password) para que lleguen códigos de 6 cifras.
+   4. En js/config.js: la clave PÚBLICA de Turnstile del sitio (ahora está la de pruebas).
+   5. En Stripe: crear el webhook a https://paglot.eu/api/?r=pagos/stripe con el evento checkout.session.completed y
+      activar Stripe Tax (el servidor pide automatic_tax).
+   6. Los datos del titular en js/config.js (TITULAR): sin ellos el aviso legal dice «pendiente de completar».
+   7. PDF de pago servidos por el servidor: los simulacros COMPLETOS y los certificados no deben estar en una carpeta
+      pública; se darán con una ruta del servidor que compruebe el plan (las muestras sí son públicas).
+   8. APK para Google Play: appId definitivo, clave de firma y Google Play Billing (Google obliga a cobrar con su
+      sistema dentro de la app).

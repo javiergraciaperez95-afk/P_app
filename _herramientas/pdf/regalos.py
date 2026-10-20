@@ -6,7 +6,7 @@
 
 Cada código es único y de un solo uso: PGM-XXXX-XXXX-XXXX (12 letras y cifras sin las que se confunden: 60 bits al azar,
 imposibles de adivinar). Los PDF y la lista de códigos van a _regalos/<lote>/, que NO se sube a GitHub. Para el servidor
-sale también codigos.sql, que guarda solo la huella SHA-256 de cada código (nunca el código): al canjearlo, el servidor
+salen también codigos.sql (MySQL) y codigos-supabase.sql, que guardan solo la huella SHA-256 de cada código (nunca el código): al canjearlo, el servidor
 comprueba la huella y lo marca como usado, así no se puede usar dos veces (ver api/ y PAYWALLS.txt).
 """
 import datetime
@@ -100,6 +100,9 @@ def generar(tipo, cuantos, lengua):
     # el SQL para el servidor: solo las huellas (el código en claro no se guarda nunca en la base de datos)
     sql = ''.join(f"INSERT INTO regalos (huella, tipo, lote) VALUES ('{h}', '{tipo}', '{lote}');\n" for _, h in filas)
     open(os.path.join(carpeta, 'codigos.sql'), 'w', encoding='utf-8').write(sql)
+    # lo mismo para Supabase (en local los regalos se canjean allí: paglot_canjear)
+    sql_supabase = ''.join(f"insert into paglot_regalos (huella, tipo, lote) values ('{h}', '{tipo}', '{lote}') on conflict do nothing;\n" for _, h in filas)
+    open(os.path.join(carpeta, 'codigos-supabase.sql'), 'w', encoding='utf-8').write(sql_supabase)
     open(os.path.join(carpeta, 'codigos.txt'), 'w', encoding='utf-8').write(''.join(f'{c}\n' for c, _ in filas))
     ruta = os.path.join(SALIDA, 'lista-regalos.json')
     json.dump(lista, open(ruta, 'w', encoding='utf-8'))

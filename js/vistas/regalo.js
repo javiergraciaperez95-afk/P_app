@@ -9,6 +9,7 @@ import { t } from '../i18n.js';
 import { sonar } from '../sonidos.js';
 import { dibujoPixel, conContorno } from './inicio-decorado.js';
 import { crearElenco, lienzo } from './elenco.js';
+import { comprar as comprarRegalo } from '../comprar.js';
 
 // ---------------------------------------------------------------------------
 // Dibujos (prefijo «rg»): k contorno · r/R rojo · a/A azul · v/V verde · o/O oro · p papel · m/M madera · y luz
@@ -134,13 +135,11 @@ export function pintarRegalo(root) {
     onclick: () => elegir(clave),
   }, el('span', { class: 'rg-opcion-agujero', 'aria-hidden': 'true' }), clave === 'mes' ? t('productos.oneMonth') : t('productos.oneYear')));
   const nota = el('p', { class: 'rg-nota', role: 'status' }, t('productos.oneGiftAThousandConversations'));
-  const comprar = el('button', { type: 'button', class: 'es-boton rg-comprar' }, t('productos.purchasingComingSoon'));
+  // comprar el regalo (js/comprar.js): el servidor cobra y manda al correo el código único de un solo uso
+  const comprar = el('button', { type: 'button', class: 'es-boton rg-comprar', 'data-sonido': 'nada' }, t('regalo.comprar'));
   comprar.addEventListener('click', () => {
-    sonar('duda');
-    envolvedora.gesto('rascarse');
-    envolvedora.decir(t('precios.prontoTutora'), 4200);
-    nota.textContent = t('precios.prontoTutora');
-    despues(4400, () => { nota.textContent = t('productos.oneGiftAThousandConversations'); });
+    envolvedora.gesto('celebrar');
+    comprarRegalo(duracion === 'ano' ? 'max-ano' : 'max-mes', { regalo: true });
   });
   const pedido = el('div', { class: 'rg-pedido' },
     el('span', { class: 'rg-pinza', 'aria-hidden': 'true' }),
