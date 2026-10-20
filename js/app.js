@@ -14,7 +14,7 @@ import { sonar, prepararVoces, callar } from './sonidos.js';
 import { alCambiar, datosDanados } from './progress.js';
 import { pintarCabecera, pendientesDeHoy } from './cabecera.js';
 import { decir } from './tutor.js';
-import { agrupar, pintarLecciones } from './vistas/lecciones.js';
+import { agrupar, pintarLecciones, leccionAbierta, avisarCerrada } from './vistas/lecciones.js';
 import { pintarLeccion, cerrarFicha, ponerDiccionarioGlobal, ponerDiccionario } from './vistas/leccion.js';
 import { pintarReto } from './vistas/reto.js';
 import { pintarInicio } from './vistas/inicio.js';
@@ -389,6 +389,8 @@ async function navegar({ cambioDeIdioma = false } = {}) {
     } else {
       const enOrden = agrupar(contenido.resultados, contenido.capitulos).flatMap(g => g.lecciones).filter(r => !r.error);
       const k = enOrden.findIndex(r => r.id === parametro);
+      // en orden: sin terminar la anterior no se entra (ni con un enlace ni escribiendo la dirección)
+      if (!leccionAbierta(enOrden, parametro)) { avisarCerrada(); location.replace('#/lecciones'); return; }
       const siguiente = (k >= 0 ? enOrden[k + 1]?.id : contenido.resultados.slice(i + 1).find(r => !r.error)?.id) ?? null;
       titulo(resultado.leccion.titulo_es || tr(resultado.leccion.titulo));
       limpiarVista = pintarLeccion(app, resultado, siguiente);

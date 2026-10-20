@@ -299,4 +299,7 @@ export default {
   'ph.rp.vuelve': 'Vuelve dentro de {cuando}',
   'ph.rp.vuelveManana': 'Vuelve mañana',
   'ph.rp.falladas': '{n} tarjetas falladas vuelven mañana.',
+
+  'ph.lec.cerrada': '🔒 Esta lección aún está cerrada. ¡Termina antes la anterior!',
+  'ph.lec.cerradaCorta': 'cerrada',
 };

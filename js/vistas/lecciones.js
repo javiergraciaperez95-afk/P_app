@@ -8,7 +8,7 @@ import { el, poner } from '../dom.js';
 import { t, tr } from '../i18n.js';
 import { resumenLeccion, hayProgreso, nombre, actividadDeHoy, racha, inicioDePrueba } from '../progress.js';
 import { pendientesDeHoy } from '../cabecera.js';
-import { decir } from '../tutor.js';
+import { decir, nota } from '../tutor.js';
 import { sonar } from '../sonidos.js';
 import { LANG, clave, curso } from '../curso.js';
 import { dibujoDe } from '../tutor-sprite.js';
@@ -77,6 +77,25 @@ const escribir = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); }
 // El estado de cada lección
 // ---------------------------------------------------------------------------
 
+/**
+ * Las lecciones van en orden: una se abre cuando se ha terminado la anterior. Siempre están abiertas la primera, las
+ * ya terminadas y las anteriores a donde colocó la prueba de nivel. enOrden: los resultados en el orden del curso.
+ */
+export function leccionAbierta(enOrden, id) {
+  const idDe = r => r.leccion?.id ?? r.id;
+  const k = enOrden.findIndex(r => idDe(r) === id);
+  if (k <= 0) return true;
+  const hecha = r => resumenLeccion(idDe(r), []).terminada;
+  const desde = enOrden.findIndex(r => idDe(r) === inicioDePrueba());
+  return k <= desde || hecha(enOrden[k]) || hecha(enOrden[k - 1]);
+}
+
+/** Aviso al tocar una lección cerrada. */
+export function avisarCerrada() {
+  sonar('mal');
+  nota(t('ph.lec.cerrada'));
+}
+
 /** Estado y avance (0–1) de una lección, juntando el modo juego y el modo libro. */
 function estadoDe(leccion) {
   const r = resumenLeccion(leccion.id, leccion.idsEjercicios);
@@ -130,6 +149,7 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
   apagar.push(() => { document.removeEventListener('pointerdown', alPulsarFuera); document.removeEventListener('keydown', alTeclear); });
 
   function abrirFicha(parada, nodo, leccion) {
+    if (!leccionAbierta(validas, leccion.id)) { cerrarFicha(); avisarCerrada(); return; }
     if (fichaAbierta?.nodo === nodo) { cerrarFicha(); return; }
     cerrarFicha();
     const e = estados.get(leccion.id);
@@ -235,10 +255,11 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
   function parada(leccion, i) {
     const e = estados.get(leccion.id);
     const esToca = toca?.id === leccion.id;
+    const cerrada = !leccionAbierta(validas, leccion.id);
     const x = OLA(i);
     const nodo = el('button', {
       type: 'button',
-      class: `cm-nodo es-${e.estado}${esToca ? ' toca' : ''}`,
+      class: `cm-nodo es-${e.estado}${esToca ? ' toca' : ''}${cerrada ? ' cerrada' : ''}`,
       style: `--avance:${e.avance}`,
       'aria-expanded': 'false',
       'data-id': leccion.id,
@@ -247,7 +268,9 @@ export function pintarLecciones(app, { resultados, capitulos, errorCapitulos }) 
     },
     el('span', { class: 'cm-nodo-anillo', 'aria-hidden': 'true' }),
     el('span', { class: 'cm-nodo-cara', 'aria-hidden': 'true' },
-      e.estado === 'terminada' ? el('span', { class: 'cm-nodo-estrella' }, '★') : el('span', { class: 'cm-nodo-num' }, leccion.numero_curso)));
+      e.estado === 'terminada' ? el('span', { class: 'cm-nodo-estrella' }, '★')
+        : cerrada ? el('span', { class: 'cm-nodo-candado' }, '🔒') : el('span', { class: 'cm-nodo-num' }, leccion.numero_curso)));
+    if (cerrada) nodo.setAttribute('aria-label', `${nodo.getAttribute('aria-label')} · ${t('ph.lec.cerradaCorta')}`);
     const etiqueta = el('span', { class: 'cm-etiqueta', 'aria-hidden': 'true' },
       el('span', { class: 'cm-etiqueta-es', lang: LANG }, leccion.titulo_es),
       leccion.titulo && el('span', { class: 'cm-etiqueta-trad' }, tr(leccion.titulo)));

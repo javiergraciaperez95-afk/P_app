@@ -308,4 +308,7 @@ export default {
   'ph.rp.vuelve': 'Gặp lại sau {cuando}',
   'ph.rp.vuelveManana': 'Gặp lại vào ngày mai',
   'ph.rp.falladas': '{n} thẻ chưa đúng sẽ quay lại vào ngày mai.',
+
+  'ph.lec.cerrada': '🔒 Bài này chưa mở. Em hoàn thành bài trước đã nhé!',
+  'ph.lec.cerradaCorta': 'chưa mở',
 };

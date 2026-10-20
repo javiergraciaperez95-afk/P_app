@@ -590,7 +590,7 @@ function pintarLibro(contenedor, resultado, siguiente, alJuego) {
       el('p', { class: 'resumen' }, textoProgreso(r)),
       r.terminada ? null : el('button', { type: 'button', class: 'boton boton-principal', onclick: terminar }, t('leccion.terminar')),
       r.terminada && propias.size ? el('a', { class: 'boton boton-principal', href: '#/repaso' }, t('leccion.repasarAhora')) : null,
-      siguiente
+      siguiente && r.terminada
         ? el('a', { class: 'boton', href: `#/leccion/${siguiente}` }, t('leccion.siguiente'))
         : el('a', { class: 'boton', href: '#/lecciones' }, t('comun.volverLecciones')));
   }

@@ -363,3 +363,9 @@ details.se-abre > :not(summary) { animation: fr-entra .28s ease-out both; }
 /* repaso: el español de las cartas, las opciones y las fichas, con letra de texto (en la pixelada costaba leer las frases) */
 .rp-carta .carta-es, .rp-opcion, .rp-opcion[lang], .rp-ficha.ordena, .rp-hueco.ordena, .rp-respuesta-es, .rp-escribe { font-family: var(--fuente-texto); font-weight: 800; letter-spacing: 0; }
 .rp-carta .carta-es { font-size: clamp(1.4rem, 6vw, 2rem); line-height: 1.3; }
+
+/* mapa: las lecciones aún cerradas (se abren en orden), con su candado */
+.cm-nodo.cerrada { filter: grayscale(.85); opacity: .6; cursor: not-allowed; }
+.cm-nodo.cerrada .cm-nodo-anillo { opacity: .3; }
+.cm-nodo-candado { font-size: 1.3rem; line-height: 1; }
+.cm-parada:has(.cm-nodo.cerrada) .cm-etiqueta { opacity: .55; }
