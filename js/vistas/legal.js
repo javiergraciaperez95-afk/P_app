@@ -17,7 +17,7 @@ const CLAVE_AVISO = 'idiomas-aviso-visto';
 export const DATOS_DISPOSITIVO = [
   ['ajustes', ['idiomas-ajustes', 'espanol-ajustes', 'paglot-paleta']],
   ['curso', ['idiomas-curso']],
-  ['progreso', ['P-datos', 'P-prueba', 'P-logros', 'P-estrellas', 'P-juego', 'P-juego2', 'P-cofres', 'P-camino-abiertos', 'P-dia-completo', 'P-reto-mejor', 'P-simulacro-plus']],
+  ['progreso', ['P-datos', 'P-prueba', 'P-logros', 'P-estrellas', 'P-juego', 'P-juego2', 'P-cofres', 'P-camino-abiertos', 'P-dia-completo', 'P-reto-mejor', 'P-simulacro-plus', 'P-…-danado']],
   ['cuaderno', ['P-tarjeta:…']],
   ['vistos', ['idiomas-aviso-visto', 'idiomas-bienvenida-vista', 'idiomas-beta-…', 'paglot_welcome_notification_v5']],
   ['avisos', ['paglot-avisos-repaso', 'paglot-aviso-repaso-dia', 'paglot-aviso-repaso-ultimo']],

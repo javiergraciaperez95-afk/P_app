@@ -252,6 +252,9 @@ export function paginarEnMovil(app, { fijas = null } = {}) {
     } else ir(Number(objetivo) || 0);
   };
   app.addEventListener('pm-ir', alPedirIr);
+  // el botón «atrás» de Android (js/movil.js): si no es la primera diapositiva, vuelve a la anterior
+  const alAtras = e => { if (actual > 0) { e.preventDefault(); ir(actual - 1); } };
+  document.addEventListener('paglot-atras', alAtras);
   repartir();
 
   return () => {
@@ -263,6 +266,7 @@ export function paginarEnMovil(app, { fijas = null } = {}) {
     app.removeEventListener('click', alPulsar);
     app.removeEventListener('animationend', alAcabarEntrada);
     app.removeEventListener('pm-ir', alPedirIr);
+    document.removeEventListener('paglot-atras', alAtras);
     app.removeEventListener('input', alEscribir);
     app.removeEventListener('pointerdown', alBajar);
     app.removeEventListener('pointerup', alSubir);

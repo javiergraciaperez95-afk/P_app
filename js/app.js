@@ -15,7 +15,7 @@ import { descubrirLecciones, cargarIndice, cargarDiccionario, cargarLeccion, car
 import { ajuste, aplicarTema, temaActual, cambiarAjuste, aplicarComodidad, modoCalma } from './ajustes.js';
 import { t, tr, aplicarIdioma, IDIOMAS, IDIOMAS_VISIBLES, idioma, cambiarIdioma } from './i18n.js';
 import { sonar, prepararVoces, callar } from './sonidos.js';
-import { alCambiar, hayProgreso } from './progress.js';
+import { alCambiar, hayProgreso, datosDanados } from './progress.js';
 import { pintarCabecera, pendientesDeHoy } from './cabecera.js';
 import { iniciarPie, pintarPie } from './pie.js';
 import { decir } from './tutor.js';
@@ -1018,6 +1018,8 @@ async function iniciar() {
   await primera;
   quitarArranque();
   iniciarAvisosRepaso();
+  // si algo de lo guardado estaba estropeado, se dice (se guardó aparte una copia de lo que había)
+  if (datosDanados().length) setTimeout(() => decir(t('app.datosDanados'), 'confundida'), 1500);
   // el progreso en la nube (Supabase): se junta con el del dispositivo y se sube al cambiar
   iniciarNube();
   // si de la nube llega progreso nuevo, se repinta la pantalla (salvo en mitad de una lección, un repaso o un reto)

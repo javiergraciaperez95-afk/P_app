@@ -309,8 +309,12 @@ export function pintarPrecios(contenedor) {
   const bMensual = el('button', { type: 'button', onclick: () => cambiarPago('mes') }, t('pr.mensual'));
 
   // encima de los precios, para quien solo quiere echar una mano sin suscribirse
-  const apoyo = (clase, href, icono, nombre) => el('a', { class: `pr-apoyo-boton ${clase}`, href, target: '_blank', rel: 'noopener', onclick: () => sonar('clic') },
-    el('span', { 'aria-hidden': 'true' }, icono), nombre);
+  // sin enlace (la cuenta aún no existe), el botón dice «Muy pronto» en lugar de llevar a una página inventada
+  const apoyo = (clase, href, icono, nombre) => (href
+    ? el('a', { class: `pr-apoyo-boton ${clase}`, href, target: '_blank', rel: 'noopener', onclick: () => sonar('clic') },
+      el('span', { 'aria-hidden': 'true' }, icono), nombre)
+    : el('span', { class: `pr-apoyo-boton ${clase} pr-apoyo-pronto`, 'aria-disabled': 'true', title: t('precios.pronto') },
+      el('span', { 'aria-hidden': 'true' }, icono), `${nombre} · ${t('precios.pronto')}`));
   const contenidoArriba = el('div', { class: 'pr-arriba' },
     el('div', { class: 'pr-cabeza' },
       el('div', { class: 'pr-apoyo' },

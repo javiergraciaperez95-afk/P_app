@@ -58,8 +58,18 @@ function enPrincipal() {
   return hayCurso ? ['', '#/', '#/inicio', '#/lecciones', '#/idiomas'].includes(hash) : !['#/creditos', '#/legal', '#/sobre', '#/entrar', '#/precios'].includes(hash);
 }
 
+// Las pantallas por las que se ha pasado, para que «atrás» vuelva a la anterior de verdad (y no siempre a la lista)
+const pasadas = [location.hash];
+let volviendo = false;
+window.addEventListener('hashchange', () => {
+  if (volviendo) { volviendo = false; return; }
+  if (pasadas[pasadas.length - 1] !== location.hash) pasadas.push(location.hash);
+  if (pasadas.length > 50) pasadas.shift();
+});
+
 if (piezas?.App) {
-  // Botón «atrás»: en la pantalla principal cierra la app; en un juego pregunta; en lo demás vuelve a la principal.
+  // Botón «atrás»: primero cierra lo abierto y vuelve a la diapositiva anterior (paginas-movil.js escucha «paglot-atras»);
+  // después, a la pantalla anterior; en la principal sin nada detrás cierra la app; en un juego pregunta.
   piezas.App.addListener('backButton', async () => {
     if (cerrarPregunta) { cerrarPregunta(false); return; }
     // una pantalla con algo suyo abierto encima (una hoja, un panel) lo cierra primero: escucha «paglot-atras» y lo cancela
@@ -68,6 +78,10 @@ if (piezas?.App) {
       if (await salirDelJuego()) location.hash = '#/lecciones';
     } else if (location.hash === '#/bienvenida') {
       location.hash = '#/lecciones'; // «atrás» en la bienvenida la salta
+    } else if (pasadas.length > 1) {
+      pasadas.pop();
+      volviendo = true;
+      location.hash = pasadas[pasadas.length - 1];
     } else if (enPrincipal()) {
       piezas.App.exitApp();
     } else {

@@ -15,6 +15,7 @@ import { apuntarPalabrasDeLeccion } from '../comunes.js';
 import { estadoEjercicio, resumenLeccion, marcarTerminada } from '../progress.js';
 import { TIPOS_EJERCICIO } from '../lessons.js';
 import { LANG } from '../curso.js';
+import { estrellasPorFallos } from '../estrellas.js';
 
 const mayuscula = texto => texto.charAt(0).toLocaleUpperCase(LANG) + texto.slice(1);
 
@@ -728,7 +729,8 @@ function fin({ leccion, tablero, decir, completar, siguiente, alLibro, reiniciar
   if (completa && !r.terminada) marcarTerminada(leccion.id);
   // Las palabras de la lección pasan al cuaderno: desde ahora salen en el repaso.
   const nuevas = completa ? apuntarPalabrasDeLeccion(leccion, leccion.propias) : 0;
-  const estrellas = r.completados < r.total ? 1 : r.errores === 0 ? 3 : r.errores <= 2 ? 2 : 1;
+  // la misma regla que en los juegos (juegos/motor.js): por la proporción de fallos, no por su número
+  const estrellas = r.completados < r.total ? 1 : estrellasPorFallos(r.errores, r.total);
 
   poner(tablero,
     el('p', { class: 'juego-estrellas', 'aria-label': t('juego.fin.estrellas', { n: estrellas }) }, '★'.repeat(estrellas), el('span', { class: 'apagada' }, '★'.repeat(3 - estrellas))),

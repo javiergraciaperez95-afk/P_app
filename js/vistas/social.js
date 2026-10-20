@@ -9,13 +9,14 @@ import { t } from '../i18n.js';
 import { sonar } from '../sonidos.js';
 import { crearElenco } from './elenco.js';
 
+// Las cuentas de Paglot en cada red. Vacío = todavía no existe: el botón dice «Muy pronto» (nada de enlaces inventados).
 const ENLACES = {
-  instagram: 'https://www.instagram.com/paglot_demo/',
-  tiktok: 'https://www.tiktok.com/@paglot_demo',
-  youtube: 'https://www.youtube.com/@paglot_demo',
-  facebook: 'https://www.facebook.com/paglot_demo',
-  x: 'https://x.com/paglot_demo',
-  discord: 'https://discord.gg/paglot-demo',
+  instagram: '',
+  tiktok: '',
+  youtube: '',
+  facebook: '',
+  x: '',
+  discord: '',
 };
 
 export function pintarSocial(root) {
@@ -71,8 +72,10 @@ export function pintarSocial(root) {
       el('div', { class: 'rc-marco' }, pantalla),
       el('div', { class: 'rc-mandos', 'aria-hidden': 'true' }, el('span', { class: 'rc-palanca' }), el('span', { class: 'rc-botones' }, el('i', {}), el('i', {}))),
       el('div', { class: 'rc-instrucciones' }, el('h3', {}, red.titulo), el('p', {}, red.texto)),
-      el('a', { class: 'rc-ranura', 'data-sonido': 'ficha', href: ENLACES[red.id], target: '_blank', rel: 'noopener noreferrer', 'aria-label': t('social.abrirEnlace', { red: red.nombre }) },
-        el('span', { class: 'rc-moneda', 'aria-hidden': 'true' }), el('span', {}, t('social.open'), red.nombre, ' ↗')),
+      ENLACES[red.id]
+        ? el('a', { class: 'rc-ranura', 'data-sonido': 'ficha', href: ENLACES[red.id], target: '_blank', rel: 'noopener noreferrer', 'aria-label': t('social.abrirEnlace', { red: red.nombre }) },
+          el('span', { class: 'rc-moneda', 'aria-hidden': 'true' }), el('span', {}, t('social.open'), red.nombre, ' ↗'))
+        : el('span', { class: 'rc-ranura rc-pronto', 'aria-disabled': 'true' }, el('span', {}, red.nombre, ' · ', t('precios.pronto'))),
       aviso);
     const m = { red, nodo, pantalla, letrero, aviso, actrices, reloj: null };
     pantalla.addEventListener('click', () => jugar(m, true));

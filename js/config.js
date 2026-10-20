@@ -20,10 +20,10 @@ export const TITULAR = {
 export const LEGAL_ACTUALIZADO = '20-10-2026';
 
 // ----- Ayudar sin suscribirse: los botones de Patreon y Buy Me a Coffee encima de los precios (#/precios) -----
-// FICTICIOS de momento: cámbialos por las páginas de verdad cuando existan.
+// Vacíos hasta que existan las páginas de verdad: mientras, el botón dice «Muy pronto».
 export const APOYO = {
-  patreon: 'https://www.patreon.com/cw/paglot',
-  cafe: 'https://www.buymeacoffee.com/paglot',
+  patreon: '',
+  cafe: '',
 };
 
 // ----- Precios (pantalla #/precios). Todavía no se cobra nada ni se aplica el límite: es el plan. -----

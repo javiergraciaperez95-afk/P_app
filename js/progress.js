@@ -91,12 +91,24 @@ export function datosParaGuardar() {
 // Leer y escribir en el navegador
 // ---------------------------------------------------------------------------
 
+// Lo guardado que no se ha podido leer (estropeado): se guarda tal cual aparte («…-danado», una sola vez, para poder
+// recuperarlo a mano) y la app avisa al arrancar (js/app.js) en vez de perderlo en silencio.
+const danados = [];
+export const datosDanados = () => [...danados];
+
 function leer(claveGuardada) {
+  let crudo = null;
   try {
-    const valor = JSON.parse(localStorage.getItem(claveGuardada));
+    crudo = localStorage.getItem(claveGuardada);
+    const valor = JSON.parse(crudo);
     return valor && typeof valor === 'object' ? valor : null;
   } catch {
-    return null; // datos dañados o almacenamiento bloqueado
+    // datos dañados (o almacenamiento bloqueado: entonces no hay nada que salvar)
+    if (crudo) {
+      danados.push(claveGuardada);
+      try { if (!localStorage.getItem(`${claveGuardada}-danado`)) localStorage.setItem(`${claveGuardada}-danado`, crudo); } catch { /* lleno */ }
+    }
+    return null;
   }
 }
 

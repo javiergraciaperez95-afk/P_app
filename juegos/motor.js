@@ -30,6 +30,7 @@ import { esDesarrollador } from '../js/desarrollador.js';
 import { confeti } from '../js/fiesta.js';
 import { altoPantalla, tecladoAbierto } from '../js/teclado.js';
 import './lista.js';
+import { estrellasPorFallos } from '../js/estrellas.js';
 
 const EJERCICIOS = ['test', 'traduccion', 'huecos', 'ordenar', 'escribir'];
 const CLAVE_AVANCE = clave('juego2');
@@ -49,8 +50,7 @@ export function hayJuego(leccion) {
 function leerAvance(id) {
   try { return JSON.parse(localStorage.getItem(CLAVE_AVANCE))?.[id] ?? { paso: 0, hechos: [] }; } catch { return { paso: 0, hechos: [] }; }
 }
-// ----- Estrellas: 3 si se falla poco, 2 si algo más, 1 si cuesta. Se guarda la mejor de cada lección. -----
-const estrellasPorFallos = fallos => (fallos <= 2 ? 3 : fallos <= 6 ? 2 : 1);
+// ----- Estrellas: la regla está en js/estrellas.js. Se guarda la mejor de cada lección. -----
 function leerEstrellas() {
   try { return JSON.parse(localStorage.getItem(CLAVE_ESTRELLAS)) ?? {}; } catch { return {}; }
 }
@@ -227,7 +227,7 @@ export function pintarJuegoDeLeccion(contenedor, leccion, { palabras, siguiente,
     if (!resultado) {
       marcarTerminada(leccion.id);
       const nuevasAhora = apuntarPalabrasDeLeccion(leccion, leccion.palabras);
-      const sacadas = estrellasPorFallos(fallos);
+      const sacadas = estrellasPorFallos(fallos, pasos.length);
       const previas = guardarEstrellas(leccion.id, sacadas);
       if (sacadas === 3) anotarPerfecta();
       resultado = { nuevas: nuevasAhora, estrellas: sacadas, antes: previas };

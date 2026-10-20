@@ -466,10 +466,26 @@ function seccionAjustes() {
 
 function seccionCopia(repintar) {
   const descargar = el('button', { type: 'button', class: 'boton' }, t('copia.descargar'));
-  descargar.addEventListener('click', () => {
+  descargar.addEventListener('click', async () => {
     const fecha = new Date().toISOString().slice(0, 10);
-    const archivo = new Blob([JSON.stringify(copiaCompleta(), null, 2)], { type: 'application/json' });
-    const enlace = el('a', { href: URL.createObjectURL(archivo), download: `${curso.prefijo}-progreso-${fecha}.json` });
+    const nombreArchivo = `${curso.prefijo}-progreso-${fecha}.json`;
+    const texto = JSON.stringify(copiaCompleta(), null, 2);
+    // en la APK el enlace de descarga no hace nada: se guarda el archivo con el plugin de archivos y se abre «Compartir»
+    // (Drive, correo, WhatsApp…). Sin los plugins (una APK vieja), se copia al portapapeles.
+    const nativos = window.Capacitor?.isNativePlatform?.() ? window.Capacitor.Plugins : null;
+    if (nativos) {
+      try {
+        const { uri } = await nativos.Filesystem.writeFile({ path: nombreArchivo, data: texto, directory: 'CACHE', encoding: 'utf8' });
+        await nativos.Share.share({ title: t('copia.descargar'), files: [uri], dialogTitle: t('copia.compartir') });
+        sonar('guardar');
+        decir(t('copia.descargadaTutora'), 'contenta');
+      } catch {
+        try { await navigator.clipboard.writeText(texto); decir(t('copia.copiadaPortapapeles'), 'contenta'); } catch { decir(t('copia.noSePudo'), 'confundida'); }
+      }
+      return;
+    }
+    const archivo = new Blob([texto], { type: 'application/json' });
+    const enlace = el('a', { href: URL.createObjectURL(archivo), download: nombreArchivo });
     document.body.append(enlace);
     enlace.click();
     enlace.remove();

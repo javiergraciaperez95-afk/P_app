@@ -450,7 +450,8 @@ function adaptarModelo(m) {
     titulo: m.titulo.alumno,
     ...(m.intro ? { intro: m.intro } : {}),
     palabras,
-    bloques: ordenSagrado(m.etapas).flatMap(e => e.piezas.map(pieza)),
+    // un bloque de vocabulario sin palabras (hay lecciones a las que aún les faltan) no se enseña vacío
+    bloques: ordenSagrado(m.etapas).flatMap(e => e.piezas.filter(p => p.tipo !== 'vocabulario' || p.palabras?.length).map(pieza)),
   };
 }
 
