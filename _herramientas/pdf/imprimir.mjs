@@ -37,8 +37,8 @@ for (const { html, pdf } of lista) {
   fs.writeFileSync(pdf, Buffer.from(r.data, 'base64'));
   // con CAPTURA=1, además una imagen de todas las hojas (para revisarlas sin abrir el PDF)
   if (process.env.CAPTURA) {
-    const alto = (await cdp('Runtime.evaluate', { expression: 'document.documentElement.scrollHeight', returnByValue: true })).result.value;
-    await cdp('Emulation.setDeviceMetricsOverride', { width: 794, height: alto, deviceScaleFactor: 1, mobile: false });
+    const [ancho, alto] = (await cdp('Runtime.evaluate', { expression: '[document.querySelector(".hoja")?.offsetWidth || 794, document.documentElement.scrollHeight]', returnByValue: true })).result.value;
+    await cdp('Emulation.setDeviceMetricsOverride', { width: ancho, height: alto, deviceScaleFactor: 1, mobile: false });
     const foto = await cdp('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true });
     fs.writeFileSync(pdf.replace(/\.pdf$/, '.png'), Buffer.from(foto.data, 'base64'));
     await cdp('Emulation.clearDeviceMetricsOverride');
