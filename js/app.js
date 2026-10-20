@@ -9,7 +9,8 @@ import './teclado.js'; // y al escribir, el teclado del móvil no descompone la 
 import './errores.js'; // los fallos de la app se apuntan (anónimos) en la nube
 import './recordatorio.js'; // en la APK, el aviso diario (se ofrece al terminar la primera lección)
 import { el, poner } from './dom.js';
-import { activarDesarrollador } from './desarrollador.js';
+import { activarDesarrollador, esDesarrollador } from './desarrollador.js';
+import { haySesion, alCambiarSesion } from './servidor.js';
 import { icono } from './iconos.js';
 import { descubrirLecciones, cargarIndice, cargarDiccionario, cargarLeccion, cargarCapitulos, cargarFrases } from './lessons.js';
 import { ajuste, aplicarTema, temaActual, cambiarAjuste, aplicarComodidad, modoCalma } from './ajustes.js';
@@ -721,6 +722,14 @@ async function navegar({ cambioDeIdioma = false } = {}) {
   // #/desarrollador: acceso para revisar la app (todas las lecciones y sus pasos cuentan como hechos, ver desarrollador.js)
   // y el probador de juegos (js/probador.js). Se llega también con siete toques seguidos en el logo de la cabecera.
   if (seccion === 'desarrollador') activarDesarrollador();
+  // Sin cuenta no se entra en nada del curso (lecciones, repaso, cuaderno, perfil…), salvo en modo desarrollador:
+  // a #/entrar, y al entrar se vuelve a lo que se quería abrir.
+  if (!esGeneral(seccion) && !haySesion() && !esDesarrollador()) {
+    try { sessionStorage.setItem('paglot-tras-entrar', location.hash || '#/lecciones'); } catch { /* sin almacenamiento */ }
+    history.replaceState(null, '', '#/entrar');
+    navegar();
+    return;
+  }
   // La primera vez que alguien sin progreso llega a sus lecciones, antes pasa por la bienvenida.
   if (seccion === 'lecciones' && !bienvenidaOfrecida && !bienvenidaVista() && !hayProgreso()) {
     history.replaceState(null, '', '#/bienvenida');
@@ -1018,6 +1027,7 @@ async function iniciar() {
   await primera;
   quitarArranque();
   iniciarAvisosRepaso();
+  alCambiarSesion(() => pintarCabecera());
   // si algo de lo guardado estaba estropeado, se dice (se guardó aparte una copia de lo que había)
   if (datosDanados().length) setTimeout(() => decir(t('app.datosDanados'), 'confundida'), 1500);
   // el progreso en la nube (Supabase): se junta con el del dispositivo y se sube al cambiar

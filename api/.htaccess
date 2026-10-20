@@ -1,0 +1,10 @@
+# La API de Paglot: solo index.php se ve desde fuera; la configuración, el código común y las herramientas, no.
+Options -Indexes
+<FilesMatch "^(config\.php|config\.example\.php|esquema\.sql)$">
+  Require all denied
+</FilesMatch>
+RedirectMatch 404 ^/api/(inc|herramientas)/
+# que la cabecera Authorization llegue a PHP (en algunos hostings se pierde)
+RewriteEngine On
+RewriteCond %{HTTP:Authorization} .
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

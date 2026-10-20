@@ -5,12 +5,13 @@
 import { el, poner } from './dom.js';
 import { icono } from './iconos.js';
 import { t } from './i18n.js';
-import { curso } from './curso.js';
+import { curso, hayCurso } from './curso.js';
 import { tarjetas, racha, nombre, alCambiar, hayProgreso } from './progress.js';
 import { tocaRepasar, esNueva } from './srs.js';
 import { decir } from './tutor.js';
 import { sonar } from './sonidos.js';
 import { nube, alCambiarNube } from './nube.js';
+import { haySesion } from './servidor.js';
 
 const cabecera = document.querySelector('.cabecera');
 const cinta = document.getElementById('cabecera-cinta');
@@ -47,14 +48,16 @@ function cintaBienvenida() {
     el('a', { class: 'btn hola-seguir', href: '#/lecciones' }, t('inicio.continuar', { curso: curso.nativo })));
 }
 
-/** El botón de la cuenta (número al estilo Mullvad): lleva a #/entrar y su puntito dice si la nube está al día. */
+/** El botón de la cuenta: con sesión lleva al perfil (con todo lo de la cuenta); sin ella, a #/entrar. Su puntito dice
+ *  si el progreso está guardado en la nube. */
 function pintarCuenta() {
   if (!cuenta) return;
   const estado = { guardada: 'ok', conectando: 'guardando', 'sin-conexion': 'local', error: 'error' }[nube.estado] ?? 'local';
   const texto = t(`cuenta2.estado.${nube.estado}`) || t('cabecera.cuenta');
   // sin estado de la nube que contar, el nombre es solo «Cuenta» (antes salía «Cuenta · Cuenta» en el lector de pantalla)
   const nombre = texto === t('cabecera.cuenta') ? texto : `${t('cabecera.cuenta')} · ${texto}`;
-  poner(cuenta, el('a', { class: 'btn cabecera-entrar', href: '#/entrar', title: texto, 'aria-label': nombre },
+  const destino = haySesion() ? (hayCurso ? '#/perfil' : '#/entrar') : '#/entrar';
+  poner(cuenta, el('a', { class: 'btn cabecera-entrar', href: destino, title: texto, 'aria-label': nombre },
     icono('perfil'), el('span', { class: 'cabecera-cuenta-texto' }, t('cabecera.cuenta')),
     el('span', { class: `avatar-nube ${estado}`, 'aria-hidden': 'true' })));
 }

@@ -1,21 +1,18 @@
-// Pantalla de la cuenta (#/entrar), al estilo Mullvad: no hay correo ni contraseña obligatorios. Cada dispositivo tiene
-// un número de cuenta de 16 cifras (js/nube.js); aquí se ve y se copia, se entra con el de otro dispositivo, o se une un
-// correo (con un código de 6 cifras) para que no caduque y para recuperar el número.
+// Pantalla de la cuenta (#/entrar). Desde el 20-10-2026 hace falta una cuenta para estudiar: se entra con correo y
+// contraseña (lo principal); también se puede crear una (con un código por correo para confirmarla), entrar con un
+// código sin contraseña o cambiar la contraseña olvidada. Lo hace js/servidor.js (Supabase en local, PHP en el hosting).
 // Es una escena: la plaza de la academia Paglot (de día o de noche, como el tema), con su puerta iluminada,
 // dos cerezos, farolas y la ficha de entrada sobre un caballete. Tres tutoras están pendientes de la ficha:
-// la de la izquierda «apunta» lo que escribes, la de la derecha se tapa los ojos mientras se ve el número (y espía si
-// lo enseñas) y la que está sentada encima de la ficha es la que habla. Todas celebran cuando entras.
-
+// la de la izquierda «apunta» lo que escribes, la de la derecha se tapa los ojos mientras escribes la contraseña
+// y la que está sentada encima de la ficha es la que habla. Todas celebran cuando entras.
 import { el, poner } from '../dom.js';
 import { t } from '../i18n.js';
 import { CURSOS } from '../cursos.js';
 import { curso, hayCurso } from '../curso.js';
 import { dibujoDe } from '../tutor-sprite.js';
 import { sonar } from '../sonidos.js';
-import {
-  nubeActiva, nube, alCambiarNube, numeroCuenta, numeroBonito, limpiarNumero, usarNumero,
-  pedirCodigo, comprobarCodigo, unirCorreo, recuperarConCorreo, correoDeLaCuenta, progresoEnLaNube, encenderNube,
-} from '../nube.js';
+import { registrar, verificar, entrar, pedirCodigo, entrarConCodigo, cambiarClave, haySesion, usuario, textoDeError } from '../servidor.js';
+import { iniciarNube } from '../nube.js';
 import { sol, luna, nubes, maceta, dibujoPixel, conContorno, conHalo } from './inicio-decorado.js';
 
 // ---------------------------------------------------------------------------
@@ -189,6 +186,11 @@ export function pintarEntrar(contenedor) {
   let encendida = true;
   const despues = (ms, fn) => { const id = setTimeout(() => { if (encendida) fn(); }, ms); apagar.push(() => clearTimeout(id)); };
   const destino = hayCurso ? '#/lecciones' : '#/idiomas';
+  const destinoTrasEntrar = () => {
+    let pedido = null;
+    try { pedido = sessionStorage.getItem('paglot-tras-entrar'); sessionStorage.removeItem('paglot-tras-entrar'); } catch { /* sin almacenamiento */ }
+    return pedido && pedido.startsWith('#/') && !pedido.startsWith('#/entrar') ? pedido : destino;
+  };
 
   // Las tres tutoras: la del curso (o una al azar) se sienta en la ficha; las otras dos, al azar y distintas.
   const disponibles = CURSOS.filter(c => !c.proximamente);
@@ -246,31 +248,27 @@ export function pintarEntrar(contenedor) {
     const mensaje = el('p', { class: 'en-mensaje', role: 'status' });
     const enviar = el('button', { type: 'submit', class: 'en-boton' }, textoBoton);
     const form = el('form', { class: 'en-form', novalidate: true }, campos, mensaje, enviar, debajo);
+    const fallo = texto => {
+      mensaje.className = 'en-mensaje error';
+      mensaje.textContent = texto;
+      sonar('mal');
+      tIzq.gesto('rascarse');
+      tDer.gesto('negar');
+      tFicha.sprite?.reaccionar('agobiada', 1400);
+    };
     form.addEventListener('submit', async e => {
       e.preventDefault();
-      const fallo = texto => {
-        mensaje.className = 'en-mensaje error';
-        mensaje.textContent = texto;
-        sonar('mal');
-        tIzq.gesto('rascarse');
-        tDer.gesto('negar');
-        tFicha.sprite?.reaccionar('agobiada', 1400);
-      };
-      if (!nubeActiva) { fallo(t('cuenta2.sinConexion')); return; }
       enviar.disabled = true;
       mensaje.className = 'en-mensaje';
       mensaje.textContent = t('form.unMomento');
       tFicha.gesto('pensar');
       try {
-        const resultado = await accion(mensaje, fallo);
+        const resultado = await accion(mensaje, fallo, enviar);
         if (!form.isConnected || resultado === false) return;
         mensaje.className = 'en-mensaje bien';
         mensaje.textContent = resultado ?? '';
       } catch (error) {
-        if (!form.isConnected) return;
-        const motivo = error.motivo === 'formato' ? 'cuenta2.malFormato' : error.motivo === 'noExiste' ? 'cuenta2.noExiste'
-          : error.motivo === 'sinCuenta' ? 'cuenta2.sinCuentaCorreo' : error.estado ? null : 'cuenta2.sinConexion';
-        fallo(motivo ? t(motivo) : error.message);
+        if (form.isConnected) fallo(textoDeError(error));
       } finally {
         enviar.disabled = false;
       }
@@ -278,148 +276,169 @@ export function pintarEntrar(contenedor) {
     return form;
   }
 
-  // ----- La ficha: mi número · ya tengo uno · con correo -----
-  let modo = location.hash === '#/entrar/numero' ? 'numero' : location.hash === '#/entrar/correo' ? 'correo' : 'cuenta';
+  // ----- La ficha: entrar · crear cuenta (y, como alternativa, entrar con un código o cambiar la contraseña) -----
+  const inicial = { '#/entrar/crear': 'crear', '#/entrar/codigo': 'codigo', '#/entrar/clave': 'clave' }[location.hash] ?? 'entrar';
+  let modo = inicial;
   const cuerpo = el('div', { class: 'en-ficha-cuerpo' });
-  const MODOS = [['cuenta', t('entrar.miNumero')], ['numero', t('entrar.yaTengo')], ['correo', t('entrar.conCorreo')]];
+  const MODOS = [['entrar', t('cuenta3.entrar')], ['crear', t('cuenta3.crear')]];
   const pestanas = MODOS.map(([clave, texto]) => {
     const b = el('button', { type: 'button', class: 'en-pestana', 'aria-pressed': 'false' }, texto);
     b.addEventListener('click', () => cambiar(clave));
     return b;
   });
-  const barra = el('div', { class: 'en-pestanas en-pestanas-3', role: 'group', 'aria-label': t('cuenta.opciones') }, pestanas, el('span', { class: 'en-pestanas-marca', 'aria-hidden': 'true' }));
-
-  // con la nube apagada no hay número que guardar: la tutora explica dónde se queda el progreso
-  const saludoCuenta = () => progresoEnLaNube() ? 'entrar.tutora' : 'entrar.tutoraSinNube';
+  const barra = el('div', { class: 'en-pestanas', role: 'group', 'aria-label': t('cuenta.opciones') }, pestanas, el('span', { class: 'en-pestanas-marca', 'aria-hidden': 'true' }));
+  let correoRecordado = '';
 
   function cambiar(nuevo, { conSonido = true } = {}) {
     if (conSonido) sonar('elegir');
     modo = nuevo;
     pintarFicha();
-    if (modo === 'cuenta') { tFicha.decir(t(saludoCuenta())); tFicha.gesto('saludar'); tIzq.gesto('invitarDer'); }
-    if (modo === 'numero') { tFicha.decir(t('entrar.tutoraNumero')); tFicha.gesto('guino'); tDer.gesto('invitarIzq'); }
-    if (modo === 'correo') { tFicha.decir(t('cuenta2.correoAyuda')); tFicha.gesto('pensar'); }
+    tFicha.decir(t(`cuenta3.tutora.${modo}`));
+    tFicha.gesto(modo === 'crear' ? 'saludar' : modo === 'entrar' ? 'guino' : 'pensar');
     cuerpo.querySelector('input')?.focus({ preventScroll: true });
   }
 
-  // El número de este dispositivo: tapado hasta que se toca (la de la derecha no mira; si se enseña, espía).
-  function fichaCuenta() {
-    // la nube va apagada hasta que se enciende (19-10): sin ella no hay número que enseñar, se ofrece encenderla
-    if (!progresoEnLaNube()) {
-      const encender = el('button', { type: 'button', class: 'en-boton' }, t('cuenta2.encender'));
-      encender.addEventListener('click', async () => {
-        encender.disabled = true;
-        await encenderNube();
-        sonar('fanfarria');
-        tFicha.gesto('celebrar');
-        tFicha.decir(t('cuenta2.encendida'));
-        pintarFicha();
-      });
-      return el('div', { class: 'en-dentro' },
-        el('p', {}, t('cuenta2.apagadaTexto')),
-        el('div', { class: 'en-botones' }, encender),
-        el('a', { class: 'en-boton en-boton-claro', href: destino, onclick: () => sonar('pagina') },
-          hayCurso ? t('inicio.continuar', { curso: curso.nativo }) : t('inicio.empezar')));
-    }
-    const numero = numeroCuenta();
-    let visible = false;
-    const cifras = el('button', { type: 'button', class: 'en-numero tapado', 'aria-pressed': 'false', 'aria-label': t('cuenta2.ver'), title: t('cuenta2.ver') },
-      numeroBonito(numero));
-    cifras.addEventListener('click', () => {
-      visible = !visible;
-      cifras.classList.toggle('tapado', !visible);
-      cifras.setAttribute('aria-pressed', String(visible));
-      sonar(visible ? 'abrir' : 'cerrar');
+  const campoCorreo = () => {
+    const c = campo(t('cuenta2.correo'), { type: 'email', required: true, autocomplete: 'email', inputmode: 'email', placeholder: t('cuenta2.correoEjemplo') }, 'sobre');
+    c.entrada.value = correoRecordado;
+    c.entrada.addEventListener('input', () => { correoRecordado = c.entrada.value.trim(); });
+    return c;
+  };
+  const campoClave = (texto, nueva = false) => {
+    const c = campo(texto, { type: 'password', required: true, autocomplete: nueva ? 'new-password' : 'current-password', minlength: '8' }, 'candado');
+    // la de la derecha no mira mientras se escribe la contraseña
+    c.entrada.addEventListener('focus', () => { tDer.gesto('noMirar'); tDer.decir(t('entrar.noMiro'), 2000); });
+    const ver = el('button', { type: 'button', class: 'en-ver-clave', 'aria-pressed': 'false', 'aria-label': t('cuenta3.verClave') }, '👁');
+    ver.addEventListener('click', () => {
+      const visible = c.entrada.type === 'password';
+      c.entrada.type = visible ? 'text' : 'password';
+      ver.setAttribute('aria-pressed', String(visible));
       tDer.gesto(visible ? 'espiar' : 'noMirar');
-      tDer.decir(t(visible ? 'entrar.espio' : 'entrar.noMiro'), 2400);
     });
-    const aviso = el('p', { class: 'en-nota', role: 'status' });
-    const copiar = el('button', { type: 'button', class: 'en-boton en-boton-claro' }, t('cuenta2.copiar'));
-    copiar.addEventListener('click', async () => {
+    c.nodo.querySelector('.en-caja').append(ver);
+    return c;
+  };
+  const campoCodigo = () => campo(t('cuenta2.codigo'), { type: 'text', inputmode: 'numeric', autocomplete: 'one-time-code', maxlength: '6', placeholder: '123456' }, 'candado');
+  const enlaceModo = (clave, texto) => el('button', { type: 'button', class: 'en-enlace', onclick: () => cambiar(clave) }, texto);
+  const correoMal = (c, fallo) => { if (!c.entrada.value.trim() || !c.entrada.checkValidity()) { fallo(t('form.correoValido')); c.entrada.focus(); return true; } return false; };
+  const dentro = async () => {
+    celebrar();
+    iniciarNube();
+    despues(1500, () => { location.hash = destinoTrasEntrar(); });
+    return t('entrar.dentro');
+  };
+
+  // Entrar con correo y contraseña (lo principal)
+  function fichaEntrar() {
+    const correo = campoCorreo();
+    const clave = campoClave(t('cuenta3.clave'));
+    return formulario([correo.nodo, clave.nodo], t('cuenta3.entrar'), async (mensaje, fallo) => {
+      if (correoMal(correo, fallo)) return false;
       try {
-        await navigator.clipboard.writeText(numero);
-        aviso.textContent = t('cuenta2.copiado');
-        sonar('guardar');
-        tIzq.gesto('escribir');
-      } catch {
-        aviso.textContent = `${t('cuenta2.copiaAMano')} ${numeroBonito(numero)}`;
-        sonar('pagina');
+        await entrar(correo.entrada.value.trim(), clave.entrada.value);
+      } catch (e) {
+        if (e.codigo !== 'sin-verificar') throw e;
+        // la cuenta aún no se confirmó: se le ha mandado otro código, se pide aquí mismo
+        cambiar('verificar', { conSonido: false });
+        return false;
       }
-    });
-    const estado = el('p', { class: `en-nota estado-nube nube-${nube.estado}`, role: 'status' }, t(`cuenta2.estado.${nube.estado}`));
-    const caduca = el('p', { class: 'en-nota' }, t('cuenta2.caduca'));
-    correoDeLaCuenta().then(correo => {
-      if (correo && caduca.isConnected) poner(caduca, t('cuenta2.noCaduca'), ' ', t('cuenta2.correoUnido', { correo }));
-    });
-    return el('div', { class: 'en-dentro' },
-      el('p', {}, t('cuenta2.intro')),
-      cifras,
-      el('div', { class: 'en-botones' }, copiar),
-      aviso,
-      estado,
-      caduca,
-      el('a', { class: 'en-boton', href: destino, onclick: () => sonar('pagina') },
-        hayCurso ? t('inicio.continuar', { curso: curso.nativo }) : t('inicio.empezar')));
+      return dentro();
+    }, el('div', { class: 'en-alternativas' },
+      enlaceModo('clave', t('cuenta3.olvide')),
+      enlaceModo('codigo', t('cuenta3.conCodigo'))));
   }
 
-  // Entrar con el número de otro dispositivo: se juntan los dos progresos.
-  function fichaNumero() {
-    const c = campo(t('cuenta2.otroNumero'), { type: 'text', inputmode: 'numeric', autocomplete: 'off', maxlength: '24', placeholder: '0000 0000 0000 0000' }, 'candado');
-    c.entrada.addEventListener('input', () => {
-      const n = limpiarNumero(c.entrada.value).slice(0, 16);
-      const bonito = numeroBonito(n);
-      if (bonito !== c.entrada.value) c.entrada.value = bonito;
-    });
-    return formulario([c.nodo], t('cuenta2.entrar'), async () => {
-      await usarNumero(c.entrada.value);
-      celebrar();
-      despues(1800, () => { modo = 'cuenta'; pintarFicha(); });
-      return t('cuenta2.dentro');
-    });
+  // Crear una cuenta: nombre (opcional), correo y contraseña; luego, el código que llega al correo
+  function fichaCrear() {
+    const nombre = campo(t('cuenta3.nombre'), { type: 'text', autocomplete: 'nickname', maxlength: '60' }, 'lapiz');
+    const correo = campoCorreo();
+    const clave = campoClave(t('cuenta3.claveNueva'), true);
+    return formulario([nombre.nodo, correo.nodo, clave.nodo, el('p', { class: 'en-nota' }, t('cuenta3.claveAyuda'))], t('cuenta3.crear'), async (mensaje, fallo) => {
+      if (correoMal(correo, fallo)) return false;
+      if (clave.entrada.value.length < 8) { fallo(textoDeError({ codigo: 'clave-corta' })); return false; }
+      await registrar({ correo: correo.entrada.value.trim(), clave: clave.entrada.value, nombre: nombre.entrada.value.trim() });
+      sonar('volar');
+      cambiar('verificar', { conSonido: false });
+      return false;
+    }, el('p', { class: 'en-nota' }, t('cuenta3.aceptas'), ' ', el('a', { href: '#/legal' }, t('legal.titulo'))));
   }
 
-  // El correo: se pide un código y, con él, se une a esta cuenta o se recupera la que ya tenía.
-  function fichaCorreo() {
-    const correo = campo(t('cuenta2.correo'), { type: 'email', required: true, autocomplete: 'email', inputmode: 'email', placeholder: t('cuenta2.correoEjemplo') }, 'sobre');
-    const codigo = campo(t('cuenta2.codigo'), { type: 'text', inputmode: 'numeric', autocomplete: 'one-time-code', maxlength: '6' }, 'candado');
+  // El código que confirma la cuenta (después de crearla o al entrar sin haberla confirmado)
+  function fichaVerificar() {
+    const codigo = campoCodigo();
+    const reenviar = el('button', { type: 'button', class: 'en-enlace' }, t('cuenta3.reenviar'));
+    return formulario([el('p', {}, t('cuenta3.codigoEnviado', { correo: correoRecordado })), codigo.nodo], t('cuenta3.confirmar'), async () => {
+      await verificar(correoRecordado, codigo.entrada.value);
+      return dentro();
+    }, el('div', { class: 'en-alternativas' }, enlaceModo('entrar', `◀ ${t('cuenta3.volver')}`), reenviar));
+  }
+
+  // Entrar sin contraseña: un código por correo (la alternativa)
+  function fichaCodigo() {
+    const correo = campoCorreo();
+    const codigo = campoCodigo();
     codigo.nodo.hidden = true;
     let enviado = false;
-    const form = formulario([el('p', { class: 'en-nota' }, t('cuenta2.correoAyuda')), correo.nodo, codigo.nodo], t('cuenta2.enviarCodigo'), async (mensaje, fallo) => {
-      const direccion = correo.entrada.value.trim();
-      if (!correo.entrada.checkValidity() || !direccion) { fallo(t('form.correoValido')); return false; }
+    const form = formulario([el('p', { class: 'en-nota' }, t('cuenta3.codigoAyuda')), correo.nodo, codigo.nodo], t('cuenta2.enviarCodigo'), async (mensaje, fallo, boton) => {
+      if (correoMal(correo, fallo)) return false;
       if (!enviado) {
-        await pedirCodigo(direccion);
+        await pedirCodigo(correo.entrada.value.trim(), 'entrar');
         enviado = true;
         codigo.nodo.hidden = false;
-        form.querySelector('button[type="submit"]').textContent = t('cuenta2.unir');
+        boton.textContent = t('cuenta3.entrar');
         codigo.entrada.focus();
         sonar('volar');
-        tFicha.gesto('pulgar');
-        return t('cuenta2.codigoEnviado', { correo: direccion });
+        return t('cuenta3.siExiste', { correo: correo.entrada.value.trim() });
       }
-      let token;
-      try { token = await comprobarCodigo(direccion, codigo.entrada.value); } catch { fallo(t('cuenta2.codigoMal')); return false; }
-      // si ese correo ya tenía una cuenta, se recupera; si no, se une a la de este dispositivo
-      try {
-        await recuperarConCorreo(token);
-        celebrar();
-        tFicha.decir(t('cuenta2.recuperadoTutora'), 5000);
-      } catch (e) {
-        if (e.motivo !== 'sinCuenta') throw e;
-        await unirCorreo(token);
-        celebrar();
-        tFicha.decir(t('cuenta2.unidoTutora'), 5000);
-      }
-      despues(2200, () => { modo = 'cuenta'; pintarFicha(); });
-      return t('cuenta2.correoUnido', { correo: direccion });
-    });
+      await entrarConCodigo(correo.entrada.value.trim(), codigo.entrada.value);
+      return dentro();
+    }, el('div', { class: 'en-alternativas' }, enlaceModo('entrar', `◀ ${t('cuenta3.conClave')}`)));
     return form;
   }
 
+  // Contraseña olvidada: código por correo y una nueva
+  function fichaClave() {
+    const correo = campoCorreo();
+    const codigo = campoCodigo();
+    const nueva = campoClave(t('cuenta3.claveNueva'), true);
+    codigo.nodo.hidden = true;
+    nueva.nodo.hidden = true;
+    let enviado = false;
+    return formulario([el('p', { class: 'en-nota' }, t('cuenta3.olvideAyuda')), correo.nodo, codigo.nodo, nueva.nodo], t('cuenta2.enviarCodigo'), async (mensaje, fallo, boton) => {
+      if (correoMal(correo, fallo)) return false;
+      if (!enviado) {
+        await pedirCodigo(correo.entrada.value.trim(), 'clave');
+        enviado = true;
+        codigo.nodo.hidden = false;
+        nueva.nodo.hidden = false;
+        boton.textContent = t('cuenta3.cambiarClave');
+        codigo.entrada.focus();
+        sonar('volar');
+        return t('cuenta3.siExiste', { correo: correo.entrada.value.trim() });
+      }
+      if (nueva.entrada.value.length < 8) { fallo(textoDeError({ codigo: 'clave-corta' })); return false; }
+      await cambiarClave(correo.entrada.value.trim(), codigo.entrada.value, nueva.entrada.value);
+      return dentro();
+    }, el('div', { class: 'en-alternativas' }, enlaceModo('entrar', `◀ ${t('cuenta3.volver')}`)));
+  }
+
+  // Ya dentro: quién eres y adónde ir
+  function fichaDentro() {
+    const u = usuario();
+    return el('div', { class: 'en-dentro' },
+      el('p', {}, t('cuenta3.yaDentro', { correo: u?.correo ?? '' })),
+      el('a', { class: 'en-boton', href: destinoTrasEntrar(), onclick: () => sonar('pagina') },
+        hayCurso ? t('inicio.continuar', { curso: curso.nativo }) : t('inicio.empezar')),
+      el('a', { class: 'en-boton en-boton-claro', href: '#/perfil' }, t('menu.perfil')));
+  }
+
   function pintarFicha() {
+    const enPestana = MODOS.findIndex(m => m[0] === modo);
+    barra.hidden = haySesion() || enPestana < 0;
     pestanas.forEach((b, i) => b.setAttribute('aria-pressed', String(MODOS[i][0] === modo)));
-    barra.style.setProperty('--en', MODOS.findIndex(m => m[0] === modo));
-    poner(cuerpo, { cuenta: fichaCuenta, numero: fichaNumero, correo: fichaCorreo }[modo]());
+    if (enPestana >= 0) barra.style.setProperty('--en', enPestana);
+    const fichas = { entrar: fichaEntrar, crear: fichaCrear, verificar: fichaVerificar, codigo: fichaCodigo, clave: fichaClave };
+    poner(cuerpo, haySesion() ? fichaDentro() : fichas[modo]());
     ficha.dataset.modo = modo;
   }
 
@@ -464,17 +483,9 @@ export function pintarEntrar(contenedor) {
   pintarFicha();
   poner(contenedor, escena);
 
-  // El estado de la nube (guardada, sin conexión…) se pone al día en la ficha del número.
-  apagar.push(alCambiarNube(() => {
-    const estado = cuerpo.querySelector('.estado-nube');
-    if (!estado) return;
-    estado.className = `en-nota estado-nube nube-${nube.estado}`;
-    estado.textContent = t(`cuenta2.estado.${nube.estado}`);
-  }));
-
-  // La bienvenida, y de vez en cuando alguna hace algo (si no está tapándose los ojos).
+  // La bienvenida, y de vez en cuando alguna hace algo.
   despues(500, () => {
-    tFicha.decir(t(modo === 'numero' ? 'entrar.tutoraNumero' : modo === 'correo' ? 'cuenta2.correoAyuda' : saludoCuenta()));
+    tFicha.decir(t(haySesion() ? 'cuenta3.tutora.dentro' : `cuenta3.tutora.${modo}`));
     tFicha.gesto('saludar');
     tIzq.gesto('invitarDer');
   });

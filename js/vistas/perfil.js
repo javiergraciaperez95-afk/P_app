@@ -16,11 +16,8 @@ import { LOGROS, logrosGanados, comprobarLogros } from '../logros.js';
 import { conCartel } from './carteles.js';
 import { seccionEstadisticas } from './estadisticas.js';
 import { PALETAS, paletaActual, cambiarPaleta, puedeUsar } from '../paletas.js';
-import {
-  nubeActiva, nube, alCambiarNube, numeroCuenta, numeroBonito, usarNumero, borrarCuentaNube,
-  pedirCodigo, comprobarCodigo, unirCorreo, recuperarConCorreo, correoDeLaCuenta,
-  progresoEnLaNube, apagarNube, encenderNube, borrarTodo,
-} from '../nube.js';
+import { nube, alCambiarNube, borrarTodo } from '../nube.js';
+import { usuario, haySesion, refrescarUsuario, salir, borrarCuenta, canjearRegalo, familiaEstado, familiaInvitar, familiaUnirse, familiaQuitar, textoDeError } from '../servidor.js';
 
 function estadisticas(resultados) {
   const lecciones = resultados.filter(r => r.leccion);
@@ -67,143 +64,124 @@ function seccionNombre() {
 }
 
 // ----- La cuenta (al estilo Mullvad): el número, entrar con otro y, si se quiere, un correo -----
+/** La cuenta: número, correo y plan (comprobado en el servidor), canjear un regalo, la familia, salir y borrarla. */
 function seccionCuenta(repintar) {
-  if (!nubeActiva) return null;
-  // apagada por la persona: solo se explica y se puede volver a encender
-  if (!progresoEnLaNube()) {
-    const encender = el('button', { type: 'button', class: 'boton boton-principal' }, t('cuenta2.encender'));
-    encender.addEventListener('click', async () => {
-      encender.disabled = true;
-      await encenderNube();
-      sonar('fanfarria');
-      decir(t('cuenta2.encendida'), 'contenta');
-      repintar();
-    });
+  if (!haySesion()) {
     return el('section', { class: 'caja cu-cuenta' },
       el('h2', {}, t('cuenta2.titulo')),
-      el('p', { class: 'cu-estado cu-desactivada' }, t('cuenta2.estado.desactivada')),
-      el('p', { class: 'aprox' }, t('cuenta2.apagadaTexto')),
-      el('div', { class: 'botonera' }, encender));
+      el('p', {}, t('cuenta3.sinSesion')),
+      el('a', { class: 'boton boton-principal', href: '#/entrar' }, t('cuenta3.entrar')));
   }
-  const numero = numeroCuenta();
-  const estado = el('p', { class: 'cu-estado', 'aria-live': 'polite' });
-  const pintarEstado = () => {
-    estado.className = `cu-estado cu-${nube.estado}`;
-    estado.textContent = t(`cuenta2.estado.${nube.estado}`);
+  const u = usuario() ?? {};
+  const fecha = f => new Date(f).toLocaleDateString(locale(), { day: 'numeric', month: 'long', year: 'numeric' });
+  const textoPlan = () => {
+    const x = usuario() ?? {};
+    if (x.dev) return t('cuenta3.planDev');
+    const base = t(`cuenta3.plan.${x.plan ?? 'gratis'}`);
+    const extra = [x.fundador ? t('cuenta3.fundador') : null, x.familia === 'miembro' ? t('cuenta3.deFamilia') : null,
+      x.hasta ? t('cuenta3.hasta', { fecha: fecha(x.hasta) }) : (x.plan && x.plan !== 'gratis' ? t('cuenta3.siempre') : null)].filter(Boolean);
+    return [base, ...extra].join(' · ');
   };
+  const plan = el('p', { class: `cu-plan cu-plan-${u.plan ?? 'gratis'}` }, textoPlan());
+  const estado = el('p', { class: 'cu-estado', 'aria-live': 'polite' });
+  const pintarEstado = () => { estado.className = `cu-estado cu-${nube.estado}`; estado.textContent = t(`cuenta2.estado.${nube.estado}`); };
   pintarEstado();
   const quitar = alCambiarNube(() => { if (!estado.isConnected) { quitar(); return; } pintarEstado(); });
+  // lo que diga el servidor ahora mismo (el plan puede haber cambiado en otro dispositivo)
+  refrescarUsuario().then(() => { if (plan.isConnected) plan.textContent = textoPlan(); }).catch(() => {});
 
-  // el número, tapado hasta que se toca (como en Mullvad)
-  const cifras = el('button', { type: 'button', class: 'cu-numero tapado', 'data-sonido': 'voltear', 'aria-label': t('cuenta2.ver') }, numeroBonito(numero));
-  cifras.addEventListener('click', () => cifras.classList.toggle('tapado'));
-  const copiar = el('button', { type: 'button', class: 'boton boton-mini', 'data-sonido': 'guardar' }, t('cuenta2.copiar'));
-  copiar.addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText(numero); decir(t('cuenta2.copiado'), 'contenta'); }
-    catch { cifras.classList.remove('tapado'); decir(t('cuenta2.copiaAMano'), 'pensando'); }
-  });
-  const caduca = el('p', { class: 'aprox cu-caduca' }, t('cuenta2.caduca'));
-
-  // entrar con el número de otro dispositivo
-  const otro = el('input', { type: 'text', inputmode: 'numeric', autocomplete: 'off', placeholder: '1234 5678 9012 3456', 'aria-label': t('cuenta2.otroNumero'), maxlength: '24' });
-  const entrar = el('button', { type: 'submit', class: 'boton' }, t('cuenta2.entrar'));
-  const formEntrar = el('form', { class: 'formulario en-linea' }, el('div', { class: 'campo' }, el('label', {}, t('cuenta2.otroNumero')), otro), entrar);
-  formEntrar.addEventListener('submit', async e => {
+  // canjear un regalo (el código de la tarjeta o del correo)
+  const codigoRegalo = el('input', { type: 'text', autocomplete: 'off', maxlength: '24', placeholder: 'PGM-XXXX-XXXX-XXXX', 'aria-label': t('cuenta3.codigoRegalo') });
+  const canjear = el('button', { type: 'submit', class: 'boton' }, t('cuenta3.canjear'));
+  const formRegalo = el('form', { class: 'cu-fila' }, codigoRegalo, canjear);
+  formRegalo.addEventListener('submit', async e => {
     e.preventDefault();
-    entrar.disabled = true;
+    if (!codigoRegalo.value.trim()) { codigoRegalo.focus(); return; }
+    canjear.disabled = true;
     try {
-      await usarNumero(otro.value);
+      await canjearRegalo(codigoRegalo.value);
       sonar('fanfarria');
-      decir(t('cuenta2.dentro'), 'contenta');
+      decir(t('cuenta3.regaloCanjeado'), 'contenta');
       repintar();
     } catch (error) {
       sonar('mal');
-      decir(t(error.motivo === 'formato' ? 'cuenta2.malFormato' : error.motivo === 'noExiste' ? 'cuenta2.noExiste' : 'cuenta2.sinConexion'), 'confundida');
-    } finally { entrar.disabled = false; }
+      decir(textoDeError(error), 'confundida');
+    } finally { canjear.disabled = false; }
   });
 
-  // el correo: un código de 6 cifras; sirve para que no caduque o para recuperar el número
-  const zonaCorreo = el('div', { class: 'cu-correo' });
-  const pintarCorreo = (unido = null) => {
-    if (unido) {
-      caduca.textContent = t('cuenta2.noCaduca');
-      poner(zonaCorreo, el('p', {}, '✉️ ', t('cuenta2.correoUnido', { correo: unido })));
+  // la familia: quien la paga invita por correo; quien recibe la invitación escribe aquí su código
+  const zonaFamilia = el('div', { class: 'cu-familia' });
+  const pintarFamilia = f => {
+    if (!f) {
+      const codigo = el('input', { type: 'text', autocomplete: 'off', maxlength: '12', 'aria-label': t('cuenta3.codigoFamilia'), placeholder: 'ABCD1234' });
+      const unirme = el('button', { type: 'submit', class: 'boton' }, t('cuenta3.unirme'));
+      const form = el('form', { class: 'cu-fila' }, codigo, unirme);
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        unirme.disabled = true;
+        try { await familiaUnirse(codigo.value); await refrescarUsuario(); sonar('fanfarria'); decir(t('cuenta3.enFamilia'), 'contenta'); repintar(); }
+        catch (error) { sonar('mal'); decir(textoDeError(error), 'confundida'); }
+        finally { unirme.disabled = false; }
+      });
+      poner(zonaFamilia, el('h3', {}, t('cuenta3.familia')), el('p', { class: 'aprox' }, t('cuenta3.familiaAyuda')), form);
       return;
     }
-    const correo = el('input', { type: 'email', autocomplete: 'email', placeholder: t('cuenta2.correoEjemplo'), 'aria-label': t('cuenta2.correo') });
-    const codigo = el('input', { type: 'text', inputmode: 'numeric', autocomplete: 'one-time-code', maxlength: '8', placeholder: '123456', 'aria-label': t('cuenta2.codigo'), hidden: true });
-    const enviar = el('button', { type: 'button', class: 'boton' }, t('cuenta2.enviarCodigo'));
-    const unir = el('button', { type: 'button', class: 'boton boton-principal', hidden: true }, t('cuenta2.unir'));
-    const recuperar = el('button', { type: 'button', class: 'boton', hidden: true }, t('cuenta2.recuperar'));
-    const ayuda = el('p', { class: 'aprox' }, t('cuenta2.correoAyuda'));
-    enviar.addEventListener('click', async () => {
-      if (!correo.checkValidity() || !correo.value.trim()) { correo.focus(); return; }
-      enviar.disabled = true;
-      try {
-        await pedirCodigo(correo.value);
-        codigo.hidden = false; unir.hidden = false; recuperar.hidden = false;
-        ayuda.textContent = t('cuenta2.codigoEnviado', { correo: correo.value.trim() });
-        codigo.focus();
-        sonar('buzon');
-      } catch { sonar('mal'); decir(t('cuenta2.sinConexion'), 'confundida'); }
-      finally { enviar.disabled = false; }
-    });
-    const conCodigo = accion => async () => {
-      if (!codigo.value.trim()) { codigo.focus(); return; }
-      unir.disabled = true; recuperar.disabled = true;
-      try {
-        const pase = await comprobarCodigo(correo.value, codigo.value);
-        if (accion === 'unir') {
-          await unirCorreo(pase);
-          sonar('fanfarria');
-          decir(t('cuenta2.unidoTutora'), 'contenta');
-        } else {
-          await recuperarConCorreo(pase);
-          sonar('fanfarria');
-          decir(t('cuenta2.recuperadoTutora'), 'contenta');
-        }
-        repintar();
-      } catch (error) {
-        sonar('mal');
-        decir(t(error.motivo === 'sinCuenta' ? 'cuenta2.sinCuentaCorreo' : 'cuenta2.codigoMal'), 'confundida');
-      } finally { unir.disabled = false; recuperar.disabled = false; }
-    };
-    unir.addEventListener('click', conCodigo('unir'));
-    recuperar.addEventListener('click', conCodigo('recuperar'));
-    poner(zonaCorreo,
-      el('h3', {}, t('cuenta2.correoTitulo')),
-      ayuda,
-      el('div', { class: 'cu-fila' }, correo, enviar),
-      el('div', { class: 'cu-fila' }, codigo, unir, recuperar));
+    const lista = el('ul', { class: 'cu-miembros' }, f.miembros.map(m => el('li', {}, `${m.nombre || '—'} · ${m.numero}`,
+      f.soyTitular ? el('button', { type: 'button', class: 'boton boton-mini', onclick: async () => { await familiaQuitar(m.numero); repintar(); } }, t('cuenta3.quitar')) : null)));
+    const partes = [el('h3', {}, t('cuenta3.familia'), ' ', el('span', { class: 'aprox' }, `${f.miembros.length}/${f.plazas}`)), lista];
+    if (f.soyTitular && f.miembros.length < f.plazas) {
+      const correo = el('input', { type: 'email', autocomplete: 'off', placeholder: t('cuenta2.correoEjemplo'), 'aria-label': t('cuenta2.correo') });
+      const invitar = el('button', { type: 'submit', class: 'boton' }, t('cuenta3.invitar'));
+      const form = el('form', { class: 'cu-fila' }, correo, invitar);
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        if (!correo.checkValidity() || !correo.value.trim()) { correo.focus(); return; }
+        invitar.disabled = true;
+        try { await familiaInvitar(correo.value.trim()); sonar('volar'); decir(t('cuenta3.invitado', { correo: correo.value.trim() }), 'contenta'); correo.value = ''; }
+        catch (error) { sonar('mal'); decir(textoDeError(error), 'confundida'); }
+        finally { invitar.disabled = false; }
+      });
+      partes.push(el('p', { class: 'aprox' }, t('cuenta3.invitarAyuda')), form);
+    } else if (!f.soyTitular) {
+      partes.push(el('button', { type: 'button', class: 'boton boton-mini', onclick: async () => { await familiaQuitar(u.numero); await refrescarUsuario(); repintar(); } }, t('cuenta3.salirFamilia')));
+    }
+    poner(zonaFamilia, ...partes);
   };
-  pintarCorreo();
-  correoDeLaCuenta().then(c => { if (c && zonaCorreo.isConnected) pintarCorreo(c); });
+  pintarFamilia(null);
+  familiaEstado().then(f => { if (zonaFamilia.isConnected) pintarFamilia(f); }).catch(() => {});
 
-  const borrar = el('button', { type: 'button', class: 'boton boton-mini boton-peligro' }, t('cuenta2.borrar'));
-  borrar.addEventListener('click', async () => {
-    if (!confirm(t('cuenta2.borrarConfirmar'))) return;
-    try { await borrarCuentaNube(); sonar('quitar'); decir(t('cuenta2.borrada'), 'sorprendida'); repintar(); }
-    catch { sonar('mal'); decir(t('cuenta2.sinConexion'), 'confundida'); }
+  const botonSalir = el('button', { type: 'button', class: 'boton boton-mini' }, t('cuenta3.salir'));
+  botonSalir.addEventListener('click', async () => {
+    await salir();
+    sonar('cerrar');
+    location.hash = '#/entrar';
   });
-  // dejar de guardar en la nube sin borrar lo que hay allí (sin correo, caduca solo a los 7 días)
-  const apagar = el('button', { type: 'button', class: 'boton boton-mini' }, t('cuenta2.apagar'));
-  apagar.addEventListener('click', () => {
-    if (!confirm(t('cuenta2.apagarConfirmar'))) return;
-    apagarNube();
-    sonar('interruptor');
-    decir(t('cuenta2.apagada'), 'pensando');
-    repintar();
+  // borrar la cuenta: hace falta la contraseña (la de desarrollo no se puede borrar)
+  const claveBorrar = el('input', { type: 'password', autocomplete: 'current-password', 'aria-label': t('cuenta3.clave'), placeholder: t('cuenta3.clave') });
+  const botonBorrar = el('button', { type: 'submit', class: 'boton boton-mini boton-peligro' }, t('cuenta2.borrar'));
+  const formBorrar = el('form', { class: 'cu-fila' }, claveBorrar, botonBorrar);
+  formBorrar.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!confirm(t('cuenta3.borrarConfirmar'))) return;
+    try { await borrarCuenta(claveBorrar.value); sonar('quitar'); decir(t('cuenta2.borrada'), 'sorprendida'); location.hash = '#/entrar'; }
+    catch (error) { sonar('mal'); decir(textoDeError(error), 'confundida'); }
   });
 
   return el('section', { class: 'caja cu-cuenta' },
     el('h2', {}, t('cuenta2.titulo')),
-    el('p', { class: 'aprox' }, t('cuenta2.intro')),
-    el('div', { class: 'cu-fila' }, cifras, copiar),
-    caduca,
+    el('dl', { class: 'datos' },
+      dato(t('cuenta3.numero'), String(u.numero ?? '—')),
+      dato(t('cuenta2.correo'), u.correo ?? '—')),
+    plan,
+    u.dev || u.plan === 'max' ? null : el('a', { class: 'boton boton-principal', href: '#/precios' }, t('cuenta3.mejorar')),
     estado,
-    formEntrar,
-    zonaCorreo,
-    el('div', { class: 'botonera' }, apagar, borrar));
+    el('h3', {}, t('cuenta3.regalo')),
+    formRegalo,
+    zonaFamilia,
+    el('div', { class: 'botonera' },
+      el('a', { class: 'boton boton-mini', href: '#/entrar/clave' }, t('cuenta3.cambiarClave')),
+      botonSalir),
+    el('details', { class: 'cu-borrar' }, el('summary', {}, t('cuenta2.borrar')), el('p', { class: 'aprox' }, t('cuenta3.borrarAyuda')), formBorrar));
 }
 
 // ----- La actividad de las últimas 12 semanas, como un calendario de cuadritos -----

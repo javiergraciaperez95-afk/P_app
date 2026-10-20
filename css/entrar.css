@@ -468,3 +468,12 @@
 .en-numero:active { transform: translateY(2px); }
 .en-numero.tapado { color: transparent; text-shadow: 0 0 9px var(--h-tinta); }
 .en-botones { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+
+/* Cuentas con correo y contraseña (20-10-2026): el lápiz del nombre, ver la contraseña y las alternativas */
+.en-icono-lapiz { --m: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' shape-rendering='crispEdges'%3E%3Cpath d='M7 0h1v1h1v1h1v1H9v1H8v1H7v1H6v1H5v1H4v1H1V7h1V6h1V5h1V4h1V3h1V2h1zM2 7v1h1V7z'/%3E%3C/svg%3E"); }
+.en-caja { position: relative; }
+.en-ver-clave { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); min-width: 36px; min-height: 36px; border: 0; background: transparent; font-size: 1rem; cursor: pointer; }
+.en-ver-clave[aria-pressed="true"] { filter: grayscale(1); }
+.en-alternativas { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 12px; margin-top: 10px; }
+.en-enlace { min-height: 36px; padding: 4px 2px; border: 0; background: none; font: 700 .85rem var(--h-texto); color: var(--h-azul-texto); text-decoration: underline; cursor: pointer; }
+.en-enlace:hover { color: var(--h-rosa-texto); }
