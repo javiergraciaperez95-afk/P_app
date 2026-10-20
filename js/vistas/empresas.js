@@ -81,6 +81,7 @@ export function pintarEmpresas(root) {
     el('div', { class: 'of-ventanal', 'aria-hidden': 'true' },
       el('div', { class: 'inicio-cielo' }, sol(), luna(), nubes()),
       dibujo(rejillaCiudad(), 'of-ciudad'),
+      el('p', { class: 'of-cielo-lema' }, t('emp.cieloLema')),
       el('i', {}), el('i', {}), el('i', {})),
     el('div', { class: 'of-delante' },
       el('div', { class: 'of-pizarra' },

@@ -117,6 +117,7 @@ export function pintarEscuelas(root) {
   });
   const colegio = el('section', { class: 'ce-colegio' },
     el('div', { class: 'inicio-cielo', 'aria-hidden': 'true' }, sol(), luna(), nubes()),
+    el('p', { class: 'ce-cielo-lema' }, t('esc.cieloLema')),
     el('div', { class: 'ce-edificio' }, dibujo(rejillaColegio(), 'ce-dibujo'), el('span', { class: 'ce-letrero', 'aria-hidden': 'true' }, 'Paglot'), campana),
     el('span', { class: 'ce-valla', 'aria-hidden': 'true' }),
     el('span', { class: 'ce-patio', 'aria-hidden': 'true' }, el('i', { class: 'ce-rayuela' })),

@@ -357,3 +357,23 @@ html.sin-precios .ce-precio, html.sin-precios .ce-total { font-size: 1.15rem; }
 @media (prefers-reduced-motion: reduce) {
   .ce-pupitre, .ce-campana.suena::after { animation: none; }
 }
+
+/* El lema en el cielo estrellado: en el móvil, cuando la escena va sola en su diapositiva (la pizarra en la siguiente)
+   y el cielo tiene sitio; en el ordenador, siempre, arriba a la izquierda del colegio */
+.ce-cielo-lema {
+  position: absolute;
+  z-index: 3;
+  top: 34px;
+  left: 50%;
+  width: max-content;
+  max-width: calc(100% - 140px);
+  margin: 0;
+  transform: translateX(-50%);
+  font: 700 clamp(1.1rem, 2.4vw, 1.6rem)/1.25 var(--fuente-pixel);
+  text-align: center;
+  text-wrap: balance;
+  color: #fff3b0;
+  text-shadow: 2px 2px 0 #1d1736, 0 0 12px rgba(255, 224, 102, .45);
+}
+html.pm-activo .ce-cielo-lema { display: none; }
+html.pm-activo .ce-colegio:has(.ce-delante .ce-pizarra.pm-oculto) .ce-cielo-lema { display: block; top: 22%; max-width: calc(100% - 40px); font-size: 1.25rem; }
