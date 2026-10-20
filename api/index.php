@@ -18,6 +18,7 @@ if (random_int(1, 50) === 1) {
     sql('DELETE FROM codigos WHERE caduca < UTC_TIMESTAMP()');
     sql('DELETE FROM limites WHERE caduca < UTC_TIMESTAMP()');
     sql('DELETE FROM familia_invitaciones WHERE caduca < UTC_TIMESTAMP()');
+    sql('DELETE FROM contacto WHERE creado < UTC_TIMESTAMP() - INTERVAL 1 YEAR'); // lo que dice el aviso legal
 }
 
 const IDIOMAS = ['es', 'en', 'vi'];

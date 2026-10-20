@@ -25,7 +25,7 @@ export const DATOS_DISPOSITIVO = [
   ['nombreJuego', ['idiomas-juego-nombre']],
   ['cuenta', ['paglot-sesion']],
   ['laboratorio', ['paglot-laboratorio-ideas-v1', 'paglot-laboratorio-votos-v1', 'paglot-laboratorio-quien']],
-  ['pestana', ['idiomas-abierta', 'idiomas-desarrollador', 'paglot-sin-terminar', 'paglot-recien', 'paglot-contacto-asunto']],
+  ['pestana', ['idiomas-abierta', 'idiomas-desarrollador', 'paglot-sin-terminar', 'paglot-recien', 'paglot-contacto-asunto', 'paglot-tras-entrar']],
   ['pruebas', ['paglot-sin-nube', 'paglot-juego-forzado', 'paglot-probador', 'paglot-bienvenida-paso', 'paglot-prueba-almacen']],
   ['copiaApp', ['caché «paglot-» + versión']],
 ];

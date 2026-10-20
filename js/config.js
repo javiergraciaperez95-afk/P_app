@@ -1,4 +1,4 @@
-// Supabase: donde se guarda el progreso de cada cuenta (ver js/nube.js y Para_lodriga/paglot-cuentas.sql).
+// Supabase: en local, las cuentas y el progreso (ver js/servidor.js y _herramientas/supabase-cuentas-v2.sql); en el hosting, la segunda llave de los pagos.
 // Solo la clave PÚBLICA («publishable»); nunca la secreta. Si se dejan vacías, la app guarda solo en el dispositivo.
 
 export const SUPABASE_URL = 'https://iuniglsiqnfvnotmfgdo.supabase.co';

@@ -10,6 +10,7 @@ import { sonar } from '../sonidos.js';
 import { sol, luna, dibujoPixel, conContorno, conHalo } from './inicio-decorado.js';
 import { crearElenco, lienzo } from './elenco.js';
 import { crearCaptcha } from '../captcha.js';
+import { enviarContacto, textoDeError } from '../servidor.js';
 
 // ---------------------------------------------------------------------------
 // Dibujos (prefijo «ct»): k contorno · r/R rojo · o/O oro · p papel · g/G gris · a/A azul · v verde · m/M madera
@@ -132,7 +133,7 @@ export function pintarContacto(root) {
 
   // ----- El sobre que vuela al buzón -----
   const sobre = el('span', { class: 'ct-sobre', 'aria-hidden': 'true' }, el('i', {}));
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     const fallo = (texto, campo) => {
       estado.className = 'ct-estado error';
@@ -147,9 +148,23 @@ export function pintarContacto(root) {
     if (!form.querySelector('input[name="asunto"]:checked')) { fallo(t('comunidad.chooseASubject'), form.querySelector('input[name="asunto"]')); return; }
     if (!mensaje.value.trim()) { fallo(t('form.rellena'), mensaje); return; }
     if (!captcha.token()) { fallo(t('captcha.falta'), captcha.nodo.querySelector('iframe') ?? enviar); return; }
-    // ¡al buzón!
+    // ¡al buzón! (en el hosting lo manda el servidor, que vuelve a comprobar el captcha; en local no sale de aquí)
+    enviar.disabled = true;
+    estado.className = 'ct-estado';
+    estado.textContent = t('form.unMomento');
+    let respuesta;
+    try {
+      respuesta = await enviarContacto({ nombre: usuario.entrada.value.trim(), correo: correo.entrada.value.trim(),
+        asunto: form.querySelector('input[name="asunto"]:checked').value, mensaje: mensaje.value.trim(), captcha: captcha.token() });
+    } catch (error) {
+      enviar.disabled = false;
+      captcha.reiniciar();
+      fallo(error.codigo === 'captcha' ? t('captcha.falta') : textoDeError(error), enviar);
+      return;
+    }
+    enviar.disabled = false;
     estado.className = 'ct-estado bien';
-    estado.textContent = t('comunidad.formValidatedEmailDeliveryWill');
+    estado.textContent = respuesta?.local ? t('comunidad.formValidatedEmailDeliveryWill') : t('contacto.enviadaDeVerdad');
     sonar(quieto ? 'buzon' : 'volar');
     escritora.gesto('celebrar');
     escritora.decir(t('contacto.enviada'), 2600);
