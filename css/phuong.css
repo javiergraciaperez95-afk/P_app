@@ -497,7 +497,7 @@ body.bloqueada main { padding: 0; max-width: none; }
 }
 
 /* ----- Las cifras (notas, reloj, teclado del código): con la letra normal en negrita; en la de píxeles, el 5 parecía una S ----- */
-.ph-datos b, .cc-total b, .cc-final-nota, .ph-anillo-cifra, .cc-q-num, .cc-reloj, .dl-num, .cc-mapa-num,
+.ph-datos b, .dato-valor, .cc-total b, .cc-final-nota, .ph-anillo-cifra, .cc-q-num, .cc-reloj, .dl-num, .cc-mapa-num,
 .cc-sims b, .ph-tecla, .cc-tarea-num, .dl-insignia, .cc-letra, .dl-abc-letra, .dl-enunciados b {
   font-family: var(--fuente-texto); font-weight: 800; font-variant-numeric: tabular-nums;
 }
@@ -505,3 +505,13 @@ body.bloqueada main { padding: 0; max-width: none; }
 .cc-final-nota { font-size: 3rem; }
 .dl-instrucciones-vi .bandera-idioma, .cc-dictar .bandera-idioma { width: 18px; height: 12px; vertical-align: -1px; box-shadow: 0 0 0 1px var(--linea); }
 .dl-prueba-boton.hecha .dl-prueba-nota { font-weight: 800; }
+
+/* ----- En el móvil (APK a pantalla completa) la cabecera se queda justo debajo de la barra de estado, y detrás de la
+   barra va una franja de su color: al desplazar, el contenido no asoma por debajo de la hora y la batería ----- */
+.cabecera { top: var(--borde-arriba, 0px); }
+body::before {
+  content: ""; position: fixed; top: 0; left: 0; right: 0; z-index: 40; height: var(--borde-arriba, 0px);
+  background: var(--h-fondo); pointer-events: none;
+}
+body.bloqueada::before { display: none; }
+body.en-leccion::before { background: var(--fondo); }

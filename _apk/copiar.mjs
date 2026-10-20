@@ -1,65 +1,79 @@
-// Copia la app web (la carpeta de arriba, con todos los cursos) a www/, que es lo que Capacitor mete dentro de la APK.
+// Copia la app web (la carpeta de arriba) a www/, que es lo que Capacitor mete dentro de la APK. Solo lo que la app
+// usa: el curso de español explicado en vietnamita, los datos del CCSE y del DELE, el código y los estilos.
 // Uso: node copiar.mjs
-import { cpSync, rmSync, readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { cpSync, rmSync, readFileSync, writeFileSync, readdirSync, statSync, mkdirSync } from 'node:fs';
+import { join, dirname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { execFileSync } from 'node:child_process';
+import { rehacerCsp } from '../_herramientas/csp.mjs';
 
 const aqui = dirname(fileURLToPath(import.meta.url));
 const origen = join(aqui, '..');
 const destino = join(aqui, 'www');
 
-// Solo lo que es la app; lo demás (el proyecto de la APK, herramientas, notas, git…) se queda fuera.
-const APP = ['index.html', 'manifest.webmanifest', 'assets', 'css', 'cursos', 'js', 'juegos'];
-
-// Primero, el índice y el diccionario de cada curso al día (la app los lee al arrancar).
-// (si la herramienta no está, se usan los índices que ya tiene cada curso)
-const indices = join(aqui, '..', '_herramientas', 'generar_indices.mjs');
-if (existsSync(indices)) execFileSync(process.execPath, [indices], { stdio: 'inherit' });
-else console.log('Sin _herramientas/generar_indices.mjs: se usan los índices que ya hay en cada curso.');
-
-// Lo que hay en las carpetas de la app pero la app no lee: las plantillas, scripts e informes con los que se
-// escribieron los cursos (cursos/<código>/plantillas, *.py, *.md). Fuera, que solo engordan la APK.
-const SOBRA = /[\\/](plantillas|__pycache__)$|\.(py|md)$/;
+// Lo que va dentro: carpetas enteras y archivos sueltos.
+const APP = ['index.html', 'css', 'js', 'juegos', 'datos', 'cursos/es/vi', 'cursos/es/juegos', 'cursos/es/phrases', 'cursos/es/tutora.js',
+  'assets/fonts', 'assets/logo.svg', 'assets/favicon.svg', 'assets/favicon-32.png', 'assets/apple-touch-icon.png', 'assets/icono-192.png',
+  'assets/icono-512.png', 'assets/icono-512-maskable.png', 'manifest.webmanifest'];
+// y el dibujo de las compañeras de Lucía (salen en los minijuegos)
+for (const id of readdirSync(join(origen, 'cursos'))) {
+  if (id !== 'es' && statSync(join(origen, 'cursos', id)).isDirectory()) APP.push(`cursos/${id}/tutora.js`);
+}
+// lo que nunca va: los restos de las herramientas con las que se escribieron los cursos
+const SOBRA = /[\\/](plantillas|__pycache__)([\\/]|$)|\.(py|md|map)$/;
 
 rmSync(destino, { recursive: true, force: true });
-for (const parte of APP) cpSync(join(origen, parte), join(destino, parte), { recursive: true, filter: (r) => !SOBRA.test(r) });
+for (const parte of APP) {
+  mkdirSync(dirname(join(destino, parte)), { recursive: true });
+  cpSync(join(origen, parte), join(destino, parte), { recursive: true, filter: r => !SOBRA.test(r) });
+}
 
-// Los JSON de los cursos se guardan con sangrías para leerlos a mano; en la APK van sin espacios (mismo contenido).
-// Del análisis sintáctico la app solo lee unidades → texto, funcion y partes (js/lessons.js, aplanar);
-// lo demás (oracion, sujeto, nucleo) se queda en el proyecto, no en la APK.
+// Los JSON se guardan con sangrías para leerlos a mano; en la APK van sin espacios (mismo contenido). Del análisis
+// sintáctico la app solo lee unidades → texto, funcion y partes: lo demás (oracion, sujeto, nucleo) se queda fuera.
 const SINTAXIS_SOBRA = new Set(['oracion', 'sujeto', 'nucleo']);
-const podarSintaxis = (v) => {
+const podarSintaxis = v => {
   if (Array.isArray(v)) v.forEach(podarSintaxis);
   else if (v && typeof v === 'object') for (const k of Object.keys(v)) SINTAXIS_SOBRA.has(k) ? delete v[k] : podarSintaxis(v[k]);
 };
-const recorrer = (v) => {
+const recorrer = v => {
   if (Array.isArray(v)) v.forEach(recorrer);
   else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) k === 'sintaxis' ? podarSintaxis(x) : recorrer(x);
 };
+let antes = 0;
+let despues = 0;
 (function compactar(dir) {
   for (const e of readdirSync(dir, { withFileTypes: true })) {
     const r = join(dir, e.name);
     if (e.isDirectory()) compactar(r);
     else if (e.name.endsWith('.json')) {
-      const datos = JSON.parse(readFileSync(r, 'utf8'));
+      const texto = readFileSync(r, 'utf8');
+      const datos = JSON.parse(texto.replace(/^﻿/, ''));
       recorrer(datos);
-      writeFileSync(r, JSON.stringify(datos));
+      const nuevo = JSON.stringify(datos);
+      antes += Buffer.byteLength(texto);
+      despues += Buffer.byteLength(nuevo);
+      writeFileSync(r, nuevo);
     }
   }
-})(join(destino, 'cursos'));
+})(destino);
 
-// La marca de versión que en la web pone la publicación automática.
+// El puente con el teléfono (la voz) se carga antes que la app; la CSP se rehace con los hashes de la copia.
 const indice = join(destino, 'index.html');
-// ...y el puente con las funciones del teléfono (la voz), que se carga antes que la app.
-const MODULO = '  <script type="module" src="js/app.js';
-let html = readFileSync(indice, 'utf8').replaceAll('__VERSION__', String(Date.now()));
+const MODULO = '  <script type="module" src="js/app.js">';
+let html = readFileSync(indice, 'utf8');
 if (!html.includes(MODULO)) throw new Error('No encuentro dónde enganchar el puente en index.html');
-html = html.replace(MODULO, '  <script src="puente-apk.js"></script>\n' + MODULO);
-writeFileSync(indice, html);
-// La CSP de index.html lleva el hash de cada <script> en línea; al poner la versión cambian (el mapa de importación
-// lleva ?v=…), así que se rehacen como al publicar (_herramientas/publicar.py). Si no, la APK bloquearía el mapa.
-const rehacerCsp = `import sys; sys.path.insert(0, r'${join(origen, '_herramientas')}'); from pathlib import Path; from publicar import leer, recalcular_csp; p = Path(r'${indice}'); p.write_text(recalcular_csp(leer(p))[0], encoding='utf-8', newline='\\n')`;
-try { execFileSync('python', ['-c', rehacerCsp], { stdio: 'inherit' }); } catch { execFileSync('py', ['-3', '-c', rehacerCsp], { stdio: 'inherit' }); }
+html = html.replace(MODULO, `  <script src="puente-apk.js"></script>\n${MODULO}`);
+writeFileSync(indice, rehacerCsp(html));
 cpSync(join(aqui, 'puente.js'), join(destino, 'puente-apk.js'));
-console.log('Copiado en', destino);
+
+// cuánto ocupa
+let total = 0;
+let archivos = 0;
+(function medir(dir) {
+  for (const e of readdirSync(dir, { withFileTypes: true })) {
+    const r = join(dir, e.name);
+    if (e.isDirectory()) medir(r);
+    else { total += statSync(r).size; archivos += 1; }
+  }
+})(destino);
+console.log(`Copiado en ${relative(origen, destino)}: ${archivos} archivos, ${(total / 1048576).toFixed(1)} MB`
+  + ` (los JSON, de ${(antes / 1048576).toFixed(1)} a ${(despues / 1048576).toFixed(1)} MB)`);

@@ -1,4 +1,4 @@
-﻿// Saca la rejilla de colores de Lucía (48 × 60) con el mismo código que la dibuja en la app, para hacer los iconos.
+// Saca la rejilla de colores de Lucía (48 × 60) con el mismo código que la dibuja en la app, para hacer los iconos.
 // Uso: node _herramientas/tutora_rejilla.mjs (escribe _herramientas/tutora.json, que lee _herramientas/iconos.py)
 globalThis.window = { matchMedia: () => ({ matches: false, addEventListener() {} }) };
 globalThis.document = { documentElement: { classList: { add() {}, contains: () => false } }, styleSheets: [] };

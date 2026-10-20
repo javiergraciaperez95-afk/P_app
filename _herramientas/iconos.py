@@ -1,4 +1,4 @@
-﻿"""Hace los iconos de Phuong App con el dibujo de Lucía (la tutora), sacado del mismo código que la pinta en la app.
+"""Hace los iconos de Phuong App con el dibujo de Lucía (la tutora), sacado del mismo código que la pinta en la app.
 
     node _herramientas/tutora_rejilla.mjs     (escribe _herramientas/tutora.json)
     python _herramientas/iconos.py

@@ -75,6 +75,8 @@ async function programar() {
       const { title, body, ruta } = await avisoDelDia(d, cuando);
       avisos.push({
         id: ID_PRIMERO + d, title, body, largeBody: body,
+        // sin alarma exacta (unos minutos arriba o abajo da igual): si no, Android abre «Alarmas y recordatorios»
+        isExactNotification: false,
         schedule: { at: cuando, allowWhileIdle: true },
         smallIcon: 'ic_stat_phuong', iconColor: '#C8102E',
         extra: { ruta },

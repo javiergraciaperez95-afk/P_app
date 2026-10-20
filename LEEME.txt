@@ -1,57 +1,63 @@
-PAGLOT · APRENDER IDIOMAS
-=========================
-Puesto al día el 19 de octubre de 2026.
+PHUONG APP · ESPAÑOL, DELE Y NACIONALIDAD
+=========================================
+Puesto al día el 20 de octubre de 2026.
 
-Paglot es una app para aprender idiomas con una tutora pixel: 21 cursos, con la interfaz en español, inglés o
-vietnamita (cada curso, en los tres menos su propio idioma). Desde el 20-10-2026 cada curso tiene una carpeta de
-lecciones por idioma del alumno, adaptadas a ese público (ver _herramientas/modelos/LEEME.txt); salvo el de español,
-llevan la etiqueta Beta: falta la revisión de profesores nativos. Cada dispositivo tiene un número de cuenta de 16 cifras (como en Mullvad)
-con el que su progreso se guarda en Supabase; con él se sigue en otro móvil (ver js/nube.js).
+Phuong App es una app para aprender español pensada para una estudiante vietnamita que prepara la nacionalidad
+española: el DELE A2 (o superior) y el examen CCSE. La interfaz va en vietnamita (o en español, para practicar en
+inmersión) y la tutora es Lucía, la de los dibujos de píxeles.
+
+Al abrirla se pide el código de la cuenta: 5567. Con él se abre la app y el progreso se guarda en Supabase (y siempre
+también en el móvil, así se estudia sin conexión). Si se cambia de móvil, basta con volver a escribir el código.
+
+
+LO QUE TIENE
+------------
+Hoy (inicio)  Lucía saluda; la meta de la nacionalidad (lo hecho del DELE A2 y del CCSE), el plan del día (una
+              lección, el repaso y 10 preguntas del CCSE), la pregunta del CCSE del día y los atajos.
+Lecciones     Las 320 lecciones del curso de español explicadas en vietnamita, del A1 al B2 (los niveles del DELE),
+              con sus minijuegos, el modo libro, las estrellas y los cofres.
+CCSE          Las 300 preguntas oficiales del Manual CCSE 2026 del Instituto Cervantes, en español como en el examen y
+              con su traducción y explicación en vietnamita. Práctica de 10 (primero las falladas y las nuevas),
+              práctica por tareas, simulacro como el de verdad (25 preguntas, 45 minutos, 15 para aprobar), «Mis
+              fallos» y la lista de las 300 con buscador.
+DELE          Los niveles A1-B2 con la estructura de cada examen y dos exámenes de práctica completos del A2 (el de la
+              nacionalidad): lectura (4 tareas, 25 preguntas), audición (4 tareas, 25 preguntas, con la voz del móvil y
+              dos escuchas), escritura (2 tareas, contador de palabras, borrador guardado, modelo y autoevaluación) y
+              oral (3 tareas, grabarse y escucharse, el examinador habla con la voz del móvil, modelo y autoevaluación).
+              Nota por grupos como en el examen (30 de 50 en cada grupo para ser APTO).
+Repaso        Las palabras y frases de las lecciones terminadas, con repetición espaciada.
+Cuaderno, frases, reto de 60 segundos, práctica, prueba de nivel y perfil (con la cuenta, estadísticas, ajustes).
+Avisos        En el móvil, un aviso al día a la hora elegida (se ofrece al terminar la primera lección o ronda del
+              CCSE, o en Perfil → Ajustes): la pregunta del CCSE del día, las tarjetas pendientes o la lección que
+              toca. El día que ya se ha estudiado no avisa.
+
 
 LA CARPETA
 ----------
-index.html, js/, css/, juegos/, cursos/, assets/   La app web (todo lo que se publica y va en la APK).
-Abrir Paglot.cmd   Doble clic: hace de servidor local en el puerto 8100 y abre la app (no vale el doble clic en index.html).
-_apk/              El proyecto de la APK (Capacitor). Se regenera con _apk/generar-apk.cmd.
-_herramientas/     Scripts de Python para revisar, traducir y generar informes.
-_notas/            Informes en PDF.
+index.html, css/, js/, juegos/, cursos/, datos/, assets/   La app (todo lo que va dentro de la APK).
+  cursos/es/vi/        las lecciones (explicadas en vietnamita), con su índice y su diccionario
+  cursos/<id>/tutora.js  las compañeras de Lucía que salen en los minijuegos
+  datos/ccse.json      las 300 preguntas del CCSE con su traducción     (se hace con _herramientas/ccse_montar.py)
+  datos/dele.json      los niveles y los exámenes de práctica del DELE   (se hace con _herramientas/dele_montar.py)
+  js/i18n/ph-vi.js, ph-es.js   los textos nuevos de Phuong App (vietnamita y español)
+Abrir Phuong App.cmd   Doble clic: la abre en el navegador del ordenador (http://localhost:8310).
+Phuong-App.apk         La APK para instalar en el móvil.
+_apk/                  El proyecto de la APK (Capacitor). Se vuelve a generar con _apk/generar-apk.cmd.
+_herramientas/         servir.py (servidor local), csp.mjs (la seguridad de index.html), iconos.py y
+                       tutora_rejilla.mjs (los iconos con Lucía), los scripts del CCSE y del DELE y sus fuentes
+                       (contenido/: las preguntas sacadas del manual, sus traducciones y los exámenes del DELE) y
+                       supabase-phuong.sql.
 
 
-LAS PANTALLAS
--------------
-Inicio       La portada: Lucía y dos compañeras juegan con el botón de seguir; abajo, cómo se aprende.
-Lecciones    El camino: un tramo por capítulo (A1, A2, B1, B2) con paradas que serpentean. Lucía espera en
-             la lección que toca; las terminadas llevan sus estrellas; al final de cada capítulo hay un
-             cofre que solo se abre al terminarlo. Al tocar una parada sale su ficha para entrar.
-             Panel (al lado en pantalla ancha, encima en el móvil): progreso, buscador de lecciones,
-             misiones del día con la racha, repaso pendiente, reto rápido, palabra del día y logros.
-Lección      El modo juego (un minijuego por bloque, de juegos/) o el modo libro. Al final, de 1 a 3
-             estrellas según los fallos, las palabras nuevas y la racha de días.
-Cuaderno     Las palabras y frases guardadas (las de las lecciones terminadas entran solas).
-Repaso       Repaso activo con repetición espaciada: cada tarjeta es un minijuego (elegir, oír, montar
-             letras o palabras, escribir) que se corrige solo. Lo fallado vuelve en la misma sesión.
-Reto rápido  60 segundos para acertar palabras del cuaderno, con combos y récord (#/reto).
-Perfil       Nombre (opcional, solo en el dispositivo), progreso, calendario de actividad, niveles,
-             logros, ajustes, copia de seguridad y reinicio.
-Bienvenida   La primera vez, Lucía enseña la app en un minuto.
-Créditos     A quién se agradece lo que usa la app.
-
-#/desarrollador   Acceso para revisar: en esa pestaña todas las lecciones y sus pasos cuentan como
-                  hechos (sin guardar nada) y se puede saltar a cualquier paso.
+SUPABASE
+--------
+La app ya guarda el progreso en el proyecto de Supabase de siempre. Para tenerlo en una tabla propia (más ordenado y
+con el código comprobado en el servidor), hay que pegar una sola vez _herramientas/supabase-phuong.sql en Supabase →
+SQL Editor → New query → Run. Desde ese momento la app usa esa tabla sola, sin tocar nada más. Mientras no se haga,
+usa las funciones de cuentas que ya tenía el proyecto (con el número 5567556755675567, que sale del código).
 
 
-CÓMO ESTÁ HECHA
----------------
-index.html, css/, js/, assets/   El programa.
-juegos/                          Los minijuegos del modo juego.
-cursos/<curso>/                  El curso: es/, en/, vi/ (una carpeta por idioma del alumno, con sus lecciones NNN.json
-                                 de los 2 modelos, siempre explicar primero, capitulos.json, indice.json y diccionario.json), phrases/ y juegos/.
-tutoras/                         Los dibujos de las compañeras de Lucía.
-
-Para que la app vaya fluida:
-- Las animaciones solo mueven transform y opacity; lo que no se ve, no se mueve.
-- En el móvil, js/suave.js cambia los saltos de píxel (steps) por curvas suaves.
-- Al arrancar solo se cargan el índice de lecciones y el diccionario; cada lección, al abrirla.
-
-Todo lo que se pulsa responde con una animación y un sonido (js/chispa.js y js/sonidos.js): está
-pensada para personas con déficit de atención. Ningún paso se completa solo tocando: hay que pensar.
+GENERAR LA APK
+--------------
+Doble clic en _apk/generar-apk.cmd (hace falta Android Studio instalado). Copia solo lo que la app usa a _apk/www,
+compacta los JSON, sincroniza con Capacitor y compila; deja Phuong-App.apk en esta carpeta.

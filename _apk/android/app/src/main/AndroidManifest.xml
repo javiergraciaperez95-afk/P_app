@@ -22,14 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <!-- Enlaces de los correos de la cuenta (confirmar, cambiar contraseña): idiomasapp://auth abre la app -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="idiomasapp" android:host="auth" />
-            </intent-filter>
-
         </activity>
 
         <provider
@@ -46,7 +38,10 @@
     <!-- Permissions -->
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- Para poder usar la voz del teléfono -->
+    <!-- Para grabarse en la prueba oral del DELE (se pide solo al pulsar «Ghi âm») -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <!-- Para usar la voz del teléfono (los audios del DELE y las palabras) -->
     <queries>
         <intent>
             <action android:name="android.intent.action.TTS_SERVICE" />
