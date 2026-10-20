@@ -304,7 +304,7 @@ export default {
   'ph.rp.hecho': '✔ Hôm nay xong rồi',
   'ph.rp.manana': ({ n }) => (n ? `Ngày mai: ${n} thẻ.` : 'Ngày mai chưa có thẻ nào. Học thêm một bài để có từ mới nhé!'),
   'ph.rp.mazo': 'Sổ thẻ của em: {n} thẻ',
-  'ph.rp.modos': 'Thẻ mới: chọn nghĩa hoặc nghe. Càng thuộc, trò càng khó: chọn từ tiếng Tây Ban Nha, ghép chữ, rồi tự viết. Không bao giờ lặp lại trò của lần trước.',
+  'ph.rp.modos': 'Mỗi lần ôn, app chọn ngẫu nhiên một trò: chọn nghĩa, nghe, chọn từ tiếng Tây Ban Nha, ghép chữ hoặc tự viết. Không bao giờ lặp lại trò của lần trước.',
   'ph.rp.vuelve': 'Gặp lại sau {cuando}',
   'ph.rp.vuelveManana': 'Gặp lại vào ngày mai',
   'ph.rp.falladas': '{n} thẻ chưa đúng sẽ quay lại vào ngày mai.',

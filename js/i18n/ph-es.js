@@ -295,7 +295,7 @@ export default {
   'ph.rp.hecho': '✔ Hoy ya está',
   'ph.rp.manana': ({ n }) => (n ? `Mañana: ${n} tarjetas.` : 'Mañana aún no toca ninguna. ¡Haz otra lección para tener palabras nuevas!'),
   'ph.rp.mazo': 'Tu mazo: {n} tarjetas',
-  'ph.rp.modos': 'Las nuevas: elegir el significado u oírla. Cuanto mejor la sabes, más difícil: elegir el español, montarla y escribirla. Nunca repite el juego de la vez anterior.',
+  'ph.rp.modos': 'En cada repaso la app elige un juego al azar: elegir el significado, oírla, elegir el español, montarla o escribirla. Nunca repite el de la vez anterior.',
   'ph.rp.vuelve': 'Vuelve dentro de {cuando}',
   'ph.rp.vuelveManana': 'Vuelve mañana',
   'ph.rp.falladas': '{n} tarjetas falladas vuelven mañana.',

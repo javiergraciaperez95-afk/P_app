@@ -1,8 +1,7 @@
 // Pantalla «Repaso» (rediseño del 20-10): repetición espaciada como Anki, pero sin autoevaluarse.
 // · Cada tarjeta se repasa como mucho UNA vez al día (js/srs.js): lo que toca hoy y unas pocas nuevas. Fallar no la
 //   repite hoy: vuelve mañana. Al acabar, no hay más hasta mañana.
-// · Cada repaso es un minijuego distinto, más difícil cuanto mejor se sabe la tarjeta, y nunca el mismo que la vez
-//   anterior con esa tarjeta:
+// · Cada repaso es un minijuego elegido al azar (nunca el mismo que la vez anterior con esa tarjeta):
 //     elige (ves el español y eliges qué significa) · oido (lo oyes y eliges) · eligeEs (ves el significado y eliges
 //     el español) · letras / ordena (montas la palabra o la frase) · escribe (la escribes)
 // · La nota sale sola: fallar = «otra vez», acertar con tropiezos = «difícil», acertar = «bien», a la primera y rápido
@@ -72,7 +71,7 @@ function distractores(c, reserva, campo) {
   return barajar(candidatos).slice(0, 3).map(x => x.r[campo]);
 }
 
-/** Los minijuegos posibles para una tarjeta, de más fácil a más difícil según lo bien que se sabe. */
+/** Los minijuegos posibles para una tarjeta (se elige uno al azar). */
 function modosPara(c, reserva) {
   const es = c.es.trim();
   const nPalabras = es.split(/\s+/).length;
@@ -87,18 +86,7 @@ function modosPara(c, reserva) {
     ordena: conTrad && !palabra && nPalabras <= 8,
     escribe: conTrad && nPalabras <= 4,
   };
-  const s = c.srs ?? {};
-  // nivel: 0 nueva · 1 recién aprendida o fallada · 2 en repaso · 3 ya se sabe bien (una semana o más)
-  const nivel = esNueva(s) ? 0 : (s.repeticiones ?? 0) === 0 ? 1 : (s.intervalo ?? 0) >= 7 ? 3 : 2;
-  const montar = palabra ? 'letras' : 'ordena';
-  const porNivel = [
-    ['elige', 'oido'],
-    ['eligeEs', 'oido', 'elige', montar],
-    [montar, 'eligeEs', 'escribe', 'oido'],
-    ['escribe', montar, 'oido', 'eligeEs'],
-  ][nivel];
-  let lista = porNivel.filter(m => puede[m]);
-  if (!lista.length) lista = Object.keys(puede).filter(m => puede[m]);
+  let lista = Object.keys(puede).filter(m => puede[m]);
   if (!lista.length) lista = ['clasica'];
   return lista;
 }
@@ -185,8 +173,7 @@ export function pintarRepaso(app) {
     const distintos = posibles.filter(m => m !== actual.srs?.modo);
     const variados = (distintos.length ? distintos : posibles).filter(m => m !== modoAnterior);
     const elegibles = variados.length ? variados : (distintos.length ? distintos : posibles);
-    // el primero de la lista es el que toca por nivel: sale más a menudo
-    const modo = Math.random() < 0.5 ? elegibles[0] : alAzar(elegibles);
+    const modo = alAzar(elegibles);
     modoAnterior = modo;
     pintarJuego(actual, modo);
   }
