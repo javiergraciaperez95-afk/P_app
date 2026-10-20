@@ -65,9 +65,9 @@ export const nombreDelCurso = idioma => nombreCurso(curso, idioma);
 /** El saludo del idioma sin signos, para frases como «¡Hola, Ana!». */
 export const saludo = curso.hola.replace(/^[¡¿\s]+|[!！.。\s]+$/gu, '');
 
-/** En qué idiomas se explica cada curso: el de español, en inglés y vietnamita; el de inglés, en español (más adelante,
- *  también en vietnamita); todos los demás, en español e inglés. */
-export const idiomasDe = c => (c.id === 'es' ? ['en', 'vi'] : c.id === 'en' ? ['es'] : ['es', 'en']);
+/** En qué idiomas se explica cada curso: en español, inglés y vietnamita, menos en el propio idioma del curso (cada
+ *  uno tiene su carpeta cursos/<curso>/<es|en|vi>/, ver _herramientas/modelos/LEEME.txt). */
+export const idiomasDe = c => ['es', 'en', 'vi'].filter(i => i !== c.id);
 
 /** El idioma de quien estudia: el que eligió para la interfaz o, si no eligió ninguno, el de su móvil o navegador. */
 export function lenguaDelAlumno() {

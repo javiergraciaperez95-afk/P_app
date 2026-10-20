@@ -2,9 +2,10 @@ PAGLOT · APRENDER IDIOMAS
 =========================
 Puesto al día el 19 de octubre de 2026.
 
-Paglot es una app para aprender idiomas con una tutora pixel: 21 cursos, con la interfaz en inglés o en vietnamita.
-Los cursos que no son español, inglés ni vietnamita tienen las explicaciones traducidas al inglés automáticamente
-(Argos) y llevan la etiqueta Beta. Cada dispositivo tiene un número de cuenta de 16 cifras (como en Mullvad)
+Paglot es una app para aprender idiomas con una tutora pixel: 21 cursos, con la interfaz en español, inglés o
+vietnamita (cada curso, en los tres menos su propio idioma). Desde el 20-10-2026 cada curso tiene una carpeta de
+lecciones por idioma del alumno, adaptadas a ese público (ver _herramientas/modelos/LEEME.txt); salvo el de español,
+llevan la etiqueta Beta: falta la revisión de profesores nativos. Cada dispositivo tiene un número de cuenta de 16 cifras (como en Mullvad)
 con el que su progreso se guarda en Supabase; con él se sigue en otro móvil (ver js/nube.js).
 
 LA CARPETA
@@ -43,7 +44,8 @@ CÓMO ESTÁ HECHA
 ---------------
 index.html, css/, js/, assets/   El programa.
 juegos/                          Los minijuegos del modo juego.
-cursos/es/                       El curso: lessons/, traducciones/{es,en,vi}/, indice/ y juegos/.
+cursos/<curso>/                  El curso: es/, en/, vi/ (una carpeta por idioma del alumno, con sus lecciones NNN.json
+                                 de los 6 modelos, capitulos.json, indice.json y diccionario.json), phrases/ y juegos/.
 tutoras/                         Los dibujos de las compañeras de Lucía.
 
 Para que la app vaya fluida:

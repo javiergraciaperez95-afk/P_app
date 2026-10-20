@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <!-- Solo se cargan archivos de este sitio y los <script> en línea de esta página (sus hashes en script-src); publicar.py los recalcula al cambiar __VERSION__. -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-c920FhfDHThfIqlsIt0ZrUNsYS4qkx7Plyl1tOmjXyI=' 'sha256-WMrNpEKxNnpCP6AHe12nU4bI/HXD+Vv/9U/cT7mEH8I=' 'sha256-2a+M4sJwy5H2nW/bZVlBTL43ebWjy1XiHzvnP73ZkDI='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' https://iuniglsiqnfvnotmfgdo.supabase.co">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-mjkuxfNuxbMntfPfFtWqWB33XPlG1QHof0BuoleXR4Q=' 'sha256-5Fb/lz79QLX0xgu0DkncX06h0QLY7OteDTaKwO/Bw8k=' 'sha256-2a+M4sJwy5H2nW/bZVlBTL43ebWjy1XiHzvnP73ZkDI='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' https://iuniglsiqnfvnotmfgdo.supabase.co">
   <title>Paglot</title>
   <meta name="description" content="Paglot: aprende idiomas con tu tutora de píxeles · Learn languages with your pixel tutor · Học ngoại ngữ cùng cô giáo pixel.">
   <meta name="application-name" content="Paglot">
@@ -29,10 +29,10 @@
       const calma = typeof a.calma === 'boolean' ? a.calma : matchMedia('(prefers-reduced-motion: reduce)').matches;
       document.documentElement.classList.toggle('modo-calma', calma);
       document.documentElement.classList.toggle('texto-grande', a.texto === 'grande');
-      // los idiomas de la interfaz según el curso, como idiomasDe en js/curso.js: el de español va en inglés o
-      // vietnamita; el de inglés, en español; los demás, en español o inglés; sin curso (la portada y la web), los tres
+      // los idiomas de la interfaz según el curso, como idiomasDe en js/curso.js: español, inglés y vietnamita, menos el
+      // propio idioma del curso; sin curso (la portada y la web), los tres
       const curso = localStorage.getItem('idiomas-curso');
-      const compatibles = new Set(!curso ? ['es', 'en', 'vi'] : curso === 'es' ? ['en', 'vi'] : curso === 'en' ? ['es'] : ['es', 'en']);
+      const compatibles = new Set(['es', 'en', 'vi'].filter(i => i !== curso));
       const detectar = () => [...(navigator.languages ?? []), navigator.language ?? '']
         .map(x => x.toLowerCase().replaceAll('_', '-').split('-')[0]).find(x => compatibles.has(x)) ?? (compatibles.has('en') ? 'en' : 'es');
       document.documentElement.lang = a.idioma && a.idioma !== 'auto' && compatibles.has(a.idioma) ? a.idioma : detectar();
@@ -169,6 +169,8 @@
         "./js/lessons.js": "./js/lessons.js?v=__VERSION__",
         "./js/movil.js": "./js/movil.js?v=__VERSION__",
         "./js/suave.js": "./js/suave.js?v=__VERSION__",
+        "./js/probador.js": "./js/probador.js?v=__VERSION__",
+        "./js/teclado.js": "./js/teclado.js?v=__VERSION__",
         "./js/progress.js": "./js/progress.js?v=__VERSION__",
         "./js/sonidos.js": "./js/sonidos.js?v=__VERSION__",
         "./js/sin-terminar.js": "./js/sin-terminar.js?v=__VERSION__",
@@ -217,6 +219,7 @@
         "./js/vistas/prueba.js": "./js/vistas/prueba.js?v=__VERSION__",
         "./js/vistas/carteles.js": "./js/vistas/carteles.js?v=__VERSION__",
         "./js/vistas/precios.js": "./js/vistas/precios.js?v=__VERSION__",
+        "./js/vistas/probador.js": "./js/vistas/probador.js?v=__VERSION__",
         "./js/vistas/sobre.js": "./js/vistas/sobre.js?v=__VERSION__"
       }
     }
@@ -280,6 +283,7 @@
       </span>
       <button type="button" id="btn-sonido" class="btn btn-icono" aria-pressed="true" aria-label="Mute sounds">♪</button>
       <button type="button" id="btn-tema" class="btn btn-icono" aria-label="Switch to dark mode">☾</button>
+      <button type="button" id="btn-calma" class="btn btn-icono" aria-pressed="false" aria-label="Pause animations"><span class="icono-pausa" aria-hidden="true"></span></button>
     </span>
     <div id="cabecera-cuenta" class="cabecera-cuenta"></div>
     </div>

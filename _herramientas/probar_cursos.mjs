@@ -1,4 +1,4 @@
-// Abre una lección de cada curso en sus dos idiomas de interfaz (Chrome sin ventana) y avisa de lo que falla:
+// Abre una lección de cada curso en sus idiomas de interfaz (Chrome sin ventana) y avisa de lo que falla:
 // errores de consola, la tarjeta de error, «[object Object]» o «@es»/«@en» a la vista, o la página en otro idioma.
 //   node _herramientas/probar_cursos.mjs [puerto=8300] [lección=010]
 // Necesita la app servida en http://localhost:<puerto> (la raíz del repo). Env CHROME: otro Chrome (en GitHub Actions,
@@ -10,8 +10,8 @@ import fs from 'node:fs';
 const puerto = process.argv[2] ?? '8300';
 const leccion = process.argv[3] ?? '010';
 const CURSOS = ['es', 'en', 'fr', 'de', 'it', 'pt', 'ja', 'ko', 'zh', 'ru', 'tr', 'nl', 'sv', 'el', 'pl', 'no', 'vi', 'id', 'da', 'ro', 'th'];
-// los idiomas de cada curso, como idiomasDe en js/curso.js (el de inglés, solo en español)
-const IDIOMAS = c => (c === 'es' ? ['en', 'vi'] : c === 'en' ? ['es'] : ['es', 'en']);
+// los idiomas de cada curso, como idiomasDe en js/curso.js (los tres, menos el del propio curso)
+const IDIOMAS = c => ['es', 'en', 'vi'].filter(i => i !== c);
 
 const depuracion = 9300 + Math.floor(Math.random() * 300);
 // un perfil de Chrome nuevo cada vez (y se borra al acabar): con uno viejo se colaba lo guardado en otra prueba

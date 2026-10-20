@@ -3,11 +3,24 @@
 // Los demás textos (explicaciones, notas, preguntas…) pueden ser un texto o { "en": "…", "vi": "…" }.
 
 import { t, idioma } from './i18n.js';
-import { curso, ruta } from './curso.js';
+import { curso, ruta, idiomasDe } from './curso.js';
 import { LANG } from './curso.js';
 import { hayVoz } from './sonidos.js';
 
-const CARPETA = ruta('lessons/');
+// Las lecciones de cada curso están en una carpeta por idioma del alumno (cursos/<curso>/<es|en|vi>/NNN.json, con
+// los 6 modelos de _herramientas/modelos/). Se usa la del idioma de la interfaz en cuanto está montada (tiene su
+// indice.json); mientras no, las antiguas de lessons/.
+const LENGUA = idiomasDe(curso).includes(idioma()) ? idioma() : idiomasDe(curso)[0];
+const NUEVA = ruta(`${LENGUA}/`);
+let CARPETA = ruta('lessons/');
+let indiceNuevo = null;
+/** El índice de la carpeta nueva (su texto) o null si aún no está montada. Fija CARPETA. */
+function pedirIndiceNuevo() {
+  indiceNuevo ??= fetch(conVersion(`${NUEVA}indice.json`), { cache: 'no-cache' })
+    .then(r => (r.ok ? r.text() : null)).catch(() => null)
+    .then(texto => { if (texto !== null) CARPETA = NUEVA; return texto; });
+  return indiceNuevo;
+}
 const HUECOS_PERMITIDOS = 3; // se para tras 3 archivos seguidos que no existen
 const LOTE = 20;             // cuántos archivos se piden a la vez
 
@@ -85,9 +98,13 @@ export async function descubrirLecciones() {
 export async function cargarIndice() {
   let indice;
   try {
-    const respuesta = await fetch(conVersion(ruta('indice/lecciones.json')), { cache: 'no-cache' });
-    if (!respuesta.ok) return null;
-    indice = leerContenido(await respuesta.text());
+    const nuevo = await pedirIndiceNuevo();
+    if (nuevo !== null) indice = leerContenido(nuevo);
+    else {
+      const respuesta = await fetch(conVersion(ruta('indice/lecciones.json')), { cache: 'no-cache' });
+      if (!respuesta.ok) return null;
+      indice = leerContenido(await respuesta.text());
+    }
   } catch {
     return null;
   }
@@ -122,7 +139,8 @@ export async function cargarIndice() {
 /** Todas las palabras del curso (indice/diccionario.json): Map de palabra normalizada → ficha. null si no hay. */
 export async function cargarDiccionario() {
   try {
-    const respuesta = await fetch(conVersion(ruta('indice/diccionario.json')), { cache: 'no-cache' });
+    const nueva = (await pedirIndiceNuevo()) !== null;
+    const respuesta = await fetch(conVersion(nueva ? `${NUEVA}diccionario.json` : ruta('indice/diccionario.json')), { cache: 'no-cache' });
     if (!respuesta.ok) return null;
     return new Map(Object.entries(leerContenido(await respuesta.text())));
   } catch {
@@ -159,6 +177,7 @@ function conVersion(archivo) {
 }
 
 export async function cargarLeccion(id) {
+  await pedirIndiceNuevo();
   const archivo = `${CARPETA}${id}.json`;
   let texto;
   try {
@@ -183,7 +202,8 @@ export async function cargarLeccion(id) {
     // Esquema v2: estructura en este archivo y textos en traducciones/<idioma>/<id>.json.
     // Se convierte a la forma antigua para que el resto del programa no cambie.
     // Las «flexibles» son lecciones antiguas pasadas a catálogos sin rehacer sus bloques.
-    if (json && json.esquema === 2) json = json.flexible ? await adaptarFlexible(json, id) : await adaptarV2(json, id);
+    if (json && json.formato === FORMATO_MODELO) json = adaptarModelo(json);
+    else if (json && json.esquema === 2) json = json.flexible ? await adaptarFlexible(json, id) : await adaptarV2(json, id);
     else json = adaptar(json);
   } catch (e) {
     console.error(e);
@@ -362,6 +382,75 @@ function adaptar(json) {
     return Object.fromEntries(Object.entries(o).map(([k, v]) => [literales ? k : (CAMBIO[k] ?? k), andar(v, literales ? '' : k)]));
   };
   return andar(json, '');
+}
+
+// ---------------------------------------------------------------------------
+// Lecciones de los 6 modelos (cursos/<curso>/<alumno>/NNN.json; ver _herramientas/modelos/LEEME.txt)
+// Cada archivo ya está escrito para un solo idioma del alumno: el texto estudiado va en «estudio» y lo demás es
+// texto normal. Las piezas van por etapas (explicar, palabras, leer, practicar) en el orden de su modelo.
+// ---------------------------------------------------------------------------
+
+const FORMATO_MODELO = 'paglot-modelo-1';
+
+function adaptarModelo(m) {
+  // En la forma interna «es» es el texto estudiado: la traducción española del alumno va en «tes».
+  const cod = m.alumno === 'es' ? 'tes' : m.alumno;
+  const txt = v => (esObjeto(v) ? v.texto : v) ?? '';
+  const frase = f => {
+    const r = { es: f.estudio };
+    if (f.alumno) r[cod] = f.alumno;
+    if (txt(f.quien)) r.quien = txt(f.quien);
+    if (f.literal) r.literal = f.literal;
+    if (f.estructura) r.estructura = f.estructura;
+    if (f.nota?.length) r.nota = f.nota;
+    if (f.analisis?.length) r.analisis = f.analisis;
+    if (f.parrafo) r.parrafo = f.parrafo;
+    return r;
+  };
+  const palabras = {};
+  for (const p of m.palabras ?? []) {
+    const ficha = { [cod]: p.significado };
+    for (const k of ['pron', 'ipa', 'cat', 'genero', 'plural', 'definida', 'consejo', 'nota']) if (p[k]) ficha[k] = p[k];
+    if (p.oculta) ficha.oculta = true;
+    palabras[p.palabra] = ficha;
+  }
+  const pieza = p => {
+    const comun = { tipo: p.tipo };
+    if (p.titulo) comun.titulo = p.titulo;
+    switch (p.tipo) {
+      case 'explicacion': return { ...comun, texto: p.texto, ...(p.tutora ? { tutora: p.tutora } : {}) };
+      case 'gramatica': return { ...comun, texto: p.texto.join('\n\n'), ejemplos: p.ejemplos.map(frase), ...(p.tutora ? { tutora: p.tutora } : {}) };
+      case 'tabla': return { ...comun, columnas: p.columnas.map(txt), filas: p.filas.map(f => f.map(txt)), ...(p.nota ? { nota: p.nota } : {}), ...(p.tutora ? { tutora: p.tutora } : {}) };
+      case 'vocabulario': return { ...comun, palabras: p.palabras };
+      case 'dialogo':
+      case 'texto': return { ...comun, frases: p.frases.map(frase) };
+      default: {
+        // ejercicios: test, traduccion, huecos, ordenar, escribir
+        const b = { tipo: p.tipo, id: p.id, pregunta: txt(p.pregunta), frase: txt(p.frase) };
+        if (p.audio) b.audio = p.audio;
+        else if (p.oir_frase) b.audio = true;
+        if (p.tipo === 'escribir') {
+          b.respuestas = p.respuestas.textos;
+          if (p.autoevaluacion) b.autoevaluacion = true;
+        } else if (p.tipo !== 'ordenar') {
+          b.opciones = p.opciones.map(o => ({ texto: o.texto, explicacion: o.explicacion, correcta: o.correcta }));
+        }
+        if (p.traduccion) b.traduccion = p.traduccion;
+        if (p.explicacion && (p.tipo === 'ordenar' || p.tipo === 'escribir')) b.explicacion = p.explicacion;
+        return b;
+      }
+    }
+  };
+  return {
+    capitulo: m.capitulo,
+    numero_curso: m.numero,
+    orden_curso: m.orden,
+    titulo_es: m.titulo.estudio,
+    titulo: m.titulo.alumno,
+    ...(m.intro ? { intro: m.intro } : {}),
+    palabras,
+    bloques: m.etapas.flatMap(e => e.piezas.map(pieza)),
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -1046,7 +1135,22 @@ async function leerJSON(archivo, nombre) {
  * Es opcional: sin él, las lecciones se agrupan solo por número de capítulo.
  */
 export async function cargarCapitulos() {
-  const r = await leerJSON(`${CARPETA}capitulos.json`, t('rev.nombreCapitulos'));
+  if ((await pedirIndiceNuevo()) !== null) {
+    // los de la carpeta nueva: [{ numero, nivel, titulo: { estudio, alumno }, descripcion }]
+    const r = await leerJSON(`${NUEVA}capitulos.json`, t('rev.nombreCapitulos'));
+    if (r.json && Array.isArray(r.json)) {
+      return {
+        capitulos: r.json.filter(esObjeto).map((c, i) => ({
+          numero: c.numero ?? i + 1,
+          nivel: c.nivel || undefined,
+          titulo: c.titulo?.alumno || null,
+          nombre: (c.titulo?.estudio ?? '').replace(/^[ABC][12]\s*·\s*/, '') || undefined,
+          descripcion: c.descripcion || undefined,
+        })),
+      };
+    }
+  }
+  const r = await leerJSON(`${ruta('lessons/')}capitulos.json`, t('rev.nombreCapitulos'));
   if (r.noExiste) return { capitulos: [] };
   if (r.error) return { capitulos: [], error: r.error };
   const lista = Array.isArray(r.json) ? r.json : r.json?.capitulos;

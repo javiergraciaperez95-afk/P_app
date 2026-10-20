@@ -8,6 +8,8 @@
 4. Cada objeto JSON de cursos/ con @es o @en tiene solo esas dos claves, y las dos son texto.
 5. La CSP de index.html lleva el hash de cada <script> en línea (si no, la app no arranca): se rehace con
    python _herramientas/publicar.py --csp
+6. Todo lo que el código guarda en el dispositivo está en el aviso legal.
+7. Las lecciones de cursos/<curso>/<es|en|vi>/ cumplen la plantilla estricta de su modelo (_herramientas/modelos/).
 
 Sale con código 1 si algo falla y dice qué y dónde. No cambia ningún archivo.
 """
@@ -131,6 +133,29 @@ def comprobar_datos_guardados():
     return errores
 
 
+def comprobar_modelos():
+    """Las lecciones de las carpetas por idioma del alumno (cursos/<curso>/<es|en|vi>/) cumplen su plantilla estricta
+    (_herramientas/modelos/comun.py). Las carpetas montadas (con indice.json) tienen que estar completas."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent / 'modelos'))
+    from comun import validar_leccion, lenguas_de, CURSOS as CODIGOS
+    errores, total = [], 0
+    for c in CODIGOS:
+        for l in lenguas_de(c):
+            carpeta = CURSOS / c / l
+            if not carpeta.is_dir():
+                continue
+            montada = (carpeta / 'indice.json').exists()
+            for ruta in sorted(carpeta.glob('[0-9][0-9][0-9].json')):
+                total += 1
+                try:
+                    dato = json.loads(ruta.read_text(encoding='utf-8-sig'))
+                except ValueError:
+                    continue  # ya lo dice la comprobación 1
+                for fallo in validar_leccion(dato, c, l, ruta.stem, completa=montada)[:2]:
+                    errores.append(f'{relativa(ruta)}: {fallo}')
+    return errores, total
+
+
 def mostrar(titulo, errores, detalle=''):
     estado = 'OK' if not errores else f'FALLA ({len(errores)})'
     print(f'{titulo}: {estado}{detalle}')
@@ -153,7 +178,9 @@ def main():
     mostrar('5. CSP de index.html al día', errores_csp)
     errores_datos = comprobar_datos_guardados()
     mostrar('6. Todo lo que se guarda, en el aviso legal', errores_datos)
-    for errores in (errores_json, errores_i18n, errores_zq, errores_objetos, errores_csp, errores_datos):
+    errores_modelos, total_modelos = comprobar_modelos()
+    mostrar('7. Lecciones de los 6 modelos', errores_modelos, f' ({total_modelos} archivos)')
+    for errores in (errores_json, errores_i18n, errores_zq, errores_objetos, errores_csp, errores_datos, errores_modelos):
         fallos += len(errores)
     print('Todo correcto.' if not fallos else f'{fallos} fallo(s).')
     return 1 if fallos else 0
