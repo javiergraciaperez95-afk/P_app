@@ -296,4 +296,16 @@ export default {
   'ph.lec.irFalta': 'Đi tới bài chưa làm',
   'ph.lec.ok': 'Đúng rồi!',
   'ph.lec.ojo': 'Chú ý',
+
+  // ----- Ôn tập (como Anki: una vez al día) -----
+  'ph.rp.intro': 'Lặp lại ngắt quãng như Anki: mỗi thẻ chỉ ôn một lần mỗi ngày, vào đúng ngày em sắp quên. Mỗi ngày có thêm tối đa {n} thẻ mới. Mỗi lần ôn là một trò khác nhau.',
+  'ph.rp.hoy': 'Hôm nay',
+  'ph.rp.tarjetas': 'thẻ cần ôn',
+  'ph.rp.hecho': '✔ Hôm nay xong rồi',
+  'ph.rp.manana': ({ n }) => (n ? `Ngày mai: ${n} thẻ.` : 'Ngày mai chưa có thẻ nào. Học thêm một bài để có từ mới nhé!'),
+  'ph.rp.mazo': 'Sổ thẻ của em: {n} thẻ',
+  'ph.rp.modos': 'Thẻ mới: chọn nghĩa hoặc nghe. Càng thuộc, trò càng khó: chọn từ tiếng Tây Ban Nha, ghép chữ, rồi tự viết. Không bao giờ lặp lại trò của lần trước.',
+  'ph.rp.vuelve': 'Gặp lại sau {cuando}',
+  'ph.rp.vuelveManana': 'Gặp lại vào ngày mai',
+  'ph.rp.falladas': '{n} thẻ chưa đúng sẽ quay lại vào ngày mai.',
 };

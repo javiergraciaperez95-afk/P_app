@@ -60,8 +60,9 @@ const SECCIONES = [
 // El código de las pantallas que no son el inicio, la lista ni la lección se pide al abrirlas.
 const vista = (archivo, funcion) => import(`./vistas/${archivo}.js`).then(m => m[funcion]);
 
-// En el móvil, estas pantallas se reparten en páginas del alto de la pantalla (js/paginas-movil.js).
-const PAGINADAS = new Set(['perfil', 'cuaderno', 'frases']);
+// En el móvil ninguna pantalla se reparte ya en páginas del alto de la pantalla (js/paginas-movil.js): cortaban los
+// bloques y dejaban huecos (perfil, cuaderno, frases). Todas se leen bajando.
+const PAGINADAS = new Set();
 
 /** Reparte unas piezas en diapositivas según lo que miden, sin partir ninguna (un título no se queda solo al final). */
 function porAlto(piezas, { marco = 40, hueco = 12 } = {}) {

@@ -276,3 +276,83 @@ body.en-leccion .lp .caja::after { display: none; }
 /* los botones y contadores de los juegos con la letra de texto (la pixelada confundía «8» con «S») */
 .lp .es-boton { font-family: var(--fuente-texto); font-weight: 800; letter-spacing: 0; }
 .lp .jg-cuenta { font: 800 .9rem var(--fuente-texto); }
+
+/* =====================================================================
+   Ventanas (el aviso diario de Lucía): centradas y lejos de la barra de estado del móvil
+   ===================================================================== */
+dialog.recordatorio-oferta[open] {
+  position: fixed; inset: 0; margin: auto; height: fit-content;
+  width: min(440px, calc(100vw - 32px)); max-height: calc(100dvh - 48px - var(--borde-arriba, 0px) - var(--borde-abajo, 0px));
+  padding: 20px 18px; border: 0; border-radius: 18px; color: var(--texto); background: var(--panel);
+  box-shadow: 0 0 0 2px var(--linea), 0 16px 40px rgba(0, 0, 0, .45);
+}
+dialog.recordatorio-oferta h2 { margin: 0 0 8px; font: 800 1.2rem/1.3 var(--fuente-texto); }
+dialog.recordatorio-oferta p { margin: 0 0 14px; line-height: 1.45; }
+dialog.recordatorio-oferta .botonera { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 12px; }
+dialog.recordatorio-oferta .boton { margin: 0; border-radius: 12px; font-family: var(--fuente-texto); font-weight: 800; }
+
+/* =====================================================================
+   Repaso (como Anki: una vez al día), con el pixel art de siempre: cajas de borde escalonado, sombra dura y
+   la letra pixelada en títulos y cifras
+   ===================================================================== */
+.rp2-hoy { text-align: center; }
+.rp2-hoy-titulo { margin: 0; font: 700 .9rem var(--fuente-pixel); letter-spacing: .1em; text-transform: uppercase; color: var(--texto-suave); }
+.rp2-hoy-n { margin: 6px 0 12px; display: flex; align-items: baseline; justify-content: center; gap: 10px; }
+.rp2-hoy-n strong { font: 700 3.4rem/1 var(--fuente-pixel); color: var(--oro); text-shadow: 3px 3px 0 var(--sombra); }
+.rp2-hoy-n span { font-weight: 700; color: var(--texto-suave); }
+.rp2-barra { height: 16px; margin: 0 4px 16px; background: var(--fondo); box-shadow: 0 0 0 3px var(--linea); }
+.rp2-barra span { display: block; height: 100%; background: repeating-linear-gradient(90deg, var(--oro) 0 10px, color-mix(in srgb, var(--oro) 75%, #000) 10px 12px); }
+.rp2-cifras, .rp2-etapas { display: grid; gap: 10px; margin: 0 4px 16px; padding: 0; list-style: none; }
+.rp2-cifras { grid-template-columns: repeat(3, 1fr); }
+.rp2-etapas { grid-template-columns: repeat(4, 1fr); }
+.rp2-cifras div, .rp2-etapa { display: grid; justify-items: center; gap: 4px; padding: 8px 4px; text-align: center; background: var(--panel-2); box-shadow: 0 0 0 3px var(--linea), 3px 4px 0 3px var(--sombra); }
+.rp2-cifras dt, .rp2-etapa span { font-size: .78rem; line-height: 1.2; color: var(--texto-suave); }
+.rp2-cifras dd, .rp2-etapa strong { margin: 0; font: 700 1.5rem var(--fuente-pixel); color: var(--oro); }
+.rp2-dominada strong { color: var(--verde); }
+.rp2-nueva strong { color: var(--azul); }
+.rp2-empezar { width: calc(100% - 12px); }
+.rp2-empezar:disabled { background: var(--verde-fondo); color: var(--texto); filter: none; }
+.rp2-motivo { margin: 10px 0 0; color: var(--texto-suave); }
+.rp2-mazo h2 { margin: 0 0 14px; font-family: var(--fuente-pixel); font-size: 1.15rem; }
+.rp2-ayuda { margin: 0; font-size: .92rem; line-height: 1.45; color: var(--texto-suave); }
+.rp2-extra { display: grid; gap: 12px; }
+.rp2-cuenta { flex: none; font: 700 .95rem var(--fuente-pixel); color: var(--texto-suave); }
+.rp2-salir { min-width: 44px; margin: 0; }
+.rp2-vuelve { margin: 8px 0; font-weight: 700; color: var(--texto-suave); }
+.rp2-seguir { width: calc(100% - 12px); margin-top: 10px; }
+
+/* con la página fija (el mapa de lecciones), el cuerpo es el que desplaza y ya deja el hueco de la barra de estado:
+   la cabecera pegada no debe bajar otra vez ese hueco (salía una franja vacía encima de la cabecera) */
+html.pm-activo .cabecera { top: 0; }
+
+/* =====================================================================
+   Frases: cada grupo con su título y, debajo, la tarea en español (antes salían pegados: «Tôi quên mấtSe me olvidó»)
+   ===================================================================== */
+.grupo-frases > summary { display: grid; grid-template-columns: auto 1fr; column-gap: 10px; row-gap: 2px; align-items: baseline; cursor: pointer; list-style: none; }
+.grupo-frases > summary::-webkit-details-marker { display: none; }
+.grupo-frases > summary::before { content: "▶"; grid-row: span 2; font-size: .8rem; color: var(--texto-suave); transition: transform .15s; }
+.grupo-frases[open] > summary::before { transform: rotate(90deg); }
+.grupo-titulo { font-weight: 700; line-height: 1.35; }
+.grupo-tarea { grid-column: 2; font-size: .95rem; font-style: italic; line-height: 1.35; color: var(--espanol); }
+.grupo-frases { margin-bottom: 14px; }
+.grupo-frases[open] > summary { margin-bottom: 10px; }
+.grupo-frases > .botonera { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 10px; }
+.grupo-frases > .botonera .boton { margin: 0; }
+.lista-frases { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.lista-frases .tarjeta-frase {
+  display: flex; align-items: flex-start; gap: 10px; margin: 3px 6px 6px 3px; padding: 12px;
+  background: var(--panel-2); box-shadow: 0 0 0 3px var(--linea), 3px 4px 0 3px var(--sombra);
+}
+.tarjeta-frase-texto { flex: 1; min-width: 0; }
+.tarjeta-frase .frase-es { margin: 0 0 4px; font-size: 1.12rem; font-weight: 700; line-height: 1.35; color: var(--espanol); overflow-wrap: anywhere; cursor: pointer; }
+.tarjeta-frase .frase-trad { margin: 0; line-height: 1.4; color: var(--texto); }
+.tarjeta-frase .aprox, .tarjeta-frase .nota { margin: 4px 0 0; font-size: .88rem; }
+.tarjeta-frase .frase-acciones { flex: none; display: flex; flex-direction: column; gap: 6px; }
+.frases-mas { margin: 10px 0 0; }
+/* «Tapar el español»: el español se difumina hasta tocarlo (se habían perdido estos estilos) */
+.frases-tapadas .tarjeta-frase:not(.visto) .frase-es { color: transparent; text-shadow: 0 0 12px var(--espanol); user-select: none; }
+.frases-tapadas .tarjeta-frase:not(.visto) :is(.aprox, .boton-analisis) { visibility: hidden; }
+.frases-tapadas .tarjeta-frase.visto .frase-es { animation: lp-aviso .2s ease-out both; }
+/* las cifras con letra de texto (la pixelada confunde 5 con S y 8 con B), con sombra dura para que sigan siendo pixel */
+.rp2-hoy-n strong { font-family: var(--fuente-texto); font-weight: 900; }
+.rp2-cifras dd, .rp2-etapa strong, .rp2-cuenta { font-family: var(--fuente-texto); font-weight: 900; text-shadow: 2px 2px 0 color-mix(in srgb, var(--sombra) 35%, transparent); }

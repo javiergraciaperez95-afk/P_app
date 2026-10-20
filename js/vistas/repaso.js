@@ -1,24 +1,18 @@
-// Pantalla «Repaso»: las tarjetas del cuaderno con repetición espaciada, pero sin autoevaluarse.
-// Cada tarjeta es un minijuego que obliga a pensar (y cambia de una tarjeta a otra, para que no aburra):
-//   elige    → ves el español y eliges qué significa
-//   eligeEs  → ves el significado y eliges el español
-//   oido     → lo oyes y eliges lo que has oído (solo con voz)
-//   letras   → montas la palabra con sus letras desordenadas
-//   ordena   → montas la frase con sus palabras desordenadas
-//   escribe  → la escribes (con las teclas de á, ñ, ¿…)
-// La nota de la repetición espaciada sale sola: fallar = «otra vez» (y la tarjeta vuelve en esta misma sesión),
-// acertar con algún tropiezo = «difícil», acertar = «bien», acertar a la primera y rápido = «fácil».
-// Las tarjetas nuevas empiezan por reconocer (elegir); las que ya se han visto pasan a producir (montar, escribir).
+// Pantalla «Repaso» (rediseño del 20-10): repetición espaciada como Anki, pero sin autoevaluarse.
+// · Cada tarjeta se repasa como mucho UNA vez al día (js/srs.js): lo que toca hoy y unas pocas nuevas. Fallar no la
+//   repite hoy: vuelve mañana. Al acabar, no hay más hasta mañana.
+// · Cada repaso es un minijuego distinto, más difícil cuanto mejor se sabe la tarjeta, y nunca el mismo que la vez
+//   anterior con esa tarjeta:
+//     elige (ves el español y eliges qué significa) · oido (lo oyes y eliges) · eligeEs (ves el significado y eliges
+//     el español) · letras / ordena (montas la palabra o la frase) · escribe (la escribes)
+// · La nota sale sola: fallar = «otra vez», acertar con tropiezos = «difícil», acertar = «bien», a la primera y rápido
+//   = «fácil». Tras cada tarjeta se dice cuándo vuelve.
 // Atajos: 1–4 para elegir, Enter para comprobar o seguir.
-// Formas de repasar (se eligen en la portada): el repaso del día (lo que toca según la repetición espaciada), uno
-// rápido de diez, «lo que más me cuesta» (las tarjetas que más se fallan), solo de oído, solo escribiendo (montar y
-// escribir) y el repaso libre (tarjetas al azar del cuaderno, sin cambiar cuándo vuelven).
-// Una tarjeta que se ha olvidado muchas veces es «rebelde»: se marca y sale primero en «lo que más me cuesta».
 
 import { el, poner, barajar, alAzar } from '../dom.js';
 import { t, tr, idioma } from '../i18n.js';
-import { tarjetas, actualizarTarjeta, actividadDeHoy } from '../progress.js';
-import { programar, esNueva, tocaRepasar } from '../srs.js';
+import { tarjetas, actualizarTarjeta } from '../progress.js';
+import { programar, esNueva, colaDeHoy, paraManana, etapa, textoDias, NUEVAS_AL_DIA } from '../srs.js';
 import { botonEscuchar } from '../comunes.js';
 import { sonar, sonarAcierto, pronunciar, hayVoz } from '../sonidos.js';
 import { decir } from '../tutor.js';
@@ -29,45 +23,25 @@ import { enlaceReto } from './reto.js';
 import { conCartel } from './carteles.js';
 import { botonAvisos } from '../avisos.js';
 
-const NUEVAS_POR_SESION = 20;
-const VOLVER_EN_SESION = 20 * 60 * 1000; // lo que vence en menos de 20 min vuelve a salir hoy
-
 // ----- Comparar respuestas -----
 const limpiar = s => String(s).toLocaleLowerCase(LANG).replace(/[.,!?¡¿;:"«»“”'’()…]/g, ' ').replace(/\s+/g, ' ').trim();
-const sinTildes = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '');
+const sinTildes = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 const textoTrad = c => String(tr(c.trad) ?? '').trim();
 
 const REBELDE = 4; // olvidada tantas veces: tarjeta rebelde
-const POR_SESION_CORTA = 10;
-const POR_SESION_LIBRE = 15;
 export const esRebelde = c => (c.srs?.lapsos ?? 0) >= REBELDE;
 
+/** La sesión de hoy: las que tocan (barajadas) con una nueva intercalada cada tres. */
 function colaDelDia() {
-  const ahora = Date.now();
-  const todas = tarjetas().filter(c => c.es);
-  const pendientes = todas.filter(c => tocaRepasar(c.srs, ahora)).sort((a, b) => a.srs.vence - b.srs.vence);
-  const nuevas = todas.filter(c => esNueva(c.srs)).sort((a, b) => a.creada - b.creada).slice(0, NUEVAS_POR_SESION);
-  return [...barajar(pendientes), ...nuevas];
+  const { pendientes, nuevas } = colaDeHoy(tarjetas());
+  const repasos = barajar(pendientes);
+  const cola = [];
+  while (repasos.length || nuevas.length) {
+    cola.push(...repasos.splice(0, 3));
+    if (nuevas.length) cola.push(nuevas.shift());
+  }
+  return cola;
 }
-// las que más cuestan: olvidadas alguna vez o con la facilidad baja, las rebeldes primero
-const cuestan = () => tarjetas().filter(c => c.es && !esNueva(c.srs) && ((c.srs.lapsos ?? 0) > 0 || (c.srs.facilidad ?? 2.5) < 2.3))
-  .sort((a, b) => (b.srs.lapsos ?? 0) - (a.srs.lapsos ?? 0) || (a.srs.facilidad ?? 2.5) - (b.srs.facilidad ?? 2.5));
-const alAzarDelCuaderno = n => barajar(tarjetas().filter(c => c.es && textoTrad(c))).slice(0, n);
-const delDiaOAlAzar = (n, filtro = () => true) => {
-  const c = colaDelDia().filter(filtro);
-  return c.length ? c : alAzarDelCuaderno(n);
-};
-
-/** Las formas de repasar: qué tarjetas salen, qué minijuegos y si cambian cuándo vuelve cada tarjeta. */
-const FORMAS = {
-  dia: { icono: '📅', cola: colaDelDia, srs: true },
-  rapido: { icono: '⚡', cola: () => delDiaOAlAzar(POR_SESION_CORTA).slice(0, POR_SESION_CORTA), srs: true },
-  cuesta: { icono: '🎯', cola: () => cuestan().slice(0, NUEVAS_POR_SESION), srs: true },
-  oido: { icono: '🎧', cola: () => delDiaOAlAzar(POR_SESION_LIBRE), srs: true, modos: ['oido'] },
-  escribir: { icono: '✍', cola: () => delDiaOAlAzar(POR_SESION_LIBRE, x => !esNueva(x.srs)), srs: true, modos: ['letras', 'ordena', 'escribe'] },
-  libre: { icono: '🎲', cola: () => alAzarDelCuaderno(POR_SESION_LIBRE), srs: false },
-};
-const crearCola = forma => FORMAS[forma].cola();
 
 /** Lo que se puede usar para las opciones falsas: el resto del cuaderno y el diccionario del curso. */
 function crearReserva() {
@@ -98,22 +72,34 @@ function distractores(c, reserva, campo) {
   return barajar(candidatos).slice(0, 3).map(x => x.r[campo]);
 }
 
-function modosPara(c, reserva, producir = false) {
+/** Los minijuegos posibles para una tarjeta, de más fácil a más difícil según lo bien que se sabe. */
+function modosPara(c, reserva) {
   const es = c.es.trim();
   const nPalabras = es.split(/\s+/).length;
   const palabra = nPalabras === 1;
   const conTrad = Boolean(textoTrad(c));
-  const hayOpciones = reserva.length >= 3;
-  const lista = [];
-  if (conTrad && hayOpciones) lista.push('elige', 'eligeEs');
-  if (hayVoz() && hayOpciones) lista.push('oido');
-  // producir: cuando ya se ha visto alguna vez (o si no hay con qué hacer opciones)
-  if (conTrad && (producir || !esNueva(c.srs) || !lista.length)) {
-    if (palabra && es.length >= 2 && es.length <= 12) lista.push('letras', 'letras');
-    if (!palabra && nPalabras <= 8) lista.push('ordena', 'ordena');
-    if (palabra || nPalabras <= 4) lista.push('escribe');
-  }
-  if (!lista.length) lista.push(hayVoz() ? 'oido' : 'clasica');
+  const opciones = reserva.length >= 3;
+  const puede = {
+    elige: conTrad && opciones,
+    eligeEs: conTrad && opciones,
+    oido: hayVoz() && opciones,
+    letras: conTrad && palabra && es.length >= 2 && es.length <= 12,
+    ordena: conTrad && !palabra && nPalabras <= 8,
+    escribe: conTrad && nPalabras <= 4,
+  };
+  const s = c.srs ?? {};
+  // nivel: 0 nueva · 1 recién aprendida o fallada · 2 en repaso · 3 ya se sabe bien (una semana o más)
+  const nivel = esNueva(s) ? 0 : (s.repeticiones ?? 0) === 0 ? 1 : (s.intervalo ?? 0) >= 7 ? 3 : 2;
+  const montar = palabra ? 'letras' : 'ordena';
+  const porNivel = [
+    ['elige', 'oido'],
+    ['eligeEs', 'oido', 'elige', montar],
+    [montar, 'eligeEs', 'escribe', 'oido'],
+    ['escribe', montar, 'oido', 'eligeEs'],
+  ][nivel];
+  let lista = porNivel.filter(m => puede[m]);
+  if (!lista.length) lista = Object.keys(puede).filter(m => puede[m]);
+  if (!lista.length) lista = ['clasica'];
   return lista;
 }
 
@@ -128,7 +114,6 @@ export function pintarRepaso(app) {
   let hechas = 0;
   let aciertos = 0;
   let totalSesion = 0;
-  let forma = 'dia';
   const falladas = new Set();
   const relojes = new Set();
   const luego = (ms, fn) => { const r = setTimeout(() => { relojes.delete(r); fn(); }, ms); relojes.add(r); };
@@ -139,45 +124,23 @@ export function pintarRepaso(app) {
   function inicio() {
     actual = null;
     alTeclear = null;
-    const todas = tarjetas();
-    const pendientes = todas.filter(c => tocaRepasar(c.srs)).length;
-    const nuevas = Math.min(NUEVAS_POR_SESION, todas.filter(c => esNueva(c.srs)).length);
-    const hoy = actividadDeHoy();
-    const hayAlgo = pendientes + nuevas > 0;
+    const todas = tarjetas().filter(c => c.es);
+    const { pendientes, nuevas, hechas: hechasHoy } = colaDeHoy(todas);
+    const quedan = pendientes.length + nuevas.length;
+    const manana = paraManana(todas);
+    const total = hechasHoy + quedan;
 
-    // el mazo: una cartita por cada diez tarjetas que tocan (como mucho doce)
-    const mazo = el('div', { class: 'rp-mazo', 'aria-hidden': 'true' },
-      Array.from({ length: Math.min(12, Math.max(1, Math.ceil((pendientes + nuevas) / 10))) }, (_, k) =>
-        el('span', { style: `--k:${k}` })));
+    const empezar = el('button', { type: 'button', class: 'es-boton es-boton-grande rp2-empezar', disabled: !quedan, 'data-sonido': 'voltear' },
+      quedan ? t('repaso.empezar') : t('ph.rp.hecho'));
+    empezar.addEventListener('click', arrancar);
 
-    // sin nada que repasar el botón se apaga, y el motivo va justo debajo de él
-    const motivo = !hayAlgo && (todas.length ? t('repaso.sinQueRepasar') : t('repaso.vacioActivo'));
-    const empezar = el('button', { type: 'button', class: 'es-boton es-boton-grande rp-empezar', disabled: !hayAlgo, 'aria-describedby': motivo ? 'rp-motivo' : null, 'data-sonido': 'voltear' }, t('repaso.empezar'));
-    empezar.addEventListener('click', () => arrancar('dia'));
-    // las otras formas de repasar: cada una dice cuántas tarjetas tiene y se apaga si no hay ninguna
-    const conTarjetas = todas.filter(c => c.es && textoTrad(c)).length;
-    const cuantas = {
-      rapido: Math.min(POR_SESION_CORTA, pendientes + nuevas || conTarjetas),
-      cuesta: Math.min(NUEVAS_POR_SESION, cuestan().length),
-      oido: hayVoz() ? Math.min(POR_SESION_LIBRE, pendientes + nuevas || conTarjetas) : 0,
-      escribir: Math.min(POR_SESION_LIBRE, conTarjetas),
-      libre: Math.min(POR_SESION_LIBRE, conTarjetas),
-    };
-    const formas = el('div', { class: 'rp-formas', role: 'group', 'aria-label': t('repaso.formas') },
-      Object.entries(cuantas).map(([id, n]) => el('button', {
-        type: 'button', class: 'rp-forma', disabled: !n, 'data-sonido': 'voltear', onclick: () => arrancar(id),
-        title: n ? null : t(id === 'oido' && !hayVoz() ? 'repaso.forma.sinVoz' : 'repaso.forma.sinTarjetas'),
-      },
-      el('span', { class: 'rp-forma-icono', 'aria-hidden': 'true' }, FORMAS[id].icono),
-      el('span', { class: 'rp-forma-nombre' }, t(`repaso.forma.${id}`)),
-      el('span', { class: 'rp-forma-texto' }, t(`repaso.forma.${id}.texto`)),
-      n ? el('span', { class: 'rp-forma-n' }, String(n)) : null)));
-    const rebeldes = todas.filter(esRebelde).length;
+    const cuenta = clave => todas.filter(c => etapa(c.srs).clave === clave).length;
+    const etapas = ['nueva', 'aprendiendo', 'repaso', 'dominada'].map(clave => el('li', { class: `rp2-etapa rp2-${clave}` },
+      el('strong', {}, String(cuenta(clave))), el('span', {}, t(`srs.etapa.${clave}`))));
 
-    function arrancar(id) {
-      forma = id;
-      cola = crearCola(id);
-      if (!cola.length) { decir(t('repaso.forma.sinTarjetas'), 'confundida'); return; }
+    function arrancar() {
+      cola = colaDelDia();
+      if (!cola.length) return;
       reserva = crearReserva();
       racha = 0; mejorRacha = 0; hechas = 0; aciertos = 0;
       totalSesion = cola.length;
@@ -188,36 +151,42 @@ export function pintarRepaso(app) {
     poner(app,
       conCartel(el('section', { class: 'intro-vista' },
         el('h1', {}, t('menu.repaso')),
-        el('p', {}, t('repaso.introActivo'))), 'repaso'),
-      el('section', { class: 'caja panel-repaso' },
-        hayAlgo ? mazo : null,
-        el('dl', { class: 'contadores' },
-          el('div', {}, el('dt', {}, t('repaso.paraRepasar')), el('dd', {}, String(pendientes))),
-          el('div', {}, el('dt', {}, t('repaso.nuevas')), el('dd', {}, String(nuevas))),
-          el('div', {}, el('dt', {}, t('repaso.hoy')), el('dd', {}, String(hoy.repasos)))),
+        el('p', {}, t('ph.rp.intro', { n: NUEVAS_AL_DIA }))), 'repaso'),
+      el('section', { class: 'caja rp2-hoy' },
+        el('p', { class: 'rp2-hoy-titulo' }, t('ph.rp.hoy')),
+        el('p', { class: 'rp2-hoy-n' }, el('strong', {}, String(quedan)), el('span', {}, t('ph.rp.tarjetas'))),
+        el('div', { class: 'rp2-barra', role: 'progressbar', 'aria-valuemin': '0', 'aria-valuemax': String(total), 'aria-valuenow': String(hechasHoy) },
+          el('span', { style: `width:${total ? Math.round((hechasHoy / total) * 100) : 0}%` })),
+        el('dl', { class: 'rp2-cifras' },
+          el('div', {}, el('dt', {}, t('repaso.paraRepasar')), el('dd', {}, String(pendientes.length))),
+          el('div', {}, el('dt', {}, t('repaso.nuevas')), el('dd', {}, String(nuevas.length))),
+          el('div', {}, el('dt', {}, t('repaso.hoy')), el('dd', {}, String(hechasHoy)))),
         empezar,
-        motivo && el('p', { class: 'aprox rp-motivo', id: 'rp-motivo' }, motivo, !todas.length && [' ', el('a', { href: '#/lecciones' }, t('repaso.vacioIr'))]),
-        todas.length ? el('h2', { class: 'rp-formas-titulo' }, t('repaso.formas')) : null,
-        todas.length ? formas : null,
-        rebeldes ? el('p', { class: 'aprox rp-rebeldes' }, t('repaso.rebeldesHay', { n: rebeldes })) : null,
-        todas.length ? botonAvisos() : null,
-        el('div', { class: 'rp-reto' }, enlaceReto()),
-        el('p', { class: 'rp-simulacros' }, el('a', { class: 'es-boton es-boton-papel', href: '#/simulacros' }, '📄 ', t('sim.enlace')))),
+        !quedan && el('p', { class: 'rp2-motivo' }, todas.length
+          ? t('ph.rp.manana', { n: manana })
+          : [t('repaso.vacioActivo'), ' ', el('a', { href: '#/lecciones' }, t('repaso.vacioIr'))])),
+      todas.length ? el('section', { class: 'caja rp2-mazo' },
+        el('h2', {}, t('ph.rp.mazo', { n: todas.length })),
+        el('ul', { class: 'rp2-etapas' }, etapas),
+        el('p', { class: 'rp2-ayuda' }, t('ph.rp.modos'))) : null,
+      todas.length ? el('section', { class: 'caja rp2-extra' }, botonAvisos(), el('div', { class: 'rp-reto' }, enlaceReto())) : null,
     );
 
     if (!todas.length) decir(t('repaso.tutoraVacio'), 'confundida');
-    else if (!hayAlgo) decir(t('repaso.tutoraAlDia'), 'contenta');
-    else decir(t('repaso.tutoraEsperando', { n: pendientes + nuevas }));
+    else if (!quedan) decir(t('repaso.tutoraAlDia'), 'contenta');
+    else decir(t('repaso.tutoraEsperando', { n: quedan }));
   }
 
   function siguiente() {
     actual = cola.shift() ?? null;
     if (!actual) { fin(); return; }
-    const todos = modosPara(actual, reserva, forma === 'escribir');
-    const permitidos = todos.filter(m => !FORMAS[forma].modos || FORMAS[forma].modos.includes(m));
-    const posibles = permitidos.length ? permitidos : todos;
-    const sinRepetir = posibles.filter(m => m !== modoAnterior);
-    const modo = alAzar(sinRepetir.length ? sinRepetir : posibles);
+    const posibles = modosPara(actual, reserva);
+    // nunca el mismo que la última vez con esta tarjeta, ni (si se puede) el de la tarjeta de antes
+    const distintos = posibles.filter(m => m !== actual.srs?.modo);
+    const variados = (distintos.length ? distintos : posibles).filter(m => m !== modoAnterior);
+    const elegibles = variados.length ? variados : (distintos.length ? distintos : posibles);
+    // el primero de la lista es el que toca por nivel: sale más a menudo
+    const modo = Math.random() < 0.5 ? elegibles[0] : alAzar(elegibles);
     modoAnterior = modo;
     pintarJuego(actual, modo);
   }
@@ -236,8 +205,9 @@ export function pintarRepaso(app) {
     const llama = el('span', { class: `rp-racha${racha >= 2 ? ' encendida' : ''}`, 'aria-label': t('repaso.rachaN', { n: racha }) },
       el('span', { 'aria-hidden': 'true' }, '🔥'), String(racha));
     const cabecera = el('div', { class: 'rp-cabecera' },
-      el('button', { type: 'button', class: 'boton boton-mini', 'data-sonido': 'cerrar', onclick: () => { limpiarRelojes(); fin(); } }, t('repaso.terminar')),
+      el('button', { type: 'button', class: 'boton boton-mini rp2-salir', 'aria-label': t('repaso.terminar'), title: t('repaso.terminar'), 'data-sonido': 'cerrar', onclick: () => { limpiarRelojes(); fin(); } }, '✕'),
       progreso,
+      el('span', { class: 'rp2-cuenta' }, `${hechas + 1}/${totalSesion}`),
       llama);
 
     const etiqueta = el('p', { class: 'carta-etiqueta' },
@@ -259,9 +229,13 @@ export function pintarRepaso(app) {
       sonarAcierto(racha);
       carta.classList.add('bien');
       if (racha > 0 && racha % 5 === 0) { confeti(llama, 16); decir(t('repaso.rachaTutora', { n: racha }), 'contenta'); }
+      const nuevo = guardar(nota);
+      const seguir = el('button', { type: 'button', class: 'es-boton rp2-seguir', 'data-sonido': 'paso' }, t('ph.lec.continuar'));
+      seguir.addEventListener('click', () => pasar());
       poner(aviso, el('p', { class: 'rp-bien' }, '✔ ', t(nota === 4 ? 'repaso.genial' : nota === 2 ? 'repaso.casiBien' : 'repaso.bien')),
-        respuesta(c));
-      cerrar(nota, 900);
+        respuesta(c), vuelve(nuevo), seguir);
+      alTeclear = e => { if (e.key === 'Enter') { e.preventDefault(); pasar(); } };
+      luego(1600, pasar);
     }
     function fallar(lo) {
       if (resuelta) return;
@@ -270,28 +244,36 @@ export function pintarRepaso(app) {
       falladas.add(c);
       sonar('mal');
       carta.classList.add('mal');
-      const seguir = el('button', { type: 'button', class: 'es-boton rp-seguir', 'data-sonido': 'paso' }, t('repaso.entendido'));
+      const nuevo = guardar(1);
+      const seguir = el('button', { type: 'button', class: 'es-boton rp2-seguir', 'data-sonido': 'paso' }, t('repaso.entendido'));
       poner(aviso,
         el('p', { class: 'rp-mal' }, '✖ ', lo ? t('repaso.dijiste', { texto: lo }) : t('repaso.noEra')),
         respuesta(c),
+        vuelve(nuevo),
         seguir);
-      seguir.addEventListener('click', () => cerrar(1, 0));
+      seguir.addEventListener('click', () => pasar());
+      alTeclear = e => { if (e.key === 'Enter') { e.preventDefault(); pasar(); } };
       luego(60, () => seguir.focus({ preventScroll: true }));
       if (!pronunciar(c.es)) { /* sin voz: se lee */ }
     }
-    function cerrar(nota, espera) {
+    // se guarda al responder (una sola vez: hoy ya no vuelve) y se dice cuándo vuelve
+    function guardar(nota) {
       zona.querySelectorAll('button, input').forEach(b => { b.disabled = true; });
       hechas += 1;
-      if (FORMAS[forma].srs) {
-        const nuevo = programar(c.srs, nota);
-        actualizarTarjeta(c.id, nuevo);
-        c.srs = nuevo;
-        if (nuevo.vence - Date.now() < VOLVER_EN_SESION) { cola.push(c); totalSesion += 1; }
-      } else if (nota === 1) { cola.push(c); totalSesion += 1; } // en el libre, lo fallado vuelve igual
+      const nuevo = { ...programar(c.srs, nota), modo };
+      actualizarTarjeta(c.id, nuevo);
+      c.srs = nuevo;
       progreso.firstChild.style.setProperty('--avance', String(Math.min(1, hechas / Math.max(totalSesion, hechas))));
-      if (espera) luego(espera, siguiente);
-      else siguiente();
+      return nuevo;
     }
+    let pasada = false;
+    function pasar() {
+      if (pasada) return;
+      pasada = true;
+      limpiarRelojes();
+      siguiente();
+    }
+    const vuelve = nuevo => el('p', { class: 'rp2-vuelve' }, '📅 ', nuevo.intervalo <= 1 ? t('ph.rp.vuelveManana') : t('ph.rp.vuelve', { cuando: textoDias(nuevo.intervalo) }));
 
     // ----- Cada minijuego -----
     if (modo === 'elige' || modo === 'eligeEs' || modo === 'oido') {
@@ -440,28 +422,17 @@ export function pintarRepaso(app) {
           dato('🃏', total, t('repaso.finTarjetas')),
           dato('✔', `${porcentaje}%`, t('repaso.finAciertos')),
           dato('🔥', mejorRacha, t('repaso.finRacha'))),
-        falladas.size ? el('p', { class: 'aprox' }, t(FORMAS[forma].srs ? 'repaso.finFalladas' : 'repaso.finFalladasLibre', { n: falladas.size })) : null,
+        el('p', { class: 'rp2-vuelve' }, '📅 ', t('ph.rp.manana', { n: paraManana(tarjetas()) })),
+        falladas.size ? el('p', { class: 'aprox' }, t('ph.rp.falladas', { n: falladas.size })) : null,
         falladas.size ? el('ul', { class: 'rp-final-falladas' }, [...falladas].slice(0, 8).map(c =>
           el('li', {}, el('span', { lang: LANG }, c.es), el('span', { class: 'aprox' }, textoTrad(c)), botonEscuchar(c.es)))) : null,
         el('div', { class: 'jg-final-botones' },
           el('button', { type: 'button', class: 'es-boton', onclick: inicio }, t('comun.volver')),
-          falladas.size ? el('button', { type: 'button', class: 'es-boton es-boton-papel', onclick: otraVezFalladas }, t('repaso.otraVezFalladas')) : null,
           el('a', { class: 'es-boton es-boton-papel', href: '#/lecciones' }, t('jg.fin.mapa')),
           el('a', { class: 'es-boton es-boton-papel', href: '#/cuaderno' }, t('repaso.verCuaderno')))));
     if (total) luego(250, () => confeti(copa, porcentaje >= 80 ? 34 : 18));
     app.querySelector('button')?.focus({ preventScroll: true });
     decir(total ? t('repaso.finTutora', { n: total }) : t('repaso.tutoraAlDia'), 'contenta');
-  }
-
-  // repasar ya mismo las que se han fallado en esta sesión (sin cambiar cuándo vuelven: ya están programadas)
-  function otraVezFalladas() {
-    forma = 'libre';
-    cola = barajar([...falladas]);
-    reserva = crearReserva();
-    racha = 0; mejorRacha = 0; hechas = 0; aciertos = 0;
-    totalSesion = cola.length;
-    falladas.clear();
-    siguiente();
   }
 
   const teclas = e => {

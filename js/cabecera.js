@@ -5,7 +5,7 @@ import { el, poner } from './dom.js';
 import { icono } from './iconos.js';
 import { t } from './i18n.js';
 import { tarjetas, racha, alCambiar } from './progress.js';
-import { tocaRepasar, esNueva } from './srs.js';
+import { colaDeHoy } from './srs.js';
 import { decir, botonTutora } from './tutor.js';
 import { sonar } from './sonidos.js';
 import { nube, alCambiarNube } from './nube.js';
@@ -23,10 +23,10 @@ llama.addEventListener('click', () => {
 });
 document.querySelector('.cabecera-botones')?.prepend(botonTutora(), llama);
 
-/** Tarjetas que tocan hoy: las pendientes más las nuevas (como mucho 20, igual que en la pantalla de repaso). */
+/** Tarjetas que quedan hoy: las que tocan más las nuevas que aún caben hoy (igual que en la pantalla de repaso). */
 export function pendientesDeHoy() {
-  const todas = tarjetas();
-  return todas.filter(c => tocaRepasar(c.srs)).length + Math.min(20, todas.filter(c => esNueva(c.srs)).length);
+  const { pendientes, nuevas } = colaDeHoy(tarjetas());
+  return pendientes.length + nuevas.length;
 }
 
 /** El botón de la cuenta: lleva al perfil. Su puntito dice si el progreso está guardado en la nube. */

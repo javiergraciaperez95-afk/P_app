@@ -287,4 +287,16 @@ export default {
   'ph.lec.irFalta': 'Ir al que falta',
   'ph.lec.ok': '¡Bien!',
   'ph.lec.ojo': 'Ojo',
+
+  // ----- Repaso (como Anki: una vez al día) -----
+  'ph.rp.intro': 'Repetición espaciada como en Anki: cada tarjeta se repasa una sola vez al día, justo cuando estás a punto de olvidarla. Cada día entran como mucho {n} nuevas. Cada repaso es un juego distinto.',
+  'ph.rp.hoy': 'Hoy',
+  'ph.rp.tarjetas': 'tarjetas por repasar',
+  'ph.rp.hecho': '✔ Hoy ya está',
+  'ph.rp.manana': ({ n }) => (n ? `Mañana: ${n} tarjetas.` : 'Mañana aún no toca ninguna. ¡Haz otra lección para tener palabras nuevas!'),
+  'ph.rp.mazo': 'Tu mazo: {n} tarjetas',
+  'ph.rp.modos': 'Las nuevas: elegir el significado u oírla. Cuanto mejor la sabes, más difícil: elegir el español, montarla y escribirla. Nunca repite el juego de la vez anterior.',
+  'ph.rp.vuelve': 'Vuelve dentro de {cuando}',
+  'ph.rp.vuelveManana': 'Vuelve mañana',
+  'ph.rp.falladas': '{n} tarjetas falladas vuelven mañana.',
 };
