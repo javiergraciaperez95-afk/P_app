@@ -11,6 +11,7 @@ import './recordatorio.js'; // en la APK, el aviso diario (se ofrece al terminar
 import { el, poner } from './dom.js';
 import { activarDesarrollador, esDesarrollador } from './desarrollador.js';
 import { haySesion, alCambiarSesion } from './servidor.js';
+import { puedeAbrirLeccion, puedePracticar, anotarPractica } from './limites.js';
 import { icono } from './iconos.js';
 import { descubrirLecciones, cargarIndice, cargarDiccionario, cargarLeccion, cargarCapitulos, cargarFrases } from './lessons.js';
 import { ajuste, aplicarTema, temaActual, cambiarAjuste, aplicarComodidad, modoCalma } from './ajustes.js';
@@ -766,7 +767,13 @@ async function navegar({ cambioDeIdioma = false } = {}) {
     cuandoEsteLibre(cargarElDiccionario);
   }
 
-  if (seccion === 'leccion') {
+  if (seccion === 'leccion' && !puedeAbrirLeccion(parametro)) {
+    // el plan gratis empieza 3 lecciones nuevas al día (js/limites.js): las ya empezadas se siguen sin límite
+    const { pintarMuro } = await import('./vistas/muro.js');
+    if (estePase !== pase) return;
+    titulo(t('muro.lecciones.titulo'));
+    pintarMuro(app, 'lecciones');
+  } else if (seccion === 'leccion') {
     const i = contenido.resultados.findIndex(r => r.id === parametro);
     const resultado = contenido.resultados[i] && await leccionCompleta(contenido.resultados[i]);
     if (estePase !== pase) return;
@@ -791,7 +798,13 @@ async function navegar({ cambioDeIdioma = false } = {}) {
     const pintarPrueba = await vista('prueba', 'pintarPrueba');
     if (estePase !== pase) return;
     limpiarVista = pintarPrueba(app, { ...contenido, leccionCompleta });
+  } else if (seccion === 'practica' && !puedePracticar()) {
+    const { pintarMuro } = await import('./vistas/muro.js');
+    if (estePase !== pase) return;
+    titulo(t('muro.practica.titulo'));
+    pintarMuro(app, 'practica');
   } else if (seccion === 'practica') {
+    anotarPractica();
     titulo(t('menu.practica'));
     const pintarPractica = await vista('practica', 'pintarPractica');
     if (estePase !== pase) return;

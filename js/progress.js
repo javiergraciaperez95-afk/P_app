@@ -304,7 +304,14 @@ export function marcarAbierta(idLeccion) {
   const l = leccion(idLeccion);
   l.abierta = true;
   l.t = Date.now();
+  l.abiertaEn = Date.now(); // el día en que se empezó: cuenta para el límite de lecciones nuevas del plan gratis
   guardar();
+}
+export const estaAbierta = idLeccion => Boolean(datos.lecciones[idLeccion]?.abierta);
+/** Cuántas lecciones se han empezado hoy (las del límite diario del plan gratis, ver js/limites.js). */
+export function leccionesAbiertasHoy() {
+  const hoy = new Date().toDateString();
+  return Object.values(datos.lecciones).filter(l => l.abiertaEn && new Date(l.abiertaEn).toDateString() === hoy).length;
 }
 
 /** Resumen de una lección. idsEjercicios: los ejercicios que tiene ahora el archivo. */

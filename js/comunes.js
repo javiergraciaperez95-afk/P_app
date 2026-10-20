@@ -7,6 +7,7 @@ import { pronunciar, sonar, ayudaVoz } from './sonidos.js';
 import { estaEnCuaderno, guardarEnCuaderno, guardarVariasEnCuaderno, quitarDelCuaderno } from './progress.js';
 import { decir } from './tutor.js';
 import { LANG } from './curso.js';
+import { puedeGuardarAMano } from './limites.js';
 
 /**
  * Al terminar una lección, sus palabras pasan al cuaderno y, con eso, al repaso. Con ellas van también unas pocas
@@ -85,6 +86,8 @@ export function botonGuardar(item, { conTexto = false } = {}) {
       quitarDelCuaderno(item.es);
       sonar('quitar');
     } else {
+      // el plan gratis guarda a mano hasta 50 palabras (las de las lecciones terminadas no cuentan, js/limites.js)
+      if (!puedeGuardarAMano()) { import('./vistas/muro.js').then(m => m.avisarMuro('cuaderno')); return; }
       guardarEnCuaderno(item);
       sonar('guardar');
       decir(t('comun.apuntado', { texto: item.es }), 'contenta');
