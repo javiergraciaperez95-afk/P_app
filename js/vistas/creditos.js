@@ -1,7 +1,7 @@
 // Créditos (#/creditos): a quién se agradecen las voces y lo demás que usa la app.
 
 import { el, poner } from '../dom.js';
-import { t, tr, idioma } from '../i18n.js';
+import { t, idioma } from '../i18n.js';
 import { CURSOS } from '../cursos.js';
 import { hayCurso, nombreCurso } from '../curso.js';
 import { VOCES, OTROS } from '../creditos.js';
@@ -32,7 +32,7 @@ export function pintarCreditos(contenedor) {
           el('ul', {}, voces.map(v => el('li', {}, enlace(v.autor, v.url), ` · ${t('creditos.voz', { voz: v.voz })} · ${v.licencia}`)))))),
       el('h2', {}, t('creditos.otros')),
       el('ul', { class: 'creditos-lista' }, OTROS.map(o =>
-        el('li', { class: 'caja' }, el('strong', {}, o.nombre), ` (${tr(o.que)}) · `, enlace(o.autor, o.url), ` · ${o.licencia}`))),
+        el('li', { class: 'caja' }, el('strong', {}, o.nombre), ` (${o.que[i] ?? o.que.en}) · `, enlace(o.autor, o.url), ` · ${o.licencia}`))),
       el('p', {}, t('creditos.ia')),
       el('p', {}, el('a', { class: 'boton boton-mini', href: hayCurso ? '#/lecciones' : '#/inicio' }, t('creditos.volver')))));
 }

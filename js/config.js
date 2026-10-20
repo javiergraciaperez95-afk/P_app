@@ -17,12 +17,12 @@ export const TITULAR = {
   correo: '',     // correo de contacto para peticiones sobre los datos
 };
 // Fecha de la última vez que se cambió el aviso legal (cámbiala al tocar sus textos).
-export const LEGAL_ACTUALIZADO = '19-10-2026';
+export const LEGAL_ACTUALIZADO = '20-10-2026';
 
 // ----- Ayudar sin suscribirse: los botones de Patreon y Buy Me a Coffee encima de los precios (#/precios) -----
 // FICTICIOS de momento: cámbialos por las páginas de verdad cuando existan.
 export const APOYO = {
-  patreon: 'https://www.patreon.com/paglot-ejemplo',
+  patreon: 'https://www.patreon.com/cw/paglot',
   cafe: 'https://www.buymeacoffee.com/paglot',
 };
 
