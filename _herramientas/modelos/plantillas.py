@@ -1,4 +1,4 @@
-# Paso 1: escribe las 6 plantillas (plantillas/modelo-N.json). Cada una enseña la estructura completa de su modelo con
+# Paso 1: escribe las plantillas (plantillas/modelo-N.json). Cada una enseña la estructura completa de su modelo con
 # una pieza vacía de cada tipo que admite cada etapa. Todas las lecciones nuevas tienen exactamente estas claves, en este
 # orden (las listas pueden crecer: más palabras, más piezas, más frases, más opciones…).
 # Uso: py -X utf8 _herramientas/modelos/plantillas.py

@@ -29,7 +29,7 @@ def sortear(c, ids):
 def main():
     forzar = '--forzar' in sys.argv
     total = 0
-    print(f'{"curso":6} {"lecciones":>9}  carpetas      modelos 1-6')
+    print(f'{"curso":6} {"lecciones":>9}  carpetas      modelos 1-2')
     for c in CURSOS:
         ids = ids_originales(c)
         modelos = sortear(c, ids)

@@ -8,7 +8,7 @@ import { LANG } from './curso.js';
 import { hayVoz } from './sonidos.js';
 
 // Las lecciones de cada curso están en una carpeta por idioma del alumno (cursos/<curso>/<es|en|vi>/NNN.json, con
-// los 6 modelos de _herramientas/modelos/). Se usa la del idioma de la interfaz en cuanto está montada (tiene su
+// los modelos de _herramientas/modelos/). Se usa la del idioma de la interfaz en cuanto está montada (tiene su
 // indice.json); mientras no, las antiguas de lessons/.
 const LENGUA = idiomasDe(curso).includes(idioma()) ? idioma() : idiomasDe(curso)[0];
 const NUEVA = ruta(`${LENGUA}/`);
@@ -385,9 +385,10 @@ function adaptar(json) {
 }
 
 // ---------------------------------------------------------------------------
-// Lecciones de los 6 modelos (cursos/<curso>/<alumno>/NNN.json; ver _herramientas/modelos/LEEME.txt)
+// Lecciones de los modelos (cursos/<curso>/<alumno>/NNN.json; ver _herramientas/modelos/LEEME.txt)
 // Cada archivo ya está escrito para un solo idioma del alumno: el texto estudiado va en «estudio» y lo demás es
-// texto normal. Las piezas van por etapas (explicar, palabras, leer, practicar) en el orden de su modelo.
+// texto normal. Las piezas van por etapas (explicar, palabras, leer, practicar) en el orden de su modelo:
+// siempre explicar primero y practicar al final.
 // ---------------------------------------------------------------------------
 
 const FORMATO_MODELO = 'paglot-modelo-1';
@@ -449,9 +450,17 @@ function adaptarModelo(m) {
     titulo: m.titulo.alumno,
     ...(m.intro ? { intro: m.intro } : {}),
     palabras,
-    bloques: m.etapas.flatMap(e => e.piezas.map(pieza)),
+    bloques: ordenSagrado(m.etapas).flatMap(e => e.piezas.map(pieza)),
   };
 }
+
+// El orden es sagrado: primero se explica y al final se practica (en el modo juego las palabras y la lectura también
+// preguntan). Los JSON ya vienen así; esto es por si alguno se cuela con otro orden.
+const PESO_ETAPA = { explicar: 0, practicar: 2 };
+const ordenSagrado = etapas => etapas
+  .map((e, i) => ({ e, i }))
+  .sort((a, b) => (PESO_ETAPA[a.e.etapa] ?? 1) - (PESO_ETAPA[b.e.etapa] ?? 1) || a.i - b.i)
+  .map(x => x.e);
 
 // ---------------------------------------------------------------------------
 // Lecciones de esquema v2 (ver _herramientas/ESQUEMA_V2.txt)

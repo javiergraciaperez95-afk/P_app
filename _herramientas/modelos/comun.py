@@ -1,5 +1,5 @@
-# Lo que comparten los scripts de los 6 modelos de lección (ver LEEME.txt de esta carpeta).
-# - Los cursos, sus carpetas por idioma del alumno y los 6 modelos.
+# Lo que comparten los scripts de los modelos de lección (ver LEEME.txt de esta carpeta).
+# - Los cursos, sus carpetas por idioma del alumno y los modelos (explicar siempre primero).
 # - Las claves fijas de cada parte de una lección (la estructura estricta).
 # - validar_leccion(): la comprobación que tiene que pasar cada JSON.
 
@@ -30,16 +30,17 @@ def lenguas_de(c):
     return [l for l in ('es', 'en', 'vi') if l != c]
 
 
-# Los 6 modelos: el orden de las cuatro etapas. Practicar va siempre al final (nunca se pregunta lo que aún no se ha
-# visto); explicar, palabras y leer van en sus 6 órdenes posibles.
+# Los modelos: el orden de las cuatro etapas. El orden es sagrado: EXPLICAR va siempre primero y PRACTICAR siempre al
+# final (en el modo juego las palabras y la lectura también son juegos que preguntan, así que nada se juega antes de
+# que se haya explicado). Solo cambia el orden de palabras y leer.
+# Hasta el 20-10-2026 hubo 6 modelos (3-6 ponían palabras o leer antes de explicar): se pasaron al 1 o al 2
+# conservando el orden de palabras y leer (ordenar_etapas.py).
 MODELOS = {
     1: ('clasica', ['explicar', 'palabras', 'leer', 'practicar']),
     2: ('explicar-y-leer', ['explicar', 'leer', 'palabras', 'practicar']),
-    3: ('palabras-primero', ['palabras', 'explicar', 'leer', 'practicar']),
-    4: ('palabras-y-escena', ['palabras', 'leer', 'explicar', 'practicar']),
-    5: ('escena-y-explicacion', ['leer', 'explicar', 'palabras', 'practicar']),
-    6: ('descubrir', ['leer', 'palabras', 'explicar', 'practicar']),
 }
+ORDEN_SAGRADO = ('explicar', 'practicar')   # primera y última etapa de todos los modelos
+assert all(e[0] == ORDEN_SAGRADO[0] and e[-1] == ORDEN_SAGRADO[1] for _, e in MODELOS.values())
 ETAPA_DE = {
     'explicacion': 'explicar', 'gramatica': 'explicar', 'tabla': 'explicar',
     'vocabulario': 'palabras',
@@ -330,7 +331,7 @@ def validar_leccion(L, c=None, l=None, id_=None, completa=True):
     if L['formato'] != FORMATO:
         fallos('formato', f'tiene que ser "{FORMATO}"')
     if L['modelo'] not in MODELOS:
-        fallos('modelo', 'tiene que ser un número del 1 al 6')
+        fallos('modelo', f'tiene que ser uno de estos: {list(MODELOS)} (explicar siempre primero)')
         return fallos
     nombre, etapas = MODELOS[L['modelo']]
     if L['nombre_modelo'] != nombre:

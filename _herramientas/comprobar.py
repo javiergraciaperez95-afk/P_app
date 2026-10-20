@@ -179,7 +179,7 @@ def main():
     errores_datos = comprobar_datos_guardados()
     mostrar('6. Todo lo que se guarda, en el aviso legal', errores_datos)
     errores_modelos, total_modelos = comprobar_modelos()
-    mostrar('7. Lecciones de los 6 modelos', errores_modelos, f' ({total_modelos} archivos)')
+    mostrar('7. Lecciones de los modelos (explicar primero)', errores_modelos, f' ({total_modelos} archivos)')
     for errores in (errores_json, errores_i18n, errores_zq, errores_objetos, errores_csp, errores_datos, errores_modelos):
         fallos += len(errores)
     print('Todo correcto.' if not fallos else f'{fallos} fallo(s).')

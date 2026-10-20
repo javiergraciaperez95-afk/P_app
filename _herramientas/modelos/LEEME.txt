@@ -8,15 +8,14 @@ Cada curso tiene una carpeta por idioma del alumno, con un JSON por lección (el
 y, en cada carpeta, capitulos.json, indice.json y diccionario.json. La app (js/lessons.js, adaptarModelo) abre la
 carpeta del idioma de la interfaz en cuanto tiene su indice.json.
 
-Cada lección sigue uno de los 6 modelos, sorteado (plantillas/modelo-N.json). Todas tienen EXACTAMENTE las mismas
-claves en el mismo orden; lo que cambia de un modelo a otro es el orden de las etapas:
+Cada lección sigue uno de los 2 modelos (plantillas/modelo-N.json). Todas tienen EXACTAMENTE las mismas claves en el
+mismo orden; lo que cambia de un modelo a otro es el orden de las etapas:
     1 clasica               explicar → palabras → leer → practicar
     2 explicar-y-leer       explicar → leer → palabras → practicar
-    3 palabras-primero      palabras → explicar → leer → practicar
-    4 palabras-y-escena     palabras → leer → explicar → practicar
-    5 escena-y-explicacion  leer → explicar → palabras → practicar
-    6 descubrir             leer → palabras → explicar → practicar
-Practicar va siempre al final: nunca se pregunta lo que aún no se ha visto. Qué pieza va en cada etapa:
+EL ORDEN ES SAGRADO: explicar va siempre primero y practicar siempre al final. En el modo juego las palabras y la
+lectura también son juegos que preguntan, así que nada se juega antes de que se haya explicado. Hasta el 20-10-2026
+hubo 6 modelos (3-6 ponían palabras o leer antes de explicar); ordenar_etapas.py los pasó al 1 o al 2, y la app
+(ordenSagrado en js/lessons.js) lo vuelve a imponer al abrir cada lección. Qué pieza va en cada etapa:
     explicar   explicacion, gramatica, tabla
     palabras   vocabulario
     leer       dialogo, texto
@@ -36,4 +35,5 @@ CÓMO SE HIZO (y cómo rehacer una parte)
     siguiente.py <c> / entregar.py <c> <alumno> <id>     4. los subagentes (uno por curso) adaptan cada hoja a mano
                                                             (INSTRUCCIONES_HAIKU.txt); entregar.py lo comprueba y lo mete
     py -X utf8 _herramientas/modelos/montar.py [c]       5. indice.json y diccionario.json de cada carpeta terminada
+    py -X utf8 _herramientas/modelos/ordenar_etapas.py [c] explicar primero en todas (no toca textos)
 Las lecciones originales (lessons/, indice/, traducciones/) se guardaron fuera del proyecto al terminar.
