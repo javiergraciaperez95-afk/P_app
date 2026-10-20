@@ -267,15 +267,26 @@ const DIAPOSITIVAS = {
       ...juntos($('.casa-cartel'), $('.casa-mostrador-escena')),
       ...juntos($('.casa-buzon-escena'), [$('.casa-empezar'), $('.casa-acera'), $('.casa-gracias')])];
   },
-  // Regala Max: el taller (el título con la escena de la caja, y la hoja del pedido) y el tendedero de postales, de dos
-  // en dos; en un móvil bajito, cada pieza en la suya. Fijas: repartidas solas, el inglés (más corto) juntaba la hoja con
-  // una postal y no cabían.
+  // Regala Max: el taller (el título con la escena de la caja), la hoja del pedido y el tendedero con las tres
+  // postales juntas si caben (si no, las que quepan en cada una). Cada parte llena su diapositiva (css/regalo.css).
   'regala-max': () => {
     const $ = sel => app.querySelector(sel);
     const postales = [...app.querySelectorAll('.rg-postal')];
+    const tutora = $('.rg-tendedora')?.getBoundingClientRect().height ?? 0;
+    const sitio = altoDePagina() - tutora - 40;
+    const grupos = [];
+    let grupo = [];
+    let usado = 0;
+    for (const p of postales) {
+      const mide = p.getBoundingClientRect().height + 14;
+      if (grupo.length && usado + mide > sitio) { grupos.push(grupo); grupo = []; usado = 0; }
+      grupo.push(p);
+      usado += mide;
+    }
+    if (grupo.length) grupos.push(grupo);
     // el mostrador va con la escena: sin decirlo, se quedaba a la vista en todas y tapaba el título (sube 60 px)
-    if (altoDePagina() >= 600) return [[$('.rg-titulo'), $('.rg-escena'), $('.rg-mostrador')], $('.rg-pedido'), postales.slice(0, 2), postales.slice(2)];
-    return [$('.rg-titulo'), [$('.rg-escena'), $('.rg-mostrador')], $('.rg-pedido'), ...postales];
+    const taller = altoDePagina() >= 600 ? [[$('.rg-titulo'), $('.rg-escena'), $('.rg-mostrador')]] : [$('.rg-titulo'), [$('.rg-escena'), $('.rg-mostrador')]];
+    return [...taller, $('.rg-pedido'), ...grupos];
   },
   // Contacto: la carta va en tres (la ventana con el principio de la carta, los sellos del asunto, y el mensaje con el
   // matasellos y el botón); en un móvil bajito, en cinco.

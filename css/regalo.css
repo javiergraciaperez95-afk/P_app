@@ -415,3 +415,22 @@
 @media (max-width: 700px) and (min-height: 701px) and (max-height: 760px) {
   html.pm-activo .rg-postal { min-height: 195px; }
 }
+
+/* Móvil: cada parte llena su diapositiva, sin huecos oscuros debajo, y las postales sin alto mínimo (caben las que
+   quepan juntas: DIAPOSITIVAS['regala-max'] en js/app.js) */
+@media (max-width: 700px) {
+  html.pm-activo .rg-taller:has(> .rg-pedido:not(.pm-oculto)) { box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; min-height: calc(var(--pm-alto) - 12px); }
+  html.pm-activo .rg-tendedero { box-sizing: border-box; min-height: calc(var(--pm-alto) - 12px); }
+  html.pm-activo .rg-postal, html.pm-activo .rg-postal-2 { min-height: 0 !important; }
+  html.pm-activo .rg-postales { display: flex; flex-direction: column; justify-content: space-evenly; }
+}
+@media (max-width: 700px) {
+  html.pm-activo .rg-tendedero { display: flex; flex-direction: column; }
+  html.pm-activo .rg-tendedero .rg-postales { flex: 1; }
+  html.pm-activo .rg-postal-icono, html.pm-activo .rg-postal svg { max-height: 40px; }
+}
+@media (max-width: 700px) {
+  html.pm-activo .rg-postal, html.pm-activo .rg-postal-2 { padding: 10px 14px 10px !important; margin-top: 4px !important; }
+  html.pm-activo .rg-postal h3 { margin: 4px 0 2px; }
+  html.pm-activo .rg-postal p { margin: 0; font-size: .86rem; line-height: 1.35; }
+}
