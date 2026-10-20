@@ -32,6 +32,7 @@ import { iniciarLogros, comprobarLogros } from './logros.js';
 import { iniciarNube } from './nube.js';
 import { iniciarAvisosRepaso } from './avisos-repaso.js';
 import { banderaIdioma } from './banderas-idioma.js';
+import { aplicarPaleta } from './paletas.js';
 import { curso, hayCurso, nombreDelCurso, esBeta, paraQuien, lenguaDelAlumno, cambiarDeCurso } from './curso.js';
 import { PRECIOS_VISIBLES } from './config.js';
 import { avisoPendiente } from './sin-terminar.js';
@@ -946,6 +947,7 @@ async function iniciar() {
   aplicarIdioma();
   iniciarPie();
   aplicarTema();
+  aplicarPaleta();
   aplicarComodidad();
   pintarMarca();
   pintarBotonTema();

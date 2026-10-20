@@ -15,7 +15,7 @@ const CLAVE_AVISO = 'idiomas-aviso-visto';
 // «P-» es el nombre de cada curso (espanol-, ingles-, francais-…). _herramientas/comprobar.py avisa si el código guarda
 // algo con una clave que no está aquí: al añadir una, se pone en su grupo (o en uno nuevo, con su texto «legal.disp.*»).
 export const DATOS_DISPOSITIVO = [
-  ['ajustes', ['idiomas-ajustes', 'espanol-ajustes']],
+  ['ajustes', ['idiomas-ajustes', 'espanol-ajustes', 'paglot-paleta']],
   ['curso', ['idiomas-curso']],
   ['progreso', ['P-datos', 'P-prueba', 'P-logros', 'P-estrellas', 'P-juego', 'P-juego2', 'P-cofres', 'P-camino-abiertos', 'P-dia-completo', 'P-reto-mejor', 'P-simulacro-plus']],
   ['cuaderno', ['P-tarjeta:…']],

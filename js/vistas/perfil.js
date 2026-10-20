@@ -15,6 +15,7 @@ import { todasLasEstrellas } from '../../juegos/motor.js';
 import { LOGROS, logrosGanados, comprobarLogros } from '../logros.js';
 import { conCartel } from './carteles.js';
 import { seccionEstadisticas } from './estadisticas.js';
+import { PALETAS, paletaActual, cambiarPaleta, puedeUsar } from '../paletas.js';
 import {
   nubeActiva, nube, alCambiarNube, numeroCuenta, numeroBonito, usarNumero, borrarCuentaNube,
   pedirCodigo, comprobarCodigo, unirCorreo, recuperarConCorreo, correoDeLaCuenta,
@@ -323,6 +324,28 @@ function seccionProgreso(resultados) {
       dato(t('perfil.racha'), t('srs.dias', { n: r }), t('perfil.rachaDetalle'))));
 }
 
+/** Los temas de color: la de siempre para todos; dos más con Plus y todas con Max (las demás, con su candado). */
+function selectorPaletas() {
+  const grupo = el('div', { class: 'paletas', role: 'group', 'aria-labelledby': 'titulo-paleta' });
+  const pintar = () => poner(grupo, PALETAS.map(p => {
+    const libre = puedeUsar(p.id);
+    const b = el('button', {
+      type: 'button', class: `paleta${libre ? '' : ' cerrada'}`, 'aria-pressed': String(paletaActual() === p.id),
+      'data-sonido': libre ? 'clic' : 'nada', title: libre ? '' : t(p.plan === 'plus' ? 'paleta.conPlus' : 'paleta.conMax'),
+    },
+    el('span', { class: 'paleta-muestra', 'data-paleta-muestra': p.id, 'aria-hidden': 'true' }),
+    el('span', {}, t(`paleta.${p.id}`)),
+    libre ? null : el('small', {}, p.plan === 'plus' ? 'PLUS' : 'MAX'));
+    b.addEventListener('click', () => {
+      if (!cambiarPaleta(p.id)) { decir(t(p.plan === 'plus' ? 'paleta.conPlus' : 'paleta.conMax'), 'pensando'); return; }
+      pintar();
+    });
+    return b;
+  }));
+  pintar();
+  return grupo;
+}
+
 function interruptor(id, texto, nombreAjuste, alCambiar) {
   const casilla = el('input', { id, type: 'checkbox' });
   casilla.checked = Boolean(ajuste(nombreAjuste));
@@ -417,6 +440,8 @@ function seccionAjustes() {
       idiomas] : []),
     el('h3', { id: 'titulo-tema' }, t('ajustes.tema')),
     tema,
+    el('h3', { id: 'titulo-paleta' }, t('paleta.titulo')),
+    selectorPaletas(),
     el('h3', {}, t('ajustes.sonido')),
     interruptor('ajuste-efectos', t('ajustes.efectos'), 'efectos', activo => activo && sonar('bien')),
     interruptor('ajuste-voz-tutora', t('ajustes.pitidos'), 'vozTutora'),
