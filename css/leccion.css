@@ -360,3 +360,6 @@ html.pm-activo .cabecera { top: 0; }
 details.se-abre > :not(summary) { animation: fr-entra .28s ease-out both; }
 @keyframes fr-entra { from { opacity: 0; transform: translateY(-6px); } }
 @media (prefers-reduced-motion: reduce) { details.se-abre > :not(summary) { animation: none; } }
+/* repaso: el español de las cartas, las opciones y las fichas, con letra de texto (en la pixelada costaba leer las frases) */
+.rp-carta .carta-es, .rp-opcion, .rp-opcion[lang], .rp-ficha.ordena, .rp-hueco.ordena, .rp-respuesta-es, .rp-escribe { font-family: var(--fuente-texto); font-weight: 800; letter-spacing: 0; }
+.rp-carta .carta-es { font-size: clamp(1.4rem, 6vw, 2rem); line-height: 1.3; }

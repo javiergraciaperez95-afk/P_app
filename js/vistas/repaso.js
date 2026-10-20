@@ -25,7 +25,54 @@ import { botonAvisos } from '../avisos.js';
 // ----- Comparar respuestas -----
 const limpiar = s => String(s).toLocaleLowerCase(LANG).replace(/[.,!?¡¿;:"«»“”'’()…]/g, ' ').replace(/\s+/g, ' ').trim();
 const sinTildes = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-const textoTrad = c => String(tr(c.trad) ?? '').trim();
+const tradCompleta = c => String(tr(c.trad) ?? '').trim();
+
+let espanolas = null;
+/** Las palabras sueltas del diccionario del curso (para reconocer el español dentro de una nota). */
+function palabrasEspanolas() {
+  if (!espanolas) {
+    espanolas = new Set();
+    for (const clave of diccionarioCompleto().keys()) for (const w of String(clave).toLocaleLowerCase('es').match(/[\p{L}]+/gu) ?? []) espanolas.add(w);
+  }
+  return espanolas;
+}
+
+/**
+ * La traducción como pregunta: sin las notas que la acompañan en las lecciones, que daban la respuesta
+ * («phía sau («detrás de»)», «hơn những gì (+ mệnh đề)»). Al enseñar la solución sí va completa (tradCompleta).
+ */
+function sinNotas(texto) {
+  let t = String(texto ?? '');
+  // solo las notas que llevan español («detrás de», el infinitivo: «(salir)») o son de gramática («+ mệnh đề»); las que
+  // distinguen en vietnamita («(thân mật)», «(nữ)») se quedan: sin ellas, «bạn» serían a la vez «tú» y «usted»
+  // (es español si es un infinitivo o si todas sus palabras están en el diccionario del curso: «nam», «gái» o
+  //  «chúng ta» son vietnamitas y se quedan)
+  const espanol = nota => {
+    const palabras = nota.toLocaleLowerCase('es').match(/[\p{L}]+/gu) ?? [];
+    if (!palabras.length || /[^a-záéíóúüñ\s'’,./-]/i.test(nota)) return false;
+    if (palabras.length === 1 && /(ar|er|ir|ír|se)$/.test(palabras[0])) return true;
+    return palabras.every(w => palabrasEspanolas().has(w));
+  };
+  const quitar = nota => /[«»"“”+]/.test(nota) || espanol(nota);
+  for (let vez = 0; vez < 3; vez++) t = t.replace(/\s*[([]([^()[\]]*)[)\]]/g, (todo, nota) => (quitar(nota) ? '' : todo));
+  t = t.replace(/\s+([,.;:!?])/g, '$1').replace(/\s{2,}/g, ' ').replace(/^[\s,;:–—-]+|[\s,;:–—-]+$/g, '').trim();
+  return t || String(texto ?? '').trim();
+}
+const textoTrad = c => sinNotas(tradCompleta(c));
+
+/**
+ * Si la traducción ya trae el español (frases que citan algo: «"Buenos días", cô ấy nói»), los juegos de producir
+ * (¿cómo se dice?, montar, escribir) se regalarían: esa tarjeta solo sale en los de reconocer. Los nombres propios
+ * (Ana, Madrid…) no cuentan.
+ */
+function revela(c) {
+  const trad = ` ${sinTildes(limpiar(textoTrad(c)))} `;
+  return c.es.trim().split(/\s+/).some((palabra, i) => {
+    const limpia = sinTildes(limpiar(palabra));
+    const nombre = i > 0 && /^\p{Lu}/u.test(palabra.replace(/^[¿¡«"“(]+/, ''));
+    return limpia.length >= 4 && !nombre && trad.includes(` ${limpia} `);
+  });
+}
 
 const REBELDE = 4; // olvidada tantas veces: tarjeta rebelde
 export const esRebelde = c => (c.srs?.lapsos ?? 0) >= REBELDE;
@@ -46,14 +93,14 @@ function colaDelDia() {
 function crearReserva() {
   const vistos = new Set();
   const reserva = [];
-  const meter = (es, trad) => {
+  const meter = (es, trad, propia) => {
     const clave = limpiar(es);
     if (!es || !trad || vistos.has(clave)) return;
     vistos.add(clave);
-    reserva.push({ es: String(es).trim(), trad: String(trad).trim() });
+    reserva.push({ es: String(es).trim(), trad: sinNotas(trad), propia });
   };
-  for (const c of tarjetas()) meter(c.es, textoTrad(c));
-  for (const e of diccionarioCompleto().values()) if (!e.oculta && e.trad) meter(e.es, tr(e.trad));
+  for (const c of tarjetas()) meter(c.es, tradCompleta(c), true);
+  for (const e of diccionarioCompleto().values()) if (!e.oculta && e.trad) meter(e.es, tr(e.trad), false);
   return reserva;
 }
 
@@ -65,7 +112,8 @@ function distractores(c, reserva, campo) {
   const candidatos = reserva
     .filter(r => limpiar(r[campo]) !== bueno && limpiar(r.es) !== limpiar(c.es) && limpiar(r.trad) !== limpiar(textoTrad(c)))
     .filter(r => /\s/.test(r.es) === frase || reserva.length < 30)
-    .map(r => ({ r, d: Math.abs(r[campo].length - largo) + Math.random() * 6 }))
+    .map(r => ({ r, d: Math.abs(r[campo].length - largo) + Math.random() * 4 + (r.propia ? 0 : 3)
+      + (/^\p{Lu}/u.test(r.es) !== /^\p{Lu}/u.test(c.es.trim()) ? 6 : 0) }))
     .sort((a, b) => a.d - b.d)
     .slice(0, 14);
   return barajar(candidatos).slice(0, 3).map(x => x.r[campo]);
@@ -77,14 +125,15 @@ function modosPara(c, reserva) {
   const nPalabras = es.split(/\s+/).length;
   const palabra = nPalabras === 1;
   const conTrad = Boolean(textoTrad(c));
+  const producir = conTrad && !revela(c);
   const opciones = reserva.length >= 3;
   const puede = {
     elige: conTrad && opciones,
-    eligeEs: conTrad && opciones,
+    eligeEs: producir && opciones,
     oido: hayVoz() && opciones,
-    letras: conTrad && palabra && es.length >= 2 && es.length <= 12,
-    ordena: conTrad && !palabra && nPalabras <= 8,
-    escribe: conTrad && nPalabras <= 4,
+    letras: producir && palabra && es.length >= 2 && es.length <= 12,
+    ordena: producir && !palabra && nPalabras <= 8,
+    escribe: producir && nPalabras <= 4,
   };
   let lista = Object.keys(puede).filter(m => puede[m]);
   if (!lista.length) lista = ['clasica'];
@@ -383,7 +432,7 @@ export function pintarRepaso(app) {
   function respuesta(c) {
     return el('div', { class: 'rp-respuesta' },
       el('span', { class: 'rp-respuesta-es', lang: LANG }, c.es),
-      textoTrad(c) && el('span', { class: 'rp-respuesta-trad' }, textoTrad(c)),
+      tradCompleta(c) && el('span', { class: 'rp-respuesta-trad' }, tradCompleta(c)),
       botonEscuchar(c.es));
   }
 
@@ -412,7 +461,7 @@ export function pintarRepaso(app) {
         el('p', { class: 'rp2-vuelve' }, '📅 ', t('ph.rp.manana', { n: paraManana(tarjetas()) })),
         falladas.size ? el('p', { class: 'aprox' }, t('ph.rp.falladas', { n: falladas.size })) : null,
         falladas.size ? el('ul', { class: 'rp-final-falladas' }, [...falladas].slice(0, 8).map(c =>
-          el('li', {}, el('span', { lang: LANG }, c.es), el('span', { class: 'aprox' }, textoTrad(c)), botonEscuchar(c.es)))) : null,
+          el('li', {}, el('span', { lang: LANG }, c.es), el('span', { class: 'aprox' }, tradCompleta(c)), botonEscuchar(c.es)))) : null,
         el('div', { class: 'jg-final-botones' },
           el('button', { type: 'button', class: 'es-boton', onclick: inicio }, t('comun.volver')),
           el('a', { class: 'es-boton es-boton-papel', href: '#/lecciones' }, t('jg.fin.mapa')),
